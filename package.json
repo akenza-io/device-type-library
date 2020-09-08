@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "ajv": "^6.12.4",
     "chai": "^4.2.0",
     "jsonschema": "^1.2.6",
     "mocha": "^8.1.3",

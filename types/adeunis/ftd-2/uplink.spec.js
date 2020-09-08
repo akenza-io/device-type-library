@@ -23,23 +23,28 @@ before(function (done) {
   });
 });
 
-describe("ERS Desk Uplink", function () {
+describe("Adeunis FTD-2 Uplink", function () {
   describe("consume()", function () {
-    it("should decode ERS payload", function (done) {
-      var data = { data: { payload_hex: "0100fe02290400010500070de91100" } };
+    it("should decode Adeunis payload", function (done) {
+      var data = { data: { payload_hex: "416c61726d" } };
       expectEmit(function (type, value) {
         assert.equal(type, "sample");
 
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
-        assert.equal(value.topic, "default");
+        assert.equal(value.topic, "uplink");
 
-        assert.equal(value.data.motion, 0);
-        assert.equal(value.data.light, 1);
-        assert.equal(value.data.occupancy, 0);
-        assert.equal(value.data.vdd, 3561);
-        assert.equal(value.data.temperature, 25.4);
-        assert.equal(value.data.humidity, 41);
+        //TODO get a real payload
+        // assert.equal(value.data.altitude, 0);
+        // assert.equal(value.data.rssi, -57);
+        // assert.equal(value.data.uplink, 29);
+        // assert.equal(value.data.downlink, 29);
+        // assert.equal(value.data.snr, 7);
+        // assert.equal(value.data.latitude, 47.41165);
+        // assert.equal(value.data.temperature, 24);
+        // assert.equal(value.data.sats, 7);
+        // assert.equal(value.data.battery, 3009);
+        // assert.equal(value.data.longitude, 8.5335);
 
         validate(value.data, schema, { throwError: true });
 
