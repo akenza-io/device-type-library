@@ -4,5 +4,10 @@
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/shop/product/ers-desk/",
   "description": "Indoor LoRaWAN® device for measuring the indoor environment and desk occupancy",
-  "author": "Akenza AG"
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": ["Occupancy", "Temperature", "Humidity", "Light"],
+  "outputTopics": ["default", "occupancy"],
+  "encoding": "HEX",
+  "connectivity": "LoRaWAN"
 }
