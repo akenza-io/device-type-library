@@ -1,0 +1,12 @@
+{
+  "$id": "https://akenza.io/decentlab/iam-occupied.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Decentlab IAM",
+  "type": "object",
+  "properties": {
+    "occupied": {
+      "description": "Space occupancy. false = Unoccupied / true = Occupied.",
+      "type": "boolean"
+    }
+  }
+}
