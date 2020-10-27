@@ -10,12 +10,6 @@
       "minimum": 0,
       "maximum": 255
     },
-    "vdd": {
-      "description": "Battery voltage in mV.",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 65535
-    },
     "occupancy": {
       "description": "Space occupancy. 0 = Unoccupied / 1 = Pending(Entering or leaving) / 2 = Occupied.",
       "type": "integer",

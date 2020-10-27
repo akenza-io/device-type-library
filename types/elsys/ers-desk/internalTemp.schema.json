@@ -1,0 +1,20 @@
+{
+    "$id": "https://elsys.se/ers-desk.internalTemp.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Elsys ERS Desk",
+    "type": "object",
+    "properties": {
+        "irExternalTemperature": {
+            "description": "irExternalTemperature",
+            "type": "number",
+            "minimum": -3276.5,
+            "maximum": 3276.5
+        },
+        "irInternalTemperature": {
+            "description": "irInternalTemperature",
+            "type": "number",
+            "minimum": -3276.5,
+            "maximum": 3276.5
+        }
+    }
+}

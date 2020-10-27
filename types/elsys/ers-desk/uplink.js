@@ -189,5 +189,15 @@ function consume(event) {
   var res = DecodeElsysPayload(hexToBytes(event.data.payload_hex));
   var topic = "default";
 
-  emit("sample", { topic: topic, data: res });
+  if (res.motion !== undefined) {
+    emit("sample", { topic: "motion", data: { "motion": res.motion, "occupancy": res.occupancy } });
+    delete res.motion;
+    delete res.occupancy;
+  }
+
+  if (res.irExternalTemperature !== undefined) {
+    emit("sample", { topic: topic, data: res });
+  } else {
+    emit("sample", { topic: topic, data: res });
+  }
 }
