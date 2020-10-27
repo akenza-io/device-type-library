@@ -10,6 +10,18 @@
       "minimum": 0,
       "maximum": 100
     },
+    "voc": {
+      "type": "integer",
+      "description": "Total Volatile Organic Compunds in ppm",
+      "minimum": 0,
+      "maximum": 60000
+    },
+    "co2": {
+      "type": "integer",
+      "description": "co2",
+      "minimum": 0,
+      "maximum": 10000
+    },
     "temperature": {
       "type": "number",
       "description": "The temperature in °C.",
@@ -22,23 +34,23 @@
       "minimum": 0,
       "maximum": 65535
     },
-    "motion": {
-      "description": "The number of motion counts.",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 255
-    },
-    "vdd": {
-      "description": "Battery voltage in mV.",
+    "battery": {
+      "description": "Battery voltage in V.",
       "type": "integer",
       "minimum": 0,
       "maximum": 65535
     },
-    "occupancy": {
-      "description": "Space occupancy. 0 = Unoccupied / 1 = Pending(Entering or leaving) / 2 = Occupied.",
+    "pressure": {
+      "description": "Barometric Pressure in hpa",
+      "type": "integer",
+      "minimum": 300,
+      "maximum": 1100
+    },
+    "pir": {
+      "description": "Pir motion sensor measuring activity level",
       "type": "integer",
       "minimum": 0,
-      "maximum": 2
+      "maximum": 65535
     }
   }
 }

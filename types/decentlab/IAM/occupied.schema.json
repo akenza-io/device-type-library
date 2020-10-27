@@ -5,7 +5,7 @@
   "type": "object",
   "properties": {
     "occupied": {
-      "description": "Space occupancy. false = Unoccupied / true = Occupied.",
+      "description": "Space occupancy. false = (Pir == 0) / true = (Pir > 0).",
       "type": "boolean"
     }
   }
