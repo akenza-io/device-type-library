@@ -1,0 +1,25 @@
+{
+  "name": "TBDW100 - Door & Window Sensor",
+  "version": "1.0.0",
+  "manufacturer": "TBDW100",
+  "url": "https://www.browan.com/product/door-window-sensor/detail",
+  "description": "Magnet sensor which can check door/window status",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": [
+    "Battery Percent",
+    "Temperature",
+    "Count",
+    "Time between Events",
+    "Status",
+    "Battery in Volt"
+  ],
+  "outputTopics": [
+    "default",
+    "opened",
+    "closed",
+    "keepalive"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LoRaWAN"
+}
