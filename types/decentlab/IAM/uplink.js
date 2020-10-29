@@ -51,8 +51,6 @@ var INDOOR_AMBIANCE_MONITOR = [
   }]
 ];
 
-var Bits = require('bits')
-
 function parseHexString(str) {
   var result = [];
   while (str.length >= 2) {
@@ -128,5 +126,5 @@ function consume(event) {
     emit("sample", { data: { "occupied": false }, topic: "occupied" });
   }
 
-  emit('sample', { data: decoded });
+  emit('sample', { data: decoded, topic: "default" });
 }
