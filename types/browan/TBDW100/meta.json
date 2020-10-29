@@ -7,12 +7,10 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [
-    "Battery Percent",
     "Temperature",
     "Count",
     "Time between Events",
-    "Status",
-    "Battery in Volt"
+    "Status"
   ],
   "outputTopics": [
     "default",

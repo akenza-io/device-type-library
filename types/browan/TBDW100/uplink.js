@@ -48,5 +48,4 @@ function consume(event) {
   var sample = { data: data };
 
   emit('sample', sample);
-
 }
