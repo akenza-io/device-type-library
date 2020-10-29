@@ -196,7 +196,7 @@ function consume(event) {
   }
 
   if (res.irExternalTemperature !== undefined) {
-    emit("sample", { topic: topic, data: res });
+    emit("sample", { topic: "internalTemp", data: res });
   } else {
     emit("sample", { topic: topic, data: res });
   }
