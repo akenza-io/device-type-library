@@ -1,11 +1,11 @@
 {
-  "$id": "https://elsys.se/ers-desk.schema.json",
+  "$id": "https://akenza.io/decentlab/iam/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Elsys ERS Desk",
+  "title": "Decentlab IAM default schema",
   "type": "object",
   "properties": {
     "humidity": {
-      "type": "integer",
+      "type": "number",
       "description": "The relative humidity in %.",
       "minimum": 0,
       "maximum": 100
@@ -36,13 +36,13 @@
     },
     "battery": {
       "description": "Battery voltage in V.",
-      "type": "integer",
+      "type": "number",
       "minimum": 0,
       "maximum": 65535
     },
     "pressure": {
       "description": "Barometric Pressure in hpa",
-      "type": "integer",
+      "type": "number",
       "minimum": 300,
       "maximum": 1100
     },
