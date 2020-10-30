@@ -1,0 +1,92 @@
+{
+  "$id": "https://akenza.io/miromico/rev2-v5-status.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Miromico SoD Button REV2_V5",
+  "type": "object",
+  "properties": {
+    "msgtype": {
+      "type": "integer",
+      "description": "What type of message got send. 1 = Button pressed, 2 = Status message, 5 = join",
+      "minimum": 0,
+      "maximum": 4
+    },
+    "internalTemp": {
+      "description": "Internal temperature",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "usedCharges": {
+      "type": "integer",
+      "description": "Number of used charges",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "battery": {
+      "type": "integer",
+      "description": "Battery in volt",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "aktivButtonN": {
+      "type": "integer",
+      "description": "Shows if the button nord is aktive",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "aktivButtonE": {
+      "type": "integer",
+      "description": "Shows if the button east is aktive",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "aktivButtonS": {
+      "type": "integer",
+      "description": "Shows if the button south is aktive",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "aktivButtonW": {
+      "type": "integer",
+      "description": "Shows if the button west is aktive",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "joinStrat": {
+      "type": "integer",
+      "description": "0 -> SF7, 1 -> SF12",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "ambitiousFirstPress": {
+      "type": "integer",
+      "description": "0 = Disabled, 1 = Enabled",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "dutyCycle": {
+      "type": "integer",
+      "description": "0 = Disabled, 1 = Enabled",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "buzzer": {
+      "type": "integer",
+      "description": "0 = Disabled, 1 = Enabled",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "confirmed": {
+      "type": "integer",
+      "description": "0 = confirmed uplinks, 1 = unconfirmed uplinks",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "statusMessageIntervall": {
+      "type": "integer",
+      "description": "Regular status message interval in minutes",
+      "minimum": 0,
+      "maximum": 1
+    }
+  }
+}

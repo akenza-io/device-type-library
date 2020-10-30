@@ -1,0 +1,74 @@
+{
+  "$id": "https://akenza.io/miromico/rev2-v5-default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Miromico SoD Button REV2_V5",
+  "type": "object",
+  "properties": {
+    "msgtype": {
+      "type": "integer",
+      "description": "What type of message got send. 1 = Button pressed, 2 = Status message, 5 = join",
+      "minimum": 0,
+      "maximum": 4
+    },
+    "btnNfirst": {
+      "type": "integer",
+      "description": "Shows if the button nord is first pressed",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "btnEfirst": {
+      "type": "integer",
+      "description": "Shows if the button east is first pressed",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "btnSfirst": {
+      "type": "integer",
+      "description": "Shows if the button south is first pressed",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "btnWfirst": {
+      "type": "integer",
+      "description": "Shows if the button west is first pressed",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "btnNpressed": {
+      "type": "integer",
+      "description": "Shows if the button nord is pressed",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "btnEpressed": {
+      "type": "integer",
+      "description": "Shows if the button east is pressed",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "btnSpressed": {
+      "type": "integer",
+      "description": "Shows if the button south is pressed",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "btnWpressed": {
+      "type": "integer",
+      "description": "Shows if the button west is pressed",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "buttonCount": {
+      "type": "integer",
+      "description": "Count of button presses",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "usedCharges": {
+      "type": "integer",
+      "description": "Number of used charges",
+      "minimum": 0,
+      "maximum": 65535
+    }
+  }
+}

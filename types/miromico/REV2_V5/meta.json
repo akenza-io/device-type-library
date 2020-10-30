@@ -1,0 +1,20 @@
+{
+  "name": "Miromico service on demand button REV2_V5",
+  "version": "1.0.0",
+  "manufacturer": "Miromico",
+  "url": "https://miromico.ch/portfolio/iot-button-rev2/",
+  "description": "IoT Button",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": [
+    "Button"
+  ],
+  "outputTopics": [
+    "default",
+    "status",
+    "button_pressed",
+    "join"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LoRaWAN"
+}
