@@ -1,0 +1,20 @@
+{
+    "$id": "https://elsys.se/ers-sound.internalTemp.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Elsys ERS Sound",
+    "type": "object",
+    "properties": {
+        "soundPeak": {
+            "description": "Peak value in dBspl",
+            "type": "integer",
+            "minimum": 65,
+            "maximum": 99
+        },
+        "soundAvg": {
+            "description": "Average value in dBspl",
+            "type": "integer",
+            "minimum": 35,
+            "maximum": 70
+        }
+    }
+}

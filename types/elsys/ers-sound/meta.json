@@ -1,0 +1,23 @@
+{
+  "name": "Elsys - ERS Sound",
+  "version": "1.0.0",
+  "manufacturer": "Elsys",
+  "url": "https://www.elsys.se/shop/product/ers-sound/",
+  "description": "Indoor LoRaWAN® device for measuring the indoor environment and sound",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": [
+    "Motion",
+    "Light",
+    "VDD",
+    "Humidity",
+    "Temperature",
+    "Noise"
+  ],
+  "outputTopics": [
+    "default",
+    "noise"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LoRaWAN"
+}
