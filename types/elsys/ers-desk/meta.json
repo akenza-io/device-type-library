@@ -6,8 +6,21 @@
   "description": "Indoor LoRaWAN® device for measuring the indoor environment and desk occupancy",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
-  "availableSensors": ["Occupancy", "Temperature", "Humidity", "Light"],
-  "outputTopics": ["default", "occupancy"],
+  "availableSensors": [
+    "Motion",
+    "Occupancy",
+    "Light",
+    "VDD",
+    "Humidity",
+    "Temperature",
+    "irExternalTemperature",
+    "irInternalTemperature"
+  ],
+  "outputTopics": [
+    "default",
+    "occupied",
+    "internalTemp"
+  ],
   "encoding": "HEX",
   "connectivity": "LoRaWAN"
 }
