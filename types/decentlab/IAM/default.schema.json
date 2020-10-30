@@ -5,7 +5,7 @@
   "type": "object",
   "properties": {
     "humidity": {
-      "type": "integer",
+      "type": "number",
       "description": "The relative humidity in %.",
       "minimum": 0,
       "maximum": 100
@@ -36,13 +36,13 @@
     },
     "battery": {
       "description": "Battery voltage in V.",
-      "type": "integer",
+      "type": "number",
       "minimum": 0,
       "maximum": 65535
     },
     "pressure": {
       "description": "Barometric Pressure in hpa",
-      "type": "integer",
+      "type": "number",
       "minimum": 300,
       "maximum": 1100
     },
