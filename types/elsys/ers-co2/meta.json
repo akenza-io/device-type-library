@@ -1,0 +1,22 @@
+{
+  "name": "Elsys - ERS CO2",
+  "version": "1.0.0",
+  "manufacturer": "Elsys",
+  "url": "https://www.elsys.se/shop/product/ers-co2/",
+  "description": "Indoor LoRaWAN® device for measuring the indoor environment",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": [
+    "Motion",
+    "Light",
+    "VDD",
+    "Humidity",
+    "Temperature",
+    "CO2"
+  ],
+  "outputTopics": [
+    "default"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LoRaWAN"
+}
