@@ -17,11 +17,15 @@ Install dependencies `npm install`.
 The following available sensor types should be used.
 
 - Occupancy
+- Motion
+- Pir
 - Light
 - Temperature
 - Humidity
 - CO2
 - VOC
+- Barometric Pressure
+- Noise
 
 ## Links
 

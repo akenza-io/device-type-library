@@ -1,7 +1,7 @@
 {
-  "$id": "https://elsys.se/ers-desk.occupancy.schema.json",
+  "$id": "https://elsys.se/ers-eye.motion.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Elsys ERS Desk",
+  "title": "Elsys ERS Eye",
   "type": "object",
   "properties": {
     "motion": {

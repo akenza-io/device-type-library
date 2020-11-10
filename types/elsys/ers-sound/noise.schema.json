@@ -7,14 +7,14 @@
         "soundPeak": {
             "description": "Peak value in dBspl",
             "type": "integer",
-            "minimum": 65,
-            "maximum": 99
+            "minimum": 20,
+            "maximum": 120
         },
         "soundAvg": {
             "description": "Average value in dBspl",
             "type": "integer",
-            "minimum": 35,
-            "maximum": 70
+            "minimum": 20,
+            "maximum": 120
         }
     }
 }

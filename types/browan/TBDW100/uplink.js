@@ -10,6 +10,10 @@ function consume(event) {
   var bits = Bits.hexToBits(payload);
   var data = {};
 
+  if (typeof variable == 'undefined') {
+    state = {};
+  }
+
   if (Bits.bitsToUnsigned(bits.substr(7, 1))) {
     data.status = "open";
     if (state.status != data.status) {
