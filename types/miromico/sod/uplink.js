@@ -5,7 +5,7 @@ function consume(event) {
   var bits = Bits.hexToBits(payload);
   var data = {};
 
-  data.bat = 100.0 * Bits.bitsToUnsigned(bits.substr(0, 8)) / 254.0;
+  data.bat = Math.round(100.0 * Bits.bitsToUnsigned(bits.substr(0, 8)) / 254.0);
   data.msgtype = Bits.bitsToUnsigned(bits.substr(8, 8))
   data.count = Bits.bitsToUnsigned(bits.substr(16, 32))
 

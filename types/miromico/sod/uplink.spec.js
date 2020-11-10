@@ -23,19 +23,20 @@ before(function (done) {
   });
 });
 
-describe("Decentlab IAM Uplink", function () {
+describe("Miromico SOD Uplink", function () {
   describe("consume()", function () {
-    it("should decode IAM payload", function (done) {
-      var data = { data: { payload_hex: "020c2c007f0a5061927839bad8023100a58309000090e8001300eb" } };
+    it("should decode the Miromico SOD payload", function (done) {
+      var data = { data: { payload_hex: "f3000000013c" } };
       expectEmit(function (type, value) {
         assert.equal(type, "sample");
 
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
-        assert.equal(value.topic, "default");
+        assert.equal(value.topic, "button_pressed");
 
-        assert.equal(value.data.co2, 777);
-        assert.equal(value.data.pir, 19);
+        assert.equal(value.data.bat, 96);
+        assert.equal(value.data.msgtype, 0);
+        assert.equal(value.data.count, 316);
 
         validate(value.data, schema, { throwError: true });
 
