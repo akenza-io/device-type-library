@@ -23,7 +23,7 @@
       "maximum": 65535
     },
     "battery": {
-      "type": "integer",
+      "type": "number",
       "description": "Battery in volt",
       "minimum": 0,
       "maximum": 65535
