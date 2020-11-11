@@ -77,27 +77,29 @@ describe("TBDW100 uplink", function () {
           assert.equal(type, "sample");
           assert.isNotNull(value);
           assert.typeOf(value.data, "object");
-        } else {
+
+          if (value.topic == "opened") {
+            sampleCount++;
+          }
+
+          if (value.topic == "default") {
+            assert.equal(value.data.bat, 80);
+            assert.equal(value.data.batV, 4);
+            assert.equal(value.data.time, 0);
+            assert.equal(value.data.count, 0);
+            assert.equal(value.data.status, "open");
+            assert.equal(value.data.temperature, 24);
+
+            validate(value.data, defaultSchema, { throwError: true });
+            sampleCount++;
+          }
+
+        } else if (type == "state") {
           assert.equal(type, "state");
-        }
-
-        if (value.topic == "opened") {
           sampleCount++;
         }
 
-        if (value.topic == "default") {
-          assert.equal(value.data.bat, 80);
-          assert.equal(value.data.batV, 4);
-          assert.equal(value.data.time, 0);
-          assert.equal(value.data.count, 0);
-          assert.equal(value.data.status, "open");
-          assert.equal(value.data.temperature, 24);
-
-          validate(value.data, defaultSchema, { throwError: true });
-          sampleCount++;
-        }
-
-        if (sampleCount == 2 || type !== "sample") {
+        if (sampleCount == 3) {
           done();
         }
       });

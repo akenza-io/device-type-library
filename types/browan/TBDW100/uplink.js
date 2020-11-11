@@ -7,7 +7,7 @@ function swap16(val) {
 
 function consume(event) {
   var payload = event.data.payload_hex;
-  var bits = Bits.hexToBits(payload);
+  var bits = Bits.hexToBitString(payload);
   var data = {};
 
   if (typeof variable == 'undefined') {
