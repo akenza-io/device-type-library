@@ -13,10 +13,8 @@
     "Status"
   ],
   "outputTopics": [
-    "default",
     "opened",
-    "closed",
-    "keepalive"
+    "closed"
   ],
   "encoding": "HEX",
   "connectivity": "LoRaWAN"
