@@ -12,7 +12,7 @@
     },
     "btnNfirst": {
       "type": "integer",
-      "description": "Shows if the button nord is first pressed",
+      "description": "Shows if the button north is first pressed",
       "minimum": 0,
       "maximum": 1
     },
@@ -36,7 +36,7 @@
     },
     "btnNpressed": {
       "type": "integer",
-      "description": "Shows if the button nord is pressed",
+      "description": "Shows if the button north is pressed",
       "minimum": 0,
       "maximum": 1
     },

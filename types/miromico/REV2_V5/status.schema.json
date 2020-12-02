@@ -30,7 +30,7 @@
     },
     "aktivButtonN": {
       "type": "integer",
-      "description": "Shows if the button nord is aktive",
+      "description": "Shows if the button north is aktive",
       "minimum": 0,
       "maximum": 1
     },
