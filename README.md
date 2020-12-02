@@ -17,11 +17,33 @@ Install dependencies `npm install`.
 The following available sensor types should be used.
 
 - Occupancy
+- Motion
+- PIR
 - Light
 - Temperature
 - Humidity
 - CO2
 - VOC
+- Barometric Pressure
+- Noise
+- Battery Percent
+- Battery Voltage
+
+## Available data keys
+
+The following available data keys should be used.
+
+- Occupancy
+- Motion
+- PIR
+- Light
+- temperature
+- Humidity
+- CO2
+- VOC
+- Barometric Pressure
+- Noise
+- 
 
 ## Links
 

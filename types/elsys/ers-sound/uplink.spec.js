@@ -7,7 +7,7 @@ var assert = chai.assert;
 
 var script = rewire("./uplink.js");
 var defaultSchema = null;
-var occupiedSchema = null;
+var noiseSchema = null;
 var consume = script.__get__("consume");
 
 function expectEmit(callback) {
@@ -17,7 +17,18 @@ function expectEmit(callback) {
 }
 
 before(function (done) {
-  fs.readFile(__dirname + "/default.schema.json", "utf8", function (
+  fs.readFile(__dirname + "/noise.schema.json", "utf8", function (
+    err,
+    fileContents
+  ) {
+    if (err) throw err;
+    noiseSchema = JSON.parse(fileContents);
+    done();
+  });
+});
+
+before(function (done) {
+  fs.readFile(__dirname + "/schema.json", "utf8", function (
     err,
     fileContents
   ) {
@@ -27,24 +38,13 @@ before(function (done) {
   });
 });
 
-before(function (done) {
-  fs.readFile(__dirname + "/occupied.schema.json", "utf8", function (
-    err,
-    fileContents
-  ) {
-    if (err) throw err;
-    occupiedSchema = JSON.parse(fileContents);
-    done();
-  });
-});
-
-describe("Decentlab IAM Uplink", function () {
+describe("Elsys Sound uplink", function () {
   describe("consume()", function () {
-    it("should decode IAM payload", function (done) {
+    it("should decode Elsys Sound payload", function (done) {
       var data = {
         data: {
-          payload_hex: "020c2c007f0a5061927839bad8023100a58309000090e8001300eb",
-        },
+          payload_hex: "0100ee02230400bd053c070df615402c",
+        }
       };
       var sampleCount = 0;
       expectEmit(function (type, value) {
@@ -52,17 +52,22 @@ describe("Decentlab IAM Uplink", function () {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic == "default") {
-          assert.equal(value.data.co2, 777);
-          assert.equal(value.data.pir, 19);
-          //TODO add assertions
-          validate(value.data, defaultSchema, { throwError: true });
+        if (value.topic == "noise") {
+          assert.equal(value.data.soundPeak, 64);
+          assert.equal(value.data.soundAvg, 44);
+
+          validate(value.data, noiseSchema, { throwError: true });
           sampleCount++;
         }
 
-        if (value.topic == "occupied") {
-          assert.equal(value.data.occupied, true);
-          validate(value.data, occupiedSchema, { throwError: true });
+        if (value.topic == "default") {
+          assert.equal(value.data.vdd, 3574);
+          assert.equal(value.data.light, 189);
+          assert.equal(value.data.motion, 60);
+          assert.equal(value.data.humidity, 35);
+          assert.equal(value.data.temperature, 23.8);
+
+          validate(value.data, defaultSchema, { throwError: true });
           sampleCount++;
         }
 
@@ -73,7 +78,5 @@ describe("Decentlab IAM Uplink", function () {
 
       consume(data);
     });
-
-    //TODO add test case for not occupied
   });
 });

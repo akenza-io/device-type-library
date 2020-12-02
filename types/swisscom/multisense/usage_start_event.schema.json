@@ -1,0 +1,32 @@
+{
+  "$id": "https://akenza.io/swisscom/multisense-usage_start_event.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Swisscom Multisense",
+  "type": "object",
+  "properties": {
+    "mode": {
+      "type": "integer",
+      "description": "Mode 1 = Occupancy Mode, Mode 0 = Environmnent Sensors",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "payloadVersion": {
+      "type": "number",
+      "description": "Version of the Payload.",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "batteryVoltage": {
+      "description": "Battery voltage in mV.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "motionCounter": {
+      "description": "Motion count of workplace. Sum of all Events",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    }
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "$id": "https://akenza.io/swisscom/multisense-reed_event.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Swisscom Multisense",
+  "type": "object",
+  "properties": {
+    "mode": {
+      "type": "integer",
+      "description": "Mode 1 = Occupancy Mode, Mode 0 = Environmnent Sensors",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "payloadVersion": {
+      "type": "number",
+      "description": "Version of the Payload.",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "batteryVoltage": {
+      "description": "Battery voltage in mV.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "temperature": {
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "humidity": {
+      "type": "number",
+      "description": "The relative humidity in %.",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "reedCounter": {
+      "description": "Magnet count. Sum of all Events",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "accelerometerX": {
+      "description": "Acceleration on the X-Axis is mg",
+      "type": "integer",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "accelerometerY": {
+      "description": "Acceleration on the Y-Axis is mg",
+      "type": "integer",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "accelerometerZ": {
+      "description": "Acceleration on the Z-Axis is mg",
+      "type": "integer",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "tempHistory_0": {
+      "type": "number",
+      "description": "The temperature in °C. Last Sample",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "tempHistory_1": {
+      "type": "number",
+      "description": "The temperature in °C. Last Sample -1",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "tempHistory_2": {
+      "type": "number",
+      "description": "The temperature in °C. Last Sample -2",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "tempHistory_3": {
+      "type": "number",
+      "description": "The temperature in °C. Last Sample -3",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "tempHistory_4": {
+      "type": "number",
+      "description": "The temperature in °C. Last Sample -4",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "tempHistory_5": {
+      "type": "number",
+      "description": "The temperature in °C. Last Sample -5",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "tempHistory_6": {
+      "type": "number",
+      "description": "The temperature in °C. Last Sample -6",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "humHistory_0": {
+      "type": "number",
+      "description": "The relative humidity in %. Last Sample",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "humHistory_1": {
+      "type": "number",
+      "description": "The relative humidity in %. Last Sample -1",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "humHistory_2": {
+      "type": "number",
+      "description": "The relative humidity in %. Last Sample -2",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "humHistory_3": {
+      "type": "number",
+      "description": "The relative humidity in %. Last Sample -3",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "humHistory_4": {
+      "type": "number",
+      "description": "The relative humidity in %. Last Sample -4",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "humHistory_5": {
+      "type": "number",
+      "description": "The relative humidity in %. Last Sample -5",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "humHistory_6": {
+      "type": "number",
+      "description": "The relative humidity in %. Last Sample -6",
+      "minimum": 0,
+      "maximum": 100
+    }
+  }
+}

@@ -7,26 +7,14 @@ function swap16(val) {
 
 function consume(event) {
   var payload = event.data.payload_hex;
-  var bits = Bits.hexToBits(payload);
+  var bits = Bits.hexToBitString(payload);
   var data = {};
 
   if (Bits.bitsToUnsigned(bits.substr(7, 1))) {
-    data.status = "open";
-    if (state.status != data.status) {
-      emit('sample', { data: {}, topic: "opened" });
-    } else {
-      emit('sample', { data: {}, topic: "keepalive" });
-    }
+    topic = "opened";
   } else {
-    data.status = "closed";
-    if (state.status != data.status) {
-      emit('sample', { data: {}, topic: "closed" });
-    } else {
-      emit('sample', { data: {}, topic: "keepalive" });
-    }
+    topic = "closed";
   }
-  state.status = data.status;
-  emit('state', state);
 
   data.batV = Bits.bitsToUnsigned(bits.substr(8, 4));
   data.batV = (25 + data.batV) / 10;
@@ -45,7 +33,5 @@ function consume(event) {
   data.count = Bits.bitsToUnsigned(bits.substr(40, 24) + "00");
   data.count = swap16(data.count);
 
-  var sample = { data: data };
-
-  emit('sample', sample);
+  emit('sample', { "data": data, "topic": topic });
 }

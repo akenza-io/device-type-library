@@ -1,0 +1,31 @@
+{
+  "name": "Swisscom - Multisense",
+  "version": "1.0.0",
+  "manufacturer": "Swisscom",
+  "url": "https://www.swisscom.ch/de/business/enterprise/angebot/iot/multisense.html",
+  "description": "Multisense functionalities as Service Button, Workplace Detection, Humidity & Temperature, Magnet and Vibration.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": [
+    "Accelerometer",
+    "Motion",
+    "Humidity",
+    "Temperature",
+    "Occupancy",
+    "Reed",
+    "Button"
+  ],
+  "outputTopics": [
+    "USAGE_START_EVENT",
+    "USAGE_CHECK_EVENT",
+    "BUTTON_EVENT",
+    "TIMED_EVENT",
+    "REED_EVENT",
+    "TEMP_EVENT",
+    "HUM_EVENT",
+    "MOTION_EVENT",
+    "LIFE_SIGN_EVENT"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LoRaWAN"
+}
