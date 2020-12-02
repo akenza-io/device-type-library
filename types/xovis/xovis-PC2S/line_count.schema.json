@@ -1,0 +1,36 @@
+{
+  "$id": "https://akenza.io/xovis/xovis-pc2s-line_count.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Xovis PC2S",
+  "type": "object",
+  "properties": {
+    "fw": {
+      "description": "People moving forward",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    },
+    "bw": {
+      "description": "People moving backwards",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    },
+    "count": {
+      "description": "Count of People forward and backwards",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    },
+    "faceMask": {
+      "description": "Checks if people have a facemask. 1 = facemask, 0 = facemask",
+      "type": "integer",
+      "min": 0,
+      "max": 1
+    },
+    "gender": {
+      "description": "People moving backwards. 'm' for male & 'f' for female",
+      "type": "string"
+    }
+  }
+}

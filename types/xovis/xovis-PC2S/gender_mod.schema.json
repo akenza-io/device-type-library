@@ -1,0 +1,56 @@
+{
+  "$id": "https://akenza.io/xovis/xovis-pc2s-gender-mod.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Xovis PC2S",
+  "type": "object",
+  "properties": {
+    "maleFw": {
+      "description": "Men moving forward",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    },
+    "femaleFw": {
+      "description": "Female moving forward",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    },
+    "maleBw": {
+      "description": "Men moving backwards",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    },
+    "femaleBw": {
+      "description": "Female moving backwards",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    },
+    "maleFwPercentage": {
+      "description": "Men moving forward in %",
+      "type": "integer",
+      "min": 0,
+      "max": 100
+    },
+    "femaleFwPercentage": {
+      "description": "Female moving forward in %",
+      "type": "integer",
+      "min": 0,
+      "max": 100
+    },
+    "maleBwPercentage": {
+      "description": "Men moving backwards in %",
+      "type": "integer",
+      "min": 0,
+      "max": 100
+    },
+    "femaleBwPercentage": {
+      "description": "Female moving backwards in %",
+      "type": "integer",
+      "min": 0,
+      "max": 100
+    }
+  }
+}

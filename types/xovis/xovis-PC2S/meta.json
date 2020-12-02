@@ -1,0 +1,27 @@
+{
+  "name": "Xovis PC2S",
+  "version": "1.0.0",
+  "manufacturer": "Xovis",
+  "url": "https://www.xovis.com/en/products/detail/pc2s/",
+  "description": "People counting and tracking",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": [
+    "Forward",
+    "Backwards",
+    "Gender",
+    "FaceMask",
+    "Dwelltime",
+    "Average Waiting Time",
+    "Qeue Depth"
+  ],
+  "outputTopics": [
+    "line_count",
+    "gender_mod",
+    "queue_depth",
+    "waiting_time",
+    "dwelltime"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LoRaWAN"
+}

@@ -1,0 +1,14 @@
+{
+  "$id": "https://akenza.io/xovis/xovis-pc2s-queue-depth.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Xovis PC2S",
+  "type": "object",
+  "properties": {
+    "queueDepth": {
+      "description": "Depth of the queue",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    }
+  }
+}

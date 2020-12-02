@@ -1,0 +1,14 @@
+{
+  "$id": "https://akenza.io/xovis/xovis-pc2s-dwelltime.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Xovis PC2S",
+  "type": "object",
+  "properties": {
+    "dwelltime": {
+      "description": "Dwelltime of people in zone in minutes",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    }
+  }
+}
