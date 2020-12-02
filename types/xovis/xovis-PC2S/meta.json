@@ -17,7 +17,7 @@
   ],
   "outputTopics": [
     "line_count",
-    "genderMod",
+    "gender_mod",
     "queue_depth",
     "waiting_time",
     "dwelltime"

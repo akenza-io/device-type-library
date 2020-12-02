@@ -47,13 +47,12 @@ function consume(event) {
   } else if (event.data !== undefined) {
 
     var data = event.data.content;
-    var modSample = {};
     var rawSample = {};
 
+    // Standart loop over the data
     for (var i = 0; i < data.element.length; i++) {
       for (var j = 0; j < data.element[i].measurement.length; j++) {
         for (var k = 0; k < data.element[i].measurement[j].value.length; k++) {
-          var sample = {};
           var label = data.element[i].measurement[j].value[k].label;
           var value = data.element[i].measurement[j].value[k].value;
 
@@ -75,6 +74,7 @@ function consume(event) {
 
     // Gender
     if (rawSample.maleFwPercentage !== undefined) {
+      var modSample = {};
       var bw = rawSample.bw / 100;
       modSample.maleBw = Math.round(bw * rawSample.maleBwPercentage);
       modSample.femaleBw = Math.round(bw * rawSample.femaleBwPercentage);
