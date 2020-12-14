@@ -1,14 +1,14 @@
-var chai = require("chai");
-var validate = require("jsonschema").validate;
-var rewire = require("rewire");
-var fs = require("fs");
+const chai = require("chai");
+const validate = require("jsonschema").validate;
+const rewire = require("rewire");
+const fs = require("fs");
 
-var assert = chai.assert;
+const assert = chai.assert;
 
-var script = rewire("./uplink.js");
-var defaultSchema = null;
-var occupiedSchema = null;
-var consume = script.__get__("consume");
+const script = rewire("./uplink.js");
+let defaultSchema = null;
+let occupiedSchema = null;
+const consume = script.__get__("consume");
 
 function expectEmit(callback) {
   script.__set__({
@@ -41,18 +41,19 @@ before(function (done) {
 describe("Decentlab IAM Uplink", function () {
   describe("consume()", function () {
     it("should decode IAM payload", function (done) {
-      var data = {
+      const data = {
         data: {
           payload_hex: "020c2c007f0a5061927839bad8023100a58309000090e8001300eb",
         },
       };
-      var sampleCount = 0;
+      let sampleCount = 0;
+
       expectEmit(function (type, value) {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic == "default") {
+        if (value.topic === "default") {
           assert.equal(value.data.co2, 777);
           assert.equal(value.data.pir, 19);
           //TODO add assertions
@@ -60,20 +61,19 @@ describe("Decentlab IAM Uplink", function () {
           sampleCount++;
         }
 
-        if (value.topic == "occupied") {
+        if (value.topic === "occupied") {
           assert.equal(value.data.occupied, true);
           validate(value.data, occupiedSchema, { throwError: true });
           sampleCount++;
         }
 
-        if (sampleCount == 2) {
+        if (sampleCount === 2) {
           done();
         }
       });
 
       consume(data);
     });
-
     //TODO add test case for not occupied
   });
 });

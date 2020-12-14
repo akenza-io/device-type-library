@@ -1,15 +1,15 @@
-var chai = require("chai");
-var validate = require("jsonschema").validate;
-var rewire = require("rewire");
-var fs = require("fs");
+const chai = require("chai");
+const validate = require("jsonschema").validate;
+const rewire = require("rewire");
+const fs = require("fs");
 
-var assert = chai.assert;
+const assert = chai.assert;
 
-var script = rewire("./uplink.js");
-var motionSchema = null;
-var internalTempSchema = null;
-var defaultSchema = null;
-var consume = script.__get__("consume");
+const script = rewire("./uplink.js");
+let motionSchema = null;
+let internalTempSchema = null;
+let defaultSchema = null;
+const consume = script.__get__("consume");
 
 function expectEmit(callback) {
   script.__set__({
@@ -53,18 +53,19 @@ before(function (done) {
 describe("Elsys desk uplink", function () {
   describe("consume()", function () {
     it("should decode Elsys desk payload", function (done) {
-      var data = {
+      const data = {
         data: {
           payload_hex: "05011000f801041101",
         },
       };
-      var sampleCount = 0;
+      let sampleCount = 0;
+
       expectEmit(function (type, value) {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic == "motion") {
+        if (value.topic === "motion") {
           assert.equal(value.data.motion, 1);
           assert.equal(value.data.occupancy, 1);
 
@@ -72,40 +73,36 @@ describe("Elsys desk uplink", function () {
           sampleCount++;
         }
 
-        if (value.topic == "internalTemp") {
+        if (value.topic === "internalTemp") {
           assert.equal(value.data.irInternalTemperature, 24.8);
           assert.equal(value.data.irExternalTemperature, 26);
           validate(value.data, internalTempSchema, { throwError: true });
           sampleCount++;
         }
 
-        if (sampleCount == 2) {
+        if (sampleCount === 2) {
           done();
         }
       });
+
       consume(data);
     });
-  });
-});
 
-describe("Elsys desk uplink 2", function () {
-  describe("consume()", function () {
     it("should decode Elsys desk Default + Motion payload", function (done) {
-
       // Default + Motion
-      var data = {
+      const data = {
         data: {
           payload_hex: "0100f102250400060505070e001100",
         },
       };
+      let sampleCount = 0;
 
-      var sampleCount = 0;
       expectEmit(function (type, value) {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic == "motion") {
+        if (value.topic === "motion") {
           assert.equal(value.data.motion, 5);
           assert.equal(value.data.occupancy, 0);
 
@@ -113,7 +110,7 @@ describe("Elsys desk uplink 2", function () {
           sampleCount++;
         }
 
-        if (value.topic == "default") {
+        if (value.topic === "default") {
           assert.equal(value.data.temperature, 24.1);
           assert.equal(value.data.humidity, 37);
           assert.equal(value.data.light, 6);
@@ -122,13 +119,12 @@ describe("Elsys desk uplink 2", function () {
           sampleCount++;
         }
 
-        if (sampleCount == 2) {
+        if (sampleCount === 2) {
           done();
         }
       });
 
       consume(data);
-
     });
   });
 });

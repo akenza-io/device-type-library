@@ -1,13 +1,13 @@
-var chai = require("chai");
-var validate = require("jsonschema").validate;
-var rewire = require("rewire");
-var fs = require("fs");
+const chai = require("chai");
+const validate = require("jsonschema").validate;
+const rewire = require("rewire");
+const fs = require("fs");
 
-var assert = chai.assert;
+const assert = chai.assert;
 
-var script = rewire("./uplink.js");
-var defaultSchema = null;
-var consume = script.__get__("consume");
+const script = rewire("./uplink.js");
+let defaultSchema = null;
+const consume = script.__get__("consume");
 
 function expectEmit(callback) {
   script.__set__({
@@ -29,7 +29,7 @@ before(function (done) {
 describe("Elsys CO2 uplink", function () {
   describe("consume()", function () {
     it("should decode Elsys CO2 payload", function (done) {
-      var data = {
+      const data = {
         data: {
           payload_hex: "0100f4022804000b05000601d8070e3e",
         },

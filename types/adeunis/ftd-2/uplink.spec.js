@@ -1,13 +1,13 @@
-var chai = require("chai");
-var validate = require("jsonschema").validate;
-var rewire = require("rewire");
-var fs = require("fs");
+const chai = require("chai");
+const validate = require("jsonschema").validate;
+const rewire = require("rewire");
+const fs = require("fs");
 
-var assert = chai.assert;
+const assert = chai.assert;
 
-var script = rewire("./uplink.js");
-var schema = null;
-var consume = script.__get__("consume");
+const script = rewire("./uplink.js");
+let schema = null;
+const consume = script.__get__("consume");
 
 function expectEmit(callback) {
   script.__set__({
@@ -26,14 +26,17 @@ before(function (done) {
 describe("Adeunis FTD-2 Uplink", function () {
   describe("consume()", function () {
     it("should decode Adeunis payload", function (done) {
-      var data = { data: { payload_hex: "416c61726d" } };
+      let data = {
+        data: {
+          payload_hex: "416c61726d"
+        }
+      };
+
       expectEmit(function (type, value) {
         assert.equal(type, "sample");
-
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
         assert.equal(value.topic, "uplink");
-
         //TODO get a real payload
         // assert.equal(value.data.altitude, 0);
         // assert.equal(value.data.rssi, -57);
@@ -45,9 +48,7 @@ describe("Adeunis FTD-2 Uplink", function () {
         // assert.equal(value.data.sats, 7);
         // assert.equal(value.data.battery, 3009);
         // assert.equal(value.data.longitude, 8.5335);
-
         validate(value.data, schema, { throwError: true });
-
         done();
       });
 

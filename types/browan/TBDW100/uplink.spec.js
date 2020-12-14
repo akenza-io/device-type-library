@@ -1,15 +1,15 @@
-var chai = require("chai");
-var validate = require("jsonschema").validate;
-var rewire = require("rewire");
-var fs = require("fs");
+const chai = require("chai");
+const validate = require("jsonschema").validate;
+const rewire = require("rewire");
+const fs = require("fs");
 
-var assert = chai.assert;
+const assert = chai.assert;
 
-var script = rewire("./uplink.js");
-var closedSchema = null;
-var openedSchema = null;
+const script = rewire("./uplink.js");
+let closedSchema = null;
+let openedSchema = null;
 
-var consume = script.__get__("consume");
+const consume = script.__get__("consume");
 
 function expectEmit(callback) {
   script.__set__({
@@ -42,18 +42,19 @@ before(function (done) {
 describe("TBDW100 uplink", function () {
   describe("consume()", function () {
     it("should decode TBDW100 payload", function (done) {
-      var data = {
+      const data = {
         data: {
           payload_hex: "01fc380000190000",
         }
       };
+
       expectEmit(function (type, value) {
-        if (type == "sample") {
+        if (type === "sample") {
           assert.equal(type, "sample");
           assert.isNotNull(value);
           assert.typeOf(value.data, "object");
 
-          if (value.topic == "opened") {
+          if (value.topic === "opened") {
             assert.equal(value.data.bat, 80);
             assert.equal(value.data.batV, 4);
             assert.equal(value.data.time, 0);
