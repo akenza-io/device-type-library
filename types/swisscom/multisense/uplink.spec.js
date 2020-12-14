@@ -1,13 +1,13 @@
-var chai = require("chai");
-var validate = require("jsonschema").validate;
-var rewire = require("rewire");
-var fs = require("fs");
+const chai = require("chai");
+const validate = require("jsonschema").validate;
+const rewire = require("rewire");
+const fs = require("fs");
 
-var assert = chai.assert;
+const assert = chai.assert;
 
-var script = rewire("./uplink.js");
-var timedSchema = null;
-var consume = script.__get__("consume");
+const script = rewire("./uplink.js");
+let timedSchema = null;
+const consume = script.__get__("consume");
 
 function expectEmit(callback) {
   script.__set__({
@@ -29,7 +29,7 @@ before(function (done) {
 describe("Swisscom Multisense Uplink", function () {
   describe("consume()", function () {
     it("should decode the Swisscom Multisense payload", function (done) {
-      var data = {
+      const data = {
         data: {
           port: 3,
           payload_hex: "010080a3010945026e0300170412820503f8007cfffc",
@@ -41,7 +41,7 @@ describe("Swisscom Multisense Uplink", function () {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic == "timed_event") {
+        if (value.topic === "timed_event") {
           assert.equal(value.data.payloadVersion, 1);
           assert.equal(value.data.mode, 0);
           assert.equal(value.data.batteryVoltage, 2978);
