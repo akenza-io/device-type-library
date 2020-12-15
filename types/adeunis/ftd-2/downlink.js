@@ -12,5 +12,5 @@ function consume(event) {
 	var port = event.port ? event.port : 1;
 	var confirmed = event.confirmed ? event.confirmed : false;
 	
-  	emit("downlink", { payload_hex: payload, port: port, confirmed: confirmed });
+  	emit("downlink", { payloadHex: payload, port: port, confirmed: confirmed });
 }

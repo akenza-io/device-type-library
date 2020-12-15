@@ -27,7 +27,7 @@ describe("Adeunis FTD-2 Downlink", function () {
         assert.typeOf(value, "object");
         assert.equal(value.port, 1);
         assert.equal(value.confirmed, false);
-        assert.equal(value.payload_hex, "54657374");
+        assert.equal(value.payloadHex, "54657374");
         done();
       });
 
@@ -49,7 +49,7 @@ describe("Adeunis FTD-2 Downlink", function () {
         assert.typeOf(value, "object");
         assert.equal(value.port, 123);
         assert.equal(value.confirmed, true);
-        assert.equal(value.payload_hex, "54657374");
+        assert.equal(value.payloadHex, "54657374");
         done();
       });
 
