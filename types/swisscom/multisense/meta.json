@@ -16,15 +16,15 @@
     "Button"
   ],
   "outputTopics": [
-    "USAGE_START_EVENT",
-    "USAGE_CHECK_EVENT",
-    "BUTTON_EVENT",
-    "TIMED_EVENT",
-    "REED_EVENT",
-    "TEMP_EVENT",
-    "HUM_EVENT",
-    "MOTION_EVENT",
-    "LIFE_SIGN_EVENT"
+    "usage_start_event",
+    "usage_check_event",
+    "button_event",
+    "timed_event",
+    "reed_event",
+    "temp_event",
+    "hum_event",
+    "motion_event",
+    "life_sign_event"
   ],
   "encoding": "HEX",
   "connectivity": "LoRaWAN"
