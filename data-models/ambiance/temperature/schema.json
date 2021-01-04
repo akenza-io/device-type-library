@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "https://akenza.github.io/device-types-library/data-models/temperature/schema.json",
+  "title": "Temperature",
+  "description": "A temperature measurement.",
+  "type": "object",
+  "properties": {
+    "temperature": {
+      "title": "Temperature (C°)",
+      "type": "number",
+      "unit": "C°",
+      "description": "The temperature in degree Celcius."
+    }
+  }
+}

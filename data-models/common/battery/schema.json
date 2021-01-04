@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "https://akenza.github.io/device-types-library/data-models/battery/schema.json",
+  "title": "Device Battery Status",
+  "description": "Represent the status of a physical battery.",
+  "type": "object",
+  "properties": {
+    "statusPercent": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1,
+      "title": "Battery charge (%)",
+      "description": "The battery charge in percent.",
+      "unit": "%"
+    },
+    "voltage": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1,
+      "title": "Battery voltage (V)",
+      "desciption": "The battery voltage in Volt.",
+      "unit": "V"
+    }
+  },
+  "required": ["statusPercent"]
+}
