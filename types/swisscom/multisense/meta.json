@@ -27,5 +27,5 @@
     "life_sign_event"
   ],
   "encoding": "HEX",
-  "connectivity": "LoRaWAN"
+  "connectivity": "LORA"
 }

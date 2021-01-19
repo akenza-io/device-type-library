@@ -16,5 +16,5 @@
     "join"
   ],
   "encoding": "HEX",
-  "connectivity": "LoRaWAN"
+  "connectivity": "LORA"
 }

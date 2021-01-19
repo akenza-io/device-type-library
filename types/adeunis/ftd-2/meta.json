@@ -9,5 +9,5 @@
   "availableSensors": [],
   "outputTopics": ["default"],
   "encoding": "HEX",
-  "connectivity": "LoRaWAN"
+  "connectivity": "LORA"
 }

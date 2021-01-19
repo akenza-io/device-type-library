@@ -23,5 +23,5 @@
     "dwelltime"
   ],
   "encoding": "HEX",
-  "connectivity": "LoRaWAN"
+  "connectivity": "LORA"
 }
