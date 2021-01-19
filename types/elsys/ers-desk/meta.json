@@ -22,5 +22,5 @@
     "internalTemp"
   ],
   "encoding": "HEX",
-  "connectivity": "LoRaWAN"
+  "connectivity": "LORA"
 }

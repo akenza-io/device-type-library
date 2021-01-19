@@ -16,5 +16,5 @@
     "button_pressed_long"
   ],
   "encoding": "HEX",
-  "connectivity": "LoRaWAN"
+  "connectivity": "LORA"
 }

@@ -17,5 +17,5 @@
     "closed"
   ],
   "encoding": "HEX",
-  "connectivity": "LoRaWAN"
+  "connectivity": "LORA"
 }

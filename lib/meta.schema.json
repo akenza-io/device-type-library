@@ -24,7 +24,7 @@
                 "occupancy"
             ],
             "encoding": "HEX",
-            "connectivity": "LoRaWAN"
+            "connectivity": "LORA"
         }
     ],
     "required": [
