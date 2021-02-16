@@ -1,0 +1,86 @@
+{
+  "$id": "https://akenza.io/astraled/airQualityLuminary_V0_02.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AstraLED Air Quality Luminary V0.02",
+  "type": "object",
+  "properties": {
+    "temperature": {
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "humidity": {
+      "type": "number",
+      "description": "The relative humidity in %.",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "voc": {
+      "type": "integer",
+      "description": "Total Volatile Organic Compunds in ppm",
+      "minimum": 0,
+      "maximum": 60000
+    },
+    "co2": {
+      "type": "integer",
+      "description": "co2",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "eco2": {
+      "type": "integer",
+      "description": "Estimated concentration of carbon dioxide calculated from known TVOC",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "pm1_0": {
+      "type": "integer",
+      "description": "Particles less than 1.0 μm in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "pm2_5": {
+      "type": "integer",
+      "description": "Particles less than 2.5 μm in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "pm4_0": {
+      "type": "integer",
+      "description": "Particles less than 4.0 μm in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "pm10": {
+      "type": "integer",
+      "description": "Particles less than 10 μm in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "latitude": {
+      "type": "number",
+      "description": "Latitude",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "longitude": {
+      "type": "number",
+      "description": "Longitude",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "sea_level": {
+      "type": "number",
+      "description": "Sea level",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "energy": {
+      "type": "number",
+      "description": "Energy consumption in kwh",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    }
+  }
+}
