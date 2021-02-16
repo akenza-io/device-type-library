@@ -1,0 +1,17 @@
+{
+  "name": "Comtac LPN DO-2",
+  "version": "1.0.0",
+  "manufacturer": "Comtac",
+  "url": "https://www.comtac.ch/de/produkte/lora/ios/lpn-do.html",
+  "description": "Comtac LPN DO-2 Sensor used to manipulate the energy flow",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": [
+    "Status"
+  ],
+  "outputTopics": [
+    "default"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
