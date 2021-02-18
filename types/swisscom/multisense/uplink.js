@@ -21,7 +21,6 @@ function consume(event) {
   var status = Number(Bits.bitsToUnsigned(bits.substr(16, 8)));
   data.batteryVoltage = Bits.bitsToUnsigned(bits.substr(24, 8)) * 6 + 2000; // 2000 = 0
 
-  // Data Config
   if (port == 3) {
     var pointer = 32;
 
@@ -60,7 +59,7 @@ function consume(event) {
             data["humHistory" + b] = Bits.bitsToUnsigned(bits.substr(pointer, 8)) * 0.5; pointer += 8;
           }
           break;
-        // breaks if nothing is found
+          
         default:
           pointer = bits.length;
           break;
@@ -107,7 +106,6 @@ function consume(event) {
     }
 
   } else if (port == 100) {
-    // DEV CFG LoRa 33
     data.modeSelect = Bits.bitsToUnsigned(bits.substr(56, 8));
     emit('sample', { data: data, topic: "MODE_CHANGE" });
   }
