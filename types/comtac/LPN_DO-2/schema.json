@@ -1,0 +1,38 @@
+{
+  "$id": "https://akenza.io/comtac/LPN_DO-2.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Comtac LPN DO-2",
+  "type": "object",
+  "properties": {
+    "do_1_lora": {
+      "description": "Channel 1, 0 = Inactive / 1 = Active .",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "do_2_lora": {
+      "description": "Channel 2, 0 = Inactive / 1 = Active.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "do_1_error": {
+      "description": "Channel 1 Malfunction, 0 = No Error / 1 = Error.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "do_2_error": {
+      "description": "Channel 2 Malfunction, 0 = No Error / 1 = Error.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "manually": {
+      "description": "Manually state changed on device, 0 = No manually action / 1 = Manually action.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1
+    }
+  }
+}
