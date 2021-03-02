@@ -81,6 +81,12 @@
       "description": "Energy consumption in kwh",
       "minimum": -3276.5,
       "maximum": 3276.5
+    },
+    "light_state": {
+      "type": "integer",
+      "description": "State of the Light",
+      "minimum": 0,
+      "maximum": 255
     }
   }
 }
