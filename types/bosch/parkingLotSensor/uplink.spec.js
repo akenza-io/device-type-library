@@ -50,5 +50,30 @@ describe("Bosch Parking Lot Sensor Uplink", function () {
 
       consume(data);
     });
+
+    it("should decode the Bosch Parking Lot Sensor payload", function (done) {
+      const data = {
+        "data": {
+          "port": 2,
+          "payload_hex": "01"
+        }
+      };
+
+      expectEmit(function (type, value) {
+        assert.equal(type, "sample");
+
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+        assert.equal(value.topic, "default");
+
+        assert.equal(value.data.occupancy, 1);
+
+        validate(value.data, schema, { throwError: true });
+
+        done();
+      });
+
+      consume(data);
+    });
   });
 });

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Bosch",
   "url": "https://www.bosch-connectivity.com/products/connected-mobility/parking-lot-sensor/",
-  "description": "Parking Lot Sensor to measure the occupancy of the parking lot",
+  "description": "Parking Lot Sensor to measure the occupancy of a parking lot",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [

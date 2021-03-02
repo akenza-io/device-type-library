@@ -9,6 +9,14 @@
       "type": "integer",
       "minimum": 0,
       "maximum": 1
+    },
+    "debug": {
+      "description": "Debug message output",
+      "type": "string"
+    },
+    "fw_version": {
+      "description": "Firmware Version",
+      "type": "string"
     }
   }
 }
