@@ -4,7 +4,7 @@
   "description": "Akenza Device Type Library",
   "main": "index.js",
   "scripts": {
-    "test": "mocha \"types/**/*.spec.js\""
+    "test": "mocha \"types/**/*.spec.js\" \"lib/**/*.spec.js\""
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +17,7 @@
     "rewire": "^5.0.0"
   },
   "dependencies": {
-    "axios": "^0.21.1"
+    "axios": "^0.21.1",
+    "glob": "^7.1.6"
   }
 }

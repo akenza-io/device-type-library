@@ -5,7 +5,7 @@
   "url": "https://www.hsi-astra.ch/produkte/raumluftqualitaet/",
   "description": "AstraLED Indoor LoRaWAN® device for measuring the indoor environment and signaling those through different colors",
   "author": "Akenza AG",
-  "firmwareVersion": "V0.02",
+  "firmwareVersion": "V0.0.2",
   "availableSensors": [
     "Temperature",
     "Humidity",
@@ -21,9 +21,7 @@
     "Sea Level",
     "Energy"
   ],
-  "outputTopics": [
-    "default"
-  ],
+  "outputTopics": ["default"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }
