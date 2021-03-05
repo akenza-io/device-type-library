@@ -1,16 +1,18 @@
 {
-  "$id": "https://elsys.se/ers-desk.motion.schema.json",
+  "$id": "https://elsys.se/ers-eye.occupancy.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Elsys ERS Desk",
+  "title": "Elsys ERS Eye",
   "type": "object",
   "properties": {
     "motion": {
+      "title": "Motion",
       "description": "The number of motion counts.",
       "type": "integer",
       "minimum": 0,
       "maximum": 255
     },
     "occupancy": {
+      "title": "Occupancy",
       "description": "Space occupancy. 0 = Unoccupied / 1 = Pending(Entering or leaving) / 2 = Occupied.",
       "type": "integer",
       "minimum": 0,

@@ -1,5 +1,5 @@
 {
-  "name": "Decentlab - Indoor Ambiance Monitor (IAM)",
+  "name": "Indoor Ambiance Monitor (IAM)",
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/indoor-ambiance-monitor-including-co2-tvoc-and-motion-sensor-for-lorawan",
@@ -17,7 +17,8 @@
   ],
   "outputTopics": [
     "default",
-    "occupied"
+    "occupancy",
+    "lifecycle"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

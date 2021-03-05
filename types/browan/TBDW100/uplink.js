@@ -9,20 +9,21 @@ function consume(event) {
   var payload = event.data.payload_hex;
   var bits = Bits.hexToBitString(payload);
   var data = {};
+  var lifecycle = {};
 
   if (Bits.bitsToUnsigned(bits.substr(7, 1))) {
-    topic = "opened";
+    data.status = true;
   } else {
-    topic = "closed";
+    data.status = false;
   }
 
-  data.batV = Bits.bitsToUnsigned(bits.substr(8, 4));
-  data.batV = (25 + data.batV) / 10;
-  data.batV = Math.round(data.batV * 10) / 10;
+  lifecycle.voltage = Bits.bitsToUnsigned(bits.substr(8, 4));
+  lifecycle.voltage = (25 + lifecycle.voltage) / 10;
+  lifecycle.voltage = Math.round(lifecycle.voltage * 10) / 10;
 
-  data.bat = Bits.bitsToUnsigned(bits.substr(12, 4));
-  data.bat = 100 * (data.bat / 15);
-  data.bat = Math.round(data.bat);
+  lifecycle.statusPercent = Bits.bitsToUnsigned(bits.substr(12, 4));
+  lifecycle.statusPercent = 100 * (lifecycle.statusPercent / 15);
+  lifecycle.statusPercent = Math.round(lifecycle.statusPercent);
 
   data.temperature = Bits.bitsToUnsigned(bits.substr(17, 7));
   data.temperature = data.temperature - 32;
@@ -33,5 +34,6 @@ function consume(event) {
   data.count = Bits.bitsToUnsigned(bits.substr(40, 24) + "00");
   data.count = swap16(data.count);
 
-  emit('sample', { "data": data, "topic": topic });
+  emit('sample', { "data": lifecycle, "topic": "lifecycle" });
+  emit('sample', { "data": data, "topic": "default" });
 }

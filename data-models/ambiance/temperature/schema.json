@@ -7,9 +7,11 @@
   "properties": {
     "temperature": {
       "title": "Temperature (C°)",
-      "type": "number",
       "unit": "C°",
-      "description": "The temperature in degree Celcius."
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
     }
   }
 }

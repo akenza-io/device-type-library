@@ -112,7 +112,7 @@ function consume(event) {
           decoded.voc = sensor[j]['conversion'](x[k]);
         }
         if (sensor[j]['name'] == 'battery-voltage') {
-          decoded.battery = sensor[j]['conversion'](x[k]);
+          decoded.voltage = sensor[j]['conversion'](x[k]);
         }
       }
     }
@@ -121,9 +121,9 @@ function consume(event) {
   decoded.rssi_meta = event.data.rssi_meta;
 
   if (decoded.pir !== 0) {
-    emit("sample", { data: { "occupied": true }, topic: "occupied" });
+    emit("sample", { data: { "occupied": true }, topic: "occupancy" });
   } else {
-    emit("sample", { data: { "occupied": false }, topic: "occupied" });
+    emit("sample", { data: { "occupied": false }, topic: "occupancy" });
   }
 
   emit('sample', { data: decoded, topic: "default" });

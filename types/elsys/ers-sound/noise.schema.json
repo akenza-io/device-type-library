@@ -5,14 +5,18 @@
     "type": "object",
     "properties": {
         "soundPeak": {
+            "title": "Sound Peak",
+            "unit": "dB",
             "description": "Peak value in dBspl",
-            "type": "integer",
+            "type": "number",
             "minimum": 20,
             "maximum": 120
         },
         "soundAvg": {
+            "title": "Sound Average",
+            "unit": "dB",
             "description": "Average value in dBspl",
-            "type": "integer",
+            "type": "number",
             "minimum": 20,
             "maximum": 120
         }

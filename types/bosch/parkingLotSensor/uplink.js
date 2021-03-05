@@ -3,6 +3,7 @@ function consume(event) {
   var payload = event.data.payload_hex;
   var port = event.data.port;
   var data = {};
+  var topic = "occupancy";
 
   if (port == 1 || port == 2) {
     data.occupancy = parseInt("0x" + payload, 16) & 0x01;
@@ -27,7 +28,9 @@ function consume(event) {
 
     data.reset_cause = reset_dict[reset_cause];
     data.occupancy = occupancy & 0x01;
+
+    topic = "lifecycle";
   }
 
-  emit('sample', { data: data, topic: 'default' });
+  emit('sample', { data: data, topic: topic });
 }

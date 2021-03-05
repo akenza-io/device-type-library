@@ -1,0 +1,18 @@
+{
+  "name": "Multisense",
+  "version": "1.0.0",
+  "manufacturer": "Swisscom",
+  "url": "https://www.swisscom.ch/de/business/enterprise/angebot/iot/multisense.html",
+  "description": "Multisense functionalities as Service Button, Workplace Detection, Humidity & Temperature, Magnet and Vibration.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": [
+    "Reed"
+  ],
+  "outputTopics": [
+    "reed",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

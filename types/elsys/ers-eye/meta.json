@@ -1,5 +1,5 @@
 {
-  "name": "Elsys - ERS Eye",
+  "name": "ERS Eye",
   "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/shop/product/ers-eye/",
@@ -10,16 +10,13 @@
     "Motion",
     "Occupancy",
     "Light",
-    "VDD",
     "Humidity",
-    "Temperature",
-    "irExternalTemperature",
-    "irInternalTemperature"
+    "Temperature"
   ],
   "outputTopics": [
     "default",
-    "occupied",
-    "internalTemp"
+    "occupancy",
+    "lifecycle"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

@@ -190,9 +190,14 @@ function consume(event) {
   var topic = "default";
 
   if (res.motion !== undefined) {
-    emit("sample", { topic: "motion", data: { "motion": res.motion, "occupancy": res.occupancy } });
+    emit("sample", { topic: "occupancy", data: { "motion": res.motion, "occupancy": res.occupancy } });
     delete res.motion;
     delete res.occupancy;
+  }
+
+  if (res.vdd !== undefined) {
+    emit("sample", { topic: "lifecycle", data: { "vdd": res.vdd } });
+    delete res.vdd;
   }
 
   if (res.irExternalTemperature !== undefined) {

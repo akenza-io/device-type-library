@@ -1,21 +1,23 @@
 {
-  "$id": "https://akenza.io/bosch/parkingLotSensor.schema.json",
+  "$id": "https://akenza.io/bosch/parkingLotSensor.lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Bosch Parking Lot Sensor",
   "type": "object",
   "properties": {
-    "occupancy": {
-      "description": "Space occupancy. 0 = Unoccupied / 1 = Occupied.",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 1
-    },
     "debug": {
+      "title": "Debug",
       "description": "Debug message output",
       "type": "string"
     },
     "fw_version": {
+      "title": "FW Version",
+      "unit": "V",
       "description": "Firmware Version",
+      "type": "string"
+    },
+    "reset_cause": {
+      "title": "Reset Cause",
+      "description": "Reset Cause",
       "type": "string"
     }
   }

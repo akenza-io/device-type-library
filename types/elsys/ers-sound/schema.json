@@ -5,34 +5,35 @@
   "type": "object",
   "properties": {
     "humidity": {
-      "type": "integer",
-      "description": "The relative humidity in %.",
+      "title": "Humidity",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %",
       "minimum": 0,
       "maximum": 100
     },
-    "motion": {
-      "description": "The number of motion counts.",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 255
-    },
     "temperature": {
+      "title": "Temperature",
+      "unit": "C°",
       "type": "number",
       "description": "The temperature in °C.",
       "minimum": -3276.5,
       "maximum": 3276.5
     },
     "light": {
+      "title": "Light",
+      "unit": "lux",
       "type": "integer",
       "description": "The light in lux.",
       "minimum": 0,
       "maximum": 65535
     },
-    "vdd": {
-      "description": "Battery voltage in mV.",
+    "motion": {
+      "title": "Motion",
+      "description": "The number of motion counts.",
       "type": "integer",
       "minimum": 0,
-      "maximum": 65535
+      "maximum": 255
     }
   }
 }

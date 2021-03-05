@@ -14,7 +14,7 @@
       "unit": "%"
     },
     "voltage": {
-      "type": "integer",
+      "type": "number",
       "minimum": 0,
       "maximum": 24,
       "title": "Battery voltage (V)",
@@ -22,5 +22,7 @@
       "unit": "V"
     }
   },
-  "required": ["statusPercent"]
+  "required": [
+    "statusPercent"
+  ]
 }

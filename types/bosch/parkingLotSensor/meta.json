@@ -1,5 +1,5 @@
 {
-  "name": "Bosch Parking Lot Sensor",
+  "name": "Parking Lot Sensor",
   "version": "1.0.0",
   "manufacturer": "Bosch",
   "url": "https://www.bosch-connectivity.com/products/connected-mobility/parking-lot-sensor/",
@@ -10,7 +10,8 @@
     "Occupancy"
   ],
   "outputTopics": [
-    "default"
+    "lifecycle",
+    "occupancy"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"
