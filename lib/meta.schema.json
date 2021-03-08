@@ -1,148 +1,114 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "$id": "https://github.com/akenza-io/device-type-library/tree/master/types/meta.schema.json",
-    "type": "object",
-    "title": "meta.json schema",
-    "description": "Describes the format of the meta.json",
-    "examples": [
-        {
-            "name": "Elsys - ERS Desk",
-            "version": "1.0.0",
-            "manufacturer": "Elsys",
-            "url": "https://www.elsys.se/shop/product/ers-desk/",
-            "description": "Indoor LoRaWAN® device for measuring the indoor environment and desk occupancy",
-            "author": "Akenza AG",
-            "firmwareVersion": "V1.0.0",
-            "availableSensors": [
-                "Occupancy",
-                "Temperature",
-                "Humidity",
-                "Light"
-            ],
-            "outputTopics": [
-                "default",
-                "occupancy"
-            ],
-            "encoding": "HEX",
-            "connectivity": "LORA"
-        }
-    ],
-    "required": [
-        "name",
-        "version",
-        "manufacturer",
-        "author",
-        "outputTopics",
-        "encoding",
-        "connectivity"
-    ],
-    "properties": {
-        "name": {
-            "type": "string",
-            "title": "The name schema",
-            "description": "An explanation about the purpose of this instance.",
-            "examples": [
-                "Elsys - ERS Desk"
-            ]
-        },
-        "version": {
-            "type": "string",
-            "title": "The version schema",
-            "description": "An explanation about the purpose of this instance.",
-            "pattern": "^([0-9]+)\\.([0-9]+)\\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?(?:\\+[0-9A-Za-z-]+)?$",
-            "examples": [
-                "1.0.0"
-            ]
-        },
-        "manufacturer": {
-            "type": "string",
-            "title": "The manufacturer schema",
-            "description": "An explanation about the purpose of this instance.",
-            "examples": [
-                "Elsys"
-            ]
-        },
-        "url": {
-            "type": "string",
-            "title": "The url schema",
-            "description": "An explanation about the purpose of this instance.",
-            "examples": [
-                "https://www.elsys.se/shop/product/ers-desk/"
-            ]
-        },
-        "description": {
-            "type": "string",
-            "title": "The description schema",
-            "description": "An explanation about the purpose of this instance.",
-            "examples": [
-                "Indoor LoRaWAN® device for measuring the indoor environment and desk occupancy"
-            ]
-        },
-        "author": {
-            "type": "string",
-            "title": "The author schema",
-            "description": "An explanation about the purpose of this instance.",
-            "examples": [
-                "Akenza AG"
-            ]
-        },
-        "firmwareVersion": {
-            "type": "string",
-            "title": "The firmwareVersion schema",
-            "description": "An explanation about the purpose of this instance.",
-            "pattern": "^V([0-9]+)\\.([0-9]+)\\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?(?:\\+[0-9A-Za-z-]+)?$",
-            "examples": [
-                "V1.0.0"
-            ]
-        },
-        "availableSensors": {
-            "type": "array",
-            "title": "The availableSensors schema",
-            "description": "An explanation about the purpose of this instance.",
-            "examples": [
-                [
-                    "Occupancy",
-                    "Temperature"
-                ]
-            ],
-            "uniqueItems": true,
-            "items": {
-                "type": "string"
-            }
-        },
-        "outputTopics": {
-            "type": "array",
-            "title": "The outputTopics schema",
-            "description": "An explanation about the purpose of this instance.",
-            "default": ["default"],
-            "examples": [
-                [
-                    "default",
-                    "occupancy"
-                ]
-            ],
-            "uniqueItems": true,
-            "items": {
-                "type": "string"
-            }
-        },
-        "encoding": {
-            "type": "string",
-            "title": "The encoding schema",
-            "description": "An explanation about the purpose of this instance.",
-            "enum": ["HEX", "JSON"],
-            "examples": [
-                "HEX"
-            ]
-        },
-        "connectivity": {
-            "type": "string",
-            "title": "The connectivity schema",
-            "description": "An explanation about the purpose of this instance.",
-            "enum": ["LoRaWAN", "Sigfox", "MQTT", "HTTP"],
-            "examples": [
-                "LoRaWAN"
-            ]
-        }
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://github.com/akenza-io/device-type-library/tree/master/types/meta.schema.json",
+  "type": "object",
+  "title": "meta.json schema",
+  "description": "Describes the format of the meta.json",
+  "examples": [
+    {
+      "name": "Elsys - ERS Desk",
+      "version": "1.0.0",
+      "manufacturer": "Elsys",
+      "url": "https://www.elsys.se/shop/product/ers-desk/",
+      "description": "Indoor LoRaWAN® device for measuring the indoor environment and desk occupancy",
+      "author": "Akenza AG",
+      "firmwareVersion": "V1.0.0",
+      "availableSensors": ["Occupancy", "Temperature", "Humidity", "Light"],
+      "outputTopics": ["default", "occupancy"],
+      "encoding": "HEX",
+      "connectivity": "LORA"
     }
+  ],
+  "required": [
+    "name",
+    "version",
+    "manufacturer",
+    "author",
+    "outputTopics",
+    "encoding",
+    "connectivity"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "The name schema",
+      "description": "An explanation about the purpose of this instance.",
+      "examples": ["Elsys - ERS Desk"]
+    },
+    "version": {
+      "type": "string",
+      "title": "The version schema",
+      "description": "An explanation about the purpose of this instance.",
+      "pattern": "^([0-9]+)\\.([0-9]+)\\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?(?:\\+[0-9A-Za-z-]+)?$",
+      "examples": ["1.0.0"]
+    },
+    "manufacturer": {
+      "type": "string",
+      "title": "The manufacturer schema",
+      "description": "An explanation about the purpose of this instance.",
+      "examples": ["Elsys"]
+    },
+    "url": {
+      "type": "string",
+      "title": "The url schema",
+      "description": "An explanation about the purpose of this instance.",
+      "examples": ["https://www.elsys.se/shop/product/ers-desk/"]
+    },
+    "description": {
+      "type": "string",
+      "title": "The description schema",
+      "description": "An explanation about the purpose of this instance.",
+      "examples": [
+        "Indoor LoRaWAN® device for measuring the indoor environment and desk occupancy"
+      ]
+    },
+    "author": {
+      "type": "string",
+      "title": "The author schema",
+      "description": "An explanation about the purpose of this instance.",
+      "examples": ["Akenza AG"]
+    },
+    "firmwareVersion": {
+      "type": "string",
+      "title": "The firmwareVersion schema",
+      "description": "An explanation about the purpose of this instance.",
+      "pattern": "^V([0-9]+)\\.([0-9]+)\\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?(?:\\+[0-9A-Za-z-]+)?$",
+      "examples": ["V1.0.0"]
+    },
+    "availableSensors": {
+      "type": "array",
+      "title": "The availableSensors schema",
+      "description": "An explanation about the purpose of this instance.",
+      "examples": [["Occupancy", "Temperature"]],
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "outputTopics": {
+      "type": "array",
+      "title": "The outputTopics schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": ["default"],
+      "examples": [["default", "occupancy"]],
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "encoding": {
+      "type": "string",
+      "title": "The encoding schema",
+      "description": "An explanation about the purpose of this instance.",
+      "enum": ["HEX", "JSON"],
+      "examples": ["HEX"]
+    },
+    "connectivity": {
+      "type": "string",
+      "title": "The connectivity schema",
+      "description": "An explanation about the purpose of this instance.",
+      "enum": ["LORA", "Sigfox", "MQTT", "HTTP"],
+      "examples": ["LORA"]
+    }
+  }
 }
