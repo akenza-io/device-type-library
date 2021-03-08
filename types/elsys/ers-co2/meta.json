@@ -1,5 +1,5 @@
 {
-  "name": "Elsys - ERS CO2",
+  "name": "ERS CO2",
   "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/shop/product/ers-co2/",
@@ -9,13 +9,13 @@
   "availableSensors": [
     "Motion",
     "Light",
-    "VDD",
     "Humidity",
     "Temperature",
     "CO2"
   ],
   "outputTopics": [
-    "default"
+    "default",
+    "lifecycle"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

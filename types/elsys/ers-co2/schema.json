@@ -5,32 +5,34 @@
   "type": "object",
   "properties": {
     "humidity": {
-      "type": "integer",
-      "description": "The relative humidity in %.",
+      "title": "Humidity",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %",
       "minimum": 0,
       "maximum": 100
     },
     "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
       "type": "number",
       "description": "The temperature in °C.",
       "minimum": -3276.5,
       "maximum": 3276.5
     },
     "light": {
+      "title": "Light",
+      "unit": "lux",
       "type": "integer",
       "description": "The light in lux.",
       "minimum": 0,
       "maximum": 65535
     },
-    "vdd": {
-      "description": "Battery voltage in mV.",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 65535
-    },
     "co2": {
-      "description": "CO2 in the air in ppm",
+      "title": "CO2",
+      "unit": "ppm",
       "type": "integer",
+      "description": "Carbon Dioxide in ppm",
       "minimum": 0,
       "maximum": 10000
     }

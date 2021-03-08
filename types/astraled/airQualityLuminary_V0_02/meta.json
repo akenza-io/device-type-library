@@ -1,5 +1,5 @@
 {
-  "name": "AstraLED Lamp",
+  "name": "Indoor LoRaWAN Lamp",
   "version": "1.0.0",
   "manufacturer": "AstraLED",
   "url": "https://www.hsi-astra.ch/produkte/raumluftqualitaet/",
@@ -19,9 +19,13 @@
     "Latitude",
     "Longitude",
     "Sea Level",
+    "Light State",
     "Energy"
   ],
-  "outputTopics": ["default"],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

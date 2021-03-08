@@ -1,5 +1,5 @@
 {
-  "name": "Swisscom - Multisense",
+  "name": "Multisense - Vibration",
   "version": "1.0.0",
   "manufacturer": "Swisscom",
   "url": "https://www.swisscom.ch/de/business/enterprise/angebot/iot/multisense.html",
@@ -7,24 +7,11 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [
-    "Accelerometer",
-    "Motion",
-    "Humidity",
-    "Temperature",
-    "Occupancy",
-    "Reed",
-    "Button"
+    "Vibration"
   ],
   "outputTopics": [
-    "usage_start_event",
-    "usage_check_event",
-    "button_event",
-    "timed_event",
-    "reed_event",
-    "temp_event",
-    "hum_event",
-    "motion_event",
-    "life_sign_event"
+    "vibration",
+    "lifecycle"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

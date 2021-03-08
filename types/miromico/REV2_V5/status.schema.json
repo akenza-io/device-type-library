@@ -5,84 +5,100 @@
   "type": "object",
   "properties": {
     "msgtype": {
+      "title": "Message Type",
       "type": "integer",
       "description": "What type of message got send. 1 = Button pressed, 2 = Status message, 5 = join",
       "minimum": 0,
       "maximum": 4
     },
     "internalTemp": {
+      "title": "Internal temperature",
+      "unit": "°C",
       "description": "Internal temperature",
       "type": "integer",
       "minimum": 0,
       "maximum": 100
     },
     "usedCharges": {
+      "title": "Used charges",
       "type": "integer",
       "description": "Number of used charges",
       "minimum": 0,
       "maximum": 65535
     },
     "battery": {
+      "title": "Battery",
+      "unit": "V",
       "type": "number",
       "description": "Battery in volt",
       "minimum": 0,
       "maximum": 65535
     },
-    "aktivButtonN": {
+    "activeButtonN": {
+      "title": "Active Button North",
       "type": "integer",
-      "description": "Shows if the button north is aktive",
+      "description": "Shows if the button north is active",
       "minimum": 0,
       "maximum": 1
     },
-    "aktivButtonE": {
+    "activeButtonE": {
+      "title": "Active Button East",
       "type": "integer",
-      "description": "Shows if the button east is aktive",
+      "description": "Shows if the button east is active",
       "minimum": 0,
       "maximum": 1
     },
-    "aktivButtonS": {
+    "activeButtonS": {
+      "title": "Active Button South",
       "type": "integer",
-      "description": "Shows if the button south is aktive",
+      "description": "Shows if the button south is active",
       "minimum": 0,
       "maximum": 1
     },
-    "aktivButtonW": {
+    "activeButtonW": {
+      "title": "Active Button West",
       "type": "integer",
-      "description": "Shows if the button west is aktive",
+      "description": "Shows if the button west is active",
       "minimum": 0,
       "maximum": 1
     },
     "joinStrat": {
+      "title": "Join strategy",
       "type": "integer",
       "description": "0 -> SF7, 1 -> SF12",
       "minimum": 0,
       "maximum": 1
     },
     "ambitiousFirstPress": {
+      "title": "Ambitious First Press",
       "type": "integer",
       "description": "0 = Disabled, 1 = Enabled",
       "minimum": 0,
       "maximum": 1
     },
     "dutyCycle": {
+      "title": "Duty cycle",
       "type": "integer",
       "description": "0 = Disabled, 1 = Enabled",
       "minimum": 0,
       "maximum": 1
     },
     "buzzer": {
+      "title": "Buzzer",
       "type": "integer",
       "description": "0 = Disabled, 1 = Enabled",
       "minimum": 0,
       "maximum": 1
     },
     "confirmed": {
+      "title": "Confirmed uplinks",
       "type": "integer",
       "description": "0 = confirmed uplinks, 1 = unconfirmed uplinks",
       "minimum": 0,
       "maximum": 1
     },
-    "statusMessageIntervall": {
+    "statusMessageinterval": {
+      "title": "Status message interval",
       "type": "integer",
       "description": "Regular status message interval in minutes",
       "minimum": 0,

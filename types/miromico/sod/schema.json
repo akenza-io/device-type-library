@@ -4,19 +4,15 @@
   "title": "Miromico SoD Button",
   "type": "object",
   "properties": {
-    "bat": {
-      "description": "Battery in Percent",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 100
-    },
     "count": {
+      "title": "Count",
       "type": "integer",
       "description": "Count of events",
       "minimum": 0,
       "maximum": 65535
     },
     "msgtype": {
+      "title": "Message Type",
       "type": "integer",
       "description": "What type of message got send. 0 = pressed, 1 = Heartbeat, 2 = Test message, 4 = Button pressed long",
       "minimum": 0,

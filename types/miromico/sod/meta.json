@@ -1,17 +1,17 @@
 {
-  "name": "Miromico service on demand button",
+  "name": "Service on demand button rev2",
   "version": "1.0.0",
   "manufacturer": "Miromico",
   "url": "https://miromico.ch/portfolio/iot-button-rev2/",
   "description": "IoT Button",
   "author": "Akenza AG",
-  "firmwareVersion": "V1.0.0",
+  "firmwareVersion": "V2.0.0",
   "availableSensors": [
     "Button"
   ],
   "outputTopics": [
     "default",
-    "keepalive",
+    "lifecycle",
     "button_pressed",
     "button_pressed_long"
   ],

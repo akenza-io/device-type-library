@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/decentlab/iam/default.schema.json",
+  "$id": "https://akenza.io/decentlab/iam/schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Decentlab IAM default schema",
   "type": "object",
@@ -8,42 +8,50 @@
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/master/data-models/ambiance/temperature/schema.json"
     },
     {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/master/data-models/common/battery/schema.json"
-    },
-    {
       "properties": {
         "humidity": {
+          "title": "Humidity",
+          "unit": "%",
           "type": "number",
-          "description": "The relative humidity in %.",
+          "description": "The relative humidity in %",
           "minimum": 0,
           "maximum": 100
         },
         "voc": {
+          "title": "VOC",
+          "unit": "ppm",
           "type": "integer",
           "description": "Total Volatile Organic Compunds in ppm",
           "minimum": 0,
           "maximum": 60000
         },
         "co2": {
+          "title": "CO2",
+          "unit": "ppm",
           "type": "integer",
-          "description": "co2",
+          "description": "Carbon Dioxide in ppm",
           "minimum": 0,
           "maximum": 10000
         },
         "light": {
+          "title": "Light",
+          "unit": "lux",
           "type": "integer",
           "description": "The light in lux.",
           "minimum": 0,
           "maximum": 65535
         },
         "pressure": {
+          "title": "Pressure",
+          "unit": "hpa",
           "description": "Barometric Pressure in hpa",
           "type": "number",
           "minimum": 300,
           "maximum": 1100
         },
         "pir": {
-          "description": "Pir motion sensor measuring activity level",
+          "title": "PIR motion",
+          "description": "PIR motion sensor measuring activity level",
           "type": "integer",
           "minimum": 0,
           "maximum": 65535

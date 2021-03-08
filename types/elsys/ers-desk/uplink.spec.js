@@ -29,7 +29,7 @@ before(function (done) {
 });
 
 before(function (done) {
-  fs.readFile(__dirname + "/internalTemp.schema.json", "utf8", function (
+  fs.readFile(__dirname + "/lifecycle.schema.json", "utf8", function (
     err,
     fileContents
   ) {
@@ -73,7 +73,7 @@ describe("Elsys desk uplink", function () {
           sampleCount++;
         }
 
-        if (value.topic === "internalTemp") {
+        if (value.topic === "lifecycle") {
           assert.equal(value.data.irInternalTemperature, 24.8);
           assert.equal(value.data.irExternalTemperature, 26);
           validate(value.data, internalTempSchema, { throwError: true });

@@ -1,5 +1,5 @@
 {
-  "name": "Elsys - ERS Sound",
+  "name": "ERS Sound",
   "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/shop/product/ers-sound/",
@@ -9,14 +9,14 @@
   "availableSensors": [
     "Motion",
     "Light",
-    "VDD",
     "Humidity",
     "Temperature",
     "Noise"
   ],
   "outputTopics": [
     "default",
-    "noise"
+    "noise",
+    "lifecycle"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

@@ -192,6 +192,12 @@ function consume(event) {
   delete res.soundPeak;
   delete res.soundAvg;
 
+  if (res.vdd !== undefined) {
+    res.vdd = res.vdd / 1000;
+    emit("sample", { topic: "lifecycle", data: { "voltage": res.vdd } });
+    delete res.vdd;
+  }
+
   if (res.temperature !== undefined) {
     emit("sample", { topic: "default", data: res });
   }

@@ -54,12 +54,12 @@ describe("TBDW100 uplink", function () {
           assert.isNotNull(value);
           assert.typeOf(value.data, "object");
 
-          if (value.topic === "opened") {
+          if (value.topic === "default") {
             assert.equal(value.data.bat, 80);
             assert.equal(value.data.batV, 4);
             assert.equal(value.data.time, 0);
             assert.equal(value.data.count, 0);
-            assert.equal(value.data.status, "open");
+            assert.equal(value.data.open, true);
             assert.equal(value.data.temperature, 24);
 
             validate(value.data, openedSchema, { throwError: true });

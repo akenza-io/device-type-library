@@ -22,5 +22,7 @@
       "unit": "V"
     }
   },
-  "required": ["voltage"]
+  "required": [
+    "voltage"
+  ]
 }

@@ -1,0 +1,39 @@
+{
+  "$id": "https://akenza.io/swisscom/multisense-timed_event.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Swisscom Multisense",
+  "type": "object",
+  "properties": {
+    "motionCounter": {
+      "title": "Motion Counter",
+      "description": "Count of Events",
+      "type": "integer",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "accelerometerX": {
+      "title": "Accelerometer X",
+      "unit": "mg",
+      "description": "Acceleration on the X-Axis is mg",
+      "type": "integer",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "accelerometerY": {
+      "title": "Accelerometer Y",
+      "unit": "mg",
+      "description": "Acceleration on the Y-Axis is mg",
+      "type": "integer",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "accelerometerZ": {
+      "title": "Accelerometer Z",
+      "unit": "mg",
+      "description": "Acceleration on the Z-Axis is mg",
+      "type": "integer",
+      "minimum": -32767,
+      "maximum": 32767
+    }
+  }
+}

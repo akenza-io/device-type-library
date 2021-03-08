@@ -190,13 +190,19 @@ function consume(event) {
   var topic = "default";
 
   if (res.motion !== undefined) {
-    emit("sample", { topic: "motion", data: { "motion": res.motion, "occupancy": res.occupancy } });
+    emit("sample", { topic: "occupancy", data: { "motion": res.motion, "occupancy": res.occupancy } });
     delete res.motion;
     delete res.occupancy;
   }
 
+  if (res.vdd !== undefined) {
+    res.vdd = res.vdd / 1000;
+    emit("sample", { topic: "lifecycle", data: { "voltage": res.vdd } });
+    delete res.vdd;
+  }
+
   if (res.irExternalTemperature !== undefined) {
-    emit("sample", { topic: "internalTemp", data: res });
+    emit("sample", { topic: "lifecycle", data: res });
   } else {
     emit("sample", { topic: topic, data: res });
   }

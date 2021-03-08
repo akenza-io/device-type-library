@@ -4,31 +4,71 @@
   "title": "Comtac LPN DO-2",
   "type": "object",
   "properties": {
+    "deviceType": {
+      "title": "Device Type",
+      "description": "Devicetype which should be used to decode the data.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "version": {
+      "title": "Version",
+      "description": "Device Version",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "snr": {
+      "title": "Signal to Noise Ratio",
+      "description": "Signal to Noise Ratio (SNR) is the ratio between the received power signal and the noise floor power level.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    },
     "do_1_lora": {
+      "title": "Channel 1",
       "description": "Channel 1, 0 = Inactive / 1 = Active .",
       "type": "integer",
       "minimum": 0,
       "maximum": 1
     },
     "do_2_lora": {
+      "title": "Channel 2",
       "description": "Channel 2, 0 = Inactive / 1 = Active.",
       "type": "integer",
       "minimum": 0,
       "maximum": 1
     },
     "do_1_error": {
+      "title": "Channel 1 Error",
       "description": "Channel 1 Malfunction, 0 = No Error / 1 = Error.",
       "type": "integer",
       "minimum": 0,
       "maximum": 1
     },
     "do_2_error": {
+      "title": "Channel 2 Error",
       "description": "Channel 2 Malfunction, 0 = No Error / 1 = Error.",
       "type": "integer",
       "minimum": 0,
       "maximum": 1
     },
+    "do_1": {
+      "title": "Channel 1",
+      "description": "Channel 1, 0 = Inactive / 1 = Active .",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "do_2": {
+      "title": "Channel 2",
+      "description": "Channel 2, 0 = Inactive / 1 = Active.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1
+    },
     "manually": {
+      "title": "Manual State",
       "description": "Manually state changed on device, 0 = No manually action / 1 = Manually action.",
       "type": "integer",
       "minimum": 0,
