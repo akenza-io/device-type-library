@@ -1,7 +1,9 @@
 const chai = require("chai");
-const validate = require("jsonschema").validate;
+//const validate = require("jsonschema").validate;
 const rewire = require("rewire");
+const axios = require("axios");
 const fs = require("fs");
+const Ajv = require("ajv");
 
 const assert = chai.assert;
 
@@ -17,26 +19,37 @@ function expectEmit(callback) {
 }
 
 before(function (done) {
-  fs.readFile(__dirname + "/default.schema.json", "utf8", function (
-    err,
-    fileContents
-  ) {
-    if (err) throw err;
-    defaultSchema = JSON.parse(fileContents);
-    done();
-  });
+  fs.readFile(
+    __dirname + "/default.schema.json",
+    "utf8",
+    function (err, fileContents) {
+      if (err) throw err;
+      defaultSchema = JSON.parse(fileContents);
+      done();
+    }
+  );
 });
 
 before(function (done) {
-  fs.readFile(__dirname + "/occupied.schema.json", "utf8", function (
-    err,
-    fileContents
-  ) {
-    if (err) throw err;
-    occupiedSchema = JSON.parse(fileContents);
-    done();
-  });
+  fs.readFile(
+    __dirname + "/occupied.schema.json",
+    "utf8",
+    function (err, fileContents) {
+      if (err) throw err;
+      occupiedSchema = JSON.parse(fileContents);
+      done();
+    }
+  );
 });
+
+function loadRemoteSchema(uri) {
+  return axios.get(uri).then(function (res) {
+    if (res.status >= 400) {
+      throw new Error("Schema loading error: " + res.statusCode);
+    }
+    return res.data;
+  });
+}
 
 describe("Decentlab IAM Uplink", function () {
   describe("consume()", function () {
@@ -54,21 +67,27 @@ describe("Decentlab IAM Uplink", function () {
         assert.typeOf(value.data, "object");
 
         if (value.topic === "default") {
-          assert.equal(value.data.co2, 777);
-          assert.equal(value.data.pir, 19);
-          //TODO add assertions
-          validate(value.data, defaultSchema, { throwError: true });
+          const ajv = new Ajv({ loadSchema: loadRemoteSchema });
+          ajv.compileAsync(defaultSchema).then(function (validate) {
+            const valid = validate(value.data);
+            console.log(validate.errors);
+            assert.isTrue(valid);
+
+            assert.equal(value.data.co2, 777);
+            assert.equal(value.data.pir, 19);
+            done();
+          });
           sampleCount++;
         }
 
         if (value.topic === "occupied") {
           assert.equal(value.data.occupied, true);
-          validate(value.data, occupiedSchema, { throwError: true });
+          //validate(value.data, occupiedSchema, { throwError: true });
           sampleCount++;
         }
 
         if (sampleCount === 2) {
-          done();
+          //done();
         }
       });
 

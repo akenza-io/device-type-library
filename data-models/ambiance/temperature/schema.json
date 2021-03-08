@@ -6,9 +6,9 @@
   "type": "object",
   "properties": {
     "temperature": {
-      "title": "Temperature (C°)",
+      "title": "Temperature",
       "type": "number",
-      "unit": "C°",
+      "unit": "°C",
       "description": "The temperature in degree Celcius."
     }
   }

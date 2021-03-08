@@ -9,7 +9,7 @@
       "type": "integer",
       "minimum": 0,
       "maximum": 100,
-      "title": "Battery charge (%)",
+      "title": "Battery charge",
       "description": "The battery charge in percent.",
       "unit": "%"
     },
@@ -17,10 +17,10 @@
       "type": "integer",
       "minimum": 0,
       "maximum": 24,
-      "title": "Battery voltage (V)",
+      "title": "Battery voltage",
       "desciption": "The battery voltage in Volt.",
       "unit": "V"
     }
   },
-  "required": ["statusPercent"]
+  "required": ["voltage"]
 }

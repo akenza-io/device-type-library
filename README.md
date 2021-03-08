@@ -12,6 +12,12 @@ Install dependencies `npm install`.
 - Allow wildcard topic, to define that it is output to every topic
 - Add downlink sample
 
+## How to structure your device type
+
+- use topics to structure similar data (i.e. ambiance, occupancy, lifecycle)
+- use a separate topic for shared data keys (e.g. battery or temperature if sent with all messages), this will allow you to properly query and aggregate this data
+- add titles and units for showing more metadata in Akenza
+
 ## Available Sensor Types
 
 The following available sensor types should be used.
@@ -43,7 +49,38 @@ The following available data keys should be used.
 - VOC
 - Barometric Pressure
 - Noise
-- 
+
+## Use preexisting types
+
+Common data types can be reused by combining schemas.
+
+```
+{
+  "$id": "https://akenza.io/<manufacturer>/<model>/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "<Model> schema",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/master/data-models/ambiance/temperature/schema.json"
+    },
+    {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/master/data-models/common/battery/schema.json"
+    },
+    {
+      "properties": {
+        "humidity": {
+          "type": "number",
+          "description": "The relative humidity in %.",
+          "minimum": 0,
+          "maximum": 100
+        },
+      ...
+      }
+    }
+```
+
+An example can be found in `./types/decentlab/IAM/default.schema.json`.
 
 ## Links
 
