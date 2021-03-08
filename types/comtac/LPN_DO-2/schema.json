@@ -6,7 +6,7 @@
   "properties": {
     "deviceType": {
       "title": "Device Type",
-      "description": "Devicetype which should be used to decrypt the data.",
+      "description": "Devicetype which should be used to decode the data.",
       "type": "integer",
       "minimum": 0,
       "maximum": 255
@@ -19,8 +19,8 @@
       "maximum": 255
     },
     "snr": {
-      "title": "Serial Number",
-      "description": "Serial Number of the Device",
+      "title": "Signal to Noise Ratio",
+      "description": "Signal to Noise Ratio (SNR) is the ratio between the received power signal and the noise floor power level.",
       "type": "integer",
       "minimum": 0,
       "maximum": 255
@@ -68,7 +68,7 @@
       "maximum": 1
     },
     "manually": {
-      "title": "Manuall State",
+      "title": "Manual State",
       "description": "Manually state changed on device, 0 = No manually action / 1 = Manually action.",
       "type": "integer",
       "minimum": 0,

@@ -82,7 +82,7 @@ function consume(event) {
 
     } else {
       if (status & 0x80) {
-        emit('sample', { data: { "temperature": data.temperature, "humidity": data.humidity }, topic: "ambience" });
+        emit('sample', { data: { "temperature": data.temperature, "humidity": data.humidity }, topic: "ambiance" });
         delete data.temperature;
         delete data.humidity;
       }

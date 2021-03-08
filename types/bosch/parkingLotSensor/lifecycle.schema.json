@@ -9,13 +9,12 @@
       "description": "Debug message output",
       "type": "string"
     },
-    "fw_version": {
+    "fwVersion": {
       "title": "FW Version",
-      "unit": "V",
       "description": "Firmware Version",
       "type": "string"
     },
-    "reset_cause": {
+    "resetCause": {
       "title": "Reset Cause",
       "description": "Reset Cause",
       "type": "string"

@@ -14,7 +14,7 @@
     },
     "temperature": {
       "title": "Temperature",
-      "unit": "C°",
+      "unit": "°C",
       "type": "number",
       "description": "The temperature in °C.",
       "minimum": -3276.5,

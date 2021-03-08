@@ -6,8 +6,8 @@
   "type": "object",
   "properties": {
     "temperature": {
-      "title": "Temperature (C°)",
-      "unit": "C°",
+      "title": "Temperature (°C)",
+      "unit": "°C",
       "type": "number",
       "description": "The temperature in °C.",
       "minimum": -3276.5,

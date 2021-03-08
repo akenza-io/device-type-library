@@ -37,10 +37,10 @@ function consume(event) {
 
     if (bits.length > 80) {
       // Reserved // 05 04
-      data.aktivButtonN = Number(bits.substr(100, 1));
-      data.aktivButtonE = Number(bits.substr(101, 1));
-      data.aktivButtonS = Number(bits.substr(102, 1));
-      data.aktivButtonW = Number(bits.substr(103, 1));
+      data.activeButtonN = Number(bits.substr(100, 1));
+      data.activeButtonE = Number(bits.substr(101, 1));
+      data.activeButtonS = Number(bits.substr(102, 1));
+      data.activeButtonW = Number(bits.substr(103, 1));
 
       data.joinStrat = Number(bits.substr(104, 1));
       data.ambitiousFirstPress = Number(bits.substr(105, 1));
@@ -48,7 +48,7 @@ function consume(event) {
       data.buzzer = Number(bits.substr(107, 1));
       data.confirmed = Number(bits.substr(108, 1));
 
-      data.statusMessageIntervall = toLittleEndian(payload.substr(28, 4));
+      data.statusMessageinterval = toLittleEndian(payload.substr(28, 4));
     }
 
 

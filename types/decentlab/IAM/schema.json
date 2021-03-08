@@ -30,7 +30,7 @@
     },
     "temperature": {
       "title": "Temperature",
-      "unit": "C°",
+      "unit": "°C",
       "type": "number",
       "description": "The temperature in °C.",
       "minimum": -3276.5,
@@ -53,8 +53,8 @@
       "maximum": 1100
     },
     "pir": {
-      "title": "Pir motion",
-      "description": "Pir motion sensor measuring activity level",
+      "title": "PIR motion",
+      "description": "PIR motion sensor measuring activity level",
       "type": "integer",
       "minimum": 0,
       "maximum": 65535

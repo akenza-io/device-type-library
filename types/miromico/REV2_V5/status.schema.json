@@ -13,7 +13,7 @@
     },
     "internalTemp": {
       "title": "Internal temperature",
-      "unit": "C°",
+      "unit": "°C",
       "description": "Internal temperature",
       "type": "integer",
       "minimum": 0,
@@ -34,31 +34,31 @@
       "minimum": 0,
       "maximum": 65535
     },
-    "aktivButtonN": {
-      "title": "Aktive Button North",
+    "activeButtonN": {
+      "title": "Active Button North",
       "type": "integer",
-      "description": "Shows if the button north is aktive",
+      "description": "Shows if the button north is active",
       "minimum": 0,
       "maximum": 1
     },
-    "aktivButtonE": {
-      "title": "Aktive Button East",
+    "activeButtonE": {
+      "title": "Active Button East",
       "type": "integer",
-      "description": "Shows if the button east is aktive",
+      "description": "Shows if the button east is active",
       "minimum": 0,
       "maximum": 1
     },
-    "aktivButtonS": {
-      "title": "Aktive Button South",
+    "activeButtonS": {
+      "title": "Active Button South",
       "type": "integer",
-      "description": "Shows if the button south is aktive",
+      "description": "Shows if the button south is active",
       "minimum": 0,
       "maximum": 1
     },
-    "aktivButtonW": {
-      "title": "Aktive Button West",
+    "activeButtonW": {
+      "title": "Active Button West",
       "type": "integer",
-      "description": "Shows if the button west is aktive",
+      "description": "Shows if the button west is active",
       "minimum": 0,
       "maximum": 1
     },
@@ -97,8 +97,8 @@
       "minimum": 0,
       "maximum": 1
     },
-    "statusMessageIntervall": {
-      "title": "Status message intervall",
+    "statusMessageinterval": {
+      "title": "Status message interval",
       "type": "integer",
       "description": "Regular status message interval in minutes",
       "minimum": 0,

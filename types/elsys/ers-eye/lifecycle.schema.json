@@ -5,28 +5,28 @@
     "type": "object",
     "properties": {
         "irExternalTemperature": {
-            "title": "Internal External Temperature",
-            "unit": "C°",
+            "title": "Infrared External Temperature",
+            "unit": "°C",
             "description": "irExternalTemperature",
             "type": "number",
             "minimum": -3276.5,
             "maximum": 3276.5
         },
         "irInternalTemperature": {
-            "title": "Internal Internal Temperature",
-            "unit": "C°",
+            "title": "Infrared Internal Temperature",
+            "unit": "°C",
             "description": "irInternalTemperature",
             "type": "number",
             "minimum": -3276.5,
             "maximum": 3276.5
         },
-        "vdd": {
-            "title": "Battery Voltage",
-            "unit": "mV",
-            "description": "Battery voltage in mV.",
+        "voltage": {
             "type": "number",
             "minimum": 0,
-            "maximum": 65535
+            "maximum": 24,
+            "title": "Battery voltage",
+            "desciption": "The battery voltage in Volt.",
+            "unit": "V"
         }
     }
 }

@@ -6,7 +6,7 @@
   "properties": {
     "temperature": {
       "title": "Temperature",
-      "unit": "C°",
+      "unit": "°C",
       "type": "number",
       "description": "The temperature in °C.",
       "minimum": -3276.5,
@@ -109,9 +109,9 @@
     },
     "energy": {
       "title": "Energy",
-      "unit": "kwh",
+      "unit": "kWh",
       "type": "number",
-      "description": "Energy consumption in kwh",
+      "description": "Energy consumption in kWh",
       "minimum": 0,
       "maximum": 6555
     }

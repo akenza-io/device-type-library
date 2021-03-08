@@ -17,7 +17,7 @@ function consume(event) {
       0x04: "Other Resets"
     };
     data.debug = "0x" + payload.substring(0, 24).toUpperCase();
-    data.fw_version =
+    data.fwVersion =
       parseInt("0x" + payload.substring(24, 26), 16) +
       "." +
       parseInt("0x" + payload.substring(26, 28), 16) +
@@ -26,7 +26,7 @@ function consume(event) {
     var reset_cause = parseInt("0x" + payload.substring(30, 32), 16);
     var occupancy = parseInt("0x" + payload.substring(32, 34), 16);
 
-    data.reset_cause = reset_dict[reset_cause];
+    data.resetCause = reset_dict[reset_cause];
     data.occupancy = occupancy & 0x01;
 
     topic = "lifecycle";

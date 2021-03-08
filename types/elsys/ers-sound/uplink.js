@@ -193,7 +193,8 @@ function consume(event) {
   delete res.soundAvg;
 
   if (res.vdd !== undefined) {
-    emit("sample", { topic: "lifecycle", data: { "vdd": res.vdd } });
+    res.vdd = res.vdd / 1000;
+    emit("sample", { topic: "lifecycle", data: { "voltage": res.vdd } });
     delete res.vdd;
   }
 
