@@ -17,25 +17,27 @@ function expectEmit(callback) {
 }
 
 before(function (done) {
-  fs.readFile(__dirname + "/motion.schema.json", "utf8", function (
-    err,
-    fileContents
-  ) {
-    if (err) throw err;
-    motionSchema = JSON.parse(fileContents);
-    done();
-  });
+  fs.readFile(
+    __dirname + "/occupancy.schema.json",
+    "utf8",
+    function (err, fileContents) {
+      if (err) throw err;
+      motionSchema = JSON.parse(fileContents);
+      done();
+    }
+  );
 });
 
 before(function (done) {
-  fs.readFile(__dirname + "/schema.json", "utf8", function (
-    err,
-    fileContents
-  ) {
-    if (err) throw err;
-    defaultSchema = JSON.parse(fileContents);
-    done();
-  });
+  fs.readFile(
+    __dirname + "/default.schema.json",
+    "utf8",
+    function (err, fileContents) {
+      if (err) throw err;
+      defaultSchema = JSON.parse(fileContents);
+      done();
+    }
+  );
 });
 
 describe("Elsys eye uplink", function () {
@@ -44,7 +46,7 @@ describe("Elsys eye uplink", function () {
       const data = {
         data: {
           payload_hex: "05011101",
-        }
+        },
       };
 
       expectEmit(function (type, value) {
@@ -57,11 +59,11 @@ describe("Elsys eye uplink", function () {
           assert.equal(value.data.occupancy, 1);
 
           validate(value.data, motionSchema, { throwError: true });
-          done();
         }
       });
 
       consume(data);
+      done();
     });
 
     it("should decode Elsys eye Default + Motion payload", function (done) {
@@ -71,8 +73,6 @@ describe("Elsys eye uplink", function () {
           payload_hex: "0100e102280401a00500070dff1102",
         },
       };
-      let sampleCount = 0;
-
       expectEmit(function (type, value) {
         assert.equal(type, "sample");
         assert.isNotNull(value);
@@ -83,24 +83,18 @@ describe("Elsys eye uplink", function () {
           assert.equal(value.data.occupancy, 2);
 
           validate(value.data, motionSchema, { throwError: true });
-          sampleCount++;
         }
 
         if (value.topic === "default") {
           assert.equal(value.data.temperature, 22.5);
           assert.equal(value.data.humidity, 40);
           assert.equal(value.data.light, 416);
-          assert.equal(value.data.vdd, 3583);
           validate(value.data, defaultSchema, { throwError: true });
-          sampleCount++;
-        }
-
-        if (sampleCount === 2) {
-          done();
         }
       });
 
       consume(data);
+      done();
     });
   });
 });

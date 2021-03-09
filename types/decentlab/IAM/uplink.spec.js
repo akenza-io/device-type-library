@@ -32,7 +32,7 @@ before(function (done) {
 
 before(function (done) {
   fs.readFile(
-    __dirname + "/occupied.schema.json",
+    __dirname + "/occupancy.schema.json",
     "utf8",
     function (err, fileContents) {
       if (err) throw err;
@@ -70,7 +70,6 @@ describe("Decentlab IAM Uplink", function () {
           const ajv = new Ajv({ loadSchema: loadRemoteSchema });
           ajv.compileAsync(defaultSchema).then(function (validate) {
             const valid = validate(value.data);
-            console.log(validate.errors);
             assert.isTrue(valid);
 
             assert.equal(value.data.co2, 777);

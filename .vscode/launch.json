@@ -5,12 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "args": [
-        "--timeout",
-        "999999",
-        "--colors",
-        "${file}"
-      ],
+      "args": ["--timeout", "999999", "--colors", "${file}"],
       "internalConsoleOptions": "openOnSessionStart",
       "name": "Test Current File",
       "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
@@ -23,7 +18,8 @@
         "--timeout",
         "999999",
         "--colors",
-        "${workspaceFolder}/types/**/*.spec.js"
+        "${workspaceFolder}/types/**/*.spec.js",
+        "${workspaceFolder}/lib/**/*.spec.js"
       ],
       "internalConsoleOptions": "openOnSessionStart",
       "name": "Mocha Tests",
