@@ -1,0 +1,23 @@
+{
+  "$id": "https://akenza.io/watecco/bob-learning.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Watecco BoB",
+  "type": "object",
+  "properties": {
+    "sensoreState": {
+      "title": "Sensore state",
+      "type": "string",
+      "description": "Sensor messages which indicate the state.",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "statusPercent": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "unit": "%"
+    }
+  }
+}

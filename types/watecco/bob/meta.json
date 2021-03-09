@@ -1,0 +1,22 @@
+{
+  "name": "BOB Assistant",
+  "version": "0.4.5",
+  "manufacturer": "Watecco",
+  "url": "https://bobassistant.com/en/offer/",
+  "description": "Autonomous learning and reporting by Artificial Intelligence, embedded by Cartesiam. Alarm Threshold on vibration anomaly. Peak frequency and FTT reports .Restart or complete learning. Setup reporting period",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": [
+    "Vibration",
+    "Anomalies",
+    "Temperature"
+  ],
+  "outputTopics": [
+    "alarm",
+    "learning",
+    "lifecycle",
+    "report"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

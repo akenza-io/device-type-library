@@ -1,0 +1,32 @@
+{
+  "$id": "https://akenza.io/watecco/bob-alarm.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Watecco BoB",
+  "type": "object",
+  "properties": {
+    "anomalyLevel": {
+      "title": "Anomaly Level",
+      "unit": "%",
+      "description": "Anomaly Level. Drift with respect to the reference vibration signature",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "vibration": {
+      "title": "Vibration level",
+      "unit": "g",
+      "description": "Vibration level",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 381
+    }
+  }
+}
