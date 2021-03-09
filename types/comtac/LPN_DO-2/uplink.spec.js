@@ -16,22 +16,25 @@ function expectEmit(callback) {
 }
 
 before(function (done) {
-  fs.readFile(__dirname + "/schema.json", "utf8", function (err, fileContents) {
-    if (err) throw err;
-    schema = JSON.parse(fileContents);
-    done();
-  });
+  fs.readFile(
+    __dirname + "/default.schema.json",
+    "utf8",
+    function (err, fileContents) {
+      if (err) throw err;
+      schema = JSON.parse(fileContents);
+      done();
+    }
+  );
 });
-
 
 describe("Comtac LPN DO-2 Uplink", function () {
   describe("consume()", function () {
     it("should decode the Comtac LPN DO-2 payload", function (done) {
       const data = {
-        "data": {
-          "port": 2,
-          "payload_hex": "14000977ef00"
-        }
+        data: {
+          port: 2,
+          payload_hex: "14000977ef00",
+        },
       };
 
       expectEmit(function (type, value) {

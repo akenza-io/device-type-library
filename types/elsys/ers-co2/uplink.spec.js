@@ -16,14 +16,15 @@ function expectEmit(callback) {
 }
 
 before(function (done) {
-  fs.readFile(__dirname + "/schema.json", "utf8", function (
-    err,
-    fileContents
-  ) {
-    if (err) throw err;
-    defaultSchema = JSON.parse(fileContents);
-    done();
-  });
+  fs.readFile(
+    __dirname + "/default.schema.json",
+    "utf8",
+    function (err, fileContents) {
+      if (err) throw err;
+      defaultSchema = JSON.parse(fileContents);
+      done();
+    }
+  );
 });
 
 describe("Elsys CO2 uplink", function () {
@@ -40,18 +41,21 @@ describe("Elsys CO2 uplink", function () {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.data.co2, 472);
-        assert.equal(value.data.vdd, 3646);
-        assert.equal(value.data.light, 11);
-        assert.equal(value.data.motion, 0);
-        assert.equal(value.data.humidity, 40);
-        assert.equal(value.data.temperature, 24.4);
+        if (value.topic == "lifecycle") {
+          assert.equal(value.data.voltage, 3.646);
+        }
 
-        validate(value.data, defaultSchema, { throwError: true });
-        done();
+        if (value.topic == "default") {
+          assert.equal(value.data.light, 11);
+          assert.equal(value.data.motion, 0);
+          assert.equal(value.data.humidity, 40);
+          assert.equal(value.data.temperature, 24.4);
+          validate(value.data, defaultSchema, { throwError: true });
+        }
       });
 
       consume(data);
+      done();
     });
   });
 });

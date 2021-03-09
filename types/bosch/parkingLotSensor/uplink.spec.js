@@ -16,22 +16,25 @@ function expectEmit(callback) {
 }
 
 before(function (done) {
-  fs.readFile(__dirname + "/schema.json", "utf8", function (err, fileContents) {
-    if (err) throw err;
-    schema = JSON.parse(fileContents);
-    done();
-  });
+  fs.readFile(
+    __dirname + "/occupancy.schema.json",
+    "utf8",
+    function (err, fileContents) {
+      if (err) throw err;
+      schema = JSON.parse(fileContents);
+      done();
+    }
+  );
 });
-
 
 describe("Bosch Parking Lot Sensor Uplink", function () {
   describe("consume()", function () {
     it("should decode the Bosch Parking Lot Sensor payload", function (done) {
       const data = {
-        "data": {
-          "port": 2,
-          "payload_hex": "00"
-        }
+        data: {
+          port: 2,
+          payload_hex: "00",
+        },
       };
 
       expectEmit(function (type, value) {
@@ -39,7 +42,7 @@ describe("Bosch Parking Lot Sensor Uplink", function () {
 
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
-        assert.equal(value.topic, "default");
+        assert.equal(value.topic, "occupancy");
 
         assert.equal(value.data.occupancy, 0);
 
@@ -53,10 +56,10 @@ describe("Bosch Parking Lot Sensor Uplink", function () {
 
     it("should decode the Bosch Parking Lot Sensor payload", function (done) {
       const data = {
-        "data": {
-          "port": 2,
-          "payload_hex": "01"
-        }
+        data: {
+          port: 2,
+          payload_hex: "01",
+        },
       };
 
       expectEmit(function (type, value) {
@@ -64,7 +67,7 @@ describe("Bosch Parking Lot Sensor Uplink", function () {
 
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
-        assert.equal(value.topic, "default");
+        assert.equal(value.topic, "occupancy");
 
         assert.equal(value.data.occupancy, 1);
 

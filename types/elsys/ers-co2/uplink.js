@@ -190,13 +190,13 @@ function consume(event) {
 
   if (res.vdd !== undefined) {
     res.vdd = res.vdd / 1000;
-    emit("sample", { topic: "lifecycle", data: { "voltage": res.vdd } });
+    emit("sample", { topic: "lifecycle", data: { voltage: res.vdd } });
     delete res.vdd;
   }
 
   if (res.irExternalTemperature !== undefined) {
     emit("sample", { topic: "lifecycle", data: res });
   } else {
-    emit("sample", { topic: topic, data: res });
+    emit("sample", { topic: "default", data: res });
   }
 }

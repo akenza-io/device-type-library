@@ -18,36 +18,39 @@ function expectEmit(callback) {
 }
 
 before(function (done) {
-  fs.readFile(__dirname + "/motion.schema.json", "utf8", function (
-    err,
-    fileContents
-  ) {
-    if (err) throw err;
-    motionSchema = JSON.parse(fileContents);
-    done();
-  });
+  fs.readFile(
+    __dirname + "/occupancy.schema.json",
+    "utf8",
+    function (err, fileContents) {
+      if (err) throw err;
+      motionSchema = JSON.parse(fileContents);
+      done();
+    }
+  );
 });
 
 before(function (done) {
-  fs.readFile(__dirname + "/lifecycle.schema.json", "utf8", function (
-    err,
-    fileContents
-  ) {
-    if (err) throw err;
-    internalTempSchema = JSON.parse(fileContents);
-    done();
-  });
+  fs.readFile(
+    __dirname + "/lifecycle.schema.json",
+    "utf8",
+    function (err, fileContents) {
+      if (err) throw err;
+      internalTempSchema = JSON.parse(fileContents);
+      done();
+    }
+  );
 });
 
 before(function (done) {
-  fs.readFile(__dirname + "/schema.json", "utf8", function (
-    err,
-    fileContents
-  ) {
-    if (err) throw err;
-    defaultSchema = JSON.parse(fileContents);
-    done();
-  });
+  fs.readFile(
+    __dirname + "/default.schema.json",
+    "utf8",
+    function (err, fileContents) {
+      if (err) throw err;
+      defaultSchema = JSON.parse(fileContents);
+      done();
+    }
+  );
 });
 
 describe("Elsys desk uplink", function () {
@@ -58,7 +61,6 @@ describe("Elsys desk uplink", function () {
           payload_hex: "05011000f801041101",
         },
       };
-      let sampleCount = 0;
 
       expectEmit(function (type, value) {
         assert.equal(type, "sample");
@@ -70,22 +72,17 @@ describe("Elsys desk uplink", function () {
           assert.equal(value.data.occupancy, 1);
 
           validate(value.data, motionSchema, { throwError: true });
-          sampleCount++;
         }
 
         if (value.topic === "lifecycle") {
           assert.equal(value.data.irInternalTemperature, 24.8);
           assert.equal(value.data.irExternalTemperature, 26);
           validate(value.data, internalTempSchema, { throwError: true });
-          sampleCount++;
-        }
-
-        if (sampleCount === 2) {
-          done();
         }
       });
 
       consume(data);
+      done();
     });
 
     it("should decode Elsys desk Default + Motion payload", function (done) {
@@ -95,8 +92,6 @@ describe("Elsys desk uplink", function () {
           payload_hex: "0100f102250400060505070e001100",
         },
       };
-      let sampleCount = 0;
-
       expectEmit(function (type, value) {
         assert.equal(type, "sample");
         assert.isNotNull(value);
@@ -107,24 +102,19 @@ describe("Elsys desk uplink", function () {
           assert.equal(value.data.occupancy, 0);
 
           validate(value.data, motionSchema, { throwError: true });
-          sampleCount++;
         }
 
         if (value.topic === "default") {
           assert.equal(value.data.temperature, 24.1);
           assert.equal(value.data.humidity, 37);
           assert.equal(value.data.light, 6);
-          assert.equal(value.data.vdd, 3584);
+          //assert.equal(value.data.vdd, 3584);
           validate(value.data, defaultSchema, { throwError: true });
-          sampleCount++;
-        }
-
-        if (sampleCount === 2) {
-          done();
         }
       });
 
       consume(data);
+      done();
     });
   });
 });

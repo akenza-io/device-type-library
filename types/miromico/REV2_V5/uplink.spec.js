@@ -18,36 +18,39 @@ function expectEmit(callback) {
 }
 
 before(function (done) {
-  fs.readFile(__dirname + "/button_pressed.schema.json", "utf8", function (
-    err,
-    fileContents
-  ) {
-    if (err) throw err;
-    buttonPressedSchema = JSON.parse(fileContents);
-    done();
-  });
+  fs.readFile(
+    __dirname + "/button_pressed.schema.json",
+    "utf8",
+    function (err, fileContents) {
+      if (err) throw err;
+      buttonPressedSchema = JSON.parse(fileContents);
+      done();
+    }
+  );
 });
 
 before(function (done) {
-  fs.readFile(__dirname + "/status.schema.json", "utf8", function (
-    err,
-    fileContents
-  ) {
-    if (err) throw err;
-    statusSchema = JSON.parse(fileContents);
-    done();
-  });
+  fs.readFile(
+    __dirname + "/status.schema.json",
+    "utf8",
+    function (err, fileContents) {
+      if (err) throw err;
+      statusSchema = JSON.parse(fileContents);
+      done();
+    }
+  );
 });
 
 before(function (done) {
-  fs.readFile(__dirname + "/schema.json", "utf8", function (
-    err,
-    fileContents
-  ) {
-    if (err) throw err;
-    defaultSchema = JSON.parse(fileContents);
-    done();
-  });
+  fs.readFile(
+    __dirname + "/default.schema.json",
+    "utf8",
+    function (err, fileContents) {
+      if (err) throw err;
+      defaultSchema = JSON.parse(fileContents);
+      done();
+    }
+  );
 });
 
 describe("Miromico REV2_V5 uplink", function () {
@@ -56,7 +59,7 @@ describe("Miromico REV2_V5 uplink", function () {
       const data = {
         data: {
           payload_hex: "0502e804000003038c27",
-        }
+        },
       };
 
       expectEmit(function (type, value) {
@@ -83,7 +86,7 @@ describe("Miromico REV2_V5 uplink", function () {
       const data = {
         data: {
           payload_hex: "0502e804000003038c27",
-        }
+        },
       };
 
       expectEmit(function (type, value) {

@@ -9,27 +9,29 @@ const script = rewire("./uplink.js");
 let schema = null;
 const consume = script.__get__("consume");
 
-function expectEmit(callback) {
-  script.__set__({
-    emit: callback,
-  });
-}
-
-before(function (done) {
-  fs.readFile(__dirname + "/schema.json", "utf8", function (err, fileContents) {
-    if (err) throw err;
-    schema = JSON.parse(fileContents);
-    done();
-  });
-});
-
 describe("Adeunis FTD-2 Uplink", function () {
+  function expectEmit(callback) {
+    script.__set__({
+      emit: callback,
+    });
+  }
+  before(function (done) {
+    fs.readFile(
+      __dirname + "/default.schema.json",
+      "utf8",
+      function (err, fileContents) {
+        if (err) throw err;
+        schema = JSON.parse(fileContents);
+        done();
+      }
+    );
+  });
   describe("consume()", function () {
-    it("should decode Adeunis payload", function (done) {
+    it("should decode Adeunis payload", function () {
       let data = {
         data: {
-          payload_hex: "416c61726d"
-        }
+          payload_hex: "416c61726d",
+        },
       };
 
       expectEmit(function (type, value) {
@@ -49,7 +51,6 @@ describe("Adeunis FTD-2 Uplink", function () {
         // assert.equal(value.data.battery, 3009);
         // assert.equal(value.data.longitude, 8.5335);
         validate(value.data, schema, { throwError: true });
-        done();
       });
 
       consume(data);

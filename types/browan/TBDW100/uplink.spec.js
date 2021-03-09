@@ -6,8 +6,7 @@ const fs = require("fs");
 const assert = chai.assert;
 
 const script = rewire("./uplink.js");
-let closedSchema = null;
-let openedSchema = null;
+let defaultSchema = null;
 
 const consume = script.__get__("consume");
 
@@ -18,25 +17,15 @@ function expectEmit(callback) {
 }
 
 before(function (done) {
-  fs.readFile(__dirname + "/closed.schema.json", "utf8", function (
-    err,
-    fileContents
-  ) {
-    if (err) throw err;
-    closedSchema = JSON.parse(fileContents);
-    done();
-  });
-});
-
-before(function (done) {
-  fs.readFile(__dirname + "/opened.schema.json", "utf8", function (
-    err,
-    fileContents
-  ) {
-    if (err) throw err;
-    openedSchema = JSON.parse(fileContents);
-    done();
-  });
+  fs.readFile(
+    __dirname + "/default.schema.json",
+    "utf8",
+    function (err, fileContents) {
+      if (err) throw err;
+      defaultSchema = JSON.parse(fileContents);
+      done();
+    }
+  );
 });
 
 describe("TBDW100 uplink", function () {
@@ -45,7 +34,7 @@ describe("TBDW100 uplink", function () {
       const data = {
         data: {
           payload_hex: "01fc380000190000",
-        }
+        },
       };
 
       expectEmit(function (type, value) {
@@ -62,8 +51,7 @@ describe("TBDW100 uplink", function () {
             assert.equal(value.data.open, true);
             assert.equal(value.data.temperature, 24);
 
-            validate(value.data, openedSchema, { throwError: true });
-
+            validate(value.data, defaultSchema, { throwError: true });
           }
           done();
         }

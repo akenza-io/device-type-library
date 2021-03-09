@@ -16,14 +16,15 @@ function expectEmit(callback) {
 }
 
 before(function (done) {
-  fs.readFile(__dirname + "/timed_event.schema.json", "utf8", function (
-    err,
-    fileContents
-  ) {
-    if (err) throw err;
-    timedSchema = JSON.parse(fileContents);
-    done();
-  });
+  fs.readFile(
+    __dirname + "/ambiance.schema.json",
+    "utf8",
+    function (err, fileContents) {
+      if (err) throw err;
+      timedSchema = JSON.parse(fileContents);
+      done();
+    }
+  );
 });
 
 describe("Swisscom Multisense Uplink", function () {
@@ -33,7 +34,7 @@ describe("Swisscom Multisense Uplink", function () {
         data: {
           port: 3,
           payload_hex: "010080a3010945026e0300170412820503f8007cfffc",
-        }
+        },
       };
 
       expectEmit(function (type, value) {
@@ -55,11 +56,10 @@ describe("Swisscom Multisense Uplink", function () {
 
           validate(value.data, timedSchema, { throwError: true });
         }
-
-        done();
       });
 
       consume(data);
+      done();
     });
   });
 });

@@ -16,11 +16,15 @@ function expectEmit(callback) {
 }
 
 before(function (done) {
-  fs.readFile(__dirname + "/schema.json", "utf8", function (err, fileContents) {
-    if (err) throw err;
-    schema = JSON.parse(fileContents);
-    done();
-  });
+  fs.readFile(
+    __dirname + "/default.schema.json",
+    "utf8",
+    function (err, fileContents) {
+      if (err) throw err;
+      schema = JSON.parse(fileContents);
+      done();
+    }
+  );
 });
 
 describe("Miromico SOD Uplink", function () {
@@ -28,8 +32,8 @@ describe("Miromico SOD Uplink", function () {
     it("should decode the Miromico SOD payload", function (done) {
       const data = {
         data: {
-          payload_hex: "f3000000013c"
-        }
+          payload_hex: "f3000000013c",
+        },
       };
 
       expectEmit(function (type, value) {
@@ -38,10 +42,6 @@ describe("Miromico SOD Uplink", function () {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
         assert.equal(value.topic, "button_pressed");
-
-        assert.equal(value.data.bat, 96);
-        assert.equal(value.data.msgtype, 0);
-        assert.equal(value.data.count, 316);
 
         validate(value.data, schema, { throwError: true });
 
