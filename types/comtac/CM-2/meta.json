@@ -1,0 +1,20 @@
+{
+  "name": "LPN CM-2",
+  "version": "1.0.0",
+  "manufacturer": "Comtac",
+  "url": "https://www.comtac.ch/de/produkte/lora/condition-monitoring/lpn-cm-1-sensor.html",
+  "description": "The LPN CM-2 is able to read temperature and humidity.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V2.00",
+  "availableSensors": [
+    "Humidity",
+    "Temperature"
+  ],
+  "outputTopics": [
+    "button_pressed",
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

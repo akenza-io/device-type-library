@@ -1,0 +1,131 @@
+{
+  "$id": "https://akenza.io/comtac/CM-1.lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Comtac CM-2",
+  "type": "object",
+  "properties": {
+    "booster": {
+      "title": "Booster",
+      "description": "Is Booster on? Usually on when battery level low",
+      "type": "boolean"
+    },
+    "txOnTimer": {
+      "title": "TX on Timer",
+      "description": "Was it a “timer” uplink",
+      "type": "boolean"
+    },
+    "txOnEvent": {
+      "title": "TX on Event",
+      "description": "Was it an “event” uplink",
+      "type": "boolean"
+    },
+    "buttonEvent": {
+      "title": "Button Event",
+      "description": "Was it a “button“ uplink",
+      "type": "boolean"
+    },
+    "digitalInputEvent": {
+      "title": "Digital Input Event",
+      "description": "Was it a “digital“ uplink",
+      "type": "boolean"
+    },
+    "deepSleepEvent": {
+      "title": "Deep Sleep Event",
+      "description": "Was it a “Deep Sleep“ uplink",
+      "type": "boolean"
+    },
+    "digitalInputState": {
+      "title": "Digital Input State",
+      "description": "State of the digital input",
+      "type": "boolean"
+    },
+    "minTempOn": {
+      "title": "Min temperature on",
+      "description": "Is min temperature control on",
+      "type": "boolean"
+    },
+    "maxTempOn": {
+      "title": "Max temperature on",
+      "description": "Is max temperature control on",
+      "type": "boolean"
+    },
+    "minHumOn": {
+      "title": "Min humidity on",
+      "description": "Is min humidity Control on",
+      "type": "boolean"
+    },
+    "maxHumOn": {
+      "title": "Max humidity on",
+      "description": "Is max humidity Control on",
+      "type": "boolean"
+    },
+    "minPt100On": {
+      "title": "Min temperature 100 on",
+      "description": "Is min temperature 100 control on",
+      "type": "boolean"
+    },
+    "maxPt100On": {
+      "title": "Max temperature 100 on",
+      "description": "Is max temperature 100 control on",
+      "type": "boolean"
+    },
+    "minLemOn": {
+      "title": "Min LEM on",
+      "description": "Is min LEM Control on",
+      "type": "boolean"
+    },
+    "maxLemOn": {
+      "title": "Max LEM on",
+      "description": "Is max LEM Control on",
+      "type": "boolean"
+    },
+    "minTempThreshold": {
+      "title": "Min Temperature Threshold",
+      "unit": "°C",
+      "type": "number",
+      "description": "Minimum temperature threshold, where -15 means OFF",
+      "minimum": -15,
+      "maximum": 75
+    },
+    "maxTempThreshold": {
+      "title": "Max Temperature Threshold",
+      "unit": "°C",
+      "type": "number",
+      "description": "Maximum temperature threshold, where -15 means OFF",
+      "minimum": -15,
+      "maximum": 75
+    },
+    "minHumThreshold": {
+      "title": "Humidity",
+      "unit": "%",
+      "type": "number",
+      "description": "Minimum humidity threshold, where 0 means OFF",
+      "minimum": 0,
+      "maximum": 99
+    },
+    "maxHumThreshold": {
+      "title": "Max Humidity Threshold",
+      "unit": "%",
+      "type": "number",
+      "description": "Maximum humidity threshold, where 0 means OFF",
+      "minimum": 0,
+      "maximum": 99
+    },
+    "sendInterval": {
+      "title": "Send interval",
+      "unit": "min",
+      "description": "Actual send interval.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "voltage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "title": "Battery voltage",
+      "desciption": "The battery voltage in Volt.",
+      "unit": "V"
+    }
+  }
+}
