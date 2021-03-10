@@ -11,12 +11,12 @@
     },
     "minHumOn": {
       "title": "Min humidity on",
-      "description": "Is min humidity Control on",
+      "description": "Is min humidity control on",
       "type": "boolean"
     },
     "maxHumOn": {
       "title": "Max humidity on",
-      "description": "Is max humidity Control on",
+      "description": "Is max humidity control on",
       "type": "boolean"
     },
     "txOnEvent": {
