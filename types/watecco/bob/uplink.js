@@ -91,17 +91,17 @@ function consume(event) {
 
   } else if (header == 83) { // State
     topic = "lifecycle";
-    var sensoreState = Bits.bitsToUnsigned(bits.substr(8, 8));
-    if (sensoreState == 100) {
-      sensoreState = "Sensor start";
-    } else if (sensoreState == 101) {
-      sensoreState = "Sensor stop";
-    } else if (sensoreState == 125) {
-      sensoreState = "Machine stop";
-    } else if (sensoreState == 126) {
-      sensoreState = "Machine start";
+    var sensorState = Bits.bitsToUnsigned(bits.substr(8, 8));
+    if (sensorState == 100) {
+      sensorState = "Sensor start";
+    } else if (sensorState == 101) {
+      sensorState = "Sensor stop";
+    } else if (sensorState == 125) {
+      sensorState = "Machine stop";
+    } else if (sensorState == 126) {
+      sensorState = "Machine start";
     }
-    data.sensoreState = sensoreState;
+    data.sensorState = sensorState;
     data.statusPercent = round(Bits.bitsToUnsigned(bits.substr(16, 8)) * 100 / 127);
   }
 

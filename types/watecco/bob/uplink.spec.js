@@ -23,7 +23,6 @@ before(function (done) {
     function (err, fileContents) {
       if (err) throw err;
       reportSchema = JSON.parse(fileContents);
-      done();
     }
   );
   fs.readFile(
