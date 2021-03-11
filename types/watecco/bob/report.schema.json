@@ -1,0 +1,182 @@
+{
+  "$id": "https://akenza.io/watecco/bob-report.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Watecco BoB",
+  "type": "object",
+  "properties": {
+    "anomalyLevel": {
+      "title": "Anomaly Level",
+      "unit": "%",
+      "description": "Anomaly Level. Drift with respect to the reference vibration signature",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "nrAlarms": {
+      "title": "Alarms",
+      "description": "Number of alarms during this report period",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "operatingTime": {
+      "title": "Operating Time",
+      "unit": "%",
+      "description": "Operating time of the monitored equipment over the report length",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "repID": {
+      "title": "Report ID",
+      "unit": "mg",
+      "description": "Used to identify the message (increase with time)",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9
+    },
+    "maxAmplitude": {
+      "title": "Maximal amplitude",
+      "unit": "g",
+      "description": "Maximal amplitude",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 381
+    },
+    "peakFrequency": {
+      "title": "Peak Frequency",
+      "description": "Peak frequency index (frequency at highest amplitude recorded)",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "min0_10": {
+      "title": "Anomaly level 0%-10%",
+      "unit": "min",
+      "description": "Time, in minutes, spent in the [0% - 10%] range of anomaly level",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "min10_20": {
+      "title": "Anomaly level 10%-20%",
+      "unit": "min",
+      "description": "Time, in minutes, spent in the [10% - 20%] range of anomaly level",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "min20_40": {
+      "title": "Anomaly level 20%-40%",
+      "unit": "min",
+      "description": "Time, in minutes, spent in the [20% - 40%] range of anomaly level",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "min40_60": {
+      "title": "Anomaly level 40%-60%",
+      "unit": "min",
+      "description": "Time, in minutes, spent in the [40% - 60%] range of anomaly level",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "min60_80": {
+      "title": "Anomaly level 60%-80%",
+      "unit": "min",
+      "description": "Time, in minutes, spent in the [60% - 80%] range of anomaly level",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "min80_100": {
+      "title": "Anomaly level 80%-100%",
+      "unit": "min",
+      "description": "Time, in minutes, spent in the [80% - 100%] range of anomaly level",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "anomalyLvL20Hours": {
+      "title": "Anomaly level reaches 20% hours",
+      "unit": "h",
+      "description": "Anomaly level reaches 20% (Prediction based on the data of last 24 hour",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "anomalyLvL50Hours": {
+      "title": "Anomaly level reaches 50% hours",
+      "unit": "h",
+      "description": "Anomaly level reaches 50% (Prediction based on the data of last 24 hour",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "anomalyLvL80Hours": {
+      "title": "Anomaly level reaches 80% hours",
+      "unit": "h",
+      "description": "Anomaly level reaches 80% (Prediction based on the data of last 24 hour",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "anomalyLvL20Days": {
+      "title": "Anomaly level reaches 20% days",
+      "unit": "d",
+      "description": "Anomaly level reaches 20% (Prediction based on the data of last 30 days",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "anomalyLvL50Days": {
+      "title": "Anomaly level reaches 50% days",
+      "unit": "d",
+      "description": "Anomaly level reaches 50% (Prediction based on the data of last 30 days",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "anomalyLvL80Days": {
+      "title": "Anomaly level reaches 80% days",
+      "unit": "d",
+      "description": "Anomaly level reaches 80% (Prediction based on the data of last 30 days",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "anomalyLvL20Months": {
+      "title": "Anomaly level reaches 20% months",
+      "unit": "mth",
+      "description": "Anomaly level reaches 20% (Prediction based on the data of last 6 Months",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "anomalyLvL50Months": {
+      "title": "Anomaly level reaches 50% months",
+      "unit": "mth",
+      "description": "Anomaly level reaches 50% (Prediction based on the data of last 6 Months",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "anomalyLvL80Months": {
+      "title": "Anomaly level reaches 80% months",
+      "unit": "mth",
+      "description": "Anomaly level reaches 80% (Prediction based on the data of last 6 Months",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 255
+    }
+  }
+}
