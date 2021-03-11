@@ -16,6 +16,7 @@ function expectEmit(callback) {
   });
 }
 
+
 before(function (done) {
   fs.readFile(
     __dirname + "/default.schema.json",
@@ -23,8 +24,11 @@ before(function (done) {
     function (err, fileContents) {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
+      done();
     }
   );
+});
+before(function (done) {
   fs.readFile(
     __dirname + "/lifecycle.schema.json",
     "utf8",
