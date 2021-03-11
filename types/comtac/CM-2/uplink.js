@@ -36,7 +36,7 @@ function consume(event) {
   data.temperaturePT100 = Bits.bitsToSigned(bits.substr(72, 16)) / 100;
   data.adc1 = Bits.bitsToUnsigned(bits.substr(88, 16));
   data.adc2 = Bits.bitsToUnsigned(bits.substr(104, 16));
-  data.lem = Bits.bitsToUnsigned(bits.substr(120, 8));
+  data.lem = Bits.bitsToUnsigned(bits.substr(120, 8)) / 1000;
   data.brightness = Bits.bitsToUnsigned(bits.substr(128, 8));
   emit('sample', { data: data, topic: "default" });
 

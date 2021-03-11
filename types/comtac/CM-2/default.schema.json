@@ -1,9 +1,17 @@
 {
-  "$id": "https://akenza.io/comtac/CM-1.default.schema.json",
+  "$id": "https://akenza.io/comtac/CM-2.default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Comtac CM-1",
+  "title": "Comtac CM-2",
   "type": "object",
   "properties": {
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
     "humidity": {
       "title": "Humidity",
       "unit": "%",
@@ -12,13 +20,40 @@
       "minimum": 0,
       "maximum": 100
     },
-    "temperature": {
-      "title": "Temperature",
+    "temperaturePT100": {
+      "title": "Temperature PT 100",
       "unit": "°C",
       "type": "number",
       "description": "The temperature in °C.",
       "minimum": -3276.5,
       "maximum": 3276.5
+    },
+    "adc1": {
+      "title": "External analog Input1",
+      "type": "integer",
+      "description": "ADC value",
+      "minimum": 0,
+      "maximum": 4095
+    },
+    "adc2": {
+      "title": "External analog Input2",
+      "type": "integer",
+      "description": "ADC value",
+      "minimum": 0,
+      "maximum": 4095
+    },
+    "lem": {
+      "title": "LEM",
+      "unit": "A",
+      "type": "number",
+      "description": "The temperature in °C."
+    },
+    "brightness": {
+      "title": "Brightness",
+      "type": "number",
+      "description": "Brightness value no lux value",
+      "minimum": 0,
+      "maximum": 255
     }
   }
 }
