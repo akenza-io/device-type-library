@@ -6,6 +6,7 @@
   "description": "Comtac LPN DO-2 Sensor used to manipulate the energy flow",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "C",
   "availableSensors": [
     "Status"
   ],

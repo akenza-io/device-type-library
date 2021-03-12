@@ -1,7 +1,7 @@
 {
   "$id": "https://akenza.io/comtac/CM-2.button_pressed.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Comtac CM-2",
+  "title": "Button pressed",
   "type": "object",
   "properties": {}
 }

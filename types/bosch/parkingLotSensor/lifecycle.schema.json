@@ -1,7 +1,7 @@
 {
   "$id": "https://akenza.io/bosch/parkingLotSensor.lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Bosch Parking Lot Sensor",
+  "title": "Lifecycle",
   "type": "object",
   "properties": {
     "debug": {

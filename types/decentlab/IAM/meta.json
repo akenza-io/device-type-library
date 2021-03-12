@@ -6,6 +6,7 @@
   "description": "Decentlab’s indoor ambiance monitor continuously measures carbon dioxide (CO2) concentration, volatile organic compounds (VOC), temperature, humidity, barometric pressure, ambient light and motion / presence.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
   "availableSensors": [
     "Light",
     "CO2",

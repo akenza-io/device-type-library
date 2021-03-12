@@ -1,7 +1,7 @@
 {
   "$id": "https://akenza.io/miromico/sod-lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Miromico SoD Button",
+  "title": "Lifecycle",
   "type": "object",
   "properties": {
     "statusPercent": {
