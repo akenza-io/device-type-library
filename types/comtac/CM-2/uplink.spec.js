@@ -41,7 +41,7 @@ before(function (done) {
 
 describe("Comtac LPN CM-2 Uplink", function () {
   describe("consume()", function () {
-    it("should decode the Comtac LPN CM-2 payload", function (done) {
+    it("should decode the Comtac LPN CM-2 payload", function () {
       const data = {
         data: {
           port: 3,
@@ -89,8 +89,6 @@ describe("Comtac LPN CM-2 Uplink", function () {
 
           validate(value.data, defaultSchema, { throwError: true });
         }
-
-        done();
       });
 
       consume(data);
