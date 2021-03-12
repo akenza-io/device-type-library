@@ -29,15 +29,15 @@
       "maximum": 10000
     },
     "co": {
-      "title": "CO",
+      "title": "Carbon monoxide",
       "unit": "ppm",
       "type": "integer",
-      "description": "Carbon Dioxide in ppm",
+      "description": "Carbon monoxide in ppm",
       "minimum": 0,
       "maximum": 10000
     },
     "pm2_5": {
-      "title": "Particles 2.5",
+      "title": "Particulate matter 2.5",
       "unit": "μm",
       "type": "integer",
       "description": "Particles less than 2.5 μm in diameter",
