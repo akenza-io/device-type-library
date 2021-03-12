@@ -45,7 +45,6 @@ function hexToBytes(hex) {
 function DecodeElsysPayload(data) {
   var obj = {};
   for (var i = 0; i < data.length; i++) {
-    //console.log(data[i]);
     switch (data[i]) {
       case TYPE_TEMP: //Temperature
         var temp = (data[i + 1] << 8) | data[i + 2];
