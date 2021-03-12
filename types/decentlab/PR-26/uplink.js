@@ -77,15 +77,7 @@ function consume(event) {
   var payload = event.data.payload_hex;
   var sample = decentlab_decoder.decode(payload);
 
-  sample.pressure = sample["Pressure"]["value"];
-  delete sample["Pressure"];
-
-  sample.temperature = sample["Temperature"]["value"];
-  delete sample["Temperature"];
+  emit('sample', { "data": { temperature: sample["Temperature"]["value"], pressure: sample["Pressure"]["value"]}  });
   emit('sample', { "data": { voltage: sample["Battery voltage"]["value"], protocolVersion: sample.protocolVersion, deviceID: sample.deviceID } });
-  delete sample["protocolVersion"];
-  delete sample["deviceID"];
-  delete sample["Battery voltage"];
-
-  emit('sample', { "data": sample });
+  
 }
