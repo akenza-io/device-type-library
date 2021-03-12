@@ -6,6 +6,7 @@
   "description": "The LPN CM-2 is able to read temperature and humidity.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.0.0",
+  "loraDeviceClass": "A",
   "availableSensors": [
     "Humidity",
     "Temperature",

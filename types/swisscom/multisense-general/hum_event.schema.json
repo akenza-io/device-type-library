@@ -1,7 +1,7 @@
 {
   "$id": "https://akenza.io/swisscom/multisense-hum_event.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Swisscom Multisense",
+  "title": "Humidity event",
   "type": "object",
   "properties": {
     "mode": {

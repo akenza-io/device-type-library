@@ -1,7 +1,7 @@
 {
   "$id": "https://akenza.io/browan/tbdw100.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "TBDW100",
+  "title": "Default",
   "type": "object",
   "properties": {
     "temperature": {

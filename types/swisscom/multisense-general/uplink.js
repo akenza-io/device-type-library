@@ -59,7 +59,7 @@ function consume(event) {
             data["humHistory" + b] = Bits.bitsToUnsigned(bits.substr(pointer, 8)) * 0.5; pointer += 8;
           }
           break;
-          
+
         default:
           pointer = bits.length;
           break;
@@ -77,7 +77,7 @@ function consume(event) {
         emit('sample', { data: data, topic: "button_event" });
       }
       if (status & 0x10) {
-        emit('sample', { data: data, topic: "life_sign_event" });
+        emit('sample', { data: data, topic: "lifecycle" });
       }
 
     } else {
@@ -100,7 +100,7 @@ function consume(event) {
         emit('sample', { data: data, topic: "motion_event" });
       }
       if (status & 0x02) {
-        emit('sample', { data: data, topic: "life_sign_event" });
+        emit('sample', { data: data, topic: "lifecycle" });
       }
 
     }

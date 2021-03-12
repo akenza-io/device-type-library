@@ -22,6 +22,6 @@
     "waiting_time",
     "dwelltime"
   ],
-  "encoding": "HEX",
-  "connectivity": "LORA"
+  "encoding": "JSON",
+  "connectivity": "HTTP"
 }

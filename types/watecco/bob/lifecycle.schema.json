@@ -1,7 +1,7 @@
 {
   "$id": "https://akenza.io/watecco/bob-lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Watecco BoB",
+  "title": "Lifecycle",
   "type": "object",
   "properties": {
     "sensorState": {
