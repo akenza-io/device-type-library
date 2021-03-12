@@ -25,7 +25,7 @@
     "temp_event",
     "hum_event",
     "motion_event",
-    "life_sign_event"
+    "lifecycle"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"
