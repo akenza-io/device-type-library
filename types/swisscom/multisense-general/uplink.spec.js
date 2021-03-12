@@ -6,7 +6,7 @@ const fs = require("fs");
 const assert = chai.assert;
 
 const script = rewire("./uplink.js");
-let timedSchema = null;
+let lifecycle = null;
 const consume = script.__get__("consume");
 
 function expectEmit(callback) {
@@ -16,12 +16,12 @@ function expectEmit(callback) {
 }
 
 before(function (done) {
-  fs.readFile(__dirname + "/timed_event.schema.json", "utf8", function (
+  fs.readFile(__dirname + "/lifecycle.schema.json", "utf8", function (
     err,
     fileContents
   ) {
     if (err) throw err;
-    timedSchema = JSON.parse(fileContents);
+    lifecycleSchema = JSON.parse(fileContents);
     done();
   });
 });
@@ -53,7 +53,7 @@ describe("Swisscom Multisense Uplink", function () {
           assert.equal(value.data.accelerometerY, 124);
           assert.equal(value.data.accelerometerZ, -4);
 
-          validate(value.data, timedSchema, { throwError: true });
+          validate(value.data, lifecycleSchema, { throwError: true });
         }
 
         done();
