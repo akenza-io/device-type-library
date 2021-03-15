@@ -39,13 +39,13 @@ before(function (done) {
   );
 });
 
-describe("Netvox R711 uplink", function () {
+describe("Netvox water leakage uplink", function () {
   describe("consume()", function () {
-    it("should decode the Netvox R711 uplink", function (done) {
+    it("should decode the Netvox water leakage uplink", function (done) {
       const data = {
         data: {
-          port: 1,
-          payload_hex: "0101011d08790a7a000000",
+          port: 6,
+          payload_hex: "0106011c00000000000000",
         },
       };
 
@@ -55,17 +55,13 @@ describe("Netvox R711 uplink", function () {
         assert.typeOf(value.data, "object");
 
         if (value.topic === "default") {
-          assert.equal(value.data.humidity, 26.82);
-          assert.equal(value.data.temperature, 21.69);
+          assert.equal(value.data.leak, false);
 
           validate(value.data, defaultSchema, { throwError: true });
         }
 
         if (value.topic === "lifecycle") {
-
-          assert.equal(value.data.version, 1);
-          assert.equal(value.data.deviceType, 1);
-          assert.equal(value.data.voltage, 2.9);
+          assert.equal(value.data.voltage, 2.8);
 
           validate(value.data, lifecycleSchema, { throwError: true });
         }

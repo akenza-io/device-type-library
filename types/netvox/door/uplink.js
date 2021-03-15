@@ -5,7 +5,7 @@ function consume(event) {
   var bits = Bits.hexToBits(payload);
   var data = {};
 
-  emit('sample', { data: { "battery": Bits.bitsToUnsigned(bits.substr(24, 8)) / 10.0 }, "topic": "lifecycle" });
+  emit('sample', { data: { "voltage": Bits.bitsToUnsigned(bits.substr(24, 8)) / 10.0 }, "topic": "lifecycle" });
 
   if (Bits.bitsToUnsigned(bits.substr(32, 8)) == 1) {
     data.open = true;

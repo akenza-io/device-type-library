@@ -5,7 +5,7 @@
   "url": "",
   "description": "IoT Button",
   "author": "Akenza AG",
-  "firmwareVersion": "V2.0.0",
+  "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": [
     "Button"

@@ -1,7 +1,7 @@
 {
   "$id": "https://akenza.io/netvox/r711/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Configuration",
+  "title": "Default",
   "type": "object",
   "properties": {
     "humidity": {
