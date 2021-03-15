@@ -1,0 +1,20 @@
+{
+  "name": "Service on demand button",
+  "version": "1.0.0",
+  "manufacturer": "Netvox",
+  "url": "",
+  "description": "IoT Button",
+  "author": "Akenza AG",
+  "firmwareVersion": "V2.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Button"
+  ],
+  "outputTopics": [
+    "config",
+    "lifecycle",
+    "button_pressed"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
