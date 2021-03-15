@@ -1,0 +1,19 @@
+{
+  "name": "Door Sensor",
+  "version": "1.0.0",
+  "manufacturer": "Netvox",
+  "url": "",
+  "description": "Checks per magnet if the door is open",
+  "author": "Akenza AG",
+  "firmwareVersion": "V2.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Door"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
