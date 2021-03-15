@@ -1,0 +1,27 @@
+{
+  "$id": "https://akenza.io/oxon/oxobutton/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "msgtype": {
+      "title": "Message Type",
+      "type": "integer",
+      "description": "What type of message got send",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "imageID": {
+      "title": "Image ID",
+      "type": "integer",
+      "description": "The ID of the Image used when the button sent the uplink",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "inverse": {
+      "title": "Inverse",
+      "type": "boolean",
+      "description": "Is true if the button is inversed"
+    }
+  }
+}
