@@ -11,7 +11,7 @@ function consume(event) {
   var data = {};
   var lifecycle = {};
 
-  data.open = !!Bits.bitsToUnsigned(bits.substr(7, 1));
+  data.status = !!Bits.bitsToUnsigned(bits.substr(0, 8));
 
   lifecycle.voltage = Bits.bitsToUnsigned(bits.substr(8, 4));
   lifecycle.voltage = (25 + lifecycle.voltage) / 10;
@@ -24,12 +24,14 @@ function consume(event) {
   data.temperature = Bits.bitsToUnsigned(bits.substr(17, 7));
   data.temperature = data.temperature - 32;
 
-  data.time = Bits.bitsToUnsigned(bits.substr(24, 16));
-  data.time = swap16(data.time);
+  data.humidity = Bits.bitsToUnsigned(bits.substr(25, 7));
 
-  data.count = Bits.bitsToUnsigned(bits.substr(40, 24) + "00");
-  data.count = swap16(data.count);
+  data.co2 = Bits.bitsToUnsigned(bits.substr(32, 16));
+  data.co2 = swap16(data.co2);
 
-  emit('sample', { "data": lifecycle, "topic": "lifecycle" });
+  data.voc = Bits.bitsToUnsigned(bits.substr(48, 16));
+  data.voc = swap16(data.voc);
+
   emit('sample', { "data": data, "topic": "default" });
+  emit('sample', { "data": lifecycle, "topic": "lifecycle" });
 }

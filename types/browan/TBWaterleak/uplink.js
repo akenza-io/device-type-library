@@ -1,17 +1,12 @@
 var Bits = require('bits');
 
-function swap16(val) {
-  return ((val & 0xFF) << 8)
-    | ((val >> 8) & 0xFF);
-}
-
 function consume(event) {
   var payload = event.data.payload_hex;
   var bits = Bits.hexToBits(payload);
   var data = {};
   var lifecycle = {};
 
-  data.open = !!Bits.bitsToUnsigned(bits.substr(7, 1));
+  data.waterleak = !!Bits.bitsToUnsigned(bits.substr(7, 1));
 
   lifecycle.voltage = Bits.bitsToUnsigned(bits.substr(8, 4));
   lifecycle.voltage = (25 + lifecycle.voltage) / 10;
@@ -24,11 +19,7 @@ function consume(event) {
   data.temperature = Bits.bitsToUnsigned(bits.substr(17, 7));
   data.temperature = data.temperature - 32;
 
-  data.time = Bits.bitsToUnsigned(bits.substr(24, 16));
-  data.time = swap16(data.time);
-
-  data.count = Bits.bitsToUnsigned(bits.substr(40, 24) + "00");
-  data.count = swap16(data.count);
+  data.humidity = Bits.bitsToUnsigned(bits.substr(25, 7));
 
   emit('sample', { "data": lifecycle, "topic": "lifecycle" });
   emit('sample', { "data": data, "topic": "default" });

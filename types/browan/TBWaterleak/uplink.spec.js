@@ -41,12 +41,12 @@ before(function (done) {
   );
 });
 
-describe("TBDW100 uplink", function () {
+describe("TBWaterleak uplink", function () {
   describe("consume()", function () {
-    it("should decode TBDW100 payload", function () {
+    it("should decode TBWaterleak payload", function () {
       const data = {
         data: {
-          payload_hex: "017b345cb1510c00",
+          payload_hex: "000b3628",
         },
       };
 
@@ -57,17 +57,16 @@ describe("TBDW100 uplink", function () {
           assert.typeOf(value.data, "object");
 
           if (value.topic === "lifecycle") {
+            assert.equal(value.data.voltage, 2.5);
             assert.equal(value.data.statusPercent, 73);
-            assert.equal(value.data.voltage, 3.2);
 
             validate(value.data, lifecycleSchema, { throwError: true });
           }
 
           if (value.topic === "default") {
-            assert.equal(value.data.open, true);
-            assert.equal(value.data.temperature, 20);
-            assert.equal(value.data.time, 45404);
-            assert.equal(value.data.count, 48);
+            assert.equal(value.data.waterleak, false);
+            assert.equal(value.data.temperature, 22);
+            assert.equal(value.data.humidity, 40);
 
             validate(value.data, defaultSchema, { throwError: true });
           }
