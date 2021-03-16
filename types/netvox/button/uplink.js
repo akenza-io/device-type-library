@@ -17,9 +17,8 @@ function consume(event) {
     if (click == 1) {
       emit('sample', { data: {}, topic: "button_pressed" });
     }
+    emit('sample', { data: data, topic: "lifecycle" });
   } else if (repType == 0) {
     emit('sample', { data: {}, topic: "config" });
   }
-
-  emit('sample', { data: data, topic: "lifecycle" });
 }
