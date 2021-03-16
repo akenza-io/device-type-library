@@ -41,7 +41,7 @@ before(function (done) {
 
 describe("Netvox water leakage uplink", function () {
   describe("consume()", function () {
-    it("should decode the Netvox water leakage uplink", function (done) {
+    it("should decode the Netvox water leakage uplink", function () {
       const data = {
         data: {
           port: 6,
@@ -68,7 +68,6 @@ describe("Netvox water leakage uplink", function () {
       });
 
       consume(data);
-      done();
     });
   });
 });
