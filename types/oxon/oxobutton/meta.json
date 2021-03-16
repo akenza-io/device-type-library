@@ -1,0 +1,20 @@
+{
+  "name": "Oxobutton",
+  "version": "1.0.0",
+  "manufacturer": "Oxon",
+  "url": "https://www.oxobutton.ch/products/oxobutton-lorawan",
+  "description": "IoT Button",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Button",
+    "Image"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
