@@ -1,0 +1,13 @@
+{
+  "$id": "https://akenza.io/netvox/door/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "open": {
+      "title": "Door open",
+      "type": "boolean",
+      "desciption": "True if the door is open"
+    }
+  }
+}
