@@ -5,9 +5,9 @@
   "type": "object",
   "properties": {
     "msgtype": {
-      "title": "Message Type",
+      "title": "Message type",
       "type": "integer",
-      "description": "What type of message got send",
+      "description": "Type of message",
       "minimum": 0,
       "maximum": 255
     },

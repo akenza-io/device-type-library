@@ -71,9 +71,8 @@ describe("Comtac LPN CM-1 Uplink", function () {
           validate(value.data, defaultSchema, { throwError: true });
         }
       });
-
-      done();
       consume(data);
+      done();
     });
   });
 });
