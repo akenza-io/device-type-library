@@ -20,7 +20,7 @@ function consume(event) {
           } else {
             data.recalibrateResponse = 'failed';
           }
-          topic = "recalibrateResponse";
+          topic = "recalibrate_response";
           break;
         case 2:
           // Temperature
@@ -63,7 +63,7 @@ function consume(event) {
             topic = "reboot";
           } else {
             data.vehicleCount = Bits.bitsToUnsigned(bits.substr(pointer, 8));
-            topic = "vehicleCount";
+            topic = "vehicle_count";
           }
           break;
         case 55:
