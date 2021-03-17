@@ -1,0 +1,29 @@
+{
+  "$id": "https://akenza.io/browan/tbsound/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "open": {
+      "title": "Open",
+      "description": "Status of the tab. open = true, closed = false",
+      "type": "boolean"
+    },
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "soundAvg": {
+      "title": "Sound Average",
+      "unit": "dB",
+      "description": "Average value of the sound pressure level in decibel",
+      "type": "number",
+      "minimum": 20,
+      "maximum": 120
+    }
+  }
+}
