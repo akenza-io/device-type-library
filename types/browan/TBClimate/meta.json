@@ -1,0 +1,23 @@
+{
+  "name": "Tab Climate",
+  "version": "1.0.0",
+  "manufacturer": "Browan",
+  "url": "https://www.browan.com/product/temperature-humidity-sensor",
+  "description": "LoRaWAN® device for measuring the indoor environment ",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "CO2",
+    "VOC",
+    "Status"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

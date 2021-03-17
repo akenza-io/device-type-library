@@ -1,0 +1,21 @@
+{
+  "name": "Sound Level Sensor",
+  "version": "1.0.0",
+  "manufacturer": "Browan",
+  "url": "https://www.browan.com/product/sound-level-sensor/detail",
+  "description": "Sound Level Sensor to measure sound levels in decibels",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Average Sound",
+    "Status"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
