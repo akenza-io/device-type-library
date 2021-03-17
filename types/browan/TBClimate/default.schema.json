@@ -12,8 +12,8 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     },
-    "status": {
-      "title": "Status",
+    "open": {
+      "title": "Open",
       "description": "Status of the tab. open = true, closed = false",
       "type": "boolean"
     },

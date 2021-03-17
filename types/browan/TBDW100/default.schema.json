@@ -28,7 +28,7 @@
       "maximum": 65535
     },
     "open": {
-      "title": "Status",
+      "title": "Open",
       "description": "Status of the tab. open = true, closed = false",
       "type": "boolean"
     }

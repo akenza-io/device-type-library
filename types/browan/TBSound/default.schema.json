@@ -4,8 +4,8 @@
   "title": "Default",
   "type": "object",
   "properties": {
-    "status": {
-      "title": "Status",
+    "open": {
+      "title": "Open",
       "description": "Status of the tab. open = true, closed = false",
       "type": "boolean"
     },
@@ -20,7 +20,7 @@
     "soundAvg": {
       "title": "Sound Average",
       "unit": "dB",
-      "description": "Average value in dBspl",
+      "description": "Average value of the sound pressure level in decibel",
       "type": "number",
       "minimum": 20,
       "maximum": 120

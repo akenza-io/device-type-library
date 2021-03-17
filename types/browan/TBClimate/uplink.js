@@ -11,7 +11,7 @@ function consume(event) {
   var data = {};
   var lifecycle = {};
 
-  data.status = !!Bits.bitsToUnsigned(bits.substr(0, 8));
+  data.open = !!Bits.bitsToUnsigned(bits.substr(0, 8));
 
   lifecycle.voltage = Bits.bitsToUnsigned(bits.substr(8, 4));
   lifecycle.voltage = (25 + lifecycle.voltage) / 10;
