@@ -27,13 +27,13 @@ before(function (done) {
   );
 });
 
-describe("Bosch Parking Lot Sensor Uplink", function () {
+describe("PNIcorp place pode Uplink", function () {
   describe("consume()", function () {
-    it("should decode the Bosch Parking Lot Sensor payload", function (done) {
+    it("should decode the PNIcorp place pode Sensor payload", function () {
       const data = {
         data: {
           port: 2,
-          payload_hex: "00",
+          payload_hex: "376600",
         },
       };
 
@@ -48,32 +48,6 @@ describe("Bosch Parking Lot Sensor Uplink", function () {
 
         validate(value.data, schema, { throwError: true });
 
-        done();
-      });
-
-      consume(data);
-    });
-
-    it("should decode the Bosch Parking Lot Sensor payload", function (done) {
-      const data = {
-        data: {
-          port: 2,
-          payload_hex: "01",
-        },
-      };
-
-      expectEmit(function (type, value) {
-        assert.equal(type, "sample");
-
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-        assert.equal(value.topic, "occupancy");
-
-        assert.equal(value.data.occupancy, 1);
-
-        validate(value.data, schema, { throwError: true });
-
-        done();
       });
 
       consume(data);

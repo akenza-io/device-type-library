@@ -46,9 +46,9 @@ function consume(event) {
         case 21:
           // Parking Status
           if (Bits.bitsToUnsigned(bits.substr(pointer, 8)) == 1) {
-            data.occupied = true;
+            data.occupancy = 1;
           } else {
-            data.occupied = false;
+            data.occupancy = 0;
           }
           topic = "occupancy";
           break;
@@ -59,7 +59,7 @@ function consume(event) {
         case 33:
           // Vehicle Count
           if (Bits.bitsToUnsigned(bits.substr(pointer, 8)) == 128) {
-            data.vehicleCount = "Sensor reboot or recalibration";
+            data.reboot = "Sensor reboot or recalibration";
             topic = "reboot";
           } else {
             data.vehicleCount = Bits.bitsToUnsigned(bits.substr(pointer, 8));
@@ -69,9 +69,9 @@ function consume(event) {
         case 55:
           // Keep-Alive
           if (Bits.bitsToUnsigned(bits.substr(pointer, 8)) == 1) {
-            data.occupied = true;
+            data.occupancy = 1;
           } else {
-            data.occupied = false;
+            data.occupancy = 0;
           }
           topic = "occupancy";
           break;

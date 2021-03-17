@@ -1,15 +1,16 @@
 {
-  "$id": "https://akenza.io/pnicorp/placePod/occupancy.schema.json",
+  "$id": "https://akenza.io/pnicorp/placePod/battery.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Occupancy",
+  "title": "Battery",
   "type": "object",
   "properties": {
-    "occupancy": {
-      "title": "Occupancy",
-      "description": "Space occupancy. 0 = Unoccupied / 1 = Occupied.",
-      "type": "integer",
+    "voltage": {
+      "type": "number",
       "minimum": 0,
-      "maximum": 1
+      "maximum": 24,
+      "title": "Battery voltage",
+      "desciption": "The battery voltage in Volt.",
+      "unit": "V"
     }
   }
 }

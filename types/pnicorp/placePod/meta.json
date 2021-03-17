@@ -1,11 +1,11 @@
 {
-  "name": "Parking Lot Sensor",
+  "name": "Place pod",
   "version": "1.0.0",
-  "manufacturer": "Bosch",
-  "url": "https://www.bosch-connectivity.com/products/connected-mobility/parking-lot-sensor/",
+  "manufacturer": "PNI Corp",
+  "url": "https://www.pnicorp.com/placepod/",
   "description": "Parking Lot Sensor to measure the occupancy of a parking lot",
   "author": "Akenza AG",
-  "firmwareVersion": "V1.0.0",
+  "firmwareVersion": "V2.0.0",
   "loraDeviceClass": "A",
   "availableSensors": [
     "Occupancy"
