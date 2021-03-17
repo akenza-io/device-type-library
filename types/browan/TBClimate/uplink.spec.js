@@ -64,7 +64,7 @@ describe("TBClimate uplink", function () {
           }
 
           if (value.topic === "default") {
-            assert.equal(value.data.status, false);
+            assert.equal(value.data.open, false);
             assert.equal(value.data.temperature, 22);
             assert.equal(value.data.humidity, 29);
             assert.equal(value.data.co2, 565);
