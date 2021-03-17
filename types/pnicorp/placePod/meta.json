@@ -11,7 +11,13 @@
     "Occupancy"
   ],
   "outputTopics": [
-    "occupancy"
+    "occupancy",
+    "battery",
+    "contact_pni",
+    "reboot",
+    "recalibrateResponse",
+    "temperature",
+    "vehicle_count"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"
