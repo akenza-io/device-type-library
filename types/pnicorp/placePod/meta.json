@@ -15,7 +15,7 @@
     "battery",
     "contact_pni",
     "reboot",
-    "recalibrateResponse",
+    "recalibrate_response",
     "temperature",
     "vehicle_count"
   ],
