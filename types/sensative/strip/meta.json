@@ -2,18 +2,24 @@
   "name": "Strip",
   "version": "1.0.0",
   "manufacturer": "Sensative",
-  "url": "https://www.oxobutton.ch/products/oxobutton-lorawan",
-  "description": "IoT Button",
+  "url": "https://sensative.com/sensors/strips-zwave/",
+  "description": "Lorawan sensor to measure the environment and check for door & waterleak events",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": [
-    "Button",
-    "Image"
+    "Door",
+    "Temperature",
+    "Humidity",
+    "Light",
+    "Water leak",
+    "PIR"
   ],
   "outputTopics": [
+    "alarm",
     "default",
-    "lifecycle"
+    "lifecycle",
+    "occupancy"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"
