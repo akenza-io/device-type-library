@@ -1,0 +1,15 @@
+{
+  "$id": "https://akenza.io/pnicorp/placePod/vehicleCount.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Vehicle count",
+  "type": "object",
+  "properties": {
+    "vehicleCount": {
+      "title": "Vehicle count",
+      "description": "Count of vehicles",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    }
+  }
+}

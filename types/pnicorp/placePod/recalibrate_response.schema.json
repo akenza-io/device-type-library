@@ -1,0 +1,13 @@
+{
+  "$id": "https://akenza.io/pnicorp/placePod/recalibrateResponse.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Recalibrate response",
+  "type": "object",
+  "properties": {
+    "recalibrateResponse": {
+      "title": "Recalibrate response",
+      "description": "Either successful or failed",
+      "type": "string"
+    }
+  }
+}
