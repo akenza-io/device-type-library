@@ -170,20 +170,22 @@ function consume(event) {
   var port = event.data.port;
   var data = decoder(parseHexString(payload), port);
 
-  var lifecycle = {};
-  var alarm = {};
-  var def = {};
-  var lifecycleKeys = ["temperature", "averageTemperature", "humidity", "lux", "lux2", "open", "tamperReport", "flood", "doorCount", "presence", "irProximity", "irCloseproximity"];
+  var lifecycle = {}; var alarm = {}; var def = {};
+  var lifecycleOut = false; var alarmOut = false; var defOut = false;
+  var defaultKeys = ["temperature", "averageTemperature", "humidity", "lux", "lux2", "open", "tamperReport", "flood", "doorCount", "presence", "irProximity", "irCloseproximity"];
   var alarmKeys = ["highAlarm", "lowAlarm", "doorAlarm", "tamperAlarm", "floodAlarm", "foilAlarm", "userSwitch1Alarm", "closeProximityAlarm", "disinfectAlarm"];
-  var defaultKeys = ["statusPercent", "error", "historySeqNr", "prevHistSeqNr"];
+  var lifecycleKeys = ["statusPercent", "error", "historySeqNr", "prevHistSeqNr"];
 
   Object.keys(data).forEach(function (key) {
     if (lifecycleKeys.some(el => key.includes(el))) {
       lifecycle[key] = data[key];
+      lifecycleOut = true;
     } else if (alarmKeys.some(el => key.includes(el))) {
       alarm[key] = data[key];
+      alarmOut = true;
     } else if (defaultKeys.some(el => key.includes(el))) {
       def[key] = data[key];
+      defOut = true;
     }
   });
 
@@ -192,11 +194,11 @@ function consume(event) {
   }
 
   if (alarm != {}) {
-    emit('sample', { "data": lifecycle, "topic": "alarm" });
+    emit('sample', { "data": alarm, "topic": "alarm" });
   }
 
   if (def != {}) {
-    emit('sample', { "data": lifecycle, "topic": "default" });
+    emit('sample', { "data": def, "topic": "default" });
   }
 
   if (data.presence != undefined) {
