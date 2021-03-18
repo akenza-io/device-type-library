@@ -1,0 +1,24 @@
+{
+  "name": "Place pod",
+  "version": "1.0.0",
+  "manufacturer": "PNI Corp",
+  "url": "https://www.pnicorp.com/placepod/",
+  "description": "Parking Lot Sensor to measure the occupancy of a parking lot",
+  "author": "Akenza AG",
+  "firmwareVersion": "V2.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Occupancy"
+  ],
+  "outputTopics": [
+    "occupancy",
+    "battery",
+    "contact_pni",
+    "reboot",
+    "recalibrate_response",
+    "temperature",
+    "vehicle_count"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
