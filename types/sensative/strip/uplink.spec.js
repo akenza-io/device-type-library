@@ -68,7 +68,6 @@ describe("Sensative strip", function () {
         assert.typeOf(value.data, "object");
 
         if (value.topic === "lifecycle") {
-
           assert.equal(value.data.historySeqNr, 65535);
           assert.equal(value.data.prevHistSeqNr, 65535);
 
@@ -76,7 +75,6 @@ describe("Sensative strip", function () {
         }
 
         if (value.topic === "default") {
-
           assert.equal(value.data.temperature, 0);
           assert.equal(value.data.open, true);
 
@@ -84,7 +82,6 @@ describe("Sensative strip", function () {
         }
 
         if (value.topic === "alarm") {
-
           assert.equal(value.data.doorAlarm, false);
 
           validate(value.data, alarmSchema, { throwError: true });

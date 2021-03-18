@@ -6,42 +6,42 @@
   "properties": {
     "highAlarm": {
       "title": "High alarm",
-      "description": "Equals true if the threshold is exceeded",
+      "description": "Equals to true if the threshold is exceeded",
       "type": "boolean"
     },
     "lowAlarm": {
       "title": "Low alarm",
-      "description": "Equals true if the threshold is fallen below",
+      "description": "Equals to true if the threshold has fallen below",
       "type": "boolean"
     },
     "doorAlarm": {
       "title": "Door alarm",
-      "description": "Equals true if theres a door alarm",
+      "description": "Equals to true if there is a door alarm",
       "type": "boolean"
     },
     "tamperAlarm": {
       "title": "Tamper alarm",
-      "description": "Equals true if the strip has been tampered with",
+      "description": "Equals to true if the strip has been tampered with",
       "type": "boolean"
     },
     "floodAlarm": {
       "title": "Flood alarm",
-      "description": "Equals true if a flood is detected",
+      "description": "Equals to true if a flood is detected",
       "type": "boolean"
     },
     "foilAlarm": {
       "title": "Foil alarm",
-      "description": "Equals true if a foil is detected",
+      "description": "Equals to true if a foil is detected",
       "type": "boolean"
     },
-    "userSwitch1Alarm": {
+    "userSwitchAlarm": {
       "title": "User switch alarm",
-      "description": "Equals true if a user switch is detected",
+      "description": "Equals to true if a user switch is detected",
       "type": "boolean"
     },
     "closeProximityAlarm": {
       "title": "Close proximity Alarm",
-      "description": "Equals true if an object in close proximity is detected",
+      "description": "Equals to true if an object in close proximity is detected",
       "type": "boolean"
     },
     "disinfectAlarm": {

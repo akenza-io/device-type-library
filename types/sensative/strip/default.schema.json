@@ -81,7 +81,7 @@
       "minimum": 0,
       "maximum": 255
     },
-    "irCloseproximity": {
+    "irCloseProximity": {
       "title": "Infrared close proximity",
       "description": "Count of objects in close proximity",
       "type": "integer",
