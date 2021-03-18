@@ -1,0 +1,52 @@
+{
+  "$id": "https://akenza.io/decentlab/atm41/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "voltage": {
+      "title": "Battery voltage",
+      "unit": "V",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "desciption": "The battery voltage in Volt."
+    },
+    "protocolVersion": {
+      "title": "Protocol Version",
+      "description": "Protocol Version",
+      "type": "integer"
+    },
+    "deviceID": {
+      "title": "Device ID",
+      "description": "Device ID",
+      "type": "integer"
+    },
+    "sensor_temperature_internal": {
+      "title": "Sensor temperature (internal)",
+      "unit": "°C",
+      "type": "number",
+      "description": "Sensor temperature (internal)",
+      "minimum": -50,
+      "maximum": 80
+    },
+    "x_orientation_angle": {
+      "title": "X orientation angle",
+      "unit": "°",
+      "type": "number",
+      "description": "X orientation angle"
+    },
+    "y_orientation_angle": {
+      "title": "Y orientation angle",
+      "unit": "°",
+      "type": "number",
+      "description": "Y orientation angle"
+    },
+    "compass_heading": {
+      "title": "Compass heading",
+      "unit": "°",
+      "type": "number",
+      "description": "Compass heading"
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "$id": "https://akenza.io/decentlab/atm41/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "solar_radiation": {
+      "title": "Solar radiation",
+      "unit": "W⋅m⁻²",
+      "type": "number",
+      "description": "Solar radiation"
+    },
+    "precipitation": {
+      "title": "Precipitation",
+      "unit": "mm",
+      "type": "number",
+      "description": "Precipitation"
+    },
+    "lightning_strike_count": {
+      "title": "Lightning strike count",
+      "type": "integer",
+      "description": "Lightning strike count"
+    },
+    "lightning_average_distance": {
+      "title": "Lightning average distance",
+      "unit": "km",
+      "type": "number",
+      "description": "Lightning average distance"
+    },
+    "wind_speed": {
+      "title": "Wind speed",
+      "unit": "m⋅s⁻¹",
+      "type": "number",
+      "description": "Wind speed"
+    },
+    "wind_direction": {
+      "title": "Wind direction",
+      "unit": "°",
+      "type": "number",
+      "description": "Wind direction"
+    },
+    "maximum_wind_speed": {
+      "title": "Maximum wind speed",
+      "unit": "m⋅s⁻¹",
+      "type": "number",
+      "description": "Maximum wind speed"
+    },
+    "temperature": {
+      "title": "Air temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "Air temperature",
+      "minimum": -50,
+      "maximum": 80
+    },
+    "vapor_pressure": {
+      "title": "Vapor pressure",
+      "unit": "kPa",
+      "type": "number",
+      "description": "Vapor pressure"
+    },
+    "atmospheric_pressure": {
+      "title": "Atmospheric pressure",
+      "unit": "kPa",
+      "type": "number",
+      "description": "Atmospheric pressure"
+    },
+    "humidity": {
+      "title": "Relative humidity",
+      "unit": "%",
+      "type": "number",
+      "description": "Relative humidity",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "north_wind_speed": {
+      "title": "North wind speed",
+      "unit": "m⋅s⁻¹",
+      "type": "number",
+      "description": "North wind speed"
+    },
+    "east_wind_speed": {
+      "title": "East wind speed",
+      "unit": "m⋅s⁻¹",
+      "type": "number",
+      "description": "East wind speed"
+    }
+  }
+}
