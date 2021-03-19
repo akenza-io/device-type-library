@@ -109,9 +109,3 @@ function consume(event) {
     emit('sample', { "data": lifecycle, "topic": "lifecycle" });
   }
 }
-/*
-function main() {
-  console.log(decentlab_decoder.decode("02012f000304d200010bb1"));
-  console.log(decentlab_decoder.decode("02012f00020bb1"));
-}
-*/

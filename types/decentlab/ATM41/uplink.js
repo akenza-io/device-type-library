@@ -183,28 +183,28 @@ function consume(event) {
   var lifecycle = {};
 
   // Default values
-  data.solar_radiation = sample["solar_radiation"];
+  data.solarRadiation = sample["solar_radiation"];
   data.precipitation = sample["precipitation"];
-  data.lightning_strike_count = sample["lightning_strike_count"];
-  data.lightning_average_distance = sample["lightning_average_distance"];
-  data.wind_speed = sample["wind_speed"];
-  data.wind_direction = sample["wind_direction"];
-  data.maximum_wind_speed = sample["maximum_wind_speed"];
+  data.lightningStrikeCount = sample["lightning_strike_count"];
+  data.lightningAverageDistance = sample["lightning_average_distance"];
+  data.windSpeed = sample["wind_speed"];
+  data.windDirection = sample["wind_direction"];
+  data.maximumWindSpeed = sample["maximum_wind_speed"];
   data.temperature = sample["air_temperature"];
-  data.vapor_pressure = sample["vapor_pressure"];
-  data.atmospheric_pressure = sample["atmospheric_pressure"];
+  data.vaporPressure = sample["vapor_pressure"];
+  data.atmosphericPressure = sample["atmospheric_pressure"];
   data.humidity = sample["relative_humidity"];
-  data.east_wind_speed = sample["east_wind_speed"];
-  data.north_wind_speed = sample["north_wind_speed"];
+  data.eastWindSpeed = sample["east_wind_speed"];
+  data.northWindSpeed = sample["north_wind_speed"];
 
   // Lifecycle values
   lifecycle.voltage = sample["voltage"];
   lifecycle.protocolVersion = sample["protocol_version"];
   lifecycle.deviceID = sample["device_id"];
-  lifecycle.sensor_temperature_internal = sample["sensor_temperature_internal"];
-  lifecycle.x_orientation_angle = sample["x_orientation_angle"];
-  lifecycle.y_orientation_angle = sample["y_orientation_angle"];
-  lifecycle.compass_heading = sample["compass_heading"];
+  lifecycle.sensorTemperatureInternal = sample["sensor_temperature_internal"];
+  lifecycle.xOrientationAngle = sample["x_orientation_angle"];
+  lifecycle.yOrientationAngle = sample["y_orientation_angle"];
+  lifecycle.compassHeading = sample["compass_heading"];
 
   if (deleteUnusedKeys(data)) {
     emit('sample', { "data": data, "topic": "default" });

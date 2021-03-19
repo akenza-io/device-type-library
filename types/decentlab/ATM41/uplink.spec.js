@@ -71,26 +71,26 @@ describe("Decentlab ATM41 Uplink", function () {
           assert.equal(value.data.voltage, 3.061);
           assert.equal(value.data.deviceID, 858);
 
-          assert.equal(value.data.sensor_temperature_internal, 26.5);
-          assert.equal(value.data.x_orientation_angle, 0.2);
-          assert.equal(value.data.y_orientation_angle, -2.4);
-          assert.equal(value.data.compass_heading, 86);
+          assert.equal(value.data.sensorTemperatureInternal, 26.5);
+          assert.equal(value.data.xOrientationAngle, 0.2);
+          assert.equal(value.data.yOrientationAngle, -2.4);
+          assert.equal(value.data.compassHeading, 86);
 
           validate(value.data, lifecycleSchema, { throwError: true });
         }
 
         if (value.topic == "default") {
           assert.equal(value.data.precipitation, 0);
-          assert.equal(value.data.lightning_strike_count, 0);
-          assert.equal(value.data.lightning_average_distance, 0);
-          assert.equal(value.data.wind_speed, 0.09);
-          assert.equal(value.data.wind_direction, 29.9);
-          assert.equal(value.data.maximum_wind_speed, 0.2);
+          assert.equal(value.data.lightningStrikeCount, 0);
+          assert.equal(value.data.lightningAverageDistance, 0);
+          assert.equal(value.data.windSpeed, 0.09);
+          assert.equal(value.data.windDirection, 29.9);
+          assert.equal(value.data.maximumWindSpeed, 0.2);
           assert.equal(value.data.temperature, 26.4);
-          assert.equal(value.data.vapor_pressure, 1.8);
-          assert.equal(value.data.atmospheric_pressure, 95.96);
-          assert.equal(value.data.north_wind_speed, 0.08);
-          assert.equal(value.data.east_wind_speed, 0.04);
+          assert.equal(value.data.vaporPressure, 1.8);
+          assert.equal(value.data.atmosphericPressure, 95.96);
+          assert.equal(value.data.northWindSpeed, 0.08);
+          assert.equal(value.data.eastWindSpeed, 0.04);
 
           validate(value.data, defaultSchema, { throwError: true });
         }

@@ -4,7 +4,7 @@
   "title": "Default",
   "type": "object",
   "properties": {
-    "solar_radiation": {
+    "solarRadiation": {
       "title": "Solar radiation",
       "unit": "W⋅m⁻²",
       "type": "number",
@@ -16,30 +16,30 @@
       "type": "number",
       "description": "Precipitation"
     },
-    "lightning_strike_count": {
+    "lightningStrikeCount": {
       "title": "Lightning strike count",
       "type": "integer",
       "description": "Lightning strike count"
     },
-    "lightning_average_distance": {
+    "lightningAverageDistance": {
       "title": "Lightning average distance",
       "unit": "km",
       "type": "number",
       "description": "Lightning average distance"
     },
-    "wind_speed": {
+    "windSpeed": {
       "title": "Wind speed",
       "unit": "m⋅s⁻¹",
       "type": "number",
       "description": "Wind speed"
     },
-    "wind_direction": {
+    "windDirection": {
       "title": "Wind direction",
       "unit": "°",
       "type": "number",
       "description": "Wind direction"
     },
-    "maximum_wind_speed": {
+    "maximumWindSpeed": {
       "title": "Maximum wind speed",
       "unit": "m⋅s⁻¹",
       "type": "number",
@@ -53,13 +53,13 @@
       "minimum": -50,
       "maximum": 80
     },
-    "vapor_pressure": {
+    "vaporPressure": {
       "title": "Vapor pressure",
       "unit": "kPa",
       "type": "number",
       "description": "Vapor pressure"
     },
-    "atmospheric_pressure": {
+    "atmosphericPressure": {
       "title": "Atmospheric pressure",
       "unit": "kPa",
       "type": "number",
@@ -73,13 +73,13 @@
       "minimum": 0,
       "maximum": 100
     },
-    "north_wind_speed": {
+    "northWindSpeed": {
       "title": "North wind speed",
       "unit": "m⋅s⁻¹",
       "type": "number",
       "description": "North wind speed"
     },
-    "east_wind_speed": {
+    "eastWindSpeed": {
       "title": "East wind speed",
       "unit": "m⋅s⁻¹",
       "type": "number",

@@ -22,7 +22,7 @@
       "description": "Device ID",
       "type": "integer"
     },
-    "sensor_temperature_internal": {
+    "sensorTemperatureInternal": {
       "title": "Sensor temperature (internal)",
       "unit": "°C",
       "type": "number",
@@ -30,19 +30,19 @@
       "minimum": -50,
       "maximum": 80
     },
-    "x_orientation_angle": {
+    "xOrientationAngle": {
       "title": "X orientation angle",
       "unit": "°",
       "type": "number",
       "description": "X orientation angle"
     },
-    "y_orientation_angle": {
+    "yOrientationAngle": {
       "title": "Y orientation angle",
       "unit": "°",
       "type": "number",
       "description": "Y orientation angle"
     },
-    "compass_heading": {
+    "compassHeading": {
       "title": "Compass heading",
       "unit": "°",
       "type": "number",
