@@ -27,10 +27,10 @@ function consume(event) {
     data.co2 = (e | f);
 
     if (i == 0) {
-      emit('sample', { data: data });
+      emit('sample', { "data": data });
     } else {
       var outTime = new Date(date.setMinutes(date.getMinutes() - 10));
-      emit('sample', { data: data, time: outTime });
+      emit('sample', { "data": data, "timestamp": outTime });
     }
     data = {};
   }
