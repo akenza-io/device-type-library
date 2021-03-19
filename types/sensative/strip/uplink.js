@@ -120,6 +120,18 @@ function decodeFrame(bytes, type, target, pos) {
   }
 }
 
+function deleteUnusedKeys(data) {
+  var keysRetained = false;
+  Object.keys(data).forEach(key => {
+    if (data[key] === undefined) {
+      delete data[key];
+    } else {
+      keysRetained = true;
+    }
+  });
+  return keysRetained;
+}
+
 function consume(event) {
   var payload = event.data.payload_hex;
   var port = event.data.port;
@@ -164,35 +176,45 @@ function consume(event) {
       }
   }
 
-  var lifecycle = {}; var alarm = {}; var def = {};
-  var lifecycleOut = false; var alarmOut = false; var defaultOut = false;
-  var defaultKeys = ["temperature", "averageTemperature", "humidity", "lux", "lux2", "open", "tamperReport", "flood", "doorCount", "presence", "irProximity", "irCloseProximity"];
-  var alarmKeys = ["highAlarm", "lowAlarm", "doorAlarm", "tamperAlarm", "floodAlarm", "foilAlarm", "userSwitchAlarm", "closeProximityAlarm", "disinfectAlarm"];
-  var lifecycleKeys = ["statusPercent", "error", "historySeqNr", "prevHistSeqNr"];
+  var def = {};
+  def.temperature = decoded.temperature;
+  def.averageTemperature = decoded.averageTemperature;
+  def.humidity = decoded.humidity;
+  def.lux = decoded.lux;
+  def.lux2 = decoded.lux2;
+  def.open = decoded.open;
+  def.tamperReport = decoded.tamperReport;
+  def.doorCount = decoded.doorCount;
+  def.presence = decoded.presence;
+  def.irProximity = decoded.irProximity;
+  def.irCloseProximity = decoded.irCloseProximity;
 
+  var alarm = {};
+  alarm.highAlarm = decoded.highAlarm;
+  alarm.lowAlarm = decoded.lowAlarm;
+  alarm.doorAlarm = decoded.doorAlarm;
+  alarm.tamperAlarm = decoded.tamperAlarm;
+  alarm.floodAlarm = decoded.floodAlarm;
+  alarm.foilAlarm = decoded.foilAlarm;
+  alarm.userSwitchAlarm = decoded.userSwitchAlarm;
+  alarm.closeProximityAlarm = decoded.closeProximityAlarm;
+  alarm.disinfectAlarm = decoded.disinfectAlarm;
 
-  Object.keys(decoded).forEach(function (key) {
-    if (lifecycleKeys.some(el => key.includes(el))) {
-      lifecycle[key] = decoded[key];
-      lifecycleOut = true;
-    } else if (alarmKeys.some(el => key.includes(el))) {
-      alarm[key] = decoded[key];
-      alarmOut = true;
-    } else if (defaultKeys.some(el => key.includes(el))) {
-      def[key] = decoded[key];
-      defOut = true;
-    }
-  });
+  var lifecycle = {};
+  lifecycle.statusPercent = decoded.statusPercent;
+  lifecycle.error = decoded.error;
+  lifecycle.historySeqNr = decoded.historySeqNr;
+  lifecycle.prevHistSeqNr = decoded.prevHistSeqNr;
 
-  if (lifecycleOut) {
+  if (deleteUnusedKeys(lifecycle)) {
     emit('sample', { "data": lifecycle, "topic": "lifecycle" });
   }
 
-  if (alarmOut) {
+  if (deleteUnusedKeys(alarm)) {
     emit('sample', { "data": alarm, "topic": "alarm" });
   }
 
-  if (defaultOut) {
+  if (deleteUnusedKeys(def)) {
     emit('sample', { "data": def, "topic": "default" });
   }
 
