@@ -42,7 +42,7 @@ before(function (done) {
 
 describe("Elsys ERS lite uplink", function () {
   describe("consume()", function () {
-    it("should decode Elsys ERS lite payload", function (done) {
+    it("should decode Elsys ERS lite payload", function () {
       const data = {
         data: {
           payload_hex: "0100f1021704041a0500070e5a",
@@ -67,7 +67,6 @@ describe("Elsys ERS lite uplink", function () {
       });
 
       consume(data);
-      done();
     });
   });
 });

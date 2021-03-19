@@ -193,9 +193,5 @@ function consume(event) {
     delete res.vdd;
   }
 
-  if (res.irExternalTemperature !== undefined) {
-    emit("sample", { topic: "lifecycle", data: res });
-  } else {
-    emit("sample", { topic: "default", data: res });
-  }
+  emit("sample", { topic: "default", data: res });
 }
