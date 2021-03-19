@@ -1,5 +1,5 @@
 const chai = require("chai");
-//const validate = require("jsonschema").validate;
+const validate = require("jsonschema").validate;
 const rewire = require("rewire");
 const axios = require("axios");
 const fs = require("fs");
