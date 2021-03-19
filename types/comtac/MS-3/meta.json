@@ -1,18 +1,24 @@
 {
-  "name": "LPN CM-1",
+  "name": "LPN MS-3",
   "version": "1.0.0",
   "manufacturer": "Comtac",
-  "url": "https://www.comtac.ch/de/produkte/lora/condition-monitoring/lpn-cm-1-sensor.html",
-  "description": "The LPN CM-1 is able to read temperature and humidity.",
+  "url": "https://www.comtac.ch/de/produkte/lora/multi-sensoren/lpn-multi-sensor-3.html",
+  "description": "Compact and versatile useable sensorpacket with GPS, acceleration, temperature, humidity sensors and more.",
   "author": "Akenza AG",
-  "firmwareVersion": "V0.0.7",
-  "loraDeviceClass": "A",
+  "firmwareVersion": "V5.0.0",
+  "loraDeviceClass": "C",
   "availableSensors": [
+    "Button",
+    "Brightness",
     "Humidity",
-    "Temperature"
+    "Temperature",
+    "Acceleration",
+    "Gyro",
+    "Magnetometer",
+    "GPS"
   ],
   "outputTopics": [
-    "button_pressed",
+    "event",
     "default",
     "lifecycle"
   ],

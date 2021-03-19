@@ -1,91 +1,91 @@
 {
-  "$id": "https://akenza.io/comtac/CM-1.lifecycle.schema.json",
+  "$id": "https://akenza.io/comtac/ms-3/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Lifecycle",
   "type": "object",
   "properties": {
     "rs485": {
-      "title": "RS485 flag",
-      "description": "RS485 flag",
+      "title": "RS485",
+      "description": "RS485 active",
       "type": "boolean"
     },
     "gps": {
       "title": "GPS",
-      "description": "GPS aktive",
+      "description": "GPS active",
       "type": "boolean"
     },
     "acc": {
       "title": "Accelerometer",
-      "description": "",
+      "description": "Accelerometer active",
       "type": "boolean"
     },
     "mag": {
       "title": "Magnetometer",
-      "description": "",
+      "description": "Magnetometer active",
       "type": "boolean"
     },
     "mic": {
-      "title": "Mic",
-      "description": "",
+      "title": "Microphone",
+      "description": "Microphone active",
       "type": "boolean"
     },
     "bright": {
       "title": "Brightness",
-      "description": "",
+      "description": "Brightness sensor active",
       "type": "boolean"
     },
     "tempHum": {
       "title": "Temperature & Humidity",
-      "description": "",
+      "description": "Temperature & Humidity sensors active",
       "type": "boolean"
     },
     "txOnEvent": {
       "title": "Event",
-      "description": "",
+      "description": "Event registered",
       "type": "boolean"
     },
     "magActual": {
       "title": "Magnetometer",
-      "description": "",
+      "description": "Magnetometer active",
       "type": "boolean"
     },
     "extCon": {
       "title": "External conection",
-      "description": "",
+      "description": "External conection detected",
       "type": "boolean"
     },
     "booster": {
       "title": "Booster",
-      "description": "",
+      "description": "Booster active",
       "type": "boolean"
     },
     "extSupply": {
       "title": "External supply",
-      "description": "",
+      "description": "External supply detected",
       "type": "boolean"
     },
     "dip3": {
       "title": "DIP 3",
-      "description": "",
+      "description": "DIP 3",
       "type": "boolean"
     },
     "dip2": {
       "title": "DIP 2",
-      "description": "",
+      "description": "DIP 2",
       "type": "boolean"
     },
     "dip1": {
       "title": "DIP 1",
-      "description": "",
+      "description": "DIP 1",
       "type": "boolean"
     },
     "voltage": {
-      "type": "number",
-      "minimum": 0,
-      "maximum": 24,
       "title": "Battery voltage",
       "desciption": "The battery voltage in Volt.",
-      "unit": "V"
+      "unit": "V",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24
     }
   }
 }

@@ -26,7 +26,7 @@ function consume(event) {
   lifecycle.dip3 = !!(Bits.bitsToUnsigned(bits.substr(13, 1)));
   lifecycle.dip2 = !!(Bits.bitsToUnsigned(bits.substr(14, 1)));
   lifecycle.dip1 = !!(Bits.bitsToUnsigned(bits.substr(15, 1)));
-  lifecycle.voltage = (1 + (Bits.bitsToUnsigned(bits.substr(16, 8)) * 0.01)).toFixed(2);
+  lifecycle.voltage = Number((1 + (Bits.bitsToUnsigned(bits.substr(16, 8)) * 0.01)).toFixed(2));
 
   data.brightness = Bits.bitsToUnsigned(bits.substr(24, 8));
   data.humidity = Bits.bitsToUnsigned(bits.substr(32, 8));
