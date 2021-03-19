@@ -1,0 +1,91 @@
+{
+  "$id": "https://akenza.io/comtac/CM-1.lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "rs485": {
+      "title": "RS485 flag",
+      "description": "RS485 flag",
+      "type": "boolean"
+    },
+    "gps": {
+      "title": "GPS",
+      "description": "GPS aktive",
+      "type": "boolean"
+    },
+    "acc": {
+      "title": "Accelerometer",
+      "description": "",
+      "type": "boolean"
+    },
+    "mag": {
+      "title": "Magnetometer",
+      "description": "",
+      "type": "boolean"
+    },
+    "mic": {
+      "title": "Mic",
+      "description": "",
+      "type": "boolean"
+    },
+    "bright": {
+      "title": "Brightness",
+      "description": "",
+      "type": "boolean"
+    },
+    "tempHum": {
+      "title": "Temperature & Humidity",
+      "description": "",
+      "type": "boolean"
+    },
+    "txOnEvent": {
+      "title": "Event",
+      "description": "",
+      "type": "boolean"
+    },
+    "magActual": {
+      "title": "Magnetometer",
+      "description": "",
+      "type": "boolean"
+    },
+    "extCon": {
+      "title": "External conection",
+      "description": "",
+      "type": "boolean"
+    },
+    "booster": {
+      "title": "Booster",
+      "description": "",
+      "type": "boolean"
+    },
+    "extSupply": {
+      "title": "External supply",
+      "description": "",
+      "type": "boolean"
+    },
+    "dip3": {
+      "title": "DIP 3",
+      "description": "",
+      "type": "boolean"
+    },
+    "dip2": {
+      "title": "DIP 2",
+      "description": "",
+      "type": "boolean"
+    },
+    "dip1": {
+      "title": "DIP 1",
+      "description": "",
+      "type": "boolean"
+    },
+    "voltage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "title": "Battery voltage",
+      "desciption": "The battery voltage in Volt.",
+      "unit": "V"
+    }
+  }
+}
