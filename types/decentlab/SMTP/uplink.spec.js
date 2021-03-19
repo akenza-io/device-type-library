@@ -51,12 +51,12 @@ function loadRemoteSchema(uri) {
   });
 }
 
-describe("Decentlab SHT35 Uplink", function () {
+describe("Decentlab SMTP Uplink", function () {
   describe("consume()", function () {
-    it("should decode Decentlab SHT35 payload", function (done) {
+    it("should decode Decentlab SMTP payload", function (done) {
       const data = {
         data: {
-          payload_hex: "02030e000364a079b10c60",
+          payload_hex: "020b50000309018a8c09438a9809278a920b3c8aa50c9c8a8c11e08aa500000000000000000b3b",
         },
       };
 
@@ -66,15 +66,30 @@ describe("Decentlab SHT35 Uplink", function () {
         assert.typeOf(value.data, "object");
 
         if (value.topic == "lifecycle") {
-          assert.equal(value.data.voltage, 3.168);
+          assert.equal(value.data.voltage, 2.875);
           assert.equal(value.data.protocolVersion, 2);
-          assert.equal(value.data.deviceID, 782);
+          assert.equal(value.data.deviceID, 2896);
           validate(value.data, lifecycleSchema, { throwError: true });
         }
 
         if (value.topic == "default") {
-          assert.equal(value.data.humidity, 47.536430914778364);
-          assert.equal(value.data.temperature, 23.787670710307466);
+
+          assert.equal(value.data.soilMoistureAtDepth0, -0.39);
+          assert.equal(value.data.soilTemperatureAtDepth0, 27);
+          assert.equal(value.data.soilMoistureAtDepth1, -0.258,);
+          assert.equal(value.data.soilTemperatureAtDepth1, 27.12);
+          assert.equal(value.data.soilMoistureAtDepth2, -0.314);
+          assert.equal(value.data.soilTemperatureAtDepth2, 27.06);
+          assert.equal(value.data.soilMoistureAtDepth3, 0.752);
+          assert.equal(value.data.soilTemperatureAtDepth3, 27.25);
+          assert.equal(value.data.soilMoistureAtDepth4, 1.456);
+          assert.equal(value.data.soilTemperatureAtDepth4, 27);
+          assert.equal(value.data.soilMoistureAtDepth5, 4.152);
+          assert.equal(value.data.soilTemperatureAtDepth5, 27.25);
+          assert.equal(value.data.soilMoistureAtDepth6, -5);
+          assert.equal(value.data.soilTemperatureAtDepth6, -327.68);
+          assert.equal(value.data.soilMoistureAtDepth7, -5);
+          assert.equal(value.data.soilTemperatureAtDepth7, -327.68);
           validate(value.data, defaultSchema, { throwError: true });
         }
       });

@@ -15,12 +15,12 @@
     "protocolVersion": {
       "title": "Protocol Version",
       "description": "Protocol Version",
-      "type": "string"
+      "type": "integer"
     },
     "deviceId": {
       "title": "Device ID",
       "description": "Device ID",
-      "type": "string"
+      "type": "integer"
     },
     "numberOfValidSamples": {
       "title": "Number of valid samples",

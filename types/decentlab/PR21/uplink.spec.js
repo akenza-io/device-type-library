@@ -69,6 +69,7 @@ describe("Decentlab PR21 Uplink", function () {
           assert.equal(value.data.voltage, 3.199);
           assert.equal(value.data.protocolVersion, 2);
           assert.equal(value.data.deviceID, 359);
+          validate(value.data, lifecycleSchema, { throwError: true });
         }
 
         if (value.topic == "default") {

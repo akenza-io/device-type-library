@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/decentlab/pr21/lifecycle.schema.json",
+  "$id": "https://akenza.io/decentlab/smtp/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Lifecycle",
   "type": "object",
