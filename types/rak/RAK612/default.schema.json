@@ -1,0 +1,28 @@
+{
+  "$id": "https://akenza.io/rak/rak612/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "key1": {
+      "title": "Key 1",
+      "type": "boolean",
+      "description": "Is true if key 1 got pressed"
+    },
+    "key2": {
+      "title": "Key 2",
+      "type": "boolean",
+      "description": "Is true if key 2 got pressed"
+    },
+    "key3": {
+      "title": "Key 3",
+      "type": "boolean",
+      "description": "Is true if key 3 got pressed"
+    },
+    "key4": {
+      "title": "Key 4",
+      "type": "boolean",
+      "description": "Is true if key 4 got pressed"
+    }
+  }
+}
