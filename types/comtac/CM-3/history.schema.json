@@ -1,0 +1,72 @@
+{
+  "$id": "https://akenza.io/comtac/CM-3.history.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Comtac CM-3",
+  "type": "object",
+  "properties": {
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "temperatureH1": {
+      "title": "Temperature History 1",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C. Last Measurement +1.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "temperatureH2": {
+      "title": "Temperature History 2",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C. Last Measurement +2.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "temperatureH3": {
+      "title": "Temperature History 3",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C. Last Measurement +3.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "temperatureH4": {
+      "title": "Temperature History 4",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C. Last Measurement +4.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "temperatureH5": {
+      "title": "Temperature History 5",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C. Last Measurement +5.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "temperatureH6": {
+      "title": "Temperature History 6",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C. Last Measurement +6.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "temperatureH7": {
+      "title": "Temperature History 7",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C. Last Measurement +7.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    }
+  }
+}
