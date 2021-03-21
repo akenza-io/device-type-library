@@ -191,18 +191,9 @@ function consume(event) {
 
   if (res.vdd !== undefined) {
     lifecycle.voltage = res.vdd / 1000;
+    emit("sample", { topic: "lifecycle", data: lifecycle });
     delete res.vdd;
   }
-  if (res.irExternalTemperature !== undefined) {
-    lifecycle.irExternalTemperature = res.irExternalTemperature;
-    lifecycle.irInternalTemperature = res.irInternalTemperature;
-  }
 
-  if (res.irExternalTemperature !== undefined || res.vdd !== undefined) {
-    emit("sample", { topic: "lifecycle", data: lifecycle });
-  }
-
-  if (res.irExternalTemperature == undefined) {
-    emit("sample", { topic: "default", data: res });
-  }
+  emit("sample", { topic: "default", data: res });
 }
