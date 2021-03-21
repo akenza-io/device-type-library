@@ -1,0 +1,33 @@
+{
+  "$id": "https://akenza.io/decentlab/mbx/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "voltage": {
+      "title": "Battery voltage",
+      "unit": "V",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "desciption": "The battery voltage in Volt."
+    },
+    "protocolVersion": {
+      "title": "Protocol Version",
+      "description": "Protocol Version",
+      "type": "integer"
+    },
+    "deviceId": {
+      "title": "Device ID",
+      "description": "Device ID",
+      "type": "integer"
+    },
+    "numberOfValidSamples": {
+      "title": "Number of valid samples",
+      "description": "Number of valid samples",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    }
+  }
+}

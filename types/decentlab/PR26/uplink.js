@@ -4,12 +4,12 @@ var decentlab_decoder = {
     {
       length: 2,
       values: [{
-        name: 'Pressure',
+        name: 'pressure',
         convert: function (x) { return (x[0] - 16384) / 32768 * ((1.0) - (0.0)) + (0.0); },
         unit: 'bar'
       },
       {
-        name: 'Temperature',
+        name: 'temperature',
         convert: function (x) { return (x[1] - 384) * 0.003125 - 50; },
         unit: '°C'
       }]
@@ -17,7 +17,7 @@ var decentlab_decoder = {
     {
       length: 1,
       values: [{
-        name: 'Battery voltage',
+        name: 'battery_voltage',
         convert: function (x) { return x[0] / 1000; },
         unit: 'V'
       }]
@@ -62,10 +62,7 @@ var decentlab_decoder = {
       for (j = 0; j < sensor.values.length; j++) {
         var value = sensor.values[j];
         if ('convert' in value) {
-          result[value.name] = {
-            value: value.convert(x),
-            unit: value.unit
-          };
+          result[value.name] = value.convert.bind(this)(x);
         }
       }
     }
@@ -73,11 +70,38 @@ var decentlab_decoder = {
   }
 };
 
+function deleteUnusedKeys(data) {
+  var keysRetained = false;
+  Object.keys(data).forEach(key => {
+    if (data[key] === undefined) {
+      delete data[key];
+    } else {
+      keysRetained = true;
+    }
+  });
+  return keysRetained;
+}
+
 function consume(event) {
   var payload = event.data.payload_hex;
   var sample = decentlab_decoder.decode(payload);
+  var data = {};
+  var lifecycle = {};
 
-  emit('sample', { "data": { temperature: sample["Temperature"]["value"], pressure: sample["Pressure"]["value"]}  });
-  emit('sample', { "data": { voltage: sample["Battery voltage"]["value"], protocolVersion: sample.protocolVersion, deviceID: sample.deviceID } });
-  
+  // Default values
+  data.pressure = sample["pressure"];
+  data.temperature = sample["temperature"];
+
+  // Lifecycle values
+  lifecycle.voltage = sample["battery_voltage"];
+  lifecycle.protocolVersion = sample["protocolVersion"];
+  lifecycle.deviceID = sample["deviceID"];
+
+  if (deleteUnusedKeys(data)) {
+    emit('sample', { "data": data, "topic": "default" });
+  }
+
+  if (deleteUnusedKeys(lifecycle)) {
+    emit('sample', { "data": lifecycle, "topic": "lifecycle" });
+  }
 }
