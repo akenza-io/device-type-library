@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/decentlab/pr-26-lifecycle.schema.json",
+  "$id": "https://akenza.io/decentlab/pr21/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Lifecycle",
   "type": "object",
@@ -15,12 +15,12 @@
     "protocolVersion": {
       "title": "Protocol Version",
       "description": "Protocol Version",
-      "type": "string"
+      "type": "integer"
     },
-    "deviceID": {
+    "deviceId": {
       "title": "Device ID",
       "description": "Device ID",
-      "type": "string"
+      "type": "integer"
     }
   }
 }

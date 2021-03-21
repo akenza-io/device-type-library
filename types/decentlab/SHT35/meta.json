@@ -1,0 +1,20 @@
+{
+  "name": "DL-SHT35",
+  "version": "1.0.0",
+  "manufacturer": "Decentlab",
+  "url": "https://www.decentlab.com/products/air-temperature-and-humidity-sensor-with-radiation-shield-for-lorawan",
+  "description": "Decentlab air temperature and humidity sensor with radiation shield.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V2.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Humidity",
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

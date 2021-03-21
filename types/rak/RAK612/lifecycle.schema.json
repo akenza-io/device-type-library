@@ -1,0 +1,29 @@
+{
+  "$id": "https://akenza.io/rak/rak612/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "dataType": {
+      "title": "Data type",
+      "type": "integer",
+      "description": "Type of the package"
+    },
+    "statusPercent": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "unit": "%"
+    },
+    "voltage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "title": "Battery voltage",
+      "desciption": "The battery voltage in Volt.",
+      "unit": "V"
+    }
+  }
+}

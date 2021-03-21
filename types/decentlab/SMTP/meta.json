@@ -1,0 +1,20 @@
+{
+  "name": "DL-SMTP",
+  "version": "1.0.0",
+  "manufacturer": "Decentlab",
+  "url": "https://www.decentlab.com/products/soil-moisture-and-temperature-profile-for-lorawan",
+  "description": "Decentlab soil moisture and temperature profile sensor.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V2.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Soil moisture",
+    "Soil temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

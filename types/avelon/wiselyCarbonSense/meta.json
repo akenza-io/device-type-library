@@ -1,0 +1,22 @@
+{
+  "name": "Wisely CarbonSense",
+  "version": "1.0.0",
+  "manufacturer": "Avelon",
+  "url": "https://avelon.com/en/products/wisely/#wisely-model",
+  "description": "Avelon lora device for measuring the indoor environment",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Pressure",
+    "CO2",
+    "Humidity",
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
