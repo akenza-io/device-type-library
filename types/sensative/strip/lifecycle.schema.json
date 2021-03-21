@@ -1,0 +1,35 @@
+{
+  "$id": "https://akenza.io/sensative/strip/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "statusPercent": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "unit": "%"
+    },
+    "error": {
+      "title": "Error message",
+      "description": "Error info which contains: wrong length of RX package",
+      "type": "string"
+    },
+    "historySeqNr": {
+      "title": "History sequence number",
+      "type": "integer",
+      "description": "History sequence number",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "prevHistSeqNr": {
+      "title": "Previous history sequence number",
+      "type": "integer",
+      "description": "Previous history sequence number",
+      "minimum": 0,
+      "maximum": 65535
+    }
+  }
+}
