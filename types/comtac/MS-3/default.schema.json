@@ -29,21 +29,21 @@
       "maximum": 3276.5
     },
     "accX": {
-      "description": "Acceleration on the X-Axis in gram",
+      "description": "Acceleration on the X-Axis in gravitational acceleration",
       "unit": "g",
       "type": "number",
       "minimum": -32767,
       "maximum": 32767
     },
     "accY": {
-      "description": "Acceleration on the Y-Axis in gram",
+      "description": "Acceleration on the Y-Axis in gravitational acceleration",
       "unit": "g",
       "type": "number",
       "minimum": -32767,
       "maximum": 32767
     },
     "accZ": {
-      "description": "Acceleration on the Z-Axis in gram",
+      "description": "Acceleration on the Z-Axis in gravitational acceleration",
       "unit": "g",
       "type": "number",
       "minimum": -32767,

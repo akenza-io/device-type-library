@@ -50,8 +50,8 @@
       "type": "boolean"
     },
     "extCon": {
-      "title": "External conection",
-      "description": "External conection detected",
+      "title": "External connection",
+      "description": "External connection detected",
       "type": "boolean"
     },
     "booster": {
