@@ -187,7 +187,7 @@ function DecodeElsysPayload(data) {
 
 function consume(event) {
   var res = DecodeElsysPayload(hexToBytes(event.data.payload_hex));
-  var topic = "default";
+  var lifecycle = {};
 
   if (res.motion !== undefined) {
     emit("sample", { topic: "occupancy", data: { "motion": res.motion, "occupancy": res.occupancy } });
@@ -196,14 +196,20 @@ function consume(event) {
   }
 
   if (res.vdd !== undefined) {
-    res.vdd = res.vdd / 1000;
-    emit("sample", { topic: "lifecycle", data: { "voltage": res.vdd } });
+    lifecycle.voltage = res.vdd / 1000;
     delete res.vdd;
   }
 
   if (res.irExternalTemperature !== undefined) {
-    emit("sample", { topic: "lifecycle", data: res });
-  } else {
-    emit("sample", { topic: topic, data: res });
+    lifecycle.irExternalTemperature = res.irExternalTemperature;
+    lifecycle.irInternalTemperature = res.irInternalTemperature;
+  }
+
+  if (res.irExternalTemperature !== undefined || res.vdd !== undefined) {
+    emit("sample", { topic: "lifecycle", data: lifecycle });
+  }
+
+  if (res.irExternalTemperature == undefined) {
+    emit("sample", { topic: "default", data: res });
   }
 }

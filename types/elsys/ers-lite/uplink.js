@@ -45,7 +45,6 @@ function hexToBytes(hex) {
 function DecodeElsysPayload(data) {
   var obj = {};
   for (var i = 0; i < data.length; i++) {
-    //console.log(data[i]);
     switch (data[i]) {
       case TYPE_TEMP: //Temperature
         var temp = (data[i + 1] << 8) | data[i + 2];
@@ -187,22 +186,12 @@ function DecodeElsysPayload(data) {
 
 function consume(event) {
   var res = DecodeElsysPayload(hexToBytes(event.data.payload_hex));
-  var lifecycle = {};
 
   if (res.vdd !== undefined) {
-    lifecycle.voltage = res.vdd / 1000;
+    res.vdd = res.vdd / 1000;
+    emit("sample", { topic: "lifecycle", data: { voltage: res.vdd } });
     delete res.vdd;
   }
-  if (res.irExternalTemperature !== undefined) {
-    lifecycle.irExternalTemperature = res.irExternalTemperature;
-    lifecycle.irInternalTemperature = res.irInternalTemperature;
-  }
 
-  if (res.irExternalTemperature !== undefined || res.vdd !== undefined) {
-    emit("sample", { topic: "lifecycle", data: lifecycle });
-  }
-
-  if (res.irExternalTemperature == undefined) {
-    emit("sample", { topic: "default", data: res });
-  }
+  emit("sample", { topic: "default", data: res });
 }
