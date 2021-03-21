@@ -5,22 +5,22 @@
   "type": "object",
   "properties": {
     "key1": {
-      "title": "Key 1",
+      "title": "Key 1 pressed",
       "type": "boolean",
       "description": "Is true if key 1 got pressed"
     },
     "key2": {
-      "title": "Key 2",
+      "title": "Key 2 pressed",
       "type": "boolean",
       "description": "Is true if key 2 got pressed"
     },
     "key3": {
-      "title": "Key 3",
+      "title": "Key 3 pressed",
       "type": "boolean",
       "description": "Is true if key 3 got pressed"
     },
     "key4": {
-      "title": "Key 4",
+      "title": "Key 4 pressed",
       "type": "boolean",
       "description": "Is true if key 4 got pressed"
     }

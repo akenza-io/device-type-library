@@ -15,5 +15,5 @@ function consume(event) {
   lifecycle.statusPercent = Bits.bitsToSigned(bits.substr(56, 8));
 
   emit('sample', { "data": data, "topic": "default" });
-  emit('sample', { "data": data, "lifecycle": "lifecycle" });
+  emit('sample', { "data": lifecycle, "topic": "lifecycle" });
 }
