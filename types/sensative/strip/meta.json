@@ -1,0 +1,26 @@
+{
+  "name": "Strip",
+  "version": "1.0.0",
+  "manufacturer": "Sensative",
+  "url": "https://sensative.com/sensors/strips-zwave/",
+  "description": "Lorawan sensor to measure the environment and check for door & waterleak events",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Door",
+    "Temperature",
+    "Humidity",
+    "Light",
+    "Water leak",
+    "PIR"
+  ],
+  "outputTopics": [
+    "alarm",
+    "default",
+    "lifecycle",
+    "occupancy"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

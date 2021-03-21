@@ -1,0 +1,20 @@
+{
+  "name": "DL-PR26",
+  "version": "1.0.0",
+  "manufacturer": "Decentlab",
+  "url": "decentlab.com/products/pressure-/-liquid-level-and-temperature-sensor-for-lorawan",
+  "description": "Decentlab pressure / liquid level and temperature sensor.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V2.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Barometric Pressure"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

@@ -1,0 +1,13 @@
+{
+  "$id": "https://akenza.io/pnicorp/placePod/contact_pni.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Contact PNI",
+  "type": "object",
+  "properties": {
+    "hex": {
+      "title": "Hex payload",
+      "description": "Hex payload for debuging purpose",
+      "type": "string"
+    }
+  }
+}

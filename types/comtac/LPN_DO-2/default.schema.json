@@ -1,7 +1,7 @@
 {
   "$id": "https://akenza.io/comtac/LPN_DO-2.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Comtac LPN DO-2",
+  "title": "Default",
   "type": "object",
   "properties": {
     "deviceType": {

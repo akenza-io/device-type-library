@@ -1,7 +1,7 @@
 {
   "$id": "https://akenza.io/astraled/airQualityLuminary_V0_02.lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "AstraLED Air Quality Luminary V0.02",
+  "title": "Lifecycle",
   "type": "object",
   "properties": {}
 }

@@ -6,6 +6,7 @@
   "description": "Multisense functionalities as Service Button, Workplace Detection, Humidity & Temperature, Magnet and Vibration.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
   "availableSensors": [
     "Accelerometer",
     "Motion",
@@ -24,7 +25,7 @@
     "temp_event",
     "hum_event",
     "motion_event",
-    "life_sign_event"
+    "lifecycle"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

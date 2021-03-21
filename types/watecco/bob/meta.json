@@ -6,6 +6,7 @@
   "description": "Autonomous learning and reporting by Artificial Intelligence, embedded by Cartesiam. Alarm Threshold on vibration anomaly. Peak frequency and FTT reports. Restart or complete learning. Setup reporting period",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
   "availableSensors": [
     "Vibration",
     "Anomaly",

@@ -1,0 +1,91 @@
+{
+  "$id": "https://akenza.io/comtac/ms-3/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "rs485": {
+      "title": "RS485",
+      "description": "RS485 active",
+      "type": "boolean"
+    },
+    "gps": {
+      "title": "GPS",
+      "description": "GPS active",
+      "type": "boolean"
+    },
+    "acc": {
+      "title": "Accelerometer",
+      "description": "Accelerometer active",
+      "type": "boolean"
+    },
+    "mag": {
+      "title": "Magnetometer",
+      "description": "Magnetometer active",
+      "type": "boolean"
+    },
+    "mic": {
+      "title": "Microphone",
+      "description": "Microphone active",
+      "type": "boolean"
+    },
+    "bright": {
+      "title": "Brightness",
+      "description": "Brightness sensor active",
+      "type": "boolean"
+    },
+    "tempHum": {
+      "title": "Temperature & Humidity",
+      "description": "Temperature & Humidity sensors active",
+      "type": "boolean"
+    },
+    "txOnEvent": {
+      "title": "Event",
+      "description": "Event registered",
+      "type": "boolean"
+    },
+    "magActual": {
+      "title": "Magnetometer",
+      "description": "Magnetometer active",
+      "type": "boolean"
+    },
+    "extCon": {
+      "title": "External connection",
+      "description": "External connection detected",
+      "type": "boolean"
+    },
+    "booster": {
+      "title": "Booster",
+      "description": "Booster active",
+      "type": "boolean"
+    },
+    "extSupply": {
+      "title": "External supply",
+      "description": "External supply detected",
+      "type": "boolean"
+    },
+    "dip3": {
+      "title": "DIP 3",
+      "description": "DIP 3",
+      "type": "boolean"
+    },
+    "dip2": {
+      "title": "DIP 2",
+      "description": "DIP 2",
+      "type": "boolean"
+    },
+    "dip1": {
+      "title": "DIP 1",
+      "description": "DIP 1",
+      "type": "boolean"
+    },
+    "voltage": {
+      "title": "Battery voltage",
+      "desciption": "The battery voltage in Volt.",
+      "unit": "V",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24
+    }
+  }
+}

@@ -1,7 +1,7 @@
 {
   "$id": "https://akenza.io/xovis/xovis-pc2s-waiting-time.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Xovis PC2S",
+  "title": "Waiting time",
   "type": "object",
   "properties": {
     "avgWaitingTime": {

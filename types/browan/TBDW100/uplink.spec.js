@@ -7,6 +7,7 @@ const assert = chai.assert;
 
 const script = rewire("./uplink.js");
 let defaultSchema = null;
+let lifecycleSchema = null;
 
 const consume = script.__get__("consume");
 
@@ -28,12 +29,24 @@ before(function (done) {
   );
 });
 
+before(function (done) {
+  fs.readFile(
+    __dirname + "/lifecycle.schema.json",
+    "utf8",
+    function (err, fileContents) {
+      if (err) throw err;
+      lifecycleSchema = JSON.parse(fileContents);
+      done();
+    }
+  );
+});
+
 describe("TBDW100 uplink", function () {
   describe("consume()", function () {
-    it("should decode TBDW100 payload", function (done) {
+    it("should decode TBDW100 payload", function () {
       const data = {
         data: {
-          payload_hex: "01fc380000190000",
+          payload_hex: "017b345cb1510c00",
         },
       };
 
@@ -43,17 +56,21 @@ describe("TBDW100 uplink", function () {
           assert.isNotNull(value);
           assert.typeOf(value.data, "object");
 
+          if (value.topic === "lifecycle") {
+            assert.equal(value.data.statusPercent, 73);
+            assert.equal(value.data.voltage, 3.2);
+
+            validate(value.data, lifecycleSchema, { throwError: true });
+          }
+
           if (value.topic === "default") {
-            assert.equal(value.data.bat, 80);
-            assert.equal(value.data.batV, 4);
-            assert.equal(value.data.time, 0);
-            assert.equal(value.data.count, 0);
             assert.equal(value.data.open, true);
-            assert.equal(value.data.temperature, 24);
+            assert.equal(value.data.temperature, 20);
+            assert.equal(value.data.time, 45404);
+            assert.equal(value.data.count, 48);
 
             validate(value.data, defaultSchema, { throwError: true });
           }
-          done();
         }
       });
 

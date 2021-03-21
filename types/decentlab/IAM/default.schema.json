@@ -1,7 +1,7 @@
 {
-  "$id": "https://akenza.io/decentlab/iam/schema.json",
+  "$id": "https://akenza.io/decentlab/iam-default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Decentlab IAM default schema",
+  "title": "Default",
   "type": "object",
   "allOf": [
     {

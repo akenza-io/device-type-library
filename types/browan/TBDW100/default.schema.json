@@ -1,7 +1,7 @@
 {
-  "$id": "https://akenza.io/browan/tbdw100.schema.json",
+  "$id": "https://akenza.io/browan/tbdw100/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "TBDW100",
+  "title": "Default",
   "type": "object",
   "properties": {
     "temperature": {
@@ -27,8 +27,8 @@
       "minimum": 0,
       "maximum": 65535
     },
-    "status": {
-      "title": "Status",
+    "open": {
+      "title": "Open",
       "description": "Status of the tab. open = true, closed = false",
       "type": "boolean"
     }

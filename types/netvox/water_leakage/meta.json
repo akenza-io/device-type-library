@@ -1,0 +1,19 @@
+{
+  "name": "Leakage",
+  "version": "1.0.0",
+  "manufacturer": "Netvox",
+  "url": "",
+  "description": "Water leakage detector",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Water leak"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

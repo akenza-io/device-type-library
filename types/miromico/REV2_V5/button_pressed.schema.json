@@ -1,7 +1,7 @@
 {
   "$id": "https://akenza.io/miromico/rev2-v5-button-pressed.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Miromico SoD Button REV2_V5",
+  "title": "Button pressed",
   "type": "object",
   "properties": {
     "msgtype": {
