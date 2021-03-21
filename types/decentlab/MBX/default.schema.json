@@ -1,0 +1,14 @@
+{
+  "$id": "https://akenza.io/decentlab/mbx/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "distance": {
+      "title": "distance",
+      "unit": "mm",
+      "type": "number",
+      "description": "Distance measured between the sensor and the surface"
+    }
+  }
+}
