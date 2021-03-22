@@ -1,0 +1,19 @@
+{
+  "name": "RAK612",
+  "version": "1.0.0",
+  "manufacturer": "RAK",
+  "url": "https://docs.rakwireless.com/Product-Categories/WisNode/RAK612/Overview/#product-description",
+  "description": "IoT Button",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Button"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

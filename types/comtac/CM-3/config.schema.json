@@ -1,0 +1,39 @@
+{
+  "$id": "https://akenza.io/comtac/CM-3.config.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Comtac CM-3",
+  "type": "object",
+  "properties": {
+    "tempMeasurementRate": {
+      "title": "Temperature measurement rate",
+      "unit": "min",
+      "type": "integer",
+      "description": "Temperature measurement rate.",
+      "minimum": 0,
+      "maximum": 50000
+    },
+    "historyTrigger": {
+      "title": "History trigger",
+      "type": "integer",
+      "description": "Trigger for HISTORY event (History uplink sent every history trigger * temperature measurement rate)",
+      "minimum": 0,
+      "maximum": 8
+    },
+    "tempThreshold": {
+      "title": "Temperature threshold",
+      "unit": "°C",
+      "type": "number",
+      "description": "Temperature threshold for ALARMING Event (Alarming uplink sent every Temp Meas Rate if temp difference > threshold), where 0 means ALARMING always ON (Alarming sent every Meas Rate)",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "tempOffset": {
+      "title": "Temperature offset",
+      "unit": "°C",
+      "type": "number",
+      "description": "Temperature offset used when calculating actual temperature with the PT100 sensor",
+      "minimum": -5000,
+      "maximum": 5000
+    }
+  }
+}
