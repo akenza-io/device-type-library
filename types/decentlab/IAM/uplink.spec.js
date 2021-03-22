@@ -1,5 +1,5 @@
 const chai = require("chai");
-//const validate = require("jsonschema").validate;
+const validate = require("jsonschema").validate;
 const rewire = require("rewire");
 const axios = require("axios");
 const fs = require("fs");
@@ -53,10 +53,10 @@ function loadRemoteSchema(uri) {
 
 describe("Decentlab IAM Uplink", function () {
   describe("consume()", function () {
-    it("should decode IAM payload", function (done) {
+    it("should decode IAM payload", function () {
       const data = {
         data: {
-          payload_hex: "020c2c007f0a5061927839bad8023100a58309000090e8001300eb",
+          payload_hex: "020bbd007f0b926a515d48bc4e0262006981c7000093d4000b0111",
         },
       };
       let sampleCount = 0;
@@ -66,28 +66,37 @@ describe("Decentlab IAM Uplink", function () {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic === "default") {
-          const ajv = new Ajv({ loadSchema: loadRemoteSchema });
-          ajv.compileAsync(defaultSchema).then(function (validate) {
-            const valid = validate(value.data);
-            assert.isTrue(valid);
+        expectEmit(function (type, value) {
+          assert.equal(type, "sample");
+          assert.isNotNull(value);
+          assert.typeOf(value.data, "object");
 
-            assert.equal(value.data.co2, 777);
-            assert.equal(value.data.pir, 19);
-            done();
-          });
-          sampleCount++;
-        }
+          if (value.topic == "lifecycle") {
+            assert.equal(value.data.voltage, 2.96);
+            assert.equal(value.data.protocolVersion, 2);
+            assert.equal(value.data.deviceID, 3005);
+            assert.equal(value.data.co2SensorStatus, 0);
+            validate(value.data, lifecycleSchema, { throwError: true });
+          }
 
-        if (value.topic === "occupied") {
-          assert.equal(value.data.occupied, true);
-          //validate(value.data, occupiedSchema, { throwError: true });
-          sampleCount++;
-        }
+          if (value.topic == "default") {
+            assert.equal(value.data.temperature, 27.68);
+            assert.equal(value.data.humidity, 36.44);
+            assert.equal(value.data.pressure, 96412);
+            assert.equal(value.data.co2, 455);
+            assert.equal(value.data.voc, 273);
+            assert.equal(value.data.light, 678.77);
+            assert.equal(value.data.pir, 11);
 
-        if (sampleCount === 2) {
-          //done();
-        }
+            validate(value.data, defaultSchema, { throwError: true });
+          }
+
+          if (value.topic === "occupied") {
+            assert.equal(value.data.occupied, true);
+            validate(value.data, occupiedSchema, { throwError: true });
+            sampleCount++;
+          }
+        });
       });
 
       consume(data);

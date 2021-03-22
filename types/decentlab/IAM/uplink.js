@@ -1,165 +1,188 @@
-var INDOOR_AMBIANCE_MONITOR = [
-  [
+var decentlab_decoder = {
+  PROTOCOL_VERSION: 2,
+  SENSORS: [
     {
-      name: "battery-voltage",
-      conversion: function (x) {
-        return x / 1000;
-      },
-      unit: "V",
+      length: 1,
+      values: [{
+        name: 'battery_voltage',
+        displayName: 'Battery voltage',
+        convert: function (x) { return Math.round((x[0] / 1000) * 100) / 100; },
+        unit: 'V'
+      }]
     },
+    {
+      length: 2,
+      values: [{
+        name: 'air_temperature',
+        displayName: 'Air temperature',
+        convert: function (x) { return Math.round((175 * x[0] / 65535 - 45) * 100) / 100; },
+        unit: '°C'
+      },
+      {
+        name: 'air_humidity',
+        displayName: 'Air humidity',
+        convert: function (x) { return Math.round((100 * x[1] / 65535) * 100) / 100; },
+        unit: '%'
+      }]
+    },
+    {
+      length: 1,
+      values: [{
+        name: 'barometric_pressure',
+        displayName: 'Barometric pressure',
+        convert: function (x) { return x[0] * 2; },
+        unit: 'Pa'
+      }]
+    },
+    {
+      length: 2,
+      values: [{
+        name: 'ambient_light_visible_infrared',
+        displayName: 'Ambient light (visible + infrared)',
+        convert: function (x) { return x[0]; }
+      },
+      {
+        name: 'ambient_light_infrared',
+        displayName: 'Ambient light (infrared)',
+        convert: function (x) { return x[1]; }
+      },
+      {
+        name: 'illuminance',
+        displayName: 'Illuminance',
+        convert: function (x) { return Math.round((Math.max(Math.max(1.0 * x[0] - 1.64 * x[1], 0.59 * x[0] - 0.86 * x[1]), 0) * 1.5504) * 100) / 100; },
+        unit: 'lx'
+      }]
+    },
+    {
+      length: 3,
+      values: [{
+        name: 'co2_concentration',
+        displayName: 'CO2 concentration',
+        convert: function (x) { return x[0] - 32768; },
+        unit: 'ppm'
+      },
+      {
+        name: 'co2_sensor_status',
+        displayName: 'CO2 sensor status',
+        convert: function (x) { return x[1]; }
+      },
+      {
+        name: 'raw_ir_reading',
+        displayName: 'Raw IR reading',
+        convert: function (x) { return x[2]; }
+      }]
+    },
+    {
+      length: 1,
+      values: [{
+        name: 'activity_counter',
+        displayName: 'Activity counter',
+        convert: function (x) { return x[0]; }
+      }]
+    },
+    {
+      length: 1,
+      values: [{
+        name: 'total_voc',
+        displayName: 'Total VOC',
+        convert: function (x) { return x[0]; },
+        unit: 'ppb'
+      }]
+    }
   ],
-  [
-    {
-      name: "air-temperature",
-      conversion: function (x) {
-        return (175 * x) / 65535 - 45;
-      },
-      unit: "°C",
-    },
-    {
-      name: "air-humidity",
-      conversion: function (x) {
-        return (100 * x) / 65535;
-      },
-      unit: "%",
-    },
-  ],
-  [
-    {
-      name: "barometric-pressure",
-      conversion: function (x) {
-        return (x * 2) / 100;
-      },
-      unit: "hPa",
-    },
-  ],
-  [
-    {
-      name: "ambient-light-visible-infrared",
-      conversion: function (x) {
-        return x;
-      },
-    },
-    {
-      name: "ambient-light-infrared",
-      conversion: function (x) {
-        return x;
-      },
-    },
-  ],
-  [
-    {
-      name: "co2-concentration",
-      conversion: function (x) {
-        return x - 32768;
-      },
-      unit: "ppm",
-    },
-    {
-      name: "co2-sensor-status",
-      conversion: function (x) {
-        return x;
-      },
-    },
-    {
-      name: "co2-raw-reading",
-      conversion: function (x) {
-        return x;
-      },
-    },
-  ],
-  [
-    {
-      name: "pir-activity-counter",
-      conversion: function (x) {
-        return x;
-      },
-    },
-  ],
-  [
-    {
-      name: "total-voc",
-      conversion: function (x) {
-        return x;
-      },
-      unit: "ppb",
-    },
-  ],
-];
 
-function parseHexString(str) {
-  var result = [];
-  while (str.length >= 2) {
-    result.push(parseInt(str.substring(0, 2), 16));
-    str = str.substring(2, str.length);
+  read_int: function (bytes, pos) {
+    return (bytes[pos] << 8) + bytes[pos + 1];
+  },
+
+  decode: function (msg) {
+    var bytes = msg;
+    var i, j;
+    if (typeof msg === 'string') {
+      bytes = [];
+      for (i = 0; i < msg.length; i += 2) {
+        bytes.push(parseInt(msg.substring(i, i + 2), 16));
+      }
+    }
+
+    var version = bytes[0];
+    if (version != this.PROTOCOL_VERSION) {
+      return { error: "protocol version " + version + " doesn't match v2" };
+    }
+
+    var deviceId = this.read_int(bytes, 1);
+    var flags = this.read_int(bytes, 3);
+    var result = { 'protocol_version': version, 'device_id': deviceId };
+    // decode payload
+    var pos = 5;
+    for (i = 0; i < this.SENSORS.length; i++, flags >>= 1) {
+      if ((flags & 1) !== 1)
+        continue;
+
+      var sensor = this.SENSORS[i];
+      var x = [];
+      // convert data to 16-bit integer array
+      for (j = 0; j < sensor.length; j++) {
+        x.push(this.read_int(bytes, pos));
+        pos += 2;
+      }
+
+      // decode sensor values
+      for (j = 0; j < sensor.values.length; j++) {
+        var value = sensor.values[j];
+        if ('convert' in value) {
+          result[value.name] = value.convert.bind(this)(x);
+        }
+      }
+    }
+    return result;
   }
-  return result;
+};
+
+function deleteUnusedKeys(data) {
+  var keysRetained = false;
+  Object.keys(data).forEach(key => {
+    if (data[key] === undefined) {
+      delete data[key];
+    } else {
+      keysRetained = true;
+    }
+  });
+  return keysRetained;
 }
 
 function consume(event) {
   var payload = event.data.payload_hex;
-  var bytes = parseHexString(payload);
-  var decoded = {};
-  var offset = 0;
+  var sample = decentlab_decoder.decode(payload);
+  var data = {};
+  var lifecycle = {};
 
-  if (bytes[0] != 2)
-    return { error: "protocol version " + bytes[0] + " doesn't match v2" };
+  data.temperature = sample["air_temperature"];
+  data.humidity = sample["air_humidity"];
+  data.pressure = sample["barometric_pressure"];
+  data.co2 = sample["co2_concentration"];
+  data.voc = sample["total_voc"];
+  data.light = sample["illuminance"];
+  data.pir = sample["activity_counter"];
+  data.raw_pir = sample["raw_ir_reading"];
 
-  var deviceId = (bytes[1] << 8) + bytes[2];
-  var sensors = INDOOR_AMBIANCE_MONITOR;
-  var flags = (bytes[3] << 8) + bytes[4];
+  // Lifecycle values
+  lifecycle.voltage = sample["battery_voltage"];
+  lifecycle.protocolVersion = sample["protocol_version"];
+  lifecycle.deviceID = sample["device_id"];
+  lifecycle.co2SensorStatus = sample["co2_sensor_status"];
 
-  var i, j, k;
-  var x = [];
-  // convert data to 16-bit integers
-  for (i = 5; i < bytes.length; i += 2) {
-    x.push((bytes[i] << 8) + bytes[i + 1]);
+  if (deleteUnusedKeys(data)) {
+    emit('sample', { "data": data, "topic": "default" });
   }
 
-  var decoded = { device: deviceId };
-  // decode payload
-  for (i = 0, k = 0; i < sensors.length; i++, flags >>= 1) {
-    if ((flags & 1) !== 1) continue;
-
-    var sensor = sensors[i];
-    // decode sensor values
-    for (j = 0; j < sensor.length; j++, k++) {
-      if ("conversion" in sensor[j]) {
-        if (sensor[j]["name"] == "co2-concentration") {
-          decoded.co2 = sensor[j]["conversion"](x[k]);
-        }
-        if (sensor[j]["name"] == "pir-activity-counter") {
-          decoded.pir = sensor[j]["conversion"](x[k]);
-        }
-        if (sensor[j]["name"] == "air-temperature") {
-          decoded.temperature = sensor[j]["conversion"](x[k]);
-        }
-        if (sensor[j]["name"] == "air-humidity") {
-          decoded.humidity = sensor[j]["conversion"](x[k]);
-        }
-        if (sensor[j]["name"] == "barometric-pressure") {
-          decoded.pressure = sensor[j]["conversion"](x[k]);
-        }
-        if (sensor[j]["name"] == "ambient-light-visible-infrared") {
-          decoded.light = sensor[j]["conversion"](x[k]);
-        }
-        if (sensor[j]["name"] == "total-voc") {
-          decoded.voc = sensor[j]["conversion"](x[k]);
-        }
-        if (sensor[j]["name"] == "battery-voltage") {
-          decoded.voltage = sensor[j]["conversion"](x[k]);
-        }
-      }
-    }
+  if (deleteUnusedKeys(lifecycle)) {
+    emit('sample', { "data": lifecycle, "topic": "lifecycle" });
   }
-  decoded.sf_meta = event.data.sf_meta;
-  decoded.rssi_meta = event.data.rssi_meta;
 
-  if (decoded.pir !== 0) {
+  if (data.pir !== 0) {
     emit("sample", { data: { occupied: true }, topic: "occupied" });
   } else {
     emit("sample", { data: { occupied: false }, topic: "occupied" });
   }
-
-  emit("sample", { data: decoded, topic: "default" });
 }
