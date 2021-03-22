@@ -42,14 +42,14 @@ before(function (done) {
 
 describe("Oxon Touchpanel Uplink", function () {
   describe("consume()", function () {
-    it("should decode the Oxon Touchpanel payload", function () {
+    it("should decode the Oxon Touchpanel payload", function (done) {
       const data = {
         data: {
           port: 6,
           payload_hex: "31000100013f6412ffddffdaf7edaf330001500128",
         },
       };
-      const count = 0;
+      var count = 0;
 
       expectEmit(function (type, value) {
         assert.equal(type, "sample");
@@ -75,9 +75,9 @@ describe("Oxon Touchpanel Uplink", function () {
           validate(value.data, defaultSchema, { throwError: true });
         }
       });
-
+      consume(data);
       if (count == 2) {
-        consume(data);
+        done();
       }
     });
   });
