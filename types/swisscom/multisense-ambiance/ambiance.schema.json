@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/swisscom/multisense-ambiance.schema.json",
+  "$id": "https://akenza.io/swisscom/multisense/ambiance.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Ambiance",
   "type": "object",

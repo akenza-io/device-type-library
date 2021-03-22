@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/xovis/xovis-pc2s-queue-depth.schema.json",
+  "$id": "https://akenza.io/xovis/xovis-pc2s/queue-depth.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Queue depth",
   "type": "object",

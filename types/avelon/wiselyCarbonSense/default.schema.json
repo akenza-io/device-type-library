@@ -1,5 +1,5 @@
 {
-  "$id": "https://avelon/wiselyCarbonSense/default.schema.json",
+  "$id": "https://akenza.io/avelon/wiselyCarbonSense/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Default",
   "type": "object",

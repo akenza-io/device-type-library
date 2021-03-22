@@ -1,7 +1,7 @@
 {
-  "name": "Place pod",
+  "name": "PlacePod (Surface & In-Ground Mount)",
   "version": "1.0.0",
-  "manufacturer": "PNI Corp",
+  "manufacturer": "PNI",
   "url": "https://www.pnicorp.com/placepod/",
   "description": "Parking Lot Sensor to measure the occupancy of a parking lot",
   "author": "Akenza AG",

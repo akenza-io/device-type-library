@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/comtac/CM-2.timer.schema.json",
+  "$id": "https://akenza.io/comtac/CM-2/timer.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Timer",
   "type": "object",
