@@ -15,7 +15,7 @@
     "heartbeat": {
       "title": "Heartbeat",
       "type": "boolean",
-      "description": "Equals to true if heartbeat is detected"
+      "description": "Equals to true if heartbeat/keepalive is detected"
     }
   }
 }
