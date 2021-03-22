@@ -1,5 +1,5 @@
 {
-  "$id": "https://elsys.se/ers-co2-default.schema.json",
+  "$id": "https://akenza.io/elsys/ers-co2/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Default",
   "type": "object",

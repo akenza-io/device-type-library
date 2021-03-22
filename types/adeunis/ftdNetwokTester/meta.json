@@ -1,5 +1,5 @@
 {
-  "name": "Adeunis - FTD: network tester",
+  "name": "FTD Network tester",
   "version": "1.0.0",
   "manufacturer": "Adeunis",
   "url": "https://www.adeunis.com/en/produit/ftd-network-tester/",
@@ -7,7 +7,9 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [],
-  "outputTopics": ["default"],
+  "outputTopics": [
+    "default"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

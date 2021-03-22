@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/miromico/sod-button-pressed.schema.json",
+  "$id": "https://akenza.io/miromico/sod/button-pressed.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Button pressed",
   "type": "object",

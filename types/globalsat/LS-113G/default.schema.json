@@ -1,5 +1,5 @@
 {
-  "$id": "https://globalsat/LS-113G-default.schema.json",
+  "$id": "https://akenza.io/globalsat/LS-113G/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Default",
   "type": "object",
