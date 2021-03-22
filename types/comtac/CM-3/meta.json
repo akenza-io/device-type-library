@@ -1,0 +1,21 @@
+{
+  "name": "LPN CM-3",
+  "version": "1.0.0",
+  "manufacturer": "Comtac",
+  "url": "https://www.comtac.ch/de/produkte/lora/condition-monitoring/lpn-cm-3-sensor.html",
+  "description": "The LPN CM-3 is able to read temperature.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V0.0.2",
+  "availableSensors": [
+    "Temperature"
+  ],
+  "outputTopics": [
+    "config",
+    "default",
+    "history",
+    "info",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
