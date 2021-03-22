@@ -1,0 +1,44 @@
+{
+  "$id": "https://akenza.io/oxon/buttonboard/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "msgtype": {
+      "title": "Message type",
+      "type": "integer",
+      "description": "Type of message",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "buttonClicked": {
+      "title": "Button Clicked",
+      "type": "integer",
+      "description": "Defines if and which button is pressed. If the output is 0 no button got pressed",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "imageID": {
+      "title": "Image ID",
+      "type": "integer",
+      "description": "The ID of the image used when the button sent the uplink",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "imageH": {
+      "title": "Image H",
+      "type": "integer",
+      "description": "The internal ID of the image used when the button sent the uplink",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    }
+  }
+}

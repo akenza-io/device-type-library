@@ -1,0 +1,21 @@
+{
+  "name": "Buttonboard",
+  "version": "1.0.0",
+  "manufacturer": "Oxon",
+  "url": "https://oxobutton.ch/products/buttonboard-lorawan",
+  "description": "The buttonboard is a robust smart button with six capacitive buttons.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Button",
+    "Image",
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

@@ -1,0 +1,21 @@
+{
+  "$id": "https://akenza.io/oxon/buttonboard/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "statusPercent": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "unit": "%"
+    },
+    "heartbeat": {
+      "title": "Heartbeat",
+      "type": "boolean",
+      "description": "Equals to true if heartbeat/keepalive is detected"
+    }
+  }
+}
