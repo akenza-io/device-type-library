@@ -42,14 +42,14 @@ before(function (done) {
 
 describe("Oxon Touchpanel Uplink", function () {
   describe("consume()", function () {
-    it("should decode the Oxon Touchpanel payload", function (done) {
+    it("should decode the Oxon Touchpanel payload", function () {
       const data = {
         data: {
           port: 6,
           payload_hex: "31000100013f6412ffddffdaf7edaf330001500128",
         },
       };
-      var count = 0;
+      let sampleCount = 0;
 
       expectEmit(function (type, value) {
         assert.equal(type, "sample");
@@ -57,7 +57,7 @@ describe("Oxon Touchpanel Uplink", function () {
         assert.typeOf(value.data, "object");
 
         if (value.topic === "lifecycle") {
-          count++;
+          sampleCount++;
           assert.equal(value.data.statusPercent, 100);
           assert.equal(value.data.heartbeat, true);
 
@@ -65,7 +65,7 @@ describe("Oxon Touchpanel Uplink", function () {
         }
 
         if (value.topic === "default") {
-          count++;
+          sampleCount++;
           assert.equal(value.data.msgType, 49);
           assert.equal(value.data.buttonClicked, 0);
           assert.equal(value.data.imageH, 1);
@@ -76,9 +76,7 @@ describe("Oxon Touchpanel Uplink", function () {
         }
       });
       consume(data);
-      if (count == 2) {
-        done();
-      }
+      assert.equal(sampleCount, 2);
     });
   });
 });
