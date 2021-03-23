@@ -164,7 +164,7 @@ function consume(event) {
   data.voc = sample["total_voc"];
   data.light = sample["illuminance"];
   data.pir = sample["activity_counter"];
-  data.raw_pir = sample["raw_ir_reading"];
+  data.rawPir = sample["raw_ir_reading"];
 
   // Lifecycle values
   lifecycle.voltage = sample["battery_voltage"];

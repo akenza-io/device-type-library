@@ -1,8 +1,8 @@
 {
-  "name": "Button",
+  "name": "R312A - Wireless Emergency Button",
   "version": "1.0.0",
   "manufacturer": "Netvox",
-  "url": "",
+  "url": "http://www.netvox.com.tw/product.asp?pro=R312A",
   "description": "IoT Button",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",

@@ -56,7 +56,7 @@
           "minimum": 0,
           "maximum": 65535
         },
-        "raw_pir": {
+        "rawPir": {
           "title": "Raw PIR motion",
           "description": "Raw PIR motion value of the activity level",
           "type": "integer",
