@@ -1,8 +1,8 @@
 {
-  "name": "Door",
+  "name": "Door R311A-Wireless Door/Window Sensor (LoRaWAN)",
   "version": "1.0.0",
   "manufacturer": "Netvox",
-  "url": "",
+  "url": "http://www.netvox.com.tw/product.asp?pro=R311A",
   "description": "Checks per magnet if the door is open",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
