@@ -50,8 +50,6 @@ function consume(event) {
 
   var rd_pos = 0;
 
-  lifecycle.rssi = event.data.flags.AK_RSSI;
-
   do {
     var para_size = get_byte(buff, rd_pos++) & 0x3F;  // get size
     var para_type = get_byte(buff, rd_pos++);  // get type

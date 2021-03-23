@@ -54,7 +54,6 @@ describe("Astraled Air Quality Luminary V0.02 Uplink", function () {
         assert.typeOf(value.data, "object");
         assert.equal(value.topic, "lifecycle");
 
-        assert.equal(value.data.rssi, "-46");
         assert.equal(value.data.act_pwr, 1);
         //TODO this should most likely be battery?
         assert.equal(value.data.energy, 10.861896514892578);

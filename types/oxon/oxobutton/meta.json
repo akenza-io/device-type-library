@@ -1,5 +1,5 @@
 {
-  "name": "Oxobutton Q, LoRaWAN",
+  "name": "Oxobutton Q, (LoRaWAN)",
   "version": "1.0.0",
   "manufacturer": "Oxon",
   "url": "https://www.oxobutton.ch/products/oxobutton-lorawan",
@@ -9,7 +9,9 @@
   "loraDeviceClass": "A",
   "availableSensors": [
     "Button",
-    "Image"
+    "Image",
+    "Temperature",
+    "Acceleration"
   ],
   "outputTopics": [
     "default",

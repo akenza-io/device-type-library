@@ -11,6 +11,16 @@
       "title": "Battery charge",
       "description": "The battery charge in percent.",
       "unit": "%"
+    },
+    "hbIRQ": {
+      "title": "Heartbeat timeout occured",
+      "type": "boolean",
+      "description": "Is true heartbeat timeout occured"
+    },
+    "accIRQ": {
+      "title": "Accelerometer interrupt event",
+      "type": "boolean",
+      "description": "Is true if accelerometer was interrupted"
     }
   }
 }

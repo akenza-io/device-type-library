@@ -1,5 +1,5 @@
 {
-  "name": "Buttonboard LoRaWan",
+  "name": "Buttonboard (LoRaWAN)",
   "version": "1.0.0",
   "manufacturer": "Oxon",
   "url": "https://oxobutton.ch/products/buttonboard-lorawan",
@@ -9,8 +9,8 @@
   "loraDeviceClass": "A",
   "availableSensors": [
     "Button",
-    "Image",
-    "Temperature"
+    "Temperature",
+    "Acceleration"
   ],
   "outputTopics": [
     "default",
