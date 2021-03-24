@@ -1,5 +1,5 @@
 {
-  "name": "Xovis PC2S",
+  "name": "PC2S",
   "version": "1.0.0",
   "manufacturer": "Xovis",
   "url": "https://www.xovis.com/en/products/detail/pc2s/",
@@ -13,7 +13,7 @@
     "FaceMask",
     "Dwelltime",
     "Average Waiting Time",
-    "Qeue Depth"
+    "Queue Depth"
   ],
   "outputTopics": [
     "line_count",

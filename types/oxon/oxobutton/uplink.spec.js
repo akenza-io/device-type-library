@@ -40,13 +40,13 @@ before(function (done) {
   );
 });
 
-describe("Comtac LPN CM-1 Uplink", function () {
+describe("Oxon Oxobutton Q Uplink", function () {
   describe("consume()", function () {
-    it("should decode the Comtac LPN CM-1 payload", function (done) {
+    it("should decode the Oxon Oxobutton Q payload", function () {
       const data = {
         data: {
-          port: 6,
-          payload_hex: "2100180064",
+          port: 1,
+          payload_hex: "30000100001a64140070ff69101a",
         },
       };
 
@@ -58,21 +58,24 @@ describe("Comtac LPN CM-1 Uplink", function () {
 
         if (value.topic === "lifecycle") {
 
+          assert.equal(value.data.hbIRQ, true);
+          assert.equal(value.data.accIRQ, false);
           assert.equal(value.data.statusPercent, 100);
 
           validate(value.data, lifecycleSchema, { throwError: true });
         }
 
         if (value.topic === "default") {
-          assert.equal(value.data.msgType, 33);
-          assert.equal(value.data.imageID, 24);
-          assert.equal(value.data.inverse, false);
+          assert.equal(value.data.buttonId, 0);
+          assert.equal(value.data.imageID, 26);
+          assert.equal(value.data.accelerometerX, 0.027);
+          assert.equal(value.data.accelerometerY, -0.037);
+          assert.equal(value.data.accelerometerZ, 1.006);
 
           validate(value.data, defaultSchema, { throwError: true });
         }
       });
       consume(data);
-      done();
     });
   });
 });

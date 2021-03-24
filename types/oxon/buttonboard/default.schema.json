@@ -4,41 +4,47 @@
   "title": "Default",
   "type": "object",
   "properties": {
-    "msgtype": {
-      "title": "Message type",
+    "buttonId": {
+      "title": "Button ID",
       "type": "integer",
-      "description": "Type of message",
-      "minimum": 0,
-      "maximum": 255
-    },
-    "buttonClicked": {
-      "title": "Button Clicked",
-      "type": "integer",
-      "description": "Defines if and which button is pressed. If the output is 0 no button got pressed",
-      "minimum": 0,
-      "maximum": 255
-    },
-    "imageID": {
-      "title": "Image ID",
-      "type": "integer",
-      "description": "The ID of the image used when the button sent the uplink",
+      "description": "The ID of the pressed buttons",
       "minimum": 0,
       "maximum": 65535
     },
-    "imageH": {
-      "title": "Image H",
+    "enabledButtonsIds": {
+      "title": "Enabled buttons",
       "type": "integer",
-      "description": "The internal ID of the image used when the button sent the uplink",
+      "description": "The ID of the enabled buttons",
       "minimum": 0,
       "maximum": 65535
     },
     "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
       "type": "number",
       "description": "The temperature in °C.",
+      "unit": "°C",
       "minimum": -3276.5,
       "maximum": 3276.5
+    },
+    "accelerometerX": {
+      "description": "Acceleration on the X-Axis is g",
+      "type": "number",
+      "unit": "g",
+      "minimum": -8192,
+      "maximum": 8191
+    },
+    "accelerometerY": {
+      "description": "Acceleration on the Y-Axis is g",
+      "type": "number",
+      "unit": "g",
+      "minimum": -8192,
+      "maximum": 8191
+    },
+    "accelerometerZ": {
+      "description": "Acceleration on the Z-Axis is g",
+      "type": "number",
+      "unit": "g",
+      "minimum": -8192,
+      "maximum": 8191
     }
   }
 }

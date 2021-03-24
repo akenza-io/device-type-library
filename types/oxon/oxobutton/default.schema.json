@@ -4,12 +4,12 @@
   "title": "Default",
   "type": "object",
   "properties": {
-    "msgtype": {
-      "title": "Message type",
+    "buttonId": {
+      "title": "Button ID",
       "type": "integer",
-      "description": "Type of message",
+      "description": "The ID of the pressed buttons",
       "minimum": 0,
-      "maximum": 255
+      "maximum": 65535
     },
     "imageID": {
       "title": "Image ID",
@@ -18,10 +18,33 @@
       "minimum": 0,
       "maximum": 65535
     },
-    "inverse": {
-      "title": "Inverse",
-      "type": "boolean",
-      "description": "Is true if the button is inversed"
+    "temperature": {
+      "type": "number",
+      "description": "The temperature in °C.",
+      "unit": "°C",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "accelerometerX": {
+      "description": "Acceleration on the X-Axis is g",
+      "type": "number",
+      "unit": "g",
+      "minimum": -8192,
+      "maximum": 8191
+    },
+    "accelerometerY": {
+      "description": "Acceleration on the Y-Axis is g",
+      "type": "number",
+      "unit": "g",
+      "minimum": -8192,
+      "maximum": 8191
+    },
+    "accelerometerZ": {
+      "description": "Acceleration on the Z-Axis is g",
+      "type": "number",
+      "unit": "g",
+      "minimum": -8192,
+      "maximum": 8191
     }
   }
 }
