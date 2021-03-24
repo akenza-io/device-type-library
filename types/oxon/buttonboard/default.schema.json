@@ -4,17 +4,17 @@
   "title": "Default",
   "type": "object",
   "properties": {
-    "buttonID": {
+    "buttonId": {
       "title": "Button ID",
       "type": "integer",
-      "description": "The ID of the pressed button",
+      "description": "The ID of the pressed buttons",
       "minimum": 0,
       "maximum": 65535
     },
-    "enabledButtonsId": {
+    "enabledButtonsIds": {
       "title": "Enabled buttons",
       "type": "integer",
-      "description": "The ID of the enabled button",
+      "description": "The ID of the enabled buttons",
       "minimum": 0,
       "maximum": 65535
     },
