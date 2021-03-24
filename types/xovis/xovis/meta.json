@@ -13,7 +13,7 @@
     "FaceMask",
     "Dwelltime",
     "Average Waiting Time",
-    "Qeue Depth"
+    "Queue Depth"
   ],
   "outputTopics": [
     "line_count",
