@@ -4,7 +4,7 @@
   "title": "Default",
   "type": "object",
   "properties": {
-    "button": {
+    "buttonID": {
       "title": "Button ID",
       "type": "integer",
       "description": "The ID of the pressed button",

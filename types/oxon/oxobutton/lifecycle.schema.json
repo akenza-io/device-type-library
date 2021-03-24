@@ -13,9 +13,9 @@
       "unit": "%"
     },
     "hbIRQ": {
-      "title": "Heartbeat timeout occured",
+      "title": "Heartbeat timeout occurred",
       "type": "boolean",
-      "description": "Is true heartbeat timeout occured"
+      "description": "Is true heartbeat timeout occurred"
     },
     "accIRQ": {
       "title": "Accelerometer interrupt event",

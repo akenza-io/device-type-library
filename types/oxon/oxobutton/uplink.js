@@ -7,7 +7,7 @@ function consume(event) {
   var lifecycle = {};
 
   if (Bits.bitsToUnsigned(bits.substr(0, 8)) == 48) {
-    data.button = Bits.bitsToUnsigned(bits.substr(8, 8));
+    data.buttonID = Bits.bitsToUnsigned(bits.substr(8, 8));
     lifecycle.hbIRQ = !!Bits.bitsToUnsigned(bits.substr(16, 8));
     lifecycle.accIRQ = !!Bits.bitsToUnsigned(bits.substr(24, 8));
     data.imageID = Bits.bitsToUnsigned(bits.substr(32, 8)) * 256 + Bits.bitsToUnsigned(bits.substr(40, 8));

@@ -7,11 +7,11 @@ function consume(event) {
   var lifecycle = {};
 
   if (Bits.bitsToUnsigned(bits.substr(0, 8)) == 49) {
-    data.button = Bits.bitsToUnsigned(bits.substr(8, 8));
+    data.buttonID = Bits.bitsToUnsigned(bits.substr(8, 8));
     lifecycle.hbIRQ = !!Bits.bitsToUnsigned(bits.substr(16, 8));
     lifecycle.accIRQ = !!Bits.bitsToUnsigned(bits.substr(24, 8));
     lifecycle.appMode = Bits.bitsToUnsigned(bits.substr(32, 8));
-    data.enBtns = Bits.bitsToUnsigned(bits.substr(40, 8));
+    data.enabledButtonsId = Bits.bitsToUnsigned(bits.substr(40, 8));
     lifecycle.statusPercent = Bits.bitsToUnsigned(bits.substr(48, 8));
     data.temperature = Bits.bitsToUnsigned(bits.substr(56, 8));
     var accX = Bits.bitsToUnsigned(bits.substr(64, 8)) * 256 + Bits.bitsToUnsigned(bits.substr(72, 8));

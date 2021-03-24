@@ -4,49 +4,47 @@
   "title": "Default",
   "type": "object",
   "properties": {
-    "properties": {
-      "button": {
-        "title": "Button ID",
-        "type": "integer",
-        "description": "The ID of the pressed button",
-        "minimum": 0,
-        "maximum": 65535
-      },
-      "enBtns": {
-        "title": "Enabled button",
-        "type": "integer",
-        "description": "The ID of the enabled button",
-        "minimum": 0,
-        "maximum": 65535
-      },
-      "temperature": {
-        "type": "number",
-        "description": "The temperature in °C.",
-        "unit": "°C",
-        "minimum": -3276.5,
-        "maximum": 3276.5
-      },
-      "accelerometerX": {
-        "description": "Acceleration on the X-Axis is g",
-        "type": "number",
-        "unit": "g",
-        "minimum": -8192,
-        "maximum": 8191
-      },
-      "accelerometerY": {
-        "description": "Acceleration on the Y-Axis is g",
-        "type": "number",
-        "unit": "g",
-        "minimum": -8192,
-        "maximum": 8191
-      },
-      "accelerometerZ": {
-        "description": "Acceleration on the Z-Axis is g",
-        "type": "number",
-        "unit": "g",
-        "minimum": -8192,
-        "maximum": 8191
-      }
+    "buttonID": {
+      "title": "Button ID",
+      "type": "integer",
+      "description": "The ID of the pressed button",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "enabledButtonsId": {
+      "title": "Enabled buttons",
+      "type": "integer",
+      "description": "The ID of the enabled button",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "temperature": {
+      "type": "number",
+      "description": "The temperature in °C.",
+      "unit": "°C",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "accelerometerX": {
+      "description": "Acceleration on the X-Axis is g",
+      "type": "number",
+      "unit": "g",
+      "minimum": -8192,
+      "maximum": 8191
+    },
+    "accelerometerY": {
+      "description": "Acceleration on the Y-Axis is g",
+      "type": "number",
+      "unit": "g",
+      "minimum": -8192,
+      "maximum": 8191
+    },
+    "accelerometerZ": {
+      "description": "Acceleration on the Z-Axis is g",
+      "type": "number",
+      "unit": "g",
+      "minimum": -8192,
+      "maximum": 8191
     }
   }
 }
