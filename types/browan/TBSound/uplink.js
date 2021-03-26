@@ -1,5 +1,3 @@
-var Bits = require('bits');
-
 function swap16(val) {
   return ((val & 0xFF) << 8)
     | ((val >> 8) & 0xFF);
