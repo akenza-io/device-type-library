@@ -1,5 +1,3 @@
-var Bits = require('bits');
-
 function int16(hex) {
   var a = "0x" + hex;
   a = parseInt(a, 16);

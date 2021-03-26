@@ -1,5 +1,3 @@
-var Bits = require('bits');
-
 function toLittleEndian(hex) {
   var data = hex.match(/../g);
 

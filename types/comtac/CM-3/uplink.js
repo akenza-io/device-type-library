@@ -1,5 +1,3 @@
-var Bits = require('bits')
-
 function consume(event) {
   var payload = event.data.payload_hex;
   var port = event.data.port;
