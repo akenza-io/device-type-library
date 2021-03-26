@@ -91,9 +91,9 @@ describe("Decentlab IAM Uplink", function () {
             validate(value.data, defaultSchema, { throwError: true });
           }
 
-          if (value.topic === "occupied") {
-            assert.equal(value.data.occupied, true);
-            validate(value.data, occupiedSchema, { throwError: true });
+          if (value.topic === "occupancy") {
+            assert.equal(value.data.occupancy, true);
+            validate(value.data, occupancySchema, { throwError: true });
             sampleCount++;
           }
         });

@@ -9,8 +9,8 @@
   "loraDeviceClass": "A",
   "availableSensors": [
     "Temperature",
-    "Average Sound",
-    "Status"
+    "Noise",
+    "Reed"
   ],
   "outputTopics": [
     "default",

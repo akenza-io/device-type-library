@@ -66,8 +66,6 @@ describe("TBDW100 uplink", function () {
           if (value.topic === "default") {
             assert.equal(value.data.open, true);
             assert.equal(value.data.temperature, 20);
-            assert.equal(value.data.time, 45404);
-            assert.equal(value.data.count, 48);
 
             validate(value.data, defaultSchema, { throwError: true });
           }

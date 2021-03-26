@@ -36,13 +36,13 @@ function consume(event) {
       data.temperature = Bits.bitsToSigned(bits.substr(40, 16)) / 100;
     } else if (payloadId == 2) {
       data.temperature = Bits.bitsToSigned(bits.substr(40, 16)) / 100;
-      data.temperatureH1 = Bits.bitsToSigned(bits.substr(56, 16)) / 100;
-      data.temperatureH2 = Bits.bitsToSigned(bits.substr(72, 16)) / 100;
-      data.temperatureH3 = Bits.bitsToSigned(bits.substr(88, 16)) / 100;
-      data.temperatureH4 = Bits.bitsToSigned(bits.substr(104, 16)) / 100;
-      data.temperatureH5 = Bits.bitsToSigned(bits.substr(120, 16)) / 100;
-      data.temperatureH6 = Bits.bitsToSigned(bits.substr(136, 16)) / 100;
-      data.temperatureH7 = Bits.bitsToSigned(bits.substr(152, 16)) / 100;
+      data.tempHistory1 = Bits.bitsToSigned(bits.substr(56, 16)) / 100;
+      data.tempHistory2 = Bits.bitsToSigned(bits.substr(72, 16)) / 100;
+      data.tempHistory3 = Bits.bitsToSigned(bits.substr(88, 16)) / 100;
+      data.tempHistory4 = Bits.bitsToSigned(bits.substr(104, 16)) / 100;
+      data.tempHistory5 = Bits.bitsToSigned(bits.substr(120, 16)) / 100;
+      data.tempHistory6 = Bits.bitsToSigned(bits.substr(136, 16)) / 100;
+      data.tempHistory7 = Bits.bitsToSigned(bits.substr(152, 16)) / 100;
       topic = "history";
     }
   } else if (port = 100) {

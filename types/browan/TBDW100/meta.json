@@ -9,9 +9,7 @@
   "loraDeviceClass": "A",
   "availableSensors": [
     "Temperature",
-    "Count",
-    "Time between Events",
-    "Status"
+    "Reed"
   ],
   "outputTopics": [
     "default",

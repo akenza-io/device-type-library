@@ -10,9 +10,9 @@
   "availableSensors": [
     "Humidity",
     "Temperature",
-    "External analog Input",
+    "External Analog Input",
     "LEM",
-    "Brightness"
+    "Light"
   ],
   "outputTopics": [
     "sleep",

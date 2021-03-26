@@ -68,9 +68,9 @@ describe("Oxon Oxobutton Q Uplink", function () {
         if (value.topic === "default") {
           assert.equal(value.data.buttonId, 0);
           assert.equal(value.data.imageID, 26);
-          assert.equal(value.data.accelerometerX, 0.027);
-          assert.equal(value.data.accelerometerY, -0.037);
-          assert.equal(value.data.accelerometerZ, 1.006);
+          assert.equal(value.data.accX, 0.027);
+          assert.equal(value.data.accY, -0.037);
+          assert.equal(value.data.accZ, 1.006);
 
           validate(value.data, defaultSchema, { throwError: true });
         }

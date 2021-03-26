@@ -9,7 +9,7 @@
       "description": "Protocol Version",
       "type": "integer"
     },
-    "devType": {
+    "deviceType": {
       "title": "Device type ID",
       "description": "Device type ID",
       "type": "integer"

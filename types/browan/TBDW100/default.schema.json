@@ -12,21 +12,6 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     },
-    "count": {
-      "title": "Event Count",
-      "type": "integer",
-      "description": "Count of events",
-      "minimum": 0,
-      "maximum": 65535
-    },
-    "time": {
-      "title": "Time",
-      "unit": "min",
-      "type": "integer",
-      "description": "Time between events in minutes",
-      "minimum": 0,
-      "maximum": 65535
-    },
     "open": {
       "title": "Open",
       "description": "Status of the tab. open = true, closed = false",

@@ -42,10 +42,10 @@ function decodeFrame(bytes, type, target, pos) {
       target.humidity = bytes[pos++] / 2; // relativeHumidity percent 0,5
       break;
     case 7: // Lux 2bytes 0-65535lux
-      target.lux = ((bytes[pos++] << 8) | bytes[pos++]); // you can  the lux range between two sets (lux1 and 2)
+      target.light = ((bytes[pos++] << 8) | bytes[pos++]); // you can  the lux range between two sets (lux1 and 2)
       break;
     case 8: // Lux 2bytes 0-65535lux
-      target.lux2 = ((bytes[pos++] << 8) | bytes[pos++]);
+      target.light2 = ((bytes[pos++] << 8) | bytes[pos++]);
       break;
     case 9: // DoorSwitch 1bytes binary
       target.open = !!bytes[pos++]; // true = door open, false = door closed
@@ -180,8 +180,8 @@ function consume(event) {
   def.temperature = decoded.temperature;
   def.averageTemperature = decoded.averageTemperature;
   def.humidity = decoded.humidity;
-  def.lux = decoded.lux;
-  def.lux2 = decoded.lux2;
+  def.light = decoded.light;
+  def.light2 = decoded.light2;
   def.open = decoded.open;
   def.tamperReport = decoded.tamperReport;
   def.doorCount = decoded.doorCount;

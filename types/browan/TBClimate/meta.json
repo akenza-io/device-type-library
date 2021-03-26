@@ -12,7 +12,7 @@
     "Humidity",
     "CO2",
     "VOC",
-    "Status"
+    "Reed"
   ],
   "outputTopics": [
     "default",

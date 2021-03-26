@@ -46,7 +46,7 @@
       "title": "LEM",
       "unit": "A",
       "type": "number",
-      "description": "The temperature in °C."
+      "description": "Current Value"
     },
     "brightness": {
       "title": "Brightness",

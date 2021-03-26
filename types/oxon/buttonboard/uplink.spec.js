@@ -69,9 +69,9 @@ describe("Oxon Buttonboard Uplink", function () {
         if (value.topic === "default") {
           assert.equal(value.data.buttonId, 4);
           assert.equal(value.data.enabledButtonsIds, 63);
-          assert.equal(value.data.accelerometerX, -0.055);
-          assert.equal(value.data.accelerometerY, -0.011);
-          assert.equal(value.data.accelerometerZ, 1.004);
+          assert.equal(value.data.accX, -0.055);
+          assert.equal(value.data.accY, -0.011);
+          assert.equal(value.data.accZ, 1.004);
 
           validate(value.data, defaultSchema, { throwError: true });
         }

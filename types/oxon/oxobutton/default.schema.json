@@ -25,21 +25,21 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     },
-    "accelerometerX": {
+    "accX": {
       "description": "Acceleration on the X-Axis is g",
       "type": "number",
       "unit": "g",
       "minimum": -8192,
       "maximum": 8191
     },
-    "accelerometerY": {
+    "accY": {
       "description": "Acceleration on the Y-Axis is g",
       "type": "number",
       "unit": "g",
       "minimum": -8192,
       "maximum": 8191
     },
-    "accelerometerZ": {
+    "accZ": {
       "description": "Acceleration on the Z-Axis is g",
       "type": "number",
       "unit": "g",

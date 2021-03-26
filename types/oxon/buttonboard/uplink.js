@@ -20,9 +20,9 @@ function consume(event) {
     accX = accX < 32767 ? (2 / 8191) * accX : (-2 / 8192) * (65536 - accX);
     accY = accY < 32767 ? (2 / 8191) * accY : (-2 / 8192) * (65536 - accY);
     accZ = accZ < 32767 ? (2 / 8191) * accZ : (-2 / 8192) * (65536 - accZ);
-    data.accelerometerX = Math.round((accX + 2.7755575615628914e-17) * 1000) / 1000;
-    data.accelerometerY = Math.round((accY + 2.7755575615628914e-17) * 1000) / 1000;
-    data.accelerometerZ = Math.round((accZ + 2.7755575615628914e-17) * 1000) / 1000;
+    data.accX = Math.round((accX + 2.7755575615628914e-17) * 1000) / 1000;
+    data.accY = Math.round((accY + 2.7755575615628914e-17) * 1000) / 1000;
+    data.accZ = Math.round((accZ + 2.7755575615628914e-17) * 1000) / 1000;
 
     emit('sample', { "data": lifecycle, "topic": "lifecycle" });
     emit('sample', { "data": data, "topic": "default" });
