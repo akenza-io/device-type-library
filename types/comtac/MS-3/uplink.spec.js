@@ -79,7 +79,7 @@ describe("Comtac LPN MS-3 Uplink", function () {
         }
 
         if (value.topic === "default") {
-          assert.equal(value.data.brightness, 0);
+          assert.equal(value.data.light, 0);
           assert.equal(value.data.temperature, 25.6);
           assert.equal(value.data.humidity, 31);
           assert.equal(value.data.accX, -0.161);
@@ -91,7 +91,7 @@ describe("Comtac LPN MS-3 Uplink", function () {
           assert.equal(value.data.magnX, -0.061);
           assert.equal(value.data.magnY, 0.355);
           assert.equal(value.data.magnZ, 0.023);
-          assert.equal(value.data.epe, 0);
+          assert.equal(value.data.altitude, 0);
 
           validate(value.data, defaultSchema, { throwError: true });
         }

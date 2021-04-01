@@ -4,11 +4,11 @@
   "title": "Default",
   "type": "object",
   "properties": {
-    "brightness": {
-      "title": "Brightness",
+    "light": {
+      "title": "Light",
       "type": "number",
       "unit": "lux",
-      "description": "Brightness value",
+      "description": "Light value",
       "minimum": 0,
       "maximum": 255
     },
@@ -91,17 +91,17 @@
       "minimum": -32767,
       "maximum": 32767
     },
-    "lat": {
+    "latitude": {
       "description": "Latitude",
       "unit": "°",
       "type": "number"
     },
-    "long": {
+    "longitude": {
       "description": "Longitude",
       "unit": "°",
       "type": "number"
     },
-    "epe": {
+    "altitude": {
       "description": "Estimated position error in meters",
       "unit": "m",
       "type": "number"

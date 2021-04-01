@@ -4,7 +4,7 @@
   "title": "Occupancy",
   "type": "object",
   "properties": {
-    "occupied": {
+    "occupancy": {
       "title": "Occupancy",
       "description": "Space occupancy. false = (PIR == 0) / true = (PIR > 0).",
       "type": "boolean"

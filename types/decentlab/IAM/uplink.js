@@ -181,8 +181,8 @@ function consume(event) {
   }
 
   if (data.pir !== 0) {
-    emit("sample", { data: { occupied: true }, topic: "occupied" });
+    emit("sample", { data: { occupancy: true }, topic: "occupancy" });
   } else {
-    emit("sample", { data: { occupied: false }, topic: "occupied" });
+    emit("sample", { data: { occupancy: false }, topic: "occupancy" });
   }
 }

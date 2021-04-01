@@ -22,12 +22,6 @@ function consume(event) {
   data.temperature = Bits.bitsToUnsigned(bits.substr(17, 7));
   data.temperature = data.temperature - 32;
 
-  data.time = Bits.bitsToUnsigned(bits.substr(24, 16));
-  data.time = swap16(data.time);
-
-  data.count = Bits.bitsToUnsigned(bits.substr(40, 24) + "00");
-  data.count = swap16(data.count);
-
   emit('sample', { "data": lifecycle, "topic": "lifecycle" });
   emit('sample', { "data": data, "topic": "default" });
 }

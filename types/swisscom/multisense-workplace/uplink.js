@@ -17,7 +17,7 @@ function consume(event) {
   data.payloadVersion = Bits.bitsToUnsigned(bits.substr(0, 8));
   data.mode = Bits.bitsToUnsigned(bits.substr(8, 8));
   var status = Number(Bits.bitsToUnsigned(bits.substr(16, 8)));
-  data.batteryVoltage = Bits.bitsToUnsigned(bits.substr(24, 8)) * 6 + 2000; // 2000 = 0
+  data.voltage = Bits.bitsToUnsigned(bits.substr(24, 8)) * 6 + 2000; // 2000 = 0
 
   if (port == 3) {
     var pointer = 32;
@@ -40,15 +40,15 @@ function consume(event) {
           break;
         case 5:
           var hexPointer = pointer / 4;
-          data.accelerometerX = int16(payload.substr(hexPointer, 4)); hexPointer += 4;
-          data.accelerometerY = int16(payload.substr(hexPointer, 4)); hexPointer += 4;
-          data.accelerometerZ = int16(payload.substr(hexPointer, 4)); hexPointer += 4;
+          data.accX = int16(payload.substr(hexPointer, 4)); hexPointer += 4;
+          data.accY = int16(payload.substr(hexPointer, 4)); hexPointer += 4;
+          data.accZ = int16(payload.substr(hexPointer, 4)); hexPointer += 4;
           pointer += 48;
           break;
         case 6:
           data.temperature = Math.round((Bits.bitsToUnsigned(bits.substr(pointer, 16)) * 0.01) * 100) / 100; pointer += 16;
           for (var a = 0; a < 7; a++) {
-            data["tempHistory_" + a] = Math.round((Bits.bitsToUnsigned(bits.substr(pointer, 16)) * 0.01) * 100) / 100; pointer += 16;
+            data["tempHistory" + a] = Math.round((Bits.bitsToUnsigned(bits.substr(pointer, 16)) * 0.01) * 100) / 100; pointer += 16;
           }
           break;
         case 7:

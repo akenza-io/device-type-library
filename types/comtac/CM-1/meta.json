@@ -9,7 +9,8 @@
   "loraDeviceClass": "A",
   "availableSensors": [
     "Humidity",
-    "Temperature"
+    "Temperature",
+    "Button"
   ],
   "outputTopics": [
     "button_pressed",

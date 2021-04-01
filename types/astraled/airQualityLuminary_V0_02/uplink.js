@@ -168,7 +168,7 @@ function consume(event) {
         lifecycle.iaq_visualisation = get_byte(buff, rd_pos);
         break;
       case 32:
-        data.sea_level = get_word(buff, rd_pos);
+        data.altitude = get_word(buff, rd_pos);
         break;
       case 33:
         data.latitude = get_float(buff, rd_pos);

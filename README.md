@@ -22,33 +22,167 @@ Install dependencies `npm install`.
 
 The following available sensor types should be used.
 
+-- Environmental Sensor Types
+- Temperature
+- Precipitation
+- Soil moisture
+- Soil temperature
+- Barometric Pressure
+- Vapor Pressure
+- Noise
+- Light
+- Solar radiation
+- Lightning strike detector
+- Wind speed
+- Wind direction
+
+
+-- Air quality Sensor Types
+- Humidity
+- CO2
+- eCO2
+- CO
+- VOC
+- PM1.0
+- PM2.5
+- PM4.0
+- PM10
+
+-- Electricity Sensor Types
+- Energy
+- LEM
+- External Analog Input
+- Light State
+
+-- Magnetic & infrared Sensor Types
+- Reed
 - Occupancy
 - Motion
 - PIR
-- Light
-- Temperature
-- Humidity
-- CO2
-- VOC
-- Barometric Pressure
-- Noise
-- Battery Percent
-- Battery Voltage
+
+-- Acceleration Sensor Types
+- Acceleration
+- Gyro
+- Magnetometer
+
+-- GPS Sensor Types
+- Latitude
+- Longitude
+- Altitude
+
+-- People Counting Sensor Types
+- Forward Count
+- Backwards Count
+- Gender
+- FaceMask
+- Dwelltime
+- Average Waiting Time
+- Queue Depth
+
+-- Other Sensor Types
+- Button
+- Distance
+- Vibration
+- Water leak
+- Image
+
 
 ## Available data keys
 
 The following available data keys should be used.
 
-- Occupancy
-- Motion
-- PIR
-- Light
+-- Environmental data keys
+- light
+- solarRadiation
+- precipitation
+- lightningStrikeCount
+- lightningAverageDistance
+- windSpeed
+- windDirection
+- maximumWindSpeed
+- northWindSpeed
+- eastWindSpeed
 - temperature
-- Humidity
-- CO2
-- VOC
-- Barometric Pressure
-- Noise
+- pressure
+- vaporPressure
+- atmosphericPressure
+- soundAvg
+
+-- Air quality data keys
+- humidity
+- voc
+- co
+- co2
+- eco2
+- pm1_0
+- pm2_5
+- pm4_0
+- pm10
+
+-- Electricity data keys
+- light_state
+- adc1
+- adc2
+- lem
+- energy
+
+-- Magnetic & infrared data keys
+- occupancy
+- motion
+- open
+- pir
+- rawPir
+- reedCounter
+
+-- Acceleration data keys
+- accX
+- accY
+- accZ
+- gyroX
+- gyroY
+- gyroZ
+- magnX
+- magnY
+- magnZ
+
+-- GPS data keys
+- latitude
+- longitude
+- altitude
+
+-- People Counting data keys
+- fw
+- bw
+- count
+- faceMask
+- gender
+- queueDepth
+- avgWaitingTime
+- dwelltime
+- maleFw
+- femaleFw
+- maleBw
+- femaleBw
+- maleFwPercentage
+- femaleFwPercentage
+- maleBwPercentage
+- femaleBwPercentage
+
+-- Other data keys
+- waterleak
+- distance
+- anomalyLevel
+- vibration
+
+-- Button data keys
+- buttonId
+- imageID
+
+-- Sensorinternal data keys
+- statusPercent
+- voltage
+- debug
+- fwVersion
 
 ## Use preexisting types
 

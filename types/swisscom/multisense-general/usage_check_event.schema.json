@@ -16,7 +16,7 @@
       "minimum": 0,
       "maximum": 65535
     },
-    "batteryVoltage": {
+    "voltage": {
       "description": "Battery voltage in mV.",
       "type": "integer",
       "minimum": 0,

@@ -10,6 +10,8 @@ const assert = chai.assert;
 const script = rewire("./uplink.js");
 let defaultSchema = null;
 let occupiedSchema = null;
+let lifecycleSchema = null;
+
 const consume = script.__get__("consume");
 
 function expectEmit(callback) {
@@ -36,7 +38,19 @@ before(function (done) {
     "utf8",
     function (err, fileContents) {
       if (err) throw err;
-      occupiedSchema = JSON.parse(fileContents);
+      occupancySchema = JSON.parse(fileContents);
+      done();
+    }
+  );
+});
+
+before(function (done) {
+  fs.readFile(
+    __dirname + "/lifecycle.schema.json",
+    "utf8",
+    function (err, fileContents) {
+      if (err) throw err;
+      lifecycleSchema = JSON.parse(fileContents);
       done();
     }
   );
@@ -91,9 +105,9 @@ describe("Decentlab IAM Uplink", function () {
             validate(value.data, defaultSchema, { throwError: true });
           }
 
-          if (value.topic === "occupied") {
-            assert.equal(value.data.occupied, true);
-            validate(value.data, occupiedSchema, { throwError: true });
+          if (value.topic === "occupancy") {
+            assert.equal(value.data.occupancy, true);
+            validate(value.data, occupancySchema, { throwError: true });
             sampleCount++;
           }
         });

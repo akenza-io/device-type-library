@@ -11,9 +11,12 @@
     "Solar radiation",
     "Precipitation",
     "Lightning strike detector",
-    "Wind",
+    "Wind speed",
+    "Wind direction",
+    "Humidity",
     "Temperature",
-    "Pressure"
+    "Vapor Pressure",
+    "Barometric Pressure"
   ],
   "outputTopics": [
     "default",

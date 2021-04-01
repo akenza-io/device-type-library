@@ -9,7 +9,7 @@
   "loraDeviceClass": "C",
   "availableSensors": [
     "Button",
-    "Brightness",
+    "Light",
     "Humidity",
     "Temperature",
     "Acceleration",

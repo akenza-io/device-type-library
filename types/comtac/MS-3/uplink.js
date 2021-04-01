@@ -26,7 +26,7 @@ function consume(event) {
   lifecycle.dip1 = !!(Bits.bitsToUnsigned(bits.substr(15, 1)));
   lifecycle.voltage = Number((1 + (Bits.bitsToUnsigned(bits.substr(16, 8)) * 0.01)).toFixed(2));
 
-  data.brightness = Bits.bitsToUnsigned(bits.substr(24, 8));
+  data.light = Bits.bitsToUnsigned(bits.substr(24, 8));
   data.humidity = Bits.bitsToUnsigned(bits.substr(32, 8));
   data.temperature = Bits.bitsToSigned(bits.substr(40, 16)) / 10;
   data.accX = Bits.bitsToSigned(bits.substr(56, 16)) / 1000;
@@ -38,9 +38,9 @@ function consume(event) {
   data.magnX = Bits.bitsToSigned(bits.substr(152, 16)) / 1000;
   data.magnY = Bits.bitsToSigned(bits.substr(168, 16)) / 1000;
   data.magnZ = Bits.bitsToSigned(bits.substr(184, 16)) / 1000;
-  data.lat = Bits.bitsToSigned(bits.substr(200, 32)) / 1000000;
-  data.long = Bits.bitsToSigned(bits.substr(232, 32)) / 1000000;
-  data.epe = Bits.bitsToSigned(bits.substr(264, 16)) / 100;
+  data.latitude = Bits.bitsToSigned(bits.substr(200, 32)) / 1000000;
+  data.longitude = Bits.bitsToSigned(bits.substr(232, 32)) / 1000000;
+  data.altitude = Bits.bitsToSigned(bits.substr(264, 16)) / 100;
 
   if (lifecycle.txOnEvent == true) {
     emit('sample', { data: {}, topic: "event" });
