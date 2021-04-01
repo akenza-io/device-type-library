@@ -744,5 +744,4 @@ function consume(event) {
   if (deleteUnusedKeys(lifecycle)) {
     emit('sample', { "data": lifecycle, "topic": "lifecycle" });
   }
-
 }

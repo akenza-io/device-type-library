@@ -41,7 +41,7 @@ before(function (done) {
 
 describe("Synetica Status T Uplink", function () {
   describe("consume()", function () {
-    it("should decode the Synetica Status T report uplink", function (done) {
+    it("should decode the Synetica Status T report uplink", function () {
       const data = {
         data: {
           port: 1,
@@ -72,7 +72,6 @@ describe("Synetica Status T Uplink", function () {
       });
 
       consume(data);
-      done();
     });
   });
 });

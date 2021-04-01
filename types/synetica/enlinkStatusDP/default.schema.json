@@ -29,10 +29,10 @@
       "maximum": 3276.5
     },
     "dp": {
-      "title": "Difference Pressure",
+      "title": "Differential Pressure",
       "unit": "pa",
       "type": "number",
-      "description": "The difference in pressure",
+      "description": "The differential pressure",
       "minimum": -5000,
       "maximum": 5000
     }
