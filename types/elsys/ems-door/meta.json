@@ -1,0 +1,20 @@
+{
+  "name": "EMS Door",
+  "version": "1.0.0",
+  "manufacturer": "Elsys",
+  "url": "https://www.elsys.se/shop/product/ems-door/?v=f003c44deab6",
+  "description": "This is an indoor LoRaWAN© opening activity sensor which will tell you when an object has been opened or moved",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Accelerometer",
+    "Reed"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

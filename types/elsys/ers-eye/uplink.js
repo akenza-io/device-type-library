@@ -205,7 +205,7 @@ function consume(event) {
     lifecycle.irInternalTemperature = res.irInternalTemperature;
   }
 
-  if (res.irExternalTemperature !== undefined || res.vdd !== undefined) {
+  if (res.irExternalTemperature !== undefined || lifecycle.voltage !== undefined) {
     emit("sample", { topic: "lifecycle", data: lifecycle });
   }
 

@@ -45,7 +45,6 @@ function hexToBytes(hex) {
 function DecodeElsysPayload(data) {
   var obj = {};
   for (var i = 0; i < data.length; i++) {
-    //console.log(data[i]);
     switch (data[i]) {
       case TYPE_TEMP: //Temperature
         var temp = (data[i + 1] << 8) | data[i + 2];
@@ -59,9 +58,9 @@ function DecodeElsysPayload(data) {
         i += 1;
         break;
       case TYPE_ACC: //Acceleration
-        obj.x = bin8dec(data[i + 1]);
-        obj.y = bin8dec(data[i + 2]);
-        obj.z = bin8dec(data[i + 3]);
+        obj.accX = bin8dec(data[i + 1]);
+        obj.accY = bin8dec(data[i + 2]);
+        obj.accZ = bin8dec(data[i + 3]);
         i += 3;
         break;
       case TYPE_LIGHT: //Light
@@ -109,7 +108,7 @@ function DecodeElsysPayload(data) {
         i += 2;
         break;
       case TYPE_EXT_DIGITAL: //Digital input
-        obj.digital = data[i + 1];
+        obj.digital = !!data[i + 1];
         i += 1;
         break;
       case TYPE_EXT_DISTANCE: //Distance sensor input
@@ -191,6 +190,11 @@ function consume(event) {
   if (res.vdd !== undefined) {
     emit("sample", { topic: "lifecycle", data: { "voltage": res.vdd / 1000 } });
     delete res.vdd;
+  }
+
+  if (res.occupancy !== undefined) {
+    emit("sample", { topic: "occupancy", data: { "occupancy": res.occupancy } });
+    delete res.occupancy;
   }
 
   emit("sample", { topic: "default", data: res });

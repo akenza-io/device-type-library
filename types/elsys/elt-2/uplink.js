@@ -45,7 +45,6 @@ function hexToBytes(hex) {
 function DecodeElsysPayload(data) {
   var obj = {};
   for (var i = 0; i < data.length; i++) {
-    //console.log(data[i]);
     switch (data[i]) {
       case TYPE_TEMP: //Temperature
         var temp = (data[i + 1] << 8) | data[i + 2];
@@ -109,7 +108,7 @@ function DecodeElsysPayload(data) {
         i += 2;
         break;
       case TYPE_EXT_DIGITAL: //Digital input
-        obj.digital = data[i + 1];
+        obj.digital = !!data[i + 1];
         i += 1;
         break;
       case TYPE_EXT_DISTANCE: //Distance sensor input
@@ -134,7 +133,7 @@ function DecodeElsysPayload(data) {
         i += 1;
         break;
       case TYPE_WATERLEAK: //Water leak
-        obj.waterleak = data[i + 1];
+        obj.waterleak = !!data[i + 1];
         i += 1;
         break;
       case TYPE_GRIDEYE: //Grideye data
