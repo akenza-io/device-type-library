@@ -1,0 +1,13 @@
+{
+  "$id": "https://akenza.io/talkpool/oy1700/startup.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Startup",
+  "type": "object",
+  "properties": {
+    "message": {
+      "title": "Message",
+      "type": "string",
+      "description": "Something went wrong while startup."
+    }
+  }
+}
