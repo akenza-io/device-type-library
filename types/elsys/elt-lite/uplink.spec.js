@@ -40,13 +40,13 @@ before(function (done) {
   );
 });
 
-describe("Elsys ERS uplink", function () {
+describe("Elsys ELT Lite uplink", function () {
   describe("consume()", function () {
-    it("should decode Elsys ERS payload", function (done) {
+    it("should decode Elsys ELT Lite payload", function () {
       const data = {
         data: {
-          payload_hex: "0100f1021704041a0500070e5a",
-        },
+          payload_hex: "0100e20218070e410cff5614000edd20",
+        }
       };
 
       expectEmit(function (type, value) {
@@ -55,19 +55,20 @@ describe("Elsys ERS uplink", function () {
         assert.typeOf(value.data, "object");
 
         if (value.topic == "lifecycle") {
-          assert.equal(value.data.voltage, 3.674);
+          assert.equal(value.data.voltage, 3.649);
         }
 
         if (value.topic == "default") {
-          assert.equal(value.data.light, 1050);
-          assert.equal(value.data.humidity, 23);
-          assert.equal(value.data.temperature, 24.1);
+          assert.equal(value.data.temperature, 22.6);
+          assert.equal(value.data.humidity, 24);
+          assert.equal(value.data.pressure, 974.112);
+          assert.equal(value.data.externalTemperature1, -17);
+
           validate(value.data, defaultSchema, { throwError: true });
         }
       });
 
       consume(data);
-      done();
     });
   });
 });

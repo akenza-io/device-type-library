@@ -63,7 +63,6 @@ describe("Elsys Sound uplink", function () {
 
         if (value.topic === "default") {
           assert.equal(value.data.light, 189);
-          assert.equal(value.data.motion, 60);
           assert.equal(value.data.humidity, 35);
           assert.equal(value.data.temperature, 23.8);
 

@@ -45,7 +45,6 @@ function hexToBytes(hex) {
 function DecodeElsysPayload(data) {
   var obj = {};
   for (var i = 0; i < data.length; i++) {
-    //console.log(data[i]);
     switch (data[i]) {
       case TYPE_TEMP: //Temperature
         var temp = (data[i + 1] << 8) | data[i + 2];
@@ -58,10 +57,10 @@ function DecodeElsysPayload(data) {
         obj.humidity = rh;
         i += 1;
         break;
-      case TYPE_ACC: //Acceleration
-        obj.x = bin8dec(data[i + 1]);
-        obj.y = bin8dec(data[i + 2]);
-        obj.z = bin8dec(data[i + 3]);
+      case TYPE_ACC: //Acceleration 63 = 1G
+        obj.accX = Math.round(bin8dec(data[i + 1]) / 63);
+        obj.accY = Math.round(bin8dec(data[i + 2]) / 63);
+        obj.accZ = Math.round(bin8dec(data[i + 3]) / 63);
         i += 3;
         break;
       case TYPE_LIGHT: //Light
@@ -99,17 +98,17 @@ function DecodeElsysPayload(data) {
           (data[i + 2] << 16) |
           (data[i + 3] << 8) |
           data[i + 4];
-        obj.pulseAbs = pulseAbs;
+        obj.pulseAbs1 = pulseAbs;
         i += 4;
         break;
       case TYPE_EXT_TEMP1: //External temp
         var temp = (data[i + 1] << 8) | data[i + 2];
         temp = bin16dec(temp);
-        obj.externalTemperature = temp / 10;
+        obj.externalTemperature1 = temp / 10;
         i += 2;
         break;
       case TYPE_EXT_DIGITAL: //Digital input
-        obj.digital = data[i + 1];
+        obj.digital = !!data[i + 1];
         i += 1;
         break;
       case TYPE_EXT_DISTANCE: //Distance sensor input
@@ -134,7 +133,7 @@ function DecodeElsysPayload(data) {
         i += 1;
         break;
       case TYPE_WATERLEAK: //Water leak
-        obj.waterleak = data[i + 1];
+        obj.waterleak = !!data[i + 1];
         i += 1;
         break;
       case TYPE_GRIDEYE: //Grideye data
@@ -185,24 +184,75 @@ function DecodeElsysPayload(data) {
   return obj;
 }
 
+function deleteUnusedKeys(data) {
+  var keysRetained = false;
+  Object.keys(data).forEach(key => {
+    if (data[key] === undefined || isNaN(data[key])) {
+      delete data[key];
+    } else {
+      keysRetained = true;
+    }
+  });
+  return keysRetained;
+}
+
 function consume(event) {
   var res = DecodeElsysPayload(hexToBytes(event.data.payload_hex));
+  var data = {};
   var lifecycle = {};
+  var occupancy = {};
+  var noise = {};
 
-  if (res.vdd !== undefined) {
-    lifecycle.voltage = res.vdd / 1000;
-    delete res.vdd;
-  }
-  if (res.irExternalTemperature !== undefined) {
-    lifecycle.irExternalTemperature = res.irExternalTemperature;
-    lifecycle.irInternalTemperature = res.irInternalTemperature;
+  // Default values
+  data.temperature = res.temperature;
+  data.humidity = res.humidity;
+  data.accX = res.accX;
+  data.accY = res.accY;
+  data.accZ = res.accZ;
+  data.light = res.light;
+  data.co2 = res.co2;
+  data.reed = res.digital;
+  data.distance = res.distance;
+  data.accMotion = res.accMotion;
+  data.irInternalTemperature = res.irInternalTemperature;
+  data.irExternalTemperature = res.irExternalTemperature;
+  data.waterleak = res.waterleak;
+  data.pressure = res.pressure;
+  data.lat = res.lat;
+  data.long = res.long;
+  data.analog1 = res.analog1;
+  data.analog2 = res.analog2;
+  data.pulse1 = res.pulse1;
+  data.pulse2 = res.pulse2;
+  data.pulseAbs1 = res.pulseAbs1;
+  data.pulseAbs2 = res.pulseAbs2;
+  data.externalTemperature1 = res.externalTemperature1;
+  data.externalTemperature2 = res.externalTemperature2;
+
+  // Occupancy values
+  occupancy.motion = res.motion;
+  occupancy.occupancy = res.occupancy;
+
+  // Noise values
+  noise.soundPeak = res.soundPeak;
+  noise.soundAvg = res.soundAvg;
+
+  // Lifecycle values
+  lifecycle.voltage = res.vdd / 1000;
+
+  if (deleteUnusedKeys(data)) {
+    emit('sample', { "data": data, "topic": "default" });
   }
 
-  if (res.irExternalTemperature !== undefined || res.vdd !== undefined) {
-    emit("sample", { topic: "lifecycle", data: lifecycle });
+  if (deleteUnusedKeys(lifecycle)) {
+    emit('sample', { "data": lifecycle, "topic": "lifecycle" });
   }
 
-  if (res.irExternalTemperature == undefined) {
-    emit("sample", { topic: "default", data: res });
+  if (deleteUnusedKeys(occupancy)) {
+    emit('sample', { "data": occupancy, "topic": "occupancy" });
+  }
+
+  if (deleteUnusedKeys(noise)) {
+    emit('sample', { "data": noise, "topic": "noise" });
   }
 }

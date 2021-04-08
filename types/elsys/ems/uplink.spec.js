@@ -40,12 +40,12 @@ before(function (done) {
   );
 });
 
-describe("Elsys ERS uplink", function () {
+describe("Elsys EMS uplink", function () {
   describe("consume()", function () {
-    it("should decode Elsys ERS payload", function (done) {
+    it("should decode Elsys EMS payload", function () {
       const data = {
         data: {
-          payload_hex: "0100f1021704041a0500070e5a",
+          payload_hex: "0100e8021a0300ff3d070e360b0000000d0d010f141200",
         },
       };
 
@@ -55,19 +55,25 @@ describe("Elsys ERS uplink", function () {
         assert.typeOf(value.data, "object");
 
         if (value.topic == "lifecycle") {
-          assert.equal(value.data.voltage, 3.674);
+          assert.equal(value.data.voltage, 3.638);
         }
 
         if (value.topic == "default") {
-          assert.equal(value.data.light, 1050);
-          assert.equal(value.data.humidity, 23);
-          assert.equal(value.data.temperature, 24.1);
+          assert.equal(value.data.temperature, 23.2);
+          assert.equal(value.data.humidity, 26);
+          assert.equal(value.data.accX, 0);
+          assert.equal(value.data.accY, 0);
+          assert.equal(value.data.accZ, 1);
+          assert.equal(value.data.reed, true);
+          assert.equal(value.data.accMotion, 20);
+          assert.equal(value.data.waterleak, false);
+          assert.equal(value.data.pulseAbs1, 13);
+
           validate(value.data, defaultSchema, { throwError: true });
         }
       });
 
       consume(data);
-      done();
     });
   });
 });

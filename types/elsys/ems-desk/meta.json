@@ -1,0 +1,23 @@
+{
+  "name": "EMS Desk",
+  "version": "1.0.0",
+  "manufacturer": "Elsys",
+  "url": "https://www.elsys.se/shop/product/ems-desk/?v=f003c44deab6",
+  "description": "Indoor LoRaWAN® device for measuring the indoor environment and desk occupancy.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "Accelerometer",
+    "Occupancy"
+  ],
+  "outputTopics": [
+    "default",
+    "occupancy",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
