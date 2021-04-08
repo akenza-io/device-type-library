@@ -35,7 +35,7 @@
       "minimum": 0,
       "maximum": 65535
     },
-    "pulseAbs": {
+    "pulseAbs1": {
       "title": "Pulse count absolute",
       "description": "Pulse count absolute",
       "type": "number",
@@ -51,7 +51,7 @@
       "maximum": 3276.5
     },
     "digital": {
-      "title": "Digital",
+      "title": "Reed",
       "description": "If either reed or waterleak is detected this equals true",
       "type": "boolean"
     },
@@ -90,36 +90,6 @@
       "type": "number",
       "minimum": 300,
       "maximum": 1100
-    },
-    "analog2": {
-      "type": "number",
-      "title": "Analog input 2",
-      "desciption": "Voltage in mV",
-      "unit": "mV",
-      "minimum": 0,
-      "maximum": 65535
-    },
-    "pulse2": {
-      "title": "Pulse 2 count",
-      "description": "Pulse count between events",
-      "type": "number",
-      "minimum": 0,
-      "maximum": 65535
-    },
-    "pulseAbs2": {
-      "title": "Pulse 2 count absolute",
-      "description": "Pulse count absolute",
-      "type": "number",
-      "minimum": 0,
-      "maximum": 4294967295
-    },
-    "externalTemperature2": {
-      "title": "External temperature 2",
-      "unit": "°C",
-      "type": "number",
-      "description": "The external temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
     }
   }
 }

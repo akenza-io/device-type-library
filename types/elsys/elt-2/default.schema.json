@@ -35,14 +35,14 @@
       "minimum": 0,
       "maximum": 65535
     },
-    "pulseAbs": {
+    "pulseAbs1": {
       "title": "Pulse count absolute",
       "description": "Pulse count absolute",
       "type": "number",
       "minimum": 0,
       "maximum": 4294967295
     },
-    "externalTemperature": {
+    "externalTemperature1": {
       "title": "External temperature 1",
       "unit": "°C",
       "type": "number",
@@ -51,8 +51,8 @@
       "maximum": 3276.5
     },
     "digital": {
-      "title": "Digital",
-      "description": "If either reed or waterleak is detected this equals true",
+      "title": "Reed",
+      "description": "Equals true if reed is detected",
       "type": "boolean"
     },
     "distance": {

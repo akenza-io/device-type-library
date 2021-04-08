@@ -23,7 +23,7 @@
     "accX": {
       "title": "Acceleration X",
       "description": "Acceleration on the X-Axis in gravitational acceleration",
-      "unit": "g",
+      "unit": "G",
       "type": "number",
       "minimum": -32767,
       "maximum": 32767
@@ -31,7 +31,7 @@
     "accY": {
       "title": "Acceleration Y",
       "description": "Acceleration on the Y-Axis in gravitational acceleration",
-      "unit": "g",
+      "unit": "G",
       "type": "number",
       "minimum": -32767,
       "maximum": 32767
@@ -39,7 +39,7 @@
     "accZ": {
       "title": "Acceleration Z",
       "description": "Acceleration on the Z-Axis in gravitational acceleration",
-      "unit": "g",
+      "unit": "G",
       "type": "number",
       "minimum": -32767,
       "maximum": 32767
@@ -58,9 +58,14 @@
       "minimum": 0,
       "maximum": 4294967295
     },
+    "waterleak": {
+      "title": "Waterleak",
+      "description": "Equals true if a waterleak is detected",
+      "type": "boolean"
+    },
     "digital": {
-      "title": "Digital",
-      "description": "If either reed or waterleak is detected this equals true",
+      "title": "Reed",
+      "description": "Equals true if reed is detected",
       "type": "boolean"
     }
   }

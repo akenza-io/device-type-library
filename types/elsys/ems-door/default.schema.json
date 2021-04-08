@@ -7,7 +7,7 @@
     "accX": {
       "title": "Acceleration X",
       "description": "Acceleration on the X-Axis in gravitational acceleration",
-      "unit": "g",
+      "unit": "G",
       "type": "number",
       "minimum": -32767,
       "maximum": 32767
@@ -15,7 +15,7 @@
     "accY": {
       "title": "Acceleration Y",
       "description": "Acceleration on the Y-Axis in gravitational acceleration",
-      "unit": "g",
+      "unit": "G",
       "type": "number",
       "minimum": -32767,
       "maximum": 32767
@@ -23,7 +23,7 @@
     "accZ": {
       "title": "Acceleration Z",
       "description": "Acceleration on the Z-Axis in gravitational acceleration",
-      "unit": "g",
+      "unit": "G",
       "type": "number",
       "minimum": -32767,
       "maximum": 32767
