@@ -1,0 +1,79 @@
+{
+  "$id": "https://akenza.io/elsys/ems/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "humidity": {
+      "title": "Humidity",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "accX": {
+      "title": "Acceleration X",
+      "description": "Acceleration on the X-Axis in gravitational acceleration",
+      "unit": "G",
+      "type": "number",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "accY": {
+      "title": "Acceleration Y",
+      "description": "Acceleration on the Y-Axis in gravitational acceleration",
+      "unit": "G",
+      "type": "number",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "accZ": {
+      "title": "Acceleration Z",
+      "description": "Acceleration on the Z-Axis in gravitational acceleration",
+      "unit": "G",
+      "type": "number",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "pulse1": {
+      "title": "Pulse count",
+      "description": "Pulse count between events",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "pulseAbs1": {
+      "title": "Pulse count absolute",
+      "description": "Pulse count absolute",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 4294967295
+    },
+    "waterleak": {
+      "title": "Waterleak",
+      "description": "Equals true if a waterleak is detected",
+      "type": "boolean"
+    },
+    "reed": {
+      "title": "Reed",
+      "description": "Equals true if reed is detected",
+      "type": "boolean"
+    },
+    "accMotion": {
+      "title": "Motion (Acceleration)",
+      "type": "number",
+      "description": "Motion (Acceleration)",
+      "minimum": 0,
+      "maximum": 255
+    }
+  }
+}
