@@ -1,22 +1,21 @@
 {
-  "name": "BOB Assistant",
-  "version": "0.4.5",
-  "manufacturer": "nke Watecco",
-  "url": "https://bobassistant.com/en/offer/",
-  "description": "Autonomous learning and reporting by Artificial Intelligence, embedded by Cartesiam. Alarm Threshold on vibration anomaly. Peak frequency and FTT reports. Restart or complete learning. Setup reporting period",
+  "name": "Enlink DP",
+  "version": "1.0.0",
+  "manufacturer": "Synetica",
+  "url": "https://synetica.net/enlink-status-dp-lora-wireless-differential-pressure-sensor/",
+  "description": "enLink Status-DP measures differential pressure in the range of 25Pa to 5000Pa with industry leading accuracy of 0.1% of selected range.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": [
-    "Vibration",
-    "Anomaly",
-    "Temperature"
+    "Temperature",
+    "Humidity",
+    "Air Flow",
+    "Differential Pressure"
   ],
   "outputTopics": [
-    "alarm",
-    "learning",
-    "lifecycle",
-    "report"
+    "default",
+    "lifecycle"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"
