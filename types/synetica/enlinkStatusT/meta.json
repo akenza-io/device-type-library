@@ -1,22 +1,19 @@
 {
-  "name": "BOB Assistant",
-  "version": "0.4.5",
-  "manufacturer": "nke Watecco",
-  "url": "https://bobassistant.com/en/offer/",
-  "description": "Autonomous learning and reporting by Artificial Intelligence, embedded by Cartesiam. Alarm Threshold on vibration anomaly. Peak frequency and FTT reports. Restart or complete learning. Setup reporting period",
+  "name": "Enlink T",
+  "version": "1.0.0",
+  "manufacturer": "Synetica",
+  "url": "https://synetica.net/enlink-status-t/",
+  "description": "enLink Status-T accurately measures temperature with up to three precision temperature probes with a range of -55°C to +125°C.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": [
-    "Vibration",
-    "Anomaly",
-    "Temperature"
+    "Temperature",
+    "Humidity"
   ],
   "outputTopics": [
-    "alarm",
-    "learning",
-    "lifecycle",
-    "report"
+    "default",
+    "lifecycle"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"
