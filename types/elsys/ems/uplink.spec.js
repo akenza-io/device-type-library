@@ -64,7 +64,7 @@ describe("Elsys EMS uplink", function () {
           assert.equal(value.data.accX, 0);
           assert.equal(value.data.accY, 0);
           assert.equal(value.data.accZ, 1);
-          assert.equal(value.data.digital, true);
+          assert.equal(value.data.reed, true);
           assert.equal(value.data.accMotion, 20);
           assert.equal(value.data.waterleak, false);
           assert.equal(value.data.pulseAbs1, 13);

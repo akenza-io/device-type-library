@@ -50,7 +50,7 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     },
-    "digital": {
+    "reed": {
       "title": "Reed",
       "description": "Equals true if reed is detected",
       "type": "boolean"
@@ -79,7 +79,7 @@
       "maximum": 3276.5
     },
     "waterleak": {
-      "title": "Digital",
+      "title": "Waterleak",
       "description": "Equals true if a waterleak is detected",
       "type": "boolean"
     },

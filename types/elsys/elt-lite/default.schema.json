@@ -50,9 +50,9 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     },
-    "digital": {
+    "reed": {
       "title": "Reed",
-      "description": "If either reed or waterleak is detected this equals true",
+      "description": "Equals true if reed is detected",
       "type": "boolean"
     },
     "distance": {
@@ -79,7 +79,7 @@
       "maximum": 3276.5
     },
     "waterleak": {
-      "title": "Digital",
+      "title": "Waterleak",
       "description": "Equals true if a waterleak is detected",
       "type": "boolean"
     },

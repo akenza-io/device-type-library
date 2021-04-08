@@ -8,6 +8,8 @@
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": [
+    "Temperature",
+    "Humidity",
     "Accelerometer",
     "Reed"
   ],

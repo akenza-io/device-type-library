@@ -15,6 +15,7 @@
   ],
   "outputTopics": [
     "default",
+    "occupancy",
     "lifecycle"
   ],
   "encoding": "HEX",

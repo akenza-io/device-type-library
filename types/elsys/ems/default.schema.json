@@ -63,7 +63,7 @@
       "description": "Equals true if a waterleak is detected",
       "type": "boolean"
     },
-    "digital": {
+    "reed": {
       "title": "Reed",
       "description": "Equals true if reed is detected",
       "type": "boolean"

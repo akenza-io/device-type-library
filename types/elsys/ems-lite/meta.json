@@ -12,7 +12,7 @@
     "Humidity",
     "Accelerometer",
     "Water leak",
-    "Door"
+    "Reed"
   ],
   "outputTopics": [
     "default",

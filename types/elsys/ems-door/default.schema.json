@@ -28,7 +28,7 @@
       "minimum": -32767,
       "maximum": 32767
     },
-    "digital": {
+    "reed": {
       "title": "Reed",
       "description": "Equals true if reed is detected.",
       "type": "boolean"

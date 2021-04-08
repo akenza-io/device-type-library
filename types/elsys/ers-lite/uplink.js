@@ -211,7 +211,7 @@ function consume(event) {
   data.accZ = res.accZ;
   data.light = res.light;
   data.co2 = res.co2;
-  data.digital = res.digital;
+  data.reed = res.digital;
   data.distance = res.distance;
   data.accMotion = res.accMotion;
   data.irInternalTemperature = res.irInternalTemperature;
