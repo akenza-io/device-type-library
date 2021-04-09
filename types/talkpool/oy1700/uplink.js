@@ -8,7 +8,9 @@ function consume(event) {
   // Boot
   if (port == 1) {
     if (Bits.bitsToUnsigned(bits.substr(16, 8)) != 0) {
-      data.message = "something went wrong while startup";
+      data.message = "Something went wrong while startup";
+    } else {
+      data.message = "Standart startup";
     }
     topic = "startup";
 
@@ -27,7 +29,7 @@ function consume(event) {
       data.particleCount1 = Bits.bitsToUnsigned(bits.substr(104, 16));
       data.particleCount2_5 = Bits.bitsToUnsigned(bits.substr(120, 16));
       data.particleCount5 = Bits.bitsToUnsigned(bits.substr(136, 16));
-      data.particleCount5_ = Bits.bitsToUnsigned(bits.substr(152, 16));
+      data.particleCount5Bigger = Bits.bitsToUnsigned(bits.substr(152, 16));
     }
   }
 

@@ -7,7 +7,7 @@
     "message": {
       "title": "Message",
       "type": "string",
-      "description": "Something went wrong while startup."
+      "description": "Message indicating startup status"
     }
   }
 }

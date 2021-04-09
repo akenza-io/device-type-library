@@ -41,6 +41,7 @@ describe("Talkpool OY1700 Uplink", function () {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
+        assert.equal(value.topic, "default");
 
         if (value.topic === "default") {
 

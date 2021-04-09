@@ -41,9 +41,9 @@ describe("Talkpool OY1210 Uplink", function () {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
+        assert.equal(value.topic, "default");
 
         if (value.topic === "default") {
-
           assert.equal(value.data.temperature, 21.9);
           assert.equal(value.data.humidity, 25.3);
           assert.equal(value.data.co2, 689);
