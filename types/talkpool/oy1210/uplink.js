@@ -7,7 +7,7 @@ function consume(event) {
 
   if (port == 1) {
     if (payload == "012000") {
-      data.message = "Standart startup";
+      data.message = "Standard startup";
     } else {
       data.message = "Something went wrong while startup";
     }

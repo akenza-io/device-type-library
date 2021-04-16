@@ -10,7 +10,7 @@ function consume(event) {
     if (Bits.bitsToUnsigned(bits.substr(16, 8)) != 0) {
       data.message = "Something went wrong while startup";
     } else {
-      data.message = "Standart startup";
+      data.message = "Standard startup";
     }
     topic = "startup";
 
