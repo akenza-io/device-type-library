@@ -3,5 +3,11 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Button event",
   "type": "object",
-  "properties": {}
+  "properties": {
+    "buttonPressed": {
+      "title": "Button pressed",
+      "type": "boolean",
+      "description": "True if a button event got detected"
+    }
+  }
 }

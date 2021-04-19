@@ -6,7 +6,8 @@ const fs = require("fs");
 const assert = chai.assert;
 
 const script = rewire("./uplink.js");
-let timedSchema = null;
+let lifecycleSchema = null;
+let buttonEventSchema = null;
 const consume = script.__get__("consume");
 
 function expectEmit(callback) {
@@ -17,23 +18,35 @@ function expectEmit(callback) {
 
 before(function (done) {
   fs.readFile(
-    __dirname + "/button_event.schema.json",
+    __dirname + "/lifecycle.schema.json",
     "utf8",
     function (err, fileContents) {
       if (err) throw err;
-      timedSchema = JSON.parse(fileContents);
+      buttonEventSchema = JSON.parse(fileContents);
       done();
     }
   );
 });
 
-describe("Swisscom Multisense Uplink", function () {
+before(function (done) {
+  fs.readFile(
+    __dirname + "/button_event.schema.json",
+    "utf8",
+    function (err, fileContents) {
+      if (err) throw err;
+      lifecycleSchema = JSON.parse(fileContents);
+      done();
+    }
+  );
+});
+
+describe("Swisscom Multisense Button Uplink", function () {
   describe("consume()", function () {
-    it("should decode the Swisscom Multisense payload", function (done) {
+    it("should decode the Swisscom Multisense Button payload", function () {
       const data = {
         data: {
           port: 3,
-          payload_hex: "010080a3010945026e0300170412820503f8007cfffc",
+          payload_hex: "020040b5",
         },
       };
 
@@ -42,24 +55,20 @@ describe("Swisscom Multisense Uplink", function () {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic === "timed_event") {
-          assert.equal(value.data.payloadVersion, 1);
+        if (value.topic === "lifecycle") {
+          assert.equal(value.data.payloadVersion, 2);
           assert.equal(value.data.mode, 0);
-          assert.equal(value.data.voltage, 2978);
-          assert.equal(value.data.temperature, 23.73);
-          assert.equal(value.data.humidity, 55);
-          assert.equal(value.data.reedCounter, 23);
-          assert.equal(value.data.motionCounter, 4738);
-          assert.equal(value.data.accX, 1016);
-          assert.equal(value.data.accY, 124);
-          assert.equal(value.data.accZ, -4);
+          assert.equal(value.data.voltage, 3086);
+          validate(value.data, lifecycleSchema, { throwError: true });
+        }
 
-          validate(value.data, timedSchema, { throwError: true });
+        if (value.topic === "button_event") {
+          assert.equal(value.data.buttonPressed, true);
+          validate(value.data, lifecycleSchema, { throwError: true });
         }
       });
 
       consume(data);
-      done();
     });
   });
 });

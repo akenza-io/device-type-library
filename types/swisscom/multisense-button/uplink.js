@@ -84,7 +84,7 @@ function consume(event) {
         emit('sample', { data: data, topic: "timed_event" });
       }
       if (status & 0x40) {
-        emit('sample', { data: {}, topic: "button_event" });
+        emit('sample', { data: { "buttonPressed": true }, topic: "button_event" });
         emit('sample', { data: data, topic: "lifecycle" });
       }
       if (status & 0x20) {
