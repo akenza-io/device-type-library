@@ -1,0 +1,21 @@
+{
+  "name": "OY1700 Particles meter",
+  "version": "1.0.0",
+  "manufacturer": "Talkpool",
+  "url": "https://talkpool.com/oy1700-lorawan-particles-meter/",
+  "description": "LoRaWAN sensor that measures temperature, humidity and particles, in indoor environments.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "Particle Count"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
