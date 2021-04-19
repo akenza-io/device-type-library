@@ -1,0 +1,31 @@
+{
+  "$id": "https://akenza.io/universal/fire-extinguisher/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "payloadVersion": {
+      "title": "Payload version",
+      "description": "Payload version",
+      "type": "integer"
+    },
+    "swVersionMajor": {
+      "title": "Software version major",
+      "description": "Software version major",
+      "type": "integer"
+    },
+    "swVersionMinor": {
+      "title": "Software version minor",
+      "description": "Software version minor",
+      "type": "integer"
+    },
+    "statusPercent": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "unit": "%"
+    }
+  }
+}
