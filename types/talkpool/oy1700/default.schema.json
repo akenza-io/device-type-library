@@ -1,0 +1,96 @@
+{
+  "$id": "https://akenza.io/talkpool/oy1700/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "humidity": {
+      "title": "Humidity",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "pm1": {
+      "title": "Particulate matter 1.0",
+      "unit": "μm",
+      "type": "integer",
+      "description": "Particles less than 1.0 μm in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "pm2_5": {
+      "title": "Particulate matter 2.5",
+      "unit": "μm",
+      "type": "integer",
+      "description": "Particles less than 2.5 μm in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "pm10": {
+      "title": "Particulate matter 10",
+      "unit": "μm",
+      "type": "integer",
+      "description": "Particles less than 10 μm in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "particleCount0_3": {
+      "title": "Particulate matter count 0.3",
+      "unit": "μm",
+      "type": "integer",
+      "description": "Particles less than 0.3 μm in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "particleCount0_5": {
+      "title": "Particulate matter count 0.5",
+      "unit": "μm",
+      "type": "integer",
+      "description": "Particles less than 0.5 μm in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "particleCount1": {
+      "title": "Particulate matter count 1",
+      "unit": "μm",
+      "type": "integer",
+      "description": "Particles less than 1 μm in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "particleCount2_5": {
+      "title": "Particulate matter count 2.5",
+      "unit": "μm",
+      "type": "integer",
+      "description": "Particles less than 2.5 μm in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "particleCount5": {
+      "title": "Particulate matter count 5",
+      "unit": "μm",
+      "type": "integer",
+      "description": "Particles less than 5 μm in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "particleCount5Bigger": {
+      "title": "Particulate matter count 5 <",
+      "unit": "μm",
+      "type": "integer",
+      "description": "Particles more than 5 μm in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    }
+  }
+}
