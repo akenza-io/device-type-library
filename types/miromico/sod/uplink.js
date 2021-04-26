@@ -10,8 +10,8 @@ function consume(event) {
   if (data.msgtype === 0) {
     emit('sample', { data: {}, topic: "button_pressed" });
   } else if (data.msgtype === 1) {
-    var statusPercent = Math.round(100.0 * Bits.bitsToUnsigned(bits.substr(0, 8)) / 254.0);
-    emit('sample', { data: { "statusPercent": statusPercent }, topic: "lifecycle" });
+    var batteryLevel = Math.round(100.0 * Bits.bitsToUnsigned(bits.substr(0, 8)) / 254.0);
+    emit('sample', { data: { "batteryLevel": batteryLevel }, topic: "lifecycle" });
   } else if (data.msgtype === 4) {
     emit('sample', { data: {}, topic: 'button_pressed_long' });
   }

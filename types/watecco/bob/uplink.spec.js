@@ -84,7 +84,7 @@ describe("Watecco BoB Uplink", function () {
 
         if (value.topic === "lifecycle") {
 
-          assert.equal(value.data.statusPercent, 97.638);
+          assert.equal(value.data.batteryLevel, 97.638);
 
           validate(value.data, lifecycleSchema, { throwError: true });
         }

@@ -15,9 +15,9 @@ function consume(event) {
   lifecycle.voltage = (25 + lifecycle.voltage) / 10;
   lifecycle.voltage = Math.round(lifecycle.voltage * 10) / 10;
 
-  lifecycle.statusPercent = Bits.bitsToUnsigned(bits.substr(12, 4));
-  lifecycle.statusPercent = 100 * (lifecycle.statusPercent / 15);
-  lifecycle.statusPercent = Math.round(lifecycle.statusPercent);
+  lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substr(12, 4));
+  lifecycle.batteryLevel = 100 * (lifecycle.batteryLevel / 15);
+  lifecycle.batteryLevel = Math.round(lifecycle.batteryLevel);
 
   data.temperature = Bits.bitsToUnsigned(bits.substr(17, 7));
   data.temperature = data.temperature - 32;

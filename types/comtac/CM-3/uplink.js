@@ -26,7 +26,7 @@ function consume(event) {
   lifecycle.configRX = !!(Bits.bitsToUnsigned(bits.substr(22, 1)));
   lifecycle.infoReq = !!(Bits.bitsToUnsigned(bits.substr(23, 1)));
 
-  lifecycle.statusPercent = Bits.bitsToUnsigned(bits.substr(24, 8)) / 2;
+  lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substr(24, 8)) / 2;
 
   if (port = 3) {
     var payloadId = data.battery = Bits.bitsToUnsigned(bits.substr(32, 8));

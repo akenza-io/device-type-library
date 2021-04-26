@@ -62,7 +62,7 @@ function consume(event) {
     data.min60_80 = round(Bits.bitsToUnsigned(bits.substr(120, 8)) * (data.operatingTime - data.min0_10) / 127);
     data.min80_100 = round(Bits.bitsToUnsigned(bits.substr(128, 8)) * (data.operatingTime - data.min0_10) / 127);
 
-    emit('sample', { data: { statusPercent: round((Bits.bitsToUnsigned(bits.substr(136, 8)) * 100) / 127) }, topic: "lifecycle" });
+    emit('sample', { data: { batteryLevel: round((Bits.bitsToUnsigned(bits.substr(136, 8)) * 100) / 127) }, topic: "lifecycle" });
 
     data.anomalyLvL20Hours = round(Bits.bitsToUnsigned(bits.substr(144, 8)));
     data.anomalyLvL50Hours = round(Bits.bitsToUnsigned(bits.substr(152, 8)));
@@ -100,7 +100,7 @@ function consume(event) {
       sensorState = "Machine start";
     }
     data.sensorState = sensorState;
-    data.statusPercent = round(Bits.bitsToUnsigned(bits.substr(16, 8)) * 100 / 127);
+    data.batteryLevel = round(Bits.bitsToUnsigned(bits.substr(16, 8)) * 100 / 127);
   }
 
   emit('sample', { data: data, topic: topic });

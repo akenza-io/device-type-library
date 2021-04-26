@@ -15,7 +15,7 @@ function decodeFrame(bytes, type, target, pos) {
       target.emptyFrame = {};
       break;
     case 1: // Battery 1byte 0-100%
-      target.statusPercent = bytes[pos++];
+      target.batteryLevel = bytes[pos++];
       break;
     case 2: // TempReport 2bytes 0.1degree C
       // celcius 0.1 precision
@@ -201,7 +201,7 @@ function consume(event) {
   alarm.disinfectAlarm = decoded.disinfectAlarm;
 
   var lifecycle = {};
-  lifecycle.statusPercent = decoded.statusPercent;
+  lifecycle.batteryLevel = decoded.batteryLevel;
   lifecycle.error = decoded.error;
   lifecycle.historySeqNr = decoded.historySeqNr;
   lifecycle.prevHistSeqNr = decoded.prevHistSeqNr;

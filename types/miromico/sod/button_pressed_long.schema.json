@@ -3,5 +3,11 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Button pressed long",
   "type": "object",
-  "properties": {}
+  "properties": {
+    "status": {
+      "title": "Status",
+      "description": "Is true on button pressed long uplink",
+      "type": "boolean"
+    }
+  }
 }

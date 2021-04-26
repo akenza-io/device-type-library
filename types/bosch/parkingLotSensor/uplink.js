@@ -16,7 +16,7 @@ function consume(event) {
       0x03: "System Request Reset",
       0x04: "Other Resets"
     };
-    data.debug = "0x" + payload.substring(0, 24).toUpperCase();
+    data.debug = "Payload hex:" + payload.substring(0, 24).toUpperCase();
     data.fwVersion =
       parseInt("0x" + payload.substring(24, 26), 16) +
       "." +

@@ -3,5 +3,11 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Join",
   "type": "object",
-  "properties": {}
+  "properties": {
+    "status": {
+      "title": "Status",
+      "description": "Is true on join uplink",
+      "type": "boolean"
+    }
+  }
 }

@@ -9,7 +9,7 @@
       "type": "integer",
       "description": "Type of the package"
     },
-    "statusPercent": {
+    "batteryLevel": {
       "type": "number",
       "minimum": 0,
       "maximum": 100,

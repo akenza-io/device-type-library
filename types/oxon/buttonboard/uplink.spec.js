@@ -60,7 +60,7 @@ describe("Oxon Buttonboard Uplink", function () {
 
           assert.equal(value.data.hbIRQ, false);
           assert.equal(value.data.accIRQ, false);
-          assert.equal(value.data.statusPercent, 100);
+          assert.equal(value.data.batteryLevel, 100);
           assert.equal(value.data.appMode, 1);
 
           validate(value.data, lifecycleSchema, { throwError: true });

@@ -59,6 +59,7 @@ describe("Swisscom Multisense Button Uplink", function () {
           assert.equal(value.data.payloadVersion, 2);
           assert.equal(value.data.mode, 0);
           assert.equal(value.data.voltage, 3086);
+          assert.equal(value.data.batteryLevel, 71);
           validate(value.data, lifecycleSchema, { throwError: true });
         }
 
