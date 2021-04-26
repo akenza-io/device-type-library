@@ -6,10 +6,10 @@ function consume(event) {
   var lifecycle = {};
 
   lifecycle.payloadVersion = Bits.bitsToUnsigned(bits.substr(0, 8));
-  data.test = !!parseInt(bits.substr(15, 1));
-  data.removed = !!parseInt(bits.substr(14, 1));
-  data.unlocked = !!parseInt(bits.substr(13, 1));
-  lifecycle.battery = Bits.bitsToUnsigned(bits.substr(16, 8)) * 0.5;
+  data.isTestMessage = !!parseInt(bits.substr(15, 1));
+  data.isRemoved = !!parseInt(bits.substr(14, 1));
+  data.isSecurityUnlocked = !!parseInt(bits.substr(13, 1));
+  lifecycle.batteryPercent = Bits.bitsToUnsigned(bits.substr(16, 8)) * 0.5;
 
   if (event.data.port == 101) {
     lifecycle.swVersionMajor = Bits.bitsToUnsigned(bits.substr(24, 8));

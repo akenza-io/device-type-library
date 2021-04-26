@@ -19,7 +19,7 @@
       "description": "Software version minor",
       "type": "integer"
     },
-    "statusPercent": {
+    "batteryPercent": {
       "type": "integer",
       "minimum": 0,
       "maximum": 100,

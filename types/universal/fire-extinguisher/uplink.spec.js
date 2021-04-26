@@ -58,15 +58,15 @@ describe("Universal fire extinguisher", function () {
 
         if (value.topic === "lifecycle") {
           assert.equal(value.data.payloadVersion, 0);
-          assert.equal(value.data.battery, 100);
+          assert.equal(value.data.batteryPercent, 100);
 
           validate(value.data, lifecycleSchema, { throwError: true });
         }
 
         if (value.topic === "default") {
-          assert.equal(value.data.test, false);
-          assert.equal(value.data.removed, true);
-          assert.equal(value.data.unlocked, false);
+          assert.equal(value.data.isTestMessage, false);
+          assert.equal(value.data.isRemoved, true);
+          assert.equal(value.data.isSecurityUnlocked, false);
 
           validate(value.data, defaultSchema, { throwError: true });
         }
