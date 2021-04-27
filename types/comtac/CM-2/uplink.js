@@ -41,15 +41,15 @@ function consume(event) {
 
 
   if (lifecycle.deepSleepEvent == true) {
-    emit('sample', { data: {}, topic: "sleep" });
+    emit('sample', { data: { "sleep": true }, topic: "sleep" });
   }
   if (lifecycle.buttonEvent == true) {
-    emit('sample', { data: {}, topic: "button_pressed" });
+    emit('sample', { data: { "buttonPressed": true }, topic: "button_pressed" });
   }
   if (lifecycle.txOnEvent == true) {
-    emit('sample', { data: {}, topic: "event" });
+    emit('sample', { data: { "event": true }, topic: "event" });
   }
   if (lifecycle.txOnTimer == true) {
-    emit('sample', { data: {}, topic: "timer" });
+    emit('sample', { data: { "timer": true }, topic: "timer" });
   }
 }

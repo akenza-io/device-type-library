@@ -4,8 +4,8 @@ function consume(event) {
   var data = {};
   var date = new Date();
 
-  var statusPercent = 100.0 * Bits.bitsToUnsigned(bits.substr(0, 8)) / 254.0;
-  emit('sample', { data: { "statusPercent": statusPercent }, topic: "lifecycle" });
+  var batteryLevel = 100.0 * Bits.bitsToUnsigned(bits.substr(0, 8)) / 254.0;
+  emit('sample', { data: { "batteryLevel": batteryLevel }, topic: "lifecycle" });
 
   var pointer = 8;
   for (var i = 0; pointer < bits.length - 8; i++) {

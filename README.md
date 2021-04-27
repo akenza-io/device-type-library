@@ -179,7 +179,7 @@ The following available data keys should be used.
 - imageID
 
 -- Sensorinternal data keys
-- statusPercent
+- batteryLevel
 - voltage
 - debug
 - fwVersion

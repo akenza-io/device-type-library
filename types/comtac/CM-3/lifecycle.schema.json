@@ -64,7 +64,7 @@
       "description": "INFO REQ Event flag set (ASYNC)",
       "type": "boolean"
     },
-    "statusPercent": {
+    "batteryLevel": {
       "type": "number",
       "minimum": 0,
       "maximum": 100,

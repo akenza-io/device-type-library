@@ -73,7 +73,7 @@ function consume(event) {
 
     // Firmware Version
   } else if (data.msgType == 5) {
-
+    data.join = true;
     topic = "join";
   }
 

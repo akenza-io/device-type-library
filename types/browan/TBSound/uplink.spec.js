@@ -58,7 +58,7 @@ describe("TBSound uplink", function () {
 
           if (value.topic === "lifecycle") {
             assert.equal(value.data.voltage, 2.5);
-            assert.equal(value.data.statusPercent, 73);
+            assert.equal(value.data.batteryLevel, 73);
 
             validate(value.data, lifecycleSchema, { throwError: true });
           }

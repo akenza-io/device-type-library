@@ -43,7 +43,7 @@ function consume(event) {
   data.altitude = Bits.bitsToSigned(bits.substr(264, 16)) / 100;
 
   if (lifecycle.txOnEvent == true) {
-    emit('sample', { data: {}, topic: "event" });
+    emit('sample', { data: { "eventUplink": true }, topic: "event" });
   }
 
   emit('sample', { data: data, "topic": "default" });

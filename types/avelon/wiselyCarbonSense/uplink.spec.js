@@ -55,7 +55,7 @@ describe("Avelon Carbonsense uplink", function () {
         assert.typeOf(value.data, "object");
 
         if (value.topic == "lifecycle") {
-          assert.equal(value.data.statusPercent, 100);
+          assert.equal(value.data.batteryLevel, 100);
           validate(value.data, lifecycleSchema, { throwError: true });
         }
 
