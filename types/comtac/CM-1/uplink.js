@@ -26,6 +26,6 @@ function consume(event) {
   emit('sample', { data: defaultData, topic: "default" });
 
   if (data.txOnEvent == true) {
-    emit('sample', { data: { "status": true }, topic: "button_pressed" });
+    emit('sample', { data: { "buttonPressed": true }, topic: "button_pressed" });
   }
 }

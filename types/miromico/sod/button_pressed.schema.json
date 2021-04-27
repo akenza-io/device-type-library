@@ -4,8 +4,8 @@
   "title": "Button pressed",
   "type": "object",
   "properties": {
-    "status": {
-      "title": "Status",
+    "buttonPressed": {
+      "title": "Button pressed",
       "description": "Is true on button pressed uplink",
       "type": "boolean"
     }

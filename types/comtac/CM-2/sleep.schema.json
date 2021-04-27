@@ -4,8 +4,8 @@
   "title": "Sleep",
   "type": "object",
   "properties": {
-    "status": {
-      "title": "Status",
+    "sleep": {
+      "title": "Sleep",
       "description": "Is true on sleep uplink",
       "type": "boolean"
     }

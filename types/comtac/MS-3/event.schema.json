@@ -4,8 +4,8 @@
   "title": "Event",
   "type": "object",
   "properties": {
-    "status": {
-      "title": "Status",
+    "eventUplink": {
+      "title": "Event uplink",
       "description": "Is true on event uplink",
       "type": "boolean"
     }

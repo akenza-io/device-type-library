@@ -4,8 +4,8 @@
   "title": "Join",
   "type": "object",
   "properties": {
-    "status": {
-      "title": "Status",
+    "join": {
+      "title": "Join",
       "description": "Is true on join uplink",
       "type": "boolean"
     }

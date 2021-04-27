@@ -73,7 +73,7 @@ function consume(event) {
         emit('sample', { data: { "motionCounter": data.motionCounter }, topic: "usage_check_event" });
       }
       if (status & 0x20) {
-        emit('sample', { data: {}, topic: "button_event" });
+        emit('sample', { data: { "buttonPressed": true }, topic: "button_event" });
       }
       /*
       if (status & 0x10) {

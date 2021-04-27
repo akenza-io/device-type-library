@@ -4,8 +4,8 @@
   "title": "Timer",
   "type": "object",
   "properties": {
-    "status": {
-      "title": "Status",
+    "timer": {
+      "title": "Timer",
       "description": "Is true on timer uplink",
       "type": "boolean"
     }
