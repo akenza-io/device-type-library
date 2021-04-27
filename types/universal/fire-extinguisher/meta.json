@@ -1,0 +1,18 @@
+{
+  "name": "Fire Extinguisher",
+  "version": "1.0.0",
+  "manufacturer": "Universal",
+  "url": "https://www.u-f.ch/deutsch/handfeuerl%C3%B6scher/internet-of-things-feuerl%C3%B6scher/",
+  "description": "LoRaWAN sensor used to check if a fire extinguisher is still in place.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Reed"
+  ],
+  "outputTopics": [
+    "default"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
