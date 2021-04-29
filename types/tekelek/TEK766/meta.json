@@ -1,0 +1,21 @@
+{
+  "name": "TEK-766",
+  "version": "1.0.0",
+  "manufacturer": "Tekelek",
+  "url": "https://tekelek.com/product/tek-oil-lora-ultrasonic/",
+  "description": "Tekelek ultrasonic oil measurement sensor.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Distance",
+    "Temperature"
+  ],
+  "outputTopics": [
+    "current",
+    "measurement",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

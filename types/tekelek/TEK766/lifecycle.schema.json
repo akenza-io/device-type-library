@@ -1,0 +1,97 @@
+{
+  "$id": "https://akenza.io/tekelek/tek766/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "batteryLevel": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "unit": "%"
+    },
+    "hardwareID": {
+      "title": "Hardware ID",
+      "description": "Hardware ID",
+      "type": "integer"
+    },
+    "fmVersion": {
+      "title": "Firmware version",
+      "description": "Firmware version",
+      "type": "number"
+    },
+    "contactReason": {
+      "title": "Contact reason",
+      "description": "Contact reason",
+      "type": "string",
+      "enum": [
+        "Reset",
+        "Scheduled",
+        "Manual",
+        "Activation"
+      ]
+    },
+    "systemRequestReset": {
+      "title": "System request reset",
+      "description": "Defines the reason for the last reset",
+      "type": "string",
+      "enum": [
+        "Power on reset",
+        "Brown out reset",
+        "External reset",
+        "Watchdog reset",
+        "Cortex-M3 lockup reset",
+        "Cortex-M3 system request reset",
+        "EM4 reset",
+        "System has been in Backup mode"
+      ]
+    },
+    "active": {
+      "title": "Active",
+      "description": "Active",
+      "type": "boolean"
+    },
+    "meassurements": {
+      "title": "Meassurements",
+      "description": "Defines the measurement Sections in minutes",
+      "unit": "minutes",
+      "type": "integer"
+    },
+    "transmitPeriods": {
+      "title": "Transmit periods",
+      "description": "Defines the schedule transmit period in hours",
+      "unit": "hours",
+      "type": "integer"
+    },
+    "ullage1": {
+      "title": "Ullage 1",
+      "unit": "cm",
+      "type": "number",
+      "description": "Distance measured between the sensor and the surface"
+    },
+    "temp1": {
+      "title": "Temperature 1",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "SRSSI1": {
+      "title": "Sonic Received Signal Strength Indicator",
+      "type": "integer",
+      "description": "The SRSSI is simply an integer number between 1 (low level) and 10 (expected level) given to the expected strength of the echo reflected to the transducer.",
+      "max": 10,
+      "min": 1
+    },
+    "SRC1": {
+      "title": "Sonic Results Code – a performance metric of the ultrasonic measurement",
+      "type": "integer",
+      "description": "The SRC represents the result code of the ultrasonic algorithm which can be used to deduce whether a reading is likely to be valid or not. An SRC of 9 or 10 are optimal.",
+      "max": 10,
+      "min": 1
+    }
+  }
+}

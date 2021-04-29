@@ -1,0 +1,51 @@
+{
+  "$id": "https://akenza.io/tekelek/tek766/current.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Current",
+  "type": "object",
+  "properties": {
+    "ullage1": {
+      "title": "Ullage 1",
+      "unit": "cm",
+      "type": "number",
+      "description": "Distance measured between the sensor and the surface"
+    },
+    "temp1": {
+      "title": "Temperature 1",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "lim1": {
+      "title": "Limit 1",
+      "type": "boolean",
+      "description": "True if configured limit 1 is exceeded"
+    },
+    "lim2": {
+      "title": "Limit 2",
+      "type": "boolean",
+      "description": "True if configured limit 2 is exceeded"
+    },
+    "lim3": {
+      "title": "Limit 3",
+      "type": "boolean",
+      "description": "True if configured limit 3 is exceeded"
+    },
+    "SRSSI1": {
+      "title": "Sonic Received Signal Strength Indicator",
+      "type": "integer",
+      "description": "The SRSSI is simply an integer number between 1 (low level) and 10 (expected level) given to the expected strength of the echo reflected to the transducer.",
+      "max": 10,
+      "min": 1
+    },
+    "SRC1": {
+      "title": "Sonic Results Code – a performance metric of the ultrasonic measurement",
+      "type": "integer",
+      "description": "The SRC represents the result code of the ultrasonic algorithm which can be used to deduce whether a reading is likely to be valid or not. An SRC of 9 or 10 are optimal.",
+      "max": 10,
+      "min": 1
+    }
+  }
+}
