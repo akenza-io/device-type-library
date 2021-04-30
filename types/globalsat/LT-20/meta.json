@@ -1,0 +1,19 @@
+{
+  "name": "LT-20/LT-20P",
+  "version": "1.0.0",
+  "manufacturer": "GlobalSat",
+  "url": "https://www.globalsat.com.tw/en/product-275227/Solar-Powered-LoRa-GPS-Tracker-for-Cattle-Cow-Livestock-and-Farming-LT-20-LT-20P-Series.html",
+  "description": "LT-20 is a solar LoRaWAN tracker designed for animal tracking. LT-20P is a solar LoRaWAN tracker designed for asset tracking purpose.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "GPS"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
