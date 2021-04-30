@@ -11,7 +11,8 @@
     "GPS"
   ],
   "outputTopics": [
-    "default"
+    "default",
+    "lifecycle"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"
