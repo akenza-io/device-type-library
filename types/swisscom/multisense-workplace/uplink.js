@@ -18,6 +18,7 @@ function consume(event) {
   data.mode = Bits.bitsToUnsigned(bits.substr(8, 8));
   var status = Number(Bits.bitsToUnsigned(bits.substr(16, 8)));
   data.voltage = Bits.bitsToUnsigned(bits.substr(24, 8)) * 6 + 2000; // 2000 = 0
+  data.batteryLevel = Math.round((data.voltage - 2000) / 15.24);
 
   if (port == 3) {
     var pointer = 32;
@@ -72,7 +73,7 @@ function consume(event) {
         emit('sample', { data: { "motionCounter": data.motionCounter }, topic: "usage_check_event" });
       }
       if (status & 0x20) {
-        emit('sample', { data: {}, topic: "button_event" });
+        emit('sample', { data: { "buttonPressed": true }, topic: "button_event" });
       }
       /*
       if (status & 0x10) {

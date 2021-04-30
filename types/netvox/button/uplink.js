@@ -13,10 +13,10 @@ function consume(event) {
     var click = Bits.bitsToUnsigned(bits.substr(32, 8));
     // 6 Bytes reserved
     if (click == 1) {
-      emit('sample', { data: {}, topic: "button_pressed" });
+      emit('sample', { data: { "buttonPressed": true }, topic: "button_pressed" });
     }
     emit('sample', { data: data, topic: "lifecycle" });
   } else if (repType == 0) {
-    emit('sample', { data: {}, topic: "config" });
+    emit('sample', { data: { "config": true }, topic: "config" });
   }
 }

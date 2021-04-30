@@ -3,5 +3,11 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Configuration",
   "type": "object",
-  "properties": {}
+  "properties": {
+    "config": {
+      "title": "Configuration",
+      "description": "Is true on configuration uplink",
+      "type": "boolean"
+    }
+  }
 }

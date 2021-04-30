@@ -60,7 +60,7 @@ describe("Oxon Oxobutton Q Uplink", function () {
 
           assert.equal(value.data.hbIRQ, true);
           assert.equal(value.data.accIRQ, false);
-          assert.equal(value.data.statusPercent, 100);
+          assert.equal(value.data.batteryLevel, 100);
 
           validate(value.data, lifecycleSchema, { throwError: true });
         }

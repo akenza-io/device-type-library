@@ -46,6 +46,7 @@ describe("Swisscom Multisense Uplink", function () {
           assert.equal(value.data.payloadVersion, 1);
           assert.equal(value.data.mode, 0);
           assert.equal(value.data.voltage, 2978);
+          assert.equal(value.data.batteryLevel, 64);
           assert.equal(value.data.temperature, 23.73);
           assert.equal(value.data.humidity, 55);
           assert.equal(value.data.reedCounter, 23);
