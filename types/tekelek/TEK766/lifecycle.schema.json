@@ -17,7 +17,7 @@
       "description": "Hardware ID",
       "type": "integer"
     },
-    "fmVersion": {
+    "firmwareVersion": {
       "title": "Firmware version",
       "description": "Firmware version",
       "type": "number"
@@ -53,15 +53,15 @@
       "description": "Active",
       "type": "boolean"
     },
-    "meassurements": {
-      "title": "Meassurements",
-      "description": "Defines the measurement Sections in minutes",
+    "measurements": {
+      "title": "Measurements",
+      "description": "Defines the measurement window in minutes",
       "unit": "minutes",
       "type": "integer"
     },
     "transmitPeriods": {
-      "title": "Transmit periods",
-      "description": "Defines the schedule transmit period in hours",
+      "title": "Transmission periods",
+      "description": "Defines the schedule transmission period in hours",
       "unit": "hours",
       "type": "integer"
     },

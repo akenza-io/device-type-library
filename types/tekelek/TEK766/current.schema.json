@@ -18,17 +18,17 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     },
-    "lim1": {
+    "limit1": {
       "title": "Limit 1",
       "type": "boolean",
       "description": "True if configured limit 1 is exceeded"
     },
-    "lim2": {
+    "limit2": {
       "title": "Limit 2",
       "type": "boolean",
       "description": "True if configured limit 2 is exceeded"
     },
-    "lim3": {
+    "limit3": {
       "title": "Limit 3",
       "type": "boolean",
       "description": "True if configured limit 3 is exceeded"

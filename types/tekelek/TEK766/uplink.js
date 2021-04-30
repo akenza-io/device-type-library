@@ -36,9 +36,9 @@ function consume(event) {
   }
 
   if (type == 16 || type == 69) {
-    data.lim1 = (bits.substr(23, 1) == "1");
-    data.lim2 = (bits.substr(22, 1) == "1");
-    data.lim3 = (bits.substr(21, 1) == "1");
+    data.limit1 = (bits.substr(23, 1) == "1");
+    data.limit2 = (bits.substr(22, 1) == "1");
+    data.limit3 = (bits.substr(21, 1) == "1");
     // 24 reserved
     if (type == 16) {
       topic = "measurement";
@@ -51,7 +51,7 @@ function consume(event) {
   } else if (type == 48) {
     // 16 reserved
     data.hardwareID = Bits.bitsToUnsigned(bits.substr(24, 8));
-    data.fmVersion = Bits.bitsToUnsigned(bits.substr(32, 8)) + "." + Bits.bitsToUnsigned(bits.substr(40, 8));
+    data.firmwareVersion = Bits.bitsToUnsigned(bits.substr(32, 8)) + "." + Bits.bitsToUnsigned(bits.substr(40, 8));
     var contactReason = Bits.bitsToUnsigned(bits.substr(54, 2));
     switch (contactReason) {
       case 0:
@@ -106,7 +106,7 @@ function consume(event) {
     var min1 = Bits.bitsToUnsigned(bits.substr(88, 8));
     var min2 = Bits.bitsToUnsigned(bits.substr(96, 8));
 
-    data.meassurements = (min1 * 256) + min2;
+    data.measurements = (min1 * 256) + min2;
     data.transmitPeriods = Bits.bitsToUnsigned(bits.substr(104, 8));
     data = getValues(bits, data, 112, 2, 'none');
     topic = "lifecycle";
