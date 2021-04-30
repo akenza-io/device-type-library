@@ -120,7 +120,7 @@ The following available data keys should be used.
 - pm10
 
 -- Electricity data keys
-- light_state
+- lightState
 - adc1
 - adc2
 - lem

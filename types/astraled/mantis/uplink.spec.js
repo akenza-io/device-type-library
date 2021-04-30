@@ -29,7 +29,7 @@ describe("Astraled Air Quality Luminary V0.02 Uplink", function () {
       });
   });
   describe("consume()", function () {
-    it("should decode the Astraled Air Quality Luminary V0.02 payload", function (done) {
+    it("should decode the Astraled Air Quality Luminary V0.02 payload", function () {
       const data = {
         data: {
           port: 1,
@@ -71,7 +71,7 @@ describe("Astraled Air Quality Luminary V0.02 Uplink", function () {
         assert.typeOf(value.data, "object");
         assert.equal(value.topic, "default");
 
-        assert.equal(value.data.light_state, 17);
+        assert.equal(value.data.lightState, 17);
         assert.equal(value.data.temperature, 23.21);
         assert.equal(value.data.humidity, 32.6);
         assert.equal(value.data.voc, 317);
@@ -81,7 +81,6 @@ describe("Astraled Air Quality Luminary V0.02 Uplink", function () {
       });
 
       consume(data);
-      done();
     });
   });
 });

@@ -177,7 +177,7 @@ function consume(event) {
         data.longitude = get_float(buff, rd_pos);
         break;
       case 35:
-        data.light_state = get_byte(buff, rd_pos);
+        data.lightState = get_byte(buff, rd_pos);
         break;
       case 37:
         lifecycle.light_set_cct = get_word(buff, rd_pos);

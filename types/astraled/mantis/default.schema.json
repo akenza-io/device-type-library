@@ -100,7 +100,7 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     },
-    "light_state": {
+    "lightState": {
       "title": "Light State",
       "type": "integer",
       "description": "State of the Light",

@@ -20,7 +20,7 @@ function bytesToFloat(bytes) {
   return f;
 }
 
-function get_byte(buff, nr) {
+function getByte(buff, nr) {
   return Bits.bitsToUnsigned(buff.substr(nr * 8, 8));
 }
 
@@ -49,24 +49,24 @@ function consume(event) {
   var rd_pos = 0;
 
   do {
-    var para_size = get_byte(buff, rd_pos++) & 0x3F;  // get size
-    var para_type = get_byte(buff, rd_pos++);  // get type
+    var para_size = getByte(buff, rd_pos++) & 0x3F;  // get size
+    var para_type = getByte(buff, rd_pos++);  // get type
 
     switch (para_type) {
       case 1:
-        lifecycle.protocol_version = "Version: " + get_byte(buff, rd_pos + 1) + "." + get_byte(buff, rd_pos);
+        lifecycle.protocol_version = "Version: " + getByte(buff, rd_pos + 1) + "." + getByte(buff, rd_pos);
         break;
       case 2:
-        lifecycle.app_version = "Version: " + get_byte(buff, rd_pos + 2) + "." + get_byte(buff, rd_pos + 1) + "p" + get_byte(buff, rd_pos);
+        lifecycle.app_version = "Version: " + getByte(buff, rd_pos + 2) + "." + getByte(buff, rd_pos + 1) + "p" + getByte(buff, rd_pos);
         break;
       case 3:
-        lifecycle.lora_stack_version = "Version: " + get_byte(buff, rd_pos + 2) + "." + get_byte(buff, rd_pos + 1) + "." + get_byte(buff, rd_pos);
+        lifecycle.lora_stack_version = "Version: " + getByte(buff, rd_pos + 2) + "." + getByte(buff, rd_pos + 1) + "." + getByte(buff, rd_pos);
         break;
       case 4:
-        lifecycle.lora_version = "Version: " + get_byte(buff, rd_pos + 2) + "." + get_byte(buff, rd_pos + 1) + "." + get_byte(buff, rd_pos);
+        lifecycle.lora_version = "Version: " + getByte(buff, rd_pos + 2) + "." + getByte(buff, rd_pos + 1) + "." + getByte(buff, rd_pos);
         break;
       case 6:
-        switch (get_byte(buff, rd_pos)) {
+        switch (getByte(buff, rd_pos)) {
           case 1: lifecycle.msg_cycle_time_1 = get_word(buff, rd_pos + 1); break;
           case 2: lifecycle.msg_cycle_time_2 = get_word(buff, rd_pos + 1); break;
           case 3: lifecycle.msg_cycle_time_3 = get_word(buff, rd_pos + 1); break;
@@ -78,7 +78,7 @@ function consume(event) {
         }
         break;
       case 7:
-        lifecycle.group_address = get_byte(buff, rd_pos);
+        lifecycle.group_address = getByte(buff, rd_pos);
         break;
       case 8:
         lifecycle.serial_number = get_long(buff, rd_pos);
@@ -99,10 +99,10 @@ function consume(event) {
         data.eco2 = get_word(buff, rd_pos);
         break;
       case 14:
-        lifecycle.iaq_state_int = get_byte(buff, rd_pos);
+        lifecycle.iaq_state_int = getByte(buff, rd_pos);
         break;
       case 15:
-        lifecycle.iaq_state_ext = get_byte(buff, rd_pos);
+        lifecycle.iaq_state_ext = getByte(buff, rd_pos);
         break;
       case 16:
         data.pm1_0 = get_float(buff, rd_pos);
@@ -132,40 +132,40 @@ function consume(event) {
         lifecycle.iaq_threshold_voc_bad = get_word(buff, rd_pos + 2);
         break;
       case 24:
-        lifecycle.iaq_filter_time = get_byte(buff, rd_pos);
-        lifecycle.iaq_hysteresis_co2 = get_byte(buff, rd_pos + 1);
-        lifecycle.iaq_hysteresis_voc = get_byte(buff, rd_pos + 2);
+        lifecycle.iaq_filter_time = getByte(buff, rd_pos);
+        lifecycle.iaq_hysteresis_co2 = getByte(buff, rd_pos + 1);
+        lifecycle.iaq_hysteresis_voc = getByte(buff, rd_pos + 2);
         break;
       case 25:
-        lifecycle.iaq_rgbw_good_red = get_byte(buff, rd_pos);
-        lifecycle.iaq_rgbw_good_green = get_byte(buff, rd_pos + 1);
-        lifecycle.iaq_rgbw_good_blue = get_byte(buff, rd_pos + 2);
+        lifecycle.iaq_rgbw_good_red = getByte(buff, rd_pos);
+        lifecycle.iaq_rgbw_good_green = getByte(buff, rd_pos + 1);
+        lifecycle.iaq_rgbw_good_blue = getByte(buff, rd_pos + 2);
         break;
       case 26:
-        lifecycle.iaq_rgbw_still_ok_red = get_byte(buff, rd_pos);
-        lifecycle.iaq_rgbw_still_ok_green = get_byte(buff, rd_pos + 1);
-        lifecycle.iaq_rgbw_still_ok_blue = get_byte(buff, rd_pos + 2);
+        lifecycle.iaq_rgbw_still_ok_red = getByte(buff, rd_pos);
+        lifecycle.iaq_rgbw_still_ok_green = getByte(buff, rd_pos + 1);
+        lifecycle.iaq_rgbw_still_ok_blue = getByte(buff, rd_pos + 2);
         break;
       case 27:
-        lifecycle.iaq_rgbw_bad_red = get_byte(buff, rd_pos);
-        lifecycle.iaq_rgbw_bad_green = get_byte(buff, rd_pos + 1);
-        lifecycle.iaq_rgbw_bad_blue = get_byte(buff, rd_pos + 2);
+        lifecycle.iaq_rgbw_bad_red = getByte(buff, rd_pos);
+        lifecycle.iaq_rgbw_bad_green = getByte(buff, rd_pos + 1);
+        lifecycle.iaq_rgbw_bad_blue = getByte(buff, rd_pos + 2);
         break;
       case 28:
-        lifecycle.iaq_rgbw_deadly_red = get_byte(buff, rd_pos);
-        lifecycle.iaq_rgbw_deadly_green = get_byte(buff, rd_pos + 1);
-        lifecycle.iaq_rgbw_deadly_blue = get_byte(buff, rd_pos + 2);
+        lifecycle.iaq_rgbw_deadly_red = getByte(buff, rd_pos);
+        lifecycle.iaq_rgbw_deadly_green = getByte(buff, rd_pos + 1);
+        lifecycle.iaq_rgbw_deadly_blue = getByte(buff, rd_pos + 2);
         break;
       case 29:
-        lifecycle.iaq_rgbw_warmup_red = get_byte(buff, rd_pos);
-        lifecycle.iaq_rgbw_warmup_green = get_byte(buff, rd_pos + 1);
-        lifecycle.iaq_rgbw_warmup_blue = get_byte(buff, rd_pos + 2);
+        lifecycle.iaq_rgbw_warmup_red = getByte(buff, rd_pos);
+        lifecycle.iaq_rgbw_warmup_green = getByte(buff, rd_pos + 1);
+        lifecycle.iaq_rgbw_warmup_blue = getByte(buff, rd_pos + 2);
         break;
       case 30:
-        lifecycle.iaq_rgbw_dimming = get_byte(buff, rd_pos);
+        lifecycle.iaq_rgbw_dimming = getByte(buff, rd_pos);
         break;
       case 31:
-        lifecycle.iaq_visualisation = get_byte(buff, rd_pos);
+        lifecycle.iaq_visualisation = getByte(buff, rd_pos);
         break;
       case 32:
         data.altitude = get_word(buff, rd_pos);
@@ -177,7 +177,7 @@ function consume(event) {
         data.longitude = get_float(buff, rd_pos);
         break;
       case 35:
-        data.light_state = get_byte(buff, rd_pos);
+        data.lightState = getByte(buff, rd_pos);
         break;
       case 37:
         lifecycle.light_set_cct = get_word(buff, rd_pos);
@@ -189,7 +189,7 @@ function consume(event) {
         lifecycle.light_light_level = get_word(buff, rd_pos);
         break;
       case 40:
-        lifecycle.device_temperature = get_byte(buff, rd_pos);
+        lifecycle.device_temperature = getByte(buff, rd_pos);
         break;
       case 41:
         lifecycle.error = get_long(buff, rd_pos);
