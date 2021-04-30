@@ -4,8 +4,8 @@
   "title": "Position",
   "type": "object",
   "properties": {
-    "sequence": {
-      "title": "Sequence",
+    "sequenceNumber": {
+      "title": "Sequence number",
       "type": "integer",
       "description": "Sequence number (identifies downlink to server)"
     },

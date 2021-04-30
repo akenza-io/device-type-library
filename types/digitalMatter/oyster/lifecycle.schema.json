@@ -15,7 +15,7 @@
     "txCount": {
       "title": "Tx count",
       "type": "integer",
-      "description": "Transmition count"
+      "description": "Transmission count"
     },
     "tripCount": {
       "title": "Trip count",
@@ -45,10 +45,10 @@
       "description": "Seconds spent per failed GPS fix attempt"
     },
     "aveGpsFreshenS": {
-      "title": "Average GPS freshening time",
+      "title": "Average GPS refreshing time",
       "type": "integer",
       "unit": "s",
-      "description": "Seconds spent freshening GPS ephemerides per successful GPS fix"
+      "description": "Seconds spent refreshing GPS ephemerides per successful GPS fix"
     },
     "wakeupsPerTrip": {
       "title": "Wakeups per trip",

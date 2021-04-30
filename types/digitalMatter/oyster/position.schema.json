@@ -45,7 +45,7 @@
     "manDown": {
       "title": "Man down",
       "type": "boolean",
-      "description": "equals true if no movement for configured period got detected (Needs to be activated)"
+      "description": "Equals true if no movement for configured period got detected (Needs to be activated)"
     },
     "voltage": {
       "type": "number",

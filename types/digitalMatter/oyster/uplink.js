@@ -1,29 +1,19 @@
-// Parse Hex Byte Array
-function parseHexString(str) {
-  var result = [];
-  while (str.length >= 2) {
-    result.push(parseInt(str.substring(0, 2), 16));
-
-    str = str.substring(2, str.length);
-  }
-
-  return result;
-}
-
 function decoder(bytes, port) {
   var decoded = {};
   if (port === 1) {
     decoded.type = "position";
     decoded.latitudeDeg = bytes[0] + bytes[1] * 256 +
       bytes[2] * 65536 + bytes[3] * 16777216;
-    if (decoded.latitudeDeg >= 0x80000000) // 2^31
+    if (decoded.latitudeDeg >= 0x80000000) { // 2^31
       decoded.latitudeDeg -= 0x100000000; // 2^32
+    }
     decoded.latitudeDeg /= 1e7;
 
     decoded.longitudeDeg = bytes[4] + bytes[5] * 256 +
       bytes[6] * 65536 + bytes[7] * 16777216;
-    if (decoded.longitudeDeg >= 0x80000000) // 2^31
+    if (decoded.longitudeDeg >= 0x80000000) {// 2^31
       decoded.longitudeDeg -= 0x100000000; // 2^32
+    }
     decoded.longitudeDeg /= 1e7;
     decoded.inTrip = ((bytes[8] & 0x1) !== 0) ? true : false;
     decoded.fixFailed = ((bytes[8] & 0x2) !== 0) ? true : false;
@@ -35,13 +25,15 @@ function decoder(bytes, port) {
   else if (port === 4) {
     decoded.type = "position";
     decoded.latitudeDeg = bytes[0] + bytes[1] * 256 + bytes[2] * 65536;
-    if (decoded.latitudeDeg >= 0x800000) // 2^23
+    if (decoded.latitudeDeg >= 0x800000) { // 2^23
       decoded.latitudeDeg -= 0x1000000; // 2^24
+    }
     decoded.latitudeDeg *= 256e-7;
 
     decoded.longitudeDeg = bytes[3] + bytes[4] * 256 + bytes[5] * 65536;
-    if (decoded.longitudeDeg >= 0x800000) // 2^23
+    if (decoded.longitudeDeg >= 0x800000) { // 2^23
       decoded.longitudeDeg -= 0x1000000; // 2^24
+    }
     decoded.longitudeDeg *= 256e-7;
     decoded.headingDeg = (bytes[6] & 0x7) * 45;
     decoded.speedKmph = (bytes[6] >> 3) * 5;
@@ -52,7 +44,7 @@ function decoder(bytes, port) {
   }
   else if (port === 2) {
     decoded.type = "downlink_ack";
-    decoded.sequence = (bytes[0] & 0x7F);
+    decoded.sequenceNumber = (bytes[0] & 0x7F);
     decoded.accepted = ((bytes[0] & 0x80) !== 0) ? true : false;
     decoded.fwMaj = bytes[1];
     decoded.fwMin = bytes[2];
@@ -78,7 +70,7 @@ function decoder(bytes, port) {
 function consume(event) {
   var payload = event.data.payload_hex;
   var port = event.data.port;
-  var data = decoder(parseHexString(payload), port);
+  var data = decoder(Bits.hexToBytes(payload), port);
   var topic = data.type;
   emit('sample', { "data": data, "topic": topic });
 }
