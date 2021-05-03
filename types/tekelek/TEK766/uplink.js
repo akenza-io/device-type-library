@@ -1,29 +1,3 @@
-function getValues(bits, data, pointer, loops, currentTopic) {
-  // i = 1 for beauty :p
-  for (var i = 1; i < loops; i++) {
-
-    var ull1 = Bits.bitsToUnsigned(bits.substr(pointer, 8)); pointer += 8;
-    var ull2 = Bits.bitsToUnsigned(bits.substr(pointer, 8)); pointer += 8;
-    data["ullage" + i] = (ull1 * 256) + ull2;
-
-    var temp = Bits.bitsToUnsigned(bits.substr(pointer, 8)); pointer += 8;
-    var base = 0;
-    if (temp > 50) {
-      base = 256;
-    }
-    data["temp" + i] = - (base - temp);
-
-    data["SRC" + i] = Bits.bitsToUnsigned(bits.substr(pointer, 4)); pointer += 4;
-    data["SRSSI" + i] = Bits.bitsToUnsigned(bits.substr(pointer, 4)); pointer += 4;
-
-    if (i == 1 && currentTopic != "none") {
-      emit('sample', { data: JSON.parse(JSON.stringify(data)), topic: currentTopic });
-    }
-  }
-  return data;
-}
-
-
 function consume(event) {
   var payload = event.data.payload_hex;
   var port = event.data.port;
@@ -42,10 +16,41 @@ function consume(event) {
     // 24 reserved
     if (type == 16) {
       topic = "measurement";
-      data = getValues(bits, data, 32, 5, 'current');
+      var pointer = 32
+      for (var i = 1; i < 5; i++) {
+
+        var ull1 = Bits.bitsToUnsigned(bits.substr(pointer, 8)); pointer += 8;
+        var ull2 = Bits.bitsToUnsigned(bits.substr(pointer, 8)); pointer += 8;
+        data["ullage" + i] = (ull1 * 256) + ull2;
+
+        var temp = Bits.bitsToUnsigned(bits.substr(pointer, 8)); pointer += 8;
+        var base = 0;
+        if (temp > 50) {
+          base = 256;
+        }
+        data["temp" + i] = - (base - temp);
+
+        data["SRC" + i] = Bits.bitsToUnsigned(bits.substr(pointer, 4)); pointer += 4;
+        data["SRSSI" + i] = Bits.bitsToUnsigned(bits.substr(pointer, 4)); pointer += 4;
+      }
     } else {
       topic = "alarm";
-      data = getValues(bits, data, 32, 3, 'currentAlarm');
+      var pointer = 32
+      for (var i = 1; i < 3; i++) {
+        var ull1 = Bits.bitsToUnsigned(bits.substr(pointer, 8)); pointer += 8;
+        var ull2 = Bits.bitsToUnsigned(bits.substr(pointer, 8)); pointer += 8;
+        data["ullage" + i] = (ull1 * 256) + ull2;
+
+        var temp = Bits.bitsToUnsigned(bits.substr(pointer, 8)); pointer += 8;
+        var base = 0;
+        if (temp > 50) {
+          base = 256;
+        }
+        data["temp" + i] = - (base - temp);
+
+        data["SRC" + i] = Bits.bitsToUnsigned(bits.substr(pointer, 4)); pointer += 4;
+        data["SRSSI" + i] = Bits.bitsToUnsigned(bits.substr(pointer, 4)); pointer += 4;
+      }
     }
 
   } else if (type == 48) {
@@ -108,7 +113,22 @@ function consume(event) {
 
     data.measurements = (min1 * 256) + min2;
     data.transmitPeriods = Bits.bitsToUnsigned(bits.substr(104, 8));
-    data = getValues(bits, data, 112, 2, 'none');
+
+    var pointer = 112;
+    for (var i = 1; i < 2; i++) {
+      var ull1 = Bits.bitsToUnsigned(bits.substr(pointer, 8)); pointer += 8;
+      var ull2 = Bits.bitsToUnsigned(bits.substr(pointer, 8)); pointer += 8;
+      data["ullage" + i] = (ull1 * 256) + ull2;
+      var temp = Bits.bitsToUnsigned(bits.substr(pointer, 8)); pointer += 8;
+      var base = 0;
+      if (temp > 50) {
+        base = 256;
+      }
+      data["temp" + i] = - (base - temp);
+      data["SRC" + i] = Bits.bitsToUnsigned(bits.substr(pointer, 4)); pointer += 4;
+      data["SRSSI" + i] = Bits.bitsToUnsigned(bits.substr(pointer, 4)); pointer += 4;
+    }
+
     topic = "lifecycle";
   } else if (type == 67) {
     //16 Reserved
