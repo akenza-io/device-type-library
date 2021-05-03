@@ -43,7 +43,7 @@ describe("Globalsat LT-20 uplink", function () {
 
         if (value.topic == "default") {
           assert.equal(value.data.longitude, 121.487685);
-          assert.equal(value.data.latitude, 49.761663999999996);
+          assert.equal(value.data.latitude, 24.9965568);
           assert.equal(value.data.reportType, "Periodic mode report");
           assert.equal(value.data.gpsFix, "3D fix");
 
