@@ -21,7 +21,7 @@ function consume(event) {
   var commandID = Bits.bitsToUnsigned(bits.substr(8, 8));
 
   data.longitude = (toLittleEndian(payload.substr(4, 6)) * 215) / 10 * 0.000001;
-  data.latitude = (toLittleEndian(payload.substr(10, 6)) * 215) / 10 * 0.000001;
+  data.latitude = (toLittleEndian(payload.substr(10, 6)) * 108) / 10 * 0.000001;
 
   var reportType = Math.round(Bits.bitsToUnsigned(bits.substr(64, 8)) / 32);
   var gpsFix = Math.round(Bits.bitsToUnsigned(bits.substr(64, 8)) / 32);
