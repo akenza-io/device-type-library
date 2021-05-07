@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.0.1] - 2021-05-07
+
+### Fixed
+
+- Fixes an issue where little endian conversion for GlobalSat LT-20 was wrong
+
 ## [1.0.0]
 
 ### Added
@@ -68,9 +74,3 @@ All notable changes to this project will be documented in this file.
 - Universal - Fire Extinguisher
 - nke Watecco - BOB Assistant
 - Xovis - PC2S
-
-## [1.0.1] - 2021-05-07
-
-### Fixed
-
-- Fixes an issue where little endian conversion for GlobalSat LT-20 was wrong
