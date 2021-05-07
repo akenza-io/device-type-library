@@ -9,8 +9,7 @@ function toLittleEndianSigned(hex) {
   hex = hexArray.join('');
 
   // To signed
-  var num = Bits.bitsToSigned(Bits.hexToBits(hex));
-  return num;
+  return Bits.bitsToSigned(Bits.hexToBits(hex));
 }
 
 function consume(event) {
