@@ -1,29 +1,26 @@
-function toLittleEndian(hex) {
-  var data = hex.match(/../g);
-  // Create a buffer
-  var buf = new ArrayBuffer(4);
-  // Create a data view of it
-  var view = new DataView(buf);
-  // set bytes
-  data.forEach(function (b, i) {
-    view.setUint8(i, parseInt(b, 16));
-  });
-  // get an int32 with little endian
-  var num = view.getInt32(0, 1);
-  return num;
+function toLittleEndianSigned(hex) {
+  // Creating little endian hex DCBA
+  var hexArray = [];
+  while (hex.length >= 2) {
+    hexArray.push(hex.substring(0, 2));
+    hex = hex.substring(2, hex.length);
+  }
+  hexArray.reverse()
+  hex = hexArray.join('');
+
+  // To signed
+  return Bits.bitsToSigned(Bits.hexToBits(hex));
 }
 
 function consume(event) {
   var payload = event.data.payload_hex;
   var bits = Bits.hexToBits(payload);
   var data = {};
-  var protocolVersion = Bits.bitsToUnsigned(bits.substr(0, 8));
-  var commandID = Bits.bitsToUnsigned(bits.substr(8, 8));
 
-  data.longitude = (toLittleEndian(payload.substr(4, 6)) * 215) / 10 * 0.000001;
-  data.latitude = (toLittleEndian(payload.substr(10, 6)) * 215) / 10 * 0.000001;
+  data.longitude = (toLittleEndianSigned(payload.substr(4, 6)) * 215) / 10 * 0.000001;
+  data.latitude = (toLittleEndianSigned(payload.substr(10, 6)) * 108) / 10 * 0.000001;
 
-  var reportType = Math.round(Bits.bitsToUnsigned(bits.substr(64, 8)) / 32);
+  var reportType = Math.round(Bits.bitsToUnsigned(bits.substr(64, 8)) % 32);
   var gpsFix = Math.round(Bits.bitsToUnsigned(bits.substr(64, 8)) / 32);
 
   if (gpsFix == 0) {
