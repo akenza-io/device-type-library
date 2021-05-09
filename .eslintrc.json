@@ -7,7 +7,8 @@
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly",
-    "emit": "readonly"
+    "emit": "readonly",
+    "Bits": "readonly"
   },
   "parserOptions": {
     "ecmaVersion": 2018,
