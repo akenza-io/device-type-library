@@ -1,0 +1,22 @@
+{
+  "env": {
+    "es6": true,
+    "mocha": true
+  },
+  "extends": ["airbnb-base", "prettier"],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly",
+    "emit": "readonly"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-bitwise": "off",
+    "curly": "error",
+    "no-unused-vars": ["error", { "varsIgnorePattern": "consume" }],
+    "no-underscore-dangle": ["error", { "allow": ["__get__", "__set__"] }]
+  }
+}
