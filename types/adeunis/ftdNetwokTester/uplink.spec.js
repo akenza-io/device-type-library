@@ -1,45 +1,45 @@
 const chai = require("chai");
-const validate = require("jsonschema").validate;
+const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const fs = require("fs");
 
-const assert = chai.assert;
+const { assert } = chai;
 
 const script = rewire("./uplink.js");
 let schema = null;
 const consume = script.__get__("consume");
 
-describe("Adeunis FTD-2 Uplink", function () {
+describe("Adeunis FTD-2 Uplink", () => {
   function expectEmit(callback) {
     script.__set__({
       emit: callback,
     });
   }
-  before(function (done) {
+  before((done) => {
     fs.readFile(
-      __dirname + "/default.schema.json",
+      `${__dirname}/default.schema.json`,
       "utf8",
-      function (err, fileContents) {
+      (err, fileContents) => {
         if (err) throw err;
         schema = JSON.parse(fileContents);
         done();
-      }
+      },
     );
   });
-  describe("consume()", function () {
-    it("should decode Adeunis payload", function () {
-      let data = {
+  describe("consume()", () => {
+    it("should decode Adeunis payload", () => {
+      const data = {
         data: {
           payload_hex: "416c61726d",
         },
       };
 
-      expectEmit(function (type, value) {
+      expectEmit((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
         assert.equal(value.topic, "uplink");
-        //TODO get a real payload
+        // TODO get a real payload
         // assert.equal(value.data.altitude, 0);
         // assert.equal(value.data.rssi, -57);
         // assert.equal(value.data.uplink, 29);

@@ -1,16 +1,17 @@
-function asciiToHexString(input){
-  var output = '';
-  
-  for ( var i = 0; i < input.length; i ++)
-  	output += input.charCodeAt(i).toString(16);
-  
+function asciiToHexString(input) {
+  let output = "";
+
+  for (let i = 0; i < input.length; i += 1) {
+    output += input.charCodeAt(i).toString(16);
+  }
+
   return output;
 }
 
 function consume(event) {
-	var payload = asciiToHexString(event.payload.message);
-	var port = event.port ? event.port : 1;
-	var confirmed = event.confirmed ? event.confirmed : false;
-	
-  	emit("downlink", { payloadHex: payload, port: port, confirmed: confirmed });
+  const payload = asciiToHexString(event.payload.message);
+  const port = event.port ? event.port : 1;
+  const confirmed = event.confirmed ? event.confirmed : false;
+
+  emit("downlink", { payloadHex: payload, port, confirmed });
 }
