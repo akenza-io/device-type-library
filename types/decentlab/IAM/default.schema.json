@@ -3,67 +3,68 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Default",
   "type": "object",
-  "allOf": [
-    {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/master/data-models/ambiance/temperature/schema.json"
+  "properties": {
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
     },
-    {
-      "properties": {
-        "humidity": {
-          "title": "Humidity",
-          "unit": "%",
-          "type": "number",
-          "description": "The relative humidity in %",
-          "minimum": 0,
-          "maximum": 100
-        },
-        "voc": {
-          "title": "VOC",
-          "unit": "ppm",
-          "type": "integer",
-          "description": "Total Volatile Organic Compunds in ppm",
-          "minimum": 0,
-          "maximum": 60000
-        },
-        "co2": {
-          "title": "CO2",
-          "unit": "ppm",
-          "type": "integer",
-          "description": "Carbon Dioxide in ppm",
-          "minimum": 0,
-          "maximum": 10000
-        },
-        "light": {
-          "title": "Light",
-          "unit": "lux",
-          "type": "integer",
-          "description": "The light in lux.",
-          "minimum": 0,
-          "maximum": 65535
-        },
-        "pressure": {
-          "title": "Pressure",
-          "unit": "hpa",
-          "description": "Barometric Pressure in hpa",
-          "type": "number",
-          "minimum": 300,
-          "maximum": 1100
-        },
-        "pir": {
-          "title": "PIR motion",
-          "description": "PIR motion sensor measuring activity level",
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 65535
-        },
-        "rawPir": {
-          "title": "Raw PIR motion",
-          "description": "Raw PIR motion value of the activity level",
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 65535
-        }
-      }
+    "humidity": {
+      "title": "Humidity",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "voc": {
+      "title": "VOC",
+      "unit": "ppm",
+      "type": "integer",
+      "description": "Total Volatile Organic Compunds in ppm",
+      "minimum": 0,
+      "maximum": 60000
+    },
+    "co2": {
+      "title": "CO2",
+      "unit": "ppm",
+      "type": "integer",
+      "description": "Carbon Dioxide in ppm",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "light": {
+      "title": "Light",
+      "unit": "lux",
+      "type": "integer",
+      "description": "The light in lux.",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "pressure": {
+      "title": "Pressure",
+      "unit": "hpa",
+      "description": "Barometric Pressure in hpa",
+      "type": "number",
+      "minimum": 300,
+      "maximum": 1100
+    },
+    "pir": {
+      "title": "PIR motion",
+      "description": "PIR motion sensor measuring activity level",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "rawPir": {
+      "title": "Raw PIR motion",
+      "description": "Raw PIR motion value of the activity level",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
     }
-  ]
+  }
 }

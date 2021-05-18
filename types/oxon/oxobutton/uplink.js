@@ -9,7 +9,7 @@ function consume(event) {
     lifecycle.hbIRQ = !!Bits.bitsToUnsigned(bits.substr(16, 8));
     lifecycle.accIRQ = !!Bits.bitsToUnsigned(bits.substr(24, 8));
     data.imageID = Bits.bitsToUnsigned(bits.substr(32, 8)) * 256 + Bits.bitsToUnsigned(bits.substr(40, 8));
-    lifecycle.statusPercent = Bits.bitsToUnsigned(bits.substr(48, 8));
+    lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substr(48, 8));
     data.temperature = Bits.bitsToUnsigned(bits.substr(56, 8));
     var accX = Bits.bitsToUnsigned(bits.substr(64, 8)) * 256 + Bits.bitsToUnsigned(bits.substr(72, 8));
     var accY = Bits.bitsToUnsigned(bits.substr(80, 8)) * 256 + Bits.bitsToUnsigned(bits.substr(88, 8));

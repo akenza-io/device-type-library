@@ -10,7 +10,7 @@ function consume(event) {
   data.key3 = !!Bits.bitsToSigned(bits.substr(32, 8));
   data.key4 = !!Bits.bitsToSigned(bits.substr(40, 8));
   lifecycle.voltage = Bits.bitsToSigned(bits.substr(48, 8));
-  lifecycle.statusPercent = Bits.bitsToSigned(bits.substr(56, 8));
+  lifecycle.batteryLevel = Bits.bitsToSigned(bits.substr(56, 8));
 
   emit('sample', { "data": data, "topic": "default" });
   emit('sample', { "data": lifecycle, "topic": "lifecycle" });
