@@ -1,22 +1,22 @@
 function decoder(bytes, port) {
-  var decoded = {};
+  const decoded = {};
   if (port === 1) {
     decoded.type = "position";
-    decoded.latitudeDeg = bytes[0] + bytes[1] * 256 +
+    decoded.latitude = bytes[0] + bytes[1] * 256 +
       bytes[2] * 65536 + bytes[3] * 16777216;
-    if (decoded.latitudeDeg >= 0x80000000) { // 2^31
-      decoded.latitudeDeg -= 0x100000000; // 2^32
+    if (decoded.latitude >= 0x80000000) { // 2^31
+      decoded.latitude -= 0x100000000; // 2^32
     }
-    decoded.latitudeDeg /= 1e7;
+    decoded.latitude /= 1e7;
 
-    decoded.longitudeDeg = bytes[4] + bytes[5] * 256 +
+    decoded.longitude = bytes[4] + bytes[5] * 256 +
       bytes[6] * 65536 + bytes[7] * 16777216;
-    if (decoded.longitudeDeg >= 0x80000000) {// 2^31
-      decoded.longitudeDeg -= 0x100000000; // 2^32
+    if (decoded.longitude >= 0x80000000) {// 2^31
+      decoded.longitude -= 0x100000000; // 2^32
     }
-    decoded.longitudeDeg /= 1e7;
-    decoded.inTrip = ((bytes[8] & 0x1) !== 0) ? true : false;
-    decoded.fixFailed = ((bytes[8] & 0x2) !== 0) ? true : false;
+    decoded.longitude /= 1e7;
+    decoded.inTrip = ((bytes[8] & 0x1) !== 0);
+    decoded.fixFailed = ((bytes[8] & 0x2) !== 0);
     decoded.headingDeg = (bytes[8] >> 2) * 5.625;
 
     decoded.speedKmph = bytes[9];
@@ -24,28 +24,28 @@ function decoder(bytes, port) {
   }
   else if (port === 4) {
     decoded.type = "position";
-    decoded.latitudeDeg = bytes[0] + bytes[1] * 256 + bytes[2] * 65536;
-    if (decoded.latitudeDeg >= 0x800000) { // 2^23
-      decoded.latitudeDeg -= 0x1000000; // 2^24
+    decoded.latitude = bytes[0] + bytes[1] * 256 + bytes[2] * 65536;
+    if (decoded.latitude >= 0x800000) { // 2^23
+      decoded.latitude -= 0x1000000; // 2^24
     }
-    decoded.latitudeDeg *= 256e-7;
+    decoded.latitude *= 256e-7;
 
-    decoded.longitudeDeg = bytes[3] + bytes[4] * 256 + bytes[5] * 65536;
-    if (decoded.longitudeDeg >= 0x800000) { // 2^23
-      decoded.longitudeDeg -= 0x1000000; // 2^24
+    decoded.longitude = bytes[3] + bytes[4] * 256 + bytes[5] * 65536;
+    if (decoded.longitude >= 0x800000) { // 2^23
+      decoded.longitude -= 0x1000000; // 2^24
     }
-    decoded.longitudeDeg *= 256e-7;
+    decoded.longitude *= 256e-7;
     decoded.headingDeg = (bytes[6] & 0x7) * 45;
     decoded.speedKmph = (bytes[6] >> 3) * 5;
     decoded.voltage = Math.round((bytes[7] * 0.025) * 100) / 100;
-    decoded.inTrip = ((bytes[8] & 0x1) !== 0) ? true : false;
-    decoded.fixFailed = ((bytes[8] & 0x2) !== 0) ? true : false;
-    decoded.manDown = ((bytes[8] & 0x4) !== 0) ? true : false;
+    decoded.inTrip = ((bytes[8] & 0x1) !== 0);
+    decoded.fixFailed = ((bytes[8] & 0x2) !== 0);
+    decoded.manDown = ((bytes[8] & 0x4) !== 0);
   }
   else if (port === 2) {
     decoded.type = "downlink_ack";
     decoded.sequenceNumber = (bytes[0] & 0x7F);
-    decoded.accepted = ((bytes[0] & 0x80) !== 0) ? true : false;
+    decoded.accepted = ((bytes[0] & 0x80) !== 0);
     decoded.fwMaj = bytes[1];
     decoded.fwMin = bytes[2];
   }
@@ -67,10 +67,16 @@ function decoder(bytes, port) {
   return decoded;
 }
 
+function hexToBytes(hex) {
+  for (var bytes = [], c = 0; c < hex.length; c += 2)
+    {bytes.push(parseInt(hex.substr(c, 2), 16));}
+  return bytes;
+}
+
 function consume(event) {
-  var payload = event.data.payload_hex;
-  var port = event.data.port;
-  var data = decoder(Bits.hexToBytes(payload), port);
-  var topic = data.type;
+  const payload = event.data.payload_hex;
+  const {port} = event.data;
+  const data = decoder(hexToBytes(payload), port);
+  const topic = data.type;
   emit('sample', { "data": data, "topic": topic });
 }
