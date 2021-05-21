@@ -4,11 +4,11 @@
   "title": "Default",
   "type": "object",
   "properties": {
-    "soilMoisture": {
-      "title": "Humidity",
+    "soilHumidity": {
+      "title": "Soil humidity",
       "unit": "%",
       "type": "number",
-      "description": "The relative humidity in %",
+      "description": "The relative humidity of the soil in %",
       "minimum": 0,
       "maximum": 100
     },

@@ -19,7 +19,7 @@ function consume(event) {
   data.temperature = toLittleEndianSigned(payload.substr(6, 8)) / 1000;
   // 14-16 Channel Number
   // 16-20 Measurement ID
-  data.soilMoisture = toLittleEndianSigned(payload.substr(20, 8)) / 1000;
+  data.soilHumidity = toLittleEndianSigned(payload.substr(20, 8)) / 1000;
 
   emit("sample", { data, topic: "default" });
 }
