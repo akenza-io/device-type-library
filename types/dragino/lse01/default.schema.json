@@ -4,7 +4,7 @@
   "title": "Default",
   "type": "object",
   "properties": {
-    "tempDS18B20": {
+    "temperature": {
       "title": "Temperature DS18B20",
       "unit": "°C",
       "type": "number",
@@ -12,7 +12,7 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     },
-    "waterSoil": {
+    "soilHumidity": {
       "title": "Water soil",
       "unit": "%",
       "type": "number",
@@ -20,15 +20,15 @@
       "minimum": 0,
       "maximum": 100
     },
-    "tempSoil": {
-      "title": "Temperature soil",
+    "soilTemperature": {
+      "title": "Soil temperature",
       "unit": "°C",
       "type": "number",
       "description": "The temperature in °C.",
       "minimum": -3276.5,
       "maximum": 3276.5
     },
-    "conductSoil": {
+    "soilConductivity": {
       "title": "Conduct soil",
       "unit": "uS/cm",
       "type": "number",

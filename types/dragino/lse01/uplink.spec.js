@@ -55,10 +55,10 @@ describe("Dragino LSE01 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         if (value.topic === "default") {
-          assert.equal(value.data.tempDS18B20, 24.1);
-          assert.equal(value.data.waterSoil, 19.57);
-          assert.equal(value.data.tempSoil, 24.59);
-          assert.equal(value.data.conductSoil, 28200);
+          assert.equal(value.data.temperature, 24.1);
+          assert.equal(value.data.soilHumidity, 19.57);
+          assert.equal(value.data.soilTemperature, 24.59);
+          assert.equal(value.data.soilConductivity, 28200);
 
           validate(value.data, defaultSchema, { throwError: true });
         }
