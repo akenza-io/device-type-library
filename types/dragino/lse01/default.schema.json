@@ -13,7 +13,7 @@
       "maximum": 3276.5
     },
     "soilHumidity": {
-      "title": "Water soil",
+      "title": "Soil humidity",
       "unit": "%",
       "type": "number",
       "description": "The relative humidity in % of the soil",
@@ -29,7 +29,7 @@
       "maximum": 3276.5
     },
     "soilConductivity": {
-      "title": "Conduct soil",
+      "title": "Soil conductivity",
       "unit": "uS/cm",
       "type": "number",
       "description": "Conductivity of the soil"
