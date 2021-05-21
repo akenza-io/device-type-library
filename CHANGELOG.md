@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.0.4] - 2021-05-20
+
+### Added
+
+- Dragino - LSE01
+
 ## [1.0.3] - 2021-05-19
 
 ### Added

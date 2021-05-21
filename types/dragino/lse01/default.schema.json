@@ -1,0 +1,38 @@
+{
+  "$id": "https://akenza.io/dragino/lse01/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "temperature": {
+      "title": "Temperature DS18B20",
+      "unit": "°C",
+      "type": "number",
+      "description": "The DS18B20 temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "soilHumidity": {
+      "title": "Soil humidity",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in % of the soil",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "soilTemperature": {
+      "title": "Soil temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "soilConductivity": {
+      "title": "Soil conductivity",
+      "unit": "uS/cm",
+      "type": "number",
+      "description": "Conductivity of the soil"
+    }
+  }
+}
