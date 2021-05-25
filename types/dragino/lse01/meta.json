@@ -1,0 +1,14 @@
+{
+  "name": "LSE01",
+  "version": "1.0.0",
+  "manufacturer": "Dragino",
+  "url": "https://www.dragino.com/products/lora-lorawan-end-node/item/159-lse01.html",
+  "description": "The Dragino LSE01 is a LoRaWAN Soil Moisture & EC Sensor for IoT of Agriculture. It detects Soil Moisture, Soil Temperature and Soil Conductivity, and uploads the value via wireless to LoRaWAN IoT Server",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Humidity", "Conduct soil"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
