@@ -1,0 +1,20 @@
+{
+  "name": "Oyster",
+  "version": "1.0.0",
+  "manufacturer": "Digital Matter",
+  "url": "https://www.digitalmatter.com/devices/oyster-lorawan/",
+  "description": "Ultra-rugged and long-life battery-powered LoRaWAN® GPS tracking device for long-term asset tracking.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "GPS"
+  ],
+  "outputTopics": [
+    "position",
+    "downlink_ack",
+    "stats"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
