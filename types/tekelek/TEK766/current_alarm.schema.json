@@ -1,7 +1,7 @@
 {
-  "$id": "https://akenza.io/tekelek/tek766/current.schema.json",
+  "$id": "https://akenza.io/tekelek/tek766/current_alarm.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Current",
+  "title": "Current alarm",
   "type": "object",
   "properties": {
     "limit1": {

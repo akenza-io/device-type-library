@@ -1,141 +1,101 @@
-function consume(event) {
-  var payload = event.data.payload_hex;
-  var port = event.data.port;
-  var bits = Bits.hexToBits(payload);
-  var data = {};
-  var topic = "default";
-  var type = Bits.bitsToUnsigned(bits.substr(0, 8));
-  if (Bits.bitsToUnsigned(bits.substr(8, 8)) == 0) {
-    var prodId = "TEK 766";
+function getUllage(ull1, ull2) {
+  return ull1 * 256 + ull2;
+}
+function getTemperature(temp) {
+  let base = 0;
+  if (temp > 50) {
+    base = 256;
   }
+  return -(base - temp);
+}
 
-  if (type == 16 || type == 69) {
-    data.limit1 = (bits.substr(23, 1) == "1");
-    data.limit2 = (bits.substr(22, 1) == "1");
-    data.limit3 = (bits.substr(21, 1) == "1");
+function consume(event) {
+  const payload = event.data.payload_hex;
+  const bits = Bits.hexToBits(payload);
+  let data = {};
+  let topic = "default";
+  const type = Bits.bitsToUnsigned(bits.substr(0, 8));
+  // 8-16 prodID
+  if (type === 16 || type === 69) {
+    data.limit1 = !!Number(bits.substr(23, 1));
+    data.limit2 = !!Number(bits.substr(22, 1));
+    data.limit3 = !!Number(bits.substr(21, 1));
     // 24 reserved
-    if (type == 16) {
-      topic = "measurement";
-      var pointer = 32
-      for (var i = 1; i < 5; i++) {
+    let ull1 = Bits.bitsToUnsigned(bits.substr(32, 8));
+    let ull2 = Bits.bitsToUnsigned(bits.substr(40, 8));
+    data.ullage = getUllage(ull1, ull2);
 
-        var ull1 = Bits.bitsToUnsigned(bits.substr(pointer, 8)); pointer += 8;
-        var ull2 = Bits.bitsToUnsigned(bits.substr(pointer, 8)); pointer += 8;
-        data["ullage" + i] = (ull1 * 256) + ull2;
+    let temp = Bits.bitsToUnsigned(bits.substr(48, 8));
+    data.temperature = getTemperature(temp);
+    data.srssi = Bits.bitsToUnsigned(bits.substr(56, 4));
+    data.src = Bits.bitsToUnsigned(bits.substr(60, 4));
 
-        var temp = Bits.bitsToUnsigned(bits.substr(pointer, 8)); pointer += 8;
-        var base = 0;
-        if (temp > 50) {
-          base = 256;
-        }
-        data["temp" + i] = - (base - temp);
+    if (type === 16) {
+      emit("sample", { data, topic: "current" });
 
-        data["SRC" + i] = Bits.bitsToUnsigned(bits.substr(pointer, 4)); pointer += 4;
-        data["SRSSI" + i] = Bits.bitsToUnsigned(bits.substr(pointer, 4)); pointer += 4;
+      topic = "measurement_history";
+      data = {};
+      let pointer = 64;
+      for (let i = 1; i < 4; i++) {
+        ull1 = Bits.bitsToUnsigned(bits.substr(pointer, 8));
+        ull2 = Bits.bitsToUnsigned(bits.substr((pointer += 8), 8));
+        data[`ullage${i}`] = getUllage(ull1, ull2);
+
+        temp = Bits.bitsToUnsigned(bits.substr((pointer += 8), 8));
+        data[`temperature${i}`] = getTemperature(temp);
+        data[`srssi${i}`] = Bits.bitsToUnsigned(bits.substr((pointer += 8), 4));
+        data[`src${i}`] = Bits.bitsToUnsigned(bits.substr((pointer += 4), 4));
+        pointer += 4;
       }
     } else {
-      topic = "alarm";
-      var pointer = 32
-      for (var i = 1; i < 3; i++) {
-        var ull1 = Bits.bitsToUnsigned(bits.substr(pointer, 8)); pointer += 8;
-        var ull2 = Bits.bitsToUnsigned(bits.substr(pointer, 8)); pointer += 8;
-        data["ullage" + i] = (ull1 * 256) + ull2;
+      emit("sample", { data, topic: "current_alarm" });
 
-        var temp = Bits.bitsToUnsigned(bits.substr(pointer, 8)); pointer += 8;
-        var base = 0;
-        if (temp > 50) {
-          base = 256;
-        }
-        data["temp" + i] = - (base - temp);
+      topic = "alarm_history";
+      data = {};
+      ull1 = Bits.bitsToUnsigned(bits.substr(64, 8));
+      ull2 = Bits.bitsToUnsigned(bits.substr(72, 8));
+      data.ullage = getUllage(ull1, ull2);
 
-        data["SRC" + i] = Bits.bitsToUnsigned(bits.substr(pointer, 4)); pointer += 4;
-        data["SRSSI" + i] = Bits.bitsToUnsigned(bits.substr(pointer, 4)); pointer += 4;
-      }
+      temp = Bits.bitsToUnsigned(bits.substr(80, 8));
+      data.temperature = getTemperature(temp);
+      data.srssi = Bits.bitsToUnsigned(bits.substr(88, 4));
+      data.src = Bits.bitsToUnsigned(bits.substr(96, 4));
     }
-
-  } else if (type == 48) {
+  } else if (type === 48) {
+    topic = "lifecycle";
     // 16 reserved
     data.hardwareID = Bits.bitsToUnsigned(bits.substr(24, 8));
-    data.firmwareVersion = Bits.bitsToUnsigned(bits.substr(32, 8)) + "." + Bits.bitsToUnsigned(bits.substr(40, 8));
-    var contactReason = Bits.bitsToUnsigned(bits.substr(54, 2));
-    switch (contactReason) {
-      case 0:
-        data.contactReason = "Reset";
-        break;
-      case 1:
-        data.contactReason = "Scheduled";
-        break;
-      case 2:
-        data.contactReason = "Manual";
-        break;
-      case 3:
-        data.contactReason = "Activation";
-        break;
-      default:
-        break;
-    }
+    data.fmVersion = `${Bits.bitsToUnsigned(
+      bits.substr(32, 8),
+    )}.${Bits.bitsToUnsigned(bits.substr(40, 8))}`;
+    data.manualContact = Bits.bitsToUnsigned(bits.substr(54, 2));
+    data.systemRequestReset = Bits.bitsToUnsigned(bits.substr(51, 3));
+    data.aktive = Bits.bitsToUnsigned(bits.substr(50, 1));
+    // Reserved 56
+    data.RSSI = -Bits.bitsToUnsigned(bits.substr(64, 8));
+    // Reserved 72
+    data.battery = Bits.bitsToUnsigned(bits.substr(80, 8));
 
-    var systemRequestReset = Bits.bitsToUnsigned(bits.substr(51, 3));
-    switch (systemRequestReset) {
-      case 0:
-        data.systemRequestReset = "Power on reset";
-        break;
-      case 1:
-        data.systemRequestReset = "Brown out reset";
-        break;
-      case 2:
-        data.systemRequestReset = "External reset";
-        break;
-      case 3:
-        data.systemRequestReset = "Watchdog reset";
-        break;
-      case 4:
-        data.systemRequestReset = "Cortex-M3 lockup reset";
-        break;
-      case 5:
-        data.systemRequestReset = "Cortex-M3 system request reset";
-        break;
-      case 6:
-        data.systemRequestReset = "EM4 reset";
-        break;
-      case 7:
-        data.systemRequestReset = "System has been in Backup mode";
-        break;
-      default:
-        break;
-    }
-
-    data.active = !!Bits.bitsToUnsigned(bits.substr(50, 1));
-    // Reserved 56 - 80
-    data.batteryLevel = Bits.bitsToUnsigned(bits.substr(80, 8));
-    var min1 = Bits.bitsToUnsigned(bits.substr(88, 8));
-    var min2 = Bits.bitsToUnsigned(bits.substr(96, 8));
-
-    data.measurements = (min1 * 256) + min2;
+    const min1 = Bits.bitsToUnsigned(bits.substr(88, 8));
+    const min2 = Bits.bitsToUnsigned(bits.substr(96, 8));
+    data.meassurements = min1 * 256 + min2;
     data.transmitPeriods = Bits.bitsToUnsigned(bits.substr(104, 8));
 
-    var pointer = 112;
-    for (var i = 1; i < 2; i++) {
-      var ull1 = Bits.bitsToUnsigned(bits.substr(pointer, 8)); pointer += 8;
-      var ull2 = Bits.bitsToUnsigned(bits.substr(pointer, 8)); pointer += 8;
-      data["ullage" + i] = (ull1 * 256) + ull2;
-      var temp = Bits.bitsToUnsigned(bits.substr(pointer, 8)); pointer += 8;
-      var base = 0;
-      if (temp > 50) {
-        base = 256;
-      }
-      data["temp" + i] = - (base - temp);
-      data["SRC" + i] = Bits.bitsToUnsigned(bits.substr(pointer, 4)); pointer += 4;
-      data["SRSSI" + i] = Bits.bitsToUnsigned(bits.substr(pointer, 4)); pointer += 4;
-    }
+    const ull1 = Bits.bitsToUnsigned(bits.substr(112, 8));
+    const ull2 = Bits.bitsToUnsigned(bits.substr(120, 8));
+    data.ullage = getUllage(ull1, ull2);
 
-    topic = "lifecycle";
-  } else if (type == 67) {
-    //16 Reserved
-    topic = "paramRead";
-  } else if (type == 71) {
-    topic = "diagnosticRead";
+    const temp = Bits.bitsToUnsigned(bits.substr(128, 8));
+    data.temperature = getTemperature(temp);
+
+    data.srssi = Bits.bitsToUnsigned(bits.substr(136, 4));
+    data.src = Bits.bitsToUnsigned(bits.substr(140, 4));
+  } else if (type === 67) {
+    // 16 Reserved
+    topic = "param_read";
+  } else if (type === 71) {
+    topic = "diagnostic_read";
   }
 
-  emit('sample', { data: data, topic: topic });
+  emit("sample", { data, topic });
 }

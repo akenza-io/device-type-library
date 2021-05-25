@@ -1,42 +1,28 @@
 {
-  "$id": "https://akenza.io/tekelek/tek766/measurement.schema.json",
+  "$id": "https://akenza.io/tekelek/tek766/measurement_history.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Measurement",
+  "title": "Current",
   "type": "object",
   "properties": {
     "ullage1": {
       "title": "Ullage 1",
       "unit": "cm",
       "type": "number",
-      "description": "Distance measured between the sensor and the surface",
-      "minimum": 0,
-      "maximum": 400
+      "description": "Distance measured between the sensor and the surface"
     },
     "ullage2": {
       "title": "Ullage 2",
       "unit": "cm",
       "type": "number",
-      "description": "Distance measured between the sensor and the surface",
-      "minimum": 0,
-      "maximum": 400
+      "description": "Distance measured between the sensor and the surface"
     },
     "ullage3": {
       "title": "Ullage 3",
       "unit": "cm",
       "type": "number",
-      "description": "Distance measured between the sensor and the surface",
-      "minimum": 0,
-      "maximum": 400
+      "description": "Distance measured between the sensor and the surface"
     },
-    "ullage4": {
-      "title": "Ullage 4",
-      "unit": "cm",
-      "type": "number",
-      "description": "Distance measured between the sensor and the surface",
-      "minimum": 0,
-      "maximum": 400
-    },
-    "temp1": {
+    "temperature1": {
       "title": "Temperature 1",
       "unit": "°C",
       "type": "number",
@@ -44,7 +30,7 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     },
-    "temp2": {
+    "temperature2": {
       "title": "Temperature 2",
       "unit": "°C",
       "type": "number",
@@ -52,7 +38,7 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     },
-    "temp3": {
+    "temperature3": {
       "title": "Temperature 3",
       "unit": "°C",
       "type": "number",
@@ -60,80 +46,43 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     },
-    "temp4": {
-      "title": "Temperature 4",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "lim1": {
-      "title": "Limit 1",
-      "type": "boolean",
-      "description": "True if configured limit 1 is exceeded"
-    },
-    "lim2": {
-      "title": "Limit 2",
-      "type": "boolean",
-      "description": "True if configured limit 2 is exceeded"
-    },
-    "lim3": {
-      "title": "Limit 3",
-      "type": "boolean",
-      "description": "True if configured limit 3 is exceeded"
-    },
-    "SRSSI1": {
+    "srssi1": {
       "title": "Sonic Received Signal Strength Indicator 1",
       "type": "integer",
       "description": "The SRSSI is simply an integer number between 1 (low level) and 10 (expected level) given to the expected strength of the echo reflected to the transducer.",
       "max": 10,
       "min": 1
     },
-    "SRSSI2": {
+    "srssi2": {
       "title": "Sonic Received Signal Strength Indicator 2",
       "type": "integer",
       "description": "The SRSSI is simply an integer number between 1 (low level) and 10 (expected level) given to the expected strength of the echo reflected to the transducer.",
       "max": 10,
       "min": 1
     },
-    "SRSSI3": {
+    "srssi3": {
       "title": "Sonic Received Signal Strength Indicator 3",
       "type": "integer",
       "description": "The SRSSI is simply an integer number between 1 (low level) and 10 (expected level) given to the expected strength of the echo reflected to the transducer.",
       "max": 10,
       "min": 1
     },
-    "SRSSI4": {
-      "title": "Sonic Received Signal Strength Indicator 4",
-      "type": "integer",
-      "description": "The SRSSI is simply an integer number between 1 (low level) and 10 (expected level) given to the expected strength of the echo reflected to the transducer.",
-      "max": 10,
-      "min": 1
-    },
-    "SRC1": {
+    "src1": {
       "title": "Sonic Results Code 1 – a performance metric of the ultrasonic measurement",
       "type": "integer",
       "description": "The SRC represents the result code of the ultrasonic algorithm which can be used to deduce whether a reading is likely to be valid or not. An SRC of 9 or 10 are optimal.",
       "max": 10,
       "min": 1
     },
-    "SRC2": {
+    "src2": {
       "title": "Sonic Results Code 2 – a performance metric of the ultrasonic measurement",
       "type": "integer",
       "description": "The SRC represents the result code of the ultrasonic algorithm which can be used to deduce whether a reading is likely to be valid or not. An SRC of 9 or 10 are optimal.",
       "max": 10,
       "min": 1
     },
-    "SRC3": {
+    "src3": {
       "title": "Sonic Results Code 3 – a performance metric of the ultrasonic measurement",
-      "type": "integer",
-      "description": "The SRC represents the result code of the ultrasonic algorithm which can be used to deduce whether a reading is likely to be valid or not. An SRC of 9 or 10 are optimal.",
-      "max": 10,
-      "min": 1
-    },
-    "SRC4": {
-      "title": "Sonic Results Code 4 – a performance metric of the ultrasonic measurement",
       "type": "integer",
       "description": "The SRC represents the result code of the ultrasonic algorithm which can be used to deduce whether a reading is likely to be valid or not. An SRC of 9 or 10 are optimal.",
       "max": 10,

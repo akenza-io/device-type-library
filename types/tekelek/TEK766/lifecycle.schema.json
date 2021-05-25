@@ -26,12 +26,7 @@
       "title": "Contact reason",
       "description": "Contact reason",
       "type": "string",
-      "enum": [
-        "Reset",
-        "Scheduled",
-        "Manual",
-        "Activation"
-      ]
+      "enum": ["Reset", "Scheduled", "Manual", "Activation"]
     },
     "systemRequestReset": {
       "title": "System request reset",
@@ -65,28 +60,28 @@
       "unit": "hours",
       "type": "integer"
     },
-    "ullage1": {
-      "title": "Ullage 1",
+    "ullage": {
+      "title": "Ullage",
       "unit": "cm",
       "type": "number",
       "description": "Distance measured between the sensor and the surface"
     },
-    "temp1": {
-      "title": "Temperature 1",
+    "temperature": {
+      "title": "Temperature",
       "unit": "°C",
       "type": "number",
       "description": "The temperature in °C.",
       "minimum": -3276.5,
       "maximum": 3276.5
     },
-    "SRSSI1": {
+    "srssi": {
       "title": "Sonic Received Signal Strength Indicator",
       "type": "integer",
       "description": "The SRSSI is simply an integer number between 1 (low level) and 10 (expected level) given to the expected strength of the echo reflected to the transducer.",
       "max": 10,
       "min": 1
     },
-    "SRC1": {
+    "src": {
       "title": "Sonic Results Code – a performance metric of the ultrasonic measurement",
       "type": "integer",
       "description": "The SRC represents the result code of the ultrasonic algorithm which can be used to deduce whether a reading is likely to be valid or not. An SRC of 9 or 10 are optimal.",
