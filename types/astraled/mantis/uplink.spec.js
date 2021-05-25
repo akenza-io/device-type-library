@@ -1,18 +1,18 @@
 const chai = require("chai");
-const validate = require("jsonschema").validate;
+const {validate} = require("jsonschema");
 const rewire = require("rewire");
 const utils = require("test-utils");
 
-const assert = chai.assert;
+const {assert} = chai;
 
-describe("Astraled Air Quality Luminary V0.02 Uplink", function () {
+describe("Astraled Air Quality Luminary V0.02 Uplink", () => {
   let schema = null;
   let consume = null;
-  before(function (done) {
+  before((done) => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
     utils
-      .loadSchema(__dirname + "/default.schema.json")
+      .loadSchema(`${__dirname  }/default.schema.json`)
       .then((parsedSchema) => {
         schema = parsedSchema;
         done();
@@ -20,16 +20,16 @@ describe("Astraled Air Quality Luminary V0.02 Uplink", function () {
   });
 
   let lifeCycleSchema = null;
-  before(function (done) {
+  before((done) => {
     utils
-      .loadSchema(__dirname + "/lifecycle.schema.json")
+      .loadSchema(`${__dirname  }/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifeCycleSchema = parsedSchema;
         done();
       });
   });
-  describe("consume()", function () {
-    it("should decode the Astraled Air Quality Luminary V0.02 payload", function () {
+  describe("consume()", () => {
+    it("should decode the Astraled Air Quality Luminary V0.02 payload", () => {
       const data = {
         data: {
           port: 1,
@@ -55,10 +55,10 @@ describe("Astraled Air Quality Luminary V0.02 Uplink", function () {
         assert.equal(value.topic, "lifecycle");
 
         assert.equal(value.data.act_pwr, 1);
-        //TODO this should most likely be battery?
+        // TODO this should most likely be battery?
         assert.equal(value.data.energy, 10.861896514892578);
 
-        //TODO these two props should most likely be in the default topic
+        // TODO these two props should most likely be in the default topic
         assert.equal(value.data.iaq_state_int, 0);
         assert.equal(value.data.sensor_ambient_light, 250);
 
