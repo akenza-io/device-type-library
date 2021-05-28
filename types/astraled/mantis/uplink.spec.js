@@ -1,83 +1,80 @@
 const chai = require("chai");
-const {validate} = require("jsonschema");
+const { validate } = require("jsonschema");
 const rewire = require("rewire");
-const utils = require("test-utils");
+const axios = require("axios");
+const fs = require("fs");
+const Ajv = require("ajv");
 
-const {assert} = chai;
+const { assert } = chai;
 
-describe("Astraled Air Quality Luminary V0.02 Uplink", () => {
-  let schema = null;
-  let consume = null;
-  before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname  }/default.schema.json`)
-      .then((parsedSchema) => {
-        schema = parsedSchema;
-        done();
-      });
+const script = rewire("./uplink.js");
+let defaultSchema = null;
+let lifecycleSchema = null;
+const consume = script.__get__("consume");
+
+function expectEmit(callback) {
+  script.__set__({
+    emit: callback,
   });
+}
 
-  let lifeCycleSchema = null;
-  before((done) => {
-    utils
-      .loadSchema(`${__dirname  }/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifeCycleSchema = parsedSchema;
-        done();
-      });
-  });
+before((done) => {
+  fs.readFile(
+    `${__dirname}/default.schema.json`,
+    "utf8",
+    (err, fileContents) => {
+      if (err) throw err;
+      defaultSchema = JSON.parse(fileContents);
+      done();
+    },
+  );
+});
+
+before((done) => {
+  fs.readFile(
+    `${__dirname}/lifecycle.schema.json`,
+    "utf8",
+    (err, fileContents) => {
+      if (err) throw err;
+      lifecycleSchema = JSON.parse(fileContents);
+      done();
+    },
+  );
+});
+
+describe("Astraled Mantis Uplink", () => {
   describe("consume()", () => {
-    it("should decode the Astraled Air Quality Luminary V0.02 payload", () => {
+    it("should decode Astraled Mantis payload", () => {
       const data = {
+        port: 1,
         data: {
-          port: 1,
-          flags: {
-            AK_SF: "7",
-            AK_SNR: "9",
-            AK_Port: "1",
-            AK_RSSI: "-46",
-            AK_FrameCntUp: "20982",
-            AK_LastMsgTime: "2021-02-16T09:09:14.614Z",
-            AK_NrGwInRange: "1",
-          },
-          payload_hex:
-            "042a0000803f042b54ca2d41022cfa000223110001320302091109020a4601020b3d01020c9802010e00",
+          payload_hex: "042a0000803f042b54ca2d41022cfa000223110001320302091109020a4601020b3d01020c9802010e00",
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmit((type, value) => {
         assert.equal(type, "sample");
-
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
-        assert.equal(value.topic, "lifecycle");
 
-        assert.equal(value.data.act_pwr, 1);
-        // TODO this should most likely be battery?
-        assert.equal(value.data.energy, 10.861896514892578);
+        if (value.topic === "default") {
+          assert.equal(value.data.act_pwr, 1);
+          assert.equal(value.data.energy, 10.861896514892578);
+          assert.equal(value.data.iaq_state_int, 0);
+          assert.equal(value.data.sensor_ambient_light, 250);
 
-        // TODO these two props should most likely be in the default topic
-        assert.equal(value.data.iaq_state_int, 0);
-        assert.equal(value.data.sensor_ambient_light, 250);
+          validate(value.data, defaultSchema, { throwError: true });
+        }
 
-        validate(value.data, lifeCycleSchema, { throwError: true });
-      });
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-        assert.equal(value.topic, "default");
-
+        if (value.topic === "lifecycle") {
         assert.equal(value.data.lightState, 17);
         assert.equal(value.data.temperature, 23.21);
         assert.equal(value.data.humidity, 32.6);
         assert.equal(value.data.voc, 317);
         assert.equal(value.data.co2, 664);
 
-        validate(value.data, schema, { throwError: true });
+          validate(value.data, lifecycleSchema, { throwError: true });
+        }
       });
 
       consume(data);

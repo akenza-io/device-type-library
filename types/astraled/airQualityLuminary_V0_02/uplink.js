@@ -37,10 +37,10 @@ function getFloat(buff, nr) {
 }
 
 function consume(event) {
-  const {payloadHex} = event.data;
-  const buff = Bits.hexToBits(payloadHex);
+  const {payload_hex} = event.data;
+  const buff = Bits.hexToBits(payload_hex);
 
-  const dataSize = payloadHex.length / 2;
+  const dataSize = payload_hex.length / 2;
 
   const data = {};
   const lifecycle = {};
