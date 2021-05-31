@@ -1,57 +1,44 @@
 const chai = require("chai");
 const { validate } = require("jsonschema");
 const rewire = require("rewire");
-const fs = require("fs");
+const utils = require("test-utils");
 
 const { assert } = chai;
 
-const script = rewire("./uplink.js");
-let defaultSchema = null;
-let historySchema = null;
-let lifecycleSchema = null;
-const consume = script.__get__("consume");
-
-function expectEmit(callback) {
-  script.__set__({
-    emit: callback,
-  });
-}
-
-before((done) => {
-  fs.readFile(
-    `${__dirname}/default.schema.json`,
-    "utf8",
-    (err, fileContents) => {
-      if (err) throw err;
-      defaultSchema = JSON.parse(fileContents);
-      done();
-    },
-  );
-});
-before((done) => {
-  fs.readFile(
-    `${__dirname}/history.schema.json`,
-    "utf8",
-    (err, fileContents) => {
-      if (err) throw err;
-      historySchema = JSON.parse(fileContents);
-      done();
-    },
-  );
-});
-before((done) => {
-  fs.readFile(
-    `${__dirname}/lifecycle.schema.json`,
-    "utf8",
-    (err, fileContents) => {
-      if (err) throw err;
-      lifecycleSchema = JSON.parse(fileContents);
-      done();
-    },
-  );
-});
-
 describe("Comtac LPN CM-4 Uplink", () => {
+  let defaultSchema = null;
+  let consume = null;
+  before((done) => {
+    const script = rewire("./uplink.js");
+    consume = utils.init(script);
+    utils
+      .loadSchema(`${__dirname}/default.schema.json`)
+      .then((parsedSchema) => {
+        defaultSchema = parsedSchema;
+        done();
+      });
+  });
+
+  let lifecycleSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+      .then((parsedSchema) => {
+        lifecycleSchema = parsedSchema;
+        done();
+      });
+  });
+
+  let historySchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/history.schema.json`)
+      .then((parsedSchema) => {
+        historySchema = parsedSchema;
+        done();
+      });
+  });
+
   describe("consume()", () => {
     it("should decode the Comtac LPN CM-4 payload default", () => {
       const data = {
@@ -61,13 +48,12 @@ describe("Comtac LPN CM-4 Uplink", () => {
         },
       };
 
-      expectEmit((type, value) => {
+      utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
-
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic === "lifecycle") {
+        if (value.topic === "lifecyle") {
           assert.equal(value.data.batLow, false);
           assert.equal(value.data.lastTempValid, true);
           assert.equal(value.data.extMEM, false);
@@ -84,11 +70,16 @@ describe("Comtac LPN CM-4 Uplink", () => {
 
           validate(value.data, lifecycleSchema, { throwError: true });
         }
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
 
         if (value.topic === "default") {
           assert.equal(value.data.temperature, 23.15);
           assert.equal(value.data.humidity, 64);
-
           validate(value.data, defaultSchema, { throwError: true });
         }
       });
@@ -106,13 +97,12 @@ describe("Comtac LPN CM-4 Uplink", () => {
         },
       };
 
-      expectEmit((type, value) => {
+      utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
-
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic === "lifecycle") {
+        if (value.topic === "lifecyle") {
           assert.equal(value.data.batLow, false);
           assert.equal(value.data.lastTempValid, true);
           assert.equal(value.data.extMEM, false);
@@ -129,6 +119,12 @@ describe("Comtac LPN CM-4 Uplink", () => {
 
           validate(value.data, lifecycleSchema, { throwError: true });
         }
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
 
         if (value.topic === "history") {
           assert.equal(value.data.temperature, 23.15);
@@ -147,7 +143,6 @@ describe("Comtac LPN CM-4 Uplink", () => {
           assert.equal(value.data.humHistory6, 64);
           assert.equal(value.data.tempHistory7, 23.15);
           assert.equal(value.data.humHistory7, 64);
-
           validate(value.data, historySchema, { throwError: true });
         }
       });

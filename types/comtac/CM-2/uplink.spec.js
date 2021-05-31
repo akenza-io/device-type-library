@@ -1,47 +1,36 @@
 const chai = require("chai");
 const { validate } = require("jsonschema");
 const rewire = require("rewire");
-const fs = require("fs");
+const utils = require("test-utils");
 
 const { assert } = chai;
 
-const script = rewire("./uplink.js");
-let defaultSchema = null;
-let lifecycleSchema = null;
-const consume = script.__get__("consume");
-
-function expectEmit(callback) {
-  script.__set__({
-    emit: callback,
-  });
-}
-
-before((done) => {
-  fs.readFile(
-    `${__dirname}/default.schema.json`,
-    "utf8",
-    (err, fileContents) => {
-      if (err) throw err;
-      defaultSchema = JSON.parse(fileContents);
-      done();
-    },
-  );
-});
-before((done) => {
-  fs.readFile(
-    `${__dirname}/lifecycle.schema.json`,
-    "utf8",
-    (err, fileContents) => {
-      if (err) throw err;
-      lifecycleSchema = JSON.parse(fileContents);
-      done();
-    },
-  );
-});
-
 describe("Comtac LPN CM-2 Uplink", () => {
+  let defaultSchema = null;
+  let consume = null;
+  before((done) => {
+    const script = rewire("./uplink.js");
+    consume = utils.init(script);
+    utils
+      .loadSchema(`${__dirname}/default.schema.json`)
+      .then((parsedSchema) => {
+        defaultSchema = parsedSchema;
+        done();
+      });
+  });
+
+  let lifecycleSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+      .then((parsedSchema) => {
+        lifecycleSchema = parsedSchema;
+        done();
+      });
+  });
+
   describe("consume()", () => {
-    it("should decode the Comtac LPN CM-2 payload", () => {
+    it("should decode the Comtac LPN CM-2 payload default", () => {
       const data = {
         data: {
           port: 3,
@@ -49,13 +38,12 @@ describe("Comtac LPN CM-2 Uplink", () => {
         },
       };
 
-      expectEmit((type, value) => {
+      utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
-
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic === "lifecycle") {
+        if (value.topic === "lifecyle") {
           assert.equal(value.data.booster, false);
           assert.equal(value.data.txOnTimer, false);
           assert.equal(value.data.txOnEvent, false);
@@ -63,7 +51,6 @@ describe("Comtac LPN CM-2 Uplink", () => {
           assert.equal(value.data.digitalInputEvent, false);
           assert.equal(value.data.deepSleepEvent, false);
           assert.equal(value.data.digitalInputState, false);
-
           assert.equal(value.data.minTempOn, false);
           assert.equal(value.data.maxTempOn, false);
           assert.equal(value.data.minHumOn, false);
@@ -72,11 +59,16 @@ describe("Comtac LPN CM-2 Uplink", () => {
           assert.equal(value.data.maxPt100On, false);
           assert.equal(value.data.minLemOn, false);
           assert.equal(value.data.maxLemOn, false);
-
           assert.equal(value.data.voltage, 2.654);
 
           validate(value.data, lifecycleSchema, { throwError: true });
         }
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
 
         if (value.topic === "default") {
           assert.equal(value.data.temperature, -3);
@@ -86,7 +78,6 @@ describe("Comtac LPN CM-2 Uplink", () => {
           assert.equal(value.data.adc2, 1096);
           assert.equal(value.data.lem, 2.506);
           assert.equal(value.data.brightness, 21);
-
           validate(value.data, defaultSchema, { throwError: true });
         }
       });

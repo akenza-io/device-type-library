@@ -25,7 +25,7 @@
       "type": "boolean"
     },
     "lastTempValid": {
-      "title": "Last temperature measurement",
+      "title": "Last temperature measurement valid",
       "description": "Last temperature measurement valid",
       "type": "boolean"
     },

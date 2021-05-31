@@ -60,8 +60,8 @@ function consume(event) {
     data.measurementRate = Bits.bitsToUnsigned(bits.substr(32, 16));
     data.historyTrigger = Bits.bitsToUnsigned(bits.substr(48, 8));
     data.tempOffset = Bits.bitsToSigned(bits.substr(56, 16)) / 100;
-    data.tempMax = Bits.bitsToUnsigned(bits.substr(72, 8));
-    data.tempMin = Bits.bitsToUnsigned(bits.substr(80, 8));
+    data.tempMax = Bits.bitsToSigned(bits.substr(72, 8));
+    data.tempMin = Bits.bitsToSigned(bits.substr(80, 8));
     data.humOffset = Bits.bitsToUnsigned(bits.substr(88, 8));
     data.humMax = Bits.bitsToUnsigned(bits.substr(96, 8));
     data.humMin = Bits.bitsToUnsigned(bits.substr(104, 8));
