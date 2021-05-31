@@ -1,0 +1,49 @@
+{
+  "$id": "https://akenza.io/aiut/alevelV2/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "currentLevel": {
+      "title": "Current level",
+      "unit": "%",
+      "type": "number",
+      "description": "Current tank level %",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "tankingFlag": {
+      "title": "Tanking flag",
+      "description": "Is true on tanking",
+      "type": "boolean"
+    },
+    "emptingFlag": {
+      "title": "Empting Flag",
+      "description": "Is true on empting",
+      "type": "boolean"
+    },
+    "measurementError": {
+      "title": "Measurement error",
+      "description": "Is true on measurement error",
+      "type": "boolean"
+    },
+    "outOfRangeError": {
+      "title": "Out of range error",
+      "description": "Is true if an out of range error is detected",
+      "type": "boolean"
+    },
+    "sequenceNumber": {
+      "title": "Sequence number",
+      "description": "Sequence number",
+      "type": "number"
+    },
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "Temperature in °C",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    }
+  }
+}
