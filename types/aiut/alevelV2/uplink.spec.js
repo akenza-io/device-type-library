@@ -46,7 +46,7 @@ describe("Alevel V1", () => {
     it("should decode the Alevel V1 payload", () => {
       const data = {
         data: {
-          payload_hex: "0746D8001700",
+          payload_hex: "81AFFBD1E158",
         },
       };
 
