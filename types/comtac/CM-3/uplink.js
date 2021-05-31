@@ -10,21 +10,21 @@ function consume(event) {
 
   // Status
   // reserved x2
-  lifecycle.tempPt100 = !!Bits.bitsToUnsigned(bits.substr(10, 1));
-  lifecycle.tempI2C = !!Bits.bitsToUnsigned(bits.substr(11, 1));
-  lifecycle.acc = !!Bits.bitsToUnsigned(bits.substr(12, 1));
-  lifecycle.extMEM = !!Bits.bitsToUnsigned(bits.substr(13, 1));
-  lifecycle.lastTempValid = !!Bits.bitsToUnsigned(bits.substr(14, 1));
-  lifecycle.batLow = !!Bits.bitsToUnsigned(bits.substr(15, 1));
+  lifecycle.batLow = !!Bits.bitsToUnsigned(bits.substr(10, 1));
+  lifecycle.lastTempValid = !!Bits.bitsToUnsigned(bits.substr(11, 1));
+  lifecycle.extMEM = !!Bits.bitsToUnsigned(bits.substr(12, 1));
+  lifecycle.acc = !!Bits.bitsToUnsigned(bits.substr(13, 1));
+  lifecycle.tempI2C = !!Bits.bitsToUnsigned(bits.substr(14, 1));
+  lifecycle.tempPt100 = !!Bits.bitsToUnsigned(bits.substr(15, 1));
 
   // Event
   // reserved x2
-  lifecycle.async = !!Bits.bitsToUnsigned(bits.substr(18, 1));
-  lifecycle.history = !!Bits.bitsToUnsigned(bits.substr(19, 1));
-  lifecycle.alarming = !!Bits.bitsToUnsigned(bits.substr(20, 1));
-  lifecycle.button = !!Bits.bitsToUnsigned(bits.substr(21, 1));
-  lifecycle.configRX = !!Bits.bitsToUnsigned(bits.substr(22, 1));
-  lifecycle.infoReq = !!Bits.bitsToUnsigned(bits.substr(23, 1));
+  lifecycle.infoReq = !!Bits.bitsToUnsigned(bits.substr(18, 1));
+  lifecycle.configRX = !!Bits.bitsToUnsigned(bits.substr(19, 1));
+  lifecycle.button = !!Bits.bitsToUnsigned(bits.substr(20, 1));
+  lifecycle.alarming = !!Bits.bitsToUnsigned(bits.substr(21, 1));
+  lifecycle.history = !!Bits.bitsToUnsigned(bits.substr(22, 1));
+  lifecycle.async = !!Bits.bitsToUnsigned(bits.substr(23, 1));
 
   lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substr(24, 8)) / 2;
 
