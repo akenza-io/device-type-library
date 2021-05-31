@@ -1,0 +1,71 @@
+{
+  "$id": "https://akenza.io/comtac/CM-4/config.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Config",
+  "type": "object",
+  "properties": {
+    "measurementRate": {
+      "title": "Measurement rate",
+      "unit": "min",
+      "type": "integer",
+      "description": "Temperature measurement rate.",
+      "minimum": 0,
+      "maximum": 50000
+    },
+    "historyTrigger": {
+      "title": "History trigger",
+      "type": "integer",
+      "description": "Trigger for HISTORY event (History uplink sent every history trigger * temperature measurement rate)",
+      "minimum": 0,
+      "maximum": 8
+    },
+    "tempOffset": {
+      "title": "Temperature offset",
+      "unit": "°C",
+      "type": "number",
+      "description": "Temperature offset used when calculating actual temperature",
+      "minimum": -5000,
+      "maximum": 5000
+    },
+    "tempMax": {
+      "title": "Temperature maximum",
+      "unit": "°C",
+      "type": "number",
+      "description": "Temperature maximum",
+      "minimum": -25,
+      "maximum": 80
+    },
+    "tempMin": {
+      "title": "Temperature minimum",
+      "unit": "°C",
+      "type": "number",
+      "description": "Temperature minimum",
+      "minimum": -25,
+      "maximum": 80
+    },
+    "humOffset": {
+      "title": "Humidity offset",
+      "unit": "%",
+      "type": "number",
+      "description": "Humidity offset used when calculating actual temperature",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "humMax": {
+      "title": "Humidity maximum",
+      "unit": "%",
+      "type": "number",
+      "description": "Humidity maximum",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "humMin": {
+      "title": "Humidity minimum",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %",
+      "minimum": 0,
+      "maximum": 100
+    }
+  }
+}

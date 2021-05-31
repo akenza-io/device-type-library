@@ -1,0 +1,76 @@
+{
+  "$id": "https://akenza.io/comtac/CM-3/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "tempPt100": {
+      "title": "Temperature PT100",
+      "description": "TEMP PT100 placed",
+      "type": "boolean"
+    },
+    "tempI2C": {
+      "title": "Temperature I2C",
+      "description": "TEMP I2C placed",
+      "type": "boolean"
+    },
+    "acc": {
+      "title": "ACC",
+      "description": "ACC placed",
+      "type": "boolean"
+    },
+    "extMEM": {
+      "title": "EXT MEM",
+      "description": "EXT MEM placed",
+      "type": "boolean"
+    },
+    "lastTempValid": {
+      "title": "Last temperature measurement",
+      "description": "Last temperature measurement valid",
+      "type": "boolean"
+    },
+    "batLow": {
+      "title": "Battery Low",
+      "description": "Low Battery flag set",
+      "type": "boolean"
+    },
+    "async": {
+      "title": "Asynchronous",
+      "description": "ASYNCHRONOUS Event set",
+      "type": "boolean"
+    },
+    "history": {
+      "title": "History",
+      "description": "HISTORY Event flag set (SYNC)",
+      "type": "boolean"
+    },
+    "alarming": {
+      "title": "Alarming",
+      "description": "ALARMING Event flag set (SYNC)",
+      "type": "boolean"
+    },
+    "button": {
+      "title": "Button",
+      "description": "BUTTON Event flag set (ASYNC)",
+      "type": "boolean"
+    },
+    "configRX": {
+      "title": "Config RX",
+      "description": "CONFIG RX Event flag set (ASYNC)",
+      "type": "boolean"
+    },
+    "infoReq": {
+      "title": "Info request",
+      "description": "INFO REQ Event flag set (ASYNC)",
+      "type": "boolean"
+    },
+    "batteryLevel": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "unit": "%"
+    }
+  }
+}

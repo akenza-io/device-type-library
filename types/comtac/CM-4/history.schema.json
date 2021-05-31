@@ -1,0 +1,136 @@
+{
+  "$id": "https://akenza.io/comtac/CM-4/history.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "History",
+  "type": "object",
+  "properties": {
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "humidity": {
+      "title": "Humidity",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "tempHistory1": {
+      "title": "Temperature History 1",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C. Last Measurement +1.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "tempHistory2": {
+      "title": "Temperature History 2",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C. Last Measurement +2.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "tempHistory3": {
+      "title": "Temperature History 3",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C. Last Measurement +3.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "tempHistory4": {
+      "title": "Temperature History 4",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C. Last Measurement +4.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "tempHistory5": {
+      "title": "Temperature History 5",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C. Last Measurement +5.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "tempHistory6": {
+      "title": "Temperature History 6",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C. Last Measurement +6.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "tempHistory7": {
+      "title": "Temperature History 7",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C. Last Measurement +7.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "humidity1": {
+      "title": "Humidity History 1",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %. Last Measurement +1.",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "humidity2": {
+      "title": "Humidity History 2",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %. Last Measurement +2.",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "humidity3": {
+      "title": "Humidity History 3",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %. Last Measurement +3.",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "humidity4": {
+      "title": "Humidity History 4",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %. Last Measurement +4.",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "humidity5": {
+      "title": "Humidity History 5",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %. Last Measurement +5.",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "humidity6": {
+      "title": "Humidity History 6",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %. Last Measurement +6.",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "humidity7": {
+      "title": "Humidity History 7",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %. Last Measurement +7.",
+      "minimum": 0,
+      "maximum": 100
+    }
+  }
+}

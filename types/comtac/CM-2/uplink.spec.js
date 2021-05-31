@@ -1,9 +1,9 @@
 const chai = require("chai");
-const validate = require("jsonschema").validate;
+const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const fs = require("fs");
 
-const assert = chai.assert;
+const { assert } = chai;
 
 const script = rewire("./uplink.js");
 let defaultSchema = null;
@@ -16,32 +16,32 @@ function expectEmit(callback) {
   });
 }
 
-before(function (done) {
+before((done) => {
   fs.readFile(
-    __dirname + "/default.schema.json",
+    `${__dirname}/default.schema.json`,
     "utf8",
-    function (err, fileContents) {
+    (err, fileContents) => {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
-before(function (done) {
+before((done) => {
   fs.readFile(
-    __dirname + "/lifecycle.schema.json",
+    `${__dirname}/lifecycle.schema.json`,
     "utf8",
-    function (err, fileContents) {
+    (err, fileContents) => {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
-describe("Comtac LPN CM-2 Uplink", function () {
-  describe("consume()", function () {
-    it("should decode the Comtac LPN CM-2 payload", function () {
+describe("Comtac LPN CM-2 Uplink", () => {
+  describe("consume()", () => {
+    it("should decode the Comtac LPN CM-2 payload", () => {
       const data = {
         data: {
           port: 3,
@@ -49,7 +49,7 @@ describe("Comtac LPN CM-2 Uplink", function () {
         },
       };
 
-      expectEmit(function (type, value) {
+      expectEmit((type, value) => {
         assert.equal(type, "sample");
 
         assert.isNotNull(value);
