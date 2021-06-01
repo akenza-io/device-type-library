@@ -79,7 +79,7 @@ describe("Comtac LPN CM-2 Uplink", () => {
         assert.equal(value.data.brightness, 21);
         validate(value.data, defaultSchema, { throwError: true });
       });
-      /*
+
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
@@ -88,7 +88,7 @@ describe("Comtac LPN CM-2 Uplink", () => {
         assert.equal(value.topic, "button_pressed");
         assert.equal(value.data.buttonPressed, true);
       });
-*/
+
       consume(data);
     });
   });
