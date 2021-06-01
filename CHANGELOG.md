@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.0.5 - 2021-06-01
+
+### Added
+
+- Comtac - CM-4
+
+## [1.0.4] - 2021-05-20
+
+### Added
+
+- Dragino - LSE01
+
+## [1.0.3] - 2021-05-19
+
+### Added
+
+- Digitalmatter - Oyster
+
 ## [1.0.2] - 2021-05-10
 
 ### Added

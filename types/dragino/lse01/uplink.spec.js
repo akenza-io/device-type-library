@@ -1,9 +1,9 @@
 const chai = require("chai");
-const {validate} = require("jsonschema");
+const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const fs = require("fs");
 
-const {assert} = chai;
+const { assert } = chai;
 
 const script = rewire("./uplink.js");
 let defaultSchema = null;
@@ -18,35 +18,35 @@ function expectEmit(callback) {
 
 before((done) => {
   fs.readFile(
-    `${__dirname  }/default.schema.json`,
+    `${__dirname}/default.schema.json`,
     "utf8",
     (err, fileContents) => {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
-
 before((done) => {
   fs.readFile(
-    `${__dirname  }/lifecycle.schema.json`,
+    `${__dirname}/lifecycle.schema.json`,
     "utf8",
     (err, fileContents) => {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
-describe("Elsys ELT Lite uplink", () => {
+describe("Dragino LSE01 Uplink", () => {
   describe("consume()", () => {
-    it("should decode Elsys ELT Lite payload", () => {
+    it("should decode the Dragino LSE01 report uplink", () => {
       const data = {
         data: {
-          payload_hex: "0100e20218070e410cff5614000edd20",
-        }
+          port: 1,
+          payload_hex: "CE2900F107A5099B6E2890",
+        },
       };
 
       expectEmit((type, value) => {
@@ -54,17 +54,19 @@ describe("Elsys ELT Lite uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic == "lifecycle") {
-          assert.equal(value.data.voltage, 3.649);
-        }
-
-        if (value.topic == "default") {
-          assert.equal(value.data.temperature, 22.6);
-          assert.equal(value.data.humidity, 24);
-          assert.equal(value.data.pressure, 974.112);
-          assert.equal(value.data.externalTemperature1, -17);
+        if (value.topic === "default") {
+          assert.equal(value.data.temperature, 24.1);
+          assert.equal(value.data.soilHumidity, 19.57);
+          assert.equal(value.data.soilTemperature, 24.59);
+          assert.equal(value.data.soilConductivity, 28200);
 
           validate(value.data, defaultSchema, { throwError: true });
+        }
+
+        if (value.topic === "lifecycle") {
+          assert.equal(value.data.voltage, 3.625);
+
+          validate(value.data, lifecycleSchema, { throwError: true });
         }
       });
 

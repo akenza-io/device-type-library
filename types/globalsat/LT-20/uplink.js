@@ -1,51 +1,55 @@
 function toLittleEndianSigned(hex) {
   // Creating little endian hex DCBA
-  var hexArray = [];
-  while (hex.length >= 2) {
-    hexArray.push(hex.substring(0, 2));
-    hex = hex.substring(2, hex.length);
+  const hexArray = [];
+  let tempHex = hex;
+  while (tempHex.length >= 2) {
+    hexArray.push(tempHex.substring(0, 2));
+    tempHex = tempHex.substring(2, tempHex.length);
   }
-  hexArray.reverse()
-  hex = hexArray.join('');
-
+  hexArray.reverse();
   // To signed
-  return Bits.bitsToSigned(Bits.hexToBits(hex));
+  return Bits.bitsToSigned(Bits.hexToBits(hexArray.join("")));
 }
 
 function consume(event) {
-  var payload = event.data.payload_hex;
-  var bits = Bits.hexToBits(payload);
-  var data = {};
+  const payload = event.data.payload_hex;
+  const bits = Bits.hexToBits(payload);
+  const data = {};
 
-  data.longitude = (toLittleEndianSigned(payload.substr(4, 6)) * 215) / 10 * 0.000001;
-  data.latitude = (toLittleEndianSigned(payload.substr(10, 6)) * 108) / 10 * 0.000001;
+  data.longitude =
+    ((toLittleEndianSigned(payload.substr(4, 6)) * 215) / 10) * 0.000001;
+  data.latitude =
+    ((toLittleEndianSigned(payload.substr(10, 6)) * 108) / 10) * 0.000001;
 
-  var reportType = Math.round(Bits.bitsToUnsigned(bits.substr(64, 8)) % 32);
-  var gpsFix = Math.round(Bits.bitsToUnsigned(bits.substr(64, 8)) / 32);
+  const reportType = Math.round(Bits.bitsToUnsigned(bits.substr(64, 8)) % 32);
+  const gpsFix = Math.round(Bits.bitsToUnsigned(bits.substr(64, 8)) / 32);
 
-  if (gpsFix == 0) {
+  if (gpsFix === 0) {
     data.gpsFix = "Not fix";
-  } else if (gpsFix == 1) {
+  } else if (gpsFix === 1) {
     data.gpsFix = "2D fix";
-  } else if (gpsFix == 2) {
+  } else if (gpsFix === 2) {
     data.gpsFix = "3D fix";
   }
 
-  if (reportType == 2) {
+  if (reportType === 2) {
     data.reportType = "Periodic mode report";
-  } else if (reportType == 4) {
+  } else if (reportType === 4) {
     data.reportType = "Motion mode static report";
-  } else if (reportType == 5) {
+  } else if (reportType === 5) {
     data.reportType = "Motion mode moving report";
-  } else if (reportType == 6) {
+  } else if (reportType === 6) {
     data.reportType = "Motion mode static to moving report";
-  } else if (reportType == 7) {
+  } else if (reportType === 7) {
     data.reportType = "Motion mode moving to static report";
-  } else if (reportType == 15) {
+  } else if (reportType === 15) {
     data.reportType = "Low battery alarm report";
   }
-  var batteryPercent = Bits.bitsToUnsigned(bits.substr(72, 8));
+  const batteryPercent = Bits.bitsToUnsigned(bits.substr(72, 8));
 
-  emit('sample', { "data": { "batteryPercent": batteryPercent }, "topic": "lifecycle" });
-  emit('sample', { "data": data, "topic": "default" });
+  emit("sample", {
+    data: { batteryPercent },
+    topic: "lifecycle",
+  });
+  emit("sample", { data, topic: "default" });
 }
