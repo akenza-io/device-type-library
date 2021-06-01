@@ -53,23 +53,10 @@ describe("Comtac LPN CM-4 Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic === "lifecyle") {
-          assert.equal(value.data.batLow, false);
-          assert.equal(value.data.lastTempValid, true);
-          assert.equal(value.data.extMEM, false);
-          assert.equal(value.data.acc, false);
-          assert.equal(value.data.tempI2C, true);
-          assert.equal(value.data.tempPt100, false);
-          assert.equal(value.data.infoReq, false);
-          assert.equal(value.data.configRX, false);
-          assert.equal(value.data.button, false);
-          assert.equal(value.data.alarming, true);
-          assert.equal(value.data.history, false);
-          assert.equal(value.data.async, false);
-          assert.equal(value.data.batteryLevel, 99);
-
-          validate(value.data, lifecycleSchema, { throwError: true });
-        }
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.temperature, 23.15);
+        assert.equal(value.data.humidity, 64);
+        validate(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -77,11 +64,22 @@ describe("Comtac LPN CM-4 Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic === "default") {
-          assert.equal(value.data.temperature, 23.15);
-          assert.equal(value.data.humidity, 64);
-          validate(value.data, defaultSchema, { throwError: true });
-        }
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batLow, false);
+        assert.equal(value.data.lastTempValid, true);
+        assert.equal(value.data.extMEM, false);
+        assert.equal(value.data.acc, false);
+        assert.equal(value.data.tempI2C, true);
+        assert.equal(value.data.tempPt100, false);
+        assert.equal(value.data.infoReq, false);
+        assert.equal(value.data.configRX, false);
+        assert.equal(value.data.button, false);
+        assert.equal(value.data.alarming, true);
+        assert.equal(value.data.history, false);
+        assert.equal(value.data.async, false);
+        assert.equal(value.data.batteryLevel, 99);
+
+        validate(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -102,23 +100,24 @@ describe("Comtac LPN CM-4 Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic === "lifecyle") {
-          assert.equal(value.data.batLow, false);
-          assert.equal(value.data.lastTempValid, true);
-          assert.equal(value.data.extMEM, false);
-          assert.equal(value.data.acc, false);
-          assert.equal(value.data.tempI2C, true);
-          assert.equal(value.data.tempPt100, false);
-          assert.equal(value.data.infoReq, false);
-          assert.equal(value.data.configRX, false);
-          assert.equal(value.data.button, false);
-          assert.equal(value.data.alarming, false);
-          assert.equal(value.data.history, true);
-          assert.equal(value.data.async, false);
-          assert.equal(value.data.batteryLevel, 99);
-
-          validate(value.data, lifecycleSchema, { throwError: true });
-        }
+        assert.equal(value.topic, "history");
+        assert.equal(value.data.temperature, 23.15);
+        assert.equal(value.data.humidity, 64);
+        assert.equal(value.data.tempHistory1, 23.15);
+        assert.equal(value.data.humHistory1, 64);
+        assert.equal(value.data.tempHistory2, 23.15);
+        assert.equal(value.data.humHistory2, 64);
+        assert.equal(value.data.tempHistory3, 23.15);
+        assert.equal(value.data.humHistory3, 64);
+        assert.equal(value.data.tempHistory4, 23.15);
+        assert.equal(value.data.humHistory4, 64);
+        assert.equal(value.data.tempHistory5, 23.15);
+        assert.equal(value.data.humHistory5, 64);
+        assert.equal(value.data.tempHistory6, 23.15);
+        assert.equal(value.data.humHistory6, 64);
+        assert.equal(value.data.tempHistory7, 23.15);
+        assert.equal(value.data.humHistory7, 64);
+        validate(value.data, historySchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -126,25 +125,22 @@ describe("Comtac LPN CM-4 Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic === "history") {
-          assert.equal(value.data.temperature, 23.15);
-          assert.equal(value.data.humidity, 64);
-          assert.equal(value.data.tempHistory1, 23.15);
-          assert.equal(value.data.humHistory1, 64);
-          assert.equal(value.data.tempHistory2, 23.15);
-          assert.equal(value.data.humHistory2, 64);
-          assert.equal(value.data.tempHistory3, 23.15);
-          assert.equal(value.data.humHistory3, 64);
-          assert.equal(value.data.tempHistory4, 23.15);
-          assert.equal(value.data.humHistory4, 64);
-          assert.equal(value.data.tempHistory5, 23.15);
-          assert.equal(value.data.humHistory5, 64);
-          assert.equal(value.data.tempHistory6, 23.15);
-          assert.equal(value.data.humHistory6, 64);
-          assert.equal(value.data.tempHistory7, 23.15);
-          assert.equal(value.data.humHistory7, 64);
-          validate(value.data, historySchema, { throwError: true });
-        }
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batLow, false);
+        assert.equal(value.data.lastTempValid, true);
+        assert.equal(value.data.extMEM, false);
+        assert.equal(value.data.acc, false);
+        assert.equal(value.data.tempI2C, true);
+        assert.equal(value.data.tempPt100, false);
+        assert.equal(value.data.infoReq, false);
+        assert.equal(value.data.configRX, false);
+        assert.equal(value.data.button, false);
+        assert.equal(value.data.alarming, false);
+        assert.equal(value.data.history, true);
+        assert.equal(value.data.async, false);
+        assert.equal(value.data.batteryLevel, 99);
+
+        validate(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
