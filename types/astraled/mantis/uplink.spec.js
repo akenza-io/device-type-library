@@ -40,10 +40,10 @@ describe("Astraled Mantis Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.act_pwr, 1);
+        assert.equal(value.data.actPwr, 1);
         assert.equal(value.data.energy, 10.861896514892578);
-        assert.equal(value.data.iaq_state_int, 0);
-        assert.equal(value.data.sensor_ambient_light, 250);
+        assert.equal(value.data.iaqStateInt, 0);
+        assert.equal(value.data.sensorAmbientLight, 250);
         validate(value.data, lifecycleSchema, { throwError: true });
       });
       utils.expectEmits((type, value) => {
