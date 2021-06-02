@@ -49,21 +49,21 @@
     "srssi1": {
       "title": "Sonic Received Signal Strength Indicator 1",
       "type": "integer",
-      "description": "The SRSSI is simply an integer number between 1 (low level) and 10 (expected level) given to the expected strength of the echo reflected to the transducer.",
+      "description": "The SRSSI is an integer number between 1 (low level) and 10 (expected level) given to the expected strength of the echo reflected to the transducer.",
       "max": 10,
       "min": 1
     },
     "srssi2": {
       "title": "Sonic Received Signal Strength Indicator 2",
       "type": "integer",
-      "description": "The SRSSI is simply an integer number between 1 (low level) and 10 (expected level) given to the expected strength of the echo reflected to the transducer.",
+      "description": "The SRSSI is an integer number between 1 (low level) and 10 (expected level) given to the expected strength of the echo reflected to the transducer.",
       "max": 10,
       "min": 1
     },
     "srssi3": {
       "title": "Sonic Received Signal Strength Indicator 3",
       "type": "integer",
-      "description": "The SRSSI is simply an integer number between 1 (low level) and 10 (expected level) given to the expected strength of the echo reflected to the transducer.",
+      "description": "The SRSSI is an integer number between 1 (low level) and 10 (expected level) given to the expected strength of the echo reflected to the transducer.",
       "max": 10,
       "min": 1
     },

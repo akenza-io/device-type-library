@@ -57,9 +57,9 @@ describe("Tekelek TEK766 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         if (value.topic === "current") {
-          assert.equal(value.data.limit1, false);
-          assert.equal(value.data.limit2, false);
-          assert.equal(value.data.limit3, false);
+          assert.equal(value.data.limit1Exceeded, false);
+          assert.equal(value.data.limit2Exceeded, false);
+          assert.equal(value.data.limit3Exceeded, false);
           assert.equal(value.data.ullage, 274);
           assert.equal(value.data.temperature, 27);
           assert.equal(value.data.src, 7);

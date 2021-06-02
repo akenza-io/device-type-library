@@ -26,21 +26,21 @@
       "title": "Contact reason",
       "description": "Contact reason",
       "type": "string",
-      "enum": ["Reset", "Scheduled", "Manual", "Activation"]
+      "enum": ["RESET", "SCHEDULED", "MANUAL", "ACTIVATION"]
     },
     "systemRequestReset": {
       "title": "System request reset",
       "description": "Defines the reason for the last reset",
       "type": "string",
       "enum": [
-        "Power on reset",
-        "Brown out reset",
-        "External reset",
-        "Watchdog reset",
-        "Cortex-M3 lockup reset",
-        "Cortex-M3 system request reset",
-        "EM4 reset",
-        "System has been in Backup mode"
+        "POWER_ON_RESET",
+        "BROWN_OUT_RESET",
+        "EXTERNAL_RESET",
+        "WATCHDOG_RESET",
+        "CORTEX_M3_LOCKUP_RESET",
+        "CORTEX_M3_SYSTEM_REQUEST_RESET",
+        "EM4_RESET",
+        "SYSTEM_HAS_BEEN_IN_BACKUP_MODE"
       ]
     },
     "active": {
@@ -77,7 +77,7 @@
     "srssi": {
       "title": "Sonic Received Signal Strength Indicator",
       "type": "integer",
-      "description": "The SRSSI is simply an integer number between 1 (low level) and 10 (expected level) given to the expected strength of the echo reflected to the transducer.",
+      "description": "The SRSSI is an integer number between 1 (low level) and 10 (expected level) given to the expected strength of the echo reflected to the transducer.",
       "max": 10,
       "min": 1
     },

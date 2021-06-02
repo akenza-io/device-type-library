@@ -4,18 +4,18 @@
   "title": "Current alarm",
   "type": "object",
   "properties": {
-    "limit1": {
-      "title": "Limit 1",
+    "limit1Exceeded": {
+      "title": "Limit 1 exceeded",
       "type": "boolean",
       "description": "True if configured limit 1 is exceeded"
     },
-    "limit2": {
-      "title": "Limit 2",
+    "limit2Exceeded": {
+      "title": "Limit 2 exceeded",
       "type": "boolean",
       "description": "True if configured limit 2 is exceeded"
     },
-    "limit3": {
-      "title": "Limit 3",
+    "limit3Exceeded": {
+      "title": "Limit 3 exceeded",
       "type": "boolean",
       "description": "True if configured limit 3 is exceeded"
     },
@@ -36,7 +36,7 @@
     "srssi": {
       "title": "Sonic Received Signal Strength Indicator",
       "type": "integer",
-      "description": "The SRSSI is simply an integer number between 1 (low level) and 10 (expected level) given to the expected strength of the echo reflected to the transducer.",
+      "description": "The SRSSI is an integer number between 1 (low level) and 10 (expected level) given to the expected strength of the echo reflected to the transducer.",
       "max": 10,
       "min": 1
     },
