@@ -9,11 +9,11 @@
   "loraDeviceClass": "A",
   "availableSensors": ["Distance", "Temperature"],
   "outputTopics": [
+    "alarm",
     "alarm_history",
-    "current_alarm",
-    "current",
-    "lifecycle",
+    "measurement",
     "measurement_history",
+    "lifecycle",
     "param_read"
   ],
   "encoding": "HEX",

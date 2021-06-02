@@ -32,9 +32,9 @@ function consume(event) {
     data.src = Bits.bitsToUnsigned(bits.substr(60, 4));
 
     if (type === 16) {
-      emit("sample", { data, topic: "current" });
+      emit("sample", { data, topic: "measurement" });
     } else {
-      emit("sample", { data, topic: "current_alarm" });
+      emit("sample", { data, topic: "alarm" });
     }
 
     if (type === 16) {
