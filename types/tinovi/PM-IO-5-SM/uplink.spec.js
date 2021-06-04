@@ -45,7 +45,7 @@ describe("Tinovi PM-IO-5-SM Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.valve, false);
-        assert.equal(value.data.leak, false);
+        assert.equal(value.data.leakDetected, false);
         assert.equal(value.data.e25, 0.52);
         assert.equal(value.data.soilConductivity, 0.1);
         assert.equal(value.data.temperature, 34.55);
