@@ -4,13 +4,13 @@
   "title": "Lifecycle",
   "type": "object",
   "properties": {
-    "voltage": {
-      "title": "Battery voltage",
-      "unit": "V",
+    "batteryLevel": {
       "type": "number",
       "minimum": 0,
-      "maximum": 24,
-      "desciption": "The battery voltage in Volt."
+      "maximum": 100,
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "unit": "%"
     }
   }
 }

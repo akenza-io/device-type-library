@@ -9,8 +9,8 @@
       "type": "boolean",
       "description": "Valve on = true, Valve off = false"
     },
-    "leak": {
-      "title": "Leak",
+    "leakDetected": {
+      "title": "Leak detected",
       "type": "boolean",
       "description": "Leak detected, either true or false"
     },
@@ -30,7 +30,7 @@
     },
     "waterContent": {
       "title": "Water content",
-      "unit": "%",
+      "unit": "VWC",
       "type": "number",
       "description": "Water content in the soil",
       "minimum": 0,

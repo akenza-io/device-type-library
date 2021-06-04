@@ -32,8 +32,8 @@ function consume(event) {
 
   let pos = 1;
   decoded.valve = !!((bytes[0] >> 7) & 1);
-  decoded.leak = !!((bytes[0] >> 6) & 1);
-  lifecycle.voltage = bytes[pos++];
+  decoded.leakDetected = !!((bytes[0] >> 6) & 1);
+  lifecycle.batteryLevel = bytes[pos++];
   if (((bytes[0] >> 0) & 1) === 1) {
     // 1st SOIL sensor
     decoded.e25 = bytesToInt(bytes.slice(pos, pos + 2), 100);
