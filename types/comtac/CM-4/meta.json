@@ -1,0 +1,13 @@
+{
+  "name": "LPN CM-4 Sensor",
+  "version": "1.0.0",
+  "manufacturer": "Comtac",
+  "url": "https://www.comtac.ch/de/produkte/lora/condition-monitoring/lpn-cm-4-sensor.html",
+  "description": "The LPN CM-4 is able to read temperature & humidity.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": ["Temperature", "Humidity"],
+  "outputTopics": ["config", "default", "history", "info", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
