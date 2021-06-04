@@ -1,81 +1,76 @@
 const chai = require("chai");
 const { validate } = require("jsonschema");
 const rewire = require("rewire");
-const axios = require("axios");
-const fs = require("fs");
-const Ajv = require("ajv");
+const utils = require("test-utils");
 
 const { assert } = chai;
 
-const script = rewire("./uplink.js");
-let defaultSchema = null;
-let lifecycleSchema = null;
-const consume = script.__get__("consume");
-
-function expectEmit(callback) {
-  script.__set__({
-    emit: callback,
+describe("Alevel V2 Uplink", () => {
+  let defaultSchema = null;
+  let consume = null;
+  before((done) => {
+    const script = rewire("./uplink.js");
+    consume = utils.init(script);
+    utils
+      .loadSchema(`${__dirname}/default.schema.json`)
+      .then((parsedSchema) => {
+        defaultSchema = parsedSchema;
+        done();
+      });
   });
-}
 
-before((done) => {
-  fs.readFile(
-    `${__dirname}/default.schema.json`,
-    "utf8",
-    (err, fileContents) => {
-      if (err) throw err;
-      defaultSchema = JSON.parse(fileContents);
-      done();
-    },
-  );
-});
-before((done) => {
-  fs.readFile(
-    `${__dirname}/lifecycle.schema.json`,
-    "utf8",
-    (err, fileContents) => {
-      if (err) throw err;
-      lifecycleSchema = JSON.parse(fileContents);
-      done();
-    },
-  );
-});
+  let lifecycleSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+      .then((parsedSchema) => {
+        lifecycleSchema = parsedSchema;
+        done();
+      });
+  });
 
-describe("Alevel V1", () => {
   describe("consume()", () => {
-    it("should decode the Alevel V1 payload", () => {
+    it("should decode the Alevel V2 payload", () => {
       const data = {
         data: {
+          port: 3,
           payload_hex: "81AFFBD1E158",
         },
       };
 
-      expectEmit((type, value) => {
+      utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
-
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic === "lifecycle") {
-          assert.equal(value.data.batteryVoltage, 3.66);
-          assert.equal(value.data.batteryLevel, 0);
-          assert.equal(value.data.deviceStatusFlag, 0);
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batteryStatus, "HEALTHY");
+        assert.equal(value.data.currentProfile, "IMR_LORA_SIGFOX");
 
-          validate(value.data, lifecycleSchema, { throwError: true });
-        }
-
-        if (value.topic === "default") {
-          assert.equal(value.data.currentLevel, 2.9);
-          assert.equal(value.data.emptingFlag, false);
-          assert.equal(value.data.tankingFlag, false);
-          assert.equal(value.data.measurementError, false);
-          assert.equal(value.data.outOfRangeError, true);
-          assert.equal(value.data.sequenceNumber, 2);
-          assert.equal(value.data.temperature, 23);
-
-          validate(value.data, defaultSchema, { throwError: true });
-        }
+        validate(value.data, lifecycleSchema, { throwError: true });
       });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.sequenceNumber, 175);
+        assert.equal(value.data.temperature, -5);
+        assert.equal(value.data.buttonLatched, false);
+        assert.equal(value.data.button, true);
+        assert.equal(value.data.currentLevel, 90.1);
+        assert.equal(value.data.removedFromDial, false);
+        assert.equal(value.data.refilling, true);
+        assert.equal(value.data.high, true);
+        assert.equal(value.data.low, false);
+        assert.equal(value.data.outOfRange, false);
+        assert.equal(value.data.notValidReadout, false);
+
+        validate(value.data, defaultSchema, { throwError: true });
+      });
+
       consume(data);
     });
   });
