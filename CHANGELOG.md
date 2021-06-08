@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.0.6] - 2021-06-08
+
+### Added
+
+- Aiut - alevel V1
+- Aiut - alevel V2
+
 ## [1.0.6] - 2021-06-04
 
 ### Added
