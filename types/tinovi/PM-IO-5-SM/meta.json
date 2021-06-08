@@ -1,0 +1,14 @@
+{
+  "name": "PM-IO-5-SM",
+  "version": "1.0.0",
+  "manufacturer": "Tinovi",
+  "url": "https://tinovi.com/shop/lorawan-soil-moisture-temperature-air-temperature-humidity-12v-output-from-battery/",
+  "description": "Single or Double Tinovi Soil Moisture/Temperature/(Expermetal EC) sensor.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Soil moisture", "Soil conductivity"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
