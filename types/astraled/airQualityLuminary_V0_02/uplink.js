@@ -11,8 +11,7 @@ function swap32(val) {
     ((val >> 24) & 0x000000ff));
 }
 
-function bytesToFloat(bytes) {
-  const bitsFloat = bytes;
+function bytesToFloat(bitsFloat) {
   const sign = (bitsFloat >>> 31 === 0) ? 1.0 : -1.0;
   const e = bitsFloat >>> 23 & 0xff;
   const m = (e === 0) ? (bitsFloat & 0x7fffff) << 1 : (bitsFloat & 0x7fffff) | 0x800000;
