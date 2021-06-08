@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.0.6] - 2021-06-04
+
+### Added
+
+- Tinovi - PM-IO-5-SM
+
+## [1.0.5] - 2021-06-01
+
+### Added
+
+- Comtac - CM-4
+
 ## [1.0.4] - 2021-05-20
 
 ### Added
