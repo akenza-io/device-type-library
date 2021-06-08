@@ -9,6 +9,8 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 - AstraLED - Mantis
+- Aiut - alevel V1
+- Aiut - alevel V2
 
 ## [1.0.6] - 2021-06-04
 
