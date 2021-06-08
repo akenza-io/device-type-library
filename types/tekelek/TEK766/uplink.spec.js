@@ -4,6 +4,7 @@ const rewire = require("rewire");
 const utils = require("test-utils");
 
 const { assert } = chai;
+
 describe("Tekelek TEK766 Uplink", () => {
   let measurementSchema = null;
   let consume = null;
@@ -20,7 +21,7 @@ describe("Tekelek TEK766 Uplink", () => {
   let measurementHistorySchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/history.schema.json`)
+      .loadSchema(`${__dirname}/measurement_history.schema.json`)
       .then((parsedSchema) => {
         measurementHistorySchema = parsedSchema;
         done();
@@ -115,6 +116,7 @@ describe("Tekelek TEK766 Uplink", () => {
 
         validate(value.data, lifecycleSchema, { throwError: true });
       });
+      consume(data);
     });
   });
 });
