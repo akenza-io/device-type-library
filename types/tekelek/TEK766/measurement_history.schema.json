@@ -1,0 +1,92 @@
+{
+  "$id": "https://akenza.io/tekelek/tek766/measurement_history.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Current",
+  "type": "object",
+  "properties": {
+    "ullage1": {
+      "title": "Ullage 1",
+      "unit": "cm",
+      "type": "number",
+      "description": "Distance measured between the sensor and the surface"
+    },
+    "ullage2": {
+      "title": "Ullage 2",
+      "unit": "cm",
+      "type": "number",
+      "description": "Distance measured between the sensor and the surface"
+    },
+    "ullage3": {
+      "title": "Ullage 3",
+      "unit": "cm",
+      "type": "number",
+      "description": "Distance measured between the sensor and the surface"
+    },
+    "temperature1": {
+      "title": "Temperature 1",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "temperature2": {
+      "title": "Temperature 2",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "temperature3": {
+      "title": "Temperature 3",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "srssi1": {
+      "title": "Sonic Received Signal Strength Indicator 1",
+      "type": "integer",
+      "description": "The SRSSI is an integer number between 1 (low level) and 10 (expected level) given to the expected strength of the echo reflected to the transducer.",
+      "max": 10,
+      "min": 1
+    },
+    "srssi2": {
+      "title": "Sonic Received Signal Strength Indicator 2",
+      "type": "integer",
+      "description": "The SRSSI is an integer number between 1 (low level) and 10 (expected level) given to the expected strength of the echo reflected to the transducer.",
+      "max": 10,
+      "min": 1
+    },
+    "srssi3": {
+      "title": "Sonic Received Signal Strength Indicator 3",
+      "type": "integer",
+      "description": "The SRSSI is an integer number between 1 (low level) and 10 (expected level) given to the expected strength of the echo reflected to the transducer.",
+      "max": 10,
+      "min": 1
+    },
+    "src1": {
+      "title": "Sonic Results Code 1 – a performance metric of the ultrasonic measurement",
+      "type": "integer",
+      "description": "The SRC represents the result code of the ultrasonic algorithm which can be used to deduce whether a reading is likely to be valid or not. An SRC of 9 or 10 are optimal.",
+      "max": 10,
+      "min": 1
+    },
+    "src2": {
+      "title": "Sonic Results Code 2 – a performance metric of the ultrasonic measurement",
+      "type": "integer",
+      "description": "The SRC represents the result code of the ultrasonic algorithm which can be used to deduce whether a reading is likely to be valid or not. An SRC of 9 or 10 are optimal.",
+      "max": 10,
+      "min": 1
+    },
+    "src3": {
+      "title": "Sonic Results Code 3 – a performance metric of the ultrasonic measurement",
+      "type": "integer",
+      "description": "The SRC represents the result code of the ultrasonic algorithm which can be used to deduce whether a reading is likely to be valid or not. An SRC of 9 or 10 are optimal.",
+      "max": 10,
+      "min": 1
+    }
+  }
+}
