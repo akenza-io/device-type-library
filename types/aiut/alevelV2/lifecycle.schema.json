@@ -1,0 +1,14 @@
+{
+  "$id": "https://akenza.io/aiut/alevelV2/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "batteryStatus": {
+      "title": "Battery status",
+      "description": "Describes the battery status",
+      "type": "string",
+      "enum": ["VERY_LOW", "LOW", "DISCHARGING", "HEALTHY"]
+    }
+  }
+}

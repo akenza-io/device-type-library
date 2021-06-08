@@ -1,0 +1,75 @@
+{
+  "$id": "https://akenza.io/aiut/alevelV2/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "sequenceNumber": {
+      "title": "Sequence number",
+      "description": "Sequence number",
+      "type": "number"
+    },
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "Temperature in °C",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "buttonLatched": {
+      "title": "Button latched",
+      "description": "Is true if the button has been pressed in the last 24 hours",
+      "type": "boolean"
+    },
+    "isButtonPressed": {
+      "title": "Is button pressed",
+      "description": "Is true if the button is pressed right now",
+      "type": "boolean"
+    },
+    "currentProfile": {
+      "title": "Current profile",
+      "description": "Currently used radio configuration",
+      "type": "string",
+      "enum": ["IMR_LORA_SIGFOX", "SIGFOX", "SIGFOX_LORA"]
+    },
+    "currentLevel": {
+      "title": "Current level",
+      "unit": "%",
+      "type": "number",
+      "description": "Current tank level %",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "removedFromDial": {
+      "title": "Removed from dial",
+      "description": "True = removed from dial, False = installed on dial ",
+      "type": "boolean"
+    },
+    "isRefilling": {
+      "title": "Is refilling",
+      "description": "True on refill indicated",
+      "type": "boolean"
+    },
+    "highLPG": {
+      "title": "High level of LPG detected",
+      "description": "Is true if there is high level of LPG detected",
+      "type": "boolean"
+    },
+    "lowLPG": {
+      "title": "Low level of LPG detected",
+      "description": "Is true if there is low level of LPG detected",
+      "type": "boolean"
+    },
+    "outOfRangeError": {
+      "title": "Out of range error",
+      "description": "Is true if an out of range error is detected",
+      "type": "boolean"
+    },
+    "notValidReadout": {
+      "title": "Not a valid readout",
+      "description": "Is true if the sensor is inoperational",
+      "type": "boolean"
+    }
+  }
+}
