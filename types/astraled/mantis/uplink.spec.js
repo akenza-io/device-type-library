@@ -4,7 +4,7 @@ const rewire = require("rewire");
 const utils = require("test-utils");
 
 const { assert } = chai;
-describe("Astraled Air Quality Luminary V0.02 Uplink", () => {
+describe("Astraled Mantis Uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
@@ -27,7 +27,7 @@ describe("Astraled Air Quality Luminary V0.02 Uplink", () => {
       });
   });
   describe("consume()", () => {
-    it("should decode the Astraled Air Quality Luminary V0.02 payload", () => {
+    it("should decode Astraled Mantis payload", () => {
       const data = {
         data: {
           port: 1,
@@ -44,8 +44,7 @@ describe("Astraled Air Quality Luminary V0.02 Uplink", () => {
         assert.equal(value.data.energy, 10.861896514892578);
         assert.equal(value.data.iaqStateInt, 0);
         assert.equal(value.data.sensorAmbientLight, 250);
-
-          validate(value.data, lifecycleSchema, { throwError: true });
+        validate(value.data, lifecycleSchema, { throwError: true });
       });
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
