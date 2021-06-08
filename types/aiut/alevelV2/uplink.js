@@ -20,7 +20,7 @@ function consume(event) {
   }
 
   data.buttonLatched = !!Bits.bitsToUnsigned(bits.substr(26, 1));
-  data.button = !!Bits.bitsToUnsigned(bits.substr(27, 1));
+  data.isButtonPressed = !!Bits.bitsToUnsigned(bits.substr(27, 1));
 
   const currentProfile = Bits.bitsToUnsigned(bits.substr(28, 4));
   if (currentProfile === 1) {
@@ -33,9 +33,9 @@ function consume(event) {
 
   data.currentLevel = Bits.bitsToUnsigned(bits.substr(32, 10)) / 10;
   data.removedFromDial = !!Bits.bitsToUnsigned(bits.substr(42, 1));
-  data.refilling = !!Bits.bitsToUnsigned(bits.substr(43, 1));
-  data.high = !!Bits.bitsToUnsigned(bits.substr(44, 1));
-  data.low = !!Bits.bitsToUnsigned(bits.substr(45, 1));
+  data.isRefilling = !!Bits.bitsToUnsigned(bits.substr(43, 1));
+  data.highLPG = !!Bits.bitsToUnsigned(bits.substr(44, 1));
+  data.lowLPG = !!Bits.bitsToUnsigned(bits.substr(45, 1));
   data.outOfRange = !!Bits.bitsToUnsigned(bits.substr(46, 1));
   data.notValidReadout = !!Bits.bitsToUnsigned(bits.substr(46, 1));
 

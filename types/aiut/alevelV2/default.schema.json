@@ -22,8 +22,8 @@
       "description": "Is true if the button has been pressed in the last 24 hours",
       "type": "boolean"
     },
-    "button": {
-      "title": "Button pressed",
+    "isButtonPressed": {
+      "title": "Is button pressed",
       "description": "Is true if the button is pressed right now",
       "type": "boolean"
     },
@@ -41,23 +41,22 @@
       "minimum": 0,
       "maximum": 100
     },
-
     "removedFromDial": {
       "title": "Removed from dial",
       "description": "True = removed from dial, False = installed on dial ",
       "type": "boolean"
     },
-    "refilling": {
-      "title": "Refilling",
+    "isRefilling": {
+      "title": "Is refilling",
       "description": "True on refill indicated",
       "type": "boolean"
     },
-    "high": {
+    "highLPG": {
       "title": "High level of LPG detected",
       "description": "Is true if there is high level of LPG detected",
       "type": "boolean"
     },
-    "low": {
+    "lowLPG": {
       "title": "Low level of LPG detected",
       "description": "Is true if there is low level of LPG detected",
       "type": "boolean"

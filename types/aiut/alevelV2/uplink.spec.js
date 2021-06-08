@@ -59,12 +59,12 @@ describe("Alevel V2 Uplink", () => {
         assert.equal(value.data.sequenceNumber, 175);
         assert.equal(value.data.temperature, -5);
         assert.equal(value.data.buttonLatched, false);
-        assert.equal(value.data.button, true);
+        assert.equal(value.data.isButtonPressed, true);
         assert.equal(value.data.currentLevel, 90.1);
         assert.equal(value.data.removedFromDial, false);
-        assert.equal(value.data.refilling, true);
-        assert.equal(value.data.high, true);
-        assert.equal(value.data.low, false);
+        assert.equal(value.data.isRefilling, true);
+        assert.equal(value.data.highLPG, true);
+        assert.equal(value.data.lowLPG, false);
         assert.equal(value.data.outOfRange, false);
         assert.equal(value.data.notValidReadout, false);
 

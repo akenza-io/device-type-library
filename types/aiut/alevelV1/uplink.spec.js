@@ -58,10 +58,10 @@ describe("Alevel V1 Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.currentLevel, 2.9);
-        assert.equal(value.data.emptingFlag, false);
-        assert.equal(value.data.tankingFlag, false);
-        assert.equal(value.data.measurementError, false);
-        assert.equal(value.data.outOfRangeError, true);
+        assert.equal(value.data.isEmptying, false);
+        assert.equal(value.data.isTanking, false);
+        assert.equal(value.data.hasMeasurementError, false);
+        assert.equal(value.data.hasOutOfRangeError, true);
         assert.equal(value.data.sequenceNumber, 2);
         assert.equal(value.data.temperature, 23);
         validate(value.data, defaultSchema, { throwError: true });

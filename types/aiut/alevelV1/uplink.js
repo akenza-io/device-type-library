@@ -5,10 +5,10 @@ function consume(event) {
   const lifecycle = {};
 
   data.currentLevel = Bits.bitsToUnsigned(bits.substr(0, 10)) / 10;
-  data.tankingFlag = !!Bits.bitsToUnsigned(bits.substr(10, 1));
-  data.emptingFlag = !!Bits.bitsToUnsigned(bits.substr(11, 1));
-  data.measurementError = !!Bits.bitsToUnsigned(bits.substr(12, 1));
-  data.outOfRangeError = !!Bits.bitsToUnsigned(bits.substr(13, 1));
+  data.isTanking = !!Bits.bitsToUnsigned(bits.substr(10, 1));
+  data.isEmptying = !!Bits.bitsToUnsigned(bits.substr(11, 1));
+  data.hasMeasurementError = !!Bits.bitsToUnsigned(bits.substr(12, 1));
+  data.hasOutOfRangeError = !!Bits.bitsToUnsigned(bits.substr(13, 1));
   data.sequenceNumber = Bits.bitsToUnsigned(bits.substr(14, 2));
 
   lifecycle.batteryVoltage =

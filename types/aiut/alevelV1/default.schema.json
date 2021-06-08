@@ -12,22 +12,22 @@
       "minimum": 0,
       "maximum": 100
     },
-    "tankingFlag": {
-      "title": "Tanking flag",
+    "isTanking": {
+      "title": "Is tanking",
       "description": "Is true on tanking",
       "type": "boolean"
     },
-    "emptingFlag": {
-      "title": "Empting Flag",
+    "isEmptying": {
+      "title": "Is emptying",
       "description": "Is true on empting",
       "type": "boolean"
     },
-    "measurementError": {
+    "hasMeasurementError": {
       "title": "Measurement error",
       "description": "Is true on measurement error",
       "type": "boolean"
     },
-    "outOfRangeError": {
+    "hasOutOfRangeError": {
       "title": "Out of range error",
       "description": "Is true if an out of range error is detected",
       "type": "boolean"
