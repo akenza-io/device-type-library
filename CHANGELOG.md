@@ -11,7 +11,6 @@ All notable changes to this project will be documented in this file.
 - AstraLED - Mantis
 - Aiut - alevel V1
 - Aiut - alevel V2
-- Tekelek - TEK766
 
 ## [1.0.6] - 2021-06-04
 
