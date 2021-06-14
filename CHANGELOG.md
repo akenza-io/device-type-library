@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.0.8] - 2021-06-14
+
+### Changed
+
+- Deprecates the usage of `payload_hex` => use `payloadHex` instead
+
 ## [1.0.7] - 2021-06-08
 
 ### Added
