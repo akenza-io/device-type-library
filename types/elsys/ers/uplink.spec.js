@@ -24,7 +24,7 @@ before(function (done) {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -36,7 +36,7 @@ before(function (done) {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -45,7 +45,7 @@ describe("Elsys ERS uplink", function () {
     it("should decode Elsys ERS payload", function (done) {
       const data = {
         data: {
-          payload_hex: "0100f1021704041a0500070e5a",
+          payloadHex: "0100f1021704041a0500070e5a",
         },
       };
 

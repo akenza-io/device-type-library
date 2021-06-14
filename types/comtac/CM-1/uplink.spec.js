@@ -16,7 +16,6 @@ function expectEmit(callback) {
   });
 }
 
-
 before(function (done) {
   fs.readFile(
     __dirname + "/default.schema.json",
@@ -25,7 +24,7 @@ before(function (done) {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 before(function (done) {
@@ -36,7 +35,7 @@ before(function (done) {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -46,7 +45,7 @@ describe("Comtac LPN CM-1 Uplink", function () {
       const data = {
         data: {
           port: 3,
-          payload_hex: "00f1f10000000f0afd08520bae",
+          payloadHex: "00f1f10000000f0afd08520bae",
         },
       };
 

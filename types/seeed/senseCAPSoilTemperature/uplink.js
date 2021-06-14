@@ -12,7 +12,7 @@ function toLittleEndianSigned(hex) {
 }
 
 function consume(event) {
-  const payload = event.data.payload_hex;
+  const payload = event.data.payloadHex;
   const data = {};
   // 0-2 Channel Number
   // 2-4 Measurement ID

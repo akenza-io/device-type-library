@@ -1,10 +1,9 @@
 function swap16(val) {
-  return ((val & 0xFF) << 8)
-    | ((val >> 8) & 0xFF);
+  return ((val & 0xff) << 8) | ((val >> 8) & 0xff);
 }
 
 function consume(event) {
-  var payload = event.data.payload_hex;
+  var payload = event.data.payloadHex;
   var bits = Bits.hexToBits(payload);
   var data = {};
   var lifecycle = {};
@@ -22,6 +21,6 @@ function consume(event) {
   data.temperature = Bits.bitsToUnsigned(bits.substr(17, 7));
   data.temperature = data.temperature - 32;
 
-  emit('sample', { "data": lifecycle, "topic": "lifecycle" });
-  emit('sample', { "data": data, "topic": "default" });
+  emit("sample", { data: lifecycle, topic: "lifecycle" });
+  emit("sample", { data: data, topic: "default" });
 }

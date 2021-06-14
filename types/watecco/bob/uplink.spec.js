@@ -24,7 +24,7 @@ before(function (done) {
       if (err) throw err;
       reportSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 before(function (done) {
@@ -35,7 +35,7 @@ before(function (done) {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -45,7 +45,7 @@ describe("Watecco BoB Uplink", function () {
       const data = {
         data: {
           port: 1,
-          payload_hex: "52087f5a00353e090019260c552a0000007c77ffffffffffffffff",
+          payloadHex: "52087f5a00353e090019260c552a0000007c77ffffffffffffffff",
         },
       };
 
@@ -55,7 +55,6 @@ describe("Watecco BoB Uplink", function () {
         assert.typeOf(value.data, "object");
 
         if (value.topic === "report") {
-
           assert.equal(value.data.anomalyLevel, 6.299);
           assert.equal(value.data.nrAlarms, 0);
           assert.equal(value.data.temperature, 23);
@@ -83,7 +82,6 @@ describe("Watecco BoB Uplink", function () {
         }
 
         if (value.topic === "lifecycle") {
-
           assert.equal(value.data.batteryLevel, 97.638);
 
           validate(value.data, lifecycleSchema, { throwError: true });

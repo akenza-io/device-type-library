@@ -16,7 +16,6 @@ function expectEmit(callback) {
   });
 }
 
-
 before(function (done) {
   fs.readFile(
     __dirname + "/default.schema.json",
@@ -25,7 +24,7 @@ before(function (done) {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 before(function (done) {
@@ -36,7 +35,7 @@ before(function (done) {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -46,7 +45,8 @@ describe("Comtac LPN MS-3 Uplink", function () {
       const data = {
         data: {
           port: 3,
-          payload_hex: "1300bc001f0100ff5ffecc03b10024fff2000dffc3016300177fffffff7fffffff0000",
+          payloadHex:
+            "1300bc001f0100ff5ffecc03b10024fff2000dffc3016300177fffffff7fffffff0000",
         },
       };
 

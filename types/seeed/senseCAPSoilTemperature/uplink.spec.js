@@ -24,7 +24,7 @@ describe("Seeed SenseCAP Wireless Soil Moisture and Temperature Sensor Uplink", 
       const data = {
         data: {
           port: 1,
-          payload_hex: "010610007D0000010710725100009A21",
+          payloadHex: "010610007D0000010710725100009A21",
         },
       };
 

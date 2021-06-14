@@ -24,7 +24,7 @@ before(function (done) {
       if (err) throw err;
       occupancySchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -36,7 +36,7 @@ before(function (done) {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -45,7 +45,7 @@ describe("Elsys EMS Desk uplink", function () {
     it("should decode Elsys EMS Desk payload", function () {
       const data = {
         data: {
-          payload_hex: "070e241102",
+          payloadHex: "070e241102",
         },
       };
 

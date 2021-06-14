@@ -10,7 +10,7 @@ function parseHexString(str) {
 }
 
 function consume(event) {
-  const payload = event.data.payload_hex;
+  const payload = event.data.payloadHex;
   const bytes = parseHexString(payload);
   const decoded = {};
   let offset = 0;

@@ -186,7 +186,7 @@ function DecodeElsysPayload(data) {
 
 function deleteUnusedKeys(data) {
   var keysRetained = false;
-  Object.keys(data).forEach(key => {
+  Object.keys(data).forEach((key) => {
     if (data[key] === undefined || isNaN(data[key])) {
       delete data[key];
     } else {
@@ -197,7 +197,7 @@ function deleteUnusedKeys(data) {
 }
 
 function consume(event) {
-  var res = DecodeElsysPayload(hexToBytes(event.data.payload_hex));
+  var res = DecodeElsysPayload(hexToBytes(event.data.payloadHex));
   var data = {};
   var lifecycle = {};
   var occupancy = {};
@@ -241,18 +241,18 @@ function consume(event) {
   lifecycle.voltage = res.vdd / 1000;
 
   if (deleteUnusedKeys(data)) {
-    emit('sample', { "data": data, "topic": "default" });
+    emit("sample", { data: data, topic: "default" });
   }
 
   if (deleteUnusedKeys(lifecycle)) {
-    emit('sample', { "data": lifecycle, "topic": "lifecycle" });
+    emit("sample", { data: lifecycle, topic: "lifecycle" });
   }
 
   if (deleteUnusedKeys(occupancy)) {
-    emit('sample', { "data": occupancy, "topic": "occupancy" });
+    emit("sample", { data: occupancy, topic: "occupancy" });
   }
 
   if (deleteUnusedKeys(noise)) {
-    emit('sample', { "data": noise, "topic": "noise" });
+    emit("sample", { data: noise, topic: "noise" });
   }
 }

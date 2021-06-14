@@ -6,7 +6,7 @@ function hexToBytes(hex) {
 }
 
 function consume(event) {
-  const payload = event.data.payload_hex;
+  const payload = event.data.payloadHex;
   const bytes = hexToBytes(payload);
   const data = {};
   const lifecycle = {};

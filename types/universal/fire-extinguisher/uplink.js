@@ -1,6 +1,6 @@
 function consume(event) {
   var port = event.data.port;
-  var payload = event.data.payload_hex;
+  var payload = event.data.payloadHex;
   var bits = Bits.hexToBits(payload);
   var data = {};
   var lifecycle = {};
@@ -16,6 +16,6 @@ function consume(event) {
     lifecycle.swVersionMinor = Bits.bitsToUnsigned(bits.substr(32, 8));
   }
 
-  emit('sample', { data: lifecycle, topic: "lifecycle" });
-  emit('sample', { data: data, topic: "default" });
+  emit("sample", { data: lifecycle, topic: "lifecycle" });
+  emit("sample", { data: data, topic: "default" });
 }

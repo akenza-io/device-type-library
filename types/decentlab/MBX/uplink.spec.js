@@ -26,7 +26,7 @@ before(function (done) {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -38,7 +38,7 @@ before(function (done) {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -56,7 +56,7 @@ describe("Decentlab MBX Uplink", function () {
     it("should decode Decentlab MBX payload", function (done) {
       const data = {
         data: {
-          payload_hex: "02012f000304d200010bb1",
+          payloadHex: "02012f000304d200010bb1",
         },
       };
 

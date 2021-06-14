@@ -1,8 +1,8 @@
 function consume(event) {
-  var payload = event.data.payload_hex;
-  var bits = Bits.hexToBits(payload);
-  var data = {};
-  var lifecycle = {};
+  const payload = event.data.payloadHex;
+  const bits = Bits.hexToBits(payload);
+  const data = {};
+  const lifecycle = {};
 
   lifecycle.dataType = Bits.bitsToUnsigned(bits.substr(8, 8));
   data.key1 = !!Bits.bitsToUnsigned(bits.substr(16, 8));
@@ -12,6 +12,6 @@ function consume(event) {
   lifecycle.voltage = Bits.bitsToSigned(bits.substr(48, 8));
   lifecycle.batteryLevel = Bits.bitsToSigned(bits.substr(56, 8));
 
-  emit('sample', { "data": data, "topic": "default" });
-  emit('sample', { "data": lifecycle, "topic": "lifecycle" });
+  emit("sample", { data: data, topic: "default" });
+  emit("sample", { data: lifecycle, topic: "lifecycle" });
 }

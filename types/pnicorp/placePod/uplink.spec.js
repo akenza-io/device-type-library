@@ -23,7 +23,7 @@ before(function (done) {
       if (err) throw err;
       schema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -33,7 +33,7 @@ describe("PNIcorp place pode Uplink", function () {
       const data = {
         data: {
           port: 2,
-          payload_hex: "376600",
+          payloadHex: "376600",
         },
       };
 
@@ -47,7 +47,6 @@ describe("PNIcorp place pode Uplink", function () {
         assert.equal(value.data.occupancy, 0);
 
         validate(value.data, schema, { throwError: true });
-
       });
 
       consume(data);

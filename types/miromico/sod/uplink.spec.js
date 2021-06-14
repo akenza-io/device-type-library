@@ -23,7 +23,7 @@ before(function (done) {
       if (err) throw err;
       schema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -32,7 +32,7 @@ describe("Miromico SOD Uplink", function () {
     it("should decode the Miromico SOD payload", function (done) {
       const data = {
         data: {
-          payload_hex: "f3000000013c",
+          payloadHex: "f3000000013c",
         },
       };
 
