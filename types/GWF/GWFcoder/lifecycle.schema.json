@@ -1,76 +1,109 @@
 {
-  "$id": "https://akenza.io/comtac/CM-3/lifecycle.schema.json",
+  "$id": "https://akenza.io/gwf/gwfcoder/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Lifecycle",
   "type": "object",
   "properties": {
-    "tempPt100": {
-      "title": "Temperature PT100",
-      "description": "TEMP PT100 placed",
-      "type": "boolean"
-    },
-    "tempI2C": {
-      "title": "Temperature I2C",
-      "description": "TEMP I2C placed",
-      "type": "boolean"
-    },
-    "acc": {
-      "title": "ACC",
-      "description": "ACC placed",
-      "type": "boolean"
-    },
-    "extMEM": {
-      "title": "EXT MEM",
-      "description": "EXT MEM placed",
-      "type": "boolean"
-    },
-    "lastTempValid": {
-      "title": "Last temperature measurement valid",
-      "description": "Last temperature measurement valid",
-      "type": "boolean"
-    },
-    "batLow": {
-      "title": "Battery Low",
-      "description": "Low Battery flag set",
-      "type": "boolean"
-    },
-    "async": {
-      "title": "Asynchronous",
-      "description": "ASYNCHRONOUS Event set",
-      "type": "boolean"
-    },
-    "history": {
-      "title": "History",
-      "description": "HISTORY Event flag set (SYNC)",
-      "type": "boolean"
-    },
-    "alarming": {
-      "title": "Alarming",
-      "description": "ALARMING Event flag set (SYNC)",
-      "type": "boolean"
-    },
-    "button": {
-      "title": "Button",
-      "description": "BUTTON Event flag set (ASYNC)",
-      "type": "boolean"
-    },
-    "configRX": {
-      "title": "Config RX",
-      "description": "CONFIG RX Event flag set (ASYNC)",
-      "type": "boolean"
-    },
-    "infoReq": {
-      "title": "Info request",
-      "description": "INFO REQ Event flag set (ASYNC)",
-      "type": "boolean"
-    },
-    "batteryLevel": {
-      "type": "number",
+    "protocolType": {
+      "title": "Protocol type",
+      "type": "integer",
+      "description": "Protocol type",
       "minimum": 0,
-      "maximum": 100,
-      "title": "Battery charge",
-      "description": "The battery charge in percent.",
-      "unit": "%"
+      "maximum": 255
+    },
+    "manufacturerID": {
+      "title": "Meter manufacturer ID",
+      "type": "integer",
+      "description": "Meter manufacturer ID",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "meterID": {
+      "title": "Meter ID",
+      "type": "integer",
+      "description": "Meter ID",
+      "minimum": 0,
+      "maximum": 4294967295
+    },
+    "appError": {
+      "title": "App error",
+      "description": "App error description",
+      "type": "string",
+      "enum": [
+        "NO_ERROR",
+        "APPLICATION_BUSY",
+        "ANY_APPLICATION_ERROR",
+        "RESERVED"
+      ]
+    },
+    "batteryPowerLow": {
+      "title": "Battery power low",
+      "description": "Battery power low",
+      "type": "boolean"
+    },
+    "permantError": {
+      "title": "Permant error",
+      "description": "Permant error",
+      "type": "boolean"
+    },
+    "temporaryError": {
+      "title": "Temporary error",
+      "description": "Temporary error",
+      "type": "boolean"
+    },
+    "commandError1": {
+      "title": "commandError1",
+      "description": "Command error 1",
+      "type": "boolean"
+    },
+    "commandError2": {
+      "title": "commandError2",
+      "description": "Command error 2",
+      "type": "boolean"
+    },
+    "commandError3": {
+      "title": "commandError3",
+      "description": "Command error 3",
+      "type": "boolean"
+    },
+
+    "continuousFlow": {
+      "title": "Continuous flow",
+      "description": "Continuous flow",
+      "type": "boolean"
+    },
+    "brokenPipe": {
+      "title": "Broken pipe",
+      "description": "Command error 2",
+      "type": "boolean"
+    },
+    "batteryLow": {
+      "title": "Battery low",
+      "description": "Battery low",
+      "type": "boolean"
+    },
+    "backflow": {
+      "title": "Backflow",
+      "description": "Backflow",
+      "type": "boolean"
+    },
+    "noUsage": {
+      "title": "No usage",
+      "description": "No usage",
+      "type": "boolean"
+    },
+    "loraLinkError": {
+      "title": "Lora link error",
+      "description": "Lora link error",
+      "type": "boolean"
+    },
+    "batteryLifetime": {
+      "title": "Battery lifetime",
+      "type": "integer",
+      "unit": "semester",
+      "description": "Battery lifetime in semester",
+      "minimum": 0,
+      "maximum": 31
     }
   }
 }

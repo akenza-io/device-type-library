@@ -1,13 +1,13 @@
 {
-  "name": "LPN CM-4 Sensor",
+  "name": "RCM®-LRW10",
   "version": "1.0.0",
-  "manufacturer": "Comtac",
-  "url": "https://www.comtac.ch/de/produkte/lora/condition-monitoring/lpn-cm-4-sensor.html",
-  "description": "The LPN CM-4 is able to read temperature & humidity.",
+  "manufacturer": "GWF",
+  "url": "https://gwf.ch/en/produkt/gwfcoder-radio-module-lorawan/",
+  "description": "Simple readout of water and gas meter.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
-  "availableSensors": ["Temperature", "Humidity"],
-  "outputTopics": ["config", "default", "history", "info", "lifecycle"],
+  "availableSensors": ["Water/Gas", "Volume"],
+  "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

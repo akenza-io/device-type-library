@@ -1,24 +1,28 @@
 {
-  "$id": "https://akenza.io/comtac/CM-4/default.schema.json",
+  "$id": "https://akenza.io/gwf/gwfcoder/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Default",
   "type": "object",
   "properties": {
-    "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+    "meterMedium": {
+      "title": "Meter medium",
+      "description": "Meter medium",
+      "type": "string",
+      "enum": ["GAS", "WARM_WATER", "WATER"]
     },
-    "humidity": {
-      "title": "Humidity",
-      "unit": "%",
-      "type": "number",
-      "description": "The relative humidity in %",
+    "actualityDuration": {
+      "title": "Actuality duration",
+      "type": "integer",
+      "unit": "min",
+      "description": "Actuality duration in min",
       "minimum": 0,
-      "maximum": 100
+      "maximum": 65535
+    },
+    "volume": {
+      "title": "Volume",
+      "unit": "m3",
+      "type": "number",
+      "description": "Tank volume in m3"
     }
   }
 }

@@ -5,7 +5,7 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Comtac LPN CM-4 Uplink", () => {
+describe("GWF RCM®-LRW10", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
@@ -29,22 +29,12 @@ describe("Comtac LPN CM-4 Uplink", () => {
       });
   });
 
-  let historySchema = null;
-  before((done) => {
-    utils
-      .loadSchema(`${__dirname}/history.schema.json`)
-      .then((parsedSchema) => {
-        historySchema = parsedSchema;
-        done();
-      });
-  });
-
   describe("consume()", () => {
-    it("should decode the Comtac LPN CM-4 payload default", () => {
+    it("should decode the GWF RCM®-LRW10 payload default", () => {
       const data = {
         data: {
-          port: 3,
-          payload_hex: "011204C603090B40",
+          port: 1,
+          payloadHex: "02E61E785634120700C80113F803000000E8",
         },
       };
 
@@ -54,8 +44,9 @@ describe("Comtac LPN CM-4 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.temperature, 23.15);
-        assert.equal(value.data.humidity, 64);
+        assert.equal(value.data.meterMedium, "WATER");
+        assert.equal(value.data.actualityDuration, 456);
+        assert.equal(value.data.volume, 1.016);
         validate(value.data, defaultSchema, { throwError: true });
       });
 
@@ -65,80 +56,23 @@ describe("Comtac LPN CM-4 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batLow, false);
-        assert.equal(value.data.lastTempValid, true);
-        assert.equal(value.data.extMEM, false);
-        assert.equal(value.data.acc, false);
-        assert.equal(value.data.tempI2C, true);
-        assert.equal(value.data.tempPt100, false);
-        assert.equal(value.data.infoReq, false);
-        assert.equal(value.data.configRX, false);
-        assert.equal(value.data.button, false);
-        assert.equal(value.data.alarming, true);
-        assert.equal(value.data.history, false);
-        assert.equal(value.data.async, false);
-        assert.equal(value.data.batteryLevel, 99);
-
-        validate(value.data, lifecycleSchema, { throwError: true });
-      });
-
-      consume(data);
-    });
-  });
-  describe("consume()", () => {
-    it("should decode the Comtac LPN CM-4 payload history", () => {
-      const data = {
-        data: {
-          port: 3,
-          payload_hex:
-            "011202C604090B40090B40090B40090B40090B40090B40090B40090B40",
-        },
-      };
-
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "history");
-        assert.equal(value.data.temperature, 23.15);
-        assert.equal(value.data.humidity, 64);
-        assert.equal(value.data.tempHistory1, 23.15);
-        assert.equal(value.data.humHistory1, 64);
-        assert.equal(value.data.tempHistory2, 23.15);
-        assert.equal(value.data.humHistory2, 64);
-        assert.equal(value.data.tempHistory3, 23.15);
-        assert.equal(value.data.humHistory3, 64);
-        assert.equal(value.data.tempHistory4, 23.15);
-        assert.equal(value.data.humHistory4, 64);
-        assert.equal(value.data.tempHistory5, 23.15);
-        assert.equal(value.data.humHistory5, 64);
-        assert.equal(value.data.tempHistory6, 23.15);
-        assert.equal(value.data.humHistory6, 64);
-        assert.equal(value.data.tempHistory7, 23.15);
-        assert.equal(value.data.humHistory7, 64);
-        validate(value.data, historySchema, { throwError: true });
-      });
-
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batLow, false);
-        assert.equal(value.data.lastTempValid, true);
-        assert.equal(value.data.extMEM, false);
-        assert.equal(value.data.acc, false);
-        assert.equal(value.data.tempI2C, true);
-        assert.equal(value.data.tempPt100, false);
-        assert.equal(value.data.infoReq, false);
-        assert.equal(value.data.configRX, false);
-        assert.equal(value.data.button, false);
-        assert.equal(value.data.alarming, false);
-        assert.equal(value.data.history, true);
-        assert.equal(value.data.async, false);
-        assert.equal(value.data.batteryLevel, 99);
+        assert.equal(value.data.protocolType, 2);
+        assert.equal(value.data.manufacturerID, 7910);
+        assert.equal(value.data.meterID, 12345678);
+        assert.equal(value.data.appError, "NO_ERROR");
+        assert.equal(value.data.batteryPowerLow, false);
+        assert.equal(value.data.permantError, false);
+        assert.equal(value.data.temporaryError, false);
+        assert.equal(value.data.commandError1, false);
+        assert.equal(value.data.commandError2, false);
+        assert.equal(value.data.commandError3, false);
+        assert.equal(value.data.continuousFlow, false);
+        assert.equal(value.data.brokenPipe, false);
+        assert.equal(value.data.batteryLow, false);
+        assert.equal(value.data.backflow, false);
+        assert.equal(value.data.noUsage, false);
+        assert.equal(value.data.loraLinkError, false);
+        assert.equal(value.data.batteryLifetime, 23);
 
         validate(value.data, lifecycleSchema, { throwError: true });
       });
