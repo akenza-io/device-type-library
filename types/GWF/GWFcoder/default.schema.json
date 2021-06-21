@@ -20,7 +20,7 @@
     },
     "volume": {
       "title": "Volume",
-      "unit": "m3",
+      "unit": "m^3",
       "type": "number",
       "description": "Tank volume in m3"
     }
