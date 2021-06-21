@@ -99,10 +99,10 @@
     "batteryLifetime": {
       "title": "Battery lifetime",
       "type": "integer",
-      "unit": "semester",
-      "description": "Battery lifetime in semester",
+      "unit": "month",
+      "description": "Battery lifetime in months",
       "minimum": 0,
-      "maximum": 31
+      "maximum": 186
     }
   }
 }

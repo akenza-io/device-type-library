@@ -72,7 +72,7 @@ describe("GWF RCM®-LRW10", () => {
         assert.equal(value.data.backflow, false);
         assert.equal(value.data.noUsage, false);
         assert.equal(value.data.loraLinkError, false);
-        assert.equal(value.data.batteryLifetime, 23);
+        assert.equal(value.data.batteryLifetime, 138);
 
         validate(value.data, lifecycleSchema, { throwError: true });
       });

@@ -80,6 +80,7 @@ function consume(event) {
       bits.substr(137, 1) +
       bits.substr(136, 1),
   );
+  lifecycle.batteryLifetime *= 6; // semester to months
   lifecycle.loraLinkError = !!Bits.bitsToUnsigned(bits.substr(135, 1));
   // reserved
   // reserved
