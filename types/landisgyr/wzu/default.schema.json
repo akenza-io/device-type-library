@@ -1,0 +1,119 @@
+{
+  "$id": "https://akenza.io/astraled/mantis/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "humidity": {
+      "title": "Humidity",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "voc": {
+      "title": "VOC",
+      "unit": "ppm",
+      "type": "integer",
+      "description": "Total Volatile Organic Compunds in ppm",
+      "minimum": 0,
+      "maximum": 60000
+    },
+    "co2": {
+      "title": "CO2",
+      "unit": "ppm",
+      "type": "integer",
+      "description": "Carbon Dioxide in ppm",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "eco2": {
+      "title": "eCO2",
+      "unit": "ppm",
+      "type": "integer",
+      "description": "Estimated concentration of carbon dioxide calculated from known TVOC",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "pm1_0": {
+      "title": "Particles 1.0",
+      "unit": "μm",
+      "type": "integer",
+      "description": "Particles less than 1.0 μm in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "pm2_5": {
+      "title": "Particles 2.5",
+      "unit": "μm",
+      "type": "integer",
+      "description": "Particles less than 2.5 μm in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "pm4_0": {
+      "title": "Particles 4.0",
+      "unit": "μm",
+      "type": "integer",
+      "description": "Particles less than 4.0 μm in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "pm10": {
+      "title": "Particles 10",
+      "unit": "μm",
+      "type": "integer",
+      "description": "Particles less than 10 μm in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "latitude": {
+      "title": "Latitude",
+      "unit": "°",
+      "type": "number",
+      "description": "Latitude",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "longitude": {
+      "title": "Longitude",
+      "unit": "°",
+      "type": "number",
+      "description": "Longitude",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "altitude": {
+      "title": "Altitude",
+      "unit": "m",
+      "type": "number",
+      "description": "Altitude",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "lightState": {
+      "title": "Light State",
+      "type": "integer",
+      "description": "State of the Light",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "energy": {
+      "title": "Energy",
+      "unit": "kWh",
+      "type": "number",
+      "description": "Energy consumption in kWh",
+      "minimum": 0,
+      "maximum": 6555
+    }
+  }
+}
