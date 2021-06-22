@@ -4,11 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-## [1.0.8] - 2021-06-22
+## [1.0.8] - 2021-06-21
 
 ### Added
 
-- Landis+Gyr - ULTRAHEAT T550
+- GWF - RCM®-LRW10
 
 ## [1.0.7] - 2021-06-08
 

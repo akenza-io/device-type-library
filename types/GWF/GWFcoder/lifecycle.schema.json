@@ -1,0 +1,108 @@
+{
+  "$id": "https://akenza.io/gwf/gwfcoder/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "protocolType": {
+      "title": "Protocol type",
+      "type": "integer",
+      "description": "Protocol type",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "manufacturerID": {
+      "title": "Meter manufacturer ID",
+      "type": "integer",
+      "description": "Meter manufacturer ID",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "meterID": {
+      "title": "Meter ID",
+      "type": "integer",
+      "description": "Meter ID",
+      "minimum": 0,
+      "maximum": 4294967295
+    },
+    "appError": {
+      "title": "App error",
+      "description": "App error description",
+      "type": "string",
+      "enum": [
+        "NO_ERROR",
+        "APPLICATION_BUSY",
+        "ANY_APPLICATION_ERROR",
+        "RESERVED"
+      ]
+    },
+    "batteryPowerLow": {
+      "title": "Battery power low",
+      "description": "Battery power low",
+      "type": "boolean"
+    },
+    "permantError": {
+      "title": "Permant error",
+      "description": "Permant error",
+      "type": "boolean"
+    },
+    "temporaryError": {
+      "title": "Temporary error",
+      "description": "Temporary error",
+      "type": "boolean"
+    },
+    "commandError1": {
+      "title": "commandError1",
+      "description": "Command error 1",
+      "type": "boolean"
+    },
+    "commandError2": {
+      "title": "commandError2",
+      "description": "Command error 2",
+      "type": "boolean"
+    },
+    "commandError3": {
+      "title": "commandError3",
+      "description": "Command error 3",
+      "type": "boolean"
+    },
+    "continuousFlow": {
+      "title": "Continuous flow",
+      "description": "Continuous flow",
+      "type": "boolean"
+    },
+    "brokenPipe": {
+      "title": "Broken pipe",
+      "description": "Command error 2",
+      "type": "boolean"
+    },
+    "batteryLow": {
+      "title": "Battery low",
+      "description": "Battery low",
+      "type": "boolean"
+    },
+    "backflow": {
+      "title": "Backflow",
+      "description": "Backflow",
+      "type": "boolean"
+    },
+    "noUsage": {
+      "title": "No usage",
+      "description": "No usage",
+      "type": "boolean"
+    },
+    "loraLinkError": {
+      "title": "LoRa link error",
+      "description": "LoRa link error",
+      "type": "boolean"
+    },
+    "batteryLifetime": {
+      "title": "Battery lifetime",
+      "type": "integer",
+      "unit": "month",
+      "description": "Battery lifetime in months",
+      "minimum": 0,
+      "maximum": 186
+    }
+  }
+}
