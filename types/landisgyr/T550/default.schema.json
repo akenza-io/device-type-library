@@ -1,0 +1,53 @@
+{
+  "$id": "https://akenza.io/landisgyr/t550/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "volume": {
+      "title": "Volume",
+      "unit": "m^3",
+      "type": "number",
+      "description": "Volume in m^3"
+    },
+    "flowTemp": {
+      "title": "Flow temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "Flow temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "backFlowTemp": {
+      "title": "Back flow temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "Back flow temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "power": {
+      "title": "Power",
+      "unit": "kWh",
+      "type": "number",
+      "description": "Power in kWh"
+    },
+    "energy": {
+      "title": "Energy",
+      "type": "number",
+      "description": "Energy consumption"
+    },
+    "energyUnit": {
+      "title": "Energy unit",
+      "type": "string",
+      "desciption": "Message header",
+      "enum": ["MWH", "KWH", "GJ", "MJ"]
+    },
+    "flow": {
+      "title": "flow",
+      "unit": "m^3/h",
+      "type": "number",
+      "description": "Flow in m^3/h"
+    }
+  }
+}
