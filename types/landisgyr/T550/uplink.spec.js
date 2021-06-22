@@ -4,7 +4,7 @@ const rewire = require("rewire");
 const utils = require("test-utils");
 
 const { assert } = chai;
-describe("Astraled Mantis Uplink", () => {
+describe("Landis & Gyr WZU Uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
@@ -27,11 +27,12 @@ describe("Astraled Mantis Uplink", () => {
       });
   });
   describe("consume()", () => {
-    it("should decode Astraled Mantis payload", () => {
+    it("should decode Landis & Gyr WZU default payload", () => {
       const data = {
         data: {
-          port: 1,
-          payload_hex: "042a0000803f042b54ca2d41022cfa000223110001320302091109020a4601020b3d01020c9802010e00",
+          port: 2,
+          payloadHex:
+            "000c06674847020c14528275030b2d0603000b3b0006000a5a15110a5e67060c782897486602fd170000",
         },
       };
       utils.expectEmits((type, value) => {
@@ -39,25 +40,27 @@ describe("Astraled Mantis Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.actPwr, 1);
-        assert.equal(value.data.energy, 10.861896514892578);
-        assert.equal(value.data.iaqStateInt, 0);
-        assert.equal(value.data.sensorAmbientLight, 250);
-        validate(value.data, lifecycleSchema, { throwError: true });
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.energyUnit, "KWH");
+        assert.equal(value.data.energy, 2474867);
+        assert.equal(value.data.volume, 37582.52);
+        assert.equal(value.data.power, 30.6);
+        assert.equal(value.data.flow, 0.6);
+        assert.equal(value.data.flowTemp, 111.5);
+        assert.equal(value.data.backFlowTemp, 66.7);
+
+        validate(value.data, defaultSchema, { throwError: true });
       });
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
-        
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.lightState, 17);
-        assert.equal(value.data.temperature, 23.21);
-        assert.equal(value.data.humidity, 32.6);
-        assert.equal(value.data.voc, 317);
-        assert.equal(value.data.co2, 664);
-        validate(value.data, defaultSchema, { throwError: true });
+
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.header, "STANDART");
+        assert.equal(value.data.serialID, 66489728);
+        assert.equal(value.data.errFlags, "000017");
+        validate(value.data, lifecycleSchema, { throwError: true });
       });
       consume(data);
     });

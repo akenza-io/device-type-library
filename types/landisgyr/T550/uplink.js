@@ -9,16 +9,17 @@ function hexSwap(str) {
 }
 
 function consume(event) {
-  const payload = event.data.payload_hex;
+  const payload = event.data.payloadHex.toUpperCase();
   const bits = Bits.hexToBits(payload);
   const data = {};
+  const lifecycle = {};
 
   // Header 00
   const header = Bits.bitsToUnsigned(bits.substr(0, 8));
 
   // Data
   if (header === 0) {
-    data.header = "Standard";
+    lifecycle.header = "STANDART";
 
     /* Informationen zu Länge und Codierung der Daten. */
     const difVifEnergie = payload.substr(2, 4);
@@ -32,7 +33,7 @@ function consume(event) {
     let unit;
 
     // Energie MWH,kWh,MJ,GJ
-    let en = hexSwap(payload.substr(6, 8));
+    let en = Number(hexSwap(payload.substr(6, 8)));
 
     if (payload.substr(2, 6) === "0CFB01") {
       unit = "MWH";
@@ -40,34 +41,30 @@ function consume(event) {
       unit = "GJ";
     } else {
       switch (difVifEnergie) {
-        case "0c07":
-          unit = "MWH";
-          en /= 10;
+        case "0C06":
+          unit = "KWH";
           break;
-        case "0c07":
+        case "0C07":
           unit = "MWH";
           en /= 100;
           break;
-        case "0c06":
+        case "0C07":
           unit = "MWH";
-          en /= 1000;
-          break;
-        // case '0C06': unit = 'kWh';break;
-        case "0c0f":
-          unit = "GJ";
           en /= 10;
           break;
-        case "0c0e":
+        case "0C0E":
+          unit = "MJ";
+          break;
+        case "0C0F":
           unit = "GJ";
           en /= 100;
           break;
-        case "0c0e":
+        case "0C0F":
           unit = "GJ";
-          en /= 1000;
+          en /= 10;
           break;
         default:
           break;
-        // case '0C0E': unit = 'MJ';break;
       }
     }
     data.energyUnit = unit;
@@ -76,10 +73,10 @@ function consume(event) {
     // Volumen m3
     let vol = hexSwap(payload.substr(18, 8));
     switch (difVifVolumen) {
-      case "0c14":
+      case "0C14":
         vol /= 100;
         break;
-      case "0c15":
+      case "0C15":
         vol /= 10;
         break;
       default:
@@ -90,13 +87,13 @@ function consume(event) {
     // Leistung kW
     let kw = hexSwap(payload.substr(30, 6));
     switch (difVifLeistung) {
-      case "0b2b":
+      case "0B2B":
         kw /= 1000;
         break;
-      case "0b2c":
+      case "0B2C":
         kw /= 100;
         break;
-      case "0b2d":
+      case "0B2D":
         kw /= 10;
         break;
       default:
@@ -107,13 +104,13 @@ function consume(event) {
     // Durchfluss m3/h
     let df = hexSwap(payload.substr(40, 6));
     switch (difVifDurchfluss) {
-      case "0b3b":
+      case "0B3B":
         df /= 1000;
         break;
-      case "0b3c":
+      case "0B3C":
         df /= 100;
         break;
-      case "0b3d":
+      case "0B3D":
         df /= 10;
         break;
       default:
@@ -122,41 +119,30 @@ function consume(event) {
     data.flow = df;
 
     // Vorlauftemp
-    var vlt = hexSwap(payload.substr(50, 4));
-    switch (difVifVorlauftemp) {
-      case "0a5a":
-        vlt /= 10;
-        break;
-      default:
-        break;
+    const vlt = hexSwap(payload.substr(50, 4));
+    if (difVifVorlauftemp === "0A5A") {
+      data.flowTemp = vlt / 10;
     }
-    data.flowTemp = vlt;
 
     // Rücklauftemperatur
-    var vlt = hexSwap(payload.substr(58, 4));
-    switch (difVifRuecklauftemp) {
-      case "0a5e":
-        vlt /= 10;
-        break;
-      default:
-        break;
+    const rlt = hexSwap(payload.substr(58, 4));
+    if (difVifRuecklauftemp === "0A5E") {
+      data.backFlowTemp = rlt / 10;
     }
-    data.backFlowTemp = vlt;
 
     // Seriennummer des Zählers
-    data.sID = hexSwap(payload.substr(66, 8));
+    lifecycle.serialID = Number(hexSwap(payload.substr(66, 8)));
 
     // Fehler Flags
-    data.errFlags = hexSwap(payload.substr(78, 6));
+    lifecycle.errFlags = hexSwap(payload.substr(78, 6));
   } else if (header === 1) {
-    data.header = "Compact";
+    data.header = "COMPACT";
   } else if (header === 2) {
     data.header = "JSON";
   } else if (header === 3) {
-    data.header = "Scheduled";
+    data.header = "SCHEDULED";
   }
 
-  const sample = { data };
-
-  emit("sample", sample);
+  emit("sample", { data, topic: "default" });
+  emit("sample", { data: lifecycle, topic: "lifecycle" });
 }
