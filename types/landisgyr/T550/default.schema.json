@@ -45,9 +45,9 @@
     },
     "flow": {
       "title": "flow",
-      "unit": "m^3",
+      "unit": "m^3/h",
       "type": "number",
-      "description": "Flow in m^3"
+      "description": "Flow in m^3/h"
     }
   }
 }

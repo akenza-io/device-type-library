@@ -57,7 +57,7 @@ describe("Landis & Gyr WZU Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.header, "STANDART");
+        assert.equal(value.data.header, "STANDARD");
         assert.equal(value.data.serialID, 66489728);
         assert.equal(value.data.errFlags, "000017");
         validate(value.data, lifecycleSchema, { throwError: true });

@@ -5,10 +5,10 @@
   "type": "object",
   "properties": {
     "header": {
-      "title": "Header",
+      "title": "Message header",
       "type": "string",
       "desciption": "Message header",
-      "enum": ["STANDART", "COMPACT", "JSON", "SCHEDULED"]
+      "enum": ["STANDARD", "COMPACT", "JSON", "SCHEDULED"]
     },
     "serialID": {
       "title": "Serial ID",
