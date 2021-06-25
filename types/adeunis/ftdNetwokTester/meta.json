@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "manufacturer": "Adeunis",
   "url": "https://www.adeunis.com/en/produit/ftd-network-tester/",
-  "description": "Device to qualify and validate your network",
+  "description": "Immediate viewing of network coverage data (radio power and received signal strength)",
   "author": "Akenza AG",
-  "firmwareVersion": "V1.0.0",
+  "firmwareVersion": "V2.0.0",
   "availableSensors": [],
   "outputTopics": [
     "default"
