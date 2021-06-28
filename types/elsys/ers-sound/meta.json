@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/shop/product/ers-sound/",
-  "description": "Indoor LoRaWAN® device for measuring the indoor environment and sound",
+  "description": "ERS Sound measures the average and peak sound pressure level with dBa filtering. It wakes and samples both signals every 10s, and does the final calculation before sending the data at the desired send interval. The sensor also measures temperature, humidity, motion and light.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
