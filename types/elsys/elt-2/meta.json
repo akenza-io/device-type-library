@@ -1,11 +1,11 @@
 {
   "name": "ELT-2",
-  "version": "1.0.0",
+  "version": "2.3.5",
   "manufacturer": "Elsys",
-  "url": "https://www.elsys.se/shop/product/elt-2-hp/?v=f003c44deab6",
-  "description": "Outdoor LoRaWAN® device for measuring the environment.",
+  "url": "https://www.elsys.se/en/lora-elt-2/",
+  "description": "ELT-2 measures analog or digital signals. It is a 2-channel GPIO wireless transceiver and can also provide power to external sensors. Inside you will find four internal sensors for measuring temperature, humidity, acceleration and pressure.",
   "author": "Akenza AG",
-  "firmwareVersion": "V1.0.0",
+  "firmwareVersion": "V2.3.5",
   "loraDeviceClass": "A",
   "availableSensors": [
     "Temperature",
