@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Oxon",
   "url": "https://oxobutton.ch/products/buttonboard-lorawan",
-  "description": "The buttonboard is a robust smart button with six capacitive buttons.",
+  "description": "The Buttonboard is a flexible event triggering device with 6 touch sensor buttons. The case of the Buttonboard is easily cleanable (splash-proof) and transparent. The six capacitive touch sensor buttons can individual be enabled or disabled and comes with a RGB-LED ring each.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
