@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Talkpool",
   "url": "https://talkpool.com/oy1700-lorawan-particles-meter/",
-  "description": "LoRaWAN sensor that measures temperature, humidity and particles, in indoor environments.",
+  "description": "OY1700 Air quality (PM) sensor is designed to measure PM10, PM2.5, PM1.0, temperature and humidity in indoor environments. The sensor is intended for indoor climate control and monitoring indoor air quality. It is optimized for reliable and secure operations.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
