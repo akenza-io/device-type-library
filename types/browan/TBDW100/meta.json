@@ -1,9 +1,9 @@
 {
-  "name": "Door & Window Sensor, TBDW100 Tabs",
+  "name": "Tabs Door & Window Sensor, TBDW100",
   "version": "1.0.0",
   "manufacturer": "Browan",
   "url": "https://www.browan.com/product/door-window-sensor/detail",
-  "description": "Magnet sensor which can check door/window status",
+  "description": "The Door & Window sensor detects the proximity or not of a magnet. The intended use is to place the sensor and magnet on separate elements of a door or window to determine if the door or window is open or closed.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
