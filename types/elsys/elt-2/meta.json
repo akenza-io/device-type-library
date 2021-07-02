@@ -1,6 +1,6 @@
 {
   "name": "ELT-2",
-  "version": "2.3.5",
+  "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/en/lora-elt-2/",
   "description": "ELT-2 measures analog or digital signals. It is a 2-channel GPIO wireless transceiver and can also provide power to external sensors. Inside you will find four internal sensors for measuring temperature, humidity, acceleration and pressure.",
