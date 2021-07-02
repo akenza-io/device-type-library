@@ -1,6 +1,6 @@
 {
   "name": "EMS Desk",
-  "version": "2.3.5",
+  "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/en/ems-desk/",
   "description": "EMS Desk is equipped with a body heat sensor and can detect when somebody is standing or sitting by a desk, even if the person is still. You can combine the environment measuring together with occupancy detection since the EMS Desk is equipped with internal sensors for measuring the temperature and humidity as well.",
