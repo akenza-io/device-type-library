@@ -1,6 +1,6 @@
 {
   "name": "ERS",
-  "version": "2.3.5",
+  "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/en/ers/",
   "description": "ERS is a sensor for measuring the indoor environment. It measures temperature, humidity, light, and motion.",
