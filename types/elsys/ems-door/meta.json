@@ -1,6 +1,6 @@
 {
   "name": "EMS Door",
-  "version": "2.3.5",
+  "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/en/ems-door/",
   "description": "Inside EMS Door you will find internal sensors for detecting when something has moved. Typical for door activation but the application scope is bigger than that. The minimal magnet is designed to be mounted on the part that may move and the EMS Door close to it on something fixed.",
