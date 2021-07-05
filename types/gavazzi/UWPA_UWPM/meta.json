@@ -1,0 +1,14 @@
+{
+  "name": "UWP-A & UWP-M",
+  "version": "1.0.0",
+  "manufacturer": "Gavazzi",
+  "url": "https://www.gavazzi.de/index.php/news-einz/uwp-a-und-uwp-m-die-long-range-wireless-solution-fuer-energieueberwachung",
+  "description": "Meter for measurement of flow and energy in a heat or cold circuit with water using the ultrasonic principle.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Kilowatt hours total", "Voltage", "Ampere", "Kilowatt"],
+  "outputTopics": ["default"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
