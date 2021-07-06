@@ -11,7 +11,8 @@
       "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
       "request": "launch",
       "skipFiles": ["<node_internals>/**"],
-      "type": "pwa-node"
+      "type": "pwa-node",
+      "envFile": "${workspaceFolder}/.env"
     },
     {
       "args": [
@@ -26,7 +27,8 @@
       "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
       "request": "launch",
       "skipFiles": ["<node_internals>/**"],
-      "type": "pwa-node"
+      "type": "pwa-node",
+      "envFile": "${workspaceFolder}/.env"
     }
   ]
 }
