@@ -16,7 +16,6 @@ function expectEmit(callback) {
   });
 }
 
-
 before(function (done) {
   fs.readFile(
     __dirname + "/default.schema.json",
@@ -25,7 +24,7 @@ before(function (done) {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 before(function (done) {
@@ -36,7 +35,7 @@ before(function (done) {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -46,8 +45,8 @@ describe("Universal fire extinguisher", function () {
       const data = {
         data: {
           port: 1,
-          payload_hex: "0012c800004a7b"
-        }
+          payloadHex: "0012c800004a7b",
+        },
       };
 
       expectEmit(function (type, value) {

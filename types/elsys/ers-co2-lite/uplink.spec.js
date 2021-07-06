@@ -24,7 +24,7 @@ before(function (done) {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -36,7 +36,7 @@ before(function (done) {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -45,7 +45,7 @@ describe("Elsys CO2 lite uplink", function () {
     it("should decode Elsys CO2 lite payload", function (done) {
       const data = {
         data: {
-          payload_hex: "0100f4022804000b05000601d8070e3e",
+          payloadHex: "0100f4022804000b05000601d8070e3e",
         },
       };
 

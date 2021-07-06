@@ -25,7 +25,7 @@ before(function (done) {
       if (err) throw err;
       buttonPressedSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -37,7 +37,7 @@ before(function (done) {
       if (err) throw err;
       statusSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -49,7 +49,7 @@ before(function (done) {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -58,7 +58,7 @@ describe("Miromico REV2_V5 uplink", function () {
     it("should decode Miromico REV2_V5 payload status", function (done) {
       const data = {
         data: {
-          payload_hex: "0502e804000003038c27",
+          payloadHex: "0502e804000003038c27",
         },
       };
 
@@ -85,7 +85,7 @@ describe("Miromico REV2_V5 uplink", function () {
     it("should decode Miromico REV2_V5 payload button pressed", function (done) {
       const data = {
         data: {
-          payload_hex: "0502e804000003038c27",
+          payloadHex: "0502e804000003038c27",
         },
       };
 

@@ -1,11 +1,10 @@
 function consume(event) {
-  var payload = event.data.payload_hex;
+  var payload = event.data.payloadHex;
   var bits = Bits.hexToBits(payload);
   var topic = "default";
 
-  if (payload !== '') {
-
-    for (var pointer = 0; pointer < bits.length;) {
+  if (payload !== "") {
+    for (var pointer = 0; pointer < bits.length; ) {
       var channel = Bits.bitsToUnsigned(bits.substr(pointer, 8));
       var data = {};
       pointer += 16;
@@ -14,21 +13,22 @@ function consume(event) {
         case 1:
           // Recalibrate Response
           if (Bits.bitsToUnsigned(bits.substr(pointer, 8)) == 1) {
-            data.recalibrateResponse = 'successful';
+            data.recalibrateResponse = "successful";
           } else {
-            data.recalibrateResponse = 'failed';
+            data.recalibrateResponse = "failed";
           }
           topic = "recalibrate_response";
           break;
         case 2:
           // Temperature
-          data.temperature = (Bits.bitsToUnsigned(bits.substr(pointer, 16)) * 0.1);
+          data.temperature =
+            Bits.bitsToUnsigned(bits.substr(pointer, 16)) * 0.1;
           pointer += 8;
           topic = "temperature";
           break;
         case 3:
           // Battery
-          data.battery = (Bits.bitsToUnsigned(bits.substr(pointer, 16)) * 0.01);
+          data.battery = Bits.bitsToUnsigned(bits.substr(pointer, 16)) * 0.01;
           pointer += 8;
           topic = "battery";
           break;
@@ -52,7 +52,7 @@ function consume(event) {
           break;
         case 28:
           // Deactivate Response
-          data.deactivate = 'done';
+          data.deactivate = "done";
           break;
         case 33:
           // Vehicle Count
@@ -75,16 +75,16 @@ function consume(event) {
           break;
         case 63:
           // Reboot Response
-          data.reboot = 'done';
+          data.reboot = "done";
           topic = "reboot";
           break;
         default:
         // Should not be needed
       }
       pointer += 8;
-      emit('sample', { data: data, topic: topic });
+      emit("sample", { data: data, topic: topic });
     }
   } else {
-    emit('sample', { data: { 'startup': 'startup' }, topic: 'startup' });
+    emit("sample", { data: { startup: "startup" }, topic: "startup" });
   }
 }

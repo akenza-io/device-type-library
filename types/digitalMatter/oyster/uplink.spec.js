@@ -1,9 +1,9 @@
 const chai = require("chai");
-const {validate} = require("jsonschema");
+const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const fs = require("fs");
 
-const {assert} = chai;
+const { assert } = chai;
 
 const script = rewire("./uplink.js");
 let positionSchema = null;
@@ -16,28 +16,27 @@ function expectEmit(callback) {
   });
 }
 
-
 before((done) => {
   fs.readFile(
-    `${__dirname  }/position.schema.json`,
+    `${__dirname}/position.schema.json`,
     "utf8",
     (err, fileContents) => {
       if (err) throw err;
       positionSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
 before((done) => {
   fs.readFile(
-    `${__dirname  }/lifecycle.schema.json`,
+    `${__dirname}/lifecycle.schema.json`,
     "utf8",
     (err, fileContents) => {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -47,7 +46,7 @@ describe("Digital matter Oyster Uplink", () => {
       const data = {
         data: {
           port: 1,
-          payload_hex: "53AB783C0421F98E940AB3",
+          payloadHex: "53AB783C0421F98E940AB3",
         },
       };
 
@@ -76,7 +75,7 @@ describe("Digital matter Oyster Uplink", () => {
       const data = {
         data: {
           port: 3,
-          payload_hex: "8BF3DC7B9438984278B85E",
+          payloadHex: "8BF3DC7B9438984278B85E",
         },
       };
 

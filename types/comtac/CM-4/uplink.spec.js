@@ -44,7 +44,7 @@ describe("Comtac LPN CM-4 Uplink", () => {
       const data = {
         data: {
           port: 3,
-          payload_hex: "011204C603090B40",
+          payloadHex: "011204C603090B40",
         },
       };
 
@@ -90,7 +90,7 @@ describe("Comtac LPN CM-4 Uplink", () => {
       const data = {
         data: {
           port: 3,
-          payload_hex:
+          payloadHex:
             "011202C604090B40090B40090B40090B40090B40090B40090B40090B40",
         },
       };

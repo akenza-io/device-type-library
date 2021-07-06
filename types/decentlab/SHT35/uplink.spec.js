@@ -26,7 +26,7 @@ before(function (done) {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -38,7 +38,7 @@ before(function (done) {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -56,7 +56,7 @@ describe("Decentlab SHT35 Uplink", function () {
     it("should decode Decentlab SHT35 payload", function (done) {
       const data = {
         data: {
-          payload_hex: "02030e000364a079b10c60",
+          payloadHex: "02030e000364a079b10c60",
         },
       };
 

@@ -34,7 +34,7 @@ describe("Tinovi PM-IO-5-SM Uplink", () => {
       const data = {
         data: {
           port: 1,
-          payload_hex: "0163003400010d7f0000",
+          payloadHex: "0163003400010d7f0000",
         },
       };
 

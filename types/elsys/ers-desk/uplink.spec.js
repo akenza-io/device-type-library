@@ -25,7 +25,7 @@ before(function (done) {
       if (err) throw err;
       motionSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -37,7 +37,7 @@ before(function (done) {
       if (err) throw err;
       internalTempSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -49,7 +49,7 @@ before(function (done) {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -58,7 +58,7 @@ describe("Elsys desk uplink", function () {
     it("should decode Elsys desk payload", function (done) {
       const data = {
         data: {
-          payload_hex: "05011000f801041101",
+          payloadHex: "05011000f801041101",
         },
       };
 
@@ -89,7 +89,7 @@ describe("Elsys desk uplink", function () {
       // Default + Motion
       const data = {
         data: {
-          payload_hex: "0100f102250400060505070e001100",
+          payloadHex: "0100f102250400060505070e001100",
         },
       };
       expectEmit(function (type, value) {

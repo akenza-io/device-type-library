@@ -30,7 +30,7 @@ describe("Adeunis FTD-2 Uplink", () => {
     it("should decode Adeunis payload", () => {
       const data = {
         data: {
-          payload_hex: "416c61726d",
+          payloadHex: "416c61726d",
         },
       };
 

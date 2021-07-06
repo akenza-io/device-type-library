@@ -24,7 +24,7 @@ before(function (done) {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 before(function (done) {
@@ -35,7 +35,7 @@ before(function (done) {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -45,7 +45,7 @@ describe("Netvox R711 uplink", function () {
       const data = {
         data: {
           port: 1,
-          payload_hex: "0101011d08790a7a000000",
+          payloadHex: "0101011d08790a7a000000",
         },
       };
 
@@ -62,7 +62,6 @@ describe("Netvox R711 uplink", function () {
         }
 
         if (value.topic === "lifecycle") {
-
           assert.equal(value.data.version, 1);
           assert.equal(value.data.deviceType, 1);
           assert.equal(value.data.voltage, 2.9);
