@@ -24,7 +24,7 @@ before(function (done) {
       if (err) throw err;
       noiseSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -36,7 +36,7 @@ before(function (done) {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -45,7 +45,7 @@ describe("Elsys Sound uplink", function () {
     it("should decode Elsys Sound payload", function (done) {
       const data = {
         data: {
-          payload_hex: "0100ee02230400bd053c070df615402c",
+          payloadHex: "0100ee02230400bd053c070df615402c",
         },
       };
 

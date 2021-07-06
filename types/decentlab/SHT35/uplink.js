@@ -3,28 +3,38 @@ var decentlab_decoder = {
   SENSORS: [
     {
       length: 2,
-      values: [{
-        name: 'air_temperature',
-        displayName: 'Air temperature',
-        convert: function (x) { return 175 * x[0] / 65535 - 45; },
-        unit: '°C'
-      },
-      {
-        name: 'air_humidity',
-        displayName: 'Air humidity',
-        convert: function (x) { return 100 * x[1] / 65535; },
-        unit: '%'
-      }]
+      values: [
+        {
+          name: "air_temperature",
+          displayName: "Air temperature",
+          convert: function (x) {
+            return (175 * x[0]) / 65535 - 45;
+          },
+          unit: "°C",
+        },
+        {
+          name: "air_humidity",
+          displayName: "Air humidity",
+          convert: function (x) {
+            return (100 * x[1]) / 65535;
+          },
+          unit: "%",
+        },
+      ],
     },
     {
       length: 1,
-      values: [{
-        name: 'battery_voltage',
-        displayName: 'Battery voltage',
-        convert: function (x) { return x[0] / 1000; },
-        unit: 'V'
-      }]
-    }
+      values: [
+        {
+          name: "battery_voltage",
+          displayName: "Battery voltage",
+          convert: function (x) {
+            return x[0] / 1000;
+          },
+          unit: "V",
+        },
+      ],
+    },
   ],
 
   read_int: function (bytes, pos) {
@@ -34,7 +44,7 @@ var decentlab_decoder = {
   decode: function (msg) {
     var bytes = msg;
     var i, j;
-    if (typeof msg === 'string') {
+    if (typeof msg === "string") {
       bytes = [];
       for (i = 0; i < msg.length; i += 2) {
         bytes.push(parseInt(msg.substring(i, i + 2), 16));
@@ -48,12 +58,11 @@ var decentlab_decoder = {
 
     var deviceId = this.read_int(bytes, 1);
     var flags = this.read_int(bytes, 3);
-    var result = { 'protocol_version': version, 'device_id': deviceId };
+    var result = { protocol_version: version, device_id: deviceId };
     // decode payload
     var pos = 5;
     for (i = 0; i < this.SENSORS.length; i++, flags >>= 1) {
-      if ((flags & 1) !== 1)
-        continue;
+      if ((flags & 1) !== 1) continue;
 
       var sensor = this.SENSORS[i];
       var x = [];
@@ -66,18 +75,18 @@ var decentlab_decoder = {
       // decode sensor values
       for (j = 0; j < sensor.values.length; j++) {
         var value = sensor.values[j];
-        if ('convert' in value) {
+        if ("convert" in value) {
           result[value.name] = value.convert.bind(this)(x);
         }
       }
     }
     return result;
-  }
+  },
 };
 
 function deleteUnusedKeys(data) {
   var keysRetained = false;
-  Object.keys(data).forEach(key => {
+  Object.keys(data).forEach((key) => {
     if (data[key] === undefined) {
       delete data[key];
     } else {
@@ -88,7 +97,7 @@ function deleteUnusedKeys(data) {
 }
 
 function consume(event) {
-  var payload = event.data.payload_hex;
+  var payload = event.data.payloadHex;
   var sample = decentlab_decoder.decode(payload);
   var data = {};
   var lifecycle = {};
@@ -103,10 +112,10 @@ function consume(event) {
   lifecycle.deviceID = sample["device_id"];
 
   if (deleteUnusedKeys(data)) {
-    emit('sample', { "data": data, "topic": "default" });
+    emit("sample", { data: data, topic: "default" });
   }
 
   if (deleteUnusedKeys(lifecycle)) {
-    emit('sample', { "data": lifecycle, "topic": "lifecycle" });
+    emit("sample", { data: lifecycle, topic: "lifecycle" });
   }
 }

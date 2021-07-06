@@ -16,7 +16,6 @@ function expectEmit(callback) {
   });
 }
 
-
 before(function (done) {
   fs.readFile(
     __dirname + "/default.schema.json",
@@ -25,7 +24,7 @@ before(function (done) {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 before(function (done) {
@@ -36,7 +35,7 @@ before(function (done) {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -46,7 +45,7 @@ describe("Oxon Oxobutton Q Uplink", function () {
       const data = {
         data: {
           port: 1,
-          payload_hex: "30000100001a64140070ff69101a",
+          payloadHex: "30000100001a64140070ff69101a",
         },
       };
 
@@ -57,7 +56,6 @@ describe("Oxon Oxobutton Q Uplink", function () {
         assert.typeOf(value.data, "object");
 
         if (value.topic === "lifecycle") {
-
           assert.equal(value.data.hbIRQ, true);
           assert.equal(value.data.accIRQ, false);
           assert.equal(value.data.batteryLevel, 100);

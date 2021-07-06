@@ -24,7 +24,7 @@ before(function (done) {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 before(function (done) {
@@ -35,7 +35,7 @@ before(function (done) {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -45,7 +45,7 @@ describe("Synetica Status T Uplink", function () {
       const data = {
         data: {
           port: 1,
-          payload_hex: "0100f5021a1701cc420d02",
+          payloadHex: "0100f5021a1701cc420d02",
         },
       };
 
@@ -55,7 +55,6 @@ describe("Synetica Status T Uplink", function () {
         assert.typeOf(value.data, "object");
 
         if (value.topic === "default") {
-
           assert.equal(value.data.humidity, 26);
           assert.equal(value.data.temperature, 24.5);
           assert.equal(value.data.tempProbe1, 46);
@@ -64,7 +63,6 @@ describe("Synetica Status T Uplink", function () {
         }
 
         if (value.topic === "lifecycle") {
-
           assert.equal(value.data.voltage, 3.33);
 
           validate(value.data, lifecycleSchema, { throwError: true });

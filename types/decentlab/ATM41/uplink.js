@@ -3,117 +3,157 @@ var decentlab_decoder = {
   SENSORS: [
     {
       length: 17,
-      values: [{
-        name: 'solar_radiation',
-        displayName: 'Solar radiation',
-        convert: function (x) { return x[0] - 32768; },
-        unit: 'W⋅m⁻²'
-      },
-      {
-        name: 'precipitation',
-        displayName: 'Precipitation',
-        convert: function (x) { return (x[1] - 32768) / 1000; },
-        unit: 'mm'
-      },
-      {
-        name: 'lightning_strike_count',
-        displayName: 'Lightning strike count',
-        convert: function (x) { return x[2] - 32768; }
-      },
-      {
-        name: 'lightning_average_distance',
-        displayName: 'Lightning average distance',
-        convert: function (x) { return x[3] - 32768; },
-        unit: 'km'
-      },
-      {
-        name: 'wind_speed',
-        displayName: 'Wind speed',
-        convert: function (x) { return (x[4] - 32768) / 100; },
-        unit: 'm⋅s⁻¹'
-      },
-      {
-        name: 'wind_direction',
-        displayName: 'Wind direction',
-        convert: function (x) { return (x[5] - 32768) / 10; },
-        unit: '°'
-      },
-      {
-        name: 'maximum_wind_speed',
-        displayName: 'Maximum wind speed',
-        convert: function (x) { return (x[6] - 32768) / 100; },
-        unit: 'm⋅s⁻¹'
-      },
-      {
-        name: 'air_temperature',
-        displayName: 'Air temperature',
-        convert: function (x) { return (x[7] - 32768) / 10; },
-        unit: '°C'
-      },
-      {
-        name: 'vapor_pressure',
-        displayName: 'Vapor pressure',
-        convert: function (x) { return (x[8] - 32768) / 100; },
-        unit: 'kPa'
-      },
-      {
-        name: 'atmospheric_pressure',
-        displayName: 'Atmospheric pressure',
-        convert: function (x) { return (x[9] - 32768) / 100; },
-        unit: 'kPa'
-      },
-      {
-        name: 'relative_humidity',
-        displayName: 'Relative humidity',
-        convert: function (x) { return (x[10] - 32768) / 10; },
-        unit: '%'
-      },
-      {
-        name: 'sensor_temperature_internal',
-        displayName: 'Sensor temperature (internal)',
-        convert: function (x) { return (x[11] - 32768) / 10; },
-        unit: '°C'
-      },
-      {
-        name: 'x_orientation_angle',
-        displayName: 'X orientation angle',
-        convert: function (x) { return (x[12] - 32768) / 10; },
-        unit: '°'
-      },
-      {
-        name: 'y_orientation_angle',
-        displayName: 'Y orientation angle',
-        convert: function (x) { return (x[13] - 32768) / 10; },
-        unit: '°'
-      },
-      {
-        name: 'compass_heading',
-        displayName: 'Compass heading',
-        convert: function (x) { return x[14] - 32768; },
-        unit: '°'
-      },
-      {
-        name: 'north_wind_speed',
-        displayName: 'North wind speed',
-        convert: function (x) { return (x[15] - 32768) / 100; },
-        unit: 'm⋅s⁻¹'
-      },
-      {
-        name: 'east_wind_speed',
-        displayName: 'East wind speed',
-        convert: function (x) { return (x[16] - 32768) / 100; },
-        unit: 'm⋅s⁻¹'
-      }]
+      values: [
+        {
+          name: "solar_radiation",
+          displayName: "Solar radiation",
+          convert: function (x) {
+            return x[0] - 32768;
+          },
+          unit: "W⋅m⁻²",
+        },
+        {
+          name: "precipitation",
+          displayName: "Precipitation",
+          convert: function (x) {
+            return (x[1] - 32768) / 1000;
+          },
+          unit: "mm",
+        },
+        {
+          name: "lightning_strike_count",
+          displayName: "Lightning strike count",
+          convert: function (x) {
+            return x[2] - 32768;
+          },
+        },
+        {
+          name: "lightning_average_distance",
+          displayName: "Lightning average distance",
+          convert: function (x) {
+            return x[3] - 32768;
+          },
+          unit: "km",
+        },
+        {
+          name: "wind_speed",
+          displayName: "Wind speed",
+          convert: function (x) {
+            return (x[4] - 32768) / 100;
+          },
+          unit: "m⋅s⁻¹",
+        },
+        {
+          name: "wind_direction",
+          displayName: "Wind direction",
+          convert: function (x) {
+            return (x[5] - 32768) / 10;
+          },
+          unit: "°",
+        },
+        {
+          name: "maximum_wind_speed",
+          displayName: "Maximum wind speed",
+          convert: function (x) {
+            return (x[6] - 32768) / 100;
+          },
+          unit: "m⋅s⁻¹",
+        },
+        {
+          name: "air_temperature",
+          displayName: "Air temperature",
+          convert: function (x) {
+            return (x[7] - 32768) / 10;
+          },
+          unit: "°C",
+        },
+        {
+          name: "vapor_pressure",
+          displayName: "Vapor pressure",
+          convert: function (x) {
+            return (x[8] - 32768) / 100;
+          },
+          unit: "kPa",
+        },
+        {
+          name: "atmospheric_pressure",
+          displayName: "Atmospheric pressure",
+          convert: function (x) {
+            return (x[9] - 32768) / 100;
+          },
+          unit: "kPa",
+        },
+        {
+          name: "relative_humidity",
+          displayName: "Relative humidity",
+          convert: function (x) {
+            return (x[10] - 32768) / 10;
+          },
+          unit: "%",
+        },
+        {
+          name: "sensor_temperature_internal",
+          displayName: "Sensor temperature (internal)",
+          convert: function (x) {
+            return (x[11] - 32768) / 10;
+          },
+          unit: "°C",
+        },
+        {
+          name: "x_orientation_angle",
+          displayName: "X orientation angle",
+          convert: function (x) {
+            return (x[12] - 32768) / 10;
+          },
+          unit: "°",
+        },
+        {
+          name: "y_orientation_angle",
+          displayName: "Y orientation angle",
+          convert: function (x) {
+            return (x[13] - 32768) / 10;
+          },
+          unit: "°",
+        },
+        {
+          name: "compass_heading",
+          displayName: "Compass heading",
+          convert: function (x) {
+            return x[14] - 32768;
+          },
+          unit: "°",
+        },
+        {
+          name: "north_wind_speed",
+          displayName: "North wind speed",
+          convert: function (x) {
+            return (x[15] - 32768) / 100;
+          },
+          unit: "m⋅s⁻¹",
+        },
+        {
+          name: "east_wind_speed",
+          displayName: "East wind speed",
+          convert: function (x) {
+            return (x[16] - 32768) / 100;
+          },
+          unit: "m⋅s⁻¹",
+        },
+      ],
     },
     {
       length: 1,
-      values: [{
-        name: 'voltage',
-        displayName: 'Battery voltage',
-        convert: function (x) { return x[0] / 1000; },
-        unit: 'V'
-      }]
-    }
+      values: [
+        {
+          name: "voltage",
+          displayName: "Battery voltage",
+          convert: function (x) {
+            return x[0] / 1000;
+          },
+          unit: "V",
+        },
+      ],
+    },
   ],
 
   read_int: function (bytes, pos) {
@@ -123,7 +163,7 @@ var decentlab_decoder = {
   decode: function (msg) {
     var bytes = msg;
     var i, j;
-    if (typeof msg === 'string') {
+    if (typeof msg === "string") {
       bytes = [];
       for (i = 0; i < msg.length; i += 2) {
         bytes.push(parseInt(msg.substring(i, i + 2), 16));
@@ -137,12 +177,11 @@ var decentlab_decoder = {
 
     var deviceId = this.read_int(bytes, 1);
     var flags = this.read_int(bytes, 3);
-    var result = { 'protocol_version': version, 'device_id': deviceId };
+    var result = { protocol_version: version, device_id: deviceId };
     // decode payload
     var pos = 5;
     for (i = 0; i < this.SENSORS.length; i++, flags >>= 1) {
-      if ((flags & 1) !== 1)
-        continue;
+      if ((flags & 1) !== 1) continue;
 
       var sensor = this.SENSORS[i];
       var x = [];
@@ -155,18 +194,18 @@ var decentlab_decoder = {
       // decode sensor values
       for (j = 0; j < sensor.values.length; j++) {
         var value = sensor.values[j];
-        if ('convert' in value) {
+        if ("convert" in value) {
           result[value.name] = value.convert.bind(this)(x);
         }
       }
     }
     return result;
-  }
+  },
 };
 
 function deleteUnusedKeys(data) {
   var keysRetained = false;
-  Object.keys(data).forEach(key => {
+  Object.keys(data).forEach((key) => {
     if (data[key] === undefined) {
       delete data[key];
     } else {
@@ -177,7 +216,7 @@ function deleteUnusedKeys(data) {
 }
 
 function consume(event) {
-  var payload = event.data.payload_hex;
+  var payload = event.data.payloadHex;
   var sample = decentlab_decoder.decode(payload);
   var data = {};
   var lifecycle = {};
@@ -207,10 +246,10 @@ function consume(event) {
   lifecycle.compassHeading = sample["compass_heading"];
 
   if (deleteUnusedKeys(data)) {
-    emit('sample', { "data": data, "topic": "default" });
+    emit("sample", { data: data, topic: "default" });
   }
 
   if (deleteUnusedKeys(lifecycle)) {
-    emit('sample', { "data": lifecycle, "topic": "lifecycle" });
+    emit("sample", { data: lifecycle, topic: "lifecycle" });
   }
 }

@@ -24,7 +24,7 @@ before(function (done) {
       if (err) throw err;
       motionSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -36,7 +36,7 @@ before(function (done) {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -45,7 +45,7 @@ describe("Elsys eye uplink", function () {
     it("should decode Elsys eye payload", function (done) {
       const data = {
         data: {
-          payload_hex: "05011101",
+          payloadHex: "05011101",
         },
       };
 
@@ -70,7 +70,7 @@ describe("Elsys eye uplink", function () {
       // Default + Motion
       const data = {
         data: {
-          payload_hex: "0100e102280401a00500070dff1102",
+          payloadHex: "0100e102280401a00500070dff1102",
         },
       };
       expectEmit(function (type, value) {

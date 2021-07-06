@@ -1,18 +1,18 @@
 const chai = require("chai");
-const validate = require("jsonschema").validate;
+const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const utils = require("test-utils");
 
-const assert = chai.assert;
+const { assert } = chai;
 
-describe("Globalsat LT-20 uplink", function () {
+describe("Globalsat LT-20 uplink", () => {
   let defaultSchema = null;
   let consume = null;
-  before(function (done) {
+  before((done) => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
     utils
-      .loadSchema(__dirname + "/default.schema.json")
+      .loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
         defaultSchema = parsedSchema;
         done();
@@ -20,21 +20,21 @@ describe("Globalsat LT-20 uplink", function () {
   });
 
   let lifeCycleSchema = null;
-  before(function (done) {
+  before((done) => {
     utils
-      .loadSchema(__dirname + "/lifecycle.schema.json")
+      .loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifeCycleSchema = parsedSchema;
         done();
       });
   });
 
-  describe("consume()", function () {
-    it("should decode Globalsat LT-20 payload", function (done) {
+  describe("consume()", () => {
+    it("should decode Globalsat LT-20 payload", (done) => {
       const data = {
         data: {
           port: 1,
-          payload_hex: "80023032525AEFD2046400",
+          payloadHex: "80023032525AEFD2046400",
         },
       };
 
@@ -44,7 +44,7 @@ describe("Globalsat LT-20 uplink", function () {
         assert.typeOf(value.data, "object");
 
         if (value.topic == "lifecyle") {
-          //assert.equal(value.data.batteryPercent, 100);
+          // assert.equal(value.data.batteryPercent, 100);
           validate(value.data, lifecycleSchema, { throwError: true });
         }
       });

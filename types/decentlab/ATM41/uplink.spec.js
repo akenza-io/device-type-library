@@ -26,7 +26,7 @@ before(function (done) {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -38,7 +38,7 @@ before(function (done) {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -56,7 +56,8 @@ describe("Decentlab ATM41 Uplink", function () {
     it("should decode Decentlab ATM41 payload", function (done) {
       const data = {
         data: {
-          payload_hex: "02035a0003800a8000800080008009812b8014810880b4a57c820c810980027fe88056800880040bf5",
+          payloadHex:
+            "02035a0003800a8000800080008009812b8014810880b4a57c820c810980027fe88056800880040bf5",
         },
       };
 
@@ -66,7 +67,6 @@ describe("Decentlab ATM41 Uplink", function () {
         assert.typeOf(value.data, "object");
 
         if (value.topic == "lifecycle") {
-
           assert.equal(value.data.protocolVersion, 2);
           assert.equal(value.data.voltage, 3.061);
           assert.equal(value.data.deviceID, 858);

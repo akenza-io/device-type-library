@@ -1,9 +1,9 @@
 const chai = require("chai");
-const validate = require("jsonschema").validate;
+const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const fs = require("fs");
 
-const assert = chai.assert;
+const { assert } = chai;
 
 const script = rewire("./uplink.js");
 let defaultSchema = null;
@@ -15,36 +15,35 @@ function expectEmit(callback) {
   });
 }
 
-before(function (done) {
+before((done) => {
   fs.readFile(
-    __dirname + "/default.schema.json",
+    `${__dirname}/default.schema.json`,
     "utf8",
-    function (err, fileContents) {
+    (err, fileContents) => {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
-describe("Talkpool OY1700 Uplink", function () {
-  describe("consume()", function () {
-    it("should decode the Talkpool OY1700 report uplink", function () {
+describe("Talkpool OY1700 Uplink", () => {
+  describe("consume()", () => {
+    it("should decode the Talkpool OY1700 report uplink", () => {
       const data = {
         data: {
           port: 2,
-          payload_hex: "4020b1000000000000",
+          payloadHex: "4020b1000000000000",
         },
       };
 
-      expectEmit(function (type, value) {
+      expectEmit((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
         assert.equal(value.topic, "default");
 
         if (value.topic === "default") {
-
           assert.equal(value.data.temperature, 23.5);
           assert.equal(value.data.humidity, 26.3);
           assert.equal(value.data.pm1, 0);

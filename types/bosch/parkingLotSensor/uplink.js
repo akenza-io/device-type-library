@@ -1,5 +1,5 @@
 function consume(event) {
-  const payload = event.data.payload_hex;
+  const payload = event.data.payloadHex;
   const { port } = event.data;
   const data = {};
   let topic = "occupancy";

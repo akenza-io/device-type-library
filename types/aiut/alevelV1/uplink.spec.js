@@ -34,7 +34,7 @@ describe("Alevel V1 Uplink", () => {
       const data = {
         data: {
           port: 3,
-          payload_hex: "0746D8001700",
+          payloadHex: "0746D8001700",
         },
       };
 

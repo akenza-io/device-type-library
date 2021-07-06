@@ -31,7 +31,8 @@ describe("Astraled Air Quality Luminary V0.02 Uplink", () => {
       const data = {
         data: {
           port: 1,
-          payload_hex: "042a0000803f042b54ca2d41022cfa000223110001320302091109020a4601020b3d01020c9802010e00",
+          payloadHex:
+            "042a0000803f042b54ca2d41022cfa000223110001320302091109020a4601020b3d01020c9802010e00",
         },
       };
       utils.expectEmits((type, value) => {
@@ -45,13 +46,13 @@ describe("Astraled Air Quality Luminary V0.02 Uplink", () => {
         assert.equal(value.data.iaqStateInt, 0);
         assert.equal(value.data.sensorAmbientLight, 250);
 
-          validate(value.data, lifecycleSchema, { throwError: true });
+        validate(value.data, lifecycleSchema, { throwError: true });
       });
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
-        
+
         assert.equal(value.topic, "default");
         assert.equal(value.data.lightState, 17);
         assert.equal(value.data.temperature, 23.21);
