@@ -4,7 +4,7 @@
   "title": "Default",
   "type": "object",
   "properties": {
-    "kWhTot": {
+    "totalKWh": {
       "title": "Kilowatt hours total",
       "unit": "kWh",
       "type": "number",
@@ -12,19 +12,19 @@
     },
     "l2V": {
       "title": "Phase 2 volt",
-      "unit": "kWh",
+      "unit": "V",
       "type": "number",
       "description": "Phase 2 volt"
     },
     "l2A": {
       "title": "Phase 2 ampere",
-      "unit": "kWh",
+      "unit": "A",
       "type": "number",
       "description": "Phase 2 ampere"
     },
-    "l2kW": {
+    "l2KW": {
       "title": "Phase 2 kilowatt",
-      "unit": "kWh",
+      "unit": "kW",
       "type": "number",
       "description": "Phase 2 kilowatt"
     }

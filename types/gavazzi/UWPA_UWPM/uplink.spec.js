@@ -37,8 +37,8 @@ describe("Gavazzi UWPA/UWPM", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.l2V, 232.4);
         assert.equal(value.data.l2A, 0.24);
-        assert.equal(value.data.l2kW, 0.0299);
-        assert.equal(value.data.kWhTot, 1833.8);
+        assert.equal(value.data.l2KW, 0.0299);
+        assert.equal(value.data.totalKWh, 1833.8);
         validate(value.data, defaultSchema, { throwError: true });
       });
 

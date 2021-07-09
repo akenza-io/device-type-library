@@ -34,7 +34,7 @@ function consume(event) {
 
       pointer += 2;
       if (header === 60) {
-        data.kWhTot = parseFloat(
+        data.totalKWh = parseFloat(
           (INT32LE(payload.substr(pointer, 8), false) * 0.1).toFixed(4),
         );
         pointer += 16;
@@ -49,7 +49,7 @@ function consume(event) {
         );
         pointer += 8;
       } else if (header === 147) {
-        data.l2kW = parseFloat(
+        data.l2KW = parseFloat(
           (INT32LE(payload.substr(pointer, 8), true) * 0.000001).toFixed(4),
         );
         pointer += 8;
