@@ -18,8 +18,8 @@ function consume(event) {
   data.minHumThreshold = Bits.bitsToSigned(bits.substr(24, 8));
   data.maxHumThreshold = Bits.bitsToSigned(bits.substr(32, 8));
   data.sendInterval = Bits.bitsToUnsigned(bits.substr(40, 16));
-  data.voltage = Number(
-    parseFloat((Bits.bitsToUnsigned(bits.substr(56, 16)) / 1000).toFixed(2)),
+  data.voltage = parseFloat(
+    (Bits.bitsToUnsigned(bits.substr(56, 16)) / 1000).toFixed(2),
   );
   emit("sample", { data, topic: "lifecycle" });
 
