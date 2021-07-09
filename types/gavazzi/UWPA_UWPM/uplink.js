@@ -21,12 +21,12 @@ function INT32LE(hex, signed) {
 }
 
 function consume(event) {
-  const payload = event.data.payload_hex;
+  const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
   const data = {};
 
-  const appContext = Bits.bitsToUnsigned(bits.substr(0, 8)); // 01
-  let pointer = 2; // 1 Byte
+  const appContext = Bits.bitsToUnsigned(bits.substr(0, 8));
+  let pointer = 2;
 
   if (appContext === 1) {
     while (pointer < payload.length) {
@@ -34,7 +34,6 @@ function consume(event) {
 
       pointer += 2;
       if (header === 60) {
-        // Javascript hat keinen UINT64 also nur 32
         data.kWhTot = parseFloat(
           (INT32LE(payload.substr(pointer, 8), false) * 0.1).toFixed(4),
         );
@@ -55,7 +54,7 @@ function consume(event) {
         );
         pointer += 8;
       } else if (header === 255) {
-        // Nichts mehr nach Datum
+        // Date
         break;
       } else {
         break;

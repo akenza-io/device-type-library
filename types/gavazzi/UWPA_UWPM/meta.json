@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Gavazzi",
   "url": "https://www.gavazzi.de/index.php/news-einz/uwp-a-und-uwp-m-die-long-range-wireless-solution-fuer-energieueberwachung",
-  "description": "Meter for measurement of flow and energy in a heat or cold circuit with water using the ultrasonic principle.",
+  "description": "Monitoring of energy efficiency and energy cost allocation, operation of sub-range meters in large buildings, large plants, farms and urban areas are the best application for LoRa®-based CARLO GAVAZZI systems.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
