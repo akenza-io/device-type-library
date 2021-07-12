@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/en/ers-lite/",
-  "description": "Indoor LoRaWAN® device for measuring the indoor environment",
+  "description": "ERS is a sensor for simple and easy environment measuring. It measures temperature and humidity.",
   "author": "Akenza AG",
-  "firmwareVersion": "V1.0.0",
+  "firmwareVersion": "V2.3.5",
   "loraDeviceClass": "A",
   "availableSensors": [
     "Humidity",

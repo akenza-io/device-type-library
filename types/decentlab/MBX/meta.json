@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/ultrasonic-distance-/-level-sensor-for-lorawan",
-  "description": "Decentlab distance sensor.",
+  "description": "Enables remote monitoring of water level, fill level of tanks and silos, fill level of waste containers, presence of objects or snow level. It measures the distance between the sensor head and the target (rangefinder). The measurement principle is based on ultrasonic waves which are transmitted by the sensor and reflected back from nearby objects.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.0.0",
   "loraDeviceClass": "A",

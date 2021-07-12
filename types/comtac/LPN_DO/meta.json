@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Comtac",
   "url": "https://www.comtac.ch/de/produkte/lora/ios/lpn-do.html",
-  "description": "Comtac LPN DO Sensor used to manipulate the energy flow",
+  "description": "The device allows the control on two solid state relays (24VDC/500mA).",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "C",

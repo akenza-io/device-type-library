@@ -1,18 +1,15 @@
 {
-  "name": "Temperature & Humidity Sensor, TBHH100, Tabs",
+  "name": "Tabs Temperature & Humidity Sensor, TBHH100",
   "version": "1.0.0",
   "manufacturer": "Browan",
   "url": "https://www.browan.com/product/temperature-humidity-sensor/detail",
-  "description": "LoRaWAN® device for measuring the indoor environment ",
+  "description": "The Tabs Temperature & Humidity Sensor is designed for in-home and in-building usage for consumer or facility management applications. ",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": [
     "Temperature",
-    "Humidity",
-    "CO2",
-    "VOC",
-    "Reed"
+    "Humidity"
   ],
   "outputTopics": [
     "default",

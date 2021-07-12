@@ -1,13 +1,13 @@
 {
-  "name": "ULTRAHEAT T550",
+  "name": "WZU-LR",
   "version": "1.0.0",
   "manufacturer": "Landis+Gyr",
-  "url": "https://www.landisgyr.eu/product/ultraheat-t550-uc50/",
-  "description": "Meter for measurement of flow and energy in a heat or cold circuit with water using the ultrasonic principle.",
+  "url": "https://www.landisgyr.de/product/funkmodul-wzu-lr/",
+  "description": "The compact radio module for the T550 meters, transmits measurements of flow, backflow and energy in a heat or cold circuit with water using the ultrasonic principle.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": ["Energy", "Volume", "Power", "Flow", "Flow temperature"],
+  "availableSensors": ["Energy", "Volume", "Power", "Flow", "Flow temperature", "Backflow temperature"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
   "connectivity": "LORA"

@@ -1,9 +1,9 @@
 {
-  "name": "R711-Wireless Temperature and Humidity Sensor",
+  "name": "R711",
   "version": "1.0.0",
   "manufacturer": "Netvox",
   "url": "http://www.netvox.com.tw/product.asp?pro=R711",
-  "description": "Temperature & humidity sensor",
+  "description": "R711 is mainly used to detect the temperature and humidity of indoor air.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

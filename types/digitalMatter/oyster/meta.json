@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Digital Matter",
   "url": "https://www.digitalmatter.com/devices/oyster-lorawan/",
-  "description": "Ultra-rugged and long-life battery-powered LoRaWAN® GPS tracking device for long-term asset tracking.",
+  "description": "Ultra-rugged GPS tracking device for long-term asset tracking. High-precision GPS/GLONASS tracking device tracks assets when they’re on the move and enters sleep mode when stationary to save power",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

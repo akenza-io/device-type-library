@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/eleven-parameter-weather-station-for-lorawan",
-  "description": "Decentlab weather station.",
+  "description": "All-in-one weather station with sensors for solar radiation, precipitation, air temperature, relative humidity, indoor temperature, vapor pressure, air pressure, barometric pressure, wind speed and direction, maximum wind speed, tilt sensor, number of lightning strikes and average lightning distance.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.0.0",
   "loraDeviceClass": "A",

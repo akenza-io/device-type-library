@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/high-precision-pressure-/-liquid-level-and-temperature-sensor-for-lorawan",
-  "description": "Decentlab high-presicion pressure / liquid level and temperature sensor.",
+  "description": "Enables high-precision remote monitoring of water level in open water, fill level of tanks, groundwater level and various other applications. It measures the pressure at the sensor head relative to the pressure at the cable end. When the sensor head is placed under water (or any other liquid), the relative pressure indicates the depth of the sensor head.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.0.0",
   "loraDeviceClass": "A",

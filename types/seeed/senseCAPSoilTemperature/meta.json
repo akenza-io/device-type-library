@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "manufacturer": "Seeed",
   "url": "https://www.seeedstudio.com/LoRaWAN-Soil-Moisture-and-Temperature-Sensor-EU868-p-4316.html",
-  "description": "SenseCAP Wireless Soil Moisture and Temperature Sensor measures soil volumetric water content (VWC) and temperature.",
+  "description": "SenseCAP Wireless Soil Moisture and Temperature Sensor measures soil volumetric water content (VWC) and temperature. It's designed with a 2-in-1 sensor that integrates soil temperature and soil moisture, a custom battery and an IP66 enclosure, optimized for outdoor use cases that need reliable data collection over years.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": ["Soil humidity", "Temperature"],
+  "availableSensors": ["Soil moisture", "Soil temperature"],
   "outputTopics": ["default"],
   "encoding": "HEX",
   "connectivity": "LORA"

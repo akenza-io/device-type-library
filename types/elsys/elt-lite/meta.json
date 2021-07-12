@@ -2,10 +2,10 @@
   "name": "ELT Lite",
   "version": "1.0.0",
   "manufacturer": "Elsys",
-  "url": "https://www.elsys.se/shop/product/elt-1-lite/?v=f003c44deab6",
-  "description": "Outdoor LoRaWAN® device for measuring the environment.",
+  "url": "https://www.elsys.se/en/lora-elt-lite/",
+  "description": "ELT Lite is the ideal device to use together with an external sensor. Use it together with an electricity meter, flow meter, analog sensor, moisture sensor, or something else that fits your needs.  ELT Lite has one generic input. You can configure ELT Lite for external temperature probe, pulse counting, analog-input 0-10V, digital-input, water leak, switch, and many more options.",
   "author": "Akenza AG",
-  "firmwareVersion": "V1.0.0",
+  "firmwareVersion": "V2.3.5",
   "loraDeviceClass": "A",
   "availableSensors": [
     "Temperature",

@@ -1,9 +1,9 @@
 {
-  "name": "Water Leak Sensor, TBWL100, Tabs",
+  "name": "Tabs Water Leak Sensor, TBWL100",
   "version": "1.0.0",
   "manufacturer": "Browan",
   "url": "https://www.browan.com/product/water-leak-sensor/detail",
-  "description": "Water leak sensor",
+  "description": "Browan's latest Tabs Water Leak Sensor is an invaluable device to avoid water damage from floods and leaks. The sensor sends an uplink when it detects water, giving you advanced warning of your kitchen appliance, boiler or tank springing a leak.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

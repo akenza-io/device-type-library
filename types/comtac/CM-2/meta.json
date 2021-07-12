@@ -3,16 +3,14 @@
   "version": "1.0.0",
   "manufacturer": "Comtac",
   "url": "https://www.comtac.ch/de/produkte/lora/condition-monitoring/lpn-cm-2-sensor.html",
-  "description": "The LPN CM-2 is able to read temperature and humidity.",
+  "description": "The LPN CM-2 has a built in temperature and humidity sensor and is able to connect an external sensor like a PT100 or LEM Converter",
   "author": "Akenza AG",
   "firmwareVersion": "V2.0.0",
   "loraDeviceClass": "A",
   "availableSensors": [
     "Humidity",
     "Temperature",
-    "External Analog Input",
-    "LEM",
-    "Light"
+    "External Analog Input"
   ],
   "outputTopics": [
     "sleep",

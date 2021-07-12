@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/air-temperature-and-humidity-sensor-with-radiation-shield-for-lorawan",
-  "description": "Decentlab air temperature and humidity sensor with radiation shield.",
+  "description": "Air temperature and humidity sensor with radiation shield. Can be used for example for smart agriculture, urban heat islands, greenhouses, frost alarming or building automatione",
   "author": "Akenza AG",
   "firmwareVersion": "V2.0.0",
   "loraDeviceClass": "A",

@@ -2,17 +2,17 @@
   "name": "EMS",
   "version": "1.0.0",
   "manufacturer": "Elsys",
-  "url": "https://www.elsys.se/shop/product/ems/?v=f003c44deab6",
-  "description": "Inside the EMS you will find internal sensors for measuring indoor temperature, humidity, acceleration, a water leak detector, and a reed switch.",
+  "url": "https://www.elsys.se/en/lora-ems/",
+  "description": "Inside EMS you will find internal sensors for measuring indoor temperature, humidity, acceleration, opening activity and a water leak detector. This makes the EMS one of our most all-round sensors.",
   "author": "Akenza AG",
-  "firmwareVersion": "V1.0.0",
+  "firmwareVersion": "V2.3.5",
   "loraDeviceClass": "A",
   "availableSensors": [
     "Temperature",
     "Humidity",
     "Accelerometer",
     "Water leak",
-    "Door"
+    "Reed"
   ],
   "outputTopics": [
     "default",

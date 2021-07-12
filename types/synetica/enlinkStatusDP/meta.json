@@ -1,9 +1,9 @@
 {
-  "name": "Enlink DP",
+  "name": "enLink Status-DP",
   "version": "1.0.0",
   "manufacturer": "Synetica",
   "url": "https://synetica.net/enlink-status-dp-lora-wireless-differential-pressure-sensor/",
-  "description": "enLink Status-DP measures differential pressure in the range of 25Pa to 5000Pa with industry leading accuracy of 0.1% of selected range.",
+  "description": "enLink Status-DP measures differential pressure in the range of 25Pa to 5000Pa with industry leading accuracy of 0.1% of selected range. Unique Multi-Range digital sensor allows multiple pressure ranges to be selected automatically or remotely.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

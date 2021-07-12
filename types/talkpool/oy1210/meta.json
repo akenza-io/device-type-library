@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Talkpool",
   "url": "https://talkpool.com/oy1210-lorawan-co2-meter/",
-  "description": "Indoor LoRaWAN sensor that measures temperature, humidity and carbon dioxide.",
+  "description": "OY1210 CO2 meter measures temperature, humidity and carbon dioxide. Supports adaptive reporting functions to detect rapid changes in CO2 values.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
