@@ -53,9 +53,6 @@ function consume(event) {
           (INT32LE(payload.substr(pointer, 8), true) * 0.000001).toFixed(4),
         );
         pointer += 8;
-      } else if (header === 255) {
-        // Date
-        break;
       } else {
         break;
       }
