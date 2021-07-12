@@ -3,5 +3,31 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Lifecycle",
   "type": "object",
-  "properties": {}
+  "properties": {
+    "protocolVersion": {
+      "title": "Protocol Version",
+      "description": "Protocol Version",
+      "type": "integer"
+    },
+    "appVersion": {
+      "title": "Application Version",
+      "description": "Application Version",
+      "type": "integer"
+    },
+    "loraStackVersion": {
+      "title": "Lora Stack Version",
+      "description": "Lora Stack Version",
+      "type": "integer"
+    },
+    "msgCycleTime1": {
+      "title": "LoRa Version",
+      "description": "LoRa Version",
+      "type": "integer"
+    },
+    "loraVersion": {
+      "title": "LoRa Version",
+      "description": "LoRa Version",
+      "type": "integer"
+    }
+  }
 }

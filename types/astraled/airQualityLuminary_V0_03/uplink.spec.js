@@ -4,7 +4,7 @@ const rewire = require("rewire");
 const utils = require("test-utils");
 
 const { assert } = chai;
-describe("Astraled Air Quality Luminary V0.02 Uplink", () => {
+describe("Astraled Air Quality Luminary V0.03 Uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
@@ -27,7 +27,7 @@ describe("Astraled Air Quality Luminary V0.02 Uplink", () => {
       });
   });
   describe("consume()", () => {
-    it("should decode the Astraled Air Quality Luminary V0.02 payload", () => {
+    it("should decode the Astraled Air Quality Luminary V0.03 payload", () => {
       const data = {
         data: {
           port: 1,

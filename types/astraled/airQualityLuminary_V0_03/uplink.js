@@ -242,25 +242,25 @@ function consume(event) {
         lifecycle.iaqTempatureCompOn = getWord(buff, rdPos + 2);
         break;
       case 50:
-        lifecycle.nb_of_groups = getByte(buff, rdPos);
+        lifecycle.nbOfGroups = getByte(buff, rdPos);
         break;
       case 46:
-        lifecycle.param_addr = getWord(buff, rdPos + 5);
-        lifecycle.param_dat = getLong(buff, rdPos + 7);
+        lifecycle.paramAddr = getWord(buff, rdPos + 5);
+        lifecycle.paramDat = getLong(buff, rdPos + 7);
         break;
       case 51:
-        lifecycle.iaq_rgb_red = getByte(buff, rdPos);
-        lifecycle.iaq_rgb_green = getByte(buff, rdPos + 1);
-        lifecycle.iaq_rgb_blue = getByte(buff, rdPos + 2);
+        lifecycle.iaqRgbRed = getByte(buff, rdPos);
+        lifecycle.iaqRgbGreen = getByte(buff, rdPos + 1);
+        lifecycle.iaqRgbBlue = getByte(buff, rdPos + 2);
         break;
       case 52:
-        lifecycle.iaq_asc = getByte(buff, rdPos);
+        lifecycle.iaqAsc = getByte(buff, rdPos);
         break;
       case 53:
-        lifecycle.raw_pwr = getFloat(buff, rdPos);
+        lifecycle.rawPwr = getFloat(buff, rdPos);
         break;
       case 54:
-        lifecycle.raw_energie = getFloat(buff, rdPos);
+        lifecycle.rawEnergie = getFloat(buff, rdPos);
         break;
       default:
         lifecycle.unkown = getLong(buff, rdPos);
