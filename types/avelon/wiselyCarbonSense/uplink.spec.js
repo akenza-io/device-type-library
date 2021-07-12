@@ -1,9 +1,9 @@
 const chai = require("chai");
-const validate = require("jsonschema").validate;
+const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const fs = require("fs");
 
-const assert = chai.assert;
+const { assert } = chai;
 
 const script = rewire("./uplink.js");
 let defaultSchema = null;
@@ -16,40 +16,41 @@ function expectEmit(callback) {
   });
 }
 
-before(function (done) {
+before((done) => {
   fs.readFile(
-    __dirname + "/default.schema.json",
+    `${__dirname}/default.schema.json`,
     "utf8",
-    function (err, fileContents) {
+    (err, fileContents) => {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
-before(function (done) {
+before((done) => {
   fs.readFile(
-    __dirname + "/lifecycle.schema.json",
+    `${__dirname}/lifecycle.schema.json`,
     "utf8",
-    function (err, fileContents) {
+    (err, fileContents) => {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
-describe("Avelon Carbonsense uplink", function () {
-  describe("consume()", function () {
-    it("should decode Avelon Carbonsense payload", function (done) {
+describe("Avelon Carbonsense uplink", () => {
+  describe("consume()", () => {
+    it("should decode Avelon Carbonsense payload", (done) => {
       const data = {
         data: {
-          payload_hex: "fe265300e54202e0265200e54202e7265100e64202f1265000e64202f3265000e64202f7265000e64202f900",
+          payloadHex:
+            "fe265300e54202e0265200e54202e7265100e64202f1265000e64202f3265000e64202f7265000e64202f900",
         },
       };
 
-      expectEmit(function (type, value) {
+      expectEmit((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");

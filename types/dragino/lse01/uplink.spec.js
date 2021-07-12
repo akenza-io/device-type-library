@@ -45,7 +45,7 @@ describe("Dragino LSE01 Uplink", () => {
       const data = {
         data: {
           port: 1,
-          payload_hex: "CE2900F107A5099B6E2890",
+          payloadHex: "CE2900F107A5099B6E2890",
         },
       };
 

@@ -23,7 +23,7 @@ before(function (done) {
       if (err) throw err;
       schema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -33,7 +33,7 @@ describe("Comtac LPN DO-2 Uplink", function () {
       const data = {
         data: {
           port: 2,
-          payload_hex: "14000977ef00",
+          payloadHex: "14000977ef00",
         },
       };
 

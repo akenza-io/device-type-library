@@ -1,5 +1,5 @@
 function consume(event) {
-  var payload = event.data.payload_hex;
+  var payload = event.data.payloadHex;
   var bits = Bits.hexToBits(payload);
   var data = {};
 
@@ -15,5 +15,5 @@ function consume(event) {
   data.do_2 = Bits.bitsToUnsigned(bits.substr(46, 1));
   data.do_1 = Bits.bitsToUnsigned(bits.substr(47, 1));
 
-  emit('sample', { data: data, topic: "default" });
+  emit("sample", { data: data, topic: "default" });
 }

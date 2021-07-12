@@ -1,9 +1,9 @@
 const chai = require("chai");
-const validate = require("jsonschema").validate;
+const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const fs = require("fs");
 
-const assert = chai.assert;
+const { assert } = chai;
 
 const script = rewire("./uplink.js");
 let timedSchema = null;
@@ -15,29 +15,29 @@ function expectEmit(callback) {
   });
 }
 
-before(function (done) {
+before((done) => {
   fs.readFile(
-    __dirname + "/button_event.schema.json",
+    `${__dirname}/button_event.schema.json`,
     "utf8",
-    function (err, fileContents) {
+    (err, fileContents) => {
       if (err) throw err;
       timedSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
-describe("Swisscom Multisense Uplink", function () {
-  describe("consume()", function () {
-    it("should decode the Swisscom Multisense payload", function (done) {
+describe("Swisscom Multisense Uplink", () => {
+  describe("consume()", () => {
+    it("should decode the Swisscom Multisense payload", (done) => {
       const data = {
         data: {
           port: 3,
-          payload_hex: "010080a3010945026e0300170412820503f8007cfffc",
+          payloadHex: "010080a3010945026e0300170412820503f8007cfffc",
         },
       };
 
-      expectEmit(function (type, value) {
+      expectEmit((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");

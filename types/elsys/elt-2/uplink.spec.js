@@ -24,7 +24,7 @@ before(function (done) {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -36,7 +36,7 @@ before(function (done) {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -45,8 +45,8 @@ describe("Elsys ELT-2 uplink", function () {
     it("should decode Elsys ELT-2 payload", function () {
       const data = {
         data: {
-          payload_hex: "0100e20218070e410cff5614000edd20",
-        }
+          payloadHex: "0100e20218070e410cff5614000edd20",
+        },
       };
 
       expectEmit(function (type, value) {

@@ -1,11 +1,11 @@
 const chai = require("chai");
-const validate = require("jsonschema").validate;
+const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const axios = require("axios");
 const fs = require("fs");
 const Ajv = require("ajv");
 
-const assert = chai.assert;
+const { assert } = chai;
 
 const script = rewire("./uplink.js");
 let defaultSchema = null;
@@ -18,49 +18,50 @@ function expectEmit(callback) {
   });
 }
 
-before(function (done) {
+before((done) => {
   fs.readFile(
-    __dirname + "/default.schema.json",
+    `${__dirname}/default.schema.json`,
     "utf8",
-    function (err, fileContents) {
+    (err, fileContents) => {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
-before(function (done) {
+before((done) => {
   fs.readFile(
-    __dirname + "/lifecycle.schema.json",
+    `${__dirname}/lifecycle.schema.json`,
     "utf8",
-    function (err, fileContents) {
+    (err, fileContents) => {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
 function loadRemoteSchema(uri) {
-  return axios.get(uri).then(function (res) {
+  return axios.get(uri).then((res) => {
     if (res.status >= 400) {
-      throw new Error("Schema loading error: " + res.statusCode);
+      throw new Error(`Schema loading error: ${res.statusCode}`);
     }
     return res.data;
   });
 }
 
-describe("Decentlab SMTP Uplink", function () {
-  describe("consume()", function () {
-    it("should decode Decentlab SMTP payload", function (done) {
+describe("Decentlab SMTP Uplink", () => {
+  describe("consume()", () => {
+    it("should decode Decentlab SMTP payload", (done) => {
       const data = {
         data: {
-          payload_hex: "020b50000309018a8c09438a9809278a920b3c8aa50c9c8a8c11e08aa500000000000000000b3b",
+          payloadHex:
+            "020b50000309018a8c09438a9809278a920b3c8aa50c9c8a8c11e08aa500000000000000000b3b",
         },
       };
 
-      expectEmit(function (type, value) {
+      expectEmit((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -73,10 +74,9 @@ describe("Decentlab SMTP Uplink", function () {
         }
 
         if (value.topic == "default") {
-
           assert.equal(value.data.soilMoistureAtDepth0, -0.39);
           assert.equal(value.data.soilTemperatureAtDepth0, 27);
-          assert.equal(value.data.soilMoistureAtDepth1, -0.258,);
+          assert.equal(value.data.soilMoistureAtDepth1, -0.258);
           assert.equal(value.data.soilTemperatureAtDepth1, 27.12);
           assert.equal(value.data.soilMoistureAtDepth2, -0.314);
           assert.equal(value.data.soilTemperatureAtDepth2, 27.06);

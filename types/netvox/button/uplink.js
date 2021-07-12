@@ -1,8 +1,8 @@
 function consume(event) {
-  var payload = event.data.payload_hex;
+  var payload = event.data.payloadHex;
   var bits = Bits.hexToBits(payload);
   var data = {};
-  var topic = 'default';
+  var topic = "default";
 
   data.version = Bits.bitsToUnsigned(bits.substr(0, 8));
   data.devType = Bits.bitsToUnsigned(bits.substr(8, 8));
@@ -13,10 +13,13 @@ function consume(event) {
     var click = Bits.bitsToUnsigned(bits.substr(32, 8));
     // 6 Bytes reserved
     if (click == 1) {
-      emit('sample', { data: { "buttonPressed": true }, topic: "button_pressed" });
+      emit("sample", {
+        data: { buttonPressed: true },
+        topic: "button_pressed",
+      });
     }
-    emit('sample', { data: data, topic: "lifecycle" });
+    emit("sample", { data: data, topic: "lifecycle" });
   } else if (repType == 0) {
-    emit('sample', { data: { "config": true }, topic: "config" });
+    emit("sample", { data: { config: true }, topic: "config" });
   }
 }

@@ -23,7 +23,7 @@ before(function (done) {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -32,7 +32,7 @@ describe("Elsys CO2 uplink", function () {
     it("should decode Elsys CO2 payload", function (done) {
       const data = {
         data: {
-          payload_hex: "0100f4022804000b05000601d8070e3e",
+          payloadHex: "0100f4022804000b05000601d8070e3e",
         },
       };
 

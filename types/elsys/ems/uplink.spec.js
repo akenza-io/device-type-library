@@ -24,7 +24,7 @@ before(function (done) {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -36,7 +36,7 @@ before(function (done) {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -45,7 +45,7 @@ describe("Elsys EMS uplink", function () {
     it("should decode Elsys EMS payload", function () {
       const data = {
         data: {
-          payload_hex: "0100e8021a0300ff3d070e360b0000000d0d010f141200",
+          payloadHex: "0100e8021a0300ff3d070e360b0000000d0d010f141200",
         },
       };
 

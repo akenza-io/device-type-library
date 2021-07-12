@@ -16,9 +16,8 @@ function toLittleEndian(hex) {
   return num;
 }
 
-
 function consume(event) {
-  var payload = event.data.payload_hex;
+  var payload = event.data.payloadHex;
   var bits = Bits.hexToBits(payload);
   var data = {};
   var topic = "default";
@@ -30,7 +29,7 @@ function consume(event) {
     data.usedCharges = toLittleEndian(payload.substr(4, 8));
     // Reserved // 03 03
 
-    data.battery = ((Bits.bitsToUnsigned(bits.substr(64, 8)) + 170) / 100);
+    data.battery = (Bits.bitsToUnsigned(bits.substr(64, 8)) + 170) / 100;
     data.internalTemp = Bits.bitsToUnsigned(bits.substr(72, 8));
 
     if (bits.length > 80) {
@@ -49,7 +48,6 @@ function consume(event) {
       data.statusMessageinterval = toLittleEndian(payload.substr(28, 4));
     }
 
-
     topic = "status";
     // Button Press
   } else if (data.msgType == 1) {
@@ -67,7 +65,12 @@ function consume(event) {
     // Reserved
     data.usedCharges = toLittleEndian(payload.substr(14, 6));
 
-    if (data.btnNpressed == "1" || data.btnEpressed == "1" || data.btnSpressed == "1" || data.btnWpressed == "1") {
+    if (
+      data.btnNpressed == "1" ||
+      data.btnEpressed == "1" ||
+      data.btnSpressed == "1" ||
+      data.btnWpressed == "1"
+    ) {
       topic = "button_pressed";
     }
 
@@ -77,5 +80,5 @@ function consume(event) {
     topic = "join";
   }
 
-  emit('sample', { data: data, topic: topic });
+  emit("sample", { data: data, topic: topic });
 }

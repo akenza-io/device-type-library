@@ -1,30 +1,31 @@
 function consume(event) {
-  var payload = event.data.payload_hex;
+  var payload = event.data.payloadHex;
   var bits = Bits.hexToBits(payload);
   var data = {};
   var lifecycle = {};
 
   // Which periphery is on?
   // reserved
-  lifecycle.rs485 = !!(Bits.bitsToUnsigned(bits.substr(1, 1)));
-  lifecycle.gps = !!(Bits.bitsToUnsigned(bits.substr(2, 1)));
-  lifecycle.acc = !!(Bits.bitsToUnsigned(bits.substr(3, 1)));
-  lifecycle.mag = !!(Bits.bitsToUnsigned(bits.substr(4, 1)));
-  lifecycle.mic = !!(Bits.bitsToUnsigned(bits.substr(5, 1)));
-  lifecycle.bright = !!(Bits.bitsToUnsigned(bits.substr(6, 1)));
-  lifecycle.tempHum = !!(Bits.bitsToUnsigned(bits.substr(7, 1)));
-
+  lifecycle.rs485 = !!Bits.bitsToUnsigned(bits.substr(1, 1));
+  lifecycle.gps = !!Bits.bitsToUnsigned(bits.substr(2, 1));
+  lifecycle.acc = !!Bits.bitsToUnsigned(bits.substr(3, 1));
+  lifecycle.mag = !!Bits.bitsToUnsigned(bits.substr(4, 1));
+  lifecycle.mic = !!Bits.bitsToUnsigned(bits.substr(5, 1));
+  lifecycle.bright = !!Bits.bitsToUnsigned(bits.substr(6, 1));
+  lifecycle.tempHum = !!Bits.bitsToUnsigned(bits.substr(7, 1));
 
   // Actual state of different components:
-  lifecycle.txOnEvent = !!(Bits.bitsToUnsigned(bits.substr(8, 1)));
-  lifecycle.magActual = !!(Bits.bitsToUnsigned(bits.substr(9, 1)));
-  lifecycle.extCon = !!(Bits.bitsToUnsigned(bits.substr(10, 1)));
-  lifecycle.booster = !!(Bits.bitsToUnsigned(bits.substr(11, 1)));
-  lifecycle.extSupply = !!(Bits.bitsToUnsigned(bits.substr(12, 1)));
-  lifecycle.dip3 = !!(Bits.bitsToUnsigned(bits.substr(13, 1)));
-  lifecycle.dip2 = !!(Bits.bitsToUnsigned(bits.substr(14, 1)));
-  lifecycle.dip1 = !!(Bits.bitsToUnsigned(bits.substr(15, 1)));
-  lifecycle.voltage = Number((1 + (Bits.bitsToUnsigned(bits.substr(16, 8)) * 0.01)).toFixed(2));
+  lifecycle.txOnEvent = !!Bits.bitsToUnsigned(bits.substr(8, 1));
+  lifecycle.magActual = !!Bits.bitsToUnsigned(bits.substr(9, 1));
+  lifecycle.extCon = !!Bits.bitsToUnsigned(bits.substr(10, 1));
+  lifecycle.booster = !!Bits.bitsToUnsigned(bits.substr(11, 1));
+  lifecycle.extSupply = !!Bits.bitsToUnsigned(bits.substr(12, 1));
+  lifecycle.dip3 = !!Bits.bitsToUnsigned(bits.substr(13, 1));
+  lifecycle.dip2 = !!Bits.bitsToUnsigned(bits.substr(14, 1));
+  lifecycle.dip1 = !!Bits.bitsToUnsigned(bits.substr(15, 1));
+  lifecycle.voltage = Number(
+    (1 + Bits.bitsToUnsigned(bits.substr(16, 8)) * 0.01).toFixed(2),
+  );
 
   data.light = Bits.bitsToUnsigned(bits.substr(24, 8));
   data.humidity = Bits.bitsToUnsigned(bits.substr(32, 8));
@@ -43,9 +44,9 @@ function consume(event) {
   data.altitude = Bits.bitsToSigned(bits.substr(264, 16)) / 100;
 
   if (lifecycle.txOnEvent == true) {
-    emit('sample', { data: { "eventUplink": true }, topic: "event" });
+    emit("sample", { data: { eventUplink: true }, topic: "event" });
   }
 
-  emit('sample', { data: data, "topic": "default" });
-  emit('sample', { data: lifecycle, "topic": "lifecycle" });
+  emit("sample", { data: data, topic: "default" });
+  emit("sample", { data: lifecycle, topic: "lifecycle" });
 }
