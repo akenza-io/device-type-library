@@ -260,7 +260,7 @@ function consume(event) {
         lifecycle.rawPwr = getFloat(buff, rdPos);
         break;
       case 54:
-        lifecycle.rawEnergie = getFloat(buff, rdPos);
+        lifecycle.rawEnergy = getFloat(buff, rdPos);
         break;
       default:
         lifecycle.unkown = getLong(buff, rdPos);
