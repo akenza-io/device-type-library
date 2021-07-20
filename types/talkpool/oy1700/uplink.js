@@ -1,9 +1,9 @@
 function consume(event) {
-  var payload = event.data.payload_hex;
-  var port = event.data.port;
-  var bits = Bits.hexToBits(payload);
-  var data = {};
-  var topic = "default";
+  const payload = event.data.payloadHex;
+  const { port } = event.data;
+  const bits = Bits.hexToBits(payload);
+  const data = {};
+  let topic = "default";
 
   // Boot
   if (port == 1) {
@@ -16,8 +16,10 @@ function consume(event) {
 
     //  Measurement
   } else if (port == 2) {
-    data.temperature = (Bits.bitsToUnsigned(bits.substr(0, 8) + bits.substr(16, 4)) - 800) / 10;
-    data.humidity = (Bits.bitsToUnsigned(bits.substr(8, 8) + bits.substr(20, 4)) - 250) / 10;
+    data.temperature =
+      (Bits.bitsToUnsigned(bits.substr(0, 8) + bits.substr(16, 4)) - 800) / 10;
+    data.humidity =
+      (Bits.bitsToUnsigned(bits.substr(8, 8) + bits.substr(20, 4)) - 250) / 10;
 
     data.pm1 = Bits.bitsToUnsigned(bits.substr(24, 16));
     data.pm2_5 = Bits.bitsToUnsigned(bits.substr(40, 16));
@@ -33,5 +35,5 @@ function consume(event) {
     }
   }
 
-  emit('sample', { data: data, topic: topic });
+  emit("sample", { data, topic });
 }

@@ -23,7 +23,7 @@ before(function (done) {
       if (err) throw err;
       schema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -33,7 +33,7 @@ describe("Bosch Parking Lot Sensor Uplink", function () {
       const data = {
         data: {
           port: 2,
-          payload_hex: "00",
+          payloadHex: "00",
         },
       };
 
@@ -58,7 +58,7 @@ describe("Bosch Parking Lot Sensor Uplink", function () {
       const data = {
         data: {
           port: 2,
-          payload_hex: "01",
+          payloadHex: "01",
         },
       };
 

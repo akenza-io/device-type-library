@@ -25,7 +25,7 @@ before(function (done) {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -37,7 +37,7 @@ before(function (done) {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -46,7 +46,7 @@ describe("TBDW100 uplink", function () {
     it("should decode TBDW100 payload", function () {
       const data = {
         data: {
-          payload_hex: "017b345cb1510c00",
+          payloadHex: "017b345cb1510c00",
         },
       };
 

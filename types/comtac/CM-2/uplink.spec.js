@@ -34,7 +34,7 @@ describe("Comtac LPN CM-2 Uplink", () => {
       const data = {
         data: {
           port: 3,
-          payload_hex: "0110000a5efed419ec07d001f4044809ca154578216a",
+          payloadHex: "0110000a5efed419ec07d001f4044809ca154578216a",
         },
       };
 

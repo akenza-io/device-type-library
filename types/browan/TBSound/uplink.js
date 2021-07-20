@@ -1,14 +1,13 @@
 function swap16(val) {
-  return ((val & 0xFF) << 8)
-    | ((val >> 8) & 0xFF);
+  return ((val & 0xff) << 8) | ((val >> 8) & 0xff);
 }
 
 function consume(event) {
-  var payload = event.data.payload_hex;
+  var payload = event.data.payloadHex;
   var bits = Bits.hexToBits(payload);
   var data = {};
   var lifecycle = {};
-  var topic = 'default';
+  var topic = "default";
 
   data.open = !!Bits.bitsToUnsigned(bits.substr(0, 8));
 
@@ -25,6 +24,6 @@ function consume(event) {
 
   data.soundAvg = Bits.bitsToUnsigned(bits.substr(24, 8));
 
-  emit('sample', { "data": lifecycle, "topic": "lifecycle" });
-  emit('sample', { "data": data, "topic": topic });
+  emit("sample", { data: lifecycle, topic: "lifecycle" });
+  emit("sample", { data: data, topic: topic });
 }

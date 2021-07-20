@@ -26,7 +26,7 @@ function parseHexString(str) {
 }
 
 function consume(event) {
-  const bytes = parseHexString(event.data.payload_hex);
+  const bytes = parseHexString(event.data.payloadHex);
   const decoded = {};
   const lifecycle = {};
 

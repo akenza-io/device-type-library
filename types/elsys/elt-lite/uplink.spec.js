@@ -1,9 +1,9 @@
 const chai = require("chai");
-const {validate} = require("jsonschema");
+const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const fs = require("fs");
 
-const {assert} = chai;
+const { assert } = chai;
 
 const script = rewire("./uplink.js");
 let defaultSchema = null;
@@ -18,25 +18,25 @@ function expectEmit(callback) {
 
 before((done) => {
   fs.readFile(
-    `${__dirname  }/default.schema.json`,
+    `${__dirname}/default.schema.json`,
     "utf8",
     (err, fileContents) => {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
 before((done) => {
   fs.readFile(
-    `${__dirname  }/lifecycle.schema.json`,
+    `${__dirname}/lifecycle.schema.json`,
     "utf8",
     (err, fileContents) => {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -45,8 +45,8 @@ describe("Elsys ELT Lite uplink", () => {
     it("should decode Elsys ELT Lite payload", () => {
       const data = {
         data: {
-          payload_hex: "0100e20218070e410cff5614000edd20",
-        }
+          payloadHex: "0100e20218070e410cff5614000edd20",
+        },
       };
 
       expectEmit((type, value) => {

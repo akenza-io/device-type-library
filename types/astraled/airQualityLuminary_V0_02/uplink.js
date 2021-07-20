@@ -1,20 +1,22 @@
 // Decoder Gateway Protocol Version 0.02
 function swap16(val) {
-  return ((val & 0xFF) << 8) |
-    ((val >> 8) & 0xFF);
+  return ((val & 0xff) << 8) | ((val >> 8) & 0xff);
 }
 
 function swap32(val) {
-  return (((val << 24) & 0xff000000) |
+  return (
+    ((val << 24) & 0xff000000) |
     ((val << 8) & 0x00ff0000) |
     ((val >> 8) & 0x0000ff00) |
-    ((val >> 24) & 0x000000ff));
+    ((val >> 24) & 0x000000ff)
+  );
 }
 
 function bytesToFloat(bitsFloat) {
-  const sign = (bitsFloat >>> 31 === 0) ? 1.0 : -1.0;
-  const e = bitsFloat >>> 23 & 0xff;
-  const m = (e === 0) ? (bitsFloat & 0x7fffff) << 1 : (bitsFloat & 0x7fffff) | 0x800000;
+  const sign = bitsFloat >>> 31 === 0 ? 1.0 : -1.0;
+  const e = (bitsFloat >>> 23) & 0xff;
+  const m =
+    e === 0 ? (bitsFloat & 0x7fffff) << 1 : (bitsFloat & 0x7fffff) | 0x800000;
   const f = sign * m * Math.pow(2, e - 150);
   return f;
 }
@@ -36,10 +38,10 @@ function getFloat(buff, nr) {
 }
 
 function consume(event) {
-  const {payload_hex} = event.data;
-  const buff = Bits.hexToBits(payload_hex);
+  const { payloadHex } = event.data;
+  const buff = Bits.hexToBits(payloadHex);
 
-  const dataSize = payload_hex.length / 2;
+  const dataSize = payloadHex.length / 2;
 
   const data = {};
   const lifecycle = {};
@@ -47,32 +49,60 @@ function consume(event) {
   let rdPos = 0;
 
   do {
-    const paraSize = getByte(buff, rdPos++) & 0x3F;  // get size
-    const paraType = getByte(buff, rdPos++);  // get type
+    const paraSize = getByte(buff, rdPos++) & 0x3f; // get size
+    const paraType = getByte(buff, rdPos++); // get type
 
     switch (paraType) {
       case 1:
-        lifecycle.protocolVersion = `Version: ${  getByte(buff, rdPos + 1)  }.${  getByte(buff, rdPos)}`;
+        lifecycle.protocolVersion = `Version: ${getByte(
+          buff,
+          rdPos + 1,
+        )}.${getByte(buff, rdPos)}`;
         break;
       case 2:
-        lifecycle.appVersion = `Version: ${  getByte(buff, rdPos + 2)  }.${  getByte(buff, rdPos + 1)  }p${  getByte(buff, rdPos)}`;
+        lifecycle.appVersion = `Version: ${getByte(buff, rdPos + 2)}.${getByte(
+          buff,
+          rdPos + 1,
+        )}p${getByte(buff, rdPos)}`;
         break;
       case 3:
-        lifecycle.loraStackVersion = `Version: ${  getByte(buff, rdPos + 2)  }.${  getByte(buff, rdPos + 1)  }.${  getByte(buff, rdPos)}`;
+        lifecycle.loraStackVersion = `Version: ${getByte(
+          buff,
+          rdPos + 2,
+        )}.${getByte(buff, rdPos + 1)}.${getByte(buff, rdPos)}`;
         break;
       case 4:
-        lifecycle.loraVersion = `Version: ${  getByte(buff, rdPos + 2)  }.${  getByte(buff, rdPos + 1)  }.${  getByte(buff, rdPos)}`;
+        lifecycle.loraVersion = `Version: ${getByte(buff, rdPos + 2)}.${getByte(
+          buff,
+          rdPos + 1,
+        )}.${getByte(buff, rdPos)}`;
         break;
       case 6:
         switch (getByte(buff, rdPos)) {
-          case 1: lifecycle.msgCycleTime1 = getWord(buff, rdPos + 1); break;
-          case 2: lifecycle.msgCycleTime2 = getWord(buff, rdPos + 1); break;
-          case 3: lifecycle.msgCycleTime3 = getWord(buff, rdPos + 1); break;
-          case 4: lifecycle.msgCycleTime4 = getWord(buff, rdPos + 1); break;
-          case 5: lifecycle.msgCycleTime5 = getWord(buff, rdPos + 1); break;
-          case 6: lifecycle.msgCycleTime6 = getWord(buff, rdPos + 1); break;
-          case 7: lifecycle.msgCycleTime7 = getWord(buff, rdPos + 1); break;
-          case 8: lifecycle.msgCycleTime8 = getWord(buff, rdPos + 1); break;
+          case 1:
+            lifecycle.msgCycleTime1 = getWord(buff, rdPos + 1);
+            break;
+          case 2:
+            lifecycle.msgCycleTime2 = getWord(buff, rdPos + 1);
+            break;
+          case 3:
+            lifecycle.msgCycleTime3 = getWord(buff, rdPos + 1);
+            break;
+          case 4:
+            lifecycle.msgCycleTime4 = getWord(buff, rdPos + 1);
+            break;
+          case 5:
+            lifecycle.msgCycleTime5 = getWord(buff, rdPos + 1);
+            break;
+          case 6:
+            lifecycle.msgCycleTime6 = getWord(buff, rdPos + 1);
+            break;
+          case 7:
+            lifecycle.msgCycleTime7 = getWord(buff, rdPos + 1);
+            break;
+          case 8:
+            lifecycle.msgCycleTime8 = getWord(buff, rdPos + 1);
+            break;
         }
         break;
       case 7:
@@ -213,15 +243,13 @@ function consume(event) {
     }
 
     rdPos += paraSize;
-
   } while (rdPos < dataSize);
 
-
   if (lifecycle !== {}) {
-    emit('sample', { data: lifecycle, topic: "lifecycle" });
+    emit("sample", { data: lifecycle, topic: "lifecycle" });
   }
 
   if (data !== {}) {
-    emit('sample', { data, topic: "default" });
+    emit("sample", { data, topic: "default" });
   }
 }

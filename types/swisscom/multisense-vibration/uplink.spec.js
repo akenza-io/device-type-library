@@ -23,7 +23,7 @@ before(function (done) {
       if (err) throw err;
       timedSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -33,7 +33,7 @@ describe("Swisscom Multisense Uplink", function () {
       const data = {
         data: {
           port: 3,
-          payload_hex: "010080a3010945026e0300170412820503f8007cfffc",
+          payloadHex: "010080a3010945026e0300170412820503f8007cfffc",
         },
       };
 

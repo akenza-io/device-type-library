@@ -24,7 +24,7 @@ before(function (done) {
       if (err) throw err;
       buttonEventSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -36,7 +36,7 @@ before(function (done) {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -46,7 +46,7 @@ describe("Swisscom Multisense Button Uplink", function () {
       const data = {
         data: {
           port: 3,
-          payload_hex: "020040b5",
+          payloadHex: "020040b5",
         },
       };
 

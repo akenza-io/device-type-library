@@ -1,15 +1,15 @@
 const chai = require("chai");
-const validate = require("jsonschema").validate;
+const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const axios = require("axios");
 const fs = require("fs");
 const Ajv = require("ajv");
 
-const assert = chai.assert;
+const { assert } = chai;
 
 const script = rewire("./uplink.js");
 let defaultSchema = null;
-let occupiedSchema = null;
+const occupiedSchema = null;
 let lifecycleSchema = null;
 
 const consume = script.__get__("consume");
@@ -20,67 +20,67 @@ function expectEmit(callback) {
   });
 }
 
-before(function (done) {
+before((done) => {
   fs.readFile(
-    __dirname + "/default.schema.json",
+    `${__dirname}/default.schema.json`,
     "utf8",
-    function (err, fileContents) {
+    (err, fileContents) => {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
-before(function (done) {
+before((done) => {
   fs.readFile(
-    __dirname + "/occupancy.schema.json",
+    `${__dirname}/occupancy.schema.json`,
     "utf8",
-    function (err, fileContents) {
+    (err, fileContents) => {
       if (err) throw err;
       occupancySchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
-before(function (done) {
+before((done) => {
   fs.readFile(
-    __dirname + "/lifecycle.schema.json",
+    `${__dirname}/lifecycle.schema.json`,
     "utf8",
-    function (err, fileContents) {
+    (err, fileContents) => {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
 function loadRemoteSchema(uri) {
-  return axios.get(uri).then(function (res) {
+  return axios.get(uri).then((res) => {
     if (res.status >= 400) {
-      throw new Error("Schema loading error: " + res.statusCode);
+      throw new Error(`Schema loading error: ${res.statusCode}`);
     }
     return res.data;
   });
 }
 
-describe("Decentlab IAM Uplink", function () {
-  describe("consume()", function () {
-    it("should decode IAM payload", function () {
+describe("Decentlab IAM Uplink", () => {
+  describe("consume()", () => {
+    it("should decode IAM payload", () => {
       const data = {
         data: {
-          payload_hex: "020bbd007f0b926a515d48bc4e0262006981c7000093d4000b0111",
+          payloadHex: "020bbd007f0b926a515d48bc4e0262006981c7000093d4000b0111",
         },
       };
       let sampleCount = 0;
 
-      expectEmit(function (type, value) {
+      expectEmit((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        expectEmit(function (type, value) {
+        expectEmit((type, value) => {
           assert.equal(type, "sample");
           assert.isNotNull(value);
           assert.typeOf(value.data, "object");
@@ -115,6 +115,6 @@ describe("Decentlab IAM Uplink", function () {
 
       consume(data);
     });
-    //TODO add test case for not occupied
+    // TODO add test case for not occupied
   });
 });

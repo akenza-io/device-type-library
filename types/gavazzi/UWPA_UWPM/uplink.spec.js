@@ -5,7 +5,7 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Seeed SenseCAP Wireless Soil Moisture and Temperature Sensor Uplink", () => {
+describe("Gavazzi UWPA/UWPM", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
@@ -20,11 +20,12 @@ describe("Seeed SenseCAP Wireless Soil Moisture and Temperature Sensor Uplink", 
   });
 
   describe("consume()", () => {
-    it("should decode Seeed SenseCAP Wireless Soil Moisture and Temperature Sensor payload", () => {
+    it("should decode the Gavazzi UWPA/UWPM uplink", () => {
       const data = {
         data: {
           port: 1,
-          payloadHex: "010610007D0000010710725100009A21",
+          payloadHex:
+            "01911409000092f000000093cc7400003ca247000000000000ff460001010a00",
         },
       };
 
@@ -33,11 +34,12 @@ describe("Seeed SenseCAP Wireless Soil Moisture and Temperature Sensor Uplink", 
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic === "default") {
-          assert.equal(value.data.temperature, 32);
-          assert.equal(value.data.soilHumidity, 20.85);
-          validate(value.data, defaultSchema, { throwError: true });
-        }
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.l2V, 232.4);
+        assert.equal(value.data.l2A, 0.24);
+        assert.equal(value.data.l2KW, 0.0299);
+        assert.equal(value.data.totalKWh, 1833.8);
+        validate(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

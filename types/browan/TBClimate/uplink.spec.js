@@ -25,7 +25,7 @@ before(function (done) {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -37,7 +37,7 @@ before(function (done) {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -46,7 +46,7 @@ describe("TBClimate uplink", function () {
     it("should decode TBClimate payload", function () {
       const data = {
         data: {
-          payload_hex: "000b361d350200003c0035",
+          payloadHex: "000b361d350200003c0035",
         },
       };
 

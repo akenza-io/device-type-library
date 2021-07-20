@@ -1,9 +1,9 @@
 const chai = require("chai");
-const validate = require("jsonschema").validate;
+const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const fs = require("fs");
 
-const assert = chai.assert;
+const { assert } = chai;
 
 const script = rewire("./uplink.js");
 let defaultSchema = null;
@@ -15,28 +15,28 @@ function expectEmit(callback) {
   });
 }
 
-before(function (done) {
+before((done) => {
   fs.readFile(
-    __dirname + "/default.schema.json",
+    `${__dirname}/default.schema.json`,
     "utf8",
-    function (err, fileContents) {
+    (err, fileContents) => {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
-describe("Globalsat LS-113G uplink", function () {
-  describe("consume()", function () {
-    it("should decode Globalsat LS-113G payload", function (done) {
+describe("Globalsat LS-113G uplink", () => {
+  describe("consume()", () => {
+    it("should decode Globalsat LS-113G payload", (done) => {
       const data = {
         data: {
-          payload_hex: "01096113950292",
+          payloadHex: "01096113950292",
         },
       };
 
-      expectEmit(function (type, value) {
+      expectEmit((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");

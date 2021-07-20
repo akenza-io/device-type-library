@@ -26,7 +26,7 @@ before(function (done) {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -38,7 +38,7 @@ before(function (done) {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
-    }
+    },
   );
 });
 
@@ -56,7 +56,7 @@ describe("Decentlab PR26 Uplink", function () {
     it("should decode Decentlab PR26 payload", function (done) {
       const data = {
         data: {
-          payload_hex: "02016700033e8060170c7f",
+          payloadHex: "02016700033e8060170c7f",
         },
       };
 
