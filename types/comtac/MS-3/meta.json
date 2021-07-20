@@ -1,9 +1,9 @@
 {
-  "name": "LPN Multi-Sensor 3",
+  "name": "LPN MS-3",
   "version": "1.0.0",
   "manufacturer": "Comtac",
   "url": "https://www.comtac.ch/de/produkte/lora/multi-sensoren/lpn-multi-sensor-3.html",
-  "description": "Compact and versatile useable sensorpacket with GPS, acceleration, temperature, humidity sensors and more.",
+  "description": "Compact and versatile useable sensorpackage with temperature, humidity, GPS, acceleration sensors and more.",
   "author": "Akenza AG",
   "firmwareVersion": "V5.0.0",
   "loraDeviceClass": "C",

@@ -3,15 +3,15 @@
   "version": "1.0.0",
   "manufacturer": "Avelon",
   "url": "https://avelon.com/en/products/wisely/#wisely-model",
-  "description": "Avelon lora device for measuring the indoor environment",
+  "description": "The room climate sensor continuously records selected parameters and measures, for example, the room temperature, the humidity and also the air quality by means of CO2 measurement.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": [
-    "Barometric Pressure",
     "CO2",
     "Humidity",
-    "Temperature"
+    "Temperature",
+    "Barometric Pressure"
   ],
   "outputTopics": [
     "default",
