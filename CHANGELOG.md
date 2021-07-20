@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.0.11] - 2021-07-12
+
+### Added
+
+- Gavazzi - UWPA/UWPM
+
 ## [1.0.10] - 2021-07-06
 
 ### Changed
