@@ -1,0 +1,14 @@
+{
+  "name": "UWP-A & UWP-M",
+  "version": "1.0.0",
+  "manufacturer": "Gavazzi",
+  "url": "https://www.gavazzi.de/index.php/news-einz/uwp-a-und-uwp-m-die-long-range-wireless-solution-fuer-energieueberwachung",
+  "description": "Monitoring of energy efficiency and energy cost allocation, operation of sub-range meters in large buildings, large plants, farms and urban areas are the best application for LoRa®-based CARLO GAVAZZI systems.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Energy"],
+  "outputTopics": ["default"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
