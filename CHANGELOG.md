@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.0.13] - 2021-07-20
+
+### Fixed
+
+- Several name and description improvements
+
 ## [1.0.12] - 2021-07-20
 
 ### Fixed
