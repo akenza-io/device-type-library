@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/astraled/airQualityLuminary_V0_02/lifecycle.schema.json",
+  "$id": "https://akenza.io/astraled/airQualityLuminary_V0_03/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Lifecycle",
   "type": "object",
@@ -276,6 +276,53 @@
       "title": "IAQ tempature comp on",
       "description": "IAQ tempature comp on",
       "type": "integer"
+    },
+
+    "nbOfGroups": {
+      "title": "Number of groups",
+      "description": "Number of groups",
+      "type": "integer"
+    },
+    "paramAddr": {
+      "title": "Parameter address",
+      "description": "Parameter address",
+      "type": "integer"
+    },
+    "paramDat": {
+      "title": "Parameter data",
+      "description": "Parameter data",
+      "type": "integer"
+    },
+    "iaqRgbRed": {
+      "title": "IAQ RGBW red",
+      "description": "IAQ RGBW red",
+      "type": "number"
+    },
+    "iaqRgbGreen": {
+      "title": "IAQ RGBW green",
+      "description": "IAQ RGBW green",
+      "type": "number"
+    },
+    "iaqRgbBlue": {
+      "title": "IAQ RGBW blue",
+      "description": "IAQ RGBW blue",
+      "type": "number"
+    },
+
+    "rawPwr": {
+      "title": "Raw power",
+      "description": "IAQ RGBW red",
+      "type": "number"
+    },
+    "rawEnergy": {
+      "title": "Raw energy",
+      "description": "Raw energy",
+      "type": "number"
+    },
+    "unkown": {
+      "title": "Unkown",
+      "description": "Unkown",
+      "type": "number"
     }
   }
 }

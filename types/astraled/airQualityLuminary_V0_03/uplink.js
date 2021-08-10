@@ -1,8 +1,17 @@
-// Decoder Gateway Protocol Version 0.02
+// Decoder Protocol Version 0.03
+
+function bytesToFloat(bytes) {
+  const bitsFloat = bytes;
+  const sign = bitsFloat >>> 31 === 0 ? 1.0 : -1.0;
+  const e = (bitsFloat >>> 23) & 0xff;
+  const m =
+    e === 0 ? (bitsFloat & 0x7fffff) << 1 : (bitsFloat & 0x7fffff) | 0x800000;
+  const f = sign * m * Math.pow(2, e - 150);
+  return f;
+}
 function swap16(val) {
   return ((val & 0xff) << 8) | ((val >> 8) & 0xff);
 }
-
 function swap32(val) {
   return (
     ((val << 24) & 0xff000000) |
@@ -11,28 +20,15 @@ function swap32(val) {
     ((val >> 24) & 0x000000ff)
   );
 }
-
-function bytesToFloat(bitsFloat) {
-  const sign = bitsFloat >>> 31 === 0 ? 1.0 : -1.0;
-  const e = (bitsFloat >>> 23) & 0xff;
-  const m =
-    e === 0 ? (bitsFloat & 0x7fffff) << 1 : (bitsFloat & 0x7fffff) | 0x800000;
-  const f = sign * m * Math.pow(2, e - 150);
-  return f;
-}
-
 function getByte(buff, nr) {
   return Bits.bitsToUnsigned(buff.substr(nr * 8, 8));
 }
-
 function getWord(buff, nr) {
   return swap16(Bits.bitsToUnsigned(buff.substr(nr * 8, 16)));
 }
-
 function getLong(buff, nr) {
   return swap32(Bits.bitsToUnsigned(buff.substr(nr * 8, 32)));
 }
-
 function getFloat(buff, nr) {
   return bytesToFloat(getLong(buff, nr));
 }
@@ -54,28 +50,39 @@ function consume(event) {
 
     switch (paraType) {
       case 1:
-        lifecycle.protocolVersion = `Version: ${getByte(
+        lifecycle.protocolVersion = `V:${getByte(buff, rdPos + 1)}.${getByte(
           buff,
-          rdPos + 1,
-        )}.${getByte(buff, rdPos)}`;
+          rdPos,
+        )}`;
         break;
       case 2:
-        lifecycle.appVersion = `Version: ${getByte(buff, rdPos + 2)}.${getByte(
+        lifecycle.appVersion = `V:${getByte(buff, rdPos + 2)}.${getByte(
           buff,
           rdPos + 1,
         )}p${getByte(buff, rdPos)}`;
         break;
       case 3:
-        lifecycle.loraStackVersion = `Version: ${getByte(
-          buff,
-          rdPos + 2,
-        )}.${getByte(buff, rdPos + 1)}.${getByte(buff, rdPos)}`;
-        break;
-      case 4:
-        lifecycle.loraVersion = `Version: ${getByte(buff, rdPos + 2)}.${getByte(
+        lifecycle.loraStackVersion = `V:${getByte(buff, rdPos + 2)}.${getByte(
           buff,
           rdPos + 1,
         )}.${getByte(buff, rdPos)}`;
+        break;
+      case 4:
+        lifecycle.loraVersion = `V:${getByte(buff, rdPos + 2)}.${getByte(
+          buff,
+          rdPos + 1,
+        )}.${getByte(buff, rdPos)}`;
+        break;
+      case 5:
+        lifecycle.msgNr = getByte(buff, rdPos);
+        lifecycle.cmd0 = getByte(buff, rdPos + 1);
+        lifecycle.cmd1 = getByte(buff, rdPos + 2);
+        lifecycle.cmd2 = getByte(buff, rdPos + 3);
+        lifecycle.cmd3 = getByte(buff, rdPos + 4);
+        lifecycle.cmd4 = getByte(buff, rdPos + 5);
+        lifecycle.cmd5 = getByte(buff, rdPos + 6);
+        lifecycle.cmd6 = getByte(buff, rdPos + 7);
+        lifecycle.cmd7 = getByte(buff, rdPos + 8);
         break;
       case 6:
         switch (getByte(buff, rdPos)) {
@@ -106,12 +113,6 @@ function consume(event) {
           default:
             break;
         }
-        break;
-      case 7:
-        lifecycle.groupAddress = getByte(buff, rdPos);
-        break;
-      case 8:
-        lifecycle.serialNumber = getLong(buff, rdPos);
         break;
       case 9:
         data.temperature = getWord(buff, rdPos) / 100;
@@ -240,10 +241,31 @@ function consume(event) {
         lifecycle.iaqTempatureCompOff = getWord(buff, rdPos);
         lifecycle.iaqTempatureCompOn = getWord(buff, rdPos + 2);
         break;
+      case 50:
+        lifecycle.nbOfGroups = getByte(buff, rdPos);
+        break;
+      case 46:
+        lifecycle.paramAddr = getWord(buff, rdPos + 5);
+        lifecycle.paramDat = getLong(buff, rdPos + 7);
+        break;
+      case 51:
+        lifecycle.iaqRgbRed = getByte(buff, rdPos);
+        lifecycle.iaqRgbGreen = getByte(buff, rdPos + 1);
+        lifecycle.iaqRgbBlue = getByte(buff, rdPos + 2);
+        break;
+      case 52:
+        lifecycle.iaqAsc = getByte(buff, rdPos);
+        break;
+      case 53:
+        lifecycle.rawPwr = getFloat(buff, rdPos);
+        break;
+      case 54:
+        lifecycle.rawEnergy = getFloat(buff, rdPos);
+        break;
       default:
+        lifecycle.unkown = getLong(buff, rdPos);
         break;
     }
-
     rdPos += paraSize;
   } while (rdPos < dataSize);
 
