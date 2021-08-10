@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
-- Shemas of all astraled sensors changed so all possible datapoints are shown
+- Schemas of all astraled sensors changed so all possible datapoints are shown
 
 ## [1.0.13] - 2021-07-20
 
