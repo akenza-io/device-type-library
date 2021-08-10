@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.0.14] - 2021-08-10
+
+### Added
+
+- Astraled - CO2, VOC luminaire V0.03
+
+### Fixed
+
+- Shemas of all astraled sensors changed so all possible datapoints are shown
+
 ## [1.0.13] - 2021-07-20
 
 ### Fixed
