@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Comtac",
   "url": "https://www.comtac.ch/de/produkte/lora/condition-monitoring/lpn-cm-3-sensor.html",
-  "description": "The LPN CM-3 is able to read temperature.",
+  "description": "The LPN CM-3 has a built in temperature and humidity Sensor and an external PT100 sensor for measuring external temperature",
   "author": "Akenza AG",
   "firmwareVersion": "V0.0.2",
   "availableSensors": [

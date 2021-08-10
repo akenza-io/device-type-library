@@ -2,22 +2,13 @@
   "name": "EMS Lite",
   "version": "1.0.0",
   "manufacturer": "Elsys",
-  "url": "https://www.elsys.se/shop/product/ems-lite/?v=f003c44deab6",
-  "description": "Inside the EMS you will find internal sensors for measuring indoor temperature, humidity, acceleration, a water leak detector, and a reed switch.",
+  "url": "https://www.elsys.se/en/ems-lite/",
+  "description": "Inside EMS Lite, you will find internal sensors for measuring the indoor temperature and humidity. It also has a water leak detector. Typical use cases for this sensor is easy indoor environment measuring and water leak detection for facility management.",
   "author": "Akenza AG",
-  "firmwareVersion": "V1.0.0",
+  "firmwareVersion": "V2.3.5",
   "loraDeviceClass": "A",
-  "availableSensors": [
-    "Temperature",
-    "Humidity",
-    "Accelerometer",
-    "Water leak",
-    "Reed"
-  ],
-  "outputTopics": [
-    "default",
-    "lifecycle"
-  ],
+  "availableSensors": ["Temperature", "Humidity", "Water leak"],
+  "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

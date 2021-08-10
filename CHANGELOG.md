@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.0.13] - 2021-07-20
+
+### Fixed
+
+- Several name and description improvements
+
+## [1.0.12] - 2021-07-20
+
+### Fixed
+
+- Comtac - CM 1 uplink
+
 ## [1.0.11] - 2021-07-12
 
 ### Added
