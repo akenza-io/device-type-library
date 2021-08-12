@@ -862,7 +862,7 @@ function isItNumber(str) {
 function consume(event) {
   const payload = event.data.payloadHex;
   const sample = {};
-  const topic = "default";
+  let topic = "default";
 
   const uplinkId = payload.substring(0, 2);
   let content;
@@ -870,24 +870,31 @@ function consume(event) {
   switch (uplinkId.toUpperCase()) {
     case "01":
       content = parseTimeSync(payload.trim());
+      topic = "time_sync";
       break;
     case "04":
       content = parseTER(payload.trim());
+      topic = "ter";
       break;
     case "12":
       content = parseVOC(payload.trim(), true); // true is for new sensor
+      topic = "voc";
       break;
     case "13":
       content = parseCo2(payload.trim(), true); // true is for new sensor
+      topic = "co2";
       break;
     case "0B":
       content = parseReportData(payload.trim());
+      topic = "report";
       break;
     case "0C":
       content = parseVOC(payload.trim(), false); // false is for new sensor
+      topic = "voc";
       break;
     case "0E":
       content = parseCo2(payload.trim(), false); // false is for new sensor
+      topic = "co2";
       break;
     default:
       content = null;

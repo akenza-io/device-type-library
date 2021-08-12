@@ -1,0 +1,36 @@
+{
+  "$id": "https://akenza.io/dragino/lse01/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "syncID": {
+      "title": "Sync ID",
+      "description": "Sync ID",
+      "type": "string",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "syncVersion": {
+      "title": "Sync version",
+      "description": "Sync version",
+      "type": "string",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "applicationType": {
+      "title": "Application type",
+      "description": "Application type",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "rfu": {
+      "title": "RFU",
+      "description": "RFU",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    }
+  }
+}
