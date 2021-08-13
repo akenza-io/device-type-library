@@ -13,9 +13,30 @@
     "Pressure",
     "Light",
     "VOC",
-    "CO2"
+    "CO2",
+    "Lux",
+    "Wind speed",
+    "Wind direction",
+    "Rain rate",
+    "Ultraviolet radiation",
+    "Solar radiation",
+    "Day rain",
+    "Soil moisture",
+    "Bar trend",
+    "PM 1.0",
+    "PM 2.5",
+    "PM 10"
   ],
-  "outputTopics": ["co2", "time_sync"],
+  "outputTopics": [
+    "co2",
+    "modbus",
+    "pm",
+    "ter",
+    "ter_pm",
+    "time_sync",
+    "voc",
+    "weather"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }
