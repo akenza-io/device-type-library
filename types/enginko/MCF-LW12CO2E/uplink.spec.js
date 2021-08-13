@@ -49,7 +49,7 @@ describe("MCF-LW12CO2E Uplink", () => {
         assert.equal(value.data.voc, 25);
         assert.equal(value.data.co2, 655);
         assert.equal(value.data.batteryLevel, 98);
-        assert.equal(value.data.rfu, "");
+        assert.equal(value.data.rfu, 0);
 
         validate(value.data, co2Schema, { throwError: true });
       });

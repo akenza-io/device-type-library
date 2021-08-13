@@ -1,9 +1,24 @@
 {
-  "$id": "https://akenza.io/enginko/MCF-LW12CO2E/co2.schema.json",
+  "$id": "https://akenza.io/enginko/MCF-LW12CO2E/voc.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
+  "title": "VOC",
   "type": "object",
   "properties": {
+    "rfu": {
+      "title": "RFU",
+      "description": "RFU",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "batteryLevel": {
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "unit": "%"
+    },
     "date": {
       "title": "Date",
       "type": "string",
@@ -35,7 +50,9 @@
       "title": "Lux",
       "type": "number",
       "unit": "lux",
-      "description": "Lux value"
+      "description": "Lux value",
+      "minimum": 0,
+      "maximum": 255
     },
     "voc": {
       "title": "VOC",
@@ -44,27 +61,6 @@
       "description": "Total Volatile Organic Compunds in ppb",
       "minimum": 0,
       "maximum": 60000
-    },
-    "co2": {
-      "title": "CO2",
-      "unit": "ppm",
-      "type": "integer",
-      "description": "Carbon Dioxide in ppm",
-      "minimum": 0,
-      "maximum": 10000
-    },
-    "batteryLevel": {
-      "title": "Battery charge",
-      "description": "The battery charge in percent.",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 100,
-      "unit": "%"
-    },
-    "rfu": {
-      "title": "RFU",
-      "description": "RFU",
-      "type": "integer"
     }
   }
 }

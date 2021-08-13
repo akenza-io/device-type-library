@@ -823,19 +823,23 @@ function parseCo2(payload, isNew) {
 function parseReportData(payload) {
   const uplinkId = payload.substring(0, 2);
   let content;
+  let topic = "default";
   if (uplinkId.toUpperCase() === "0B") {
     switch (payload.substring(2, 3)) {
       case "1":
       case "4":
         content = parseModBus(payload);
+        topic = "modbus";
         break;
       case "2":
         switch (payload.substring(4, 6)) {
           case "00":
             content = parseWeather(payload);
+            topic = "weather";
             break;
           case "01":
             content = parsePM(payload);
+            topic = "pm";
             break;
           default:
             content = null;
@@ -844,6 +848,7 @@ function parseReportData(payload) {
         break;
       case "3":
         content = parseTERPM(payload);
+        topic = "ter_pm";
         break;
       default:
         content = null;
@@ -852,10 +857,10 @@ function parseReportData(payload) {
   } else {
     return null;
   }
-  return content;
+  return [content, topic];
 }
 
-function isItNumber(str) {
+function isNumeric(str) {
   return /^\-?[0-9]+(e[0-9]+)?(\.[0-9]+)?$/.test(str);
 }
 
@@ -885,8 +890,8 @@ function consume(event) {
       topic = "co2";
       break;
     case "0B":
-      content = parseReportData(payload.trim());
-      topic = "report";
+      content = parseReportData(payload.trim())[0];
+      topic = parseReportData(payload.trim())[1];
       break;
     case "0C":
       content = parseVOC(payload.trim(), false); // false is for new sensor
@@ -903,10 +908,16 @@ function consume(event) {
 
   for (let i = 0; i < content.length; i++) {
     let { value } = content[i];
-    if (isItNumber(value)) {
+    const { variable } = content[i];
+    if (isNumeric(value)) {
       value = Number(value);
     }
-    sample[content[i].variable] = value;
+    sample[variable] = value;
   }
+
+  if (sample.rfu === "") {
+    sample.rfu = 0;
+  }
+
   emit("sample", { data: sample, topic });
 }
