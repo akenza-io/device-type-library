@@ -7,7 +7,7 @@
     "pressure": {
       "title": "Pressure",
       "unit": "hpa",
-      "description": "Barometric Pressure in hpa",
+      "description": "Barometric pressure in hpa",
       "type": "number"
     },
     "outsideTemperature": {
@@ -88,7 +88,7 @@
     "forecastIcons": {
       "title": "Forecast icons",
       "type": "number",
-      "description": "Leaf wetness"
+      "description": "Forecast icons"
     },
     "barTrend": {
       "title": "Bar trend",

@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.0.15] - 2021-08-18
+
+### Added
+
+- Enginko - MCF-LW12CO2E
+
 ## [1.0.14] - 2021-08-10
 
 ### Added

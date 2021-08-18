@@ -22,7 +22,7 @@
     "date": {
       "title": "Date",
       "type": "string",
-      "description": "The Date of the measurement"
+      "description": "The date of the measurement"
     },
     "temperature": {
       "title": "Temperature",

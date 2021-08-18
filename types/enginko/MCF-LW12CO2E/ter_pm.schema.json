@@ -7,7 +7,7 @@
     "date": {
       "title": "Date",
       "type": "string",
-      "description": "Date string"
+      "description": "The date of the measurement"
     },
     "temperature": {
       "title": "Temperature",

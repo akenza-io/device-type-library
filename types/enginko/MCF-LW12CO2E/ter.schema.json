@@ -20,7 +20,7 @@
     "date": {
       "title": "Date",
       "type": "string",
-      "description": "Date string"
+      "description": "The date of the measurement"
     },
     "temperature": {
       "title": "Temperature",
@@ -41,7 +41,7 @@
     "pressure": {
       "title": "Pressure",
       "unit": "hpa",
-      "description": "Barometric Pressure in hpa",
+      "description": "Barometric pressure in hpa",
       "type": "number"
     }
   }
