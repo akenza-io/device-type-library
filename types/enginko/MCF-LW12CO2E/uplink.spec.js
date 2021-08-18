@@ -5,28 +5,17 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 describe("MCF-LW12CO2E Uplink", () => {
-  let co2Schema = null;
-  let consume = null;
-  before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/co2.schema.json`).then((parsedSchema) => {
-      co2Schema = parsedSchema;
-      done();
-    });
-  });
-
-  let timesyncSchema = null;
-  before((done) => {
-    utils
-      .loadSchema(`${__dirname}/time_sync.schema.json`)
-      .then((parsedSchema) => {
-        timesyncSchema = parsedSchema;
+  describe("consume()", () => {
+    let co2Schema = null;
+    let consume = null;
+    before((done) => {
+      const script = rewire("./uplink.js");
+      consume = utils.init(script);
+      utils.loadSchema(`${__dirname}/co2.schema.json`).then((parsedSchema) => {
+        co2Schema = parsedSchema;
         done();
       });
-  });
-
-  describe("consume()", () => {
+    });
     it("should decode MCF-LW12CO2E co2 payload", () => {
       const data = {
         data: {
@@ -41,7 +30,7 @@ describe("MCF-LW12CO2E Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "co2");
-        assert.equal(value.data.date, "22.7.2021, 08:07:00");
+        assert.equal(value.data.date, "2021-07-22T06:07:00.000Z");
         assert.equal(value.data.temperature, 30.12);
         assert.equal(value.data.humidity, 38);
         assert.equal(value.data.pressure, 1009.74);
@@ -58,6 +47,19 @@ describe("MCF-LW12CO2E Uplink", () => {
   });
 
   describe("consume()", () => {
+    let timesyncSchema = null;
+    let consume = null;
+    before((done) => {
+      const script = rewire("./uplink.js");
+      consume = utils.init(script);
+      utils
+        .loadSchema(`${__dirname}/time_sync.schema.json`)
+        .then((parsedSchema) => {
+          timesyncSchema = parsedSchema;
+          done();
+        });
+    });
+
     it("should decode MCF-LW12CO2E time_sync payload", () => {
       const data = {
         data: {

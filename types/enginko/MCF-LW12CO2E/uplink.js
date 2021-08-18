@@ -54,15 +54,7 @@ function parseDate(payload) {
   const minute = parseInt(binary.substring(21, 27), 2);
   const second = parseInt(binary.substring(27, 32), 2) * 2;
 
-  date = new Date(
-    year,
-    month - 1,
-    day,
-    hour,
-    minute,
-    second,
-    0,
-  ).toLocaleString();
+  date = new Date(year, month - 1, day, hour, minute, second, 0).toISOString();
   return date;
 }
 
