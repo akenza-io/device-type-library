@@ -42,8 +42,6 @@ function getET(value) {
 }
 
 function parseDate(payload) {
-  let date = new Date();
-
   const binary = Number(parseInt(reverseBytes(payload), 16))
     .toString(2)
     .padStart(32, "0");
@@ -54,7 +52,9 @@ function parseDate(payload) {
   const minute = parseInt(binary.substring(21, 27), 2);
   const second = parseInt(binary.substring(27, 32), 2) * 2;
 
-  date = new Date(year, month - 1, day, hour, minute, second, 0).toISOString();
+  const date = new Date(
+    Date.UTC(year, month - 1, day, hour, minute, second, 0),
+  ).toISOString();
   return date;
 }
 
@@ -526,13 +526,15 @@ function parseTER(payload) {
     const m3 = parseTERMeasurement(payload.substring(42, 62));
     const batteryLevel = {
       variable: "batteryLevel",
-      value: Number(parseInt(payload.substring(62, 64), 16).toFixed()),
+      value: Number(parseInt(payload.substring(62, 64), 16).toFixed()) || 0,
       unit: "%",
     };
     const rfu = {
       variable: "rfu",
       value: payload.substring(64),
     };
+
+    // TODO why are the measurements converted to one object? this will lead to duplicated keys and eventually only contain the latest measurement
     return [...m1, ...m2, ...m3, batteryLevel, rfu];
   }
   return null;

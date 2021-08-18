@@ -30,7 +30,7 @@ describe("MCF-LW12CO2E Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "co2");
-        assert.equal(value.data.date, "2021-07-22T06:07:00.000Z");
+        assert.equal(value.data.date, "2021-07-22T08:07:00.000Z");
         assert.equal(value.data.temperature, 30.12);
         assert.equal(value.data.humidity, 38);
         assert.equal(value.data.pressure, 1009.74);
@@ -41,6 +41,43 @@ describe("MCF-LW12CO2E Uplink", () => {
         assert.equal(value.data.rfu, 0);
 
         validate(value.data, co2Schema, { throwError: true });
+      });
+      consume(data);
+    });
+  });
+
+  describe("consume()", () => {
+    let terSchema = null;
+    let consume = null;
+    before((done) => {
+      const script = rewire("./uplink.js");
+      consume = utils.init(script);
+      utils.loadSchema(`${__dirname}/ter.schema.json`).then((parsedSchema) => {
+        terSchema = parsedSchema;
+        done();
+      });
+    });
+    it("should decode MCF-LW12CO2E ter payload", () => {
+      const data = {
+        data: {
+          port: 2,
+          payloadHex:
+            "04dc7e3721b40a47608801dd7e3721b10a43608801e07e3721b20a425d8801",
+        },
+      };
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "ter");
+        assert.equal(value.data.date, "2016-09-23T15:55:00.000Z");
+        assert.equal(value.data.temperature, 27.38);
+        assert.equal(value.data.humidity, 33);
+        assert.equal(value.data.pressure, 1004.45);
+        assert.equal(value.data.rfu, 0);
+
+        validate(value.data, terSchema, { throwError: true });
       });
       consume(data);
     });
@@ -64,6 +101,7 @@ describe("MCF-LW12CO2E Uplink", () => {
       const data = {
         data: {
           port: 2,
+
           payloadHex: "01cbe38b28000223040701",
         },
       };
