@@ -1,4 +1,5 @@
 function consume(event) {
+  event.payload = event.data.values;
 
   if (event.payload != undefined) {
     for (var i = 0; i < event.payload.length; i++) {
