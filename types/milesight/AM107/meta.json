@@ -1,0 +1,22 @@
+{
+  "name": "AM107",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight-iot.com/lorawan/sensor/am100/",
+  "description": "Milesight AM107 Series Ambience Monitoring Sensor consists of multiple smart sensors that are built specifically for indoor ambience monitoring. It has a clean and modern design that makes it discrete in the indoor ambience.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "PIR",
+    "Light",
+    "CO2",
+    "TVOC",
+    "Barometric Pressure"
+  ],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
