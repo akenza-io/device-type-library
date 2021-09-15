@@ -14,6 +14,10 @@ All notable changes to this project will be documented in this file.
 - Disruptive Technologies - Touch Sensor
 - Disruptive Technologies - Water Sensor
 
+### Changed
+
+- New images for Disruptive Technologies Sensors
+
 ## [1.0.15] - 2021-08-18
 
 ### Added
