@@ -1,0 +1,14 @@
+{
+  "$id": "https://akenza.io/digitalTechnologies/proximity/temperature.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Temperature",
+  "type": "object",
+  "properties": {
+    "objectPresent": {
+      "title": "Object present",
+      "description": "Object present",
+      "type": "string",
+      "enum": ["PRESENT", "NOT_PRESENT"]
+    }
+  }
+}
