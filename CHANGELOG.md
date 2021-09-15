@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.0.17] - 2021-09-15
+
+### Changed
+
+- New images for Disruptive Technologies Sensors
+
 ## [1.0.16] - 2021-09-15
 
 ### Added

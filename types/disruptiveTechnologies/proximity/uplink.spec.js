@@ -24,19 +24,19 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
       const data = {
         data: {
           event: {
-            eventId: "c505kmuj0aoraraqu5g0",
+            eventId: "c510f9ag03fligl8tvag",
             targetName:
-              "projects/c3t7p26j4a2g00de1sng/devices/emuc4ah9r13um94o4pp3hdg",
+              "projects/c3t7p26j4a2g00de1sng/devices/bjmgj6dp0jt000a5dcug",
             eventType: "objectPresent",
             data: {
               objectPresent: {
                 state: "NOT_PRESENT",
-                updateTime: "2021-05-16T08:37:10.711412Z",
+                updateTime: "2021-09-15T14:48:05.948000Z",
               },
             },
-            timestamp: "2021-09-14T08:16:27.517331Z",
+            timestamp: "2021-09-15T14:48:05.948000Z",
           },
-          labels: { name: "Temperature Simulator" },
+          labels: {},
         },
       };
       utils.expectEmits((type, value) => {
