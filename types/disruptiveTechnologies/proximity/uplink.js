@@ -3,8 +3,9 @@ function consume(event) {
   const sample = {};
   let topic = eventType;
 
-  if (eventType === "temperature") {
-    sample.temperature = event.data.event.data.temperature.value;
+  if (eventType === "objectPresent") {
+    sample.objectPresent = event.data.event.data.objectPresent.state;
+    topic = "object_present";
   } else if (eventType === "touch") {
     sample.touch = true;
   } else if (eventType === "networkStatus") {
@@ -15,7 +16,7 @@ function consume(event) {
     topic = "network_status";
   } else if (eventType === "batteryStatus") {
     sample.batteryLevel = event.data.event.data.batteryStatus.percentage;
-    topic = "battery_status";
+    topic = "lifecycle";
   }
 
   emit("sample", { data: sample, topic });

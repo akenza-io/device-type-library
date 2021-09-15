@@ -3,7 +3,10 @@ function consume(event) {
   const sample = {};
   let topic = eventType;
 
-  if (eventType === "touch") {
+  if (eventType === "waterPresent") {
+    sample.waterPresent = event.data.event.data.waterPresent.state;
+    topic = "water_present";
+  } else if (eventType === "touch") {
     sample.touch = true;
   } else if (eventType === "networkStatus") {
     sample.signalStrength = event.data.event.data.networkStatus.signalStrength;
@@ -13,7 +16,7 @@ function consume(event) {
     topic = "network_status";
   } else if (eventType === "batteryStatus") {
     sample.batteryLevel = event.data.event.data.batteryStatus.percentage;
-    topic = "battery_status";
+    topic = "lifecycle";
   }
 
   emit("sample", { data: sample, topic });
