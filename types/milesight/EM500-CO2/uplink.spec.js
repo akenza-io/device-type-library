@@ -5,7 +5,7 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("AM104 Uplink", () => {
+describe("EM500-CO2 Uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
@@ -20,11 +20,11 @@ describe("AM104 Uplink", () => {
   });
 
   describe("consume()", () => {
-    it("should decode should decode the AM104 payload", () => {
+    it("should decode should decode the EM500-CO2 payload", () => {
       const data = {
         data: {
           port: 1,
-          payloadHex: "01756403671001046871056a490006651c0079001400",
+          payloadHex: "01756403671001046871057d670406736827",
         },
       };
 
@@ -37,10 +37,8 @@ describe("AM104 Uplink", () => {
           assert.equal(value.data.batteryLevel, 100);
           assert.equal(value.data.temperature, 27.2);
           assert.equal(value.data.humidity, 56.5);
-          assert.equal(value.data.pir, 73);
-          assert.equal(value.data.light, 28);
-          assert.equal(value.data.visibleInfrared, 121);
-          assert.equal(value.data.infrared, 20);
+          assert.equal(value.data.co2, 1127);
+          assert.equal(value.data.pressure, 1008.8);
 
           validate(value.data, defaultSchema, { throwError: true });
         }

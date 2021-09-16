@@ -24,7 +24,7 @@ describe("AM104 Uplink", () => {
       const data = {
         data: {
           port: 1,
-          payloadHex: "01756403671001046871056a490006651c0079001400",
+          payloadHex: "01756403671001046871",
         },
       };
 
@@ -37,10 +37,6 @@ describe("AM104 Uplink", () => {
           assert.equal(value.data.batteryLevel, 100);
           assert.equal(value.data.temperature, 27.2);
           assert.equal(value.data.humidity, 56.5);
-          assert.equal(value.data.pir, 73);
-          assert.equal(value.data.light, 28);
-          assert.equal(value.data.visibleInfrared, 121);
-          assert.equal(value.data.infrared, 20);
 
           validate(value.data, defaultSchema, { throwError: true });
         }
