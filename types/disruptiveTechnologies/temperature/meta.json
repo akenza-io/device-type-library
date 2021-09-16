@@ -1,0 +1,13 @@
+{
+  "name": "Wireless Temperature Sensor",
+  "version": "1.0.0",
+  "manufacturer": "Disruptive Technologies",
+  "url": "https://www.disruptive-technologies.com/products/wireless-sensors/wireless-temperature-sensor",
+  "description": "Measures the temperature in any space or on any surface. The temperature sensor is versatile and can enable dozens of applications, from desk occupancy and cold storage to energy efficiency and sustainability.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": ["Temperature", "Touch"],
+  "outputTopics": ["temperature", "touch", "network_status", "battery_status"],
+  "encoding": "JSON",
+  "connectivity": "HTTP"
+}

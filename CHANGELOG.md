@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.0.17] - 2021-09-15
+
+### Changed
+
+- New images for Disruptive Technologies Sensors
+
+## [1.0.16] - 2021-09-15
+
+### Added
+
+- Disruptive Technologies - Humidity Sensor
+- Disruptive Technologies - Proximity Sensor
+- Disruptive Technologies - Temperature Sensor
+- Disruptive Technologies - Touch Sensor
+- Disruptive Technologies - Water Sensor
+
 ## [1.0.15] - 2021-08-18
 
 ### Added

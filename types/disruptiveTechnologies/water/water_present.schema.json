@@ -1,0 +1,14 @@
+{
+  "$id": "https://akenza.io/digitalTechnologies/water/water_present.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Temperature",
+  "type": "object",
+  "properties": {
+    "objectPresent": {
+      "title": "Water present",
+      "description": "Water present",
+      "type": "string",
+      "enum": ["PRESENT", "NOT_PRESENT"]
+    }
+  }
+}
