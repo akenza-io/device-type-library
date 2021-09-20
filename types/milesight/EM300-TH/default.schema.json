@@ -4,14 +4,6 @@
   "title": "Default",
   "type": "object",
   "properties": {
-    "batteryLevel": {
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 100,
-      "title": "Battery charge",
-      "description": "The battery charge in percent.",
-      "unit": "%"
-    },
     "temperature": {
       "title": "Temperature",
       "unit": "°C",
