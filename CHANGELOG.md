@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.1.0] - 2021-09-20
+
+### Added
+
+- Milesight - AM104
+- Milesight - AM107
+- Milesight - EM300-TH
+- Milesight - EM500-CO2
+
 # [1.0.18] - 2021-09-17
 
 ### Changed
