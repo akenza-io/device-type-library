@@ -16,7 +16,7 @@
     "TVOC",
     "Barometric Pressure"
   ],
-  "outputTopics": ["default"],
+  "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

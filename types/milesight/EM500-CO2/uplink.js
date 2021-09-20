@@ -23,13 +23,15 @@ function consume(event) {
   const bytes = parseHexString(payload);
 
   const decoded = {};
+  const lifecycle = {};
 
   for (let i = 0; i < bytes.length; ) {
     const channelId = bytes[i++];
     const channelType = bytes[i++];
     // BATTERY
     if (channelId === 0x01 && channelType === 0x75) {
-      decoded.batteryLevel = bytes[i];
+      lifecycle.batteryLevel = bytes[i];
+      emit("sample", { data: lifecycle, topic: "lifecycle" });
       i += 1;
     }
     // TEMPERATURE
