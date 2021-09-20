@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 - Milesight - EM300-TH
 - Milesight - EM500-CO2
 
+# [1.0.18] - 2021-09-17
+
+### Changed
+
+- Enginko - MCF-LW12CO2E cleaned up the uplink
+
 ## [1.0.17] - 2021-09-15
 
 ### Changed
