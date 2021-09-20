@@ -521,9 +521,7 @@ function parseTERMeasurement(payload) {
 function parseTER(payload) {
   const uplinkId = payload.substring(0, 2);
   if (uplinkId.toUpperCase() === "04") {
-    const m1 = parseTERMeasurement(payload.substring(2, 22));
-    const m2 = parseTERMeasurement(payload.substring(22, 42));
-    const m3 = parseTERMeasurement(payload.substring(42, 62));
+    const m3 = parseTERMeasurement(payload.substring(42, 62)); // Using only the newest value
     const batteryLevel = {
       variable: "batteryLevel",
       value: Number(parseInt(payload.substring(62, 64), 16).toFixed()) || 0,
@@ -534,8 +532,7 @@ function parseTER(payload) {
       value: payload.substring(64),
     };
 
-    // TODO why are the measurements converted to one object? this will lead to duplicated keys and eventually only contain the latest measurement
-    return [...m1, ...m2, ...m3, batteryLevel, rfu];
+    return [...m3, batteryLevel, rfu];
   }
   return null;
 }
@@ -636,8 +633,7 @@ function parseVOC(payload, isNew) {
   const uplinkId = payload.substring(0, 2);
   if (!isNew) {
     if (uplinkId.toUpperCase() === "0C") {
-      const m1 = parseVOCMeasurement(payload.substring(2, 30), isNew);
-      const m2 = parseVOCMeasurement(payload.substring(30, 58), isNew);
+      const m2 = parseVOCMeasurement(payload.substring(30, 58), isNew); // Using only the newest value
 
       const batteryLevel = {
         variable: "batteryLevel",
@@ -649,13 +645,12 @@ function parseVOC(payload, isNew) {
         value: payload.substring(60),
       };
 
-      return [...m1, ...m2, batteryLevel, rfu];
+      return [...m2, batteryLevel, rfu];
     }
     return null;
   }
   if (uplinkId.toUpperCase() === "12") {
-    const m1 = parseVOCMeasurement(payload.substring(2, 32), isNew);
-    const m2 = parseVOCMeasurement(payload.substring(32, 62), isNew);
+    const m2 = parseVOCMeasurement(payload.substring(32, 62), isNew); // Using only the newest value
 
     const batteryLevel = {
       variable: "batteryLevel",
@@ -667,7 +662,7 @@ function parseVOC(payload, isNew) {
       value: payload.substring(64),
     };
 
-    return [...m1, ...m2, batteryLevel, rfu];
+    return [...m2, batteryLevel, rfu];
   }
   return null;
 }
@@ -778,8 +773,7 @@ function parseCo2(payload, isNew) {
   const uplinkId = payload.substring(0, 2);
   if (!isNew) {
     if (uplinkId.toUpperCase() === "0E") {
-      const m1 = parseCo2Measurement(payload.substring(2, 34), isNew);
-      const m2 = parseCo2Measurement(payload.substring(34, 66), isNew);
+      const m2 = parseCo2Measurement(payload.substring(34, 66), isNew); // Using only the newest value
 
       const batteryLevel = {
         variable: "batteryLevel",
@@ -791,13 +785,12 @@ function parseCo2(payload, isNew) {
         value: payload.substring(68),
       };
 
-      return [...m1, ...m2, batteryLevel, rfu];
+      return [...m2, batteryLevel, rfu];
     }
     return null;
   }
   if (uplinkId.toUpperCase() === "13") {
-    const m1 = parseCo2Measurement(payload.substring(2, 36), isNew);
-    const m2 = parseCo2Measurement(payload.substring(36, 70), isNew);
+    const m2 = parseCo2Measurement(payload.substring(36, 70), isNew); // Using only the newest value
 
     const batteryLevel = {
       variable: "batteryLevel",
@@ -809,7 +802,7 @@ function parseCo2(payload, isNew) {
       value: payload.substring(72),
     };
 
-    return [...m1, ...m2, batteryLevel, rfu];
+    return [...m2, batteryLevel, rfu];
   }
   return null;
 }
