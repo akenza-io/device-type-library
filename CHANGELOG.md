@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.1.1] - 2021-09-23
+
+### Changed
+
+- Enginko - MCF-LW12CO2E removed unused shemas and changed meta accordingly
+- Xovis PC2S - Updated uplink so its working with akenza.io & added tests
+
 ## [1.1.0] - 2021-09-20
 
 ### Added

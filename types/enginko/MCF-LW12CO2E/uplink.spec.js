@@ -6,17 +6,19 @@ const utils = require("test-utils");
 const { assert } = chai;
 describe("MCF-LW12CO2E Uplink", () => {
   describe("consume()", () => {
-    let co2Schema = null;
+    let climateSchema = null;
     let consume = null;
     before((done) => {
       const script = rewire("./uplink.js");
       consume = utils.init(script);
-      utils.loadSchema(`${__dirname}/co2.schema.json`).then((parsedSchema) => {
-        co2Schema = parsedSchema;
-        done();
-      });
+      utils
+        .loadSchema(`${__dirname}/climate.schema.json`)
+        .then((parsedSchema) => {
+          climateSchema = parsedSchema;
+          done();
+        });
     });
-    it("should decode MCF-LW12CO2E co2 payload", () => {
+    it("should decode MCF-LW12CO2E climate payload", () => {
       const data = {
         data: {
           port: 2,
@@ -29,8 +31,7 @@ describe("MCF-LW12CO2E Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "co2");
-        assert.equal(value.data.date, "2021-07-22T08:07:00.000Z");
+        assert.equal(value.topic, "climate");
         assert.equal(value.data.temperature, 30.12);
         assert.equal(value.data.humidity, 38);
         assert.equal(value.data.pressure, 1009.74);
@@ -40,44 +41,7 @@ describe("MCF-LW12CO2E Uplink", () => {
         assert.equal(value.data.batteryLevel, 98);
         assert.equal(value.data.rfu, 0);
 
-        validate(value.data, co2Schema, { throwError: true });
-      });
-      consume(data);
-    });
-  });
-
-  describe("consume()", () => {
-    let terSchema = null;
-    let consume = null;
-    before((done) => {
-      const script = rewire("./uplink.js");
-      consume = utils.init(script);
-      utils.loadSchema(`${__dirname}/ter.schema.json`).then((parsedSchema) => {
-        terSchema = parsedSchema;
-        done();
-      });
-    });
-    it("should decode MCF-LW12CO2E ter payload", () => {
-      const data = {
-        data: {
-          port: 2,
-          payloadHex:
-            "04dc7e3721b40a47608801dd7e3721b10a43608801e07e3721b20a425d8801",
-        },
-      };
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "ter");
-        assert.equal(value.data.date, "2016-09-23T15:55:00.000Z");
-        assert.equal(value.data.temperature, 27.38);
-        assert.equal(value.data.humidity, 33);
-        assert.equal(value.data.pressure, 1004.45);
-        assert.equal(value.data.rfu, 0);
-
-        validate(value.data, terSchema, { throwError: true });
+        validate(value.data, climateSchema, { throwError: true });
       });
       consume(data);
     });
