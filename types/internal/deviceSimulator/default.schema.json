@@ -4,7 +4,7 @@
   "title": "Default",
   "type": "object",
   "properties": {
-    "occupancy": {
+    "occupied": {
       "title": "Occupancy",
       "description": "Space occupancy. false = Unoccupied / true = Occupied.",
       "type": "boolean"
