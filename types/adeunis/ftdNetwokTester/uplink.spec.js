@@ -30,7 +30,7 @@ describe("Adeunis FTD-2 Uplink", () => {
     it("should decode Adeunis payload", () => {
       const data = {
         data: {
-          payloadHex: "416c61726d",
+          payloadHex: "1234abcdb000000b",
         },
       };
 
@@ -38,18 +38,11 @@ describe("Adeunis FTD-2 Uplink", () => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
-        assert.equal(value.topic, "uplink");
-        // TODO get a real payload
-        // assert.equal(value.data.altitude, 0);
-        // assert.equal(value.data.rssi, -57);
-        // assert.equal(value.data.uplink, 29);
-        // assert.equal(value.data.downlink, 29);
-        // assert.equal(value.data.snr, 7);
-        // assert.equal(value.data.latitude, 47.41165);
-        // assert.equal(value.data.temperature, 24);
-        // assert.equal(value.data.sats, 7);
-        // assert.equal(value.data.battery, 3009);
-        // assert.equal(value.data.longitude, 8.5335);
+        assert.equal(value.topic, "default");
+
+        assert.equal(value.data.trigger, "PUSHBUTTON");
+        assert.equal(value.data.downlink, 52);
+
         validate(value.data, schema, { throwError: true });
       });
 

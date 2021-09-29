@@ -17,7 +17,7 @@ describe("Adeunis FTD-2 Downlink", () => {
     it("should encode Adeunis payload", (done) => {
       const data = {
         payload: {
-          message: "Test",
+          message: "Hello",
         },
       };
 
@@ -27,7 +27,7 @@ describe("Adeunis FTD-2 Downlink", () => {
         assert.typeOf(value, "object");
         assert.equal(value.port, 1);
         assert.equal(value.confirmed, false);
-        assert.equal(value.payloadHex, "54657374");
+        assert.equal(value.payloadHex, "48656c6c6f");
         done();
       });
 
