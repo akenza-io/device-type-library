@@ -26,11 +26,11 @@ function consume(event) {
     }
 
     if (status & 0x40) {
-      decoded.trigger = "accelerometer";
+      decoded.trigger = "ACCELEROMETER";
     }
 
     if (status & 0x20) {
-      decoded.trigger = "pushbutton";
+      decoded.trigger = "PUSHBUTTON";
     }
 
     if (status & 0x10 && offset + 9 <= bytes.length) {
@@ -95,5 +95,5 @@ function consume(event) {
       offset += 2;
     }
   }
-  emit("sample", { data: decoded, topic: "uplink" });
+  emit("sample", { data: decoded, topic: "default" });
 }
