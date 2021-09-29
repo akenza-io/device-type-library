@@ -35,23 +35,23 @@
       "maximum": 3276.5
     },
     "uplink": {
-      "title": "Uplink",
+      "title": "Uplink count",
       "description": "Count of triggered uplinks",
       "type": "integer",
       "minimum": 0,
       "maximum": 255
     },
     "downlink": {
-      "title": "Downlink",
+      "title": "Downlink count",
       "description": "Count of triggered downlinks",
       "type": "integer",
       "minimum": 0,
       "maximum": 255
     },
-    "battery": {
-      "title": "Battery",
-      "unit": "mV",
-      "description": "Count of triggered downlinks",
+    "batteryVoltage": {
+      "title": "Battery voltage",
+      "unit": "V",
+      "description": "Battery voltage",
       "type": "integer",
       "minimum": 0,
       "maximum": 65535
