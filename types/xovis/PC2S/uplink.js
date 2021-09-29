@@ -32,13 +32,6 @@ function consume(event) {
         }
 
         emit("sample", { data, topic: "line_count" });
-      } else if (
-        event.values[i].type === "ZoneEntry" ||
-        event.values[i].type === "ZoneExit"
-      ) {
-        // data.id = event.payload[i].object.id; // Can check on Person ID to see how long individual persons take time
-        // data.timestamp =  event.payload[i].timestamp; // dwelltime is the same as timein-timeout
-        // emit("sample", { data, topic: event.values[i].type, save: false }); // Not saved gets used in Rule
       } else if (event.values[i].type === "ZoneDwellTime") {
         emit("sample", {
           data: { dwelltime: Math.round(event.values[i].dwellTime / 1000) },
@@ -72,12 +65,6 @@ function consume(event) {
                 data: { queueDepth: value },
                 topic: "queue_depth",
               });
-            } else {
-              emit("sample", {
-                data: { now: data.element[0].measurement[0].value[0].value },
-                topic: "set",
-                save: false,
-              });
             }
           } else {
             rawSample[data.element[i].measurement[j].value[k].label] =
@@ -102,7 +89,7 @@ function consume(event) {
       modSample.femaleBwPercentage = rawSample.femaleBwPercentage;
       modSample.maleFwPercentage = rawSample.maleFwPercentage;
       modSample.femaleFwPercentage = rawSample.femaleFwPercentage;
-      emit("sample", { data: modSample, topic: "genderMod" });
+      emit("sample", { data: modSample, topic: "gender_mod" });
 
       delete rawSample.maleBwPercentage;
       delete rawSample.femaleBwPercentage;
