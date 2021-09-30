@@ -1,49 +1,51 @@
 const chai = require("chai");
 const { validate } = require("jsonschema");
 const rewire = require("rewire");
-const fs = require("fs");
+const utils = require("test-utils");
 
 const { assert } = chai;
 
-const script = rewire("./uplink.js");
-let schema = null;
-const consume = script.__get__("consume");
-
 describe("Adeunis FTD-2 Uplink", () => {
-  function expectEmit(callback) {
-    script.__set__({
-      emit: callback,
-    });
-  }
+  let defaultSchema = null;
+  let consume = null;
   before((done) => {
-    fs.readFile(
-      `${__dirname}/default.schema.json`,
-      "utf8",
-      (err, fileContents) => {
-        if (err) throw err;
-        schema = JSON.parse(fileContents);
+    const script = rewire("./uplink.js");
+    consume = utils.init(script);
+    utils
+      .loadSchema(`${__dirname}/default.schema.json`)
+      .then((parsedSchema) => {
+        defaultSchema = parsedSchema;
         done();
-      },
-    );
+      });
   });
+
   describe("consume()", () => {
-    it("should decode Adeunis payload", () => {
+    it("should decode the Adeunis FTD-2 payload", () => {
       const data = {
         data: {
-          payloadHex: "1234abcdb000000b",
+          payloadHex: "BF1B45159690005345002720200FC95207",
         },
       };
 
-      expectEmit((type, value) => {
+      utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
+
         assert.equal(value.topic, "default");
-
+        assert.equal(value.data.temperature, 27);
         assert.equal(value.data.trigger, "PUSHBUTTON");
-        assert.equal(value.data.downlink, 52);
+        assert.equal(value.data.latitude, 45.15969);
+        assert.equal(value.data.longitude, 5.345);
+        assert.equal(value.data.reception, 2);
+        assert.equal(value.data.sats, 7);
+        assert.equal(value.data.uplink, 32);
+        assert.equal(value.data.downlink, 32);
+        assert.equal(value.data.battery, 4.041);
+        assert.equal(value.data.rssi, -82);
+        assert.equal(value.data.snr, 7);
 
-        validate(value.data, schema, { throwError: true });
+        validate(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
