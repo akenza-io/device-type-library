@@ -6,9 +6,9 @@ All notable changes to this project will be documented in this file.
 
 ## [1.1.3] - 2021-09-30
 
-### Changed
+### Added
 
-- Adeunis - ftdNetworkTester updated uplink to newest sensor version
+- Adeunis - ftdNetworkTesterV2
 
 ## [1.1.2] - 2021-09-29
 
