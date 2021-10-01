@@ -1,0 +1,94 @@
+{
+  "$id": "https://akenza.io/decentlab/lp8p/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "humidity": {
+      "title": "Humidity",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "barometricTemperature": {
+      "title": "Barometric temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The barometric temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "pressure": {
+      "title": "Pressure",
+      "unit": "hpa",
+      "description": "Barometric Pressure in hpa",
+      "type": "number",
+      "minimum": 300,
+      "maximum": 1100
+    },
+    "co2": {
+      "title": "CO2",
+      "unit": "ppm",
+      "type": "integer",
+      "description": "Carbon Dioxide in ppm",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "co2LPF": {
+      "title": "CO2 LPF",
+      "unit": "ppm",
+      "type": "integer",
+      "description": "Carbon Dioxide in ppm",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "co2Temperature": {
+      "title": "CO2 temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "capacitorVoltage1": {
+      "title": "Capacitor voltage 1",
+      "unit": "V",
+      "type": "number",
+      "desciption": "Capacitor voltage 1",
+      "minimum": 0,
+      "maximum": 24
+    },
+    "capacitorVoltage2": {
+      "title": "Capacitor voltage 2",
+      "unit": "V",
+      "type": "number",
+      "desciption": "Capacitor voltage 2",
+      "minimum": 0,
+      "maximum": 24
+    },
+    "pir": {
+      "title": "PIR motion",
+      "description": "PIR motion sensor measuring activity level",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "rawPir": {
+      "title": "Raw PIR motion",
+      "description": "Raw PIR motion value of the activity level",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    }
+  }
+}

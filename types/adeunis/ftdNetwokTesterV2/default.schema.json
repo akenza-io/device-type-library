@@ -52,7 +52,7 @@
       "title": "Battery voltage",
       "unit": "V",
       "description": "Battery voltage",
-      "type": "integer",
+      "type": "number",
       "minimum": 0,
       "maximum": 65535
     },

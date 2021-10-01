@@ -41,7 +41,7 @@ describe("Adeunis FTD-2 Uplink", () => {
         assert.equal(value.data.sats, 7);
         assert.equal(value.data.uplink, 32);
         assert.equal(value.data.downlink, 32);
-        assert.equal(value.data.battery, 4.041);
+        assert.equal(value.data.batteryVoltage, 4.041);
         assert.equal(value.data.rssi, -82);
         assert.equal(value.data.snr, 7);
 

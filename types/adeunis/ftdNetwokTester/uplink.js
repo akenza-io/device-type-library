@@ -82,7 +82,8 @@ function consume(event) {
     }
 
     if (status & 0x02 && offset + 2 <= bytes.length) {
-      decoded.battery = ((bytes[offset] << 8) | bytes[offset + 1]) / 1000;
+      decoded.batteryVoltage =
+        ((bytes[offset] << 8) | bytes[offset + 1]) / 1000;
       offset += 2;
     }
 

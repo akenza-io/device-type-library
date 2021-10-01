@@ -70,7 +70,8 @@ function consume(event) {
   }
 
   if (status & 0x02) {
-    decoded.battery = Bits.bitsToUnsigned(bits.substr(pointer, 16)) / 1000;
+    decoded.batteryVoltage =
+      Bits.bitsToUnsigned(bits.substr(pointer, 16)) / 1000;
     pointer += 16;
   }
 

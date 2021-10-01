@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.1.4] - 2021-10-1
+
+### Added
+
+- Decentlab - DL-LP8P
+
 ## [1.1.3] - 2021-09-30
 
 ### Added
