@@ -26,11 +26,11 @@ function consume(event) {
     }
 
     if (status & 0x40) {
-      decoded.trigger = "accelerometer";
+      decoded.trigger = "ACCELEROMETER";
     }
 
     if (status & 0x20) {
-      decoded.trigger = "pushbutton";
+      decoded.trigger = "PUSHBUTTON";
     }
 
     if (status & 0x10 && offset + 9 <= bytes.length) {
@@ -82,7 +82,7 @@ function consume(event) {
     }
 
     if (status & 0x02 && offset + 2 <= bytes.length) {
-      decoded.battery = (bytes[offset] << 8) | bytes[offset + 1];
+      decoded.battery = ((bytes[offset] << 8) | bytes[offset + 1]) / 1000;
       offset += 2;
     }
 
@@ -95,5 +95,5 @@ function consume(event) {
       offset += 2;
     }
   }
-  emit("sample", { data: decoded, topic: "uplink" });
+  emit("sample", { data: decoded, topic: "default" });
 }

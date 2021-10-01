@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.1.3] - 2021-09-30
+
+### Added
+
+- Adeunis - ftdNetworkTesterV2
+
+## [1.1.2] - 2021-09-29
+
+### Changed
+
+- Adeunis - ftdNetworkTester added default schema & uplink test
+
 # [1.1.1] - 2021-09-23
 
 ### Changed
