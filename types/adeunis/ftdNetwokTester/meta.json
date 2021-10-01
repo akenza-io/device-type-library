@@ -6,8 +6,8 @@
   "description": "Immediate viewing of network coverage data (radio power and received signal strength)",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
-  "availableSensors": ["Temperature", "Latitude", "Longitude", "Button"],
-  "outputTopics": ["default"],
+  "availableSensors": ["Temperature", "GPS", "Button"],
+  "outputTopics": ["default", "gps"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

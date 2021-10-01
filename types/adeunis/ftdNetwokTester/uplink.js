@@ -34,6 +34,7 @@ function consume(event) {
     }
 
     if (status & 0x10 && offset + 9 <= bytes.length) {
+      const sample = {};
       const latDeg10 = bytes[offset] >> 4;
       const latDeg1 = bytes[offset] & 0x0f;
       const latMin10 = bytes[offset + 1] >> 4;
@@ -42,7 +43,7 @@ function consume(event) {
       const latMin001 = bytes[offset + 2] & 0x0f;
       const latMin0001 = bytes[offset + 3] >> 4;
       const latSign = bytes[offset + 3] & 0x01 ? -1 : 1;
-      decoded.latitude =
+      sample.latitude =
         latSign *
         (latDeg10 * 10 +
           latDeg1 +
@@ -60,14 +61,15 @@ function consume(event) {
       const lonMin01 = bytes[offset + 6] & 0x0f;
       const lonMin001 = bytes[offset + 7] >> 4;
       const lonSign = bytes[offset + 7] & 0x01 ? -1 : 1;
-      decoded.longitude =
+      sample.longitude =
         lonSign *
         (lonDeg100 * 100 +
           lonDeg10 * 10 +
           lonDeg1 +
           (lonMin10 * 10 + lonMin1 + lonMin01 * 0.1 + lonMin001 * 0.01) / 60);
-      decoded.altitude = 0; // altitude information not available
-      decoded.sats = bytes[offset + 8] & 0x0f; // number of satellites
+      sample.sats = bytes[offset + 8] & 0x0f; // number of satellites
+
+      emit("sample", { data: sample, topic: "gps" });
       offset += 9;
     }
 

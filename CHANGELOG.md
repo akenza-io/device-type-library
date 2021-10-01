@@ -10,6 +10,10 @@ All notable changes to this project will be documented in this file.
 
 - Decentlab - DL-LP8P
 
+### Changed
+
+- Adeunis - ftdNetworkTester added gps schema
+
 ## [1.1.3] - 2021-09-30
 
 ### Added

@@ -24,8 +24,9 @@ function consume(event) {
 
   if (status & 0x10) {
     let hp = pointer / 4;
+    const sample = {};
 
-    decoded.latitude =
+    sample.latitude =
       Number(
         payload.substr(hp++, 1) +
           payload.substr(hp++, 1) +
@@ -36,10 +37,10 @@ function consume(event) {
           payload.substr(hp++, 1),
       ) / 100000;
     if (Number(payload.substr(hp++, 1))) {
-      decoded.latitude = -decoded.latitude;
+      sample.latitude = -sample.latitude;
     }
 
-    decoded.longitude =
+    sample.longitude =
       Number(
         payload.substr(hp++, 1) +
           payload.substr(hp++, 1) +
@@ -50,12 +51,21 @@ function consume(event) {
           payload.substr(hp++, 1),
       ) / 10000;
     if (Number(payload.substr(hp++, 1))) {
-      decoded.longitude = -decoded.longitude;
+      sample.longitude = -sample.longitude;
     }
 
-    decoded.reception = Number(payload.substr(hp++, 1));
-    decoded.sats = Number(payload.substr(hp++, 1));
+    const reception = Number(payload.substr(hp++, 1));
+    sample.sats = Number(payload.substr(hp++, 1));
 
+    if (reception === 1) {
+      sample.reception = "GOOD";
+    } else if (reception === 2) {
+      sample.reception = "AVERAGE";
+    } else if (reception === 3) {
+      sample.reception = "POOR";
+    }
+
+    emit("sample", { data: sample, topic: "gps" });
     pointer += 72;
   }
 
