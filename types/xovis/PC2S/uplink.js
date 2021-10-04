@@ -1,18 +1,19 @@
 function consume(event) {
+  const payload = event.data;
   // Xovis Event
-  if (event.values !== undefined) {
-    for (let i = 0; i < event.values.length; i++) {
+  if (payload.values !== undefined) {
+    for (let i = 0; i < payload.values.length; i++) {
       let data = {};
 
-      if (event.values[i].type === "LineCount") {
-        if (event.values[i].direction === "forward") {
+      if (payload.values[i].type === "LineCount") {
+        if (payload.values[i].direction === "forward") {
           data = { fw: 1, bw: 0 };
         } else {
           data = { fw: 0, bw: 1 };
         }
 
         // Mask
-        const { faceMask } = event.values[i].object;
+        const { faceMask } = payload.values[i].object;
         if (faceMask !== undefined) {
           if (faceMask === "NO_MASK") {
             data.faceMask = 0;
@@ -22,7 +23,7 @@ function consume(event) {
         }
 
         // Gender
-        const { gender } = event.values[i].object;
+        const { gender } = payload.values[i].object;
         if (gender !== undefined) {
           if (gender === "FEMALE") {
             data.gender = "f";
@@ -32,17 +33,17 @@ function consume(event) {
         }
 
         emit("sample", { data, topic: "line_count" });
-      } else if (event.values[i].type === "ZoneDwellTime") {
+      } else if (payload.values[i].type === "ZoneDwellTime") {
         emit("sample", {
-          data: { dwelltime: Math.round(event.values[i].dwellTime / 1000) },
+          data: { dwelltime: Math.round(payload.values[i].dwellTime / 1000) },
           topic: "dwelltime",
         });
       }
     }
 
     // Xovis Line Count
-  } else if (event.content !== undefined) {
-    const data = event.content;
+  } else if (payload.content !== undefined) {
+    const data = payload.content;
     const rawSample = {};
 
     // Standart loop over the data
