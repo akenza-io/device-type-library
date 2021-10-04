@@ -1,0 +1,45 @@
+{
+  "$id": "https://akenza.io/plenom/kuandoBusylight/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "rssi": {
+      "title": "RSSI",
+      "unit": "dBm",
+      "description": "Received Signal Strength Indication",
+      "type": "number"
+    },
+    "snr": {
+      "title": "SNR",
+      "unit": "dB",
+      "description": "Signal-to-Noise Ratio",
+      "type": "number"
+    },
+    "downlinksReceived": {
+      "title": "Number of downlinks received",
+      "type": "integer",
+      "description": "Number of downlinks received"
+    },
+    "uplinksSent": {
+      "title": "Number of uplinks received",
+      "type": "integer",
+      "description": "Number of uplinks received"
+    },
+    "swRevision": {
+      "title": "Software Revision Verison",
+      "type": "integer",
+      "description": "Software Revision Verison"
+    },
+    "HWRevision": {
+      "title": "Hardware Revision Verison",
+      "type": "integer",
+      "description": "Hardware Revision Verison"
+    },
+    "adrState": {
+      "title": "adrState",
+      "type": "integer",
+      "description": "adrState"
+    }
+  }
+}
