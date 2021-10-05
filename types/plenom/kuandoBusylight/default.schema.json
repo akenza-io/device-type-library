@@ -11,14 +11,12 @@
     },
     "timeOn": {
       "title": "Lamp time on duration",
-      "type": "string",
-      "unit": "s",
+      "type": "integer",
       "description": "Lamp time on duration"
     },
     "timeOff": {
       "title": "Lamp time off duration",
-      "type": "string",
-      "unit": "s",
+      "type": "integer",
       "description": "Lamp time off duration"
     }
   }
