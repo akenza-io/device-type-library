@@ -22,24 +22,24 @@
       "description": "Number of downlinks received"
     },
     "uplinksSent": {
-      "title": "Number of uplinks received",
+      "title": "Number of uplinks sent",
       "type": "integer",
-      "description": "Number of uplinks received"
+      "description": "Number of uplinks sent"
     },
     "swRevision": {
-      "title": "Software Revision Verison",
+      "title": "Software Revision Version",
       "type": "integer",
-      "description": "Software Revision Verison"
+      "description": "Software Revision Version"
     },
-    "HWRevision": {
-      "title": "Hardware Revision Verison",
+    "hwRevision": {
+      "title": "Hardware Revision Version",
       "type": "integer",
-      "description": "Hardware Revision Verison"
+      "description": "Hardware Revision Version"
     },
     "adrState": {
-      "title": "adrState",
+      "title": "Adaptive data rate state",
       "type": "integer",
-      "description": "adrState"
+      "description": "Adaptive data rate state"
     }
   }
 }

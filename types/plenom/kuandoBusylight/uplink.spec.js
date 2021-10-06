@@ -57,7 +57,7 @@ describe("Kuando busylight Uplink", () => {
         assert.equal(value.data.downlinksReceived, 3);
         assert.equal(value.data.uplinksSent, 2);
         assert.equal(value.data.swRevision, 31);
-        assert.equal(value.data.HWRevision, 12);
+        assert.equal(value.data.hwRevision, 12);
         assert.equal(value.data.adrState, 1);
 
         validate(value.data, lifecycleSchema, { throwError: true });

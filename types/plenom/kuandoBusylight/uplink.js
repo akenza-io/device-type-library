@@ -31,7 +31,7 @@ function consume(event) {
   data.timeOn = Bits.bitsToUnsigned(bits.substr(152, 8));
   data.timeOff = Bits.bitsToUnsigned(bits.substr(160, 8));
   lifecycle.swRevision = Bits.bitsToUnsigned(bits.substr(168, 8));
-  lifecycle.HWRevision = Bits.bitsToUnsigned(bits.substr(176, 8));
+  lifecycle.hwRevision = Bits.bitsToUnsigned(bits.substr(176, 8));
   lifecycle.adrState = Bits.bitsToUnsigned(bits.substr(184, 8));
 
   emit("sample", { data, topic });
