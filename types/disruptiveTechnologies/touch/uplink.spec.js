@@ -20,22 +20,16 @@ describe("Digital Technologies Touch Sensor Uplink", () => {
   describe("consume()", () => {
     it("should decode the Digital Technologies Touch Sensor payload", () => {
       const data = {
-        data: {
-          event: {
-            eventId: "c505kmuj0aoraraqu5g0",
-            targetName:
-              "projects/c3t7p26j4a2g00de1sng/devices/emuc4ah9r13um94o4pp3hdg",
-            eventType: "touch",
-            data: {
-              touch: {
-                updateTime: "2021-05-16T08:13:15.361624Z",
-              },
-            },
-            timestamp: "2021-09-14T08:16:27.517331Z",
-          },
-          labels: { name: "Temperature Simulator" },
+        eventId: "c505kmuj0aoraraqu5g0",
+        targetName:
+          "projects/c3t7p26j4a2g00de1sng/devices/emuc4ah9r13um94o4pp3hdg",
+        eventType: "touch",
+        touch: {
+        updateTime: "2021-05-16T08:13:15.361624Z",
         },
-      };
+        timestamp: "2021-09-14T08:16:27.517331Z",
+        labels: { name: "Temperature Simulator" }
+  };
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
