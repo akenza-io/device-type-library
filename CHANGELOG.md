@@ -4,12 +4,6 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-# [1.1.5] - 2021-10-06
-
-### Changed
-
-- Changed uplink functions in disruptiveTechnologies to fix nested event.data
-
 # [1.1.4] - 2021-10-04
 
 ### Changed
