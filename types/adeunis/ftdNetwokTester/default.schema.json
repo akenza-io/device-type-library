@@ -18,22 +18,6 @@
       "type": "string",
       "enum": ["ACCELEROMETER", "PUSHBUTTON"]
     },
-    "latitude": {
-      "title": "Latitude",
-      "unit": "°",
-      "type": "number",
-      "description": "Latitude",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "longitude": {
-      "title": "Longitude",
-      "unit": "°",
-      "type": "number",
-      "description": "Longitude",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
     "uplink": {
       "title": "Uplink count",
       "description": "Count of triggered uplinks",
@@ -48,11 +32,11 @@
       "minimum": 0,
       "maximum": 255
     },
-    "batteryVoltage": {
+    "voltage": {
       "title": "Battery voltage",
       "unit": "V",
       "description": "Battery voltage",
-      "type": "integer",
+      "type": "number",
       "minimum": 0,
       "maximum": 65535
     },
