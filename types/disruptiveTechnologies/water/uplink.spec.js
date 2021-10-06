@@ -22,22 +22,18 @@ describe("Digital Technologies Water Sensor Uplink", () => {
   describe("consume()", () => {
     it("should decode the Digital Technologies Water Sensor payload", () => {
       const data = {
-        data: {
-          event: {
-            eventId: "c505kmuj0aoraraqu5g0",
-            targetName:
-              "projects/c3t7p26j4a2g00de1sng/devices/emuc4ah9r13um94o4pp3hdg",
-            eventType: "waterPresent",
-            data: {
-              waterPresent: {
-                state: "NOT_PRESENT",
-                updateTime: "2021-05-16T08:37:10.711412Z",
-              },
+          eventId: "c505kmuj0aoraraqu5g0",
+          targetName:
+            "projects/c3t7p26j4a2g00de1sng/devices/emuc4ah9r13um94o4pp3hdg",
+          eventType: "waterPresent",
+          data: {
+            waterPresent: {
+              state: "NOT_PRESENT",
+              updateTime: "2021-05-16T08:37:10.711412Z",
             },
-            timestamp: "2021-09-14T08:16:27.517331Z",
           },
+          timestamp: "2021-09-14T08:16:27.517331Z",
           labels: { name: "Temperature Simulator" },
-        },
       };
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
