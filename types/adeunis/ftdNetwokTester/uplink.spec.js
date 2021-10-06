@@ -41,10 +41,10 @@ describe("FTD Network tester", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 3.66);
-        assert.equal(value.data.batteryLevel, 0);
-        assert.equal(value.data.deviceStatusFlag, 0);
+        assert.equal(value.topic, "gps");
+        assert.equal(value.data.latitude, 47.41413333333333);
+        assert.equal(value.data.longitude, 8.534333333333333);
+        assert.equal(value.data.satellites, 5);
 
         validate(value.data, gpsSchema, { throwError: true });
       });
@@ -55,14 +55,11 @@ describe("FTD Network tester", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.currentLevel, 2.9);
-        assert.equal(value.data.isEmptying, false);
-        assert.equal(value.data.isTanking, false);
-        assert.equal(value.data.hasMeasurementError, false);
-        assert.equal(value.data.hasOutOfRangeError, true);
-        assert.equal(value.data.sequenceNumber, 2);
-        assert.equal(value.data.temperature, 23);
-        validate(value.data, defaultSchema, { throwError: true });
+        assert.equal(value.data.temperature, 26);
+        assert.equal(value.data.trigger, "PUSHBUTTON");
+        assert.equal(value.data.uplink, 18);
+        assert.equal(value.data.downlink, 16);
+        assert.equal(value.data.voltage, 3.489);
       });
 
       consume(data);

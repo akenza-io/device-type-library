@@ -1,9 +1,9 @@
 function parseHexString(str) {
+  let param = str;
   const result = [];
-  let string = str;
-  while (str.length >= 2) {
-    result.push(parseInt(string.substring(0, 2), 16));
-    string = str.substring(2, string.length);
+  while (param.length >= 2) {
+    result.push(parseInt(param.substring(0, 2), 16));
+    param = param.substring(2, param.length);
   }
   return result;
 }
@@ -80,7 +80,7 @@ function consume(event) {
       offset += 1;
     }
     if (status & 0x02 && offset + 2 <= bytes.length) {
-      decoded.voltage = (bytes[offset] << 8) | bytes[offset + 1];
+      decoded.voltage = ((bytes[offset] << 8) | bytes[offset + 1]) / 1000;
       offset += 2;
     }
     if (status & 0x01 && offset + 2 <= bytes.length) {
@@ -94,5 +94,5 @@ function consume(event) {
       offset += 2;
     }
   }
-  emit("sample", { data: decoded, topic: "uplink" });
+  emit("sample", { data: decoded, topic: "default" });
 }
