@@ -22,22 +22,18 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
   describe("consume()", () => {
     it("should decode the Digital Technologies Proximity Sensor payload", () => {
       const data = {
-        data: {
-          event: {
-            eventId: "c510f9ag03fligl8tvag",
-            targetName:
-              "projects/c3t7p26j4a2g00de1sng/devices/bjmgj6dp0jt000a5dcug",
-            eventType: "objectPresent",
-            data: {
-              objectPresent: {
-                state: "NOT_PRESENT",
-                updateTime: "2021-09-15T14:48:05.948000Z",
-              },
+          eventId: "c510f9ag03fligl8tvag",
+          targetName:
+            "projects/c3t7p26j4a2g00de1sng/devices/bjmgj6dp0jt000a5dcug",
+          eventType: "objectPresent",
+          data: {
+            objectPresent: {
+              state: "NOT_PRESENT",
+              updateTime: "2021-09-15T14:48:05.948000Z",
             },
-            timestamp: "2021-09-15T14:48:05.948000Z",
           },
+          timestamp: "2021-09-15T14:48:05.948000Z",
           labels: {},
-        },
       };
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
