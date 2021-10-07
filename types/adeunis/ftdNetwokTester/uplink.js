@@ -1,11 +1,10 @@
 function parseHexString(str) {
-  let tempStr = str;
+  let param = str;
   const result = [];
-  while (tempStr.length >= 2) {
-    result.push(parseInt(tempStr.substring(0, 2), 16));
-    tempStr = tempStr.substring(2, tempStr.length);
+  while (param.length >= 2) {
+    result.push(parseInt(param.substring(0, 2), 16));
+    param = param.substring(2, param.length);
   }
-
   return result;
 }
 
@@ -16,15 +15,16 @@ function consume(event) {
   let offset = 0;
 
   if (offset + 1 <= bytes.length) {
-    const status = bytes[(offset += 1)];
+    const status = bytes[offset++];
     if (status & 0x80 && offset + 1 < bytes.length) {
       let temperature = bytes[offset];
-      if (temperature > 127) temperature -= 256;
+      if (temperature > 127) {
+        temperature -= 256;
+      }
 
       decoded.temperature = temperature;
       offset += 1;
     }
-
     if (status & 0x40) {
       decoded.trigger = "ACCELEROMETER";
     }
@@ -34,7 +34,7 @@ function consume(event) {
     }
 
     if (status & 0x10 && offset + 9 <= bytes.length) {
-      const sample = {};
+      const gps = {};
       const latDeg10 = bytes[offset] >> 4;
       const latDeg1 = bytes[offset] & 0x0f;
       const latMin10 = bytes[offset + 1] >> 4;
@@ -43,7 +43,7 @@ function consume(event) {
       const latMin001 = bytes[offset + 2] & 0x0f;
       const latMin0001 = bytes[offset + 3] >> 4;
       const latSign = bytes[offset + 3] & 0x01 ? -1 : 1;
-      sample.latitude =
+      gps.latitude =
         latSign *
         (latDeg10 * 10 +
           latDeg1 +
@@ -61,38 +61,34 @@ function consume(event) {
       const lonMin01 = bytes[offset + 6] & 0x0f;
       const lonMin001 = bytes[offset + 7] >> 4;
       const lonSign = bytes[offset + 7] & 0x01 ? -1 : 1;
-      sample.longitude =
+      gps.longitude =
         lonSign *
         (lonDeg100 * 100 +
           lonDeg10 * 10 +
           lonDeg1 +
           (lonMin10 * 10 + lonMin1 + lonMin01 * 0.1 + lonMin001 * 0.01) / 60);
-      sample.sats = bytes[offset + 8] & 0x0f; // number of satellites
-
-      emit("sample", { data: sample, topic: "gps" });
+      gps.satellites = bytes[offset + 8] & 0x0f;
+      emit("sample", { data: gps, topic: "gps" });
       offset += 9;
     }
-
     if (status & 0x08 && offset + 1 <= bytes.length) {
       decoded.uplink = bytes[offset];
       offset += 1;
     }
-
     if (status & 0x04 && offset + 1 <= bytes.length) {
       decoded.downlink = bytes[offset];
       offset += 1;
     }
-
     if (status & 0x02 && offset + 2 <= bytes.length) {
-      decoded.batteryVoltage =
-        ((bytes[offset] << 8) | bytes[offset + 1]) / 1000;
+      decoded.voltage = ((bytes[offset] << 8) | bytes[offset + 1]) / 1000;
       offset += 2;
     }
-
     if (status & 0x01 && offset + 2 <= bytes.length) {
       decoded.rssi = -bytes[offset];
       let snr = bytes[offset + 1];
-      if (snr > 127) snr -= 256;
+      if (snr > 127) {
+        snr -= 256;
+      }
 
       decoded.snr = snr;
       offset += 2;

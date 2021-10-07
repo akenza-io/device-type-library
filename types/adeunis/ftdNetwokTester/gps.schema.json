@@ -20,7 +20,7 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     },
-    "sats": {
+    "satellites": {
       "title": "Available satellites",
       "type": "integer",
       "description": "Available satellites"

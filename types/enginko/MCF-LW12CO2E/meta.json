@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Enginko",
   "url": "https://enginko.com/en/solutions/mcf-lw12co2/",
-  "description": "This device reads temperature, humidity, pressure, light intensity, air quality (expressed as IAQ or bVOC value) and CO2. 3 traffic light LEDs for air quality display with adjustable brightness. Ideally suited for a wide range of applications such as building automation, condition monitoring, predictive maintenance, security, healthcare and many more use cases.",
+  "description": "This device reads temperature, humidity, pressure, light intensity, air quality (expressed as IAQ or VOC value) and CO2. 3 traffic light LEDs for air quality display with adjustable brightness. Ideally suited for a wide range of applications such as building automation, condition monitoring, predictive maintenance, security, healthcare and many more use cases.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -14,29 +14,9 @@
     "Light",
     "VOC",
     "CO2",
-    "Lux",
-    "Wind speed",
-    "Wind direction",
-    "Rain rate",
-    "Ultraviolet radiation",
-    "Solar radiation",
-    "Day rain",
-    "Soil moisture",
-    "Bar trend",
-    "PM 1.0",
-    "PM 2.5",
-    "PM 10"
+    "Lux"
   ],
-  "outputTopics": [
-    "co2",
-    "modbus",
-    "pm",
-    "ter",
-    "ter_pm",
-    "time_sync",
-    "voc",
-    "weather"
-  ],
+  "outputTopics": ["climate", "time_sync"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

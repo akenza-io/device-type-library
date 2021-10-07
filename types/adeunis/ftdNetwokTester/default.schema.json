@@ -32,7 +32,7 @@
       "minimum": 0,
       "maximum": 255
     },
-    "batteryVoltage": {
+    "voltage": {
       "title": "Battery voltage",
       "unit": "V",
       "description": "Battery voltage",

@@ -4,15 +4,22 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-## [1.1.4] - 2021-10-1
-
-### Added
-
-- Decentlab - DL-LP8P
+# [1.1.5] - 2021-10-06
 
 ### Changed
 
-- Adeunis - ftdNetworkTester added gps schema
+- Adeunis - ftdNetworkTester
+
+### Deleted
+
+- Adeunis - ftdNetworkTesterV2
+
+# [1.1.4] - 2021-10-04
+
+### Changed
+
+- Enginko - MCF-LW12CO2E removed unused schemas and changed meta accordingly
+- Xovis PC2S - Updated uplink so it's working with akenza.io & added tests
 
 ## [1.1.3] - 2021-09-30
 
