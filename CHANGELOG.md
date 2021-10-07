@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.3.0] - 2021-10-07
+
+### Added
+
+- Plenom - Kuando busylight
+
 ## [1.2.0] - 2021-10-07
 
 ### Added
