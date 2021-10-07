@@ -45,7 +45,7 @@
       "maximum": 10000
     },
     "co2LPF": {
-      "title": "CO2 LPF",
+      "title": "CO2 low-pass filtered",
       "unit": "ppm",
       "type": "integer",
       "description": "Carbon Dioxide in ppm",
@@ -53,7 +53,7 @@
       "maximum": 10000
     },
     "co2Temperature": {
-      "title": "CO2 temperature",
+      "title": "CO2 sensor temperature",
       "unit": "°C",
       "type": "number",
       "description": "The temperature in °C.",
