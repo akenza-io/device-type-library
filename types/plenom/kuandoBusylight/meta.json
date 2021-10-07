@@ -1,0 +1,14 @@
+{
+  "name": "Kuando busy light",
+  "version": "1.0.0",
+  "manufacturer": "Plenom",
+  "url": "https://www.plenom.com/products/kuando-busylight-iot-lorawan/",
+  "description": "The kuando Busylight can be installed in large variety of use cases. Through a downlink the Busylight can be programmed to show any color and used as a visual notifier, indicating a certain event, status or as a cue for specific handling.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "C",
+  "availableSensors": ["Light"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

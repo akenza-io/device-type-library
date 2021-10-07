@@ -1,0 +1,23 @@
+{
+  "$id": "https://akenza.io/plenom/kuandoBusylight/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "lastColorRGB": {
+      "title": "Last color RGB",
+      "type": "string",
+      "description": "Last color RGB"
+    },
+    "timeOn": {
+      "title": "Lamp time on duration",
+      "type": "integer",
+      "description": "Lamp time on duration"
+    },
+    "timeOff": {
+      "title": "Lamp time off duration",
+      "type": "integer",
+      "description": "Lamp time off duration"
+    }
+  }
+}
