@@ -41,23 +41,6 @@ function getET(value) {
   return Number(et).toFixed(2);
 }
 
-function parseDate(payload) {
-  const binary = Number(parseInt(reverseBytes(payload), 16))
-    .toString(2)
-    .padStart(32, "0");
-  const year = parseInt(binary.substring(0, 7), 2) + 2000;
-  const month = parseInt(binary.substring(7, 11), 2);
-  const day = parseInt(binary.substring(11, 16), 2);
-  const hour = parseInt(binary.substring(16, 21), 2);
-  const minute = parseInt(binary.substring(21, 27), 2);
-  const second = parseInt(binary.substring(27, 32), 2) * 2;
-
-  const date = new Date(
-    Date.UTC(year, month - 1, day, hour, minute, second, 0),
-  ).toISOString();
-  return date;
-}
-
 function getHumidity(lo) {
   const humidity = (((((0 & 0xff) << 8) | (lo & 0xff)) << 16) >> 16) / 2;
   return Number(humidity).toFixed(2);
@@ -174,11 +157,6 @@ function parsePM(payload) {
     let payloadToByteArray = hexStringToByteArray(payload);
     payloadToByteArray = payloadToByteArray.slice(3);
     if (payload.substring(2, 3) === "2" && payload.substring(4, 6) === "01") {
-      const date = {
-        variable: "date",
-        value: parseDate(payload.substring(6, 14)),
-      };
-
       const pm1 = {
         variable: "pm1",
         value: Number(
@@ -210,7 +188,7 @@ function parsePM(payload) {
         unit: "micro g/m3",
       };
 
-      return [date, pm1, pm25, pm10];
+      return [pm1, pm25, pm10];
     }
     return null;
   }
@@ -223,11 +201,6 @@ function parseTERPM(payload) {
     let payloadToByteArray = hexStringToByteArray(payload);
     payloadToByteArray = payloadToByteArray.slice(3);
     if (payload.substring(2, 3) === "3" && payload.substring(4, 6) === "00") {
-      const date = {
-        variable: "date",
-        value: parseDate(payload.substring(6, 14)),
-      };
-
       const temperature = {
         variable: "temperature",
         value: getTemperature(payloadToByteArray[4], payloadToByteArray[5]),
@@ -279,7 +252,7 @@ function parseTERPM(payload) {
       };
 
       if (payload.length <= 38) {
-        return [date, temperature, humidity, pressure, pm1, pm25, pm10];
+        return [temperature, humidity, pressure, pm1, pm25, pm10];
       }
       const batteryLevel = {
         variable: "batteryLevel",
@@ -287,16 +260,7 @@ function parseTERPM(payload) {
         unit: "%",
       };
 
-      return [
-        date,
-        temperature,
-        humidity,
-        pressure,
-        pm1,
-        pm25,
-        pm10,
-        batteryLevel,
-      ];
+      return [temperature, humidity, pressure, pm1, pm25, pm10, batteryLevel];
     }
     return null;
   }
@@ -487,11 +451,6 @@ function parseTimeSync(payload) {
 }
 
 function parseTERMeasurement(payload) {
-  const date = {
-    variable: "date",
-    value: parseDate(payload.substring(0, 8)),
-  };
-
   const temperature = {
     variable: "temperature",
     value: getTemperature(
@@ -515,7 +474,7 @@ function parseTERMeasurement(payload) {
     unit: "hPa",
   };
 
-  return [date, temperature, humidity, pressure];
+  return [temperature, humidity, pressure];
 }
 
 function parseTER(payload) {
@@ -539,11 +498,6 @@ function parseTER(payload) {
 
 function parseVOCMeasurement(payload, isNew) {
   if (!isNew) {
-    const date = {
-      variable: "date",
-      value: parseDate(payload.substring(0, 8)),
-    };
-
     const temperature = {
       variable: "temperature",
       value: getTemperature(
@@ -577,14 +531,9 @@ function parseVOCMeasurement(payload, isNew) {
       unit: "IAQ/ppb",
     };
 
-    return [date, temperature, humidity, pressure, lux, voc];
+    return [temperature, humidity, pressure, lux, voc];
   }
   const payloadToByteArray = hexStringToByteArray(payload);
-
-  const date = {
-    variable: "date",
-    value: parseDate(payload.substring(0, 8)),
-  };
 
   const temperature = {
     variable: "temperature",
@@ -626,7 +575,7 @@ function parseVOCMeasurement(payload, isNew) {
     unit: "IAQ/ppb",
   };
 
-  return [date, temperature, humidity, pressure, lux, voc];
+  return [temperature, humidity, pressure, lux, voc];
 }
 
 function parseVOC(payload, isNew) {
@@ -669,11 +618,6 @@ function parseVOC(payload, isNew) {
 
 function parseCo2Measurement(payload, isNew) {
   if (!isNew) {
-    const date = {
-      variable: "date",
-      value: parseDate(payload.substring(0, 8)),
-    };
-
     const temperature = {
       variable: "temperature",
       value: getTemperature(
@@ -712,14 +656,9 @@ function parseCo2Measurement(payload, isNew) {
       unit: "ppm",
     };
 
-    return [date, temperature, humidity, pressure, lux, voc, co2];
+    return [temperature, humidity, pressure, lux, voc, co2];
   }
   const payloadToByteArray = hexStringToByteArray(payload);
-
-  const date = {
-    variable: "date",
-    value: parseDate(payload.substring(0, 8)),
-  };
 
   const temperature = {
     variable: "temperature",
@@ -766,7 +705,7 @@ function parseCo2Measurement(payload, isNew) {
     unit: "ppm",
   };
 
-  return [date, temperature, humidity, pressure, lux, voc, co2];
+  return [temperature, humidity, pressure, lux, voc, co2];
 }
 
 function parseCo2(payload, isNew) {
@@ -874,7 +813,7 @@ function consume(event) {
       break;
     case "13":
       content = parseCo2(payload.trim(), true); // true is for new sensor
-      topic = "co2";
+      topic = "climate";
       break;
     case "0B":
       content = parseReportData(payload.trim())[0];
@@ -886,7 +825,7 @@ function consume(event) {
       break;
     case "0E":
       content = parseCo2(payload.trim(), false); // false is for new sensor
-      topic = "co2";
+      topic = "climate";
       break;
     default:
       content = null;
