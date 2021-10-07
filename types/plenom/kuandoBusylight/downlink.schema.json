@@ -1,0 +1,43 @@
+{
+  "$id": "https://akenza.io/plenom/kuandoBusylight/downlink.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "red": {
+      "title": "Red Color intensity",
+      "type": "integer",
+      "description": "Red Color intensity",
+      "min": 0,
+      "max": 255
+    },
+    "green": {
+      "title": "Green Color intensity",
+      "type": "integer",
+      "description": "Green Color intensity",
+      "min": 0,
+      "max": 255
+    },
+    "blue": {
+      "title": "Blue Color intensity",
+      "type": "integer",
+      "description": "Blue Color intensity",
+      "min": 0,
+      "max": 255
+    },
+    "onDuration": {
+      "title": "Lamp time on duration",
+      "type": "integer",
+      "description": "Lamp time on duration",
+      "min": 0,
+      "max": 255
+    },
+    "offDuration": {
+      "title": "Lamp time off duration",
+      "type": "integer",
+      "description": "Lamp time off duration",
+      "min": 0,
+      "max": 255
+    }
+  }
+}
