@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.1.6] - 2021-10-07
+
+### Changed
+
+- Distuptive technologies - adapt event payload
+
 # [1.1.5] - 2021-10-06
 
 ### Changed
