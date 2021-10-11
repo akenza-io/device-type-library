@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.3.1] - 2021-10-11
+
+### Changed
+
+- Disruptive Technologies - Changed images
+- Decentlab LP8P - Changed metatext and renamed datakeys
+
 ## [1.3.0] - 2021-10-07
 
 ### Added
