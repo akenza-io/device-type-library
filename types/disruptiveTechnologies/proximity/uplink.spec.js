@@ -27,6 +27,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
             "projects/c3t7p26j4a2g00de1sng/devices/bjmgj6dp0jt000a5dcug",
           eventType: "objectPresent",
           data: {
+            eventType: "objectPresent",
             objectPresent: {
               state: "NOT_PRESENT",
               updateTime: "2021-09-15T14:48:05.948000Z",
