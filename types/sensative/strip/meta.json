@@ -8,8 +8,7 @@
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": [
-    "Reed",
-    "Temperature"
+    "Reed"
   ],
   "outputTopics": [
     "alarm",
