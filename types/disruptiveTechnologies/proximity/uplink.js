@@ -1,5 +1,5 @@
 function consume(event) {
-  const { eventType } = event;
+  const { eventType } = event.data;
   const sample = {};
   let topic = eventType;
 
