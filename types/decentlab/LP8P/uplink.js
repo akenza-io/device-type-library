@@ -200,8 +200,8 @@ function consume(event) {
   data.co2Temperature = sample.co2_sensor_temperature;
   data.capacitorVoltage1 = sample.capacitor_voltage_1;
   data.capacitorVoltage2 = sample.capacitor_voltage_2;
-  data.pir = sample.raw_ir_reading;
-  data.rawPir = sample.raw_ir_reading_lpf;
+  data.rawIr = sample.raw_ir_reading;
+  data.rawIrLPF = sample.raw_ir_reading_lpf;
 
   // Lifecycle values
   lifecycle.batteryVoltage = sample.battery_voltage;

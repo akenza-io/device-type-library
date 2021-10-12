@@ -53,8 +53,8 @@ describe("Decentlab LP8P Uplink", () => {
         assert.equal(value.data.co2Temperature, 23.95);
         assert.equal(value.data.capacitorVoltage1, 3.032);
         assert.equal(value.data.capacitorVoltage2, 2.997);
-        assert.equal(value.data.pir, 38296);
-        assert.equal(value.data.rawPir, 38201);
+        assert.equal(value.data.rawIr, 38296);
+        assert.equal(value.data.rawIrLPF, 38201);
 
         validate(value.data, defaultSchema, { throwError: true });
       });
