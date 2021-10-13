@@ -1,0 +1,24 @@
+{
+  "$id": "https://akenza.io/elsys/ers-sound/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "soundPeak": {
+      "title": "Sound Peak",
+      "unit": "dB",
+      "description": "Peak value in dBspl",
+      "type": "number",
+      "minimum": 20,
+      "maximum": 120
+    },
+    "soundAvg": {
+      "title": "Sound Average",
+      "unit": "dB",
+      "description": "Average value in dBspl",
+      "type": "number",
+      "minimum": 20,
+      "maximum": 120
+    }
+  }
+}
