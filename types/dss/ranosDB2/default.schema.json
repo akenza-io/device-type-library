@@ -1,24 +1,74 @@
 {
-  "$id": "https://akenza.io/elsys/ers-sound/default.schema.json",
+  "$id": "https://akenza.io/dss/ranosDB2/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Default",
   "type": "object",
   "properties": {
-    "soundPeak": {
-      "title": "Sound Peak",
+    "dBAfast": {
+      "title": "dB A fast",
       "unit": "dB",
-      "description": "Peak value in dBspl",
-      "type": "number",
-      "minimum": 20,
-      "maximum": 120
+      "description": "Measurement with fast response",
+      "type": "number"
+    },
+    "dBAslow": {
+      "title": "dB A slow",
+      "unit": "dB",
+      "description": "Measurement with slow response",
+      "type": "number"
+    },
+    "dBCfast": {
+      "title": "dB C fast",
+      "unit": "dB",
+      "description": "Measurement with fast response",
+      "type": "number"
+    },
+    "dBCslow": {
+      "title": "dB C slow",
+      "unit": "dB",
+      "description": "Measurement with slow response",
+      "type": "number"
+    },
+    "leqA": {
+      "title": "Leq A",
+      "unit": "dB",
+      "description": "Average over set Leq time. Between the current measurement and current measurement time minus Leq time.",
+      "type": "number"
+    },
+    "leqC": {
+      "title": "Leq C",
+      "unit": "dB",
+      "description": "Average over set Leq time. Between the current measurement and current measurement time minus Leq time.",
+      "type": "number"
+    },
+    "positivePeakHoldA": {
+      "title": "Positive peak hold A",
+      "unit": "dB",
+      "description": "The highest dB(A) value in the period between previous measurement and current measurement",
+      "type": "number"
+    },
+    "negativePeakHoldA": {
+      "title": "Negative peak hold A",
+      "unit": "dB",
+      "description": "The lowest dB(A) value in the period between previous measurement and current measurement",
+      "type": "number"
+    },
+    "positivePeakHoldC": {
+      "title": "Positive peak hold C",
+      "unit": "dB",
+      "description": "The highest dB(C) value in the period between previous measurement and current measurement",
+      "type": "number"
+    },
+    "negativePeakHoldC": {
+      "title": "Negative peak hold C",
+      "unit": "dB",
+      "description": "The lowest dB(C) value in the period between previous measurement and current measurement",
+      "type": "number"
     },
     "soundAvg": {
-      "title": "Sound Average",
+      "title": "Sound average",
       "unit": "dB",
-      "description": "Average value in dBspl",
-      "type": "number",
-      "minimum": 20,
-      "maximum": 120
+      "description": "Sound average",
+      "type": "number"
     }
   }
 }

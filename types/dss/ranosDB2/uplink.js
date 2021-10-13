@@ -1,5 +1,3 @@
-const Bits = require("bits");
-
 function getValues(bits, pointer) {
   let value = Bits.bitsToUnsigned(bits.substr(pointer, 8)) << 8;
   value |= Bits.bitsToUnsigned(bits.substr(pointer + 8, 8));
@@ -10,14 +8,16 @@ function getValues(bits, pointer) {
 }
 
 function consume(event) {
-  const payload = event.data.payload_hex;
+  const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
   const data = {};
   const lifecycle = {};
   const gps = {};
   let pointer = 16;
+  let avgSamples = 0;
+  data.soundAvg = 0;
 
-  // const messageType = Bits.bitsToUnsigned(bits.substr(0, 2));
+  // 2 bits reserved for messagetype
 
   if (Number(bits.substr(2, 1)) === 1) {
     data.dBAfast = getValues(bits, pointer);
@@ -45,41 +45,44 @@ function consume(event) {
   }
   if (Number(bits.substr(8, 1)) === 1) {
     data.positivePeakHoldA = getValues(bits, pointer);
+    data.soundAvg += data.positivePeakHoldA;
+    avgSamples++;
     pointer += 10;
   }
   if (Number(bits.substr(9, 1)) === 1) {
     data.positivePeakHoldC = getValues(bits, pointer);
+    data.soundAvg += data.positivePeakHoldC;
+    avgSamples++;
     pointer += 10;
   }
   if (Number(bits.substr(10, 1)) === 1) {
     data.negativePeakHoldA = getValues(bits, pointer);
+    data.soundAvg += data.negativePeakHoldA;
+    avgSamples++;
     pointer += 10;
   }
   if (Number(bits.substr(11, 1)) === 1) {
     data.negativePeakHoldC = getValues(bits, pointer);
+    data.soundAvg += data.negativePeakHoldC;
+    avgSamples++;
     pointer += 10;
   }
-
   if (Number(bits.substr(12, 1)) === 1) {
-    lifecycle.battery = Bits.bitsToUnsigned(bits.substr(pointer + 4, 8)) / 10;
+    lifecycle.voltage = Bits.bitsToUnsigned(bits.substr(pointer + 4, 8)) / 10;
     pointer += 12;
-    emit("sample", { data: gps, topic: "gps" });
+    emit("sample", { data: lifecycle, topic: "lifecycle" });
   }
-
   if (Number(bits.substr(13, 1)) === 1) {
-    gps.lat = Bits.bitsToSigned(bits.substr(pointer, 32)) / 10000000;
+    gps.latitude = Bits.bitsToSigned(bits.substr(pointer, 32)) / 10000000;
     pointer += 32;
-    gps.long = Bits.bitsToUnsigned(bits.substr(pointer, 32)) / 10000000;
+    gps.longitude = Bits.bitsToSigned(bits.substr(pointer, 32)) / 10000000;
     emit("sample", { data: gps, topic: "gps" });
   }
 
-  // Rework this so its more generic e.g only use the values if theyre writen
-  data.soundAvg =
-    (data.negativePeakHoldC +
-      data.positivePeakHoldC +
-      data.positivePeakHoldA +
-      data.negativePeakHoldA) /
-    4;
+  data.soundAvg = ((data.soundAvg / avgSamples) * 100) / 100;
+  if (data.soundAvg === 0) {
+    delete data.soundAvg;
+  }
 
-  emit("sample", { data });
+  emit("sample", { data, topic: "default" });
 }
