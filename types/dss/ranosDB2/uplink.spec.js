@@ -66,7 +66,6 @@ describe("DSS Ranos dB 2 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.soundAvg, 52.925);
         assert.equal(value.data.dBAfast, 43.5);
         assert.equal(value.data.dBAslow, 44.3);
         assert.equal(value.data.dBCfast, 55.3);

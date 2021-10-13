@@ -1,4 +1,4 @@
-function getValues(bits, pointer) {
+function getValue(bits, pointer) {
   let value = Bits.bitsToUnsigned(bits.substr(pointer, 8)) << 8;
   value |= Bits.bitsToUnsigned(bits.substr(pointer + 8, 8));
   value = (value >> 6) & 0x03ff;
@@ -14,57 +14,47 @@ function consume(event) {
   const lifecycle = {};
   const gps = {};
   let pointer = 16;
-  let avgSamples = 0;
-  data.soundAvg = 0;
 
   // 2 bits reserved for messagetype
 
   if (Number(bits.substr(2, 1)) === 1) {
-    data.dBAfast = getValues(bits, pointer);
+    data.dBAfast = getValue(bits, pointer);
     pointer += 10;
   }
   if (Number(bits.substr(3, 1)) === 1) {
-    data.dBAslow = getValues(bits, pointer);
+    data.dBAslow = getValue(bits, pointer);
     pointer += 10;
   }
   if (Number(bits.substr(4, 1)) === 1) {
-    data.dBCfast = getValues(bits, pointer);
+    data.dBCfast = getValue(bits, pointer);
     pointer += 10;
   }
   if (Number(bits.substr(5, 1)) === 1) {
-    data.dBCslow = getValues(bits, pointer);
+    data.dBCslow = getValue(bits, pointer);
     pointer += 10;
   }
   if (Number(bits.substr(6, 1)) === 1) {
-    data.leqA = getValues(bits, pointer);
+    data.leqA = getValue(bits, pointer);
     pointer += 10;
   }
   if (Number(bits.substr(7, 1)) === 1) {
-    data.leqC = getValues(bits, pointer);
+    data.leqC = getValue(bits, pointer);
     pointer += 10;
   }
   if (Number(bits.substr(8, 1)) === 1) {
-    data.positivePeakHoldA = getValues(bits, pointer);
-    data.soundAvg += data.positivePeakHoldA;
-    avgSamples++;
+    data.positivePeakHoldA = getValue(bits, pointer);
     pointer += 10;
   }
   if (Number(bits.substr(9, 1)) === 1) {
-    data.positivePeakHoldC = getValues(bits, pointer);
-    data.soundAvg += data.positivePeakHoldC;
-    avgSamples++;
+    data.positivePeakHoldC = getValue(bits, pointer);
     pointer += 10;
   }
   if (Number(bits.substr(10, 1)) === 1) {
-    data.negativePeakHoldA = getValues(bits, pointer);
-    data.soundAvg += data.negativePeakHoldA;
-    avgSamples++;
+    data.negativePeakHoldA = getValue(bits, pointer);
     pointer += 10;
   }
   if (Number(bits.substr(11, 1)) === 1) {
-    data.negativePeakHoldC = getValues(bits, pointer);
-    data.soundAvg += data.negativePeakHoldC;
-    avgSamples++;
+    data.negativePeakHoldC = getValue(bits, pointer);
     pointer += 10;
   }
   if (Number(bits.substr(12, 1)) === 1) {
@@ -77,11 +67,6 @@ function consume(event) {
     pointer += 32;
     gps.longitude = Bits.bitsToSigned(bits.substr(pointer, 32)) / 10000000;
     emit("sample", { data: gps, topic: "gps" });
-  }
-
-  data.soundAvg = ((data.soundAvg / avgSamples) * 100) / 100;
-  if (data.soundAvg === 0) {
-    delete data.soundAvg;
   }
 
   emit("sample", { data, topic: "default" });
