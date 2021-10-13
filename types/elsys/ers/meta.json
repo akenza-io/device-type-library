@@ -7,16 +7,8 @@
   "author": "Akenza AG",
   "firmwareVersion": "V2.3.5",
   "loraDeviceClass": "A",
-  "availableSensors": [
-        "Temperature",
-        "Humidity",
-    "Motion",
-    "Light"
-  ],
-  "outputTopics": [
-    "default",
-    "lifecycle"
-  ],
+  "availableSensors": ["Temperature", "Humidity", "Motion", "Light"],
+  "outputTopics": ["default", "lifecycle", "occupancy"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

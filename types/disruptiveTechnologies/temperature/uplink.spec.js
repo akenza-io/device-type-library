@@ -27,6 +27,7 @@ describe("Digital Technologies Temperature Sensor Uplink", () => {
             "projects/c3t7p26j4a2g00de1sng/devices/emuc4ah9r13um94o4pp3hdg",
           eventType: "temperature",
           data: {
+            eventType: "temperature",
             temperature: {
               value: 24,
               updateTime: "2021-09-14T08:16:27.517331Z",

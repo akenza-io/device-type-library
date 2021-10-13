@@ -27,6 +27,7 @@ describe("Digital Technologies Water Sensor Uplink", () => {
           "projects/c3t7p26j4a2g00de1sng/devices/emuc4ah9r13um94o4pp3hdg",
         eventType: "waterPresent",
         data: {
+          eventType: "waterPresent",
           waterPresent: {
             state: "NOT_PRESENT",
             updateTime: "2021-05-16T08:37:10.711412Z",

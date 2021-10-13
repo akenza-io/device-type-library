@@ -10,6 +10,12 @@ All notable changes to this project will be documented in this file.
 
 - DSS - Ranos DB 2
 
+# [1.3.2] - 2021-10-12
+
+### Changed
+
+- Disruptive Technologies - Fix event type extraction
+
 # [1.3.1] - 2021-10-11
 
 ### Changed
