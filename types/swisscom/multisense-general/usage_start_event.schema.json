@@ -5,24 +5,29 @@
   "type": "object",
   "properties": {
     "mode": {
+      "title": "Mode",
       "type": "integer",
       "description": "Mode 1 = Occupancy Mode, Mode 0 = Environmnent Sensors",
       "minimum": 0,
       "maximum": 1
     },
     "payloadVersion": {
+      "title": "Payload version",
       "type": "number",
       "description": "Version of the Payload.",
       "minimum": 0,
       "maximum": 65535
     },
     "voltage": {
+      "title": "Battery voltage",
+      "unit": "mV",
       "description": "Battery voltage in mV.",
       "type": "integer",
       "minimum": 0,
       "maximum": 65535
     },
     "motionCounter": {
+      "title": "Motion count",
       "description": "Motion count of workplace. Sum of all Events",
       "type": "integer",
       "minimum": 0,
