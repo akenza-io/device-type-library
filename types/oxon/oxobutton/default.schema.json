@@ -26,6 +26,7 @@
       "maximum": 3276.5
     },
     "accX": {
+      "title": "Acceleration X-Axis",
       "description": "Acceleration on the X-Axis is g",
       "type": "number",
       "unit": "g",
@@ -33,6 +34,7 @@
       "maximum": 8191
     },
     "accY": {
+      "title": "Acceleration Y-Axis",
       "description": "Acceleration on the Y-Axis is g",
       "type": "number",
       "unit": "g",
@@ -40,6 +42,7 @@
       "maximum": 8191
     },
     "accZ": {
+      "title": "Acceleration Z-Axis",
       "description": "Acceleration on the Z-Axis is g",
       "type": "number",
       "unit": "g",

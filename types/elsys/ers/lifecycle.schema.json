@@ -4,22 +4,6 @@
   "title": "Lifecycle",
   "type": "object",
   "properties": {
-    "irExternalTemperature": {
-      "title": "Infrared External Temperature",
-      "unit": "°C",
-      "description": "irExternalTemperature",
-      "type": "number",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "irInternalTemperature": {
-      "title": "Infrared Internal Temperature",
-      "unit": "°C",
-      "description": "irInternalTemperature",
-      "type": "number",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
     "voltage": {
       "type": "number",
       "minimum": 0,

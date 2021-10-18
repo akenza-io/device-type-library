@@ -5,7 +5,9 @@
   "type": "object",
   "properties": {
     "dwelltime": {
+      "title": "Dwelltime",
       "description": "Dwelltime of people in zone in minutes",
+      "unit": "m",
       "type": "integer",
       "min": 0,
       "max": 65535

@@ -26,9 +26,9 @@ function consume(event) {
         const { gender } = payload.values[i].object;
         if (gender !== undefined) {
           if (gender === "FEMALE") {
-            data.gender = "f";
+            data.gender = "FEMALE";
           } else {
-            data.gender = "m";
+            data.gender = "MALE";
           }
         }
 
