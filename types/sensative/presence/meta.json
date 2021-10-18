@@ -1,0 +1,14 @@
+{
+  "name": "Strips Presence",
+  "version": "1.0.0",
+  "manufacturer": "Sensative",
+  "url": "https://sensative.com/sensors/strips-lorawan-sensors/strips-presence-lorawan/",
+  "description": "Active IR occupancy and magnetic sensor for smart offices and buildings. Strips Presence can also be used for asset monitoring.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Infrared", "Reed"],
+  "outputTopics": ["alarm", "default", "lifecycle", "occupancy"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

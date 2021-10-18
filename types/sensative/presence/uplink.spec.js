@@ -34,7 +34,7 @@ describe("Sensative presence Uplink", () => {
       const data = {
         data: {
           port: 1,
-          payloadHex: "ffff09010a0052010000",
+          payloadHex: "ffff01601100001500",
         },
       };
 
@@ -44,7 +44,7 @@ describe("Sensative presence Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 0);
+        assert.equal(value.data.batteryLevel, 96);
         assert.equal(value.data.historySeqNr, 65535);
         assert.equal(value.data.prevHistSeqNr, 65535);
 
@@ -57,7 +57,7 @@ describe("Sensative presence Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "alarm");
-        assert.equal(value.data.doorAlarm, false);
+        assert.equal(value.data.closeProximityAlarm, false);
 
         validate(value.data, alarmSchema, { throwError: true });
       });
@@ -68,8 +68,7 @@ describe("Sensative presence Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.temperature, 0);
-        assert.equal(value.data.open, true);
+        assert.equal(value.data.doorCount, 0);
 
         validate(value.data, defaultSchema, { throwError: true });
       });
