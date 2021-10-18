@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.4.1] - 2021-10-18
+
+### Changed
+
+- Added titles/units to schemas
+
 # [1.4.0] - 2021-10-13
 
 ### Added

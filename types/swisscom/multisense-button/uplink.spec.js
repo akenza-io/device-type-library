@@ -1,9 +1,9 @@
 const chai = require("chai");
-const validate = require("jsonschema").validate;
+const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const fs = require("fs");
 
-const assert = chai.assert;
+const { assert } = chai;
 
 const script = rewire("./uplink.js");
 let lifecycleSchema = null;
@@ -16,11 +16,11 @@ function expectEmit(callback) {
   });
 }
 
-before(function (done) {
+before((done) => {
   fs.readFile(
-    __dirname + "/lifecycle.schema.json",
+    `${__dirname}/lifecycle.schema.json`,
     "utf8",
-    function (err, fileContents) {
+    (err, fileContents) => {
       if (err) throw err;
       buttonEventSchema = JSON.parse(fileContents);
       done();
@@ -28,11 +28,11 @@ before(function (done) {
   );
 });
 
-before(function (done) {
+before((done) => {
   fs.readFile(
-    __dirname + "/button_event.schema.json",
+    `${__dirname}/button_event.schema.json`,
     "utf8",
-    function (err, fileContents) {
+    (err, fileContents) => {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
@@ -40,9 +40,9 @@ before(function (done) {
   );
 });
 
-describe("Swisscom Multisense Button Uplink", function () {
-  describe("consume()", function () {
-    it("should decode the Swisscom Multisense Button payload", function () {
+describe("Swisscom Multisense Button Uplink", () => {
+  describe("consume()", () => {
+    it("should decode the Swisscom Multisense Button payload", () => {
       const data = {
         data: {
           port: 3,
@@ -50,7 +50,7 @@ describe("Swisscom Multisense Button Uplink", function () {
         },
       };
 
-      expectEmit(function (type, value) {
+      expectEmit((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -58,7 +58,7 @@ describe("Swisscom Multisense Button Uplink", function () {
         if (value.topic === "lifecycle") {
           assert.equal(value.data.payloadVersion, 2);
           assert.equal(value.data.mode, 0);
-          assert.equal(value.data.voltage, 3086);
+          assert.equal(value.data.voltage, 3.086);
           assert.equal(value.data.batteryLevel, 71);
           validate(value.data, lifecycleSchema, { throwError: true });
         }
