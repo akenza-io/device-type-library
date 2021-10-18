@@ -20,9 +20,9 @@
     },
     "voltage": {
       "title": "Battery voltage",
-      "unit": "mV",
-      "description": "Battery voltage in mV.",
-      "type": "integer",
+      "unit": "V",
+      "description": "Battery voltage in V.",
+      "type": "number",
       "minimum": 0,
       "maximum": 65535
     },
