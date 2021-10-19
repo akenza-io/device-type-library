@@ -1,0 +1,22 @@
+{
+  "name": "LPN CM-1 Sensor",
+  "version": "1.0.0",
+  "manufacturer": "Comtac",
+  "url": "https://www.comtac.ch/de/produkte/lora/condition-monitoring/lpn-cm-1-sensor.html",
+  "description": "The LPN CM-1 has a built in temperature and humidity sensor.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V0.0.7",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Humidity",
+    "Temperature",
+    "Button"
+  ],
+  "outputTopics": [
+    "button_pressed",
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
