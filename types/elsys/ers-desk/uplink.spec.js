@@ -1,13 +1,12 @@
 const chai = require("chai");
-const validate = require("jsonschema").validate;
+const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const fs = require("fs");
 
-const assert = chai.assert;
+const { assert } = chai;
 
 const script = rewire("./uplink.js");
 let motionSchema = null;
-let internalTempSchema = null;
 let defaultSchema = null;
 const consume = script.__get__("consume");
 
@@ -17,11 +16,11 @@ function expectEmit(callback) {
   });
 }
 
-before(function (done) {
+before((done) => {
   fs.readFile(
-    __dirname + "/occupancy.schema.json",
+    `${__dirname}/occupancy.schema.json`,
     "utf8",
-    function (err, fileContents) {
+    (err, fileContents) => {
       if (err) throw err;
       motionSchema = JSON.parse(fileContents);
       done();
@@ -29,23 +28,11 @@ before(function (done) {
   );
 });
 
-before(function (done) {
+before((done) => {
   fs.readFile(
-    __dirname + "/lifecycle.schema.json",
+    `${__dirname}/default.schema.json`,
     "utf8",
-    function (err, fileContents) {
-      if (err) throw err;
-      internalTempSchema = JSON.parse(fileContents);
-      done();
-    },
-  );
-});
-
-before(function (done) {
-  fs.readFile(
-    __dirname + "/default.schema.json",
-    "utf8",
-    function (err, fileContents) {
+    (err, fileContents) => {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
@@ -53,16 +40,16 @@ before(function (done) {
   );
 });
 
-describe("Elsys desk uplink", function () {
-  describe("consume()", function () {
-    it("should decode Elsys desk payload", function (done) {
+describe("Elsys desk uplink", () => {
+  describe("consume()", () => {
+    it("should decode Elsys desk payload", (done) => {
       const data = {
         data: {
           payloadHex: "05011000f801041101",
         },
       };
 
-      expectEmit(function (type, value) {
+      expectEmit((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -73,26 +60,20 @@ describe("Elsys desk uplink", function () {
 
           validate(value.data, motionSchema, { throwError: true });
         }
-
-        if (value.topic === "lifecycle") {
-          assert.equal(value.data.irInternalTemperature, 24.8);
-          assert.equal(value.data.irExternalTemperature, 26);
-          validate(value.data, internalTempSchema, { throwError: true });
-        }
       });
 
       consume(data);
       done();
     });
 
-    it("should decode Elsys desk Default + Motion payload", function (done) {
+    it("should decode Elsys desk Default + Motion payload", (done) => {
       // Default + Motion
       const data = {
         data: {
           payloadHex: "0100f102250400060505070e001100",
         },
       };
-      expectEmit(function (type, value) {
+      expectEmit((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -108,7 +89,7 @@ describe("Elsys desk uplink", function () {
           assert.equal(value.data.temperature, 24.1);
           assert.equal(value.data.humidity, 37);
           assert.equal(value.data.light, 6);
-          //assert.equal(value.data.vdd, 3584);
+          // assert.equal(value.data.vdd, 3584);
           validate(value.data, defaultSchema, { throwError: true });
         }
       });

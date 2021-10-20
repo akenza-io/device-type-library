@@ -1,0 +1,68 @@
+{
+  "$id": "https://akenza.io/dss/ranosDB2/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "dBAfast": {
+      "title": "dB A-weighting fast",
+      "unit": "dB(A)",
+      "description": "Measurement with fast response",
+      "type": "number"
+    },
+    "dBAslow": {
+      "title": "dB A-weighting slow",
+      "unit": "dB(A)",
+      "description": "Measurement with slow response",
+      "type": "number"
+    },
+    "dBCfast": {
+      "title": "dB C-weighting fast",
+      "unit": "dB(C)",
+      "description": "Measurement with fast response",
+      "type": "number"
+    },
+    "dBCslow": {
+      "title": "dB C-weighting slow",
+      "unit": "dB(C)",
+      "description": "Measurement with slow response",
+      "type": "number"
+    },
+    "leqA": {
+      "title": "Leq A-weighting",
+      "unit": "dB(A)",
+      "description": "Average over set Leq time. Between the current measurement and current measurement time minus Leq time.",
+      "type": "number"
+    },
+    "leqC": {
+      "title": "Leq C-weighting",
+      "unit": "dB(C)",
+      "description": "Average over set Leq time. Between the current measurement and current measurement time minus Leq time.",
+      "type": "number"
+    },
+    "positivePeakHoldA": {
+      "title": "Positive peak hold A-weighting",
+      "unit": "dB(A)",
+      "description": "The highest dB(A) value in the period between previous measurement and current measurement",
+      "type": "number"
+    },
+    "negativePeakHoldA": {
+      "title": "Negative peak hold A-weighting",
+      "unit": "dB(A)",
+      "description": "The lowest dB(A) value in the period between previous measurement and current measurement",
+      "type": "number"
+    },
+    "positivePeakHoldC": {
+      "title": "Positive peak hold C-weighting",
+      "unit": "dB(C)",
+      "description": "The highest dB(C) value in the period between previous measurement and current measurement",
+      "type": "number"
+    },
+    "negativePeakHoldC": {
+      "title": "Negative peak hold C-weighting",
+      "unit": "dB(C)",
+      "description": "The lowest dB(C) value in the period between previous measurement and current measurement",
+      "type": "number"
+    }
+  }
+}

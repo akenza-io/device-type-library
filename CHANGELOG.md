@@ -4,6 +4,149 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.4.2] - 2021-10-19
+
+### Changed
+
+- Oxon - Buttonboard changed from button ID to individual button outputs.
+
+# [1.4.1] - 2021-10-18
+
+### Changed
+
+- Added titles/units to schemas
+
+# [1.4.0] - 2021-10-13
+
+### Added
+
+- DSS - Ranos DB 2
+
+# [1.3.2] - 2021-10-12
+
+### Changed
+
+- Disruptive Technologies - Fix event type extraction
+
+# [1.3.1] - 2021-10-11
+
+### Changed
+
+- Disruptive Technologies - Changed images
+- Decentlab LP8P - Changed metatext and renamed datakeys
+
+## [1.3.0] - 2021-10-07
+
+### Added
+
+- Plenom - Kuando busylight
+
+## [1.2.0] - 2021-10-07
+
+### Added
+
+- Decentlab - LP8P
+
+# [1.1.6] - 2021-10-07
+
+### Changed
+
+- Distuptive technologies - adapt event payload
+
+# [1.1.5] - 2021-10-06
+
+### Changed
+
+- Adeunis - ftdNetworkTester
+
+### Deleted
+
+- Adeunis - ftdNetworkTesterV2
+
+# [1.1.4] - 2021-10-04
+
+### Changed
+
+- Enginko - MCF-LW12CO2E removed unused schemas and changed meta accordingly
+- Xovis PC2S - Updated uplink so it's working with akenza.io & added tests
+
+## [1.1.3] - 2021-09-30
+
+### Added
+
+- Adeunis - ftdNetworkTesterV2
+
+## [1.1.2] - 2021-09-29
+
+### Changed
+
+- Adeunis - ftdNetworkTester added default schema & uplink test
+
+## [1.1.0] - 2021-09-20
+
+### Added
+
+- Milesight - AM104
+- Milesight - AM107
+- Milesight - EM300-TH
+- Milesight - EM500-CO2
+
+# [1.0.18] - 2021-09-17
+
+### Changed
+
+- Enginko - MCF-LW12CO2E cleaned up the uplink
+
+## [1.0.17] - 2021-09-15
+
+### Changed
+
+- New images for Disruptive Technologies Sensors
+
+## [1.0.16] - 2021-09-15
+
+### Added
+
+- Disruptive Technologies - Humidity Sensor
+- Disruptive Technologies - Proximity Sensor
+- Disruptive Technologies - Temperature Sensor
+- Disruptive Technologies - Touch Sensor
+- Disruptive Technologies - Water Sensor
+
+## [1.0.15] - 2021-08-18
+
+### Added
+
+- Enginko - MCF-LW12CO2E
+
+## [1.0.14] - 2021-08-10
+
+### Added
+
+- Astraled - CO2, VOC luminaire V0.03
+
+### Fixed
+
+- Schemas of all astraled sensors changed so all possible datapoints are shown
+
+## [1.0.13] - 2021-07-20
+
+### Fixed
+
+- Several name and description improvements
+
+## [1.0.12] - 2021-07-20
+
+### Fixed
+
+- Comtac - CM 1 uplink
+
+## [1.0.11] - 2021-07-12
+
+### Added
+
+- Gavazzi - UWPA/UWPM
+
 ## [1.0.10] - 2021-07-06
 
 ### Changed

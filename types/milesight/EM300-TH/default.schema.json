@@ -1,0 +1,24 @@
+{
+  "$id": "https://akenza.io/milesight/EM300-TH/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "humidity": {
+      "title": "Humidity",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %",
+      "minimum": 0,
+      "maximum": 100
+    }
+  }
+}

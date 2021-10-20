@@ -1,9 +1,9 @@
 {
-  "name": "R312A - Wireless Emergency Button",
+  "name": "R312A",
   "version": "1.0.0",
   "manufacturer": "Netvox",
   "url": "http://www.netvox.com.tw/product.asp?pro=R312A",
-  "description": "IoT Button",
+  "description": "The R312A is an emergency button switch device that detects the closing or opening signal of the emergency button switch.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

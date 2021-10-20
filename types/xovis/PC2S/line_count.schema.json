@@ -5,32 +5,38 @@
   "type": "object",
   "properties": {
     "fw": {
+      "title": "Forward",
       "description": "People moving forward",
       "type": "integer",
       "min": 0,
       "max": 65535
     },
     "bw": {
+      "title": "Backward",
       "description": "People moving backwards",
       "type": "integer",
       "min": 0,
       "max": 65535
     },
     "count": {
+      "title": "Count",
       "description": "Count of People forward and backwards",
       "type": "integer",
       "min": 0,
       "max": 65535
     },
     "faceMask": {
+      "title": "Face mask",
       "description": "Checks if people have a facemask. 1 = facemask, 0 = facemask",
       "type": "integer",
       "min": 0,
       "max": 1
     },
     "gender": {
-      "description": "People moving backwards. 'm' for male & 'f' for female",
-      "type": "string"
+      "title": "Gender",
+      "description": "Gender of people passing through.",
+      "type": "string",
+      "enum": ["FEMALE", "MALE"]
     }
   }
 }

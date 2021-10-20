@@ -3,15 +3,13 @@
   "version": "1.0.0",
   "manufacturer": "GlobalSat",
   "url": "https://www.globalsat.com.tw/en/product-225269/PM2-5-and-Temperature-Humidity-Detector-with-LoRaWAN%E2%84%A2-Certified-Module-LS-113G.html",
-  "description": "LS-113G series are designed to measure Particle, Temperature and Humidity",
+  "description": "The LS-113G air quality sensor is an indoor sensor for determining the temperature, humidity and fine dust content of the room air. With calibrated dust (PM2.5) sensor module and compensated Temperature/ Humidity sensor integration, the data is ready for use.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": [
-    "Humidity",
     "Temperature",
-    "CO2",
-    "CO",
+    "Humidity",
     "PM2.5"
   ],
   "outputTopics": [

@@ -1,0 +1,328 @@
+{
+  "$id": "https://akenza.io/astraled/airQualityLuminary_V0_03/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "protocolVersion": {
+      "title": "Protocol Version",
+      "description": "Protocol Version",
+      "type": "string"
+    },
+    "appVersion": {
+      "title": "Application Version",
+      "description": "Application Version",
+      "type": "string"
+    },
+    "loraStackVersion": {
+      "title": "Lora Stack Version",
+      "description": "Lora Stack Version",
+      "type": "string"
+    },
+    "loraVersion": {
+      "title": "LoRa Version",
+      "description": "LoRa Version",
+      "type": "string"
+    },
+    "msgCycleTime1": {
+      "title": "Mesage cycle time 1",
+      "description": "Mesage cycle time 1",
+      "type": "integer"
+    },
+    "msgCycleTime2": {
+      "title": "Mesage cycle time 2",
+      "description": "Mesage cycle time 2",
+      "type": "integer"
+    },
+    "msgCycleTime3": {
+      "title": "Mesage cycle time 3",
+      "description": "Mesage cycle time 3",
+      "type": "integer"
+    },
+    "msgCycleTime4": {
+      "title": "Mesage cycle time 4",
+      "description": "Mesage cycle time 4",
+      "type": "integer"
+    },
+    "msgCycleTime5": {
+      "title": "Mesage cycle time 5",
+      "description": "Mesage cycle time 5",
+      "type": "integer"
+    },
+    "msgCycleTime6": {
+      "title": "Mesage cycle time 6",
+      "description": "Mesage cycle time 6",
+      "type": "integer"
+    },
+    "msgCycleTime7": {
+      "title": "Mesage cycle time 7",
+      "description": "Mesage cycle time 7",
+      "type": "integer"
+    },
+    "msgCycleTime8": {
+      "title": "Mesage cycle time 8",
+      "description": "Mesage cycle time 8",
+      "type": "integer"
+    },
+    "groupAddress": {
+      "title": "Group address",
+      "description": "Group address",
+      "type": "integer"
+    },
+    "serialNumber": {
+      "title": "Serial number",
+      "description": "Serial number",
+      "type": "integer"
+    },
+    "iaqStateInt": {
+      "title": "IAQ state internal",
+      "description": "IAQ state internal",
+      "type": "integer"
+    },
+    "iaqStateExt": {
+      "title": "IAQ state external",
+      "description": "IAQ state external",
+      "type": "integer"
+    },
+    "iaqParticelTypSize": {
+      "title": "IAQ particel typ size",
+      "description": "IAQ particel typ size",
+      "type": "integer"
+    },
+    "iaqThresholdCo2Good": {
+      "title": "IAQ threshold CO2 good",
+      "description": "IAQ threshold CO2 good",
+      "type": "number"
+    },
+    "iaqThresholdVocGood": {
+      "title": "IAQ threshold VOC good",
+      "description": "IAQ threshold VOC good",
+      "type": "number"
+    },
+    "iaqThresholdCo2StillOk": {
+      "title": "IAQ threshold CO2 still ok",
+      "description": "IAQ threshold CO2 still ok",
+      "type": "number"
+    },
+    "iaqThresholdVocStillOk": {
+      "title": "IAQ threshold VOC still ok",
+      "description": "IAQ threshold VOC still ok",
+      "type": "number"
+    },
+    "iaqThresholdCo2Bad": {
+      "title": "IAQ threshold CO2 bad",
+      "description": "IAQ threshold CO2 bad",
+      "type": "number"
+    },
+    "iaqThresholdVocBad": {
+      "title": "IAQ threshold VOC bad",
+      "description": "IAQ threshold VOC bad",
+      "type": "number"
+    },
+    "iaqFilterTime": {
+      "title": "IAQ filter time",
+      "description": "IAQ filter time",
+      "type": "number"
+    },
+    "iaqHysteresisCo2": {
+      "title": "IAQ hysteresis CO2",
+      "description": "IAQ hysteresis CO2",
+      "type": "number"
+    },
+    "iaqHysteresisVoc": {
+      "title": "IAQ hysteresis VOC",
+      "description": "IAQ hysteresis VOC",
+      "type": "number"
+    },
+    "iaqRgbwGoodRed": {
+      "title": "IAQ RGBW good red",
+      "description": "IAQ RGBW good red",
+      "type": "number"
+    },
+    "iaqRgbwGoodGreen": {
+      "title": "IAQ RGBW good green",
+      "description": "IAQ RGBW good green",
+      "type": "number"
+    },
+    "iaqRgbwGoodBlue": {
+      "title": "IAQ RGBW good blue",
+      "description": "IAQ RGBW good blue",
+      "type": "number"
+    },
+    "iaqRgbwStillOkRed": {
+      "title": "IAQ RGBW still ok red",
+      "description": "IAQ RGBW still ok red",
+      "type": "number"
+    },
+    "iaqRgbwStillOkGreen": {
+      "title": "IAQ RGBW still ok green",
+      "description": "IAQ RGBW still ok green",
+      "type": "number"
+    },
+    "iaqRgbwStillOkBlue": {
+      "title": "IAQ RGBW still ok blue",
+      "description": "IAQ RGBW still ok blue",
+      "type": "number"
+    },
+    "iaqRgbwBadRed": {
+      "title": "IAQ RGBW bad red",
+      "description": "IAQ RGBW bad red",
+      "type": "number"
+    },
+    "iaqRgbwBadGreen": {
+      "title": "IAQ RGBW bad green",
+      "description": "IAQ RGBW bad green",
+      "type": "number"
+    },
+    "iaqRgbwBadBlue": {
+      "title": "IAQ RGBW bad blue",
+      "description": "IAQ RGBW bad blue",
+      "type": "number"
+    },
+    "iaqRgbwDeadlyRed": {
+      "title": "IAQ RGBW deadly red",
+      "description": "IAQ RGBW deadly red",
+      "type": "number"
+    },
+    "iaqRgbwDeadlyGreen": {
+      "title": "IAQ RGBW deadly green",
+      "description": "IAQ RGBW deadly green",
+      "type": "number"
+    },
+    "iaqRgbwDeadlyBlue": {
+      "title": "IAQ RGBW deadly blue",
+      "description": "IAQ RGBW deadly blue",
+      "type": "number"
+    },
+    "iaqRgbwWarmupRed": {
+      "title": "IAQ RGBW warmup red",
+      "description": "IAQ RGBW warmup red",
+      "type": "number"
+    },
+    "iaqRgbwWarmupGreen": {
+      "title": "IAQ RGBW warmup green",
+      "description": "IAQ RGBW warmup green",
+      "type": "number"
+    },
+    "iaqRgbwWarmupBlue": {
+      "title": "IAQ RGBW warmup blue",
+      "description": "IAQ RGBW warmup blue",
+      "type": "number"
+    },
+    "iaqRgbwDimming": {
+      "title": "IAQ RGBW dimming",
+      "description": "IAQ RGBW dimming",
+      "type": "number"
+    },
+    "iaqVisualisation": {
+      "title": "IAQ visualisation",
+      "description": "IAQ visualisation",
+      "type": "number"
+    },
+    "lightSetCct": {
+      "title": "Light set cct",
+      "description": "Light set cct",
+      "type": "integer"
+    },
+    "lightSetLux": {
+      "title": "Light set lux",
+      "description": "Light set lux",
+      "type": "integer"
+    },
+    "lightLightLevel": {
+      "title": "Light light level",
+      "description": "Light light level",
+      "type": "integer"
+    },
+    "deviceTemperature": {
+      "title": "Device temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "Internal device device temperature",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "error": {
+      "title": "Error",
+      "description": "Error Message",
+      "type": "integer"
+    },
+    "actPwr": {
+      "title": "Active power",
+      "description": "Active power",
+      "type": "number"
+    },
+    "energy": {
+      "title": "Energy",
+      "description": "Energy",
+      "type": "number"
+    },
+    "sensorAmbientLight": {
+      "title": "Sensor ambient light",
+      "description": "Sensor ambient light",
+      "type": "integer"
+    },
+    "sensorCct": {
+      "title": "Sensor CCT",
+      "description": "Sensor CCT",
+      "type": "integer"
+    },
+    "iaqTempatureCompOff": {
+      "title": "IAQ tempature comp off",
+      "description": "IAQ tempature comp off",
+      "type": "integer"
+    },
+    "iaqTempatureCompOn": {
+      "title": "IAQ tempature comp on",
+      "description": "IAQ tempature comp on",
+      "type": "integer"
+    },
+
+    "nbOfGroups": {
+      "title": "Number of groups",
+      "description": "Number of groups",
+      "type": "integer"
+    },
+    "paramAddr": {
+      "title": "Parameter address",
+      "description": "Parameter address",
+      "type": "integer"
+    },
+    "paramDat": {
+      "title": "Parameter data",
+      "description": "Parameter data",
+      "type": "integer"
+    },
+    "iaqRgbRed": {
+      "title": "IAQ RGBW red",
+      "description": "IAQ RGBW red",
+      "type": "number"
+    },
+    "iaqRgbGreen": {
+      "title": "IAQ RGBW green",
+      "description": "IAQ RGBW green",
+      "type": "number"
+    },
+    "iaqRgbBlue": {
+      "title": "IAQ RGBW blue",
+      "description": "IAQ RGBW blue",
+      "type": "number"
+    },
+
+    "rawPwr": {
+      "title": "Raw power",
+      "description": "IAQ RGBW red",
+      "type": "number"
+    },
+    "rawEnergy": {
+      "title": "Raw energy",
+      "description": "Raw energy",
+      "type": "number"
+    },
+    "unkown": {
+      "title": "Unkown",
+      "description": "Unkown",
+      "type": "number"
+    }
+  }
+}

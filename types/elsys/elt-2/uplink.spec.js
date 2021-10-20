@@ -1,9 +1,9 @@
 const chai = require("chai");
-const validate = require("jsonschema").validate;
+const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const fs = require("fs");
 
-const assert = chai.assert;
+const { assert } = chai;
 
 const script = rewire("./uplink.js");
 let defaultSchema = null;
@@ -16,11 +16,11 @@ function expectEmit(callback) {
   });
 }
 
-before(function (done) {
+before((done) => {
   fs.readFile(
-    __dirname + "/default.schema.json",
+    `${__dirname}/default.schema.json`,
     "utf8",
-    function (err, fileContents) {
+    (err, fileContents) => {
       if (err) throw err;
       defaultSchema = JSON.parse(fileContents);
       done();
@@ -28,11 +28,11 @@ before(function (done) {
   );
 });
 
-before(function (done) {
+before((done) => {
   fs.readFile(
-    __dirname + "/lifecycle.schema.json",
+    `${__dirname}/lifecycle.schema.json`,
     "utf8",
-    function (err, fileContents) {
+    (err, fileContents) => {
       if (err) throw err;
       lifecycleSchema = JSON.parse(fileContents);
       done();
@@ -40,25 +40,26 @@ before(function (done) {
   );
 });
 
-describe("Elsys ELT-2 uplink", function () {
-  describe("consume()", function () {
-    it("should decode Elsys ELT-2 payload", function () {
+describe("Elsys ELT-2 uplink", () => {
+  describe("consume()", () => {
+    it("should decode Elsys ELT-2 payload", () => {
       const data = {
         data: {
           payloadHex: "0100e20218070e410cff5614000edd20",
         },
       };
 
-      expectEmit(function (type, value) {
+      expectEmit((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic == "lifecycle") {
+        if (value.topic === "lifecycle") {
           assert.equal(value.data.voltage, 3.649);
+          validate(value.data, lifecycleSchema, { throwError: true });
         }
 
-        if (value.topic == "default") {
+        if (value.topic === "default") {
           assert.equal(value.data.temperature, 22.6);
           assert.equal(value.data.humidity, 24);
           assert.equal(value.data.pressure, 974.112);

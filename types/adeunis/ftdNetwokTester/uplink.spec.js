@@ -1,56 +1,65 @@
 const chai = require("chai");
 const { validate } = require("jsonschema");
 const rewire = require("rewire");
-const fs = require("fs");
+const utils = require("test-utils");
 
 const { assert } = chai;
 
-const script = rewire("./uplink.js");
-let schema = null;
-const consume = script.__get__("consume");
-
-describe("Adeunis FTD-2 Uplink", () => {
-  function expectEmit(callback) {
-    script.__set__({
-      emit: callback,
-    });
-  }
+describe("FTD Network tester", () => {
+  let defaultSchema = null;
+  let consume = null;
   before((done) => {
-    fs.readFile(
-      `${__dirname}/default.schema.json`,
-      "utf8",
-      (err, fileContents) => {
-        if (err) throw err;
-        schema = JSON.parse(fileContents);
+    const script = rewire("./uplink.js");
+    consume = utils.init(script);
+    utils
+      .loadSchema(`${__dirname}/default.schema.json`)
+      .then((parsedSchema) => {
+        defaultSchema = parsedSchema;
         done();
-      },
-    );
+      });
   });
+
+  let gpsSchema = null;
+  before((done) => {
+    utils.loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
+      gpsSchema = parsedSchema;
+      done();
+    });
+  });
+
   describe("consume()", () => {
-    it("should decode Adeunis payload", () => {
+    it("should decode the FTD Network payload", () => {
       const data = {
         data: {
-          payloadHex: "416c61726d",
+          port: 3,
+          payloadHex: "be1a47248480008320601512100da1",
         },
       };
 
-      expectEmit((type, value) => {
+      utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
-        assert.equal(value.topic, "uplink");
-        // TODO get a real payload
-        // assert.equal(value.data.altitude, 0);
-        // assert.equal(value.data.rssi, -57);
-        // assert.equal(value.data.uplink, 29);
-        // assert.equal(value.data.downlink, 29);
-        // assert.equal(value.data.snr, 7);
-        // assert.equal(value.data.latitude, 47.41165);
-        // assert.equal(value.data.temperature, 24);
-        // assert.equal(value.data.sats, 7);
-        // assert.equal(value.data.battery, 3009);
-        // assert.equal(value.data.longitude, 8.5335);
-        validate(value.data, schema, { throwError: true });
+
+        assert.equal(value.topic, "gps");
+        assert.equal(value.data.latitude, 47.41413333333333);
+        assert.equal(value.data.longitude, 8.534333333333333);
+        assert.equal(value.data.satellites, 5);
+
+        validate(value.data, gpsSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.temperature, 26);
+        assert.equal(value.data.trigger, "PUSHBUTTON");
+        assert.equal(value.data.uplink, 18);
+        assert.equal(value.data.downlink, 16);
+        assert.equal(value.data.voltage, 3.489);
       });
 
       consume(data);

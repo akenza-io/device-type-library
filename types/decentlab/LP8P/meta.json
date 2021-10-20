@@ -1,0 +1,20 @@
+{
+  "name": "DL-LP8P",
+  "version": "1.0.0",
+  "manufacturer": "Decentlab",
+  "url": "https://www.decentlab.com/products/co2-temperature-humidity-and-barometric-pressure-sensor-for-lorawan",
+  "description": "Decentlab’s outdoor-ready air quality monitor continuously measures carbon dioxide (CO2) concentration, temperature, humidity and barometric pressure.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "CO2",
+    "Temperature",
+    "IR",
+    "Humidity",
+    "Barometric Pressure"
+  ],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

@@ -27,13 +27,6 @@
       "description": "The light in lux.",
       "minimum": 0,
       "maximum": 65535
-    },
-    "motion": {
-      "title": "Motion",
-      "description": "The number of motion counts.",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 255
     }
   }
 }

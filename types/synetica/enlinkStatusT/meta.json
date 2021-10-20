@@ -1,9 +1,9 @@
 {
-  "name": "Enlink T",
+  "name": "enLink Status-T",
   "version": "1.0.0",
   "manufacturer": "Synetica",
   "url": "https://synetica.net/enlink-status-t/",
-  "description": "enLink Status-T accurately measures temperature with up to three precision temperature probes with a range of -55°C to +125°C.",
+  "description": "enLink Status-T accurately measures temperature with up to three precision temperature probes with a range of -55°C to +125°C. Temperature measurement via flexible, long lead probes allows precise temperature monitoring in a wide variety of applications including HVAC ducts and pipes, food storage, soil, remote asset and legionella monitoring.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

@@ -1,16 +1,15 @@
 {
-  "name": "Sound Level Sensor, TBSL100, Tabs",
+  "name": "Tabs Sound Level Sensor, TBSL100",
   "version": "1.0.0",
   "manufacturer": "Browan",
   "url": "https://www.browan.com/product/sound-level-sensor/detail",
-  "description": "Sound Level Sensor to measure sound levels in decibels",
+  "description": "The Tabs sound level sensor for easy measurement of sound level in decibels (dBA) in a variety of building environments.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": [
     "Temperature",
-    "Noise",
-    "Reed"
+    "Noise"
   ],
   "outputTopics": [
     "default",

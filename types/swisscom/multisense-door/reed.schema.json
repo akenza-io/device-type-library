@@ -5,6 +5,7 @@
   "type": "object",
   "properties": {
     "reedCounter": {
+      "title": "Reed counter",
       "description": "Magnet count. Sum of all Events",
       "type": "integer",
       "minimum": 0,

@@ -4,21 +4,73 @@
   "title": "Default",
   "type": "object",
   "properties": {
-    "buttonId": {
-      "title": "Button ID",
-      "type": "integer",
-      "description": "The ID of the pressed buttons",
-      "minimum": 0,
-      "maximum": 65535
+    "longPressed": {
+      "title": "Long pressed",
+      "type": "boolean",
+      "description": "Indicates on true if a Button got long pressed"
     },
-    "enabledButtonsIds": {
-      "title": "Enabled buttons",
-      "type": "integer",
-      "description": "The ID of the enabled buttons",
-      "minimum": 0,
-      "maximum": 65535
+    "button1": {
+      "title": "Button 1",
+      "type": "boolean",
+      "description": "Button 1 was pressed if true"
+    },
+    "button2": {
+      "title": "Button 2",
+      "type": "boolean",
+      "description": "Button 2 was pressed if true"
+    },
+    "button3": {
+      "title": "Button 3",
+      "type": "boolean",
+      "description": "Button 3 was pressed if true"
+    },
+    "button4": {
+      "title": "Button 4",
+      "type": "boolean",
+      "description": "Button 4 was pressed if true"
+    },
+    "button5": {
+      "title": "Button 5",
+      "type": "boolean",
+      "description": "Button 5 was pressed if true"
+    },
+    "button6": {
+      "title": "Button 6",
+      "type": "boolean",
+      "description": "Button 6 was pressed if true"
+    },
+    "button1Enabled": {
+      "title": "Button 1 Enabled",
+      "type": "boolean",
+      "description": "Button 1 enabled if true"
+    },
+    "button2Enabled": {
+      "title": "Button 2 Enabled",
+      "type": "boolean",
+      "description": "Button 2 enabled if true"
+    },
+    "button3Enabled": {
+      "title": "Button 3 Enabled",
+      "type": "boolean",
+      "description": "Button 3 enabled if true"
+    },
+    "button4Enabled": {
+      "title": "Button 4 Enabled",
+      "type": "boolean",
+      "description": "Button 4 enabled if true"
+    },
+    "button5Enabled": {
+      "title": "Button 5 Enabled",
+      "type": "boolean",
+      "description": "Button 5 enabled if true"
+    },
+    "button6Enabled": {
+      "title": "Button 6 Enabled",
+      "type": "boolean",
+      "description": "Button 6 enabled if true"
     },
     "temperature": {
+      "title": "Temperature",
       "type": "number",
       "description": "The temperature in °C.",
       "unit": "°C",
@@ -26,6 +78,7 @@
       "maximum": 3276.5
     },
     "accX": {
+      "title": "Acceleration X-Axis",
       "description": "Acceleration on the X-Axis is g",
       "type": "number",
       "unit": "g",
@@ -33,6 +86,7 @@
       "maximum": 8191
     },
     "accY": {
+      "title": "Acceleration Y-Axis",
       "description": "Acceleration on the Y-Axis is g",
       "type": "number",
       "unit": "g",
@@ -40,6 +94,7 @@
       "maximum": 8191
     },
     "accZ": {
+      "title": "Acceleration Z-Axis",
       "description": "Acceleration on the Z-Axis is g",
       "type": "number",
       "unit": "g",

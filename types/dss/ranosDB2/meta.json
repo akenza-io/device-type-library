@@ -1,0 +1,14 @@
+{
+  "name": "Ranos dB 2",
+  "version": "1.0.0",
+  "manufacturer": "DSS",
+  "url": "https://www.iotsoundsensor.com/product/ranos-db-2/",
+  "description": "Sound sensor powered by a solar panel. Measures dynamic range of 33 - 121dB and a DSP sample rate of 48 kHz.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V3.0.2",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Sound", "GPS"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

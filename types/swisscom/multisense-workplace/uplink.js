@@ -17,8 +17,9 @@ function consume(event) {
   data.payloadVersion = Bits.bitsToUnsigned(bits.substr(0, 8));
   data.mode = Bits.bitsToUnsigned(bits.substr(8, 8));
   const status = Number(Bits.bitsToUnsigned(bits.substr(16, 8)));
-  data.voltage = Bits.bitsToUnsigned(bits.substr(24, 8)) * 6 + 2000; // 2000 = 0
-  data.batteryLevel = Math.round((data.voltage - 2000) / 15.24);
+  const voltage = Bits.bitsToUnsigned(bits.substr(24, 8)) * 6 + 2000;
+  data.voltage = voltage / 1000;
+  data.batteryLevel = Math.round((voltage - 2000) / 15.24);
 
   if (port == 3) {
     let pointer = 32;

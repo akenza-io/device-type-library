@@ -29,6 +29,7 @@
       "maximum": 3276.5
     },
     "accX": {
+      "title": "Acceleration X-Axis",
       "description": "Acceleration on the X-Axis in gravitational acceleration",
       "unit": "g",
       "type": "number",
@@ -36,6 +37,7 @@
       "maximum": 32767
     },
     "accY": {
+      "title": "Acceleration Y-Axis",
       "description": "Acceleration on the Y-Axis in gravitational acceleration",
       "unit": "g",
       "type": "number",
@@ -43,6 +45,7 @@
       "maximum": 32767
     },
     "accZ": {
+      "title": "Acceleration Z-Axis",
       "description": "Acceleration on the Z-Axis in gravitational acceleration",
       "unit": "g",
       "type": "number",
@@ -50,6 +53,7 @@
       "maximum": 32767
     },
     "gyroX": {
+      "title": "X-Gyro velocity",
       "description": "Angular rotational velocity on the X-Gyro in dps",
       "unit": "dps",
       "type": "number",
@@ -57,6 +61,7 @@
       "maximum": 32767
     },
     "gyroY": {
+      "title": "Y-Gyro velocity",
       "description": "Angular rotational velocity on the Y-Gyro in dps",
       "unit": "dps",
       "type": "number",
@@ -64,6 +69,7 @@
       "maximum": 32767
     },
     "gyroZ": {
+      "title": "Z-Gyro velocity",
       "description": "Angular rotational velocity on the Z-Gyro in dps",
       "unit": "dps",
       "type": "number",
@@ -71,6 +77,7 @@
       "maximum": 32767
     },
     "magnX": {
+      "title": "X-Magnetometer velocity",
       "description": "Magnetometer velocity on the X-Magnetometer in gauss",
       "unit": "gauss",
       "type": "number",
@@ -78,6 +85,7 @@
       "maximum": 32767
     },
     "magnY": {
+      "title": "Y-Magnetometer velocity",
       "description": "Magnetometer velocity on the Y-Magnetometer in gauss",
       "unit": "gauss",
       "type": "number",
@@ -85,6 +93,7 @@
       "maximum": 32767
     },
     "magnZ": {
+      "title": "Z-Magnetometer velocity",
       "description": "Magnetometer velocity on the Z-Magnetometer in gauss",
       "unit": "gauss",
       "type": "number",
@@ -92,16 +101,19 @@
       "maximum": 32767
     },
     "latitude": {
+      "title": "Latitude",
       "description": "Latitude",
       "unit": "°",
       "type": "number"
     },
     "longitude": {
+      "title": "Longitude",
       "description": "Longitude",
       "unit": "°",
       "type": "number"
     },
     "altitude": {
+      "title": "Altitude",
       "description": "Estimated position error in meters",
       "unit": "m",
       "type": "number"

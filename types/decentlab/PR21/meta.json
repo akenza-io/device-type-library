@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/ultrasonic-distance-/-level-sensor-for-lorawan",
-  "description": "Decentlab pressure / liquid level and temperature sensor.",
+  "description": "Enables remote monitoring of pressure in pipelines or tanks. It measures the pressure at the G 1/4” pipe connection relative to the pressure at the cable entry",
   "author": "Akenza AG",
   "firmwareVersion": "V2.0.0",
   "loraDeviceClass": "A",

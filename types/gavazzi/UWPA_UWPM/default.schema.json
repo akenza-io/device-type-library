@@ -1,0 +1,32 @@
+{
+  "$id": "https://akenza.io/gavazzi/UWPA_UWPM/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "totalKWh": {
+      "title": "Kilowatt hours total",
+      "unit": "kWh",
+      "type": "number",
+      "description": "Kilowatt hours total"
+    },
+    "l2V": {
+      "title": "Phase 2 volt",
+      "unit": "V",
+      "type": "number",
+      "description": "Phase 2 volt"
+    },
+    "l2A": {
+      "title": "Phase 2 ampere",
+      "unit": "A",
+      "type": "number",
+      "description": "Phase 2 ampere"
+    },
+    "l2KW": {
+      "title": "Phase 2 kilowatt",
+      "unit": "kW",
+      "type": "number",
+      "description": "Phase 2 kilowatt"
+    }
+  }
+}

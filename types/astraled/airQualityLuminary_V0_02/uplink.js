@@ -103,6 +103,8 @@ function consume(event) {
           case 8:
             lifecycle.msgCycleTime8 = getWord(buff, rdPos + 1);
             break;
+          default:
+            break;
         }
         break;
       case 7:
