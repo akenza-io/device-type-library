@@ -1,0 +1,56 @@
+{
+  "$id": "https://akenza.io/pipiot/levelSense/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "motionFlag": {
+      "title": "Motion event",
+      "type": "boolean",
+      "desciption": "Occurs if the device is woken due to a change in acceleration."
+    },
+    "dayTimerFlag": {
+      "title": "Inactivity event",
+      "type": "boolean",
+      "desciption": "Occurs if the device is woken due to the 24 hour since last transmit timer."
+    },
+    "overTempFlag": {
+      "title": "Over temperature event",
+      "type": "boolean",
+      "desciption": "Occurs if the device detected a temperature above the safe operating temperature."
+    },
+    "tiltedFlag": {
+      "title": "Tilted event",
+      "type": "boolean",
+      "desciption": "Occurs if the device detects that it is operating outside of its allowed tilt angle range."
+    },
+    "magSwitchFlag": {
+      "title": "Magnet switch event",
+      "type": "boolean",
+      "desciption": "Occurs if the device was woken by the magnetic switch."
+    },
+    "ultrasoundHWErrorFlag": {
+      "title": "Ultrasound Hardware Error",
+      "type": "boolean",
+      "desciption": "A problem was detected with the ultrasonic hardware. Device service required."
+    },
+    "laserHWErrorFlag": {
+      "title": "Laser Hardware Error",
+      "type": "boolean",
+      "desciption": "A problem was detected with the laser hardware. Device service required."
+    },
+    "accelerometerHWErrorFlag": {
+      "title": "Accelerometer Hardware Error",
+      "type": "boolean",
+      "desciption": "A problem was detected with the accelerometer. Device service required."
+    },
+    "batteryVoltage": {
+      "title": "Battery voltage",
+      "unit": "V",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "desciption": "The battery voltage in Volt."
+    }
+  }
+}

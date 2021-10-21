@@ -29,7 +29,7 @@ function temperature(bits) {
 
 function tiltAngle(bits, overTempFlag) {
   let ta = Bits.bitsToUnsigned(bits);
-  if (ta > 180 || overTempFlag) {
+  if (ta <= 180 || overTempFlag) {
     ta = "ERROR";
   }
   return ta;
@@ -116,12 +116,12 @@ function consume(event) {
   const data = {};
   const lifecycle = {};
 
-  // CD 1 bit
+  const cd = Bits.bitsToUnsigned(bits.substr(0, 1));
   const subType = Bits.bitsToUnsigned(bits.substr(1, 3));
   // Reserved 4 bits
 
   // Standart Meassurement
-  if (subType === 0) {
+  if (subType === 0 && cd === 0) {
     const fl = flags(bits.substr(8, 8));
     lifecycle.motionFlag = fl.motionFlag;
     lifecycle.dayTimerFlag = fl.dayTimerFlag;
@@ -148,7 +148,7 @@ function consume(event) {
     lifecycle.batteryVoltage = batteryVoltage(bits.substr(64, 8));
 
     // GPS Fix
-  } else if (subType === 1) {
+  } else if (subType === 1 && cd === 0) {
     data.gnssFixTime = gnssFixTime(bits.substr(8, 8));
     if (data.gnssFixTime !== "TIMEOUT" || data.gnssFixTime !== "FAULT") {
       data.gnssLatitude = gnssLatitude(bits.substr(16, 32));
@@ -156,18 +156,40 @@ function consume(event) {
       data.gnssAltitude = gnssAltitude(bits.substr(80, 8));
       data.gnssHDOP = gnssHDOP(bits.substr(88, 8));
     }
-    topic = "gps";
+    topic = "gnss";
     // RSSI Test
-  } else if (subType === 2) {
-    data.gnssFixTime = gnssFixTime(bits.substr(8, 8));
-    if (data.gnssFixTime !== "TIMEOUT" || data.gnssFixTime !== "FAULT") {
-      data.gnssLatitude = gnssLatitude(bits.substr(16, 32));
-      data.gnssLongitude = gnssLongitude(bits.substr(48, 32));
-      data.gnssAltitude = gnssAltitude(bits.substr(80, 8));
-      data.gnssHDOP = gnssHDOP(bits.substr(88, 8));
-    }
-    topic = "gps";
+  } else if (subType === 2 && cd === 0) {
+    data.testFrames = bits.substr(8, 8);
+    topic = "rssi_test";
+  } else if (subType === 3 && cd === 0) {
+    const fl = flags(bits.substr(8, 8));
+    lifecycle.motionFlag = fl.motionFlag;
+    lifecycle.dayTimerFlag = fl.dayTimerFlag;
+    lifecycle.overTempFlag = fl.overTempFlag;
+    lifecycle.tiltedFlag = fl.tiltedFlag;
+    lifecycle.magSwitchFlag = fl.magSwitchFlag;
+    lifecycle.ultrasoundHWErrorFlag = fl.ultrasoundHWErrorFlag;
+    lifecycle.laserHWErrorFlag = fl.laserHWErrorFlag;
+    lifecycle.accelerometerHWErrorFlag = fl.accelerometerHWErrorFlag;
+
+    // Ultrasound Variance 8
+    data.ultrasonicDistanceExt = ultrasonicDistanceExt(
+      bits.substr(24, 16),
+      lifecycle.ultrasoundHWErrorFlag,
+    );
+    data.laserDistanceExt = laserDistanceExt(
+      bits.substr(40, 8),
+      lifecycle.laserHWErrorFlag,
+    );
+    data.laserReflectance = laserReflectance(bits.substr(48, 16));
+    data.temperature = temperature(bits.substr(64, 8));
+    data.tiltAngle = tiltAngle(bits.substr(72, 8), lifecycle.overTempFlag);
+    lifecycle.batteryVoltage = batteryVoltage(bits.substr(80, 8));
+    // Ultrasonic Transmission 8
+    topic = "ext";
   }
 
-  emit("sample", { data, topic });
+  if (cd === 0) {
+    emit("sample", { data, topic });
+  }
 }

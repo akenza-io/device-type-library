@@ -1,0 +1,41 @@
+{
+  "$id": "https://akenza.io/pipiot/ext/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "ultrasonicDistanceExt": {
+      "title": "Ultrasonic distance ext",
+      "type": "number",
+      "desciption": "Ultrasonic distance measured between the sensor and the surface.",
+      "unit": "mm"
+    },
+    "laserDistanceExt": {
+      "title": "Laser distance ext",
+      "type": "number",
+      "desciption": "Laser distance measured between the sensor and the surface.",
+      "unit": "mm"
+    },
+    "laserReflectance": {
+      "title": "Laser reflectance",
+      "type": "number",
+      "desciption": "Laser reflectance"
+    },
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "Temperature in °C",
+      "minimum": -40,
+      "maximum": 125
+    },
+    "tiltAngle": {
+      "title": "Tilt angle",
+      "unit": "°",
+      "type": "number",
+      "description": "Tilt angle",
+      "minimum": 0,
+      "maximum": 180
+    }
+  }
+}

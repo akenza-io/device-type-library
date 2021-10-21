@@ -1,0 +1,13 @@
+{
+  "$id": "https://akenza.io/pipiot/levelSense/rssi_test.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "testFrames": {
+      "title": "Test frames",
+      "type": "string",
+      "description": "Test frames in binary"
+    }
+  }
+}
