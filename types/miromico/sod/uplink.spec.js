@@ -1,51 +1,63 @@
 const chai = require("chai");
-const validate = require("jsonschema").validate;
+const { validate } = require("jsonschema");
 const rewire = require("rewire");
-const fs = require("fs");
+const utils = require("test-utils");
 
-const assert = chai.assert;
+const { assert } = chai;
 
-const script = rewire("./uplink.js");
-let schema = null;
-const consume = script.__get__("consume");
-
-function expectEmit(callback) {
-  script.__set__({
-    emit: callback,
+describe("Miromico SOD Uplink", () => {
+  let defaultSchema = null;
+  let consume = null;
+  before((done) => {
+    const script = rewire("./uplink.js");
+    consume = utils.init(script);
+    utils
+      .loadSchema(`${__dirname}/default.schema.json`)
+      .then((parsedSchema) => {
+        defaultSchema = parsedSchema;
+        done();
+      });
   });
-}
 
-before(function (done) {
-  fs.readFile(
-    __dirname + "/default.schema.json",
-    "utf8",
-    function (err, fileContents) {
-      if (err) throw err;
-      schema = JSON.parse(fileContents);
-      done();
-    },
-  );
-});
+  let buttonPressedSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/button_pressed.schema.json`)
+      .then((parsedSchema) => {
+        buttonPressedSchema = parsedSchema;
+        done();
+      });
+  });
 
-describe("Miromico SOD Uplink", function () {
-  describe("consume()", function () {
-    it("should decode the Miromico SOD payload", function (done) {
+  describe("consume()", () => {
+    it("should decode the Miromico SOD payload", () => {
       const data = {
         data: {
           payloadHex: "f3000000013c",
         },
       };
 
-      expectEmit(function (type, value) {
+      utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
-
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
+
         assert.equal(value.topic, "button_pressed");
+        assert.equal(value.data.buttonPressed, true);
 
-        validate(value.data, schema, { throwError: true });
+        validate(value.data, buttonPressedSchema, { throwError: true });
+      });
 
-        done();
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.msgtype, 0);
+        assert.equal(value.data.count, 316);
+
+        validate(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

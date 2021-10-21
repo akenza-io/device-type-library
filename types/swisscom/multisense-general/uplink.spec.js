@@ -1,35 +1,26 @@
 const chai = require("chai");
 const { validate } = require("jsonschema");
 const rewire = require("rewire");
-const fs = require("fs");
+const utils = require("test-utils");
 
 const { assert } = chai;
 
-const script = rewire("./uplink.js");
-const lifecycle = null;
-const consume = script.__get__("consume");
-
-function expectEmit(callback) {
-  script.__set__({
-    emit: callback,
+describe("Swisscom Multisense timed event Uplink", () => {
+  let timedEventSchema = null;
+  let consume = null;
+  before((done) => {
+    const script = rewire("./uplink.js");
+    consume = utils.init(script);
+    utils
+      .loadSchema(`${__dirname}/timed_event.schema.json`)
+      .then((parsedSchema) => {
+        timedEventSchema = parsedSchema;
+        done();
+      });
   });
-}
 
-before((done) => {
-  fs.readFile(
-    `${__dirname}/lifecycle.schema.json`,
-    "utf8",
-    (err, fileContents) => {
-      if (err) throw err;
-      lifecycleSchema = JSON.parse(fileContents);
-      done();
-    },
-  );
-});
-
-describe("Swisscom Multisense Uplink", () => {
   describe("consume()", () => {
-    it("should decode the Swisscom Multisense payload", (done) => {
+    it("should decode the Swisscom Multisense timed event payload", () => {
       const data = {
         data: {
           port: 3,
@@ -37,28 +28,25 @@ describe("Swisscom Multisense Uplink", () => {
         },
       };
 
-      expectEmit((type, value) => {
+      utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic === "timed_event") {
-          assert.equal(value.data.payloadVersion, 1);
-          assert.equal(value.data.mode, 0);
-          assert.equal(value.data.voltage, 2.978);
-          assert.equal(value.data.batteryLevel, 64);
-          assert.equal(value.data.temperature, 23.73);
-          assert.equal(value.data.humidity, 55);
-          assert.equal(value.data.reedCounter, 23);
-          assert.equal(value.data.motionCounter, 4738);
-          assert.equal(value.data.accX, 1016);
-          assert.equal(value.data.accY, 124);
-          assert.equal(value.data.accZ, -4);
+        assert.equal(value.topic, "timed_event");
+        assert.equal(value.data.payloadVersion, 1);
+        assert.equal(value.data.mode, 0);
+        assert.equal(value.data.voltage, 2.978);
+        assert.equal(value.data.batteryLevel, 64);
+        assert.equal(value.data.temperature, 23.73);
+        assert.equal(value.data.humidity, 55);
+        assert.equal(value.data.reedCounter, 23);
+        assert.equal(value.data.motionCounter, 4738);
+        assert.equal(value.data.accX, 1016);
+        assert.equal(value.data.accY, 124);
+        assert.equal(value.data.accZ, -4);
 
-          validate(value.data, lifecycleSchema, { throwError: true });
-        }
-
-        done();
+        validate(value.data, timedEventSchema, { throwError: true });
       });
 
       consume(data);

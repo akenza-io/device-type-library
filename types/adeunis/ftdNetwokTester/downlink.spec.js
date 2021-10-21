@@ -1,40 +1,38 @@
 const chai = require("chai");
 const rewire = require("rewire");
+const utils = require("test-utils");
 
 const { assert } = chai;
 
-const script = rewire("./downlink.js");
-const consume = script.__get__("consume");
-
-function expectEmit(callback) {
-  script.__set__({
-    emit: callback,
-  });
-}
-
 describe("Adeunis FTD-2 Downlink", () => {
+  let consume = null;
+  before((done) => {
+    const script = rewire("./downlink.js");
+    consume = utils.init(script);
+    done();
+  });
+
   describe("consume()", () => {
-    it("should encode Adeunis payload", (done) => {
+    it("should encode Adeunis payload", () => {
       const data = {
         payload: {
           message: "Hello",
         },
       };
 
-      expectEmit((type, value) => {
+      utils.expectEmits((type, value) => {
         assert.equal(type, "downlink");
         assert.isNotNull(value);
-        assert.typeOf(value, "object");
+
         assert.equal(value.port, 1);
         assert.equal(value.confirmed, false);
         assert.equal(value.payloadHex, "48656c6c6f");
-        done();
       });
 
       consume(data);
     });
 
-    it("should encode Adeunis payload with specific port and confirmed", (done) => {
+    it("should encode Adeunis payload with specific port and confirmed", () => {
       const data = {
         payload: {
           message: "Test",
@@ -43,16 +41,14 @@ describe("Adeunis FTD-2 Downlink", () => {
         port: 123,
       };
 
-      expectEmit((type, value) => {
+      utils.expectEmits((type, value) => {
         assert.equal(type, "downlink");
         assert.isNotNull(value);
-        assert.typeOf(value, "object");
+
         assert.equal(value.port, 123);
         assert.equal(value.confirmed, true);
         assert.equal(value.payloadHex, "54657374");
-        done();
       });
-
       consume(data);
     });
   });
