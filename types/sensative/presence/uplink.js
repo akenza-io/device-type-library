@@ -96,10 +96,10 @@ function decodeFrame(bytes, type, target, pos) {
       break;
     case 22: // DisinfectAlarm
       target.disinfectAlarm = bytes[pos++];
-      if (target.disinfectAlarm == 0) target.disinfectAlarm = "dirty";
-      if (target.disinfectAlarm == 1) target.disinfectAlarm = "occupied";
-      if (target.disinfectAlarm == 2) target.disinfectAlarm = "cleaning";
-      if (target.disinfectAlarm == 3) target.disinfectAlarm = "clean";
+      if (target.disinfectAlarm === 0) target.disinfectAlarm = "DIRTY";
+      if (target.disinfectAlarm === 1) target.disinfectAlarm = "OCCUPIED";
+      if (target.disinfectAlarm === 2) target.disinfectAlarm = "CLEANING";
+      if (target.disinfectAlarm === 3) target.disinfectAlarm = "CLEAN";
       break;
     case 80:
       target.humidity = bytes[pos++] / 2;
@@ -166,7 +166,7 @@ function consume(event) {
   switch (port) {
     case 1:
       if (bytes.length < 2) {
-        decoded.error = "Wrong length of RX package";
+        emit("log", { error: "Wrong length of RX package" });
         break;
       }
       decoded.historySeqNr = (bytes[pos++] << 8) | bytes[pos++];
@@ -233,7 +233,6 @@ function consume(event) {
 
   const lifecycle = {};
   lifecycle.batteryLevel = decoded.batteryLevel;
-  lifecycle.error = decoded.error;
   lifecycle.historySeqNr = decoded.historySeqNr;
   lifecycle.prevHistSeqNr = decoded.prevHistSeqNr;
 
@@ -249,8 +248,8 @@ function consume(event) {
     emit("sample", { data: def, topic: "default" });
   }
 
-  if (decoded.presence != undefined) {
-    if (decoded.presence == true) {
+  if (decoded.presence !== undefined) {
+    if (decoded.presence === true) {
       emit("sample", { data: { occupancy: 1 }, topic: "occupancy" });
     } else {
       emit("sample", { data: { occupancy: 0 }, topic: "occupancy" });
