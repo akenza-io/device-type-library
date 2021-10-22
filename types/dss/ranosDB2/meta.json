@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "DSS",
   "url": "https://www.iotsoundsensor.com/product/ranos-db-2/",
-  "description": "Sound sensor powered by a solar panel. Measures dynamic range of 33 - 121dB and a DSP sample rate of 48 kHz.",
+  "description": "Sound sensor powered by a solar panel. Measures dynamic range of 33 - 121dB and a DSP sample rate of 48 kHz. The use of GPS can be set in the DSS Connect App for geolocation and synchronizing the internal clock.",
   "author": "Akenza AG",
   "firmwareVersion": "V3.0.2",
   "loraDeviceClass": "A",

@@ -1,59 +1,36 @@
 const chai = require("chai");
-const validate = require("jsonschema").validate;
+const { validate } = require("jsonschema");
 const rewire = require("rewire");
-const axios = require("axios");
-const fs = require("fs");
-const Ajv = require("ajv");
+const utils = require("test-utils");
 
-const assert = chai.assert;
+const { assert } = chai;
 
-const script = rewire("./uplink.js");
-let defaultSchema = null;
-let lifecycleSchema = null;
-const consume = script.__get__("consume");
-
-function expectEmit(callback) {
-  script.__set__({
-    emit: callback,
+describe("Decentlab ATM41 Uplink", () => {
+  let defaultSchema = null;
+  let consume = null;
+  before((done) => {
+    const script = rewire("./uplink.js");
+    consume = utils.init(script);
+    utils
+      .loadSchema(`${__dirname}/default.schema.json`)
+      .then((parsedSchema) => {
+        defaultSchema = parsedSchema;
+        done();
+      });
   });
-}
 
-before(function (done) {
-  fs.readFile(
-    __dirname + "/default.schema.json",
-    "utf8",
-    function (err, fileContents) {
-      if (err) throw err;
-      defaultSchema = JSON.parse(fileContents);
-      done();
-    },
-  );
-});
-
-before(function (done) {
-  fs.readFile(
-    __dirname + "/lifecycle.schema.json",
-    "utf8",
-    function (err, fileContents) {
-      if (err) throw err;
-      lifecycleSchema = JSON.parse(fileContents);
-      done();
-    },
-  );
-});
-
-function loadRemoteSchema(uri) {
-  return axios.get(uri).then(function (res) {
-    if (res.status >= 400) {
-      throw new Error("Schema loading error: " + res.statusCode);
-    }
-    return res.data;
+  let lifecycleSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+      .then((parsedSchema) => {
+        lifecycleSchema = parsedSchema;
+        done();
+      });
   });
-}
 
-describe("Decentlab ATM41 Uplink", function () {
-  describe("consume()", function () {
-    it("should decode Decentlab ATM41 payload", function (done) {
+  describe("consume()", () => {
+    it("should decode Decentlab ATM41 payload", () => {
       const data = {
         data: {
           payloadHex:
@@ -61,43 +38,46 @@ describe("Decentlab ATM41 Uplink", function () {
         },
       };
 
-      expectEmit(function (type, value) {
+      utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic == "lifecycle") {
-          assert.equal(value.data.protocolVersion, 2);
-          assert.equal(value.data.voltage, 3.061);
-          assert.equal(value.data.deviceID, 858);
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.precipitation, 0);
+        assert.equal(value.data.lightningStrikeCount, 0);
+        assert.equal(value.data.lightningAverageDistance, 0);
+        assert.equal(value.data.windSpeed, 0.09);
+        assert.equal(value.data.windDirection, 29.9);
+        assert.equal(value.data.maximumWindSpeed, 0.2);
+        assert.equal(value.data.temperature, 26.4);
+        assert.equal(value.data.vaporPressure, 1.8);
+        assert.equal(value.data.atmosphericPressure, 95.96);
+        assert.equal(value.data.northWindSpeed, 0.08);
+        assert.equal(value.data.eastWindSpeed, 0.04);
 
-          assert.equal(value.data.sensorTemperatureInternal, 26.5);
-          assert.equal(value.data.xOrientationAngle, 0.2);
-          assert.equal(value.data.yOrientationAngle, -2.4);
-          assert.equal(value.data.compassHeading, 86);
+        validate(value.data, defaultSchema, { throwError: true });
+      });
 
-          validate(value.data, lifecycleSchema, { throwError: true });
-        }
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
 
-        if (value.topic == "default") {
-          assert.equal(value.data.precipitation, 0);
-          assert.equal(value.data.lightningStrikeCount, 0);
-          assert.equal(value.data.lightningAverageDistance, 0);
-          assert.equal(value.data.windSpeed, 0.09);
-          assert.equal(value.data.windDirection, 29.9);
-          assert.equal(value.data.maximumWindSpeed, 0.2);
-          assert.equal(value.data.temperature, 26.4);
-          assert.equal(value.data.vaporPressure, 1.8);
-          assert.equal(value.data.atmosphericPressure, 95.96);
-          assert.equal(value.data.northWindSpeed, 0.08);
-          assert.equal(value.data.eastWindSpeed, 0.04);
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.protocolVersion, 2);
+        assert.equal(value.data.voltage, 3.061);
+        assert.equal(value.data.deviceID, 858);
 
-          validate(value.data, defaultSchema, { throwError: true });
-        }
+        assert.equal(value.data.sensorTemperatureInternal, 26.5);
+        assert.equal(value.data.xOrientationAngle, 0.2);
+        assert.equal(value.data.yOrientationAngle, -2.4);
+        assert.equal(value.data.compassHeading, 86);
+
+        validate(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
-      done();
     });
   });
 });

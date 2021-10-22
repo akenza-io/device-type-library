@@ -60,6 +60,8 @@ describe("FTD Network tester", () => {
         assert.equal(value.data.uplink, 18);
         assert.equal(value.data.downlink, 16);
         assert.equal(value.data.voltage, 3.489);
+
+        validate(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

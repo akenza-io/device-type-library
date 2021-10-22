@@ -1,27 +1,29 @@
 {
-    "name": "device-types",
-    "version": "1.0.0",
-    "description": "Akenza Device Type Library",
-    "main": "index.js",
-    "scripts": {
-        "test": "mocha \"types/**/*.spec.js\" \"lib/**/*.spec.js\""
-    },
-    "author": "",
-    "license": "ISC",
-    "devDependencies": {
-        "ajv": "^6.12.4",
-        "axios": "^0.21.1",
-        "bits": "file:lib/bits",
-        "chai": "^4.2.0",
-        "eslint": "^7.26.0",
-        "eslint-config-airbnb-base": "^14.2.1",
-        "eslint-config-google": "^0.14.0",
-        "eslint-config-prettier": "^8.3.0",
-        "eslint-plugin-import": "^2.22.1",
-        "glob": "^7.1.6",
-        "jsonschema": "^1.2.6",
-        "mocha": "^8.1.3",
-        "rewire": "^5.0.0",
-        "test-utils": "file:lib/test"
-    }
+  "name": "device-types",
+  "version": "1.0.0",
+  "description": "Akenza Device Type Library",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha \"types/**/*.spec.js\" \"lib/**/*.spec.js\"",
+    "integration-test": "TEST_MODE=INTEGRATION API_KEY=$API_KEY SCRIPT_RUN_URL=$SCRIPT_RUN_URL npm run test"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ajv": "^6.12.4",
+    "axios": "^0.21.4",
+    "bits": "file:lib/bits",
+    "chai": "^4.2.0",
+    "eslint": "^7.26.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.22.1",
+    "glob": "^7.1.6",
+    "jsonschema": "^1.2.6",
+    "mocha": "^8.1.3",
+    "rewire": "^5.0.0",
+    "sync-request": "^6.1.0",
+    "test-utils": "file:lib/test"
+  }
 }
