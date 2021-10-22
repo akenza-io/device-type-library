@@ -1,86 +1,68 @@
 const chai = require("chai");
-const validate = require("jsonschema").validate;
+const { validate } = require("jsonschema");
 const rewire = require("rewire");
-const axios = require("axios");
-const fs = require("fs");
-const Ajv = require("ajv");
+const utils = require("test-utils");
 
-const assert = chai.assert;
+const { assert } = chai;
 
-const script = rewire("./uplink.js");
-let defaultSchema = null;
-let lifecycleSchema = null;
-const consume = script.__get__("consume");
-
-function expectEmit(callback) {
-  script.__set__({
-    emit: callback,
+describe("Decentlab PR26 Uplink", () => {
+  let defaultSchema = null;
+  let consume = null;
+  before((done) => {
+    const script = rewire("./uplink.js");
+    consume = utils.init(script);
+    utils
+      .loadSchema(`${__dirname}/default.schema.json`)
+      .then((parsedSchema) => {
+        defaultSchema = parsedSchema;
+        done();
+      });
   });
-}
 
-before(function (done) {
-  fs.readFile(
-    __dirname + "/default.schema.json",
-    "utf8",
-    function (err, fileContents) {
-      if (err) throw err;
-      defaultSchema = JSON.parse(fileContents);
-      done();
-    },
-  );
-});
-
-before(function (done) {
-  fs.readFile(
-    __dirname + "/lifecycle.schema.json",
-    "utf8",
-    function (err, fileContents) {
-      if (err) throw err;
-      lifecycleSchema = JSON.parse(fileContents);
-      done();
-    },
-  );
-});
-
-function loadRemoteSchema(uri) {
-  return axios.get(uri).then(function (res) {
-    if (res.status >= 400) {
-      throw new Error("Schema loading error: " + res.statusCode);
-    }
-    return res.data;
+  let lifecycleSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+      .then((parsedSchema) => {
+        lifecycleSchema = parsedSchema;
+        done();
+      });
   });
-}
 
-describe("Decentlab PR26 Uplink", function () {
-  describe("consume()", function () {
-    it("should decode Decentlab PR26 payload", function (done) {
+  describe("consume()", () => {
+    it("Should decode Decentlab PR26 payload", () => {
       const data = {
         data: {
           payloadHex: "02016700033e8060170c7f",
         },
       };
 
-      expectEmit(function (type, value) {
+      utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic == "lifecycle") {
-          assert.equal(value.data.voltage, 3.199);
-          assert.equal(value.data.protocolVersion, 2);
-          assert.equal(value.data.deviceID, 359);
-          validate(value.data, lifecycleSchema, { throwError: true });
-        }
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.pressure, -0.01171875);
+        assert.equal(value.data.temperature, 25.671875);
 
-        if (value.topic == "default") {
-          assert.equal(value.data.pressure, -0.01171875);
-          assert.equal(value.data.temperature, 25.671875);
-          validate(value.data, defaultSchema, { throwError: true });
-        }
+        validate(value.data, defaultSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.voltage, 3.199);
+        assert.equal(value.data.protocolVersion, 2);
+        assert.equal(value.data.deviceID, 359);
+
+        validate(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
-      done();
     });
   });
 });

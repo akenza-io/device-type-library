@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.4.3] - 2021-10-21
+
+### Changed
+
+- Updated tests to match the new guidelines
+- Changed Kuando Busylight name!
+- Changed description of ranosDB2
+
+# [1.4.3] - 2021-10-20
+
+### Added
+
+- Added functionality to run tests in integration mode
+
+# [1.4.2] - 2021-10-19
+
+### Changed
+
+- Oxon - Buttonboard changed from button ID to individual button outputs.
+
 # [1.4.1] - 2021-10-18
 
 ### Changed

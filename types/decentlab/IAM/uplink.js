@@ -208,7 +208,7 @@ function consume(event) {
 
   data.temperature = sample.air_temperature;
   data.humidity = sample.air_humidity;
-  data.pressure = sample.barometric_pressure;
+  data.pressure = sample.barometric_pressure * 0.01;
   data.co2 = sample.co2_concentration;
   data.voc = sample.total_voc;
   data.light = sample.illuminance;
@@ -222,7 +222,7 @@ function consume(event) {
   lifecycle.co2SensorStatus = sample.co2_sensor_status;
 
   if (deleteUnusedKeys(data)) {
-    emit("sample", { data: data, topic: "default" });
+    emit("sample", { data, topic: "default" });
   }
 
   if (deleteUnusedKeys(lifecycle)) {

@@ -5,10 +5,8 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Sensative presence Uplink", () => {
+describe("Sensative strip", () => {
   let defaultSchema = null;
-  let lifecycleSchema = null;
-  let alarmSchema = null;
   let consume = null;
   before((done) => {
     const script = rewire("./uplink.js");
@@ -17,20 +15,30 @@ describe("Sensative presence Uplink", () => {
       .loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
         defaultSchema = parsedSchema;
+        done();
       });
+  });
+
+  let lifecycleSchema = null;
+  before((done) => {
     utils
       .loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
       });
+  });
+
+  let alarmSchema = null;
+  before((done) => {
     utils.loadSchema(`${__dirname}/alarm.schema.json`).then((parsedSchema) => {
       alarmSchema = parsedSchema;
+      done();
     });
   });
 
   describe("consume()", () => {
-    it("should decode the sensative presence payload", () => {
+    it("should decode the sensative strip payload", () => {
       const data = {
         data: {
           port: 1,
@@ -44,7 +52,6 @@ describe("Sensative presence Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 0);
         assert.equal(value.data.historySeqNr, 65535);
         assert.equal(value.data.prevHistSeqNr, 65535);
 
