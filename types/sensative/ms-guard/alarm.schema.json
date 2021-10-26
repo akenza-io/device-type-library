@@ -1,0 +1,54 @@
+{
+  "$id": "https://akenza.io/sensative/ms-guard/alarm.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Alarm",
+  "type": "object",
+  "properties": {
+    "highAlarm": {
+      "title": "High alarm",
+      "description": "Equals to true if the threshold is exceeded",
+      "type": "boolean"
+    },
+    "lowAlarm": {
+      "title": "Low alarm",
+      "description": "Equals to true if the threshold has fallen below",
+      "type": "boolean"
+    },
+    "doorAlarm": {
+      "title": "Door alarm",
+      "description": "Equals to true if there is a door alarm",
+      "type": "boolean"
+    },
+    "tamperAlarm": {
+      "title": "Tamper alarm",
+      "description": "Equals to true if the strip has been tampered with",
+      "type": "boolean"
+    },
+    "floodAlarm": {
+      "title": "Flood alarm",
+      "description": "Equals to true if a flood is detected",
+      "type": "boolean"
+    },
+    "foilAlarm": {
+      "title": "Foil alarm",
+      "description": "Equals to true if a foil is detected",
+      "type": "boolean"
+    },
+    "userSwitchAlarm": {
+      "title": "User switch alarm",
+      "description": "Equals to true if a user switch is detected",
+      "type": "boolean"
+    },
+    "closeProximityAlarm": {
+      "title": "Close proximity Alarm",
+      "description": "Equals to true if an object in close proximity is detected",
+      "type": "boolean"
+    },
+    "disinfectAlarm": {
+      "title": "Disinfect alarm",
+      "description": "Status of the disinfection",
+      "type": "string",
+      "enum": ["DIRTY", "OCCUPIED", "CLEANING", "CLEAN"]
+    }
+  }
+}

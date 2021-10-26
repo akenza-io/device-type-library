@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.5.0] - 2021-10-26
+
+### Added
+
+- Sensative - Strip Presence
+
+### Changed
+
+- Changed folder name for sensative
+
 # [1.4.3] - 2021-10-21
 
 ### Changed
