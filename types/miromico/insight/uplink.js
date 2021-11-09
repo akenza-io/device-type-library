@@ -1,124 +1,125 @@
+function toLittleEndian(hex, signed) {
+  // Creating little endian hex DCBA
+  const hexArray = [];
+  let tempHex = hex;
+  while (tempHex.length >= 2) {
+    hexArray.push(tempHex.substring(0, 2));
+    tempHex = tempHex.substring(2, tempHex.length);
+  }
+  hexArray.reverse();
+
+  if (signed) {
+    return Bits.bitsToSigned(Bits.hexToBits(hexArray.join("")));
+  }
+  return Bits.bitsToSigned(Bits.hexToBits(hexArray.join("")));
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
+  const lifecycle = {};
+  const settings = {};
+  const temperature = {};
+  const co2 = {};
 
-  // scale factors
-  const tempPrecision = 0.01;
-  const humidityPrecision = 0.5;
-  // helper variables
-  let sample;
-  let accumulated;
-  let topic;
-  // settings
-  let measInterval;
-  let accumulatedMsgs;
-  let led;
-  let confirmedMsgs;
-  let flags;
-  // measurement values
-  let temp;
-  let humidity;
-  let co2;
-  let battery;
+  for (let pointer = 0; pointer < bits.length; ) {
+    let measurement = "";
+    let length = (Bits.bitsToUnsigned(bits.substr(pointer, 8)) - 1) * 8;
+    const msgtype = Bits.bitsToUnsigned(bits.substr((pointer += 8), 8));
+    pointer += 8;
+    length += pointer;
 
-  // Script for RoomSensor with temp/hum
-  // Sensor is transmitting 1 data struct
-  // decoder has to be extended for additional co2-struct
-
-  // 1. How many data structs are being transmitted?
-
-  // 2. Get length of first struct
-
-  // 3. Get message type:
-  // 0x01 uplink temperature [0.01°C], humidity [0.5%]
-  // 0x02 uplink co2 [ppm]
-  // 0x03 uplink battery current consumption [uA]
-  // 0x05 uplink device settings (temp, humidity)
-  // 0x06 uplink device settings (co2)
-  // 0x80 downlink
-  const msgtype = Bits.bitsToUnsigned(bits.substr(8, 8));
-  switch (msgtype) {
-    case 1:
-      // check for error sensor reading first
-      topic = "measured";
-      // up temp,hum
-      accumulated = (Bits.bitsToUnsigned(bits.substr(0, 8)) - 1) / 3;
-      // wrong decoding:
-      // temp = Bits.bitsToSigned(bits.substr(24,8)) * 256  + Bits.bitsToSigned(bits.substr(16,8));
-      // temp = temp * tempPrecision;
-      // temp = Math.round(temp*100) / 100;
-      // payload decoding incorrect: treat whole binary number as signed, not both bytes individually (örk...)
-      temp = Bits.bitsToSigned(bits.substr(24, 8) + bits.substr(16, 8));
-      temp *= tempPrecision;
-      temp = Math.round(temp * 100) / 100.0;
-      if (temp > 80.0) {
-        topic = "error";
-      }
-      humidity = Bits.bitsToUnsigned(bits.substr(32, 8));
-      humidity *= humidityPrecision;
-      if (humidity > 100) {
-        topic = "error";
-      }
-      // todo:
-      // loop through datasets
-      // meanwhile do it manually as we know the payload
-      if (Bits.bitsToUnsigned(bits.substr(48, 8)) == 2) {
-        // former: co2 = Bits.bitsToUnsigned(bits.substr(64,8)) * 256 + Bits.bitsToUnsigned(bits.substr(56,8));
-        co2 = Bits.bitsToUnsigned(bits.substr(64, 8) + bits.substr(56, 8));
-        if (co2 == 0) {
-          topic = "error";
+    switch (msgtype) {
+      case 1:
+        while (pointer < length) {
+          temperature[`temperature${measurement}`] =
+            toLittleEndian(payload.substr(pointer / 4, 4), true) * 0.01;
+          pointer += 16;
+          temperature[`humidity${measurement}`] =
+            toLittleEndian(payload.substr(pointer / 4, 2), true) * 0.5;
+          pointer += 8;
+          if (measurement === "") {
+            measurement = 1;
+          } else {
+            measurement++;
+          }
         }
-      }
-      break;
-    case 2:
-      // up co2
-      topic = "measured";
-      break;
-    case 3:
-      // up battery
-      topic = "measured";
-      break;
-    case 5:
-      // up device settings temp,hum
-      measInterval =
-        Bits.bitsToUnsigned(bits.substr(24, 8)) * 256 +
-        Bits.bitsToUnsigned(bits.substr(16, 8));
-      accumulatedMsgs = Bits.bitsToUnsigned(bits.substr(32, 8));
-      confirmedMsgs = Bits.bitsToUnsigned(bits.substr(40, 1));
-      led = Bits.bitsToUnsigned(bits.substr(41, 1));
-      flags = bits.substr(40, 8);
-      topic = "settings";
-      break;
-    case 6:
-      // up device settings co2
-      topic = "settings";
-      break;
-    default:
-    // none of the above, set all values to zero
+        break;
+      case 2:
+        while (pointer < length) {
+          const co2msb = bits.substr(pointer, 8);
+          pointer += 8;
+          const co2lsb = bits.substr(pointer, 8);
+          pointer += 8;
+          co2[`co2${measurement}`] = Bits.bitsToUnsigned(co2lsb + co2msb);
+
+          if (measurement === "") {
+            measurement = 1;
+          } else {
+            measurement++;
+          }
+        }
+        break;
+      case 3:
+        lifecycle.batteryConsumption = toLittleEndian(
+          payload.substr(pointer / 4, 6),
+          false,
+        );
+        pointer += 32;
+        break;
+      case 5:
+        settings.measurementInterval = toLittleEndian(
+          payload.substr(pointer / 4, 4),
+          false,
+        );
+        pointer += 16;
+        settings.temperatureSamples = toLittleEndian(
+          payload.substr(pointer / 4, 2),
+          false,
+        );
+        pointer += 16;
+        break;
+      case 6:
+        pointer += 16;
+        settings.co2Subsample = toLittleEndian(
+          payload.substr(pointer / 4, 4),
+          false,
+        );
+        pointer += 16;
+        settings.abcCalibrationPeriod = toLittleEndian(
+          payload.substr(pointer / 4, 4),
+          false,
+        );
+        pointer += 16;
+        break;
+      case 10:
+        lifecycle.voltage =
+          (Bits.bitsToUnsigned(bits.substr(pointer, 8)) + 170) / 100;
+        pointer += 8;
+        break;
+      case 11:
+        settings.firmwareHash = payload.substr(pointer / 4, 8);
+        pointer += 32;
+        break;
+      default:
+        lifecycle.error = "Wrong length of payload";
+        break;
+    }
   }
 
-  // 4. Calculate number of accumulated measurements
-
-  const data = {
-    message_type: msgtype,
-    temperature: temp,
-    humidity,
-  };
-  if (co2 != 0) {
-    data.co2 = co2;
-  }
-  if (measInterval != 0) {
-    data.measInterval = measInterval;
-  }
-  if (accumulatedMsgs != 0) {
-    data.accumulatedMsgs = accumulatedMsgs;
-  }
-  if (topic == "settings") {
-    data.flags = flags;
-    data.led = led;
-    data.confirmedMsgs = confirmedMsgs;
+  if (Object.keys(lifecycle).length > 0) {
+    emit("sample", { data: lifecycle, topic: "lifecycle" });
   }
 
-  sample = { topic, data };
-  emit("sample", sample);
+  if (Object.keys(settings).length > 0) {
+    emit("sample", { data: settings, topic: "settings" });
+  }
+
+  if (Object.keys(temperature).length > 0) {
+    emit("sample", { data: temperature, topic: "temperature" });
+  }
+
+  if (Object.keys(co2).length > 0) {
+    emit("sample", { data: co2, topic: "co2" });
+  }
 }
