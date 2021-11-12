@@ -63,7 +63,7 @@ describe("Miromico insight Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryConsumption, 16);
+        assert.equal(value.data.consumption, 16);
         assert.equal(value.data.voltage, 3.6);
 
         validate(value.data, lifecycleSchema, { throwError: true });

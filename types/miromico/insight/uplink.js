@@ -61,7 +61,7 @@ function consume(event) {
         }
         break;
       case 3:
-        lifecycle.batteryConsumption = toLittleEndian(
+        lifecycle.consumption = toLittleEndian(
           payload.substr(pointer / 4, 6),
           false,
         );
