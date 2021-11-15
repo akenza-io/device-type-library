@@ -10,6 +10,13 @@ All notable changes to this project will be documented in this file.
 
 - Miromico - Insight
 
+# [1.5.1] - 2021-11-15
+
+### Changed
+
+- Sensative - Strip MS-Guard Presence description
+- Sensative - Strip Presence description
+
 # [1.5.0] - 2021-10-26
 
 ### Added
