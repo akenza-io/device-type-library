@@ -1,0 +1,34 @@
+{
+  "$id": "https://akenza.io/miromico/insight/settings.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Settings",
+  "type": "object",
+  "properties": {
+    "measurementInterval": {
+      "title": "Measurement interval",
+      "type": "integer",
+      "unit": "s",
+      "desciption": "Measurement interval in seconds."
+    },
+    "temperatureSamples": {
+      "title": "Temperature samples",
+      "type": "integer",
+      "desciption": "Temperature samples"
+    },
+    "co2Subsample": {
+      "title": "CO2 Subsample",
+      "type": "integer",
+      "desciption": "CO2 Subsample"
+    },
+    "abcCalibrationPeriod": {
+      "title": "ABC calibration period",
+      "type": "integer",
+      "unit": "h",
+      "desciption": "ABC calibration period in hours"
+    },
+    "firmwareHash": {
+      "title": "Firmware hash",
+      "desciption": "Firmware hash"
+    }
+  }
+}
