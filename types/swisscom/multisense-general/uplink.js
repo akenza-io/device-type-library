@@ -12,7 +12,7 @@ function consume(event) {
   const { port } = event.data;
   const bits = Bits.hexToBits(payload);
   const data = {};
-  const topic = "default";
+  let topic = "default";
 
   data.payloadVersion = Bits.bitsToUnsigned(bits.substr(0, 8));
   data.mode = Bits.bitsToUnsigned(bits.substr(8, 8));
@@ -21,7 +21,7 @@ function consume(event) {
   data.voltage = voltage / 1000;
   data.batteryLevel = Math.round((voltage - 2000) / 15.24);
 
-  if (port == 3) {
+  if (port === 3) {
     let pointer = 32;
 
     while (pointer !== bits.length) {
@@ -34,18 +34,22 @@ function consume(event) {
               Bits.bitsToUnsigned(bits.substr(pointer, 16)) * 0.01 * 100,
             ) / 100;
           pointer += 16;
+          topic = "temperature";
           break;
         case 2:
           data.humidity = Bits.bitsToUnsigned(bits.substr(pointer, 8)) * 0.5;
           pointer += 8;
+          topic = "humidity";
           break;
         case 3:
           data.reedCounter = Bits.bitsToUnsigned(bits.substr(pointer, 16));
           pointer += 16;
+          topic = "reed_counter";
           break;
         case 4:
           data.motionCounter = Bits.bitsToUnsigned(bits.substr(pointer, 16));
           pointer += 16;
+          topic = "motion_counter";
           break;
         case 5:
           var hexPointer = pointer / 4;
@@ -56,6 +60,7 @@ function consume(event) {
           data.accZ = int16(payload.substr(hexPointer, 4));
           hexPointer += 4;
           pointer += 48;
+          topic = "acceleration";
           break;
         case 6:
           data.temperature =
@@ -70,6 +75,7 @@ function consume(event) {
               ) / 100;
             pointer += 16;
           }
+          topic = "temperature_history";
           break;
         case 7:
           data.humidity = Bits.bitsToUnsigned(bits.substr(pointer, 8)) * 0.5;
@@ -79,12 +85,13 @@ function consume(event) {
               Bits.bitsToUnsigned(bits.substr(pointer, 8)) * 0.5;
             pointer += 8;
           }
+          topic = "humidity_history";
           break;
-
         default:
           pointer = bits.length;
           break;
       }
+      emit("sample", { data, topic });
     }
 
     if (data.mode == 1) {
