@@ -7,9 +7,7 @@
   "author": "Akenza AG",
   "firmwareVersion": "V2.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": [
-    "Occupancy"
-  ],
+  "availableSensors": ["Occupancy", "Temperature"],
   "outputTopics": [
     "occupancy",
     "battery",

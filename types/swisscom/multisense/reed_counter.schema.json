@@ -1,7 +1,7 @@
 {
-  "$id": "https://akenza.io/swisscom/multisense/reed.schema.json",
+  "$id": "https://akenza.io/swisscom/multisense/reed_counter.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Reed",
+  "title": "Reed counter",
   "type": "object",
   "properties": {
     "reedCounter": {

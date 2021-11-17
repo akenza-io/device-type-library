@@ -1,0 +1,25 @@
+{
+  "$id": "https://akenza.io/swisscom/multisense/event.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Event",
+  "type": "object",
+  "properties": {
+    "event": {
+      "title": "Event",
+      "description": "Event which triggered the uplink",
+      "type": "string",
+      "enum": [
+        "USAGE_START_EVENT",
+        "USAGE_CHECK_EVENT",
+        "BUTTON_EVENT",
+        "LIFECYCLE",
+        "TIMED_EVENT",
+        "REED_EVENT",
+        "TEMPERATURE_EVENT",
+        "HUMIDITY_EVENT",
+        "MOTION_EVENT",
+        "MODE_CHANGE"
+      ]
+    }
+  }
+}

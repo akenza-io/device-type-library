@@ -1,35 +1,28 @@
 {
-  "$id": "https://akenza.io/swisscom/multisense/timed_event.schema.json",
+  "$id": "https://akenza.io/swisscom/multisense/acceleration.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Vibration",
+  "title": "Acceleration",
   "type": "object",
   "properties": {
-    "motionCounter": {
-      "title": "Motion Counter",
-      "description": "Count of Events",
-      "type": "integer",
-      "minimum": -32767,
-      "maximum": 32767
-    },
     "accX": {
-      "title": "Accelerometer X",
-      "unit": "mg",
+      "title": "Acceleration X",
+      "unit": "G",
       "description": "Acceleration on the X-Axis is mg",
       "type": "integer",
       "minimum": -32767,
       "maximum": 32767
     },
     "accY": {
-      "title": "Accelerometer Y",
-      "unit": "mg",
+      "title": "Acceleration Y",
+      "unit": "G",
       "description": "Acceleration on the Y-Axis is mg",
       "type": "integer",
       "minimum": -32767,
       "maximum": 32767
     },
     "accZ": {
-      "title": "Accelerometer Z",
-      "unit": "mg",
+      "title": "Acceleration Z",
+      "unit": "G",
       "description": "Acceleration on the Z-Axis is mg",
       "type": "integer",
       "minimum": -32767,

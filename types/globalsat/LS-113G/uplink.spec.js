@@ -23,7 +23,7 @@ describe("Globalsat LS-113G uplink", () => {
     it("should decode Globalsat LS-113G payload", () => {
       const data = {
         data: {
-          payloadHex: "01096113950292",
+          payloadHex: "03096113950000",
         },
       };
 
@@ -32,9 +32,9 @@ describe("Globalsat LS-113G uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.data.co2, 658);
         assert.equal(value.data.humidity, 50.13);
         assert.equal(value.data.temperature, 24.01);
+        assert.equal(value.data.pm2_5, 0);
 
         validate(value.data, defaultSchema, { throwError: true });
       });

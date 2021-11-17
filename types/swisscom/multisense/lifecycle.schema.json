@@ -1,7 +1,7 @@
 {
-  "$id": "https://akenza.io/swisscom/multisense/usage_check_event.schema.json",
+  "$id": "https://akenza.io/swisscom/multisense/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Usage check event",
+  "title": "Lifecycle",
   "type": "object",
   "properties": {
     "mode": {
@@ -26,12 +26,20 @@
       "minimum": 0,
       "maximum": 65535
     },
-    "motionCounter": {
-      "title": "Motion count",
-      "description": "Motion count of workplace. Sum of all Events",
+    "batteryLevel": {
       "type": "integer",
       "minimum": 0,
-      "maximum": 65535
+      "maximum": 100,
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "unit": "%"
+    },
+    "modeSelect": {
+      "title": "Mode select",
+      "type": "number",
+      "description": "Selected mode. Is only sent if a mode change occurred",
+      "minimum": 0,
+      "maximum": 10
     }
   }
 }
