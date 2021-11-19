@@ -1,21 +1,14 @@
 {
-  "name": "miro Click V2.5.0",
-  "version": "1.0.0",
+  "name": "miro Click",
+  "version": "6.0.0",
   "manufacturer": "Miromico",
   "url": "https://miromico.ch/portfolio/iot-button-rev2/",
   "description": "The miro Click can be used as a service-ondemand button, remote control, emergency or notification button and much more. It contains four integrated buttons and is configured over the air either as a single-, two- or four-button button device.",
   "author": "Akenza AG",
-  "firmwareVersion": "V2.5.0",
+  "firmwareVersion": "V2.1.4",
   "loraDeviceClass": "A",
-  "availableSensors": [
-    "Button"
-  ],
-  "outputTopics": [
-    "default",
-    "status",
-    "button_pressed",
-    "join"
-  ],
+  "availableSensors": ["Button"],
+  "outputTopics": ["default", "status", "button_pressed", "join"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

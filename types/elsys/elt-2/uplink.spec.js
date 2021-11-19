@@ -58,6 +58,7 @@ describe("Elsys ELT-2 uplink", () => {
 
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.voltage, 3.649);
+        assert.equal(value.data.batteryLevel, 80);
 
         validate(value.data, lifecycleSchema, { throwError: true });
       });

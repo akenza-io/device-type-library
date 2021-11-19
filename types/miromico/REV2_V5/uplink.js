@@ -1,31 +1,31 @@
 function toLittleEndian(hex) {
-  var data = hex.match(/../g);
+  const data = hex.match(/../g);
 
   // Create a buffer
-  var buf = new ArrayBuffer(4);
+  const buf = new ArrayBuffer(4);
   // Create a data view of it
-  var view = new DataView(buf);
+  const view = new DataView(buf);
 
   // set bytes
-  data.forEach(function (b, i) {
+  data.forEach((b, i) => {
     view.setUint8(i, parseInt(b, 16));
   });
 
   // get an int32 with little endian
-  var num = view.getInt32(0, 1);
+  const num = view.getInt32(0, 1);
   return num;
 }
 
 function consume(event) {
-  var payload = event.data.payloadHex;
-  var bits = Bits.hexToBits(payload);
-  var data = {};
-  var topic = "default";
+  const payload = event.data.payloadHex;
+  const bits = Bits.hexToBits(payload);
+  const data = {};
+  let topic = "default";
 
   data.msgType = Bits.bitsToUnsigned(bits.substr(8, 8));
 
   // Status Message
-  if (data.msgType == 2) {
+  if (data.msgType === 2) {
     data.usedCharges = toLittleEndian(payload.substr(4, 8));
     // Reserved // 03 03
 
@@ -50,7 +50,7 @@ function consume(event) {
 
     topic = "status";
     // Button Press
-  } else if (data.msgType == 1) {
+  } else if (data.msgType === 1) {
     data.btnNfirst = Number(bits.substr(20, 1));
     data.btnEfirst = Number(bits.substr(21, 1));
     data.btnSfirst = Number(bits.substr(22, 1));
@@ -66,19 +66,19 @@ function consume(event) {
     data.usedCharges = toLittleEndian(payload.substr(14, 6));
 
     if (
-      data.btnNpressed == "1" ||
-      data.btnEpressed == "1" ||
-      data.btnSpressed == "1" ||
-      data.btnWpressed == "1"
+      data.btnNpressed === "1" ||
+      data.btnEpressed === "1" ||
+      data.btnSpressed === "1" ||
+      data.btnWpressed === "1"
     ) {
       topic = "button_pressed";
     }
 
     // Firmware Version
-  } else if (data.msgType == 5) {
+  } else if (data.msgType === 5) {
     data.join = true;
     topic = "join";
   }
 
-  emit("sample", { data: data, topic: topic });
+  emit("sample", { data, topic });
 }
