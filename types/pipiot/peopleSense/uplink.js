@@ -39,10 +39,10 @@ function consume(event) {
 
   // Standart Meassurement
   if (subType === 0 && cd === 0) {
-    lifecycle.heartbeatFlag = !!bits.substr(92, 1);
-    lifecycle.magSwitchFlag = !!bits.substr(93, 1);
-    lifecycle.proxHWError = !!bits.substr(94, 1);
-    lifecycle.binsReadyFlag = !!bits.substr(95, 1);
+    lifecycle.heartbeatFlag = !!Number(bits.substr(92, 1));
+    lifecycle.magSwitchFlag = !!Number(bits.substr(93, 1));
+    lifecycle.proxHWError = !!Number(bits.substr(94, 1));
+    lifecycle.binsReadyFlag = !!Number(bits.substr(95, 1));
 
     lifecycle.batteryVoltage = batteryVoltage(bits.substr(8, 8));
     data.peopleCount = peopleCountAccumulator(bits.substr(16, 16));
@@ -71,12 +71,12 @@ function consume(event) {
       lifecycle.binsReadyFlag,
     );
   } else if (subType === 1 && cd === 0) {
-    lifecycle.ForcedDownlinkFlag = !!bits.substr(82, 1);
-    lifecycle.CountAlertFlag = !!bits.substr(83, 1);
-    lifecycle.HeartbeatFlag = !!bits.substr(84, 1);
-    lifecycle.MagSwitchFlag = !!bits.substr(85, 1);
-    lifecycle.ProxHWError = !!bits.substr(86, 1);
-    lifecycle.BinsReadyFlag = !!bits.substr(87, 1);
+    lifecycle.ForcedDownlinkFlag = !!Number(bits.substr(82, 1));
+    lifecycle.CountAlertFlag = !!Number(bits.substr(83, 1));
+    lifecycle.HeartbeatFlag = !!Number(bits.substr(84, 1));
+    lifecycle.MagSwitchFlag = !!Number(bits.substr(85, 1));
+    lifecycle.ProxHWError = !!Number(bits.substr(86, 1));
+    lifecycle.BinsReadyFlag = !!Number(bits.substr(87, 1));
 
     lifecycle.batteryVoltage = batteryVoltage(bits.substr(8, 8));
     data.peopleCount = peopleCountAccumulator(bits.substr(16, 16));
@@ -102,12 +102,12 @@ function consume(event) {
     );
     data.temperature = temperature(bits.substr(88, 8));
   } else if (subType === 3 && cd === 0) {
-    lifecycle.ForcedDownlinkFlag = !!bits.substr(50, 1);
-    lifecycle.CountAlertFlag = !!bits.substr(51, 1);
-    lifecycle.HeartbeatFlag = !!bits.substr(52, 1);
-    lifecycle.MagSwitchFlag = !!bits.substr(53, 1);
-    lifecycle.ProxHWError = !!bits.substr(54, 1);
-    lifecycle.BinsReadyFlag = !!bits.substr(55, 1);
+    lifecycle.ForcedDownlinkFlag = !!Number(bits.substr(50, 1));
+    lifecycle.CountAlertFlag = !!Number(bits.substr(51, 1));
+    lifecycle.HeartbeatFlag = !!Number(bits.substr(52, 1));
+    lifecycle.MagSwitchFlag = !!Number(bits.substr(53, 1));
+    lifecycle.ProxHWError = !!Number(bits.substr(54, 1));
+    lifecycle.BinsReadyFlag = !!Number(bits.substr(55, 1));
 
     lifecycle.batteryVoltage = batteryVoltage(bits.substr(8, 8));
     data.peopleCount = peopleCountAccumulator(bits.substr(16, 16));

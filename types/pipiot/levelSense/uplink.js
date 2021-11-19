@@ -29,9 +29,10 @@ function temperature(bits) {
 
 function tiltAngle(bits, overTempFlag) {
   let ta = Bits.bitsToUnsigned(bits);
-  if (ta <= 180 || overTempFlag) {
+  if (overTempFlag || ta >= 180) {
     ta = "ERROR";
   }
+
   return ta;
 }
 
@@ -47,14 +48,14 @@ function batteryVoltage(bits) {
 
 function flags(bits) {
   const fl = {};
-  fl.motionFlag = !!bits.substr(0, 1);
-  fl.dayTimerFlag = !!bits.substr(1, 1);
-  fl.overTempFlag = !!bits.substr(2, 1);
-  fl.tiltedFlag = !!bits.substr(3, 1);
-  fl.magSwitchFlag = !!bits.substr(4, 1);
-  fl.ultrasoundHWErrorFlag = !!bits.substr(5, 1);
-  fl.laserHWErrorFlag = !!bits.substr(6, 1);
-  fl.accelerometerHWErrorFlag = !!bits.substr(7, 1);
+  fl.motionFlag = !!Number(bits.substr(0, 1));
+  fl.dayTimerFlag = !!Number(bits.substr(1, 1));
+  fl.overTempFlag = !!Number(bits.substr(2, 1));
+  fl.tiltedFlag = !!Number(bits.substr(3, 1));
+  fl.magSwitchFlag = !!Number(bits.substr(4, 1));
+  fl.ultrasoundHWErrorFlag = !!Number(bits.substr(5, 1));
+  fl.laserHWErrorFlag = !!Number(bits.substr(6, 1));
+  fl.accelerometerHWErrorFlag = !!Number(bits.substr(7, 1));
 
   return fl;
 }
@@ -94,7 +95,7 @@ function ultrasonicDistanceExt(bits, ultrasoundHWErrorFlag) {
   if (ude === 0 || ultrasoundHWErrorFlag) {
     ude = "ERROR";
   } else {
-    ude *= 2;
+    ude = Math.round((ude *= 2 / 10));
   }
   return ude;
 }
@@ -104,7 +105,7 @@ function laserDistanceExt(bits, laserHWErrorFlag) {
   if (lde === 0 || laserHWErrorFlag) {
     lde = "ERROR";
   } else {
-    lde *= 2;
+    lde = Math.round((lde *= 2 / 10));
   }
   return lde;
 }
