@@ -1,0 +1,29 @@
+{
+  "$id": "https://akenza.io/miromico/insight/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "consumption": {
+      "title": "Battery consumption",
+      "unit": "uAh",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 65535,
+      "desciption": "Current battery consumption."
+    },
+    "voltage": {
+      "title": "Battery voltage",
+      "unit": "V",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "desciption": "The battery voltage in Volt."
+    },
+    "error": {
+      "title": "Error",
+      "type": "string",
+      "desciption": "Wrong length of payload"
+    }
+  }
+}

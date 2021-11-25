@@ -1,0 +1,14 @@
+{
+  "name": "Insight",
+  "version": "1.0.0",
+  "manufacturer": "Miromico",
+  "url": "https://miromico.ch/portfolio/miro-insight/?lang=en",
+  "description": "Advanced indoor air quality sensor device featuring various sensors environmental conditions such as temperature, relative humidity and Co2.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Humidity", "CO2"],
+  "outputTopics": ["co2", "lifecycle", "settings", "temperature"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
