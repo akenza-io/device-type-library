@@ -1,20 +1,24 @@
 {
   "$id": "https://akenza.io/elsys/ers-desk/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "voltage": {
-    "type": "number",
-    "minimum": 0,
-    "maximum": 24,
-    "title": "Battery voltage",
-    "desciption": "The battery voltage in Volt.",
-    "unit": "V"
-  },
-  "batteryLevel": {
-    "type": "integer",
-    "minimum": 0,
-    "maximum": 100,
-    "title": "Battery charge",
-    "description": "The battery charge in percent.",
-    "unit": "%"
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "voltage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "title": "Battery voltage",
+      "desciption": "The battery voltage in Volt.",
+      "unit": "V"
+    },
+    "batteryLevel": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "unit": "%"
+    }
   }
 }
