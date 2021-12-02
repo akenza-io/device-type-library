@@ -21,7 +21,7 @@ All notable changes to this project will be documented in this file.
 
 - Miromico - miro Click V2.5.0 changed name to miro Click and changed Versions
 - Miromico - miro Click V2.0.0 deleted old devicetype in response to manufacturer
-- Swisscom - Multisense unified all devicetypes to one and named the old ones to depricated
+- Swisscom - Multisense unified all devicetypes to one and named the old ones to deprecated
 
 # [1.6.0] - 2021-11-15
 
