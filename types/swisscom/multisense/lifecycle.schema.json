@@ -1,0 +1,45 @@
+{
+  "$id": "https://akenza.io/swisscom/multisense/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "mode": {
+      "title": "Mode",
+      "type": "integer",
+      "description": "Mode 1 = Occupancy Mode, Mode 0 = Environmnent Sensors",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "payloadVersion": {
+      "title": "Payload version",
+      "type": "number",
+      "description": "Version of the Payload.",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "voltage": {
+      "title": "Battery voltage",
+      "unit": "V",
+      "description": "Battery voltage in V.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "batteryLevel": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "unit": "%"
+    },
+    "modeSelect": {
+      "title": "Mode select",
+      "type": "number",
+      "description": "Selected mode. Is only sent if a mode change occurred",
+      "minimum": 0,
+      "maximum": 10
+    }
+  }
+}

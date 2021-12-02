@@ -57,6 +57,7 @@ describe("Elsys CO2 lite uplink", () => {
 
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.voltage, 3.646);
+        assert.equal(value.data.batteryLevel, 80);
 
         validate(value.data, lifecycleSchema, { throwError: true });
       });

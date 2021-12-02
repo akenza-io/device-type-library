@@ -7,6 +7,7 @@
     "message": {
       "title": "Message",
       "type": "string",
+      "enum": ["STARTUP_OK", "STARTUP_FAIL"],
       "description": "Message indicating startup status"
     }
   }
