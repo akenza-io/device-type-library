@@ -7,14 +7,8 @@
   "author": "Akenza AG",
   "firmwareVersion": "V2.3.5",
   "loraDeviceClass": "A",
-  "availableSensors": [
-    "Accelerometer",
-    "Reed"
-  ],
-  "outputTopics": [
-    "default",
-    "lifecycle"
-  ],
+  "availableSensors": ["Accelerometer", "Reed"],
+  "outputTopics": ["acceleration", "lifecycle", "reed"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }
