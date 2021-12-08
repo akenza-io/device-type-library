@@ -4,22 +4,6 @@
   "title": "Default",
   "type": "object",
   "properties": {
-    "ultrasonicDistance": {
-      "title": "Ultrasonic distance",
-      "type": "number",
-      "desciption": "Ultrasonic distance measured between the sensor and the surface.",
-      "unit": "cm",
-      "minimum": 0,
-      "maximum": 200
-    },
-    "laserDistance": {
-      "title": "Laser distance",
-      "type": "number",
-      "desciption": "Laser distance measured between the sensor and the surface.",
-      "unit": "cm",
-      "minimum": 0,
-      "maximum": 200
-    },
     "laserReflectance": {
       "title": "Laser reflectance",
       "type": "number",

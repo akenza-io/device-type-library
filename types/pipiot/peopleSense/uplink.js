@@ -71,12 +71,12 @@ function consume(event) {
       lifecycle.binsReadyFlag,
     );
   } else if (subType === 1 && cd === 0) {
-    lifecycle.ForcedDownlinkFlag = !!Number(bits.substr(82, 1));
-    lifecycle.CountAlertFlag = !!Number(bits.substr(83, 1));
-    lifecycle.HeartbeatFlag = !!Number(bits.substr(84, 1));
-    lifecycle.MagSwitchFlag = !!Number(bits.substr(85, 1));
-    lifecycle.ProxHWError = !!Number(bits.substr(86, 1));
-    lifecycle.BinsReadyFlag = !!Number(bits.substr(87, 1));
+    lifecycle.forcedDownlinkFlag = !!Number(bits.substr(82, 1));
+    lifecycle.countAlertFlag = !!Number(bits.substr(83, 1));
+    lifecycle.heartbeatFlag = !!Number(bits.substr(84, 1));
+    lifecycle.magSwitchFlag = !!Number(bits.substr(85, 1));
+    lifecycle.proxHWError = !!Number(bits.substr(86, 1));
+    lifecycle.binsReadyFlag = !!Number(bits.substr(87, 1));
 
     lifecycle.batteryVoltage = batteryVoltage(bits.substr(8, 8));
     data.peopleCount = peopleCountAccumulator(bits.substr(16, 16));
@@ -102,18 +102,18 @@ function consume(event) {
     );
     data.temperature = temperature(bits.substr(88, 8));
   } else if (subType === 3 && cd === 0) {
-    lifecycle.ForcedDownlinkFlag = !!Number(bits.substr(50, 1));
-    lifecycle.CountAlertFlag = !!Number(bits.substr(51, 1));
-    lifecycle.HeartbeatFlag = !!Number(bits.substr(52, 1));
-    lifecycle.MagSwitchFlag = !!Number(bits.substr(53, 1));
-    lifecycle.ProxHWError = !!Number(bits.substr(54, 1));
-    lifecycle.BinsReadyFlag = !!Number(bits.substr(55, 1));
+    lifecycle.forcedDownlinkFlag = !!Number(bits.substr(50, 1));
+    lifecycle.countAlertFlag = !!Number(bits.substr(51, 1));
+    lifecycle.heartbeatFlag = !!Number(bits.substr(52, 1));
+    lifecycle.magSwitchFlag = !!Number(bits.substr(53, 1));
+    lifecycle.proxHWError = !!Number(bits.substr(54, 1));
+    lifecycle.binsReadyFlag = !!Number(bits.substr(55, 1));
 
     lifecycle.batteryVoltage = batteryVoltage(bits.substr(8, 8));
     data.peopleCount = peopleCountAccumulator(bits.substr(16, 16));
     data.alertCount = Bits.bitsToUnsigned(bits.substr(32, 16));
     data.temperature = temperature(bits.substr(56, 8));
-    topic = "count_alert";
+    topic = "default";
   } else if (subType === 2 && cd === 0) {
     data.testFrames = bits.substr(8, 8);
     topic = "rssi_test";

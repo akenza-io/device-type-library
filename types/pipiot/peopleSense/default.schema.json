@@ -4,26 +4,45 @@
   "title": "Default",
   "type": "object",
   "properties": {
-    "ultrasonicDistance": {
-      "title": "Ultrasonic distance",
-      "type": "number",
-      "desciption": "Ultrasonic distance measured between the sensor and the surface.",
-      "unit": "cm",
-      "minimum": 0,
-      "maximum": 200
+    "peopleCount": {
+      "title": "People count",
+      "type": "integer",
+      "desciption": "People count of the whole timeframe"
     },
-    "laserDistance": {
-      "title": "Laser distance",
-      "type": "number",
-      "desciption": "Laser distance measured between the sensor and the surface.",
-      "unit": "cm",
-      "minimum": 0,
-      "maximum": 200
+    "peopleCountBin1": {
+      "title": "People count bin 1",
+      "type": "integer",
+      "desciption": "People count bin 1 timeframe"
     },
-    "laserReflectance": {
-      "title": "Laser reflectance",
-      "type": "number",
-      "desciption": "Laser reflectance"
+    "peopleCountBin2": {
+      "title": "People count bin 2",
+      "type": "integer",
+      "desciption": "People count bin 2 timeframe"
+    },
+    "peopleCountBin3": {
+      "title": "People count bin 3",
+      "type": "integer",
+      "desciption": "People count bin 3 timeframe"
+    },
+    "peopleCountBin4": {
+      "title": "People count bin 4",
+      "type": "integer",
+      "desciption": "People count bin 4 timeframe"
+    },
+    "peopleCountBin5": {
+      "title": "People count bin 5",
+      "type": "integer",
+      "desciption": "People count bin 5 timeframe"
+    },
+    "peopleCountBin6": {
+      "title": "People count bin 6",
+      "type": "integer",
+      "desciption": "People count bin 6 timeframe"
+    },
+    "alertCount": {
+      "title": "Alert count",
+      "type": "integer",
+      "desciption": "Alert count"
     },
     "temperature": {
       "title": "Temperature",
@@ -32,14 +51,6 @@
       "description": "Temperature in °C",
       "minimum": -40,
       "maximum": 125
-    },
-    "tiltAngle": {
-      "title": "Tilt angle",
-      "unit": "°",
-      "type": "number",
-      "description": "Tilt angle",
-      "minimum": 0,
-      "maximum": 180
     }
   }
 }

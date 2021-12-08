@@ -8,7 +8,14 @@
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Ultrasonic", "Laser"],
-  "outputTopics": ["default", "lifecycle"],
+  "outputTopics": [
+    "default",
+    "distance",
+    "ext",
+    "gnss",
+    "lifecycle",
+    "rss_test"
+  ],
   "encoding": "HEX",
   "connectivity": "Sigfox"
 }

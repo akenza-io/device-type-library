@@ -123,6 +123,7 @@ function consume(event) {
 
   // Standart Meassurement
   if (subType === 0 && cd === 0) {
+    const distance = {};
     const fl = flags(bits.substr(8, 8));
     lifecycle.motionFlag = fl.motionFlag;
     lifecycle.dayTimerFlag = fl.dayTimerFlag;
@@ -133,16 +134,18 @@ function consume(event) {
     lifecycle.laserHWErrorFlag = fl.laserHWErrorFlag;
     lifecycle.accelerometerHWErrorFlag = fl.accelerometerHWErrorFlag;
 
-    data.ultrasonicDistance = ultrasonicDistance(
+    distance.ultrasonicDistance = ultrasonicDistance(
       bits.substr(16, 8),
       lifecycle.tiltedFlag,
       lifecycle.overTempFlag,
     );
-    data.laserDistance = laserDistance(
+    distance.laserDistance = laserDistance(
       bits.substr(24, 8),
       lifecycle.tiltedFlag,
       lifecycle.overTempFlag,
     );
+    emit("sample", { data: distance, topic: "distance" });
+
     data.laserReflectance = laserReflectance(bits.substr(32, 16));
     data.temperature = temperature(bits.substr(48, 8));
     data.tiltAngle = tiltAngle(bits.substr(56, 8), lifecycle.overTempFlag);
@@ -163,6 +166,7 @@ function consume(event) {
     data.testFrames = bits.substr(8, 8);
     topic = "rssi_test";
   } else if (subType === 3 && cd === 0) {
+    const ext = {};
     const fl = flags(bits.substr(8, 8));
     lifecycle.motionFlag = fl.motionFlag;
     lifecycle.dayTimerFlag = fl.dayTimerFlag;
@@ -174,20 +178,21 @@ function consume(event) {
     lifecycle.accelerometerHWErrorFlag = fl.accelerometerHWErrorFlag;
 
     // Ultrasound Variance 8
-    data.ultrasonicDistanceExt = ultrasonicDistanceExt(
+    ext.ultrasonicDistanceExt = ultrasonicDistanceExt(
       bits.substr(24, 16),
       lifecycle.ultrasoundHWErrorFlag,
     );
-    data.laserDistanceExt = laserDistanceExt(
+    ext.laserDistanceExt = laserDistanceExt(
       bits.substr(40, 8),
       lifecycle.laserHWErrorFlag,
     );
+    emit("sample", { data: ext, topic: "ext" });
+
     data.laserReflectance = laserReflectance(bits.substr(48, 16));
     data.temperature = temperature(bits.substr(64, 8));
     data.tiltAngle = tiltAngle(bits.substr(72, 8), lifecycle.overTempFlag);
     lifecycle.batteryVoltage = batteryVoltage(bits.substr(80, 8));
     // Ultrasonic Transmission 8
-    topic = "ext";
   }
 
   if (cd === 0) {

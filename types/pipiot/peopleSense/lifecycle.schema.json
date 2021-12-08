@@ -4,45 +4,35 @@
   "title": "Lifecycle",
   "type": "object",
   "properties": {
-    "motionFlag": {
-      "title": "Motion event",
+    "heartbeatFlag": {
+      "title": "Heartbeat",
       "type": "boolean",
-      "desciption": "Occurs if the device is woken due to a change in acceleration."
-    },
-    "dayTimerFlag": {
-      "title": "Inactivity event",
-      "type": "boolean",
-      "desciption": "Occurs if the device is woken due to the 24 hour since last transmit timer."
-    },
-    "overTempFlag": {
-      "title": "Over temperature event",
-      "type": "boolean",
-      "desciption": "Occurs if the device detected a temperature above the safe operating temperature."
-    },
-    "tiltedFlag": {
-      "title": "Tilted event",
-      "type": "boolean",
-      "desciption": "Occurs if the device detects that it is operating outside of its allowed tilt angle range."
+      "desciption": "Occurs if the device is woken due periodical heartbeat messages."
     },
     "magSwitchFlag": {
       "title": "Magnet switch event",
       "type": "boolean",
       "desciption": "Occurs if the device was woken by the magnetic switch."
     },
-    "ultrasoundHWErrorFlag": {
-      "title": "Ultrasound Hardware Error",
+    "proxHWError": {
+      "title": "Proximity hardware error",
       "type": "boolean",
-      "desciption": "A problem was detected with the ultrasonic hardware. Device service required."
+      "desciption": "A problem was detected communicating with the proximity sensor. Device service required."
     },
-    "laserHWErrorFlag": {
-      "title": "Laser Hardware Error",
+    "binsReadyFlag": {
+      "title": "Bins ready",
       "type": "boolean",
-      "desciption": "A problem was detected with the laser hardware. Device service required."
+      "desciption": "Occurs if at least one bin is non-zero at the end of all sensing periods."
     },
-    "accelerometerHWErrorFlag": {
-      "title": "Accelerometer Hardware Error",
+    "forcedDownlinkFlag": {
+      "title": "Forced downlink flag",
       "type": "boolean",
-      "desciption": "A problem was detected with the accelerometer. Device service required."
+      "desciption": "Flag indicating the frame has an associated forced downlink associated with the message."
+    },
+    "countAlertFlag": {
+      "title": "Count alert",
+      "type": "boolean",
+      "desciption": "Flag indicating alert count event triggered frame."
     },
     "batteryVoltage": {
       "title": "Battery voltage",

@@ -1,7 +1,7 @@
 {
   "$id": "https://akenza.io/pipiot/levelSense/rssi_test.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
+  "title": "RSSI Test",
   "type": "object",
   "properties": {
     "testFrames": {

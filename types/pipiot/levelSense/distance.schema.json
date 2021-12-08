@@ -1,17 +1,17 @@
 {
-  "$id": "https://akenza.io/pipiot/levelSense/ext.schema.json",
+  "$id": "https://akenza.io/levelSense/levelSense/distance.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "External",
+  "title": "Distance",
   "type": "object",
   "properties": {
-    "ultrasonicDistanceExt": {
-      "title": "Ultrasonic distance ext",
+    "ultrasonicDistance": {
+      "title": "Ultrasonic distance",
       "type": "number",
       "desciption": "Ultrasonic distance measured between the sensor and the surface.",
       "unit": "cm"
     },
-    "laserDistanceExt": {
-      "title": "Laser distance ext",
+    "laserDistance": {
+      "title": "Laser distance",
       "type": "number",
       "desciption": "Laser distance measured between the sensor and the surface.",
       "unit": "cm"

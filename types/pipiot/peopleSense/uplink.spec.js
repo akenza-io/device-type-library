@@ -5,7 +5,7 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Elsys desk uplink", () => {
+describe("Pipiot peopleSense uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
@@ -20,7 +20,7 @@ describe("Elsys desk uplink", () => {
   });
 
   describe("consume()", () => {
-    it("should decode Elsys desk payload", () => {
+    it("should decode Pipiot peopleSense payload", () => {
       const data = {
         data: {
           payloadHex: "008d00090000400801008001",

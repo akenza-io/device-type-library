@@ -7,8 +7,8 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": ["Ultrasonic", "Laser"],
-  "outputTopics": ["default", "lifecycle"],
+  "availableSensors": ["Proximity"],
+  "outputTopics": ["default", "lifecycle", "rssi_test"],
   "encoding": "HEX",
   "connectivity": "Sigfox"
 }
