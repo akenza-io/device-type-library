@@ -5,14 +5,14 @@ function consume(event) {
   const data = {};
   let topic = "default";
 
-  if (port == 1) {
-    if (payload == "012000") {
-      data.message = "Standard startup";
+  if (port === 1) {
+    if (payload === "012000") {
+      data.message = "STARTUP_OK";
     } else {
-      data.message = "Something went wrong while startup";
+      data.message = "STARTUP_FAIL";
     }
     topic = "startup";
-  } else if (port == 2) {
+  } else if (port === 2) {
     // Taking the temperature from different positions in the payload and converting it through the defined offsets (same for humidity)
     data.temperature =
       Math.round(

@@ -1,21 +1,21 @@
 function consume(event) {
-  var payload = event.data.payloadHex;
-  var bits = Bits.hexToBits(payload);
-  var topic = "default";
+  const payload = event.data.payloadHex;
+  const bits = Bits.hexToBits(payload);
+  let topic = "default";
 
   if (payload !== "") {
-    for (var pointer = 0; pointer < bits.length; ) {
-      var channel = Bits.bitsToUnsigned(bits.substr(pointer, 8));
-      var data = {};
+    for (let pointer = 0; pointer < bits.length; ) {
+      const channel = Bits.bitsToUnsigned(bits.substr(pointer, 8));
+      const data = {};
       pointer += 16;
 
       switch (channel) {
         case 1:
           // Recalibrate Response
-          if (Bits.bitsToUnsigned(bits.substr(pointer, 8)) == 1) {
-            data.recalibrateResponse = "successful";
+          if (Bits.bitsToUnsigned(bits.substr(pointer, 8)) === 1) {
+            data.recalibrateResponse = "SUCCESSFUL";
           } else {
-            data.recalibrateResponse = "failed";
+            data.recalibrateResponse = "FAILED";
           }
           topic = "recalibrate_response";
           break;
@@ -28,7 +28,7 @@ function consume(event) {
           break;
         case 3:
           // Battery
-          data.battery = Bits.bitsToUnsigned(bits.substr(pointer, 16)) * 0.01;
+          data.voltage = Bits.bitsToUnsigned(bits.substr(pointer, 16)) * 0.01;
           pointer += 8;
           topic = "battery";
           break;
@@ -43,7 +43,7 @@ function consume(event) {
           break;
         case 21:
           // Parking Status
-          if (Bits.bitsToUnsigned(bits.substr(pointer, 8)) == 1) {
+          if (Bits.bitsToUnsigned(bits.substr(pointer, 8)) === 1) {
             data.occupancy = 1;
           } else {
             data.occupancy = 0;
@@ -56,8 +56,8 @@ function consume(event) {
           break;
         case 33:
           // Vehicle Count
-          if (Bits.bitsToUnsigned(bits.substr(pointer, 8)) == 128) {
-            data.reboot = "Sensor reboot or recalibration";
+          if (Bits.bitsToUnsigned(bits.substr(pointer, 8)) === 128) {
+            data.reboot = "RECALIBRATION";
             topic = "reboot";
           } else {
             data.vehicleCount = Bits.bitsToUnsigned(bits.substr(pointer, 8));
@@ -66,7 +66,7 @@ function consume(event) {
           break;
         case 55:
           // Keep-Alive
-          if (Bits.bitsToUnsigned(bits.substr(pointer, 8)) == 1) {
+          if (Bits.bitsToUnsigned(bits.substr(pointer, 8)) === 1) {
             data.occupancy = 1;
           } else {
             data.occupancy = 0;
@@ -75,14 +75,14 @@ function consume(event) {
           break;
         case 63:
           // Reboot Response
-          data.reboot = "done";
+          data.reboot = "DONE";
           topic = "reboot";
           break;
         default:
         // Should not be needed
       }
       pointer += 8;
-      emit("sample", { data: data, topic: topic });
+      emit("sample", { data, topic });
     }
   } else {
     emit("sample", { data: { startup: "startup" }, topic: "startup" });

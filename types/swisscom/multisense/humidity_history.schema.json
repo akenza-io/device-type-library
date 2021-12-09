@@ -1,0 +1,64 @@
+{
+  "$id": "https://akenza.io/swisscom/multisense/humidity_history.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Humidity history",
+  "type": "object",
+  "properties": {
+    "humHistory0": {
+      "title": "Humidity History 0",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %. Last Sample",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "humHistory1": {
+      "title": "Humidity History 1",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %. Last Sample -1",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "humHistory2": {
+      "title": "Humidity History 2",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %. Last Sample -2",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "humHistory3": {
+      "title": "Humidity History 3",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %. Last Sample -3",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "humHistory4": {
+      "title": "Humidity History 4",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %. Last Sample -4",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "humHistory5": {
+      "title": "Humidity History 5",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %. Last Sample -5",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "humHistory6": {
+      "title": "Humidity History 6",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %. Last Sample -6",
+      "minimum": 0,
+      "maximum": 100
+    }
+  }
+}

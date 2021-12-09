@@ -7,10 +7,7 @@
     "reboot": {
       "title": "Reboot",
       "description": "Either Sensor reboot, recalibration or reboot finished",
-      "enum": [
-        "done",
-        "Sensor reboot or recalibration"
-      ],
+      "enum": ["DONE", "RECALIBRATION"],
       "type": "string"
     }
   }

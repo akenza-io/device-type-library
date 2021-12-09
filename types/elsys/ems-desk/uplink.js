@@ -237,7 +237,11 @@ function consume(event) {
   noise.soundAvg = res.soundAvg;
 
   // Lifecycle values
-  lifecycle.voltage = res.vdd / 1000;
+  if (res.vdd !== undefined) {
+    lifecycle.voltage = res.vdd / 1000;
+    lifecycle.batteryLevel =
+      Math.floor((res.vdd / 1000 - 3.2) / 0.005 / 10) * 10;
+  }
 
   if (deleteUnusedKeys(data)) {
     emit("sample", { data, topic: "default" });

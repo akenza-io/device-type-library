@@ -1,5 +1,5 @@
 {
-  "name": "Multisense - Button",
+  "name": "Multisense - Button (Deprecated)",
   "version": "1.0.0",
   "manufacturer": "Swisscom",
   "url": "https://www.swisscom.ch/de/business/enterprise/angebot/iot/multisense.html",
@@ -7,13 +7,8 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": [
-    "Button"
-  ],
-  "outputTopics": [
-    "button_event",
-    "lifecycle"
-  ],
+  "availableSensors": ["Button"],
+  "outputTopics": ["button_event", "lifecycle"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

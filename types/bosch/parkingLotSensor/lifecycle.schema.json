@@ -15,9 +15,15 @@
       "type": "string"
     },
     "resetCause": {
-      "title": "Reset Cause",
-      "description": "Reset Cause",
-      "type": "string"
+      "title": "Reset cause",
+      "description": "Reset cause",
+      "type": "string",
+      "enum": [
+        "WATCHDOG_RESET",
+        "POWER_ON_RESET",
+        "SYSTEM_REQUEST_RESET",
+        "OTHER_RESET"
+      ]
     }
   }
 }

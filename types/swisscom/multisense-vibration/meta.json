@@ -1,5 +1,5 @@
 {
-  "name": "Multisense - Vibration",
+  "name": "Multisense - Vibration (Deprecated)",
   "version": "1.0.0",
   "manufacturer": "Swisscom",
   "url": "https://www.swisscom.ch/de/business/enterprise/angebot/iot/multisense.html",
@@ -7,13 +7,8 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": [
-    "Vibration"
-  ],
-  "outputTopics": [
-    "vibration",
-    "lifecycle"
-  ],
+  "availableSensors": ["Vibration"],
+  "outputTopics": ["vibration", "lifecycle"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }
