@@ -1,5 +1,5 @@
 {
-  "name": "Multisense - Workplace",
+  "name": "Multisense - Workplace (Deprecated)",
   "version": "1.0.0",
   "manufacturer": "Swisscom",
   "url": "https://www.swisscom.ch/de/business/enterprise/angebot/iot/multisense.html",
@@ -7,9 +7,7 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": [
-    "Occupancy"
-  ],
+  "availableSensors": ["Occupancy"],
   "outputTopics": [
     "usage_start_event",
     "usage_check_event",

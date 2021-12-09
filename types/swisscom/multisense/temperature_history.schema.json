@@ -1,0 +1,64 @@
+{
+  "$id": "https://akenza.io/swisscom/multisense/temperature_history.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Temperature history",
+  "type": "object",
+  "properties": {
+    "tempHistory0": {
+      "title": "Temperature history 0",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C. Last Sample",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "tempHistory1": {
+      "title": "Temperature history 1",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C. Last Sample -1",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "tempHistory2": {
+      "title": "Temperature history 2",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C. Last Sample -2",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "tempHistory3": {
+      "type": "number",
+      "title": "Temperature history 3",
+      "unit": "°C",
+      "description": "The temperature in °C. Last Sample -3",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "tempHistory4": {
+      "title": "Temperature history 4",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C. Last Sample -4",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "tempHistory5": {
+      "title": "Temperature history 5",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C. Last Sample -5",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "tempHistory6": {
+      "title": "Temperature history 6",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C. Last Sample -6",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    }
+  }
+}

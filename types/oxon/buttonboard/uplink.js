@@ -19,7 +19,6 @@ function consume(event) {
     lifecycle.hbIRQ = !!Bits.bitsToUnsigned(bits.substr(16, 8));
     lifecycle.accIRQ = !!Bits.bitsToUnsigned(bits.substr(24, 8));
     lifecycle.appMode = Bits.bitsToUnsigned(bits.substr(32, 8));
-    data.enabledButtonsIds = Bits.bitsToUnsigned(bits.substr(40, 8));
 
     // Enabled buttons
     // Reserved 2

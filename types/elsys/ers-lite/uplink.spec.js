@@ -56,6 +56,7 @@ describe("Elsys ERS lite uplink", () => {
 
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.voltage, 3.674);
+        assert.equal(value.data.batteryLevel, 90);
 
         validate(value.data, lifecycleSchema, { throwError: true });
       });
