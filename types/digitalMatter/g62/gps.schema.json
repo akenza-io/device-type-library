@@ -1,7 +1,7 @@
 {
-  "$id": "https://akenza.io/digitalMatter/oyster/position.schema.json",
+  "$id": "https://akenza.io/digitalMatter/g62/gps.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Position",
+  "title": "GPS",
   "type": "object",
   "properties": {
     "latitude": {
@@ -20,15 +20,16 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     },
-    "inTrip": {
-      "title": "In trip",
-      "type": "boolean",
-      "description": "Is true if the accelerometer detects movement"
+    "tripType": {
+      "title": "Trip type",
+      "type": "string",
+      "description": "Type of movement this trip",
+      "enum": ["NO_TRIP", "IGNITION", "MOVEMENT", "RUN"]
     },
-    "fixFailed": {
-      "title": "Fix failed",
+    "gpsFixCurrent": {
+      "title": "GPS fix current",
       "type": "boolean",
-      "description": "Equals true if the last GPS fix failed"
+      "description": "Equals true if the GPS fix is current"
     },
     "headingDeg": {
       "title": "heading",
@@ -42,18 +43,11 @@
       "type": "number",
       "description": "Acceleration of the sensor"
     },
-    "manDown": {
-      "title": "Man down",
-      "type": "boolean",
-      "description": "Equals true if no movement for configured period got detected (Needs to be activated)"
-    },
-    "voltage": {
+    "gpsAccuracy": {
+      "title": "GPS Accuracy",
       "type": "number",
-      "minimum": 0,
-      "maximum": 24,
-      "title": "Battery voltage",
-      "desciption": "The battery voltage in Volt.",
-      "unit": "V"
+      "unit": "m",
+      "description": "GPS accuracy in meters"
     }
   }
 }

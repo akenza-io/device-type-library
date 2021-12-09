@@ -5,18 +5,16 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Digital matter Oyster Uplink", () => {
-  let positionSchema = null;
+describe("Digital matter G62 Uplink", () => {
+  let gpsSchema = null;
   let consume = null;
   before((done) => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/position.schema.json`)
-      .then((parsedSchema) => {
-        positionSchema = parsedSchema;
-        done();
-      });
+    utils.loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
+      gpsSchema = parsedSchema;
+      done();
+    });
   });
 
   let lifecycleSchema = null;
@@ -29,12 +27,22 @@ describe("Digital matter Oyster Uplink", () => {
       });
   });
 
+  let digitalSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/digital.schema.json`)
+      .then((parsedSchema) => {
+        digitalSchema = parsedSchema;
+        done();
+      });
+  });
+
   describe("consume()", () => {
-    it("should decode the digital matter Oyster payload, port 1", () => {
+    it("should decode the digital matter G62 payload, port 1", () => {
       const data = {
         data: {
           port: 1,
-          payloadHex: "53AB783C0421F98E940AB3",
+          payloadHex: "AA26F5EC16A108450A12CAC9330000171C",
         },
       };
 
@@ -43,28 +51,34 @@ describe("Digital matter Oyster Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "position");
-        assert.equal(value.data.latitude, 101.4541139);
-        assert.equal(value.data.longitude, -189.6275708);
-        assert.equal(value.data.inTrip, false);
-        assert.equal(value.data.fixFailed, false);
-        assert.equal(value.data.headingDeg, 208.125);
-        assert.equal(value.data.speedKmph, 10);
-        assert.equal(value.data.voltage, 4.48);
+        assert.equal(value.topic, "gps");
+        assert.equal(value.data.tripType, "MOVEMENT");
+        assert.equal(value.data.latitude, -31.9478112);
+        assert.equal(value.data.longitude, 115.8193424);
+        assert.equal(value.data.gpsFixCurrent, true);
+        assert.equal(value.data.headingDeg, 20);
+        assert.equal(value.data.speedKmph, 18);
 
-        validate(value.data, positionSchema, { throwError: true });
+        validate(value.data, gpsSchema, { throwError: true });
       });
 
-      consume(data);
-    });
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
 
-    it("should decode the digital matter Oyster payload, port 3", () => {
-      const data = {
-        data: {
-          port: 3,
-          payloadHex: "8BF3DC7B9438984278B85E",
-        },
-      };
+        assert.equal(value.topic, "digital");
+
+        assert.equal(value.data.extPower, false);
+        assert.equal(value.data.ignition, false);
+        assert.equal(value.data.digitalInput1, true);
+        assert.equal(value.data.digitalInput2, true);
+        assert.equal(value.data.digitalOutput, false);
+        assert.equal(value.data.extVoltage, 13.257);
+        assert.equal(value.data.analogInput, 0);
+
+        validate(value.data, digitalSchema, { throwError: true });
+      });
 
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
@@ -72,16 +86,8 @@ describe("Digital matter Oyster Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.initialBatV, 5.1);
-        assert.equal(value.data.txCount, 59136);
-        assert.equal(value.data.tripCount, 194336);
-        assert.equal(value.data.gpsSuccesses, 10464);
-        assert.equal(value.data.gpsFails, 7232);
-        assert.equal(value.data.aveGpsFixS, 96);
-        assert.equal(value.data.aveGpsFailS, 133);
-        assert.equal(value.data.aveGpsFreshenS, 120);
-        assert.equal(value.data.wakeupsPerTrip, 56);
-        assert.equal(value.data.uptimeWeeks, 189);
+        assert.equal(value.data.voltage, 4.04);
+        assert.equal(value.data.internalTemperature, 23);
 
         validate(value.data, lifecycleSchema, { throwError: true });
       });

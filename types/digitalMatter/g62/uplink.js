@@ -1,116 +1,7 @@
-function toLittleEndian(hex) {
-  const hexArray = [];
-  let tempHex = hex;
-  while (tempHex.length >= 2) {
-    hexArray.push(tempHex.substring(0, 2));
-    tempHex = tempHex.substring(2, tempHex.length);
-  }
-  hexArray.reverse();
-  return Bits.bitsToUnsigned(Bits.hexToBits(hexArray.join("")));
-}
-
-function int2bin(int, pad) {
-  return int.toString(2).padStart(pad, "0");
-}
-
-function decoder(bytes, port) {
-  const decoded = {};
-  if (port === 1) {
-    let bits = int2bin(bytes[0] & 0x0f, 4);
-    decoded.fixSuccess = !!Number(bits.substr(0, 1));
-    decoded.externalPower = !!Number(bits.substr(1, 1));
-
-    const inTrip = Bits.bitsToUnsigned(bits.substr(2, 2));
-    if (inTrip === 0) {
-      decoded.inTrip = "NO_TRIP";
-    } else if (inTrip === 1) {
-      decoded.inTrip = "IGNITION";
-    } else if (inTrip === 2) {
-      decoded.inTrip = "MOVEMENT";
-    } else if (inTrip === 3) {
-      decoded.inTrip = "RUN";
-    }
-
-    decoded.type = "position";
-    decoded.latitude =
-      (bytes[0] & 0xf0) +
-      bytes[1] * 256 +
-      bytes[2] * 65536 +
-      bytes[3] * 16777216;
-    if (decoded.latitude >= 0x80000000) {
-      // 2^31
-      decoded.latitude -= 0x100000000; // 2^32
-    }
-    decoded.latitude /= 1e7;
-
-    bits = int2bin(bytes[4] & 0x0f, 4);
-    decoded.digitalOutput = !!Number(bits.substr(0, 1));
-    decoded.digitalInput2 = !!Number(bits.substr(1, 1));
-    decoded.digitalInput1 = !!Number(bits.substr(2, 1));
-    decoded.ignition = !!Number(bits.substr(3, 1));
-
-    decoded.longitude =
-      (bytes[4] & 0xf0) +
-      bytes[5] * 256 +
-      bytes[6] * 65536 +
-      bytes[7] * 16777216;
-    if (decoded.longitude >= 0x80000000) {
-      // 2^31
-      decoded.longitude -= 0x100000000; // 2^32
-    }
-    decoded.longitude /= 1e7;
-    decoded.headingDeg = bytes[8] * 2;
-    decoded.speed = bytes[9];
-
-    decoded.voltage = Math.round(bytes[10] * 20 * 100) / 100 / 1000;
-    decoded.extVoltage = toLittleEndian([`${bytes[11]}${bytes[12]}`]);
-  } else if (port === 4) {
-    decoded.type = "position";
-    decoded.latitude = bytes[0] + bytes[1] * 256 + bytes[2] * 65536;
-    if (decoded.latitude >= 0x800000) {
-      // 2^23
-      decoded.latitude -= 0x1000000; // 2^24
-    }
-    decoded.latitude *= 256e-7;
-
-    decoded.longitude = bytes[3] + bytes[4] * 256 + bytes[5] * 65536;
-    if (decoded.longitude >= 0x800000) {
-      // 2^23
-      decoded.longitude -= 0x1000000; // 2^24
-    }
-    decoded.longitude *= 256e-7;
-    decoded.headingDeg = (bytes[6] & 0x7) * 45;
-    decoded.speedKmph = (bytes[6] >> 3) * 5;
-    decoded.voltage = Math.round(bytes[7] * 0.025 * 100) / 100;
-    decoded.inTrip = (bytes[8] & 0x1) !== 0;
-    decoded.fixFailed = (bytes[8] & 0x2) !== 0;
-    decoded.manDown = (bytes[8] & 0x4) !== 0;
-  } else if (port === 2) {
-    decoded.type = "downlink_ack";
-    decoded.sequenceNumber = bytes[0] & 0x7f;
-    decoded.accepted = (bytes[0] & 0x80) !== 0;
-    decoded.fwMaj = bytes[1];
-    decoded.fwMin = bytes[2];
-  } else if (port === 3) {
-    decoded.type = "lifecycle";
-    decoded.initialBatV = 4.0 + 0.1 * (bytes[0] & 0xf);
-    decoded.txCount = 32 * ((bytes[0] >> 4) + (bytes[1] & 0x7f) * 16);
-    decoded.tripCount =
-      32 * ((bytes[1] >> 7) + (bytes[2] & 0xff) * 2 + (bytes[3] & 0x0f) * 512);
-    decoded.gpsSuccesses = 32 * ((bytes[3] >> 4) + (bytes[4] & 0x3f) * 16);
-    decoded.gpsFails = 32 * ((bytes[4] >> 6) + (bytes[5] & 0x3f) * 4);
-    decoded.aveGpsFixS = 1 * ((bytes[5] >> 6) + (bytes[6] & 0x7f) * 4);
-    decoded.aveGpsFailS = 1 * ((bytes[6] >> 7) + (bytes[7] & 0xff) * 2);
-    decoded.aveGpsFreshenS = 1 * ((bytes[7] >> 8) + (bytes[8] & 0xff) * 1);
-    decoded.wakeupsPerTrip = 1 * ((bytes[8] >> 8) + (bytes[9] & 0x7f) * 1);
-    decoded.uptimeWeeks = 1 * ((bytes[9] >> 7) + (bytes[10] & 0xff) * 2);
-  }
-
-  return decoded;
-}
-
 function hexToBytes(hex) {
-  for (var bytes = [], c = 0; c < hex.length; c += 2) {
+  let bytes;
+  let c;
+  for (bytes = [], c = 0; c < hex.length; c += 2) {
     bytes.push(parseInt(hex.substr(c, 2), 16));
   }
   return bytes;
@@ -119,7 +10,91 @@ function hexToBytes(hex) {
 function consume(event) {
   const payload = event.data.payloadHex;
   const { port } = event.data;
-  const data = decoder(hexToBytes(payload), port);
-  const topic = data.type;
-  emit("sample", { data, topic });
+  const bytes = hexToBytes(payload);
+  const data = {};
+
+  if (port === 1 || port === 2) {
+    const gps = {};
+    const digital = {};
+    const lifecycle = {};
+    switch (bytes[0] & 0x3) {
+      case 0:
+        gps.tripType = "NO_TRIP";
+        break;
+      case 1:
+        gps.tripType = "IGNITION";
+        break;
+      case 2:
+        gps.tripType = "MOVEMENT";
+        break;
+      case 3:
+        gps.tripType = "RUN";
+        break;
+      default:
+        break;
+    }
+    gps.latitude =
+      (bytes[0] & 0xf0) +
+      bytes[1] * 256 +
+      bytes[2] * 65536 +
+      bytes[3] * 16777216;
+    if (gps.latitude >= 0x80000000) {
+      gps.latitude -= 0x100000000;
+    }
+    gps.latitude /= 1e7;
+
+    gps.longitude =
+      (bytes[4] & 0xf0) +
+      bytes[5] * 256 +
+      bytes[6] * 65536 +
+      bytes[7] * 16777216;
+    if (gps.longitude >= 0x80000000) {
+      gps.longitude -= 0x100000000;
+    }
+    gps.longitude /= 1e7;
+
+    digital.extPower = (bytes[0] & 0x4) !== 0;
+    gps.gpsFixCurrent = (bytes[0] & 0x8) !== 0;
+    digital.ignition = (bytes[4] & 0x1) !== 0;
+    digital.digitalInput1 = (bytes[4] & 0x2) !== 0;
+    digital.digitalInput2 = (bytes[4] & 0x4) !== 0;
+    digital.digitalOutput = (bytes[4] & 0x8) !== 0;
+    gps.headingDeg = bytes[8] * 2;
+    gps.speedKmph = bytes[9];
+    lifecycle.voltage = parseFloat((bytes[10] * 0.02).toFixed(3));
+
+    if (port === 1) {
+      digital.extVoltage = parseFloat(
+        (0.001 * (bytes[11] + bytes[12] * 256)).toFixed(3),
+      );
+      digital.analogInput = parseFloat(
+        (0.001 * (bytes[13] + bytes[14] * 256)).toFixed(3),
+      );
+      lifecycle.internalTemperature = bytes[15];
+      if (lifecycle.internalTemperature >= 0x80) {
+        gps.gpsAccuracy = bytes[16];
+      }
+    }
+
+    emit("sample", { data: gps, topic: "gps" });
+    emit("sample", { data: digital, topic: "digital" });
+    emit("sample", { data: lifecycle, topic: "lifecycle" });
+  } else if (port === 4) {
+    const runtimeS =
+      bytes[0] + bytes[1] * 256 + bytes[2] * 65536 + bytes[3] * 16777216;
+    data.runtime = `${Math.floor(runtimeS / 86400)}d${Math.floor(
+      (runtimeS % 86400) / 3600,
+    )}h${Math.floor((runtimeS % 3600) / 60)}m${runtimeS % 60}s`;
+    data.odometer =
+      0.01 *
+      (bytes[4] + bytes[5] * 256 + bytes[6] * 65536 + bytes[7] * 16777216);
+    data.odometer = parseFloat(data.odometer.toFixed(2) / 10);
+    emit("sample", { data, topic: "odometer" });
+  } else if (port === 5) {
+    data.sequenceNumber = bytes[0] & 0x7f;
+    data.accepted = (bytes[0] & 0x80) !== 0;
+    data.fwMaj = bytes[1];
+    data.fwMin = bytes[2];
+    emit("sample", { data, topic: "downlink_ack" });
+  }
 }
