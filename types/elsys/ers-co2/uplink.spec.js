@@ -1,60 +1,68 @@
 const chai = require("chai");
-const validate = require("jsonschema").validate;
+const { validate } = require("jsonschema");
 const rewire = require("rewire");
-const fs = require("fs");
+const utils = require("test-utils");
 
-const assert = chai.assert;
+const { assert } = chai;
 
-const script = rewire("./uplink.js");
-let defaultSchema = null;
-const consume = script.__get__("consume");
-
-function expectEmit(callback) {
-  script.__set__({
-    emit: callback,
+describe("Elsys CO2 uplink", () => {
+  let defaultSchema = null;
+  let consume = null;
+  before((done) => {
+    const script = rewire("./uplink.js");
+    consume = utils.init(script);
+    utils
+      .loadSchema(`${__dirname}/default.schema.json`)
+      .then((parsedSchema) => {
+        defaultSchema = parsedSchema;
+        done();
+      });
   });
-}
 
-before(function (done) {
-  fs.readFile(
-    __dirname + "/default.schema.json",
-    "utf8",
-    function (err, fileContents) {
-      if (err) throw err;
-      defaultSchema = JSON.parse(fileContents);
-      done();
-    },
-  );
-});
+  let lifecycleSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+      .then((parsedSchema) => {
+        lifecycleSchema = parsedSchema;
+        done();
+      });
+  });
 
-describe("Elsys CO2 uplink", function () {
-  describe("consume()", function () {
-    it("should decode Elsys CO2 payload", function (done) {
+  describe("consume()", () => {
+    it("should decode Elsys CO2 payload", () => {
       const data = {
         data: {
-          payloadHex: "0100f4022804000b05000601d8070e3e",
+          payloadHex: "0100f4022804000b0601d8070e3e",
         },
       };
 
-      expectEmit(function (type, value) {
+      utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic == "lifecycle") {
-          assert.equal(value.data.voltage, 3.646);
-        }
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.light, 11);
+        assert.equal(value.data.humidity, 40);
+        assert.equal(value.data.temperature, 24.4);
 
-        if (value.topic == "default") {
-          assert.equal(value.data.light, 11);
-          assert.equal(value.data.humidity, 40);
-          assert.equal(value.data.temperature, 24.4);
-          validate(value.data, defaultSchema, { throwError: true });
-        }
+        validate(value.data, defaultSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.voltage, 3.646);
+        assert.equal(value.data.batteryLevel, 80);
+
+        validate(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
-      done();
     });
   });
 });

@@ -3,19 +3,12 @@
   "version": "1.0.0",
   "manufacturer": "Sensative",
   "url": "https://sensative.com/sensors/strips-lorawan-sensors/strips-multi-sensor-guard-for-lorawan/",
-  "description": "Strips +Guard is a revolutionary magnetic contact sensor for monitoring windows, doors, and valuables.",
+  "description": "Strips +Guard is a magnet sensor for monitoring windows, doors, and valuables. Strips +Guard can also be used for temperature measurements.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": [
-    "Reed"
-  ],
-  "outputTopics": [
-    "alarm",
-    "default",
-    "lifecycle",
-    "occupancy"
-  ],
+  "availableSensors": ["Magnet", "Temperature"],
+  "outputTopics": ["alarm", "default", "lifecycle", "occupancy"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

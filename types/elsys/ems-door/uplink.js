@@ -203,16 +203,18 @@ function consume(event) {
   const lifecycle = {};
   const occupancy = {};
   const noise = {};
+  const reed = {};
+  const acceleration = {};
 
   // Default values
   data.temperature = res.temperature;
   data.humidity = res.humidity;
-  data.accX = res.accX;
-  data.accY = res.accY;
-  data.accZ = res.accZ;
+  acceleration.accX = res.accX;
+  acceleration.accY = res.accY;
+  acceleration.accZ = res.accZ;
   data.light = res.light;
   data.co2 = res.co2;
-  data.reed = res.digital;
+  reed.reed = res.digital;
   data.distance = res.distance;
   data.accMotion = res.accMotion;
   data.waterleak = res.waterleak;
@@ -237,10 +239,21 @@ function consume(event) {
   noise.soundAvg = res.soundAvg;
 
   // Lifecycle values
-  lifecycle.voltage = res.vdd / 1000;
+  if (res.vdd !== undefined) {
+    lifecycle.voltage = res.vdd / 1000;
+    lifecycle.batteryLevel =
+      Math.floor((res.vdd / 1000 - 3.2) / 0.005 / 10) * 10;
+  }
 
   if (deleteUnusedKeys(data)) {
     emit("sample", { data, topic: "default" });
+  }
+
+  if (deleteUnusedKeys(reed)) {
+    emit("sample", { data: reed, topic: "reed" });
+  }
+  if (deleteUnusedKeys(acceleration)) {
+    emit("sample", { data: acceleration, topic: "acceleration" });
   }
 
   if (deleteUnusedKeys(lifecycle)) {

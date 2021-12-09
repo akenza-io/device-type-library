@@ -1,100 +1,109 @@
 const chai = require("chai");
-const validate = require("jsonschema").validate;
+const { validate } = require("jsonschema");
 const rewire = require("rewire");
-const fs = require("fs");
+const utils = require("test-utils");
 
-const assert = chai.assert;
+const { assert } = chai;
 
-const script = rewire("./uplink.js");
-let motionSchema = null;
-let defaultSchema = null;
-const consume = script.__get__("consume");
-
-function expectEmit(callback) {
-  script.__set__({
-    emit: callback,
+describe("Elsys eye uplink", () => {
+  let defaultSchema = null;
+  let consume = null;
+  before((done) => {
+    const script = rewire("./uplink.js");
+    consume = utils.init(script);
+    utils
+      .loadSchema(`${__dirname}/default.schema.json`)
+      .then((parsedSchema) => {
+        defaultSchema = parsedSchema;
+        done();
+      });
   });
-}
 
-before(function (done) {
-  fs.readFile(
-    __dirname + "/occupancy.schema.json",
-    "utf8",
-    function (err, fileContents) {
-      if (err) throw err;
-      motionSchema = JSON.parse(fileContents);
-      done();
-    },
-  );
-});
+  let lifecycleSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+      .then((parsedSchema) => {
+        lifecycleSchema = parsedSchema;
+        done();
+      });
+  });
 
-before(function (done) {
-  fs.readFile(
-    __dirname + "/default.schema.json",
-    "utf8",
-    function (err, fileContents) {
-      if (err) throw err;
-      defaultSchema = JSON.parse(fileContents);
-      done();
-    },
-  );
-});
+  let occupancySchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/occupancy.schema.json`)
+      .then((parsedSchema) => {
+        occupancySchema = parsedSchema;
+        done();
+      });
+  });
 
-describe("Elsys eye uplink", function () {
-  describe("consume()", function () {
-    it("should decode Elsys eye payload", function (done) {
+  describe("consume()", () => {
+    it("should decode Elsys eye payload", () => {
       const data = {
         data: {
           payloadHex: "05011101",
         },
       };
 
-      expectEmit(function (type, value) {
+      utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic === "motion") {
-          assert.equal(value.data.motion, 1);
-          assert.equal(value.data.occupancy, 1);
+        assert.equal(value.data.motion, 1);
+        assert.equal(value.data.occupancy, 1);
 
-          validate(value.data, motionSchema, { throwError: true });
-        }
+        validate(value.data, occupancySchema, { throwError: true });
       });
 
       consume(data);
-      done();
     });
 
-    it("should decode Elsys eye Default + Motion payload", function (done) {
-      // Default + Motion
+    it("should decode elsys eye default + motion payload", () => {
       const data = {
         data: {
           payloadHex: "0100e102280401a00500070dff1102",
         },
       };
-      expectEmit(function (type, value) {
+
+      utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic === "motion") {
-          assert.equal(value.data.motion, 0);
-          assert.equal(value.data.occupancy, 2);
+        assert.equal(value.data.temperature, 22.5);
+        assert.equal(value.data.humidity, 40);
+        assert.equal(value.data.light, 416);
 
-          validate(value.data, motionSchema, { throwError: true });
-        }
+        validate(value.data, defaultSchema, { throwError: true });
+      });
 
-        if (value.topic === "default") {
-          assert.equal(value.data.temperature, 22.5);
-          assert.equal(value.data.humidity, 40);
-          assert.equal(value.data.light, 416);
-          validate(value.data, defaultSchema, { throwError: true });
-        }
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.voltage, 3.583);
+        assert.equal(value.data.batteryLevel, 70);
+
+        validate(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.data.motion, 0);
+        assert.equal(value.data.occupancy, 2);
+
+        validate(value.data, occupancySchema, { throwError: true });
       });
 
       consume(data);
-      done();
     });
   });
 });

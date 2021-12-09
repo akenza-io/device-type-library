@@ -19,12 +19,12 @@ describe("Globalsat LT-20 uplink", () => {
       });
   });
 
-  let lifeCycleSchema = null;
+  let lifecycleSchema = null;
   before((done) => {
     utils
       .loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
-        lifeCycleSchema = parsedSchema;
+        lifecycleSchema = parsedSchema;
         done();
       });
   });
@@ -43,10 +43,8 @@ describe("Globalsat LT-20 uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic == "lifecyle") {
-          // assert.equal(value.data.batteryPercent, 100);
-          validate(value.data, lifecycleSchema, { throwError: true });
-        }
+        assert.equal(value.data.batteryPercent, 100);
+        validate(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -54,13 +52,11 @@ describe("Globalsat LT-20 uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic == "default") {
-          assert.equal(value.data.longitude, 115.8162);
-          assert.equal(value.data.latitude, -31.8965256);
-          assert.equal(value.data.gpsFix, "Not fix");
-          assert.equal(value.data.reportType, "Motion mode static report");
-          validate(value.data, defaultSchema, { throwError: true });
-        }
+        assert.equal(value.data.longitude, 115.8162);
+        assert.equal(value.data.latitude, -31.8965256);
+        assert.equal(value.data.gpsFix, "Not fix");
+        assert.equal(value.data.reportType, "Motion mode static report");
+        validate(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

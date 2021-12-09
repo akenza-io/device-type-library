@@ -4,6 +4,77 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.7.1] - 2021-12-08
+
+### Changed
+
+- Elsys Door - Added topics in meta to match new output
+- Miromico insight - Version & picture
+- Sensative - Strip MS-Guard Presence description & availableSensors
+- Sensative - Strip Presence availableSensors
+
+# [1.7.0] - 2021-12-02
+
+### Changed
+
+- Bosch - parkingLotSensor Changed string output to ENUM
+- Elsys - Added Battery in percent for all sensors which give out voltage
+- Elsys - EMS Door spliced schemas so we dont have double KPI for the same value
+- Globalsat - LS-113G deleted unused keys
+- Oxon - Buttonboard deleted unused key
+- PNI - PlacePod changed some data outputs to enum instead of string
+- Talkpool - oy1200 changed some data outputs to enum instead of string
+- Talkpool - oy1700 changed some data outputs to enum instead of string
+
+### Breaking changes
+
+- Miromico - miro Click V2.5.0 changed name to miro Click and changed Versions
+- Miromico - miro Click V2.0.0 deleted old devicetype in response to manufacturer
+- Swisscom - Multisense unified all devicetypes to one and named the old ones to deprecated
+
+# [1.6.0] - 2021-11-15
+
+### Added
+
+- Miromico - Insight
+
+# [1.5.1] - 2021-11-15
+
+### Changed
+
+- Sensative - Strip MS-Guard Presence description
+- Sensative - Strip Presence description
+
+# [1.5.0] - 2021-10-26
+
+### Added
+
+- Sensative - Strip Presence
+
+### Changed
+
+- Changed folder name for sensative
+
+# [1.4.3] - 2021-10-21
+
+### Changed
+
+- Updated tests to match the new guidelines
+- Changed Kuando Busylight name!
+- Changed description of ranosDB2
+
+# [1.4.3] - 2021-10-20
+
+### Added
+
+- Added functionality to run tests in integration mode
+
+# [1.4.2] - 2021-10-19
+
+### Changed
+
+- Oxon - Buttonboard changed from button ID to individual button outputs.
+
 # [1.4.1] - 2021-10-18
 
 ### Changed

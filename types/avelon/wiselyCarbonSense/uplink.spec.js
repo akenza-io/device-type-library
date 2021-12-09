@@ -1,76 +1,134 @@
 const chai = require("chai");
 const { validate } = require("jsonschema");
 const rewire = require("rewire");
-const fs = require("fs");
+const utils = require("test-utils");
 
 const { assert } = chai;
 
-const script = rewire("./uplink.js");
-let defaultSchema = null;
-let lifecycleSchema = null;
-const consume = script.__get__("consume");
-
-function expectEmit(callback) {
-  script.__set__({
-    emit: callback,
-  });
-}
-
-before((done) => {
-  fs.readFile(
-    `${__dirname}/default.schema.json`,
-    "utf8",
-    (err, fileContents) => {
-      if (err) throw err;
-      defaultSchema = JSON.parse(fileContents);
-      done();
-    },
-  );
-});
-
-before((done) => {
-  fs.readFile(
-    `${__dirname}/lifecycle.schema.json`,
-    "utf8",
-    (err, fileContents) => {
-      if (err) throw err;
-      lifecycleSchema = JSON.parse(fileContents);
-      done();
-    },
-  );
-});
-
 describe("Avelon Carbonsense uplink", () => {
+  let defaultSchema = null;
+  let consume = null;
+  before((done) => {
+    const script = rewire("./uplink.js");
+    consume = utils.init(script);
+    utils
+      .loadSchema(`${__dirname}/default.schema.json`)
+      .then((parsedSchema) => {
+        defaultSchema = parsedSchema;
+        done();
+      });
+  });
+
+  let lifecycleSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+      .then((parsedSchema) => {
+        lifecycleSchema = parsedSchema;
+        done();
+      });
+  });
+
   describe("consume()", () => {
-    it("should decode Avelon Carbonsense payload", (done) => {
+    it("Should decode Avelon Carbonsense payload", () => {
       const data = {
         data: {
+          port: 1,
           payloadHex:
             "fe265300e54202e0265200e54202e7265100e64202f1265000e64202f3265000e64202f7265000e64202f900",
         },
       };
 
-      expectEmit((type, value) => {
+      utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic == "lifecycle") {
-          assert.equal(value.data.batteryLevel, 100);
-          validate(value.data, lifecycleSchema, { throwError: true });
-        }
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batteryLevel, 100);
 
-        if (value.topic == "default") {
-          assert.equal(value.data.pressure, 981.1);
-          assert.equal(value.data.temperature, 22.9);
-          assert.equal(value.data.humidity, 33);
-          assert.equal(value.data.co2, 736);
-          validate(value.data, defaultSchema, { throwError: true });
-        }
+        validate(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.data.pressure, 981.1);
+        assert.equal(value.data.temperature, 22.9);
+        assert.equal(value.data.humidity, 33);
+        assert.equal(value.data.co2, 736);
+
+        validate(value.data, defaultSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.data.pressure, 981);
+        assert.equal(value.data.temperature, 22.9);
+        assert.equal(value.data.humidity, 33);
+        assert.equal(value.data.co2, 743);
+
+        validate(value.data, defaultSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.data.pressure, 980.9);
+        assert.equal(value.data.temperature, 23);
+        assert.equal(value.data.humidity, 33);
+        assert.equal(value.data.co2, 753);
+
+        validate(value.data, defaultSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.data.pressure, 980.8);
+        assert.equal(value.data.temperature, 23);
+        assert.equal(value.data.humidity, 33);
+        assert.equal(value.data.co2, 755);
+
+        validate(value.data, defaultSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.data.pressure, 980.8);
+        assert.equal(value.data.temperature, 23);
+        assert.equal(value.data.humidity, 33);
+        assert.equal(value.data.co2, 759);
+
+        validate(value.data, defaultSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.data.pressure, 980.8);
+        assert.equal(value.data.temperature, 23);
+        assert.equal(value.data.humidity, 33);
+        assert.equal(value.data.co2, 761);
+
+        validate(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
-      done();
     });
   });
 });

@@ -1,5 +1,5 @@
 function parseHexString(str) {
-  var result = [];
+  const result = [];
   while (str.length >= 2) {
     result.push(parseInt(str.substring(0, 2), 16));
 
@@ -96,10 +96,10 @@ function decodeFrame(bytes, type, target, pos) {
       break;
     case 22: // DisinfectAlarm
       target.disinfectAlarm = bytes[pos++];
-      if (target.disinfectAlarm == 0) target.disinfectAlarm = "dirty";
-      if (target.disinfectAlarm == 1) target.disinfectAlarm = "occupied";
-      if (target.disinfectAlarm == 2) target.disinfectAlarm = "cleaning";
-      if (target.disinfectAlarm == 3) target.disinfectAlarm = "clean";
+      if (target.disinfectAlarm === 0) target.disinfectAlarm = "DIRTY";
+      if (target.disinfectAlarm === 1) target.disinfectAlarm = "OCCUPIED";
+      if (target.disinfectAlarm === 2) target.disinfectAlarm = "CLEANING";
+      if (target.disinfectAlarm === 3) target.disinfectAlarm = "CLEAN";
       break;
     case 80:
       target.humidity = bytes[pos++] / 2;
@@ -137,11 +137,13 @@ function decodeFrame(bytes, type, target, pos) {
     case 114: // Capacitance Raw Sensor Value 2bytes 0-65535
       target.capacitanceEnd = (bytes[pos++] << 8) | bytes[pos++]; // should never trigger anymore
       break;
+    default:
+      break;
   }
 }
 
 function deleteUnusedKeys(data) {
-  var keysRetained = false;
+  let keysRetained = false;
   Object.keys(data).forEach((key) => {
     if (data[key] === undefined) {
       delete data[key];
@@ -153,18 +155,18 @@ function deleteUnusedKeys(data) {
 }
 
 function consume(event) {
-  var payload = event.data.payloadHex;
-  var port = event.data.port;
-  var bytes = parseHexString(payload);
+  const payload = event.data.payloadHex;
+  const { port } = event.data;
+  const bytes = parseHexString(payload);
 
-  var decoded = {};
-  var pos = 0;
-  var type;
+  const decoded = {};
+  let pos = 0;
+  let type;
 
   switch (port) {
     case 1:
       if (bytes.length < 2) {
-        decoded.error = "Wrong length of RX package";
+        emit("log", { error: "Wrong length of RX package" });
         break;
       }
       decoded.historySeqNr = (bytes[pos++] << 8) | bytes[pos++];
@@ -199,9 +201,13 @@ function consume(event) {
         decodeFrame(bytes, type, decoded.history[seqNr], pos);
         seqNr++;
       }
+      break;
+
+    default:
+      break;
   }
 
-  var def = {};
+  const def = {};
   def.temperature = decoded.temperature;
   def.averageTemperature = decoded.averageTemperature;
   def.humidity = decoded.humidity;
@@ -214,7 +220,7 @@ function consume(event) {
   def.irProximity = decoded.irProximity;
   def.irCloseProximity = decoded.irCloseProximity;
 
-  var alarm = {};
+  const alarm = {};
   alarm.highAlarm = decoded.highAlarm;
   alarm.lowAlarm = decoded.lowAlarm;
   alarm.doorAlarm = decoded.doorAlarm;
@@ -225,9 +231,8 @@ function consume(event) {
   alarm.closeProximityAlarm = decoded.closeProximityAlarm;
   alarm.disinfectAlarm = decoded.disinfectAlarm;
 
-  var lifecycle = {};
+  const lifecycle = {};
   lifecycle.batteryLevel = decoded.batteryLevel;
-  lifecycle.error = decoded.error;
   lifecycle.historySeqNr = decoded.historySeqNr;
   lifecycle.prevHistSeqNr = decoded.prevHistSeqNr;
 
@@ -243,8 +248,8 @@ function consume(event) {
     emit("sample", { data: def, topic: "default" });
   }
 
-  if (decoded.presence != undefined) {
-    if (decoded.presence == true) {
+  if (decoded.presence !== undefined) {
+    if (decoded.presence === true) {
       emit("sample", { data: { occupancy: 1 }, topic: "occupancy" });
     } else {
       emit("sample", { data: { occupancy: 0 }, topic: "occupancy" });

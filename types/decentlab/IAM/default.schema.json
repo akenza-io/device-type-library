@@ -39,7 +39,7 @@
     "light": {
       "title": "Light",
       "unit": "lux",
-      "type": "integer",
+      "type": "number",
       "description": "The light in lux.",
       "minimum": 0,
       "maximum": 65535
