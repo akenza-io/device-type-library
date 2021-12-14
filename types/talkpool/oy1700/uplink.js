@@ -3,6 +3,7 @@ function consume(event) {
   const { port } = event.data;
   const bits = Bits.hexToBits(payload);
   const data = {};
+  const addon = {};
   let topic = "default";
 
   // Boot
@@ -26,24 +27,25 @@ function consume(event) {
     data.pm10 = Math.round(Bits.bitsToUnsigned(bits.substr(56, 16)));
 
     if (bits.length > 72) {
-      data.particleCount0_3 = Math.round(
+      addon.particleCount0_3 = Math.round(
         Bits.bitsToUnsigned(bits.substr(72, 16)),
       );
-      data.particleCount0_5 = Math.round(
+      addon.particleCount0_5 = Math.round(
         Bits.bitsToUnsigned(bits.substr(88, 16)),
       );
-      data.particleCount1 = Math.round(
+      addon.particleCount1 = Math.round(
         Bits.bitsToUnsigned(bits.substr(104, 16)),
       );
-      data.particleCount2_5 = Math.round(
+      addon.particleCount2_5 = Math.round(
         Bits.bitsToUnsigned(bits.substr(120, 16)),
       );
-      data.particleCount5 = Math.round(
+      addon.particleCount5 = Math.round(
         Bits.bitsToUnsigned(bits.substr(136, 16)),
       );
-      data.particleCount5Bigger = Math.round(
+      addon.particleCount5Bigger = Math.round(
         Bits.bitsToUnsigned(bits.substr(152, 16)),
       );
+      emit("sample", { data: addon, topic: "addon" });
     }
   }
 

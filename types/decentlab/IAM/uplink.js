@@ -1,4 +1,4 @@
-const decentlab_decoder = {
+const decentlabDecoder = {
   PROTOCOL_VERSION: 2,
   SENSORS: [
     {
@@ -202,7 +202,7 @@ function deleteUnusedKeys(data) {
 
 function consume(event) {
   const payload = event.data.payloadHex;
-  const sample = decentlab_decoder.decode(payload);
+  const sample = decentlabDecoder.decode(payload);
   const data = {};
   const lifecycle = {};
 
@@ -216,7 +216,11 @@ function consume(event) {
   data.rawPir = sample.raw_ir_reading;
 
   // Lifecycle values
-  lifecycle.voltage = sample.battery_voltage;
+  lifecycle.voltage = Math.round(sample.battery_voltage * 100) / 100;
+  lifecycle.batteryLevel = Math.round(
+    ((3 - lifecycle.voltage) * 100 - 100) * -1,
+  );
+
   lifecycle.protocolVersion = sample.protocol_version;
   lifecycle.deviceID = sample.device_id;
   lifecycle.co2SensorStatus = sample.co2_sensor_status;
