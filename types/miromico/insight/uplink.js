@@ -11,7 +11,7 @@ function toLittleEndian(hex, signed) {
   if (signed) {
     return Bits.bitsToSigned(Bits.hexToBits(hexArray.join("")));
   }
-  return Bits.bitsToSigned(Bits.hexToBits(hexArray.join("")));
+  return Bits.bitsToUnsigned(Bits.hexToBits(hexArray.join("")));
 }
 
 function consume(event) {
