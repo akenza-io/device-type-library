@@ -216,11 +216,12 @@ function consume(event) {
   data.rawPir = sample.raw_ir_reading;
 
   // Lifecycle values
+  // Voltage drops of at 2V (0%) max voltage is 3V (100%)
   lifecycle.voltage = Math.round(sample.battery_voltage * 100) / 100;
+  // ((Max voltage - voltage now) * voltage to percent - inverting) getting rid of the -
   lifecycle.batteryLevel = Math.round(
     ((3 - lifecycle.voltage) * 100 - 100) * -1,
   );
-
   lifecycle.protocolVersion = sample.protocol_version;
   lifecycle.deviceID = sample.device_id;
   lifecycle.co2SensorStatus = sample.co2_sensor_status;

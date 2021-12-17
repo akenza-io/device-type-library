@@ -45,7 +45,7 @@
       "maximum": 10000
     },
     "particleCount5Bigger": {
-      "title": "Particulate matter count 5 <",
+      "title": "Particulate matter count >5",
       "unit": "μm",
       "type": "integer",
       "description": "Particles more than 5 μm in diameter",
