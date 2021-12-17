@@ -1,0 +1,32 @@
+{
+  "$id": "https://akenza.io/browan/tbdms100/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "motion": {
+      "title": "Motion",
+      "description": "Motion detected",
+      "type": "boolean"
+    },
+    "time": {
+      "title": "Time between events",
+      "unit": "m",
+      "type": "integer",
+      "description": "Time between events in minutes."
+    },
+    "count": {
+      "title": "Count",
+      "type": "integer",
+      "description": "Count of all events"
+    }
+  }
+}
