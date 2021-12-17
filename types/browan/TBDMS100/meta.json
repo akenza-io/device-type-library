@@ -1,0 +1,14 @@
+{
+  "name": "Motion Sensor PIR, TBDMS100",
+  "version": "1.0.0",
+  "manufacturer": "Browan",
+  "url": "https://www.browan.com/product/motion-sensor-pir/detail",
+  "description": "The Tabs PIR & Occupancy sensor detects occupancy or motion.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Motion"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
