@@ -117,12 +117,12 @@ function consume(event) {
   const data = {};
   const lifecycle = {};
 
-  const cd = Bits.bitsToUnsigned(bits.substr(0, 1));
+  // Reserved 1 bit
   const subType = Bits.bitsToUnsigned(bits.substr(1, 3));
   // Reserved 4 bits
 
   // Standart Meassurement
-  if (subType === 0 && cd === 0) {
+  if (subType === 0) {
     const distance = {};
     const fl = flags(bits.substr(8, 8));
     lifecycle.motionFlag = fl.motionFlag;
@@ -152,7 +152,7 @@ function consume(event) {
     lifecycle.batteryVoltage = batteryVoltage(bits.substr(64, 8));
 
     // GPS Fix
-  } else if (subType === 1 && cd === 0) {
+  } else if (subType === 1) {
     data.gnssFixTime = gnssFixTime(bits.substr(8, 8));
     if (data.gnssFixTime !== "TIMEOUT" || data.gnssFixTime !== "FAULT") {
       data.gnssLatitude = gnssLatitude(bits.substr(16, 32));
@@ -162,10 +162,10 @@ function consume(event) {
     }
     topic = "gnss";
     // RSSI Test
-  } else if (subType === 2 && cd === 0) {
+  } else if (subType === 2) {
     data.testFrames = bits.substr(8, 8);
     topic = "rssi_test";
-  } else if (subType === 3 && cd === 0) {
+  } else if (subType === 3) {
     const ext = {};
     const fl = flags(bits.substr(8, 8));
     lifecycle.motionFlag = fl.motionFlag;
@@ -177,7 +177,7 @@ function consume(event) {
     lifecycle.laserHWErrorFlag = fl.laserHWErrorFlag;
     lifecycle.accelerometerHWErrorFlag = fl.accelerometerHWErrorFlag;
 
-    // Ultrasound Variance 8
+    // Reserved 8
     ext.ultrasonicDistanceExt = ultrasonicDistanceExt(
       bits.substr(24, 16),
       lifecycle.ultrasoundHWErrorFlag,
@@ -192,10 +192,8 @@ function consume(event) {
     data.temperature = temperature(bits.substr(64, 8));
     data.tiltAngle = tiltAngle(bits.substr(72, 8), lifecycle.overTempFlag);
     lifecycle.batteryVoltage = batteryVoltage(bits.substr(80, 8));
-    // Ultrasonic Transmission 8
+    // Reserved 8
   }
 
-  if (cd === 0) {
-    emit("sample", { data, topic });
-  }
+  emit("sample", { data, topic });
 }
