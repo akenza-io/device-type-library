@@ -20,7 +20,7 @@ function consume(event) {
   const data = {};
   const lifecycle = {};
 
-  data.open = !!Bits.bitsToUnsigned(bits.substr(0, 8));
+  data.motion = !!Number(bits.substr(7, 1));
 
   lifecycle.voltage = Bits.bitsToUnsigned(bits.substr(8, 4));
   lifecycle.voltage = (25 + lifecycle.voltage) / 10;
@@ -33,11 +33,9 @@ function consume(event) {
   data.temperature = Bits.bitsToUnsigned(bits.substr(17, 7));
   data.temperature -= 32;
 
-  data.humidity = Bits.bitsToUnsigned(bits.substr(25, 7));
+  data.time = toLittleEndian(payload.substr(6, 4), false);
+  data.count = toLittleEndian(payload.substr(10, 6), false);
 
-  data.co2 = toLittleEndian(payload.substr(8, 4), false);
-  data.voc = toLittleEndian(payload.substr(12, 4), false);
-
-  emit("sample", { data, topic: "default" });
   emit("sample", { data: lifecycle, topic: "lifecycle" });
+  emit("sample", { data, topic: "default" });
 }

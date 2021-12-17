@@ -4,7 +4,7 @@ function consume(event) {
   const bits = Bits.hexToBits(payload);
   const data = {};
   const lifecycle = {};
-  let topic = "topic";
+  let topic = "default";
 
   lifecycle.version = Bits.bitsToUnsigned(bits.substr(0, 8));
 
@@ -55,6 +55,9 @@ function consume(event) {
     topic = "info";
   }
 
-  emit("sample", { data: lifecycle, topic });
+  if (port === 3 || port === 100 || port === 101) {
+    emit("sample", { data, topic });
+  }
+
   emit("sample", { data: lifecycle, topic: "lifecycle" });
 }
