@@ -1,7 +1,7 @@
 {
-  "$id": "https://akenza.io/talkpool/oy1700/addon.schema.json",
+  "$id": "https://akenza.io/talkpool/oy1700/particle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Addon",
+  "title": "Particle",
   "type": "object",
   "properties": {
     "particleCount0_3": {
