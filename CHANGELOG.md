@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.9.0] - 2021-12-17
+
+### Added
+
+- Pipiot - LevelSense
+- Pipiot - PeopleSense
 
 # [1.8.0] - 2021-12-16
 
