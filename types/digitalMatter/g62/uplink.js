@@ -1,8 +1,9 @@
 function hexToBytes(hex) {
-  let bytes;
-  let c;
-  for (bytes = [], c = 0; c < hex.length; c += 2) {
+  const bytes = [];
+  let c = 0;
+  while (c < hex.length) {
     bytes.push(parseInt(hex.substr(c, 2), 16));
+    c += 2;
   }
   return bytes;
 }
@@ -80,11 +81,15 @@ function consume(event) {
     emit("sample", { data: digital, topic: "digital" });
     emit("sample", { data: lifecycle, topic: "lifecycle" });
   } else if (port === 4) {
-    const runtimeS =
+    // Calculates runtime in seconds in msb
+    const runTime =
       bytes[0] + bytes[1] * 256 + bytes[2] * 65536 + bytes[3] * 16777216;
-    data.runtime = `${Math.floor(runtimeS / 86400)}d${Math.floor(
-      (runtimeS % 86400) / 3600,
-    )}h${Math.floor((runtimeS % 3600) / 60)}m${runtimeS % 60}s`;
+    const runtimeDays = Math.floor(runTime / 86400);
+    const runtimeHours = Math.floor((runTime % 86400) / 3600);
+    const runtimeMinutes = Math.floor((runTime % 3600) / 60);
+    const runtimeSeconds = runTime % 60;
+
+    data.runtime = `${runtimeDays}d${runtimeHours}h${runtimeMinutes}m${runtimeSeconds}s`;
     data.odometer =
       0.01 *
       (bytes[4] + bytes[5] * 256 + bytes[6] * 65536 + bytes[7] * 16777216);
