@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+
+# [1.8.0] - 2021-12-16
+
+### Added
+
+- Browan - TBDMS100
+
 # [1.7.2] - 2021-12-16
 
 ### Changed

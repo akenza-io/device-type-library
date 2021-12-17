@@ -1,13 +1,9 @@
-function swap16(val) {
-  return ((val & 0xff) << 8) | ((val >> 8) & 0xff);
-}
-
 function consume(event) {
-  var payload = event.data.payloadHex;
-  var bits = Bits.hexToBits(payload);
-  var data = {};
-  var lifecycle = {};
-  var topic = "default";
+  const payload = event.data.payloadHex;
+  const bits = Bits.hexToBits(payload);
+  const data = {};
+  const lifecycle = {};
+  const topic = "default";
 
   data.open = !!Bits.bitsToUnsigned(bits.substr(0, 8));
 
@@ -20,10 +16,10 @@ function consume(event) {
   lifecycle.batteryLevel = Math.round(lifecycle.batteryLevel);
 
   data.temperature = Bits.bitsToUnsigned(bits.substr(17, 7));
-  data.temperature = data.temperature - 32;
+  data.temperature -= 32;
 
   data.soundAvg = Bits.bitsToUnsigned(bits.substr(24, 8));
 
   emit("sample", { data: lifecycle, topic: "lifecycle" });
-  emit("sample", { data: data, topic: topic });
+  emit("sample", { data, topic });
 }
