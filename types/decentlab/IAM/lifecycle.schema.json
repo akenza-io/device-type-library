@@ -12,6 +12,14 @@
       "maximum": 24,
       "desciption": "The battery voltage in Volt."
     },
+    "batteryLevel": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "unit": "%"
+    },
     "protocolVersion": {
       "title": "Protocol Version",
       "description": "Protocol Version",

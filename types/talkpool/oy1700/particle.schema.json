@@ -1,0 +1,56 @@
+{
+  "$id": "https://akenza.io/talkpool/oy1700/particle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Particle",
+  "type": "object",
+  "properties": {
+    "particleCount0_3": {
+      "title": "Particulate matter count 0.3",
+      "unit": "μm",
+      "type": "integer",
+      "description": "Particles less than 0.3 μm in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "particleCount0_5": {
+      "title": "Particulate matter count 0.5",
+      "unit": "μm",
+      "type": "integer",
+      "description": "Particles less than 0.5 μm in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "particleCount1": {
+      "title": "Particulate matter count 1",
+      "unit": "μm",
+      "type": "integer",
+      "description": "Particles less than 1 μm in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "particleCount2_5": {
+      "title": "Particulate matter count 2.5",
+      "unit": "μm",
+      "type": "integer",
+      "description": "Particles less than 2.5 μm in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "particleCount5": {
+      "title": "Particulate matter count 5",
+      "unit": "μm",
+      "type": "integer",
+      "description": "Particles less than 5 μm in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "particleCount5Bigger": {
+      "title": "Particulate matter count >5",
+      "unit": "μm",
+      "type": "integer",
+      "description": "Particles more than 5 μm in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    }
+  }
+}

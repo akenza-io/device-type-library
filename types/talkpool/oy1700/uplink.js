@@ -3,6 +3,7 @@ function consume(event) {
   const { port } = event.data;
   const bits = Bits.hexToBits(payload);
   const data = {};
+  const particle = {};
   let topic = "default";
 
   // Boot
@@ -26,24 +27,25 @@ function consume(event) {
     data.pm10 = Math.round(Bits.bitsToUnsigned(bits.substr(56, 16)));
 
     if (bits.length > 72) {
-      data.particleCount0_3 = Math.round(
+      particle.particleCount0_3 = Math.round(
         Bits.bitsToUnsigned(bits.substr(72, 16)),
       );
-      data.particleCount0_5 = Math.round(
+      particle.particleCount0_5 = Math.round(
         Bits.bitsToUnsigned(bits.substr(88, 16)),
       );
-      data.particleCount1 = Math.round(
+      particle.particleCount1 = Math.round(
         Bits.bitsToUnsigned(bits.substr(104, 16)),
       );
-      data.particleCount2_5 = Math.round(
+      particle.particleCount2_5 = Math.round(
         Bits.bitsToUnsigned(bits.substr(120, 16)),
       );
-      data.particleCount5 = Math.round(
+      particle.particleCount5 = Math.round(
         Bits.bitsToUnsigned(bits.substr(136, 16)),
       );
-      data.particleCount5Bigger = Math.round(
+      particle.particleCount5Bigger = Math.round(
         Bits.bitsToUnsigned(bits.substr(152, 16)),
       );
+      emit("sample", { data: particle, topic: "particle" });
     }
   }
 
