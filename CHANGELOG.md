@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.8.1] - 2022-01-03
+
+### Changed
+
+- Decentlab IAM - Added batteryVoltage
+- Elsys ERS - Deleted motion
+- PNIcorp Placepod - Changed meta
+- Talkpool OY1700 - Splited schemas
 
 # [1.8.0] - 2021-12-16
 
