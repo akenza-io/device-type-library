@@ -7,7 +7,7 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": ["Ultrasonic", "Laser"],
+  "availableSensors": ["Ultrasonic", "Laser", "Temperature"],
   "outputTopics": [
     "default",
     "distance",

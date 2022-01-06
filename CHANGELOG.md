@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.9.1] - 2021-01-06
+
+### Added
+
+- Pipiot - Changed meta
+
 # [1.9.0] - 2021-01-04
 
 ### Added
