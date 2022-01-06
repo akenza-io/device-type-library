@@ -1,13 +1,13 @@
 {
-  "name": "LevelSense",
+  "name": "PeopleSense",
   "version": "1.0.0",
   "manufacturer": "Pipiot",
-  "url": "https://www.pipiot.com/levelsense",
-  "description": "LevelSense is a compact IoT device designed for remotely monitoring the level of different types of fluids and solids (e.g. water and waste) in tanks, bins and silos.",
+  "url": "https://www.pipiot.com/peoplesense",
+  "description": "PeopleSense is a compact IoT device designed for remotely detection and counting proximal footfall.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": ["Proximity"],
+  "availableSensors": ["People Counting"],
   "outputTopics": ["default", "lifecycle", "rssi_test"],
   "encoding": "HEX",
   "connectivity": "Sigfox"
