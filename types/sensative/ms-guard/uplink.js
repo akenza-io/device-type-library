@@ -56,7 +56,7 @@ function decodeFrame(bytes, type, target, pos) {
       target.light2 = (bytes[pos++] << 8) | bytes[pos++];
       break;
     case 9: // DoorSwitch 1bytes binary
-      target.open = !!bytes[pos++]; // true = door open, false = door closed
+      target.closed = !bytes[pos++]; //  true = door closed, false = door open
       break;
     case 10: // DoorAlarm 1bytes binary
       target.doorAlarm = !!bytes[pos++]; // boolean true = alarm
@@ -118,7 +118,7 @@ function decodeFrame(bytes, type, target, pos) {
         10;
       break;
     case 82:
-      target.open = !!bytes[pos++]; // true = door open, false = door closed
+      target.closed = !bytes[pos++]; //  true = door closed, false = door open
       target.temperature =
         ((bytes[pos] & 0x80 ? 0xffff << 16 : 0) |
           (bytes[pos++] << 8) |
@@ -213,7 +213,7 @@ function consume(event) {
   def.humidity = decoded.humidity;
   def.light = decoded.light;
   def.light2 = decoded.light2;
-  def.open = decoded.open;
+  def.closed = decoded.closed;
   def.tamperReport = decoded.tamperReport;
   def.doorCount = decoded.doorCount;
   def.presence = decoded.presence;

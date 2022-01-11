@@ -4,13 +4,6 @@
   "title": "Status",
   "type": "object",
   "properties": {
-    "msgtype": {
-      "title": "Message Type",
-      "type": "integer",
-      "description": "What type of message got send. 1 = Button pressed, 2 = Status message, 5 = join",
-      "minimum": 0,
-      "maximum": 4
-    },
     "internalTemp": {
       "title": "Internal temperature",
       "unit": "°C",

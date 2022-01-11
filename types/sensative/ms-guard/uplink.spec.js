@@ -76,7 +76,7 @@ describe("Sensative strip", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 0);
-        assert.equal(value.data.open, true);
+        assert.equal(value.data.closed, false);
 
         validate(value.data, defaultSchema, { throwError: true });
       });
