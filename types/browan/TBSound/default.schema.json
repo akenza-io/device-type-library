@@ -4,11 +4,6 @@
   "title": "Default",
   "type": "object",
   "properties": {
-    "open": {
-      "title": "Open",
-      "description": "Status of the tab. open = true, closed = false",
-      "type": "boolean"
-    },
     "temperature": {
       "title": "Temperature",
       "unit": "°C",
@@ -19,7 +14,7 @@
     },
     "soundAvg": {
       "title": "Sound Average",
-      "unit": "dB",
+      "unit": "dBA",
       "description": "Average value of the sound pressure level in decibel",
       "type": "number",
       "minimum": 20,
