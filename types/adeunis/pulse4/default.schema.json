@@ -1,0 +1,63 @@
+{
+  "$id": "https://akenza.io/adeunis/pulse4/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "counterValueT0": {
+      "title": "Counter value time - 0",
+      "type": "integer",
+      "description": "Counter value time - 0"
+    },
+    "counterValueT1": {
+      "title": "Counter value time - 1",
+      "type": "integer",
+      "description": "Counter value time - 1"
+    },
+    "counterValueT2": {
+      "title": "Counter value time - 2",
+      "type": "integer",
+      "description": "Counter value time - 2"
+    },
+    "counterValueT3": {
+      "title": "Counter value time - 3",
+      "type": "integer",
+      "description": "Counter value time - 3"
+    },
+    "counterValueT4": {
+      "title": "Counter value time - 4",
+      "type": "integer",
+      "description": "Counter value time - 4"
+    },
+    "counterValueT5": {
+      "title": "Counter value time - 5",
+      "type": "integer",
+      "description": "Counter value time - 5"
+    },
+    "counterValueT6": {
+      "title": "Counter value time - 6",
+      "type": "integer",
+      "description": "Counter value time - 6"
+    },
+    "counterValueT7": {
+      "title": "Counter value time - 7",
+      "type": "integer",
+      "description": "Counter value time - 7"
+    },
+    "counterValueT8": {
+      "title": "Counter value time - 8",
+      "type": "integer",
+      "description": "Counter value time - 8"
+    },
+    "counterValueT9": {
+      "title": "Counter value time - 9",
+      "type": "integer",
+      "description": "Counter value time - 9"
+    },
+    "counterValueT10": {
+      "title": "Counter value time - 10",
+      "type": "integer",
+      "description": "Counter value time - 10"
+    }
+  }
+}
