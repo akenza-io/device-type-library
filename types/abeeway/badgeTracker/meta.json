@@ -1,0 +1,14 @@
+{
+  "name": "Compact Tracker",
+  "version": "1.0.0",
+  "manufacturer": "Abeeway",
+  "url": "https://www.abeeway.com/compact-tracker/",
+  "description": "LT-20 is a solar powered tracker designed for asset tracking and range animals use. The high performance solar panel can provide sufficient power. Its light-weight and tag style design allows you to easily pin on cattle’s ear (LT-20). Optional LT-20P bottom case and collar can be chosen for installing on cattle’s back.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["GPS"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

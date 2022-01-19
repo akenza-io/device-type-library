@@ -1,0 +1,16 @@
+{
+  "$id": "https://akenza.io/globalsat/LT-20/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "batteryPercent": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "unit": "%"
+    }
+  }
+}
