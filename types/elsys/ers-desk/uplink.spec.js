@@ -87,7 +87,7 @@ describe("Elsys desk uplink", () => {
 
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.voltage, 3.584);
-        assert.equal(value.data.batteryLevel, 70);
+        assert.equal(value.data.batteryLevel, 100);
 
         validate(value.data, lifecycleSchema, { throwError: true });
       });
