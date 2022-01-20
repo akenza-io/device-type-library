@@ -22,10 +22,10 @@ function consume(event) {
   const data = {};
   let topic = "default";
 
-  data.msgType = Bits.bitsToUnsigned(bits.substr(8, 8));
+  const msgType = Bits.bitsToUnsigned(bits.substr(8, 8));
 
   // Status Message
-  if (data.msgType === 2) {
+  if (msgType === 2) {
     data.usedCharges = toLittleEndian(payload.substr(4, 8));
     // Reserved // 03 03
 
@@ -50,7 +50,7 @@ function consume(event) {
 
     topic = "status";
     // Button Press
-  } else if (data.msgType === 1) {
+  } else if (msgType === 1) {
     data.btnWfirst = Number(bits.substr(20, 1));
     data.btnSfirst = Number(bits.substr(21, 1));
     data.btnEfirst = Number(bits.substr(22, 1));
@@ -75,7 +75,7 @@ function consume(event) {
     }
 
     // Firmware Version
-  } else if (data.msgType === 5) {
+  } else if (msgType === 5) {
     data.join = true;
     topic = "join";
   }

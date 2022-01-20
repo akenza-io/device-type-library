@@ -5,8 +5,6 @@ function consume(event) {
   const lifecycle = {};
   const topic = "default";
 
-  data.open = !!Bits.bitsToUnsigned(bits.substr(0, 8));
-
   lifecycle.voltage = Bits.bitsToUnsigned(bits.substr(8, 4));
   lifecycle.voltage = (25 + lifecycle.voltage) / 10;
   lifecycle.voltage = Math.round(lifecycle.voltage * 10) / 10;

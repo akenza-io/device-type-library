@@ -31,7 +31,6 @@ describe("Miromico REV2_V5 uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "status");
-        assert.equal(value.data.msgType, 2);
         assert.equal(value.data.usedCharges, 1256);
         assert.equal(value.data.battery, 3.1);
         assert.equal(value.data.internalTemp, 39);

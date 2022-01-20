@@ -10,6 +10,18 @@ All notable changes to this project will be documented in this file.
 
 - Pipiot - Changed meta
 
+# [1.9.1] - 2021-01-11
+
+### Changed
+
+- Browan - Changed name from "Motion Sensor PIR, TBDMS100" -> "Motion Sensor PIR, TBMS100"
+- Miromico - Changed name from "Insight" -> "miro Insight"
+- Browan - TBSound updated schema & deleted unused data
+- Elsys - ERS Sound changed meta
+- Miromico - REV 2_5 deleted unused data
+- PNI - Placepod changed temperature to signed
+- Sensative - Strips changed name of datakey
+
 # [1.9.0] - 2021-01-04
 
 ### Added

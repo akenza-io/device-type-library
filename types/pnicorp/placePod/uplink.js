@@ -21,8 +21,7 @@ function consume(event) {
           break;
         case 2:
           // Temperature
-          data.temperature =
-            Bits.bitsToUnsigned(bits.substr(pointer, 16)) * 0.1;
+          data.temperature = Bits.bitsToSigned(bits.substr(pointer, 16)) * 0.1;
           pointer += 8;
           topic = "temperature";
           break;

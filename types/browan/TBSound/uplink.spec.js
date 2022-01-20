@@ -55,7 +55,6 @@ describe("TBSound uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.open, false);
         assert.equal(value.data.temperature, 22);
         assert.equal(value.data.soundAvg, 40);
 
