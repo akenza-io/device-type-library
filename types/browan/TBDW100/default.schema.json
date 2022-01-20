@@ -16,6 +16,17 @@
       "title": "Open",
       "description": "Status of the tab. open = true, closed = false",
       "type": "boolean"
+    },
+    "time": {
+      "title": "Time",
+      "unit": "m",
+      "type": "integer",
+      "description": "Time in minutes between samples"
+    },
+    "count": {
+      "title": "Count",
+      "type": "integer",
+      "description": "Count of events, resets on reboot"
     }
   }
 }

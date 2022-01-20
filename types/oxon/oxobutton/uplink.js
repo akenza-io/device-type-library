@@ -1,10 +1,10 @@
 function consume(event) {
-  var payload = event.data.payloadHex;
-  var bits = Bits.hexToBits(payload);
-  var data = {};
-  var lifecycle = {};
+  const payload = event.data.payloadHex;
+  const bits = Bits.hexToBits(payload);
+  const data = {};
+  const lifecycle = {};
 
-  if (Bits.bitsToUnsigned(bits.substr(0, 8)) == 48) {
+  if (Bits.bitsToUnsigned(bits.substr(0, 8)) === 48) {
     data.buttonId = Bits.bitsToUnsigned(bits.substr(8, 8));
     lifecycle.hbIRQ = !!Bits.bitsToUnsigned(bits.substr(16, 8));
     lifecycle.accIRQ = !!Bits.bitsToUnsigned(bits.substr(24, 8));
@@ -13,13 +13,13 @@ function consume(event) {
       Bits.bitsToUnsigned(bits.substr(40, 8));
     lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substr(48, 8));
     data.temperature = Bits.bitsToUnsigned(bits.substr(56, 8));
-    var accX =
+    let accX =
       Bits.bitsToUnsigned(bits.substr(64, 8)) * 256 +
       Bits.bitsToUnsigned(bits.substr(72, 8));
-    var accY =
+    let accY =
       Bits.bitsToUnsigned(bits.substr(80, 8)) * 256 +
       Bits.bitsToUnsigned(bits.substr(88, 8));
-    var accZ =
+    let accZ =
       Bits.bitsToUnsigned(bits.substr(96, 8)) * 256 +
       Bits.bitsToUnsigned(bits.substr(104, 8));
     accX = accX < 32767 ? (2 / 8191) * accX : (-2 / 8192) * (65536 - accX);
@@ -30,6 +30,6 @@ function consume(event) {
     data.accZ = Math.round((accZ + 2.7755575615628914e-17) * 1000) / 1000;
 
     emit("sample", { data: lifecycle, topic: "lifecycle" });
-    emit("sample", { data: data, topic: "default" });
+    emit("sample", { data, topic: "default" });
   }
 }
