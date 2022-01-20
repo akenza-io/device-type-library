@@ -1,7 +1,7 @@
 {
-  "$id": "https://akenza.io/adeunis/pulse4/status.schema.json",
+  "$id": "https://akenza.io/adeunis/pulse4/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Status",
+  "title": "Lifecycle",
   "type": "object",
   "properties": {
     "frameCounter": {

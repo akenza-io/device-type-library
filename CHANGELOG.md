@@ -4,9 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-# [1.9.3] - 2021-01-20
+# [1.10.0] - 2021-01-20
 
 ### Added
+
+- Adeunis - Pulse
+
+# [1.9.3] - 2021-01-20
+
+### Changed
 
 - Browan - Changed battery calculation
 - Comtac - CM-2 added datapoint to schema
@@ -16,7 +22,7 @@ All notable changes to this project will be documented in this file.
 
 # [1.9.2] - 2021-01-06
 
-### Added
+### Changed
 
 - Pipiot - Changed meta
 

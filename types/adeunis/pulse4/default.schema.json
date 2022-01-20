@@ -4,10 +4,10 @@
   "title": "Default",
   "type": "object",
   "properties": {
-    "counterValueT0": {
-      "title": "Counter value time - 0",
+    "counterValue": {
+      "title": "Counter value",
       "type": "integer",
-      "description": "Counter value time - 0"
+      "description": "Counter value"
     },
     "counterValueT1": {
       "title": "Counter value time - 1",

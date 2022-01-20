@@ -19,12 +19,14 @@ describe("Adeunis Pulse", () => {
       });
   });
 
-  let statusSchema = null;
+  let lifecycleSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/status.schema.json`).then((parsedSchema) => {
-      statusSchema = parsedSchema;
-      done();
-    });
+    utils
+      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+      .then((parsedSchema) => {
+        lifecycleSchema = parsedSchema;
+        done();
+      });
   });
 
   describe("consume()", () => {
@@ -41,14 +43,14 @@ describe("Adeunis Pulse", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "status");
+        assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.frameCounter, 3);
         assert.equal(value.data.hardwareError, false);
         assert.equal(value.data.lowBattery, true);
         assert.equal(value.data.configurationDone, true);
         assert.equal(value.data.timestamp, true);
 
-        validate(value.data, statusSchema, { throwError: true });
+        validate(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -57,7 +59,7 @@ describe("Adeunis Pulse", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.counterValueT0, 295);
+        assert.equal(value.data.counterValue, 295);
         assert.equal(value.data.counterValueT1, 294);
         assert.equal(value.data.counterValueT2, 292);
         assert.equal(value.data.counterValueT3, 289);
@@ -93,14 +95,14 @@ describe("Adeunis Pulse", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "status");
+        assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.frameCounter, 0);
         assert.equal(value.data.hardwareError, false);
         assert.equal(value.data.lowBattery, false);
         assert.equal(value.data.configurationDone, false);
         assert.equal(value.data.timestamp, false);
 
-        validate(value.data, statusSchema, { throwError: true });
+        validate(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {

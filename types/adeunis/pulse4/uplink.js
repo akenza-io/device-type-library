@@ -8173,13 +8173,17 @@ function consume(event) {
   decoder.setDeviceType("pulse4");
   const decoded = decoder.decode(payload);
 
-  emit("sample", { data: decoded.status, topic: "status" });
+  emit("sample", { data: decoded.status, topic: "lifecycle" });
   delete decoded.status;
 
   if (decoded.counterValues !== undefined && decoded.counterValues !== []) {
     let i = 0;
     decoded.counterValues.forEach((element) => {
-      data[`counterValueT${i}`] = element;
+      if (i == 0) {
+        data.counterValue = element;
+      } else {
+        data[`counterValueT${i}`] = element;
+      }
       i++;
     });
     emit("sample", { data, topic: "default" });
