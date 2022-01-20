@@ -4,7 +4,17 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-# [1.9.1] - 2021-01-06
+# [1.9.3] - 2021-01-20
+
+### Added
+
+- Browan - Changed battery calculation
+- Comtac - CM-2 added datapoint to schema
+- Elsys - Changed battery calculation
+- Elsys - ELT-2 changed meta
+- Pipiot - Changed meta
+
+# [1.9.2] - 2021-01-06
 
 ### Added
 
