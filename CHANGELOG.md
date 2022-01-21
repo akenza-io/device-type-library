@@ -4,9 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-# [1.9.3] - 2021-01-20
+# [1.10.0] - 2022-01-21
 
 ### Added
+
+- Adeunis - Pulse
+
+# [1.9.3] - 2022-01-20
+
+### Changed
 
 - Browan - Changed battery calculation
 - Comtac - CM-2 added datapoint to schema
@@ -14,13 +20,13 @@ All notable changes to this project will be documented in this file.
 - Elsys - ELT-2 changed meta
 - Pipiot - Changed meta
 
-# [1.9.2] - 2021-01-06
+# [1.9.2] - 2022-01-06
 
-### Added
+### Changed
 
 - Pipiot - Changed meta
 
-# [1.9.1] - 2021-01-11
+# [1.9.1] - 2022-01-11
 
 ### Changed
 
@@ -32,7 +38,7 @@ All notable changes to this project will be documented in this file.
 - PNI - Placepod changed temperature to signed
 - Sensative - Strips changed name of datakey
 
-# [1.9.0] - 2021-01-04
+# [1.9.0] - 2022-01-04
 
 ### Added
 
