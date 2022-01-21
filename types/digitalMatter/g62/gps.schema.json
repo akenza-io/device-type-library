@@ -1,0 +1,53 @@
+{
+  "$id": "https://akenza.io/digitalMatter/g62/gps.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GPS",
+  "type": "object",
+  "properties": {
+    "latitude": {
+      "title": "Latitude",
+      "unit": "°",
+      "type": "number",
+      "description": "Latitude",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "longitude": {
+      "title": "Longitude",
+      "unit": "°",
+      "type": "number",
+      "description": "Longitude",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "tripType": {
+      "title": "Trip type",
+      "type": "string",
+      "description": "Type of movement this trip",
+      "enum": ["NO_TRIP", "IGNITION", "MOVEMENT", "RUN"]
+    },
+    "gpsFixCurrent": {
+      "title": "GPS fix current",
+      "type": "boolean",
+      "description": "Equals true if the GPS fix is current"
+    },
+    "headingDeg": {
+      "title": "Heading",
+      "unit": "°",
+      "type": "number",
+      "description": "The direction where the sensor is heading"
+    },
+    "speedKmph": {
+      "title": "Speed",
+      "unit": "kmh",
+      "type": "number",
+      "description": "Acceleration of the sensor"
+    },
+    "gpsAccuracy": {
+      "title": "GPS Accuracy",
+      "type": "number",
+      "unit": "m",
+      "description": "GPS accuracy in meters"
+    }
+  }
+}

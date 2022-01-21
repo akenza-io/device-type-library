@@ -1,0 +1,14 @@
+{
+  "name": "G62",
+  "version": "1.0.0",
+  "manufacturer": "Digital Matter",
+  "url": "https://www.digitalmatter.com/devices/g70/",
+  "description": "Rugged and robust vehicle, trailer, or heavy equipment tracking device with inputs/outputs.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["GPS"],
+  "outputTopics": ["digital", "downlink_ack", "gps", "lifecycle", "odometer"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

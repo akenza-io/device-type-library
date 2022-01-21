@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 - Adeunis - Pulse
+- Digitalmatter - G62
 
 # [1.9.3] - 2022-01-20
 
