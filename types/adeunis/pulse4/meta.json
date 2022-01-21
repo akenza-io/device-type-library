@@ -7,7 +7,7 @@
   "author": "Akenza AG",
   "firmwareVersion": "V4.0.0",
   "availableSensors": ["Flow"],
-  "outputTopics": ["default", "status", "extra"],
+  "outputTopics": ["default", "lifecycle", "extra"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }
