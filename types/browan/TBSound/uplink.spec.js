@@ -43,8 +43,8 @@ describe("TBSound uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 2.5);
-        assert.equal(value.data.batteryLevel, 73);
+        assert.equal(value.data.voltage, 3.6);
+        assert.equal(value.data.batteryLevel, 100);
 
         validate(value.data, lifecycleSchema, { throwError: true });
       });
@@ -55,7 +55,6 @@ describe("TBSound uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.open, false);
         assert.equal(value.data.temperature, 22);
         assert.equal(value.data.soundAvg, 40);
 

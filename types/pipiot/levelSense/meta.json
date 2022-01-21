@@ -1,0 +1,21 @@
+{
+  "name": "LevelSense",
+  "version": "1.0.0",
+  "manufacturer": "Pipiot",
+  "url": "https://www.pipiot.com/levelsense",
+  "description": "LevelSense is a compact, ultra-rugged IoT device designed for remotely monitoring the level of different types of fluids and solids (e.g. water and waste) in tanks, bins and silos.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V3.1.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Ultrasonic", "Laser", "Temperature", "Tilt"],
+  "outputTopics": [
+    "default",
+    "distance",
+    "ext",
+    "gnss",
+    "lifecycle",
+    "rss_test"
+  ],
+  "encoding": "HEX",
+  "connectivity": "Sigfox"
+}

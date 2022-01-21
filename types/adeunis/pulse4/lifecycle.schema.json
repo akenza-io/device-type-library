@@ -1,0 +1,33 @@
+{
+  "$id": "https://akenza.io/adeunis/pulse4/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "frameCounter": {
+      "title": "Frame counter",
+      "type": "integer",
+      "description": "Frame counter"
+    },
+    "hardwareError": {
+      "title": "Hardware error",
+      "type": "boolean",
+      "description": "Flag for a hardware error"
+    },
+    "lowBattery": {
+      "title": "Low battery",
+      "type": "boolean",
+      "description": "Indication for low battery"
+    },
+    "configurationDone": {
+      "title": "Configuration done",
+      "type": "boolean",
+      "description": "Configuration done flag"
+    },
+    "timestamp": {
+      "title": "Timestamp available",
+      "type": "boolean",
+      "description": "Timestamp available flag"
+    }
+  }
+}

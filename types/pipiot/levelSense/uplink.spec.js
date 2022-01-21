@@ -5,12 +5,20 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("TBDW100 uplink", () => {
-  let defaultSchema = null;
+describe("Pipiot levelSense uplink", () => {
+  let extSchema = null;
   let consume = null;
   before((done) => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
+    utils.loadSchema(`${__dirname}/ext.schema.json`).then((parsedSchema) => {
+      extSchema = parsedSchema;
+      done();
+    });
+  });
+
+  let defaultSchema = null;
+  before((done) => {
     utils
       .loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
@@ -19,21 +27,11 @@ describe("TBDW100 uplink", () => {
       });
   });
 
-  let lifecycleSchema = null;
-  before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   describe("consume()", () => {
-    it("Should decode TBDMS100 payload", () => {
+    it("should decode Pipiot levelSense payload", () => {
       const data = {
         data: {
-          payloadHex: "017b341600510c00",
+          payloadHex: "3000001060d701d219049d02",
         },
       };
 
@@ -42,11 +40,10 @@ describe("TBDW100 uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 73);
-        assert.equal(value.data.voltage, 3.2);
+        assert.equal(value.data.ultrasonicDistanceExt, 838);
+        assert.equal(value.data.laserDistanceExt, 43);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        validate(value.data, extSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -54,11 +51,9 @@ describe("TBDW100 uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.motion, true);
-        assert.equal(value.data.temperature, 20);
-        assert.equal(value.data.time, 22);
-        assert.equal(value.data.count, 3153);
+        assert.equal(value.data.laserReflectance, 119296);
+        assert.equal(value.data.temperature, 25);
+        assert.equal(value.data.tiltAngle, 4);
 
         validate(value.data, defaultSchema, { throwError: true });
       });

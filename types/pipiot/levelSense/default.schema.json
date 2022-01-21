@@ -1,0 +1,29 @@
+{
+  "$id": "https://akenza.io/levelSense/levelSense/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "laserReflectance": {
+      "title": "Laser reflectance",
+      "type": "number",
+      "desciption": "Laser reflectance"
+    },
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "Temperature in °C",
+      "minimum": -40,
+      "maximum": 125
+    },
+    "tiltAngle": {
+      "title": "Tilt angle",
+      "unit": "°",
+      "type": "number",
+      "description": "Tilt angle",
+      "minimum": 0,
+      "maximum": 180
+    }
+  }
+}

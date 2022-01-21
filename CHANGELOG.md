@@ -4,11 +4,56 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-# [1.9.0] - 2022-01-03
+# [1.10.0] - 2022-01-21
 
 ### Added
 
+- Adeunis - Pulse
 - Digitalmatter - G62
+
+# [1.9.3] - 2022-01-20
+
+### Changed
+
+- Browan - Changed battery calculation
+- Comtac - CM-2 added datapoint to schema
+- Elsys - Changed battery calculation
+- Elsys - ELT-2 changed meta
+- Pipiot - Changed meta
+
+# [1.9.2] - 2022-01-06
+
+### Changed
+
+- Pipiot - Changed meta
+
+# [1.9.1] - 2022-01-11
+
+### Changed
+
+- Browan - Changed name from "Motion Sensor PIR, TBDMS100" -> "Motion Sensor PIR, TBMS100"
+- Miromico - Changed name from "Insight" -> "miro Insight"
+- Browan - TBSound updated schema & deleted unused data
+- Elsys - ERS Sound changed meta
+- Miromico - REV 2_5 deleted unused data
+- PNI - Placepod changed temperature to signed
+- Sensative - Strips changed name of datakey
+
+# [1.9.0] - 2022-01-04
+
+### Added
+
+- Pipiot - LevelSense
+- Pipiot - PeopleSense
+
+# [1.8.1] - 2022-01-03
+
+### Changed
+
+- Decentlab IAM - Added batteryVoltage
+- Elsys ERS - Deleted motion
+- PNIcorp Placepod - Changed meta
+- Talkpool OY1700 - Splited schemas
 
 # [1.8.0] - 2021-12-16
 

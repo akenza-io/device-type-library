@@ -44,6 +44,7 @@ describe("Comtac LPN CM-2 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.version, 1);
         assert.equal(value.data.booster, false);
         assert.equal(value.data.txOnTimer, false);
         assert.equal(value.data.txOnEvent, false);

@@ -1,0 +1,14 @@
+{
+  "name": "PeopleSense",
+  "version": "1.0.0",
+  "manufacturer": "Pipiot",
+  "url": "https://www.pipiot.com/peoplesense",
+  "description": "PeopleSense is a compact, ultra-rugged IoT device designed for remote counting of people or other traffic flows, such as cycles or slow- moving vehicles",
+  "author": "Akenza AG",
+  "firmwareVersion": "V2.2.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["People Counting", "Temperature"],
+  "outputTopics": ["default", "lifecycle", "rssi_test"],
+  "encoding": "HEX",
+  "connectivity": "Sigfox"
+}

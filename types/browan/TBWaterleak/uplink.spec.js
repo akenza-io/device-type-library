@@ -43,8 +43,8 @@ describe("TBWaterleak uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 2.5);
-        assert.equal(value.data.batteryLevel, 73);
+        assert.equal(value.data.voltage, 3.6);
+        assert.equal(value.data.batteryLevel, 100);
 
         validate(value.data, lifecycleSchema, { throwError: true });
       });

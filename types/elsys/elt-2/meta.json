@@ -12,16 +12,12 @@
     "Humidity",
     "Analog Input",
     "Pulse",
-    "Reed",
     "Distance",
     "Motion",
     "Waterleak",
     "Pressure"
   ],
-  "outputTopics": [
-    "default",
-    "lifecycle"
-  ],
+  "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

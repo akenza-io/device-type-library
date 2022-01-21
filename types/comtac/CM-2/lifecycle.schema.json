@@ -4,6 +4,11 @@
   "title": "Lifecycle",
   "type": "object",
   "properties": {
+    "version": {
+      "title": "Message version",
+      "type": "integer",
+      "description": "Message version"
+    },
     "booster": {
       "title": "Booster",
       "description": "Is Booster on? Usually on when battery level low",
