@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.10.0] - 2022-01-25
+
+### Added
+
+- Elsys - ERS VOC
+
 # [1.10.0] - 2022-01-21
 
 ### Added
