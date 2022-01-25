@@ -1,0 +1,16 @@
+{
+  "$id": "https://akenza.io/yanzi/presenceMini/temperature.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Temperature",
+  "type": "object",
+  "properties": {
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    }
+  }
+}

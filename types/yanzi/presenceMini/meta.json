@@ -1,0 +1,13 @@
+{
+  "name": "Presence Mini",
+  "version": "1.0.0",
+  "manufacturer": "Yanzi",
+  "url": "https://yanzi.se/products/#",
+  "description": "This device monitors occupancy in an office. It detects motion and monitors temperature. Easily mounted directly onto surfaces, no drilling required.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": ["Motion", "Temperature"],
+  "outputTopics": ["occupancy", "temperature", "lifecycle"],
+  "encoding": "JSON",
+  "connectivity": "HTTP"
+}

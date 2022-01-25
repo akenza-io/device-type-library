@@ -1,0 +1,16 @@
+{
+  "$id": "https://akenza.io/yanzi/comfort/tvoc.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "tVoc",
+  "type": "object",
+  "properties": {
+    "tvoc": {
+      "title": "tVoc",
+      "unit": "ppb",
+      "type": "integer",
+      "description": "Total Volatile Organic Compunds in ppb",
+      "minimum": 125,
+      "maximum": 600
+    }
+  }
+}
