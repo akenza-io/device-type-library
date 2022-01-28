@@ -1,24 +1,16 @@
 function consume(event) {
-  const { data } = event;
-  const { resourceType } = data;
+  const { resourceType } = event.data.list[0];
+  const { value } = event.data.list[0];
   const sample = {};
   let topic = "default";
 
-  /*
-  // Foreach ? if foreach dann decoder function
-  if (resourceType === "SampleUpState") {
-    sample.upLog = data.upLog;
-    topic = "upLog";
-  }
-  */
-
   if (resourceType === "SampleTemp") {
-    sample.temperature = data.temperatureK;
+    sample.temperature = Math.round(value * 100) / 1000;
     topic = "temperature";
   }
 
   if (resourceType === "SampleMotion") {
-    sample.motion = data.motion;
+    sample.motion = value;
     if (sample.motion > 0) {
       sample.occupancy = 1;
     } else {

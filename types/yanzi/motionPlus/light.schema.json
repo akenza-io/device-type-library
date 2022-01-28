@@ -7,8 +7,16 @@
     "light": {
       "title": "Light",
       "unit": "lux",
-      "type": "integer",
+      "type": "number",
       "description": "The light in lux.",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "colorTemperature": {
+      "title": "Color temperature",
+      "unit": "K",
+      "type": "integer",
+      "description": "Color temperature in K",
       "minimum": 0,
       "maximum": 65535
     }

@@ -13,13 +13,7 @@
     "Light",
     "Sound"
   ],
-  "outputTopics": [
-    "occupancy",
-    "light",
-    "temperature",
-    "humidity",
-    "lifecycle"
-  ],
+  "outputTopics": ["occupancy", "light", "temperature", "humidity", "sound"],
   "encoding": "JSON",
   "connectivity": "HTTP"
 }

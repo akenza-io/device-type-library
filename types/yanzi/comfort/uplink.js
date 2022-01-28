@@ -1,43 +1,36 @@
 function consume(event) {
-  const { data } = event;
-  const { resourceType } = data;
+  const { resourceType } = event.data.list[0];
+  const { value } = event.data.list[0];
   const sample = {};
   let topic = "default";
 
-  /*
-  // Foreach ?
-  if (resourceType === "SampleUpState") {
-    sample.upLog = data.upLog;
-    topic = "upLog";
-  }
-  */
   if (resourceType === "SampleCO2") {
-    sample.co2 = data.carbonDioxide;
+    sample.co2 = value;
     topic = "co2";
   }
 
   if (resourceType === "SampleHumidity") {
-    sample.humidity = data.relativeHumidity; // * 10
+    sample.humidity = value;
     topic = "humidity";
   }
 
   if (resourceType === "SampleSoundPressureLevel") {
-    sample.soundPressure = data.soundPressureLevel; // * 100
+    sample.soundPressure = value / 1000;
     topic = "sound";
   }
 
   if (resourceType === "SamplePressure") {
-    sample.pressure = data.pressure;
+    sample.pressure = value;
     topic = "barometer";
   }
 
   if (resourceType === "SampleTemp") {
-    sample.temperature = data.temperatureK;
+    sample.temperature = Math.round(value * 100) / 1000;
     topic = "temperature";
   }
 
   if (resourceType === "SampleVOC") {
-    sample.tvoc = data.volatileOrganicCompound;
+    sample.tvoc = value;
     topic = "tvoc";
   }
 

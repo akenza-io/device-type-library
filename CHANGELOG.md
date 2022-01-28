@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.11.0] - 2022-01-28
+
+### Added
+
+- Yanzi - Comfort
+- Yanzi - Motion+
+- Yanzi - Presence mMiniini
+
 # [1.10.0] - 2022-01-21
 
 ### Added
