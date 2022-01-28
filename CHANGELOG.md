@@ -4,11 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-# [1.11.0] - 2022-01-28
+# [1.11.1] - 2022-01-28
 
 ### Changed
 
-- Diverse DTL fixes
+- Comtac - CM1 changed schema
+- Elsys - ELT-2 changed schema
+- Swisscom - Multisense updated meta topics
+- Watecco - BoB updated meta
 
 # [1.11.0] - 2022-01-25
 
