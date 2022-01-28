@@ -5,7 +5,7 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Globalsat LT-20 uplink", () => {
+describe("Abeeway companct tracker uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
@@ -34,7 +34,7 @@ describe("Globalsat LT-20 uplink", () => {
       const data = {
         data: {
           port: 1,
-          payloadHex: "80023032525AEFD2046400",
+          payloadHex: "03025c83a0051c5730054ff90b",
         },
       };
 

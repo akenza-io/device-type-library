@@ -14,7 +14,7 @@ function getGPS(bits) {
   if (latitude > 0x7fffffff) {
     latitude -= 0x100000000;
   }
-  data.latitude = latitude / 10e7;
+  data.latitude = latitude / 10e6;
   pointer += 24;
 
   let longitude = Bits.bitsToUnsigned(bits.substr(pointer, 24));
@@ -22,12 +22,12 @@ function getGPS(bits) {
   if (longitude > 0x7fffffff) {
     longitude -= 0x100000000;
   }
-  data.longitude = longitude / 10e7;
+  data.longitude = longitude / 10e6;
   pointer += 24;
 
-  data.ehpe =
-    valueDecode(Bits.bitsToUnsigned(bits.substr(pointer, 8)), 0, 1000, 8, 0) *
-    3.9; // Estimated Horizontal Position Error, expressed in meters
+  data.ehpe = Math.round(
+    valueDecode(Bits.bitsToUnsigned(bits.substr(pointer, 8)), 0, 1000, 8, 0),
+  ); // Estimated Horizontal Position Error, expressed in meters
   return data;
 }
 
@@ -44,21 +44,37 @@ function getGPSTimeout(bits) {
     data.timeoutCause = "GPS_FIX_TIMEOUT";
   }
   pointer += 8;
-  data.cn0 =
-    valueDecode(Bits.bitsToUnsigned(bits.substr(pointer, 8)), 0, 50, 8, 0) *
-    0.2; // dBm
+  data.cn0 = valueDecode(
+    Bits.bitsToUnsigned(bits.substr(pointer, 8)),
+    0,
+    50,
+    8,
+    0,
+  ); // dBm
   pointer += 8;
-  data.cn1 =
-    valueDecode(Bits.bitsToUnsigned(bits.substr(pointer, 8)), 0, 50, 8, 0) *
-    0.2; // dBm
+  data.cn1 = valueDecode(
+    Bits.bitsToUnsigned(bits.substr(pointer, 8)),
+    0,
+    50,
+    8,
+    0,
+  ); // dBm
   pointer += 8;
-  data.cn2 =
-    valueDecode(Bits.bitsToUnsigned(bits.substr(pointer, 8)), 0, 50, 8, 0) *
-    0.2; // dBm
+  data.cn2 = valueDecode(
+    Bits.bitsToUnsigned(bits.substr(pointer, 8)),
+    0,
+    50,
+    8,
+    0,
+  ); // dBm
   pointer += 8;
-  data.cn3 =
-    valueDecode(Bits.bitsToUnsigned(bits.substr(pointer, 8)), 0, 50, 8, 0) *
-    0.2; // dBm
+  data.cn3 = valueDecode(
+    Bits.bitsToUnsigned(bits.substr(pointer, 8)),
+    0,
+    50,
+    8,
+    0,
+  ); // dBm
 
   return data;
 }
@@ -67,29 +83,53 @@ function getWifiTimeout(bits) {
   const data = {};
   let pointer = 0;
 
-  data.vBat1 =
-    valueDecode(Bits.bitsToUnsigned(bits.substr(pointer, 8)), 2.8, 4.2, 8, 2) *
-    5.5; // T0
+  data.vBat1 = valueDecode(
+    Bits.bitsToUnsigned(bits.substr(pointer, 8)),
+    2.8,
+    4.2,
+    8,
+    2,
+  ); // T0
   pointer += 8;
-  data.vBat2 =
-    valueDecode(Bits.bitsToUnsigned(bits.substr(pointer, 8)), 2.8, 4.2, 8, 2) *
-    5.5; // T0 + 0.5 sec
+  data.vBat2 = valueDecode(
+    Bits.bitsToUnsigned(bits.substr(pointer, 8)),
+    2.8,
+    4.2,
+    8,
+    2,
+  ); // T0 + 0.5 sec
   pointer += 8;
-  data.vBat3 =
-    valueDecode(Bits.bitsToUnsigned(bits.substr(pointer, 8)), 2.8, 4.2, 8, 2) *
-    5.5; // T0 + 1 sec
+  data.vBat3 = valueDecode(
+    Bits.bitsToUnsigned(bits.substr(pointer, 8)),
+    2.8,
+    4.2,
+    8,
+    2,
+  ); // T0 + 1 sec
   pointer += 8;
-  data.vBat4 =
-    valueDecode(Bits.bitsToUnsigned(bits.substr(pointer, 8)), 2.8, 4.2, 8, 2) *
-    5.5; // T0 + 1.5 sec
+  data.vBat4 = valueDecode(
+    Bits.bitsToUnsigned(bits.substr(pointer, 8)),
+    2.8,
+    4.2,
+    8,
+    2,
+  ); // T0 + 1.5 sec
   pointer += 8;
-  data.vBat5 =
-    valueDecode(Bits.bitsToUnsigned(bits.substr(pointer, 8)), 2.8, 4.2, 8, 2) *
-    5.5; // T0 + 2 sec
+  data.vBat5 = valueDecode(
+    Bits.bitsToUnsigned(bits.substr(pointer, 8)),
+    2.8,
+    4.2,
+    8,
+    2,
+  ); // T0 + 2 sec
   pointer += 8;
-  data.vBat6 =
-    valueDecode(Bits.bitsToUnsigned(bits.substr(pointer, 8)), 2.8, 4.2, 8, 2) *
-    5.5; // T0 + 2.5 sec
+  data.vBat6 = valueDecode(
+    Bits.bitsToUnsigned(bits.substr(pointer, 8)),
+    2.8,
+    4.2,
+    8,
+    2,
+  ); // T0 + 2.5 sec
 
   return data;
 }
@@ -141,8 +181,8 @@ function consume(event) {
   } else {
     lifecycle.batteryLevel = batteryLevel;
   }
-  lifecycle.temperature =
-    valueDecode(Bits.bitsToUnsigned(bits.substr(24, 8)), -44, 85, 8, 0) * 0.5;
+  // prettier-ignore
+  lifecycle.temperature = Math.round(valueDecode(Bits.bitsToUnsigned(bits.substr(24, 8)), -44, 85, 8, 0) *10)/10;
   // Reserved 4-8
 
   switch (type) {
@@ -158,11 +198,11 @@ function consume(event) {
         case 0: {
           topic = "gps_fix";
           // prettier-ignore
-          data.age = valueDecode(Bits.bitsToUnsigned(bits.substr(40, 8)), 0, 2040, 8, 0) * 8; // Seconds
+          data.age = valueDecode(Bits.bitsToUnsigned(bits.substr(40, 8)), 0, 2040, 8, 0); // Seconds
           const gps = getGPS(bits.substr(48, 56));
           data.latitude = gps.latitude;
           data.longitude = gps.longitude;
-          data.ehpe = gps.ehpe;
+          data.horizontalAccuracy = gps.ehpe;
 
           break;
         }
@@ -222,7 +262,7 @@ function consume(event) {
           break;
         case 7:
           // prettier-ignore
-          data.age = valueDecode(Bits.bitsToUnsigned(bits.substr(40, 8)), 0, 2040, 8, 0) * 8; // Seconds
+          data.age = valueDecode(Bits.bitsToUnsigned(bits.substr(40, 8)), 0, 2040, 8, 0); // Seconds
           data.maxAdr0 = Bits.bitsToUnsigned(bits.substr(48, 48));
           data.rssid0 = Bits.bitsToSigned(bits.substr(96, 8));
           data.maxAdr1 = Bits.bitsToUnsigned(bits.substr(104, 48));
@@ -266,7 +306,7 @@ function consume(event) {
         }
         case 9:
           // prettier-ignore
-          data.age = valueDecode(Bits.bitsToUnsigned(bits.substr(40, 8)), 0, 2040, 8, 0) * 8; // Seconds
+          data.age = valueDecode(Bits.bitsToUnsigned(bits.substr(40, 8)), 0, 2040, 8, 0); // Seconds
           data.bsssid0 = Bits.bitsToUnsigned(bits.substr(48, 48));
           data.rssid0 = Bits.bitsToSigned(bits.substr(96, 8));
           data.bsssid1 = Bits.bitsToUnsigned(bits.substr(104, 48));
@@ -280,7 +320,7 @@ function consume(event) {
           break;
         case 10:
           // prettier-ignore
-          data.age = valueDecode(Bits.bitsToUnsigned(bits.substr(40, 8)), 0, 2040, 8, 0) * 8; // Seconds
+          data.age = valueDecode(Bits.bitsToUnsigned(bits.substr(40, 8)), 0, 2040, 8, 0); // Seconds
           data.shortBID0 = Bits.bitsToUnsigned(bits.substr(48, 48));
           data.rssid0 = Bits.bitsToSigned(bits.substr(96, 8));
           data.shortBID1 = Bits.bitsToUnsigned(bits.substr(104, 48));
@@ -294,7 +334,7 @@ function consume(event) {
           break;
         case 11:
           // prettier-ignore
-          data.age = valueDecode(Bits.bitsToUnsigned(bits.substr(40, 8)), 0, 2040, 8, 0) * 8; // Seconds
+          data.age = valueDecode(Bits.bitsToUnsigned(bits.substr(40, 8)), 0, 2040, 8, 0); // Seconds
           data.longBID0 = Bits.bitsToUnsigned(bits.substr(48, 128));
           data.rssid0 = Bits.bitsToSigned(bits.substr(176, 8));
 
@@ -547,11 +587,35 @@ function consume(event) {
       break;
     }
     // Collection scan
-    case 0x0b:
-      const activity = Bits.bitsToUnsigned(bits.substr(40, 8));
+    case 0x0b: {
+      data.nextFrame = Bits.bitsToUnsigned(bits.substr(40, 1));
+      const df = Bits.bitsToUnsigned(bits.substr(41, 1));
+      data.fragmentID = Bits.bitsToUnsigned(bits.substr(42, 6));
 
+      data.cid = Bits.bitsToUnsigned(bits.substr(48, 8));
+      data.hash = Bits.bitsToUnsigned(bits.substr(56, 8));
+
+      if (df === 1) {
+        data.rssi0 = Bits.bitsToUnsigned(bits.substr(64, 8));
+        data.macAddr0 = Bits.bitsToUnsigned(bits.substr(72, 48));
+        data.rssi0 = Bits.bitsToUnsigned(bits.substr(120, 8));
+        data.macAddr0 = Bits.bitsToUnsigned(bits.substr(128, 48));
+        data.rssi0 = Bits.bitsToUnsigned(bits.substr(176, 8));
+        data.macAddr0 = Bits.bitsToUnsigned(bits.substr(184, 48));
+        data.rssi0 = Bits.bitsToUnsigned(bits.substr(232, 8));
+        data.macAddr0 = Bits.bitsToUnsigned(bits.substr(240, 48));
+      } else {
+        data.rssi0 = Bits.bitsToUnsigned(bits.substr(64, 8));
+        data.elementID0 = Bits.bitsToUnsigned(bits.substr(72, 24));
+        data.rssi1 = Bits.bitsToUnsigned(bits.substr(96, 8));
+        data.elementID1 = Bits.bitsToUnsigned(bits.substr(104, 24));
+        data.rssi2 = Bits.bitsToUnsigned(bits.substr(128, 8));
+        data.elementID2 = Bits.bitsToUnsigned(bits.substr(136, 24));
+        data.rssi3 = Bits.bitsToUnsigned(bits.substr(160, 8));
+        data.elementID3 = Bits.bitsToUnsigned(bits.substr(168, 24));
+      }
       break;
-
+    }
     // Proximity
     case 0x0c:
       break;
@@ -559,7 +623,7 @@ function consume(event) {
     // Extended Position
     case 0x0e: {
       const position = Bits.bitsToUnsigned(bits.substr(36, 4));
-      data.age = Bits.bitsToUnsigned(bits.substr(40, 16)) * 8; // Seconds
+      data.age = Bits.bitsToUnsigned(bits.substr(40, 16)); // Seconds
 
       switch (position) {
         case 0: {
@@ -574,7 +638,7 @@ function consume(event) {
           const gps = getGPS(bits.substr(64, 56));
           data.latitude = gps.latitude;
           data.longitude = gps.longitude;
-          data.ehpe = gps.ehpe;
+          data.horizontalAccuracy = gps.ehpe;
 
           data.cog = Bits.bitsToUnsigned(bits.substr(120, 16)); // Course Over Ground in degrees
           data.sog = Bits.bitsToUnsigned(bits.substr(136, 16)); // Speed Over Ground in cm/second
@@ -711,23 +775,15 @@ function consume(event) {
 
       break;
     }
-    // Debug
     case 0x0f:
+      data.hex = payload;
+      topic = "debug";
       break;
 
     default:
       break;
   }
 
-  // console.log(result);
-
   emit("sample", { data: lifecycle, topic: "lifecycle" });
   emit("sample", { data, topic });
 }
-
-consume({
-  data: {
-    port: 1,
-    payloadHex: "0500647ad001020200030202",
-  },
-});
