@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.11.0] - 2022-01-28
+
+### Changed
+
+- Diverse DTL fixes
+
 # [1.11.0] - 2022-01-25
 
 ### Added
