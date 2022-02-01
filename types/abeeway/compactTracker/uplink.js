@@ -135,7 +135,7 @@ function getWifiTimeout(bits) {
 }
 
 function consume(event) {
-  const payload = event.data.payloadHex; // 0500647ad001020200030202
+  const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
   let topic = "default";
   const data = {};
@@ -143,11 +143,11 @@ function consume(event) {
 
   // Header
   const type = Bits.bitsToUnsigned(bits.substr(0, 8));
-  lifecycle.demandMessage = Bits.bitsToUnsigned(bits.substr(15, 1));
-  lifecycle.positionMessage = Bits.bitsToUnsigned(bits.substr(14, 1));
-  lifecycle.hasMoved = Bits.bitsToUnsigned(bits.substr(13, 1));
+  lifecycle.demandMessage = !!Bits.bitsToUnsigned(bits.substr(15, 1));
+  lifecycle.positionMessage = !!Bits.bitsToUnsigned(bits.substr(14, 1));
+  lifecycle.hasMoved = !!Bits.bitsToUnsigned(bits.substr(13, 1));
   // Reserved
-  lifecycle.sos = Bits.bitsToUnsigned(bits.substr(11, 1));
+  lifecycle.sos = !!Bits.bitsToUnsigned(bits.substr(11, 1));
   const operatingMode = Bits.bitsToUnsigned(bits.substr(8, 3));
 
   switch (operatingMode) {
@@ -189,7 +189,7 @@ function consume(event) {
     // Frame pending
     case 0x00:
       topic = "acknowledge";
-      data.ack = Bits.bitsToUnsigned(bits.substr(40, 8));
+      data.acknowledge = Bits.bitsToUnsigned(bits.substr(40, 8));
       break;
     // Position
     case 0x03: {
@@ -588,14 +588,14 @@ function consume(event) {
     }
     // Collection scan
     case 0x0b: {
-      data.nextFrame = Bits.bitsToUnsigned(bits.substr(40, 1));
-      const df = Bits.bitsToUnsigned(bits.substr(41, 1));
+      data.nextFrame = !!Bits.bitsToUnsigned(bits.substr(40, 1));
+      const df = !!Bits.bitsToUnsigned(bits.substr(41, 1));
       data.fragmentID = Bits.bitsToUnsigned(bits.substr(42, 6));
 
       data.cid = Bits.bitsToUnsigned(bits.substr(48, 8));
       data.hash = Bits.bitsToUnsigned(bits.substr(56, 8));
 
-      if (df === 1) {
+      if (df === true) {
         data.rssi0 = Bits.bitsToUnsigned(bits.substr(64, 8));
         data.macAddr0 = Bits.bitsToUnsigned(bits.substr(72, 48));
         data.rssi0 = Bits.bitsToUnsigned(bits.substr(120, 8));

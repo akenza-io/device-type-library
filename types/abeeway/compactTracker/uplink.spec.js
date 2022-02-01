@@ -5,7 +5,7 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Abeeway companct tracker uplink", () => {
+describe("Abeeway compact tracker uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
@@ -30,11 +30,11 @@ describe("Abeeway companct tracker uplink", () => {
   });
 
   describe("consume()", () => {
-    it("should decode Globalsat LT-20 payload", (done) => {
+    it("should decode Abeeway compact tracker GPS payload", (done) => {
       const data = {
         data: {
           port: 1,
-          payloadHex: "03025c83a0051c5730054ff90b",
+          payloadHex: "03025c8200061c572f054ffb08",
         },
       };
 
@@ -43,7 +43,15 @@ describe("Abeeway companct tracker uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.data.batteryPercent, 100);
+        assert.equal(value.data.demandMessage, false);
+        assert.equal(value.data.positionMessage, true);
+        assert.equal(value.data.hasMoved, false);
+        assert.equal(value.data.sos, false);
+        assert.equal(value.data.operatingMode, "STANDBY");
+
+        assert.equal(value.data.batteryLevel, 92);
+        assert.equal(value.data.temperature, 21.8);
+
         validate(value.data, lifecycleSchema, { throwError: true });
       });
 
@@ -52,10 +60,53 @@ describe("Abeeway companct tracker uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.data.longitude, 115.8162);
-        assert.equal(value.data.latitude, -31.8965256);
-        assert.equal(value.data.gpsFix, "Not fix");
-        assert.equal(value.data.reportType, "Motion mode static report");
+        assert.equal(value.topic, "gps_fix");
+        assert.equal(value.data.longitude, 8.912768);
+        assert.equal(value.data.latitude, 47.5475712);
+        assert.equal(value.data.horizontalAccuracy, 31);
+        assert.equal(value.data.age, 48);
+        validate(value.data, defaultSchema, { throwError: true });
+      });
+
+      consume(data);
+      done();
+    });
+
+    it("should decode Abeeway compact tracker heartbeat payload", (done) => {
+      const data = {
+        data: {
+          port: 1,
+          payloadHex: "0500647ad001020200030202",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.data.demandMessage, false);
+        assert.equal(value.data.positionMessage, true);
+        assert.equal(value.data.hasMoved, false);
+        assert.equal(value.data.sos, false);
+        assert.equal(value.data.operatingMode, "STANDBY");
+
+        assert.equal(value.data.batteryLevel, 92);
+        assert.equal(value.data.temperature, 21.8);
+
+        validate(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "gps_fix");
+        assert.equal(value.data.longitude, 8.912768);
+        assert.equal(value.data.latitude, 47.5475712);
+        assert.equal(value.data.horizontalAccuracy, 31);
+        assert.equal(value.data.age, 48);
         validate(value.data, defaultSchema, { throwError: true });
       });
 
