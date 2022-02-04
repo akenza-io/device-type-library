@@ -76,7 +76,7 @@ describe("Abeeway compact tracker uplink", () => {
       const data = {
         data: {
           port: 1,
-          payloadHex: "0500647ad001020200030202",
+          payloadHex: "05005c820040020200000000",
         },
       };
 
@@ -115,3 +115,7 @@ describe("Abeeway compact tracker uplink", () => {
     });
   });
 });
+
+// Winkelalarm 0a045c82000940000003e800000000fffe0048fc285a
+// Ciritcal to Normal 0a045c83000960000003e80000000003ee0014001001
+// Motionstate static 05005c820040020200000000
