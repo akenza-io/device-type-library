@@ -1,0 +1,13 @@
+{
+  "name": "Plug",
+  "version": "1.0.0",
+  "manufacturer": "Yanzi",
+  "url": "https://yanzi.se/products/#",
+  "description": "This device monitors energy usage and the health condition of the power line. It controls connected appliances via an internal 16A relay. Simply plug into the power socket.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": ["Energy"],
+  "outputTopics": ["energy", "power"],
+  "encoding": "JSON",
+  "connectivity": "HTTP"
+}

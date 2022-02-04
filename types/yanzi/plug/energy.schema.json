@@ -1,0 +1,14 @@
+{
+  "$id": "https://akenza.io/yanzi/plug/energy.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Energy",
+  "type": "object",
+  "properties": {
+    "energy": {
+      "title": "Energy",
+      "unit": "kWh",
+      "type": "number",
+      "description": "Energy consumption in kWh"
+    }
+  }
+}
