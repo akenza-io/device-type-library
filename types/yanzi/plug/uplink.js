@@ -1,22 +1,24 @@
 function consume(event) {
-  const { resourceType } = event.data.list[0];
-  const { value } = event.data.list[0];
-  const sample = {};
   let topic = "default";
 
-  if (resourceType === "SampleElectricalEnergbySimple") {
-    sample.temperature = Math.round(value * 100) / 1000;
-    topic = "temperature";
-  }
+  event.data.list.forEach((element) => {
+    const sample = {};
+    const { resourceType } = element;
+    const { value } = element;
 
-  if (resourceType === "SampleOnOff") {
-    if (value) {
-      sample.power = "ON";
-    } else {
-      sample.power = "OFF";
+    if (resourceType === "SampleElectricalEnergbySimple") {
+      sample.temperature = Math.round(value * 100) / 1000;
+      topic = "temperature";
     }
-    topic = "power";
-  }
 
-  emit("sample", { data: sample, topic });
+    if (resourceType === "SampleOnOff") {
+      if (value) {
+        sample.power = "ON";
+      } else {
+        sample.power = "OFF";
+      }
+      topic = "power";
+    }
+    emit("sample", { data: sample, topic });
+  });
 }
