@@ -1,7 +1,7 @@
 function consume(event) {
   let topic = "default";
 
-  event.data.list.forEach((element) => {
+  event.data.values.forEach((element) => {
     const sample = {};
     const { resourceType } = element;
     const { value } = element;
@@ -18,7 +18,7 @@ function consume(event) {
 
     if (resourceType === "SampleIlluminance") {
       sample.light = Math.round(value / 100) / 10;
-      const { colorTemperature } = event.data.list[0];
+      const { colorTemperature } = element;
       if (colorTemperature !== undefined) {
         sample.colorTemperature = colorTemperature;
       }

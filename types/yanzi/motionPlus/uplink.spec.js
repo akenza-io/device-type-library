@@ -51,19 +51,7 @@ describe("Yanzi Motion Plus Sensor Uplink", () => {
     it("should decode the Yanzi Motion Plus Sensor Temperature payload", () => {
       const data = {
         data: {
-          resourceType: "SampleList",
-          dataSourceAddress: {
-            resourceType: "DataSourceAddress",
-            did: "EUI64-0080E10300050834-3-Temp",
-            locationId: "312770",
-            serverDid: "EUI64-0090DAFFFF007A30",
-            variableName: {
-              resourceType: "VariableName",
-              name: "temperatureK",
-            },
-            instanceNumber: 0,
-          },
-          list: [
+          values: [
             {
               resourceType: "SampleTemp",
               sampleTime: 1643364139738,
@@ -90,19 +78,7 @@ describe("Yanzi Motion Plus Sensor Uplink", () => {
     it("should decode the Yanzi Motion Plus Sensor Humidity payload", () => {
       const data = {
         data: {
-          resourceType: "SampleList",
-          dataSourceAddress: {
-            resourceType: "DataSourceAddress",
-            did: "EUI64-0080E10300050834-3-Humd",
-            locationId: "312770",
-            serverDid: "EUI64-0090DAFFFF007A30",
-            variableName: {
-              resourceType: "VariableName",
-              name: "relativeHumidity",
-            },
-            instanceNumber: 0,
-          },
-          list: [
+          values: [
             {
               resourceType: "SampleHumidity",
               sampleTime: 1643364139747,
@@ -129,19 +105,7 @@ describe("Yanzi Motion Plus Sensor Uplink", () => {
     it("should decode the Yanzi Motion Plus Sensor Motion payload", () => {
       const data = {
         data: {
-          resourceType: "SampleList",
-          dataSourceAddress: {
-            resourceType: "DataSourceAddress",
-            did: "EUI64-D0CF5EFFFE59E7B5-3-Motion",
-            locationId: "312770",
-            serverDid: "EUI64-0090DAFFFF007A30",
-            variableName: {
-              resourceType: "VariableName",
-              name: "motion",
-            },
-            instanceNumber: 0,
-          },
-          list: [
+          values: [
             {
               resourceType: "SampleMotion",
               sampleTime: 1643365120931,
@@ -170,19 +134,7 @@ describe("Yanzi Motion Plus Sensor Uplink", () => {
     it("should decode the Yanzi Motion Plus Sensor Light payload", () => {
       const data = {
         data: {
-          resourceType: "SampleList",
-          dataSourceAddress: {
-            resourceType: "DataSourceAddress",
-            did: "EUI64-0080E10300050834-5-Illuminance",
-            locationId: "312770",
-            serverDid: "EUI64-0090DAFFFF007A30",
-            variableName: {
-              resourceType: "VariableName",
-              name: "illuminance",
-            },
-            instanceNumber: 0,
-          },
-          list: [
+          values: [
             {
               resourceType: "SampleIlluminance",
               sampleTime: 1643364139759,

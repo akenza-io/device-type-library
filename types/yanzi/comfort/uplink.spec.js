@@ -33,19 +33,7 @@ describe("Yanzi Comfort Sensor Uplink", () => {
     it("should decode the Yanzi Comfort Sensor Temperature payload", () => {
       const data = {
         data: {
-          resourceType: "SampleList",
-          dataSourceAddress: {
-            resourceType: "DataSourceAddress",
-            did: "EUI64-D0CF5EFFFE59E7B5-4-Temp",
-            locationId: "312770",
-            serverDid: "EUI64-0090DAFFFF007A30",
-            variableName: {
-              resourceType: "VariableName",
-              name: "temperatureK",
-            },
-            instanceNumber: 0,
-          },
-          list: [
+          values: [
             {
               resourceType: "SampleTemp",
               sampleTime: 1643365120937,
@@ -72,19 +60,7 @@ describe("Yanzi Comfort Sensor Uplink", () => {
     it("should decode the Yanzi Comfort Plus Sensor Humidity payload", () => {
       const data = {
         data: {
-          resourceType: "SampleList",
-          dataSourceAddress: {
-            resourceType: "DataSourceAddress",
-            did: "EUI64-0080E10300050834-3-Humd",
-            locationId: "312770",
-            serverDid: "EUI64-0090DAFFFF007A30",
-            variableName: {
-              resourceType: "VariableName",
-              name: "relativeHumidity",
-            },
-            instanceNumber: 0,
-          },
-          list: [
+          values: [
             {
               resourceType: "SampleHumidity",
               sampleTime: 1643364139747,

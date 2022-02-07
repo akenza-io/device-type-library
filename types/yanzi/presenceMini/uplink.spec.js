@@ -33,19 +33,7 @@ describe("Yanzi Presence Mini Sensor Uplink", () => {
     it("should decode the Presence Mini Sensor Temperature payload", () => {
       const data = {
         data: {
-          resourceType: "SampleList",
-          dataSourceAddress: {
-            resourceType: "DataSourceAddress",
-            did: "EUI64-D0CF5EFFFE59E7B5-4-Temp",
-            locationId: "312770",
-            serverDid: "EUI64-0090DAFFFF007A30",
-            variableName: {
-              resourceType: "VariableName",
-              name: "temperatureK",
-            },
-            instanceNumber: 0,
-          },
-          list: [
+          values: [
             {
               resourceType: "SampleTemp",
               sampleTime: 1643365120937,
@@ -72,19 +60,7 @@ describe("Yanzi Presence Mini Sensor Uplink", () => {
     it("should decode the Yanzi Presence Mini Sensor Motion payload", () => {
       const data = {
         data: {
-          resourceType: "SampleList",
-          dataSourceAddress: {
-            resourceType: "DataSourceAddress",
-            did: "EUI64-D0CF5EFFFE59E7B5-3-Motion",
-            locationId: "312770",
-            serverDid: "EUI64-0090DAFFFF007A30",
-            variableName: {
-              resourceType: "VariableName",
-              name: "motion",
-            },
-            instanceNumber: 0,
-          },
-          list: [
+          values: [
             {
               resourceType: "SampleMotion",
               sampleTime: 1643365120931,

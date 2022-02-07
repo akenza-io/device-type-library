@@ -1,7 +1,7 @@
 function consume(event) {
   let topic = "default";
 
-  event.data.list.forEach((element) => {
+  event.data.values.forEach((element) => {
     const sample = {};
     const { resourceType } = element;
     const { value } = element;
