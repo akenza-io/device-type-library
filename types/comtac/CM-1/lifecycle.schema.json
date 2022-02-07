@@ -51,7 +51,7 @@
       "maximum": 75
     },
     "minHumThreshold": {
-      "title": "Humidity",
+      "title": "Min Humidity Threshold",
       "unit": "%",
       "type": "number",
       "description": "Minimum humidity threshold, where 0 means OFF",
