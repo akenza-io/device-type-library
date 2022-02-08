@@ -1,0 +1,16 @@
+{
+  "$id": "https://akenza.io/yanzi/motionPlus/sound.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Sound",
+  "type": "object",
+  "properties": {
+    "soundPressure": {
+      "title": "Sound pressure",
+      "unit": "dBA",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": 38,
+      "maximum": 90
+    }
+  }
+}

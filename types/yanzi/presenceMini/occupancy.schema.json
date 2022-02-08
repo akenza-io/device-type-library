@@ -1,0 +1,22 @@
+{
+  "$id": "https://akenza.io/yanzi/presenceMini/occupancy.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Occupancy",
+  "type": "object",
+  "properties": {
+    "motion": {
+      "title": "Motion",
+      "description": "Motion sensor measuring activity level",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "occupancy": {
+      "title": "Occupancy",
+      "description": "If motion is bigger than one this is occupied.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1
+    }
+  }
+}

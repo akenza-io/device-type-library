@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.12.0] - 2022-02-04
+
+### Added
+
+- Yanzi - Comfort
+- Yanzi - Motion+
+- Yanzi - Presence Mini
+- Yanzi - Plug
+
 # [1.11.1] - 2022-01-28
 
 ### Changed
