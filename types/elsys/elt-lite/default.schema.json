@@ -42,18 +42,13 @@
       "minimum": 0,
       "maximum": 4294967295
     },
-    "externalTemperature": {
+    "externalTemperature1": {
       "title": "External temperature 1",
       "unit": "°C",
       "type": "number",
       "description": "The external temperature in °C.",
       "minimum": -3276.5,
       "maximum": 3276.5
-    },
-    "reed": {
-      "title": "Reed",
-      "description": "Equals true if reed is detected",
-      "type": "boolean"
     },
     "distance": {
       "title": "Distance",

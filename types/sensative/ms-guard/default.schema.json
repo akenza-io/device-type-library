@@ -44,9 +44,9 @@
       "minimum": 0,
       "maximum": 65535
     },
-    "open": {
-      "title": "Open",
-      "description": "Status of the strip. open = true, closed = false",
+    "closed": {
+      "title": "Closed",
+      "description": "Status of the strip. closed = true, open = false",
       "type": "boolean"
     },
     "tamperReport": {

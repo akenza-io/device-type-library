@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.12.1] - 2022-02-10
+
+### Changed
+
+- Comtac - CM-1 & CM-2 Added batteryLevel
+- Elsys - ELT changed schema
+- Elsys - CO2 added motion
+- Miromico - miro Click deleted unused schema & fixed typo
+- Oxon - Oxobutton changed schema
+- Sensativ - Strip +Guard changed dataKey name
+- Swisscom - Multisense fixed unit typo & rounded voltage
+- nke Watteco - BoB assistant changed meta and renamed devicetype
+
 # [1.12.0] - 2022-02-04
 
 ### Added

@@ -63,6 +63,7 @@ describe("Comtac LPN CM-1 Uplink", () => {
         assert.equal(value.data.maxHumThreshold, 0);
         assert.equal(value.data.sendInterval, 15);
         assert.equal(value.data.voltage, 2.74);
+        assert.equal(value.data.batteryLevel, 70);
 
         validate(value.data, lifecycleSchema, { throwError: true });
       });

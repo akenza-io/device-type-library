@@ -33,7 +33,7 @@
       "maximum": 1
     },
     "btnWfirst": {
-      "title": "Button south west",
+      "title": "Button west first",
       "type": "integer",
       "description": "Shows if the button west is first pressed",
       "minimum": 0,

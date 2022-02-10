@@ -6,7 +6,7 @@
   "properties": {
     "accX": {
       "title": "Acceleration X",
-      "unit": "G",
+      "unit": "mg",
       "description": "Acceleration on the X-Axis is mg",
       "type": "integer",
       "minimum": -32767,
@@ -14,7 +14,7 @@
     },
     "accY": {
       "title": "Acceleration Y",
-      "unit": "G",
+      "unit": "mg",
       "description": "Acceleration on the Y-Axis is mg",
       "type": "integer",
       "minimum": -32767,
@@ -22,7 +22,7 @@
     },
     "accZ": {
       "title": "Acceleration Z",
-      "unit": "G",
+      "unit": "mg",
       "description": "Acceleration on the Z-Axis is mg",
       "type": "integer",
       "minimum": -32767,

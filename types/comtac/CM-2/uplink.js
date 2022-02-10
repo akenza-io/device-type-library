@@ -27,6 +27,14 @@ function consume(event) {
   lifecycle.minTempOn = !!Bits.bitsToUnsigned(bits.substr(23, 1));
 
   lifecycle.voltage = Bits.bitsToUnsigned(bits.substr(24, 16)) / 1000;
+  let batteryLevel = Math.round((lifecycle.voltage - 2.2) / 0.008 / 10) * 10; // 2.2V - 3V
+  if (batteryLevel > 100) {
+    batteryLevel = 100;
+  } else if (batteryLevel < 0) {
+    batteryLevel = 0;
+  }
+  lifecycle.batteryLevel = batteryLevel;
+
   emit("sample", { data: lifecycle, topic: "lifecycle" });
 
   // Data
