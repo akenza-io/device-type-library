@@ -19,7 +19,7 @@ function consume(event) {
   lifecycle.mode = Bits.bitsToUnsigned(bits.substr(8, 8));
   const status = Number(Bits.bitsToUnsigned(bits.substr(16, 8)));
   const voltage = Bits.bitsToUnsigned(bits.substr(24, 8)) * 6 + 2000;
-  lifecycle.voltage = voltage / 1000;
+  lifecycle.voltage = Math.round((voltage / 1000) * 10) / 10;
   lifecycle.batteryLevel = Math.round((voltage - 2000) / 15.24);
 
   if (port === 3) {

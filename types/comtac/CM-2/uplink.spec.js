@@ -61,6 +61,7 @@ describe("Comtac LPN CM-2 Uplink", () => {
         assert.equal(value.data.minLemOn, false);
         assert.equal(value.data.maxLemOn, false);
         assert.equal(value.data.voltage, 2.654);
+        assert.equal(value.data.batteryLevel, 60);
 
         validate(value.data, lifecycleSchema, { throwError: true });
       });

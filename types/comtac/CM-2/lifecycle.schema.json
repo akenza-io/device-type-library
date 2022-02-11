@@ -5,9 +5,9 @@
   "type": "object",
   "properties": {
     "version": {
-      "title": "Message version",
+      "title": "Message Version",
       "type": "integer",
-      "description": "Message version"
+      "description": "Message Version"
     },
     "booster": {
       "title": "Booster",
@@ -91,6 +91,14 @@
       "title": "Battery voltage",
       "desciption": "The battery voltage in Volt.",
       "unit": "V"
+    },
+    "batteryLevel": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "unit": "%"
     }
   }
 }
