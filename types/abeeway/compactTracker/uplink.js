@@ -143,8 +143,8 @@ function consume(event) {
 
   // Header
   const type = Bits.bitsToUnsigned(bits.substr(0, 8));
-  lifecycle.demandMessage = !!Bits.bitsToUnsigned(bits.substr(15, 1));
-  lifecycle.positionMessage = !!Bits.bitsToUnsigned(bits.substr(14, 1));
+  lifecycle.positionOnDemandMessage = !!Bits.bitsToUnsigned(bits.substr(15, 1));
+  lifecycle.periodicPositionMessage = !!Bits.bitsToUnsigned(bits.substr(14, 1));
   lifecycle.hasMoved = !!Bits.bitsToUnsigned(bits.substr(13, 1));
   // Reserved
   lifecycle.sos = !!Bits.bitsToUnsigned(bits.substr(11, 1));
@@ -263,13 +263,17 @@ function consume(event) {
         case 7:
           // prettier-ignore
           data.age = valueDecode(Bits.bitsToUnsigned(bits.substr(40, 8)), 0, 2040, 8, 0); // Seconds
-          data.maxAdr0 = Bits.bitsToUnsigned(bits.substr(48, 48));
+          // prettier-ignore
+          data.maxAdr0 = `${payload.substr(12, 2)}:${payload.substr(14,2)}:${payload.substr(16, 2)}:${payload.substr(18, 2)}:${payload.substr(20,2)}:${payload.substr(22, 2)}`;
           data.rssid0 = Bits.bitsToSigned(bits.substr(96, 8));
-          data.maxAdr1 = Bits.bitsToUnsigned(bits.substr(104, 48));
+          // prettier-ignore
+          data.maxAdr1 = `${payload.substr(26, 2)}:${payload.substr(28,2)}:${payload.substr(30, 2)}:${payload.substr(32, 2)}:${payload.substr(34,2)}:${payload.substr(36, 2)}`;
           data.rssid1 = Bits.bitsToSigned(bits.substr(152, 8));
-          data.maxAdr2 = Bits.bitsToUnsigned(bits.substr(160, 48));
+          // prettier-ignore
+          data.maxAdr2 = `${payload.substr(40, 2)}:${payload.substr(42,2)}:${payload.substr(44, 2)}:${payload.substr(46, 2)}:${payload.substr(48,2)}:${payload.substr(50, 2)}`;
           data.rssid2 = Bits.bitsToSigned(bits.substr(208, 8));
-          data.maxAdr3 = Bits.bitsToUnsigned(bits.substr(216, 48));
+          // prettier-ignore
+          data.maxAdr3 = `${payload.substr(54, 2)}:${payload.substr(56,2)}:${payload.substr(58, 2)}:${payload.substr(60, 2)}:${payload.substr(62,2)}:${payload.substr(64, 2)}`;
           data.rssid3 = Bits.bitsToSigned(bits.substr(264, 8));
 
           topic = "ble_beacon_scan";
@@ -307,13 +311,17 @@ function consume(event) {
         case 9:
           // prettier-ignore
           data.age = valueDecode(Bits.bitsToUnsigned(bits.substr(40, 8)), 0, 2040, 8, 0); // Seconds
-          data.bsssid0 = Bits.bitsToUnsigned(bits.substr(48, 48));
+          // prettier-ignore
+          data.bsssid0 = `${payload.substr(12, 2)}:${payload.substr(14,2)}:${payload.substr(16, 2)}:${payload.substr(18, 2)}:${payload.substr(20,2)}:${payload.substr(22, 2)}`;
           data.rssid0 = Bits.bitsToSigned(bits.substr(96, 8));
-          data.bsssid1 = Bits.bitsToUnsigned(bits.substr(104, 48));
+          // prettier-ignore
+          data.bsssid1 = `${payload.substr(26, 2)}:${payload.substr(28, 2)}:${payload.substr(30, 2)}:${payload.substr(32, 2)}:${payload.substr(34, 2)}:${payload.substr(36, 2)}`;
           data.rssid1 = Bits.bitsToSigned(bits.substr(152, 8));
-          data.bsssid2 = Bits.bitsToUnsigned(bits.substr(160, 48));
+          // prettier-ignore
+          data.bsssid2 = `${payload.substr(40, 2)}:${payload.substr(42, 2)}:${payload.substr(44, 2)}:${payload.substr(46, 2)}:${payload.substr(48, 2)}:${payload.substr(50, 2)}`;
           data.rssid2 = Bits.bitsToSigned(bits.substr(208, 8));
-          data.bsssid3 = Bits.bitsToUnsigned(bits.substr(216, 48));
+          // prettier-ignore
+          data.bsssid3 = `${payload.substr(54, 2)}:${payload.substr(56, 2)}:${payload.substr(58, 2)}:${payload.substr(60, 2)}:${payload.substr(62, 2)}:${payload.substr(64, 2)}`;
           data.rssid3 = Bits.bitsToSigned(bits.substr(264, 8));
 
           topic = "wifi_bssid";
@@ -321,21 +329,42 @@ function consume(event) {
         case 10:
           // prettier-ignore
           data.age = valueDecode(Bits.bitsToUnsigned(bits.substr(40, 8)), 0, 2040, 8, 0); // Seconds
-          data.shortBID0 = Bits.bitsToUnsigned(bits.substr(48, 48));
+          // prettier-ignore
+          data.shortBID0 = `${payload.substr(12, 2)}:${payload.substr(14,2)}:${payload.substr(16, 2)}:${payload.substr(18, 2)}:${payload.substr(20,2)}:${payload.substr(22, 2)}`;
           data.rssid0 = Bits.bitsToSigned(bits.substr(96, 8));
-          data.shortBID1 = Bits.bitsToUnsigned(bits.substr(104, 48));
+          // prettier-ignore
+          data.shortBID1 = `${payload.substr(26, 2)}:${payload.substr(28, 2)}:${payload.substr(30, 2)}:${payload.substr(32, 2)}:${payload.substr(34, 2)}:${payload.substr(36, 2)}`;
           data.rssid1 = Bits.bitsToSigned(bits.substr(152, 8));
-          data.shortBID2 = Bits.bitsToUnsigned(bits.substr(160, 48));
+          // prettier-ignore
+          data.shortBID2 = `${payload.substr(40, 2)}:${payload.substr(42, 2)}:${payload.substr(44, 2)}:${payload.substr(46, 2)}:${payload.substr(48, 2)}:${payload.substr(50, 2)}`;
           data.rssid2 = Bits.bitsToSigned(bits.substr(208, 8));
-          data.shortBID3 = Bits.bitsToUnsigned(bits.substr(216, 48));
-          data.rssid3 = Bits.bitsToSigned(bits.substr(264, 8));
+          // prettier-ignore
+          data.shortBID3 = `${payload.substr(54, 2)}:${payload.substr(56, 2)}:${payload.substr(58, 2)}:${payload.substr(60, 2)}:${payload.substr(62, 2)}:${payload.substr(64, 2)}`;
 
           topic = "ble_beacon_short";
           break;
         case 11:
           // prettier-ignore
           data.age = valueDecode(Bits.bitsToUnsigned(bits.substr(40, 8)), 0, 2040, 8, 0); // Seconds
-          data.longBID0 = Bits.bitsToUnsigned(bits.substr(48, 128));
+          data.longBID0 = `${payload.substr(12, 2)}:${payload.substr(
+            14,
+            2,
+          )}:${payload.substr(16, 2)}:${payload.substr(18, 2)}:${payload.substr(
+            20,
+            2,
+          )}:${payload.substr(22, 2)}:${payload.substr(24, 2)}:${payload.substr(
+            26,
+            2,
+          )}:${payload.substr(28, 2)}:${payload.substr(30, 2)}:${payload.substr(
+            32,
+            2,
+          )}:${payload.substr(34, 2)}:${payload.substr(36, 2)}:${payload.substr(
+            38,
+            2,
+          )}:${payload.substr(40, 2)}:${payload.substr(42, 2)}:${payload.substr(
+            44,
+            2,
+          )}`;
           data.rssid0 = Bits.bitsToSigned(bits.substr(176, 8));
 
           topic = "ble_beacon_long";
@@ -403,9 +432,10 @@ function consume(event) {
       const activity = Bits.bitsToUnsigned(bits.substr(40, 8));
 
       if (activity === 1) {
-        data.activityData = Bits.bitsToUnsigned(bits.substr(48, 32));
+        data.activityCounter = Bits.bitsToUnsigned(bits.substr(48, 32));
         topic = "activity_status";
       } else if (activity === 2) {
+        data.raw = payload;
         topic = "configuration"; // I wont describe all 112 possible configurations c:<
       } else if (activity === 3) {
         data.shocks = Bits.bitsToUnsigned(bits.substr(48, 8));
@@ -446,24 +476,30 @@ function consume(event) {
       const eventValue = Bits.bitsToUnsigned(bits.substr(40, 8));
       switch (eventValue) {
         case 0:
+          topic = "GEOLOCATION_START";
           data.eventValue = "GEOLOCATION_START";
           break;
         case 1:
+          topic = "MOTION_START";
           data.eventValue = "MOTION_START";
           break;
         case 2:
+          topic = "MOTION_END";
           data.eventValue = "MOTION_END";
           data.xAxisAccelerometer = Bits.bitsToSigned(bits.substr(48, 16));
           data.yAxisAccelerometer = Bits.bitsToSigned(bits.substr(64, 16));
           data.zAxisAccelerometer = Bits.bitsToSigned(bits.substr(80, 16));
           break;
         case 3:
+          topic = "BLE_CONNECTED";
           data.eventValue = "BLE_CONNECTED";
           break;
         case 4:
+          topic = "BLE_DISCONNECTED";
           data.eventValue = "BLE_DISCONNECTED";
           break;
         case 5: {
+          topic = "TEMPERATURE_INFORMATION";
           data.eventValue = "TEMPERATURE_INFORMATION";
           const state = Bits.bitsToUnsigned(bits.substr(48, 8));
 
@@ -492,15 +528,19 @@ function consume(event) {
           break;
         }
         case 6:
+          topic = "BLE_BOND_DELETED";
           data.eventValue = "BLE_BOND_DELETED";
           break;
         case 7:
+          topic = "SOS_START";
           data.eventValue = "SOS_START";
           break;
         case 8:
+          topic = "SOS_STOP";
           data.eventValue = "SOS_STOP";
           break;
         case 9: {
+          topic = "ANGLE_DETECTION";
           data.eventValue = "ANGLE_DETECTION";
           const transition = Bits.bitsToUnsigned(bits.substr(48, 3));
           switch (transition) {
@@ -541,20 +581,21 @@ function consume(event) {
               break;
           }
           data.repetitionCounter = Bits.bitsToUnsigned(bits.substr(53, 3));
-          data.age = Bits.bitsToUnsigned(bits.substr(56, 8));
+          data.age = Bits.bitsToUnsigned(bits.substr(56, 16));
 
-          data.refVectorX = Bits.bitsToSigned(bits.substr(64, 16));
-          data.refVectorY = Bits.bitsToSigned(bits.substr(80, 16));
-          data.refVectorZ = Bits.bitsToSigned(bits.substr(96, 16));
+          data.refVectorX = Bits.bitsToSigned(bits.substr(72, 16));
+          data.refVectorY = Bits.bitsToSigned(bits.substr(88, 16));
+          data.refVectorZ = Bits.bitsToSigned(bits.substr(104, 16));
 
-          data.critVectorX = Bits.bitsToSigned(bits.substr(64, 16));
-          data.critVectorY = Bits.bitsToSigned(bits.substr(80, 16));
-          data.critVectorZ = Bits.bitsToSigned(bits.substr(96, 16));
+          data.critVectorX = Bits.bitsToSigned(bits.substr(120, 16));
+          data.critVectorY = Bits.bitsToSigned(bits.substr(136, 16));
+          data.critVectorZ = Bits.bitsToSigned(bits.substr(152, 16));
 
-          data.angle = Bits.bitsToUnsigned(bits.substr(112, 8));
+          data.angle = Bits.bitsToUnsigned(bits.substr(168, 8));
           break;
         }
         case 10: {
+          topic = "BLE_GEOZONING";
           data.eventValue = "BLE_GEOZONING";
           data.shortID = Bits.bitsToUnsigned(bits.substr(48, 4));
 
@@ -582,8 +623,6 @@ function consume(event) {
         default:
           break;
       }
-
-      topic = "event";
       break;
     }
     // Collection scan
@@ -595,24 +634,30 @@ function consume(event) {
       data.cid = Bits.bitsToUnsigned(bits.substr(48, 8));
       data.hash = Bits.bitsToUnsigned(bits.substr(56, 8));
 
+      data.rssi0 = Bits.bitsToUnsigned(bits.substr(64, 8));
+      data.rssi1 = Bits.bitsToUnsigned(bits.substr(120, 8));
+      data.rssi2 = Bits.bitsToUnsigned(bits.substr(176, 8));
+      data.rssi3 = Bits.bitsToUnsigned(bits.substr(232, 8));
+
+      // prettier-ignore
+      const v0 = `${payload.substr(18, 2)}:${payload.substr(20,2)}:${payload.substr(22, 2)}:${payload.substr(24, 2)}:${payload.substr(26,2)}:${payload.substr(28, 2)}`;
+      // prettier-ignore
+      const v1 = `${payload.substr(32, 2)}:${payload.substr(34,2)}:${payload.substr(36, 2)}:${payload.substr(38, 2)}:${payload.substr(40,2)}:${payload.substr(42, 2)}`;
+      // prettier-ignore
+      const v2 = `${payload.substr(46, 2)}:${payload.substr(48,2)}:${payload.substr(50, 2)}:${payload.substr(52, 2)}:${payload.substr(54,2)}:${payload.substr(56, 2)}`;
+      // prettier-ignore
+      const v3 = `${payload.substr(60, 2)}:${payload.substr(62,2)}:${payload.substr(64, 2)}:${payload.substr(66, 2)}:${payload.substr(68,2)}:${payload.substr(70, 2)}`;
+
       if (df === true) {
-        data.rssi0 = Bits.bitsToUnsigned(bits.substr(64, 8));
-        data.macAddr0 = Bits.bitsToUnsigned(bits.substr(72, 48));
-        data.rssi0 = Bits.bitsToUnsigned(bits.substr(120, 8));
-        data.macAddr0 = Bits.bitsToUnsigned(bits.substr(128, 48));
-        data.rssi0 = Bits.bitsToUnsigned(bits.substr(176, 8));
-        data.macAddr0 = Bits.bitsToUnsigned(bits.substr(184, 48));
-        data.rssi0 = Bits.bitsToUnsigned(bits.substr(232, 8));
-        data.macAddr0 = Bits.bitsToUnsigned(bits.substr(240, 48));
+        data.macAddr0 = v0;
+        data.macAddr1 = v1;
+        data.macAddr2 = v2;
+        data.macAddr3 = v3;
       } else {
-        data.rssi0 = Bits.bitsToUnsigned(bits.substr(64, 8));
-        data.elementID0 = Bits.bitsToUnsigned(bits.substr(72, 24));
-        data.rssi1 = Bits.bitsToUnsigned(bits.substr(96, 8));
-        data.elementID1 = Bits.bitsToUnsigned(bits.substr(104, 24));
-        data.rssi2 = Bits.bitsToUnsigned(bits.substr(128, 8));
-        data.elementID2 = Bits.bitsToUnsigned(bits.substr(136, 24));
-        data.rssi3 = Bits.bitsToUnsigned(bits.substr(160, 8));
-        data.elementID3 = Bits.bitsToUnsigned(bits.substr(168, 24));
+        data.elementID0 = v0;
+        data.elementID1 = v1;
+        data.elementID2 = v2;
+        data.elementID3 = v3;
       }
       break;
     }
@@ -698,13 +743,17 @@ function consume(event) {
           topic = "lpgps_data_extended";
           break;
         case 7:
-          data.maxAdr0 = Bits.bitsToUnsigned(bits.substr(56, 48));
+          // prettier-ignore
+          data.maxAdr0 = `${payload.substr(14, 2)}:${payload.substr(16,2)}:${payload.substr(18, 2)}:${payload.substr(20, 2)}:${payload.substr(22,2)}:${payload.substr(24, 2)}`;
           data.rssid0 = Bits.bitsToSigned(bits.substr(104, 8));
-          data.maxAdr1 = Bits.bitsToUnsigned(bits.substr(112, 48));
+          // prettier-ignore
+          data.maxAdr1 = `${payload.substr(28, 2)}:${payload.substr(30,2)}:${payload.substr(32, 2)}:${payload.substr(34, 2)}:${payload.substr(36,2)}:${payload.substr(38, 2)}`;
           data.rssid1 = Bits.bitsToSigned(bits.substr(160, 8));
-          data.maxAdr2 = Bits.bitsToUnsigned(bits.substr(168, 48));
+          // prettier-ignore
+          data.maxAdr2 = `${payload.substr(42, 2)}:${payload.substr(44,2)}:${payload.substr(46, 2)}:${payload.substr(48, 2)}:${payload.substr(50,2)}:${payload.substr(52, 2)}`;
           data.rssid2 = Bits.bitsToSigned(bits.substr(216, 8));
-          data.maxAdr3 = Bits.bitsToUnsigned(bits.substr(224, 48));
+          // prettier-ignore
+          data.maxAdr3 = `${payload.substr(56, 2)}:${payload.substr(58,2)}:${payload.substr(60, 2)}:${payload.substr(62, 2)}:${payload.substr(64,2)}:${payload.substr(66, 2)}`;
           data.rssid3 = Bits.bitsToSigned(bits.substr(272, 8));
 
           topic = "ble_beacon_scan_extended";
@@ -740,31 +789,57 @@ function consume(event) {
           break;
         }
         case 9:
-          data.bsssid0 = Bits.bitsToUnsigned(bits.substr(56, 48));
+          // prettier-ignore
+          data.bsssid0 = `${payload.substr(14, 2)}:${payload.substr(16,2)}:${payload.substr(18, 2)}:${payload.substr(20, 2)}:${payload.substr(22,2)}:${payload.substr(24, 2)}`;
           data.rssid0 = Bits.bitsToSigned(bits.substr(104, 8));
-          data.bsssid1 = Bits.bitsToUnsigned(bits.substr(112, 48));
+          // prettier-ignore
+          data.bsssid1 = `${payload.substr(28, 2)}:${payload.substr(30,2)}:${payload.substr(32, 2)}:${payload.substr(34, 2)}:${payload.substr(36, 2)}:${payload.substr(38, 2)}`;
           data.rssid1 = Bits.bitsToSigned(bits.substr(160, 8));
-          data.bsssid2 = Bits.bitsToUnsigned(bits.substr(168, 48));
+          // prettier-ignore
+          data.bsssid2 = `${payload.substr(42, 2)}:${payload.substr(44,2,)}:${payload.substr(46, 2)}:${payload.substr(48, 2)}:${payload.substr(50,2)}:${payload.substr(52, 2)}`;
           data.rssid2 = Bits.bitsToSigned(bits.substr(216, 8));
-          data.bsssid3 = Bits.bitsToUnsigned(bits.substr(224, 48));
+          // prettier-ignore
+          data.bsssid3 = `${payload.substr(56, 2)}:${payload.substr(58, 2)}:${payload.substr(60, 2)}:${payload.substr(62, 2)}:${payload.substr(64,2,)}:${payload.substr(66, 2)}`;
           data.rssid3 = Bits.bitsToSigned(bits.substr(272, 8));
 
           topic = "wifi_bssid_extended";
           break;
         case 10:
-          data.shortBID0 = Bits.bitsToUnsigned(bits.substr(56, 48));
+          // prettier-ignore
+          data.shortBID0 = `${payload.substr(14, 2)}:${payload.substr(16,2)}:${payload.substr(18, 2)}:${payload.substr(20, 2)}:${payload.substr(22,2)}:${payload.substr(24, 2)}`;
           data.rssid0 = Bits.bitsToSigned(bits.substr(104, 8));
-          data.shortBID1 = Bits.bitsToUnsigned(bits.substr(112, 48));
+          // prettier-ignore
+          data.shortBID1 = `${payload.substr(28, 2)}:${payload.substr(30, 2)}:${payload.substr(32, 2)}:${payload.substr(34, 2)}:${payload.substr(36,2)}:${payload.substr(38, 2)}`;
           data.rssid1 = Bits.bitsToSigned(bits.substr(160, 8));
-          data.shortBID2 = Bits.bitsToUnsigned(bits.substr(168, 48));
+          // prettier-ignore
+          data.shortBID2 = `${payload.substr(42, 2)}:${payload.substr(44,2)}:${payload.substr(46, 2)}:${payload.substr(48, 2)}:${payload.substr(50,2)}:${payload.substr(52, 2)}`;
           data.rssid2 = Bits.bitsToSigned(bits.substr(216, 8));
-          data.shortBID3 = Bits.bitsToUnsigned(bits.substr(224, 48));
+          // prettier-ignore
+          data.shortBID3 = `${payload.substr(56, 2)}:${payload.substr(58,2)}:${payload.substr(60, 2)}:${payload.substr(62, 2)}:${payload.substr(64,2)}:${payload.substr(66, 2)}`;
           data.rssid3 = Bits.bitsToSigned(bits.substr(272, 8));
 
           topic = "ble_beacon_short_extended";
           break;
         case 11:
-          data.longBID0 = Bits.bitsToUnsigned(bits.substr(48, 128));
+          data.longBID0 = `${payload.substr(56, 2)}:${payload.substr(
+            58,
+            2,
+          )}:${payload.substr(60, 2)}:${payload.substr(62, 2)}:${payload.substr(
+            64,
+            2,
+          )}:${payload.substr(66, 2)}:${payload.substr(68, 2)}:${payload.substr(
+            70,
+            2,
+          )}:${payload.substr(72, 2)}:${payload.substr(74, 2)}:${payload.substr(
+            76,
+            2,
+          )}:${payload.substr(78, 2)}:${payload.substr(80, 2)}:${payload.substr(
+            82,
+            2,
+          )}:${payload.substr(78, 2)}:${payload.substr(84, 2)}:${payload.substr(
+            86,
+            2,
+          )}:${payload.substr(78, 2)}:${payload.substr(88, 2)}`;
           data.rssid0 = Bits.bitsToSigned(bits.substr(176, 8));
 
           topic = "ble_beacon_long_extended";

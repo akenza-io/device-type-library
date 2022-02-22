@@ -30,6 +30,7 @@ describe("Abeeway compact tracker uplink", () => {
   });
 
   describe("consume()", () => {
+    /*
     it("should decode Abeeway compact tracker GPS payload", (done) => {
       const data = {
         data: {
@@ -43,8 +44,8 @@ describe("Abeeway compact tracker uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.data.demandMessage, false);
-        assert.equal(value.data.positionMessage, true);
+        assert.equal(value.data.positionOnDemandMessage, false);
+        assert.equal(value.data.periodicPositionMessage, true);
         assert.equal(value.data.hasMoved, false);
         assert.equal(value.data.sos, false);
         assert.equal(value.data.operatingMode, "STANDBY");
@@ -85,8 +86,8 @@ describe("Abeeway compact tracker uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.data.demandMessage, false);
-        assert.equal(value.data.positionMessage, true);
+        assert.equal(value.data.positionOnDemandMessage, false);
+        assert.equal(value.data.periodicPositionMessage, false);
         assert.equal(value.data.hasMoved, false);
         assert.equal(value.data.sos, false);
         assert.equal(value.data.operatingMode, "STANDBY");
@@ -102,20 +103,163 @@ describe("Abeeway compact tracker uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "gps_fix");
-        assert.equal(value.data.longitude, 8.912768);
-        assert.equal(value.data.latitude, 47.5475712);
-        assert.equal(value.data.horizontalAccuracy, 31);
-        assert.equal(value.data.age, 48);
+        assert.equal(value.topic, "heartbeat");
+        assert.equal(value.data.resetCause, "SYSTEM_REQUEST");
+        assert.equal(value.data.firmwareVersion, "2.2.0");
+        assert.equal(value.data.bleFirmwareVersion, "0.0.0");
+
         validate(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
       done();
     });
+
+    it("should decode Abeeway compact tracker angle alarm", (done) => {
+      const data = {
+        data: {
+          port: 1,
+          payloadHex: "0a045c82000940000003e800000000fffe0048fc285a",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.data.positionOnDemandMessage, false);
+        assert.equal(value.data.periodicPositionMessage, false);
+        assert.equal(value.data.hasMoved, true);
+        assert.equal(value.data.sos, false);
+        assert.equal(value.data.operatingMode, "STANDBY");
+
+        assert.equal(value.data.batteryLevel, 92);
+        assert.equal(value.data.temperature, 21.8);
+
+        validate(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "ANGLE_DETECTION");
+        assert.equal(value.data.eventValue, "ANGLE_DETECTION");
+        assert.equal(value.data.transitionState, "NORMAL_TO_CRITICAL");
+        assert.equal(value.data.trigger, "CRITICAL_ANGLE_REPORTING");
+
+        assert.equal(value.data.repetitionCounter, 0);
+        assert.equal(value.data.age, 0);
+
+        assert.equal(value.data.refVectorX, 1000);
+        assert.equal(value.data.refVectorY, 0);
+        assert.equal(value.data.refVectorZ, 0);
+
+        assert.equal(value.data.critVectorX, -2);
+        assert.equal(value.data.critVectorY, 72);
+        assert.equal(value.data.critVectorZ, -984);
+
+        assert.equal(value.data.angle, 90);
+
+        validate(value.data, defaultSchema, { throwError: true });
+      });
+
+      consume(data);
+      done();
+    });
+    
+    it("should decode Abeeway compact tracker BSSID", (done) => {
+      const data = {
+        data: {
+          port: 1,
+          payloadHex:
+            "032c36844926c8675e842cd7c76cc217d827bebc34dbfdad0e31b4c8675e8200d4b2",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.data.positionOnDemandMessage, false);
+        assert.equal(value.data.periodicPositionMessage, false);
+        assert.equal(value.data.hasMoved, true);
+        assert.equal(value.data.sos, false);
+        assert.equal(value.data.operatingMode, "MOTION_TRACKING");
+
+        assert.equal(value.data.batteryLevel, 54);
+        assert.equal(value.data.temperature, 22.8);
+
+        validate(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "wifi_bssid");
+
+        assert.equal(value.data.age, 304);
+
+        assert.equal(value.data.bsssid0, "c8:67:5e:84:2c:d7");
+        assert.equal(value.data.rssid0, -57);
+        assert.equal(value.data.bsssid1, "6c:c2:17:d8:27:be");
+        assert.equal(value.data.rssid1, -68);
+        assert.equal(value.data.bsssid2, "34:db:fd:ad:0e:31");
+        assert.equal(value.data.rssid2, -76);
+        assert.equal(value.data.bsssid3, "c8:67:5e:82:00:d4");
+        assert.equal(value.data.rssid3, -78);
+
+        validate(value.data, defaultSchema, { throwError: true });
+      });
+
+      consume(data);
+      done();
+    });
+    
+    it("should decode Abeeway compact tracker activity status", (done) => {
+      const data = {
+        data: {
+          port: 1,
+          payloadHex: "0700458600010000000a",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.data.positionOnDemandMessage, false);
+        assert.equal(value.data.periodicPositionMessage, false);
+        assert.equal(value.data.hasMoved, false);
+        assert.equal(value.data.sos, false);
+        assert.equal(value.data.operatingMode, "STANDBY");
+
+        assert.equal(value.data.batteryLevel, 69);
+        assert.equal(value.data.temperature, 23.8);
+
+        validate(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "activity_status");
+        assert.equal(value.data.activityCounter, 10);
+
+        validate(value.data, defaultSchema, { throwError: true });
+      });
+
+      consume(data);
+      done();
+    });
+    */
   });
 });
-
-// Winkelalarm 0a045c82000940000003e800000000fffe0048fc285a
-// Ciritcal to Normal 0a045c83000960000003e80000000003ee0014001001
-// Motionstate static 05005c820040020200000000
