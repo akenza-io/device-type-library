@@ -30,7 +30,6 @@ describe("Abeeway compact tracker uplink", () => {
   });
 
   describe("consume()", () => {
-    /*
     it("should decode Abeeway compact tracker GPS payload", (done) => {
       const data = {
         data: {
@@ -44,8 +43,8 @@ describe("Abeeway compact tracker uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.data.positionOnDemandMessage, false);
-        assert.equal(value.data.periodicPositionMessage, true);
+        assert.equal(value.data.demandMessage, false);
+        assert.equal(value.data.positionMessage, true);
         assert.equal(value.data.hasMoved, false);
         assert.equal(value.data.sos, false);
         assert.equal(value.data.operatingMode, "STANDBY");
@@ -86,8 +85,8 @@ describe("Abeeway compact tracker uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.data.positionOnDemandMessage, false);
-        assert.equal(value.data.periodicPositionMessage, false);
+        assert.equal(value.data.demandMessage, false);
+        assert.equal(value.data.positionMessage, false);
         assert.equal(value.data.hasMoved, false);
         assert.equal(value.data.sos, false);
         assert.equal(value.data.operatingMode, "STANDBY");
@@ -128,8 +127,8 @@ describe("Abeeway compact tracker uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.data.positionOnDemandMessage, false);
-        assert.equal(value.data.periodicPositionMessage, false);
+        assert.equal(value.data.demandMessage, false);
+        assert.equal(value.data.positionMessage, false);
         assert.equal(value.data.hasMoved, true);
         assert.equal(value.data.sos, false);
         assert.equal(value.data.operatingMode, "STANDBY");
@@ -145,7 +144,7 @@ describe("Abeeway compact tracker uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "ANGLE_DETECTION");
+        assert.equal(value.topic, "angle_detection");
         assert.equal(value.data.eventValue, "ANGLE_DETECTION");
         assert.equal(value.data.transitionState, "NORMAL_TO_CRITICAL");
         assert.equal(value.data.trigger, "CRITICAL_ANGLE_REPORTING");
@@ -169,7 +168,7 @@ describe("Abeeway compact tracker uplink", () => {
       consume(data);
       done();
     });
-    
+
     it("should decode Abeeway compact tracker BSSID", (done) => {
       const data = {
         data: {
@@ -184,8 +183,8 @@ describe("Abeeway compact tracker uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.data.positionOnDemandMessage, false);
-        assert.equal(value.data.periodicPositionMessage, false);
+        assert.equal(value.data.demandMessage, false);
+        assert.equal(value.data.positionMessage, false);
         assert.equal(value.data.hasMoved, true);
         assert.equal(value.data.sos, false);
         assert.equal(value.data.operatingMode, "MOTION_TRACKING");
@@ -205,13 +204,13 @@ describe("Abeeway compact tracker uplink", () => {
 
         assert.equal(value.data.age, 304);
 
-        assert.equal(value.data.bsssid0, "c8:67:5e:84:2c:d7");
+        assert.equal(value.data.bssid0, "c8:67:5e:84:2c:d7");
         assert.equal(value.data.rssid0, -57);
-        assert.equal(value.data.bsssid1, "6c:c2:17:d8:27:be");
+        assert.equal(value.data.bssid1, "6c:c2:17:d8:27:be");
         assert.equal(value.data.rssid1, -68);
-        assert.equal(value.data.bsssid2, "34:db:fd:ad:0e:31");
+        assert.equal(value.data.bssid2, "34:db:fd:ad:0e:31");
         assert.equal(value.data.rssid2, -76);
-        assert.equal(value.data.bsssid3, "c8:67:5e:82:00:d4");
+        assert.equal(value.data.bssid3, "c8:67:5e:82:00:d4");
         assert.equal(value.data.rssid3, -78);
 
         validate(value.data, defaultSchema, { throwError: true });
@@ -220,7 +219,7 @@ describe("Abeeway compact tracker uplink", () => {
       consume(data);
       done();
     });
-    
+
     it("should decode Abeeway compact tracker activity status", (done) => {
       const data = {
         data: {
@@ -234,8 +233,8 @@ describe("Abeeway compact tracker uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.data.positionOnDemandMessage, false);
-        assert.equal(value.data.periodicPositionMessage, false);
+        assert.equal(value.data.demandMessage, false);
+        assert.equal(value.data.positionMessage, false);
         assert.equal(value.data.hasMoved, false);
         assert.equal(value.data.sos, false);
         assert.equal(value.data.operatingMode, "STANDBY");
@@ -260,6 +259,49 @@ describe("Abeeway compact tracker uplink", () => {
       consume(data);
       done();
     });
-    */
+
+    it("should decode Abeeway compact tracker geofencing", (done) => {
+      const data = {
+        data: {
+          port: 1,
+          payloadHex: "0a04538a000a01b5dffb",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.data.demandMessage, false);
+        assert.equal(value.data.positionMessage, false);
+        assert.equal(value.data.hasMoved, true);
+        assert.equal(value.data.sos, false);
+        assert.equal(value.data.operatingMode, "STANDBY");
+
+        assert.equal(value.data.batteryLevel, 83);
+        assert.equal(value.data.temperature, 25.8);
+
+        validate(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "ble_geozoning");
+
+        assert.equal(value.data.eventValue, "BLE_GEOZONING");
+        assert.equal(value.data.shortID, 0);
+        assert.equal(value.data.notification, "ENTRY");
+        assert.equal(value.data.beaconID, 11919355);
+
+        validate(value.data, defaultSchema, { throwError: true });
+      });
+
+      consume(data);
+      done();
+    });
   });
 });

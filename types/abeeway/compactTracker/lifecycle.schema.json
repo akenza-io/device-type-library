@@ -5,33 +5,53 @@
   "type": "object",
   "properties": {
     "demandMessage": {
-      "title": "Open",
-      "description": "Status of the tab. open = true, closed = false",
+      "title": "Position on demand message",
+      "description": "Equals true if the possition message was demanded.",
       "type": "boolean"
     },
     "positionMessage": {
-      "title": "Open",
-      "description": "Status of the tab. open = true, closed = false",
+      "title": "Periodic position message",
+      "description": "Equals true if the possition message was periodic.",
       "type": "boolean"
     },
     "hasMoved": {
-      "title": "Open",
-      "description": "Status of the tab. open = true, closed = false",
+      "title": "Has moved",
+      "description": "Equals true if the device moved since last message.",
       "type": "boolean"
     },
     "sos": {
-      "title": "Open",
-      "description": "Status of the tab. open = true, closed = false",
+      "title": "SOS",
+      "description": "Equals true if the device sent an SOS signal.",
       "type": "boolean"
     },
-
-    "batteryLevel": {
+    "operatingMode": {
+      "title": "Operating mode",
+      "description": "Operating mode",
+      "type": "string",
+      "enum": [
+        "STANDBY",
+        "MOTION_TRACKING",
+        "PERMANENT_TRACKING",
+        "MOTION_START_END_TRACKING",
+        "ACTIVITY_TRACKING",
+        "OFF"
+      ]
+    },
+    "batteryStatus": {
+      "title": "Battery charge",
       "type": "number",
       "minimum": 0,
       "maximum": 100,
-      "title": "Battery charge",
       "description": "The battery charge in percent.",
       "unit": "%"
+    },
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
     }
   }
 }

@@ -1,0 +1,22 @@
+{
+  "$id": "https://akenza.io/abeeway/compactTracker/ble_beacon_failure.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BLE Beacon Failure",
+  "type": "object",
+  "properties": {
+    "failure": {
+      "title": "Failure",
+      "description": "Failure",
+      "type": "string",
+      "enum": [
+        "BLE_NOT_RESPONDING",
+        "INTERNAL_ERROR",
+        "SHARED_ANTENNA_NOT_AVAILABLE",
+        "SCAN_ALREADY_ON_GOING",
+        "BLE_BUSY",
+        "NO_BEACON_DETECTED",
+        "UKNOWN_WRONG_BLE_FIRMWARE"
+      ]
+    }
+  }
+}
