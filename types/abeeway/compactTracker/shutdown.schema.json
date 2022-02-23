@@ -1,0 +1,14 @@
+{
+  "$id": "https://akenza.io/abeeway/compactTracker/shutdown.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Shutdown",
+  "type": "object",
+  "properties": {
+    "shutdownCause": {
+      "title": "Shutdown cause",
+      "description": "Shutdown cause",
+      "type": "string",
+      "enum": ["USER_ACTION", "LOW_BATTERY", "DOWNLINK_REQUEST", "BLE_REQUEST"]
+    }
+  }
+}

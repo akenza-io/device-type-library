@@ -1,0 +1,87 @@
+{
+  "$id": "https://akenza.io/abeeway/compactTracker/collection_scan.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Collection Scan",
+  "type": "object",
+  "properties": {
+    "fragmentID": {
+      "title": "Fragment ID",
+      "type": "integer",
+      "description": "Fragment ID"
+    },
+    "cid": {
+      "title": "Collection identifier",
+      "type": "integer",
+      "description": "Collection identifier, all fragments have the same CiD."
+    },
+    "hash": {
+      "title": "Hash",
+      "type": "integer",
+      "description": "Hash, all fragments have the same hash."
+    },
+    "rssi0": {
+      "title": "RSSI 0",
+      "unit": "dBm",
+      "description": "Received Signal Strength Indication",
+      "type": "number"
+    },
+    "rssi1": {
+      "title": "RSSI 1",
+      "unit": "dBm",
+      "description": "Received Signal Strength Indication",
+      "type": "number"
+    },
+    "rssi2": {
+      "title": "RSSI 2",
+      "unit": "dBm",
+      "description": "Received Signal Strength Indication",
+      "type": "number"
+    },
+    "rssi3": {
+      "title": "RSSI 3",
+      "unit": "dBm",
+      "description": "Received Signal Strength Indication",
+      "type": "number"
+    },
+    "macAdr0": {
+      "title": "Mac Address 0",
+      "description": "Mac Address 0",
+      "type": "string"
+    },
+    "macAdr1": {
+      "title": "Mac Address 1",
+      "description": "Mac Address 1",
+      "type": "string"
+    },
+    "macAdr2": {
+      "title": "Mac Address 2",
+      "description": "Mac Address 2",
+      "type": "string"
+    },
+    "macAdr3": {
+      "title": "Mac Address 3",
+      "description": "Mac Address 3",
+      "type": "string"
+    },
+    "elementID0": {
+      "title": "Element ID 0",
+      "description": "Element ID 0",
+      "type": "string"
+    },
+    "elementID1": {
+      "title": "Element ID 0",
+      "description": "Element ID 0",
+      "type": "string"
+    },
+    "elementID2": {
+      "title": "Element ID 0",
+      "description": "Element ID 0",
+      "type": "string"
+    },
+    "elementID3": {
+      "title": "Element ID 0",
+      "description": "Element ID 0",
+      "type": "string"
+    }
+  }
+}

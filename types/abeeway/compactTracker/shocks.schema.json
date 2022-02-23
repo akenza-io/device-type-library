@@ -1,0 +1,37 @@
+{
+  "$id": "https://akenza.io/abeeway/compactTracker/shocks.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Shocks",
+  "type": "object",
+  "properties": {
+    "shocks": {
+      "title": "Shocks",
+      "description": "Number of shocks",
+      "type": "integer"
+    },
+    "xAxisAccelerometer": {
+      "title": "Accelerometer X Axis",
+      "unit": "mg",
+      "description": "Acceleration on the X-Axis is mg",
+      "type": "integer",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "yAxisAccelerometer": {
+      "title": "Accelerometer Y Axis",
+      "unit": "mg",
+      "description": "Acceleration on the Y-Axis is mg",
+      "type": "integer",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "zAxisAccelerometer": {
+      "title": "Accelerometer Z Axis",
+      "unit": "mg",
+      "description": "Acceleration on the Z-Axis is mg",
+      "type": "integer",
+      "minimum": -32767,
+      "maximum": 32767
+    }
+  }
+}

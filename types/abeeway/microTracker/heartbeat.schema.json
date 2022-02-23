@@ -1,0 +1,33 @@
+{
+  "$id": "https://akenza.io/abeeway/compactTracker/heartbeat.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Heartbeat",
+  "type": "object",
+  "properties": {
+    "resetCause": {
+      "title": "Reset cause",
+      "description": "Reset cause",
+      "type": "string",
+      "enum": [
+        "NO_RESET",
+        "POWER_ON",
+        "UNREGULATED_DOMAIN",
+        "REGULATED_DOMAIN",
+        "EXTERNAL_PIN",
+        "WATCHDOG",
+        "LOCKUP",
+        "SYSTEM_REQUEST"
+      ]
+    },
+    "firmwareVersion": {
+      "title": "Firmware version",
+      "description": "Firmware version",
+      "type": "string"
+    },
+    "bleFirmwareVersion": {
+      "title": "BLE firmware version",
+      "description": "BLE firmware version",
+      "type": "string"
+    }
+  }
+}

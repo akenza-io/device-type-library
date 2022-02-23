@@ -1,0 +1,32 @@
+{
+  "$id": "https://akenza.io/abeeway/compactTracker/motion_end.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Motion End",
+  "type": "object",
+  "properties": {
+    "xAxisAccelerometer": {
+      "title": "Accelerometer X Axis",
+      "unit": "mg",
+      "description": "Acceleration on the X-Axis is mg",
+      "type": "integer",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "yAxisAccelerometer": {
+      "title": "Accelerometer Y Axis",
+      "unit": "mg",
+      "description": "Acceleration on the Y-Axis is mg",
+      "type": "integer",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "zAxisAccelerometer": {
+      "title": "Accelerometer Z Axis",
+      "unit": "mg",
+      "description": "Acceleration on the Z-Axis is mg",
+      "type": "integer",
+      "minimum": -32767,
+      "maximum": 32767
+    }
+  }
+}

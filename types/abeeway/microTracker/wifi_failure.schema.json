@@ -1,0 +1,55 @@
+{
+  "$id": "https://akenza.io/abeeway/compactTracker/wifi_failure.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Wifi Failure",
+  "type": "object",
+  "properties": {
+    "vBat1": {
+      "title": "Voltage T0",
+      "unit": "V",
+      "type": "number",
+      "description": "Encoded voltage at the start time (T0) of the WIFI scan."
+    },
+    "vBat2": {
+      "title": "Voltage T+0.5",
+      "unit": "V",
+      "type": "number",
+      "description": " Encoded voltage at T0 + 0.5 second."
+    },
+    "vBat3": {
+      "title": "Voltage T+1",
+      "unit": "V",
+      "type": "number",
+      "description": "Encoded voltage at T0 + 1 second."
+    },
+    "vBat4": {
+      "title": "Voltage T+1.5",
+      "unit": "V",
+      "type": "number",
+      "description": "Encoded voltage at T0 + 1.5 second."
+    },
+    "vBat5": {
+      "title": "Voltage T+2",
+      "unit": "V",
+      "type": "number",
+      "description": "Encoded voltage at T0 + 2 seconds."
+    },
+    "vBat6": {
+      "title": "Voltage T+2.5",
+      "unit": "V",
+      "type": "number",
+      "description": "Encoded voltage at T0 + 2.5 seconds."
+    },
+    "error": {
+      "title": "Operating mode",
+      "description": "Operating mode",
+      "type": "string",
+      "enum": [
+        "WIFI_CONNECTION_FAILURE",
+        "SCAN_FAILURE",
+        "ANTENNA_UNAVAILABLE",
+        "WIFI_NOT_SUPPORTED"
+      ]
+    }
+  }
+}

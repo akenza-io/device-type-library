@@ -1,0 +1,58 @@
+{
+  "$id": "https://akenza.io/abeeway/compactTracker/ble_beacon_short.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BLE Beacon Short",
+  "type": "object",
+  "properties": {
+    "age": {
+      "title": "Age",
+      "unit": "s",
+      "type": "integer",
+      "description": "Age of the measurement in seconds"
+    },
+    "rssid0": {
+      "title": "RSSI 0",
+      "unit": "dBm",
+      "description": "Received Signal Strength Indication",
+      "type": "number"
+    },
+    "rssid1": {
+      "title": "RSSI 1",
+      "unit": "dBm",
+      "description": "Received Signal Strength Indication",
+      "type": "number"
+    },
+    "rssid2": {
+      "title": "RSSI 2",
+      "unit": "dBm",
+      "description": "Received Signal Strength Indication",
+      "type": "number"
+    },
+    "rssid3": {
+      "title": "RSSI 3",
+      "unit": "dBm",
+      "description": "Received Signal Strength Indication",
+      "type": "number"
+    },
+    "shortBID0": {
+      "title": "Short BID 0",
+      "description": "Short BID 0",
+      "type": "string"
+    },
+    "shortBID1": {
+      "title": "Short BID 1",
+      "description": "Short BID 1",
+      "type": "string"
+    },
+    "shortBID2": {
+      "title": "Short BID 2",
+      "description": "Short BID 2",
+      "type": "string"
+    },
+    "shortBID3": {
+      "title": "Short BID 3",
+      "description": "Short BID 3",
+      "type": "string"
+    }
+  }
+}

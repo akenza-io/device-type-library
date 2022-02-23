@@ -343,6 +343,7 @@ function consume(event) {
           data.rssid2 = Bits.bitsToSigned(bits.substr(208, 8));
           // prettier-ignore
           data.shortBID3 = `${payload.substr(54, 2)}:${payload.substr(56, 2)}:${payload.substr(58, 2)}:${payload.substr(60, 2)}:${payload.substr(62, 2)}:${payload.substr(64, 2)}`;
+          data.rssid3 = Bits.bitsToSigned(bits.substr(264, 8));
 
           topic = "ble_beacon_short";
           break;
@@ -438,8 +439,122 @@ function consume(event) {
         data.activityCounter = Bits.bitsToUnsigned(bits.substr(48, 32));
         topic = "activity_status";
       } else if (activity === 2) {
-        data.raw = payload;
-        topic = "configuration"; // I wont describe all 112 possible configurations c:<
+        // Creating an array here because i dont want a switch case / if else statement with 111 cases
+
+        // prettier-ignore
+        const configs = ["ulPeriod", "loraPeriod", "pwStatPeriod", "periodicPosPeriod", "reserved", "geolocSensor", "geolocMethod", "reserved", "motionNbPos", "gpsTimeout", "agpsTimeout",
+        "gpsEhpe", "gpsConvergence", "configFlags", "transmitStrat", "bleBeaconCnt", "bleBeaconTimeout", "gpsStandbyTimeout", "confirmedUlBitmap", "confirmedUlRetry",
+        "motionSensitivity", "shockDetection", "periodicActivityPeriod", "motionDuration", "geofencingScanPeriod", "geofencingCollectPeriod", "bleRssiFilter", "temperatureHigh",
+        "temperatureLow", "temperatureAction", "transmitStratCustom", "networkTimeoutCheck", "networkTimeoutReset", "collectionScanType", "collectionNbEntry", "collectionBleFilterType",
+        "collectionBleFilterMain1", "collectionBleFilterMain2", "collectionBleFilterSecValue", "collectionBleFilterSecMask", "batteryCapacity", "reedSwitchConfiguration", "gnssConstellation", "proxScanPwrMin",
+        "proxDistanceCoef", "proxScanFrequency", "proxBacktraceMaxAge", "proxDistanceSlidingWindow", "proxExposure50", "proxExposure100", "proxExposure150", "proxExposure200",
+        "proxExposure250", "proxExposure300", "proxExposure400", "proxAlarmDistImmediate", "proxAlarmExposure", "proxWarnDistImmediate", "proxWarnExposure", "proxRecordDistImmediate",
+        "proxRecordExposure", "proxAlarmBuzDuration", "proxWarnBuzDuration", "proxContactPolicy", "proxScanDuration", "proxScanWindow", "proxScanInterval", "proxAlarmRemanence",
+        "proxWarnRemanence", "proxBcnRepeat", "proxBcnTxPower", "proxReminderPeriod", "proxReminderDistance", "proxWarnDisableDist", "proxAlarmDisableDist", "proxMaxSpeedFilter",
+        "proxMaxUpdate", "positionBleFilterType", "positionBleFilterMain1", "positionBleFilterMain2", "positionBleFilterSecValue", "positionBleFilterSecMask", "positionBleReportType", "buzzerVolume",
+        "angleDetectMode", "angleRefAcq", "angleRefAcq", "angleRefAccY", "angleRefAccZ", "angleCritical", "angleCriticalHyst", "angleReportMode",
+        "angleReportPeriod", "angleReportRepeat", "angleRisingTime", "angleFallingTime", "angleLearningTime", "angleAccAccuracy", "angleDeviationDelta", "angleDeviationMinInterval",
+        "angleDeviationMaxInterval", "defaultProfile", "password", "gpsT0Timeout", "gpsFixTimeout", "geofencingScanDuration", "beaconingType", "beaconingTxPower",
+        "beaconingStaticInterval", "beaconingMotionInterval", "beaconingMotionDuration", "bleCnxAdvDuration"];
+
+        let pointer = 48;
+        let flag = 0;
+        let value = 0;
+        while (pointer !== bits.length) {
+          flag = Bits.bitsToUnsigned(bits.substr(pointer, 8));
+          pointer += 8;
+          if (flag === 0xfd || flag === 0xfe) {
+            pointer += 8;
+            data.firmwareVersion = Bits.bitsToUnsigned(bits.substr(pointer, 8));
+            pointer += 8;
+            data.firmwareRevision = Bits.bitsToUnsigned(
+              bits.substr(pointer, 8),
+            );
+            pointer += 8;
+            data.firmwareIteration = Bits.bitsToUnsigned(
+              bits.substr(pointer, 8),
+            );
+            pointer += 8;
+          } else if (flag === 0xfa || flag === 0xfb || flag === 0xfc) {
+            value = Bits.bitsToSigned(bits.substr(pointer, 32));
+            if (flag === 0xfa) {
+              data.xAxis = value;
+            } else if (flag === 0xfb) {
+              data.yAxis = value;
+            } else if (flag === 0xfc) {
+              data.zAxis = value;
+            }
+            pointer += 32;
+          } else if (flag === 0xf9) {
+            value = Bits.bitsToUnsigned(bits.substr(pointer, 32));
+            switch (value) {
+              case 0:
+                data.operatingMode = "STANDBY";
+                break;
+              case 1:
+                data.operatingMode = "MOTION_TRACKING";
+                break;
+              case 2:
+                data.operatingMode = "PERMANENT_TRACKING";
+                break;
+              case 3:
+                data.operatingMode = "MOTION_START_END_TRACKING";
+                break;
+              case 4:
+                data.operatingMode = "ACTIVITY_TRACKING";
+                break;
+              default:
+                break;
+            }
+            pointer += 32;
+          } else if (flag === 0xf6) {
+            value = Bits.bitsToUnsigned(bits.substr(pointer, 32));
+            switch (value) {
+              case 0:
+                data.dynamicProfile = "NO_PROFILE";
+                break;
+              case 1:
+                data.dynamicProfile = "PROFILE_SLEEP";
+                break;
+              case 2:
+                data.dynamicProfile = "PROFILE_ECONOMIC";
+                break;
+              case 3:
+                data.dynamicProfile = "PROFILE_INTENSIVE";
+                break;
+              default:
+                break;
+            }
+            pointer += 32;
+          } else if (flag === 0xf7) {
+            data.powerConsumption = Bits.bitsToUnsigned(
+              bits.substr(pointer, 32),
+            );
+            pointer += 32;
+          } else if (flag === 0xf8) {
+            value = Bits.bitsToUnsigned(bits.substr(pointer, 32));
+            switch (value) {
+              case 0:
+                data.bleBondStatus = "TRACKER_NOT_BONDED";
+                break;
+              case 1:
+                data.bleBondStatus = "TRACKER_BONDED";
+                break;
+              case 2:
+                data.bleBondStatus = "UNKNOWN_STATE";
+                break;
+              default:
+                break;
+            }
+            pointer += 32;
+          } else {
+            value = Bits.bitsToUnsigned(bits.substr(pointer, 32));
+            data[configs[flag]] = value;
+            pointer += 32;
+          }
+        }
+
+        topic = "configuration";
       } else if (activity === 3) {
         data.shocks = Bits.bitsToUnsigned(bits.substr(48, 8));
         data.xAxisAccelerometer = Bits.bitsToSigned(bits.substr(56, 16));
@@ -480,50 +595,48 @@ function consume(event) {
       switch (eventValue) {
         case 0:
           topic = "geolocation_start";
-          data.eventValue = "GEOLOCATION_START";
+          data.status = true;
           break;
         case 1:
           topic = "motion_start";
-          data.eventValue = "MOTION_START";
+          data.status = true;
           break;
         case 2:
           topic = "motion_end";
-          data.eventValue = "MOTION_END";
           data.xAxisAccelerometer = Bits.bitsToSigned(bits.substr(48, 16));
           data.yAxisAccelerometer = Bits.bitsToSigned(bits.substr(64, 16));
           data.zAxisAccelerometer = Bits.bitsToSigned(bits.substr(80, 16));
           break;
         case 3:
           topic = "ble_connected";
-          data.eventValue = "BLE_CONNECTED";
+          data.status = true;
           break;
         case 4:
           topic = "ble_disconnected";
-          data.eventValue = "BLE_DISCONNECTED";
+          data.status = true;
           break;
         case 5: {
           topic = "temperature_information";
-          data.eventValue = "TEMPERATURE_INFORMATION";
           const state = Bits.bitsToUnsigned(bits.substr(48, 8));
 
           switch (state) {
             case 0:
-              data.state = "NORMAL_TEMPERATURE";
+              data.tempState = "NORMAL_TEMPERATURE";
               break;
             case 1:
-              data.state = "HIGH_TEMPERATURE";
+              data.tempState = "HIGH_TEMPERATURE";
               break;
             case 2:
-              data.state = "LOW_TEMPERATURE";
+              data.tempState = "LOW_TEMPERATURE";
               break;
             case 3:
-              data.state = "FEATURE_NOT_ACTIVATED";
+              data.tempState = "FEATURE_NOT_ACTIVATED";
               break;
             default:
               break;
           }
-          if (data.state !== "FEATURE_NOT_ACTIVATED") {
-            data.macTemperature = Bits.bitsToSigned(bits.substr(56, 8));
+          if (data.tempState !== "FEATURE_NOT_ACTIVATED") {
+            data.maxTemperature = Bits.bitsToSigned(bits.substr(56, 8));
             data.minTemperature = Bits.bitsToSigned(bits.substr(64, 8));
             data.highCounter = Bits.bitsToUnsigned(bits.substr(72, 8));
             data.lowCounter = Bits.bitsToUnsigned(bits.substr(80, 8));
@@ -532,19 +645,18 @@ function consume(event) {
         }
         case 6:
           topic = "ble_bond_deleted";
-          data.eventValue = "BLE_BOND_DELETED";
+          data.status = true;
           break;
         case 7:
           topic = "sos_start";
-          data.eventValue = "SOS_START";
+          data.status = true;
           break;
         case 8:
           topic = "sos_stop";
-          data.eventValue = "SOS_STOP";
+          data.status = true;
           break;
         case 9: {
           topic = "angle_detection";
-          data.eventValue = "ANGLE_DETECTION";
           const transition = Bits.bitsToUnsigned(bits.substr(48, 3));
           switch (transition) {
             case 0:
@@ -599,7 +711,6 @@ function consume(event) {
         }
         case 10: {
           topic = "ble_geozoning";
-          data.eventValue = "BLE_GEOZONING";
           data.shortID = Bits.bitsToUnsigned(bits.substr(48, 4));
 
           const notification = Bits.bitsToUnsigned(bits.substr(52, 4));
@@ -620,7 +731,6 @@ function consume(event) {
               break;
           }
           data.beaconID = Bits.bitsToUnsigned(bits.substr(56, 24));
-
           break;
         }
         default:
@@ -630,7 +740,8 @@ function consume(event) {
     }
     // Collection scan
     case 0x0b: {
-      data.nextFrame = !!Bits.bitsToUnsigned(bits.substr(40, 1));
+      topic = "collection_scan";
+      // Reserved 1
       const df = !!Bits.bitsToUnsigned(bits.substr(41, 1));
       data.fragmentID = Bits.bitsToUnsigned(bits.substr(42, 6));
 
@@ -652,10 +763,10 @@ function consume(event) {
       const v3 = `${payload.substr(60, 2)}:${payload.substr(62,2)}:${payload.substr(64, 2)}:${payload.substr(66, 2)}:${payload.substr(68,2)}:${payload.substr(70, 2)}`;
 
       if (df === true) {
-        data.macAddr0 = v0;
-        data.macAddr1 = v1;
-        data.macAddr2 = v2;
-        data.macAddr3 = v3;
+        data.macAdr0 = v0;
+        data.macAdr1 = v1;
+        data.macAdr2 = v2;
+        data.macAdr3 = v3;
       } else {
         data.elementID0 = v0;
         data.elementID1 = v1;
@@ -688,12 +799,12 @@ function consume(event) {
           data.longitude = gps.longitude;
           data.horizontalAccuracy = gps.ehpe;
 
-          data.cog = Bits.bitsToUnsigned(bits.substr(120, 16)); // Course Over Ground in degrees
-          data.sog = Bits.bitsToUnsigned(bits.substr(136, 16)); // Speed Over Ground in cm/second
+          data.cog = Bits.bitsToUnsigned(bits.substr(120, 16)) / 100;
+          data.sog = Bits.bitsToUnsigned(bits.substr(136, 16));
           break;
         }
         case 1: {
-          topic = "gps_timeout_extended";
+          topic = "gps_timeout";
           const gpsTimeout = getGPSTimeout(bits.substr(56, 40));
           data.timeoutCause = gpsTimeout.timeoutCause;
           data.cn0 = gpsTimeout.cn0;
@@ -705,9 +816,10 @@ function consume(event) {
         }
         case 2:
           topic = "encrypted_wifi_bssid";
+          data.status = true;
           break;
         case 3: {
-          topic = "wifi_timeout_extended";
+          topic = "wifi_timeout";
           const wifiTimeout = getWifiTimeout(bits.substr(56, 48));
           data.vBat1 = wifiTimeout.vBat1;
           data.vBat2 = wifiTimeout.vBat2;
@@ -718,7 +830,7 @@ function consume(event) {
           break;
         }
         case 4: {
-          topic = "wifi_failure_extended";
+          topic = "wifi_failure";
           const wifiTimeout = getWifiTimeout(bits.substr(56, 48));
           data.vBat1 = wifiTimeout.vBat1;
           data.vBat2 = wifiTimeout.vBat2;
@@ -740,10 +852,12 @@ function consume(event) {
           break;
         }
         case 5:
-          topic = "lpgps_data_extended";
+          topic = "lpgps_data";
+          data.status = true;
           break;
         case 6:
-          topic = "lpgps_data_extended";
+          topic = "lpgps_data";
+          data.status = true;
           break;
         case 7:
           // prettier-ignore
@@ -759,7 +873,7 @@ function consume(event) {
           data.macAdr3 = `${payload.substr(56, 2)}:${payload.substr(58,2)}:${payload.substr(60, 2)}:${payload.substr(62, 2)}:${payload.substr(64,2)}:${payload.substr(66, 2)}`;
           data.rssid3 = Bits.bitsToSigned(bits.substr(272, 8));
 
-          topic = "ble_beacon_scan_extended";
+          topic = "ble_beacon_scan";
           break;
         case 8: {
           const failure = Bits.bitsToUnsigned(bits.substr(56, 8));
@@ -788,7 +902,7 @@ function consume(event) {
             default:
               break;
           }
-          topic = "ble_beacon_failure_extended";
+          topic = "ble_beacon_failure";
           break;
         }
         case 9:
@@ -805,7 +919,7 @@ function consume(event) {
           data.bssid3 = `${payload.substr(56, 2)}:${payload.substr(58, 2)}:${payload.substr(60, 2)}:${payload.substr(62, 2)}:${payload.substr(64,2,)}:${payload.substr(66, 2)}`;
           data.rssid3 = Bits.bitsToSigned(bits.substr(272, 8));
 
-          topic = "wifi_bssid_extended";
+          topic = "wifi_bssid";
           break;
         case 10:
           // prettier-ignore
@@ -821,7 +935,7 @@ function consume(event) {
           data.shortBID3 = `${payload.substr(56, 2)}:${payload.substr(58,2)}:${payload.substr(60, 2)}:${payload.substr(62, 2)}:${payload.substr(64,2)}:${payload.substr(66, 2)}`;
           data.rssid3 = Bits.bitsToSigned(bits.substr(272, 8));
 
-          topic = "ble_beacon_short_extended";
+          topic = "ble_beacon_short";
           break;
         case 11:
           data.longBID0 = `${payload.substr(56, 2)}:${payload.substr(
@@ -845,7 +959,7 @@ function consume(event) {
           )}:${payload.substr(78, 2)}:${payload.substr(88, 2)}`;
           data.rssid0 = Bits.bitsToSigned(bits.substr(176, 8));
 
-          topic = "ble_beacon_long_extended";
+          topic = "ble_beacon_long";
           break;
         default:
           break;

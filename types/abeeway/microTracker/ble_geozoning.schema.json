@@ -1,0 +1,24 @@
+{
+  "$id": "https://akenza.io/abeeway/compactTracker/ble_geozoning.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BLE Geozoning",
+  "type": "object",
+  "properties": {
+    "shortID": {
+      "title": "Short ID",
+      "description": "Short ID",
+      "type": "integer"
+    },
+    "notification": {
+      "title": "Notification",
+      "description": "Notification",
+      "type": "string",
+      "enum": ["SAFE", "ENTRY", "EXIT", "HAZARD"]
+    },
+    "beaconID": {
+      "title": "Beacon ID",
+      "description": "Beacon ID",
+      "type": "integer"
+    }
+  }
+}

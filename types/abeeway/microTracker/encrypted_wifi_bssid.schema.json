@@ -1,7 +1,7 @@
 {
-  "$id": "https://akenza.io/abeeway/compactTracker/lpgps_data.schema.json",
+  "$id": "https://akenza.io/abeeway/compactTracker/encrypted_wifi_bssid.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "LP GPS Data",
+  "title": "Encrypted Wifi BSSID",
   "type": "object",
   "properties": {
     "status": {
