@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/xovis/pc2s/line_count.schema.json",
+  "$id": "https://akenza.io/xovis/pc2sv2/line_count.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Line count",
   "type": "object",
@@ -17,26 +17,6 @@
       "type": "integer",
       "min": 0,
       "max": 65535
-    },
-    "count": {
-      "title": "Count",
-      "description": "Count of People forward and backwards",
-      "type": "integer",
-      "min": 0,
-      "max": 65535
-    },
-    "faceMask": {
-      "title": "Face mask",
-      "description": "Checks if people have a facemask. 1 = facemask, 0 = facemask",
-      "type": "integer",
-      "min": 0,
-      "max": 1
-    },
-    "gender": {
-      "title": "Gender",
-      "description": "Gender of people passing through.",
-      "type": "string",
-      "enum": ["FEMALE", "MALE"]
     }
   }
 }

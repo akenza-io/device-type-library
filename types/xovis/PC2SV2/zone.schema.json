@@ -1,0 +1,15 @@
+{
+  "$id": "https://akenza.io/xovis/pc2sv2/zone.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Zone",
+  "type": "object",
+  "properties": {
+    "peopleInZone": {
+      "title": "People in zone",
+      "description": "People in zone",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    }
+  }
+}
