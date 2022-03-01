@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/abeeway/compactTracker/angle_detection.schema.json",
+  "$id": "https://akenza.io/abeeway/badgeTracker/angle_detection.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Angle Detection",
   "type": "object",

@@ -1,9 +1,7 @@
-function stepSize(lo, hi, nbits, nresv) {
-  return 1.0 / (((1 << nbits) - 1 - nresv) / (hi - lo));
-}
-
+// Make sure to adjust other abeeway decoders as well
 function valueDecode(value, lo, hi, nbits, nresv) {
-  return (value - nresv / 2) * stepSize(lo, hi, nbits, nresv) + lo;
+  const stepSize = 1.0 / (((1 << nbits) - 1 - nresv) / (hi - lo));
+  return (value - nresv / 2) * stepSize + lo;
 }
 
 function getGPS(bits) {
@@ -25,7 +23,7 @@ function getGPS(bits) {
   data.longitude = longitude / 10e6;
   pointer += 24;
 
-  data.ehpe = Math.round(
+  data.horizontalAccuracy = Math.round(
     valueDecode(Bits.bitsToUnsigned(bits.substr(pointer, 8)), 0, 1000, 8, 0),
   ); // Estimated Horizontal Position Error, expressed in meters
   return data;
@@ -134,6 +132,49 @@ function getWifiTimeout(bits) {
   return data;
 }
 
+function getOperatingMode(operatingMode) {
+  let op = "NO_OPERATION_MODE";
+  switch (operatingMode) {
+    case 0:
+      op = "STANDBY";
+      break;
+    case 1:
+      op = "MOTION_TRACKING";
+      break;
+    case 2:
+      op = "PERMANENT_TRACKING";
+      break;
+    case 3:
+      op = "MOTION_START_END_TRACKING";
+      break;
+    case 4:
+      op = "ACTIVITY_TRACKING";
+      break;
+    case 5:
+      op = "OFF";
+      break;
+    default:
+      break;
+  }
+
+  return op;
+}
+
+function getBattery(battery) {
+  const data = {};
+  data.batteryStatus = "NORMAL";
+  data.batteryLevel = 0;
+  if (battery === 0) {
+    data.batteryStatus = "CHARGING";
+  } else if (battery === 255) {
+    data.batteryStatus = "ERROR";
+  } else {
+    data.batteryLevel = battery;
+  }
+
+  return data;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
@@ -148,100 +189,59 @@ function consume(event) {
   lifecycle.hasMoved = !!Bits.bitsToUnsigned(bits.substr(13, 1));
   // Reserved
   lifecycle.sos = !!Bits.bitsToUnsigned(bits.substr(11, 1));
-  const operatingMode = Bits.bitsToUnsigned(bits.substr(8, 3));
+  lifecycle.operatingMode = getOperatingMode(
+    Bits.bitsToUnsigned(bits.substr(8, 3)),
+  );
 
-  switch (operatingMode) {
-    case 0:
-      lifecycle.operatingMode = "STANDBY";
-      break;
-    case 1:
-      lifecycle.operatingMode = "MOTION_TRACKING";
-      break;
-    case 2:
-      lifecycle.operatingMode = "PERMANENT_TRACKING";
-      break;
-    case 3:
-      lifecycle.operatingMode = "MOTION_START_END_TRACKING";
-      break;
-    case 4:
-      lifecycle.operatingMode = "ACTIVITY_TRACKING";
-      break;
-    case 5:
-      lifecycle.operatingMode = "OFF";
-      break;
-    default:
-      break;
-  }
+  const battery = getBattery(Bits.bitsToUnsigned(bits.substr(16, 8)));
+  Object.assign(lifecycle, battery);
 
-  const batteryLevel = Bits.bitsToUnsigned(bits.substr(16, 8));
-  if (batteryLevel === 0) {
-    lifecycle.batteryStatus = "CHARGING";
-  } else if (batteryLevel === 255) {
-    lifecycle.batteryStatus = "ERROR";
-  } else {
-    lifecycle.batteryLevel = batteryLevel;
-  }
   // prettier-ignore
   lifecycle.temperature = Math.round(valueDecode(Bits.bitsToUnsigned(bits.substr(24, 8)), -44, 85, 8, 0) *10)/10;
+  lifecycle.acknowledge = false;
   // Reserved 4-8
 
   switch (type) {
     // Frame pending
     case 0x00:
-      topic = "acknowledge";
-      data.acknowledge = Bits.bitsToUnsigned(bits.substr(40, 8));
+      lifecycle.acknowledge = !!Bits.bitsToUnsigned(bits.substr(40, 8));
       break;
     // Position
     case 0x03: {
       const position = Bits.bitsToUnsigned(bits.substr(36, 4));
       switch (position) {
         case 0: {
-          topic = "gps_fix";
           // prettier-ignore
           data.age = valueDecode(Bits.bitsToUnsigned(bits.substr(40, 8)), 0, 2040, 8, 0); // Seconds
           const gps = getGPS(bits.substr(48, 56));
-          data.latitude = gps.latitude;
-          data.longitude = gps.longitude;
-          data.horizontalAccuracy = gps.ehpe;
+          Object.assign(data, gps);
 
+          data.gpsMessage = "GPS_FIX";
+          topic = "gps";
           break;
         }
         case 1: {
-          topic = "gps_timeout";
           const gpsTimeout = getGPSTimeout(bits.substr(40, 40));
-          data.timeoutCause = gpsTimeout.timeoutCause;
-          data.cn0 = gpsTimeout.cn0;
-          data.cn1 = gpsTimeout.cn1;
-          data.cn2 = gpsTimeout.cn2;
-          data.cn3 = gpsTimeout.cn3;
+          Object.assign(data, gpsTimeout);
 
+          data.gpsMessage = "GPS_TIMEOUT";
+          topic = "gps";
           break;
         }
         case 2:
-          data.status = true;
-          topic = "encrypted_wifi_bssid";
+          data.wifiMessage = "ENCRYPTED_WIFI_BSSID";
+          topic = "wifi";
           break;
         case 3: {
-          topic = "wifi_timeout";
           const wifiTimeout = getWifiTimeout(bits.substr(40, 48));
-          data.vBat1 = wifiTimeout.vBat1;
-          data.vBat2 = wifiTimeout.vBat2;
-          data.vBat3 = wifiTimeout.vBat3;
-          data.vBat4 = wifiTimeout.vBat4;
-          data.vBat5 = wifiTimeout.vBat5;
-          data.vBat6 = wifiTimeout.vBat6;
-
+          Object.assign(data, wifiTimeout);
+          data.wifiMessage = "WIFI_TIMEOUT";
+          topic = "wifi";
           break;
         }
         case 4: {
-          topic = "wifi_failure";
           const wifiTimeout = getWifiTimeout(bits.substr(40, 48));
-          data.vBat1 = wifiTimeout.vBat1;
-          data.vBat2 = wifiTimeout.vBat2;
-          data.vBat3 = wifiTimeout.vBat3;
-          data.vBat4 = wifiTimeout.vBat4;
-          data.vBat5 = wifiTimeout.vBat5;
-          data.vBat6 = wifiTimeout.vBat6;
+          Object.assign(data, wifiTimeout);
 
           const error = Bits.bitsToUnsigned(bits.substr(88, 8));
           if (error === 0) {
@@ -253,6 +253,8 @@ function consume(event) {
           } else if (error === 3) {
             data.error = "WIFI_NOT_SUPPORTED";
           }
+          data.wifiMessage = "WIFI_FAILURE";
+          topic = "wifi";
           break;
         }
         case 5:
@@ -268,18 +270,19 @@ function consume(event) {
           data.age = valueDecode(Bits.bitsToUnsigned(bits.substr(40, 8)), 0, 2040, 8, 0); // Seconds
           // prettier-ignore
           data.macAdr0 = `${payload.substr(12, 2)}:${payload.substr(14,2)}:${payload.substr(16, 2)}:${payload.substr(18, 2)}:${payload.substr(20,2)}:${payload.substr(22, 2)}`;
-          data.rssid0 = Bits.bitsToSigned(bits.substr(96, 8));
+          data.rssi0 = Bits.bitsToSigned(bits.substr(96, 8));
           // prettier-ignore
           data.macAdr1 = `${payload.substr(26, 2)}:${payload.substr(28,2)}:${payload.substr(30, 2)}:${payload.substr(32, 2)}:${payload.substr(34,2)}:${payload.substr(36, 2)}`;
-          data.rssid1 = Bits.bitsToSigned(bits.substr(152, 8));
+          data.rssi1 = Bits.bitsToSigned(bits.substr(152, 8));
           // prettier-ignore
           data.macAdr2 = `${payload.substr(40, 2)}:${payload.substr(42,2)}:${payload.substr(44, 2)}:${payload.substr(46, 2)}:${payload.substr(48,2)}:${payload.substr(50, 2)}`;
-          data.rssid2 = Bits.bitsToSigned(bits.substr(208, 8));
+          data.rssi2 = Bits.bitsToSigned(bits.substr(208, 8));
           // prettier-ignore
           data.macAdr3 = `${payload.substr(54, 2)}:${payload.substr(56,2)}:${payload.substr(58, 2)}:${payload.substr(60, 2)}:${payload.substr(62,2)}:${payload.substr(64, 2)}`;
-          data.rssid3 = Bits.bitsToSigned(bits.substr(264, 8));
+          data.rssi3 = Bits.bitsToSigned(bits.substr(264, 8));
 
-          topic = "ble_beacon_scan";
+          data.bleMessage = "BLE_BEACON_SCAN";
+          topic = "ble";
           break;
         case 8: {
           const failure = Bits.bitsToUnsigned(bits.substr(40, 8));
@@ -308,7 +311,8 @@ function consume(event) {
             default:
               break;
           }
-          topic = "ble_beacon_failure";
+          data.bleMessage = "BLE_BEACON_FAILURE";
+          topic = "ble";
           break;
         }
         case 9:
@@ -316,62 +320,50 @@ function consume(event) {
           data.age = valueDecode(Bits.bitsToUnsigned(bits.substr(40, 8)), 0, 2040, 8, 0); // Seconds
           // prettier-ignore
           data.bssid0 = `${payload.substr(12, 2)}:${payload.substr(14,2)}:${payload.substr(16, 2)}:${payload.substr(18, 2)}:${payload.substr(20,2)}:${payload.substr(22, 2)}`;
-          data.rssid0 = Bits.bitsToSigned(bits.substr(96, 8));
+          data.rssi0 = Bits.bitsToSigned(bits.substr(96, 8));
           // prettier-ignore
           data.bssid1 = `${payload.substr(26, 2)}:${payload.substr(28, 2)}:${payload.substr(30, 2)}:${payload.substr(32, 2)}:${payload.substr(34, 2)}:${payload.substr(36, 2)}`;
-          data.rssid1 = Bits.bitsToSigned(bits.substr(152, 8));
+          data.rssi1 = Bits.bitsToSigned(bits.substr(152, 8));
           // prettier-ignore
           data.bssid2 = `${payload.substr(40, 2)}:${payload.substr(42, 2)}:${payload.substr(44, 2)}:${payload.substr(46, 2)}:${payload.substr(48, 2)}:${payload.substr(50, 2)}`;
-          data.rssid2 = Bits.bitsToSigned(bits.substr(208, 8));
+          data.rssi2 = Bits.bitsToSigned(bits.substr(208, 8));
           // prettier-ignore
           data.bssid3 = `${payload.substr(54, 2)}:${payload.substr(56, 2)}:${payload.substr(58, 2)}:${payload.substr(60, 2)}:${payload.substr(62, 2)}:${payload.substr(64, 2)}`;
-          data.rssid3 = Bits.bitsToSigned(bits.substr(264, 8));
+          data.rssi3 = Bits.bitsToSigned(bits.substr(264, 8));
 
-          topic = "wifi_bssid";
+          data.wifiMessage = "WIFI_BSSID";
+          topic = "wifi";
           break;
         case 10:
           // prettier-ignore
           data.age = valueDecode(Bits.bitsToUnsigned(bits.substr(40, 8)), 0, 2040, 8, 0); // Seconds
           // prettier-ignore
           data.shortBID0 = `${payload.substr(12, 2)}:${payload.substr(14,2)}:${payload.substr(16, 2)}:${payload.substr(18, 2)}:${payload.substr(20,2)}:${payload.substr(22, 2)}`;
-          data.rssid0 = Bits.bitsToSigned(bits.substr(96, 8));
+          data.rssi0 = Bits.bitsToSigned(bits.substr(96, 8));
           // prettier-ignore
           data.shortBID1 = `${payload.substr(26, 2)}:${payload.substr(28, 2)}:${payload.substr(30, 2)}:${payload.substr(32, 2)}:${payload.substr(34, 2)}:${payload.substr(36, 2)}`;
-          data.rssid1 = Bits.bitsToSigned(bits.substr(152, 8));
+          data.rssi1 = Bits.bitsToSigned(bits.substr(152, 8));
           // prettier-ignore
           data.shortBID2 = `${payload.substr(40, 2)}:${payload.substr(42, 2)}:${payload.substr(44, 2)}:${payload.substr(46, 2)}:${payload.substr(48, 2)}:${payload.substr(50, 2)}`;
-          data.rssid2 = Bits.bitsToSigned(bits.substr(208, 8));
+          data.rssi2 = Bits.bitsToSigned(bits.substr(208, 8));
           // prettier-ignore
           data.shortBID3 = `${payload.substr(54, 2)}:${payload.substr(56, 2)}:${payload.substr(58, 2)}:${payload.substr(60, 2)}:${payload.substr(62, 2)}:${payload.substr(64, 2)}`;
-          data.rssid3 = Bits.bitsToSigned(bits.substr(264, 8));
+          data.rssi3 = Bits.bitsToSigned(bits.substr(264, 8));
 
-          topic = "ble_beacon_short";
+          data.bleMessage = "BLE_BEACON_SHORT";
+          topic = "ble";
           break;
         case 11:
           // prettier-ignore
           data.age = valueDecode(Bits.bitsToUnsigned(bits.substr(40, 8)), 0, 2040, 8, 0); // Seconds
-          data.longBID0 = `${payload.substr(12, 2)}:${payload.substr(
-            14,
-            2,
-          )}:${payload.substr(16, 2)}:${payload.substr(18, 2)}:${payload.substr(
-            20,
-            2,
-          )}:${payload.substr(22, 2)}:${payload.substr(24, 2)}:${payload.substr(
-            26,
-            2,
-          )}:${payload.substr(28, 2)}:${payload.substr(30, 2)}:${payload.substr(
-            32,
-            2,
-          )}:${payload.substr(34, 2)}:${payload.substr(36, 2)}:${payload.substr(
-            38,
-            2,
-          )}:${payload.substr(40, 2)}:${payload.substr(42, 2)}:${payload.substr(
-            44,
-            2,
-          )}`;
-          data.rssid0 = Bits.bitsToSigned(bits.substr(176, 8));
+          // prettier-ignore
+          data.longBID0 = `${payload.substr(12, 2)}:${payload.substr(14,2,)}:${payload.substr(16, 2)}:${payload.substr(18, 2)}:${payload.substr(20,2)}:
+          ${payload.substr(22, 2)}:${payload.substr(24, 2)}:${payload.substr(26,2 )}:${payload.substr(28, 2)}:${payload.substr(30, 2)}:${payload.substr(32,2)}:
+          ${payload.substr(34, 2)}:${payload.substr(36, 2)}:${payload.substr(38,2)}:${payload.substr(40, 2)}:${payload.substr(42, 2)}:${payload.substr(44, 2)}`;
+          data.rssi0 = Bits.bitsToSigned(bits.substr(176, 8));
 
-          topic = "ble_beacon_long";
+          data.bleMessage = "BLE_BEACON_LONG";
+          topic = "ble";
           break;
         default:
           break;
@@ -385,7 +377,6 @@ function consume(event) {
     // Heartbeat
     // Reserved
     case 0x05: {
-      topic = "heartbeat";
       const cause = Bits.bitsToUnsigned(bits.substr(40, 8));
 
       switch (cause) {
@@ -427,6 +418,8 @@ function consume(event) {
         bits.substr(88, 8),
       )}`;
 
+      data.operationStatus = "HEARTBEAT";
+      topic = "operation_status";
       break;
     }
     // Activity Status
@@ -486,26 +479,9 @@ function consume(event) {
             }
             pointer += 32;
           } else if (flag === 0xf9) {
-            value = Bits.bitsToUnsigned(bits.substr(pointer, 32));
-            switch (value) {
-              case 0:
-                data.operatingMode = "STANDBY";
-                break;
-              case 1:
-                data.operatingMode = "MOTION_TRACKING";
-                break;
-              case 2:
-                data.operatingMode = "PERMANENT_TRACKING";
-                break;
-              case 3:
-                data.operatingMode = "MOTION_START_END_TRACKING";
-                break;
-              case 4:
-                data.operatingMode = "ACTIVITY_TRACKING";
-                break;
-              default:
-                break;
-            }
+            data.operatingMode = getOperatingMode(
+              Bits.bitsToUnsigned(bits.substr(pointer, 32)),
+            );
             pointer += 32;
           } else if (flag === 0xf6) {
             value = Bits.bitsToUnsigned(bits.substr(pointer, 32));
@@ -586,7 +562,8 @@ function consume(event) {
       } else if (cause === 3) {
         data.shutdownCause = "BLE_REQUEST";
       }
-      topic = "shutdown";
+      data.operationStatus = "SHUTDOWN";
+      topic = "operation_status";
       break;
     }
     // Event
@@ -594,29 +571,29 @@ function consume(event) {
       const eventValue = Bits.bitsToUnsigned(bits.substr(40, 8));
       switch (eventValue) {
         case 0:
-          topic = "geolocation_start";
-          data.status = true;
+          data.operationStatus = "GEOLOCATION_START";
+          topic = "operation_status";
           break;
         case 1:
-          topic = "motion_start";
-          data.status = true;
+          data.operationStatus = "MOTION_START";
+          topic = "operation_status";
           break;
         case 2:
-          topic = "motion_end";
           data.xAxisAccelerometer = Bits.bitsToSigned(bits.substr(48, 16));
           data.yAxisAccelerometer = Bits.bitsToSigned(bits.substr(64, 16));
           data.zAxisAccelerometer = Bits.bitsToSigned(bits.substr(80, 16));
+          data.operationStatus = "MOTION_END";
+          topic = "operation_status";
           break;
         case 3:
-          topic = "ble_connected";
-          data.status = true;
+          data.bleMessage = "BLE_CONNECTED";
+          topic = "ble";
           break;
         case 4:
-          topic = "ble_disconnected";
-          data.status = true;
+          data.bleMessage = "BLE_DISCONNECTED";
+          topic = "ble";
           break;
         case 5: {
-          topic = "temperature_information";
           const state = Bits.bitsToUnsigned(bits.substr(48, 8));
 
           switch (state) {
@@ -641,19 +618,22 @@ function consume(event) {
             data.highCounter = Bits.bitsToUnsigned(bits.substr(72, 8));
             data.lowCounter = Bits.bitsToUnsigned(bits.substr(80, 8));
           }
+          data.operationStatus = "TEMPERATURE_INFORMATION";
+          topic = "operation_status";
+
           break;
         }
         case 6:
-          topic = "ble_bond_deleted";
-          data.status = true;
+          data.bleMessage = "BLE_BOND_DELETED";
+          topic = "ble";
           break;
         case 7:
-          topic = "sos_start";
-          data.status = true;
+          data.operationStatus = "SOS_START";
+          topic = "operation_status";
           break;
         case 8:
-          topic = "sos_stop";
-          data.status = true;
+          data.operationStatus = "SOS_STOP";
+          topic = "operation_status";
           break;
         case 9: {
           topic = "angle_detection";
@@ -710,7 +690,6 @@ function consume(event) {
           break;
         }
         case 10: {
-          topic = "ble_geozoning";
           data.shortID = Bits.bitsToUnsigned(bits.substr(48, 4));
 
           const notification = Bits.bitsToUnsigned(bits.substr(52, 4));
@@ -731,6 +710,8 @@ function consume(event) {
               break;
           }
           data.beaconID = Bits.bitsToUnsigned(bits.substr(56, 24));
+          data.bleMessage = "BLE_GEOZONING";
+          topic = "ble";
           break;
         }
         default:
@@ -740,7 +721,6 @@ function consume(event) {
     }
     // Collection scan
     case 0x0b: {
-      topic = "collection_scan";
       // Reserved 1
       const df = !!Bits.bitsToUnsigned(bits.substr(41, 1));
       data.fragmentID = Bits.bitsToUnsigned(bits.substr(42, 6));
@@ -773,6 +753,8 @@ function consume(event) {
         data.elementID2 = v2;
         data.elementID3 = v3;
       }
+      data.wifiMessage = "COLLECTION_SCAN";
+      topic = "wifi";
       break;
     }
     // Proximity
@@ -786,7 +768,6 @@ function consume(event) {
 
       switch (position) {
         case 0: {
-          topic = "gps_fix_extended";
           const dimensionFix = Bits.bitsToUnsigned(bits.substr(56, 8));
           if (dimensionFix === 1) {
             data.dimensionFix = "3D";
@@ -795,49 +776,35 @@ function consume(event) {
           }
 
           const gps = getGPS(bits.substr(64, 56));
-          data.latitude = gps.latitude;
-          data.longitude = gps.longitude;
-          data.horizontalAccuracy = gps.ehpe;
+          Object.assign(data, gps);
 
           data.cog = Bits.bitsToUnsigned(bits.substr(120, 16)) / 100;
           data.sog = Bits.bitsToUnsigned(bits.substr(136, 16));
+
+          data.gpsMessage = "GPS_FIX_EXTENDED";
+          topic = "gps";
           break;
         }
         case 1: {
           topic = "gps_timeout";
           const gpsTimeout = getGPSTimeout(bits.substr(56, 40));
-          data.timeoutCause = gpsTimeout.timeoutCause;
-          data.cn0 = gpsTimeout.cn0;
-          data.cn1 = gpsTimeout.cn1;
-          data.cn2 = gpsTimeout.cn2;
-          data.cn3 = gpsTimeout.cn3;
-
+          Object.assign(data, gpsTimeout);
           break;
         }
         case 2:
-          topic = "encrypted_wifi_bssid";
-          data.status = true;
+          data.wifiMessage = "ENCRYPTED_WIFI_BSSID";
+          topic = "wifi";
           break;
         case 3: {
-          topic = "wifi_timeout";
           const wifiTimeout = getWifiTimeout(bits.substr(56, 48));
-          data.vBat1 = wifiTimeout.vBat1;
-          data.vBat2 = wifiTimeout.vBat2;
-          data.vBat3 = wifiTimeout.vBat3;
-          data.vBat4 = wifiTimeout.vBat4;
-          data.vBat5 = wifiTimeout.vBat5;
-          data.vBat6 = wifiTimeout.vBat6;
+          Object.assign(data, wifiTimeout);
+          data.wifiMessage = "WIFI_TIMEOUT";
+          topic = "wifi";
           break;
         }
         case 4: {
-          topic = "wifi_failure";
           const wifiTimeout = getWifiTimeout(bits.substr(56, 48));
-          data.vBat1 = wifiTimeout.vBat1;
-          data.vBat2 = wifiTimeout.vBat2;
-          data.vBat3 = wifiTimeout.vBat3;
-          data.vBat4 = wifiTimeout.vBat4;
-          data.vBat5 = wifiTimeout.vBat5;
-          data.vBat6 = wifiTimeout.vBat6;
+          Object.assign(data, wifiTimeout);
 
           const error = Bits.bitsToUnsigned(bits.substr(104, 8));
           if (error === 0) {
@@ -849,31 +816,34 @@ function consume(event) {
           } else if (error === 3) {
             data.error = "WIFI_NOT_SUPPORTED";
           }
+          data.wifiMessage = "WIFI_FAILURE";
+          topic = "wifi";
           break;
         }
         case 5:
-          topic = "lpgps_data";
-          data.status = true;
+          data.operationStatus = "LGPS_DATA";
+          topic = "operation_status";
           break;
         case 6:
-          topic = "lpgps_data";
-          data.status = true;
+          data.operationStatus = "LGPS_DATA";
+          topic = "operation_status";
           break;
         case 7:
           // prettier-ignore
           data.macAdr0 = `${payload.substr(14, 2)}:${payload.substr(16,2)}:${payload.substr(18, 2)}:${payload.substr(20, 2)}:${payload.substr(22,2)}:${payload.substr(24, 2)}`;
-          data.rssid0 = Bits.bitsToSigned(bits.substr(104, 8));
+          data.rssi0 = Bits.bitsToSigned(bits.substr(104, 8));
           // prettier-ignore
           data.macAdr1 = `${payload.substr(28, 2)}:${payload.substr(30,2)}:${payload.substr(32, 2)}:${payload.substr(34, 2)}:${payload.substr(36,2)}:${payload.substr(38, 2)}`;
-          data.rssid1 = Bits.bitsToSigned(bits.substr(160, 8));
+          data.rssi1 = Bits.bitsToSigned(bits.substr(160, 8));
           // prettier-ignore
           data.macAdr2 = `${payload.substr(42, 2)}:${payload.substr(44,2)}:${payload.substr(46, 2)}:${payload.substr(48, 2)}:${payload.substr(50,2)}:${payload.substr(52, 2)}`;
-          data.rssid2 = Bits.bitsToSigned(bits.substr(216, 8));
+          data.rssi2 = Bits.bitsToSigned(bits.substr(216, 8));
           // prettier-ignore
           data.macAdr3 = `${payload.substr(56, 2)}:${payload.substr(58,2)}:${payload.substr(60, 2)}:${payload.substr(62, 2)}:${payload.substr(64,2)}:${payload.substr(66, 2)}`;
-          data.rssid3 = Bits.bitsToSigned(bits.substr(272, 8));
+          data.rssi3 = Bits.bitsToSigned(bits.substr(272, 8));
 
-          topic = "ble_beacon_scan";
+          data.bleMessage = "BLE_BEACON_SCAN";
+          topic = "ble";
           break;
         case 8: {
           const failure = Bits.bitsToUnsigned(bits.substr(56, 8));
@@ -902,40 +872,43 @@ function consume(event) {
             default:
               break;
           }
-          topic = "ble_beacon_failure";
+          data.bleMessage = "BLE_BEACON_FAILURE";
+          topic = "ble";
           break;
         }
         case 9:
           // prettier-ignore
           data.bssid0 = `${payload.substr(14, 2)}:${payload.substr(16,2)}:${payload.substr(18, 2)}:${payload.substr(20, 2)}:${payload.substr(22,2)}:${payload.substr(24, 2)}`;
-          data.rssid0 = Bits.bitsToSigned(bits.substr(104, 8));
+          data.rssi0 = Bits.bitsToSigned(bits.substr(104, 8));
           // prettier-ignore
           data.bssid1 = `${payload.substr(28, 2)}:${payload.substr(30,2)}:${payload.substr(32, 2)}:${payload.substr(34, 2)}:${payload.substr(36, 2)}:${payload.substr(38, 2)}`;
-          data.rssid1 = Bits.bitsToSigned(bits.substr(160, 8));
+          data.rssi1 = Bits.bitsToSigned(bits.substr(160, 8));
           // prettier-ignore
           data.bssid2 = `${payload.substr(42, 2)}:${payload.substr(44,2,)}:${payload.substr(46, 2)}:${payload.substr(48, 2)}:${payload.substr(50,2)}:${payload.substr(52, 2)}`;
-          data.rssid2 = Bits.bitsToSigned(bits.substr(216, 8));
+          data.rssi2 = Bits.bitsToSigned(bits.substr(216, 8));
           // prettier-ignore
           data.bssid3 = `${payload.substr(56, 2)}:${payload.substr(58, 2)}:${payload.substr(60, 2)}:${payload.substr(62, 2)}:${payload.substr(64,2,)}:${payload.substr(66, 2)}`;
-          data.rssid3 = Bits.bitsToSigned(bits.substr(272, 8));
+          data.rssi3 = Bits.bitsToSigned(bits.substr(272, 8));
 
-          topic = "wifi_bssid";
+          data.wifiMessage = "WIFI_BSSID";
+          topic = "wifi";
           break;
         case 10:
           // prettier-ignore
           data.shortBID0 = `${payload.substr(14, 2)}:${payload.substr(16,2)}:${payload.substr(18, 2)}:${payload.substr(20, 2)}:${payload.substr(22,2)}:${payload.substr(24, 2)}`;
-          data.rssid0 = Bits.bitsToSigned(bits.substr(104, 8));
+          data.rssi0 = Bits.bitsToSigned(bits.substr(104, 8));
           // prettier-ignore
           data.shortBID1 = `${payload.substr(28, 2)}:${payload.substr(30, 2)}:${payload.substr(32, 2)}:${payload.substr(34, 2)}:${payload.substr(36,2)}:${payload.substr(38, 2)}`;
-          data.rssid1 = Bits.bitsToSigned(bits.substr(160, 8));
+          data.rssi1 = Bits.bitsToSigned(bits.substr(160, 8));
           // prettier-ignore
           data.shortBID2 = `${payload.substr(42, 2)}:${payload.substr(44,2)}:${payload.substr(46, 2)}:${payload.substr(48, 2)}:${payload.substr(50,2)}:${payload.substr(52, 2)}`;
-          data.rssid2 = Bits.bitsToSigned(bits.substr(216, 8));
+          data.rssi2 = Bits.bitsToSigned(bits.substr(216, 8));
           // prettier-ignore
           data.shortBID3 = `${payload.substr(56, 2)}:${payload.substr(58,2)}:${payload.substr(60, 2)}:${payload.substr(62, 2)}:${payload.substr(64,2)}:${payload.substr(66, 2)}`;
-          data.rssid3 = Bits.bitsToSigned(bits.substr(272, 8));
+          data.rssi3 = Bits.bitsToSigned(bits.substr(272, 8));
 
-          topic = "ble_beacon_short";
+          data.bleMessage = "BLE_BEACON_SHORT";
+          topic = "ble";
           break;
         case 11:
           data.longBID0 = `${payload.substr(56, 2)}:${payload.substr(
@@ -957,9 +930,10 @@ function consume(event) {
             86,
             2,
           )}:${payload.substr(78, 2)}:${payload.substr(88, 2)}`;
-          data.rssid0 = Bits.bitsToSigned(bits.substr(176, 8));
+          data.rssi0 = Bits.bitsToSigned(bits.substr(176, 8));
 
-          topic = "ble_beacon_long";
+          data.bleMessage = "BLE_BEACON_LONG";
+          topic = "ble";
           break;
         default:
           break;

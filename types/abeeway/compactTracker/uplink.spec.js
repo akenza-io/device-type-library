@@ -11,12 +11,10 @@ describe("Abeeway compact tracker uplink", () => {
   before((done) => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/gps_fix.schema.json`)
-      .then((parsedSchema) => {
-        gpsFixSchema = parsedSchema;
-        done();
-      });
+    utils.loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
+      gpsFixSchema = parsedSchema;
+      done();
+    });
   });
 
   let lifecycleSchema = null;
@@ -32,7 +30,7 @@ describe("Abeeway compact tracker uplink", () => {
   let heartbeatSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/heartbeat.schema.json`)
+      .loadSchema(`${__dirname}/operation_status.schema.json`)
       .then((parsedSchema) => {
         heartbeatSchema = parsedSchema;
         done();
@@ -51,12 +49,10 @@ describe("Abeeway compact tracker uplink", () => {
 
   let wifiBssidSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/wifi_bssid.schema.json`)
-      .then((parsedSchema) => {
-        wifiBssidSchema = parsedSchema;
-        done();
-      });
+    utils.loadSchema(`${__dirname}/wifi.schema.json`).then((parsedSchema) => {
+      wifiBssidSchema = parsedSchema;
+      done();
+    });
   });
 
   let activityStatusSchema = null;
@@ -71,12 +67,10 @@ describe("Abeeway compact tracker uplink", () => {
 
   let bleGeozoningSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/ble_geozoning.schema.json`)
-      .then((parsedSchema) => {
-        bleGeozoningSchema = parsedSchema;
-        done();
-      });
+    utils.loadSchema(`${__dirname}/ble.schema.json`).then((parsedSchema) => {
+      bleGeozoningSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -110,7 +104,7 @@ describe("Abeeway compact tracker uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "gps_fix");
+        assert.equal(value.topic, "gps");
         assert.equal(value.data.longitude, 8.912768);
         assert.equal(value.data.latitude, 47.5475712);
         assert.equal(value.data.horizontalAccuracy, 31);
@@ -152,7 +146,7 @@ describe("Abeeway compact tracker uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "heartbeat");
+        assert.equal(value.topic, "operation_status");
         assert.equal(value.data.resetCause, "SYSTEM_REQUEST");
         assert.equal(value.data.firmwareVersion, "2.2.0");
         assert.equal(value.data.bleFirmwareVersion, "0.0.0");
@@ -249,18 +243,18 @@ describe("Abeeway compact tracker uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "wifi_bssid");
+        assert.equal(value.topic, "wifi");
 
         assert.equal(value.data.age, 304);
 
         assert.equal(value.data.bssid0, "c8:67:5e:84:2c:d7");
-        assert.equal(value.data.rssid0, -57);
+        assert.equal(value.data.rssi0, -57);
         assert.equal(value.data.bssid1, "6c:c2:17:d8:27:be");
-        assert.equal(value.data.rssid1, -68);
+        assert.equal(value.data.rssi1, -68);
         assert.equal(value.data.bssid2, "34:db:fd:ad:0e:31");
-        assert.equal(value.data.rssid2, -76);
+        assert.equal(value.data.rssi2, -76);
         assert.equal(value.data.bssid3, "c8:67:5e:82:00:d4");
-        assert.equal(value.data.rssid3, -78);
+        assert.equal(value.data.rssi3, -78);
 
         validate(value.data, wifiBssidSchema, { throwError: true });
       });
@@ -339,7 +333,7 @@ describe("Abeeway compact tracker uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "ble_geozoning");
+        assert.equal(value.topic, "ble");
 
         assert.equal(value.data.shortID, 0);
         assert.equal(value.data.notification, "ENTRY");

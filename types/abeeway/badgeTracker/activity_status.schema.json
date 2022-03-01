@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/abeeway/compactTracker/activity_status.schema.json",
+  "$id": "https://akenza.io/abeeway/badgeTracker/activity_status.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Activity Status",
   "type": "object",

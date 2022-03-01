@@ -1,0 +1,172 @@
+{
+  "$id": "https://akenza.io/abeeway/badgeTracker/wifi.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Wifi",
+  "type": "object",
+  "properties": {
+    "wifiMessage": {
+      "title": "WIFI Message",
+      "description": "Flag that describes the following values",
+      "type": "string",
+      "enum": [
+        "COLLECTION_SCAN",
+        "ENCRYPTED_WIFI_BSSID",
+        "WIFI_BSSID",
+        "WIFI_FAILURE",
+        "WIFI_TIMEOUT"
+      ]
+    },
+    "fragmentID": {
+      "title": "Fragment ID",
+      "type": "integer",
+      "description": "Fragment ID"
+    },
+    "cid": {
+      "title": "Collection identifier",
+      "type": "integer",
+      "description": "Collection identifier, all fragments have the same CiD."
+    },
+    "hash": {
+      "title": "Hash",
+      "type": "integer",
+      "description": "Hash, all fragments have the same hash."
+    },
+    "rssi0": {
+      "title": "RSSI 0",
+      "unit": "dBm",
+      "description": "Received Signal Strength Indication",
+      "type": "number"
+    },
+    "rssi1": {
+      "title": "RSSI 1",
+      "unit": "dBm",
+      "description": "Received Signal Strength Indication",
+      "type": "number"
+    },
+    "rssi2": {
+      "title": "RSSI 2",
+      "unit": "dBm",
+      "description": "Received Signal Strength Indication",
+      "type": "number"
+    },
+    "rssi3": {
+      "title": "RSSI 3",
+      "unit": "dBm",
+      "description": "Received Signal Strength Indication",
+      "type": "number"
+    },
+    "macAdr0": {
+      "title": "Mac Address 0",
+      "description": "Mac Address 0",
+      "type": "string"
+    },
+    "macAdr1": {
+      "title": "Mac Address 1",
+      "description": "Mac Address 1",
+      "type": "string"
+    },
+    "macAdr2": {
+      "title": "Mac Address 2",
+      "description": "Mac Address 2",
+      "type": "string"
+    },
+    "macAdr3": {
+      "title": "Mac Address 3",
+      "description": "Mac Address 3",
+      "type": "string"
+    },
+    "elementID0": {
+      "title": "Element ID 0",
+      "description": "Element ID 0",
+      "type": "string"
+    },
+    "elementID1": {
+      "title": "Element ID 0",
+      "description": "Element ID 0",
+      "type": "string"
+    },
+    "elementID2": {
+      "title": "Element ID 0",
+      "description": "Element ID 0",
+      "type": "string"
+    },
+    "elementID3": {
+      "title": "Element ID 0",
+      "description": "Element ID 0",
+      "type": "string"
+    },
+    "age": {
+      "title": "Age",
+      "unit": "s",
+      "type": "integer",
+      "description": "Age of the measurement in seconds"
+    },
+    "bssid0": {
+      "title": "BSS ID 0",
+      "description": "BSS ID 0",
+      "type": "string"
+    },
+    "bssid1": {
+      "title": "BSS ID 1",
+      "description": "BSS ID 1",
+      "type": "string"
+    },
+    "bssid2": {
+      "title": "BSS ID 2",
+      "description": "BSS ID 2",
+      "type": "string"
+    },
+    "bssid3": {
+      "title": "BSS ID 3",
+      "description": "BSS ID 3",
+      "type": "string"
+    },
+    "vBat1": {
+      "title": "Voltage T0",
+      "unit": "V",
+      "type": "number",
+      "description": "Encoded voltage at the start time (T0) of the WIFI scan."
+    },
+    "vBat2": {
+      "title": "Voltage T+0.5",
+      "unit": "V",
+      "type": "number",
+      "description": " Encoded voltage at T0 + 0.5 second."
+    },
+    "vBat3": {
+      "title": "Voltage T+1",
+      "unit": "V",
+      "type": "number",
+      "description": "Encoded voltage at T0 + 1 second."
+    },
+    "vBat4": {
+      "title": "Voltage T+1.5",
+      "unit": "V",
+      "type": "number",
+      "description": "Encoded voltage at T0 + 1.5 second."
+    },
+    "vBat5": {
+      "title": "Voltage T+2",
+      "unit": "V",
+      "type": "number",
+      "description": "Encoded voltage at T0 + 2 seconds."
+    },
+    "vBat6": {
+      "title": "Voltage T+2.5",
+      "unit": "V",
+      "type": "number",
+      "description": "Encoded voltage at T0 + 2.5 seconds."
+    },
+    "error": {
+      "title": "Operating mode",
+      "description": "Operating mode",
+      "type": "string",
+      "enum": [
+        "WIFI_CONNECTION_FAILURE",
+        "SCAN_FAILURE",
+        "ANTENNA_UNAVAILABLE",
+        "WIFI_NOT_SUPPORTED"
+      ]
+    }
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/abeeway/compactTracker/lifecycle.schema.json",
+  "$id": "https://akenza.io/abeeway/badgeTracker/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Lifecycle",
   "type": "object",
@@ -38,6 +38,12 @@
       ]
     },
     "batteryStatus": {
+      "title": "Battery status",
+      "description": "Battery status",
+      "type": "string",
+      "enum": ["CHARGING", "ERROR", "NORMAL"]
+    },
+    "batteryLevel": {
       "title": "Battery charge",
       "type": "number",
       "minimum": 0,
@@ -52,6 +58,11 @@
       "description": "The temperature in °C.",
       "minimum": -3276.5,
       "maximum": 3276.5
+    },
+    "acknowledge": {
+      "title": "Acknowledge",
+      "type": "boolean",
+      "description": "Acknowledge byte"
     }
   }
 }
