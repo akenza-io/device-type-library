@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-# [1.12.2] - 2022-03-01
+# [1.12.2] - 2022-03-02
 
 ### Changed
 
@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 - Sensative - small uplink change
 - Swisscom - Multisense small schema change
 - Yanzi - Ignoring not documented payloads
+- Universal - Fire Extinguisher changed meta
 
 # [1.12.1] - 2022-02-10
 
