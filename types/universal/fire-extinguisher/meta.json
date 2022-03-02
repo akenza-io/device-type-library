@@ -3,16 +3,12 @@
   "version": "1.0.0",
   "manufacturer": "Universal",
   "url": "https://www.u-f.ch/deutsch/handfeuerl%C3%B6scher/internet-of-things-feuerl%C3%B6scher/",
-  "description": "In case of manipulation and removal of the safety splint on the fire extinguisher, a message is automatically sent. Magnet reed sensor checks if a fire extinguisher is still in place.",
+  "description": "In case of manipulation and removal of the safety splint on the fire extinguisher, an alert can be sent. Magnet reed sensor monitors position of safety splint.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": [
-    "Reed"
-  ],
-  "outputTopics": [
-    "default"
-  ],
+  "availableSensors": ["Reed"],
+  "outputTopics": ["default"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

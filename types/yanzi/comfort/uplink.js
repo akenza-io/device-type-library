@@ -35,6 +35,8 @@ function consume(event) {
       sample.tvoc = value;
       topic = "tvoc";
     }
-    emit("sample", { data: sample, topic });
+    if (Object.keys(sample).length > 0) {
+      emit("sample", { data: sample, topic });
+    }
   });
 }

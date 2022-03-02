@@ -56,10 +56,10 @@ function decodeFrame(bytes, type, target, pos) {
       target.light2 = (bytes[pos++] << 8) | bytes[pos++];
       break;
     case 9: // DoorSwitch 1bytes binary
-      target.closed = !bytes[pos++]; //  true = door closed, false = door open
+      target.closed = !bytes[pos++]; // true = door closed, false = door open
       break;
     case 10: // DoorAlarm 1bytes binary
-      target.doorAlarm = !!bytes[pos++]; // boolean true = alarm
+      target.doorAlarm = !bytes[pos++]; // boolean true = alarm
       break;
     case 11: // TamperReport 1bytes binary (was previously TamperSwitch)
       target.tamperReport = !!bytes[pos++];
