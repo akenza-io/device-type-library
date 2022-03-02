@@ -1,0 +1,13 @@
+{
+  "name": "Comfort sensor",
+  "version": "1.0.0",
+  "manufacturer": "IMBuildings",
+  "url": "https://www.imbuildings.com/lorawan-comfort-sensor/",
+  "description": "Measure indoor comfort by monitoring CO2, temperature, humidity, presence.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": ["CO2", "Temperature", "Humidity", "Presence"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
