@@ -1,0 +1,128 @@
+{
+  "$id": "https://akenza.io/abeeway/microTracker/ble.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Bluetooth low energy",
+  "type": "object",
+  "properties": {
+    "bleMessage": {
+      "title": "BLE Message",
+      "description": "Flag that describes the following values",
+      "type": "string",
+      "enum": [
+        "BLE_BEACON_SCAN",
+        "BLE_BEACON_FAILURE",
+        "BLE_BEACON_SHORT",
+        "BLE_BEACON_LONG",
+        "BLE_CONNECTED",
+        "BLE_DISCONNECTED",
+        "BLE_BOND_DELETED",
+        "BLE_GEOZONING"
+      ]
+    },
+    "age": {
+      "title": "Age",
+      "unit": "s",
+      "type": "integer",
+      "description": "Age of the measurement in seconds"
+    },
+    "rssid0": {
+      "title": "RSSI 0",
+      "unit": "dBm",
+      "description": "Received Signal Strength Indication",
+      "type": "number"
+    },
+    "rssid1": {
+      "title": "RSSI 1",
+      "unit": "dBm",
+      "description": "Received Signal Strength Indication",
+      "type": "number"
+    },
+    "rssid2": {
+      "title": "RSSI 2",
+      "unit": "dBm",
+      "description": "Received Signal Strength Indication",
+      "type": "number"
+    },
+    "rssid3": {
+      "title": "RSSI 3",
+      "unit": "dBm",
+      "description": "Received Signal Strength Indication",
+      "type": "number"
+    },
+    "macAdr0": {
+      "title": "Mac Address 0",
+      "description": "Mac Address 0",
+      "type": "string"
+    },
+    "macAdr1": {
+      "title": "Mac Address 1",
+      "description": "Mac Address 1",
+      "type": "string"
+    },
+    "macAdr2": {
+      "title": "Mac Address 2",
+      "description": "Mac Address 2",
+      "type": "string"
+    },
+    "macAdr3": {
+      "title": "Mac Address 3",
+      "description": "Mac Address 3",
+      "type": "string"
+    },
+    "failure": {
+      "title": "Failure",
+      "description": "Failure",
+      "type": "string",
+      "enum": [
+        "BLE_NOT_RESPONDING",
+        "INTERNAL_ERROR",
+        "SHARED_ANTENNA_NOT_AVAILABLE",
+        "SCAN_ALREADY_ON_GOING",
+        "BLE_BUSY",
+        "NO_BEACON_DETECTED",
+        "UKNOWN_WRONG_BLE_FIRMWARE"
+      ]
+    },
+    "shortBID0": {
+      "title": "Short BID 0",
+      "description": "Short BID 0",
+      "type": "string"
+    },
+    "shortBID1": {
+      "title": "Short BID 1",
+      "description": "Short BID 1",
+      "type": "string"
+    },
+    "shortBID2": {
+      "title": "Short BID 2",
+      "description": "Short BID 2",
+      "type": "string"
+    },
+    "shortBID3": {
+      "title": "Short BID 3",
+      "description": "Short BID 3",
+      "type": "string"
+    },
+    "longBID0": {
+      "title": "Long BID 0",
+      "description": "Long BID 0",
+      "type": "string"
+    },
+    "shortID": {
+      "title": "Short ID",
+      "description": "Short ID",
+      "type": "integer"
+    },
+    "notification": {
+      "title": "Notification",
+      "description": "Notification",
+      "type": "string",
+      "enum": ["SAFE", "ENTRY", "EXIT", "HAZARD"]
+    },
+    "beaconID": {
+      "title": "Beacon ID",
+      "description": "Beacon ID",
+      "type": "integer"
+    }
+  }
+}

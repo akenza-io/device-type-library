@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.13.0] - 2022-03-03
+
+### Added
+
+- Abeeway - Badge tracker
+- Abeeway - Compact tracker
+- Abeeway - Micro tracker
+
 # [1.12.2] - 2022-03-02
 
 ### Changed

@@ -1,0 +1,116 @@
+{
+  "$id": "https://akenza.io/abeeway/compactTracker/operation_status.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Operation status",
+  "type": "object",
+  "properties": {
+    "operationStatus": {
+      "title": "Operation status",
+      "description": "Flag that describes the following values",
+      "type": "string",
+      "enum": [
+        "GEOLOCATION_START",
+        "HEARTBEAT",
+        "LGPS_DATA",
+        "MOTION_START",
+        "MOTION_END",
+        "SHUTDOWN",
+        "SOS_START",
+        "SOS_STOP",
+        "TEMPERATURE_INFORMATION"
+      ]
+    },
+    "resetCause": {
+      "title": "Reset cause",
+      "description": "Reset cause",
+      "type": "string",
+      "enum": [
+        "NO_RESET",
+        "POWER_ON",
+        "UNREGULATED_DOMAIN",
+        "REGULATED_DOMAIN",
+        "EXTERNAL_PIN",
+        "WATCHDOG",
+        "LOCKUP",
+        "SYSTEM_REQUEST"
+      ]
+    },
+    "firmwareVersion": {
+      "title": "Firmware version",
+      "description": "Firmware version",
+      "type": "string"
+    },
+    "bleFirmwareVersion": {
+      "title": "BLE firmware version",
+      "description": "BLE firmware version",
+      "type": "string"
+    },
+    "xAxisAccelerometer": {
+      "title": "Accelerometer X Axis",
+      "unit": "mg",
+      "description": "Acceleration on the X-Axis is mg",
+      "type": "integer",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "yAxisAccelerometer": {
+      "title": "Accelerometer Y Axis",
+      "unit": "mg",
+      "description": "Acceleration on the Y-Axis is mg",
+      "type": "integer",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "zAxisAccelerometer": {
+      "title": "Accelerometer Z Axis",
+      "unit": "mg",
+      "description": "Acceleration on the Z-Axis is mg",
+      "type": "integer",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "shutdownCause": {
+      "title": "Shutdown cause",
+      "description": "Shutdown cause",
+      "type": "string",
+      "enum": ["USER_ACTION", "LOW_BATTERY", "DOWNLINK_REQUEST", "BLE_REQUEST"]
+    },
+    "tempState": {
+      "title": "Temperature state",
+      "description": "Temperature state",
+      "type": "string",
+      "enum": [
+        "NORMAL_TEMPERATURE",
+        "HIGH_TEMPERATURE",
+        "LOW_TEMPERATURE",
+        "FEATURE_NOT_ACTIVATED"
+      ]
+    },
+    "maxTemperature": {
+      "title": "Maximal temperature threshold",
+      "unit": "°C",
+      "type": "number",
+      "description": "Maximal temperature threshold in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "minTemperature": {
+      "title": "Minimal temperature threshold",
+      "unit": "°C",
+      "type": "number",
+      "description": "Minimal temperature threshold in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "highCounter": {
+      "title": "Maximal counter threshold",
+      "type": "number",
+      "description": "Maximal counter threshold"
+    },
+    "lowCounter": {
+      "title": "Minimal counter threshold",
+      "type": "number",
+      "description": "Minimal counter threshold"
+    }
+  }
+}
