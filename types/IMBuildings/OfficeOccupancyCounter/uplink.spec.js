@@ -5,7 +5,7 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("IMBuilding Office occupancy", () => {
+describe("IMBuilding Office counter occupancy", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
@@ -40,7 +40,7 @@ describe("IMBuilding Office occupancy", () => {
   });
 
   describe("consume()", () => {
-    it("should decode the IMBuilding Office occupancy standart payload", () => {
+    it("should decode the IMBuilding Office occupancy counter standart payload", () => {
       const data = {
         data: {
           port: 1,

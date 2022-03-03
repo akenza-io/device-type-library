@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/imbuildings/peopleCounter/totalCounter.schema.json",
+  "$id": "https://akenza.io/imbuildings/OfficeOccupancyCounter/totalCounter.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Total counter",
   "type": "object",
