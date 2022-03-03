@@ -19,6 +19,8 @@ function consume(event) {
       }
       topic = "power";
     }
-    emit("sample", { data: sample, topic });
+    if (Object.keys(sample).length > 0) {
+      emit("sample", { data: sample, topic });
+    }
   });
 }

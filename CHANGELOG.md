@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.13.0] - 2022-03-03
+
+### Added
+
+- Abeeway - Badge tracker
+- Abeeway - Compact tracker
+- Abeeway - Micro tracker
+
+# [1.12.2] - 2022-03-02
+
+### Changed
+
+- Adeunis - FTD Network Tester Added batteryLevel
+- Sensative - small uplink change
+- Swisscom - Multisense small schema change
+- Yanzi - Ignoring not documented payloads
+- Universal - Fire Extinguisher changed meta
+
 # [1.12.1] - 2022-02-10
 
 ### Changed

@@ -1,28 +1,33 @@
 {
-  "$id": "https://akenza.io/swisscom/multisense/acceleration.schema.json",
+  "$id": "https://akenza.io/abeeway/microTracker/shocks.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Acceleration",
+  "title": "Shocks",
   "type": "object",
   "properties": {
-    "accX": {
-      "title": "Acceleration X",
-      "unit": "mG",
+    "shocks": {
+      "title": "Shocks",
+      "description": "Number of shocks",
+      "type": "integer"
+    },
+    "xAxisAccelerometer": {
+      "title": "Accelerometer X Axis",
+      "unit": "mg",
       "description": "Acceleration on the X-Axis is mg",
       "type": "integer",
       "minimum": -32767,
       "maximum": 32767
     },
-    "accY": {
-      "title": "Acceleration Y",
-      "unit": "mG",
+    "yAxisAccelerometer": {
+      "title": "Accelerometer Y Axis",
+      "unit": "mg",
       "description": "Acceleration on the Y-Axis is mg",
       "type": "integer",
       "minimum": -32767,
       "maximum": 32767
     },
-    "accZ": {
-      "title": "Acceleration Z",
-      "unit": "mG",
+    "zAxisAccelerometer": {
+      "title": "Accelerometer Z Axis",
+      "unit": "mg",
       "description": "Acceleration on the Z-Axis is mg",
       "type": "integer",
       "minimum": -32767,

@@ -1,0 +1,96 @@
+{
+  "$id": "https://akenza.io/abeeway/badgeTracker/angle_detection.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Angle Detection",
+  "type": "object",
+  "properties": {
+    "transitionState": {
+      "title": "Transition state",
+      "description": "Transition state",
+      "type": "string",
+      "enum": [
+        "LEARNING_TO_NORMAL",
+        "NORMAL_TO_LEARNING",
+        "NORMAL_TO_CRITICAL",
+        "CRITICAL_TO_NORMAL",
+        "CRITICAL_TO_LEARNING"
+      ]
+    },
+    "trigger": {
+      "title": "Trigger",
+      "description": "Trigger for the message",
+      "type": "string",
+      "enum": [
+        "CRITICAL_ANGLE_REPORTING",
+        "ANGLE_DEVIATION_REPORTING",
+        "SHOCK_TRIGGER",
+        "RFU"
+      ]
+    },
+    "repetitionCounter": {
+      "title": "Repetition counter",
+      "description": "Repetition counter",
+      "type": "integer"
+    },
+    "age": {
+      "title": "Age",
+      "unit": "s",
+      "type": "integer",
+      "description": "Age of the measurement in seconds"
+    },
+    "refVectorX": {
+      "title": "Ref Vector X",
+      "unit": "mG",
+      "description": "X axis accelerometer value in mG, used for the reference vector",
+      "type": "integer",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "refVectorY": {
+      "title": "Ref Vector Y",
+      "unit": "mG",
+      "description": "Y axis accelerometer value in mG, used for the reference vector",
+      "type": "integer",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "refVectorZ": {
+      "title": "Ref Vector Z",
+      "unit": "mG",
+      "description": "Z axis accelerometer value in mG, used for the reference vector",
+      "type": "integer",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "critVectorX": {
+      "title": "Critical Vector X",
+      "unit": "mG",
+      "description": "X axis accelerometer value in mG, it is the last measurement value",
+      "type": "integer",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "critVectorY": {
+      "title": "Critical Vector Y",
+      "unit": "mG",
+      "description": "Y axis accelerometer value in mG, it is the last measurement value",
+      "type": "integer",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "critVectorZ": {
+      "title": "Critical Vector Z",
+      "unit": "mG",
+      "description": "Z axis accelerometer value in mG, it is the last measurement value",
+      "type": "integer",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "angle": {
+      "title": "Angle",
+      "description": "Orientation angle",
+      "unit": "°",
+      "type": "number"
+    }
+  }
+}
