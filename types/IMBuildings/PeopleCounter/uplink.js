@@ -1,3 +1,4 @@
+// Also change other IMBuildings uplinks if changing this
 const payloadTypes = {
   COMFORT_SENSOR: 0x01,
   PEOPLE_COUNTER: 0x02,
@@ -102,6 +103,10 @@ function consume(event) {
       break;
     }
     default:
+      emit("sample", {
+        data: { reason: "UNSUPORTED_PAYLOAD" },
+        topic: "error",
+      });
       break;
   }
 
