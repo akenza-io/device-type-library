@@ -4,13 +4,77 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-# [1.9.1] - 2021-01-06
+# [1.12.2] - 2022-03-02
+
+### Changed
+
+- Adeunis - FTD Network Tester Added batteryLevel
+- Sensative - small uplink change
+- Swisscom - Multisense small schema change
+- Yanzi - Ignoring not documented payloads
+- Universal - Fire Extinguisher changed meta
+
+# [1.12.1] - 2022-02-10
+
+### Changed
+
+- Comtac - CM-1 & CM-2 Added batteryLevel
+- Elsys - ELT changed schema
+- Elsys - CO2 added motion
+- Miromico - miro Click deleted unused schema & fixed typo
+- Oxon - Oxobutton changed schema
+- Sensativ - Strip +Guard changed dataKey name
+- Swisscom - Multisense fixed unit typo & rounded voltage
+- nke Watteco - BoB assistant changed meta and renamed devicetype
+
+# [1.12.0] - 2022-02-04
 
 ### Added
 
+- Yanzi - Comfort
+- Yanzi - Motion+
+- Yanzi - Presence Mini
+- Yanzi - Plug
+
+# [1.11.1] - 2022-01-28
+
+### Changed
+
+- Comtac - CM1 changed schema
+- Elsys - ELT-2 changed schema
+- Swisscom - Multisense updated meta topics
+- Watecco - BoB updated meta
+
+# [1.11.0] - 2022-01-25
+
+### Added
+
+- Elsys - ERS VOC
+
+# [1.10.0] - 2022-01-21
+
+### Added
+
+- Adeunis - Pulse
+- Digitalmatter - G62
+
+# [1.9.3] - 2022-01-20
+
+### Changed
+
+- Browan - Changed battery calculation
+- Comtac - CM-2 added datapoint to schema
+- Elsys - Changed battery calculation
+- Elsys - ELT-2 changed meta
 - Pipiot - Changed meta
 
-# [1.9.1] - 2021-01-11
+# [1.9.2] - 2022-01-06
+
+### Changed
+
+- Pipiot - Changed meta
+
+# [1.9.1] - 2022-01-11
 
 ### Changed
 
@@ -22,7 +86,7 @@ All notable changes to this project will be documented in this file.
 - PNI - Placepod changed temperature to signed
 - Sensative - Strips changed name of datakey
 
-# [1.9.0] - 2021-01-04
+# [1.9.0] - 2022-01-04
 
 ### Added
 

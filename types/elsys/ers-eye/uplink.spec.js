@@ -87,7 +87,7 @@ describe("Elsys eye uplink", () => {
 
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.voltage, 3.583);
-        assert.equal(value.data.batteryLevel, 70);
+        assert.equal(value.data.batteryLevel, 100);
 
         validate(value.data, lifecycleSchema, { throwError: true });
       });

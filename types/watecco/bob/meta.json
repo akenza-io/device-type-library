@@ -1,22 +1,14 @@
 {
-  "name": "BOB Assistant",
+  "name": "BoB Assistant",
   "version": "0.4.5",
-  "manufacturer": "nke Watecco",
+  "manufacturer": "nke Watteco",
   "url": "https://bobassistant.com/en/offer/",
-  "description": "Autonomous learning and reporting by Artificial Intelligence, embedded by Cartesiam. Alarm Threshold on vibration anomaly. Peak frequency and FTT reports. Restart or complete learning. Setup reporting period",
+  "description": "BoB Assistant for predictive maintenance and operational assistance. Permanent monitoring of vibrations and recorded temperatures for isolated systems such as pumps, air conditioning or cooling units.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": [
-    "Vibration",
-    "Temperature"
-  ],
-  "outputTopics": [
-    "alarm",
-    "learning",
-    "lifecycle",
-    "report"
-  ],
+  "availableSensors": ["Vibration", "Temperature"],
+  "outputTopics": ["alarm", "learning", "lifecycle", "report"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

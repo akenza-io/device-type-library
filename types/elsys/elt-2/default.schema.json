@@ -50,11 +50,6 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     },
-    "reed": {
-      "title": "Reed",
-      "description": "Equals true if reed is detected",
-      "type": "boolean"
-    },
     "distance": {
       "title": "Distance",
       "unit": "mm",

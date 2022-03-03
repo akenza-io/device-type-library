@@ -1,8 +1,8 @@
 function consume(event) {
-  var payload = event.data.payloadHex;
-  var bits = Bits.hexToBits(payload);
-  var data = {};
-  var lifecycle = {};
+  const payload = event.data.payloadHex;
+  const bits = Bits.hexToBits(payload);
+  const data = {};
+  const lifecycle = {};
 
   lifecycle.version = Bits.bitsToUnsigned(bits.substr(0, 8));
 
@@ -27,6 +27,14 @@ function consume(event) {
   lifecycle.minTempOn = !!Bits.bitsToUnsigned(bits.substr(23, 1));
 
   lifecycle.voltage = Bits.bitsToUnsigned(bits.substr(24, 16)) / 1000;
+  let batteryLevel = Math.round((lifecycle.voltage - 2.2) / 0.008 / 10) * 10; // 2.2V - 3V
+  if (batteryLevel > 100) {
+    batteryLevel = 100;
+  } else if (batteryLevel < 0) {
+    batteryLevel = 0;
+  }
+  lifecycle.batteryLevel = batteryLevel;
+
   emit("sample", { data: lifecycle, topic: "lifecycle" });
 
   // Data
@@ -37,18 +45,18 @@ function consume(event) {
   data.adc2 = Bits.bitsToUnsigned(bits.substr(104, 16));
   data.lem = Bits.bitsToUnsigned(bits.substr(120, 16)) / 1000;
   data.brightness = Bits.bitsToUnsigned(bits.substr(136, 8));
-  emit("sample", { data: data, topic: "default" });
+  emit("sample", { data, topic: "default" });
 
-  if (lifecycle.deepSleepEvent == true) {
+  if (lifecycle.deepSleepEvent === true) {
     emit("sample", { data: { sleep: true }, topic: "sleep" });
   }
-  if (lifecycle.buttonEvent == true) {
+  if (lifecycle.buttonEvent === true) {
     emit("sample", { data: { buttonPressed: true }, topic: "button_pressed" });
   }
-  if (lifecycle.txOnEvent == true) {
+  if (lifecycle.txOnEvent === true) {
     emit("sample", { data: { event: true }, topic: "event" });
   }
-  if (lifecycle.txOnTimer == true) {
+  if (lifecycle.txOnTimer === true) {
     emit("sample", { data: { timer: true }, topic: "timer" });
   }
 }

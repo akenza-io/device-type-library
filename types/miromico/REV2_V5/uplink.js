@@ -21,7 +21,6 @@ function consume(event) {
   const bits = Bits.hexToBits(payload);
   const data = {};
   let topic = "default";
-
   const msgType = Bits.bitsToUnsigned(bits.substr(8, 8));
 
   // Status Message
@@ -65,14 +64,7 @@ function consume(event) {
     // Reserved
     data.usedCharges = toLittleEndian(payload.substr(14, 6));
 
-    if (
-      data.btnNpressed === 1 ||
-      data.btnEpressed === 1 ||
-      data.btnSpressed === 1 ||
-      data.btnWpressed === 1
-    ) {
-      topic = "button_pressed";
-    }
+    topic = "button_pressed";
 
     // Firmware Version
   } else if (msgType === 5) {

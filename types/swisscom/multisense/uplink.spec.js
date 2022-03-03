@@ -161,7 +161,7 @@ describe("Swisscom Multisense Uplinks", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.payloadVersion, 1);
         assert.equal(value.data.mode, 0);
-        assert.equal(value.data.voltage, 2.978);
+        assert.equal(value.data.voltage, 3);
         assert.equal(value.data.batteryLevel, 64);
         validate(value.data, lifecycleSchema, { throwError: true });
       });
@@ -197,7 +197,7 @@ describe("Swisscom Multisense Uplinks", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.payloadVersion, 2);
         assert.equal(value.data.mode, 0);
-        assert.equal(value.data.voltage, 3.086);
+        assert.equal(value.data.voltage, 3.1);
         assert.equal(value.data.batteryLevel, 71);
         validate(value.data, lifecycleSchema, { throwError: true });
       });
@@ -243,7 +243,7 @@ describe("Swisscom Multisense Uplinks", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.payloadVersion, 2);
         assert.equal(value.data.mode, 0);
-        assert.equal(value.data.voltage, 3.014);
+        assert.equal(value.data.voltage, 3);
         assert.equal(value.data.batteryLevel, 67);
         validate(value.data, lifecycleSchema, { throwError: true });
       });

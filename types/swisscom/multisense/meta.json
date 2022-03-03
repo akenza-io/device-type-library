@@ -17,15 +17,15 @@
     "Button"
   ],
   "outputTopics": [
-    "usage_start_event",
-    "usage_check_event",
-    "button_event",
-    "timed_event",
-    "reed_event",
-    "temp_event",
-    "hum_event",
-    "motion_event",
-    "lifecycle"
+    "acceleration",
+    "event",
+    "humidity",
+    "temperature",
+    "humidity_history",
+    "temperature_history",
+    "lifecycle",
+    "motion_counter",
+    "reed_counter"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

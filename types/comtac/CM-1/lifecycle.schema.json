@@ -51,7 +51,7 @@
       "maximum": 75
     },
     "minHumThreshold": {
-      "title": "Humidity",
+      "title": "Min Humidity Threshold",
       "unit": "%",
       "type": "number",
       "description": "Minimum humidity threshold, where 0 means OFF",
@@ -81,6 +81,14 @@
       "title": "Battery voltage",
       "desciption": "The battery voltage in Volt.",
       "unit": "V"
+    },
+    "batteryLevel": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "unit": "%"
     }
   }
 }

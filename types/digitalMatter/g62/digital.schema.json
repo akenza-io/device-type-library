@@ -1,0 +1,45 @@
+{
+  "$id": "https://akenza.io/digitalMatter/g62/digital.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Digital",
+  "type": "object",
+  "properties": {
+    "extPower": {
+      "title": "External power",
+      "type": "boolean",
+      "description": "Equals true if there is external power."
+    },
+    "ignition": {
+      "title": "Ignition state",
+      "type": "boolean",
+      "description": "Equals true if there is ignition detected."
+    },
+    "digitalInput1": {
+      "title": "Digital input 1",
+      "type": "boolean",
+      "description": "Equals true if there is digital input."
+    },
+    "digitalInput2": {
+      "title": "Digital input 2",
+      "type": "boolean",
+      "description": "Equals true if there is digital input."
+    },
+    "digitalOutput": {
+      "title": "Digital output",
+      "type": "boolean",
+      "description": "Equals true if there is digital output."
+    },
+    "extVoltage": {
+      "title": "External voltage",
+      "type": "number",
+      "unit": "V",
+      "desciption": "The external voltage in Volt."
+    },
+    "analogInput": {
+      "title": "Analog input",
+      "type": "number",
+      "unit": "V",
+      "desciption": "Analog input in Volt."
+    }
+  }
+}

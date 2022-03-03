@@ -19,6 +19,7 @@
       "maximum": 65535
     },
     "temperature": {
+      "title": "Temperature",
       "type": "number",
       "description": "The temperature in °C.",
       "unit": "°C",
