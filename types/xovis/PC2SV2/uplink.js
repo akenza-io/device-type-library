@@ -3,22 +3,60 @@ function consume(event) {
 
   if (event.data.live_data !== undefined) {
     // Live data
-    data = { fw: 0, bw: 0 };
     event.data.live_data.frames.forEach((payload) => {
-      // Line crossing
-      const { type } = payload.tracked_objects[0];
-      const direction = payload.events[0].type;
+      const object = payload.tracked_objects[0].type;
+      if (payload.events !== undefined) {
+        payload.events.forEach((ev) => {
+          const { type } = ev;
+          let topic = "default";
+          data = {};
 
-      // Ignore GROUP for now (redundant message)
-      if (type === "PERSON") {
-        if (direction === "LINE_CROSS_FORWARD") {
-          data.fw += 1;
-        } else {
-          data.bw += 1;
-        }
+          // Ignore GROUP for now (redundant message)
+          if (object === "PERSON") {
+            if (type === "LINE_CROSS_FORWARD") {
+              data.bw = 0;
+              data.fw = 1;
+              topic = "line_count";
+            } else if (type === "LINE_CROSS_BACKWARD") {
+              data.bw = 1;
+              data.fw = 0;
+              topic = "line_count";
+            } else if (type === "TRACK_CREATE") {
+              data.trackId = ev.attributes.track_id;
+              data.sequenceNumber = ev.attributes.sequence_number;
+              topic = "track_create";
+            } else if (type === "TRACK_DELETE") {
+              data.trackId = ev.attributes.track_id;
+              data.sequenceNumber = ev.attributes.sequence_number;
+              topic = "track_create";
+            } else if (type === "ZONE_ENTRY") {
+              data.trackId = ev.attributes.track_id;
+              data.sequenceNumber = ev.attributes.sequence_number;
+              data.geometryName = ev.attributes.geometry_name;
+              topic = "zone_entry";
+            } else if (type === "ZONE_EXIT") {
+              data.trackId = ev.attributes.track_id;
+              data.sequenceNumber = ev.attributes.sequence_number;
+              data.geometryName = ev.attributes.geometry_name;
+              topic = "zone_exit";
+            } else if (type === "COUNT_INCREMENT") {
+              data.trackId = ev.attributes.track_id;
+              data.logicName = ev.attributes.logic_name;
+              data.counterValue = ev.attributes.counter_value;
+              topic = "count_increment";
+            } else if (type === "COUNT_DECREMENT") {
+              data.trackId = ev.attributes.track_id;
+              data.logicName = ev.attributes.logic_name;
+              data.counterValue = ev.attributes.counter_value;
+              topic = "count_decrement";
+            }
+            // emit("sample", { data, topic });
+          }
+        });
+      } else {
+        // Possition message, each mf frame
       }
     });
-    emit("sample", { data, topic: "line_count" });
   } else if (event.data.status_data !== undefined) {
     // Status data
     const payload = event.data.status_data.states;
