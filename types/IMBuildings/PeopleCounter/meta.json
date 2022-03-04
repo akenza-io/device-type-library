@@ -1,0 +1,13 @@
+{
+  "name": "People counter",
+  "version": "1.0.0",
+  "manufacturer": "IMBuildings",
+  "url": "https://www.imbuildings.com/lorawan-people-counter/",
+  "description": "The Office Occupancy Counter knows and measures how rooms are used. By measuring traffic in the passageways, occupancy can be clarified and the information used to determine the utilisation of a building or room.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": ["People counting"],
+  "outputTopics": ["default", "totalCounter", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

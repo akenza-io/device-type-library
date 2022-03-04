@@ -11,6 +11,9 @@ All notable changes to this project will be documented in this file.
 - Abeeway - Badge tracker
 - Abeeway - Compact tracker
 - Abeeway - Micro tracker
+- IMBuidlings - Comfort sensor
+- IMBuidlings - Office occupancy counter
+- IMBuidlings - People counter
 
 # [1.12.2] - 2022-03-02
 
