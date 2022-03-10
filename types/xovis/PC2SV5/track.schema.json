@@ -1,0 +1,33 @@
+{
+  "$id": "https://akenza.io/xovis/pc2sv5/track.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Track",
+  "type": "object",
+  "properties": {
+    "trackType": {
+      "title": "Track type",
+      "description": "Describes the track type",
+      "type": "string",
+      "enum": ["TRACK_CREATE", "TRACK_DELETE", "ZONE_ENTRY", "ZONE_EXIT"]
+    },
+    "trackId": {
+      "title": "Track id",
+      "description": "Track id",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    },
+    "sequenceNumber": {
+      "title": "Sequence number",
+      "description": "Sequence number",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    },
+    "geometryName": {
+      "title": "Geometry name",
+      "description": "Geometry name",
+      "type": "string"
+    }
+  }
+}

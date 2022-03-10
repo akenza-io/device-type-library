@@ -22,39 +22,43 @@ function consume(event) {
               data.fw = 0;
               topic = "line_count";
             } else if (type === "TRACK_CREATE") {
+              data.trackType = type;
               data.trackId = ev.attributes.track_id;
               data.sequenceNumber = ev.attributes.sequence_number;
-              topic = "track_create";
+              topic = "track";
             } else if (type === "TRACK_DELETE") {
+              data.trackType = type;
               data.trackId = ev.attributes.track_id;
               data.sequenceNumber = ev.attributes.sequence_number;
-              topic = "track_create";
+              topic = "track";
             } else if (type === "ZONE_ENTRY") {
+              data.trackType = type;
               data.trackId = ev.attributes.track_id;
               data.sequenceNumber = ev.attributes.sequence_number;
               data.geometryName = ev.attributes.geometry_name;
-              topic = "zone_entry";
+              topic = "track";
             } else if (type === "ZONE_EXIT") {
+              data.trackType = type;
               data.trackId = ev.attributes.track_id;
               data.sequenceNumber = ev.attributes.sequence_number;
               data.geometryName = ev.attributes.geometry_name;
-              topic = "zone_exit";
+              topic = "track";
             } else if (type === "COUNT_INCREMENT") {
-              data.trackId = ev.attributes.track_id;
+              data.countType = type;
               data.logicName = ev.attributes.logic_name;
               data.counterValue = ev.attributes.counter_value;
-              topic = "count_increment";
+              topic = "count";
             } else if (type === "COUNT_DECREMENT") {
-              data.trackId = ev.attributes.track_id;
+              data.countType = type;
               data.logicName = ev.attributes.logic_name;
               data.counterValue = ev.attributes.counter_value;
-              topic = "count_decrement";
+              topic = "count";
             }
-            // emit("sample", { data, topic });
+            emit("sample", { data, topic });
           }
         });
       } else {
-        // Possition message, each mf frame
+        // Here could the positions for each frame get emited
       }
     });
   } else if (event.data.status_data !== undefined) {
@@ -76,9 +80,6 @@ function consume(event) {
 
     payload.forEach((logic) => {
       logic.records.forEach((record) => {
-        const from = new Date(record.from); // Maybe usefull
-        const to = new Date(record.from);
-
         record.counts.forEach((count) => {
           const { value } = count;
 
@@ -93,7 +94,7 @@ function consume(event) {
                 data.fw = 0;
                 data.bw = value;
               }
-              emit("sample", { data, topic: "line_count" }); // Multiple samples or one ? This would be multiple
+              emit("sample", { data, topic: "line_count" });
             } else {
               // Zone
               emit("sample", { data: { peopleInZone: value }, topic: "zone" });
