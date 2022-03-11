@@ -103,7 +103,5 @@ function consume(event) {
         });
       });
     });
-
-    emit("sample", { data, topic: "line_count" });
   }
 }

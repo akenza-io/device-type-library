@@ -700,18 +700,6 @@ describe("Xovis V5 Uplink", () => {
         validate(value.data, lineCountSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "line_count");
-        assert.equal(value.data.fw, 1);
-        assert.equal(value.data.bw, 0);
-
-        validate(value.data, lineCountSchema, { throwError: true });
-      });
-
       consume(data);
     });
 
