@@ -1,0 +1,29 @@
+{
+  "$id": "https://akenza.io/imbuildings/peopleCounter/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "deviceStatus": {
+      "title": "Device status",
+      "type": "integer",
+      "description": "Device status"
+    },
+    "voltage": {
+      "title": "Battery voltage",
+      "type": "number",
+      "unit": "V",
+      "desciption": "The battery voltage in Volt."
+    },
+    "sensorStatus": {
+      "title": "Sensor status",
+      "type": "integer",
+      "description": "Sensor status"
+    },
+    "payloadCounter": {
+      "title": "Payload counter",
+      "type": "integer",
+      "description": "Payload counter"
+    }
+  }
+}

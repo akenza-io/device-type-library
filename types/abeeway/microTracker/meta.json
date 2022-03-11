@@ -1,0 +1,25 @@
+{
+  "name": "Micro Tracker",
+  "version": "1.0.0",
+  "manufacturer": "Abeeway",
+  "url": "https://www.abeeway.com/micro-tracker/",
+  "description": "A multi-mode tracker with embedded sensors combining multi-constellation GNSS, Low-power GPS, Wi-Fi Sniffer, BLE and LoRaWAN®TDoA geolocation technologies, for seamless outdoor and indoor geolocation.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.9.1",
+  "loraDeviceClass": "A",
+  "availableSensors": ["GPS"],
+  "outputTopics": [
+    "activity_status",
+    "angle_detection",
+    "ble",
+    "gps",
+    "lifecycle",
+    "operation_status",
+    "shocks",
+    "side_operation",
+    "configuration",
+    "wifi"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
