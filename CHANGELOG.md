@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.14.0] - 2022-03-11
+
+### Added
+
+- Xovis - PC2SV5
+
 # [1.13.0] - 2022-03-03
 
 ### Added
