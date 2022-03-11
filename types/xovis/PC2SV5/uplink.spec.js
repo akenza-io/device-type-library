@@ -55,11 +55,6 @@ describe("Xovis V5 Uplink", () => {
               id: 150,
               agent_id: 1005,
             },
-            sensor_info: {
-              serial_number: "80:1F:12:D5:30:DC",
-              type: "SINGLE_SENSOR",
-              timezone: "Europe/Zurich",
-            },
             frames: [
               {
                 framenumber: 4137403,
@@ -115,22 +110,8 @@ describe("Xovis V5 Uplink", () => {
               id: 1,
               agent_id: 1006,
             },
-            sensor_info: {
-              serial_number: "80:1F:12:D5:30:DC",
-            },
             states: {
               device: {
-                info: {
-                  fw_version: "5.0.3-9738700b2d",
-                  hw_bom_rev: "G",
-                  hw_id: "5",
-                  hw_pcb_rev: "E",
-                  hw_prod_rev: "AD",
-                  prod_code: "PC2SUL",
-                  serial: "80:1F:12:D5:30:DC",
-                  type: "PC2S",
-                  variant: "",
-                },
                 state: {
                   details: {
                     temperatures: {
@@ -158,33 +139,7 @@ describe("Xovis V5 Uplink", () => {
               },
               network: {
                 state: {
-                  details: {
-                    ipv4: {
-                      address: "192.168.0.94",
-                      dhcp_enabled: true,
-                      dhcp_state: "bound",
-                      dns_entries: ["192.168.0.1"],
-                      fallback_enabled: true,
-                      gateway: "192.168.0.1",
-                      netmask: "255.255.255.0",
-                    },
-                    ipv6: {
-                      addresses: [],
-                      dns_entries: [],
-                      gateways: [],
-                    },
-                    link: {
-                      mac: "80:1F:12:D5:30:DC",
-                      mtu: 1500,
-                      rx_dropped: 1789,
-                      rx_errors: 0,
-                      rx_frame_errors: 0,
-                      rx_over_errors: 0,
-                      rx_packets: 274141,
-                      tx_errors: 0,
-                      tx_packets: 75716,
-                    },
-                  },
+                  details: {},
                   state: "OK",
                 },
                 remotes: {
@@ -224,274 +179,7 @@ describe("Xovis V5 Uplink", () => {
                 },
                 data: {
                   push: {
-                    agents: {
-                      status: {
-                        agent_states: [
-                          {
-                            id: 1000,
-                            name: "Migrated events push (id 0)",
-                            package_info: {
-                              last_processed: {
-                                ack: true,
-                                index: 4139005,
-                                package_id: 932465,
-                              },
-                              no_of_dropped: 1256,
-                              no_of_sent: 556,
-                            },
-                            transmit_info: {
-                              last_failed: {
-                                port: 443,
-                                reason: {
-                                  code: 6,
-                                  info: "Could not resolve host: data-gateway.akenza.io",
-                                },
-                                server:
-                                  "https://data-gateway.akenza.io/v3/capture?secret=u84wkakwh9c7krw0xap3kvr2ngi87s52&deviceId=6F898A9E151CE490&topic=default",
-                                time: "2022-02-24T13:19:55.460+01:00",
-                              },
-                              last_successful: {
-                                port: 443,
-                                reason: {
-                                  code: 200,
-                                  info: "OK",
-                                },
-                                server:
-                                  "https://data-gateway.akenza.io/v3/capture?secret=u84wkakwh9c7krw0xap3kvr2ngi87s52&deviceId=6F898A9E151CE490&topic=default",
-                                time: "2022-02-25T10:19:54.655+01:00",
-                              },
-                              no_of_failed: 9146,
-                              no_of_successful: 556,
-                            },
-                            type: "LEGACY_EVENT",
-                          },
-                          {
-                            id: 1001,
-                            name: "Migrated events push (id 1)",
-                            package_info: {
-                              last_processed: {
-                                ack: true,
-                                index: 4139005,
-                                package_id: 932465,
-                              },
-                              no_of_dropped: 1265,
-                              no_of_sent: 556,
-                            },
-                            transmit_info: {
-                              last_failed: {
-                                port: 443,
-                                reason: {
-                                  code: 6,
-                                  info: "Could not resolve host: data-gateway.core.akenza.io",
-                                },
-                                server:
-                                  "https://data-gateway.core.akenza.io/v2/up/90ab12d26d0f1453e84cea5e00ae2684?id=xovisnewoffice",
-                                time: "2022-02-24T13:20:02.612+01:00",
-                              },
-                              last_successful: {
-                                port: 443,
-                                reason: {
-                                  code: 200,
-                                  info: "OK",
-                                },
-                                server:
-                                  "https://data-gateway.core.akenza.io/v2/up/90ab12d26d0f1453e84cea5e00ae2684?id=xovisnewoffice",
-                                time: "2022-02-25T10:19:55.160+01:00",
-                              },
-                              no_of_failed: 9165,
-                              no_of_successful: 556,
-                            },
-                            type: "LEGACY_EVENT",
-                          },
-                          {
-                            id: 1002,
-                            name: "Migrated events push (id 2)",
-                            package_info: {
-                              last_processed: {
-                                ack: true,
-                                index: 4139005,
-                                package_id: 932465,
-                              },
-                              no_of_dropped: 1264,
-                              no_of_sent: 556,
-                            },
-                            transmit_info: {
-                              last_failed: {
-                                port: 443,
-                                reason: {
-                                  code: 6,
-                                  info: "Could not resolve host: enhtd18ajzys.x.pipedream.net",
-                                },
-                                server: "https://enhtd18ajzys.x.pipedream.net",
-                                time: "2022-02-24T13:20:01.877+01:00",
-                              },
-                              last_successful: {
-                                port: 443,
-                                reason: {
-                                  code: 200,
-                                  info: "OK",
-                                },
-                                server: "https://enhtd18ajzys.x.pipedream.net",
-                                time: "2022-02-25T10:19:54.770+01:00",
-                              },
-                              no_of_failed: 9165,
-                              no_of_successful: 556,
-                            },
-                            type: "LEGACY_EVENT",
-                          },
-                          {
-                            id: 1003,
-                            name: "Migrated line count data push (id 3)",
-                            package_info: {
-                              last_processed: {
-                                ack: false,
-                                index: 34136,
-                                package_id: 188012,
-                              },
-                              no_of_dropped: 176984,
-                              no_of_sent: 11049,
-                            },
-                            transmit_info: {
-                              last_failed: {
-                                port: 443,
-                                reason: {
-                                  code: 6,
-                                  info: "Could not resolve host: data-gateway.akenza.io",
-                                },
-                                server:
-                                  "https://data-gateway.akenza.io/v3/capture?secret=fv2n9r0fax1huucdrvg1bcw2m401axo6&deviceId=FC86D2BD0A9C4090&topic=default",
-                                time: "2022-02-25T10:54:22.480+01:00",
-                              },
-                              last_successful: {
-                                port: 443,
-                                reason: {
-                                  code: 200,
-                                  info: "OK",
-                                },
-                                server:
-                                  "https://data-gateway.akenza.io/v3/capture?secret=fv2n9r0fax1huucdrvg1bcw2m401axo6&deviceId=FC86D2BD0A9C4090&topic=default",
-                                time: "2022-02-25T11:20:02.719+01:00",
-                              },
-                              no_of_failed: 14825,
-                              no_of_successful: 11049,
-                            },
-                            type: "LEGACY_LINE_COUNT",
-                          },
-                          {
-                            id: 1004,
-                            name: "Migrated events push (id 4)",
-                            package_info: {
-                              last_processed: {
-                                ack: true,
-                                index: 4139005,
-                                package_id: 932465,
-                              },
-                              no_of_dropped: 1267,
-                              no_of_sent: 556,
-                            },
-                            transmit_info: {
-                              last_failed: {
-                                port: 443,
-                                reason: {
-                                  code: 6,
-                                  info: "Could not resolve host: data-gateway.akenza.io",
-                                },
-                                server:
-                                  "https://data-gateway.akenza.io/v3/capture?secret=fv2n9r0fax1huucdrvg1bcw2m401axo6&deviceId=EE26CA3516835D09&topic=default",
-                                time: "2022-02-24T13:19:54.739+01:00",
-                              },
-                              last_successful: {
-                                port: 443,
-                                reason: {
-                                  code: 200,
-                                  info: "OK",
-                                },
-                                server:
-                                  "https://data-gateway.akenza.io/v3/capture?secret=fv2n9r0fax1huucdrvg1bcw2m401axo6&deviceId=EE26CA3516835D09&topic=default",
-                                time: "2022-02-25T10:19:54.654+01:00",
-                              },
-                              no_of_failed: 9165,
-                              no_of_successful: 556,
-                            },
-                            type: "LEGACY_EVENT",
-                          },
-                          {
-                            id: 1005,
-                            name: "akenza.io New Platform Test",
-                            package_info: {
-                              last_processed: {
-                                ack: true,
-                                index: 4139006,
-                                package_id: 152,
-                              },
-                              no_of_dropped: 0,
-                              no_of_sent: 322,
-                            },
-                            transmit_info: {
-                              last_failed: {
-                                port: 0,
-                                reason: {
-                                  code: 0,
-                                  info: "",
-                                },
-                                server: "",
-                                time: "",
-                              },
-                              last_successful: {
-                                port: 443,
-                                reason: {
-                                  code: 200,
-                                  info: "OK",
-                                },
-                                server:
-                                  "https://data-gateway.akenza.io/v3/capture?secret=lhjs7xpq40m0v0wxicn39mebp2nwlwde&deviceId=DD05F85EDD0BE36D&topic=default",
-                                time: "2022-02-25T10:19:54.730+01:00",
-                              },
-                              no_of_failed: 0,
-                              no_of_successful: 322,
-                            },
-                            type: "LIVE_DATA",
-                          },
-                          {
-                            id: 1006,
-                            name: "akenza.io New Platfrom Test",
-                            package_info: {
-                              last_processed: {
-                                ack: true,
-                                index: -1,
-                                package_id: 0,
-                              },
-                              no_of_dropped: 0,
-                              no_of_sent: 0,
-                            },
-                            transmit_info: {
-                              last_failed: {
-                                port: 0,
-                                reason: {
-                                  code: 0,
-                                  info: "",
-                                },
-                                server: "",
-                                time: "",
-                              },
-                              last_successful: {
-                                port: 0,
-                                reason: {
-                                  code: 0,
-                                  info: "",
-                                },
-                                server: "",
-                                time: "",
-                              },
-                              no_of_failed: 0,
-                              no_of_successful: 0,
-                            },
-                            type: "STATUS",
-                          },
-                        ],
-                        last_stored: "2022-02-25T11:19:17.406+01:00",
-                      },
-                    },
+                    agents: {},
                   },
                 },
               },
@@ -535,11 +223,6 @@ describe("Xovis V5 Uplink", () => {
               version: "5.0",
               id: 28,
               agent_id: 1008,
-            },
-            sensor_info: {
-              serial_number: "80:1F:12:D5:30:DC",
-              type: "SINGLE_SENSOR",
-              timezone: "Europe/Zurich",
             },
             logics: [
               {
@@ -711,11 +394,6 @@ describe("Xovis V5 Uplink", () => {
               version: "5.0",
               id: 2,
               agent_id: 1005,
-            },
-            sensor_info: {
-              serial_number: "80:1F:12:D5:30:DC",
-              type: "SINGLE_SENSOR",
-              timezone: "Europe/Zurich",
             },
             frames: [
               {
@@ -982,11 +660,6 @@ describe("Xovis V5 Uplink", () => {
               version: "5.0",
               id: 1,
               agent_id: 1005,
-            },
-            sensor_info: {
-              serial_number: "80:1F:12:D5:30:DC",
-              type: "SINGLE_SENSOR",
-              timezone: "Europe/Zurich",
             },
             frames: [
               {
