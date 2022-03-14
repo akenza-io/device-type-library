@@ -1,0 +1,22 @@
+{
+  "$id": "https://akenza.io/xovis/pc2sv5/line_count.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Line count",
+  "type": "object",
+  "properties": {
+    "fw": {
+      "title": "Forward",
+      "description": "People moving forward",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    },
+    "bw": {
+      "title": "Backward",
+      "description": "People moving backwards",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    }
+  }
+}

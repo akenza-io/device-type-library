@@ -1,0 +1,26 @@
+{
+  "$id": "https://akenza.io/xovis/pc2sv5/count.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Count",
+  "type": "object",
+  "properties": {
+    "countType": {
+      "title": "Count type",
+      "description": "Describes the count type",
+      "type": "string",
+      "enum": ["COUNT_INCREMENT", "COUNT_DECREMENT"]
+    },
+    "logicName": {
+      "title": "Logic name",
+      "description": "Logic name",
+      "type": "string"
+    },
+    "counterValue": {
+      "title": "Counter value",
+      "description": "Counter value",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    }
+  }
+}

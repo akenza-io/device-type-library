@@ -1,0 +1,13 @@
+{
+  "name": "PC2S V5",
+  "version": "1.0.0",
+  "manufacturer": "Xovis",
+  "url": "https://www.xovis.com/en/products/detail/pc2s/",
+  "description": "Xovis PC2S is a high-precision stereo camera for people counting of the second generation matching the DSGVO. It offers the possibility of evaluating 99 counting lines and 99 counting zones for each sensor. Several meters can simply be interconnected to cover larger areas. The counting works independently, no PC is required for operation.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V5.0.0",
+  "availableSensors": ["People Counting"],
+  "outputTopics": ["count", "lifecycle", "line_count", "track", "zone"],
+  "encoding": "JSON",
+  "connectivity": "HTTP"
+}

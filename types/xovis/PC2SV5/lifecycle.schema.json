@@ -1,0 +1,43 @@
+{
+  "$id": "https://akenza.io/xovis/pc2sv5/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "deviceStatus": {
+      "title": "Device status",
+      "type": "string",
+      "description": "Device status",
+      "enum": ["OK", "NOT_OK"]
+    },
+    "multisensor": {
+      "title": "Multisensor",
+      "description": "Is the sensor a multisensor ?",
+      "type": "boolean"
+    },
+    "networkStatus": {
+      "title": "Network status",
+      "type": "string",
+      "description": "Network status",
+      "enum": ["OK", "NOT_OK"]
+    },
+    "singleSensorIllumination": {
+      "title": "Illumination",
+      "type": "string",
+      "description": "Illumination status",
+      "enum": ["SUFFICIENT", "NOT_SUFFICIENT"]
+    },
+    "timeStatus": {
+      "title": "Time status",
+      "type": "string",
+      "description": "Time status",
+      "enum": ["OK", "NOT_OK"]
+    },
+    "updateStatus": {
+      "title": "Update status",
+      "type": "string",
+      "description": "Update status",
+      "enum": ["OK", "NOT_OK"]
+    }
+  }
+}
