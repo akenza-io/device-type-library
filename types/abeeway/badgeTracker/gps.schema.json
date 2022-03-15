@@ -55,12 +55,6 @@
       "unit": "cm/s",
       "type": "number",
       "description": "The speed the tracker is moving over the ground. It is expressed in cm/second."
-    },
-    "timeoutCause": {
-      "title": "Timeout cause",
-      "description": "Timeout cause",
-      "type": "string",
-      "enum": ["DEFAULT_TIMEOUT", "GPS_T0_TIMEOUT", "GPS_FIX_TIMEOUT"]
     }
   }
 }
