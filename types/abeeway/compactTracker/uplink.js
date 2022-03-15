@@ -224,8 +224,7 @@ function consume(event) {
           const gpsTimeout = getGPSTimeout(bits.substr(40, 40));
           Object.assign(data, gpsTimeout);
 
-          data.gpsMessage = "GPS_TIMEOUT";
-          topic = "gps";
+          topic = "gps_timeout";
           break;
         }
         case 2:

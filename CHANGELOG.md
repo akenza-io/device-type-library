@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.15.0] - 2022-03-15
+
+### Removed
+
+- Swisscom - Multisense depricated devicetypes
+
+### Changed
+
+- Abeeway - Trackers new topic for gps failed
+- Abeeway - Trackers changed meta
+- IMBuildings - Counters changed meta
+
 # [1.14.0] - 2022-03-11
 
 ### Added

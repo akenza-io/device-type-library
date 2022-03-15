@@ -1,0 +1,38 @@
+{
+  "$id": "https://akenza.io/abeeway/badgeTracker/gps_timeout.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GPS Timeout",
+  "type": "object",
+  "properties": {
+    "cn0": {
+      "title": "Carrier 1 over noise",
+      "unit": "dBm",
+      "type": "number",
+      "description": "Carrier over noise (dBm) for the first satellite seen."
+    },
+    "cn1": {
+      "title": "Carrier 2 over noise",
+      "unit": "dBm",
+      "type": "number",
+      "description": "Carrier over noise (dBm) for the second satellite seen."
+    },
+    "cn2": {
+      "title": "Carrier 3 over noise",
+      "unit": "dBm",
+      "type": "number",
+      "description": "Carrier over noise (dBm) for the third satellite seen."
+    },
+    "cn3": {
+      "title": "Carrier 4 over noise",
+      "unit": "dBm",
+      "type": "number",
+      "description": "Carrier over noise (dBm) for the fourth satellite seen."
+    },
+    "timeoutCause": {
+      "title": "Timeout cause",
+      "description": "Timeout cause",
+      "type": "string",
+      "enum": ["DEFAULT_TIMEOUT", "GPS_T0_TIMEOUT", "GPS_FIX_TIMEOUT"]
+    }
+  }
+}
