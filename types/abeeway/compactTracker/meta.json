@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Abeeway",
   "url": "https://www.abeeway.com/compact-tracker/",
-  "description": "A multi-mode  tracker  with  embedded  sensors  combining  GPS,  Low-power  GPS,  Wi-Fi  Sniffer,  BLE  and  LoRaWAN TDoA  geolocation  technologies, supporting accurate outdoor & indoor geolocation. Compact and robust form factor, designed to resist harsh surroundings.",
+  "description": "A multi-mode tracker with embedded sensors combining GPS, Low-power GPS, Wi-Fi Sniffer, BLE and LoRaWAN TDoA geolocation technologies, supporting accurate outdoor & indoor geolocation. Compact and robust form factor, designed to resist harsh surroundings.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.2.0",
   "loraDeviceClass": "A",
