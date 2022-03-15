@@ -8,7 +8,7 @@
       "title": "GPS Message",
       "description": "Flag that describes the following values",
       "type": "string",
-      "enum": ["GPS_FIX", "GPS_FIX_EXTENDED", "GPS_TIMEOUT"]
+      "enum": ["GPS_FIX", "GPS_FIX_EXTENDED"]
     },
     "age": {
       "title": "Age",
@@ -61,30 +61,6 @@
       "description": "Timeout cause",
       "type": "string",
       "enum": ["DEFAULT_TIMEOUT", "GPS_T0_TIMEOUT", "GPS_FIX_TIMEOUT"]
-    },
-    "cn0": {
-      "title": "Carrier 1 over noise",
-      "unit": "dBm",
-      "type": "number",
-      "description": "Carrier over noise (dBm) for the first satellite seen."
-    },
-    "cn1": {
-      "title": "Carrier 2 over noise",
-      "unit": "dBm",
-      "type": "number",
-      "description": "Carrier over noise (dBm) for the second satellite seen."
-    },
-    "cn2": {
-      "title": "Carrier 3 over noise",
-      "unit": "dBm",
-      "type": "number",
-      "description": "Carrier over noise (dBm) for the third satellite seen."
-    },
-    "cn3": {
-      "title": "Carrier 4 over noise",
-      "unit": "dBm",
-      "type": "number",
-      "description": "Carrier over noise (dBm) for the fourth satellite seen."
     }
   }
 }
