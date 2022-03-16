@@ -45,12 +45,12 @@ function consume(event) {
     }
     // PIR
     else if (channelId === 0x05 && channelType === 0x00) {
-      decoded.pir = bytes[i] === 1 ? "trigger" : "idle";
+      decoded.pir = bytes[i] === 1 ? "TRIGGER" : "IDLE";
       i += 1;
     }
     // LIGHT
     else if (channelId === 0x06 && channelType === 0xcb) {
-      decoded.lightLevel = bytes[i];
+      decoded.light = bytes[i];
       i += 1;
     }
     // CO2
