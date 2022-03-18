@@ -1,0 +1,14 @@
+{
+  "name": "WS101",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight-iot.com/lorawan/button/ws101/",
+  "description": "Smart button sensor.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.1.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Button"],
+  "outputTopics": ["button_pressed", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
