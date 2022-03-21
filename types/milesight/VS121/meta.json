@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight-iot.com/lorawan/sensor/vs121/",
-  "description": "AI workplace sensor",
+  "description": "AI powered sensor for anonymous people counting and measuring workspace utilization.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "C",
-  "availableSensors": ["Temperature", "Humidity", "PIR", "Light"],
-  "outputTopics": ["default", "lifecycle"],
+  "availableSensors": ["Occupancy"],
+  "outputTopics": ["count", "people", "people_max", "lifecycle"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

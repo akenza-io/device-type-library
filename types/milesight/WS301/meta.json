@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight-iot.com/lorawan/sensor/ws301/",
-  "description": "Magnetic contact switch.",
+  "description": "Device to be mounted on any doors or windows to detect an opening or closing event. It adds physical security monitoring to a location by warning of intrusion or unauthorized entry.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.6.0",
   "loraDeviceClass": "A",
-  "availableSensors": ["Door"],
+  "availableSensors": ["Reed"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
   "connectivity": "LORA"

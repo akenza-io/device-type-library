@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight-iot.com/lorawan/button/ws101/",
-  "description": "Smart button sensor.",
+  "description": "Smart button with multiple press actions for generating alerts. Collaborative interaction with Milesight IoT sensors to trigger actions intelligently.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.1.0",
   "loraDeviceClass": "A",
