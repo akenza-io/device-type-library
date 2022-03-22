@@ -1,0 +1,50 @@
+{
+  "$id": "https://akenza.io/xovis/VS121/count.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Count",
+  "type": "object",
+  "properties": {
+    "peopleCounterAll": {
+      "title": "People counter all",
+      "description": "People counter all",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    },
+    "regionCount": {
+      "title": "Region count",
+      "description": "Region count",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    },
+    "region0": {
+      "title": "Region 0 count",
+      "description": "Region 0 count",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    },
+    "region1": {
+      "title": "Region 1 count",
+      "description": "Region 1 count",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    },
+    "region2": {
+      "title": "Region 2 count",
+      "description": "Region 2 count",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    },
+    "region3": {
+      "title": "Region 3 count",
+      "description": "Region 3 count",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    }
+  }
+}

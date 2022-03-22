@@ -1,0 +1,14 @@
+{
+  "$id": "https://akenza.io/milesight/WS101/button_pressed.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Button pressed",
+  "type": "object",
+  "properties": {
+    "press": {
+      "title": "Button pressed type",
+      "description": "Button pressed type",
+      "type": "string",
+      "enum": ["SHORT", "LONG", "DOUBLE", "NOT_VALID"]
+    }
+  }
+}

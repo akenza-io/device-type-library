@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/milesight/AM104/lifecycle.schema.json",
+  "$id": "https://akenza.io/milesight/WS202/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Lifecycle",
   "type": "object",

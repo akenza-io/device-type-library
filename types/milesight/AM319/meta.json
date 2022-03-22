@@ -1,0 +1,26 @@
+{
+  "name": "AM319",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight-iot.com/lorawan/sensor/am300/",
+  "description": "AM319 is a compact indoor ambience monitoring sensor for measurement of multiple environmental conditions. Values are shown on the E-ink screen in real-time that allows to quantify the indoor environment and comfort.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "PIR",
+    "Light",
+    "TVOC",
+    "Pressure",
+    "CO2",
+    "PM 2.5",
+    "PM 10",
+    "Formaldehyde",
+    "Ozone"
+  ],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

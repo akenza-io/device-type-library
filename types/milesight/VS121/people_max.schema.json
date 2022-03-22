@@ -1,0 +1,15 @@
+{
+  "$id": "https://akenza.io/xovis/VS121/people_max.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "People max",
+  "type": "object",
+  "properties": {
+    "peopleMax": {
+      "title": "People max",
+      "description": "People max",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    }
+  }
+}

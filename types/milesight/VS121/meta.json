@@ -1,0 +1,14 @@
+{
+  "name": "VS121",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight-iot.com/lorawan/sensor/vs121/",
+  "description": "AI powered sensor for anonymous people counting and measuring workspace utilization.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "C",
+  "availableSensors": ["Occupancy"],
+  "outputTopics": ["count", "people", "people_max", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
