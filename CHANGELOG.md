@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.16.0] - 2022-03-22
+
+### Added
+
+- Milesight - AM319
+- Milesight - EM300-ZLD
+- Milesight - VS121
+- Milesight - WS101
+- Milesight - WS202
+- Milesight - WS301
+
 # [1.15.0] - 2022-03-15
 
 ### Removed

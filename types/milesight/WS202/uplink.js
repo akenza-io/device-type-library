@@ -25,7 +25,7 @@ function consume(event) {
     }
     // PIR
     else if (channelId === 0x03 && channelType === 0x00) {
-      data.pir = Number(bytes[i]);
+      data.pir = bytes[i];
       i += 1;
     }
     // DAYLIGHT
