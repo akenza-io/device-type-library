@@ -7,13 +7,14 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [
-    "Occupancy",
     "Temperature",
-    "CO2"
+    "Humidity",
+    "CO2",
+    "Noise",
+    "Light",
+    "Occupancy"
   ],
-  "outputTopics": [
-    "default"
-  ],
+  "outputTopics": ["default"],
   "encoding": "JSON",
   "connectivity": "HTTP"
 }

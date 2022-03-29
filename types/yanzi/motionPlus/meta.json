@@ -6,13 +6,7 @@
   "description": "This device monitors occupancy as well as temperature, humidity, and ambient light. Easily mounted directly onto surfaces, no drilling required.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
-  "availableSensors": [
-    "Occupancy",
-    "Temperature",
-    "Humidity",
-    "Light",
-    "Sound"
-  ],
+  "availableSensors": ["Motion", "Temperature", "Humidity", "Light", "Sound"],
   "outputTopics": ["occupancy", "light", "temperature", "humidity", "sound"],
   "encoding": "JSON",
   "connectivity": "HTTP"

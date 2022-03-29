@@ -10,13 +10,6 @@
       "type": "integer",
       "minimum": 0,
       "maximum": 65535
-    },
-    "occupancy": {
-      "title": "Occupancy",
-      "description": "If motion is bigger than one this is occupied.",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 1
     }
   }
 }

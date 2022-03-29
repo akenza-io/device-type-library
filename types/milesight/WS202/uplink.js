@@ -38,5 +38,5 @@ function consume(event) {
   }
 
   emit("sample", { data: lifecycle, topic: "lifecycle" });
-  emit("sample", { data, topic: "button_pressed" });
+  emit("sample", { data, topic: "defaul" });
 }

@@ -4,11 +4,6 @@
   "title": "Default",
   "type": "object",
   "properties": {
-    "occupied": {
-      "title": "Occupancy",
-      "description": "Space occupancy. false = Unoccupied / true = Occupied.",
-      "type": "boolean"
-    },
     "temperature": {
       "title": "Temperature",
       "unit": "°C",
@@ -17,6 +12,14 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     },
+    "humidity": {
+      "title": "Humidity",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %",
+      "minimum": 0,
+      "maximum": 100
+    },
     "co2": {
       "title": "CO2",
       "unit": "ppm",
@@ -24,6 +27,25 @@
       "description": "Carbon Dioxide in ppm",
       "minimum": 0,
       "maximum": 10000
+    },
+    "noise": {
+      "title": "Noise",
+      "unit": "dBA",
+      "description": "Average value of the sound pressure level in decibel",
+      "type": "number",
+      "minimum": 20,
+      "maximum": 120
+    },
+    "illuminance": {
+      "title": "Light",
+      "type": "number",
+      "unit": "lux",
+      "description": "Light value"
+    },
+    "occupancy": {
+      "title": "Occupancy",
+      "description": "Space occupancy. false = Unoccupied / true = Occupied.",
+      "type": "boolean"
     }
   }
 }

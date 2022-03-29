@@ -55,7 +55,7 @@ describe("WS301 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.data.open, true);
-        assert.equal(value.data.install, false);
+        assert.equal(value.data.installed, false);
 
         validate(value.data, defaultSchema, { throwError: true });
       });

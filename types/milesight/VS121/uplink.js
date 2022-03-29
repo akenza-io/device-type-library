@@ -14,14 +14,14 @@ function readUInt16BE(bytes) {
   return value & 0xffff;
 }
 
-function readInt16LE(bytes) {
-  const ref = readUInt16LE(bytes);
-  return ref > 0x7fff ? ref - 0x10000 : ref;
-}
-
 function readUInt16LE(bytes) {
   const value = (bytes[1] << 8) + bytes[0];
   return value & 0xffff;
+}
+
+function readInt16LE(bytes) {
+  const ref = readUInt16LE(bytes);
+  return ref > 0x7fff ? ref - 0x10000 : ref;
 }
 
 // bytes to version
@@ -40,6 +40,10 @@ function readString(bytes) {
     temp.push(`0${(bytes[idx] & 0xff).toString(16)}`.slice(-2));
   }
   return temp.join("");
+}
+
+function isEmpty(obj) {
+  return Object.keys(obj).length === 0;
 }
 
 function consume(event) {
@@ -106,5 +110,7 @@ function consume(event) {
     }
   }
 
-  emit("sample", { data: decoded, topic });
+  if (!isEmpty(decoded)) {
+    emit("sample", { data: decoded, topic });
+  }
 }

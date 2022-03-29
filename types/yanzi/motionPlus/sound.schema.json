@@ -8,7 +8,7 @@
       "title": "Sound pressure",
       "unit": "dBA",
       "type": "number",
-      "description": "The temperature in °C.",
+      "description": "Sound pressure in dBA.",
       "minimum": 38,
       "maximum": 90
     }

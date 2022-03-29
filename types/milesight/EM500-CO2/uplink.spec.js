@@ -45,10 +45,8 @@ describe("EM500-CO2 Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic === "lifecycle") {
-          assert.equal(value.data.batteryLevel, 100);
-          validate(value.data, lifecycleSchema, { throwError: true });
-        }
+        assert.equal(value.data.batteryLevel, 100);
+        validate(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -56,14 +54,12 @@ describe("EM500-CO2 Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic === "default") {
-          assert.equal(value.data.temperature, 27.2);
-          assert.equal(value.data.humidity, 56.5);
-          assert.equal(value.data.co2, 1127);
-          assert.equal(value.data.pressure, 1008.8);
+        assert.equal(value.data.temperature, 27.2);
+        assert.equal(value.data.humidity, 56.5);
+        assert.equal(value.data.co2, 1127);
+        assert.equal(value.data.pressure, 1008.8);
 
-          validate(value.data, defaultSchema, { throwError: true });
-        }
+        validate(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
