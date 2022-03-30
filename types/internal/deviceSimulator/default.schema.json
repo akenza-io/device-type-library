@@ -42,8 +42,8 @@
       "unit": "lux",
       "description": "Light value"
     },
-    "occupancy": {
-      "title": "Occupancy",
+    "occupied": {
+      "title": "Occupied",
       "description": "Space occupancy. false = Unoccupied / true = Occupied.",
       "type": "boolean"
     }
