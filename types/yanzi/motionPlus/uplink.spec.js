@@ -123,7 +123,6 @@ describe("Yanzi Motion Plus Sensor Uplink", () => {
 
         assert.equal(value.topic, "occupancy");
         assert.equal(value.data.motion, 7875);
-        assert.equal(value.data.occupancy, 1);
 
         validate(value.data, occupancySchema, { throwError: true });
       });

@@ -18,6 +18,10 @@ function readInt16LE(bytes) {
   return ref > 0x7fff ? ref - 0x10000 : ref;
 }
 
+function isEmpty(obj) {
+  return Object.keys(obj).length === 0;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bytes = parseHexString(payload);
@@ -97,5 +101,11 @@ function consume(event) {
     }
   }
 
-  emit("sample", { data: decoded, topic: "default" });
+  if (!isEmpty(lifecycle)) {
+    emit("sample", { data: lifecycle, topic: "lifecycle" });
+  }
+
+  if (!isEmpty(decoded)) {
+    emit("sample", { data: decoded, topic: "default" });
+  }
 }

@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.16.1] - 2022-03-30
+
+### Changed
+
+- Milesight - Ignoring empty payloads
+- Akenza - Device simulator
+- Yanzi - Took out occupancy & updated noise schema
+
 # [1.16.0] - 2022-03-22
 
 ### Added

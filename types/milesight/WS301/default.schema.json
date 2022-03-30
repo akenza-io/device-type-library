@@ -9,9 +9,9 @@
       "description": "Status of the tab. open = true, closed = false",
       "type": "boolean"
     },
-    "install": {
-      "title": "Install",
-      "description": "Installed either true or false",
+    "installed": {
+      "title": "Installed",
+      "description": "Sensor Installation status",
       "type": "boolean"
     }
   }

@@ -8,6 +8,10 @@ function parseHexString(str) {
   return result;
 }
 
+function isEmpty(obj) {
+  return Object.keys(obj).length === 0;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bytes = parseHexString(payload);
@@ -28,15 +32,20 @@ function consume(event) {
       data.open = !!bytes[i];
       i += 1;
     }
-    //
+    // Button installed
     else if (channelId === 0x04 && channelType === 0x00) {
-      data.install = !bytes[i];
+      data.installed = !bytes[i];
       i += 1;
     } else {
       break;
     }
   }
 
-  emit("sample", { data: lifecycle, topic: "lifecycle" });
-  emit("sample", { data, topic: "button_pressed" });
+  if (!isEmpty(lifecycle)) {
+    emit("sample", { data: lifecycle, topic: "lifecycle" });
+  }
+
+  if (!isEmpty(data)) {
+    emit("sample", { data, topic: "default" });
+  }
 }
