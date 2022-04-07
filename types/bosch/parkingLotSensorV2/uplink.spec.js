@@ -60,5 +60,39 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
 
       consume(data);
     });
+
+    it("should decode the Bosch Parking Lot Sensor lifecycle payload", () => {
+      const data = {
+        data: {
+          port: 3,
+          payloadHex: "0a000000970320cd000200000027020300",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.debug, "Payload hex:0A000000970320CD0002");
+        assert.equal(value.data.fwVersion, "0.39.2");
+        assert.equal(value.data.resetCause, "SYSTEM_REQUEST_RESET");
+
+        validate(value.data, occupancySchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "occupancy");
+        assert.equal(value.data.occupancy, 1);
+        validate(value.data, occupancySchema, { throwError: true });
+      });
+
+      consume(data);
+    });
   });
 });

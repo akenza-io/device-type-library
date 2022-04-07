@@ -1,0 +1,14 @@
+{
+  "name": "Tundra",
+  "version": "1.0.0",
+  "manufacturer": "Tektelic",
+  "url": "https://tektelic.com/catalog/cold-room-storage-monitoring-solution",
+  "description": "Ideal for maintaining optimal and consistent temperatures within cold rooms and refrigerated areas. Applications include food and pharmaceutical storage, where safeguarding the integrity, quality, and safety of products is vital.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Humidity"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
