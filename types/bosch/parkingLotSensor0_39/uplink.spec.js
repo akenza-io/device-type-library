@@ -19,6 +19,16 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
       });
   });
 
+  let startUpSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/start_up.schema.json`)
+      .then((parsedSchema) => {
+        startUpSchema = parsedSchema;
+        done();
+      });
+  });
+
   describe("consume()", () => {
     it("should decode the Bosch Parking Lot Sensor payload", () => {
       const data = {
@@ -61,7 +71,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
       consume(data);
     });
 
-    it("should decode the Bosch Parking Lot Sensor lifecycle payload", () => {
+    it("should decode the Bosch Parking Lot Sensor start_up payload", () => {
       const data = {
         data: {
           port: 3,
@@ -74,22 +84,12 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.topic, "start_up");
         assert.equal(value.data.debug, "Payload hex:0A000000970320CD0002");
         assert.equal(value.data.fwVersion, "0.39.2");
         assert.equal(value.data.resetCause, "SYSTEM_REQUEST_RESET");
 
-        validate(value.data, occupancySchema, { throwError: true });
-      });
-
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "occupancy");
-        assert.equal(value.data.occupancy, 1);
-        validate(value.data, occupancySchema, { throwError: true });
+        validate(value.data, startUpSchema, { throwError: true });
       });
 
       consume(data);
