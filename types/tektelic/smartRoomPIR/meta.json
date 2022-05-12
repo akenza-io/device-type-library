@@ -1,0 +1,14 @@
+{
+  "name": "Smart Room PIR",
+  "version": "1.0.0",
+  "manufacturer": "Tektelic",
+  "url": "https://tektelic.com/catalog/smart-room-lorawan-sensor-pir",
+  "description": "Ideal for holistically monitoring the home and office environment, whether it is measuring and reporting temperature, humidity, open/closed doors and windows, pir/occupancy or other custom features.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Humidity", "Reed", "Occupancy"],
+  "outputTopics": ["default", "occupancy", "reed", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

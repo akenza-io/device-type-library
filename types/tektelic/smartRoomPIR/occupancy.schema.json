@@ -1,0 +1,22 @@
+{
+  "$id": "https://akenza.io/tektelic/smartRoomSensorPIR/occupancy.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Occupancy",
+  "type": "object",
+  "properties": {
+    "motion": {
+      "title": "Motion",
+      "description": "The number of motion counts.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "occupancy": {
+      "title": "Occupancy",
+      "description": "Space occupancy. 0 = Unoccupied / 1 = Occupied.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1
+    }
+  }
+}

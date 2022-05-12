@@ -1,0 +1,18 @@
+{
+  "$id": "https://akenza.io/tektelic/smartRoomSensorBase/reed.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Reed",
+  "type": "object",
+  "properties": {
+    "reedCount": {
+      "title": "Reed count",
+      "type": "integer",
+      "description": "Reed count over all events."
+    },
+    "open": {
+      "title": "Open",
+      "type": "boolean",
+      "description": "True if reed has no contact."
+    }
+  }
+}
