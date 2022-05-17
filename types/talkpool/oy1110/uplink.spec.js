@@ -66,5 +66,54 @@ describe("Talkpool OY1110 Uplink", () => {
 
       consume(data);
     });
+
+    describe("consume()", () => {
+      it("should decode the Talkpool OY1110 report uplink", () => {
+        const data = {
+          data: {
+            port: 2,
+            payloadHex: "4424ee",
+          },
+        };
+
+        utils.expectEmits((type, value) => {
+          assert.equal(type, "sample");
+          assert.isNotNull(value);
+          assert.typeOf(value.data, "object");
+
+          assert.equal(value.topic, "default");
+          assert.equal(value.data.temperature, 30.2);
+          assert.equal(value.data.humidity, 34);
+
+          validate(value.data, defaultSchema, { throwError: true });
+        });
+
+        consume(data);
+      });
+    });
+
+    describe("consume()", () => {
+      it("should decode the Talkpool OY1110 uplink", () => {
+        const data = {
+          data: {
+            port: 1,
+            payloadHex: "012000",
+          },
+        };
+
+        utils.expectEmits((type, value) => {
+          assert.equal(type, "sample");
+          assert.isNotNull(value);
+          assert.typeOf(value.data, "object");
+
+          assert.equal(value.topic, "startup");
+          assert.equal(value.data.message, "STARTUP_OK");
+
+          validate(value.data, defaultSchema, { throwError: true });
+        });
+
+        consume(data);
+      });
+    });
   });
 });

@@ -4,6 +4,14 @@ function consume(event) {
   const data = {};
   let dataBytes = Buffer.from(payload, "hex");
 
+  if (port === 1) {
+    if (payload === "012000") {
+      data.message = "STARTUP_OK";
+    } else {
+      data.message = "STARTUP_FAIL";
+    }
+    emit("sample", { data, topic: "startup" });
+  }
   if (port === 2 || port === 3) {
     if (port === 3) {
       dataBytes = dataBytes.slice(1, dataBytes.length);
