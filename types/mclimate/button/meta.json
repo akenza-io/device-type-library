@@ -1,5 +1,5 @@
 {
-  "name": "Multipurpose Button",
+  "name": "Button",
   "version": "1.0.0",
   "manufacturer": "MClimate",
   "url": "https://mclimate.eu/bg/products/mclimate-button-lorawan",
@@ -7,7 +7,7 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": ["Flood detection", "Temperature"],
+  "availableSensors": ["Button", "Temperature"],
   "outputTopics": ["default"],
   "encoding": "HEX",
   "connectivity": "LORA"
