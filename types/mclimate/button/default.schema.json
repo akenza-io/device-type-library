@@ -4,12 +4,13 @@
   "title": "Default",
   "type": "object",
   "properties": {
-    "pressEvent": {
+    "buttonPressed": {
       "title": "Press event",
       "description": "Press event",
-      "type": "string"
+      "type": "string",
+      "enum": ["NO_PRESS", "SINGLE_PRESS", "DOUBLE_PRESS", "TRIPLE_PRESS"]
     },
-    "batteryVoltage": {
+    "baterryVoltage": {
       "type": "number",
       "minimum": 0,
       "maximum": 24,
@@ -17,7 +18,7 @@
       "desciption": "The battery voltage in Volt.",
       "unit": "V"
     },
-    "thermistorProperlyConnected": {
+    "thermistorOperational": {
       "title": "Thermistor properly connected",
       "description": "Equals true if the thermistor is properly connected",
       "type": "boolean"

@@ -28,12 +28,12 @@
       "desciption": "The battery voltage in Volt.",
       "unit": "V"
     },
-    "thermistorProperlyConnected": {
+    "thermistorOperational": {
       "title": "Thermistor properly connected",
       "description": "Equals true if the thermistor is properly connected",
       "type": "boolean"
     },
-    "extThermistorTemperature": {
+    "extTemperature": {
       "title": "External thermistor temperature",
       "unit": "°C",
       "type": "number",

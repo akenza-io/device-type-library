@@ -5,7 +5,7 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("TBWaterleak uplink", () => {
+describe("MClimate Button uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
@@ -19,21 +19,11 @@ describe("TBWaterleak uplink", () => {
       });
   });
 
-  let lifecycleSchema = null;
-  before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   describe("consume()", () => {
-    it("should decode TBWaterleak payload", () => {
+    it("should decode MClimate Button payload", () => {
       const data = {
         data: {
-          payloadHex: "000b3628",
+          payloadHex: "01db011a01",
         },
       };
 
@@ -42,22 +32,11 @@ describe("TBWaterleak uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.6);
-        assert.equal(value.data.batteryLevel, 100);
-
-        validate(value.data, lifecycleSchema, { throwError: true });
-      });
-
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
         assert.equal(value.topic, "default");
-        assert.equal(value.data.waterleak, false);
-        assert.equal(value.data.temperature, 22);
-        assert.equal(value.data.humidity, 40);
+        assert.equal(value.data.baterryVoltage, 3.352);
+        assert.equal(value.data.buttonPressed, "SINGLE_PRESS");
+        assert.equal(value.data.temperature, 28.2);
+        assert.equal(value.data.thermistorOperational, true);
 
         validate(value.data, defaultSchema, { throwError: true });
       });

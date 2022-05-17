@@ -348,8 +348,8 @@ function decoder(hexData) {
     const handleKeepAliveData = (hexData) => {
       const co2 = parseInt(hexData.substr(2, 4), 16);
       const temperature = (parseInt(hexData.substr(6, 4), 16) - 400) / 10;
-      const humidity = Number(
-        ((parseInt(hexData.substr(10, 2), 16) * 100) / 256).toFixed(2),
+      const humidity = Math.round(
+        Number(((parseInt(hexData.substr(10, 2), 16) * 100) / 256).toFixed(2)),
       );
       const batteryVoltage = Number(
         ((parseInt(hexData.substr(12, 2), 16) * 8 + 1600) / 1000).toFixed(2),
@@ -387,16 +387,9 @@ function decoder(hexData) {
   }
 }
 
-function hexToBytes(hex) {
-  for (var bytes = [], c = 0; c < hex.length; c += 2) {
-    bytes.push(parseInt(hex.substr(c, 2), 16));
-  }
-  return bytes;
-}
-
 function consume(event) {
   const payload = event.data.payloadHex;
-  const decoded = decoder(hexToBytes(payload));
+  const decoded = decoder(payload);
 
   emit("sample", { data: decoded, topic: "default" });
 }
