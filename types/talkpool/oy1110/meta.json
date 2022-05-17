@@ -1,0 +1,14 @@
+{
+  "name": "OY1110 temperature and humidity sensor",
+  "version": "1.0.0",
+  "manufacturer": "Talkpool",
+  "url": "https://talkpool.com/shop/oy1110/",
+  "description": "Sensor that measures temperature and humidity, with maintenance free lifetime of 10 years at a 5-minute measurement interval. Easy to use, configurable over the air and stylish in design to fit into indoor spaces.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Humidity"],
+  "outputTopics": ["default", "startup"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
