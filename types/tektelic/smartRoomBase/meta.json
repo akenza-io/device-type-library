@@ -1,0 +1,14 @@
+{
+  "name": "Smart Room Base",
+  "version": "1.0.0",
+  "manufacturer": "Tektelic",
+  "url": "https://tektelic.com/catalog/smart-room-lorawan-sensor-base",
+  "description": "Ideal for holistically monitoring the home and office environment, whether it is measuring and reporting temperature, humidity, open/closed doors and windows or other custom features.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Humidity", "Reed"],
+  "outputTopics": ["default", "reed", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

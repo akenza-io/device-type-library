@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.17.0] - 2022-04-26
+
+### Added
+
+- Tektelic - Smart room base
+- Tektelic - Smart room PIR
+- Bosch - Parking lot sensor V0.39
+
 # [1.16.1] - 2022-03-30
 
 ### Changed
