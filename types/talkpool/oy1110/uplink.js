@@ -2,16 +2,9 @@ function consume(event) {
   const payload = event.data.payloadHex;
   const { port } = event.data;
   const data = {};
-
   let dataBytes = Buffer.from(payload, "hex");
-  // console.log(dataBytes.toString('base64'));
 
-  if (port === 1) {
-    // Status
-  } else if (port === 2 || port === 3) {
-    if (dataBytes.length % 3 !== 0) {
-      // return null;
-    }
+  if (port === 2 || port === 3) {
     if (port === 3) {
       dataBytes = dataBytes.slice(1, dataBytes.length);
     }
