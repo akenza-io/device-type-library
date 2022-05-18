@@ -30,11 +30,11 @@ describe("Sensative presence Uplink", () => {
   });
 
   describe("consume()", () => {
-    it("should decode the sensative presence payload", () => {
+    it("should decode the sensative presence lifecycle payload", () => {
       const data = {
         data: {
           port: 1,
-          payloadHex: "ffff01601100001500",
+          payloadHex: "ffff6e02378c8448000000",
         },
       };
 
@@ -44,9 +44,35 @@ describe("Sensative presence Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 96);
-        assert.equal(value.data.historySeqNr, 65535);
-        assert.equal(value.data.prevHistSeqNr, 65535);
+        assert.equal(value.data.badConditionsCounter, 0);
+        assert.equal(value.data.stackTxFailRebootCount, 0);
+        assert.equal(value.data.startUpCount, 72);
+        assert.equal(value.data.swversion, "2378c84");
+        assert.equal(value.data.watchdogCount, 0);
+
+        validate(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+  });
+
+  describe("consume()", () => {
+    it("should decode the sensative presence payload", () => {
+      const data = {
+        data: {
+          port: 1,
+          payloadHex: "ffff015b0a00",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batteryLevel, 91);
 
         validate(value.data, lifecycleSchema, { throwError: true });
       });
@@ -57,9 +83,33 @@ describe("Sensative presence Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "alarm");
-        assert.equal(value.data.closeProximityAlarm, false);
+        assert.equal(value.data.doorAlarm, false);
 
         validate(value.data, alarmSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+  });
+
+  describe("consume()", () => {
+    it("should decode the sensative presence payload", () => {
+      const data = {
+        data: {
+          port: 1,
+          payloadHex: "ffff015b0a01",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batteryLevel, 91);
+
+        validate(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -67,10 +117,10 @@ describe("Sensative presence Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.doorCount, 0);
+        assert.equal(value.topic, "alarm");
+        assert.equal(value.data.doorAlarm, true);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        validate(value.data, alarmSchema, { throwError: true });
       });
 
       consume(data);
