@@ -77,24 +77,23 @@ function consume(event) {
           lifecycle.deviceStatus = bytes[bytes.length - 4];
           lifecycle.voltage = readUInt16BE(bytes, bytes.length - 3) / 100;
           data.buttonPressed = bytes[bytes.length - 1] !== 0;
-          data.button = {
-            a: !!bytes[bytes.length - 1] & 0x01,
-            b: !!bytes[bytes.length - 1] & 0x02,
-            c: !!bytes[bytes.length - 1] & 0x04,
-            d: !!bytes[bytes.length - 1] & 0x08,
-            e: !!bytes[bytes.length - 1] & 0x10,
-          };
+
+          data.great = bytes[bytes.length - 1] & 0x01;
+          data.good = bytes[bytes.length - 1] & 0x02;
+          data.mid = bytes[bytes.length - 1] & 0x04;
+          data.bad = bytes[bytes.length - 1] & 0x08;
+          data.worst = bytes[bytes.length - 1] & 0x10;
+
           break;
         case 0x04:
           lifecycle.deviceStatus = bytes[bytes.length - 13];
           lifecycle.voltage = readUInt16BE(bytes, bytes.length - 12) / 100;
-          data.button = {
-            a: readUInt16BE(bytes, bytes.length - 10),
-            b: readUInt16BE(bytes, bytes.length - 8),
-            c: readUInt16BE(bytes, bytes.length - 6),
-            d: readUInt16BE(bytes, bytes.length - 4),
-            e: readUInt16BE(bytes, bytes.length - 2),
-          };
+
+          data.great = readUInt16BE(bytes, bytes.length - 10);
+          data.good = readUInt16BE(bytes, bytes.length - 8);
+          data.mid = readUInt16BE(bytes, bytes.length - 6);
+          data.bad = readUInt16BE(bytes, bytes.length - 4);
+          data.worst = readUInt16BE(bytes, bytes.length - 2);
           break;
         default:
           break;
