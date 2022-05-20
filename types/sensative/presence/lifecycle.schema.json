@@ -45,7 +45,7 @@
       "minimum": 0,
       "maximum": 65535
     },
-    "swversion": {
+    "softwareVersion": {
       "title": "Software version",
       "type": "string",
       "description": "Software version"

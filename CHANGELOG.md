@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.18.0] - 2022-05-20
+
+### Added
+
+- IMBuildings - Moodbox
+- Talkpool - OY1110
+
+### Changed
+
+- Strip - Presence uplink
+
 # [1.17.0] - 2022-04-26
 
 ### Added

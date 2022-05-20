@@ -138,7 +138,7 @@ function decode(bytes, port) {
             (bytes[pos++] << 8) |
             bytes[pos++]) >>>
           0;
-        target.swversion = number.toString(16);
+        target.softwareVersion = number.toString(16);
         target.startUpCount = bytes[pos++];
         target.watchdogCount = bytes[pos++];
         target.stackTxFailRebootCount = bytes[pos++];
@@ -253,7 +253,7 @@ function consume(event) {
 
   const lifecycle = {};
   lifecycle.batteryLevel = decoded.batteryLevel;
-  lifecycle.swversion = decoded.swversion;
+  lifecycle.softwareVersion = decoded.softwareVersion;
   lifecycle.startUpCount = decoded.startUpCount;
   lifecycle.watchdogCount = decoded.watchdogCount;
   lifecycle.stackTxFailRebootCount = decoded.stackTxFailRebootCount;
