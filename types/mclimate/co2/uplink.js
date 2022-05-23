@@ -19,7 +19,7 @@ function decoder(hexData) {
               };
               Object.assign(resultToPass, { ...resultToPass }, { ...data });
             } catch (e) {
-              // console.log(e)
+              return {};
             }
             break;
 
@@ -31,7 +31,7 @@ function decoder(hexData) {
               };
               Object.assign(resultToPass, { ...resultToPass }, { ...data });
             } catch (e) {
-              // console.log(e)
+              return {};
             }
             break;
 
@@ -41,7 +41,7 @@ function decoder(hexData) {
               data = { keepAliveTime: parseInt(commands[i + 1], 16) };
               Object.assign(resultToPass, { ...resultToPass }, { ...data });
             } catch (e) {
-              // console.log(e)
+              return {};
             }
 
             break;
@@ -62,7 +62,7 @@ function decoder(hexData) {
               };
               Object.assign(resultToPass, { ...resultToPass }, { ...data });
             } catch (e) {
-              // console.log(e)
+              return {};
             }
 
             break;
@@ -73,7 +73,7 @@ function decoder(hexData) {
               data = { operationalMode: commands[i + 1].toString() };
               Object.assign(resultToPass, { ...resultToPass }, { ...data });
             } catch (e) {
-              // console.log(e)
+              return {};
             }
 
             break;
@@ -90,7 +90,7 @@ function decoder(hexData) {
               };
               Object.assign(resultToPass, { ...resultToPass }, { ...data });
             } catch (e) {
-              // console.log(e)
+              return {};
             }
 
             break;
@@ -106,7 +106,7 @@ function decoder(hexData) {
               };
               Object.assign(resultToPass, { ...resultToPass }, { ...data });
             } catch (e) {
-              // console.log(e)
+              return {};
             }
 
             break;
@@ -117,7 +117,7 @@ function decoder(hexData) {
               data = { uplinkType: commands[i + 1] };
               Object.assign(resultToPass, { ...resultToPass }, { ...data });
             } catch (e) {
-              // console.log(e)
+              return {};
             }
 
             break;
@@ -130,7 +130,7 @@ function decoder(hexData) {
               data = { joinRetryPeriod: periodInMinutes };
               Object.assign(resultToPass, { ...resultToPass }, { ...data });
             } catch (e) {
-              // console.log(e)
+              return {};
             }
 
             break;
@@ -153,7 +153,7 @@ function decoder(hexData) {
               data = { watchDogParams: { wdpC, wdpUc } };
               Object.assign(resultToPass, { ...resultToPass }, { ...data });
             } catch (e) {
-              // console.log(e)
+              return {};
             }
 
             break;
@@ -161,7 +161,6 @@ function decoder(hexData) {
           case "04":
             try {
               commandLen = 2;
-              // console.log(hexData)
               const hardwareVersion = commands[i + 1];
               const softwareVersion = commands[i + 2];
               data = {
@@ -172,7 +171,7 @@ function decoder(hexData) {
               };
               Object.assign(resultToPass, { ...resultToPass }, { ...data });
             } catch (e) {
-              // console.log(e)
+              return {};
             }
             break;
           case "1f":
@@ -195,7 +194,7 @@ function decoder(hexData) {
               };
               Object.assign(resultToPass, { ...resultToPass }, { ...data });
             } catch (e) {
-              // console.log(e)
+              return {};
             }
             break;
           case "21":
@@ -209,7 +208,7 @@ function decoder(hexData) {
               };
               Object.assign(resultToPass, { ...resultToPass }, { ...data });
             } catch (e) {
-              // console.log(e)
+              return {};
             }
             break;
           case "23":
@@ -228,7 +227,7 @@ function decoder(hexData) {
               };
               Object.assign(resultToPass, { ...resultToPass }, { ...data });
             } catch (e) {
-              // console.log(e)
+              return {};
             }
             break;
           case "25":
@@ -247,7 +246,7 @@ function decoder(hexData) {
               };
               Object.assign(resultToPass, { ...resultToPass }, { ...data });
             } catch (e) {
-              // console.log(e)
+              return {};
             }
             break;
           case "27":
@@ -281,7 +280,7 @@ function decoder(hexData) {
 
               Object.assign(resultToPass, { ...resultToPass }, { ...data });
             } catch (e) {
-              // console.log(e)
+              return {};
             }
             break;
           case "29":
@@ -324,7 +323,7 @@ function decoder(hexData) {
 
               Object.assign(resultToPass, { ...resultToPass }, { ...data });
             } catch (e) {
-              // console.log(e)
+              return {};
             }
             break;
           case "2b":
@@ -333,7 +332,7 @@ function decoder(hexData) {
               data = { autoZeroPeriod: parseInt(commands[i + 1], 16) };
               Object.assign(resultToPass, { ...resultToPass }, { ...data });
             } catch (e) {
-              // console.log(e)
+              return {};
             }
             break;
 

@@ -8,7 +8,7 @@ function consume(event) {
   data.humidity = Math.round(
     (Bits.bitsToUnsigned(bits.substr(24, 8)) * 100) / 256,
   );
-  data.baterryVoltage =
+  data.batteryVoltage =
     (Bits.bitsToUnsigned(bits.substr(32, 8)) * 8 + 1600) / 1000;
   data.thermistorOperational = !Bits.bitsToUnsigned(bits.substr(45, 1));
 

@@ -10,7 +10,7 @@
       "type": "string",
       "enum": ["NO_PRESS", "SINGLE_PRESS", "DOUBLE_PRESS", "TRIPLE_PRESS"]
     },
-    "baterryVoltage": {
+    "batteryVoltage": {
       "type": "number",
       "minimum": 0,
       "maximum": 24,

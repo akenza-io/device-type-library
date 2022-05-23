@@ -33,7 +33,7 @@ describe("MClimate Button uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.baterryVoltage, 3.352);
+        assert.equal(value.data.batteryVoltage, 3.352);
         assert.equal(value.data.buttonPressed, "SINGLE_PRESS");
         assert.equal(value.data.temperature, 28.2);
         assert.equal(value.data.thermistorOperational, true);

@@ -1,3 +1,7 @@
+function toBool(value) {
+  return value === "1";
+}
+
 function decoder(bytes) {
   const byteArray = bytes
     .match(/.{1,2}/g)
@@ -9,7 +13,7 @@ function decoder(bytes) {
     "FRAUD_DETECTED",
     "FRAUD_DETECTED",
   ];
-  const toBool = (value) => value === "1";
+
   const shortPackage = (byteArray) => ({
     messageType: messageTypes[parseInt(byteArray[0].slice(0, 3), 2)],
     boxTamper: toBool(byteArray[0][4]),

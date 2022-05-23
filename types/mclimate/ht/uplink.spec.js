@@ -35,7 +35,7 @@ describe("MClimate HT uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 27.3);
         assert.equal(value.data.humidity, 41);
-        assert.equal(value.data.baterryVoltage, 3.568);
+        assert.equal(value.data.batteryVoltage, 3.568);
         assert.equal(value.data.thermistorOperational, false);
 
         validate(value.data, defaultSchema, { throwError: true });

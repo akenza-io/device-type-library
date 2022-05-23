@@ -4,7 +4,7 @@ function consume(event) {
   const data = {};
 
   // Reserved 8
-  data.baterryVoltage =
+  data.batteryVoltage =
     (Bits.bitsToUnsigned(bits.substr(8, 8)) * 8 + 1600) / 1000;
   data.thermistorOperational = !Bits.bitsToUnsigned(bits.substr(21, 1));
   data.temperature =
