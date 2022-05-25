@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.18.0] - 2022-05-24
+
+### Added
+
+- MClimate - Button
+- MClimate - CO2
+- MClimate - Flood Sensor
+- MClimate - HT
+- Talkpool - OY1110
+
 # [1.17.0] - 2022-04-26
 
 ### Added

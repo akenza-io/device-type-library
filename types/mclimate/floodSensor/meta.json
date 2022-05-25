@@ -1,0 +1,14 @@
+{
+  "name": "Flood Sensor",
+  "version": "1.0.0",
+  "manufacturer": "MClimate",
+  "url": "https://mclimate.eu/products/flood-sensor-lorawan",
+  "description": "MClimate Flood Sensor is a compact flood sensor suitable for residential and commercial applications. If a flood is detected, data is immediately transmitted.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Flood detection", "Temperature"],
+  "outputTopics": ["default"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
