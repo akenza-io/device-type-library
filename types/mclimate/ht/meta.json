@@ -1,0 +1,14 @@
+{
+  "name": "HT",
+  "version": "1.0.0",
+  "manufacturer": "MClimate",
+  "url": "https://mclimate.eu/products/ht-sensor",
+  "description": "MClimate HT LoRaWAN Sensor is an indoor temperature and humidity sensor with 10+ years of battery life, configurable settings and discreet design.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Humidity"],
+  "outputTopics": ["default"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

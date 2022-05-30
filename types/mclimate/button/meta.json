@@ -1,0 +1,14 @@
+{
+  "name": "Multipurpose Button",
+  "version": "1.0.0",
+  "manufacturer": "MClimate",
+  "url": "https://mclimate.eu/bg/products/mclimate-button-lorawan",
+  "description": "MClimate Multipurpose Button LoRaWAN® is a simple but versatile device with many applications. Featuring a single button with 3 types of clicks and a temperature sensor, there are unlimited configuration options across industries and end customers.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Button", "Temperature"],
+  "outputTopics": ["default"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
