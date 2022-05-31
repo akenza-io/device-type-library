@@ -17,19 +17,38 @@
       "description": "Error info which contains: wrong length of RX package",
       "type": "string"
     },
-    "historySeqNr": {
-      "title": "History sequence number",
+    "badConditionsCounter": {
+      "title": "Bad conditions counter",
       "type": "integer",
-      "description": "History sequence number",
+      "description": "Bad conditions counter",
       "minimum": 0,
       "maximum": 65535
     },
-    "prevHistSeqNr": {
-      "title": "Previous history sequence number",
+    "stackTxFailRebootCount": {
+      "title": "Stack TX fail reboot count",
       "type": "integer",
-      "description": "Previous history sequence number",
+      "description": "Stack TX fail reboot count",
       "minimum": 0,
       "maximum": 65535
+    },
+    "startUpCount": {
+      "title": "Start up count",
+      "type": "integer",
+      "description": "Start up count",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "watchdogCount": {
+      "title": "Watchdog count",
+      "type": "integer",
+      "description": "Watchdog count",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "softwareVersion": {
+      "title": "Software version",
+      "type": "string",
+      "description": "Software version"
     }
   }
 }
