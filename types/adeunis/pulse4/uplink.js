@@ -42,7 +42,9 @@
 //    creation of accessors. Your code will need to use the
 //    non-standard get()/set() instead, and will need to add those to
 //    native arrays for interop.
-(function (global) {
+const global = {};
+
+(function () {
   // var undefined = (void 0); // Paranoia
 
   // Beyond this value, index getters/setters (i.e. array[0], array[1]) are so slow to

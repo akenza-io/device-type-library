@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.18.2] - 2022-05-31
+
+### Changed
+
+Cleanup and fixes of the below device types
+
+- Adeunis - Pulse
+- Talkpool - OY1110
+- Tektelic - Smart Room Base
+- Tektelic - Smart Room PIR
+
 # [1.18.1] - 2022-05-30
 
 ### Changed
