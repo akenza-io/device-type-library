@@ -1,0 +1,33 @@
+{
+  "$id": "https://akenza.io/pepperlFuchs/wilsenSonicLevel/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Heartbeat",
+  "type": "object",
+  "properties": {
+    "serialNumber": {
+      "title": "Serial Number",
+      "type": "number",
+      "description": "P+F serial number, ASCII-coded."
+    },
+    "loraCount": {
+      "title": "Lora Counter",
+      "type": "number",
+      "description": "Counter reading for LoRa transmissions: number of LoRa transmissions."
+    },
+    "gpsCount": {
+      "title": "GPS Counter",
+      "type": "number",
+      "description": "Counter reading for GPS position determination: number of times the GPS position was determined"
+    },
+    "usSensorCount": {
+      "title": "Ultrasonic Measurements Counter",
+      "type": "number",
+      "description": "Counter reading for ultrasonic measurements: number of ultrasonic measurements carried out"
+    },
+    "batteryVol": {
+      "title": "Battery Voltage",
+      "type": "boolean",
+      "description": "Battery status."
+    }
+  }
+}
