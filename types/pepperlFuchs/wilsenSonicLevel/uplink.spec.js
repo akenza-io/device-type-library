@@ -45,15 +45,11 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
     it("should decode the default payload 1", () => {
       const data = {
         data: {
-          // TODO: find out what a port us used/needed for and what the value should be
-          port: 1,
           payloadHex: "040B010041030B06590602014100000003510123",
         },
       };
 
       utils.expectEmits((type, value) => {
-        // TODO remove, only here for debugging:
-        console.log(value);
 
         assert.equal(type, "sample");
         assert.isNotNull(value);
@@ -63,10 +59,6 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
         assert.equal(value.data.proxxCm, 65);
         assert.equal(value.data.fillinglvlPercent, 89);
         assert.equal(value.data.tempCelsius, 8);
-        /*
-        TODO: instance.batteryVol is not of a type(s) boolean
-        Both sides here are of type number, not boolean, so I dont understand this.
-        */
         assert.equal(value.data.batteryVol, 3.5);
 
         validate(value.data, defaultSchema, { throwError: true });
@@ -80,15 +72,11 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
     it("should decode the location payload 2", () => {
       const data = {
         data: {
-          port: 1,
           payloadHex: "040B010041030B06590602014101999A03510122065002007D217806500102F1C3DF",
         },
       };
 
       utils.expectEmits((type, value) => {
-        // TODO remove, only here for debugging:
-        console.log(value);
-
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -96,10 +84,6 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.proxxCm, 65);
         assert.equal(value.data.fillinglvlPercent, 89);
-        /*
-         TODO: AssertionError: expected 8.1 to equal 8
-         value.data.tempCelsius is 8.1, so I dont get this.
-        */
         assert.equal(value.data.tempCelsius, 8.1);
         assert.equal(value.data.batteryVol, 3.4);
 
@@ -107,9 +91,6 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
       });
 
       utils.expectEmits((type, value) => {
-        // TODO remove, only here for debugging:
-        // TODO this is not printed at all. Is this part being ignored entirely?
-        console.log(value);
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -129,23 +110,14 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
     it("should decode the heartbeat payload 3", () => {
       const data = {
         data: {
-          port: 1,
           payloadHex: "102A2534383030303030303632383738330431010701043102032206310300000F1C03510123",
         },
       };
 
       utils.expectEmits((type, value) => {
-        // TODO remove, only here for debugging:
-        console.log(value);
-
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
-
-        /*
-        TODO: AssertionError: expected 'heartbeat' to equal 'default'
-        value.topic seems to be heartbeat, not default, so I dont get this.
-        */
         assert.equal(value.topic, "heartbeat");
         assert.equal(value.data.serialNumber, 1.0591369900271589e+33);
         assert.equal(value.data.loraCount, 1793);

@@ -24,7 +24,7 @@
     },
     "batteryVol": {
       "title": "Battery Voltage",
-      "type": "boolean",
+      "type": "number",
       "description": "Battery Status."
     }
   }
