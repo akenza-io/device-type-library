@@ -10,9 +10,9 @@
   "availableSensors": [
     "Battery Voltage",
     "Temperature",
-    "Location",
-    "Distance",
-    "Filling Level"
+    "Latitude",
+    "Longitude",
+    "Distance"
   ],
   "outputTopics": [
     "default",
