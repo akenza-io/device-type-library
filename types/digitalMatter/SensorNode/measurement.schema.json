@@ -1,0 +1,58 @@
+{
+  "$id": "https://akenza.io/digitalMatter/sensorNode/measurement.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Measurement",
+  "type": "object",
+  "properties": {
+    "measurement1": {
+      "title": "Measurement 1",
+      "type": "array",
+      "description": "Measurement 1"
+    },
+    "measurement2": {
+      "title": "Measurement 2",
+      "type": "array",
+      "description": "Measurement 2"
+    },
+    "measurement3": {
+      "title": "Measurement 3",
+      "type": "array",
+      "description": "Measurement 3"
+    },
+    "measurement4": {
+      "title": "Measurement 4",
+      "type": "array",
+      "description": "Measurement 4"
+    },
+    "measurement5": {
+      "title": "Measurement 5",
+      "type": "array",
+      "description": "Measurement 5"
+    },
+    "measurement6": {
+      "title": "Measurement 6",
+      "type": "array",
+      "description": "Measurement 6"
+    },
+    "measurement7": {
+      "title": "Measurement 7",
+      "type": "array",
+      "description": "Measurement 7"
+    },
+    "measurement8": {
+      "title": "Measurement 8",
+      "type": "array",
+      "description": "Measurement 8"
+    },
+    "measurement9": {
+      "title": "Measurement 9",
+      "type": "array",
+      "description": "Measurement 9"
+    },
+    "measurement10": {
+      "title": "Measurement 10",
+      "type": "array",
+      "description": "Measurement 10"
+    }
+  }
+}

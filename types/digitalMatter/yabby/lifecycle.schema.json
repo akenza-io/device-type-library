@@ -1,0 +1,65 @@
+{
+  "$id": "https://akenza.io/digitalMatter/yabby/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "initialBatV": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "title": "Initial battery voltage",
+      "desciption": "Initial battery voltage",
+      "unit": "V"
+    },
+    "txCount": {
+      "title": "Tx count",
+      "type": "integer",
+      "description": "Transmission count"
+    },
+    "tripCount": {
+      "title": "Trip count",
+      "type": "integer",
+      "description": "Trip count"
+    },
+    "gpsSuccesses": {
+      "title": "GPS successes",
+      "type": "integer",
+      "description": "GPS success count"
+    },
+    "gpsFails": {
+      "title": "GPS fails",
+      "type": "integer",
+      "description": "GPS fail count"
+    },
+    "aveGpsFixS": {
+      "title": "Average GPS fix time",
+      "type": "integer",
+      "unit": "s",
+      "description": "Seconds spent per successful GPS fix, not including freshen time"
+    },
+    "aveGpsFailS": {
+      "title": "Average GPS fail time",
+      "type": "integer",
+      "unit": "s",
+      "description": "Seconds spent per failed GPS fix attempt"
+    },
+    "aveGpsFreshenS": {
+      "title": "Average GPS refreshing time",
+      "type": "integer",
+      "unit": "s",
+      "description": "Seconds spent refreshing GPS ephemerides per successful GPS fix"
+    },
+    "wakeupsPerTrip": {
+      "title": "Wakeups per trip",
+      "type": "integer",
+      "description": "Wakeups per trip"
+    },
+    "uptimeWeeks": {
+      "title": "Uptime weeks",
+      "type": "integer",
+      "unit": "w",
+      "description": "Uptime weeks"
+    }
+  }
+}

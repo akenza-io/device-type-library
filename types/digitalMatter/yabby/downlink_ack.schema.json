@@ -1,0 +1,28 @@
+{
+  "$id": "https://akenza.io/digitalMatter/yabby/downlink_ack.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Downlink acknowledge",
+  "type": "object",
+  "properties": {
+    "sequenceNumber": {
+      "title": "Sequence number",
+      "type": "integer",
+      "description": "Sequence number (identifies downlink to server)"
+    },
+    "accepted": {
+      "title": "Accepted",
+      "type": "integer",
+      "description": "Equals true if the downlink got accepted"
+    },
+    "fwMaj": {
+      "title": "Firmware major",
+      "type": "integer",
+      "description": "Firmware major"
+    },
+    "fwMin": {
+      "title": "Firmware minor",
+      "type": "integer",
+      "description": "Firmware minor"
+    }
+  }
+}

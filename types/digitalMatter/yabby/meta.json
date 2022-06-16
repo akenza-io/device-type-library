@@ -1,0 +1,14 @@
+{
+  "name": "Yabby",
+  "version": "1.0.0",
+  "manufacturer": "Digital Matter",
+  "url": "https://www.digitalmatter.com/devices/yabby-edge-lorawan/",
+  "description": "Tiny, lightweight and ultra-rugged battery-powered geolocation tag for affordable indoor and outdoor asset monitoring on LoRaWAN® networks",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["GPS"],
+  "outputTopics": ["position", "downlink_ack", "stats", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
