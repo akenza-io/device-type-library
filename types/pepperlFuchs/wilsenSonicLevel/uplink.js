@@ -25,13 +25,13 @@ function emitDefaultPayload(bitString) {
     // in the datasheet voltage is called battery_vol, but voltage is more readable
     let voltage = parseInt(bitString.substr(152, 8), 2)/10;
 
-    updateLifeCycle(voltage);
-
     emit("sample", { topic: "default", data: {
             proximity,
             fillinglvlPercent,
             temperature
     }});
+
+    updateLifeCycle(voltage);
 }
 
 function emitLocationPayload(bitString) {
@@ -69,9 +69,10 @@ function updateLifeCycle(voltage) {
 function consume(event) {
     let hexString = event.data.payloadHex
     let bitString = Bits.hexToBits(hexString);
-    if (hexString.length === 40 || hexString.length === 68) {
+    if (hexString.length === 40) {
         emitDefaultPayload(bitString);
     } else if (hexString.length === 68) {
+        emitDefaultPayload(bitString);
         emitLocationPayload(bitString);
     } else if (hexString.length === 76) {
         emitLifeCycle(bitString);

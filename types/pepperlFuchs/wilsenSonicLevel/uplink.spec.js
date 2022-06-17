@@ -56,9 +56,9 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.proxxCm, 65);
+        assert.equal(value.data.proximity, 65);
         assert.equal(value.data.fillinglvlPercent, 89);
-        assert.equal(value.data.tempCelsius, 8);
+        assert.equal(value.data.temperature, 8);
 
         validate(value.data, defaultSchema, { throwError: true });
       });
@@ -68,7 +68,7 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object")
 
-        assertEqual(value.topic, "lifecycle");
+        assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.voltage, 3.5);
 
         validate(value.data, lifecycleSchema, { throwError: true });
@@ -92,11 +92,22 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.proxxCm, 65);
+        assert.equal(value.data.proximity, 65);
         assert.equal(value.data.fillinglvlPercent, 89);
-        assert.equal(value.data.tempCelsius, 8.1);
+        assert.equal(value.data.temperature, 8.1);
 
         validate(value.data, defaultSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object")
+
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.voltage, 3.4);
+
+        validate(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -109,17 +120,6 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
         assert.equal(value.data.longitude, 8.200568);
 
         validate(value.data, locationSchema, { throwError: true });
-      });
-
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object")
-
-        assertEqual(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.4);
-
-        validate(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

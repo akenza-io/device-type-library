@@ -5,7 +5,7 @@
   "url": "https://files.pepperl-fuchs.com/webcat/navi/productInfo/doct/tdoct7056__eng.pdf",
   "description": "The ultrasonic wireless sensor can be used for remote monitoring of fill levels. The filling level, but also other parameters such as geodata and status data of the sensor, are measured or recorded at adjustable time intervals and transmitted to the remote station in the LoRa network. The data is available there for display or further processing. The sensor is configured via a Bluetooth interface using a mobile device (smartphone or tablet) and the WILSENcontrol app belonging to the sensor.",
   "author": "Akenza AG",
-  "firmwareVersion": "2.2.20",
+  "firmwareVersion": "V2.2.20",
   "loraDeviceClass": "A",
   "availableSensors": [
     "Battery Voltage",
