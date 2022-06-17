@@ -30,12 +30,12 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
       });
   });
 
-  let heartbeatSchema = null;
+  let lifecycleSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/heartbeat.schema.json`)
+      .loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
-        heartbeatSchema = parsedSchema;
+        lifecycleSchema = parsedSchema;
         done();
       });
   })
@@ -59,9 +59,19 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
         assert.equal(value.data.proxxCm, 65);
         assert.equal(value.data.fillinglvlPercent, 89);
         assert.equal(value.data.tempCelsius, 8);
-        assert.equal(value.data.batteryVol, 3.5);
 
         validate(value.data, defaultSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object")
+
+        assertEqual(value.topic, "lifecycle");
+        assert.equal(value.data.voltage, 3.5);
+
+        validate(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -85,7 +95,6 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
         assert.equal(value.data.proxxCm, 65);
         assert.equal(value.data.fillinglvlPercent, 89);
         assert.equal(value.data.tempCelsius, 8.1);
-        assert.equal(value.data.batteryVol, 3.4);
 
         validate(value.data, defaultSchema, { throwError: true });
       });
@@ -102,12 +111,23 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
         validate(value.data, locationSchema, { throwError: true });
       });
 
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object")
+
+        assertEqual(value.topic, "lifecycle");
+        assert.equal(value.data.voltage, 3.4);
+
+        validate(value.data, lifecycleSchema, { throwError: true });
+      });
+
       consume(data);
     });
   });
 
   describe("consume()", () => {
-    it("should decode the heartbeat payload 3", () => {
+    it("should decode the lifecycle payload 3", () => {
       const data = {
         data: {
           payloadHex: "102A2534383030303030303632383738330431010701043102032206310300000F1C03510123",
@@ -118,14 +138,14 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
-        assert.equal(value.topic, "heartbeat");
+        assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.serialNumber, 1.0591369900271589e+33);
         assert.equal(value.data.loraCount, 1793);
         assert.equal(value.data.gpsCount, 802);
         assert.equal(value.data.usSensorCount, 3868);
-        assert.equal(value.data.batteryVol, 3.5);
+        assert.equal(value.data.voltage, 3.5);
 
-        validate(value.data, heartbeatSchema, { throwError: true });
+        validate(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

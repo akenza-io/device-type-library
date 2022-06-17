@@ -4,28 +4,25 @@
   "title": "default",
   "type": "object",
   "properties": {
-    "proxxCm": {
+    "proximity": {
       "title": "Proximity",
       "type": "number",
+      "unit": "cm",
       "description": "Proximity in cm"
     },
     "fillinglvlPercent": {
       "title": "Filling Level",
       "type": "number",
+      "unit": "%",
       "description": "Fill level in %"
     },
-    "tempCelsius": {
+    "temperature": {
       "title": "Temperature",
       "type": "number",
       "unit": "°C",
       "description": "Temperature in °C",
       "minimum": -25.0,
       "maximum": 75.0
-    },
-    "batteryVol": {
-      "title": "Battery Voltage",
-      "type": "number",
-      "description": "Battery Status."
     }
   }
 }
