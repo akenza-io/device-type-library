@@ -7,13 +7,13 @@
     "latitude": {
       "title": "Latitude",
       "type": "number",
-      "unit": "DD",
+      "unit": "°",
       "description": "Geographic latitude as decimal value."
     },
     "longitude": {
       "title": "Longitude",
       "type": "number",
-      "unit": "DD",
+      "unit": "°",
       "description": "Geographic longitude as decimal value."
     }
   }
