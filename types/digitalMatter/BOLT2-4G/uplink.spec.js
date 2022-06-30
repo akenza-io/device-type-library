@@ -5,22 +5,38 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("DigitalMatter DART 3 Uplink", () => {
-  let defaultSchema = null;
+describe("DigitalMatter Bolt 2 Uplink", () => {
+  let digitalSchema = null;
   let consume = null;
   before((done) => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
     utils
-      .loadSchema(`${__dirname}/default.schema.json`)
+      .loadSchema(`${__dirname}/digital.schema.json`)
       .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
+        digitalSchema = parsedSchema;
         done();
       });
   });
 
+  let gpsSchema = null;
+  before((done) => {
+    utils.loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
+      gpsSchema = parsedSchema;
+      done();
+    });
+  });
+
+  let analogSchema = null;
+  before((done) => {
+    utils.loadSchema(`${__dirname}/analog.schema.json`).then((parsedSchema) => {
+      analogSchema = parsedSchema;
+      done();
+    });
+  });
+
   describe("consume()", () => {
-    it("should decode the DART 3 payload", () => {
+    it("should decode the Bolt 2 payload", () => {
       const data = {
         data: {
           SerNo: 498002,
@@ -110,7 +126,7 @@ describe("DigitalMatter DART 3 Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "default");
+        assert.equal(value.topic, "gps");
         assert.equal(value.data.latitude, 47.4141228);
         assert.equal(value.data.longitude, 8.5340896);
         assert.equal(value.data.altitude, 493);
@@ -120,7 +136,35 @@ describe("DigitalMatter DART 3 Uplink", () => {
         assert.equal(value.data.speedAccuracy, 5);
         assert.equal(value.data.pdop, 19);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        validate(value.data, gpsSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "digital");
+        assert.equal(value.data.devStat, 2);
+        assert.equal(value.data.digitalIn, 0);
+        assert.equal(value.data.digitalOut, 0);
+
+        validate(value.data, digitalSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "analog");
+        assert.equal(value.data.analog["1"], 3788);
+        assert.equal(value.data.analog["2"], 0);
+        assert.equal(value.data.analog["3"], 2900);
+        assert.equal(value.data.analog["4"], 21);
+        assert.equal(value.data.analog["5"], 0);
+
+        validate(value.data, analogSchema, { throwError: true });
       });
 
       consume(data);

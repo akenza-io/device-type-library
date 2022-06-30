@@ -1,18 +1,52 @@
 function consume(event) {
-  const fields = event.data.Records.slice(-1)[0].Fields[0];
+  const records = event.data.Records;
 
-  const data = {};
-  data.latitude = fields.Lat;
-  data.longitude = fields.Long;
-  data.altitude = fields.Alt;
+  if (records !== undefined) {
+    // Search for newest entry
+    let dex = 0;
+    for (let i = 0, seqNo = 0; i < records.length; i++) {
+      const record = records[i];
+      if (seqNo < record.SeqNo) {
+        dex = i;
+      }
+    }
 
-  data.heading = fields.Head;
-  data.pdop = fields.PDOP;
-  data.gpsAccuracy = fields.PosAcc;
-  data.speed = fields.Spd;
-  data.speedAccuracy = fields.SpdAcc;
+    const fields = records[dex].Fields;
 
-  // data.gpsStatus = fields.GpsStat;
+    // Loop over fields
+    fields.forEach((field) => {
+      const data = {};
+      let topic = "default";
+      switch (field.FType) {
+        case 0:
+          topic = "gps";
+          data.latitude = field.Lat;
+          data.longitude = field.Long;
+          data.altitude = field.Alt;
 
-  emit("sample", { data, topic: "default" });
+          data.heading = field.Head;
+          data.pdop = field.PDOP;
+          data.gpsAccuracy = field.PosAcc;
+          data.speed = field.Spd;
+          data.speedAccuracy = field.SpdAcc;
+
+          break;
+        case 2:
+          topic = "digital";
+          data.digitalIn = field.DIn;
+          data.digitalOut = field.DOut;
+          data.devStat = field.DevStat;
+          break;
+        case 6:
+          topic = "analog";
+          data.analog = field.AnalogueData;
+          break;
+        default:
+          break;
+      }
+      if (topic !== "default") {
+        emit("sample", { data, topic });
+      }
+    });
+  }
 }
