@@ -1,0 +1,20 @@
+{
+  "$id": "https://akenza.io/pepperlFuchs/wilsenSonicLevel/location.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Location",
+  "type": "object",
+  "properties": {
+    "latitude": {
+      "title": "Latitude",
+      "type": "number",
+      "unit": "°",
+      "description": "Geographic latitude as decimal value."
+    },
+    "longitude": {
+      "title": "Longitude",
+      "type": "number",
+      "unit": "°",
+      "description": "Geographic longitude as decimal value."
+    }
+  }
+}
