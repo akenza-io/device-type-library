@@ -36,13 +36,6 @@ function bin8dec(bin) {
   return num;
 }
 
-function hexToBytes(hex) {
-  for (var bytes = [], c = 0; c < hex.length; c += 2) {
-    bytes.push(parseInt(hex.substr(c, 2), 16));
-  }
-  return bytes;
-}
-
 function DecodeElsysPayload(data) {
   const obj = {};
   for (let i = 0; i < data.length; i++) {
@@ -198,7 +191,7 @@ function deleteUnusedKeys(data) {
 }
 
 function consume(event) {
-  const res = DecodeElsysPayload(hexToBytes(event.data.payloadHex));
+  const res = DecodeElsysPayload(Hex.hexToBytes(event.data.payloadHex));
   const data = {};
   const lifecycle = {};
   const occupancy = {};
