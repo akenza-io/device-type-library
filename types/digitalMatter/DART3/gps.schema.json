@@ -1,0 +1,61 @@
+{
+  "$id": "https://akenza.io/digitalMatter/dart3/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "latitude": {
+      "title": "Latitude",
+      "unit": "°",
+      "type": "number",
+      "description": "Latitude",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "longitude": {
+      "title": "Longitude",
+      "unit": "°",
+      "type": "number",
+      "description": "Longitude",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "altitude": {
+      "title": "Altitude",
+      "unit": "m",
+      "type": "number",
+      "description": "Altitude",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "heading": {
+      "title": "Heading",
+      "unit": "°",
+      "type": "number",
+      "description": "The direction where the sensor is heading"
+    },
+    "pdop": {
+      "title": "Dilution of Precision",
+      "type": "number",
+      "description": "Dilution of Precision"
+    },
+    "gpsAccuracy": {
+      "title": "GPS accuracy",
+      "type": "number",
+      "unit": "m",
+      "description": "GPS accuracy in meters"
+    },
+    "speed": {
+      "title": "Speed",
+      "unit": "kmh",
+      "type": "number",
+      "description": "Acceleration of the sensor"
+    },
+    "speedAccuracy": {
+      "title": "Speed accuracy",
+      "unit": "kmh",
+      "type": "number",
+      "description": "Acceleration accuracy in kmh"
+    }
+  }
+}
