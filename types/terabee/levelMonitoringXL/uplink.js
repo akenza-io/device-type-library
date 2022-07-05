@@ -2,7 +2,6 @@ function isKthBitSet(byte, k) {
   return byte & (1 << k);
 }
 
-// TODO only send if needed
 function decodeErrors(errorByte) {
   let error;
   if (isKthBitSet(errorByte, 0)) {

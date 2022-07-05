@@ -158,6 +158,8 @@ function consume(event) {
     const distance = toLittleEndian(payload.substr(0, 4), false) / 10;
     if (distance !== 6553.5) {
       data.distance = distance;
+    } else {
+      data.distance = null;
     }
 
     if (event.device !== undefined && data.distance !== undefined) {
@@ -203,38 +205,56 @@ function consume(event) {
 
     if (topLeft !== 6553.5) {
       data.topLeft = topLeft;
+    } else {
+      data.topLeft = null;
     }
 
     if (topCenter !== 6553.5) {
       data.topCenter = topCenter;
+    } else {
+      data.topCenter = null;
     }
 
     if (topRight !== 6553.5) {
       data.topRight = topRight;
+    } else {
+      data.topRight = null;
     }
 
     if (middleLeft !== 6553.5) {
       data.middleLeft = middleLeft;
+    } else {
+      data.middleLeft = null;
     }
 
     if (middleCenter !== 6553.5) {
       data.middleCenter = middleCenter;
+    } else {
+      data.middleCenter = null;
     }
 
     if (middleRight !== 6553.5) {
       data.middleRight = middleRight;
+    } else {
+      data.middleRight = null;
     }
 
     if (bottomLeft !== 6553.5) {
       data.bottomLeft = bottomLeft;
+    } else {
+      data.bottomLeft = null;
     }
 
     if (bottomCenter !== 6553.5) {
       data.bottomCenter = bottomCenter;
+    } else {
+      data.bottomCenter = null;
     }
 
     if (bottomRight !== 6553.5) {
       data.bottomRight = bottomRight;
+    } else {
+      data.bottomRight = null;
     }
 
     const flags = toLittleEndian(payload.substr(40, 4), false);

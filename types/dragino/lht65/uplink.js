@@ -81,6 +81,7 @@ function decoder(bytes) {
   response.decoded = {};
   response.external = {};
   response.datalog = {};
+  response.lifecycle = {};
 
   switch (pollMessageStatus) {
     case 0:
@@ -88,11 +89,11 @@ function decoder(bytes) {
         response.decoded.temperature = parseFloat(
           ((((bytes[0] << 24) >> 16) | bytes[1]) / 100).toFixed(2),
         );
-        response.decoded.batteryStatus = bytes[4] >> 6;
+        response.lifecycle.batteryStatus = bytes[4] >> 6;
       } else {
-        response.decoded.voltage =
+        response.lifecycle.voltage =
           (((bytes[0] << 8) | bytes[1]) & 0x3fff) / 1000;
-        response.decoded.batteryStatus = bytes[0] >> 6;
+        response.lifecycle.batteryStatus = bytes[0] >> 6;
       }
 
       if (ext !== 0x0f) {
@@ -105,16 +106,12 @@ function decoder(bytes) {
       }
 
       if (connect === 1) {
-        response.decoded.connectionStatus = "NO_CONNECTION";
+        response.lifecycle.connectionStatus = "NO_CONNECTION";
       } else {
-        response.decoded.connectionStatus = "CONNECTED";
+        response.lifecycle.connectionStatus = "CONNECTED";
       }
 
-      if (ext === 0) {
-        response.decoded.externalSensor = false;
-      } else {
-        response.decoded.externalSensor = true;
-      }
+      response.lifecycle.externalSensor = !!ext;
 
       if (ext === 1) {
         response.external.externalTemperature = parseFloat(
@@ -185,6 +182,7 @@ function consume(event) {
   const decoded = decoder(bytes);
 
   if (Object.keys(decoded.decoded).length > 0) {
+    emit("sample", { data: decoded.lifecycle, topic: "lifecycle" });
     emit("sample", { data: decoded.decoded, topic: "default" });
   }
 

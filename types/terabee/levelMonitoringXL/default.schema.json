@@ -5,7 +5,7 @@
   "type": "object",
   "properties": {
     "distance": {
-      "title": "distance",
+      "title": "Distance",
       "unit": "mm",
       "type": "number",
       "description": "Distance measured between the sensor and the surface"

@@ -29,6 +29,16 @@ describe("Dragino LHT65 Uplink", () => {
       });
   });
 
+  let lifecycleSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+      .then((parsedSchema) => {
+        lifecycleSchema = parsedSchema;
+        done();
+      });
+  });
+
   describe("consume()", () => {
     it("should decode the Dragino LHT65 report uplink", () => {
       const data = {
@@ -43,13 +53,23 @@ describe("Dragino LHT65 Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "default");
+        assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryStatus, 3);
         assert.equal(value.data.connectionStatus, "CONNECTED");
         assert.equal(value.data.externalSensor, true);
+        assert.equal(value.data.voltage, 3.116);
+
+        validate(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "default");
         assert.equal(value.data.humidity, 47.6);
         assert.equal(value.data.temperature, 26.01);
-        assert.equal(value.data.voltage, 3.116);
 
         validate(value.data, defaultSchema, { throwError: true });
       });
