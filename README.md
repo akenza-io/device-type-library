@@ -1,49 +1,38 @@
 # Akenza Device Type Library
 
-Welcome to the Akenza Device Type Library. <br>
+Welcome to the akenza Device Type Library. <br>
 This is a collection of all integrated decoders for akenza.io.<br>
 Feel free to use them and submit your own decoders.<br>
 
-## Devlopment
+## Development
 
 - Clone the repository
 - Install dependencies with `npm install`.
-- Create your device type more _here_
+- Create your device type
 - Test your device type step by step with the uplink.spec.js or with the command `npm test`
 
 ## How to structure your device type
 
+- Create an uplink decoder file, more to that in the next section
+- Create a schema for each topic and an entry for each key in the topic
 - Use topics to structure similar data (i.e. ambiance, occupancy, lifecycle)
 - Use a separate topic for shared data keys (e.g. battery or temperature if sent with all messages), this will allow you to properly query and aggregate this data
-- Add titles and units for showing more metadata in Akenza
+- Add titles and units for showing more metadata in akenza
+- If preferred, you could create a downlink encoder to make it easier for the user to structure downlinks
+- Be sure to add an image of the sensor
+- Add a metadata file with basic information
 
-## Creating a device type
+## Creating a uplink decoder
 
 - Have the payload documentation ready
-- If you need some inspiration, copy an already existing one f.e `./types/comtac/CM-1`
-- If you already got a javascript decoder, you could integrate it like f.e `./types/digitalMatter/oyster`
-- Pleas try to work inside the guidelines of eslint
+- If you need some inspiration, copy an already existing one e.g. [./types/comtac/CM-1](https://github.com/akenza-io/device-type-library/blob/master/types/comtac/CM-1/uplink.js)
+- If you already got a javascript decoder, you could integrate it like [./types/digitalMatter/oyster](https://github.com/akenza-io/device-type-library/blob/master/types/digitalMatter/oyster/uplink.js)
+- Adhere wherever possible to the eslint rules
 
 ## Helper function usage
 
 The Bits and Hex library have some useful functions, integrate these into your device type to save time.
-
-```javascript
-// Gives back either a signed or unsigned little endian
-let littleEndian = Hex.hexLittleEndianToBigEndian(hex, signed);
-
-// Gives back an array of bytes, mostly used for easy TTN Decoder adoption
-let byteArray = Hex.hexToBytes(payloadHex);
-
-// Gives back the bits of the hexadecimal
-let bits = Bits.hexToBits(payloadHex);
-
-// Gives back the unsigned integer of the bits
-var unsignedValue = Bits.bitsToUnsigned(bits);
-
-// Gives back the signed number of the bits
-var signedValue = Bits.bitsToSigned(bits);
-```
+You can find those explained in our [Documentation](https://docs.akenza.io/api-reference/scripting/utility-functions#bits-to-unsigned-integer).
 
 ## Use preexisting types
 
