@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.19.0] - 2022-06-30
+
+### Added
+
+- Digitalmatter - Bolt 2-4G
+- Digitalmatter - Dart 3
+- Digitalmatter - SensorNode
+- Digitalmatter - Yabby
+
 # [1.18.3] - 2022-06-20
 
 ### Added

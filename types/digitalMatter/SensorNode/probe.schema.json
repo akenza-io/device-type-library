@@ -1,0 +1,24 @@
+{
+  "$id": "https://akenza.io/digitalMatter/sensorNode/probe.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Probe",
+  "type": "object",
+  "properties": {
+    "probe1": {
+      "title": "Probe 1",
+      "unit": "°C",
+      "type": "number",
+      "description": "Probe 1 temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "probe2": {
+      "title": "Probe 2",
+      "unit": "°C",
+      "type": "number",
+      "description": "Probe 2 temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    }
+  }
+}

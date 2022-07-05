@@ -1,0 +1,23 @@
+{
+  "$id": "https://akenza.io/digitalMatter/bolt2/digital.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Digital",
+  "type": "object",
+  "properties": {
+    "digitalIn": {
+      "title": "Digital input",
+      "type": "integer",
+      "description": "Digital input"
+    },
+    "digitalOut": {
+      "title": "Digital output",
+      "type": "integer",
+      "description": "Digital output"
+    },
+    "devStat": {
+      "title": "Device state",
+      "type": "integer",
+      "description": "Device state"
+    }
+  }
+}
