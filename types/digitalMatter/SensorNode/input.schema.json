@@ -1,0 +1,23 @@
+{
+  "$id": "https://akenza.io/digitalMatter/sensorNode/input.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Input",
+  "type": "object",
+  "properties": {
+    "input1": {
+      "title": "Input 1",
+      "description": "Input 1",
+      "type": "integer"
+    },
+    "input2": {
+      "title": "Input 2",
+      "description": "Input 2",
+      "type": "integer"
+    },
+    "input3": {
+      "title": "Input 3",
+      "description": "Input 3",
+      "type": "integer"
+    }
+  }
+}
