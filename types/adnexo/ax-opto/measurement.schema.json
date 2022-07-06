@@ -1,0 +1,99 @@
+{
+  "$id": "https://akenza.io/adnexo/ax-opto/measurement.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Measurement",
+  "type": "object",
+  "properties": {
+    "distance": {
+      "title": "Distance",
+      "unit": "cm",
+      "type": "number",
+      "description": "Distance measured between the sensor and the surface"
+    },
+    "percent": {
+      "title": "Percent",
+      "unit": "%",
+      "type": "number",
+      "description": "Percentage of the container fill"
+    },
+    "topLeft": {
+      "title": "Distance top left",
+      "unit": "cm",
+      "type": "number",
+      "description": "Distance measured top left"
+    },
+    "topCenter": {
+      "title": "Distance top center",
+      "unit": "cm",
+      "type": "number",
+      "description": "Distance measured top center"
+    },
+    "topRight": {
+      "title": "Distance top right",
+      "unit": "cm",
+      "type": "number",
+      "description": "Distance measured top right"
+    },
+    "middleLeft": {
+      "title": "Distance middle left",
+      "unit": "cm",
+      "type": "number",
+      "description": "Distance measured middle left"
+    },
+    "middleCenter": {
+      "title": "Distance middle center",
+      "unit": "cm",
+      "type": "number",
+      "description": "Distance measured middle center"
+    },
+    "middleRight": {
+      "title": "Distance middle right",
+      "unit": "cm",
+      "type": "number",
+      "description": "Distance measured middle right"
+    },
+    "bottomLeft": {
+      "title": "Distance bottom left",
+      "unit": "cm",
+      "type": "number",
+      "description": "Distance measured bottom left"
+    },
+    "bottomCenter": {
+      "title": "Distance bottom center",
+      "unit": "cm",
+      "type": "number",
+      "description": "Distance measured bottom center"
+    },
+    "bottomRight": {
+      "title": "Distance bottom right",
+      "unit": "cm",
+      "type": "number",
+      "description": "Distance measured bottom right"
+    },
+    "errorFlags": {
+      "title": "Error flags",
+      "type": "array",
+      "description": "Array of error flags"
+    },
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "Temperature in °C"
+    },
+    "voltage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "title": "Battery voltage",
+      "desciption": "The battery voltage in Volt.",
+      "unit": "V"
+    },
+    "measurementType": {
+      "title": "Measurement type",
+      "description": "Measurement type",
+      "type": "string",
+      "enum": ["REGULAR_MEASUREMENT", "MEASUREMENT_EVENT", "MANUAL_MEASUREMENT"]
+    }
+  }
+}
