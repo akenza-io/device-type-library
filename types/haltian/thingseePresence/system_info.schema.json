@@ -1,0 +1,23 @@
+{
+  "$id": "https://akenza.io/haltian/thingseeEnvironment/system_info.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "System info",
+  "type": "object",
+  "properties": {
+    "swVersion": {
+      "title": "Software version",
+      "description": "Software version",
+      "type": "string"
+    },
+    "modelCode": {
+      "title": "Model code",
+      "description": "Reason this sample got sent.",
+      "type": "string"
+    },
+    "psn": {
+      "title": "PSN",
+      "description": "PSN",
+      "type": "string"
+    }
+  }
+}
