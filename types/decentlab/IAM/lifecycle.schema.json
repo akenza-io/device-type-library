@@ -23,7 +23,8 @@
     "protocolVersion": {
       "title": "Protocol Version",
       "description": "Protocol Version",
-      "type": "integer"
+      "type": "integer",
+      "hideFromKpis": false
     },
     "deviceID": {
       "title": "Device ID",
