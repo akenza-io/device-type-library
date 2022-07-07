@@ -1,194 +1,44 @@
 # Akenza Device Type Library
 
-By default data is expected to be published on the default topic, the schema `schema.json` or `default.schema.json` specifies this. For a non-default topic use `<topic>.schema.json`.
+Welcome to the akenza Device Type Library. <br>
+This is a collection of all integrated decoders for akenza.io.<br>
+Feel free to use them and submit your own decoders.<br>
 
-## Devlopment
+## Development
 
-Install dependencies `npm install`.
-
-## Open points
-
-- Schema per topic in one file, use keywords? You can add additional metadata but it is not a good practice, further validators do not use it to validate data. Better use a base schema that is extended.
-- Allow wildcard topic, to define that it is output to every topic
-- Add downlink sample
+- Clone the repository
+- Install dependencies with `npm install`.
+- Create your device type
+- Test your device type step by step with the uplink.spec.js or with the command `npm test`
 
 ## How to structure your device type
 
-- use topics to structure similar data (i.e. ambiance, occupancy, lifecycle)
-- use a separate topic for shared data keys (e.g. battery or temperature if sent with all messages), this will allow you to properly query and aggregate this data
-- add titles and units for showing more metadata in Akenza
+- Create an uplink decoder file, more to that in the next section
+- Create a schema for each topic and an entry for each key in the topic
+- Use topics to structure similar data (i.e. ambiance, occupancy, lifecycle)
+- Use a separate topic for shared data keys (e.g. battery or temperature if sent with all messages), this will allow you to properly query and aggregate this data
+- Add titles and units for showing more metadata in akenza
+- If preferred, you could create a downlink encoder to make it easier for the user to structure downlinks
+- Be sure to add an image of the sensor
+- Add a metadata file with basic information
 
-## Available Sensor Types
+## Creating a uplink decoder
 
-The following available sensor types should be used.
+- Have the payload documentation ready
+- If you need some inspiration, copy an already existing one e.g. [./types/comtac/CM-1](https://github.com/akenza-io/device-type-library/blob/master/types/comtac/CM-1/uplink.js)
+- If you already got a javascript decoder, you could integrate it like [./types/digitalMatter/oyster](https://github.com/akenza-io/device-type-library/blob/master/types/digitalMatter/oyster/uplink.js)
+- Adhere wherever possible to the eslint rules
 
--- Environmental Sensor Types
-- Temperature
-- Precipitation
-- Soil moisture
-- Soil temperature
-- Barometric Pressure
-- Vapor Pressure
-- Noise
-- Light
-- Solar radiation
-- Lightning strike detector
-- Wind speed
-- Wind direction
+## Helper function usage
 
-
--- Air quality Sensor Types
-- Humidity
-- CO2
-- eCO2
-- CO
-- VOC
-- PM1.0
-- PM2.5
-- PM4.0
-- PM10
-
--- Electricity Sensor Types
-- Energy
-- LEM
-- External Analog Input
-- Light State
-
--- Magnetic & infrared Sensor Types
-- Reed
-- Occupancy
-- Motion
-- PIR
-
--- Acceleration Sensor Types
-- Acceleration
-- Gyro
-- Magnetometer
-
--- GPS Sensor Types
-- Latitude
-- Longitude
-- Altitude
-
--- People Counting Sensor Types
-- Forward Count
-- Backwards Count
-- Gender
-- FaceMask
-- Dwelltime
-- Average Waiting Time
-- Queue Depth
-
--- Other Sensor Types
-- Button
-- Distance
-- Vibration
-- Water leak
-- Image
-
-
-## Available data keys
-
-The following available data keys should be used.
-
--- Environmental data keys
-- light
-- solarRadiation
-- precipitation
-- lightningStrikeCount
-- lightningAverageDistance
-- windSpeed
-- windDirection
-- maximumWindSpeed
-- northWindSpeed
-- eastWindSpeed
-- temperature
-- pressure
-- vaporPressure
-- atmosphericPressure
-- soundAvg
-
--- Air quality data keys
-- humidity
-- voc
-- co
-- co2
-- eco2
-- pm1_0
-- pm2_5
-- pm4_0
-- pm10
-
--- Electricity data keys
-- lightState
-- adc1
-- adc2
-- lem
-- energy
-
--- Magnetic & infrared data keys
-- occupancy
-- motion
-- open
-- pir
-- rawPir
-- reedCounter
-
--- Acceleration data keys
-- accX
-- accY
-- accZ
-- gyroX
-- gyroY
-- gyroZ
-- magnX
-- magnY
-- magnZ
-
--- GPS data keys
-- latitude
-- longitude
-- altitude
-
--- People Counting data keys
-- fw
-- bw
-- count
-- faceMask
-- gender
-- queueDepth
-- avgWaitingTime
-- dwelltime
-- maleFw
-- femaleFw
-- maleBw
-- femaleBw
-- maleFwPercentage
-- femaleFwPercentage
-- maleBwPercentage
-- femaleBwPercentage
-
--- Other data keys
-- waterleak
-- distance
-- anomalyLevel
-- vibration
-
--- Button data keys
-- buttonId
-- imageID
-
--- Sensorinternal data keys
-- batteryLevel
-- voltage
-- debug
-- fwVersion
+The Bits and Hex library have some useful functions, integrate these into your device type to save time.
+You can find those explained in our [Documentation](https://docs.akenza.io/api-reference/scripting/utility-functions#bits-to-unsigned-integer).
 
 ## Use preexisting types
 
 Common data types can be reused by combining schemas.
 
-```
+```json
 {
   "$id": "https://akenza.io/<manufacturer>/<model>/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
@@ -215,6 +65,12 @@ Common data types can be reused by combining schemas.
 ```
 
 An example can be found in `./types/decentlab/IAM/default.schema.json`.
+
+## Open points
+
+- Schema per topic in one file, use keywords? You can add additional metadata but it is not a good practice, further validators do not use it to validate data. Better use a base schema that is extended.
+- Allow wildcard topic, to define that it is output to every topic
+- Add downlink sample
 
 ## Links
 

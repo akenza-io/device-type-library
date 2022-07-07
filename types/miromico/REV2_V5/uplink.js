@@ -1,21 +1,3 @@
-function toLittleEndian(hex) {
-  const data = hex.match(/../g);
-
-  // Create a buffer
-  const buf = new ArrayBuffer(4);
-  // Create a data view of it
-  const view = new DataView(buf);
-
-  // set bytes
-  data.forEach((b, i) => {
-    view.setUint8(i, parseInt(b, 16));
-  });
-
-  // get an int32 with little endian
-  const num = view.getInt32(0, 1);
-  return num;
-}
-
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
@@ -25,7 +7,10 @@ function consume(event) {
 
   // Status Message
   if (msgType === 2) {
-    data.usedCharges = toLittleEndian(payload.substr(4, 8));
+    data.usedCharges = Hex.hexLittleEndianToBigEndian(
+      payload.substr(4, 8),
+      false,
+    );
     // Reserved // 03 03
 
     data.battery = (Bits.bitsToUnsigned(bits.substr(64, 8)) + 170) / 100;
@@ -44,7 +29,10 @@ function consume(event) {
       data.ambitiousFirstPress = Number(bits.substr(107, 1));
       data.joinStrat = Number(bits.substr(108, 1));
 
-      data.statusMessageinterval = toLittleEndian(payload.substr(28, 4));
+      data.statusMessageinterval = Hex.hexLittleEndianToBigEndian(
+        payload.substr(28, 4),
+        false,
+      );
     }
 
     topic = "status";
@@ -60,9 +48,15 @@ function consume(event) {
     data.btnEpressed = Number(bits.substr(18, 1));
     data.btnNpressed = Number(bits.substr(19, 1));
 
-    data.buttonCount = toLittleEndian(payload.substr(6, 4));
+    data.buttonCount = Hex.hexLittleEndianToBigEndian(
+      payload.substr(6, 4),
+      false,
+    );
     // Reserved
-    data.usedCharges = toLittleEndian(payload.substr(14, 6));
+    data.usedCharges = Hex.hexLittleEndianToBigEndian(
+      payload.substr(14, 6),
+      false,
+    );
 
     topic = "button_pressed";
 

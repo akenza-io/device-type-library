@@ -68,17 +68,10 @@ function decoder(bytes, port) {
   return decoded;
 }
 
-function hexToBytes(hex) {
-  for (var bytes = [], c = 0; c < hex.length; c += 2) {
-    bytes.push(parseInt(hex.substr(c, 2), 16));
-  }
-  return bytes;
-}
-
 function consume(event) {
   const payload = event.data.payloadHex;
   const { port } = event.data;
-  const data = decoder(hexToBytes(payload), port);
+  const data = decoder(Hex.hexToBytes(payload), port);
   const topic = data.type;
-  emit("sample", { data: data, topic: topic });
+  emit("sample", { data, topic });
 }

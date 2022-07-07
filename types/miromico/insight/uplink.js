@@ -1,19 +1,3 @@
-function toLittleEndian(hex, signed) {
-  // Creating little endian hex DCBA
-  const hexArray = [];
-  let tempHex = hex;
-  while (tempHex.length >= 2) {
-    hexArray.push(tempHex.substring(0, 2));
-    tempHex = tempHex.substring(2, tempHex.length);
-  }
-  hexArray.reverse();
-
-  if (signed) {
-    return Bits.bitsToSigned(Bits.hexToBits(hexArray.join("")));
-  }
-  return Bits.bitsToUnsigned(Bits.hexToBits(hexArray.join("")));
-}
-
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
@@ -33,10 +17,16 @@ function consume(event) {
       case 1:
         while (pointer < length) {
           temperature[`temperature${measurement}`] =
-            toLittleEndian(payload.substr(pointer / 4, 4), true) * 0.01;
+            Hex.hexLittleEndianToBigEndian(
+              payload.substr(pointer / 4, 4),
+              true,
+            ) * 0.01;
           pointer += 16;
           temperature[`humidity${measurement}`] =
-            toLittleEndian(payload.substr(pointer / 4, 2), true) * 0.5;
+            Hex.hexLittleEndianToBigEndian(
+              payload.substr(pointer / 4, 2),
+              true,
+            ) * 0.5;
           pointer += 8;
           if (measurement === "") {
             measurement = 1;
@@ -61,19 +51,19 @@ function consume(event) {
         }
         break;
       case 3:
-        lifecycle.consumption = toLittleEndian(
+        lifecycle.consumption = Hex.hexLittleEndianToBigEndian(
           payload.substr(pointer / 4, 6),
           false,
         );
         pointer += 32;
         break;
       case 5:
-        settings.measurementInterval = toLittleEndian(
+        settings.measurementInterval = Hex.hexLittleEndianToBigEndian(
           payload.substr(pointer / 4, 4),
           false,
         );
         pointer += 16;
-        settings.temperatureSamples = toLittleEndian(
+        settings.temperatureSamples = Hex.hexLittleEndianToBigEndian(
           payload.substr(pointer / 4, 2),
           false,
         );
@@ -81,12 +71,12 @@ function consume(event) {
         break;
       case 6:
         pointer += 16;
-        settings.co2Subsample = toLittleEndian(
+        settings.co2Subsample = Hex.hexLittleEndianToBigEndian(
           payload.substr(pointer / 4, 4),
           false,
         );
         pointer += 16;
-        settings.abcCalibrationPeriod = toLittleEndian(
+        settings.abcCalibrationPeriod = Hex.hexLittleEndianToBigEndian(
           payload.substr(pointer / 4, 4),
           false,
         );

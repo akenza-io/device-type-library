@@ -1,25 +1,14 @@
-function toLittleEndianSigned(hex) {
-  // Creating little endian hex DCBA
-  const hexArray = [];
-  let tempHex = hex;
-  while (tempHex.length >= 2) {
-    hexArray.push(tempHex.substring(0, 2));
-    tempHex = tempHex.substring(2, tempHex.length);
-  }
-  hexArray.reverse();
-  // To signed
-  return Bits.bitsToSigned(Bits.hexToBits(hexArray.join("")));
-}
-
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
   const data = {};
 
   data.longitude =
-    ((toLittleEndianSigned(payload.substr(4, 6)) * 215) / 10) * 0.000001;
+    ((Hex.hexLittleEndianToBigEndian(payload.substr(4, 6), true) * 215) / 10) *
+    0.000001;
   data.latitude =
-    ((toLittleEndianSigned(payload.substr(10, 6)) * 108) / 10) * 0.000001;
+    ((Hex.hexLittleEndianToBigEndian(payload.substr(10, 6), true) * 108) / 10) *
+    0.000001;
 
   const reportType = Math.round(Bits.bitsToUnsigned(bits.substr(64, 8)) % 32);
   const gpsFix = Math.round(Bits.bitsToUnsigned(bits.substr(64, 8)) / 32);

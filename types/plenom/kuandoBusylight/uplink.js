@@ -1,15 +1,3 @@
-function toLittleEndian(hex) {
-  // Creating little endian hex DCBA
-  const hexArray = [];
-  let tempHex = hex;
-  while (tempHex.length >= 2) {
-    hexArray.push(tempHex.substring(0, 2));
-    tempHex = tempHex.substring(2, tempHex.length);
-  }
-  hexArray.reverse();
-  return Bits.bitsToUnsigned(Bits.hexToBits(hexArray.join("")));
-}
-
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
@@ -21,8 +9,14 @@ function consume(event) {
   // reserved 24
   lifecycle.snr = Bits.bitsToSigned(bits.substr(32, 8));
   // reserved 24
-  lifecycle.downlinksReceived = toLittleEndian(payload.substr(16, 8));
-  lifecycle.uplinksSent = toLittleEndian(payload.substr(24, 8));
+  lifecycle.downlinksReceived = Hex.hexLittleEndianToBigEndian(
+    payload.substr(16, 8),
+    false,
+  );
+  lifecycle.uplinksSent = Hex.hexLittleEndianToBigEndian(
+    payload.substr(24, 8),
+    false,
+  );
   data.lastColorRGB = `${Bits.bitsToUnsigned(
     bits.substr(128, 8),
   )},${Bits.bitsToUnsigned(bits.substr(136, 8))},${Bits.bitsToUnsigned(
