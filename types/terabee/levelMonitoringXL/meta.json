@@ -1,0 +1,14 @@
+{
+  "name": "Level Monitoring XL",
+  "version": "1.0.0",
+  "manufacturer": "Terabee",
+  "url": "https://www.terabee.com/shop/level-monitoring/terabee-lora-level-monitoring/",
+  "description": "Monitor material fill levels inside your silos and tanks using wireless, low-energy Terabee IoT devices. Our LED Time-of-Flight technology can reach up to 60m range for non-intrusive inventory management - from small to even the largest silos",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Distance"],
+  "outputTopics": ["default"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

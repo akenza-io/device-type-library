@@ -1,0 +1,25 @@
+{
+  "$id": "https://akenza.io/adnexo/ax-opto/error.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Error",
+  "type": "object",
+  "properties": {
+    "errorOn": {
+      "title": "Error occurance",
+      "description": "Error occurance at following time",
+      "type": "string",
+      "enum": ["RESTART", "PARAM_CHANGE", "PARAM_READ"]
+    },
+    "errorCode": {
+      "title": "Error code",
+      "description": "Error code",
+      "type": "string",
+      "enum": [
+        "PARAM_UNKNOWN",
+        "PARAM_READ_ONLY",
+        "PARAM_NOT_READABLE",
+        "COMMAND_STRUCTURE_WRONG"
+      ]
+    }
+  }
+}
