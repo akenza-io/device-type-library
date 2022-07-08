@@ -12,18 +12,9 @@ function readUInt16BE(payload, index) {
   return (payload[index] << 8) + payload[++index];
 }
 
-function hexToBytes(hex) {
-  const bytes = [];
-  let c = 0;
-  for (bytes, c; c < hex.length; c += 2) {
-    bytes.push(parseInt(hex.substr(c, 2), 16));
-  }
-  return bytes;
-}
-
 function consume(event) {
   const payload = event.data.payloadHex;
-  const bytes = hexToBytes(payload);
+  const bytes = Hex.hexToBytes(payload);
   const data = {};
   const lifecycle = {};
   const totalCounter = {};

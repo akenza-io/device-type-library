@@ -1,17 +1,7 @@
-function hexToBytes(hex) {
-  const bytes = [];
-  let c = 0;
-  while (c < hex.length) {
-    bytes.push(parseInt(hex.substr(c, 2), 16));
-    c += 2;
-  }
-  return bytes;
-}
-
 function consume(event) {
   const payload = event.data.payloadHex;
   const { port } = event.data;
-  const bytes = hexToBytes(payload);
+  const bytes = Hex.hexToBytes(payload);
   const data = {};
 
   if (port === 1 || port === 2) {

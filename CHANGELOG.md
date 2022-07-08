@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 
 ---
+# [1.20.2] - 2022-07-07
+
+### Added
+
+- Decentlab - IAM - lifecycle hide protocolVersion from KPI's
+
+# [1.20.1] - 2022-07-06
+
+### Changed
+
+- Cleaned up readme
+- Using the new helper functions
+
+# [1.20.0] - 2022-07-05
+
+### Added
+
+- Adnexo - Ax-opto
+- Dragino - LHT65
+- Terabee - Level Monitoring XL
 
 # [1.19.0] - 2022-06-30
 

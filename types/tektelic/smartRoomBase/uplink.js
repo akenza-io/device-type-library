@@ -13,7 +13,8 @@ function toUint(x) {
 
 function extractBytes(chunk, startBit, endBit) {
   const totalBits = endBit - startBit + 1;
-  const totalBytes = totalBits % 8 === 0 ? toUint(totalBits / 8) : toUint(totalBits / 8) + 1;
+  const totalBytes =
+    totalBits % 8 === 0 ? toUint(totalBits / 8) : toUint(totalBits / 8) + 1;
   const offsetInByte = startBit % 8;
   const endBitChunk = totalBits % 8;
   const arr = new Array(totalBytes);
@@ -22,7 +23,8 @@ function extractBytes(chunk, startBit, endBit) {
     let lo = chunk[chunkIdx] >> offsetInByte;
     let hi = 0;
     if (byte < totalBytes - 1) {
-      hi = (chunk[chunkIdx + 1] & ((1 << offsetInByte) - 1)) << (8 - offsetInByte);
+      hi =
+        (chunk[chunkIdx + 1] & ((1 << offsetInByte) - 1)) << (8 - offsetInByte);
     } else if (endBitChunk !== 0) {
       // Truncate last bits
       lo &= (1 << endBitChunk) - 1;
@@ -1150,17 +1152,10 @@ function decoder(bytes, port) {
   return decodedData;
 }
 
-function hexToBytes(hex) {
-  for (var bytes = [], c = 0; c < hex.length; c += 2) {
-    bytes.push(parseInt(hex.substr(c, 2), 16));
-  }
-  return bytes;
-}
-
 function consume(event) {
   const payload = event.data.payloadHex;
   const { port } = event.data;
-  const data = decoder(hexToBytes(payload), port);
+  const data = decoder(Hex.hexToBytes(payload), port);
   let topic = "default";
 
   if (data.voltage !== undefined) {
