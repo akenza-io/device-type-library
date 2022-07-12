@@ -76,6 +76,7 @@ describe("Adnexo ax-opto Uplink", () => {
         assert.equal(value.data.topLeft, 20);
         assert.equal(value.data.topRight, 20);
         assert.equal(value.data.voltage, 2.763);
+        assert.equal(value.data.batteryLevel, 70);
 
         validate(value.data, measurementSchema, { throwError: true });
       });

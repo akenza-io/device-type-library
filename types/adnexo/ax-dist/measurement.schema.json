@@ -1,0 +1,48 @@
+{
+  "$id": "https://akenza.io/adnexo/ax-dist/measurement.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Measurement",
+  "type": "object",
+  "properties": {
+    "distance": {
+      "title": "Distance",
+      "unit": "cm",
+      "type": "number",
+      "description": "Distance measured between the sensor and the surface"
+    },
+    "percent": {
+      "title": "Percent",
+      "unit": "%",
+      "type": "number",
+      "description": "Percentage of the container fill"
+    },
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "Temperature in °C"
+    },
+    "voltage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "title": "Battery voltage",
+      "desciption": "The battery voltage in Volt.",
+      "unit": "V"
+    },
+    "batteryLevel": {
+      "title": "Battery charge",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "The battery charge in percent.",
+      "unit": "%"
+    },
+    "measurementType": {
+      "title": "Measurement type",
+      "description": "Measurement type",
+      "type": "string",
+      "enum": ["REGULAR_MEASUREMENT", "EVENT_MEASUREMENT", "MANUAL_MEASUREMENT"]
+    }
+  }
+}

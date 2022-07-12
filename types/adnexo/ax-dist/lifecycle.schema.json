@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/adnexo/ax-dist/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "payloadType": {
+      "title": "Payload type",
+      "description": "Type of message",
+      "type": "string",
+      "enum": [
+        "ECHO",
+        "RESTART",
+        "NEW_CONFIGURATION_ACCEPTED",
+        "REPORT_CONFIGURATION"
+      ]
+    }
+  }
+}

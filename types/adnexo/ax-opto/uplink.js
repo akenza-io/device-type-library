@@ -184,7 +184,7 @@ function consume(event) {
           if (percent > 100) {
             percent = 100;
           } else if (percent < 0) {
-            percent = 100;
+            percent = 0;
           }
           data.percent = percent;
         }
@@ -285,16 +285,26 @@ function consume(event) {
     }
 
     const temperature = toLittleEndian(payload.substr(44, 4), true);
-    if (temperature !== -3276.8) {
+    if (temperature !== -32768) {
       data.temperature = temperature;
+    } else {
+      data.temperature = null;
     }
 
     data.voltage = toLittleEndian(payload.substr(48, 4), false) / 1000;
+    let batteryLevel = Math.round((data.voltage - 2.1) / 0.01 / 10) * 10;
+
+    if (batteryLevel > 100) {
+      batteryLevel = 100;
+    } else if (batteryLevel < 0) {
+      batteryLevel = 0;
+    }
+    data.batteryLevel = batteryLevel;
 
     if (port === 100) {
       data.measurementType = "REGULAR_MEASUREMENT";
     } else if (port === 101) {
-      data.measurementType = "MEASUREMENT_EVENT";
+      data.measurementType = "EVENT_MEASUREMENT";
     } else if (port === 102) {
       data.measurementType = "MANUAL_MEASUREMENT";
     }
