@@ -15,7 +15,7 @@ function consume(event) {
         // Mask
         const { faceMask } = payload.values[i].object;
         if (faceMask !== undefined) {
-          if (faceMask === "NO_MASK") {
+          if (faceMask === "NO_MASK" && faceMask !== "UNKNOWN_MASK") {
             data.faceMask = 0;
           } else {
             data.faceMask = 1;
@@ -24,7 +24,7 @@ function consume(event) {
 
         // Gender
         const { gender } = payload.values[i].object;
-        if (gender !== undefined) {
+        if (gender !== undefined && gender !== "UNKNOWN_GENDER") {
           if (gender === "FEMALE") {
             data.gender = "FEMALE";
           } else {
