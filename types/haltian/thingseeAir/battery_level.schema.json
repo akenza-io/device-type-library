@@ -5,17 +5,17 @@
   "type": "object",
   "properties": {
     "batteryLevel": {
-      "title": "Battery charge",
+      "title": "Battery level",
       "type": "number",
-      "description": "The battery charge in percent.",
+      "description": "The battery level in percent.",
       "minimum": 0,
       "maximum": 100,
       "unit": "%"
     },
     "batteryCharge": {
-      "title": "Charges left",
+      "title": "Battery charge",
       "type": "integer",
-      "description": "Charges left"
+      "description": "Battery charges left"
     }
   }
 }
