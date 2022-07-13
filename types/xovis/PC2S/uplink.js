@@ -14,8 +14,8 @@ function consume(event) {
 
         // Mask
         const { faceMask } = payload.values[i].object;
-        if (faceMask !== undefined) {
-          if (faceMask === "NO_MASK" && faceMask !== "UNKNOWN_MASK") {
+        if (faceMask !== undefined && faceMask !== "UNKNOWN_MASK") {
+          if (faceMask === "NO_MASK") {
             data.faceMask = 0;
           } else {
             data.faceMask = 1;
