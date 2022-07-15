@@ -1,0 +1,33 @@
+{
+  "name": "Thingsee Air",
+  "version": "1.0.0",
+  "manufacturer": "Haltian",
+  "url": "https://haltian.com/product/thingsee-air/",
+  "description": "Thingsee AIR monitors CO2 levels, TVOC levels, temperature, humidity and barometric pressure. Measuring TVOC and CO2 levels together gives you a comprehensive view on your facility air quality and it’s a great addition to any building’s technology.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": [
+    "Pressure",
+    "Humidity",
+    "Temperature",
+    "Light",
+    "CO2",
+    "TVOC"
+  ],
+  "outputTopics": [
+    "battery_level",
+    "orientation",
+    "co2",
+    "error_event",
+    "firmware_binary",
+    "firmware_response",
+    "lifecycle",
+    "magnet",
+    "network",
+    "system_info",
+    "tvoc",
+    "weather"
+  ],
+  "encoding": "JSON",
+  "connectivity": "MQTT"
+}
