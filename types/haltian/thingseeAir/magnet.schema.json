@@ -1,0 +1,18 @@
+{
+  "$id": "https://akenza.io/haltian/thingseeAir/magnet.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Magnet",
+  "type": "object",
+  "properties": {
+    "open": {
+      "title": "Open",
+      "description": "Status of the magnet switch. open = true, closed = false",
+      "type": "boolean"
+    },
+    "numberOfChanges": {
+      "title": "Number of changes",
+      "type": "integer",
+      "description": "Number of detected state changes during a measurement period."
+    }
+  }
+}

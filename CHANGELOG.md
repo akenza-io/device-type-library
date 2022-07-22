@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 
 ---
+
+# [1.21.0] - 2022-07-13
+
+### Added
+
+- Haltian - Thingsee Air
+- Haltian - Thingsee Environment
+- Haltian - Thingsee Presence
+
 # [1.20.2] - 2022-07-07
 
 ### Added

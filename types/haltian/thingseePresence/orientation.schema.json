@@ -1,0 +1,32 @@
+{
+  "$id": "https://akenza.io/haltian/thingseeEnvironment/orientation.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Orientation",
+  "type": "object",
+  "properties": {
+    "accX": {
+      "title": "Acceleration X-Axis",
+      "description": "Acceleration on the X-Axis in gravitational acceleration",
+      "unit": "g",
+      "type": "number",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "accY": {
+      "title": "Acceleration Y-Axis",
+      "description": "Acceleration on the Y-Axis in gravitational acceleration",
+      "unit": "g",
+      "type": "number",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "accZ": {
+      "title": "Acceleration Z-Axis",
+      "description": "Acceleration on the Z-Axis in gravitational acceleration",
+      "unit": "g",
+      "type": "number",
+      "minimum": -32767,
+      "maximum": 32767
+    }
+  }
+}

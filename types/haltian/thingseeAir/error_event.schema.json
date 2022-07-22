@@ -1,0 +1,18 @@
+{
+  "$id": "https://akenza.io/haltian/thingseeAir/error_event.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Error event",
+  "type": "object",
+  "properties": {
+    "errorType": {
+      "title": "Error type",
+      "description": "Error type",
+      "type": "string"
+    },
+    "errorCause": {
+      "title": "Error cause",
+      "description": "Error cause",
+      "type": "string"
+    }
+  }
+}

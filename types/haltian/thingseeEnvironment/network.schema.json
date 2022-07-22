@@ -1,0 +1,33 @@
+{
+  "$id": "https://akenza.io/haltian/thingseeEnvironment/network.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Network",
+  "type": "object",
+  "properties": {
+    "rssi": {
+      "title": "RSSI",
+      "description": "Received Signal Strength Indicator",
+      "type": "string"
+    },
+    "rssiDbm": {
+      "title": "RSSI DBM",
+      "description": "Received Signal Strength Indicator DBM",
+      "type": "string"
+    },
+    "neighNodeInfo": {
+      "title": "Neighbor node info",
+      "description": "Neighbor node info",
+      "type": "string"
+    },
+    "neighRadioPower": {
+      "title": "Neighbor radio power",
+      "description": "Neighbor radio power",
+      "type": "string"
+    },
+    "neighRadioPowerDbm": {
+      "title": "Neighbor radio power DBM",
+      "description": "Neighbor radio power DBM",
+      "type": "string"
+    }
+  }
+}

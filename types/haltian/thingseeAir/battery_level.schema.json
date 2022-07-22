@@ -1,0 +1,21 @@
+{
+  "$id": "https://akenza.io/haltian/thingseeAir/battery_level.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Battery level",
+  "type": "object",
+  "properties": {
+    "batteryLevel": {
+      "title": "Battery level",
+      "type": "number",
+      "description": "The battery level in percent.",
+      "minimum": 0,
+      "maximum": 100,
+      "unit": "%"
+    },
+    "batteryCharge": {
+      "title": "Battery charge",
+      "type": "integer",
+      "description": "Battery charges left"
+    }
+  }
+}

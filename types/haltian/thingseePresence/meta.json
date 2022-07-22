@@ -1,0 +1,33 @@
+{
+  "name": "Thingsee Presence",
+  "version": "1.0.0",
+  "manufacturer": "Haltian",
+  "url": "https://haltian.com/product/thingsee-presence/",
+  "description": "Thingsee PRESENCE is a wireless IoT device for measuring people presence through your facility. You can use the sensor for facility management and occupancy detection in various places such as offices, hospitals or restaurants.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": [
+    "Pressure",
+    "Humidity",
+    "Temperature",
+    "Light",
+    "Presence",
+    "Movement"
+  ],
+  "outputTopics": [
+    "occupancy",
+    "move_count",
+    "vibration",
+    "battery_level",
+    "orientation",
+    "error_event",
+    "firmware_binary",
+    "firmware_response",
+    "lifecycle",
+    "network",
+    "system_info",
+    "weather"
+  ],
+  "encoding": "JSON",
+  "connectivity": "MQTT"
+}
