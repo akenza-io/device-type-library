@@ -19,11 +19,19 @@
       "minimum": 0,
       "maximum": 65535
     },
-    "battery": {
-      "title": "Battery",
+    "batteryLevel": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "unit": "%"
+    },
+    "voltage": {
+      "title": "Voltage",
       "unit": "V",
       "type": "number",
-      "description": "Battery in volt",
+      "description": "Battery voltage",
       "minimum": 0,
       "maximum": 65535
     },
