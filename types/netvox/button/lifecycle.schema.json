@@ -7,12 +7,14 @@
     "version": {
       "title": "Protocol Version",
       "description": "Protocol Version",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     },
     "devType": {
       "title": "Device type ID",
       "description": "Device type ID",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     },
     "voltage": {
       "title": "Battery voltage",

@@ -7,27 +7,32 @@
     "extPower": {
       "title": "External power",
       "type": "boolean",
-      "description": "Equals true if there is external power."
+      "description": "Equals true if there is external power.",
+      "hideFromKpis": true
     },
     "ignition": {
       "title": "Ignition state",
       "type": "boolean",
-      "description": "Equals true if there is ignition detected."
+      "description": "Equals true if there is ignition detected.",
+      "hideFromKpis": true
     },
     "digitalInput1": {
       "title": "Digital input 1",
       "type": "boolean",
-      "description": "Equals true if there is digital input."
+      "description": "Equals true if there is digital input.",
+      "hideFromKpis": true
     },
     "digitalInput2": {
       "title": "Digital input 2",
       "type": "boolean",
-      "description": "Equals true if there is digital input."
+      "description": "Equals true if there is digital input.",
+      "hideFromKpis": true
     },
     "digitalOutput": {
       "title": "Digital output",
       "type": "boolean",
-      "description": "Equals true if there is digital output."
+      "description": "Equals true if there is digital output.",
+      "hideFromKpis": true
     },
     "extVoltage": {
       "title": "External voltage",

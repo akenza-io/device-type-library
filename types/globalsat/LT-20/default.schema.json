@@ -31,17 +31,15 @@
         "Motion mode static to moving report",
         "Motion mode moving to static report",
         "Low battery alarm report"
-      ]
+      ],
+      "hideFromKpis": true
     },
     "gpsFix": {
       "title": "GPS fix",
       "description": "Describes the GPS fix",
       "type": "string",
-      "enum": [
-        "Not fix",
-        "2D fix",
-        "3D fix"
-      ]
+      "enum": ["Not fix", "2D fix", "3D fix"],
+      "hideFromKpis": true
     }
   }
 }

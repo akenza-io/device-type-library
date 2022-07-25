@@ -13,7 +13,8 @@
         "RESTART",
         "NEW_CONFIGURATION_ACCEPTED",
         "REPORT_CONFIGURATION"
-      ]
+      ],
+      "hideFromKpis": true
     }
   }
 }

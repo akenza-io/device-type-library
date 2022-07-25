@@ -21,7 +21,8 @@
         "OK",
         "AUTO_CALIBRATED",
         "AUTO_CALIBRATEN_FAILED"
-      ]
+      ],
+      "hideFromKpis": true
     }
   }
 }

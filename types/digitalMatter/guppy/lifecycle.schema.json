@@ -10,28 +10,33 @@
       "minimum": 0,
       "maximum": 24,
       "desciption": "Initial battery voltage",
-      "unit": "V"
+      "unit": "V",
+      "hideFromKpis": true
     },
     "uptimeWeeks": {
       "title": "Uptime weeks",
       "type": "integer",
       "unit": "w",
-      "description": "Uptime weeks"
+      "description": "Uptime weeks",
+      "hideFromKpis": true
     },
     "txCount": {
       "title": "Tx count",
       "type": "integer",
-      "description": "Transmission count"
+      "description": "Transmission count",
+      "hideFromKpis": true
     },
     "tripCount": {
       "title": "Trip count",
       "type": "integer",
-      "description": "Trip count"
+      "description": "Trip count",
+      "hideFromKpis": true
     },
     "wakeupsPerTrip": {
       "title": "Wakeups per trip",
       "type": "integer",
-      "description": "Wakeups per trip"
+      "description": "Wakeups per trip",
+      "hideFromKpis": true
     }
   }
 }

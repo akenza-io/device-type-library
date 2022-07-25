@@ -7,7 +7,8 @@
     "requestTsmId": {
       "title": "Request tsm ID",
       "description": "Request tsm ID",
-      "type": "integer"
+      "type": "integer",
+      "hideFromKpis": true
     }
   }
 }

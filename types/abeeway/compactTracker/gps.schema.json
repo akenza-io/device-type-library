@@ -8,13 +8,15 @@
       "title": "GPS Message",
       "description": "Flag that describes the following values",
       "type": "string",
-      "enum": ["GPS_FIX", "GPS_FIX_EXTENDED"]
+      "enum": ["GPS_FIX", "GPS_FIX_EXTENDED"],
+      "hideFromKpis": true
     },
     "age": {
       "title": "Age",
       "unit": "s",
       "type": "integer",
-      "description": "Age of the measurement in seconds"
+      "description": "Age of the measurement in seconds",
+      "hideFromKpis": true
     },
     "latitude": {
       "title": "Latitude",
@@ -42,13 +44,15 @@
       "title": "Dimension fix",
       "description": "Describes the GPS fix",
       "type": "string",
-      "enum": ["2D fix", "3D fix"]
+      "enum": ["2D fix", "3D fix"],
+      "hideFromKpis": true
     },
     "cog": {
       "title": "Course over ground",
       "unit": "°",
       "type": "number",
-      "description": "The direction the tracker is moving over the ground expressed in degrees."
+      "description": "The direction the tracker is moving over the ground expressed in degrees.",
+      "hideFromKpis": true
     },
     "sog": {
       "title": "Speed over ground",

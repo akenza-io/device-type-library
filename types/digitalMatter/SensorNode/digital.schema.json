@@ -24,7 +24,6 @@
       "description": "Output 3v3",
       "type": "boolean"
     },
-
     "digitalState": {
       "title": "Digital state",
       "description": "Current digital input state",

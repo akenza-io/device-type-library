@@ -7,47 +7,56 @@
     "tempPt100": {
       "title": "Temperature PT100",
       "description": "TEMP PT100 placed",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "tempI2C": {
       "title": "Temperature I2C",
       "description": "TEMP I2C placed",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "acc": {
       "title": "ACC",
       "description": "ACC placed",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "extMEM": {
       "title": "EXT MEM",
       "description": "EXT MEM placed",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "lastTempValid": {
       "title": "Last temperature measurement",
       "description": "Last temperature measurement valid",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "batLow": {
       "title": "Battery Low",
       "description": "Low Battery flag set",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "async": {
       "title": "Asynchronous",
       "description": "ASYNCHRONOUS Event set",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "history": {
       "title": "History",
       "description": "HISTORY Event flag set (SYNC)",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "alarming": {
       "title": "Alarming",
       "description": "ALARMING Event flag set (SYNC)",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "button": {
       "title": "Button",
@@ -57,12 +66,14 @@
     "configRX": {
       "title": "Config RX",
       "description": "CONFIG RX Event flag set (ASYNC)",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "infoReq": {
       "title": "Info request",
       "description": "INFO REQ Event flag set (ASYNC)",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "batteryLevel": {
       "type": "number",

@@ -45,7 +45,8 @@
     "id": {
       "title": "ID",
       "description": "ID",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     }
   }
 }

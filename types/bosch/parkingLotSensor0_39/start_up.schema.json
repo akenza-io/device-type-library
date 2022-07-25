@@ -7,12 +7,14 @@
     "debug": {
       "title": "Debug",
       "description": "Debug message output",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     },
     "fwVersion": {
       "title": "FW Version",
       "description": "Firmware Version",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     },
     "resetCause": {
       "title": "Reset cause",
@@ -23,7 +25,8 @@
         "POWER_ON_RESET",
         "SYSTEM_REQUEST_RESET",
         "OTHER_RESET"
-      ]
+      ],
+      "hideFromKpis": true
     }
   }
 }

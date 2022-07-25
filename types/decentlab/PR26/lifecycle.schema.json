@@ -15,12 +15,14 @@
     "protocolVersion": {
       "title": "Protocol Version",
       "description": "Protocol Version",
-      "type": "integer"
+      "type": "integer",
+      "hideFromKpis": true
     },
     "deviceID": {
       "title": "Device ID",
       "description": "Device ID",
-      "type": "integer"
+      "type": "integer",
+      "hideFromKpis": true
     }
   }
 }

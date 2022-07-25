@@ -20,60 +20,70 @@
       "title": "Distance top left",
       "unit": "cm",
       "type": "number",
-      "description": "Distance measured top left"
+      "description": "Distance measured top left",
+      "hideFromKpis": true
     },
     "topCenter": {
       "title": "Distance top center",
       "unit": "cm",
       "type": "number",
-      "description": "Distance measured top center"
+      "description": "Distance measured top center",
+      "hideFromKpis": true
     },
     "topRight": {
       "title": "Distance top right",
       "unit": "cm",
       "type": "number",
-      "description": "Distance measured top right"
+      "description": "Distance measured top right",
+      "hideFromKpis": true
     },
     "middleLeft": {
       "title": "Distance middle left",
       "unit": "cm",
       "type": "number",
-      "description": "Distance measured middle left"
+      "description": "Distance measured middle left",
+      "hideFromKpis": true
     },
     "middleCenter": {
       "title": "Distance middle center",
       "unit": "cm",
       "type": "number",
-      "description": "Distance measured middle center"
+      "description": "Distance measured middle center",
+      "hideFromKpis": true
     },
     "middleRight": {
       "title": "Distance middle right",
       "unit": "cm",
       "type": "number",
-      "description": "Distance measured middle right"
+      "description": "Distance measured middle right",
+      "hideFromKpis": true
     },
     "bottomLeft": {
       "title": "Distance bottom left",
       "unit": "cm",
       "type": "number",
-      "description": "Distance measured bottom left"
+      "description": "Distance measured bottom left",
+      "hideFromKpis": true
     },
     "bottomCenter": {
       "title": "Distance bottom center",
       "unit": "cm",
       "type": "number",
-      "description": "Distance measured bottom center"
+      "description": "Distance measured bottom center",
+      "hideFromKpis": true
     },
     "bottomRight": {
       "title": "Distance bottom right",
       "unit": "cm",
       "type": "number",
-      "description": "Distance measured bottom right"
+      "description": "Distance measured bottom right",
+      "hideFromKpis": true
     },
     "errorFlags": {
       "title": "Error flags",
       "type": "array",
-      "description": "Array of error flags"
+      "description": "Array of error flags",
+      "hideFromKpis": true
     },
     "temperature": {
       "title": "Temperature",
@@ -93,7 +103,12 @@
       "title": "Measurement type",
       "description": "Measurement type",
       "type": "string",
-      "enum": ["REGULAR_MEASUREMENT", "MEASUREMENT_EVENT", "MANUAL_MEASUREMENT"]
+      "enum": [
+        "REGULAR_MEASUREMENT",
+        "MEASUREMENT_EVENT",
+        "MANUAL_MEASUREMENT"
+      ],
+      "hideFromKpis": true
     }
   }
 }
