@@ -10,11 +10,11 @@
       "type": "number",
       "description": "Distance measured between the sensor and the surface"
     },
-    "percent": {
-      "title": "Percent",
+    "fillLevel": {
+      "title": "Fill level",
       "unit": "%",
       "type": "number",
-      "description": "Percentage of the container fill"
+      "description": "Fill level of the container"
     },
     "temperature": {
       "title": "Temperature",
@@ -42,7 +42,12 @@
       "title": "Measurement type",
       "description": "Measurement type",
       "type": "string",
-      "enum": ["REGULAR_MEASUREMENT", "EVENT_MEASUREMENT", "MANUAL_MEASUREMENT"]
+      "enum": [
+        "REGULAR_MEASUREMENT",
+        "EVENT_MEASUREMENT",
+        "MANUAL_MEASUREMENT"
+      ],
+      "hideFromKpis": true
     }
   }
 }

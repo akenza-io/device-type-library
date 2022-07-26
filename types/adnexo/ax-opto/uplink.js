@@ -39,18 +39,6 @@ function consume(event) {
       pointer += 2;
 
       switch (header) {
-        case 0x01:
-          data.appEui = payload.substr(pointer, 16);
-          pointer += 16;
-          break;
-        case 0x02:
-          data.appKey = payload.substr(pointer, 32);
-          pointer += 32;
-          break;
-        case 0x03:
-          data.devEui = payload.substr(pointer, 16);
-          pointer += 16;
-          break;
         case 0x04:
           data.measurementInterval = toLittleEndian(
             payload.substr(pointer, 8),
@@ -67,7 +55,7 @@ function consume(event) {
           pointer += 8;
           break;
         case 0x07:
-          data.reed = toLittleEndian(payload.substr(pointer, 2), false);
+          data.reedActive = !!toLittleEndian(payload.substr(pointer, 2), false);
           pointer += 2;
           break;
         case 0x15:
@@ -80,6 +68,11 @@ function consume(event) {
           break;
         case 0x17:
           data.range = toLittleEndian(payload.substr(pointer, 2), false);
+          if (data.range === 1) {
+            data.range = "SHORT_RANGE";
+          } else if (data.range === 2) {
+            data.range = "LONG_RANGE";
+          }
           pointer += 2;
           break;
         case 0x23:

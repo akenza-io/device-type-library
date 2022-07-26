@@ -8,7 +8,8 @@
       "title": "Error occurance",
       "description": "Error occurance at following time",
       "type": "string",
-      "enum": ["RESTART", "PARAM_CHANGE", "PARAM_READ"]
+      "enum": ["RESTART", "PARAM_CHANGE", "PARAM_READ"],
+      "hideFromKpis": true
     },
     "errorCode": {
       "title": "Error code",
@@ -19,7 +20,8 @@
         "PARAM_READ_ONLY",
         "PARAM_NOT_READABLE",
         "COMMAND_STRUCTURE_WRONG"
-      ]
+      ],
+      "hideFromKpis": true
     }
   }
 }

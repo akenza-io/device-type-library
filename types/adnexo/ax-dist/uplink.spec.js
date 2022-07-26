@@ -89,7 +89,7 @@ describe("Adnexo ax-dist Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "invalid_measurement");
-        assert.equal(value.data.measVariance, 62.5);
+        assert.equal(value.data.measurementVariance, 62.5);
 
         validate(value.data, invalidMeasurementSchema, { throwError: true });
       });

@@ -39,18 +39,6 @@ function consume(event) {
       pointer += 2;
 
       switch (header) {
-        case 0x01:
-          data.appEui = payload.substr(pointer, 16);
-          pointer += 16;
-          break;
-        case 0x02:
-          data.appKey = payload.substr(pointer, 32);
-          pointer += 32;
-          break;
-        case 0x03:
-          data.devEui = payload.substr(pointer, 16);
-          pointer += 16;
-          break;
         case 0x04:
           data.measurementInterval = toLittleEndian(
             payload.substr(pointer, 8),
@@ -67,7 +55,7 @@ function consume(event) {
           pointer += 8;
           break;
         case 0x07:
-          data.reed = toLittleEndian(payload.substr(pointer, 2), false);
+          data.reedActive = !!toLittleEndian(payload.substr(pointer, 2), false);
           pointer += 2;
           break;
         case 0x52:
@@ -134,13 +122,13 @@ function consume(event) {
           const percentExact =
             (100 / scaleLength) *
             (scaleLength - (data.distance - sensorDistance));
-          let percent = Math.round(percentExact);
-          if (percent > 100) {
-            percent = 100;
-          } else if (percent < 0) {
-            percent = 0;
+          let fillLevel = Math.round(percentExact);
+          if (fillLevel > 100) {
+            fillLevel = 100;
+          } else if (fillLevel < 0) {
+            fillLevel = 0;
           }
-          data.percent = percent;
+          data.fillLevel = fillLevel;
         }
       }
     }
@@ -172,11 +160,12 @@ function consume(event) {
 
     topic = "measurement";
   } else if (port === 104) {
-    const measVariance = toLittleEndian(payload.substr(4, 4), false) / 10;
-    if (measVariance !== 6553.5) {
-      data.measVariance = measVariance;
+    const measurementVariance =
+      toLittleEndian(payload.substr(4, 4), false) / 10;
+    if (measurementVariance !== 6553.5) {
+      data.measurementVariance = measurementVariance;
     } else {
-      data.measVariance = null;
+      data.measurementVariance = null;
     }
 
     topic = "invalid_measurement";

@@ -13,7 +13,41 @@
         "RESTART",
         "NEW_CONFIGURATION_ACCEPTED",
         "REPORT_CONFIGURATION"
-      ]
+      ],
+      "hideFromKpis": true
+    },
+    "measurementInterval": {
+      "title": "Measurement interval",
+      "type": "integer",
+      "unit": "s",
+      "desciption": "Measurement interval in seconds.",
+      "hideFromKpis": true
+    },
+    "sendInterval": {
+      "title": "Send interval",
+      "type": "integer",
+      "desciption": "Send every x samples",
+      "hideFromKpis": true
+    },
+    "joinInterval": {
+      "title": "Join interval",
+      "type": "integer",
+      "unit": "s",
+      "desciption": "Join interval in seconds.",
+      "hideFromKpis": true
+    },
+    "reedActive": {
+      "title": "Reed active",
+      "type": "boolean",
+      "desciption": "True if reed is active",
+      "hideFromKpis": true
+    },
+    "thresholdDistance": {
+      "title": "Threshold distance",
+      "unit": "mm",
+      "type": "number",
+      "description": "Message is sent immediately if distance measured is bigger.",
+      "hideFromKpis": true
     }
   }
 }

@@ -4,11 +4,12 @@
   "title": "Invalid measurement",
   "type": "object",
   "properties": {
-    "measVariance": {
+    "measurementVariance": {
       "title": "Measurement variance",
       "unit": "cm",
       "type": "number",
-      "description": "Possible measurement variance"
+      "description": "Possible measurement variance",
+      "hideFromKpis": true
     }
   }
 }
