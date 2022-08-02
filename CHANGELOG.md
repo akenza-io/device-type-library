@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.22.0] - 2022-08-02
+
+### Added
+
+- Adnexo - Ax-dist
+
+### Changed
+
+- Adnexo - Ax-opto changed shemas to mach ax-dist
+- Miromico - REV2_V5 changed key names to mach standards
+- Updated some meta information
+- Changed some sensor images
+
 # [1.21.0] - 2022-07-13
 
 ### Added

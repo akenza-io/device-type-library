@@ -9,7 +9,8 @@
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly",
     "emit": "readonly",
-    "Bits": "readonly"
+    "Bits": "readonly",
+    "Hex": "readonly"
   },
   "parserOptions": {
     "ecmaVersion": 2021,

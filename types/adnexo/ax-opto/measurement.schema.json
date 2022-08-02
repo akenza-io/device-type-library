@@ -89,11 +89,19 @@
       "desciption": "The battery voltage in Volt.",
       "unit": "V"
     },
+    "batteryLevel": {
+      "title": "Battery charge",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "The battery charge in percent.",
+      "unit": "%"
+    },
     "measurementType": {
       "title": "Measurement type",
       "description": "Measurement type",
       "type": "string",
-      "enum": ["REGULAR_MEASUREMENT", "MEASUREMENT_EVENT", "MANUAL_MEASUREMENT"]
+      "enum": ["REGULAR_MEASUREMENT", "EVENT_MEASUREMENT", "MANUAL_MEASUREMENT"]
     }
   }
 }
