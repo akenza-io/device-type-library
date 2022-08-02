@@ -157,29 +157,31 @@ function consume(event) {
 
     if (event.device !== undefined && data.distance !== undefined) {
       if (event.device.customFields !== undefined) {
-        const scaleLength = Number(
-          event.device.customFields["Height of the tank in cm"],
-        );
-        const sensorDistance = Number(
-          event.device.customFields["Distance of sensor to surface in cm"],
-        );
+        const { customFields } = event.device;
+        let scaleLength = null;
+        let sensorDistance = 0;
 
-        if (
-          scaleLength !== NaN &&
-          scaleLength !== undefined &&
-          sensorDistance !== NaN &&
-          scaleLength !== undefined
-        ) {
+        if (customFields.tankHeightCm !== undefined) {
+          scaleLength = Number(event.device.customFields.tankHeightCm);
+        }
+
+        if (customFields.distanceSensorSurfaceCM !== undefined) {
+          sensorDistance = Number(
+            event.device.customFields.distanceSensorSurfaceCM,
+          );
+        }
+
+        if (scaleLength !== null) {
           const percentExact =
             (100 / scaleLength) *
             (scaleLength - (data.distance - sensorDistance));
-          let percent = Math.round(percentExact);
-          if (percent > 100) {
-            percent = 100;
-          } else if (percent < 0) {
-            percent = 0;
+          let fillLevel = Math.round(percentExact);
+          if (fillLevel > 100) {
+            fillLevel = 100;
+          } else if (fillLevel < 0) {
+            fillLevel = 0;
           }
-          data.percent = percent;
+          data.fillLevel = fillLevel;
         }
       }
     }
