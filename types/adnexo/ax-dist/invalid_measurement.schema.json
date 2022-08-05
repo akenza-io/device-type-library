@@ -1,0 +1,15 @@
+{
+  "$id": "https://akenza.io/adnexo/ax-dist/invalid_measurement.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Invalid measurement",
+  "type": "object",
+  "properties": {
+    "measurementVariance": {
+      "title": "Measurement variance",
+      "unit": "cm",
+      "type": "number",
+      "description": "Possible measurement variance",
+      "hideFromKpis": true
+    }
+  }
+}

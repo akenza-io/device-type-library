@@ -1,7 +1,7 @@
 {
   "name": "SensorNode",
   "version": "1.0.0",
-  "manufacturer": "digitalMatter",
+  "manufacturer": "Digital Matter",
   "url": "https://www.digitalmatter.com/devices/sensornode-lorawan/",
   "description": "Robust and rugged datalogger with inputs/outputs and I²C sensor interface for asset and sensor monitoring on LoRaWAN® networks",
   "author": "Akenza AG",

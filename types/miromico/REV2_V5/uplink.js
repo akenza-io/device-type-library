@@ -13,7 +13,15 @@ function consume(event) {
     );
     // Reserved // 03 03
 
-    data.battery = (Bits.bitsToUnsigned(bits.substr(64, 8)) + 170) / 100;
+    data.voltage = (Bits.bitsToUnsigned(bits.substr(64, 8)) + 170) / 100;
+    // Max 3.0 min 2.0 V
+    data.batteryLevel = Math.floor((data.voltage - 2) / 0.01 / 10) * 10;
+    if (data.batteryLevel > 100) {
+      data.batteryLevel = 100;
+    } else if (data.batteryLevel < 0) {
+      data.batteryLevel = 0;
+    }
+
     data.internalTemp = Bits.bitsToUnsigned(bits.substr(72, 8));
 
     if (bits.length > 80) {
