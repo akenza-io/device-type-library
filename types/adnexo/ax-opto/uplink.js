@@ -39,18 +39,6 @@ function consume(event) {
       pointer += 2;
 
       switch (header) {
-        case 0x01:
-          data.appEui = payload.substr(pointer, 16);
-          pointer += 16;
-          break;
-        case 0x02:
-          data.appKey = payload.substr(pointer, 32);
-          pointer += 32;
-          break;
-        case 0x03:
-          data.devEui = payload.substr(pointer, 16);
-          pointer += 16;
-          break;
         case 0x04:
           data.measurementInterval = toLittleEndian(
             payload.substr(pointer, 8),
@@ -67,7 +55,7 @@ function consume(event) {
           pointer += 8;
           break;
         case 0x07:
-          data.reed = toLittleEndian(payload.substr(pointer, 2), false);
+          data.reedActive = !!toLittleEndian(payload.substr(pointer, 2), false);
           pointer += 2;
           break;
         case 0x15:
@@ -80,6 +68,11 @@ function consume(event) {
           break;
         case 0x17:
           data.range = toLittleEndian(payload.substr(pointer, 2), false);
+          if (data.range === 1) {
+            data.range = "SHORT_RANGE";
+          } else if (data.range === 2) {
+            data.range = "LONG_RANGE";
+          }
           pointer += 2;
           break;
         case 0x23:
@@ -164,29 +157,31 @@ function consume(event) {
 
     if (event.device !== undefined && data.distance !== undefined) {
       if (event.device.customFields !== undefined) {
-        const scaleLength = Number(
-          event.device.customFields["Height of the tank in cm"],
-        );
-        const sensorDistance = Number(
-          event.device.customFields["Distance of sensor to surface in cm"],
-        );
+        const { customFields } = event.device;
+        let scaleLength = null;
+        let sensorDistance = 0;
 
-        if (
-          scaleLength !== NaN &&
-          scaleLength !== undefined &&
-          sensorDistance !== NaN &&
-          scaleLength !== undefined
-        ) {
+        if (customFields.tankHeightCm !== undefined) {
+          scaleLength = Number(event.device.customFields.tankHeightCm);
+        }
+
+        if (customFields.distanceSensorSurfaceCM !== undefined) {
+          sensorDistance = Number(
+            event.device.customFields.distanceSensorSurfaceCM,
+          );
+        }
+
+        if (scaleLength !== null) {
           const percentExact =
             (100 / scaleLength) *
             (scaleLength - (data.distance - sensorDistance));
-          let percent = Math.round(percentExact);
-          if (percent > 100) {
-            percent = 100;
-          } else if (percent < 0) {
-            percent = 100;
+          let fillLevel = Math.round(percentExact);
+          if (fillLevel > 100) {
+            fillLevel = 100;
+          } else if (fillLevel < 0) {
+            fillLevel = 0;
           }
-          data.percent = percent;
+          data.fillLevel = fillLevel;
         }
       }
     }
@@ -285,16 +280,26 @@ function consume(event) {
     }
 
     const temperature = toLittleEndian(payload.substr(44, 4), true);
-    if (temperature !== -3276.8) {
+    if (temperature !== -32768) {
       data.temperature = temperature;
+    } else {
+      data.temperature = null;
     }
 
     data.voltage = toLittleEndian(payload.substr(48, 4), false) / 1000;
+    let batteryLevel = Math.round((data.voltage - 2.1) / 0.01 / 10) * 10;
+
+    if (batteryLevel > 100) {
+      batteryLevel = 100;
+    } else if (batteryLevel < 0) {
+      batteryLevel = 0;
+    }
+    data.batteryLevel = batteryLevel;
 
     if (port === 100) {
       data.measurementType = "REGULAR_MEASUREMENT";
     } else if (port === 101) {
-      data.measurementType = "MEASUREMENT_EVENT";
+      data.measurementType = "EVENT_MEASUREMENT";
     } else if (port === 102) {
       data.measurementType = "MANUAL_MEASUREMENT";
     }

@@ -15,6 +15,87 @@
         "REPORT_CONFIGURATION"
       ],
       "hideFromKpis": true
+    },
+    "measurementInterval": {
+      "title": "Measurement interval",
+      "type": "integer",
+      "unit": "s",
+      "desciption": "Measurement interval in seconds.",
+      "hideFromKpis": true
+    },
+    "sendInterval": {
+      "title": "Send interval",
+      "type": "integer",
+      "desciption": "Send every x samples",
+      "hideFromKpis": true
+    },
+    "joinInterval": {
+      "title": "Join interval",
+      "type": "integer",
+      "unit": "s",
+      "desciption": "Join interval in seconds.",
+      "hideFromKpis": true
+    },
+    "reedActive": {
+      "title": "Reed active",
+      "type": "boolean",
+      "desciption": "True if reed is active",
+      "hideFromKpis": true
+    },
+    "timingBudget": {
+      "title": "Timing budget",
+      "unit": "ms",
+      "type": "number",
+      "description": "Timing Budget for optical distance measurement. Can be 20, 33, 50, 100, 200 or 500.",
+      "hideFromKpis": true
+    },
+    "range": {
+      "title": "Range mode",
+      "description": "Range mode",
+      "type": "string",
+      "enum": ["SHORT_RANGE", "LONG_RANGE"],
+      "hideFromKpis": true
+    },
+    "magnitudeTolerance": {
+      "title": "Magnitude tolerance",
+      "unit": "mg",
+      "type": "number",
+      "description": "How strong the device can move to detect an orientation",
+      "minimum": 10,
+      "maximum": 2000,
+      "hideFromKpis": true
+    },
+    "tiltTolerance": {
+      "title": "Tilt tolerance",
+      "unit": "mg",
+      "type": "number",
+      "description": "How strong the device can be tilted to detect an orientation",
+      "minimum": 10,
+      "maximum": 2000,
+      "hideFromKpis": true
+    },
+    "averagingSamples": {
+      "title": "Averaging samples",
+      "type": "number",
+      "description": "How many samples to include in averaging calculation.",
+      "minimum": 1,
+      "maximum": 1000,
+      "hideFromKpis": true
+    },
+    "notificationSettings": {
+      "title": "Notification settings",
+      "type": "number",
+      "description": "Bit flags to determnie when to send an orientation notification.",
+      "hideFromKpis": true
+    },
+    "notificationTimeout": {
+      "title": "Notification timeout",
+      "unit": "s",
+      "type": "number",
+      "description": "HHow long to pause orientation detection after a notification.",
+      "minimum": 20,
+      "maximum": 3600,
+      "hideFromKpis": true
     }
   }
 }
