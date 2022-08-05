@@ -1,0 +1,30 @@
+{
+  "$id": "https://akenza.io/enginko/MCF-LW12CO2E/time_sync.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Time sync",
+  "type": "object",
+  "properties": {
+    "syncID": {
+      "title": "Sync ID",
+      "description": "Sync ID",
+      "type": "string"
+    },
+    "syncVersion": {
+      "title": "Sync version",
+      "description": "Sync version",
+      "type": "string"
+    },
+    "applicationType": {
+      "title": "Application type",
+      "description": "Application type",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "rfu": {
+      "title": "RFU",
+      "description": "RFU",
+      "type": "integer"
+    }
+  }
+}

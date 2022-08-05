@@ -1,0 +1,21 @@
+{
+  "$id": "https://akenza.io/seeed/senseCAPSoilTemperature/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "batteryLevel": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "unit": "%"
+    },
+    "open": {
+      "title": "Open",
+      "type": "boolean",
+      "description": "True if reed has no contact."
+    }
+  }
+}

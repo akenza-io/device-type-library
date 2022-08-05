@@ -1,0 +1,14 @@
+{
+  "name": "Senlab D",
+  "version": "1.0.0",
+  "manufacturer": "Sensing Labs",
+  "url": "https://sensing-labs.com/lorawan-devices/lorawan-sensors/openings-remote-control-ip68/",
+  "description": "Designed for outdoor use, this Senlab offers a ruggedized IP68 casing and robust wireless connectivity for continuous monitoring in harsh and challenging environments.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Reed"],
+  "outputTopics": ["default", "startup"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
