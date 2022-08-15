@@ -7,12 +7,14 @@
     "binaryType": {
       "title": "Binary type",
       "description": "Binary type",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     },
     "binaryVersion": {
       "title": "Binary version",
       "description": "Binary version",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     }
   }
 }

@@ -7,7 +7,8 @@
     "sequenceNumber": {
       "title": "Sequence number",
       "description": "Sequence number",
-      "type": "number"
+      "type": "number",
+      "hideFromKpis": true
     },
     "temperature": {
       "title": "Temperature",
@@ -20,18 +21,21 @@
     "buttonLatched": {
       "title": "Button latched",
       "description": "Is true if the button has been pressed in the last 24 hours",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "isButtonPressed": {
       "title": "Is button pressed",
       "description": "Is true if the button is pressed right now",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "currentProfile": {
       "title": "Current profile",
       "description": "Currently used radio configuration",
       "type": "string",
-      "enum": ["IMR_LORA_SIGFOX", "SIGFOX", "SIGFOX_LORA"]
+      "enum": ["IMR_LORA_SIGFOX", "SIGFOX", "SIGFOX_LORA"],
+      "hideFromKpis": true
     },
     "currentLevel": {
       "title": "Current level",
@@ -44,32 +48,38 @@
     "removedFromDial": {
       "title": "Removed from dial",
       "description": "True = removed from dial, False = installed on dial ",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "isRefilling": {
       "title": "Is refilling",
       "description": "True on refill indicated",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "highLPG": {
       "title": "High level of LPG detected",
       "description": "Is true if there is high level of LPG detected",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "lowLPG": {
       "title": "Low level of LPG detected",
       "description": "Is true if there is low level of LPG detected",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "outOfRangeError": {
       "title": "Out of range error",
       "description": "Is true if an out of range error is detected",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "notValidReadout": {
       "title": "Not a valid readout",
       "description": "Is true if the sensor is inoperational",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     }
   }
 }

@@ -7,22 +7,26 @@
     "sequenceNumber": {
       "title": "Sequence number",
       "type": "integer",
-      "description": "Sequence number (identifies downlink to server)"
+      "description": "Sequence number (identifies downlink to server)",
+      "hideFromKpis": true
     },
     "accepted": {
       "title": "Accepted",
       "type": "integer",
-      "description": "Equals true if the downlink got accepted"
+      "description": "Equals true if the downlink got accepted",
+      "hideFromKpis": true
     },
     "fwMaj": {
       "title": "Firmware major",
       "type": "integer",
-      "description": "Firmware major"
+      "description": "Firmware major",
+      "hideFromKpis": true
     },
     "fwMin": {
       "title": "Firmware minor",
       "type": "integer",
-      "description": "Firmware minor"
+      "description": "Firmware minor",
+      "hideFromKpis": true
     }
   }
 }

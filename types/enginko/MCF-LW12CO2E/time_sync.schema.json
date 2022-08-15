@@ -7,24 +7,28 @@
     "syncID": {
       "title": "Sync ID",
       "description": "Sync ID",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     },
     "syncVersion": {
       "title": "Sync version",
       "description": "Sync version",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     },
     "applicationType": {
       "title": "Application type",
       "description": "Application type",
       "type": "integer",
       "minimum": 0,
-      "maximum": 65535
+      "maximum": 65535,
+      "hideFromKpis": true
     },
     "rfu": {
       "title": "RFU",
       "description": "RFU",
-      "type": "integer"
+      "type": "integer",
+      "hideFromKpis": true
     }
   }
 }

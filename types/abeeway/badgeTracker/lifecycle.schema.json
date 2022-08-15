@@ -7,22 +7,26 @@
     "demandMessage": {
       "title": "Position on demand message",
       "description": "Equals true if the possition message was demanded.",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "positionMessage": {
       "title": "Periodic position message",
       "description": "Equals true if the possition message was periodic.",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "hasMoved": {
       "title": "Has moved",
       "description": "Equals true if the device moved since last message.",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "sos": {
       "title": "SOS",
       "description": "Equals true if the device sent an SOS signal.",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "operatingMode": {
       "title": "Operating mode",
@@ -35,13 +39,15 @@
         "MOTION_START_END_TRACKING",
         "ACTIVITY_TRACKING",
         "OFF"
-      ]
+      ],
+      "hideFromKpis": true
     },
     "batteryStatus": {
       "title": "Battery status",
       "description": "Battery status",
       "type": "string",
-      "enum": ["CHARGING", "ERROR", "NORMAL"]
+      "enum": ["CHARGING", "ERROR", "NORMAL"],
+      "hideFromKpis": true
     },
     "batteryLevel": {
       "title": "Battery charge",
@@ -62,7 +68,8 @@
     "acknowledge": {
       "title": "Acknowledge",
       "type": "boolean",
-      "description": "Acknowledge byte"
+      "description": "Acknowledge byte",
+      "hideFromKpis": true
     }
   }
 }

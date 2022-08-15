@@ -9,14 +9,16 @@
       "type": "integer",
       "description": "Mode 1 = Occupancy Mode, Mode 0 = Environmnent Sensors",
       "minimum": 0,
-      "maximum": 1
+      "maximum": 1,
+      "hideFromKpis": true
     },
     "payloadVersion": {
       "title": "Payload version",
       "type": "number",
       "description": "Version of the Payload.",
       "minimum": 0,
-      "maximum": 65535
+      "maximum": 65535,
+      "hideFromKpis": true
     },
     "voltage": {
       "title": "Battery voltage",
@@ -39,7 +41,8 @@
       "type": "number",
       "description": "Selected mode. Is only sent if a mode change occurred",
       "minimum": 0,
-      "maximum": 10
+      "maximum": 10,
+      "hideFromKpis": true
     }
   }
 }

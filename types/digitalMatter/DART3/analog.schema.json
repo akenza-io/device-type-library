@@ -7,7 +7,8 @@
     "analog": {
       "title": "Analog",
       "type": "object",
-      "description": "List of Analog values"
+      "description": "List of Analog values",
+      "hideFromKpis": true
     }
   }
 }

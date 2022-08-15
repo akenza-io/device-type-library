@@ -15,51 +15,60 @@
     "txCount": {
       "title": "Tx count",
       "type": "integer",
-      "description": "Transmission count"
+      "description": "Transmission count",
+      "hideFromKpis": true
     },
     "tripCount": {
       "title": "Trip count",
       "type": "integer",
-      "description": "Trip count"
+      "description": "Trip count",
+      "hideFromKpis": true
     },
     "gpsSuccesses": {
       "title": "GPS successes",
       "type": "integer",
-      "description": "GPS success count"
+      "description": "GPS success count",
+      "hideFromKpis": true
     },
     "gpsFails": {
       "title": "GPS fails",
       "type": "integer",
-      "description": "GPS fail count"
+      "description": "GPS fail count",
+      "hideFromKpis": true
     },
     "aveGpsFixS": {
       "title": "Average GPS fix time",
       "type": "integer",
       "unit": "s",
-      "description": "Seconds spent per successful GPS fix, not including freshen time"
+      "description": "Seconds spent per successful GPS fix, not including freshen time",
+      "hideFromKpis": true
     },
     "aveGpsFailS": {
       "title": "Average GPS fail time",
       "type": "integer",
       "unit": "s",
-      "description": "Seconds spent per failed GPS fix attempt"
+      "description": "Seconds spent per failed GPS fix attempt",
+      "hideFromKpis": true
     },
     "aveGpsFreshenS": {
       "title": "Average GPS refreshing time",
       "type": "integer",
       "unit": "s",
-      "description": "Seconds spent refreshing GPS ephemerides per successful GPS fix"
+      "description": "Seconds spent refreshing GPS ephemerides per successful GPS fix",
+      "hideFromKpis": true
     },
     "wakeupsPerTrip": {
       "title": "Wakeups per trip",
       "type": "integer",
-      "description": "Wakeups per trip"
+      "description": "Wakeups per trip",
+      "hideFromKpis": true
     },
     "uptimeWeeks": {
       "title": "Uptime weeks",
       "type": "integer",
       "unit": "w",
-      "description": "Uptime weeks"
+      "description": "Uptime weeks",
+      "hideFromKpis": true
     }
   }
 }

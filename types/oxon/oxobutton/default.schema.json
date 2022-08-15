@@ -9,14 +9,16 @@
       "type": "integer",
       "description": "The ID of the pressed buttons",
       "minimum": 0,
-      "maximum": 65535
+      "maximum": 65535,
+      "hideFromKpis": true
     },
     "imageID": {
       "title": "Image ID",
       "type": "integer",
       "description": "The ID of the Image used when the button sent the uplink",
       "minimum": 0,
-      "maximum": 65535
+      "maximum": 65535,
+      "hideFromKpis": true
     },
     "temperature": {
       "title": "Temperature",

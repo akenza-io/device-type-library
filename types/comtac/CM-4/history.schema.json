@@ -26,7 +26,8 @@
       "type": "number",
       "description": "The temperature in °C. Last Measurement -1.",
       "minimum": -3276.5,
-      "maximum": 3276.5
+      "maximum": 3276.5,
+      "hideFromKpis": true
     },
     "tempHistory2": {
       "title": "Temperature History 2",
@@ -34,7 +35,8 @@
       "type": "number",
       "description": "The temperature in °C. Last Measurement -2.",
       "minimum": -3276.5,
-      "maximum": 3276.5
+      "maximum": 3276.5,
+      "hideFromKpis": true
     },
     "tempHistory3": {
       "title": "Temperature History 3",
@@ -42,7 +44,8 @@
       "type": "number",
       "description": "The temperature in °C. Last Measurement -3.",
       "minimum": -3276.5,
-      "maximum": 3276.5
+      "maximum": 3276.5,
+      "hideFromKpis": true
     },
     "tempHistory4": {
       "title": "Temperature History 4",
@@ -50,7 +53,8 @@
       "type": "number",
       "description": "The temperature in °C. Last Measurement -4.",
       "minimum": -3276.5,
-      "maximum": 3276.5
+      "maximum": 3276.5,
+      "hideFromKpis": true
     },
     "tempHistory5": {
       "title": "Temperature History 5",
@@ -58,7 +62,8 @@
       "type": "number",
       "description": "The temperature in °C. Last Measurement -5.",
       "minimum": -3276.5,
-      "maximum": 3276.5
+      "maximum": 3276.5,
+      "hideFromKpis": true
     },
     "tempHistory6": {
       "title": "Temperature History 6",
@@ -66,7 +71,8 @@
       "type": "number",
       "description": "The temperature in °C. Last Measurement -6.",
       "minimum": -3276.5,
-      "maximum": 3276.5
+      "maximum": 3276.5,
+      "hideFromKpis": true
     },
     "tempHistory7": {
       "title": "Temperature History 7",
@@ -74,7 +80,8 @@
       "type": "number",
       "description": "The temperature in °C. Last Measurement -7.",
       "minimum": -3276.5,
-      "maximum": 3276.5
+      "maximum": 3276.5,
+      "hideFromKpis": true
     },
     "humidity1": {
       "title": "Humidity History 1",
@@ -82,7 +89,8 @@
       "type": "number",
       "description": "The relative humidity in %. Last Measurement -1.",
       "minimum": 0,
-      "maximum": 100
+      "maximum": 100,
+      "hideFromKpis": true
     },
     "humidity2": {
       "title": "Humidity History 2",
@@ -90,7 +98,8 @@
       "type": "number",
       "description": "The relative humidity in %. Last Measurement -2.",
       "minimum": 0,
-      "maximum": 100
+      "maximum": 100,
+      "hideFromKpis": true
     },
     "humidity3": {
       "title": "Humidity History 3",
@@ -98,7 +107,8 @@
       "type": "number",
       "description": "The relative humidity in %. Last Measurement -3.",
       "minimum": 0,
-      "maximum": 100
+      "maximum": 100,
+      "hideFromKpis": true
     },
     "humidity4": {
       "title": "Humidity History 4",
@@ -106,7 +116,8 @@
       "type": "number",
       "description": "The relative humidity in %. Last Measurement -4.",
       "minimum": 0,
-      "maximum": 100
+      "maximum": 100,
+      "hideFromKpis": true
     },
     "humidity5": {
       "title": "Humidity History 5",
@@ -114,7 +125,8 @@
       "type": "number",
       "description": "The relative humidity in %. Last Measurement -5.",
       "minimum": 0,
-      "maximum": 100
+      "maximum": 100,
+      "hideFromKpis": true
     },
     "humidity6": {
       "title": "Humidity History 6",
@@ -122,7 +134,8 @@
       "type": "number",
       "description": "The relative humidity in %. Last Measurement -6.",
       "minimum": 0,
-      "maximum": 100
+      "maximum": 100,
+      "hideFromKpis": true
     },
     "humidity7": {
       "title": "Humidity History 7",
@@ -130,7 +143,8 @@
       "type": "number",
       "description": "The relative humidity in %. Last Measurement -7.",
       "minimum": 0,
-      "maximum": 100
+      "maximum": 100,
+      "hideFromKpis": true
     }
   }
 }

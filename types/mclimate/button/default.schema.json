@@ -21,7 +21,8 @@
     "thermistorOperational": {
       "title": "Thermistor properly connected",
       "description": "Equals true if the thermistor is properly connected",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "temperature": {
       "title": "Temperature",

@@ -33,7 +33,8 @@
         "LORA_MODULE_FAIL_PLEASE_RESTART",
         "VOLTAGE_NOT_READ_PLEASE_RESTART",
         "DISTANCE_SENSOR_NO_RESPONSE_PLEASE_RESTART"
-      ]
+      ],
+      "hideFromKpis": true
     }
   }
 }

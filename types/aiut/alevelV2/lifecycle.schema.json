@@ -8,7 +8,8 @@
       "title": "Battery status",
       "description": "Describes the battery status",
       "type": "string",
-      "enum": ["VERY_LOW", "LOW", "DISCHARGING", "HEALTHY"]
+      "enum": ["VERY_LOW", "LOW", "DISCHARGING", "HEALTHY"],
+      "hideFromKpis": true
     }
   }
 }
