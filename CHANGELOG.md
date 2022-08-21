@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.23.0] - 2022-08-21
+
+### Added
+
+- Sensing Labs - Senlab D
+
 # [1.22.1] - 2022-08-05
 
 ### Added
