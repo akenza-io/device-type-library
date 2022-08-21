@@ -7,27 +7,32 @@
     "rssi": {
       "title": "RSSI",
       "description": "Received Signal Strength Indicator",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     },
     "rssiDbm": {
       "title": "RSSI DBM",
       "description": "Received Signal Strength Indicator DBM",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     },
     "neighNodeInfo": {
       "title": "Neighbor node info",
       "description": "Neighbor node info",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     },
     "neighRadioPower": {
       "title": "Neighbor radio power",
       "description": "Neighbor radio power",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     },
     "neighRadioPowerDbm": {
       "title": "Neighbor radio power DBM",
       "description": "Neighbor radio power DBM",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     }
   }
 }

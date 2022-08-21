@@ -17,13 +17,15 @@
         "BLE_DISCONNECTED",
         "BLE_BOND_DELETED",
         "BLE_GEOZONING"
-      ]
+      ],
+      "hideFromKpis": true
     },
     "age": {
       "title": "Age",
       "unit": "s",
       "type": "integer",
-      "description": "Age of the measurement in seconds"
+      "description": "Age of the measurement in seconds",
+      "hideFromKpis": true
     },
     "rssid0": {
       "title": "RSSI 0",
@@ -81,7 +83,8 @@
         "BLE_BUSY",
         "NO_BEACON_DETECTED",
         "UKNOWN_WRONG_BLE_FIRMWARE"
-      ]
+      ],
+      "hideFromKpis": true
     },
     "shortBID0": {
       "title": "Short BID 0",
@@ -117,7 +120,8 @@
       "title": "Notification",
       "description": "Notification",
       "type": "string",
-      "enum": ["SAFE", "ENTRY", "EXIT", "HAZARD"]
+      "enum": ["SAFE", "ENTRY", "EXIT", "HAZARD"],
+      "hideFromKpis": true
     },
     "beaconID": {
       "title": "Beacon ID",

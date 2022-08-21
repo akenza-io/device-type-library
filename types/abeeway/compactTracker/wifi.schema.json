@@ -14,17 +14,20 @@
         "WIFI_BSSID",
         "WIFI_FAILURE",
         "WIFI_TIMEOUT"
-      ]
+      ],
+      "hideFromKpis": true
     },
     "fragmentID": {
       "title": "Fragment ID",
       "type": "integer",
-      "description": "Fragment ID"
+      "description": "Fragment ID",
+      "hideFromKpis": true
     },
     "cid": {
       "title": "Collection identifier",
       "type": "integer",
-      "description": "Collection identifier, all fragments have the same CiD."
+      "description": "Collection identifier, all fragments have the same CiD.",
+      "hideFromKpis": true
     },
     "hash": {
       "title": "Hash",
@@ -99,7 +102,8 @@
       "title": "Age",
       "unit": "s",
       "type": "integer",
-      "description": "Age of the measurement in seconds"
+      "description": "Age of the measurement in seconds",
+      "hideFromKpis": true
     },
     "bssid0": {
       "title": "BSS ID 0",
@@ -166,7 +170,8 @@
         "SCAN_FAILURE",
         "ANTENNA_UNAVAILABLE",
         "WIFI_NOT_SUPPORTED"
-      ]
+      ],
+      "hideFromKpis": true
     }
   }
 }

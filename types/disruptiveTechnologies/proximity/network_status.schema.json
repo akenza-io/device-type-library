@@ -7,18 +7,21 @@
     "signalStrength": {
       "title": "Signal strength",
       "description": "Signal strength",
-      "type": "number"
+      "type": "number",
+      "hideFromKpis": true
     },
     "rssi": {
       "title": "RSSI",
       "description": "RSSI",
-      "type": "number"
+      "type": "number",
+      "hideFromKpis": true
     },
     "transmissionMode": {
       "title": "Transmission mode",
       "description": "Transmission mode",
       "type": "string",
-      "enum": ["LOW_POWER_STANDARD_MODE", "HIGH_POWER_BOOST_MODE"]
+      "enum": ["LOW_POWER_STANDARD_MODE", "HIGH_POWER_BOOST_MODE"],
+      "hideFromKpis": true
     }
   }
 }

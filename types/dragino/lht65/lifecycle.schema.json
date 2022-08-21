@@ -21,12 +21,14 @@
       "title": "Connection status",
       "description": "Connection status",
       "type": "string",
-      "enum": ["NO_CONNECTION", "CONNECTED"]
+      "enum": ["NO_CONNECTION", "CONNECTED"],
+      "hideFromKpis": true
     },
     "externalSensor": {
       "title": "External sensor",
       "description": "Equals true if theres an external sensor.",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     }
   }
 }

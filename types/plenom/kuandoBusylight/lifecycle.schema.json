@@ -8,38 +8,45 @@
       "title": "RSSI",
       "unit": "dBm",
       "description": "Received Signal Strength Indication",
-      "type": "number"
+      "type": "number",
+      "hideFromKpis": true
     },
     "snr": {
       "title": "SNR",
       "unit": "dB",
       "description": "Signal-to-Noise Ratio",
-      "type": "number"
+      "type": "number",
+      "hideFromKpis": true
     },
     "downlinksReceived": {
       "title": "Number of downlinks received",
       "type": "integer",
-      "description": "Number of downlinks received"
+      "description": "Number of downlinks received",
+      "hideFromKpis": true
     },
     "uplinksSent": {
       "title": "Number of uplinks sent",
       "type": "integer",
-      "description": "Number of uplinks sent"
+      "description": "Number of uplinks sent",
+      "hideFromKpis": true
     },
     "swRevision": {
       "title": "Software Revision Version",
       "type": "integer",
-      "description": "Software Revision Version"
+      "description": "Software Revision Version",
+      "hideFromKpis": true
     },
     "hwRevision": {
       "title": "Hardware Revision Version",
       "type": "integer",
-      "description": "Hardware Revision Version"
+      "description": "Hardware Revision Version",
+      "hideFromKpis": true
     },
     "adrState": {
       "title": "Adaptive data rate state",
       "type": "integer",
-      "description": "Adaptive data rate state"
+      "description": "Adaptive data rate state",
+      "hideFromKpis": true
     }
   }
 }

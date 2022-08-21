@@ -10,14 +10,16 @@
       "type": "integer",
       "description": "Temperature measurement rate.",
       "minimum": 0,
-      "maximum": 50000
+      "maximum": 50000,
+      "hideFromKpis": true
     },
     "historyTrigger": {
       "title": "History trigger",
       "type": "integer",
       "description": "Trigger for HISTORY event (History uplink sent every history trigger * temperature measurement rate)",
       "minimum": 0,
-      "maximum": 8
+      "maximum": 8,
+      "hideFromKpis": true
     },
     "tempOffset": {
       "title": "Temperature offset",
@@ -25,7 +27,8 @@
       "type": "number",
       "description": "Temperature offset used when calculating actual temperature",
       "minimum": -5000,
-      "maximum": 5000
+      "maximum": 5000,
+      "hideFromKpis": true
     },
     "tempMax": {
       "title": "Temperature maximum",
@@ -33,7 +36,8 @@
       "type": "number",
       "description": "Temperature maximum",
       "minimum": -25,
-      "maximum": 80
+      "maximum": 80,
+      "hideFromKpis": true
     },
     "tempMin": {
       "title": "Temperature minimum",
@@ -41,7 +45,8 @@
       "type": "number",
       "description": "Temperature minimum",
       "minimum": -25,
-      "maximum": 80
+      "maximum": 80,
+      "hideFromKpis": true
     },
     "humOffset": {
       "title": "Humidity offset",
@@ -49,7 +54,8 @@
       "type": "number",
       "description": "Humidity offset used when calculating actual temperature",
       "minimum": 0,
-      "maximum": 100
+      "maximum": 100,
+      "hideFromKpis": true
     },
     "humMax": {
       "title": "Humidity maximum",
@@ -57,7 +63,8 @@
       "type": "number",
       "description": "Humidity maximum",
       "minimum": 0,
-      "maximum": 100
+      "maximum": 100,
+      "hideFromKpis": true
     },
     "humMin": {
       "title": "Humidity minimum",
@@ -65,7 +72,8 @@
       "type": "number",
       "description": "The relative humidity in %",
       "minimum": 0,
-      "maximum": 100
+      "maximum": 100,
+      "hideFromKpis": true
     }
   }
 }

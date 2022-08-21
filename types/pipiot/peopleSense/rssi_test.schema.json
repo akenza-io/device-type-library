@@ -7,7 +7,8 @@
     "testFrames": {
       "title": "Test frames",
       "type": "string",
-      "description": "Test frames in binary"
+      "description": "Test frames in binary",
+      "hideFromKpis": true
     }
   }
 }

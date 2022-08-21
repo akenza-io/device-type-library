@@ -7,32 +7,38 @@
     "product": {
       "title": "Product ID",
       "description": "Product ID",
-      "type": "integer"
+      "type": "integer",
+      "hideFromKpis": true
     },
     "hardwareRev": {
       "title": "Hardware revision",
       "description": "Hardware revision",
-      "type": "integer"
+      "type": "integer",
+      "hideFromKpis": true
     },
     "firmwareMajor": {
       "title": "Firmware major",
       "description": "Firmware major",
-      "type": "integer"
+      "type": "integer",
+      "hideFromKpis": true
     },
     "firmwareMinor": {
       "title": "Firmware minor",
       "description": "Firmware minor",
-      "type": "integer"
+      "type": "integer",
+      "hideFromKpis": true
     },
     "seqNum": {
       "title": "Sequence number",
       "description": "Sequence number",
-      "type": "integer"
+      "type": "integer",
+      "hideFromKpis": true
     },
     "downlinkState": {
       "title": "Downlink state",
       "description": "Downlink state",
-      "type": "integer"
+      "type": "integer",
+      "hideFromKpis": true
     },
     "batteryVoltage": {
       "type": "number",

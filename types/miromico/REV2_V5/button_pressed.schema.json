@@ -16,56 +16,64 @@
       "type": "integer",
       "description": "Shows if the button north is first pressed",
       "minimum": 0,
-      "maximum": 1
+      "maximum": 1,
+      "hideFromKpis": true
     },
     "btnEfirst": {
       "title": "Button east first",
       "type": "integer",
       "description": "Shows if the button east is first pressed",
       "minimum": 0,
-      "maximum": 1
+      "maximum": 1,
+      "hideFromKpis": true
     },
     "btnSfirst": {
       "title": "Button south first",
       "type": "integer",
       "description": "Shows if the button south is first pressed",
       "minimum": 0,
-      "maximum": 1
+      "maximum": 1,
+      "hideFromKpis": true
     },
     "btnWfirst": {
       "title": "Button west first",
       "type": "integer",
       "description": "Shows if the button west is first pressed",
       "minimum": 0,
-      "maximum": 1
+      "maximum": 1,
+      "hideFromKpis": true
     },
     "btnNpressed": {
       "title": "Button north",
       "type": "integer",
       "description": "Shows if the button north is pressed",
       "minimum": 0,
-      "maximum": 1
+      "maximum": 1,
+      "hideFromKpis": true
     },
     "btnEpressed": {
       "title": "Button east",
       "type": "integer",
       "description": "Shows if the button east is pressed",
       "minimum": 0,
-      "maximum": 1
+      "maximum": 1,
+      "hideFromKpis": true
     },
     "btnSpressed": {
       "title": "Button south",
       "type": "integer",
       "description": "Shows if the button south is pressed",
       "minimum": 0,
-      "maximum": 1
+      "maximum": 1,
+      "hideFromKpis": true
     },
     "btnWpressed": {
       "title": "Button west",
       "type": "integer",
       "description": "Shows if the button west is pressed",
       "minimum": 0,
-      "maximum": 1
+      "maximum": 1,
+      "hideFromKpis": true
     },
     "buttonCount": {
       "title": "Button Count",

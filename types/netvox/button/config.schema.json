@@ -7,7 +7,8 @@
     "config": {
       "title": "Configuration",
       "description": "Is true on configuration uplink",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     }
   }
 }

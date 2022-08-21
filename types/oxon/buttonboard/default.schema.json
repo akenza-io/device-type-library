@@ -42,27 +42,32 @@
     "button1Enabled": {
       "title": "Button 1 Enabled",
       "type": "boolean",
-      "description": "Button 1 enabled if true"
+      "description": "Button 1 enabled if true",
+      "hideFromKpis": true
     },
     "button2Enabled": {
       "title": "Button 2 Enabled",
       "type": "boolean",
-      "description": "Button 2 enabled if true"
+      "description": "Button 2 enabled if true",
+      "hideFromKpis": true
     },
     "button3Enabled": {
       "title": "Button 3 Enabled",
       "type": "boolean",
-      "description": "Button 3 enabled if true"
+      "description": "Button 3 enabled if true",
+      "hideFromKpis": true
     },
     "button4Enabled": {
       "title": "Button 4 Enabled",
       "type": "boolean",
-      "description": "Button 4 enabled if true"
+      "description": "Button 4 enabled if true",
+      "hideFromKpis": true
     },
     "button5Enabled": {
       "title": "Button 5 Enabled",
       "type": "boolean",
-      "description": "Button 5 enabled if true"
+      "description": "Button 5 enabled if true",
+      "hideFromKpis": true
     },
     "button6Enabled": {
       "title": "Button 6 Enabled",

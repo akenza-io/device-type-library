@@ -15,40 +15,46 @@
     "error": {
       "title": "Error message",
       "description": "Error info which contains: wrong length of RX package",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     },
     "badConditionsCounter": {
       "title": "Bad conditions counter",
       "type": "integer",
       "description": "Bad conditions counter",
       "minimum": 0,
-      "maximum": 65535
+      "maximum": 65535,
+      "hideFromKpis": true
     },
     "stackTxFailRebootCount": {
       "title": "Stack TX fail reboot count",
       "type": "integer",
       "description": "Stack TX fail reboot count",
       "minimum": 0,
-      "maximum": 65535
+      "maximum": 65535,
+      "hideFromKpis": true
     },
     "startUpCount": {
       "title": "Start up count",
       "type": "integer",
       "description": "Start up count",
       "minimum": 0,
-      "maximum": 65535
+      "maximum": 65535,
+      "hideFromKpis": true
     },
     "watchdogCount": {
       "title": "Watchdog count",
       "type": "integer",
       "description": "Watchdog count",
       "minimum": 0,
-      "maximum": 65535
+      "maximum": 65535,
+      "hideFromKpis": true
     },
     "softwareVersion": {
       "title": "Software version",
       "type": "string",
-      "description": "Software version"
+      "description": "Software version",
+      "hideFromKpis": true
     }
   }
 }

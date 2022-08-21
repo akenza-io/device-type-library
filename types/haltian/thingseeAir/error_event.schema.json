@@ -7,12 +7,14 @@
     "errorType": {
       "title": "Error type",
       "description": "Error type",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     },
     "errorCause": {
       "title": "Error cause",
       "description": "Error cause",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     }
   }
 }

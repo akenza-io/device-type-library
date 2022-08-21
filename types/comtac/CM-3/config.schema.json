@@ -10,14 +10,16 @@
       "type": "integer",
       "description": "Temperature measurement rate.",
       "minimum": 0,
-      "maximum": 50000
+      "maximum": 50000,
+      "hideFromKpis": true
     },
     "historyTrigger": {
       "title": "History trigger",
       "type": "integer",
       "description": "Trigger for HISTORY event (History uplink sent every history trigger * temperature measurement rate)",
       "minimum": 0,
-      "maximum": 8
+      "maximum": 8,
+      "hideFromKpis": true
     },
     "tempThreshold": {
       "title": "Temperature threshold",
@@ -25,7 +27,8 @@
       "type": "number",
       "description": "Temperature threshold for ALARMING Event (Alarming uplink sent every Temp Meas Rate if temp difference > threshold), where 0 means ALARMING always ON (Alarming sent every Meas Rate)",
       "minimum": 0,
-      "maximum": 255
+      "maximum": 255,
+      "hideFromKpis": true
     },
     "tempOffset": {
       "title": "Temperature offset",
@@ -33,7 +36,8 @@
       "type": "number",
       "description": "Temperature offset used when calculating actual temperature with the PT100 sensor",
       "minimum": -5000,
-      "maximum": 5000
+      "maximum": 5000,
+      "hideFromKpis": true
     }
   }
 }

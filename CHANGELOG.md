@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.22.1] - 2022-08-05
+
+### Added
+
+- Hidden a lot of cluttering kpis
+
 # [1.22.0] - 2022-08-02
 
 ### Added

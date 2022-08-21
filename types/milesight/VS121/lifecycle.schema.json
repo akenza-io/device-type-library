@@ -7,22 +7,26 @@
     "protocolVersion": {
       "title": "Protocol version",
       "description": "Protocol version",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     },
     "sn": {
       "title": "Serial number",
       "description": "Serial number",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     },
     "hardwareVersion": {
       "title": "Hardware version",
       "description": "Hardware version",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     },
     "firmwareVersion": {
       "title": "Firmware version",
       "description": "Firmware version",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     }
   }
 }

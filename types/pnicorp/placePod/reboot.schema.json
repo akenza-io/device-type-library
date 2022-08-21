@@ -8,7 +8,8 @@
       "title": "Reboot",
       "description": "Either Sensor reboot, recalibration or reboot finished",
       "enum": ["DONE", "RECALIBRATION"],
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     }
   }
 }

@@ -7,7 +7,8 @@
     "timer": {
       "title": "Timer",
       "description": "Is true on timer uplink",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     }
   }
 }

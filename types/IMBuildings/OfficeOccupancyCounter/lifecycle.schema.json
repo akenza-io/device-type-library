@@ -18,12 +18,14 @@
     "sensorStatus": {
       "title": "Sensor status",
       "type": "integer",
-      "description": "Sensor status"
+      "description": "Sensor status",
+      "hideFromKpis": true
     },
     "payloadCounter": {
       "title": "Payload counter",
       "type": "integer",
-      "description": "Payload counter"
+      "description": "Payload counter",
+      "hideFromKpis": true
     }
   }
 }

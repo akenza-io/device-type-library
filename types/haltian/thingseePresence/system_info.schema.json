@@ -7,17 +7,20 @@
     "swVersion": {
       "title": "Software version",
       "description": "Software version",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     },
     "modelCode": {
       "title": "Model code",
       "description": "Reason this sample got sent.",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     },
     "psn": {
       "title": "PSN",
       "description": "PSN",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     }
   }
 }
