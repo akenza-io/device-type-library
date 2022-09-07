@@ -25,7 +25,7 @@
     "lifecycle",
     "network",
     "system_info",
-    "weather"
+    "environment"
   ],
   "encoding": "JSON",
   "connectivity": "MQTT"

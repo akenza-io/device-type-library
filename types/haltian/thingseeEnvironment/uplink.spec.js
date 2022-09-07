@@ -6,15 +6,15 @@ const utils = require("test-utils");
 const { assert } = chai;
 
 describe("Haltian Thingsee Environment Sensor Uplink", () => {
-  let weatherSchema = null;
+  let environmentSchema = null;
   let consume = null;
   before((done) => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
     utils
-      .loadSchema(`${__dirname}/weather.schema.json`)
+      .loadSchema(`${__dirname}/environment.schema.json`)
       .then((parsedSchema) => {
-        weatherSchema = parsedSchema;
+        environmentSchema = parsedSchema;
         done();
       });
   });
@@ -40,7 +40,7 @@ describe("Haltian Thingsee Environment Sensor Uplink", () => {
   });
 
   describe("consume()", () => {
-    it("should decode the Haltian Thingsee Environment Sensor weather payload on CHANGE", () => {
+    it("should decode the Haltian Thingsee Environment Sensor environment payload on CHANGE", () => {
       const data = {
         data: {
           tsmId: 12100,
@@ -57,13 +57,13 @@ describe("Haltian Thingsee Environment Sensor Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "weather");
+        assert.equal(value.topic, "environment");
         assert.equal(value.data.pressure, 97021.277);
         assert.equal(value.data.temperature, null);
         assert.equal(value.data.humidity, null);
         assert.equal(value.data.light, null);
 
-        validate(value.data, weatherSchema, { throwError: false });
+        validate(value.data, environmentSchema, { throwError: false });
       });
 
       utils.expectEmits((type, value) => {

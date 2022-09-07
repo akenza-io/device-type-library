@@ -26,7 +26,7 @@
     "network",
     "system_info",
     "tvoc",
-    "weather"
+    "environment"
   ],
   "encoding": "JSON",
   "connectivity": "MQTT"
