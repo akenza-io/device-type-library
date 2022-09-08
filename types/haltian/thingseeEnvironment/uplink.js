@@ -40,10 +40,11 @@ function consume(event) {
       topic = "battery_level";
       sample.batteryLevel = data.batl;
 
-      let { chrg } = data.chrg;
+      let { chrg } = data;
       if (chrg === undefined) {
         chrg = null;
       }
+
       sample.batteryCharge = chrg;
 
       break;
