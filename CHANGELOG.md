@@ -8,6 +8,12 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+- Enginko - Sensor now sends all samples and emits on defined timestamps
+
+# [1.23.1] - 2022-09-07
+
+### Changed
+
 - Haltian - Changed uplinks so no unknown messages get pushed & Changed topic weather to environment
 
 # [1.23.0] - 2022-08-21
