@@ -104,7 +104,7 @@ function consume(event) {
     }
     // Sensordata
     case 12100: {
-      topic = "weather";
+      topic = "environment";
       let pressure = data.airp;
       let humidity = data.humd;
       let temperature = data.temp;
@@ -165,6 +165,14 @@ function consume(event) {
       sample = data;
       break;
   }
-  emit("sample", { data: sample, topic });
-  emit("sample", { data: lifecycle, topic: "lifecycle" });
+
+  if (topic !== "unknown") {
+    emit("sample", { data: sample, topic });
+  } else {
+    emit("log", { data: sample });
+  }
+
+  if (Object.keys(lifecycle).length !== 0) {
+    emit("sample", { data: lifecycle, topic: "lifecycle" });
+  }
 }

@@ -1,7 +1,7 @@
 {
-  "$id": "https://akenza.io/haltian/thingseeAir/weather.schema.json",
+  "$id": "https://akenza.io/haltian/thingseeAir/environment.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Weather",
+  "title": "Environment",
   "type": "object",
   "properties": {
     "pressure": {

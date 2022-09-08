@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.23.1] - 2022-09-07
+
+### Changed
+
+- Haltian - Changed uplinks so no unknown messages get pushed & Changed topic weather to environment
+
 # [1.23.0] - 2022-08-21
 
 ### Added
