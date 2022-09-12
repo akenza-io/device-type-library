@@ -4,8 +4,15 @@ function consume(event) {
   let data = {};
   const date = new Date();
 
-  const batteryLevel = (100.0 * Bits.bitsToUnsigned(bits.substr(0, 8))) / 254.0;
-  emit("sample", { data: { batteryLevel: batteryLevel }, topic: "lifecycle" });
+  let batteryLevel = (100.0 * Bits.bitsToUnsigned(bits.substr(0, 8))) / 254.0;
+
+  if (batteryLevel > 100) {
+    batteryLevel = 100;
+  } else if (batteryLevel < 0) {
+    batteryLevel = 0;
+  }
+
+  emit("sample", { data: { batteryLevel }, topic: "lifecycle" });
 
   let pointer = 8;
   for (let i = 0; pointer < bits.length - 8; i++) {
@@ -31,11 +38,11 @@ function consume(event) {
 
     data.co2 = e | f;
 
-    if (i == 0) {
-      emit("sample", { data: data });
+    if (i === 0) {
+      emit("sample", { data });
     } else {
       const outTime = new Date(date.setMinutes(date.getMinutes() - 10));
-      emit("sample", { data: data, timestamp: outTime });
+      emit("sample", { data, timestamp: outTime });
     }
     data = {};
   }

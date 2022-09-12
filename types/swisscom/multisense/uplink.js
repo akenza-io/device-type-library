@@ -20,7 +20,14 @@ function consume(event) {
   const status = Number(Bits.bitsToUnsigned(bits.substr(16, 8)));
   const voltage = Bits.bitsToUnsigned(bits.substr(24, 8)) * 6 + 2000;
   lifecycle.voltage = Math.round((voltage / 1000) * 10) / 10;
-  lifecycle.batteryLevel = Math.round((voltage - 2000) / 15.24);
+  let batteryLevel = Math.round((voltage - 2000) / 15.24);
+
+  if (batteryLevel > 100) {
+    batteryLevel = 100;
+  } else if (batteryLevel < 0) {
+    batteryLevel = 0;
+  }
+  lifecycle.batteryLevel = batteryLevel;
 
   if (port === 3) {
     let pointer = 32;
