@@ -1,0 +1,70 @@
+{
+  "$id": "https://akenza.io/ioTracker/ioTracker3/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GPS",
+  "type": "object",
+  "properties": {
+    "navStat": {
+      "title": "Navigation statistics",
+      "description": "Navigation statistics",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "longitude": {
+      "title": "Longitude",
+      "unit": "°",
+      "type": "number",
+      "description": "Longitude",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "latitude": {
+      "title": "Latitude",
+      "unit": "°",
+      "type": "number",
+      "description": "Latitude",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "altRef": {
+      "title": "Altitude reference",
+      "description": "Altitude above user datum ellipsoid",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "hAcc": {
+      "title": "Horizontal accuracy estimate",
+      "description": "Horizontal accuracy estimate",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "vAcc": {
+      "title": "Vertical accuracy estimate",
+      "description": "Vertical accuracy estimate",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "sog": {
+      "title": "Speed over ground",
+      "description": "Speed over ground",
+      "type": "integer"
+    },
+    "cog": {
+      "title": "Course over ground",
+      "description": "Course over ground",
+      "type": "integer"
+    },
+    "hdop": {
+      "title": "HDOP",
+      "description": "Horizontal Dilution of Precision",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "numSvs": {
+      "title": "Number of satellites",
+      "description": "Number of satellites used in the navigation solution",
+      "type": "integer",
+      "hideFromKpis": true
+    }
+  }
+}

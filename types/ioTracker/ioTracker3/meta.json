@@ -1,0 +1,14 @@
+{
+  "name": "ioTracker 3",
+  "version": "1.0.0",
+  "manufacturer": "ioTracker",
+  "url": "https://www.iotracker.eu/",
+  "description": "The ioTracker features multiple localisation technologies like GPS, WiFi, Bluetooth 5.1 and LoRa triangulation. This provides the best balance between high-accurate positioning and power efficiency in almost every in- and outdoor situation.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["GPS"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
