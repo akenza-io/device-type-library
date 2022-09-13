@@ -57,11 +57,12 @@ describe("ioTracker 3 uplink", () => {
       done();
     });
 
-    it("should decode ioTracker 3 gps __get__ payload", (done) => {
+    it("should decode ioTracker 3 gps payload", (done) => {
       const data = {
         data: {
           port: 1,
-          payloadHex: "1700fa0b0a82443440004000",
+          payloadHex:
+            "1803fa0b0b0877ee00004000031c42d1d205162903143e1210001300091a07",
         },
       };
 
@@ -69,15 +70,34 @@ describe("ioTracker 3 uplink", () => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
+        assert.equal(value.topic, "gps");
+
+        assert.equal(value.data.altRef, 518.2);
+        assert.equal(value.data.cog, 0.9);
+        assert.equal(value.data.hAcc, 18);
+        assert.equal(value.data.hdop, 2.6);
+        assert.equal(value.data.latitude, 47.4141138);
+        assert.equal(value.data.longitude, 8.5338371);
+        assert.equal(value.data.navStat, 3);
+        assert.equal(value.data.numSvs, 7);
+        assert.equal(value.data.sog, 1.9);
+        assert.equal(value.data.vAcc, 16);
+
+        validate(value.data, defaultSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
         assert.equal(value.topic, "default");
 
-        assert.equal(value.data.uplinkReason, "BUTTON");
-        assert.equal(value.data.crc, 0);
         assert.equal(value.data.batteryLevel, 98);
-        assert.equal(value.data.temperature, 26.9);
-        assert.equal(value.data.light, 172.16);
-        assert.equal(value.data.maxAccelerationNew, 16.384);
+        assert.equal(value.data.crc, 3);
+        assert.equal(value.data.light, 2598.4);
         assert.equal(value.data.maxAccelerationHistory, 16.384);
+        assert.equal(value.data.maxAccelerationNew, 0);
+        assert.equal(value.data.temperature, 28.24);
 
         validate(value.data, defaultSchema, { throwError: true });
       });
