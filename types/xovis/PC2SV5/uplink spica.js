@@ -15,12 +15,36 @@ function consume(event) {
             data = {};
 
             if (type === "LINE_CROSS_FORWARD") {
-              data.bw = 0;
-              data.fw = 1;
+              data.occupancy = {
+                peopleIn: {
+                  unit: "count",
+                  value: 1,
+                },
+                peopleOut: {
+                  unit: "count",
+                  value: 0,
+                },
+                peopleCount: {
+                  unit: "count",
+                  value: 1,
+                },
+              };
               topic = "line_count";
             } else if (type === "LINE_CROSS_BACKWARD") {
-              data.bw = 1;
-              data.fw = 0;
+              data.occupancy = {
+                peopleIn: {
+                  unit: "count",
+                  value: 0,
+                },
+                peopleOut: {
+                  unit: "count",
+                  value: 1,
+                },
+                peopleCount: {
+                  unit: "count",
+                  value: 1,
+                },
+              };
               topic = "line_count";
             } else if (type === "TRACK_CREATE") {
               data.trackType = type;
@@ -137,11 +161,35 @@ function consume(event) {
             if (regex.test(logic.info)) {
               // Line
               if (count.name === "fw") {
-                data.fw = value;
-                data.bw = 0;
+                data.occupancy = {
+                  peopleIn: {
+                    unit: "count",
+                    value,
+                  },
+                  peopleOut: {
+                    unit: "count",
+                    value: 0,
+                  },
+                  peopleCount: {
+                    unit: "count",
+                    value,
+                  },
+                };
               } else {
-                data.fw = 0;
-                data.bw = value;
+                data.occupancy = {
+                  peopleIn: {
+                    unit: "count",
+                    value: 0,
+                  },
+                  peopleOut: {
+                    unit: "count",
+                    value,
+                  },
+                  peopleCount: {
+                    unit: "count",
+                    value,
+                  },
+                };
               }
               emit("sample", { data, topic: "line_count" });
             } else {

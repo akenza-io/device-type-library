@@ -1,0 +1,22 @@
+{
+  "$id": "https://akenza.io/xovis/pc2s/view_direction.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "View direction",
+  "type": "object",
+  "properties": {
+    "xCoordinate": {
+      "title": "X Coordinate",
+      "description": "X Coordinate",
+      "type": "number",
+      "unit": "x",
+      "hideFromKpis": true
+    },
+    "yCoordinate": {
+      "title": "Y Coordinate",
+      "description": "Y Coordinate",
+      "type": "number",
+      "unit": "y",
+      "hideFromKpis": true
+    }
+  }
+}

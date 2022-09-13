@@ -1,0 +1,13 @@
+{
+  "$id": "https://akenza.io/xovis/pc2s/tag.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Tag",
+  "type": "object",
+  "properties": {
+    "tag": {
+      "title": "Tag",
+      "description": "Boolean if the person has a tag on.",
+      "type": "boolean"
+    }
+  }
+}
