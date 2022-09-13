@@ -35,7 +35,7 @@ describe("MCF-LW12CO2E Uplink", () => {
         assert.equal(value.data.temperature, 30.12);
         assert.equal(value.data.humidity, 38);
         assert.equal(value.data.pressure, 1009.74);
-        assert.equal(value.data.lux, 370);
+        assert.equal(value.data.lux, 365);
         assert.equal(value.data.voc, 25);
         assert.equal(value.data.co2, 655);
 
@@ -51,7 +51,7 @@ describe("MCF-LW12CO2E Uplink", () => {
         assert.equal(value.data.temperature, 30.12);
         assert.equal(value.data.humidity, 38);
         assert.equal(value.data.pressure, 1009.74);
-        assert.equal(value.data.lux, 365);
+        assert.equal(value.data.lux, 370);
         assert.equal(value.data.voc, 25);
         assert.equal(value.data.co2, 655);
         assert.equal(value.data.batteryLevel, 98);

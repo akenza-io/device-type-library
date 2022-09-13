@@ -830,8 +830,7 @@ function parseReportData(payload) {
 
 function consume(event) {
   const payload = event.data.payloadHex;
-  const sample = {};
-  const sample2 = {};
+  const sample = [{}, {}];
   let topic = "default";
 
   const uplinkId = payload.substring(0, 2);
@@ -878,28 +877,34 @@ function consume(event) {
       value = Number(value);
     }
 
-    if (sample[variable] !== undefined) {
-      sample2[variable] = value;
+    // If theres a second date, it implicates that a second sample will get emited
+    if (
+      variable === "date" &&
+      sample[1].date === undefined &&
+      sample[0].date !== undefined
+    ) {
+      sample[1][variable] = value;
+    } else if (sample[1].date !== undefined) {
+      sample[1][variable] = value;
     } else {
-      sample[variable] = value;
+      sample[0][variable] = value;
     }
   }
 
-  if (sample.rfu === "") {
-    sample.rfu = 0;
-  }
-
-  if (Object.keys(sample2).length > 0) {
-    const date = new Date(sample2.date);
-    delete sample2.date;
-    emit("sample", { data: sample2, topic, timestamp: date });
-  }
-
-  if (sample.date !== undefined) {
-    const timestamp = new Date(sample.date);
-    delete sample.date;
-    emit("sample", { data: sample, topic, timestamp });
+  if (sample[0].date !== undefined) {
+    const timestamp = new Date(sample[0].date);
+    delete sample[0].date;
+    emit("sample", { data: sample[0], topic, timestamp });
   } else {
-    emit("sample", { data: sample, topic });
+    emit("sample", { data: sample[0], topic });
+  }
+
+  if (Object.keys(sample[1]).length > 0) {
+    if (sample[1].rfu === "") {
+      sample[1].rfu = 0;
+    }
+    const date = new Date(sample[1].date);
+    delete sample[1].date;
+    emit("sample", { data: sample[1], topic, timestamp: date });
   }
 }
