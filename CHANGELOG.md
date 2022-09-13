@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.23.3] - 2022-09-13
+
+### Changed
+
+- Xovis - Added plugin data output
+
 # [1.23.2] - 2022-09-08
 
 ### Changed
