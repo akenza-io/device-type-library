@@ -870,6 +870,8 @@ function consume(event) {
       break;
   }
 
+  let sampleNr = 0;
+  let date = false;
   for (let i = 0; i < content.length; i++) {
     let { value } = content[i];
     const { variable } = content[i];
@@ -877,18 +879,16 @@ function consume(event) {
       value = Number(value);
     }
 
-    // If theres a second date, it implicates that a second sample will get emited
-    if (
-      variable === "date" &&
-      sample[1].date === undefined &&
-      sample[0].date !== undefined
-    ) {
-      sample[1][variable] = value;
-    } else if (sample[1].date !== undefined) {
-      sample[1][variable] = value;
-    } else {
-      sample[0][variable] = value;
+    // Multiple dates indicate another sample
+    if (variable === "date") {
+      if (!date) {
+        date = true;
+      } else {
+        sampleNr++;
+      }
     }
+
+    sample[sampleNr][variable] = value;
   }
 
   if (sample[0].date !== undefined) {
