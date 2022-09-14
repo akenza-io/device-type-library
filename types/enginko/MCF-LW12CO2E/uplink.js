@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 function reverseBytes(bytes) {
   let reversed = bytes;
   if (bytes.length % 2 === 0) {
@@ -828,9 +829,21 @@ function parseReportData(payload) {
   return content;
 }
 
+function emitSample(currentSample, topic) {
+  if (currentSample.rfu === "") {
+    currentSample.rfu = 0;
+  }
+  if (currentSample.date !== undefined) {
+    const timestamp = new Date(currentSample.date);
+    delete currentSample.date;
+    emit("sample", { data: currentSample, topic, timestamp });
+  } else {
+    emit("sample", { data: currentSample, topic });
+  }
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
-  const sample = [{}, {}];
   let topic = "default";
 
   const uplinkId = payload.substring(0, 2);
@@ -870,8 +883,7 @@ function consume(event) {
       break;
   }
 
-  let sampleNr = 0;
-  let date = false;
+  let currentSample = {};
   for (let i = 0; i < content.length; i++) {
     let { value } = content[i];
     const { variable } = content[i];
@@ -880,31 +892,13 @@ function consume(event) {
     }
 
     // Multiple dates indicate another sample
-    if (variable === "date") {
-      if (!date) {
-        date = true;
-      } else {
-        sampleNr++;
-      }
+    if (variable === "date" && i !== 0) {
+      emitSample(currentSample, topic);
+      currentSample = {};
     }
 
-    sample[sampleNr][variable] = value;
+    currentSample[variable] = value;
   }
 
-  if (sample[0].date !== undefined) {
-    const timestamp = new Date(sample[0].date);
-    delete sample[0].date;
-    emit("sample", { data: sample[0], topic, timestamp });
-  } else {
-    emit("sample", { data: sample[0], topic });
-  }
-
-  if (Object.keys(sample[1]).length > 0) {
-    if (sample[1].rfu === "") {
-      sample[1].rfu = 0;
-    }
-    const date = new Date(sample[1].date);
-    delete sample[1].date;
-    emit("sample", { data: sample[1], topic, timestamp: date });
-  }
+  emitSample(currentSample, topic);
 }
