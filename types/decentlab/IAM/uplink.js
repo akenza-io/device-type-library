@@ -219,9 +219,15 @@ function consume(event) {
   // Voltage drops of at 2V (0%) max voltage is 3V (100%)
   lifecycle.voltage = Math.round(sample.battery_voltage * 100) / 100;
   // ((Max voltage - voltage now) * voltage to percent - inverting) getting rid of the -
-  lifecycle.batteryLevel = Math.round(
-    ((3 - lifecycle.voltage) * 100 - 100) * -1,
-  );
+  let batteryLevel = Math.round(((3 - lifecycle.voltage) * 100 - 100) * -1);
+
+  if (batteryLevel > 100) {
+    batteryLevel = 100;
+  } else if (batteryLevel < 0) {
+    batteryLevel = 0;
+  }
+  lifecycle.batteryLevel = batteryLevel;
+
   lifecycle.protocolVersion = sample.protocol_version;
   lifecycle.deviceID = sample.device_id;
   lifecycle.co2SensorStatus = sample.co2_sensor_status;

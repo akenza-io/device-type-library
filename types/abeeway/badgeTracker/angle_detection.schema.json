@@ -14,7 +14,8 @@
         "NORMAL_TO_CRITICAL",
         "CRITICAL_TO_NORMAL",
         "CRITICAL_TO_LEARNING"
-      ]
+      ],
+      "hideFromKpis": true
     },
     "trigger": {
       "title": "Trigger",
@@ -25,7 +26,8 @@
         "ANGLE_DEVIATION_REPORTING",
         "SHOCK_TRIGGER",
         "RFU"
-      ]
+      ],
+      "hideFromKpis": true
     },
     "repetitionCounter": {
       "title": "Repetition counter",
@@ -36,7 +38,8 @@
       "title": "Age",
       "unit": "s",
       "type": "integer",
-      "description": "Age of the measurement in seconds"
+      "description": "Age of the measurement in seconds",
+      "hideFromKpis": true
     },
     "refVectorX": {
       "title": "Ref Vector X",

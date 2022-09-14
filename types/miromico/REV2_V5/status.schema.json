@@ -19,11 +19,19 @@
       "minimum": 0,
       "maximum": 65535
     },
-    "battery": {
-      "title": "Battery",
+    "batteryLevel": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "unit": "%"
+    },
+    "voltage": {
+      "title": "Voltage",
       "unit": "V",
       "type": "number",
-      "description": "Battery in volt",
+      "description": "Battery voltage",
       "minimum": 0,
       "maximum": 65535
     },
@@ -32,70 +40,80 @@
       "type": "integer",
       "description": "Shows if the button north is active",
       "minimum": 0,
-      "maximum": 1
+      "maximum": 1,
+      "hideFromKpis": true
     },
     "activeButtonE": {
       "title": "Active Button East",
       "type": "integer",
       "description": "Shows if the button east is active",
       "minimum": 0,
-      "maximum": 1
+      "maximum": 1,
+      "hideFromKpis": true
     },
     "activeButtonS": {
       "title": "Active Button South",
       "type": "integer",
       "description": "Shows if the button south is active",
       "minimum": 0,
-      "maximum": 1
+      "maximum": 1,
+      "hideFromKpis": true
     },
     "activeButtonW": {
       "title": "Active Button West",
       "type": "integer",
       "description": "Shows if the button west is active",
       "minimum": 0,
-      "maximum": 1
+      "maximum": 1,
+      "hideFromKpis": true
     },
     "joinStrat": {
       "title": "Join strategy",
       "type": "integer",
       "description": "0 -> SF7, 1 -> SF12",
       "minimum": 0,
-      "maximum": 1
+      "maximum": 1,
+      "hideFromKpis": true
     },
     "ambitiousFirstPress": {
       "title": "Ambitious First Press",
       "type": "integer",
       "description": "0 = Disabled, 1 = Enabled",
       "minimum": 0,
-      "maximum": 1
+      "maximum": 1,
+      "hideFromKpis": true
     },
     "dutyCycle": {
       "title": "Duty cycle",
       "type": "integer",
       "description": "0 = Disabled, 1 = Enabled",
       "minimum": 0,
-      "maximum": 1
+      "maximum": 1,
+      "hideFromKpis": true
     },
     "buzzer": {
       "title": "Buzzer",
       "type": "integer",
       "description": "0 = Disabled, 1 = Enabled",
       "minimum": 0,
-      "maximum": 1
+      "maximum": 1,
+      "hideFromKpis": true
     },
     "confirmed": {
       "title": "Confirmed uplinks",
       "type": "integer",
       "description": "0 = confirmed uplinks, 1 = unconfirmed uplinks",
       "minimum": 0,
-      "maximum": 1
+      "maximum": 1,
+      "hideFromKpis": true
     },
     "statusMessageinterval": {
       "title": "Status message interval",
       "type": "integer",
       "description": "Regular status message interval in minutes",
       "minimum": 0,
-      "maximum": 1
+      "maximum": 1,
+      "hideFromKpis": true
     }
   }
 }

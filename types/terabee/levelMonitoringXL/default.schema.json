@@ -1,0 +1,40 @@
+{
+  "$id": "https://akenza.io/terabee/levelMonitoringXL/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "distance": {
+      "title": "Distance",
+      "unit": "mm",
+      "type": "number",
+      "description": "Distance measured between the sensor and the surface"
+    },
+    "fillPercentage": {
+      "title": "Fill percentage",
+      "unit": "%",
+      "type": "number",
+      "description": "Percentage of the container fill"
+    },
+    "voltage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "title": "Battery voltage",
+      "desciption": "The battery voltage in Volt.",
+      "unit": "V"
+    },
+    "errorCode": {
+      "title": "Error code",
+      "description": "Error code describes a malfunction.",
+      "type": "string",
+      "enum": [
+        "UNEXPECTED_ERROR_RESTARTING",
+        "LORA_MODULE_FAIL_PLEASE_RESTART",
+        "VOLTAGE_NOT_READ_PLEASE_RESTART",
+        "DISTANCE_SENSOR_NO_RESPONSE_PLEASE_RESTART"
+      ],
+      "hideFromKpis": true
+    }
+  }
+}

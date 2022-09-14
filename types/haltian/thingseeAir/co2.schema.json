@@ -1,0 +1,28 @@
+{
+  "$id": "https://akenza.io/haltian/thingseeAir/co2.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CO2",
+  "type": "object",
+  "properties": {
+    "co2": {
+      "title": "CO2",
+      "unit": "ppm",
+      "type": "integer",
+      "description": "Carbon Dioxide in ppm",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "co2Status": {
+      "title": "CO2 Status",
+      "description": "Describes the last CO2 messurement status",
+      "type": "string",
+      "enum": [
+        "MEASUREMENT_FAILED",
+        "OK",
+        "AUTO_CALIBRATED",
+        "AUTO_CALIBRATEN_FAILED"
+      ],
+      "hideFromKpis": true
+    }
+  }
+}

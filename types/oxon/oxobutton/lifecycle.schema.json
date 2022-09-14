@@ -15,12 +15,14 @@
     "hbIRQ": {
       "title": "Heartbeat timeout occurred",
       "type": "boolean",
-      "description": "Is true heartbeat timeout occurred"
+      "description": "Is true heartbeat timeout occurred",
+      "hideFromKpis": true
     },
     "accIRQ": {
       "title": "Accelerometer interrupt event",
       "type": "boolean",
-      "description": "Is true if accelerometer was interrupted"
+      "description": "Is true if accelerometer was interrupted",
+      "hideFromKpis": true
     }
   }
 }

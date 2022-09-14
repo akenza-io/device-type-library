@@ -7,7 +7,8 @@
     "eventUplink": {
       "title": "Event uplink",
       "description": "Is true on event uplink",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     }
   }
 }

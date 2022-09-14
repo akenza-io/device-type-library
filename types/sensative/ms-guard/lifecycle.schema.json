@@ -15,21 +15,24 @@
     "error": {
       "title": "Error message",
       "description": "Error info which contains: wrong length of RX package",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     },
     "historySeqNr": {
       "title": "History sequence number",
       "type": "integer",
       "description": "History sequence number",
       "minimum": 0,
-      "maximum": 65535
+      "maximum": 65535,
+      "hideFromKpis": true
     },
     "prevHistSeqNr": {
       "title": "Previous history sequence number",
       "type": "integer",
       "description": "Previous history sequence number",
       "minimum": 0,
-      "maximum": 65535
+      "maximum": 65535,
+      "hideFromKpis": true
     }
   }
 }

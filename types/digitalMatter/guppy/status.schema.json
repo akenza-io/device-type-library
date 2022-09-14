@@ -1,0 +1,48 @@
+{
+  "$id": "https://akenza.io/digitalMatter/guppy/status.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Status",
+  "type": "object",
+  "properties": {
+    "inTrip": {
+      "title": "In trip",
+      "type": "boolean",
+      "description": "Is true if the accelerometer detects movement",
+      "hideFromKpis": true
+    },
+    "voltage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "title": "Battery voltage",
+      "desciption": "The battery voltage in Volt.",
+      "unit": "V"
+    },
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "manDown": {
+      "title": "Man down",
+      "type": "boolean",
+      "description": "Equals true if no movement for configured period got detected (Needs to be activated)",
+      "hideFromKpis": true
+    },
+    "inclinationDeg": {
+      "title": "Inclination degree",
+      "unit": "°",
+      "type": "number",
+      "description": "Inclination degree"
+    },
+    "azimuthDeg": {
+      "title": "Azimuth degree",
+      "unit": "°",
+      "type": "number",
+      "description": "Azimuth degree"
+    }
+  }
+}

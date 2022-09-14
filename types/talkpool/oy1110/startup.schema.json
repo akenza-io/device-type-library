@@ -1,0 +1,15 @@
+{
+  "$id": "https://akenza.io/talkpool/oy1110/startup.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Startup",
+  "type": "object",
+  "properties": {
+    "message": {
+      "title": "Message",
+      "type": "string",
+      "enum": ["STARTUP_OK", "STARTUP_FAIL"],
+      "description": "Message indicating startup status",
+      "hideFromKpis": true
+    }
+  }
+}

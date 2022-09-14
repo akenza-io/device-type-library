@@ -15,27 +15,32 @@
     "isTanking": {
       "title": "Is tanking",
       "description": "Is true on tanking",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "isEmptying": {
       "title": "Is emptying",
       "description": "Is true on empting",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "hasMeasurementError": {
       "title": "Measurement error",
       "description": "Is true on measurement error",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "hasOutOfRangeError": {
       "title": "Out of range error",
       "description": "Is true if an out of range error is detected",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "sequenceNumber": {
       "title": "Sequence number",
       "description": "Sequence number",
-      "type": "number"
+      "type": "number",
+      "hideFromKpis": true
     },
     "temperature": {
       "title": "Temperature",

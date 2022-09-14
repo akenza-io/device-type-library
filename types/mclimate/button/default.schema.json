@@ -1,0 +1,36 @@
+{
+  "$id": "https://akenza.io/mclimate/button/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "buttonPressed": {
+      "title": "Press event",
+      "description": "Press event",
+      "type": "string",
+      "enum": ["NO_PRESS", "SINGLE_PRESS", "DOUBLE_PRESS", "TRIPLE_PRESS"]
+    },
+    "batteryVoltage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "title": "Battery voltage",
+      "desciption": "The battery voltage in Volt.",
+      "unit": "V"
+    },
+    "thermistorOperational": {
+      "title": "Thermistor properly connected",
+      "description": "Equals true if the thermistor is properly connected",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    }
+  }
+}

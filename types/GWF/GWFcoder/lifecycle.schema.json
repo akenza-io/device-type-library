@@ -9,21 +9,24 @@
       "type": "integer",
       "description": "Protocol type",
       "minimum": 0,
-      "maximum": 255
+      "maximum": 255,
+      "hideFromKpis": true
     },
     "manufacturerID": {
       "title": "Meter manufacturer ID",
       "type": "integer",
       "description": "Meter manufacturer ID",
       "minimum": 0,
-      "maximum": 65535
+      "maximum": 65535,
+      "hideFromKpis": true
     },
     "meterID": {
       "title": "Meter ID",
       "type": "integer",
       "description": "Meter ID",
       "minimum": 0,
-      "maximum": 4294967295
+      "maximum": 4294967295,
+      "hideFromKpis": true
     },
     "appError": {
       "title": "App error",
@@ -34,67 +37,80 @@
         "APPLICATION_BUSY",
         "ANY_APPLICATION_ERROR",
         "RESERVED"
-      ]
+      ],
+      "hideFromKpis": true
     },
     "batteryPowerLow": {
       "title": "Battery power low",
       "description": "Battery power low",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "permantError": {
       "title": "Permant error",
       "description": "Permant error",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "temporaryError": {
       "title": "Temporary error",
       "description": "Temporary error",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "commandError1": {
       "title": "commandError1",
       "description": "Command error 1",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "commandError2": {
       "title": "commandError2",
       "description": "Command error 2",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "commandError3": {
       "title": "commandError3",
       "description": "Command error 3",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "continuousFlow": {
       "title": "Continuous flow",
       "description": "Continuous flow",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "brokenPipe": {
       "title": "Broken pipe",
       "description": "Command error 2",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "batteryLow": {
       "title": "Battery low",
       "description": "Battery low",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "backflow": {
       "title": "Backflow",
       "description": "Backflow",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "noUsage": {
       "title": "No usage",
       "description": "No usage",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "loraLinkError": {
       "title": "LoRa link error",
       "description": "LoRa link error",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "batteryLifetime": {
       "title": "Battery lifetime",

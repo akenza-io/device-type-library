@@ -10,7 +10,8 @@
       "unit": "s",
       "description": "GNSS fix time",
       "minimum": 0,
-      "maximum": 254
+      "maximum": 254,
+      "hideFromKpis": true
     },
     "gnssLatitude": {
       "title": "Latitude",

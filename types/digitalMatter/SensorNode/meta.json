@@ -1,0 +1,22 @@
+{
+  "name": "SensorNode",
+  "version": "1.0.0",
+  "manufacturer": "Digital Matter",
+  "url": "https://www.digitalmatter.com/devices/sensornode-lorawan/",
+  "description": "Robust and rugged datalogger with inputs/outputs and I²C sensor interface for asset and sensor monitoring on LoRaWAN® networks",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": ["Analog", "Digital", "GPS", "Temperature", "Humidity"],
+  "outputTopics": [
+    "analog",
+    "digital",
+    "gps",
+    "humidity",
+    "input",
+    "lifecycle",
+    "measurement",
+    "probe"
+  ],
+  "encoding": "JSON",
+  "connectivity": "HTTP"
+}

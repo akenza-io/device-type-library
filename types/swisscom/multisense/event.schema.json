@@ -19,7 +19,8 @@
         "HUMIDITY_EVENT",
         "MOTION_EVENT",
         "MODE_CHANGE"
-      ]
+      ],
+      "hideFromKpis": true
     }
   }
 }

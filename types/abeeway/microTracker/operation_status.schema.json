@@ -18,7 +18,8 @@
         "SOS_START",
         "SOS_STOP",
         "TEMPERATURE_INFORMATION"
-      ]
+      ],
+      "hideFromKpis": true
     },
     "resetCause": {
       "title": "Reset cause",
@@ -33,17 +34,20 @@
         "WATCHDOG",
         "LOCKUP",
         "SYSTEM_REQUEST"
-      ]
+      ],
+      "hideFromKpis": true
     },
     "firmwareVersion": {
       "title": "Firmware version",
       "description": "Firmware version",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     },
     "bleFirmwareVersion": {
       "title": "BLE firmware version",
       "description": "BLE firmware version",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     },
     "xAxisAccelerometer": {
       "title": "Accelerometer X Axis",
@@ -73,7 +77,8 @@
       "title": "Shutdown cause",
       "description": "Shutdown cause",
       "type": "string",
-      "enum": ["USER_ACTION", "LOW_BATTERY", "DOWNLINK_REQUEST", "BLE_REQUEST"]
+      "enum": ["USER_ACTION", "LOW_BATTERY", "DOWNLINK_REQUEST", "BLE_REQUEST"],
+      "hideFromKpis": true
     },
     "tempState": {
       "title": "Temperature state",
@@ -84,7 +89,8 @@
         "HIGH_TEMPERATURE",
         "LOW_TEMPERATURE",
         "FEATURE_NOT_ACTIVATED"
-      ]
+      ],
+      "hideFromKpis": true
     },
     "maxTemperature": {
       "title": "Maximal temperature threshold",
@@ -92,7 +98,8 @@
       "type": "number",
       "description": "Maximal temperature threshold in °C.",
       "minimum": -3276.5,
-      "maximum": 3276.5
+      "maximum": 3276.5,
+      "hideFromKpis": true
     },
     "minTemperature": {
       "title": "Minimal temperature threshold",
@@ -100,17 +107,20 @@
       "type": "number",
       "description": "Minimal temperature threshold in °C.",
       "minimum": -3276.5,
-      "maximum": 3276.5
+      "maximum": 3276.5,
+      "hideFromKpis": true
     },
     "highCounter": {
       "title": "Maximal counter threshold",
       "type": "number",
-      "description": "Maximal counter threshold"
+      "description": "Maximal counter threshold",
+      "hideFromKpis": true
     },
     "lowCounter": {
       "title": "Minimal counter threshold",
       "type": "number",
-      "description": "Minimal counter threshold"
+      "description": "Minimal counter threshold",
+      "hideFromKpis": true
     }
   }
 }

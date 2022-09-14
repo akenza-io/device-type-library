@@ -4,6 +4,116 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.23.2] - 2022-09-08
+
+### Changed
+
+- Changed battery calculations so no negative numbers will be given out anymore
+
+# [1.23.1] - 2022-09-07
+
+### Changed
+
+- Haltian - Changed uplinks so no unknown messages get pushed & Changed topic weather to environment
+
+# [1.23.0] - 2022-08-21
+
+### Added
+
+- Sensing Labs - Senlab D
+
+# [1.22.1] - 2022-08-05
+
+### Added
+
+- Hidden a lot of cluttering kpis
+
+# [1.22.0] - 2022-08-02
+
+### Added
+
+- Adnexo - Ax-dist
+
+### Changed
+
+- Adnexo - Ax-opto changed shemas to mach ax-dist
+- Miromico - REV2_V5 changed key names to mach standards
+- Updated some meta information
+- Changed some sensor images
+
+# [1.21.0] - 2022-07-13
+
+### Added
+
+- Haltian - Thingsee Air
+- Haltian - Thingsee Environment
+- Haltian - Thingsee Presence
+
+# [1.20.2] - 2022-07-07
+
+### Added
+
+- Decentlab - IAM - lifecycle hide protocolVersion from KPI's
+
+# [1.20.1] - 2022-07-06
+
+### Changed
+
+- Cleaned up readme
+- Using the new helper functions
+
+# [1.20.0] - 2022-07-05
+
+### Added
+
+- Adnexo - Ax-opto
+- Dragino - LHT65
+- Terabee - Level Monitoring XL
+
+# [1.19.0] - 2022-06-30
+
+### Added
+
+- Digitalmatter - Bolt 2-4G
+- Digitalmatter - Dart 3
+- Digitalmatter - SensorNode
+- Digitalmatter - Yabby
+
+# [1.18.3] - 2022-06-20
+
+### Added
+
+- pepperlFuchs - wilsenSonicLevel
+
+# [1.18.2] - 2022-05-31
+
+### Changed
+
+Cleanup and fixes of the below device types
+
+- Adeunis - Pulse
+- Talkpool - OY1110
+- Tektelic - Smart Room Base
+- Tektelic - Smart Room PIR
+
+# [1.18.1] - 2022-05-30
+
+### Changed
+
+- Strip - Presence uplink
+- Busylight- Image
+
+# [1.18.0] - 2022-05-24
+
+### Added
+
+- MClimate - Button
+- MClimate - CO2
+- MClimate - Flood Sensor
+- MClimate - HT
+- Talkpool - OY1110
+- IMBuildings - Moodbox
+
 # [1.17.0] - 2022-04-26
 
 ### Added

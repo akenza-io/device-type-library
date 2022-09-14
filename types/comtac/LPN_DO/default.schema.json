@@ -9,21 +9,24 @@
       "description": "Devicetype which should be used to decode the data.",
       "type": "integer",
       "minimum": 0,
-      "maximum": 255
+      "maximum": 255,
+      "hideFromKpis": true
     },
     "version": {
       "title": "Version",
       "description": "Device Version",
       "type": "integer",
       "minimum": 0,
-      "maximum": 255
+      "maximum": 255,
+      "hideFromKpis": true
     },
     "snr": {
       "title": "Signal to Noise Ratio",
       "description": "Signal to Noise Ratio (SNR) is the ratio between the received power signal and the noise floor power level.",
       "type": "integer",
       "minimum": 0,
-      "maximum": 255
+      "maximum": 255,
+      "hideFromKpis": true
     },
     "do_1_lora": {
       "title": "Channel 1",

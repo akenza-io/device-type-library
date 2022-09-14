@@ -9,14 +9,16 @@
       "type": "integer",
       "description": "App main version",
       "minimum": 0,
-      "maximum": 99
+      "maximum": 99,
+      "hideFromKpis": true
     },
     "appMinorVersion": {
       "title": "App minor version",
       "type": "integer",
       "description": "App minor version",
       "minimum": 0,
-      "maximum": 99
+      "maximum": 99,
+      "hideFromKpis": true
     }
   }
 }

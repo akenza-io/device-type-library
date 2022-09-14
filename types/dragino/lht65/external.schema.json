@@ -1,0 +1,52 @@
+{
+  "$id": "https://akenza.io/dragino/lht65/external.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "External",
+  "type": "object",
+  "properties": {
+    "externalTemperature": {
+      "title": "External temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The external temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "extPinLevel": {
+      "title": "External Pin Level",
+      "description": "External Pin Level",
+      "type": "string",
+      "enum": ["HIGH", "LOW"]
+    },
+    "extStatus": {
+      "title": "External status",
+      "description": "External status",
+      "type": "boolean"
+    },
+    "light": {
+      "title": "Light",
+      "type": "number",
+      "unit": "lux",
+      "description": "Light value",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "adc": {
+      "title": "External analog Input",
+      "type": "number",
+      "unit": "V",
+      "description": "ADC value"
+    },
+    "count": {
+      "title": "Count",
+      "type": "integer",
+      "description": "Count of all events"
+    },
+    "id": {
+      "title": "ID",
+      "description": "ID",
+      "type": "string",
+      "hideFromKpis": true
+    }
+  }
+}

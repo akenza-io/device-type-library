@@ -1,0 +1,70 @@
+{
+  "$id": "https://akenza.io/digitalMatter/sensorNode/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "product": {
+      "title": "Product ID",
+      "description": "Product ID",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "hardwareRev": {
+      "title": "Hardware revision",
+      "description": "Hardware revision",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "firmwareMajor": {
+      "title": "Firmware major",
+      "description": "Firmware major",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "firmwareMinor": {
+      "title": "Firmware minor",
+      "description": "Firmware minor",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "seqNum": {
+      "title": "Sequence number",
+      "description": "Sequence number",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "downlinkState": {
+      "title": "Downlink state",
+      "description": "Downlink state",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "batteryVoltage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "title": "Battery voltage",
+      "desciption": "The battery voltage in Volt.",
+      "unit": "V"
+    },
+    "internalTemperature": {
+      "title": "Internal temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "Internal temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "batteryUsed": {
+      "title": "Battery used",
+      "description": "Estimated battery used since startup",
+      "type": "integer"
+    },
+    "batteryRemaining": {
+      "title": "Battery remaining",
+      "description": "Estimated battery remaining",
+      "type": "integer"
+    }
+  }
+}

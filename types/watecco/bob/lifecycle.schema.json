@@ -9,7 +9,8 @@
       "type": "string",
       "description": "Sensor messages which indicate the state.",
       "minimum": 0,
-      "maximum": 1
+      "maximum": 1,
+      "hideFromKpis": true
     },
     "batteryLevel": {
       "type": "number",

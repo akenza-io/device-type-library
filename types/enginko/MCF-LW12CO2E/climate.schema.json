@@ -59,7 +59,8 @@
     "rfu": {
       "title": "RFU",
       "description": "RFU",
-      "type": "integer"
+      "type": "integer",
+      "hideFromKpis": true
     }
   }
 }

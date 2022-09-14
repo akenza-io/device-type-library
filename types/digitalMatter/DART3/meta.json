@@ -1,0 +1,13 @@
+{
+  "name": "Dart 3",
+  "version": "1.0.0",
+  "manufacturer": "Digital Matter",
+  "url": "https://www.digitalmatter.com/devices/dart3/",
+  "description": "Robust and affordable vehicle tracking device with inputs/outputs, remote immobilization for fleet management, driver ID, driver safety and behavior monitoring, theft recovery, and more",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": ["GPS"],
+  "outputTopics": ["analog", "digital", "gps"],
+  "encoding": "JSON",
+  "connectivity": "HTTP"
+}

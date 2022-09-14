@@ -18,7 +18,7 @@ function extractBytes(chunk, startBit, endBit) {
   const offsetInByte = startBit % 8;
   const endBitChunk = totalBits % 8;
   const arr = new Array(totalBytes);
-  for (byte = 0; byte < totalBytes; ++byte) {
+  for (let byte = 0; byte < totalBytes; ++byte) {
     const chunkIdx = toUint(startBit / 8) + byte;
     let lo = chunk[chunkIdx] >> offsetInByte;
     let hi = 0;
@@ -1152,17 +1152,10 @@ function decoder(bytes, port) {
   return decodedData;
 }
 
-function hexToBytes(hex) {
-  for (var bytes = [], c = 0; c < hex.length; c += 2) {
-    bytes.push(parseInt(hex.substr(c, 2), 16));
-  }
-  return bytes;
-}
-
 function consume(event) {
   const payload = event.data.payloadHex;
   const { port } = event.data;
-  const data = decoder(hexToBytes(payload), port);
+  const data = decoder(Hex.hexToBytes(payload), port);
   let topic = "default";
 
   if (data.voltage !== undefined) {

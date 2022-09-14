@@ -1,0 +1,14 @@
+{
+  "$id": "https://akenza.io/digitalMatter/dart3/analog.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Analog",
+  "type": "object",
+  "properties": {
+    "analog": {
+      "title": "Analog",
+      "type": "object",
+      "description": "List of Analog values",
+      "hideFromKpis": true
+    }
+  }
+}

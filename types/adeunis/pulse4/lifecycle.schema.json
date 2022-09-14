@@ -7,27 +7,32 @@
     "frameCounter": {
       "title": "Frame counter",
       "type": "integer",
-      "description": "Frame counter"
+      "description": "Frame counter",
+      "hideFromKpis": true
     },
     "hardwareError": {
       "title": "Hardware error",
       "type": "boolean",
-      "description": "Flag for a hardware error"
+      "description": "Flag for a hardware error",
+      "hideFromKpis": true
     },
     "lowBattery": {
       "title": "Low battery",
       "type": "boolean",
-      "description": "Indication for low battery"
+      "description": "Indication for low battery",
+      "hideFromKpis": true
     },
     "configurationDone": {
       "title": "Configuration done",
       "type": "boolean",
-      "description": "Configuration done flag"
+      "description": "Configuration done flag",
+      "hideFromKpis": true
     },
     "timestamp": {
       "title": "Timestamp available",
       "type": "boolean",
-      "description": "Timestamp available flag"
+      "description": "Timestamp available flag",
+      "hideFromKpis": true
     }
   }
 }

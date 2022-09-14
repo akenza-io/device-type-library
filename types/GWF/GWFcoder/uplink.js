@@ -1,14 +1,3 @@
-function toLittleEndian(hex) {
-  // Creating little endian hex DCBA
-  const hexArray = [];
-  let tempHex = hex;
-  while (tempHex.length >= 2) {
-    hexArray.push(tempHex.substring(0, 2));
-    tempHex = tempHex.substring(2, tempHex.length);
-  }
-  hexArray.reverse();
-  return Bits.bitsToUnsigned(Bits.hexToBits(hexArray.join("")));
-}
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
@@ -16,7 +5,10 @@ function consume(event) {
   const lifecycle = {};
   const topic = "default";
   lifecycle.protocolType = Bits.bitsToUnsigned(bits.substr(0, 8));
-  lifecycle.manufacturerID = toLittleEndian(payload.substr(2, 4));
+  lifecycle.manufacturerID = Hex.hexLittleEndianToBigEndian(
+    payload.substr(2, 4),
+    false,
+  );
   lifecycle.meterID = Number(
     `${payload.substr(12, 2)}${payload.substr(10, 2)}${payload.substr(
       8,
@@ -48,9 +40,12 @@ function consume(event) {
   lifecycle.commandError1 = !!Bits.bitsToUnsigned(bits.substr(69, 1));
   lifecycle.commandError2 = !!Bits.bitsToUnsigned(bits.substr(70, 1));
   lifecycle.commandError3 = !!Bits.bitsToUnsigned(bits.substr(71, 1));
-  data.actualityDuration = toLittleEndian(payload.substr(18, 4));
+  data.actualityDuration = Hex.hexLittleEndianToBigEndian(
+    payload.substr(18, 4),
+    false,
+  );
   const volumeVIF = Bits.bitsToUnsigned(bits.substr(88, 8));
-  data.volume = toLittleEndian(payload.substr(24, 8));
+  data.volume = Hex.hexLittleEndianToBigEndian(payload.substr(24, 8), false);
   if (volumeVIF === 16) {
     data.volume /= 1000000;
   } else if (volumeVIF === 17) {

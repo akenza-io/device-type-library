@@ -1,0 +1,48 @@
+{
+  "$id": "https://akenza.io/digitalMatter/sensorNode/digital.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Digital",
+  "type": "object",
+  "properties": {
+    "digital1": {
+      "title": "Digital 1",
+      "description": "Digital input 1",
+      "type": "boolean"
+    },
+    "digital2": {
+      "title": "Digital 2",
+      "description": "Digital input 2",
+      "type": "boolean"
+    },
+    "digital3": {
+      "title": "Digital 3",
+      "description": "Digital input 3",
+      "type": "boolean"
+    },
+    "output3v3": {
+      "title": "Output 3v3",
+      "description": "Output 3v3",
+      "type": "boolean"
+    },
+    "digitalState": {
+      "title": "Digital state",
+      "description": "Current digital input state",
+      "type": "integer"
+    },
+    "digitalTrigger": {
+      "title": "Digital trigger",
+      "description": "Digital input trigger",
+      "type": "integer"
+    },
+    "digitalChange1": {
+      "title": "Digital change 1",
+      "description": "Digital input 1 change count",
+      "type": "integer"
+    },
+    "digitalChange2": {
+      "title": "Digital change 2",
+      "description": "Digital input 2 change count",
+      "type": "integer"
+    }
+  }
+}

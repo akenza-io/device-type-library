@@ -23,7 +23,8 @@
     "error": {
       "title": "Error",
       "type": "string",
-      "desciption": "Wrong length of payload"
+      "desciption": "Wrong length of payload",
+      "hideFromKpis": true
     }
   }
 }

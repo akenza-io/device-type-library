@@ -1,0 +1,26 @@
+{
+  "$id": "https://akenza.io/digitalMatter/guppy/rtc_request.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RTC request",
+  "type": "object",
+  "properties": {
+    "rtcWasSet": {
+      "title": "RTC set",
+      "description": "Equals true if the RTC is set.",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "cookie": {
+      "title": "Cookie",
+      "type": "integer",
+      "description": "Cookie",
+      "hideFromKpis": true
+    },
+    "timestamp": {
+      "title": "Timestamp",
+      "type": "string",
+      "description": "Timestamp",
+      "hideFromKpis": true
+    }
+  }
+}

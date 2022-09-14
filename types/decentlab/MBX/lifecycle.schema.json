@@ -15,19 +15,22 @@
     "protocolVersion": {
       "title": "Protocol Version",
       "description": "Protocol Version",
-      "type": "integer"
+      "type": "integer",
+      "hideFromKpis": true
     },
     "deviceId": {
       "title": "Device ID",
       "description": "Device ID",
-      "type": "integer"
+      "type": "integer",
+      "hideFromKpis": true
     },
     "numberOfValidSamples": {
       "title": "Number of valid samples",
       "description": "Number of valid samples",
       "type": "integer",
       "minimum": 0,
-      "maximum": 255
+      "maximum": 255,
+      "hideFromKpis": true
     }
   }
 }

@@ -21,12 +21,14 @@
       "title": "Time",
       "unit": "m",
       "type": "integer",
-      "description": "Time in minutes between samples"
+      "description": "Time in minutes between samples",
+      "hideFromKpis": true
     },
     "count": {
       "title": "Count",
       "type": "integer",
-      "description": "Count of events, resets on reboot"
+      "description": "Count of events, resets on reboot",
+      "hideFromKpis": true
     }
   }
 }

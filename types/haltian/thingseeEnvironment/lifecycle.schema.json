@@ -1,0 +1,15 @@
+{
+  "$id": "https://akenza.io/haltian/thingseeEnvironment/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "reason": {
+      "title": "Reason",
+      "description": "Reason this sample got sent.",
+      "type": "string",
+      "enum": ["CHANGE", "TIME", "STARTUP", "ERROR", "FIRMWARE_RESPONSE"],
+      "hideFromKpis": true
+    }
+  }
+}

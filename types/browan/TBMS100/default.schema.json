@@ -21,12 +21,14 @@
       "title": "Time between events",
       "unit": "m",
       "type": "integer",
-      "description": "Time between events in minutes."
+      "description": "Time between events in minutes.",
+      "hideFromKpis": true
     },
     "count": {
       "title": "Count",
       "type": "integer",
-      "description": "Count of all events"
+      "description": "Count of all events",
+      "hideFromKpis": true
     }
   }
 }

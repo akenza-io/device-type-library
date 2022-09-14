@@ -7,7 +7,8 @@
     "dataType": {
       "title": "Data type",
       "type": "integer",
-      "description": "Type of the package"
+      "description": "Type of the package",
+      "hideFromKpis": true
     },
     "batteryLevel": {
       "type": "number",

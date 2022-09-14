@@ -23,12 +23,14 @@
     "inTrip": {
       "title": "In trip",
       "type": "boolean",
-      "description": "Is true if the accelerometer detects movement"
+      "description": "Is true if the accelerometer detects movement",
+      "hideFromKpis": true
     },
     "fixFailed": {
       "title": "Fix failed",
       "type": "boolean",
-      "description": "Equals true if the last GPS fix failed"
+      "description": "Equals true if the last GPS fix failed",
+      "hideFromKpis": true
     },
     "headingDeg": {
       "title": "heading",
@@ -45,7 +47,8 @@
     "manDown": {
       "title": "Man down",
       "type": "boolean",
-      "description": "Equals true if no movement for configured period got detected (Needs to be activated)"
+      "description": "Equals true if no movement for configured period got detected (Needs to be activated)",
+      "hideFromKpis": true
     },
     "voltage": {
       "type": "number",

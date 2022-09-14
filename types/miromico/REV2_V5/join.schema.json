@@ -7,7 +7,8 @@
     "join": {
       "title": "Join",
       "description": "Is true on join uplink",
-      "type": "boolean"
+      "type": "boolean",
+      "hideFromKpis": true
     }
   }
 }
