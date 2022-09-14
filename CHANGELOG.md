@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+- Enginko - Sensor now sends all samples and emits on defined timestamps
 - Changed battery calculations so no negative numbers will be given out anymore
 
 # [1.23.1] - 2022-09-07
