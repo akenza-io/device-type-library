@@ -5,7 +5,7 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Comtac LPN MS-3 Uplink", () => {
+describe("Comtac Cluey KM Uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
@@ -30,12 +30,12 @@ describe("Comtac LPN MS-3 Uplink", () => {
   });
 
   describe("consume()", () => {
-    it("should decode the Comtac LPN MS-3 payload", () => {
+    it("should decode the Comtac Cluey KM payload", () => {
       const data = {
         data: {
-          port: 3,
+          port: 20,
           payloadHex:
-            "1300bc001f0100ff5ffecc03b10024fff2000dffc3016300177fffffff7fffffff0000",
+            "100128df5fee66011141000012410000134100001441000015410000164100001741000018410000",
         },
       };
 

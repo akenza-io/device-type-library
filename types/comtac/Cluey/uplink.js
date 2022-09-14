@@ -1,6 +1,6 @@
 // DEFINES
-const PAYLOAD_DECODER_VERSION = "00.03";
-const PAYLOAD_DECODER_INFO = "Chirpstack";
+const PAYLOAD_DECODER_VERSION = "00.04-VW";
+const PAYLOAD_DECODER_INFO = "TTN/TTI";
 const DEVICE_DESIGNATION_CLUEY_KM = "Cluey-KM";
 const DEVICE_DESIGNATION_CLUEY_AM = "Cluey-AM";
 const DEVICE_DESIGNATION_CLUEY_TM = "Cluey-TM";
@@ -382,6 +382,7 @@ function decodeDeviceHeader(data) {
       obj.info.deviceDesignation = DEVICE_DESIGNATION_CLUEY_AM;
       break;
     case CLUEY_TM_DEVICE_ID:
+      obj.info.deviceDesignation = DEVICE_DESIGNATION_CLUEY_TM;
       break;
     default:
       obj.info.deviceDesignation = "UNKNOWN";
@@ -549,17 +550,27 @@ function decodeFixedDataPayload(data) {
           obj.payload.data.objects.push({
             type: "Analog",
             id: data[pointer] & 0x0f,
-            value: data[pointer + 2] + (data[pointer + 1] << 8),
+            status: {
+              "limit1:": Boolean(data[pointer + 1] & 0x01),
+              "limit2:": Boolean(data[pointer + 1] & 0x02),
+              "delta:": Boolean(data[pointer + 1] & 0x04),
+            },
+            value: data[pointer + 3] + (data[pointer + 2] << 8),
           });
-          pointer += 3;
+          pointer += 4;
           break;
         case OBJECT_TYPE_TEMP:
           obj.payload.data.objects.push({
             type: "Temperature",
             id: data[pointer] & 0x0f,
-            value: decToInt(data[pointer + 2] + (data[pointer + 1] << 8)) / 100,
+            status: {
+              "limit1:": Boolean(data[pointer + 1] & 0x01),
+              "limit2:": Boolean(data[pointer + 1] & 0x02),
+              "delta:": Boolean(data[pointer + 1] & 0x04),
+            },
+            value: decToInt(data[pointer + 3] + (data[pointer + 2] << 8)) / 100,
           });
-          pointer += 3;
+          pointer += 4;
           break;
         default:
           break;
@@ -597,7 +608,7 @@ function decodeDiDataPayload(data) {
   pointer += 4;
 
   do {
-    if ((data[pointer] & 0xf0) === OBJECT_TYPE_DI) {
+    if ((data[pointer] & 0xf0) == OBJECT_TYPE_DI) {
       obj.payload.data.digitalInputs.push({
         info: {
           type: "singlePointInfo",
@@ -613,7 +624,7 @@ function decodeDiDataPayload(data) {
           data.slice(pointer + 2, pointer + 4),
         ),
       });
-    } else if ((data[pointer] & 0xf0) === OBJECT_TYPE_DBL) {
+    } else if ((data[pointer] & 0xf0) == OBJECT_TYPE_DBL) {
       obj.payload.data.digitalInputs.push({
         info: {
           type: "doublePointInfo",
@@ -632,6 +643,28 @@ function decodeDiDataPayload(data) {
     }
     pointer += 4;
   } while (pointer < data.length - 1);
+
+  // ------application specific assigments for digital inputs
+  // obj.application={};
+  // obj.payload.data.digitalInputs.forEach(function (item)
+  // {
+  //	switch(item.info.id)
+  //    {
+  //      case 5:
+  //       obj.application.SwitchREMOTE=Boolean(item.status.state);
+  //       break;
+  //      case 6:
+  //       obj.application.EndPositionOPEN=Boolean(item.status.state);
+  //       break;
+  //      case 7:
+  //       obj.application.EndPositionCLOSE=Boolean(item.status.state);
+  //       break;
+  //      case 8:
+  //       obj.application.EndPositionReserve=Boolean(item.status.state);
+  //       break;
+  //    }
+  // });
+  // ----end of  application specific assigments for digital inputs
 
   return {
     data: obj,
@@ -663,7 +696,7 @@ function decodeAiDataPayload(data) {
   pointer += 4;
 
   do {
-    if ((data[pointer] & 0xf0) === OBJECT_TYPE_AI) {
+    if ((data[pointer] & 0xf0) == OBJECT_TYPE_AI) {
       // AI Type
       obj.payload.data.analogInputs.push({
         info: {
@@ -673,6 +706,9 @@ function decodeAiDataPayload(data) {
         cot: decodeCot(data[pointer + 1] & 0xf0),
         status: {
           invalid: Boolean(data[pointer + 1] & 0x08),
+          overflow: Boolean(data[pointer + 1] & 0x04),
+          limit2: Boolean(data[pointer + 1] & 0x02),
+          limit1: Boolean(data[pointer + 1] & 0x01),
         },
         value: decToInt(data[pointer + 3] + (data[pointer + 2] << 8)),
         timestamp: addTimeToTimestamp(
@@ -690,6 +726,9 @@ function decodeAiDataPayload(data) {
         cot: decodeCot(data[pointer + 1] & 0xf0),
         status: {
           invalid: Boolean(data[pointer + 1] & 0x08),
+          overflow: Boolean(data[pointer + 1] & 0x04),
+          limit2: Boolean(data[pointer + 1] & 0x02),
+          limit1: Boolean(data[pointer + 1] & 0x01),
         },
         value: decToInt(data[pointer + 3] + (data[pointer + 2] << 8)) / 100,
         timestamp: addTimeToTimestamp(
@@ -700,6 +739,23 @@ function decodeAiDataPayload(data) {
     }
     pointer += 6;
   } while (pointer < data.length - 1);
+
+  // ----application assigments   for analog inputs
+  // obj.application={};
+  // obj.payload.data.analogInputs.forEach(function (item)
+  // {
+  //	switch(item.info.id)
+  //    {
+  //      case 1:
+  //       obj.application.fuellstand=item.value;
+  //        obj.application.fuellstandInvalid=Boolean(item.status.invalid);
+  //        obj.application.fuellstandOverflow=Boolean(item.status.overflow);
+  //        obj.application.fuellstandLimit1=Boolean(item.status.limit1);
+  //        obj.application.fuellstandLimit2=Boolean(item.status.limit2);
+  //        break;
+  //    }
+  // });
+  // ----end ofapplication assigments   for analog inputs
 
   return {
     data: obj,
@@ -754,6 +810,21 @@ function decodeCntDataPayload(data) {
     }
   } while (pointer < data.length - 1);
 
+  // ----application assigments   for analog inputs
+  // obj.application={};
+  // obj.payload.data.counters.forEach(function (item)
+  // {
+  //	switch(item.info.id)
+  //    {
+  //      case 1:
+  //       obj.application.counter1=item.value;
+  //        obj.application.counter1Overflow=Boolean(item.status.overflow);
+  //        obj.application.counter1Reset=Boolean(item.status.reset);
+  //        obj.application.fuellstandLimit2=Boolean(item.status.limit2);
+  //        break;
+  //    }
+  // });
+  // ----end ofapplication assigments   for analog inputs
   return {
     data: obj,
     warnings,
@@ -1645,59 +1716,47 @@ function decodePingPayload(data) {
 function consume(event) {
   const payload = event.data.payloadHex;
   const { port } = event.data;
-  const bits = Bits.hexToBits(payload);
-  const data = {};
-  const lifecycle = {};
-
-  // Chirpstack DECODER CALL
+  const bytes = Hex.hexToBytes(payload);
   const decoded = decodeUplink({
-    port,
+    fPort: port,
     bytes,
   });
 
-  // Which periphery is on?
-  // reserved
-  lifecycle.rs485 = !!Bits.bitsToUnsigned(bits.substr(1, 1));
-  lifecycle.gps = !!Bits.bitsToUnsigned(bits.substr(2, 1));
-  lifecycle.acc = !!Bits.bitsToUnsigned(bits.substr(3, 1));
-  lifecycle.mag = !!Bits.bitsToUnsigned(bits.substr(4, 1));
-  lifecycle.mic = !!Bits.bitsToUnsigned(bits.substr(5, 1));
-  lifecycle.bright = !!Bits.bitsToUnsigned(bits.substr(6, 1));
-  lifecycle.tempHum = !!Bits.bitsToUnsigned(bits.substr(7, 1));
+  const { device } = decoded.data.payload;
+  const { data } = decoded.data.payload;
+  const { warnings } = decoded;
 
-  // Actual state of different components:
-  lifecycle.txOnEvent = !!Bits.bitsToUnsigned(bits.substr(8, 1));
-  lifecycle.magActual = !!Bits.bitsToUnsigned(bits.substr(9, 1));
-  lifecycle.extCon = !!Bits.bitsToUnsigned(bits.substr(10, 1));
-  lifecycle.booster = !!Bits.bitsToUnsigned(bits.substr(11, 1));
-  lifecycle.extSupply = !!Bits.bitsToUnsigned(bits.substr(12, 1));
-  lifecycle.dip3 = !!Bits.bitsToUnsigned(bits.substr(13, 1));
-  lifecycle.dip2 = !!Bits.bitsToUnsigned(bits.substr(14, 1));
-  lifecycle.dip1 = !!Bits.bitsToUnsigned(bits.substr(15, 1));
-  lifecycle.voltage = Number(
-    (1 + Bits.bitsToUnsigned(bits.substr(16, 8)) * 0.01).toFixed(2),
-  );
+  // Digital inputs
+  for (let i = 0; i < 8; i++) {
+    const digitalInputs = {};
+    const digital = data.digitalInputs[i];
 
-  data.light = Bits.bitsToUnsigned(bits.substr(24, 8));
-  data.humidity = Bits.bitsToUnsigned(bits.substr(32, 8));
-  data.temperature = Bits.bitsToSigned(bits.substr(40, 16)) / 10;
-  data.accX = Bits.bitsToSigned(bits.substr(56, 16)) / 1000;
-  data.accY = Bits.bitsToSigned(bits.substr(72, 16)) / 1000;
-  data.accZ = Bits.bitsToSigned(bits.substr(88, 16)) / 1000;
-  data.gyroX = Bits.bitsToSigned(bits.substr(104, 16)) / 10;
-  data.gyroY = Bits.bitsToSigned(bits.substr(120, 16)) / 10;
-  data.gyroZ = Bits.bitsToSigned(bits.substr(136, 16)) / 10;
-  data.magnX = Bits.bitsToSigned(bits.substr(152, 16)) / 1000;
-  data.magnY = Bits.bitsToSigned(bits.substr(168, 16)) / 1000;
-  data.magnZ = Bits.bitsToSigned(bits.substr(184, 16)) / 1000;
-  data.latitude = Bits.bitsToSigned(bits.substr(200, 32)) / 1000000;
-  data.longitude = Bits.bitsToSigned(bits.substr(232, 32)) / 1000000;
-  data.altitude = Bits.bitsToSigned(bits.substr(264, 16)) / 100;
+    digitalInputs.id = digital.info.id;
+    digitalInputs.limit = digital.cot.limit;
+    digitalInputs.event = digital.cot.event;
+    digitalInputs.interrogation = digital.cot.interrogation;
+    digitalInputs.cyclic = digital.cot.cyclic;
 
-  if (lifecycle.txOnEvent === true) {
-    emit("sample", { data: { eventUplink: true }, topic: "event" });
+    digitalInputs.blocked = digital.status.blocked;
+    digitalInputs.state = digital.status.state;
+
+    const timestamp = new Date(digital.timestamp.string);
+
+    emit("sample", {
+      data: digitalInputs,
+      topic: `digital${i}`,
+      timestamp,
+    });
   }
 
-  emit("sample", { data, topic: "default" });
+  // Lifecycle
+  const lifecycle = device.deviceStatus;
+  lifecycle.batteryLevel = Number(device.batteryLevel.replace(/\D/g, ""));
+
   emit("sample", { data: lifecycle, topic: "lifecycle" });
+
+  // Warnings
+  if (warnings.length > 0) {
+    emit("sample", { data: warnings, topic: "warnings" });
+  }
 }
