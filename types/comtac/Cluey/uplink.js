@@ -1731,7 +1731,7 @@ function consume(event) {
     const digitalInputs = {};
     const digital = data.digitalInputs[i];
 
-    digitalInputs.id = digital.info.id;
+    digitalInputs.inputNr = digital.info.id;
     digitalInputs.limit = digital.cot.limit;
     digitalInputs.event = digital.cot.event;
     digitalInputs.interrogation = digital.cot.interrogation;
@@ -1744,7 +1744,7 @@ function consume(event) {
 
     emit("sample", {
       data: digitalInputs,
-      topic: `digital${i}`,
+      topic: "digital",
       timestamp,
     });
   }

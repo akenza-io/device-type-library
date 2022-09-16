@@ -1,91 +1,57 @@
 {
-  "$id": "https://akenza.io/comtac/ms-3/lifecycle.schema.json",
+  "$id": "https://akenza.io/comtac/cluey/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Lifecycle",
   "type": "object",
   "properties": {
-    "rs485": {
-      "title": "RS485",
-      "description": "RS485 active",
+    "batteryLevel": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "unit": "%"
+    },
+    "batteryPowered": {
+      "title": "Battery powered",
+      "description": "Is the battery powered",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "bufferOverflow": {
+      "title": "Buffer overflow",
+      "description": "Is there a buffer overflow",
       "type": "boolean"
     },
-    "gps": {
-      "title": "GPS",
-      "description": "GPS active",
-      "type": "boolean"
-    },
-    "acc": {
+    "configurationError": {
       "title": "Accelerometer",
       "description": "Accelerometer active",
       "type": "boolean"
     },
-    "mag": {
-      "title": "Magnetometer",
-      "description": "Magnetometer active",
+    "confirmationTimeout": {
+      "title": "Confirmation timeout",
+      "description": "Is there a confirmation timeout",
       "type": "boolean"
     },
-    "mic": {
-      "title": "Microphone",
-      "description": "Microphone active",
+    "deviceRestarted": {
+      "title": "Device restarted",
+      "description": "Has the device restarted",
       "type": "boolean"
     },
-    "bright": {
-      "title": "Brightness",
-      "description": "Brightness sensor active",
+    "lowSupplyVoltage": {
+      "title": "Low supply voltage",
+      "description": "Is there a low supply voltage",
       "type": "boolean"
     },
-    "tempHum": {
-      "title": "Temperature & Humidity",
-      "description": "Temperature & Humidity sensors active",
+    "timeSynced": {
+      "title": "Time synced",
+      "description": "Is the time synced",
       "type": "boolean"
     },
-    "txOnEvent": {
-      "title": "Event",
-      "description": "Event registered",
+    "txCreditsConsumed": {
+      "title": "TX credits consumed",
+      "description": "Have there been TX credits consumed",
       "type": "boolean"
-    },
-    "magActual": {
-      "title": "Magnetometer",
-      "description": "Magnetometer active",
-      "type": "boolean"
-    },
-    "extCon": {
-      "title": "External connection",
-      "description": "External connection detected",
-      "type": "boolean"
-    },
-    "booster": {
-      "title": "Booster",
-      "description": "Booster active",
-      "type": "boolean"
-    },
-    "extSupply": {
-      "title": "External supply",
-      "description": "External supply detected",
-      "type": "boolean"
-    },
-    "dip3": {
-      "title": "DIP 3",
-      "description": "DIP 3",
-      "type": "boolean"
-    },
-    "dip2": {
-      "title": "DIP 2",
-      "description": "DIP 2",
-      "type": "boolean"
-    },
-    "dip1": {
-      "title": "DIP 1",
-      "description": "DIP 1",
-      "type": "boolean"
-    },
-    "voltage": {
-      "title": "Battery voltage",
-      "desciption": "The battery voltage in Volt.",
-      "unit": "V",
-      "type": "number",
-      "minimum": 0,
-      "maximum": 24
     }
   }
 }

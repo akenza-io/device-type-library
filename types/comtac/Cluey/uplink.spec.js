@@ -6,15 +6,15 @@ const utils = require("test-utils");
 const { assert } = chai;
 
 describe("Comtac Cluey KM Uplink", () => {
-  let defaultSchema = null;
+  let digitalSchema = null;
   let consume = null;
   before((done) => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
     utils
-      .loadSchema(`${__dirname}/default.schema.json`)
+      .loadSchema(`${__dirname}/digital.schema.json`)
       .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
+        digitalSchema = parsedSchema;
         done();
       });
   });
@@ -44,22 +44,135 @@ describe("Comtac Cluey KM Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.light, 0);
-        assert.equal(value.data.temperature, 25.6);
-        assert.equal(value.data.humidity, 31);
-        assert.equal(value.data.accX, -0.161);
-        assert.equal(value.data.accY, -0.308);
-        assert.equal(value.data.accZ, 0.945);
-        assert.equal(value.data.gyroX, 3.6);
-        assert.equal(value.data.gyroY, -1.4);
-        assert.equal(value.data.gyroZ, 1.3);
-        assert.equal(value.data.magnX, -0.061);
-        assert.equal(value.data.magnY, 0.355);
-        assert.equal(value.data.magnZ, 0.023);
-        assert.equal(value.data.altitude, 0);
+        assert.equal(value.topic, "digital");
+        assert.equal(value.data.blocked, false);
+        assert.equal(value.data.cyclic, false);
+        assert.equal(value.data.event, false);
+        assert.equal(value.data.inputNr, 1);
+        assert.equal(value.data.interrogation, true);
+        assert.equal(value.data.limit, false);
+        assert.equal(value.data.state, 1);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        validate(value.data, digitalSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "digital");
+        assert.equal(value.data.blocked, false);
+        assert.equal(value.data.cyclic, false);
+        assert.equal(value.data.event, false);
+        assert.equal(value.data.inputNr, 2);
+        assert.equal(value.data.interrogation, true);
+        assert.equal(value.data.limit, false);
+        assert.equal(value.data.state, 1);
+
+        validate(value.data, digitalSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "digital");
+        assert.equal(value.data.blocked, false);
+        assert.equal(value.data.cyclic, false);
+        assert.equal(value.data.event, false);
+        assert.equal(value.data.inputNr, 3);
+        assert.equal(value.data.interrogation, true);
+        assert.equal(value.data.limit, false);
+        assert.equal(value.data.state, 1);
+
+        validate(value.data, digitalSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "digital");
+        assert.equal(value.data.blocked, false);
+        assert.equal(value.data.cyclic, false);
+        assert.equal(value.data.event, false);
+        assert.equal(value.data.inputNr, 4);
+        assert.equal(value.data.interrogation, true);
+        assert.equal(value.data.limit, false);
+        assert.equal(value.data.state, 1);
+
+        validate(value.data, digitalSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "digital");
+        assert.equal(value.data.blocked, false);
+        assert.equal(value.data.cyclic, false);
+        assert.equal(value.data.event, false);
+        assert.equal(value.data.inputNr, 5);
+        assert.equal(value.data.interrogation, true);
+        assert.equal(value.data.limit, false);
+        assert.equal(value.data.state, 1);
+
+        validate(value.data, digitalSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "digital");
+        assert.equal(value.data.blocked, false);
+        assert.equal(value.data.cyclic, false);
+        assert.equal(value.data.event, false);
+        assert.equal(value.data.inputNr, 6);
+        assert.equal(value.data.interrogation, true);
+        assert.equal(value.data.limit, false);
+        assert.equal(value.data.state, 1);
+
+        validate(value.data, digitalSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "digital");
+        assert.equal(value.data.blocked, false);
+        assert.equal(value.data.cyclic, false);
+        assert.equal(value.data.event, false);
+        assert.equal(value.data.inputNr, 7);
+        assert.equal(value.data.interrogation, true);
+        assert.equal(value.data.limit, false);
+        assert.equal(value.data.state, 1);
+
+        validate(value.data, digitalSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "digital");
+        assert.equal(value.data.blocked, false);
+        assert.equal(value.data.cyclic, false);
+        assert.equal(value.data.event, false);
+        assert.equal(value.data.inputNr, 8);
+        assert.equal(value.data.interrogation, true);
+        assert.equal(value.data.limit, false);
+        assert.equal(value.data.state, 1);
+
+        validate(value.data, digitalSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -68,23 +181,15 @@ describe("Comtac Cluey KM Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.rs485, false);
-        assert.equal(value.data.gps, false);
-        assert.equal(value.data.acc, true);
-        assert.equal(value.data.mag, false);
-        assert.equal(value.data.mic, false);
-        assert.equal(value.data.bright, true);
-        assert.equal(value.data.tempHum, true);
-
-        assert.equal(value.data.txOnEvent, false);
-        assert.equal(value.data.magActual, false);
-        assert.equal(value.data.extCon, false);
-        assert.equal(value.data.booster, false);
-        assert.equal(value.data.extSupply, false);
-        assert.equal(value.data.dip3, false);
-        assert.equal(value.data.dip2, false);
-        assert.equal(value.data.dip1, false);
-        assert.equal(value.data.voltage, 2.88);
+        assert.equal(value.data.batteryLevel, 88);
+        assert.equal(value.data.batteryPowered, true);
+        assert.equal(value.data.bufferOverflow, false);
+        assert.equal(value.data.configurationError, false);
+        assert.equal(value.data.confirmationTimeout, false);
+        assert.equal(value.data.deviceRestarted, true);
+        assert.equal(value.data.lowSupplyVoltage, false);
+        assert.equal(value.data.timeSynced, false);
+        assert.equal(value.data.txCreditsConsumed, false);
 
         validate(value.data, lifecycleSchema, { throwError: true });
       });
