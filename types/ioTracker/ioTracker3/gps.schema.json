@@ -26,7 +26,7 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     },
-    "altRef": {
+    "altidude": {
       "title": "Altitude reference",
       "description": "Altitude above user datum ellipsoid",
       "type": "number",
@@ -47,17 +47,17 @@
     "sog": {
       "title": "Speed over ground",
       "description": "Speed over ground",
-      "type": "integer"
+      "type": "number"
     },
     "cog": {
       "title": "Course over ground",
       "description": "Course over ground",
-      "type": "integer"
+      "type": "number"
     },
     "hdop": {
       "title": "HDOP",
       "description": "Horizontal Dilution of Precision",
-      "type": "integer",
+      "type": "number",
       "hideFromKpis": true
     },
     "numSvs": {

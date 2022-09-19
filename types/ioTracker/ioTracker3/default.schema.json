@@ -4,27 +4,6 @@
   "title": "Default",
   "type": "object",
   "properties": {
-    "uplinkReason": {
-      "title": "Uplink reason",
-      "description": "Describes why a message got sent",
-      "type": "string",
-      "enum": ["BUTTON", "MOVEMENT", "GPIO"],
-      "hideFromKpis": true
-    },
-    "crc": {
-      "title": "Cyclic redundancy check",
-      "description": "Cyclic redundancy check",
-      "type": "integer",
-      "hideFromKpis": true
-    },
-    "batteryLevel": {
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 100,
-      "title": "Battery charge",
-      "description": "The battery charge in percent.",
-      "unit": "%"
-    },
     "temperature": {
       "title": "Temperature",
       "unit": "°C",

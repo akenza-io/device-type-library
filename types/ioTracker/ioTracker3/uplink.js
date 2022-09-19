@@ -230,6 +230,8 @@ function decoder(bytes) {
     decoded.uplinkReason = "MOVEMENT";
   } else if (headerByte & 4) {
     decoded.uplinkReason = "GPIO";
+  } else {
+    decoded.uplinkReason = "STATUS";
   }
 
   decoded.containsGps = !!(headerByte & 8);
@@ -476,7 +478,7 @@ function decoder(bytes) {
         bytes[index++],
         bytes[index++],
       ) / 10000000;
-    decoded.gps.altRef = toUnsignedShort(bytes[index++], bytes[index++]) / 10;
+    decoded.gps.altitude = toUnsignedShort(bytes[index++], bytes[index++]) / 10;
     decoded.gps.hAcc = bytes[index++];
     decoded.gps.vAcc = bytes[index++];
     decoded.gps.sog = toUnsignedShort(bytes[index++], bytes[index++]) / 10;
@@ -491,9 +493,22 @@ function decoder(bytes) {
 function consume(event) {
   const payload = event.data.payloadHex;
   const decoded = decoder(Hex.hexToBytes(payload));
+  const gps = {};
+  const lifecycle = {};
 
   if (decoded.gps !== undefined) {
     if (Object.keys(decoded.gps).length > 0) {
+      gps.navStat = decoded.gps.navStat;
+      gps.longitude = decoded.gps.longitude;
+      gps.latitude = decoded.gps.latitude;
+      gps.altitude = decoded.gps.altitude;
+      gps.hAcc = decoded.gps.hAcc;
+      gps.vAcc = decoded.gps.vAcc;
+      gps.sog = decoded.gps.sog;
+      gps.cog = decoded.gps.cog;
+      gps.hdop = decoded.gps.hdop;
+      gps.numSvs = decoded.gps.numSvs;
+
       emit("sample", { data: decoded.gps, topic: "gps" });
       delete decoded.gps;
     }
@@ -507,6 +522,18 @@ function consume(event) {
   if (decoded.sensorContent !== undefined) {
     delete decoded.sensorContent;
   }
+
+  lifecycle.batteryLevel = decoded.batteryLevel;
+  lifecycle.uplinkReason = decoded.uplinkReason;
+  lifecycle.crc = decoded.crc;
+
+  emit("sample", {
+    data: lifecycle,
+    topic: "lifecycle",
+  });
+  delete decoded.batteryLevel;
+  delete decoded.uplinkReason;
+  delete decoded.crc;
 
   emit("sample", { data: decoded, topic: "default" });
 }
