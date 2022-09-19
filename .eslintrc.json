@@ -17,6 +17,13 @@
     "sourceType": "module"
   },
   "rules": {
+    "prefer-destructuring": [
+      "error",
+      {
+        "array": false,
+        "object": true
+      }
+    ],
     "no-bitwise": "off",
     "no-plusplus": "off",
     "curly": "error",
