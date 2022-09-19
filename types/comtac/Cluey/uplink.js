@@ -1727,7 +1727,7 @@ function consume(event) {
   const { warnings } = decoded;
 
   // Digital inputs
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < data.digitalInputs.length; i++) {
     const digitalInputs = {};
     const digital = data.digitalInputs[i];
 

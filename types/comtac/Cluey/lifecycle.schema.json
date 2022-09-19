@@ -14,43 +14,43 @@
     },
     "batteryPowered": {
       "title": "Battery powered",
-      "description": "Is the battery powered",
+      "description": "Whether the battery is powered",
       "type": "boolean",
       "hideFromKpis": true
     },
     "bufferOverflow": {
       "title": "Buffer overflow",
-      "description": "Is there a buffer overflow",
+      "description": "Whether there is a buffer overflow",
       "type": "boolean"
     },
     "configurationError": {
-      "title": "Accelerometer",
-      "description": "Accelerometer active",
+      "title": "Configuration error",
+      "description": "Whether there is a configuration error",
       "type": "boolean"
     },
     "confirmationTimeout": {
       "title": "Confirmation timeout",
-      "description": "Is there a confirmation timeout",
+      "description": "Whether there is a confirmation timeout",
       "type": "boolean"
     },
     "deviceRestarted": {
       "title": "Device restarted",
-      "description": "Has the device restarted",
+      "description": "Whether there the device has restarted",
       "type": "boolean"
     },
     "lowSupplyVoltage": {
       "title": "Low supply voltage",
-      "description": "Is there a low supply voltage",
+      "description": "Whether there is a low supply voltage",
       "type": "boolean"
     },
     "timeSynced": {
       "title": "Time synced",
-      "description": "Is the time synced",
+      "description": "Whether there time is synced",
       "type": "boolean"
     },
     "txCreditsConsumed": {
       "title": "TX credits consumed",
-      "description": "Have there been TX credits consumed",
+      "description": "Whether there have been TX credits consumed",
       "type": "boolean"
     }
   }
