@@ -6,7 +6,7 @@
   "properties": {
     "faceMask": {
       "title": "Face mask",
-      "description": "Boolean if the person has a mask on.",
+      "description": "Indicates whether a person in view wears a mask.",
       "type": "boolean",
       "hideFromKpis": true
     }

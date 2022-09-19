@@ -6,7 +6,7 @@
   "properties": {
     "tag": {
       "title": "Tag",
-      "description": "Boolean if the person has a tag on.",
+      "description": "Indicates whether a person in view wears a tag.",
       "type": "boolean"
     }
   }
