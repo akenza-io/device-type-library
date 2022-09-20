@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/enginko/MCF-LW12CO2E/time_sync.schema.json",
+  "$id": "https://akenza.io/enginko/EGK-LW20W00/time_sync.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Time sync",
   "type": "object",

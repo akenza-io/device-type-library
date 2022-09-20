@@ -7,15 +7,8 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": [
-    "Temperature",
-    "Humidity",
-    "Pressure",
-    "VOC",
-    "CO2",
-    "Lux"
-  ],
-  "outputTopics": ["climate", "time_sync"],
+  "availableSensors": ["Temperature", "Distance", "ADC"],
+  "outputTopics": ["distance", "time_sync"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

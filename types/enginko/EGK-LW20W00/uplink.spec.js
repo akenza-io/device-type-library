@@ -4,68 +4,22 @@ const rewire = require("rewire");
 const utils = require("test-utils");
 
 const { assert } = chai;
-describe("MCF-LW12CO2E Uplink", () => {
+describe("EGK-LW20W00 Uplink", () => {
   describe("consume()", () => {
-    let climateSchema = null;
+    let distanceSchema = null;
     let consume = null;
     before((done) => {
       const script = rewire("./uplink.js");
       consume = utils.init(script);
       utils
-        .loadSchema(`${__dirname}/climate.schema.json`)
+        .loadSchema(`${__dirname}/distance.schema.json`)
         .then((parsedSchema) => {
-          climateSchema = parsedSchema;
+          distanceSchema = parsedSchema;
           done();
         });
     });
-    it("should decode MCF-LW12CO2E climate payload", () => {
-      const data = {
-        data: {
-          port: 2,
-          payloadHex:
-            "0ee040f62ac40b4c6e8a016d0119008f02e040f62ac40b4c6e8a01720119008f0262",
-        },
-      };
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "climate");
-        assert.equal(value.data.temperature, 30.12);
-        assert.equal(value.data.humidity, 38);
-        assert.equal(value.data.pressure, 1009.74);
-        assert.equal(value.data.lux, 365);
-        assert.equal(value.data.voc, 25);
-        assert.equal(value.data.co2, 655);
-
-        validate(value.data, climateSchema, { throwError: true });
-      });
-
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "climate");
-        assert.equal(value.data.temperature, 30.12);
-        assert.equal(value.data.humidity, 38);
-        assert.equal(value.data.pressure, 1009.74);
-        assert.equal(value.data.lux, 370);
-        assert.equal(value.data.voc, 25);
-        assert.equal(value.data.co2, 655);
-        assert.equal(value.data.batteryLevel, 98);
-        assert.equal(value.data.rfu, 0);
-
-        validate(value.data, climateSchema, { throwError: true });
-      });
-      consume(data);
-    });
-  });
-
-  describe("consume()", () => {
     let timesyncSchema = null;
-    let consume = null;
     before((done) => {
       const script = rewire("./uplink.js");
       consume = utils.init(script);
@@ -77,14 +31,40 @@ describe("MCF-LW12CO2E Uplink", () => {
         });
     });
 
-    it("should decode MCF-LW12CO2E time_sync payload", () => {
+    it("should decode EGK-LW20W00 distance payload", () => {
       const data = {
         data: {
           port: 2,
+          payloadHex: "14013a52fc2c1f0c9600990064a20964",
+        },
+      };
 
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "distance");
+        assert.equal(value.data.adc, 3103);
+        assert.equal(value.data.batteryLevel, 100);
+        assert.equal(value.data.distance, 153);
+        assert.equal(value.data.fillLevel, 100);
+        assert.equal(value.data.temperature, 24.66);
+
+        validate(value.data, distanceSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("should decode EGK-LW20W00 time_sync payload", () => {
+      const data = {
+        data: {
+          port: 2,
           payloadHex: "01cbe38b28000223040701",
         },
       };
+
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);

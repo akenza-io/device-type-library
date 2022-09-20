@@ -1,0 +1,41 @@
+{
+  "$id": "https://akenza.io/enginko/EGK-LW20W00/distance.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Distance",
+  "type": "object",
+  "properties": {
+    "adc": {
+      "title": "ADC",
+      "type": "integer",
+      "description": "Analog to digital Converter"
+    },
+    "batteryLevel": {
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "unit": "%"
+    },
+    "distance": {
+      "title": "Distance",
+      "unit": "cm",
+      "type": "number",
+      "description": "Distance measured between the sensor and the surface"
+    },
+    "fillLevel": {
+      "title": "Fill level",
+      "unit": "%",
+      "type": "number",
+      "description": "Fill level of the container"
+    },
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    }
+  }
+}
