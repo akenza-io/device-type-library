@@ -1,9 +1,9 @@
 {
   "name": "ax-opto",
   "version": "1.0.0",
-  "manufacturer": "Adnexo",
+  "manufacturer": "adnexo",
   "url": "https://www.adnexo.ch/de/unser-angebot/hardware/#ax-opto",
-  "description": "The ax-opto distance sensor can measure distances up to 1.3 meters. It can be used in different application. F.e parking and fill level of tanks. The battery can have lifetime up to multiple years.",
+  "description": "The ax-opto distance sensor with LoRaWAN wireless technology. It can measure distances up to 1.3 meters and can be used in different application. F.e parking and fill level of tanks. The battery can have lifetime up to multiple years.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
