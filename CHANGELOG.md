@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.24.0] - 2022-09-21
+
+### Added
+
+- ioTracker - ioTracker3
+
 # [1.23.3] - 2022-09-20
 
 ### Changed
