@@ -23,7 +23,7 @@
     "maxAccelerationNew": {
       "title": "Max acceleration",
       "unit": "mg",
-      "description": "Max acceleration of the sensor inbetween this event.",
+      "description": "Max acceleration of the sensor since the last event.",
       "type": "number",
       "minimum": -32767,
       "maximum": 32767
