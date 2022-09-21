@@ -21,9 +21,9 @@
       "maximum": 65535
     },
     "maxAccelerationNew": {
-      "title": "Max acceleration new",
+      "title": "Max acceleration",
       "unit": "mg",
-      "description": "Acceleration on the X-Axis is mg",
+      "description": "Max acceleration of the sensor inbetween this event.",
       "type": "number",
       "minimum": -32767,
       "maximum": 32767
@@ -31,7 +31,7 @@
     "maxAccelerationHistory": {
       "title": "Max acceleration history",
       "unit": "mg",
-      "description": "Max acceleration history",
+      "description": "Max acceleration over all events.",
       "type": "number",
       "minimum": -32767,
       "maximum": 32767
