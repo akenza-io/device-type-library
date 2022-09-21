@@ -1,7 +1,7 @@
 {
   "name": "ax-dist",
   "version": "1.0.0",
-  "manufacturer": "Adnexo",
+  "manufacturer": "adnexo",
   "url": "https://www.adnexo.ch/de/unser-angebot/hardware/#ax-dist",
   "description": "The ax-dist is a distance measuring sensor with LoRaWAN wireless technology. It measures distances of up to 5m and can be used for a variety of applications such as parking, fill level or seat occupation measurement. The ax-dist has a battery lifespan of up to five years depending on the settings and can be used both indoors and outdoors.",
   "author": "Akenza AG",

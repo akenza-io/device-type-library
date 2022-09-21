@@ -4,11 +4,18 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-# [1.24.0] - 2022-09-16
+# [1.24.0] - 2022-09-21
 
 ### Added
 
+- ioTracker - ioTracker3
 - Comtac - Cluey
+
+# [1.23.3] - 2022-09-20
+
+### Changed
+
+- Adnexo - updated meta
 
 # [1.23.2] - 2022-09-08
 
