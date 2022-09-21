@@ -6,14 +6,14 @@
   "properties": {
     "xCoordinate": {
       "title": "X Coordinate",
-      "description": "X Coordinate",
+      "description": "X Coordinate 0 is the center sensor pov.",
       "type": "number",
       "unit": "x",
       "hideFromKpis": true
     },
     "yCoordinate": {
       "title": "Y Coordinate",
-      "description": "Y Coordinate",
+      "description": "Y Coordinate 0 is the center sensor pov.",
       "type": "number",
       "unit": "y",
       "hideFromKpis": true
