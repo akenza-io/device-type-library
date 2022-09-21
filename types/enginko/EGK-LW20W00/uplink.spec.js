@@ -31,6 +31,18 @@ describe("EGK-LW20W00 Uplink", () => {
         });
     });
 
+    let lifecycleSchema = null;
+    before((done) => {
+      const script = rewire("./uplink.js");
+      consume = utils.init(script);
+      utils
+        .loadSchema(`${__dirname}/lifecycle.schema.json`)
+        .then((parsedSchema) => {
+          lifecycleSchema = parsedSchema;
+          done();
+        });
+    });
+
     it("should decode EGK-LW20W00 distance payload", () => {
       const data = {
         data: {
@@ -44,9 +56,19 @@ describe("EGK-LW20W00 Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "distance");
+        assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.adc, 3103);
         assert.equal(value.data.batteryLevel, 100);
+
+        validate(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "distance");
         assert.equal(value.data.distance, 153);
         assert.equal(value.data.fillLevel, 100);
         assert.equal(value.data.temperature, 24.66);

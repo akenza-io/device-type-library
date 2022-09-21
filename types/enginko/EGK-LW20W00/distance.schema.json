@@ -4,19 +4,6 @@
   "title": "Distance",
   "type": "object",
   "properties": {
-    "adc": {
-      "title": "ADC",
-      "type": "integer",
-      "description": "Analog to digital Converter"
-    },
-    "batteryLevel": {
-      "title": "Battery charge",
-      "description": "The battery charge in percent.",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 100,
-      "unit": "%"
-    },
     "distance": {
       "title": "Distance",
       "unit": "cm",

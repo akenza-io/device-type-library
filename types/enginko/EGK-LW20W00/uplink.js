@@ -425,7 +425,7 @@ function isNumeric(str) {
 function consume(event) {
   const payload = event.data.payloadHex;
   const uplinkId = payload.substring(0, 2);
-  let topic = "default";
+  let topic;
   let content;
 
   switch (uplinkId.toUpperCase()) {
@@ -453,6 +453,18 @@ function consume(event) {
     currentSample[variable] = value;
   }
   delete currentSample.type;
+
+  if (currentSample.batteryLevel !== undefined) {
+    emit("sample", {
+      data: {
+        batteryLevel: currentSample.batteryLevel,
+        adc: currentSample.adc,
+      },
+      topic: "lifecycle",
+    });
+    delete currentSample.adc;
+    delete currentSample.batteryLevel;
+  }
 
   if (currentSample.date !== undefined) {
     const timestamp = new Date(currentSample.date);
