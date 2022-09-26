@@ -12,6 +12,10 @@ All notable changes to this project will be documented in this file.
 
 # [1.23.3] - 2022-09-20
 
+### Added
+
+- Enginko - EGK-LW20W00
+
 ### Changed
 
 - Adnexo - updated meta
