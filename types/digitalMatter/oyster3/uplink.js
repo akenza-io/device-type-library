@@ -1,77 +1,165 @@
+function MakeBitParser(bytes, offset, length) {
+  return {
+    bits: bytes.slice(offset, offset + length),
+    offset: 0,
+    bitLength: length * 8,
+    U32LE: function U32LE(bits) {
+      let out = 0;
+      let total = 0;
+      while (bits > 0) {
+        const byteNum = Math.floor(this.offset / 8);
+        const discardLSbs = this.offset & 7;
+        const avail = Math.min(8 - discardLSbs, bits);
+        const extracted = this.bits[byteNum] >>> discardLSbs;
+        const masked = (extracted << (32 - avail)) >>> (32 - avail);
+        out |= (masked << total) >>> 0;
+        total += avail;
+        bits -= avail;
+        this.offset += avail;
+      }
+      return out;
+    },
+    S32LE: function S32LE(bits) {
+      return (this.U32LE(bits) << (32 - bits)) >> (32 - bits);
+    },
+  };
+}
+
 function decoder(bytes, port) {
-  const decoded = {};
-  if (port === 1) {
-    decoded.type = "position";
-    decoded.latitude =
-      bytes[0] + bytes[1] * 256 + bytes[2] * 65536 + bytes[3] * 16777216;
-    if (decoded.latitude >= 0x80000000) {
-      // 2^31
-      decoded.latitude -= 0x100000000; // 2^32
+  const p = port;
+  const b = MakeBitParser(bytes, 0, bytes.length);
+  let d = {};
+  const w = [];
+  if (p === 1) {
+    d.type = "position";
+    const l = {};
+    l.latitude = Number((b.S32LE(32) / 1e7).toFixed(7)); // decimal scaling
+    l.longitude = Number((b.S32LE(32) / 1e7).toFixed(7));
+    d.inTrip = b.U32LE(1) !== 0;
+    d.fixFailed = b.U32LE(1) !== 0;
+    l.headingDeg = Number((b.U32LE(6) * 5.625).toFixed(2));
+    l.speedKmph = b.U32LE(8);
+    d.voltage = Number((b.U32LE(8) * 0.025).toFixed(3));
+    d = Object.assign(d, l);
+  } else if (p === 2) {
+    d.type = "downlink_ack";
+    d.sequence = b.U32LE(7);
+    d.accepted = b.U32LE(1) !== 0;
+    d.firmware = `${b.U32LE(8)}.${b.U32LE(8)}`;
+    if (bytes.length < 6) {
+      d.prodId = null;
+      d.hwRev = null;
+      d.port = null;
+    } else {
+      d.prodId = b.U32LE(8);
+      d.hwRev = b.U32LE(8);
+      d.port = b.U32LE(8);
     }
-    decoded.latitude /= 1e7;
-
-    decoded.longitude =
-      bytes[4] + bytes[5] * 256 + bytes[6] * 65536 + bytes[7] * 16777216;
-    if (decoded.longitude >= 0x80000000) {
-      // 2^31
-      decoded.longitude -= 0x100000000; // 2^32
+  } else if (p === 3) {
+    d.type = "stats";
+    d.initialvoltage = Number((4.0 + 0.1 * b.U32LE(4)).toFixed(2));
+    d.txCount = 32 * b.U32LE(11);
+    d.tripCount = 32 * b.U32LE(13);
+    d.gnssSuccesses = 32 * b.U32LE(10);
+    d.gnssFails = 32 * b.U32LE(8);
+    d.aveGnssFixS = b.U32LE(9);
+    d.aveGnssFailS = b.U32LE(9);
+    d.aveGnssFreshenS = b.U32LE(8);
+    d.wakeupsPerTrip = b.U32LE(7);
+    d.uptimeWeeks = b.U32LE(9);
+  } else if (p === 4) {
+    d.type = "position";
+    const l = {};
+    // decimal scaling, truncated integer
+    l.latitude = Number(((256 * b.S32LE(24)) / 1e7).toFixed(7));
+    l.longitude = Number(((256 * b.S32LE(24)) / 1e7).toFixed(7));
+    l.headingDeg = 45 * b.U32LE(3);
+    l.speedKmph = 5 * b.U32LE(5);
+    d.voltage = b.U32LE(8);
+    d.inTrip = b.U32LE(1) !== 0;
+    d.fixFailed = b.U32LE(1) !== 0;
+    d.inactivityAlarm = b.U32LE(1) !== 0;
+    if (b.U32LE(1) === 0) {
+      d.voltage = Number((0.025 * d.voltage).toFixed(3));
+    } else {
+      d.voltage = Number((3.5 + 0.032 * d.voltage).toFixed(3));
     }
-    decoded.longitude /= 1e7;
-    decoded.inTrip = (bytes[8] & 0x1) !== 0;
-    decoded.fixFailed = (bytes[8] & 0x2) !== 0;
-    decoded.headingDeg = (bytes[8] >> 2) * 5.625;
-
-    decoded.speedKmph = bytes[9];
-    decoded.voltage = Math.round(bytes[10] * 0.025 * 100) / 100;
-  } else if (port === 4) {
-    decoded.type = "position";
-    decoded.latitude = bytes[0] + bytes[1] * 256 + bytes[2] * 65536;
-    if (decoded.latitude >= 0x800000) {
-      // 2^23
-      decoded.latitude -= 0x1000000; // 2^24
+    const crit = b.U32LE(2);
+    if (crit === 1) {
+      d.batCritical = false;
+    } else {
+      d.batCritical = true;
     }
-    decoded.latitude *= 256e-7;
-
-    decoded.longitude = bytes[3] + bytes[4] * 256 + bytes[5] * 65536;
-    if (decoded.longitude >= 0x800000) {
-      // 2^23
-      decoded.longitude -= 0x1000000; // 2^24
-    }
-    decoded.longitude *= 256e-7;
-    decoded.headingDeg = (bytes[6] & 0x7) * 45;
-    decoded.speedKmph = (bytes[6] >> 3) * 5;
-    decoded.voltage = Math.round(bytes[7] * 0.025 * 100) / 100;
-    decoded.inTrip = (bytes[8] & 0x1) !== 0;
-    decoded.fixFailed = (bytes[8] & 0x2) !== 0;
-    decoded.manDown = (bytes[8] & 0x4) !== 0;
-  } else if (port === 2) {
-    decoded.type = "downlink_ack";
-    decoded.sequenceNumber = bytes[0] & 0x7f;
-    decoded.accepted = (bytes[0] & 0x80) !== 0;
-    decoded.fwMaj = bytes[1];
-    decoded.fwMin = bytes[2];
-  } else if (port === 3) {
-    decoded.type = "lifecycle";
-    decoded.initialBatV = 4.0 + 0.1 * (bytes[0] & 0xf);
-    decoded.txCount = 32 * ((bytes[0] >> 4) + (bytes[1] & 0x7f) * 16);
-    decoded.tripCount =
-      32 * ((bytes[1] >> 7) + (bytes[2] & 0xff) * 2 + (bytes[3] & 0x0f) * 512);
-    decoded.gpsSuccesses = 32 * ((bytes[3] >> 4) + (bytes[4] & 0x3f) * 16);
-    decoded.gpsFails = 32 * ((bytes[4] >> 6) + (bytes[5] & 0x3f) * 4);
-    decoded.aveGpsFixS = 1 * ((bytes[5] >> 6) + (bytes[6] & 0x7f) * 4);
-    decoded.aveGpsFailS = 1 * ((bytes[6] >> 7) + (bytes[7] & 0xff) * 2);
-    decoded.aveGpsFreshenS = 1 * ((bytes[7] >> 8) + (bytes[8] & 0xff) * 1);
-    decoded.wakeupsPerTrip = 1 * ((bytes[8] >> 8) + (bytes[9] & 0x7f) * 1);
-    decoded.uptimeWeeks = 1 * ((bytes[9] >> 7) + (bytes[10] & 0xff) * 2);
+    d = Object.assign(d, l);
+  } else if (p === 30) {
+    d.type = "watchdog";
+    const reserved = b.U32LE(32);
+    /*
+    d.firmware = `${b.U32LE(8)}.${b.U32LE(8)}`;
+    d.prodId = b.U32LE(8);
+    d.hwRev = b.U32LE(8);
+    */
+    d.resetPowerOn = b.U32LE(1) !== 0;
+    d.resetWatchdog = b.U32LE(1) !== 0;
+    d.resetExternal = b.U32LE(1) !== 0;
+    d.resetSoftware = b.U32LE(1) !== 0;
+    b.U32LE(4);
+    d.watchdogReason = b.U32LE(16);
+  } else if (p === 31) {
+    d.type = "stats_v3";
+    d.ttff = b.U32LE(8);
+    d.wakeupsPerTrip = b.U32LE(8);
+    d.initialvoltage = Number((3.5 + 0.032 * b.U32LE(8)).toFixed(3));
+    d.currentvoltage = Number((3.5 + 0.032 * b.U32LE(8)).toFixed(3));
+    d.batCritical = b.U32LE(1) !== 0;
+    d.batLow = b.U32LE(1) !== 0;
+    d.tripCount = 32 * b.U32LE(14);
+    d.uptimeWeeks = b.U32LE(10);
+    d.mWhUsed = 10 * b.U32LE(10);
+    d.percentLora = (100 / 32) * b.U32LE(5);
+    d.percentGnssSucc = (100 / 32) * b.U32LE(5);
+    d.percentGnssFail = (100 / 32) * b.U32LE(5);
+    d.percentSleepDis = (100 / 32) * b.U32LE(5);
+    d.percentOther =
+      100 -
+      d.percentLora -
+      d.percentGnssSucc -
+      d.percentGnssFail -
+      d.percentSleepDis;
+  } else if (p === 33) {
+    d.type = "position";
+    const l = {};
+    d.fixFailed = b.U32LE(1) !== 0;
+    l.latitude = Number(((180 * b.S32LE(23)) / (1 << 23)).toFixed(7)); // binary scaling
+    l.longitude = Number(((360 * b.S32LE(24)) / (1 << 24)).toFixed(7));
+    d.inTrip = b.U32LE(1) !== 0;
+    const batCritical = b.U32LE(1) !== 0;
+    d.inactivityAlarm = b.U32LE(1) !== 0;
+    const mins = 2 * b.U32LE(14); // lower bound
+    d.inactiveDuration = `${Math.floor(mins / 1440)}d${Math.floor(
+      (mins % 1440) / 60,
+    )}h${mins % 60}m`;
+    d.voltage = Number((3.5 + 0.032 * b.U32LE(8)).toFixed(3));
+    l.headingDeg = 45 * b.U32LE(3);
+    l.speedKmph = 5 * b.U32LE(5);
+    d = Object.assign(d, l);
+  } else {
+    return {
+      warnings: ["unknown FPort"],
+    };
   }
-
-  return decoded;
+  return {
+    data: d,
+    warnings: w,
+  };
 }
 
 function consume(event) {
   const payload = event.data.payloadHex;
   const { port } = event.data;
-  const data = decoder(Hex.hexToBytes(payload), port);
+  const { data } = decoder(Hex.hexToBytes(payload), port);
   const topic = data.type;
+  delete data.type;
+
   emit("sample", { data, topic });
 }

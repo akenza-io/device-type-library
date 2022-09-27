@@ -5,7 +5,7 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Digital matter Oyster Uplink", () => {
+describe("Digital matter Oyster 3 Uplink", () => {
   let positionSchema = null;
   let consume = null;
   before((done) => {
@@ -29,8 +29,46 @@ describe("Digital matter Oyster Uplink", () => {
       });
   });
 
+  let downlinkAckSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/downlink_ack.schema.json`)
+      .then((parsedSchema) => {
+        downlinkAckSchema = parsedSchema;
+        done();
+      });
+  });
+
+  let statsSchema = null;
+  before((done) => {
+    utils.loadSchema(`${__dirname}/stats.schema.json`).then((parsedSchema) => {
+      statsSchema = parsedSchema;
+      done();
+    });
+  });
+
+  let watchdogSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/watchdog.schema.json`)
+      .then((parsedSchema) => {
+        watchdogSchema = parsedSchema;
+        done();
+      });
+  });
+
+  let statsV3Schema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/stats_v3.schema.json`)
+      .then((parsedSchema) => {
+        statsV3Schema = parsedSchema;
+        done();
+      });
+  });
+
   describe("consume()", () => {
-    it("should decode the digital matter Oyster payload, port 1", () => {
+    it("should decode the digital matter Oyster 3 gps payload, port 1", () => {
       const data = {
         data: {
           port: 1,
@@ -48,9 +86,9 @@ describe("Digital matter Oyster Uplink", () => {
         assert.equal(value.data.longitude, -189.6275708);
         assert.equal(value.data.inTrip, false);
         assert.equal(value.data.fixFailed, false);
-        assert.equal(value.data.headingDeg, 208.125);
+        assert.equal(value.data.headingDeg, 208.13);
         assert.equal(value.data.speedKmph, 10);
-        assert.equal(value.data.voltage, 4.48);
+        assert.equal(value.data.voltage, 4.475);
 
         validate(value.data, positionSchema, { throwError: true });
       });
@@ -58,7 +96,7 @@ describe("Digital matter Oyster Uplink", () => {
       consume(data);
     });
 
-    it("should decode the digital matter Oyster payload, port 3", () => {
+    it("should decode the digital matter Oyster 3 downlink ack", () => {
       const data = {
         data: {
           port: 2,
@@ -71,17 +109,163 @@ describe("Digital matter Oyster Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.initialBatV, 5.1);
-        assert.equal(value.data.txCount, 59136);
+        assert.equal(value.topic, "downlink_ack");
+        assert.equal(value.data.accepted, true);
+        assert.equal(value.data.firmware, "1.2");
+        assert.equal(value.data.hwRev, 1);
+        assert.equal(value.data.port, 10);
+        assert.equal(value.data.prodId, 98);
+        assert.equal(value.data.sequence, 83);
+
+        validate(value.data, downlinkAckSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("should decode the digital matter Oyster 3, device statistics", () => {
+      const data = {
+        data: {
+          port: 3,
+          payloadHex: "8BF3DC7B9438984278B85E",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "stats");
+        assert.equal(value.data.aveGnssFailS, 133);
+        assert.equal(value.data.aveGnssFixS, 96);
+        assert.equal(value.data.aveGnssFreshenS, 120);
+        assert.equal(value.data.gnssFails, 7232);
+        assert.equal(value.data.gnssSuccesses, 10464);
+        assert.equal(value.data.initialvoltage, 5.1);
         assert.equal(value.data.tripCount, 194336);
-        assert.equal(value.data.gpsSuccesses, 10464);
-        assert.equal(value.data.gpsFails, 7232);
-        assert.equal(value.data.aveGpsFixS, 96);
-        assert.equal(value.data.aveGpsFailS, 133);
-        assert.equal(value.data.aveGpsFreshenS, 120);
-        assert.equal(value.data.wakeupsPerTrip, 56);
+        assert.equal(value.data.txCount, 59136);
         assert.equal(value.data.uptimeWeeks, 189);
+        assert.equal(value.data.wakeupsPerTrip, 56);
+
+        validate(value.data, statsSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("should decode the digital matter Oyster 4, extended gnss", () => {
+      const data = {
+        data: {
+          port: 4,
+          payloadHex: "53AB783C04A1F98E06",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "position");
+        assert.equal(value.data.latitude, 202.4493824);
+        assert.equal(value.data.longitude, -159.3558016);
+        assert.equal(value.data.inTrip, false);
+        assert.equal(value.data.fixFailed, true);
+        assert.equal(value.data.headingDeg, 45);
+        assert.equal(value.data.speedKmph, 155);
+        assert.equal(value.data.voltage, 3.55);
+
+        validate(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("should decode the digital matter Oyster 4, watchdog", () => {
+      const data = {
+        data: {
+          port: 30,
+          payloadHex: "010A62010203017A",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "watchdog");
+        assert.equal(value.data.resetExternal, false);
+        assert.equal(value.data.resetPowerOn, false);
+        assert.equal(value.data.resetSoftware, false);
+        assert.equal(value.data.resetWatchdog, true);
+        assert.equal(value.data.watchdogReason, 259);
+
+        validate(value.data, watchdogSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("should decode the digital matter Oyster 4, stats_v3", () => {
+      const data = {
+        data: {
+          port: 31,
+          payloadHex: "8BF3DC7B94389842780843",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "stats_v3");
+        assert.equal(value.data.batCritical, false);
+        assert.equal(value.data.batLow, false);
+        assert.equal(value.data.currentvoltage, 7.436);
+        assert.equal(value.data.initialvoltage, 10.54);
+        assert.equal(value.data.mWhUsed, 5280);
+        assert.equal(value.data.percentGnssFail, 37.5);
+        assert.equal(value.data.percentGnssSucc, 12.5);
+        assert.equal(value.data.percentLora, 21.875);
+        assert.equal(value.data.percentOther, 3.125);
+        assert.equal(value.data.percentSleepDis, 25);
+        assert.equal(value.data.tripCount, 115872);
+        assert.equal(value.data.ttff, 139);
+        assert.equal(value.data.uptimeWeeks, 664);
+        assert.equal(value.data.wakeupsPerTrip, 243);
+
+        validate(value.data, statsV3Schema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("should decode the digital matter Oyster 4, inactivity timer", () => {
+      const data = {
+        data: {
+          port: 33,
+          payloadHex: "E825F49B9E872B6A992AAB",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "position");
+        assert.equal(value.data.latitude, -8.3333874);
+        assert.equal(value.data.longitude, -169.2850041);
+        assert.equal(value.data.fixFailed, false);
+        assert.equal(value.data.headingDeg, 225);
+        assert.equal(value.data.inactiveDuration, "16d2h18m");
+        assert.equal(value.data.inactivityAlarm, false);
+        assert.equal(value.data.inTrip, true);
+        assert.equal(value.data.speedKmph, 90);
+        assert.equal(value.data.voltage, 5.932);
 
         validate(value.data, lifecycleSchema, { throwError: true });
       });

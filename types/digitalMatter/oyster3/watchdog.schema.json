@@ -1,0 +1,38 @@
+{
+  "$id": "https://akenza.io/digitalMatter/oyster3/watchdog.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Watchdog",
+  "type": "object",
+  "properties": {
+    "resetExternal": {
+      "title": "Reset external",
+      "type": "boolean",
+      "description": "Reset external",
+      "hideFromKpis": true
+    },
+    "resetPowerOn": {
+      "title": "Reset power on",
+      "type": "boolean",
+      "description": "Reset power on",
+      "hideFromKpis": true
+    },
+    "resetSoftware": {
+      "title": "Reset software",
+      "type": "boolean",
+      "description": "Reset software",
+      "hideFromKpis": true
+    },
+    "resetWatchdog": {
+      "title": "Reset watchdog",
+      "type": "boolean",
+      "description": "Reset watchdog",
+      "hideFromKpis": true
+    },
+    "watchdogReason": {
+      "title": "Watchdog reason",
+      "type": "integer",
+      "description": "Watchdog reason count",
+      "hideFromKpis": true
+    }
+  }
+}

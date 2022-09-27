@@ -4,28 +4,40 @@
   "title": "Position",
   "type": "object",
   "properties": {
-    "sequenceNumber": {
-      "title": "Sequence number",
-      "type": "integer",
-      "description": "Sequence number (identifies downlink to server)",
-      "hideFromKpis": true
-    },
     "accepted": {
       "title": "Accepted",
-      "type": "integer",
+      "type": "boolean",
       "description": "Equals true if the downlink got accepted",
       "hideFromKpis": true
     },
-    "fwMaj": {
+    "firmware": {
       "title": "Firmware major",
-      "type": "integer",
+      "type": "string",
       "description": "Firmware major",
       "hideFromKpis": true
     },
-    "fwMin": {
-      "title": "Firmware minor",
+    "hwRev": {
+      "title": "Hardware revision",
       "type": "integer",
-      "description": "Firmware minor",
+      "description": "Hardware revision",
+      "hideFromKpis": true
+    },
+    "port": {
+      "title": "Port",
+      "type": "integer",
+      "description": "Port which received the downlink",
+      "hideFromKpis": true
+    },
+    "prodId": {
+      "title": "Product ID",
+      "type": "integer",
+      "description": "Product ID",
+      "hideFromKpis": true
+    },
+    "sequence": {
+      "title": "Sequence number",
+      "type": "integer",
+      "description": "Sequence number (identifies downlink to server)",
       "hideFromKpis": true
     }
   }
