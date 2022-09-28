@@ -7,7 +7,7 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": ["Humidity", "Temperature", "Touch"],
-  "outputTopics": ["humidity", "touch", "network_status", "battery_status"],
+  "outputTopics": ["humidity", "touch", "network_status", "lifecycle"],
   "encoding": "JSON",
   "connectivity": "HTTP"
 }

@@ -1,0 +1,13 @@
+{
+  "$id": "https://akenza.io/digitalTechnologies/motion/motion.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Motion",
+  "type": "object",
+  "properties": {
+    "motion": {
+      "title": "Motion",
+      "description": "Equals true if motion got sensed",
+      "type": "boolean"
+    }
+  }
+}

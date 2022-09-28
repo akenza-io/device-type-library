@@ -1,0 +1,27 @@
+{
+  "$id": "https://akenza.io/digitalTechnologies/motion/network_status.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Network status",
+  "type": "object",
+  "properties": {
+    "signalStrength": {
+      "title": "Signal strength",
+      "description": "Signal strength",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "rssi": {
+      "title": "RSSI",
+      "description": "RSSI",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "transmissionMode": {
+      "title": "Transmission mode",
+      "description": "Transmission mode",
+      "type": "string",
+      "enum": ["LOW_POWER_STANDARD_MODE", "HIGH_POWER_BOOST_MODE"],
+      "hideFromKpis": true
+    }
+  }
+}
