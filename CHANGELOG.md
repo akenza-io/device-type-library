@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.25.0] - 2022-09-28
+
+### Added
+
+- Disruptive - CO2
+- Disruptive - Motion
+
+### Changed
+
+- Disruptive - Updates some schemas
+
 # [1.24.0] - 2022-09-21
 
 ### Added

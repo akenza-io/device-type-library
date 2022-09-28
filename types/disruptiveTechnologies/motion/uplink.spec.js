@@ -18,29 +18,28 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
   });
 
   describe("consume()", () => {
-    it("should decode the Digital Technologies Proximity Sensor payload", () => {
+    it("should decode the Digital Technologies Motion Sensor payload", () => {
       const data = {
-        eventId: "c510f9ag03fligl8tvag",
+        eventId: "ccq69r6aj8umkq4e3qcg",
         targetName:
-          "projects/c3t7p26j4a2g00de1sng/devices/bjmgj6dp0jt000a5dcug",
-        eventType: "objectPresent",
+          "projects/c3t7p26j4a2g00de1sng/devices/cbtkmp35v22000e2iqrg",
+        eventType: "motion",
         data: {
-          eventType: "objectPresent",
-          objectPresent: {
-            state: "NOT_PRESENT",
-            updateTime: "2021-09-15T14:48:05.948000Z",
+          eventType: "motion",
+          motion: {
+            state: "MOTION_DETECTED",
+            updateTime: "2022-09-28T15:14:52.571000Z",
           },
         },
-        timestamp: "2021-09-15T14:48:05.948000Z",
-        labels: {},
+        timestamp: "2022-09-28T15:14:52.571000Z",
       };
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "object_present");
-        assert.equal(value.data.objectPresent, "NOT_PRESENT");
+        assert.equal(value.topic, "motion");
+        assert.equal(value.data.motion, true);
 
         validate(value.data, motionSchema, { throwError: true });
       });
