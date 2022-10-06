@@ -1,0 +1,50 @@
+{
+  "$id": "https://akenza.io/hkt/doorSensor/system.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "System",
+  "type": "object",
+  "properties": {
+    "hwVersion": {
+      "title": "Hardware version",
+      "type": "integer",
+      "description": "Hardware version",
+      "hideFromKpis": true
+    },
+    "swVersion": {
+      "title": "Software version",
+      "type": "integer",
+      "description": "Software version",
+      "hideFromKpis": true
+    },
+    "Working mode": {
+      "title": "Mode",
+      "type": "integer",
+      "description": "Working mode 1: During the counting hours, the device will periodically report the number of times the door sensor is openedand closed in the previous cycle and the total accumulatedtimes. Outside the counting hours, the device runs in trigger mode. Working mode 2: Trigger mode (Default): Every time the tamper alarm is triggered or the door is opened or closed, the devicereportsdata immediately.",
+      "hideFromKpis": true
+    },
+    "countingHours": {
+      "title": "Counting hours",
+      "type": "string",
+      "description": "Counting hours",
+      "hideFromKpis": true
+    },
+    "countingInterval": {
+      "title": "Counting interval",
+      "type": "integer",
+      "description": "Counting interval",
+      "hideFromKpis": true
+    },
+    "lifecycleInterval": {
+      "title": "Lifecycle interval",
+      "type": "integer",
+      "description": "Lifecycle interval",
+      "hideFromKpis": true
+    },
+    "instaled": {
+      "title": "Instaled",
+      "type": "boolean",
+      "description": "Instaled",
+      "hideFromKpis": true
+    }
+  }
+}
