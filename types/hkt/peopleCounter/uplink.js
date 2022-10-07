@@ -2,70 +2,93 @@ function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
   const data = {};
-  let topic;
+  const lifecycle = {};
+  const system = {};
 
   // Header Reserved 0-40
-  const dataType = Bits.bitsToUnsigned(bits.substr(40, 8));
+  let pointer = 40;
 
-  switch (dataType) {
-    case 0x01:
-      topic = "system";
-      data.hwVersion = Bits.bitsToUnsigned(bits.substr(48, 8));
-      data.swVersion = Bits.bitsToUnsigned(bits.substr(56, 8));
-      break;
-    case 0x03:
-      topic = "lifecycle";
-      data.batteryLevel = Bits.bitsToUnsigned(bits.substr(48, 8));
-      break;
-    case 0x04: {
-      topic = "system";
-      const reporting = Bits.bitsToUnsigned(bits.substr(48, 8));
-      switch (reporting) {
-        case 0x01:
-          data.reportingPattern = "TIME_INTERVAL";
-          break;
-        case 0x02:
-          data.reportingPattern = "NUMBER_OF_COUNTS";
-          break;
-        case 0x03:
-          data.reportingPattern = "TIME_INTERVAL_PLUS_COUNTS";
-          break;
-        case 0x04:
-          data.reportingPattern = "EVENT";
-          break;
-        case 0x05:
-          data.reportingPattern = "TIME_INTERVAL_PLUS_EVENT";
-          break;
-        default:
-          data.reportingPattern = "UNKNOWN";
-          break;
+  while (pointer < bits.length) {
+    const dataType = Bits.bitsToUnsigned(bits.substr(pointer, 8));
+
+    switch (dataType) {
+      case 0x01:
+        system.hwVersion = Bits.bitsToUnsigned(bits.substr((pointer += 8), 8));
+        system.swVersion = Bits.bitsToUnsigned(bits.substr((pointer += 8), 8));
+        pointer += 8;
+        break;
+      case 0x03:
+        lifecycle.batteryLevel = Bits.bitsToUnsigned(
+          bits.substr((pointer += 8), 8),
+        );
+        pointer += 8;
+        break;
+      case 0x04: {
+        const reporting = Bits.bitsToUnsigned(bits.substr((pointer += 8), 8));
+        switch (reporting) {
+          case 0x01:
+            system.reportingPattern = "TIME_INTERVAL";
+            break;
+          case 0x02:
+            system.reportingPattern = "NUMBER_OF_COUNTS";
+            break;
+          case 0x03:
+            system.reportingPattern = "TIME_INTERVAL_PLUS_COUNTS";
+            break;
+          case 0x04:
+            system.reportingPattern = "EVENT";
+            break;
+          case 0x05:
+            system.reportingPattern = "TIME_INTERVAL_PLUS_EVENT";
+            break;
+          default:
+            data.reportingPattern = "UNKNOWN";
+            break;
+        }
+        pointer += 8;
+        break;
       }
-      break;
+      case 0x05:
+        pointer += 24;
+        break;
+      case 0x06:
+        system.threshold = Bits.bitsToUnsigned(bits.substr((pointer += 8), 16));
+        pointer += 16;
+        break;
+      case 0x07:
+        data.counterA = Bits.bitsToUnsigned(bits.substr((pointer += 8), 16));
+        data.counterB = Bits.bitsToUnsigned(bits.substr((pointer += 16), 16));
+        data.absCountA = Bits.bitsToUnsigned(bits.substr((pointer += 16), 32));
+        data.absCountB = Bits.bitsToUnsigned(bits.substr((pointer += 32), 32));
+        pointer += 32;
+        break;
+      case 0x83:
+        system.infraredError = !!Bits.bitsToUnsigned(
+          bits.substr((pointer += 8), 8),
+        );
+        pointer += 8;
+        break;
+      case 0x84: {
+        system.instaled = !!Bits.bitsToUnsigned(bits.substr((pointer += 8), 8));
+        pointer += 8;
+        break;
+      }
+      case 0x86:
+        pointer += 24;
+        break;
+      default:
+        pointer = bits.length;
+        break;
     }
-    case 0x06:
-      topic = "system";
-      data.threshold = Bits.bitsToUnsigned(bits.substr(48, 16));
-      break;
-    case 0x07:
-      topic = "default";
-      data.counterA = Bits.bitsToUnsigned(bits.substr(48, 16));
-      data.counterB = Bits.bitsToUnsigned(bits.substr(64, 16));
-      data.absCountA = Bits.bitsToUnsigned(bits.substr(80, 32));
-      data.absCountB = Bits.bitsToUnsigned(bits.substr(112, 32));
-      break;
-    case 0x83:
-      topic = "system";
-      data.infraredError = !!Bits.bitsToUnsigned(bits.substr(48, 8));
-      break;
-    case 0x84: {
-      topic = "system";
-      data.instaled = !!Bits.bitsToUnsigned(bits.substr(48, 8));
-      break;
-    }
-    default:
-      topic = "unknown";
-      break;
   }
 
-  emit("sample", { data, topic });
+  if (Object.keys(data).length > 0) {
+    emit("sample", { data, topic: "default" });
+  }
+  if (Object.keys(lifecycle).length > 0) {
+    emit("sample", { data: lifecycle, topic: "lifecycle" });
+  }
+  if (Object.keys(system).length > 0) {
+    emit("sample", { data: system, topic: "system" });
+  }
 }
