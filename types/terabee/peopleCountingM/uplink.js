@@ -1,8 +1,8 @@
 function consume(event) {
-  const { data } = event;
+  const { value } = event.data;
   const sample = {};
 
-  sample.fw = data.count_in;
-  sample.bw = data.count_out;
+  sample.fw = value.in;
+  sample.bw = value.out;
   emit("sample", { data: sample, topic: "default" });
 }

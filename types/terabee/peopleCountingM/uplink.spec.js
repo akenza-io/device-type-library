@@ -22,12 +22,15 @@ describe("Terabee people counting M Uplink", () => {
   describe("consume()", () => {
     it("should decode Terabee people counting M payload", () => {
       const data = {
-        count_in: 23,
-        count_out: 12,
-        timestamp: "165776767",
-        device_id: "FA21415EAEB7",
-        username: "user",
-        password: "password",
+        data: {
+          uid: "pcm807d3a86224b",
+          time: "946685671",
+          type: "counters",
+          value: {
+            in: 34,
+            out: 17,
+          },
+        },
       };
 
       utils.expectEmits((type, value) => {
@@ -36,8 +39,8 @@ describe("Terabee people counting M Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.fw, 8075);
-        assert.equal(value.data.bw, 0);
+        assert.equal(value.data.fw, 34);
+        assert.equal(value.data.bw, 17);
 
         validate(value.data, defaultSchema, { throwError: true });
       });
