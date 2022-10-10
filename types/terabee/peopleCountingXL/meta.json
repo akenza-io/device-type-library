@@ -2,13 +2,13 @@
   "name": "People counting XL",
   "version": "1.0.0",
   "manufacturer": "Terabee",
-  "url": "https://www.terabee.com/shop/people-counting/terabee-people-counting-l/",
-  "description": "Improve facility efficiency with accurate people counting data",
+  "url": "https://www.terabee.com/shop/people-counting/terabee-people-counting-xl/",
+  "description": "Compact, small and discrete people counter device optimized for single doorways and narrow passages",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["People Counting"],
   "outputTopics": ["default"],
   "encoding": "JSON",
-  "connectivity": "HTTP"
+  "connectivity": "HTTPS/MQTT"
 }

@@ -4,16 +4,16 @@
   "title": "Default",
   "type": "object",
   "properties": {
-    "in": {
+    "fw": {
       "title": "Forward",
-      "description": "Absolute count of people moving forward",
+      "description": "People moving forward",
       "type": "integer",
       "min": 0,
       "max": 65535
     },
-    "out": {
+    "bw": {
       "title": "Backward",
-      "description": "Absolute count of people moving backwards",
+      "description": "People moving backwards",
       "type": "integer",
       "min": 0,
       "max": 65535
