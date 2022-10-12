@@ -10,5 +10,5 @@
   "availableSensors": ["People Counting"],
   "outputTopics": ["default"],
   "encoding": "JSON",
-  "connectivity": "LORA"
+  "connectivity": "LORA/HTTP"
 }
