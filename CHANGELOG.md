@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.25.0] - 2022-10-21
+
+### Added
+
+- Seeed - S2101
+- Seeed - S2102
+- Disruptive - CO2
+- Disruptive - Motion
+
 # [1.24.0] - 2022-09-21
 
 ### Added
