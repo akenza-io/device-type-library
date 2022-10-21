@@ -45,7 +45,7 @@
     },
     "timeSynced": {
       "title": "Time synced",
-      "description": "Whether there time is synced",
+      "description": "Whether the time is synced",
       "type": "boolean"
     },
     "txCreditsConsumed": {
