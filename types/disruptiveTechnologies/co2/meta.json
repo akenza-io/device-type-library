@@ -1,0 +1,19 @@
+{
+  "name": "Wireless CO2 Sensor",
+  "version": "1.0.0",
+  "manufacturer": "Disruptive Technologies",
+  "url": "https://www.disruptive-technologies.com/products/wireless-co2-sensor",
+  "description": "Measures the CO2, temperature, humidity, and barometric pressure in any space.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": ["CO2", "Humidity", "Temperature", "Pressure"],
+  "outputTopics": [
+    "co2",
+    "humidity",
+    "lifecycle",
+    "network_status",
+    "pressure"
+  ],
+  "encoding": "JSON",
+  "connectivity": "HTTP"
+}
