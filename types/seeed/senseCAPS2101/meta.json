@@ -1,0 +1,14 @@
+{
+  "name": "SenseCAP S2101 - LoRaWAN Air Temperature and Humidity Sensor",
+  "version": "1.0.0",
+  "manufacturer": "Seeed",
+  "url": "https://www.seeedstudio.com/SenseCAP-S2101-LoRaWAN-Air-Temperature-and-Humidity-Sensor-p-5354.html",
+  "description": "Wireless air humidty and temperature, a custom battery and an IP66 enclosure, optimized for outdoor use cases that need reliable data collection over years.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Humidity"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

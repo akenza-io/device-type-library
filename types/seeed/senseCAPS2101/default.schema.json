@@ -1,7 +1,7 @@
 {
-  "$id": "https://akenza.io/digitalTechnologies/humidity/humidity.schema.json",
+  "$id": "https://akenza.io/seeed/senseCAPS2101/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Humidity",
+  "title": "Default",
   "type": "object",
   "properties": {
     "temperature": {
