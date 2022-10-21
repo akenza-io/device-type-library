@@ -1,0 +1,13 @@
+{
+  "name": "Wireless Motion Sensor",
+  "version": "1.0.0",
+  "manufacturer": "Disruptive Technologies",
+  "url": "https://www.disruptive-technologies.com/products/wireless-motion-sensor",
+  "description": "Detects the presence of people in a room. Up to 14 meter detection diameter.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": ["Motion"],
+  "outputTopics": ["motion", "network_status", "lifecycle"],
+  "encoding": "JSON",
+  "connectivity": "HTTP"
+}

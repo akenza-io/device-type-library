@@ -7,12 +7,7 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": ["Water presence", "Touch"],
-  "outputTopics": [
-    "water_present",
-    "touch",
-    "network_status",
-    "battery_status"
-  ],
+  "outputTopics": ["water_present", "touch", "network_status", "lifecycle"],
   "encoding": "JSON",
   "connectivity": "HTTP"
 }
