@@ -1,17 +1,9 @@
 {
-  "$id": "https://akenza.io/digitalTechnologies/humidity/humidity.schema.json",
+  "$id": "https://akenza.io/digitalTechnologies/co2/humidity.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Humidity",
   "type": "object",
   "properties": {
-    "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
     "humidity": {
       "title": "Humidity",
       "unit": "%",
@@ -19,6 +11,14 @@
       "description": "The relative humidity in %",
       "minimum": 0,
       "maximum": 100
+    },
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
     }
   }
 }

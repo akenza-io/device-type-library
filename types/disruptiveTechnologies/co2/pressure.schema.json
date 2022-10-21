@@ -1,0 +1,14 @@
+{
+  "$id": "https://akenza.io/digitalTechnologies/co2/pressure.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Pressure",
+  "type": "object",
+  "properties": {
+    "pressure": {
+      "title": "Pressure",
+      "unit": "pa",
+      "description": "Barometric Pressure in bar",
+      "type": "number"
+    }
+  }
+}
