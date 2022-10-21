@@ -1,0 +1,14 @@
+{
+  "name": "EGK-LW20W00",
+  "version": "1.0.0",
+  "manufacturer": "Enginko",
+  "url": "https://enginko.com/en/products/",
+  "description": "The EGK-LW20W00 is a battery powered sensor intended for waste level measurement up to 1.5 meters. The device sends collected data over the LoRaWAN® network.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Distance", "ADC"],
+  "outputTopics": ["distance", "time_sync"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

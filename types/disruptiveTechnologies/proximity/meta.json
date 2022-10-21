@@ -7,12 +7,7 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": ["Object presence", "Touch"],
-  "outputTopics": [
-    "object_present",
-    "touch",
-    "network_status",
-    "battery_status"
-  ],
+  "outputTopics": ["object_present", "touch", "network_status", "lifecycle"],
   "encoding": "JSON",
   "connectivity": "HTTP"
 }
