@@ -25,15 +25,6 @@
       "unit": "V",
       "hideFromKpis": true
     },
-    "initialvoltage": {
-      "type": "number",
-      "minimum": 0,
-      "maximum": 24,
-      "title": "Initial battery voltage",
-      "desciption": "Initial battery voltage",
-      "unit": "V",
-      "hideFromKpis": true
-    },
     "mWhUsed": {
       "title": "Megawatt hours used",
       "unit": "mWh",
@@ -78,30 +69,11 @@
       "description": "Percent sleep",
       "hideFromKpis": true
     },
-    "tripCount": {
-      "title": "Trip count",
-      "type": "integer",
-      "description": "Trip count",
-      "hideFromKpis": true
-    },
     "ttff": {
       "title": "Time to first fix",
       "type": "integer",
       "unit": "s",
       "description": "Time to first fix",
-      "hideFromKpis": true
-    },
-    "uptimeWeeks": {
-      "title": "Uptime weeks",
-      "type": "integer",
-      "unit": "w",
-      "description": "Uptime weeks",
-      "hideFromKpis": true
-    },
-    "wakeupsPerTrip": {
-      "title": "Wakeups per trip",
-      "type": "integer",
-      "description": "Wakeups per trip",
       "hideFromKpis": true
     }
   }

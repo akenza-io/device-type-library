@@ -50,14 +50,6 @@
       "description": "Equals true if no movement for configured period got detected (Needs to be activated)",
       "hideFromKpis": true
     },
-    "voltage": {
-      "type": "number",
-      "minimum": 0,
-      "maximum": 24,
-      "title": "Battery voltage",
-      "desciption": "The battery voltage in Volt.",
-      "unit": "V"
-    },
     "inactiveDuration": {
       "title": "Inactive duration",
       "type": "string",

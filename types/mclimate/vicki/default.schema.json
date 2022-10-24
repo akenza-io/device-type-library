@@ -38,14 +38,6 @@
       "type": "integer",
       "description": "Motor position"
     },
-    "batteryVoltage": {
-      "type": "number",
-      "minimum": 0,
-      "maximum": 24,
-      "title": "Battery voltage",
-      "desciption": "The battery voltage in Volt.",
-      "unit": "V"
-    },
     "openWindow": {
       "title": "Open window",
       "description": "Open window",
@@ -54,21 +46,6 @@
     "childLock": {
       "title": "Child lock",
       "description": "Child lock",
-      "type": "boolean"
-    },
-    "highMotorConsumption": {
-      "title": "High motor consumption",
-      "description": "High motor consumption",
-      "type": "boolean"
-    },
-    "lowMotorConsumption": {
-      "title": "Low motor consumption",
-      "description": "Low motor consumption",
-      "type": "boolean"
-    },
-    "brokenSensor": {
-      "title": "Broken sensor",
-      "description": "Broken sensor",
       "type": "boolean"
     }
   }

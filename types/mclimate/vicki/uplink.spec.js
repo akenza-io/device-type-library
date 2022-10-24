@@ -19,6 +19,16 @@ describe("MClimate Vicky uplink", () => {
       });
   });
 
+  let lifecycleSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+      .then((parsedSchema) => {
+        lifecycleSchema = parsedSchema;
+        done();
+      });
+  });
+
   describe("consume()", () => {
     it("should decode MClimate Vicky payload", () => {
       const data = {
@@ -38,14 +48,24 @@ describe("MClimate Vicky uplink", () => {
         assert.equal(value.data.relativeHumidity, 46.88);
         assert.equal(value.data.motorRange, 300);
         assert.equal(value.data.motorPosition, 250);
-        assert.equal(value.data.batteryVoltage, 3.5);
         assert.equal(value.data.openWindow, false);
         assert.equal(value.data.childLock, true);
+
+        validate(value.data, defaultSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batteryVoltage, 3.5);
         assert.equal(value.data.highMotorConsumption, false);
         assert.equal(value.data.lowMotorConsumption, false);
         assert.equal(value.data.brokenSensor, false);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        validate(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

@@ -81,6 +81,18 @@ describe("Digital matter Oyster 3 Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.voltage, 4.475);
+        assert.equal(value.data.batteryLevel, 60);
+
+        validate(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
         assert.equal(value.topic, "position");
         assert.equal(value.data.latitude, 101.4541139);
         assert.equal(value.data.longitude, -189.6275708);
@@ -88,7 +100,6 @@ describe("Digital matter Oyster 3 Uplink", () => {
         assert.equal(value.data.fixFailed, false);
         assert.equal(value.data.headingDeg, 208.13);
         assert.equal(value.data.speedKmph, 10);
-        assert.equal(value.data.voltage, 4.475);
 
         validate(value.data, positionSchema, { throwError: true });
       });
@@ -114,7 +125,7 @@ describe("Digital matter Oyster 3 Uplink", () => {
         assert.equal(value.data.firmware, "1.2");
         assert.equal(value.data.hwRev, 1);
         assert.equal(value.data.port, 10);
-        assert.equal(value.data.prodId, 98);
+        assert.equal(value.data.productId, 98);
         assert.equal(value.data.sequence, 83);
 
         validate(value.data, downlinkAckSchema, { throwError: true });
@@ -167,6 +178,18 @@ describe("Digital matter Oyster 3 Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.voltage, 3.55);
+        assert.equal(value.data.batteryLevel, 0);
+
+        validate(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
         assert.equal(value.topic, "position");
         assert.equal(value.data.latitude, 202.4493824);
         assert.equal(value.data.longitude, -159.3558016);
@@ -174,7 +197,6 @@ describe("Digital matter Oyster 3 Uplink", () => {
         assert.equal(value.data.fixFailed, true);
         assert.equal(value.data.headingDeg, 45);
         assert.equal(value.data.speedKmph, 155);
-        assert.equal(value.data.voltage, 3.55);
 
         validate(value.data, lifecycleSchema, { throwError: true });
       });
@@ -221,21 +243,31 @@ describe("Digital matter Oyster 3 Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
+        assert.equal(value.topic, "stats");
+        assert.equal(value.data.initialvoltage, 10.54);
+        assert.equal(value.data.tripCount, 115872);
+        assert.equal(value.data.uptimeWeeks, 664);
+        assert.equal(value.data.wakeupsPerTrip, 243);
+
+        validate(value.data, statsSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
         assert.equal(value.topic, "stats_v3");
         assert.equal(value.data.batCritical, false);
         assert.equal(value.data.batLow, false);
         assert.equal(value.data.currentvoltage, 7.436);
-        assert.equal(value.data.initialvoltage, 10.54);
         assert.equal(value.data.mWhUsed, 5280);
         assert.equal(value.data.percentGnssFail, 37.5);
         assert.equal(value.data.percentGnssSucc, 12.5);
         assert.equal(value.data.percentLora, 21.875);
         assert.equal(value.data.percentOther, 3.125);
         assert.equal(value.data.percentSleepDis, 25);
-        assert.equal(value.data.tripCount, 115872);
         assert.equal(value.data.ttff, 139);
-        assert.equal(value.data.uptimeWeeks, 664);
-        assert.equal(value.data.wakeupsPerTrip, 243);
 
         validate(value.data, statsV3Schema, { throwError: true });
       });
@@ -256,6 +288,18 @@ describe("Digital matter Oyster 3 Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.voltage, 5.932);
+        assert.equal(value.data.batteryLevel, 100);
+
+        validate(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
         assert.equal(value.topic, "position");
         assert.equal(value.data.latitude, -8.3333874);
         assert.equal(value.data.longitude, -169.2850041);
@@ -265,7 +309,6 @@ describe("Digital matter Oyster 3 Uplink", () => {
         assert.equal(value.data.inactivityAlarm, false);
         assert.equal(value.data.inTrip, true);
         assert.equal(value.data.speedKmph, 90);
-        assert.equal(value.data.voltage, 5.932);
 
         validate(value.data, lifecycleSchema, { throwError: true });
       });

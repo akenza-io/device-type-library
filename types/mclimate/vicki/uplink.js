@@ -267,27 +267,30 @@ function handleResponse(bytes, data) {
   return resultToPass;
 }
 
-function decodeUplink(bytes) {
+function consume(event) {
+  const payload = event.data.payloadHex;
+  let bytes = Hex.hexToBytes(payload);
   let data = {};
-  const resultToPass = {};
+  const lifecycle = {};
 
-  if (bytes[0].toString(16) === 1 || bytes[0].toString(16) === 129) {
-    data = mergeObj(data, handleKeepalive(bytes, data));
+  if (Number(bytes[0]) === 1 || Number(bytes[0]) === 129) {
+    data = handleKeepalive(bytes, data);
   } else {
-    data = mergeObj(data, handleResponse(bytes, data));
+    data = handleResponse(bytes, data);
     bytes = bytes.slice(-9);
     data = mergeObj(data, handleKeepalive(bytes, data));
   }
 
-  return {
-    data,
-  };
-}
+  lifecycle.batteryVoltage = data.batteryVoltage;
+  lifecycle.highMotorConsumption = data.highMotorConsumption;
+  lifecycle.lowMotorConsumption = data.lowMotorConsumption;
+  lifecycle.brokenSensor = data.brokenSensor;
 
-function consume(event) {
-  const payload = event.data.payloadHex;
-  const decoded = decodeUplink(Hex.hexToBytes(payload)).data;
-  delete decoded.reason;
+  delete data.batteryVoltage;
+  delete data.highMotorConsumption;
+  delete data.lowMotorConsumption;
+  delete data.brokenSensor;
 
-  emit("sample", { data: decoded, topic: "default" });
+  emit("sample", { data, topic: "default" });
+  emit("sample", { data: lifecycle, topic: "lifecycle" });
 }

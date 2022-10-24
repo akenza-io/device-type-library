@@ -25,141 +25,154 @@ function MakeBitParser(bytes, offset, length) {
   };
 }
 
-function decoder(bytes, port) {
-  const p = port;
-  const b = MakeBitParser(bytes, 0, bytes.length);
-  let d = {};
-  const w = [];
-  if (p === 1) {
-    d.type = "position";
+function consume(event) {
+  const payload = event.data.payloadHex;
+  const { port } = event.data;
+  const bytes = Hex.hexToBytes(payload);
+  const bits = MakeBitParser(bytes, 0, bytes.length);
+  let topic = "default";
+  const lifecycle = {};
+  let data = {};
+  const stats = {};
+
+  if (port === 1) {
+    topic = "position";
     const l = {};
-    l.latitude = Number((b.S32LE(32) / 1e7).toFixed(7)); // decimal scaling
-    l.longitude = Number((b.S32LE(32) / 1e7).toFixed(7));
-    d.inTrip = b.U32LE(1) !== 0;
-    d.fixFailed = b.U32LE(1) !== 0;
-    l.headingDeg = Number((b.U32LE(6) * 5.625).toFixed(2));
-    l.speedKmph = b.U32LE(8);
-    d.voltage = Number((b.U32LE(8) * 0.025).toFixed(3));
-    d = Object.assign(d, l);
-  } else if (p === 2) {
-    d.type = "downlink_ack";
-    d.sequence = b.U32LE(7);
-    d.accepted = b.U32LE(1) !== 0;
-    d.firmware = `${b.U32LE(8)}.${b.U32LE(8)}`;
+    l.latitude = Number((bits.S32LE(32) / 1e7).toFixed(7)); // decimal scaling
+    l.longitude = Number((bits.S32LE(32) / 1e7).toFixed(7));
+    data.inTrip = bits.U32LE(1) !== 0;
+    data.fixFailed = bits.U32LE(1) !== 0;
+    l.headingDeg = Number((bits.U32LE(6) * 5.625).toFixed(2));
+    l.speedKmph = bits.U32LE(8);
+    lifecycle.voltage = Number((bits.U32LE(8) * 0.025).toFixed(3));
+    data = Object.assign(data, l);
+  } else if (port === 2) {
+    topic = "downlink_ack";
+    data.sequence = bits.U32LE(7);
+    data.accepted = bits.U32LE(1) !== 0;
+    data.firmware = `${bits.U32LE(8)}.${bits.U32LE(8)}`;
     if (bytes.length < 6) {
-      d.prodId = null;
-      d.hwRev = null;
-      d.port = null;
+      data.productId = null;
+      data.hwRev = null;
+      data.port = null;
     } else {
-      d.prodId = b.U32LE(8);
-      d.hwRev = b.U32LE(8);
-      d.port = b.U32LE(8);
+      data.productId = bits.U32LE(8);
+      data.hwRev = bits.U32LE(8);
+      data.port = bits.U32LE(8);
     }
-  } else if (p === 3) {
-    d.type = "stats";
-    d.initialvoltage = Number((4.0 + 0.1 * b.U32LE(4)).toFixed(2));
-    d.txCount = 32 * b.U32LE(11);
-    d.tripCount = 32 * b.U32LE(13);
-    d.gnssSuccesses = 32 * b.U32LE(10);
-    d.gnssFails = 32 * b.U32LE(8);
-    d.aveGnssFixS = b.U32LE(9);
-    d.aveGnssFailS = b.U32LE(9);
-    d.aveGnssFreshenS = b.U32LE(8);
-    d.wakeupsPerTrip = b.U32LE(7);
-    d.uptimeWeeks = b.U32LE(9);
-  } else if (p === 4) {
-    d.type = "position";
+  } else if (port === 3) {
+    topic = "stats";
+    data.initialvoltage = Number((4.0 + 0.1 * bits.U32LE(4)).toFixed(2));
+    data.txCount = 32 * bits.U32LE(11);
+    data.tripCount = 32 * bits.U32LE(13);
+    data.gnssSuccesses = 32 * bits.U32LE(10);
+    data.gnssFails = 32 * bits.U32LE(8);
+    data.aveGnssFixS = bits.U32LE(9);
+    data.aveGnssFailS = bits.U32LE(9);
+    data.aveGnssFreshenS = bits.U32LE(8);
+    data.wakeupsPerTrip = bits.U32LE(7);
+    data.uptimeWeeks = bits.U32LE(9);
+  } else if (port === 4) {
+    topic = "position";
     const l = {};
     // decimal scaling, truncated integer
-    l.latitude = Number(((256 * b.S32LE(24)) / 1e7).toFixed(7));
-    l.longitude = Number(((256 * b.S32LE(24)) / 1e7).toFixed(7));
-    l.headingDeg = 45 * b.U32LE(3);
-    l.speedKmph = 5 * b.U32LE(5);
-    d.voltage = b.U32LE(8);
-    d.inTrip = b.U32LE(1) !== 0;
-    d.fixFailed = b.U32LE(1) !== 0;
-    d.inactivityAlarm = b.U32LE(1) !== 0;
-    if (b.U32LE(1) === 0) {
-      d.voltage = Number((0.025 * d.voltage).toFixed(3));
+    l.latitude = Number(((256 * bits.S32LE(24)) / 1e7).toFixed(7));
+    l.longitude = Number(((256 * bits.S32LE(24)) / 1e7).toFixed(7));
+    l.headingDeg = 45 * bits.U32LE(3);
+    l.speedKmph = 5 * bits.U32LE(5);
+    lifecycle.voltage = bits.U32LE(8);
+    data.inTrip = bits.U32LE(1) !== 0;
+    data.fixFailed = bits.U32LE(1) !== 0;
+    data.inactivityAlarm = bits.U32LE(1) !== 0;
+    if (bits.U32LE(1) === 0) {
+      lifecycle.voltage = Number((0.025 * lifecycle.voltage).toFixed(3));
     } else {
-      d.voltage = Number((3.5 + 0.032 * d.voltage).toFixed(3));
+      lifecycle.voltage = Number((3.5 + 0.032 * lifecycle.voltage).toFixed(3));
     }
-    const crit = b.U32LE(2);
+    const crit = bits.U32LE(2);
     if (crit === 1) {
-      d.batCritical = false;
+      data.batCritical = false;
     } else {
-      d.batCritical = true;
+      data.batCritical = true;
     }
-    d = Object.assign(d, l);
-  } else if (p === 30) {
-    d.type = "watchdog";
-    const reserved = b.U32LE(32);
+    data = Object.assign(data, l);
+  } else if (port === 30) {
+    topic = "watchdog";
+    const reserved = bits.U32LE(32);
     /*
-    d.firmware = `${b.U32LE(8)}.${b.U32LE(8)}`;
-    d.prodId = b.U32LE(8);
-    d.hwRev = b.U32LE(8);
+    data.firmware = `${bits.U32LE(8)}.${bits.U32LE(8)}`;
+    data.productId = bits.U32LE(8);
+    data.hwRev = bits.U32LE(8);
     */
-    d.resetPowerOn = b.U32LE(1) !== 0;
-    d.resetWatchdog = b.U32LE(1) !== 0;
-    d.resetExternal = b.U32LE(1) !== 0;
-    d.resetSoftware = b.U32LE(1) !== 0;
-    b.U32LE(4);
-    d.watchdogReason = b.U32LE(16);
-  } else if (p === 31) {
-    d.type = "stats_v3";
-    d.ttff = b.U32LE(8);
-    d.wakeupsPerTrip = b.U32LE(8);
-    d.initialvoltage = Number((3.5 + 0.032 * b.U32LE(8)).toFixed(3));
-    d.currentvoltage = Number((3.5 + 0.032 * b.U32LE(8)).toFixed(3));
-    d.batCritical = b.U32LE(1) !== 0;
-    d.batLow = b.U32LE(1) !== 0;
-    d.tripCount = 32 * b.U32LE(14);
-    d.uptimeWeeks = b.U32LE(10);
-    d.mWhUsed = 10 * b.U32LE(10);
-    d.percentLora = (100 / 32) * b.U32LE(5);
-    d.percentGnssSucc = (100 / 32) * b.U32LE(5);
-    d.percentGnssFail = (100 / 32) * b.U32LE(5);
-    d.percentSleepDis = (100 / 32) * b.U32LE(5);
-    d.percentOther =
+    data.resetPowerOn = bits.U32LE(1) !== 0;
+    data.resetWatchdog = bits.U32LE(1) !== 0;
+    data.resetExternal = bits.U32LE(1) !== 0;
+    data.resetSoftware = bits.U32LE(1) !== 0;
+    bits.U32LE(4);
+    data.watchdogReason = bits.U32LE(16);
+  } else if (port === 31) {
+    topic = "stats_v3";
+    data.ttff = bits.U32LE(8);
+    stats.wakeupsPerTrip = bits.U32LE(8);
+    stats.initialvoltage = Number((3.5 + 0.032 * bits.U32LE(8)).toFixed(3));
+    data.currentvoltage = Number((3.5 + 0.032 * bits.U32LE(8)).toFixed(3));
+    data.batCritical = bits.U32LE(1) !== 0;
+    data.batLow = bits.U32LE(1) !== 0;
+    stats.tripCount = 32 * bits.U32LE(14);
+    stats.uptimeWeeks = bits.U32LE(10);
+    data.mWhUsed = 10 * bits.U32LE(10);
+    data.percentLora = (100 / 32) * bits.U32LE(5);
+    data.percentGnssSucc = (100 / 32) * bits.U32LE(5);
+    data.percentGnssFail = (100 / 32) * bits.U32LE(5);
+    data.percentSleepDis = (100 / 32) * bits.U32LE(5);
+    data.percentOther =
       100 -
-      d.percentLora -
-      d.percentGnssSucc -
-      d.percentGnssFail -
-      d.percentSleepDis;
-  } else if (p === 33) {
-    d.type = "position";
+      data.percentLora -
+      data.percentGnssSucc -
+      data.percentGnssFail -
+      data.percentSleepDis;
+  } else if (port === 33) {
+    topic = "position";
     const l = {};
-    d.fixFailed = b.U32LE(1) !== 0;
-    l.latitude = Number(((180 * b.S32LE(23)) / (1 << 23)).toFixed(7)); // binary scaling
-    l.longitude = Number(((360 * b.S32LE(24)) / (1 << 24)).toFixed(7));
-    d.inTrip = b.U32LE(1) !== 0;
-    const batCritical = b.U32LE(1) !== 0;
-    d.inactivityAlarm = b.U32LE(1) !== 0;
-    const mins = 2 * b.U32LE(14); // lower bound
-    d.inactiveDuration = `${Math.floor(mins / 1440)}d${Math.floor(
+    data.fixFailed = bits.U32LE(1) !== 0;
+    l.latitude = Number(((180 * bits.S32LE(23)) / (1 << 23)).toFixed(7)); // binary scaling
+    l.longitude = Number(((360 * bits.S32LE(24)) / (1 << 24)).toFixed(7));
+    data.inTrip = bits.U32LE(1) !== 0;
+    const batCritical = bits.U32LE(1) !== 0;
+    data.inactivityAlarm = bits.U32LE(1) !== 0;
+    const mins = 2 * bits.U32LE(14); // lower bound
+    data.inactiveDuration = `${Math.floor(mins / 1440)}d${Math.floor(
       (mins % 1440) / 60,
     )}h${mins % 60}m`;
-    d.voltage = Number((3.5 + 0.032 * b.U32LE(8)).toFixed(3));
-    l.headingDeg = 45 * b.U32LE(3);
-    l.speedKmph = 5 * b.U32LE(5);
-    d = Object.assign(d, l);
+    lifecycle.voltage = Number((3.5 + 0.032 * bits.U32LE(8)).toFixed(3));
+    l.headingDeg = 45 * bits.U32LE(3);
+    l.speedKmph = 5 * bits.U32LE(5);
+    data = Object.assign(data, l);
   } else {
     return {
       warnings: ["unknown FPort"],
     };
   }
-  return {
-    data: d,
-    warnings: w,
-  };
-}
 
-function consume(event) {
-  const payload = event.data.payloadHex;
-  const { port } = event.data;
-  const { data } = decoder(Hex.hexToBytes(payload), port);
-  const topic = data.type;
-  delete data.type;
+  // Lifecycle
+  if (Object.keys(lifecycle).length !== 0) {
+    // 5 Volt - 3.5 Volt
+    const { voltage } = lifecycle;
+    let batteryLevel = Math.round((voltage - 3.5) / 0.015 / 10) * 10;
+
+    if (batteryLevel > 100) {
+      batteryLevel = 100;
+    } else if (batteryLevel < 0) {
+      batteryLevel = 0;
+    }
+    lifecycle.batteryLevel = batteryLevel;
+    emit("sample", { data: lifecycle, topic: "lifecycle" });
+  }
+
+  // Stats
+  if (Object.keys(stats).length !== 0) {
+    emit("sample", { data: stats, topic: "stats" });
+  }
 
   emit("sample", { data, topic });
 }
