@@ -85,7 +85,7 @@ describe("Should decode the HKT Door Sensor uplinks", () => {
         assert.equal(value.data.countingInterval, 30);
         assert.equal(value.data.hwVersion, 2);
         assert.equal(value.data.swVersion, 2);
-        assert.equal(value.data.instaled, true);
+        assert.equal(value.data.installed, true);
         assert.equal(value.data.lifecycleInterval, 24);
         assert.equal(value.data.mode, 2);
 

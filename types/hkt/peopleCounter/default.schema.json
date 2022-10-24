@@ -15,14 +15,14 @@
       "description": "Counter B"
     },
     "absCountA": {
-      "title": "Absoulut count A",
+      "title": "Absoulute count A",
       "type": "integer",
-      "description": "Absoulut count A"
+      "description": "Absoulute count A"
     },
     "absCountB": {
-      "title": "Absoulut count B",
+      "title": "Absoulute count B",
       "type": "integer",
-      "description": "Absoulut count B"
+      "description": "Absoulute count B"
     }
   }
 }

@@ -41,10 +41,10 @@
       "description": "Infrared error",
       "hideFromKpis": true
     },
-    "instaled": {
-      "title": "Instaled",
+    "installed": {
+      "title": "Installed",
       "type": "boolean",
-      "description": "Instaled",
+      "description": "Installed",
       "hideFromKpis": true
     }
   }

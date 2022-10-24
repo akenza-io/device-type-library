@@ -74,7 +74,7 @@ function consume(event) {
         pointer += 32;
         break;
       case 0x84:
-        system.instaled = !!Bits.bitsToUnsigned(bits.substr(48, 8));
+        system.installed = !!Bits.bitsToUnsigned(bits.substr(48, 8));
         pointer += 8;
         break;
       default:

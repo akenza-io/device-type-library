@@ -97,7 +97,7 @@ describe("Should decode the HKT Door Sensor uplinks", () => {
       consume(data);
     });
 
-    it("Should decode the HKT Door Sensor instaled uplinks", () => {
+    it("Should decode the HKT Door Sensor installed uplinks", () => {
       const data = {
         data: {
           payloadHex: "686B7400098400",
@@ -110,7 +110,7 @@ describe("Should decode the HKT Door Sensor uplinks", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "system");
-        assert.equal(value.data.instaled, false);
+        assert.equal(value.data.installed, false);
 
         validate(value.data, systemSchema, { throwError: true });
       });

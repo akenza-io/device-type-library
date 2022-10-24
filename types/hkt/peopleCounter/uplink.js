@@ -21,6 +21,7 @@ function consume(event) {
         lifecycle.batteryLevel = Bits.bitsToUnsigned(
           bits.substr((pointer += 8), 8),
         );
+        emit("sample", { data: lifecycle, topic: "lifecycle" });
         pointer += 8;
         break;
       case 0x04: {
@@ -60,6 +61,7 @@ function consume(event) {
         data.counterB = Bits.bitsToUnsigned(bits.substr((pointer += 16), 16));
         data.absCountA = Bits.bitsToUnsigned(bits.substr((pointer += 16), 32));
         data.absCountB = Bits.bitsToUnsigned(bits.substr((pointer += 32), 32));
+        emit("sample", { data, topic: "default" });
         pointer += 32;
         break;
       case 0x83:
@@ -69,7 +71,9 @@ function consume(event) {
         pointer += 8;
         break;
       case 0x84: {
-        system.instaled = !!Bits.bitsToUnsigned(bits.substr((pointer += 8), 8));
+        system.installed = !!Bits.bitsToUnsigned(
+          bits.substr((pointer += 8), 8),
+        );
         pointer += 8;
         break;
       }
@@ -82,12 +86,6 @@ function consume(event) {
     }
   }
 
-  if (Object.keys(data).length > 0) {
-    emit("sample", { data, topic: "default" });
-  }
-  if (Object.keys(lifecycle).length > 0) {
-    emit("sample", { data: lifecycle, topic: "lifecycle" });
-  }
   if (Object.keys(system).length > 0) {
     emit("sample", { data: system, topic: "system" });
   }
