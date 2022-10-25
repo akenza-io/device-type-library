@@ -19,7 +19,7 @@
     "tpcStuck": {
       "title": "TPC stuck",
       "type": "boolean",
-      "desciption": "The counting software is started but nor responding",
+      "desciption": "The counting software is started but nor responding.",
       "hideFromKpis": true
     },
     "tpcStopped": {
