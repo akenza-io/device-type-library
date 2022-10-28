@@ -192,7 +192,7 @@ function consume(event) {
 
     const middleLeft = toLittleEndian(payload.substr(16, 4), false) / 10;
     const middleCenter = toLittleEndian(payload.substr(20, 4), false) / 10;
-    const middleRight = toLittleEndian(payload.substr(24, 2), false) / 10;
+    const middleRight = toLittleEndian(payload.substr(24, 4), false) / 10;
 
     const bottomLeft = toLittleEndian(payload.substr(28, 4), false) / 10;
     const bottomCenter = toLittleEndian(payload.substr(32, 4), false) / 10;
