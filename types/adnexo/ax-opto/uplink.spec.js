@@ -70,7 +70,7 @@ describe("Adnexo ax-opto Uplink", () => {
         assert.equal(value.data.measurementType, "REGULAR_MEASUREMENT");
         assert.equal(value.data.middleCenter, 17.9);
         assert.equal(value.data.middleLeft, 17.9);
-        assert.equal(value.data.middleRight, 1.3);
+        assert.equal(value.data.middleRight, 26.9);
         assert.equal(value.data.temperature, 30);
         assert.equal(value.data.topCenter, 20);
         assert.equal(value.data.topLeft, 20);
