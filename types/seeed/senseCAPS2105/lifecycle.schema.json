@@ -1,0 +1,22 @@
+{
+  "$id": "https://akenza.io/seeed/senseCAPS2105/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "sendInterval": {
+      "title": "Send interval",
+      "type": "integer",
+      "desciption": "Send every x minutes",
+      "hideFromKpis": true
+    },
+    "batteryLevel": {
+      "title": "Battery charge",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "The battery charge in percent.",
+      "unit": "%"
+    }
+  }
+}
