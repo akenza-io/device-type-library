@@ -281,7 +281,7 @@ function consume(event) {
 
     const temperature = toLittleEndian(payload.substr(44, 4), true);
     if (temperature !== -32768) {
-      data.temperature = temperature;
+      data.temperature = temperature / 10;
     } else {
       data.temperature = null;
     }
