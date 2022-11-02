@@ -100,6 +100,8 @@ function consume(event) {
   // Default values
   data.pressure = sample["pressure"];
   data.temperature = sample["temperature"];
+  // water level is calculated from pressure, rounded to 4 digits
+  data.level = sample["pressure"] * 100000 / (1000 * 9.807);
 
   // Lifecycle values
   lifecycle.voltage = sample["battery_voltage"];
