@@ -35,6 +35,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 - Adnexo - updated meta
+- Xovis - Added plugin data output
 
 # [1.23.2] - 2022-09-08
 
