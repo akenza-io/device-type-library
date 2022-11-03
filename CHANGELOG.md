@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.27.0] - 2022-11-03
+
+### Added
+
+- Comtac - Cluey
+
+### Changed
+
+- Xovis - added mod payloads
+
 # [1.26.0] - 2022-10-28
 
 ### Added
@@ -25,7 +35,6 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 - ioTracker - ioTracker3
-- Comtac - Cluey
 
 # [1.23.3] - 2022-09-20
 
