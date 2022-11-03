@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.26.0] - 2022-10-28
+
+### Added
+
+- Elsys - ers eco
+- Elsys - ers eco co2
+
 # [1.25.0] - 2022-10-21
 
 ### Added
