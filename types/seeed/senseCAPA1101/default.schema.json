@@ -1,24 +1,16 @@
 {
-  "$id": "https://akenza.io/seeed/senseCAPS2102/default.schema.json",
+  "$id": "https://akenza.io/seeed/senseCAPA1101/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Default",
   "type": "object",
   "properties": {
-    "soilHumidity": {
-      "title": "Soil humidity",
+    "aiDetection": {
+      "title": "AI detection",
       "unit": "%",
       "type": "number",
-      "description": "The relative humidity of the soil in %",
+      "description": "",
       "minimum": 0,
       "maximum": 100
-    },
-    "soilTemperature": {
-      "title": "Soil temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
     }
   }
 }

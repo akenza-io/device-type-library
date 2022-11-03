@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/seeed/senseCAPS2102/lifecycle.schema.json",
+  "$id": "https://akenza.io/seeed/senseCAPA1101/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Lifecycle",
   "type": "object",
@@ -17,6 +17,18 @@
       "maximum": 100,
       "description": "The battery charge in percent.",
       "unit": "%"
+    },
+    "hardwareVersion": {
+      "title": "Hardware version",
+      "description": "Hardware version",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "softwareVersion": {
+      "title": "Software version",
+      "description": "Software version",
+      "type": "string",
+      "hideFromKpis": true
     }
   }
 }

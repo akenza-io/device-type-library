@@ -19,38 +19,17 @@ describe("Seeed SenseCAP A1101 Vision Sensor Uplink", () => {
       });
   });
 
-  describe("consume()", () => {
-    /*
-    it("should decode Seeed SenseCAP Vision Sensor payload", () => {
-      const data = {
-        data: {
-          port: 1,
-          payloadHex:
-            "0000000701020100070064001e0001090000001100014f10000000004019",
-        },
-      };
-
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.soilHumidity, 0);
-        assert.equal(value.data.soilTemperature, 23.2);
-
-        validate(value.data, defaultSchema, { throwError: true });
+  let lifecycleSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+      .then((parsedSchema) => {
+        lifecycleSchema = parsedSchema;
+        done();
       });
+  });
 
-      consume(data);
-    });
-    */
-    // sk msID
-    // 0000 0007 01 02 01
-    // 0007 0064 00 1e 00
-    // 0109 0000 00 11 00
-    // 014f10000000004019
-
+  describe("consume()", () => {
     it("should decode Seeed SenseCAP Vision Sensor payload", () => {
       const data = {
         data: {
@@ -65,8 +44,44 @@ describe("Seeed SenseCAP A1101 Vision Sensor Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.detectionType, 0);
-        assert.equal(value.data.modelId, 0);
+        assert.equal(value.data.aiDetection1, 0.51);
+
+        validate(value.data, defaultSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("should decode Seeed SenseCAP Vision Sensor payload", () => {
+      const data = {
+        data: {
+          port: 1,
+          payloadHex:
+            "0000000701020100070064001e0001090000001100014f10000000004019",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batteryLevel, 100);
+        assert.equal(value.data.sendInterval, 1800);
+        assert.equal(value.data.hardwareVersion, "1.2");
+        assert.equal(value.data.softwareVersion, "1.7");
+
+        validate(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.aiDetection1, 0);
 
         validate(value.data, defaultSchema, { throwError: true });
       });
