@@ -7,7 +7,16 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": ["GPS"],
+  "availableSensors": [
+    "Button",
+    "3D Accelerometer",
+    "Light",
+    "Temperature",
+    "Motion",
+    "Shock",
+    "Humidity",
+    "Air pressure"
+  ],
   "outputTopics": ["default", "gps", "lifecycle"],
   "encoding": "HEX",
   "connectivity": "LORA"

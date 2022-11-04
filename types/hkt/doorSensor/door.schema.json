@@ -1,0 +1,28 @@
+{
+  "$id": "https://akenza.io/hkt/doorSensor/door.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Door",
+  "type": "object",
+  "properties": {
+    "nrOpenings": {
+      "title": "Number of openings",
+      "type": "integer",
+      "description": "Number of openings this cycle"
+    },
+    "nrClosings": {
+      "title": "Number of closings",
+      "type": "integer",
+      "description": "Number of closings this cycle"
+    },
+    "absOpenings": {
+      "title": "All openings",
+      "type": "integer",
+      "description": "All openings since sensor boot"
+    },
+    "absClosings": {
+      "title": "All closings",
+      "type": "integer",
+      "description": "All closings since sensor boot"
+    }
+  }
+}
