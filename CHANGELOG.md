@@ -12,6 +12,11 @@ All notable changes to this project will be documented in this file.
 - HKT - People counter
 - Terabee - Peoplecounting M
 - Terabee - Peoplecounting XL
+- Adeunis - Dry Contac
+- DigitalMatter - oyster3
+- Elsys - elt2ultrasonic
+- Ewatch - squid hc lorawan
+- Mclimate - vicki
 
 ### Changed
 

@@ -1,0 +1,13 @@
+{
+  "name": "Dry Contacts",
+  "version": "1.0.0",
+  "manufacturer": "Adeunis",
+  "url": "https://www.adeunis.com/en/produit/dry-contacts-0-1-status/",
+  "description": "Up to 4 connectable meters. Detection of tampers and leaks.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": ["Contact"],
+  "outputTopics": ["channel", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

@@ -1,0 +1,74 @@
+{
+  "$id": "https://akenza.io/digitalMatter/oyster3/stats.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Stats",
+  "type": "object",
+  "properties": {
+    "aveGnssFailS": {
+      "title": "Average GNSS fail time",
+      "type": "integer",
+      "unit": "s",
+      "description": "Seconds spent per failed GNSS fix attempt",
+      "hideFromKpis": true
+    },
+    "aveGnssFixS": {
+      "title": "Average GNSS fix time",
+      "type": "integer",
+      "unit": "s",
+      "description": "Seconds spent per successful GNSS fix, not including freshen time",
+      "hideFromKpis": true
+    },
+    "aveGnssFreshenS": {
+      "title": "Average GNSS refreshing time",
+      "type": "integer",
+      "unit": "s",
+      "description": "Seconds spent refreshing GNSS ephemerides per successful GPS fix",
+      "hideFromKpis": true
+    },
+    "gnssFails": {
+      "title": "GNSS fails",
+      "type": "integer",
+      "description": "GNSS fail count",
+      "hideFromKpis": true
+    },
+    "gnssSuccesses": {
+      "title": "GNSS successes",
+      "type": "integer",
+      "description": "GNSS success count",
+      "hideFromKpis": true
+    },
+    "initialvoltage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "title": "Initial battery voltage",
+      "desciption": "Initial battery voltage",
+      "unit": "V"
+    },
+    "tripCount": {
+      "title": "Trip count",
+      "type": "integer",
+      "description": "Trip count",
+      "hideFromKpis": true
+    },
+    "txCount": {
+      "title": "Tx count",
+      "type": "integer",
+      "description": "Transmission count",
+      "hideFromKpis": true
+    },
+    "uptimeWeeks": {
+      "title": "Uptime weeks",
+      "type": "integer",
+      "unit": "w",
+      "description": "Uptime weeks",
+      "hideFromKpis": true
+    },
+    "wakeupsPerTrip": {
+      "title": "Wakeups per trip",
+      "type": "integer",
+      "description": "Wakeups per trip",
+      "hideFromKpis": true
+    }
+  }
+}
