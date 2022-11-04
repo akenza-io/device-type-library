@@ -1,0 +1,14 @@
+{
+  "name": "ERS Eco",
+  "version": "1.0.0",
+  "manufacturer": "Elsys",
+  "url": "https://www.elsys.se/shop/product/ers-eco/?v=f003c44deab6",
+  "description": "ERS Eco is a LoRaWAN® temperature and humidity sensor for the indoor environment. This sensor is your environmentally friendly option, with an organic solar cell as the only power source and an enclosure made from biodegradable material. Removing batteries from a wireless IoT device significantly reduces the environmental impact and maintenance costs.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V2.3.5",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Light", "Humidity", "Temperature"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
