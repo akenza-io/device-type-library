@@ -1,0 +1,51 @@
+{
+  "$id": "https://akenza.io/hkt/peopleCounter/system.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "System",
+  "type": "object",
+  "properties": {
+    "hwVersion": {
+      "title": "Hardware version",
+      "type": "integer",
+      "description": "Hardware version",
+      "hideFromKpis": true
+    },
+    "swVersion": {
+      "title": "Software version",
+      "type": "integer",
+      "description": "Software version",
+      "hideFromKpis": true
+    },
+    "reportingPattern": {
+      "title": "Reporting pattern",
+      "type": "string",
+      "description": "Reporting pattern",
+      "enum": [
+        "TIME_INTERVAL",
+        "NUMBER_OF_COUNTS",
+        "TIME_INTERVAL_PLUS_COUNTS",
+        "EVENT",
+        "TIME_INTERVAL_PLUS_EVENT"
+      ],
+      "hideFromKpis": true
+    },
+    "threshold": {
+      "title": "Threshold",
+      "type": "integer",
+      "description": "Threshold of accumulative number of counts",
+      "hideFromKpis": true
+    },
+    "noInfrared": {
+      "title": "Infrared error",
+      "type": "boolean",
+      "description": "Infrared error",
+      "hideFromKpis": true
+    },
+    "installed": {
+      "title": "Installed",
+      "type": "boolean",
+      "description": "Installed",
+      "hideFromKpis": true
+    }
+  }
+}

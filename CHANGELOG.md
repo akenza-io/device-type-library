@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.27.0] - 2022-11-4
+
+### Added
+
+- HKT - Door sensor
+- HKT - People counter
+- Terabee - Peoplecounting M
+- Terabee - Peoplecounting XL
+
+### Changed
+
+- Iotracker - Changed meta
+- Disruptive Technologies - Added sqi values
+
 # [1.27.0] - 2022-11-03
 
 ### Added

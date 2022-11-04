@@ -1,0 +1,28 @@
+{
+  "$id": "https://akenza.io/hkt/peopleCounter/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "counterA": {
+      "title": "Counter A",
+      "type": "integer",
+      "description": "Counter A"
+    },
+    "counterB": {
+      "title": "Counter B",
+      "type": "integer",
+      "description": "Counter B"
+    },
+    "absCountA": {
+      "title": "Absoulute count A",
+      "type": "integer",
+      "description": "Absoulute count A"
+    },
+    "absCountB": {
+      "title": "Absoulute count B",
+      "type": "integer",
+      "description": "Absoulute count B"
+    }
+  }
+}
