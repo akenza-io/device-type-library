@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.27.0] - 2022-11-03
+
+### Added
+
+- Comtac - Cluey
+
+### Changed
+
+- Xovis - added mod payloads
+
 # [1.26.0] - 2022-10-28
 
 ### Added
@@ -35,6 +45,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 - Adnexo - updated meta
+- Xovis - Added plugin data output
 
 # [1.23.2] - 2022-09-08
 

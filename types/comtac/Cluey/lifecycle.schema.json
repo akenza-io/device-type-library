@@ -1,0 +1,57 @@
+{
+  "$id": "https://akenza.io/comtac/cluey/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "batteryLevel": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "unit": "%"
+    },
+    "batteryPowered": {
+      "title": "Battery powered",
+      "description": "Whether the battery is powered",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "bufferOverflow": {
+      "title": "Buffer overflow",
+      "description": "Whether there is a buffer overflow",
+      "type": "boolean"
+    },
+    "configurationError": {
+      "title": "Configuration error",
+      "description": "Whether there is a configuration error",
+      "type": "boolean"
+    },
+    "confirmationTimeout": {
+      "title": "Confirmation timeout",
+      "description": "Whether there is a confirmation timeout",
+      "type": "boolean"
+    },
+    "deviceRestarted": {
+      "title": "Device restarted",
+      "description": "Whether there the device has restarted",
+      "type": "boolean"
+    },
+    "lowSupplyVoltage": {
+      "title": "Low supply voltage",
+      "description": "Whether there is a low supply voltage",
+      "type": "boolean"
+    },
+    "timeSynced": {
+      "title": "Time synced",
+      "description": "Whether the time is synced",
+      "type": "boolean"
+    },
+    "txCreditsConsumed": {
+      "title": "TX credits consumed",
+      "description": "Whether there have been TX credits consumed",
+      "type": "boolean"
+    }
+  }
+}
