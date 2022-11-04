@@ -1,0 +1,14 @@
+{
+  "name": "Terabee People Counting L-XL",
+  "version": "1.0.0",
+  "manufacturer": "Terabee",
+  "url": "https://www.terabee.com/shop/people-counting/terabee-people-counting-l/",
+  "description": "Monitor the number of people who enter or exit any kind of wide indoor entrance. Suitable for congress centres, schools and universities, hotels and restaurants, retail spaces or large office complexes. Terabee People Counting L-XL is GDPR compliant, protecting anonymity with 98%+ people counting accuracy. Two product variations allow transmission of the data via Power over Ethernet or LoRaWAN.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["People Counting"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
