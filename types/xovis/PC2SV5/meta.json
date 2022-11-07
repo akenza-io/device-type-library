@@ -7,7 +7,17 @@
   "author": "Akenza AG",
   "firmwareVersion": "V5.0.0",
   "availableSensors": ["People Counting"],
-  "outputTopics": ["count", "lifecycle", "line_count", "track", "zone"],
+  "outputTopics": [
+    "count",
+    "face_mask",
+    "gender",
+    "lifecycle",
+    "line_count",
+    "tag",
+    "track",
+    "view_direction",
+    "zone"
+  ],
   "encoding": "JSON",
   "connectivity": "HTTP"
 }
