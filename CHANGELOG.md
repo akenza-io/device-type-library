@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.27.1] - 2022-11-07
+
+### Changed
+
+- Decentlab - PR26 - Added water level as output, updated test
+
 # [1.27.0] - 2022-11-4
 
 ### Added
