@@ -7,18 +7,26 @@
     "pressure": {
       "title": "Pressure",
       "unit": "bar",
-      "description": "Barometric Pressure in bar",
+      "description": "Hydrostatic Pressure in bar",
       "type": "number",
       "minimum": -0.1,
       "maximum": 1
     },
     "temperature": {
-      "title": "Temperature",
+      "title": "Water Temperature",
       "unit": "°C",
       "type": "number",
-      "description": "The temperature in °C.",
+      "description": "The water temperature in °C.",
       "minimum": -3276.5,
       "maximum": 3276.5
+    },
+    "level": {
+      "title": "Water Level",
+      "unit": "m",
+      "type": "number",
+      "description": "The water level above the sensor in m.",
+      "minimum": 0.0,
+      "maximum": 10.0
     }
   }
 }

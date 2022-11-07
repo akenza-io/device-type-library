@@ -33,7 +33,7 @@ describe("Decentlab PR26 Uplink", () => {
     it("Should decode Decentlab PR26 payload", () => {
       const data = {
         data: {
-          payloadHex: "02016700033e8060170c7f",
+          payloadHex: "020167000345cb60170c7f",
         },
       };
 
@@ -43,8 +43,9 @@ describe("Decentlab PR26 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.pressure, -0.01171875);
+        assert.equal(value.data.pressure, 0.045257568359375);
         assert.equal(value.data.temperature, 25.671875);
+        assert.equal(value.data.level, 0.46148229182599165);
 
         validate(value.data, defaultSchema, { throwError: true });
       });
