@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Adeunis",
   "url": "https://www.adeunis.com/en/produit/dry-contacts-0-1-status/",
-  "description": "Up to 4 connectable meters. Detection of tampers and leaks.",
+  "description": "The adeunis DRY CONTACTS is a ready-to-use radio transmitter enabling the user on one hand to transfer statuses and alarms on a LoRa network and on the other to control relays via the same network. This product meets the needs of users who require to remotely monitor (or control) simple on-off digital data: detection of door opening, presence, machine starting, warning, etc",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": ["Contact"],
