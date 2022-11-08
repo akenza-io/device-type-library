@@ -1,4 +1,3 @@
-// util
 function bytes2HexString(arrBytes) {
   let str = "";
   for (let i = 0; i < arrBytes.length; i++) {
@@ -17,7 +16,6 @@ function bytes2HexString(arrBytes) {
   return str;
 }
 
-// util
 function divideBy7Bytes(str) {
   const frameArray = [];
   for (let i = 0; i < str.length - 4; i += 14) {
@@ -27,7 +25,6 @@ function divideBy7Bytes(str) {
   return frameArray;
 }
 
-// util
 function littleEndianTransform(data) {
   const dataArray = [];
   for (let i = 0; i < data.length; i += 2) {
@@ -37,18 +34,15 @@ function littleEndianTransform(data) {
   return dataArray;
 }
 
-// util
 function strTo10SysNub(str) {
   const arr = littleEndianTransform(str);
   return parseInt(arr.toString().replace(/,/g, ""), 16);
 }
 
-// util
 function checkDataIdIsMeasureUpload(dataId) {
   return parseInt(dataId) > 4096;
 }
 
-// configurable.
 function isSpecialDataId(dataID) {
   switch (dataID) {
     case 0:
@@ -64,7 +58,6 @@ function isSpecialDataId(dataID) {
   }
 }
 
-// util
 function toBinary(arr) {
   const binaryData = [];
   for (let forArr = 0; forArr < arr.length; forArr++) {
@@ -81,8 +74,7 @@ function toBinary(arr) {
   return binaryData.toString().replace(/,/g, "");
 }
 
-// configurable
-function ttnDataSpecialFormat(dataId, str) {
+function dataSpecialFormat(dataId, str) {
   const strReverse = littleEndianTransform(str);
   if (dataId === 2 || dataId === 3) {
     return strReverse.join("");
@@ -126,8 +118,7 @@ function ttnDataSpecialFormat(dataId, str) {
   }
 }
 
-// util
-function ttnDataFormat(str) {
+function dataFormat(str) {
   const strReverse = littleEndianTransform(str);
   let str2 = toBinary(strReverse);
   if (str2.substring(0, 1) === "1") {
@@ -147,7 +138,6 @@ function ttnDataFormat(str) {
   return parseInt(str2, 2) / 1000;
 }
 
-// util
 function sensorAttrForVersion(dataValue) {
   const dataValueSplitArray = dataValue.split(",");
   return {
@@ -182,15 +172,15 @@ function decodeUplink(bytes) {
 
   // Handle each frame
   const frameArray = divideBy7Bytes(bytesString);
-  for (let forFrame = 0; forFrame < frameArray.length; forFrame++) {
-    const frame = frameArray[forFrame];
+  for (let i = 0; i < frameArray.length; i++) {
+    const frame = frameArray[i];
     // Extract key parameters
     const channel = strTo10SysNub(frame.substring(0, 2));
     const dataID = strTo10SysNub(frame.substring(2, 6));
     const dataValue = frame.substring(6, 14);
     const realDataValue = isSpecialDataId(dataID)
-      ? ttnDataSpecialFormat(dataID, dataValue)
-      : ttnDataFormat(dataValue);
+      ? dataSpecialFormat(dataID, dataValue)
+      : dataFormat(dataValue);
 
     if (checkDataIdIsMeasureUpload(dataID)) {
       // if telemetry.
@@ -281,25 +271,25 @@ function consume(event) {
 
     if (mID !== undefined) {
       if (mID === 4175) {
-        data.aiDetection1 = value;
+        data.objectDetected1 = value;
       } else if (mID === 4176) {
-        data.aiDetection2 = value;
+        data.objectDetected2 = value;
       } else if (mID === 4177) {
-        data.aiDetection3 = value;
+        data.objectDetected3 = value;
       } else if (mID === 4178) {
-        data.aiDetection4 = value;
+        data.objectDetected4 = value;
       } else if (mID === 4179) {
-        data.aiDetection5 = value;
+        data.objectDetected5 = value;
       } else if (mID === 4180) {
-        data.aiDetection6 = value;
+        data.objectDetected6 = value;
       } else if (mID === 4181) {
-        data.aiDetection7 = value;
+        data.objectDetected7 = value;
       } else if (mID === 4182) {
-        data.aiDetection8 = value;
+        data.objectDetected8 = value;
       } else if (mID === 4183) {
-        data.aiDetection9 = value;
+        data.objectDetected9 = value;
       } else if (mID === 4184) {
-        data.aiDetection10 = value;
+        data.objectDetected10 = value;
       }
     } else {
       const { type } = element;

@@ -4,11 +4,83 @@
   "title": "Default",
   "type": "object",
   "properties": {
-    "aiDetection": {
-      "title": "AI detection",
+    "objectDetected1": {
+      "title": "Object detected 1",
       "unit": "%",
       "type": "number",
-      "description": "",
+      "description": "Detection percentage of the Object detected",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "objectDetected2": {
+      "title": "Object detected 2",
+      "unit": "%",
+      "type": "number",
+      "description": "Detection percentage of the Object detected",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "objectDetected3": {
+      "title": "Object detected 3",
+      "unit": "%",
+      "type": "number",
+      "description": "Detection percentage of the Object detected",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "objectDetected4": {
+      "title": "Object detected 4",
+      "unit": "%",
+      "type": "number",
+      "description": "Detection percentage of the Object detected",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "objectDetected5": {
+      "title": "Object detected 5",
+      "unit": "%",
+      "type": "number",
+      "description": "Detection percentage of the Object detected",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "objectDetected6": {
+      "title": "Object detected 6",
+      "unit": "%",
+      "type": "number",
+      "description": "Detection percentage of the Object detected",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "objectDetected7": {
+      "title": "Object detected 7",
+      "unit": "%",
+      "type": "number",
+      "description": "Detection percentage of the Object detected",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "objectDetected8": {
+      "title": "Object detected 8",
+      "unit": "%",
+      "type": "number",
+      "description": "Detection percentage of the Object detected",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "objectDetected9": {
+      "title": "Object detected 9",
+      "unit": "%",
+      "type": "number",
+      "description": "Detection percentage of the Object detected",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "objectDetected10": {
+      "title": "Object detected 10",
+      "unit": "%",
+      "type": "number",
+      "description": "Detection percentage of the Object detected",
       "minimum": 0,
       "maximum": 100
     }

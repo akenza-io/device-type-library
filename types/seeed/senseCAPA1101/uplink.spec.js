@@ -44,7 +44,7 @@ describe("Seeed SenseCAP A1101 Vision Sensor Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.aiDetection1, 0.51);
+        assert.equal(value.data.objectDetected1, 0.51);
 
         validate(value.data, defaultSchema, { throwError: true });
       });
@@ -81,7 +81,7 @@ describe("Seeed SenseCAP A1101 Vision Sensor Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.aiDetection1, 0);
+        assert.equal(value.data.objectDetected1, 0);
 
         validate(value.data, defaultSchema, { throwError: true });
       });
