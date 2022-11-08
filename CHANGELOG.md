@@ -4,13 +4,24 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.27.0] - 2022-11-08
+
+### Added
+
+- Seeed - SenseCAP S2101
+- Seeed - SenseCAP S2102
+- Seeed - SenseCAP S2103
+- Seeed - SenseCAP S2104
+- Seeed - SenseCAP S2105
+- Seeed - SenseCAP A1101
+
 # [1.27.1] - 2022-11-07
 
 ### Changed
 
 - Decentlab - PR26 - Added water level as output, updated test
 
-# [1.27.0] - 2022-11-4
+# [1.27.0] - 2022-11-04
 
 ### Added
 
