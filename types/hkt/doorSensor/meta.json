@@ -1,0 +1,14 @@
+{
+  "name": "DS20",
+  "version": "1.0.0",
+  "manufacturer": "HKT",
+  "url": "https://www.hkttech.com/cn/h-col-166.html",
+  "description": "LoRa door sensor is a low-cost door sensor which can be used to report open/close state of a building door, cabinet door or drawer.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Door"],
+  "outputTopics": ["system", "door", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

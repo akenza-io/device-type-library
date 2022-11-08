@@ -45,6 +45,42 @@ describe("Xovis V5 Uplink", () => {
     });
   });
 
+  let faceMaskSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/face_mask.schema.json`)
+      .then((parsedSchema) => {
+        faceMaskSchema = parsedSchema;
+        done();
+      });
+  });
+
+  let genderSchema = null;
+  before((done) => {
+    utils.loadSchema(`${__dirname}/gender.schema.json`).then((parsedSchema) => {
+      genderSchema = parsedSchema;
+      done();
+    });
+  });
+
+  let tagSchema = null;
+  before((done) => {
+    utils.loadSchema(`${__dirname}/tag.schema.json`).then((parsedSchema) => {
+      tagSchema = parsedSchema;
+      done();
+    });
+  });
+
+  let viewDirectionSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/view_direction.schema.json`)
+      .then((parsedSchema) => {
+        viewDirectionSchema = parsedSchema;
+        done();
+      });
+  });
+
   describe("consume()", () => {
     it("should decode the Xovis V5 event payload", () => {
       const data = {
@@ -3570,6 +3606,101 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.sequenceNumber, 0);
 
         validate(value.data, trackSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("should decode the Xovis V5 addons payload", () => {
+      const data = {
+        data: {
+          live_data: {
+            package_info: {
+              version: "5.0",
+              id: 659,
+              agent_id: 1017,
+            },
+            sensor_info: {
+              serial_number: "80:1F:12:D5:30:DC",
+              type: "SINGLE_SENSOR",
+              timezone: "Europe/Zurich",
+            },
+            frames: [
+              {
+                framenumber: 31515889,
+                time: 1662646445611,
+                tracked_objects: [
+                  {
+                    track_id: 1428,
+                    type: "PERSON",
+                    position: [1.945132, -1.617844, 1.458451],
+                    attributes: {
+                      gender: "MALE",
+                      tag: "NO_TAG",
+                      face_mask: "NO_MASK",
+                      view_direction: [0.497341, -0.867555],
+                    },
+                  },
+                  {
+                    track_id: 2147485051,
+                    type: "GROUP",
+                    position: [1.385632, -0.69409, 1.696455],
+                    attributes: {
+                      tag: "NO_TAG",
+                      members: 1,
+                      members_with_tag: 0,
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "gender");
+        assert.equal(value.data.gender, "MALE");
+
+        validate(value.data, genderSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "tag");
+        assert.equal(value.data.tag, false);
+
+        validate(value.data, tagSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "face_mask");
+        assert.equal(value.data.faceMask, false);
+
+        validate(value.data, faceMaskSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "view_direction");
+        assert.equal(value.data.xCoordinate, 0.497341);
+        assert.equal(value.data.yCoordinate, -0.867555);
+
+        validate(value.data, viewDirectionSchema, { throwError: true });
       });
 
       consume(data);

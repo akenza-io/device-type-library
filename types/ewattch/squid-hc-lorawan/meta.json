@@ -1,0 +1,14 @@
+{
+  "name": "Squid LoRa",
+  "version": "1.0.0",
+  "manufacturer": "Ewattch",
+  "url": "https://ewattch.com/squid-lora/?lang=en",
+  "description": "The SQUID is a connected sensor equipped with 12 clamps of current measurement. It sends the collected current measurements via a communication LoRa® wireless and long distance.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "C",
+  "availableSensors": ["Energy"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

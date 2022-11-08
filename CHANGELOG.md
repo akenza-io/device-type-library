@@ -4,6 +4,48 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.27.1] - 2022-11-07
+
+### Changed
+
+- Decentlab - PR26 - Added water level as output, updated test
+
+# [1.27.0] - 2022-11-4
+
+### Added
+
+- HKT - Door sensor
+- HKT - People counter
+- Terabee - Peoplecounting M
+- Terabee - Peoplecounting XL
+- Adeunis - Dry Contac
+- DigitalMatter - oyster3
+- Elsys - elt2ultrasonic
+- Ewatch - squid hc lorawan
+- Mclimate - vicki
+
+### Changed
+
+- Iotracker - Changed meta
+- Disruptive Technologies - Added sqi values
+
+# [1.27.0] - 2022-11-03
+
+### Added
+
+- Comtac - Cluey
+
+### Changed
+
+- Xovis - added mod payloads
+
+# [1.26.0] - 2022-10-28
+
+### Added
+
+- Elsys - ers eco
+- Elsys - ers eco co2
+
 # [1.25.0] - 2022-10-21
 
 ### Added
@@ -28,6 +70,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 - Adnexo - updated meta
+- Xovis - Added plugin data output
 
 # [1.23.2] - 2022-09-08
 

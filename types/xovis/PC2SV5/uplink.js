@@ -5,14 +5,15 @@ function consume(event) {
     // Live data
     event.data.live_data.frames.forEach((payload) => {
       const object = payload.tracked_objects[0].type;
-      if (payload.events !== undefined) {
-        payload.events.forEach((ev) => {
-          const { type } = ev;
-          let topic = "default";
-          data = {};
 
-          // Ignore GROUP for now (redundant message)
-          if (object === "PERSON") {
+      // Ignore GROUP for now (redundant message)
+      if (object === "PERSON") {
+        if (payload.events !== undefined) {
+          payload.events.forEach((ev) => {
+            const { type } = ev;
+            let topic = "default";
+            data = {};
+
             if (type === "LINE_CROSS_FORWARD") {
               data.bw = 0;
               data.fw = 1;
@@ -55,10 +56,58 @@ function consume(event) {
               topic = "count";
             }
             emit("sample", { data, topic });
+          });
+        } else {
+          // Here could the positions for each frame get emited
+
+          // Addon messages
+          const { attributes } = payload.tracked_objects[0];
+          if (Object.keys(attributes).length > 0) {
+            const { gender } = attributes;
+            let { tag } = attributes;
+            let faceMask = attributes.face_mask;
+            const viewDirection = attributes.view_direction;
+
+            if (gender !== undefined) {
+              emit("sample", {
+                data: { gender },
+                topic: "gender",
+              });
+            }
+            if (tag !== undefined) {
+              if (tag === "NO_TAG") {
+                tag = false;
+              } else {
+                tag = true;
+              }
+              emit("sample", {
+                data: { tag },
+                topic: "tag",
+              });
+            }
+            if (faceMask !== undefined) {
+              if (faceMask === "NO_MASK") {
+                faceMask = false;
+              } else {
+                faceMask = true;
+              }
+
+              emit("sample", {
+                data: { faceMask },
+                topic: "face_mask",
+              });
+            }
+            if (viewDirection !== undefined) {
+              emit("sample", {
+                data: {
+                  xCoordinate: viewDirection[0],
+                  yCoordinate: viewDirection[1],
+                },
+                topic: "view_direction",
+              });
+            }
           }
-        });
-      } else {
-        // Here could the positions for each frame get emited
+        }
       }
     });
   } else if (event.data.status_data !== undefined) {
