@@ -1,0 +1,44 @@
+{
+  "$id": "https://akenza.io/digitalMatter/oyster3/position.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Position",
+  "type": "object",
+  "properties": {
+    "accepted": {
+      "title": "Accepted",
+      "type": "boolean",
+      "description": "Equals true if the downlink got accepted",
+      "hideFromKpis": true
+    },
+    "firmware": {
+      "title": "Firmware major",
+      "type": "string",
+      "description": "Firmware major",
+      "hideFromKpis": true
+    },
+    "hwRev": {
+      "title": "Hardware revision",
+      "type": "integer",
+      "description": "Hardware revision",
+      "hideFromKpis": true
+    },
+    "port": {
+      "title": "Port",
+      "type": "integer",
+      "description": "Port which received the downlink",
+      "hideFromKpis": true
+    },
+    "prodId": {
+      "title": "Product ID",
+      "type": "integer",
+      "description": "Product ID",
+      "hideFromKpis": true
+    },
+    "sequence": {
+      "title": "Sequence number",
+      "type": "integer",
+      "description": "Sequence number (identifies downlink to server)",
+      "hideFromKpis": true
+    }
+  }
+}

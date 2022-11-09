@@ -1,0 +1,52 @@
+{
+  "$id": "https://akenza.io/mclimate/vicki/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "targetTemperature": {
+      "title": "Target temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The target temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "sensorTemperature": {
+      "title": "Sensor temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The sensor temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "relativeHumidity": {
+      "title": "Humidity",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "motorRange": {
+      "title": "Motor range",
+      "type": "integer",
+      "description": "Maximal motor range"
+    },
+    "motorPosition": {
+      "title": "Motor position",
+      "type": "integer",
+      "description": "Motor position"
+    },
+    "openWindow": {
+      "title": "Open window",
+      "description": "Open window",
+      "type": "boolean"
+    },
+    "childLock": {
+      "title": "Child lock",
+      "description": "Child lock",
+      "type": "boolean"
+    }
+  }
+}

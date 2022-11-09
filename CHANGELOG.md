@@ -4,6 +4,31 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.27.1] - 2022-11-07
+
+### Changed
+
+- Decentlab - PR26 - Added water level as output, updated test
+
+# [1.27.0] - 2022-11-4
+
+### Added
+
+- HKT - Door sensor
+- HKT - People counter
+- Terabee - Peoplecounting M
+- Terabee - Peoplecounting XL
+- Adeunis - Dry Contac
+- DigitalMatter - oyster3
+- Elsys - elt2ultrasonic
+- Ewatch - squid hc lorawan
+- Mclimate - vicki
+
+### Changed
+
+- Iotracker - Changed meta
+- Disruptive Technologies - Added sqi values
+
 # [1.27.0] - 2022-11-03
 
 ### Added

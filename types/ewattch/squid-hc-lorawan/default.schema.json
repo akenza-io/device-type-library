@@ -1,0 +1,80 @@
+{
+  "$id": "https://akenza.io/ewattch/squid-hc-lorawan/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "channel1": {
+      "title": "Channel 1",
+      "unit": "Ah",
+      "type": "number",
+      "description": "Channel 1"
+    },
+    "channel2": {
+      "title": "Channel 2",
+      "unit": "Ah",
+      "type": "number",
+      "description": "Channel 2"
+    },
+    "channel3": {
+      "title": "Channel 3",
+      "unit": "Ah",
+      "type": "number",
+      "description": "Channel 3"
+    },
+    "channel4": {
+      "title": "Channel 4",
+      "unit": "Ah",
+      "type": "number",
+      "description": "Channel 4"
+    },
+    "channel5": {
+      "title": "Channel 5",
+      "unit": "Ah",
+      "type": "number",
+      "description": "Channel 5"
+    },
+    "channel6": {
+      "title": "Channel 6",
+      "unit": "Ah",
+      "type": "number",
+      "description": "Channel 6"
+    },
+    "channel7": {
+      "title": "Channel 7",
+      "unit": "Ah",
+      "type": "number",
+      "description": "Channel 7"
+    },
+    "channel8": {
+      "title": "Channel 8",
+      "unit": "Ah",
+      "type": "number",
+      "description": "Channel 8"
+    },
+    "channel9": {
+      "title": "Channel 9",
+      "unit": "Ah",
+      "type": "number",
+      "description": "Channel 9"
+    },
+    "channel10": {
+      "title": "Channel 10",
+      "unit": "Ah",
+      "type": "number",
+      "description": "Channel 10"
+    },
+    "channel11": {
+      "title": "Channel 11",
+      "unit": "Ah",
+      "type": "number",
+      "description": "Channel 11"
+    },
+    "channel12": {
+      "title": "Channel 12",
+      "unit": "Ah",
+      "type": "number",
+      "description": "Channel 12"
+    }
+  }
+}

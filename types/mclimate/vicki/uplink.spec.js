@@ -5,7 +5,7 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Decentlab PR26 Uplink", () => {
+describe("MClimate Vicky uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
@@ -30,10 +30,10 @@ describe("Decentlab PR26 Uplink", () => {
   });
 
   describe("consume()", () => {
-    it("Should decode Decentlab PR26 payload", () => {
+    it("should decode MClimate Vicky payload", () => {
       const data = {
         data: {
-          payloadHex: "020167000345cb60170c7f",
+          payloadHex: "011D5A78FA2C01F080",
         },
       };
 
@@ -43,9 +43,13 @@ describe("Decentlab PR26 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.pressure, 0.045257568359375);
-        assert.equal(value.data.temperature, 25.671875);
-        assert.equal(value.data.level, 0.46148229182599165);
+        assert.equal(value.data.targetTemperature, 29);
+        assert.equal(value.data.sensorTemperature, 18.01);
+        assert.equal(value.data.relativeHumidity, 46.88);
+        assert.equal(value.data.motorRange, 300);
+        assert.equal(value.data.motorPosition, 250);
+        assert.equal(value.data.openWindow, false);
+        assert.equal(value.data.childLock, true);
 
         validate(value.data, defaultSchema, { throwError: true });
       });
@@ -56,9 +60,10 @@ describe("Decentlab PR26 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.199);
-        assert.equal(value.data.protocolVersion, 2);
-        assert.equal(value.data.deviceID, 359);
+        assert.equal(value.data.batteryVoltage, 3.5);
+        assert.equal(value.data.highMotorConsumption, false);
+        assert.equal(value.data.lowMotorConsumption, false);
+        assert.equal(value.data.brokenSensor, false);
 
         validate(value.data, lifecycleSchema, { throwError: true });
       });

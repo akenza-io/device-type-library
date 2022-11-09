@@ -5,7 +5,7 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Decentlab PR26 Uplink", () => {
+describe("Terabee people counting XL Uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
@@ -30,10 +30,15 @@ describe("Decentlab PR26 Uplink", () => {
   });
 
   describe("consume()", () => {
-    it("Should decode Decentlab PR26 payload", () => {
+    it("should decode Terabee people counting XL HTTP payload", () => {
       const data = {
         data: {
-          payloadHex: "020167000345cb60170c7f",
+          count_in: 23,
+          count_out: 12,
+          timestamp: "165776767",
+          device_id: "FA21415EAEB7",
+          username: "user",
+          password: "password",
         },
       };
 
@@ -43,9 +48,31 @@ describe("Decentlab PR26 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.pressure, 0.045257568359375);
-        assert.equal(value.data.temperature, 25.671875);
-        assert.equal(value.data.level, 0.46148229182599165);
+        assert.equal(value.data.fw, 23);
+        assert.equal(value.data.bw, 12);
+
+        validate(value.data, defaultSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("should decode Terabee people counting XL LoRa payload", () => {
+      const data = {
+        data: {
+          port: 1,
+          payloadHex: "00000002000000030f",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.fw, 2);
+        assert.equal(value.data.bw, 3);
 
         validate(value.data, defaultSchema, { throwError: true });
       });
@@ -56,9 +83,10 @@ describe("Decentlab PR26 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.199);
-        assert.equal(value.data.protocolVersion, 2);
-        assert.equal(value.data.deviceID, 359);
+        assert.equal(value.data.wifiApEnabled, true);
+        assert.equal(value.data.multiDevIssue, true);
+        assert.equal(value.data.tpcStuck, true);
+        assert.equal(value.data.tpcStopped, true);
 
         validate(value.data, lifecycleSchema, { throwError: true });
       });
