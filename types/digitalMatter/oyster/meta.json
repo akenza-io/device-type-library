@@ -7,14 +7,8 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": [
-    "GPS"
-  ],
-  "outputTopics": [
-    "position",
-    "downlink_ack",
-    "stats"
-  ],
+  "availableSensors": ["GPS"],
+  "outputTopics": ["downlink_ack", "lifecycle", "position"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }
