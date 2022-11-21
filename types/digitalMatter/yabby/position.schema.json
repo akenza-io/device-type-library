@@ -36,13 +36,13 @@
       "description": "Equals true if no movement for configured period got detected (Needs to be activated)"
     },
     "headingDeg": {
-      "title": "heading",
+      "title": "Heading",
       "unit": "°",
       "type": "number",
       "description": "The direction where the sensor is heading"
     },
     "speedKmph": {
-      "title": "speedKmph",
+      "title": "Speed",
       "unit": "kmh",
       "type": "number",
       "description": "Acceleration of the sensor"

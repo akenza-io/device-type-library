@@ -1,0 +1,101 @@
+{
+  "$id": "https://akenza.io/bosch/parkingLotSensor0_39/device_usage.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Device usage",
+  "type": "object",
+  "properties": {
+    "usageType": {
+      "title": "Usage type",
+      "description": "Usage type",
+      "type": "string",
+      "enum": [
+        "NR_OF_STATE_CHANGES",
+        "TIME_IN_OCCUPIED_STATE",
+        "NR_OF_UPLINKS_SENT",
+        "NR_OF_RADAR_TRIGGERS",
+        "TIME_RUNNING_SINCE_RESTART",
+        "NR_OF_RESETS_SINCE_INSTALL",
+        "TIME_RUNNING_SINCE_INSTALL"
+      ],
+      "hideFromKpis": true
+    },
+    "value": {
+      "title": "Value",
+      "description": "Value",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "dr0": {
+      "title": "DR 0",
+      "description": "DR 0",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "dr1": {
+      "title": "DR 1",
+      "description": "DR 1",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "dr2": {
+      "title": "DR 2",
+      "description": "DR 2",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "dr3": {
+      "title": "DR 3",
+      "description": "DR 3",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "dr4": {
+      "title": "DR 4",
+      "description": "DR 4",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "dr5": {
+      "title": "DR 5",
+      "description": "DR 5",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "brownOut": {
+      "title": "Brown out",
+      "description": "Brown out count",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "lockup": {
+      "title": "Lockup",
+      "description": "Lockup count",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "extPin": {
+      "title": "External pin",
+      "description": "External pin count",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "powerOn": {
+      "title": "Power on",
+      "description": "Power on count",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "watchdog": {
+      "title": "Watchdog",
+      "description": "Watchdog count",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "softwareRequested": {
+      "title": "Software requested",
+      "description": "Software requested count",
+      "type": "integer",
+      "hideFromKpis": true
+    }
+  }
+}

@@ -8,7 +8,13 @@
   "firmwareVersion": "V0.39.2",
   "loraDeviceClass": "A",
   "availableSensors": ["Occupancy"],
-  "outputTopics": ["lifecycle", "occupancy"],
+  "outputTopics": [
+    "lifecycle",
+    "occupancy",
+    "start_up",
+    "info",
+    "device_usage"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

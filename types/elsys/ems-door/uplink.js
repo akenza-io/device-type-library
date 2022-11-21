@@ -209,7 +209,7 @@ function consume(event) {
   data.co2 = res.co2;
   reed.reed = res.digital;
   data.distance = res.distance;
-  data.accMotion = res.accMotion;
+  acceleration.accMotion = res.accMotion;
   data.waterleak = res.waterleak;
   data.pressure = res.pressure;
   data.lat = res.lat;
@@ -218,8 +218,8 @@ function consume(event) {
   data.analog2 = res.analog2;
   data.pulse1 = res.pulse1;
   data.pulse2 = res.pulse2;
-  data.pulseAbs1 = res.pulseAbs1;
-  data.pulseAbs2 = res.pulseAbs2;
+  reed.pulseAbs1 = res.pulseAbs1;
+  reed.pulseAbs2 = res.pulseAbs2;
   data.externalTemperature1 = res.externalTemperature1;
   data.externalTemperature2 = res.externalTemperature2;
 

@@ -16,17 +16,17 @@
   ],
   "outputTopics": [
     "battery_level",
-    "orientation",
     "co2",
+    "environment",
     "error_event",
     "firmware_binary",
     "firmware_response",
     "lifecycle",
     "magnet",
     "network",
+    "orientation",
     "system_info",
-    "tvoc",
-    "environment"
+    "tvoc"
   ],
   "encoding": "JSON",
   "connectivity": "MQTT"
