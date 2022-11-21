@@ -85,7 +85,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "start_up");
-        assert.equal(value.data.lastDebugCommand, "0A000000970320CD0002");
+        assert.equal(value.data.debug, "0A000000970320CD0002");
         assert.equal(value.data.fwVersion, "0.39.2");
         assert.equal(value.data.resetCause, "SYSTEM_REQUEST_RESET");
 
