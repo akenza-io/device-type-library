@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Terabee",
   "url": "https://www.terabee.com/shop/people-counting/terabee-people-counting-m/",
-  "description": "Count people over conventional swing doors and passageways. Terabee People Counting M is discrete, compact and can be flexibly deployed via PoE, Ethernet or WiFi connectivity. GDPR-compliant, the device ensures user anonymity with 95% counting accuracy.",
+  "description": "Count people over conventional swing doors and passageways. Terabee People Counting M is discrete, compact and can be flexibly deployed via PoE, Ethernet or WiFi connectivity. GDPR-compliant, the device ensures user anonymity with 95% counting accuracy. Supports HTTP(s) and MQTT(s) communication protocols.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
