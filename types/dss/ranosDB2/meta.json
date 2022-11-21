@@ -1,14 +1,14 @@
 {
-  "name": "Ranos dB 2",
+  "name": "Ranos dB 1 & dB 2",
   "version": "1.0.0",
   "manufacturer": "DSS",
   "url": "https://www.iotsoundsensor.com/product/ranos-db-2/",
-  "description": "Sound sensor powered by a solar panel. Measures dynamic range of 33 - 121dB and a DSP sample rate of 48 kHz. The use of GPS can be set in the DSS Connect App for geolocation and synchronizing the internal clock.",
+  "description": "The Ranos product range consists of two high accuracy, wireless outdoor sound level meters and cloud applications suitable for permanent and temporary installation. DSS suppies the Ranos dB in a class 1 and a class 2 measurement accuracy version. The Ranos dB is powered by solar energy, works fully autonomously and has LoRa connectivity.",
   "author": "Akenza AG",
   "firmwareVersion": "V3.0.2",
   "loraDeviceClass": "A",
   "availableSensors": ["Sound", "GPS"],
-  "outputTopics": ["default", "lifecycle"],
+  "outputTopics": ["default", "gps", "lifecycle"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }
