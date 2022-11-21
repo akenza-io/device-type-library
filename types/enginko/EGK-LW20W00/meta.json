@@ -8,7 +8,7 @@
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Temperature", "Distance", "ADC"],
-  "outputTopics": ["distance", "time_sync"],
+  "outputTopics": ["distance", "time_sync", "lifecycle"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

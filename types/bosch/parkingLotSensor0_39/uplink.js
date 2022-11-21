@@ -24,7 +24,7 @@ function consume(event) {
       0x06: "BROWNOUT_RESET",
       0x07: "OTHERS",
     };
-    data.lastDebugCommand = payload.substring(0, 20).toUpperCase();
+    data.debug = payload.substring(0, 20).toUpperCase();
     // Reserved 4
     data.fwVersion = `${Bits.bitsToUnsigned(
       bits.substr(96, 8),
