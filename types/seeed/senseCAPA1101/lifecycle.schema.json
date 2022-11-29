@@ -1,0 +1,34 @@
+{
+  "$id": "https://akenza.io/seeed/senseCAPA1101/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "sendInterval": {
+      "title": "Send interval",
+      "type": "integer",
+      "desciption": "Send every x minutes",
+      "hideFromKpis": true
+    },
+    "batteryLevel": {
+      "title": "Battery charge",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "The battery charge in percent.",
+      "unit": "%"
+    },
+    "hardwareVersion": {
+      "title": "Hardware version",
+      "description": "Hardware version",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "softwareVersion": {
+      "title": "Software version",
+      "description": "Software version",
+      "type": "string",
+      "hideFromKpis": true
+    }
+  }
+}

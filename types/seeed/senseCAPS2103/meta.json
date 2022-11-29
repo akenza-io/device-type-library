@@ -1,0 +1,14 @@
+{
+  "name": "SenseCAP S2103 - LoRaWAN CO2, Temperature and Humidity Sensor",
+  "version": "1.0.0",
+  "manufacturer": "Seeed",
+  "url": "https://www.seeedstudio.com/SenseCAP-S2103-LoRaWAN-CO2-Temperature-and-Humidity-Sensor-p-5356.html",
+  "description": "SenseCAP LoRaWAN® S2103 CO2, Temperature, and Humidity Sensor satisfies industrial wireless long-distance data acquisition with a wide measuring range of 400 to 10000 ppm, -40°C to 85°C and 0 to 100% RH respectively. It enables low maintenance cost for its robustness, long battery usage, and built-in Bluetooth for OTA configuration and remote device management.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Humidity", "CO2"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
