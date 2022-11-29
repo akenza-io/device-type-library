@@ -1,0 +1,18 @@
+{
+  "name": "SenseCAP S2105 - LoRaWAN Soil Moisture, Temperature and EC Sensor",
+  "version": "1.0.0",
+  "manufacturer": "Seeed",
+  "url": "https://www.seeedstudio.com/SenseCAP-S2105-LoRaWAN-Soil-Temperature-Moisture-and-EC-Sensor-p-5358.html",
+  "description": "SenseCAP S2105 Soil Temperature, Moisture, and EC Sensor satisfy industrial long-distance data acquisition with a wide range of 0 ~ 100% (m³/m³), -40 ~ 80℃, and 0 to 23 dS/m respectively. It enables low maintenance cost for its robustness, long battery usage, and built-in Bluetooth for OTA configuration and remote device management.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Soil moisture",
+    "Soil temperature",
+    "Soil conductivity"
+  ],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
