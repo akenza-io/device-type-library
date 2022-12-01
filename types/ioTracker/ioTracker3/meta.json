@@ -14,10 +14,11 @@
     "Temperature",
     "Motion",
     "Shock",
+    "Tilt",
     "Humidity",
     "Air pressure"
   ],
-  "outputTopics": ["default", "gps", "lifecycle"],
+  "outputTopics": ["default", "gps", "lifecycle", "tilt"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

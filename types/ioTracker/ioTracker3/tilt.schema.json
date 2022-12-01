@@ -1,0 +1,32 @@
+{
+  "$id": "https://akenza.io/ioTracker/ioTracker3/tilt.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Tilt",
+  "type": "object",
+  "properties": {
+    "currentTilt": {
+      "title": "Current tilt XY",
+      "unit": "°",
+      "type": "number",
+      "description": "Current tilt XY"
+    },
+    "currentDirection": {
+      "title": "Current direction tilt Z",
+      "unit": "°",
+      "type": "number",
+      "description": "Current direction tilt Z"
+    },
+    "maximumTiltHistory": {
+      "title": "Maximum tilt XY",
+      "unit": "°",
+      "type": "number",
+      "description": "Maximum tilt XY ever"
+    },
+    "directionHistory": {
+      "title": "Maximum direction history",
+      "unit": "°",
+      "type": "number",
+      "description": "Maximum direction history ever"
+    }
+  }
+}
