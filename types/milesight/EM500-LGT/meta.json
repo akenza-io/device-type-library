@@ -1,0 +1,14 @@
+{
+  "name": "EM500-LGT",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight-iot.com/lorawan/sensor/em500-lgt/",
+  "description": "EM500-LGT is designed for ambient light intensity detection in harsh environments. It is useful in many applications, such as brightness control, security, horticulture, floriculture and so on.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Light"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

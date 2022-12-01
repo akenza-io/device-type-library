@@ -7,7 +7,6 @@ function parseHexString(str) {
   }
   return result;
 }
-
 function readUInt16LE(bytes) {
   const value = (bytes[1] << 8) + bytes[0];
   return value & 0xffff;
@@ -35,6 +34,7 @@ function consume(event) {
     // BATTERY
     if (channelId === 0x01 && channelType === 0x75) {
       lifecycle.batteryLevel = bytes[i];
+      i += 1;
     }
     // TEMPERATURE
     else if (channelId === 0x03 && channelType === 0x67) {
@@ -46,54 +46,9 @@ function consume(event) {
       decoded.humidity = bytes[i] / 2;
       i += 1;
     }
-    // PIR
+    // WATER LEAK
     else if (channelId === 0x05 && channelType === 0x00) {
-      decoded.pir = bytes[i] === 1 ? "TRIGGER" : "IDLE";
-      i += 1;
-    }
-    // LIGHT
-    else if (channelId === 0x06 && channelType === 0xcb) {
-      decoded.light = bytes[i];
-      i += 1;
-    }
-    // CO2
-    else if (channelId === 0x07 && channelType === 0x7d) {
-      decoded.co2 = readUInt16LE(bytes.slice(i, i + 2));
-      i += 2;
-    }
-    // TVOC
-    else if (channelId === 0x08 && channelType === 0x7d) {
-      decoded.tvoc = readUInt16LE(bytes.slice(i, i + 2));
-      i += 2;
-    }
-    // PRESSURE
-    else if (channelId === 0x09 && channelType === 0x73) {
-      decoded.pressure = readUInt16LE(bytes.slice(i, i + 2)) / 10;
-      i += 2;
-    }
-    // HCHO
-    else if (channelId === 0x0a && channelType === 0x7d) {
-      decoded.hcho = readUInt16LE(bytes.slice(i, i + 2)) / 100;
-      i += 2;
-    }
-    // PM2.5
-    else if (channelId === 0x0b && channelType === 0x7d) {
-      decoded.pm2_5 = readUInt16LE(bytes.slice(i, i + 2));
-      i += 2;
-    }
-    // PM10
-    else if (channelId === 0x0c && channelType === 0x7d) {
-      decoded.pm10 = readUInt16LE(bytes.slice(i, i + 2));
-      i += 2;
-    }
-    // O3
-    else if (channelId === 0x0d && channelType === 0x7d) {
-      decoded.o3 = readUInt16LE(bytes.slice(i, i + 2)) / 100;
-      i += 2;
-    }
-    // BEEP
-    else if (channelId === 0x0e && channelType === 0x01) {
-      decoded.beep = bytes[i] === 1 ? "yes" : "no";
+      decoded.waterLeak = !!bytes[i];
       i += 1;
     } else {
       break;

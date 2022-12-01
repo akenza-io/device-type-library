@@ -1,0 +1,14 @@
+{
+  "name": "EM500-SMTC",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight-iot.com/lorawan/sensor/em500-smtc/",
+  "description": "EM500-SMTC provides an external probe for receiving accurate and instantaneous information on soil moisture content, temperature, and electrical conductivity, it is an important tool for anyone involved with soil.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Moisture", "Temperature", "Conductivity"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

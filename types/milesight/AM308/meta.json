@@ -1,0 +1,24 @@
+{
+  "name": "AM308",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight-iot.com/lorawan/sensor/am300/",
+  "description": "AM308 is a compact indoor ambience monitoring sensor for measurement of multiple environmental conditions. Values are shown on the E-ink screen in real-time that allows to quantify the indoor environment and comfort.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "PIR",
+    "Light",
+    "TVOC",
+    "Pressure",
+    "CO2",
+    "PM2.5",
+    "PM10"
+  ],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

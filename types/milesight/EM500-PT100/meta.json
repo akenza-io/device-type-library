@@ -1,0 +1,14 @@
+{
+  "name": "EM500-PT100",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight-iot.com/lorawan/sensor/em500-pt100/",
+  "description": "EM500-PT100 resistance temperature sensor is designed for measuring wide range of temperature in harsh environments and transmitting data using LoRaWAN® technology. With this low power consumption technology, EM500-PT100 can work up to 10years with 19000 mAh battery. ",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

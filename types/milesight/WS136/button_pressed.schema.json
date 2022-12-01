@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/milesight/WS136/button_pressed.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Button pressed",
+  "type": "object",
+  "properties": {
+    "buttonNumber": {
+      "title": "Button",
+      "description": "Button number pressed",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "command": {
+      "title": "Button command",
+      "description": "Button command",
+      "type": "integer"
+    }
+  }
+}
