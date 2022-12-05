@@ -40,6 +40,14 @@
       "minimum": 0,
       "maximum": 65535
     },
+    "batteryLevel": {
+      "title": "Battery charge",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "The battery charge in percent.",
+      "unit": "%"
+    },
     "rssi": {
       "title": "RSSI",
       "unit": "dBm",

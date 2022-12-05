@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -60,7 +60,7 @@ describe("EGK-LW20W00 Uplink", () => {
         assert.equal(value.data.adc, 3103);
         assert.equal(value.data.batteryLevel, 100);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -73,7 +73,7 @@ describe("EGK-LW20W00 Uplink", () => {
         assert.equal(value.data.fillLevel, 100);
         assert.equal(value.data.temperature, 24.66);
 
-        validate(value.data, distanceSchema, { throwError: true });
+        utils.validateSchema(value.data, distanceSchema, { throwError: true });
       });
 
       consume(data);
@@ -98,7 +98,7 @@ describe("EGK-LW20W00 Uplink", () => {
         assert.equal(value.data.applicationType, 407);
         assert.equal(value.data.rfu, 1);
 
-        validate(value.data, timesyncSchema, { throwError: true });
+        utils.validateSchema(value.data, timesyncSchema, { throwError: true });
       });
       consume(data);
     });

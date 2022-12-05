@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -41,7 +41,7 @@ describe("Digital Technologies Touch Sensor Uplink", () => {
         assert.equal(value.topic, "touch");
         assert.equal(value.data.touch, true);
 
-        validate(value.data, touchSchema, { throwError: true });
+        utils.validateSchema(value.data, touchSchema, { throwError: true });
       });
 
       consume(data);

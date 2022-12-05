@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -44,11 +44,11 @@ describe("Alevel V1 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 3.66);
+        assert.equal(value.data.voltage, 3.66);
         assert.equal(value.data.batteryLevel, 0);
         assert.equal(value.data.deviceStatusFlag, 0);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -64,7 +64,7 @@ describe("Alevel V1 Uplink", () => {
         assert.equal(value.data.hasOutOfRangeError, true);
         assert.equal(value.data.sequenceNumber, 2);
         assert.equal(value.data.temperature, 23);
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

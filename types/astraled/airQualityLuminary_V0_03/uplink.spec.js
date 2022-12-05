@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -46,7 +46,7 @@ describe("Astraled Air Quality Luminary V0.03 Uplink", () => {
         assert.equal(value.data.iaqStateInt, 0);
         assert.equal(value.data.sensorAmbientLight, 250);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
@@ -59,7 +59,7 @@ describe("Astraled Air Quality Luminary V0.03 Uplink", () => {
         assert.equal(value.data.humidity, 32.6);
         assert.equal(value.data.voc, 317);
         assert.equal(value.data.co2, 664);
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
       consume(data);
     });

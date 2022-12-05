@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -78,7 +78,9 @@ describe("Adnexo ax-opto Uplink", () => {
         assert.equal(value.data.voltage, 2.763);
         assert.equal(value.data.batteryLevel, 70);
 
-        validate(value.data, measurementSchema, { throwError: true });
+        utils.validateSchema(value.data, measurementSchema, {
+          throwError: true,
+        });
       });
 
       consume(data);
@@ -102,7 +104,9 @@ describe("Adnexo ax-opto Uplink", () => {
         assert.equal(value.data.yAxisAccelerometer, -942);
         assert.equal(value.data.zAxisAccelerometer, 277);
 
-        validate(value.data, accelerationSchema, { throwError: true });
+        utils.validateSchema(value.data, accelerationSchema, {
+          throwError: true,
+        });
       });
 
       consume(data);
@@ -125,7 +129,7 @@ describe("Adnexo ax-opto Uplink", () => {
         assert.equal(value.data.errorOn, "PARAM_READ");
         assert.equal(value.data.errorCode, "PARAM_NOT_READABLE");
 
-        validate(value.data, errorSchema, { throwError: true });
+        utils.validateSchema(value.data, errorSchema, { throwError: true });
       });
 
       consume(data);
@@ -150,7 +154,7 @@ describe("Adnexo ax-opto Uplink", () => {
         assert.equal(value.data.payloadType, "REPORT_CONFIGURATION");
         assert.equal(value.data.sendInterval, 6);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

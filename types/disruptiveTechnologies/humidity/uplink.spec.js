@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -32,7 +32,7 @@ describe("Digital Technologies Humidity Sensor Uplink", () => {
             temperature: 22.45,
             relativeHumidity: 17,
             updateTime: "2021-05-16T06:13:46.369000Z",
-            },
+          },
         },
         timestamp: "2021-09-14T08:16:27.517331Z",
         labels: { name: "Temperature Simulator" },
@@ -46,7 +46,7 @@ describe("Digital Technologies Humidity Sensor Uplink", () => {
         assert.equal(value.data.temperature, 22.45);
         assert.equal(value.data.humidity, 17);
 
-        validate(value.data, humiditySchema, { throwError: true });
+        utils.validateSchema(value.data, humiditySchema, { throwError: true });
       });
 
       consume(data);

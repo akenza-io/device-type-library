@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -85,7 +85,7 @@ describe("Digital matter Oyster 3 Uplink", () => {
         assert.equal(value.data.voltage, 4.475);
         assert.equal(value.data.batteryLevel, 60);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -101,7 +101,7 @@ describe("Digital matter Oyster 3 Uplink", () => {
         assert.equal(value.data.headingDeg, 208.13);
         assert.equal(value.data.speedKmph, 10);
 
-        validate(value.data, positionSchema, { throwError: true });
+        utils.validateSchema(value.data, positionSchema, { throwError: true });
       });
 
       consume(data);
@@ -128,7 +128,9 @@ describe("Digital matter Oyster 3 Uplink", () => {
         assert.equal(value.data.productId, 98);
         assert.equal(value.data.sequence, 83);
 
-        validate(value.data, downlinkAckSchema, { throwError: true });
+        utils.validateSchema(value.data, downlinkAckSchema, {
+          throwError: true,
+        });
       });
 
       consume(data);
@@ -159,7 +161,7 @@ describe("Digital matter Oyster 3 Uplink", () => {
         assert.equal(value.data.uptimeWeeks, 189);
         assert.equal(value.data.wakeupsPerTrip, 56);
 
-        validate(value.data, statsSchema, { throwError: true });
+        utils.validateSchema(value.data, statsSchema, { throwError: true });
       });
 
       consume(data);
@@ -182,7 +184,7 @@ describe("Digital matter Oyster 3 Uplink", () => {
         assert.equal(value.data.voltage, 3.55);
         assert.equal(value.data.batteryLevel, 0);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -198,7 +200,7 @@ describe("Digital matter Oyster 3 Uplink", () => {
         assert.equal(value.data.headingDeg, 45);
         assert.equal(value.data.speedKmph, 155);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, positionSchema, { throwError: true });
       });
 
       consume(data);
@@ -224,7 +226,7 @@ describe("Digital matter Oyster 3 Uplink", () => {
         assert.equal(value.data.resetWatchdog, true);
         assert.equal(value.data.watchdogReason, 259);
 
-        validate(value.data, watchdogSchema, { throwError: true });
+        utils.validateSchema(value.data, watchdogSchema, { throwError: true });
       });
 
       consume(data);
@@ -249,7 +251,7 @@ describe("Digital matter Oyster 3 Uplink", () => {
         assert.equal(value.data.uptimeWeeks, 664);
         assert.equal(value.data.wakeupsPerTrip, 243);
 
-        validate(value.data, statsSchema, { throwError: true });
+        utils.validateSchema(value.data, statsSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -269,7 +271,7 @@ describe("Digital matter Oyster 3 Uplink", () => {
         assert.equal(value.data.percentSleepDis, 25);
         assert.equal(value.data.ttff, 139);
 
-        validate(value.data, statsV3Schema, { throwError: true });
+        utils.validateSchema(value.data, statsV3Schema, { throwError: true });
       });
 
       consume(data);
@@ -292,7 +294,7 @@ describe("Digital matter Oyster 3 Uplink", () => {
         assert.equal(value.data.voltage, 5.932);
         assert.equal(value.data.batteryLevel, 100);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -310,7 +312,7 @@ describe("Digital matter Oyster 3 Uplink", () => {
         assert.equal(value.data.inTrip, true);
         assert.equal(value.data.speedKmph, 90);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, positionSchema, { throwError: true });
       });
 
       consume(data);

@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -41,7 +41,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         assert.equal(value.topic, "motion");
         assert.equal(value.data.motion, true);
 
-        validate(value.data, motionSchema, { throwError: true });
+        utils.validateSchema(value.data, motionSchema, { throwError: true });
       });
 
       consume(data);

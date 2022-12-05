@@ -10,6 +10,13 @@
       "type": "string",
       "enum": ["VERY_LOW", "LOW", "DISCHARGING", "HEALTHY"],
       "hideFromKpis": true
+    },
+    "currentProfile": {
+      "title": "LoRa Profile",
+      "description": "Current LoRa Profile",
+      "type": "string",
+      "enum": ["IMR_LORA_SIGFOX", "SIGFOX", "SIGFOX_LORA"],
+      "hideFromKpis": true
     }
   }
 }

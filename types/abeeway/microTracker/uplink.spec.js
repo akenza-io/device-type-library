@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -96,7 +96,7 @@ describe("Abeeway micro tracker uplink", () => {
         assert.equal(value.data.batteryLevel, 92);
         assert.equal(value.data.temperature, 21.8);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -109,7 +109,7 @@ describe("Abeeway micro tracker uplink", () => {
         assert.equal(value.data.latitude, 47.5475712);
         assert.equal(value.data.horizontalAccuracy, 31);
         assert.equal(value.data.age, 48);
-        validate(value.data, gpsFixSchema, { throwError: true });
+        utils.validateSchema(value.data, gpsFixSchema, { throwError: true });
       });
 
       consume(data);
@@ -138,7 +138,7 @@ describe("Abeeway micro tracker uplink", () => {
         assert.equal(value.data.batteryLevel, 92);
         assert.equal(value.data.temperature, 21.8);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -151,7 +151,7 @@ describe("Abeeway micro tracker uplink", () => {
         assert.equal(value.data.firmwareVersion, "2.2.0");
         assert.equal(value.data.bleFirmwareVersion, "0.0.0");
 
-        validate(value.data, heartbeatSchema, { throwError: true });
+        utils.validateSchema(value.data, heartbeatSchema, { throwError: true });
       });
 
       consume(data);
@@ -180,7 +180,7 @@ describe("Abeeway micro tracker uplink", () => {
         assert.equal(value.data.batteryLevel, 92);
         assert.equal(value.data.temperature, 21.8);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -205,7 +205,9 @@ describe("Abeeway micro tracker uplink", () => {
 
         assert.equal(value.data.angle, 90);
 
-        validate(value.data, angleDetectionSchema, { throwError: true });
+        utils.validateSchema(value.data, angleDetectionSchema, {
+          throwError: true,
+        });
       });
 
       consume(data);
@@ -235,7 +237,7 @@ describe("Abeeway micro tracker uplink", () => {
         assert.equal(value.data.batteryLevel, 54);
         assert.equal(value.data.temperature, 22.8);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -256,7 +258,7 @@ describe("Abeeway micro tracker uplink", () => {
         assert.equal(value.data.bssid3, "c8:67:5e:82:00:d4");
         assert.equal(value.data.rssi3, -78);
 
-        validate(value.data, wifiBssidSchema, { throwError: true });
+        utils.validateSchema(value.data, wifiBssidSchema, { throwError: true });
       });
 
       consume(data);
@@ -285,7 +287,7 @@ describe("Abeeway micro tracker uplink", () => {
         assert.equal(value.data.batteryLevel, 69);
         assert.equal(value.data.temperature, 23.8);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -296,7 +298,9 @@ describe("Abeeway micro tracker uplink", () => {
         assert.equal(value.topic, "activity_status");
         assert.equal(value.data.activityCounter, 10);
 
-        validate(value.data, activityStatusSchema, { throwError: true });
+        utils.validateSchema(value.data, activityStatusSchema, {
+          throwError: true,
+        });
       });
 
       consume(data);
@@ -325,7 +329,7 @@ describe("Abeeway micro tracker uplink", () => {
         assert.equal(value.data.batteryLevel, 83);
         assert.equal(value.data.temperature, 25.8);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -339,7 +343,9 @@ describe("Abeeway micro tracker uplink", () => {
         assert.equal(value.data.notification, "ENTRY");
         assert.equal(value.data.beaconID, 11919355);
 
-        validate(value.data, bleGeozoningSchema, { throwError: true });
+        utils.validateSchema(value.data, bleGeozoningSchema, {
+          throwError: true,
+        });
       });
 
       consume(data);
@@ -368,7 +374,7 @@ describe("Abeeway micro tracker uplink", () => {
         assert.equal(value.data.batteryLevel, 50);
         assert.equal(value.data.temperature, 19.2);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -381,7 +387,7 @@ describe("Abeeway micro tracker uplink", () => {
         assert.equal(value.data.loraPeriod, 600);
         assert.equal(value.data.shockDetection, 100);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        // No configuration schema
       });
 
       consume(data);

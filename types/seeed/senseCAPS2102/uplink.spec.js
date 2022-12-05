@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -36,7 +36,7 @@ describe("Seeed SenseCAP 2102 Light Intensity Sensor Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.light, 153);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

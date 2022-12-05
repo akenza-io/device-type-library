@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -38,7 +38,7 @@ describe("Seeed SenseCAP 2105 Soil Moisture, Temperature and EC Sensor Uplink", 
         assert.equal(value.data.soilHumidity, 41.8);
         assert.equal(value.data.soilTemperature, 23.9);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

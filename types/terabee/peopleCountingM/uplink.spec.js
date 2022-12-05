@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -42,7 +42,7 @@ describe("Terabee people counting M Uplink", () => {
         assert.equal(value.data.fw, 34);
         assert.equal(value.data.bw, 17);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

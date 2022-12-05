@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -56,7 +56,7 @@ describe("Decentlab LP8P Uplink", () => {
         assert.equal(value.data.rawIr, 38296);
         assert.equal(value.data.rawIrLPF, 38201);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -70,7 +70,7 @@ describe("Decentlab LP8P Uplink", () => {
         assert.equal(value.data.deviceID, 1400);
         assert.equal(value.data.co2SensorStatus, 0);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

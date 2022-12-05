@@ -19,6 +19,11 @@
       "title": "Battery voltage",
       "desciption": "The battery voltage in Volt.",
       "unit": "V"
+    },
+    "deviceStatusFlag": {
+      "type": "integer",
+      "title": "Device status flag",
+      "desciption": "Device status flag"
     }
   }
 }

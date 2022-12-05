@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -51,7 +51,9 @@ describe("Yanzi Presence Mini Sensor Uplink", () => {
         assert.equal(value.topic, "temperature");
         assert.equal(value.data.temperature, 29.24);
 
-        validate(value.data, temperatureSchema, { throwError: true });
+        utils.validateSchema(value.data, temperatureSchema, {
+          throwError: true,
+        });
       });
 
       consume(data);
@@ -79,7 +81,7 @@ describe("Yanzi Presence Mini Sensor Uplink", () => {
         assert.equal(value.topic, "occupancy");
         assert.equal(value.data.motion, 24873);
 
-        validate(value.data, occupancySchema, { throwError: true });
+        utils.validateSchema(value.data, occupancySchema, { throwError: true });
       });
 
       consume(data);

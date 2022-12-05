@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -98,7 +98,7 @@ describe("Digitalmatter sensor node Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.internalTemperature, 21.02);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -114,7 +114,9 @@ describe("Digitalmatter sensor node Uplink", () => {
         assert.equal(value.data.measurement3[4], 16);
         assert.equal(value.data.measurement3[5], 16.5);
 
-        validate(value.data, measurementSchema, { throwError: true });
+        utils.validateSchema(value.data, measurementSchema, {
+          throwError: true,
+        });
       });
 
       consume(data);
@@ -139,7 +141,7 @@ describe("Digitalmatter sensor node Uplink", () => {
         assert.equal(value.data.hardwareRev, 1);
         assert.equal(value.data.product, 64);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

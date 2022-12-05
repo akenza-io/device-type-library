@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -119,7 +119,7 @@ describe("Xovis Uplink", () => {
           assert.equal(value.data.fw, 1);
         }
 
-        validate(value.data, lineCountSchema, { throwError: true });
+        utils.validateSchema(value.data, lineCountSchema, { throwError: true });
       });
 
       consume(data);
@@ -183,7 +183,7 @@ describe("Xovis Uplink", () => {
           assert.equal(value.data.fw, 1);
         }
 
-        validate(value.data, lineCountSchema, { throwError: true });
+        utils.validateSchema(value.data, lineCountSchema, { throwError: true });
       });
 
       consume(data);

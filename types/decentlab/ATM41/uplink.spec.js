@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -56,7 +56,7 @@ describe("Decentlab ATM41 Uplink", () => {
         assert.equal(value.data.northWindSpeed, 0.08);
         assert.equal(value.data.eastWindSpeed, 0.04);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -74,7 +74,7 @@ describe("Decentlab ATM41 Uplink", () => {
         assert.equal(value.data.yOrientationAngle, -2.4);
         assert.equal(value.data.compassHeading, 86);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

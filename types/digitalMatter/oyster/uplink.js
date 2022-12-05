@@ -73,5 +73,6 @@ function consume(event) {
   const { port } = event.data;
   const data = decoder(Hex.hexToBytes(payload), port);
   const topic = data.type;
+  delete data.type;
   emit("sample", { data, topic });
 }

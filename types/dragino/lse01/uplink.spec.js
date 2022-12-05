@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -49,7 +49,7 @@ describe("Dragino LSE01 Uplink", () => {
         assert.equal(value.data.soilTemperature, 24.59);
         assert.equal(value.data.soilConductivity, 28200);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -60,7 +60,7 @@ describe("Dragino LSE01 Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.voltage, 3.625);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

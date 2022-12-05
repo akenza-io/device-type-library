@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -44,7 +44,7 @@ describe("Watecco BoB Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryLevel, 97.638);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -76,7 +76,7 @@ describe("Watecco BoB Uplink", () => {
         assert.equal(value.data.anomalyLvL50Months, 255);
         assert.equal(value.data.anomalyLvL80Months, 255);
 
-        validate(value.data, reportSchema, { throwError: true });
+        utils.validateSchema(value.data, reportSchema, { throwError: true });
       });
 
       consume(data);
