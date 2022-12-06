@@ -92,8 +92,8 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "temperature");
         assert.equal(value.data.temperature, 25);
         assert.equal(value.data.humidity, 60);
-        assert.equal(value.data.temperature1, 25.52);
-        assert.equal(value.data.humidity1, 59.5);
+        assert.equal(value.data.temperature2, 25.52);
+        assert.equal(value.data.humidity2, 59.5);
 
         utils.validateSchema(value.data, temperatureSchema, {
           throwError: true,

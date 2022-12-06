@@ -29,7 +29,7 @@ function consume(event) {
             ) * 0.5;
           pointer += 8;
           if (measurement === "") {
-            measurement = 1;
+            measurement = 2;
           } else {
             measurement++;
           }

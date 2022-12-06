@@ -44,7 +44,7 @@ describe("Alevel V1 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.66);
+        assert.equal(value.data.batteryVoltage, 3.66);
         assert.equal(value.data.batteryLevel, 0);
         assert.equal(value.data.deviceStatusFlag, 0);
 
