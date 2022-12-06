@@ -8,7 +8,14 @@
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["GPS"],
-  "outputTopics": ["position", "downlink_ack", "stats"],
+  "outputTopics": [
+    "position",
+    "downlink_ack",
+    "stats",
+    "lifecycle",
+    "stats_v3",
+    "watchdog"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }
