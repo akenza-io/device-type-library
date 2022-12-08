@@ -40,9 +40,9 @@ function consume(event) {
       topic = "battery_level";
       sample.batteryLevel = data.batl;
 
-      let { chrg } = data;
-      if (chrg === undefined) {
-        chrg = null;
+      const { chrg } = data;
+      if (chrg !== undefined) {
+        sample.batteryCharge = chrg;
       }
 
       sample.batteryCharge = chrg;
@@ -61,25 +61,25 @@ function consume(event) {
       topic = "network";
       sample.rssi = data.rssi;
 
-      let { rssiDbm } = data;
-      let { neighNodeInfo } = data;
-      let { neighRadioPower } = data;
-      let { neighRadioPowerDbm } = data;
+      const { rssiDbm } = data;
+      const { neighNodeInfo } = data;
+      const { neighRadioPower } = data;
+      const { neighRadioPowerDbm } = data;
 
-      if (rssiDbm === undefined) {
-        rssiDbm = null;
+      if (rssiDbm !== undefined) {
+        sample.rssiDbm = rssiDbm;
       }
 
-      if (neighNodeInfo === undefined) {
-        neighNodeInfo = null;
+      if (neighNodeInfo !== undefined) {
+        sample.neighNodeInfo = neighNodeInfo;
       }
 
-      if (neighRadioPower === undefined) {
-        neighRadioPower = null;
+      if (neighRadioPower !== undefined) {
+        sample.neighRadioPower = neighRadioPower;
       }
 
-      if (neighRadioPowerDbm === undefined) {
-        neighRadioPowerDbm = null;
+      if (neighRadioPowerDbm !== undefined) {
+        sample.neighRadioPowerDbm = neighRadioPowerDbm;
       }
 
       sample.rssiDbm = rssiDbm;

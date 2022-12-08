@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -136,7 +136,7 @@ describe("DigitalMatter Bolt 2 Uplink", () => {
         assert.equal(value.data.speedAccuracy, 5);
         assert.equal(value.data.pdop, 19);
 
-        validate(value.data, gpsSchema, { throwError: true });
+        utils.validateSchema(value.data, gpsSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -149,7 +149,7 @@ describe("DigitalMatter Bolt 2 Uplink", () => {
         assert.equal(value.data.digitalIn, 0);
         assert.equal(value.data.digitalOut, 0);
 
-        validate(value.data, digitalSchema, { throwError: true });
+        utils.validateSchema(value.data, digitalSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -164,7 +164,7 @@ describe("DigitalMatter Bolt 2 Uplink", () => {
         assert.equal(value.data.analog["4"], 21);
         assert.equal(value.data.analog["5"], 0);
 
-        validate(value.data, analogSchema, { throwError: true });
+        utils.validateSchema(value.data, analogSchema, { throwError: true });
       });
 
       consume(data);

@@ -43,6 +43,21 @@
       "unit": "°",
       "type": "number",
       "description": "Azimuth degree"
+    },
+    "downUnit": {
+      "title": "Unit down coordinates",
+      "type": "array",
+      "description": "Unit down coordinates"
+    },
+    "xyzAzimuthDeg": {
+      "title": "XYZ azimuth degree",
+      "type": "array",
+      "description": "XYZ azimuth degree"
+    },
+    "xyzInclinationDeg": {
+      "title": "XYZ inclination degree",
+      "type": "array",
+      "description": "XYZ inclination degree"
     }
   }
 }

@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -59,7 +59,7 @@ describe("Dragino LHT65 Uplink", () => {
         assert.equal(value.data.externalSensor, true);
         assert.equal(value.data.voltage, 3.116);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -71,7 +71,7 @@ describe("Dragino LHT65 Uplink", () => {
         assert.equal(value.data.humidity, 47.6);
         assert.equal(value.data.temperature, 26.01);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -82,7 +82,7 @@ describe("Dragino LHT65 Uplink", () => {
         assert.equal(value.topic, "external");
         assert.equal(value.data.externalTemperature, 327.67);
 
-        validate(value.data, externalSchema, { throwError: true });
+        utils.validateSchema(value.data, externalSchema, { throwError: true });
       });
 
       consume(data);

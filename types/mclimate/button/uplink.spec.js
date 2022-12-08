@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -38,7 +38,7 @@ describe("MClimate Button uplink", () => {
         assert.equal(value.data.temperature, 28.2);
         assert.equal(value.data.thermistorOperational, true);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

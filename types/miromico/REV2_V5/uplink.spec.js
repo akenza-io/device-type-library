@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -36,7 +36,7 @@ describe("Miromico REV2_V5 uplink", () => {
         assert.equal(value.data.batteryLevel, 100);
         assert.equal(value.data.internalTemp, 39);
 
-        validate(value.data, statusSchema, { throwError: true });
+        utils.validateSchema(value.data, statusSchema, { throwError: true });
       });
 
       consume(data);

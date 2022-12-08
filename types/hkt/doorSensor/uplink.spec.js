@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -61,7 +61,7 @@ describe("Should decode the HKT Door Sensor uplinks", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.open, false);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -72,7 +72,7 @@ describe("Should decode the HKT Door Sensor uplinks", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryLevel, 100);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -89,7 +89,7 @@ describe("Should decode the HKT Door Sensor uplinks", () => {
         assert.equal(value.data.lifecycleInterval, 24);
         assert.equal(value.data.mode, 2);
 
-        validate(value.data, systemSchema, { throwError: true });
+        utils.validateSchema(value.data, systemSchema, { throwError: true });
       });
 
       consume(data);
@@ -114,7 +114,7 @@ describe("Should decode the HKT Door Sensor uplinks", () => {
         assert.equal(value.data.absClosings, 500);
         assert.equal(value.data.absOpenings, 500);
 
-        validate(value.data, doorSchema, { throwError: true });
+        utils.validateSchema(value.data, doorSchema, { throwError: true });
       });
 
       consume(data);

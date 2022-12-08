@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -18,6 +18,19 @@ describe("MCF-LW12CO2E Uplink", () => {
           done();
         });
     });
+
+    let timesyncSchema = null;
+    before((done) => {
+      const script = rewire("./uplink.js");
+      consume = utils.init(script);
+      utils
+        .loadSchema(`${__dirname}/time_sync.schema.json`)
+        .then((parsedSchema) => {
+          timesyncSchema = parsedSchema;
+          done();
+        });
+    });
+
     it("should decode MCF-LW12CO2E climate payload", () => {
       const data = {
         data: {
@@ -39,7 +52,7 @@ describe("MCF-LW12CO2E Uplink", () => {
         assert.equal(value.data.voc, 25);
         assert.equal(value.data.co2, 655);
 
-        validate(value.data, climateSchema, { throwError: true });
+        utils.validateSchema(value.data, climateSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -57,24 +70,9 @@ describe("MCF-LW12CO2E Uplink", () => {
         assert.equal(value.data.batteryLevel, 98);
         assert.equal(value.data.rfu, 0);
 
-        validate(value.data, climateSchema, { throwError: true });
+        utils.validateSchema(value.data, climateSchema, { throwError: true });
       });
       consume(data);
-    });
-  });
-
-  describe("consume()", () => {
-    let timesyncSchema = null;
-    let consume = null;
-    before((done) => {
-      const script = rewire("./uplink.js");
-      consume = utils.init(script);
-      utils
-        .loadSchema(`${__dirname}/time_sync.schema.json`)
-        .then((parsedSchema) => {
-          timesyncSchema = parsedSchema;
-          done();
-        });
     });
 
     it("should decode MCF-LW12CO2E time_sync payload", () => {
@@ -96,7 +94,7 @@ describe("MCF-LW12CO2E Uplink", () => {
         assert.equal(value.data.applicationType, 407);
         assert.equal(value.data.rfu, 1);
 
-        validate(value.data, timesyncSchema, { throwError: true });
+        utils.validateSchema(value.data, timesyncSchema, { throwError: true });
       });
       consume(data);
     });

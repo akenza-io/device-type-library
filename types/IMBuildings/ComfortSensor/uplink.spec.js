@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -49,7 +49,7 @@ describe("Comfort sensor", () => {
         assert.equal(value.data.presence, false);
         assert.equal(value.data.temperature, 25.54);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -61,7 +61,7 @@ describe("Comfort sensor", () => {
         assert.equal(value.data.deviceStatus, 3);
         assert.equal(value.data.voltage, 3.51);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

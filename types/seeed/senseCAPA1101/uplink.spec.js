@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -46,7 +46,7 @@ describe("Seeed SenseCAP A1101 Vision Sensor Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.objectDetected1, 0.51);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
@@ -72,7 +72,7 @@ describe("Seeed SenseCAP A1101 Vision Sensor Uplink", () => {
         assert.equal(value.data.hardwareVersion, "1.2");
         assert.equal(value.data.softwareVersion, "1.7");
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -83,7 +83,7 @@ describe("Seeed SenseCAP A1101 Vision Sensor Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.objectDetected1, 0);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

@@ -12,8 +12,72 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     },
+    "temperature2": {
+      "title": "Temperature 2",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "temperature3": {
+      "title": "Temperature 3",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "temperature4": {
+      "title": "Temperature 4",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "temperature5": {
+      "title": "Temperature 5",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
     "humidity": {
       "title": "Humidity",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "humidity2": {
+      "title": "Humidity 2",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "humidity3": {
+      "title": "Humidity 3",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "humidity4": {
+      "title": "Humidity 4",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "humidity5": {
+      "title": "Humidity 5",
       "unit": "%",
       "type": "number",
       "description": "The relative humidity in %",

@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -48,7 +48,9 @@ describe("AM107 Uplink", () => {
 
         if (value.topic === "lifecycle") {
           assert.equal(value.data.batteryLevel, 100);
-          validate(value.data, lifecycleSchema, { throwError: true });
+          utils.validateSchema(value.data, lifecycleSchema, {
+            throwError: true,
+          });
         }
       });
 
@@ -68,7 +70,7 @@ describe("AM107 Uplink", () => {
           assert.equal(value.data.tvoc, 7);
           assert.equal(value.data.pressure, 1008.8);
 
-          validate(value.data, defaultSchema, { throwError: true });
+          utils.validateSchema(value.data, defaultSchema, { throwError: true });
         }
       });
 

@@ -28,7 +28,7 @@
       "description": "Port which received the downlink",
       "hideFromKpis": true
     },
-    "prodId": {
+    "productId": {
       "title": "Product ID",
       "type": "integer",
       "description": "Product ID",

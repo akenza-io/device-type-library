@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -43,7 +43,7 @@ describe("Pipiot levelSense uplink", () => {
         assert.equal(value.data.ultrasonicDistanceExt, 838);
         assert.equal(value.data.laserDistanceExt, 43);
 
-        validate(value.data, extSchema, { throwError: true });
+        utils.validateSchema(value.data, extSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -55,7 +55,7 @@ describe("Pipiot levelSense uplink", () => {
         assert.equal(value.data.temperature, 25);
         assert.equal(value.data.tiltAngle, 4);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

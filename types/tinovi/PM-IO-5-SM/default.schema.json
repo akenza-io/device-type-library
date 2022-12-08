@@ -28,6 +28,11 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     },
+    "e25": {
+      "title": "E25",
+      "type": "number",
+      "description": "E25"
+    },
     "waterContent": {
       "title": "Water content",
       "unit": "VWC",

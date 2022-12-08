@@ -1,11 +1,11 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Should decode the HKT Door Sensor uplinks", () => {
+describe("Should decode the HKT People Counter Sensor uplinks", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
@@ -38,7 +38,7 @@ describe("Should decode the HKT Door Sensor uplinks", () => {
   });
 
   describe("consume()", () => {
-    it("Should decode the HKT Door Sensor Version uplinks", () => {
+    it("Should decode the HKT People Counter Sensor Version uplinks", () => {
       const data = {
         data: {
           payloadHex: "686b74000001010203648601e1040105001e0600648300",
@@ -53,7 +53,7 @@ describe("Should decode the HKT Door Sensor uplinks", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryLevel, 100);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -68,13 +68,13 @@ describe("Should decode the HKT Door Sensor uplinks", () => {
         assert.equal(value.data.infraredError, false);
         assert.equal(value.data.threshold, 100);
 
-        validate(value.data, systemSchema, { throwError: true });
+        utils.validateSchema(value.data, systemSchema, { throwError: true });
       });
 
       consume(data);
     });
 
-    it("Should decode the HKT Door Sensor counter uplinks", () => {
+    it("Should decode the HKT People Counter Sensor counter uplinks", () => {
       const data = {
         data: {
           payloadHex: "686B7400070700780096000000C8000000C8",
@@ -92,12 +92,12 @@ describe("Should decode the HKT Door Sensor uplinks", () => {
         assert.equal(value.data.absCountA, 200);
         assert.equal(value.data.absCountB, 200);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
       consume(data);
     });
 
-    it("Should decode the HKT Door Sensor installed uplinks", () => {
+    it("Should decode the HKT People Counter Sensor installed uplinks", () => {
       const data = {
         data: {
           payloadHex: "686B7400098400",
@@ -112,7 +112,7 @@ describe("Should decode the HKT Door Sensor uplinks", () => {
         assert.equal(value.topic, "system");
         assert.equal(value.data.installed, false);
 
-        validate(value.data, systemSchema, { throwError: true });
+        utils.validateSchema(value.data, systemSchema, { throwError: true });
       });
       consume(data);
     });

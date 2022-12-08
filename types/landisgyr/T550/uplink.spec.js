@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -49,7 +49,7 @@ describe("Landis & Gyr WZU Uplink", () => {
         assert.equal(value.data.flowTemp, 111.5);
         assert.equal(value.data.backFlowTemp, 66.7);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
@@ -60,7 +60,7 @@ describe("Landis & Gyr WZU Uplink", () => {
         assert.equal(value.data.header, "STANDARD");
         assert.equal(value.data.serialID, 66489728);
         assert.equal(value.data.errFlags, "000017");
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
       consume(data);
     });

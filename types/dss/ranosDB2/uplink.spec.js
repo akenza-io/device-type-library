@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -45,7 +45,7 @@ describe("DSS Ranos dB 2 Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.voltage, 7);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -57,7 +57,7 @@ describe("DSS Ranos dB 2 Uplink", () => {
         assert.equal(value.data.latitude, 47.3749957);
         assert.equal(value.data.longitude, 8.5647153);
 
-        validate(value.data, gpsSchema, { throwError: true });
+        utils.validateSchema(value.data, gpsSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -77,7 +77,7 @@ describe("DSS Ranos dB 2 Uplink", () => {
         assert.equal(value.data.negativePeakHoldA, 40.7);
         assert.equal(value.data.negativePeakHoldC, 52.1);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

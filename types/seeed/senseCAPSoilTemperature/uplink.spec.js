@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -36,7 +36,7 @@ describe("Seeed SenseCAP Wireless Soil Moisture and Temperature Sensor Uplink", 
         if (value.topic === "default") {
           assert.equal(value.data.temperature, 32);
           assert.equal(value.data.soilHumidity, 20.85);
-          validate(value.data, defaultSchema, { throwError: true });
+          utils.validateSchema(value.data, defaultSchema, { throwError: true });
         }
       });
 

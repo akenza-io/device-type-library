@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -51,7 +51,9 @@ describe("Yanzi Comfort Sensor Uplink", () => {
         assert.equal(value.topic, "temperature");
         assert.equal(value.data.temperature, 29.24);
 
-        validate(value.data, temperatureSchema, { throwError: true });
+        utils.validateSchema(value.data, temperatureSchema, {
+          throwError: true,
+        });
       });
 
       consume(data);
@@ -78,7 +80,7 @@ describe("Yanzi Comfort Sensor Uplink", () => {
         assert.equal(value.topic, "humidity");
         assert.equal(value.data.humidity, 38.3);
 
-        validate(value.data, humiditySchema, { throwError: true });
+        utils.validateSchema(value.data, humiditySchema, { throwError: true });
       });
 
       consume(data);

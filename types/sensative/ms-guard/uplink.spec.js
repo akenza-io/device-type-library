@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -55,7 +55,7 @@ describe("Sensative strip", () => {
         assert.equal(value.data.historySeqNr, 65535);
         assert.equal(value.data.prevHistSeqNr, 65535);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -66,7 +66,7 @@ describe("Sensative strip", () => {
         assert.equal(value.topic, "alarm");
         assert.equal(value.data.doorAlarm, true);
 
-        validate(value.data, alarmSchema, { throwError: true });
+        utils.validateSchema(value.data, alarmSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -78,7 +78,7 @@ describe("Sensative strip", () => {
         assert.equal(value.data.temperature, 0);
         assert.equal(value.data.closed, false);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

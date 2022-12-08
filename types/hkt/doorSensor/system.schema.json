@@ -16,7 +16,7 @@
       "description": "Software version",
       "hideFromKpis": true
     },
-    "Working mode": {
+    "mode": {
       "title": "Mode",
       "type": "integer",
       "description": "Working mode 1: During the counting hours, the device will periodically report the number of times the door sensor is opened and closed in the previous cycle and the total accumulated times. Outside the counting hours, the device runs in trigger mode. Working mode 2: Trigger mode (Default): Every time the tamper alarm is triggered or the door is opened or closed, the device reports data immediately.",

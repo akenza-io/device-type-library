@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-# [1.29.0] - 2022-12-01
+# [1.30.0] - 2022-12-01
 
 ### Added
 
@@ -30,10 +30,19 @@ All notable changes to this project will be documented in this file.
 - Milesight - WS156
 - Milesight - WS302
 
+# [1.29.0] - 2022-12-06
+
+### Changed
+
+- Added check for misspelled/missing keys in schema files
+- Added check for missing topics in meta files
+- Fixed those occurrences
+
 # [1.28.0] - 2022-11-29
 
 ### Added
 
+- Ascoel - PB868LR
 - Seeed - SenseCAP S2101
 - Seeed - SenseCAP S2102
 - Seeed - SenseCAP S2103

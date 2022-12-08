@@ -48,7 +48,6 @@ function handleKeepalive(bytes, data) {
   if (Number(bytes[0].toString(16)) === 81) {
     sensorTemp = (bytes[2] - 28.33333) / 5.66666;
   }
-  data.reason = Number(bytes[0].toString(16));
   data.targetTemperature = Number(bytes[1]);
   data.sensorTemperature = Number(sensorTemp.toFixed(2));
   data.relativeHumidity = Number(((bytes[3] * 100) / 256).toFixed(2));

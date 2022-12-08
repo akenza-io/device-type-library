@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -46,7 +46,7 @@ describe("WS301 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.data.batteryLevel, 100);
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -57,7 +57,7 @@ describe("WS301 Uplink", () => {
         assert.equal(value.data.open, true);
         assert.equal(value.data.installed, false);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
