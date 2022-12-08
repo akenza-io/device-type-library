@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.29.0] - 2022-12-06
+
+### Changed
+
+- Added check for misspelled/missing keys in schema files
+- Added check for missing topics in meta files
+- Fixed those occurrences
+
 # [1.28.0] - 2022-11-29
 
 ### Added

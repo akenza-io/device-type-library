@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -56,7 +56,7 @@ describe("ioTracker 3 uplink", () => {
         assert.equal(value.data.crc, 0);
         assert.equal(value.data.batteryLevel, 98);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -70,7 +70,7 @@ describe("ioTracker 3 uplink", () => {
         assert.equal(value.data.maxAccelerationNew, 16.384);
         assert.equal(value.data.maxAccelerationHistory, 16.384);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
@@ -103,7 +103,7 @@ describe("ioTracker 3 uplink", () => {
         assert.equal(value.data.sog, 1.9);
         assert.equal(value.data.vAcc, 16);
 
-        validate(value.data, gpsSchema, { throwError: true });
+        utils.validateSchema(value.data, gpsSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -116,7 +116,7 @@ describe("ioTracker 3 uplink", () => {
         assert.equal(value.data.crc, 3);
         assert.equal(value.data.batteryLevel, 98);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -130,7 +130,7 @@ describe("ioTracker 3 uplink", () => {
         assert.equal(value.data.maxAccelerationNew, 0);
         assert.equal(value.data.temperature, 28.24);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

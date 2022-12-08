@@ -16,11 +16,7 @@
     "VOC",
     "Barometric Pressure"
   ],
-  "outputTopics": [
-    "default",
-    "occupancy",
-    "lifecycle"
-  ],
+  "outputTopics": ["default", "occupancy", "lifecycle"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

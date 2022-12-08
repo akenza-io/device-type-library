@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -53,7 +53,7 @@ describe("Comtac Cluey KM Uplink", () => {
         assert.equal(value.data.limit, false);
         assert.equal(value.data.state, 1);
 
-        validate(value.data, digitalSchema, { throwError: true });
+        utils.validateSchema(value.data, digitalSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -70,7 +70,7 @@ describe("Comtac Cluey KM Uplink", () => {
         assert.equal(value.data.limit, false);
         assert.equal(value.data.state, 1);
 
-        validate(value.data, digitalSchema, { throwError: true });
+        utils.validateSchema(value.data, digitalSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -87,7 +87,7 @@ describe("Comtac Cluey KM Uplink", () => {
         assert.equal(value.data.limit, false);
         assert.equal(value.data.state, 1);
 
-        validate(value.data, digitalSchema, { throwError: true });
+        utils.validateSchema(value.data, digitalSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -104,7 +104,7 @@ describe("Comtac Cluey KM Uplink", () => {
         assert.equal(value.data.limit, false);
         assert.equal(value.data.state, 1);
 
-        validate(value.data, digitalSchema, { throwError: true });
+        utils.validateSchema(value.data, digitalSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -121,7 +121,7 @@ describe("Comtac Cluey KM Uplink", () => {
         assert.equal(value.data.limit, false);
         assert.equal(value.data.state, 1);
 
-        validate(value.data, digitalSchema, { throwError: true });
+        utils.validateSchema(value.data, digitalSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -138,7 +138,7 @@ describe("Comtac Cluey KM Uplink", () => {
         assert.equal(value.data.limit, false);
         assert.equal(value.data.state, 1);
 
-        validate(value.data, digitalSchema, { throwError: true });
+        utils.validateSchema(value.data, digitalSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -155,7 +155,7 @@ describe("Comtac Cluey KM Uplink", () => {
         assert.equal(value.data.limit, false);
         assert.equal(value.data.state, 1);
 
-        validate(value.data, digitalSchema, { throwError: true });
+        utils.validateSchema(value.data, digitalSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -172,7 +172,7 @@ describe("Comtac Cluey KM Uplink", () => {
         assert.equal(value.data.limit, false);
         assert.equal(value.data.state, 1);
 
-        validate(value.data, digitalSchema, { throwError: true });
+        utils.validateSchema(value.data, digitalSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -191,7 +191,7 @@ describe("Comtac Cluey KM Uplink", () => {
         assert.equal(value.data.timeSynced, false);
         assert.equal(value.data.txCreditsConsumed, false);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

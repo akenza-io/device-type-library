@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -39,7 +39,7 @@ describe("Gavazzi UWPA/UWPM", () => {
         assert.equal(value.data.l2A, 0.24);
         assert.equal(value.data.l2KW, 0.0299);
         assert.equal(value.data.totalKWh, 1833.8);
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

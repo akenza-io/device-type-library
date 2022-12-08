@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -94,7 +94,9 @@ describe("Swisscom Multisense Uplinks", () => {
         assert.equal(value.topic, "temperature");
         assert.equal(value.data.temperature, 23.73);
 
-        validate(value.data, temperatureSchema, { throwError: true });
+        utils.validateSchema(value.data, temperatureSchema, {
+          throwError: true,
+        });
       });
 
       utils.expectEmits((type, value) => {
@@ -105,7 +107,7 @@ describe("Swisscom Multisense Uplinks", () => {
         assert.equal(value.topic, "humidity");
         assert.equal(value.data.humidity, 55);
 
-        validate(value.data, humiditySchema, { throwError: true });
+        utils.validateSchema(value.data, humiditySchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -116,7 +118,9 @@ describe("Swisscom Multisense Uplinks", () => {
         assert.equal(value.topic, "reed_counter");
         assert.equal(value.data.reedCounter, 23);
 
-        validate(value.data, reedCounterSchema, { throwError: true });
+        utils.validateSchema(value.data, reedCounterSchema, {
+          throwError: true,
+        });
       });
 
       utils.expectEmits((type, value) => {
@@ -127,7 +131,9 @@ describe("Swisscom Multisense Uplinks", () => {
         assert.equal(value.topic, "motion_counter");
         assert.equal(value.data.motionCounter, 4738);
 
-        validate(value.data, motionCounterSchema, { throwError: true });
+        utils.validateSchema(value.data, motionCounterSchema, {
+          throwError: true,
+        });
       });
 
       utils.expectEmits((type, value) => {
@@ -140,7 +146,9 @@ describe("Swisscom Multisense Uplinks", () => {
         assert.equal(value.data.accY, 124);
         assert.equal(value.data.accZ, -4);
 
-        validate(value.data, accelerationSchema, { throwError: true });
+        utils.validateSchema(value.data, accelerationSchema, {
+          throwError: true,
+        });
       });
 
       utils.expectEmits((type, value) => {
@@ -150,7 +158,7 @@ describe("Swisscom Multisense Uplinks", () => {
 
         assert.equal(value.topic, "event");
         assert.equal(value.data.event, "TIMED_EVENT");
-        validate(value.data, eventSchema, { throwError: true });
+        utils.validateSchema(value.data, eventSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -163,7 +171,7 @@ describe("Swisscom Multisense Uplinks", () => {
         assert.equal(value.data.mode, 0);
         assert.equal(value.data.voltage, 3);
         assert.equal(value.data.batteryLevel, 64);
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -186,7 +194,7 @@ describe("Swisscom Multisense Uplinks", () => {
 
         assert.equal(value.topic, "event");
         assert.equal(value.data.event, "BUTTON_EVENT");
-        validate(value.data, eventSchema, { throwError: true });
+        utils.validateSchema(value.data, eventSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -199,7 +207,7 @@ describe("Swisscom Multisense Uplinks", () => {
         assert.equal(value.data.mode, 0);
         assert.equal(value.data.voltage, 3.1);
         assert.equal(value.data.batteryLevel, 71);
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -222,7 +230,9 @@ describe("Swisscom Multisense Uplinks", () => {
 
         assert.equal(value.topic, "reed_counter");
         assert.equal(value.data.reedCounter, 2694);
-        validate(value.data, reedCounterSchema, { throwError: true });
+        utils.validateSchema(value.data, reedCounterSchema, {
+          throwError: true,
+        });
       });
 
       utils.expectEmits((type, value) => {
@@ -232,7 +242,7 @@ describe("Swisscom Multisense Uplinks", () => {
 
         assert.equal(value.topic, "event");
         assert.equal(value.data.event, "REED_EVENT");
-        validate(value.data, eventSchema, { throwError: true });
+        utils.validateSchema(value.data, eventSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -245,7 +255,7 @@ describe("Swisscom Multisense Uplinks", () => {
         assert.equal(value.data.mode, 0);
         assert.equal(value.data.voltage, 3);
         assert.equal(value.data.batteryLevel, 67);
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

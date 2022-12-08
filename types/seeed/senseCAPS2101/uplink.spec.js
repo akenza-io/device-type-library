@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -37,7 +37,7 @@ describe("Seeed SenseCAP S2101 Air Temperature and Humidity Sensor Uplink", () =
         assert.equal(value.data.humidity, 62.6);
         assert.equal(value.data.temperature, 26.8);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

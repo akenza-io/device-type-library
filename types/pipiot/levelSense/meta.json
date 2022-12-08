@@ -14,7 +14,7 @@
     "ext",
     "gnss",
     "lifecycle",
-    "rss_test"
+    "rssi_test"
   ],
   "encoding": "HEX",
   "connectivity": "Sigfox"

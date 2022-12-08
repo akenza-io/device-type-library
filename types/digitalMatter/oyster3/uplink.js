@@ -90,11 +90,6 @@ function consume(event) {
       lifecycle.voltage = Number((3.5 + 0.032 * lifecycle.voltage).toFixed(3));
     }
     const crit = bits.U32LE(2);
-    if (crit === 1) {
-      data.batCritical = false;
-    } else {
-      data.batCritical = true;
-    }
     data = Object.assign(data, l);
   } else if (port === 30) {
     topic = "watchdog";

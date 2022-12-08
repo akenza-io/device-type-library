@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -51,7 +51,7 @@ describe("MClimate Vicky uplink", () => {
         assert.equal(value.data.openWindow, false);
         assert.equal(value.data.childLock, true);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -65,7 +65,7 @@ describe("MClimate Vicky uplink", () => {
         assert.equal(value.data.lowMotorConsumption, false);
         assert.equal(value.data.brokenSensor, false);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -49,7 +49,7 @@ describe("Adeunis dry contact", () => {
         assert.equal(value.data.lowBattery, false);
         assert.equal(value.data.configurationDone, false);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -63,7 +63,7 @@ describe("Adeunis dry contact", () => {
         assert.equal(value.data.state, true);
         assert.equal(value.data.value, 1);
 
-        validate(value.data, channelSchema, { throwError: true });
+        utils.validateSchema(value.data, channelSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -77,7 +77,7 @@ describe("Adeunis dry contact", () => {
         assert.equal(value.data.state, false);
         assert.equal(value.data.value, 0);
 
-        validate(value.data, channelSchema, { throwError: true });
+        utils.validateSchema(value.data, channelSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -91,7 +91,7 @@ describe("Adeunis dry contact", () => {
         assert.equal(value.data.state, false);
         assert.equal(value.data.value, 5);
 
-        validate(value.data, channelSchema, { throwError: true });
+        utils.validateSchema(value.data, channelSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -105,7 +105,7 @@ describe("Adeunis dry contact", () => {
         assert.equal(value.data.state, false);
         assert.equal(value.data.value, 2);
 
-        validate(value.data, channelSchema, { throwError: true });
+        utils.validateSchema(value.data, channelSchema, { throwError: true });
       });
       consume(data);
     });

@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -47,7 +47,7 @@ describe("Alevel V2 Uplink", () => {
         assert.equal(value.data.batteryStatus, "HEALTHY");
         assert.equal(value.data.currentProfile, "IMR_LORA_SIGFOX");
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -68,7 +68,7 @@ describe("Alevel V2 Uplink", () => {
         assert.equal(value.data.outOfRange, false);
         assert.equal(value.data.notValidReadout, false);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

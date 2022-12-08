@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -40,7 +40,7 @@ describe("Comtac LPN DO-2 Uplink", () => {
         assert.equal(value.data.do_2_lora, 0);
         assert.equal(value.data.manually, 0);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

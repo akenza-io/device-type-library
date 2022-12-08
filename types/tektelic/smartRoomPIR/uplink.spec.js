@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -60,7 +60,7 @@ describe("Tektelic Smart Room PIR Sensor Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.voltage, 3.16);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -72,7 +72,7 @@ describe("Tektelic Smart Room PIR Sensor Uplink", () => {
         assert.equal(value.data.temperature, 23.6);
         assert.equal(value.data.humidity, 31);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
@@ -95,7 +95,7 @@ describe("Tektelic Smart Room PIR Sensor Uplink", () => {
         assert.equal(value.data.motion, 0);
         assert.equal(value.data.occupancy, 0);
 
-        validate(value.data, occupancySchema, { throwError: true });
+        utils.validateSchema(value.data, occupancySchema, { throwError: true });
       });
 
       consume(data);
@@ -118,7 +118,7 @@ describe("Tektelic Smart Room PIR Sensor Uplink", () => {
         assert.equal(value.data.motion, 1);
         assert.equal(value.data.occupancy, 1);
 
-        validate(value.data, occupancySchema, { throwError: true });
+        utils.validateSchema(value.data, occupancySchema, { throwError: true });
       });
 
       consume(data);

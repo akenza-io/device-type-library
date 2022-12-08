@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -57,7 +57,7 @@ describe("IMBuilding People counter", () => {
         assert.equal(value.data.counterA, 3);
         assert.equal(value.data.counterB, 2);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -69,7 +69,9 @@ describe("IMBuilding People counter", () => {
         assert.equal(value.data.totalCounterA, 1539);
         assert.equal(value.data.totalCounterB, 1510);
 
-        validate(value.data, totalCounterSchema, { throwError: true });
+        utils.validateSchema(value.data, totalCounterSchema, {
+          throwError: true,
+        });
       });
 
       utils.expectEmits((type, value) => {
@@ -83,7 +85,7 @@ describe("IMBuilding People counter", () => {
         assert.equal(value.data.sensorStatus, 32);
         assert.equal(value.data.voltage, 2.48);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -59,11 +59,10 @@ describe("Haltian Thingsee Environment Sensor Uplink", () => {
 
         assert.equal(value.topic, "environment");
         assert.equal(value.data.pressure, 97021.277);
-        assert.equal(value.data.temperature, null);
-        assert.equal(value.data.humidity, null);
-        assert.equal(value.data.light, null);
 
-        validate(value.data, environmentSchema, { throwError: false });
+        utils.validateSchema(value.data, environmentSchema, {
+          throwError: true,
+        });
       });
 
       utils.expectEmits((type, value) => {
@@ -74,7 +73,7 @@ describe("Haltian Thingsee Environment Sensor Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.reason, "CHANGE");
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -104,7 +103,9 @@ describe("Haltian Thingsee Environment Sensor Uplink", () => {
         assert.equal(value.data.accY, 37);
         assert.equal(value.data.accZ, 950);
 
-        validate(value.data, orientationSchema, { throwError: false });
+        utils.validateSchema(value.data, orientationSchema, {
+          throwError: true,
+        });
       });
 
       utils.expectEmits((type, value) => {
@@ -115,7 +116,7 @@ describe("Haltian Thingsee Environment Sensor Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.reason, "TIME");
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

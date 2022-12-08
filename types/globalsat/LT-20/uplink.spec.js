@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -44,7 +44,7 @@ describe("Globalsat LT-20 uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.data.batteryPercent, 100);
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -56,7 +56,7 @@ describe("Globalsat LT-20 uplink", () => {
         assert.equal(value.data.latitude, -31.8965256);
         assert.equal(value.data.gpsFix, "Not fix");
         assert.equal(value.data.reportType, "Motion mode static report");
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

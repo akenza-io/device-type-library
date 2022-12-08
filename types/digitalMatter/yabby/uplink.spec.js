@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -52,7 +52,7 @@ describe("Digital matter Yabby Uplink", () => {
         assert.equal(value.data.speedKmph, 0);
         assert.equal(value.data.voltage, 5.55);
 
-        validate(value.data, positionSchema, { throwError: true });
+        utils.validateSchema(value.data, positionSchema, { throwError: true });
       });
 
       consume(data);
@@ -83,7 +83,7 @@ describe("Digital matter Yabby Uplink", () => {
         assert.equal(value.data.wakeupsPerTrip, 56);
         assert.equal(value.data.uptimeWeeks, 189);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -36,7 +36,7 @@ describe("PNIcorp place pod Uplink", () => {
         assert.equal(value.topic, "occupancy");
         assert.equal(value.data.occupancy, 0);
 
-        validate(value.data, occupancySchema, { throwError: true });
+        utils.validateSchema(value.data, occupancySchema, { throwError: true });
       });
 
       consume(data);

@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -36,7 +36,7 @@ describe("Globalsat LS-113G uplink", () => {
         assert.equal(value.data.temperature, 24.01);
         assert.equal(value.data.pm2_5, 0);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

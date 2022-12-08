@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -131,7 +131,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.fw, 0);
         assert.equal(value.data.bw, 1);
 
-        validate(value.data, lineCountSchema, { throwError: true });
+        utils.validateSchema(value.data, lineCountSchema, { throwError: true });
       });
 
       consume(data);
@@ -245,7 +245,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.timeStatus, "OK");
         assert.equal(value.data.updateStatus, "OK");
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -416,7 +416,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.fw, 1);
         assert.equal(value.data.bw, 0);
 
-        validate(value.data, lineCountSchema, { throwError: true });
+        utils.validateSchema(value.data, lineCountSchema, { throwError: true });
       });
 
       consume(data);
@@ -646,7 +646,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.fw, 0);
         assert.equal(value.data.bw, 1);
 
-        validate(value.data, lineCountSchema, { throwError: true });
+        utils.validateSchema(value.data, lineCountSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -658,7 +658,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.fw, 0);
         assert.equal(value.data.bw, 1);
 
-        validate(value.data, lineCountSchema, { throwError: true });
+        utils.validateSchema(value.data, lineCountSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -670,7 +670,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.fw, 1);
         assert.equal(value.data.bw, 0);
 
-        validate(value.data, lineCountSchema, { throwError: true });
+        utils.validateSchema(value.data, lineCountSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -682,7 +682,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.fw, 1);
         assert.equal(value.data.bw, 0);
 
-        validate(value.data, lineCountSchema, { throwError: true });
+        utils.validateSchema(value.data, lineCountSchema, { throwError: true });
       });
 
       consume(data);
@@ -3383,7 +3383,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.trackId, 1128);
         assert.equal(value.data.sequenceNumber, 0);
 
-        validate(value.data, trackSchema, { throwError: true });
+        utils.validateSchema(value.data, trackSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -3397,7 +3397,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.trackId, 1128);
         assert.equal(value.data.sequenceNumber, 0);
 
-        validate(value.data, trackSchema, { throwError: true });
+        utils.validateSchema(value.data, trackSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -3409,7 +3409,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.fw, 0);
         assert.equal(value.data.bw, 1);
 
-        validate(value.data, lineCountSchema, { throwError: true });
+        utils.validateSchema(value.data, lineCountSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -3422,7 +3422,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.countType, "COUNT_INCREMENT");
         assert.equal(value.data.logicName, "Zone 0");
 
-        validate(value.data, countSchema, { throwError: true });
+        utils.validateSchema(value.data, countSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -3435,7 +3435,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.trackId, 1105);
         assert.equal(value.data.sequenceNumber, 0);
 
-        validate(value.data, trackSchema, { throwError: true });
+        utils.validateSchema(value.data, trackSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -3448,7 +3448,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.trackId, 1129);
         assert.equal(value.data.sequenceNumber, 0);
 
-        validate(value.data, trackSchema, { throwError: true });
+        utils.validateSchema(value.data, trackSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -3462,7 +3462,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.trackId, 1129);
         assert.equal(value.data.sequenceNumber, 0);
 
-        validate(value.data, trackSchema, { throwError: true });
+        utils.validateSchema(value.data, trackSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -3474,7 +3474,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.fw, 0);
         assert.equal(value.data.bw, 1);
 
-        validate(value.data, lineCountSchema, { throwError: true });
+        utils.validateSchema(value.data, lineCountSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -3487,7 +3487,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.countType, "COUNT_INCREMENT");
         assert.equal(value.data.logicName, "Zone 0");
 
-        validate(value.data, countSchema, { throwError: true });
+        utils.validateSchema(value.data, countSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -3500,7 +3500,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.trackId, 1106);
         assert.equal(value.data.sequenceNumber, 0);
 
-        validate(value.data, trackSchema, { throwError: true });
+        utils.validateSchema(value.data, trackSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -3513,7 +3513,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.trackId, 1130);
         assert.equal(value.data.sequenceNumber, 0);
 
-        validate(value.data, trackSchema, { throwError: true });
+        utils.validateSchema(value.data, trackSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -3527,7 +3527,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.trackId, 1130);
         assert.equal(value.data.sequenceNumber, 0);
 
-        validate(value.data, trackSchema, { throwError: true });
+        utils.validateSchema(value.data, trackSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -3540,7 +3540,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.countType, "COUNT_INCREMENT");
         assert.equal(value.data.logicName, "Zone 0");
 
-        validate(value.data, countSchema, { throwError: true });
+        utils.validateSchema(value.data, countSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -3554,7 +3554,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.trackId, 1130);
         assert.equal(value.data.sequenceNumber, 0);
 
-        validate(value.data, trackSchema, { throwError: true });
+        utils.validateSchema(value.data, trackSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -3566,7 +3566,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.fw, 1);
         assert.equal(value.data.bw, 0);
 
-        validate(value.data, lineCountSchema, { throwError: true });
+        utils.validateSchema(value.data, lineCountSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -3578,7 +3578,9 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.countType, "COUNT_DECREMENT");
         assert.equal(value.data.logicName, "Zone 0");
 
-        validate(value.data, countSchema, { throwError: true });
+        utils.validateSchema(value.data, countSchema, {
+          throwError: true,
+        });
       });
 
       utils.expectEmits((type, value) => {
@@ -3591,7 +3593,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.trackId, 1107);
         assert.equal(value.data.sequenceNumber, 0);
 
-        validate(value.data, trackSchema, { throwError: true });
+        utils.validateSchema(value.data, trackSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -3605,7 +3607,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.trackId, 1107);
         assert.equal(value.data.sequenceNumber, 0);
 
-        validate(value.data, trackSchema, { throwError: true });
+        utils.validateSchema(value.data, trackSchema, { throwError: true });
       });
 
       consume(data);
@@ -3666,7 +3668,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.topic, "gender");
         assert.equal(value.data.gender, "MALE");
 
-        validate(value.data, genderSchema, { throwError: true });
+        utils.validateSchema(value.data, genderSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -3677,7 +3679,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.topic, "tag");
         assert.equal(value.data.tag, false);
 
-        validate(value.data, tagSchema, { throwError: true });
+        utils.validateSchema(value.data, tagSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -3688,7 +3690,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.topic, "face_mask");
         assert.equal(value.data.faceMask, false);
 
-        validate(value.data, faceMaskSchema, { throwError: true });
+        utils.validateSchema(value.data, faceMaskSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -3700,7 +3702,9 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.xCoordinate, 0.497341);
         assert.equal(value.data.yCoordinate, -0.867555);
 
-        validate(value.data, viewDirectionSchema, { throwError: true });
+        utils.validateSchema(value.data, viewDirectionSchema, {
+          throwError: true,
+        });
       });
 
       consume(data);
