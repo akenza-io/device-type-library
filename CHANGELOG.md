@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Ascoel - PB868LR
 - Seeed - SenseCAP S2101
 - Seeed - SenseCAP S2102
 - Seeed - SenseCAP S2103
