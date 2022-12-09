@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -56,7 +56,7 @@ describe("Comtac LPN CM-4 Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 23.15);
         assert.equal(value.data.humidity, 64);
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -79,7 +79,7 @@ describe("Comtac LPN CM-4 Uplink", () => {
         assert.equal(value.data.async, false);
         assert.equal(value.data.batteryLevel, 99);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -117,7 +117,7 @@ describe("Comtac LPN CM-4 Uplink", () => {
         assert.equal(value.data.humHistory6, 64);
         assert.equal(value.data.tempHistory7, 23.15);
         assert.equal(value.data.humHistory7, 64);
-        validate(value.data, historySchema, { throwError: true });
+        utils.validateSchema(value.data, historySchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -140,7 +140,7 @@ describe("Comtac LPN CM-4 Uplink", () => {
         assert.equal(value.data.async, false);
         assert.equal(value.data.batteryLevel, 99);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

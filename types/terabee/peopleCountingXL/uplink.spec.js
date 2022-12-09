@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -51,7 +51,7 @@ describe("Terabee people counting XL Uplink", () => {
         assert.equal(value.data.fw, 23);
         assert.equal(value.data.bw, 12);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
@@ -74,7 +74,7 @@ describe("Terabee people counting XL Uplink", () => {
         assert.equal(value.data.fw, 2);
         assert.equal(value.data.bw, 3);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -88,7 +88,7 @@ describe("Terabee people counting XL Uplink", () => {
         assert.equal(value.data.tpcStuck, true);
         assert.equal(value.data.tpcStopped, true);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

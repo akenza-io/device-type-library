@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -64,7 +64,7 @@ describe("Digital Technologies CO2 Sensor Uplink", () => {
         assert.equal(value.data.temperature, 22.45);
         assert.equal(value.data.humidity, 17);
 
-        validate(value.data, humiditySchema, { throwError: true });
+        utils.validateSchema(value.data, humiditySchema, { throwError: true });
       });
 
       consume(data);
@@ -93,7 +93,7 @@ describe("Digital Technologies CO2 Sensor Uplink", () => {
         assert.equal(value.topic, "pressure");
         assert.equal(value.data.pressure, 94936);
 
-        validate(value.data, pressureSchema, { throwError: true });
+        utils.validateSchema(value.data, pressureSchema, { throwError: true });
       });
 
       consume(data);
@@ -123,7 +123,7 @@ describe("Digital Technologies CO2 Sensor Uplink", () => {
         assert.equal(value.topic, "co2");
         assert.equal(value.data.co2, 617);
 
-        validate(value.data, co2Schema, { throwError: true });
+        utils.validateSchema(value.data, co2Schema, { throwError: true });
       });
 
       consume(data);

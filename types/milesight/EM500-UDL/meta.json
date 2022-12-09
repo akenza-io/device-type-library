@@ -1,0 +1,14 @@
+{
+  "name": "EM500-UDL",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight-iot.com/lorawan/sensor/em500-udl/",
+  "description": "EM500-UDL provides highly accurate distance measurement for a variety of applications in harsh environments like flood monitoring, wastewater management, fill level monitoring in grains or fertilizer. The measurement is based on ultrasonic waves transmitted and reflected back from nearby objects.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Distance"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

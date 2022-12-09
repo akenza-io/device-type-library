@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -38,7 +38,7 @@ describe("Talkpool OY1210 Uplink", () => {
         assert.equal(value.data.humidity, 25.3);
         assert.equal(value.data.co2, 689);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

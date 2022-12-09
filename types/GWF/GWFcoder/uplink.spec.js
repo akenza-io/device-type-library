@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -47,7 +47,7 @@ describe("GWF RCM®-LRW10", () => {
         assert.equal(value.data.meterMedium, "WATER");
         assert.equal(value.data.actualityDuration, 456);
         assert.equal(value.data.volume, 1.016);
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -74,7 +74,7 @@ describe("GWF RCM®-LRW10", () => {
         assert.equal(value.data.loraLinkError, false);
         assert.equal(value.data.batteryLifetime, 138);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

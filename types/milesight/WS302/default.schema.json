@@ -1,0 +1,38 @@
+{
+  "$id": "https://akenza.io/milesight/WS302/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "freqWeight": {
+      "title": "Frequency weighting",
+      "type": "string",
+      "description": "Frequency weighting",
+      "enum": ["Z", "A", "B"]
+    },
+    "timeWeight": {
+      "title": "Time weighting",
+      "type": "string",
+      "description": "Time weighting",
+      "enum": ["IMPULSE", "FAST", "SLOW"]
+    },
+    "la": {
+      "title": "Sound Pressure Level",
+      "description": "Sound Pressure Level",
+      "unit": "dB",
+      "type": "number"
+    },
+    "laeq": {
+      "title": "Sound Pressure Level Overall",
+      "description": "Sound Pressure Level Overall",
+      "unit": "dB",
+      "type": "number"
+    },
+    "lamax": {
+      "title": "Sound Pressure Level Maximum",
+      "description": "Sound Pressure Level Maximum",
+      "unit": "dB",
+      "type": "number"
+    }
+  }
+}

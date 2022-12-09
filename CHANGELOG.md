@@ -4,10 +4,45 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.30.0] - 2022-12-09
+
+### Added
+
+- Milesight - AM103
+- Milesight - AM307
+- Milesight - AM308
+- Milesight - AM319
+- Milesight - EM300-MCS
+- Milesight - EM300-SLD
+- Milesight - EM310-TILT
+- Milesight - EM310-UDL
+- Milesight - EM320-TH
+- Milesight - EM320-TILT
+- Milesight - EM500-LGT
+- Milesight - EM500PP
+- Milesight - EM500-PT100
+- Milesight - EM500-SMTC
+- Milesight - EM500-UDL
+- Milesight - WS50X
+- Milesight - WS50X2
+- Milesight - WS52X
+- Milesight - WS136
+- Milesight - WS156
+- Milesight - WS302
+
+# [1.29.0] - 2022-12-06
+
+### Changed
+
+- Added check for misspelled/missing keys in schema files
+- Added check for missing topics in meta files
+- Fixed those occurrences
+
 # [1.28.0] - 2022-11-29
 
 ### Added
 
+- Ascoel - PB868LR
 - Seeed - SenseCAP S2101
 - Seeed - SenseCAP S2102
 - Seeed - SenseCAP S2103

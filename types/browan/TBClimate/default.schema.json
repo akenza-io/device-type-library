@@ -37,7 +37,7 @@
       "title": "VOC",
       "unit": "ppm",
       "type": "integer",
-      "description": "Total Volatile Organic Compunds in ppm",
+      "description": "Total Volatile Organic Compounds in ppm",
       "minimum": 0,
       "maximum": 60000
     }

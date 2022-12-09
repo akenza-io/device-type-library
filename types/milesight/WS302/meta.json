@@ -1,0 +1,14 @@
+{
+  "name": "WS302",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight-iot.com/lorawan/sensor/ws302/",
+  "description": "WS302 is an advanced LoRaWAN® Sensor for monitoring noise/sound level in decibels (dB) with ease. Choose A-weighting or C-weighting based on scenarios. Usually, A-weighting is appropriate for quiet environments while C-weighting is for noisy environments.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Noise"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

@@ -69,7 +69,7 @@
       "type": "boolean",
       "hideFromKpis": true
     },
-    "outOfRangeError": {
+    "outOfRange": {
       "title": "Out of range error",
       "description": "Is true if an out of range error is detected",
       "type": "boolean",

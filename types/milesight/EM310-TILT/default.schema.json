@@ -1,0 +1,38 @@
+{
+  "$id": "https://akenza.io/milesight/EM310-TILT/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "xAngle": {
+      "title": "X-Angle",
+      "type": "number",
+      "description": "Position on x angle"
+    },
+    "yAngle": {
+      "title": "Y-Angle",
+      "type": "number",
+      "description": "Position on y angle"
+    },
+    "zAngle": {
+      "title": "Z-Angle",
+      "type": "number",
+      "description": "Position on z angle"
+    },
+    "xThresholdReached": {
+      "title": "X threshold reached",
+      "type": "boolean",
+      "description": "True if the x threshold has been reached"
+    },
+    "yThresholdReached": {
+      "title": "Y threshold reached",
+      "type": "boolean",
+      "description": "True if the y threshold has been reached"
+    },
+    "zThresholdReached": {
+      "title": "Z threshold reached",
+      "type": "boolean",
+      "description": "True if the z threshold has been reached"
+    }
+  }
+}

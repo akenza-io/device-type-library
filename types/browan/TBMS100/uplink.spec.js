@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -46,7 +46,7 @@ describe("TBDW100 uplink", () => {
         assert.equal(value.data.batteryLevel, 100);
         assert.equal(value.data.voltage, 3.6);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -60,7 +60,7 @@ describe("TBDW100 uplink", () => {
         assert.equal(value.data.time, 22);
         assert.equal(value.data.count, 3153);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

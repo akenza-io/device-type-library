@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -40,7 +40,7 @@ describe("Pipiot peopleSense uplink", () => {
         assert.equal(value.data.peopleCountBin5, 2);
         assert.equal(value.data.peopleCountBin6, 0);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

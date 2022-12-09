@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -69,9 +69,10 @@ describe("Haltian Thingsee air Sensor Uplink", () => {
         assert.equal(value.data.pressure, 97017.737);
         assert.equal(value.data.temperature, 26.4);
         assert.equal(value.data.humidity, 35.2);
-        assert.equal(value.data.light, null);
 
-        validate(value.data, environmentSchema, { throwError: false });
+        utils.validateSchema(value.data, environmentSchema, {
+          throwError: true,
+        });
       });
 
       utils.expectEmits((type, value) => {
@@ -82,7 +83,7 @@ describe("Haltian Thingsee air Sensor Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.reason, "TIME");
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -107,11 +108,10 @@ describe("Haltian Thingsee air Sensor Uplink", () => {
 
         assert.equal(value.topic, "environment");
         assert.equal(value.data.pressure, 97021.277);
-        assert.equal(value.data.temperature, null);
-        assert.equal(value.data.humidity, null);
-        assert.equal(value.data.light, null);
 
-        validate(value.data, environmentSchema, { throwError: false });
+        utils.validateSchema(value.data, environmentSchema, {
+          throwError: true,
+        });
       });
 
       utils.expectEmits((type, value) => {
@@ -122,7 +122,7 @@ describe("Haltian Thingsee air Sensor Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.reason, "CHANGE");
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -150,7 +150,7 @@ describe("Haltian Thingsee air Sensor Uplink", () => {
         assert.equal(value.data.co2, 460);
         assert.equal(value.data.co2Status, "OK");
 
-        validate(value.data, co2Schema, { throwError: false });
+        utils.validateSchema(value.data, co2Schema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -161,7 +161,7 @@ describe("Haltian Thingsee air Sensor Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.reason, "TIME");
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -187,7 +187,7 @@ describe("Haltian Thingsee air Sensor Uplink", () => {
         assert.equal(value.topic, "tvoc");
         assert.equal(value.data.tvoc, 10);
 
-        validate(value.data, tvocSchema, { throwError: false });
+        utils.validateSchema(value.data, tvocSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -198,7 +198,7 @@ describe("Haltian Thingsee air Sensor Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.reason, "TIME");
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

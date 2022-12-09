@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -50,7 +50,7 @@ describe("Adeunis Pulse", () => {
         assert.equal(value.data.configurationDone, true);
         assert.equal(value.data.timestamp, true);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -65,7 +65,7 @@ describe("Adeunis Pulse", () => {
         assert.equal(value.data.counterValueT3, 289);
         assert.equal(value.data.counterValueT4, 285);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -102,7 +102,7 @@ describe("Adeunis Pulse", () => {
         assert.equal(value.data.configurationDone, false);
         assert.equal(value.data.timestamp, false);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {

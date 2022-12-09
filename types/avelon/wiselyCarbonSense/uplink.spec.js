@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -47,7 +47,7 @@ describe("Avelon Carbonsense uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryLevel, 100);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -60,7 +60,7 @@ describe("Avelon Carbonsense uplink", () => {
         assert.equal(value.data.humidity, 33);
         assert.equal(value.data.co2, 736);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -73,7 +73,7 @@ describe("Avelon Carbonsense uplink", () => {
         assert.equal(value.data.humidity, 33);
         assert.equal(value.data.co2, 743);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -86,7 +86,7 @@ describe("Avelon Carbonsense uplink", () => {
         assert.equal(value.data.humidity, 33);
         assert.equal(value.data.co2, 753);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -99,7 +99,7 @@ describe("Avelon Carbonsense uplink", () => {
         assert.equal(value.data.humidity, 33);
         assert.equal(value.data.co2, 755);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -112,7 +112,7 @@ describe("Avelon Carbonsense uplink", () => {
         assert.equal(value.data.humidity, 33);
         assert.equal(value.data.co2, 759);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -125,7 +125,7 @@ describe("Avelon Carbonsense uplink", () => {
         assert.equal(value.data.humidity, 33);
         assert.equal(value.data.co2, 761);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

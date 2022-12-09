@@ -6,7 +6,7 @@ function consume(event) {
   const lifecycle = {};
   let topic = "default";
 
-  lifecycle.version = Bits.bitsToUnsigned(bits.substr(0, 8));
+  // Version 8
 
   // Status
   // reserved x2
