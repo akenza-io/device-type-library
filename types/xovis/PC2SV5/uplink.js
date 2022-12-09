@@ -127,6 +127,10 @@ function consume(event) {
     const regex = new RegExp("LINE");
     const payload = event.data.logics_data.logics;
 
+    let fw = 0;
+    let bw = 0;
+    let peopleInZone = 0;
+
     payload.forEach((logic) => {
       logic.records.forEach((record) => {
         record.counts.forEach((count) => {
@@ -137,20 +141,24 @@ function consume(event) {
             if (regex.test(logic.info)) {
               // Line
               if (count.name === "fw") {
-                data.fw = value;
-                data.bw = 0;
+                fw += value;
               } else {
-                data.fw = 0;
-                data.bw = value;
+                bw += value;
               }
-              emit("sample", { data, topic: "line_count" });
             } else {
               // Zone
-              emit("sample", { data: { peopleInZone: value }, topic: "zone" });
+              peopleInZone += value;
             }
           }
         });
       });
     });
+
+    if (fw > 0 || bw > 0) {
+      emit("sample", { data: { fw, bw }, topic: "line_count" });
+    }
+    if (peopleInZone > 0) {
+      emit("sample", { data: { peopleInZone }, topic: "zone" });
+    }
   }
 }
