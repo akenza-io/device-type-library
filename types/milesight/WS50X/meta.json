@@ -1,0 +1,14 @@
+{
+  "name": "WS50X",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight-iot.com/lorawan/switch/ws50x/",
+  "description": "WS50x is a smart LoRaWAN® wall switch for thelocal and remote control of lights and electrical appliances. It adopts two standard sizes for most of international wall switcht ypes, which can replace the traditional wall switches directly.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Switch state"],
+  "outputTopics": ["default"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "AM103",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight-iot.com/lorawan/sensor/am103/",
+  "description": "AM103 is a compact indoor ambience monitoring sensor for measurement of temperature, humidity and CO2. These data will be shown on the E-ink screen in real-time, which allow to quantify the indoor environment and comfort. AM103 is widely used for office, store, classroom, hospital, etc",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Humidity", "CO2"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

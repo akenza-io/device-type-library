@@ -1,0 +1,14 @@
+{
+  "name": "EM320-TH",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "http://www.milesight-iot.com/lorawan/sensor/em320-th/",
+  "description": "Milesight EM320-TH is a LoRa temperature and humidity sensor mainly for indoor or outdoor use.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Humidity"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
