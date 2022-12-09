@@ -8005,9 +8005,9 @@ var codec;
         case 2:
           return "labelDisappearance";
         case 3:
-          return "highTreshold";
+          return "highthreshold";
         case 4:
-          return "lowTreshold";
+          return "lowthreshold";
         case 5:
           return "endThresholdAlarm";
         case 6:

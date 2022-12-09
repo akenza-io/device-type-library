@@ -22,7 +22,7 @@
       "type": "number",
       "unit": "%"
     },
-    "powerConsumptation": {
+    "powerConsumption": {
       "title": "Power consumptation",
       "description": "Power consumptation",
       "type": "number",

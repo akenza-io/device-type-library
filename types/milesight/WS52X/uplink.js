@@ -50,7 +50,7 @@ function consume(event) {
     }
     // POWER CONSUMPTION
     else if (channelId === 0x06 && channelType === 0x83) {
-      data.powerConsumptation = readUInt32LE(bytes.slice(i, i + 4));
+      data.powerConsumption = readUInt32LE(bytes.slice(i, i + 4));
       i += 4;
     }
     // CURRENT

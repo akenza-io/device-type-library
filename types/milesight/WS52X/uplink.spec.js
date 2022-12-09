@@ -36,7 +36,7 @@ describe("WS52X Uplink", () => {
         assert.equal(value.data.current, 164);
         assert.equal(value.data.factor, 82);
         assert.equal(value.data.power, 1);
-        assert.equal(value.data.powerConsumptation, 1110);
+        assert.equal(value.data.powerConsumption, 1110);
         assert.equal(value.data.state, "OPEN");
         assert.equal(value.data.voltage, 228.5);
 
