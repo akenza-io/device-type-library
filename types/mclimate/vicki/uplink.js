@@ -271,6 +271,7 @@ function consume(event) {
   let bytes = Hex.hexToBytes(payload);
   let data = {};
   const lifecycle = {};
+  let raw = {};
 
   if (Number(bytes[0]) === 1 || Number(bytes[0]) === 129) {
     data = handleKeepalive(bytes, data);
@@ -290,6 +291,17 @@ function consume(event) {
   delete data.lowMotorConsumption;
   delete data.brokenSensor;
 
+  // Add raw metadata for mclimate integration. Sent to mclimate broker.
+  raw.deviceId = event.device.deviceId;
+  raw.payloadHex = event.data.payloadHex;
+  raw.timestamp = event.uplinkMetrics.timestamp;
+  raw.port = event.uplinkMetrics.port;
+  raw.frameCountUp = event.uplinkMetrics.frameCountUp;
+  raw.rssi = event.uplinkMetrics.rssi;
+  raw.snr = event.uplinkMetrics.snr;
+  raw.spreadingFactor = event.uplinkMetrics.sf;
+
   emit("sample", { data, topic: "default" });
   emit("sample", { data: lifecycle, topic: "lifecycle" });
+  emit("sample", { data: raw, topic: "mclimate" });
 }

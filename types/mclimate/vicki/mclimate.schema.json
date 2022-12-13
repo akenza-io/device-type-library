@@ -1,0 +1,49 @@
+{
+    "$id": "https://akenza.io/mclimate/vicki/mclimate.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "MClimate",
+    "type": "object",
+    "properties": {
+      "deviceId": {
+        "title": "Device EUI",
+        "description": "The device EUI",
+        "type": "string"
+      },
+      "payloadHex": {
+        "title": "Hex payload",
+        "description": "Payload in hexadecimal format",
+        "type": "string"
+      },
+      "timestamp": {
+        "title": "Timestamp",
+        "description": "Timestamp of uplink message",
+        "type": "number"
+      },
+      "port": {
+        "title": "Uplink port",
+        "description": "Uplink LoRaWAN port",
+        "type": "number"
+      },
+      "frameCountUp": {
+        "title": "Uplink frame counter",
+        "description": "Uplink frame counter",
+        "type": "integer"
+      },
+      "rssi": {
+        "title": "RSSI",
+        "description": "RSSI Signal Strength",
+        "type": "number"
+      },
+      "snr": {
+        "title": "SNR",
+        "description": "Signal to Noise Ratio",
+        "type": "number"
+      },
+      "spreadingFactor": {
+        "title": "SF",
+        "description": "Spreading Factor",
+        "type": "number"
+      }
+    }
+  }
+  
