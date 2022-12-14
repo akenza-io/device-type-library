@@ -9,5 +9,6 @@
       "description": "Equals true if motion got sensed",
       "type": "boolean"
     }
-  }
+  },
+  "required": ["motion"]
 }

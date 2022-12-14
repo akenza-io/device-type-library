@@ -85,7 +85,7 @@
       "maximum": 65535,
       "hideFromKpis": true
     },
-    "voltage": {
+    "batteryVoltage": {
       "type": "number",
       "minimum": 0,
       "maximum": 24,
@@ -101,5 +101,20 @@
       "description": "The battery charge in percent.",
       "unit": "%"
     }
-  }
+  },
+  "required": [
+    "booster",
+    "minHumOn",
+    "maxHumOn",
+    "txOnEvent",
+    "minTempOn",
+    "maxTempOn",
+    "minTempThreshold",
+    "maxTempThreshold",
+    "minHumThreshold",
+    "maxHumThreshold",
+    "sendInterval",
+    "batteryVoltage",
+    "batteryLevel"
+  ]
 }

@@ -43,7 +43,7 @@ describe("DSS Ranos dB 2 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 7);
+        assert.equal(value.data.batteryVoltage, 7);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });

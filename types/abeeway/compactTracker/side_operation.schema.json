@@ -39,5 +39,14 @@
       "description": "Global Counter",
       "type": "integer"
     }
-  }
+  },
+  "required": [
+    "window1",
+    "window2",
+    "window3",
+    "window4",
+    "window5",
+    "window6",
+    "globalCounter"
+  ]
 }

@@ -91,7 +91,7 @@ function decoder(bytes) {
         );
         response.lifecycle.batteryStatus = bytes[4] >> 6;
       } else {
-        response.lifecycle.voltage =
+        response.lifecycle.batteryVoltage =
           (((bytes[0] << 8) | bytes[1]) & 0x3fff) / 1000;
         response.lifecycle.batteryStatus = bytes[0] >> 6;
       }

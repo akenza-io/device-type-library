@@ -178,5 +178,29 @@
       "minimum": 0,
       "maximum": 255
     }
-  }
+  },
+  "required": [
+    "anomalyLevel",
+    "nrAlarms",
+    "temperature",
+    "operatingTime",
+    "repID",
+    "maxAmplitude",
+    "peakFrequency",
+    "min0_10",
+    "min10_20",
+    "min20_40",
+    "min40_60",
+    "min60_80",
+    "min80_100",
+    "anomalyLvL20Hours",
+    "anomalyLvL50Hours",
+    "anomalyLvL80Hours",
+    "anomalyLvL20Days",
+    "anomalyLvL50Days",
+    "anomalyLvL80Days",
+    "anomalyLvL20Months",
+    "anomalyLvL50Months",
+    "anomalyLvL80Months"
+  ]
 }

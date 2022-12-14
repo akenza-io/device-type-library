@@ -40,5 +40,6 @@
       "description": "Sequence number (identifies downlink to server)",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["accepted", "firmware", "hwRev", "port", "productId", "sequence"]
 }

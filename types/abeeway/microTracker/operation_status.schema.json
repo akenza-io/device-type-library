@@ -122,5 +122,11 @@
       "description": "Minimal counter threshold",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "operationStatus",
+    "resetCause",
+    "firmwareVersion",
+    "bleFirmwareVersion"
+  ]
 }

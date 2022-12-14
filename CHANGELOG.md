@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.29.0] - 2022-12-14
+
+### Changed
+
+- Added required for keys in schema files
+- Renamed image files to be more standardised
+- Renamed voltage to batteryVoltage to standardise keys
+
 # [1.30.0] - 2022-12-09
 
 ### Added

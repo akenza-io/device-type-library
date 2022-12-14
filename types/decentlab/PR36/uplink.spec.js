@@ -54,7 +54,7 @@ describe("Decentlab PR36 Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.data.voltage, 3.115);
+        assert.equal(value.data.batteryVoltage, 3.115);
         assert.equal(value.data.protocolVersion, 2);
         assert.equal(value.data.deviceId, 811);
 

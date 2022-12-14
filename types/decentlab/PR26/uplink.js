@@ -1,4 +1,4 @@
-var decentlab_decoder = {
+const decentlab_decoder = {
   PROTOCOL_VERSION: 2,
   SENSORS: [
     {
@@ -6,14 +6,14 @@ var decentlab_decoder = {
       values: [
         {
           name: "pressure",
-          convert: function (x) {
+          convert(x) {
             return ((x[0] - 16384) / 32768) * (1.0 - 0.0) + 0.0;
           },
           unit: "bar",
         },
         {
           name: "temperature",
-          convert: function (x) {
+          convert(x) {
             return (x[1] - 384) * 0.003125 - 50;
           },
           unit: "°C",
@@ -25,7 +25,7 @@ var decentlab_decoder = {
       values: [
         {
           name: "battery_voltage",
-          convert: function (x) {
+          convert(x) {
             return x[0] / 1000;
           },
           unit: "V",
@@ -34,13 +34,14 @@ var decentlab_decoder = {
     },
   ],
 
-  read_int: function (bytes) {
+  read_int(bytes) {
     return (bytes.shift() << 8) + bytes.shift();
   },
 
-  decode: function (msg) {
-    var bytes = msg;
-    var i, j;
+  decode(msg) {
+    let bytes = msg;
+    let i;
+    let j;
     if (typeof msg === "string") {
       bytes = [];
       for (i = 0; i < msg.length; i += 2) {
@@ -48,20 +49,20 @@ var decentlab_decoder = {
       }
     }
 
-    var version = bytes.shift();
+    const version = bytes.shift();
     if (version != this.PROTOCOL_VERSION) {
-      return { error: "protocolVersion" + version + " doesn't match v2" };
+      return { error: `protocolVersion${version} doesn't match v2` };
     }
 
-    var deviceId = this.read_int(bytes);
-    var flags = this.read_int(bytes);
-    var result = { protocolVersion: version, deviceID: deviceId };
+    const deviceId = this.read_int(bytes);
+    let flags = this.read_int(bytes);
+    const result = { protocolVersion: version, deviceID: deviceId };
     // decode payload
     for (i = 0; i < this.SENSORS.length; i++, flags >>= 1) {
       if ((flags & 1) !== 1) continue;
 
-      var sensor = this.SENSORS[i];
-      var x = [];
+      const sensor = this.SENSORS[i];
+      const x = [];
       // convert data to 16-bit integer array
       for (j = 0; j < sensor.length; j++) {
         x.push(this.read_int(bytes));
@@ -69,7 +70,7 @@ var decentlab_decoder = {
 
       // decode sensor values
       for (j = 0; j < sensor.values.length; j++) {
-        var value = sensor.values[j];
+        const value = sensor.values[j];
         if ("convert" in value) {
           result[value.name] = value.convert.bind(this)(x);
         }
@@ -80,7 +81,7 @@ var decentlab_decoder = {
 };
 
 function deleteUnusedKeys(data) {
-  var keysRetained = false;
+  let keysRetained = false;
   Object.keys(data).forEach((key) => {
     if (data[key] === undefined) {
       delete data[key];
@@ -92,24 +93,24 @@ function deleteUnusedKeys(data) {
 }
 
 function consume(event) {
-  var payload = event.data.payloadHex;
-  var sample = decentlab_decoder.decode(payload);
-  var data = {};
-  var lifecycle = {};
+  const payload = event.data.payloadHex;
+  const sample = decentlab_decoder.decode(payload);
+  const data = {};
+  const lifecycle = {};
 
   // Default values
-  data.pressure = sample["pressure"];
-  data.temperature = sample["temperature"];
+  data.pressure = sample.pressure;
+  data.temperature = sample.temperature;
   // water level is calculated from pressure
-  data.level = sample["pressure"] * 100000 / (1000 * 9.807);
+  data.level = (sample.pressure * 100000) / (1000 * 9.807);
 
   // Lifecycle values
-  lifecycle.voltage = sample["battery_voltage"];
-  lifecycle.protocolVersion = sample["protocolVersion"];
-  lifecycle.deviceID = sample["deviceID"];
+  lifecycle.batteryVoltage = sample.battery_voltage;
+  lifecycle.protocolVersion = sample.protocolVersion;
+  lifecycle.deviceID = sample.deviceID;
 
   if (deleteUnusedKeys(data)) {
-    emit("sample", { data: data, topic: "default" });
+    emit("sample", { data, topic: "default" });
   }
 
   if (deleteUnusedKeys(lifecycle)) {

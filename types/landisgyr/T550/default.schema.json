@@ -49,5 +49,14 @@
       "type": "number",
       "description": "Flow in m^3/h"
     }
-  }
+  },
+  "required": [
+    "volume",
+    "flowTemp",
+    "backFlowTemp",
+    "power",
+    "energy",
+    "energyUnit",
+    "flow"
+  ]
 }

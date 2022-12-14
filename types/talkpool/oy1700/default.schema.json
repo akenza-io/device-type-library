@@ -44,5 +44,6 @@
       "minimum": 0,
       "maximum": 10000
     }
-  }
+  },
+  "required": ["temperature", "humidity", "pm1", "pm2_5", "pm10"]
 }

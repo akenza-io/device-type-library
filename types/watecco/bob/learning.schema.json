@@ -31,7 +31,9 @@
     "learningFrom": {
       "title": "Learning",
       "description": "Either Learning from Zero % or additional Learning",
-      "type": "string"
+      "type": "string",
+      "enum": ["ZERO", "ADDITIONAL_LEARNING"]
     }
-  }
+  },
+  "required": ["learningPerc", "vibration", "temperature", "learningFrom"]
 }

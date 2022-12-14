@@ -22,7 +22,7 @@ function decoder(bytes, port) {
     decoded.headingDeg = (bytes[8] >> 2) * 5.625;
 
     decoded.speedKmph = bytes[9];
-    decoded.voltage = Math.round(bytes[10] * 0.025 * 100) / 100;
+    decoded.batteryVoltage = Math.round(bytes[10] * 0.025 * 100) / 100;
   } else if (port === 4) {
     decoded.type = "position";
     decoded.latitude = bytes[0] + bytes[1] * 256 + bytes[2] * 65536;
@@ -40,7 +40,7 @@ function decoder(bytes, port) {
     decoded.longitude *= 256e-7;
     decoded.headingDeg = (bytes[6] & 0x7) * 45;
     decoded.speedKmph = (bytes[6] >> 3) * 5;
-    decoded.voltage = Math.round(bytes[7] * 0.025 * 100) / 100;
+    decoded.batteryVoltage = Math.round(bytes[7] * 0.025 * 100) / 100;
     decoded.inTrip = (bytes[8] & 0x1) !== 0;
     decoded.fixFailed = (bytes[8] & 0x2) !== 0;
     decoded.manDown = (bytes[8] & 0x4) !== 0;

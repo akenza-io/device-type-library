@@ -25,5 +25,6 @@
       "title": "Device status flag",
       "desciption": "Device status flag"
     }
-  }
+  },
+  "required": ["batteryLevel", "batteryVoltage", "deviceStatusFlag"]
 }

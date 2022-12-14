@@ -19,5 +19,6 @@
       "description": "True if the fire extinguisher security is unlocked",
       "type": "boolean"
     }
-  }
+  },
+  "required": ["isTestMessage", "isRemoved", "isSecurityUnlocked"]
 }

@@ -217,9 +217,11 @@ function consume(event) {
 
   // Lifecycle values
   // Voltage drops of at 2V (0%) max voltage is 3V (100%)
-  lifecycle.voltage = Math.round(sample.battery_voltage * 100) / 100;
+  lifecycle.batteryVoltage = Math.round(sample.battery_voltage * 100) / 100;
   // ((Max voltage - voltage now) * voltage to percent - inverting) getting rid of the -
-  let batteryLevel = Math.round(((3 - lifecycle.voltage) * 100 - 100) * -1);
+  let batteryLevel = Math.round(
+    ((3 - lifecycle.batteryVoltage) * 100 - 100) * -1,
+  );
 
   if (batteryLevel > 100) {
     batteryLevel = 100;

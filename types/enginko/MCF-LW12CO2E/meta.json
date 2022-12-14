@@ -15,7 +15,7 @@
     "CO2",
     "Lux"
   ],
-  "outputTopics": ["climate", "time_sync"],
+  "outputTopics": ["climate", "time_sync", "lifecycle"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

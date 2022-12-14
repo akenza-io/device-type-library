@@ -3,32 +3,32 @@ function round(value) {
 }
 
 function consume(event) {
-  var payload = event.data.payloadHex;
-  var bits = Bits.hexToBits(payload);
-  var data = {};
-  var topic = "default";
+  const payload = event.data.payloadHex;
+  const bits = Bits.hexToBits(payload);
+  const data = {};
+  let topic = "default";
 
-  var header = Bits.bitsToUnsigned(bits.substr(0, 8));
+  const header = Bits.bitsToUnsigned(bits.substr(0, 8));
 
-  if (header == 76 || header == 108) {
+  if (header === 76 || header === 108) {
     // Learning
     topic = "learning";
     data.learningPerc = Bits.bitsToUnsigned(bits.substr(8, 8));
-    var vl_1 = Bits.bitsToUnsigned(bits.substr(16, 8));
-    var vl_2 = Bits.bitsToUnsigned(bits.substr(24, 8));
-    var vl_3 = Bits.bitsToUnsigned(bits.substr(32, 8));
-    data.vibration = (vl_1 * 128 + vl_2 + vl_3 / 100) / 10 / 121.45; // float
+    const vl1 = Bits.bitsToUnsigned(bits.substr(16, 8));
+    const vl2 = Bits.bitsToUnsigned(bits.substr(24, 8));
+    const vl3 = Bits.bitsToUnsigned(bits.substr(32, 8));
+    data.vibration = (vl1 * 128 + vl2 + vl3 / 100) / 10 / 121.45; // float
     // Frequency_index
     data.temperature = Bits.bitsToUnsigned(bits.substr(48, 8)) - 30;
-    var learningFrom = Bits.bitsToUnsigned(bits.substr(56, 8));
+    const learningFrom = Bits.bitsToUnsigned(bits.substr(56, 8));
 
     if (learningFrom) {
-      data.learningFrom = "Zero";
+      data.learningFrom = "ZERO";
     } else if (learningFrom) {
-      data.learningFrom = "Additional Learning";
+      data.learningFrom = "ADDITIONAL_LEARNING";
     }
     // fftSignal
-  } else if (header == 82 || header == 114) {
+  } else if (header === 82 || header === 114) {
     // Report
     topic = "report";
 
@@ -38,22 +38,20 @@ function consume(event) {
     data.nrAlarms = Bits.bitsToUnsigned(bits.substr(32, 8));
     data.temperature = Bits.bitsToUnsigned(bits.substr(40, 8)) - 30;
 
-    var reportLength = Bits.bitsToUnsigned(bits.substr(48, 8));
+    let reportLength = Bits.bitsToUnsigned(bits.substr(48, 8));
 
     if (reportLength > 59) {
       reportLength = (reportLength - 59) * 60;
-    } else {
-      reportLength = reportLength;
     }
 
     data.operatingTime =
       (Bits.bitsToUnsigned(bits.substr(16, 8)) * reportLength) / 127;
     data.repID = Bits.bitsToUnsigned(bits.substr(56, 8));
 
-    var vl_1 = Bits.bitsToUnsigned(bits.substr(64, 8));
-    var vl_2 = Bits.bitsToUnsigned(bits.substr(72, 8));
-    var vl_3 = Bits.bitsToUnsigned(bits.substr(80, 8));
-    data.maxAmplitude = round((vl_1 * 128 + vl_2 + vl_3 / 100) / 10 / 121.45); // float
+    const vl1 = Bits.bitsToUnsigned(bits.substr(64, 8));
+    const vl2 = Bits.bitsToUnsigned(bits.substr(72, 8));
+    const vl3 = Bits.bitsToUnsigned(bits.substr(80, 8));
+    data.maxAmplitude = round((vl1 * 128 + vl2 + vl3 / 100) / 10 / 121.45); // float
     // Frequency_index
 
     data.peakFrequency = Bits.bitsToUnsigned(bits.substr(88, 8)) + 1;
@@ -107,7 +105,7 @@ function consume(event) {
     data.anomalyLvL20Months = round(Bits.bitsToUnsigned(bits.substr(192, 8)));
     data.anomalyLvL50Months = round(Bits.bitsToUnsigned(bits.substr(200, 8)));
     data.anomalyLvL80Months = round(Bits.bitsToUnsigned(bits.substr(208, 8)));
-  } else if (header == 65 || header == 97) {
+  } else if (header === 65 || header === 97) {
     // Alarm
     topic = "alarm";
     data.anomalyLevel = round(
@@ -115,23 +113,23 @@ function consume(event) {
     );
     data.temperature = Bits.bitsToUnsigned(bits.substr(16, 8)) - 30;
     // NA
-    var vl_1 = Bits.bitsToUnsigned(bits.substr(32, 8));
-    var vl_2 = Bits.bitsToUnsigned(bits.substr(40, 8));
-    var vl_3 = Bits.bitsToUnsigned(bits.substr(48, 8));
-    data.vibration = round((vl_1 * 128 + vl_2 + vl_3 / 100) / 10 / 121.45); // float
+    const vl1 = Bits.bitsToUnsigned(bits.substr(32, 8));
+    const vl2 = Bits.bitsToUnsigned(bits.substr(40, 8));
+    const vl3 = Bits.bitsToUnsigned(bits.substr(48, 8));
+    data.vibration = round((vl1 * 128 + vl2 + vl3 / 100) / 10 / 121.45); // float
     // fftSignal
-  } else if (header == 83) {
+  } else if (header === 83) {
     // State
     topic = "lifecycle";
-    var sensorState = Bits.bitsToUnsigned(bits.substr(8, 8));
-    if (sensorState == 100) {
-      sensorState = "Sensor start";
-    } else if (sensorState == 101) {
-      sensorState = "Sensor stop";
-    } else if (sensorState == 125) {
-      sensorState = "Machine stop";
-    } else if (sensorState == 126) {
-      sensorState = "Machine start";
+    let sensorState = Bits.bitsToUnsigned(bits.substr(8, 8));
+    if (sensorState === 100) {
+      sensorState = "SENSOR_START";
+    } else if (sensorState === 101) {
+      sensorState = "SENSOR_STOP";
+    } else if (sensorState === 125) {
+      sensorState = "MACHINE_STOP";
+    } else if (sensorState === 126) {
+      sensorState = "MACHINE_START";
     }
     data.sensorState = sensorState;
     data.batteryLevel = round(
@@ -139,5 +137,5 @@ function consume(event) {
     );
   }
 
-  emit("sample", { data: data, topic: topic });
+  emit("sample", { data, topic });
 }

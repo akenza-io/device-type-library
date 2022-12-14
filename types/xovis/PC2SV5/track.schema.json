@@ -29,5 +29,6 @@
       "description": "Geometry name",
       "type": "string"
     }
-  }
+  },
+  "required": ["trackType", "trackId", "sequenceNumber"]
 }

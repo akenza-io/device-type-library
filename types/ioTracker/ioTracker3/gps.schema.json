@@ -66,5 +66,17 @@
       "type": "integer",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "navStat",
+    "longitude",
+    "latitude",
+    "altitude",
+    "hAcc",
+    "vAcc",
+    "sog",
+    "cog",
+    "hdop",
+    "numSvs"
+  ]
 }

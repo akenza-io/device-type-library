@@ -83,7 +83,7 @@ describe("IMBuilding Office counter occupancy", () => {
         assert.equal(value.data.deviceStatus, 8);
         assert.equal(value.data.payloadCounter, 97);
         assert.equal(value.data.sensorStatus, 32);
-        assert.equal(value.data.voltage, 2.48);
+        assert.equal(value.data.batteryVoltage, 2.48);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });

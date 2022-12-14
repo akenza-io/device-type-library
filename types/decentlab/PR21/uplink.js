@@ -117,7 +117,7 @@ function consume(event) {
   data.temperature = sample.temperature;
 
   // Lifecycle values
-  lifecycle.voltage = sample.battery_voltage;
+  lifecycle.batteryVoltage = sample.battery_voltage;
   lifecycle.protocolVersion = sample.protocol_version;
   lifecycle.deviceId = sample.device_id;
 

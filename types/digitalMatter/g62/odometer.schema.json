@@ -16,5 +16,6 @@
       "unit": "m",
       "description": "Odometer distance in meters"
     }
-  }
+  },
+  "required": ["runtime", "odometer"]
 }

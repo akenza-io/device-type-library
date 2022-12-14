@@ -9,5 +9,6 @@
       "description": "Is true on button pressed uplink",
       "type": "boolean"
     }
-  }
+  },
+  "required": ["buttonPressed"]
 }

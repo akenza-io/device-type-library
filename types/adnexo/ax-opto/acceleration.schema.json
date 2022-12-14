@@ -28,5 +28,6 @@
       "minimum": -32767,
       "maximum": 32767
     }
-  }
+  },
+  "required": ["xAxisAccelerometer", "yAxisAccelerometer", "zAxisAccelerometer"]
 }

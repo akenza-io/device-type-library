@@ -17,5 +17,6 @@
       "type": "integer",
       "description": "Battery charges left"
     }
-  }
+  },
+  "required": ["batteryLevel", "batteryCharge"]
 }

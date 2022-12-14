@@ -4,8 +4,8 @@ function consume(event) {
   const data = {};
   const lifecycle = {};
 
-  const voltage = ((bytes[0] << 8) | bytes[1]) & 0x3fff;
-  lifecycle.voltage = voltage / 1000;
+  const batteryVoltage = ((bytes[0] << 8) | bytes[1]) & 0x3fff;
+  lifecycle.batteryVoltage = batteryVoltage / 1000;
 
   let temperature = (bytes[2] << 8) | bytes[3];
   if (bytes[2] & 0x80) {

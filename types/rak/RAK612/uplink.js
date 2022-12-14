@@ -9,9 +9,9 @@ function consume(event) {
   data.key2 = !!Bits.bitsToUnsigned(bits.substr(24, 8));
   data.key3 = !!Bits.bitsToSigned(bits.substr(32, 8));
   data.key4 = !!Bits.bitsToSigned(bits.substr(40, 8));
-  lifecycle.voltage = Bits.bitsToSigned(bits.substr(48, 8));
+  lifecycle.batteryVoltage = Bits.bitsToSigned(bits.substr(48, 8));
   lifecycle.batteryLevel = Bits.bitsToSigned(bits.substr(56, 8));
 
-  emit("sample", { data: data, topic: "default" });
+  emit("sample", { data, topic: "default" });
   emit("sample", { data: lifecycle, topic: "lifecycle" });
 }

@@ -50,7 +50,7 @@ describe("Digital matter Yabby Uplink", () => {
         assert.equal(value.data.fixFailed, false);
         assert.equal(value.data.headingDeg, 0);
         assert.equal(value.data.speedKmph, 0);
-        assert.equal(value.data.voltage, 5.55);
+        assert.equal(value.data.batteryVoltage, 5.55);
 
         utils.validateSchema(value.data, positionSchema, { throwError: true });
       });

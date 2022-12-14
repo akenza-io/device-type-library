@@ -29,6 +29,14 @@ describe("Adnexo ax-opto Uplink", () => {
       });
   });
 
+  let statusSchema = null;
+  before((done) => {
+    utils.loadSchema(`${__dirname}/status.schema.json`).then((parsedSchema) => {
+      statusSchema = parsedSchema;
+      done();
+    });
+  });
+
   let accelerationSchema = null;
   before((done) => {
     utils
@@ -61,6 +69,21 @@ describe("Adnexo ax-opto Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
+        assert.equal(value.topic, "lifecycle");
+
+        assert.equal(value.data.batteryVoltage, 2.763);
+        assert.equal(value.data.batteryLevel, 70);
+
+        utils.validateSchema(value.data, lifecycleSchema, {
+          throwError: true,
+        });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
         assert.equal(value.topic, "measurement");
 
         assert.equal(value.data.bottomCenter, 54.2);
@@ -75,8 +98,6 @@ describe("Adnexo ax-opto Uplink", () => {
         assert.equal(value.data.topCenter, 20);
         assert.equal(value.data.topLeft, 20);
         assert.equal(value.data.topRight, 20);
-        assert.equal(value.data.voltage, 2.763);
-        assert.equal(value.data.batteryLevel, 70);
 
         utils.validateSchema(value.data, measurementSchema, {
           throwError: true,
@@ -154,7 +175,7 @@ describe("Adnexo ax-opto Uplink", () => {
         assert.equal(value.data.payloadType, "REPORT_CONFIGURATION");
         assert.equal(value.data.sendInterval, 6);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, statusSchema, { throwError: true });
       });
 
       consume(data);

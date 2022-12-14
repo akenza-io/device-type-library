@@ -14,5 +14,6 @@
       "description": "Sensor Installation status",
       "type": "boolean"
     }
-  }
+  },
+  "required": ["open", "installed"]
 }

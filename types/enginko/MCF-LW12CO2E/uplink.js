@@ -165,11 +165,7 @@ function parseTER(payload) {
       value: Number(parseInt(payload.substring(62, 64), 16)).toFixed(),
       unit: "%",
     };
-    const rfu = {
-      variable: "rfu",
-      value: payload.substring(64),
-    };
-    return [...m1, ...m2, ...m3, battery, rfu];
+    return [...m1, ...m2, ...m3, battery];
   }
   return null;
 }
@@ -300,12 +296,8 @@ function parseVOC(payload, isNew) {
         value: Number(parseInt(payload.substring(58, 60), 16)).toFixed(),
         unit: "%",
       };
-      const rfu = {
-        variable: "rfu",
-        value: payload.substring(60),
-      };
 
-      return [...m1, ...m2, battery, rfu];
+      return [...m1, ...m2, battery];
     }
     return null;
   }
@@ -318,12 +310,8 @@ function parseVOC(payload, isNew) {
       value: Number(parseInt(payload.substring(62, 64), 16)).toFixed(),
       unit: "%",
     };
-    const rfu = {
-      variable: "rfu",
-      value: payload.substring(64),
-    };
 
-    return [...m1, ...m2, battery, rfu];
+    return [...m1, ...m2, battery];
   }
   return null;
 }
@@ -440,12 +428,8 @@ function parseCo2(payload, isNew) {
         value: Number(parseInt(payload.substring(66, 68), 16)).toFixed(),
         unit: "%",
       };
-      const rfu = {
-        variable: "rfu",
-        value: payload.substring(68),
-      };
 
-      return [...m1, ...m2, battery, rfu];
+      return [...m1, ...m2, battery];
     }
     return null;
   }
@@ -458,12 +442,8 @@ function parseCo2(payload, isNew) {
       value: Number(parseInt(payload.substring(70, 72), 16)).toFixed(),
       unit: "%",
     };
-    const rfu = {
-      variable: "rfu",
-      value: payload.substring(72),
-    };
 
-    return [...m1, ...m2, battery, rfu];
+    return [...m1, ...m2, battery];
   }
   return null;
 }
@@ -833,6 +813,14 @@ function emitSample(currentSample, topic) {
   if (currentSample.rfu === "") {
     currentSample.rfu = 0;
   }
+  if (currentSample.batteryLevel !== undefined) {
+    emit("sample", {
+      data: { batteryLevel: currentSample.batteryLevel },
+      topic: "lifecycle",
+    });
+    delete currentSample.batteryLevel;
+  }
+
   if (currentSample.date !== undefined) {
     const timestamp = new Date(currentSample.date);
     delete currentSample.date;

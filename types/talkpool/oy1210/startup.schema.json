@@ -11,5 +11,6 @@
       "description": "Message indicating startup status",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["message"]
 }

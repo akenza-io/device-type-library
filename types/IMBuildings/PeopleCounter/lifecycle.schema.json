@@ -10,7 +10,7 @@
       "description": "Device status",
       "hideFromKpis": true
     },
-    "voltage": {
+    "batteryVoltage": {
       "title": "Battery voltage",
       "type": "number",
       "unit": "V",
@@ -28,5 +28,11 @@
       "description": "Payload counter",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "deviceStatus",
+    "batteryVoltage",
+    "sensorStatus",
+    "payloadCounter"
+  ]
 }

@@ -11,5 +11,6 @@
       "enum": ["MALE", "FEMALE", "UNKNOWN"],
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["gender"]
 }

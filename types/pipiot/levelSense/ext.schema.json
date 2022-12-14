@@ -16,5 +16,6 @@
       "desciption": "Laser distance measured between the sensor and the surface.",
       "unit": "cm"
     }
-  }
+  },
+  "required": ["ultrasonicDistanceExt", "laserDistanceExt"]
 }

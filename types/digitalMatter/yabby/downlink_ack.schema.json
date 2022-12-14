@@ -28,5 +28,6 @@
       "description": "Firmware minor",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["sequenceNumber", "accepted", "fwMaj", "fwMin"]
 }

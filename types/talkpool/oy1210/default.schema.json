@@ -28,5 +28,6 @@
       "minimum": 0,
       "maximum": 10000
     }
-  }
+  },
+  "required": ["temperature", "humidity", "co2"]
 }

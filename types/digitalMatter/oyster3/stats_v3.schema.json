@@ -76,5 +76,17 @@
       "description": "Time to first fix",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "batCritical",
+    "batLow",
+    "currentvoltage",
+    "mWhUsed",
+    "percentGnssFail",
+    "percentGnssSucc",
+    "percentLora",
+    "percentOther",
+    "percentSleepDis",
+    "ttff"
+  ]
 }

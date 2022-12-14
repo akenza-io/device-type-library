@@ -67,5 +67,18 @@
       "type": "number",
       "unit": "mA"
     }
-  }
+  },
+  "required": [
+    "switch1",
+    "switch2",
+    "switch3",
+    "switch1change",
+    "switch2change",
+    "switch3change",
+    "voltage",
+    "power",
+    "factor",
+    "powerConsumption",
+    "current"
+  ]
 }

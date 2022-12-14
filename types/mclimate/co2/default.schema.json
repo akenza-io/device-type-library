@@ -36,5 +36,6 @@
       "desciption": "The battery voltage in Volt.",
       "unit": "V"
     }
-  }
+  },
+  "required": ["temperature", "humidity", "co2", "batteryVoltage"]
 }

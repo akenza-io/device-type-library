@@ -10,5 +10,6 @@
       "type": "string",
       "enum": ["SHORT", "LONG", "DOUBLE", "NOT_VALID"]
     }
-  }
+  },
+  "required": ["press"]
 }

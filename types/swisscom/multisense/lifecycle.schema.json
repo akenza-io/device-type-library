@@ -20,7 +20,7 @@
       "maximum": 65535,
       "hideFromKpis": true
     },
-    "voltage": {
+    "batteryVoltage": {
       "title": "Battery voltage",
       "unit": "V",
       "description": "Battery voltage in V.",
@@ -44,5 +44,6 @@
       "maximum": 10,
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["mode", "payloadVersion", "batteryVoltage", "batteryLevel"]
 }

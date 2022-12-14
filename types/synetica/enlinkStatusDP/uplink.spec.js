@@ -58,7 +58,7 @@ describe("Synetica Status DB Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.305);
+        assert.equal(value.data.batteryVoltage, 3.305);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });

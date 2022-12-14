@@ -25,5 +25,6 @@
       "type": "boolean",
       "description": "Water leak"
     }
-  }
+  },
+  "required": ["temperature", "humidity", "waterLeak"]
 }

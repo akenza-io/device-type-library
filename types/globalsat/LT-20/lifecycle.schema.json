@@ -12,5 +12,6 @@
       "description": "The battery charge in percent.",
       "unit": "%"
     }
-  }
+  },
+  "required": ["batteryPercent"]
 }

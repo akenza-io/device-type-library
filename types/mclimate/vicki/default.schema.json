@@ -48,5 +48,14 @@
       "description": "Child lock",
       "type": "boolean"
     }
-  }
+  },
+  "required": [
+    "targetTemperature",
+    "sensorTemperature",
+    "relativeHumidity",
+    "motorRange",
+    "motorPosition",
+    "openWindow",
+    "childLock"
+  ]
 }

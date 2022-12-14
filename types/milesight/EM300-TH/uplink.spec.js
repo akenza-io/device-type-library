@@ -5,7 +5,7 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("AM104 Uplink", () => {
+describe("EM300-TH Uplink", () => {
   let defaultSchema = null;
   let lifecycleSchema = null;
   let consume = null;
@@ -32,7 +32,7 @@ describe("AM104 Uplink", () => {
   });
 
   describe("consume()", () => {
-    it("should decode should decode the AM104 payload", () => {
+    it("should decode should decode the EM300-TH payload", () => {
       const data = {
         data: {
           port: 1,

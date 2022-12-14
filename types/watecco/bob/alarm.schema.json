@@ -28,5 +28,6 @@
       "minimum": 0,
       "maximum": 381
     }
-  }
+  },
+  "required": ["anomalyLevel", "temperature", "vibration"]
 }

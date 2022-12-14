@@ -14,5 +14,6 @@
       "type": "integer",
       "description": "Count of button presses"
     }
-  }
+  },
+  "required": ["buttonPushed", "count"]
 }

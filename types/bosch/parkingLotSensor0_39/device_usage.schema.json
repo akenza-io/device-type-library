@@ -97,5 +97,21 @@
       "type": "integer",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "usageType",
+    "value",
+    "dr0",
+    "dr1",
+    "dr2",
+    "dr3",
+    "dr4",
+    "dr5",
+    "brownOut",
+    "lockup",
+    "extPin",
+    "powerOn",
+    "watchdog",
+    "softwareRequested"
+  ]
 }
