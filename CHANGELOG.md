@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.30.1] - 2022-12-15
+
+### Changed
+
+- Xovis PC2SV5 - Summating logic samples into one
+
 # [1.30.0] - 2022-12-09
 
 ### Added
