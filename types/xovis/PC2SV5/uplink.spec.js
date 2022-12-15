@@ -416,7 +416,7 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.fw, 4);
         assert.equal(value.data.bw, 1);
 
-        validate(value.data, lineCountSchema, { throwError: true });
+        utils.validateSchema(value.data, lineCountSchema, { throwError: true });
       });
 
       consume(data);
