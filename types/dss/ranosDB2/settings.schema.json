@@ -1,0 +1,154 @@
+{
+  "$id": "https://akenza.io/dss/ranosDB2/settings.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Settings",
+  "type": "object",
+  "properties": {
+    "adr": {
+      "title": "ADR",
+      "type": "boolean",
+      "description": "ADR status",
+      "hideFromKpis": true
+    },
+    "correction": {
+      "title": "Correction",
+      "type": "number",
+      "description": "Correction",
+      "hideFromKpis": true
+    },
+    "enableHeadphone": {
+      "title": "Headphones enabled",
+      "type": "boolean",
+      "description": "Headphones enabled",
+      "hideFromKpis": true
+    },
+    "enableLed": {
+      "title": "Led enabled",
+      "type": "boolean",
+      "description": "Led enabled",
+      "hideFromKpis": true
+    },
+    "enableTransmissionSync": {
+      "title": "Transmission synchronization enabled",
+      "type": "boolean",
+      "description": "Transmission synchronization enabled",
+      "hideFromKpis": true
+    },
+    "gpsInterval": {
+      "title": "GPS Interval",
+      "type": "integer",
+      "description": "GPS Interval",
+      "hideFromKpis": true
+    },
+    "gpsMode": {
+      "title": "GPS Mode",
+      "type": "string",
+      "description": "GPS Mode",
+      "enum": ["OFF", "ONCE", "INTERVAL"],
+      "hideFromKpis": true
+    },
+    "sampleCount": {
+      "title": "Sample count",
+      "type": "integer",
+      "description": "Number of samples",
+      "hideFromKpis": true
+    },
+    "spreadingFactor": {
+      "title": "Spreading factor",
+      "type": "integer",
+      "description": "Spreading factor",
+      "hideFromKpis": true
+    },
+    "transmitInterval": {
+      "title": "Transmit interval",
+      "type": "integer",
+      "description": "Transmit interval in miliseconds",
+      "unit": "ms",
+      "hideFromKpis": true
+    },
+    "useMsgInfo": {
+      "title": "Transmission message info enabled",
+      "type": "boolean",
+      "description": "Transmission message info enabled",
+      "hideFromKpis": true
+    },
+    "useBat": {
+      "title": "Using battery",
+      "type": "boolean",
+      "description": "Using battery",
+      "hideFromKpis": true
+    },
+    "useFirstTimestamp": {
+      "title": "Transmiting first timestamp",
+      "type": "boolean",
+      "description": "Transmiting first timestamp",
+      "hideFromKpis": true
+    },
+    "useLastTimestamp": {
+      "title": "Transmiting last timestamp",
+      "type": "boolean",
+      "description": "Transmiting last timestamp",
+      "hideFromKpis": true
+    },
+    "useLAeq": {
+      "title": "Transmiting Leq A-weighting",
+      "type": "boolean",
+      "description": "Transmiting Leq A-weighting",
+      "hideFromKpis": true
+    },
+    "useLAf": {
+      "title": "Transmiting dB A-weighting fast",
+      "type": "boolean",
+      "description": "Transmiting dB A-weighting fast",
+      "hideFromKpis": true
+    },
+    "useLAmax": {
+      "title": "Transmiting Positive peak hold A-weighting",
+      "type": "boolean",
+      "description": "Transmiting Positive peak hold A-weighting",
+      "hideFromKpis": true
+    },
+    "useLAmin": {
+      "title": "Transmiting Negative peak hold A-weighting",
+      "type": "boolean",
+      "description": "Transmiting Negative peak hold A-weighting",
+      "hideFromKpis": true
+    },
+    "useLAs": {
+      "title": "Transmiting dB A-weighting slow",
+      "type": "boolean",
+      "description": "Transmiting dB A-weighting slow",
+      "hideFromKpis": true
+    },
+    "useLCeq": {
+      "title": "Transmiting Leq C-weighting",
+      "type": "boolean",
+      "description": "Transmiting Leq C-weighting",
+      "hideFromKpis": true
+    },
+    "useLCf": {
+      "title": "Transmiting dB C-weighting fast",
+      "type": "boolean",
+      "description": "Transmiting dB C-weighting fast",
+      "hideFromKpis": true
+    },
+    "useLCmax": {
+      "title": "Transmiting Positive peak hold C-weighting",
+      "type": "boolean",
+      "description": "Transmiting Positive peak hold C-weighting",
+      "hideFromKpis": true
+    },
+    "useLCmin": {
+      "title": "Transmiting Negative peak hold C-weighting",
+      "type": "boolean",
+      "description": "Transmiting Negative peak hold C-weighting",
+      "hideFromKpis": true
+    },
+    "useLCs": {
+      "title": "Transmiting dB C-weighting slow",
+      "type": "boolean",
+      "description": "Transmiting dB C-weighting slow",
+      "hideFromKpis": true
+    }
+  }
+}
