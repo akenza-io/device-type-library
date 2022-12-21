@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.30.2] - 2022-12-20
+
+### Changed
+
+- Added check for name length in meta
+
 # [1.30.1] - 2022-12-15
 
 ### Changed
