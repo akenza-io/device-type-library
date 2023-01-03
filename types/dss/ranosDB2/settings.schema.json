@@ -79,75 +79,75 @@
       "hideFromKpis": true
     },
     "useFirstTimestamp": {
-      "title": "Transmiting first timestamp",
+      "title": "Transmitting first timestamp",
       "type": "boolean",
-      "description": "Transmiting first timestamp",
+      "description": "Transmitting first timestamp",
       "hideFromKpis": true
     },
     "useLastTimestamp": {
-      "title": "Transmiting last timestamp",
+      "title": "Transmitting last timestamp",
       "type": "boolean",
-      "description": "Transmiting last timestamp",
+      "description": "Transmitting last timestamp",
       "hideFromKpis": true
     },
     "useLAeq": {
-      "title": "Transmiting Leq A-weighting",
+      "title": "Transmitting Leq A-weighting",
       "type": "boolean",
-      "description": "Transmiting Leq A-weighting",
+      "description": "Transmitting Leq A-weighting",
       "hideFromKpis": true
     },
     "useLAf": {
-      "title": "Transmiting dB A-weighting fast",
+      "title": "Transmitting dB A-weighting fast",
       "type": "boolean",
-      "description": "Transmiting dB A-weighting fast",
+      "description": "Transmitting dB A-weighting fast",
       "hideFromKpis": true
     },
     "useLAmax": {
-      "title": "Transmiting Positive peak hold A-weighting",
+      "title": "Transmitting Positive peak hold A-weighting",
       "type": "boolean",
-      "description": "Transmiting Positive peak hold A-weighting",
+      "description": "Transmitting Positive peak hold A-weighting",
       "hideFromKpis": true
     },
     "useLAmin": {
-      "title": "Transmiting Negative peak hold A-weighting",
+      "title": "Transmitting Negative peak hold A-weighting",
       "type": "boolean",
-      "description": "Transmiting Negative peak hold A-weighting",
+      "description": "Transmitting Negative peak hold A-weighting",
       "hideFromKpis": true
     },
     "useLAs": {
-      "title": "Transmiting dB A-weighting slow",
+      "title": "Transmitting dB A-weighting slow",
       "type": "boolean",
-      "description": "Transmiting dB A-weighting slow",
+      "description": "Transmitting dB A-weighting slow",
       "hideFromKpis": true
     },
     "useLCeq": {
-      "title": "Transmiting Leq C-weighting",
+      "title": "Transmitting Leq C-weighting",
       "type": "boolean",
-      "description": "Transmiting Leq C-weighting",
+      "description": "Transmitting Leq C-weighting",
       "hideFromKpis": true
     },
     "useLCf": {
-      "title": "Transmiting dB C-weighting fast",
+      "title": "Transmitting dB C-weighting fast",
       "type": "boolean",
-      "description": "Transmiting dB C-weighting fast",
+      "description": "Transmitting dB C-weighting fast",
       "hideFromKpis": true
     },
     "useLCmax": {
-      "title": "Transmiting Positive peak hold C-weighting",
+      "title": "Transmitting Positive peak hold C-weighting",
       "type": "boolean",
-      "description": "Transmiting Positive peak hold C-weighting",
+      "description": "Transmitting Positive peak hold C-weighting",
       "hideFromKpis": true
     },
     "useLCmin": {
-      "title": "Transmiting Negative peak hold C-weighting",
+      "title": "Transmitting Negative peak hold C-weighting",
       "type": "boolean",
-      "description": "Transmiting Negative peak hold C-weighting",
+      "description": "Transmitting Negative peak hold C-weighting",
       "hideFromKpis": true
     },
     "useLCs": {
-      "title": "Transmiting dB C-weighting slow",
+      "title": "Transmitting dB C-weighting slow",
       "type": "boolean",
-      "description": "Transmiting dB C-weighting slow",
+      "description": "Transmitting dB C-weighting slow",
       "hideFromKpis": true
     }
   }
