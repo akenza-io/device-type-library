@@ -4,13 +4,25 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-# [1.29.0] - 2022-12-14
+# [1.31.0] - 2023-01-03
 
 ### Changed
 
 - Added required for keys in schema files
 - Renamed image files to be more standardised
 - Renamed voltage to batteryVoltage to standardise keys
+
+# [1.30.2] - 2022-12-20
+
+### Changed
+
+- Added check for name length in meta
+
+# [1.30.1] - 2022-12-15
+
+### Changed
+
+- Xovis PC2SV5 - Summating logic samples into one
 
 # [1.30.0] - 2022-12-09
 
