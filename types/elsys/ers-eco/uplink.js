@@ -233,7 +233,7 @@ function consume(event) {
   if (res.vdd !== undefined) {
     lifecycle.batteryVoltage = res.vdd / 1000;
     let batteryLevel =
-      Math.round((lifecycle.batteryVoltage - 2.7) / 0.009 / 10) * 10;
+      Math.round((lifecycle.batteryVoltage - 2.8) / 0.008 / 10) * 10;
 
     if (batteryLevel > 100) {
       batteryLevel = 100;
