@@ -1,0 +1,14 @@
+{
+  "name": "LHT65",
+  "version": "1.0.0",
+  "manufacturer": "Dragino",
+  "url": "https://www.dragino.com/products/temperature-humidity-sensor/item/224-lht65n.html",
+  "description": "The Dragino LHT65N Temperature & Humidity sensor is a Long Range LoRaWAN Sensor. It includes a built-in Temperature & Humidity sensor and has an external sensor connector to connect to an external Temperature Sensor.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Humidity", "External Temperature"],
+  "outputTopics": ["default", "external", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

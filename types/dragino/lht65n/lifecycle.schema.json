@@ -1,0 +1,56 @@
+{
+  "$id": "https://akenza.io/dragino/lht65n/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "batteryStatus": {
+      "title": "Battery status",
+      "description": "Battery status",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "batteryVoltage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "title": "Battery voltage",
+      "desciption": "The battery voltage in Volt.",
+      "unit": "V"
+    },
+    "sensor": {
+      "title": "Sensor",
+      "description": "Sensor",
+      "type": "string",
+      "enum": ["SENSOR_NO_CONNECTION", "DS18B20", "TMP117"],
+      "hideFromKpis": true
+    },
+    "extSensor": {
+      "title": "External sensor",
+      "description": "External Sensor",
+      "type": "string",
+      "enum": ["NO_EXTERNAL_SENSOR", "TEMPERATURE_SENSOR"],
+      "hideFromKpis": true
+    },
+    "workMode": {
+      "title": "Sensor work mode",
+      "description": "Sensor work mode",
+      "type": "string",
+      "enum": [
+        "INTERRUPT_SENSOR",
+        "ILLUMINATION_SENSOR",
+        "ADC_SENSOR",
+        "INTERRUPT_SENSOR_COUNT",
+        "DS18B20_TIMESTAMP",
+        "DS18B20ID"
+      ],
+      "hideFromKpis": true
+    },
+    "systemTimestamp": {
+      "title": "System timestamp",
+      "description": "System timestamp",
+      "type": "integer",
+      "hideFromKpis": true
+    }
+  }
+}

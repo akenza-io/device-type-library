@@ -1,0 +1,13 @@
+{
+  "$id": "https://akenza.io/dragino/lht65n/datalog.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Datalog",
+  "type": "object",
+  "properties": {
+    "datalog": {
+      "title": "Datalog",
+      "type": "array",
+      "description": "Datalog"
+    }
+  }
+}

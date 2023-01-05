@@ -1,0 +1,20 @@
+{
+  "$id": "https://akenza.io/dragino/lds03a/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "firmwareVersion": {
+      "title": "Firmware version",
+      "type": "number",
+      "desciption": "Firmware version",
+      "hideFromKpis": true
+    },
+    "batteryVoltage": {
+      "title": "Battery voltage",
+      "type": "number",
+      "desciption": "The battery voltage in Volt.",
+      "unit": "V"
+    }
+  }
+}
