@@ -109,6 +109,17 @@ function decoder(bytes, port) {
     decode.lifecycle.batteryVoltage = parseInt(
       (bytes1 + str2.substring(0, 4)) & 0x3fff,
     );
+    let batteryLevel =
+      Math.round((decode.lifecycle.batteryVoltage - 2.5) / 0.005 / 10) * 10;
+
+    if (batteryLevel > 100) {
+      batteryLevel = 100;
+    } else if (batteryLevel < 0) {
+      batteryLevel = 0;
+    }
+
+    decode.lifecycle.batteryLevel = batteryLevel;
+
     if (parseInt(bytes1 + str2.substring(4)) === 1) {
       decode.lifecycle.sensor = "DS18B20";
     } else {
@@ -131,7 +142,37 @@ function decoder(bytes, port) {
       } else {
         decode.lifecycle.batteryVoltage =
           (((bytes[0] << 8) | bytes[1]) & 0x3fff) / 1000;
-        decode.lifecycle.batteryStatus = bytes[0] >> 6;
+        let batteryLevel =
+          Math.round((decode.lifecycle.batteryVoltage - 2.5) / 0.005 / 10) * 10;
+
+        if (batteryLevel > 100) {
+          batteryLevel = 100;
+        } else if (batteryLevel < 0) {
+          batteryLevel = 0;
+        }
+
+        decode.lifecycle.batteryLevel = batteryLevel;
+
+        let batteryStatus = bytes[0] >> 6;
+        switch (batteryStatus) {
+          case 0:
+            batteryStatus = "ULTRA_LOW";
+            break;
+          case 1:
+            batteryStatus = "LOW";
+            break;
+          case 2:
+            batteryStatus = "OK";
+            break;
+          case 3:
+            batteryStatus = "GOOD";
+            break;
+
+          default:
+            break;
+        }
+
+        decode.lifecycle.batteryStatus = batteryStatus;
       }
 
       if (ext !== 0x0f) {

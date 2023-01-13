@@ -5,13 +5,22 @@ function consume(event) {
   const lifecycle = {};
 
   const value = ((bytes[0] << 8) | bytes[1]) & 0x3fff;
-  lifecycle.batteryVoltage = value / 1000;
+  lifecycle.batteryVoltage = Math.round(value / 100) / 10;
+  let batteryLevel =
+    Math.round((lifecycle.batteryVoltage - 2.1) / 0.009 / 10) * 10;
 
-  data.open = bytes[0] & 0x80 ? 1 : 0;
-  data.waterLeak = bytes[0] & 0x40 ? 1 : 0;
+  if (batteryLevel > 100) {
+    batteryLevel = 100;
+  } else if (batteryLevel < 0) {
+    batteryLevel = 0;
+  }
+  lifecycle.batteryLevel = batteryLevel;
+
+  // data.open = bytes[0] & 0x80;
+  data.waterLeak = !!(bytes[0] & 0x40);
 
   const mode = bytes[2];
-  data.alarm = bytes[9] & 0x01;
+  data.alarm = !!(bytes[9] & 0x01);
 
   if (mode === 1) {
     data.openTimes = (bytes[3] << 16) | (bytes[4] << 8) | bytes[5];

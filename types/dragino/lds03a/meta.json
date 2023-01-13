@@ -8,7 +8,7 @@
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Door"],
-  "outputTopics": ["default", "lifecycle"],
+  "outputTopics": ["datalog", "default", "info", "lifecycle"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

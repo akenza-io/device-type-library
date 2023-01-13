@@ -5,7 +5,7 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Dragino LHT65N Uplink", () => {
+describe("Dragino LDS02 Uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
@@ -15,16 +15,6 @@ describe("Dragino LHT65N Uplink", () => {
       .loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
         defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
-  let externalSchema = null;
-  before((done) => {
-    utils
-      .loadSchema(`${__dirname}/external.schema.json`)
-      .then((parsedSchema) => {
-        externalSchema = parsedSchema;
         done();
       });
   });
@@ -39,22 +29,12 @@ describe("Dragino LHT65N Uplink", () => {
       });
   });
 
-  let datalogSchema = null;
-  before((done) => {
-    utils
-      .loadSchema(`${__dirname}/datalog.schema.json`)
-      .then((parsedSchema) => {
-        datalogSchema = parsedSchema;
-        done();
-      });
-  });
-
   describe("consume()", () => {
-    it("should decode the Dragino LHT65N report uplink", () => {
+    it("should decode the Dragino LDS02 report uplink", () => {
       const data = {
         data: {
           port: 2,
-          payloadHex: "cc5609c001ec01096c7fff",
+          payloadHex: "8c960100000200001200",
         },
       };
 
@@ -63,12 +43,13 @@ describe("Dragino LHT65N Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryStatus, "GOOD");
-        assert.equal(value.data.batteryVoltage, 3.158);
-        assert.equal(value.data.batteryLevel, 100);
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.alarm, false);
+        assert.equal(value.data.open, true);
+        assert.equal(value.data.openDuration, 18);
+        assert.equal(value.data.openTimes, 2);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -76,11 +57,11 @@ describe("Dragino LHT65N Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.humidity, 49.2);
-        assert.equal(value.data.temperature, 24.96);
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batteryVoltage, 3.2);
+        assert.equal(value.data.batteryLevel, 100);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

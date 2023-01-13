@@ -7,7 +7,8 @@
     "batteryStatus": {
       "title": "Battery status",
       "description": "Battery status",
-      "type": "integer",
+      "type": "string",
+      "enum": ["ULTRA_LOW", "LOW", "OK", "GOOD"],
       "hideFromKpis": true
     },
     "batteryVoltage": {
@@ -17,6 +18,14 @@
       "title": "Battery voltage",
       "desciption": "The battery voltage in Volt.",
       "unit": "V"
+    },
+    "batteryLevel": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "unit": "%"
     },
     "sensor": {
       "title": "Sensor",

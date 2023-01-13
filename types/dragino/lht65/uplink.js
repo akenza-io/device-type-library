@@ -91,9 +91,39 @@ function decoder(bytes) {
         );
         response.lifecycle.batteryStatus = bytes[4] >> 6;
       } else {
-        response.lifecycle.voltage =
+        response.lifecycle.batteryVoltage =
           (((bytes[0] << 8) | bytes[1]) & 0x3fff) / 1000;
-        response.lifecycle.batteryStatus = bytes[0] >> 6;
+        let batteryLevel =
+          Math.round((response.lifecycle.batteryVoltage - 2.5) / 0.005 / 10) *
+          10;
+
+        if (batteryLevel > 100) {
+          batteryLevel = 100;
+        } else if (batteryLevel < 0) {
+          batteryLevel = 0;
+        }
+        response.lifecycle.batteryLevel = batteryLevel;
+
+        let batteryStatus = bytes[0] >> 6;
+        switch (batteryStatus) {
+          case 0:
+            batteryStatus = "ULTRA_LOW";
+            break;
+          case 1:
+            batteryStatus = "LOW";
+            break;
+          case 2:
+            batteryStatus = "OK";
+            break;
+          case 3:
+            batteryStatus = "GOOD";
+            break;
+
+          default:
+            break;
+        }
+
+        response.lifecycle.batteryStatus = batteryStatus;
       }
 
       if (ext !== 0x0f) {

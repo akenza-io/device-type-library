@@ -5,7 +5,7 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Dragino LHT65N Uplink", () => {
+describe("Dragino LDS03A Uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
@@ -19,14 +19,12 @@ describe("Dragino LHT65N Uplink", () => {
       });
   });
 
-  let externalSchema = null;
+  let infoSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/external.schema.json`)
-      .then((parsedSchema) => {
-        externalSchema = parsedSchema;
-        done();
-      });
+    utils.loadSchema(`${__dirname}/info.schema.json`).then((parsedSchema) => {
+      infoSchema = parsedSchema;
+      done();
+    });
   });
 
   let lifecycleSchema = null;
@@ -50,11 +48,36 @@ describe("Dragino LHT65N Uplink", () => {
   });
 
   describe("consume()", () => {
-    it("should decode the Dragino LHT65N report uplink", () => {
+    it("should decode the Dragino LDS03A open uplink", () => {
       const data = {
         data: {
           port: 2,
-          payloadHex: "cc5609c001ec01096c7fff",
+          payloadHex: "0100000500000063bfe921",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.alarm, false);
+        assert.equal(value.data.open, true);
+        assert.equal(value.data.openDuration, 0);
+        assert.equal(value.data.openTimes, 5);
+
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("should decode the Dragino LDS03A closed uplink", () => {
+      const data = {
+        data: {
+          port: 5,
+          payloadHex: "0a011001ff0e65",
         },
       };
 
@@ -64,23 +87,11 @@ describe("Dragino LHT65N Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryStatus, "GOOD");
-        assert.equal(value.data.batteryVoltage, 3.158);
+        assert.equal(value.data.batteryVoltage, 3.685);
         assert.equal(value.data.batteryLevel, 100);
+        assert.equal(value.data.firmwareVersion, "1.1.0");
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
-      });
-
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.humidity, 49.2);
-        assert.equal(value.data.temperature, 24.96);
-
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

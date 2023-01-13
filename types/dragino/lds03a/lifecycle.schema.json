@@ -6,7 +6,7 @@
   "properties": {
     "firmwareVersion": {
       "title": "Firmware version",
-      "type": "number",
+      "type": "string",
       "desciption": "Firmware version",
       "hideFromKpis": true
     },
@@ -15,6 +15,14 @@
       "type": "number",
       "desciption": "The battery voltage in Volt.",
       "unit": "V"
+    },
+    "batteryLevel": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "unit": "%"
     }
   }
 }

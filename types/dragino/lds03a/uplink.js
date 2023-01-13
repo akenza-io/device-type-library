@@ -61,8 +61,8 @@ function consume(event) {
   const lifecycle = {};
 
   if (port === 0x02) {
-    data.alarm = bytes[0] & 0x02;
-    data.open = bytes[0] & 0x01;
+    data.alarm = !!(bytes[0] & 0x02);
+    data.open = !!(bytes[0] & 0x01);
     data.openTimes = (bytes[1] << 16) | (bytes[2] << 8) | bytes[3];
     data.openDuration = (bytes[4] << 16) | (bytes[5] << 8) | bytes[6];
 
@@ -91,6 +91,16 @@ function consume(event) {
       bytes[2] & 0x0f
     }`;
     data.batteryVoltage = ((bytes[5] << 8) | bytes[6]) / 1000;
-    emit("sample", { data: lifecycle, topic: "lifecycle" });
+    let batteryLevel =
+      Math.round((data.batteryVoltage - 2.45) / 0.0115 / 10) * 10;
+
+    if (batteryLevel > 100) {
+      batteryLevel = 100;
+    } else if (batteryLevel < 0) {
+      batteryLevel = 0;
+    }
+    data.batteryLevel = batteryLevel;
+
+    emit("sample", { data, topic: "lifecycle" });
   }
 }
