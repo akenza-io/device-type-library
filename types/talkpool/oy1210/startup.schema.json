@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/talkpool/oy1210/startup.schema.json",
+  "$id": "https://akenza.io/nordicPropeye/oy1210/startup.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Startup",
   "type": "object",
