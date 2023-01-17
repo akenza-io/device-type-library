@@ -8,7 +8,7 @@
   "firmwareVersion": "V3.0.2",
   "loraDeviceClass": "A",
   "availableSensors": ["Sound", "GPS"],
-  "outputTopics": ["default", "gps", "lifecycle"],
+  "outputTopics": ["default", "gps", "lifecycle", "settings"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

@@ -4,13 +4,25 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-# [1.31.0] - 2023-01-03
+# [1.31.0] - 2023-01-17
 
 ### Changed
 
 - Added required for keys in schema files
 - Renamed image files to be more standardised
 - Renamed voltage to batteryVoltage to standardise keys
+
+# [1.30.4] - 2023-01-17
+
+### Changed
+
+- Xovis - Added more outputs to count
+
+# [1.30.3] - 2023-01-03
+
+### Changed
+
+- RanosDB - Changed uplink to match new firmware and added batteryLevel
 
 # [1.30.2] - 2022-12-20
 
