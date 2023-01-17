@@ -30,11 +30,6 @@ function toBitArrray(bytes) {
     }
   }
 
-  if (Number(bits.substr(12, 1)) === 1) {
-    lifecycle.batteryVoltage =
-      Bits.bitsToUnsigned(bits.substr(pointer + 4, 8)) / 10;
-    pointer += 12;
-    emit("sample", { data: lifecycle, topic: "lifecycle" });
   return bitArray;
 }
 
