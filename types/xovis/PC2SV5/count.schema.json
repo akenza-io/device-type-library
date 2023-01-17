@@ -15,6 +15,12 @@
       "description": "Logic name",
       "type": "string"
     },
+    "direction": {
+      "title": "Direction",
+      "description": "Direction passed",
+      "type": "string",
+      "enum": ["fw", "bw", "balance"]
+    },
     "counterValue": {
       "title": "Counter value",
       "description": "Counter value",

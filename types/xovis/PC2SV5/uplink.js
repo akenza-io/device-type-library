@@ -48,11 +48,13 @@ function consume(event) {
               data.countType = type;
               data.logicName = ev.attributes.logic_name;
               data.counterValue = ev.attributes.counter_value;
+              data.direction = ev.attributes.counter_name;
               topic = "count";
             } else if (type === "COUNT_DECREMENT") {
               data.countType = type;
               data.logicName = ev.attributes.logic_name;
               data.counterValue = ev.attributes.counter_value;
+              data.direction = ev.attributes.counter_name;
               topic = "count";
             }
             emit("sample", { data, topic });
