@@ -7,7 +7,7 @@
     "protocolVersion": {
       "title": "Protocol version",
       "description": "Protocol version",
-      "type": "string",
+      "type": "integer",
       "hideFromKpis": true
     },
     "sn": {
