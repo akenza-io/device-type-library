@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.30.4] - 2023-01-17
+
+### Changed
+
+- Xovis - Added more logic to count
+
 # [1.30.3] - 2023-01-03
 
 ### Changed
