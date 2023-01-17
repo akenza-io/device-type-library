@@ -1,0 +1,14 @@
+{
+  "name": "VS132",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight-iot.com/lorawan/sensor/vs132/",
+  "description": "Easy and convenient wireless deployment dispenses with being perplexed by network connection. The highlights of LoRaWAN® guarantee low power consumption, long-distance transmission and anonymous detection.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["People"],
+  "outputTopics": ["count", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
