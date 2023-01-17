@@ -48,30 +48,33 @@ function consume(event) {
         break;
       case 0x68:
         topic = "humidity";
-        data.humidity = Bits.bitsToUnsigned(bits.substr(pointer, 8));
+        data.humidity = Bits.bitsToUnsigned(bits.substr(pointer, 8)) / 2;
         pointer += 8;
         break;
       case 0x71:
         topic = "accelerometer";
-        data.xAxisAccelerometer = Bits.bitsToSigned(bits.substr(pointer, 16));
+        data.xAxisAccelerometer =
+          Bits.bitsToSigned(bits.substr(pointer, 16)) / 1000;
         pointer += 16;
-        data.yAxisAccelerometer = Bits.bitsToSigned(bits.substr(pointer, 16));
+        data.yAxisAccelerometer =
+          Bits.bitsToSigned(bits.substr(pointer, 16)) / 1000;
         pointer += 16;
-        data.zAxisAccelerometer = Bits.bitsToSigned(bits.substr(pointer, 16));
+        data.zAxisAccelerometer =
+          Bits.bitsToSigned(bits.substr(pointer, 16)) / 1000;
         pointer += 16;
         break;
       case 0x73:
         topic = "barometer";
-        data.barometer = Bits.bitsToSigned(bits.substr(pointer, 16));
+        data.barometer = Bits.bitsToSigned(bits.substr(pointer, 16)) / 10;
         pointer += 16;
         break;
       case 0x86:
         topic = "gyrometer";
-        data.gyroX = Bits.bitsToSigned(bits.substr(pointer, 16));
+        data.gyroX = Bits.bitsToSigned(bits.substr(pointer, 16)) / 100;
         pointer += 16;
-        data.gyroY = Bits.bitsToSigned(bits.substr(pointer, 16));
+        data.gyroY = Bits.bitsToSigned(bits.substr(pointer, 16)) / 100;
         pointer += 16;
-        data.gyroZ = Bits.bitsToSigned(bits.substr(pointer, 16));
+        data.gyroZ = Bits.bitsToSigned(bits.substr(pointer, 16)) / 100;
         pointer += 16;
         break;
       case 0x88:
