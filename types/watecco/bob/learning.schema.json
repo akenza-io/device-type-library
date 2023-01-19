@@ -4,21 +4,30 @@
   "title": "Learning",
   "type": "object",
   "properties": {
-    "learningPerc": {
+    "device": {
+      "title": "Device",
+      "description": "Device type",
+      "type": "string",
+      "enum": ["MPU", "KX"],
+      "hideFromKpis": true
+    },
+    "learningPercentage": {
       "title": "Learning Percent",
       "unit": "%",
       "description": "State of the learning algorithm",
       "type": "number",
       "minimum": 0,
-      "maximum": 100
+      "maximum": 100,
+      "hideFromKpis": true
     },
-    "vibration": {
+    "vibrationLevel": {
       "title": "Vibration",
       "unit": "mg",
       "description": "Vibration in mg",
       "type": "number",
       "minimum": -32767,
-      "maximum": 32767
+      "maximum": 32767,
+      "hideFromKpis": true
     },
     "temperature": {
       "title": "Temperature",
@@ -26,12 +35,29 @@
       "type": "number",
       "description": "The temperature in °C.",
       "minimum": -3276.5,
-      "maximum": 3276.5
+      "maximum": 3276.5,
+      "hideFromKpis": true
     },
     "learningFrom": {
       "title": "Learning",
       "description": "Either Learning from Zero % or additional Learning",
-      "type": "string"
+      "type": "string",
+      "enum": ["ZERO", "ADDITIONAL_LEARNING"],
+      "hideFromKpis": true
+    },
+    "peakFrequencyIndex": {
+      "title": "Peak frequency index",
+      "unit": "Hz",
+      "type": "number",
+      "description": "Peak frequency index",
+      "hideFromKpis": true
+    },
+    "peakFrequency": {
+      "title": "Peak frequency",
+      "unit": "Hz",
+      "type": "number",
+      "description": "Peak frequency",
+      "hideFromKpis": true
     }
   }
 }

@@ -10,7 +10,8 @@
       "description": "Anomaly Level. Drift with respect to the reference vibration signature",
       "type": "number",
       "minimum": 0,
-      "maximum": 100
+      "maximum": 100,
+      "hideFromKpis": true
     },
     "temperature": {
       "title": "Temperature",
@@ -18,15 +19,17 @@
       "type": "number",
       "description": "The temperature in °C.",
       "minimum": -3276.5,
-      "maximum": 3276.5
+      "maximum": 3276.5,
+      "hideFromKpis": true
     },
-    "vibration": {
+    "vibrationLevel": {
       "title": "Vibration level",
       "unit": "g",
       "description": "Vibration level",
       "type": "number",
       "minimum": 0,
-      "maximum": 381
+      "maximum": 381,
+      "hideFromKpis": true
     }
   }
 }

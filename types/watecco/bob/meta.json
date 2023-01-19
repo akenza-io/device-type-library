@@ -8,7 +8,7 @@
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Vibration", "Temperature"],
-  "outputTopics": ["alarm", "learning", "lifecycle", "report"],
+  "outputTopics": ["alarm", "ftt", "learning", "lifecycle", "report"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }
