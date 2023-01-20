@@ -35,17 +35,14 @@ function consume(event) {
     } else if (learningFrom) {
       data.learningFrom = "ADDITIONAL_LEARNING";
     }
-    data.peakFrequencyIndex = Bits.bitsToUnsigned(bits.substr(40, 8));
-    data.peakFrequency =
-      (Bits.bitsToUnsigned(bits.substr(40, 8)) * frequency) / 256;
+    data.peakFrequencyIndex = Bits.bitsToUnsigned(bits.substr(40, 8)) + 1;
+    data.peakFrequency = (data.peakFrequencyIndex * frequency) / 256;
     // FFT Signal
-    const fft = {};
     for (let i = 8; i <= 39; i++) {
-      fft[`fft${i - 7}`] =
+      data[`fft${i - 7}`] =
         (Bits.bitsToUnsigned(bits.substr(i * 8, 8)) * data.vibrationLevel) /
         127;
     }
-    emit("sample", { data: fft, topic: "fft" });
   } else if (header === 82 || header === 114) {
     // Report
     topic = "report";
@@ -76,8 +73,7 @@ function consume(event) {
 
     data.peakFrequencyIndex = Bits.bitsToUnsigned(bits.substr(88, 8)) + 1;
 
-    data.peakFrequency =
-      ((Bits.bitsToUnsigned(bits.substr(88, 8)) + 1) * frequency) / 256;
+    data.peakFrequency = (data.peakFrequencyIndex * frequency) / 256;
 
     // Anomaly level time 0 - 10%, ok frequencies
     data.goodVibration = round(
@@ -166,13 +162,11 @@ function consume(event) {
     const vl3 = Bits.bitsToUnsigned(bits.substr(48, 8));
     data.vibrationLevel = round((vl1 * 128 + vl2 + vl3 / 100) / 10 / 121.45); // float
     // fftSignal
-    const fft = {};
     for (let i = 8; i <= 39; i++) {
       data[`fft${i - 7}`] =
         (Bits.bitsToUnsigned(bits.substr(i * 8, 8)) * data.vibrationLevel) /
         127;
     }
-    emit("sample", { data: fft, topic: "fft" });
   } else if (header === 83) {
     // State
     topic = "lifecycle";

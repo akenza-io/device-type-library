@@ -12,7 +12,7 @@
       "hideFromKpis": true
     },
     "learningPercentage": {
-      "title": "Learning Percent",
+      "title": "Learning percentage",
       "unit": "%",
       "description": "State of the learning algorithm",
       "type": "number",
@@ -22,8 +22,8 @@
     },
     "vibrationLevel": {
       "title": "Vibration",
-      "unit": "mg",
-      "description": "Vibration in mg",
+      "unit": "g",
+      "description": "Vibration in g",
       "type": "number",
       "minimum": -32767,
       "maximum": 32767,
@@ -40,7 +40,7 @@
     },
     "learningFrom": {
       "title": "Learning",
-      "description": "Either Learning from Zero % or additional Learning",
+      "description": "Learning from scratch or additional learning",
       "type": "string",
       "enum": ["ZERO", "ADDITIONAL_LEARNING"],
       "hideFromKpis": true
@@ -57,6 +57,240 @@
       "unit": "Hz",
       "type": "number",
       "description": "Peak frequency",
+      "hideFromKpis": true
+    },
+    "fft1": {
+      "title": "FFT Signal 1",
+      "type": "number",
+      "description": "FFT Signal 1",
+      "hideFromKpis": true
+    },
+    "fft2": {
+      "title": "FFT Signal 2",
+      "type": "number",
+      "description": "FFT Signal 2",
+      "hideFromKpis": true
+    },
+    "fft3": {
+      "title": "FFT Signal 3",
+      "type": "number",
+      "description": "FFT Signal 3",
+      "hideFromKpis": true
+    },
+    "fft4": {
+      "title": "FFT Signal 4",
+      "type": "number",
+      "description": "FFT Signal 4",
+      "hideFromKpis": true
+    },
+    "fft5": {
+      "title": "FFT Signal 5",
+      "type": "number",
+      "description": "FFT Signal 5",
+      "hideFromKpis": true
+    },
+    "fft6": {
+      "title": "FFT Signal 6",
+      "type": "number",
+      "description": "FFT Signal 6",
+      "hideFromKpis": true
+    },
+    "fft7": {
+      "title": "FFT Signal 7",
+      "type": "number",
+      "description": "FFT Signal 7",
+      "hideFromKpis": true
+    },
+    "fft8": {
+      "title": "FFT Signal 8",
+      "type": "number",
+      "description": "FFT Signal 8",
+      "hideFromKpis": true
+    },
+    "fft9": {
+      "title": "FFT Signal 9",
+      "type": "number",
+      "description": "FFT Signal 9",
+      "hideFromKpis": true
+    },
+    "fft10": {
+      "title": "FFT Signal 10",
+      "type": "number",
+      "description": "FFT Signal 10",
+      "hideFromKpis": true
+    },
+    "fft11": {
+      "title": "FFT Signal 11",
+      "type": "number",
+      "description": "FFT Signal 11",
+      "hideFromKpis": true
+    },
+    "fft12": {
+      "title": "FFT Signal 12",
+      "type": "number",
+      "description": "FFT Signal 12",
+      "hideFromKpis": true
+    },
+    "fft13": {
+      "title": "FFT Signal 13",
+      "type": "number",
+      "description": "FFT Signal 13",
+      "hideFromKpis": true
+    },
+    "fft14": {
+      "title": "FFT Signal 14",
+      "type": "number",
+      "description": "FFT Signal 14",
+      "hideFromKpis": true
+    },
+    "fft15": {
+      "title": "FFT Signal 15",
+      "type": "number",
+      "description": "FFT Signal 15",
+      "hideFromKpis": true
+    },
+    "fft16": {
+      "title": "FFT Signal 16",
+      "type": "number",
+      "description": "FFT Signal 16",
+      "hideFromKpis": true
+    },
+    "fft17": {
+      "title": "FFT Signal 17",
+      "type": "number",
+      "description": "FFT Signal 17",
+      "hideFromKpis": true
+    },
+    "fft18": {
+      "title": "FFT Signal 18",
+      "type": "number",
+      "description": "FFT Signal 18",
+      "hideFromKpis": true
+    },
+    "fft19": {
+      "title": "FFT Signal 19",
+      "type": "number",
+      "description": "FFT Signal 19",
+      "hideFromKpis": true
+    },
+    "fft20": {
+      "title": "FFT Signal 20",
+      "type": "number",
+      "description": "FFT Signal 20",
+      "hideFromKpis": true
+    },
+    "fft21": {
+      "title": "FFT Signal 21",
+      "type": "number",
+      "description": "FFT Signal 21",
+      "hideFromKpis": true
+    },
+    "fft22": {
+      "title": "FFT Signal 22",
+      "type": "number",
+      "description": "FFT Signal 22",
+      "hideFromKpis": true
+    },
+    "fft23": {
+      "title": "FFT Signal 23",
+      "type": "number",
+      "description": "FFT Signal 23",
+      "hideFromKpis": true
+    },
+    "fft24": {
+      "title": "FFT Signal 24",
+      "type": "number",
+      "description": "FFT Signal 24",
+      "hideFromKpis": true
+    },
+    "fft25": {
+      "title": "FFT Signal 25",
+      "type": "number",
+      "description": "FFT Signal 25",
+      "hideFromKpis": true
+    },
+    "fft26": {
+      "title": "FFT Signal 26",
+      "type": "number",
+      "description": "FFT Signal 26",
+      "hideFromKpis": true
+    },
+    "fft27": {
+      "title": "FFT Signal 27",
+      "type": "number",
+      "description": "FFT Signal 27",
+      "hideFromKpis": true
+    },
+    "fft28": {
+      "title": "FFT Signal 28",
+      "type": "number",
+      "description": "FFT Signal 28",
+      "hideFromKpis": true
+    },
+    "fft29": {
+      "title": "FFT Signal 29",
+      "type": "number",
+      "description": "FFT Signal 29",
+      "hideFromKpis": true
+    },
+    "fft30": {
+      "title": "FFT Signal 30",
+      "type": "number",
+      "description": "FFT Signal 30",
+      "hideFromKpis": true
+    },
+    "fft31": {
+      "title": "FFT Signal 31",
+      "type": "number",
+      "description": "FFT Signal 31",
+      "hideFromKpis": true
+    },
+    "fft32": {
+      "title": "FFT Signal 32",
+      "type": "number",
+      "description": "FFT Signal 32",
+      "hideFromKpis": true
+    },
+    "fft33": {
+      "title": "FFT Signal 33",
+      "type": "number",
+      "description": "FFT Signal 33",
+      "hideFromKpis": true
+    },
+    "fft34": {
+      "title": "FFT Signal 34",
+      "type": "number",
+      "description": "FFT Signal 34",
+      "hideFromKpis": true
+    },
+    "fft35": {
+      "title": "FFT Signal 35",
+      "type": "number",
+      "description": "FFT Signal 35",
+      "hideFromKpis": true
+    },
+    "fft36": {
+      "title": "FFT Signal 36",
+      "type": "number",
+      "description": "FFT Signal 36",
+      "hideFromKpis": true
+    },
+    "fft37": {
+      "title": "FFT Signal 37",
+      "type": "number",
+      "description": "FFT Signal 37",
+      "hideFromKpis": true
+    },
+    "fft38": {
+      "title": "FFT Signal 38",
+      "type": "number",
+      "description": "FFT Signal 38",
+      "hideFromKpis": true
+    },
+    "fft39": {
+      "title": "FFT Signal 39",
+      "type": "number",
+      "description": "FFT Signal 39",
       "hideFromKpis": true
     }
   }
