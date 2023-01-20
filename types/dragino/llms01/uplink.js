@@ -16,18 +16,22 @@ function consume(event) {
   }
   lifecycle.batteryLevel = batteryLevel;
 
-  if (bytes.length >= 5) {
-    const distance = (bytes[2] << 8) | bytes[3];
-    data.distance = distance;
+  let temperature = (bytes[2] << 8) | bytes[3];
+  if (bytes[2] & 0x80) {
+    temperature |= 0xffff0000;
+  }
+  data.temperature = (temperature / 10).toFixed(2);
+
+  const leafMoisture = (bytes[4] << 8) | bytes[5];
+  data.leafMoisture = (leafMoisture / 10).toFixed(2);
+
+  const leafTemperature = (bytes[6] << 8) | bytes[7];
+  if ((leafTemperature & 0x8000) >> 15 === 0) {
+    data.leafTemperature = (leafTemperature / 10).toFixed(2);
+  } else if ((leafTemperature & 0x8000) >> 15 === 1) {
+    data.leafTemperature = ((leafTemperature - 0xffff) / 10).toFixed(2);
   }
 
-  if (bytes.length > 5) {
-    let value = (bytes[5] << 8) | bytes[6];
-    if (bytes[5] & 0x80) {
-      value |= 0xffff0000;
-    }
-    data.temperature = (value / 10).toFixed(2);
-  }
   emit("sample", { data, topic: "default" });
   emit("sample", { data: lifecycle, topic: "lifecycle" });
 }

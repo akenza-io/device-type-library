@@ -9,6 +9,14 @@
       "unit": "cm",
       "type": "number",
       "description": "Distance measured between the sensor and the surface"
+    },
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
     }
   }
 }
