@@ -39,13 +39,13 @@ function consume(event) {
     data.peakFrequency =
       (Bits.bitsToUnsigned(bits.substr(40, 8)) * frequency) / 256;
     // FFT Signal
-    const ftt = {};
+    const fft = {};
     for (let i = 8; i <= 39; i++) {
-      ftt[`fft${i - 7}`] =
+      fft[`fft${i - 7}`] =
         (Bits.bitsToUnsigned(bits.substr(i * 8, 8)) * data.vibrationLevel) /
         127;
     }
-    emit("sample", { data: ftt, topic: "ftt" });
+    emit("sample", { data: fft, topic: "fft" });
   } else if (header === 82 || header === 114) {
     // Report
     topic = "report";
@@ -166,13 +166,13 @@ function consume(event) {
     const vl3 = Bits.bitsToUnsigned(bits.substr(48, 8));
     data.vibrationLevel = round((vl1 * 128 + vl2 + vl3 / 100) / 10 / 121.45); // float
     // fftSignal
-    const ftt = {};
+    const fft = {};
     for (let i = 8; i <= 39; i++) {
       data[`fft${i - 7}`] =
         (Bits.bitsToUnsigned(bits.substr(i * 8, 8)) * data.vibrationLevel) /
         127;
     }
-    emit("sample", { data: ftt, topic: "ftt" });
+    emit("sample", { data: fft, topic: "fft" });
   } else if (header === 83) {
     // State
     topic = "lifecycle";
