@@ -42,8 +42,8 @@ function datalog(i, bytes) {
       ((((bytes[0 + i] << 24) >> 16) | bytes[1 + i]) / 100).toFixed(2),
     );
   } else if (ext === "4") {
-    const extiPinLevel = bytes[0 + i] ? "High" : "Low";
-    const extiStatus = bytes[1 + i] ? "True" : "False";
+    const extiPinLevel = bytes[0 + i] ? "HIGH" : "LOW";
+    const extiStatus = !!bytes[1 + i];
     bb = extiPinLevel + extiStatus;
   } else if (ext === "5") {
     bb = (bytes[0 + i] << 8) | bytes[1 + i];

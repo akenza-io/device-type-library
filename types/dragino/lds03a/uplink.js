@@ -58,7 +58,6 @@ function consume(event) {
   const { port } = event.data;
   const bytes = Hex.hexToBytes(payload);
   const data = {};
-  const lifecycle = {};
 
   if (port === 0x02) {
     data.alarm = !!(bytes[0] & 0x02);

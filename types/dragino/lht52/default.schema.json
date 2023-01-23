@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/dragino/llms01/default.schema.json",
+  "$id": "https://akenza.io/dragino/lht52/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Default",
   "type": "object",
@@ -12,19 +12,19 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     },
-    "leafMoisture": {
-      "title": "Leaf moisture",
+    "humidity": {
+      "title": "Humidity",
       "unit": "%",
       "type": "number",
-      "description": "The relative leaf moisture of in %",
+      "description": "The relative humidity in %",
       "minimum": 0,
       "maximum": 100
     },
-    "leafTemperature": {
-      "title": "Leaf temperature",
+    "extTemperature": {
+      "title": "External temperature",
       "unit": "°C",
       "type": "number",
-      "description": "The leaf temperature in °C.",
+      "description": "The external temperature in °C.",
       "minimum": -3276.5,
       "maximum": 3276.5
     }
