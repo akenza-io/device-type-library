@@ -303,5 +303,5 @@ function consume(event) {
 
   emit("sample", { data, topic: "default" });
   emit("sample", { data: lifecycle, topic: "lifecycle" });
-  emit("sample", { data: raw, topic: "mclimate" });
+  emit("sample", { data: raw, topic: "raw_payload" });
 }
