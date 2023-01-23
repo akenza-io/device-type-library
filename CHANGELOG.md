@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.30.5] - 2023-01-23
+
+### Changed
+
+- Mclimate - Vicki
+
 # [1.30.4] - 2023-01-17
 
 ### Changed
