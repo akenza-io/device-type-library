@@ -251,6 +251,177 @@ describe("Xovis V5 Uplink", () => {
       consume(data);
     });
 
+    it("should decode the Xovis V5 summated logic payload", () => {
+      const data = {
+        data: {
+          logics_data: {
+            package_info: {
+              version: "5.0",
+              id: 28,
+              agent_id: 1008,
+            },
+            logics: [
+              {
+                id: 1,
+                name: "Zone 0",
+                info: "XLT_4X_ZONE_COUNT",
+                geometries: [
+                  {
+                    id: 1,
+                    type: "ZONE",
+                    name: "Zone 0",
+                  },
+                ],
+                records: [
+                  {
+                    from: 1645792860000,
+                    to: 1645792920000,
+                    counts: [
+                      {
+                        id: 1,
+                        name: "balance",
+                        value: 0,
+                      },
+                    ],
+                  },
+                  {
+                    from: 1645792920000,
+                    to: 1645792980000,
+                    counts: [
+                      {
+                        id: 1,
+                        name: "balance",
+                        value: 0,
+                      },
+                    ],
+                  },
+                  {
+                    from: 1645792980000,
+                    to: 1645793040000,
+                    counts: [
+                      {
+                        id: 1,
+                        name: "balance",
+                        value: 0,
+                      },
+                    ],
+                  },
+                  {
+                    from: 1645793040000,
+                    to: 1645793100000,
+                    counts: [
+                      {
+                        id: 1,
+                        name: "balance",
+                        value: 0,
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                id: 2,
+                name: "Line 0",
+                info: "XLT_4X_LINE_IN_OUT_COUNT",
+                geometries: [
+                  {
+                    id: 1,
+                    type: "ZONE",
+                    name: "Zone 0",
+                  },
+                  {
+                    id: 2,
+                    type: "LINE",
+                    name: "Line 0",
+                  },
+                ],
+                records: [
+                  {
+                    from: 1645792860000,
+                    to: 1645792920000,
+                    counts: [
+                      {
+                        id: 2,
+                        name: "fw",
+                        value: 1,
+                      },
+                      {
+                        id: 3,
+                        name: "bw",
+                        value: 0,
+                      },
+                    ],
+                  },
+                  {
+                    from: 1645792920000,
+                    to: 1645792980000,
+                    counts: [
+                      {
+                        id: 2,
+                        name: "fw",
+                        value: 3,
+                      },
+                      {
+                        id: 3,
+                        name: "bw",
+                        value: 1,
+                      },
+                    ],
+                  },
+                  {
+                    from: 1645792980000,
+                    to: 1645793040000,
+                    counts: [
+                      {
+                        id: 2,
+                        name: "fw",
+                        value: 0,
+                      },
+                      {
+                        id: 3,
+                        name: "bw",
+                        value: 0,
+                      },
+                    ],
+                  },
+                  {
+                    from: 1645793040000,
+                    to: 1645793100000,
+                    counts: [
+                      {
+                        id: 2,
+                        name: "fw",
+                        value: 0,
+                      },
+                      {
+                        id: 3,
+                        name: "bw",
+                        value: 0,
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "line_count");
+        assert.equal(value.data.fw, 4);
+        assert.equal(value.data.bw, 1);
+
+        utils.validateSchema(value.data, lineCountSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
     it("should decode the Xovis V5 logic payload", () => {
       const data = {
         data: {
@@ -3705,6 +3876,65 @@ describe("Xovis V5 Uplink", () => {
         utils.validateSchema(value.data, viewDirectionSchema, {
           throwError: true,
         });
+      });
+
+      consume(data);
+    });
+
+    it("should decode the Xovis V5 count payload", () => {
+      const data = {
+        data: {
+          live_data: {
+            package_info: { version: "5.0", id: 97, agent_id: 1022 },
+            sensor_info: {
+              serial_number: "80:1F:12:D5:30:DC",
+              type: "SINGLE_SENSOR",
+            },
+            frames: [
+              {
+                framenumber: 251830,
+                time: 1673875622987,
+                illumination: "SUFFICIENT",
+                tracked_objects: [
+                  {
+                    track_id: 111,
+                    type: "PERSON",
+                    position: [-0.620745, -0.685637, 1.656886],
+                    attributes: { person_height: 1.646858 },
+                  },
+                ],
+                events: [
+                  {
+                    category: "COUNT",
+                    type: "COUNT_INCREMENT",
+                    attributes: {
+                      track_id: 111,
+                      logic_id: 4,
+                      logic_name: "Line-based logic 2",
+                      counter_id: 6,
+                      counter_name: "fw",
+                      counter_value: 1471,
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "count");
+        assert.equal(value.data.counterValue, 1471);
+        assert.equal(value.data.direction, "fw");
+        assert.equal(value.data.countType, "COUNT_INCREMENT");
+        assert.equal(value.data.logicName, "Line-based logic 2");
+
+        utils.validateSchema(value.data, countSchema, { throwError: true });
       });
 
       consume(data);

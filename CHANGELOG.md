@@ -4,11 +4,35 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-# [1.31.0] - 2022-12-13
+# [1.30.5] - 2023-01-23
 
 ### Changed
 
 - Mclimate - Vicki
+
+# [1.30.4] - 2023-01-17
+
+### Changed
+
+- Xovis - Added more outputs to count
+
+# [1.30.3] - 2023-01-03
+
+### Changed
+
+- RanosDB - Changed uplink to match new firmware and added batteryLevel
+
+# [1.30.2] - 2022-12-20
+
+### Changed
+
+- Added check for name length in meta
+
+# [1.30.1] - 2022-12-15
+
+### Changed
+
+- Xovis PC2SV5 - Summating logic samples into one
 
 # [1.30.0] - 2022-12-09
 
