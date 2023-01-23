@@ -32,7 +32,7 @@ describe("MClimate Vicky uplink", () => {
   let mclimateSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/mclimate.schema.json`)
+      .loadSchema(`${__dirname}/raw_payload.schema.json`)
       .then((parsedSchema) => {
         mclimateSchema = parsedSchema;
         done();
@@ -43,19 +43,19 @@ describe("MClimate Vicky uplink", () => {
     it("should decode MClimate Vicky payload", () => {
       const data = {
         data: {
-          payloadHex: "011D5A78FA2C01F080"
+          payloadHex: "011D5A78FA2C01F080",
         },
         device: {
-          deviceId: "70B3D52DD300550E"
+          deviceId: "70B3D52DD300550E",
         },
         uplinkMetrics: {
-          timestamp: 1670849361.1912086,
+          timestamp: "1670849361.1912086",
           port: 2,
           frameCountUp: 6,
           rssi: -119,
           snr: 2,
-          sf: 12
-        }
+          sf: 12,
+        },
       };
 
       utils.expectEmits((type, value) => {
@@ -94,10 +94,10 @@ describe("MClimate Vicky uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "mclimate");
+        assert.equal(value.topic, "raw_payload");
         assert.equal(value.data.deviceId, "70B3D52DD300550E");
         assert.equal(value.data.payloadHex, "011D5A78FA2C01F080");
-        assert.equal(value.data.timestamp, 1670849361.1912086);
+        assert.equal(value.data.timestamp, "1670849361.1912086");
         assert.equal(value.data.port, 2);
         assert.equal(value.data.frameCountUp, 6);
         assert.equal(value.data.rssi, -119);
