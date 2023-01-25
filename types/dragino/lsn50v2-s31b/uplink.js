@@ -8,7 +8,7 @@ function consume(event) {
   const data = {};
   const lifecycle = {};
 
-  if (mode !== 2 && mode !== 31) {
+  if (mode !== 2) {
     lifecycle.batteryVoltage = ((bytes[0] << 8) | bytes[1]) / 1000;
     let batteryLevel =
       Math.round((lifecycle.batteryVoltage - 2.45) / 0.0115 / 10) * 10;
@@ -114,36 +114,6 @@ function consume(event) {
 
     data.count =
       (bytes[7] << 24) | (bytes[8] << 16) | (bytes[9] << 8) | bytes[10];
-  } else if (mode === "31") {
-    topic = "alarm";
-
-    lifecycle.batteryVoltage = ((bytes[0] << 8) | bytes[1]) / 1000;
-
-    let batteryLevel =
-      Math.round((lifecycle.batteryVoltage - 2.45) / 0.0115 / 10) * 10;
-
-    if (batteryLevel > 100) {
-      batteryLevel = 100;
-    } else if (batteryLevel < 0) {
-      batteryLevel = 0;
-    }
-    lifecycle.batteryLevel = batteryLevel;
-
-    data.c1Temperature = parseFloat(
-      ((((bytes[2] << 24) >> 16) | bytes[3]) / 10).toFixed(2),
-    );
-
-    data.c1tempMin = (bytes[4] << 24) >> 24;
-
-    data.c1tempMax = (bytes[5] << 24) >> 24;
-
-    data.shtTempMin = (bytes[7] << 24) >> 24;
-
-    data.shTempMax = (bytes[8] << 24) >> 24;
-
-    data.shtHumMin = bytes[9];
-
-    data.shtHumMax = bytes[10];
   }
 
   if (Object.keys(data).length > 0) {
