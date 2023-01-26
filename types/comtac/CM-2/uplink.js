@@ -73,12 +73,12 @@ function consume(event) {
   } else if (port === 101) {
     topic = "system";
     data.sendInterval = Bits.bitsToUnsigned(bits.substr(0, 16));
-    data.minTempThreshold = Bits.bitsToUnsigned(bits.substr(16, 8));
-    data.maxTempThreshold = Bits.bitsToUnsigned(bits.substr(24, 8));
+    data.minTempThreshold = Bits.bitsToSigned(bits.substr(16, 8));
+    data.maxTempThreshold = Bits.bitsToSigned(bits.substr(24, 8));
     data.minHumThreshold = Bits.bitsToUnsigned(bits.substr(32, 8));
     data.maxHumThreshold = Bits.bitsToUnsigned(bits.substr(40, 8));
-    data.minPtThreshold = Bits.bitsToUnsigned(bits.substr(48, 8));
-    data.maxPtThreshold = Bits.bitsToUnsigned(bits.substr(56, 8));
+    data.minPtThreshold = Bits.bitsToSigned(bits.substr(48, 8));
+    data.maxPtThreshold = Bits.bitsToSigned(bits.substr(56, 8));
     data.minLemThreshold = Bits.bitsToUnsigned(bits.substr(64, 16));
     data.maxLemThreshold = Bits.bitsToUnsigned(bits.substr(80, 16));
     data.dinSettings = Bits.bitsToUnsigned(bits.substr(96, 8));

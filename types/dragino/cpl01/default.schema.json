@@ -1,34 +1,36 @@
 {
-  "$id": "https://akenza.io/dragino/ltc2/default.schema.json",
+  "$id": "https://akenza.io/dragino/cpl01/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Default",
   "type": "object",
   "properties": {
-    "channel1temp": {
-      "title": "Channel 1 temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "Channel 1 temperature.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+    "alarm": {
+      "title": "Alarm",
+      "description": "Alarm",
+      "type": "boolean"
     },
-    "channel2temp": {
-      "title": "Channel 2 temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "Channel 2 temperature.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+    "pinStatus": {
+      "title": "Pin status",
+      "description": "Pin status",
+      "type": "string",
+      "enum": ["DISCONNECTED", "CONNECTED"]
     },
-    "channel1res": {
-      "title": "Channel 1 result",
+    "calculateFlag": {
+      "title": "Calculate flag",
+      "description": "Calculate flag",
       "type": "number",
-      "description": "Channel 1 result."
+      "hideFromKpis": true
     },
-    "channel2res": {
-      "title": "Channel 2 result",
-      "type": "number",
-      "description": "Channel 2 result."
+    "totalPulse": {
+      "title": "Total pulse",
+      "description": "Total pulse",
+      "type": "number"
+    },
+    "disconnectDuration": {
+      "title": "Disconnect duration",
+      "description": "Disconnect duration",
+      "unit": "m",
+      "type": "number"
     }
   }
 }
