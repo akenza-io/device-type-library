@@ -1,7 +1,7 @@
 {
-  "$id": "https://akenza.io/digitalMatter/oyster/position.schema.json",
+  "$id": "https://akenza.io/digitalMatter/oyster/dowlink_ack.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Position",
+  "title": "Downlink acknowledge",
   "type": "object",
   "properties": {
     "sequenceNumber": {
