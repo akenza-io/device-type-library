@@ -4,6 +4,37 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.31.0] - 2022-26-01
+
+### Added
+
+- Dragino - CPL01
+- Dragino - LDDS04
+- Dragino - LDDS20
+- Dragino - LDDS45
+- Dragino - LDDS75
+- Dragino - LDS02
+- Dragino - LDS03A
+- Dragino - LHT52
+- Dragino - LHT65
+- Dragino - LHT65N
+- Dragino - LHT65N-NE117
+- Dragino - LLDS12
+- Dragino - LLMS01
+- Dragino - LSE01
+- Dragino - LSN50V2-D20
+- Dragino - LSN50V2-D22
+- Dragino - LSN50V2-D23
+- Dragino - LSN50V2-S31
+- Dragino - LSN50V2-S31B
+- Dragino - LSPH01
+- Dragino - LTC2
+- Dragino - LWL02
+
+### Changed
+
+- CM-2 - Updated with new datapoints
+
 # [1.30.6] - 2023-01-25
 
 ### Changed
