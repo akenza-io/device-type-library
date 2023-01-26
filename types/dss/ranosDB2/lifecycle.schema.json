@@ -4,13 +4,30 @@
   "title": "Lifecycle",
   "type": "object",
   "properties": {
-    "voltage": {
+    "batteryVoltage": {
       "type": "number",
       "minimum": 0,
       "maximum": 24,
       "title": "Battery voltage",
       "desciption": "The battery voltage in Volt.",
-      "unit": "V"
+      "unit": "V",
+      "hideFromKpis": true
+    },
+    "batteryLevel": {
+      "title": "Battery charge",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "The battery charge in percent.",
+      "unit": "%",
+      "hideFromKpis": true
+    },
+    "transmitInterval": {
+      "title": "Transmit interval",
+      "type": "integer",
+      "description": "Transmit interval",
+      "hideFromKpis": true
     }
-  }
+  },
+  "required": ["batteryVoltage", "batteryLevel", "transmitInterval"]
 }

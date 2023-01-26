@@ -4,6 +4,30 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.30.6] - 2023-01-25
+
+### Changed
+
+- Xovis - Added timestamp in emit
+
+# [1.30.5] - 2023-01-23
+
+### Changed
+
+- Mclimate - Vicki
+
+# [1.30.4] - 2023-01-17
+
+### Changed
+
+- Xovis - Added more outputs to count
+
+# [1.30.3] - 2023-01-03
+
+### Changed
+
+- RanosDB - Changed uplink to match new firmware and added batteryLevel
+
 # [1.30.2] - 2022-12-20
 
 ### Changed
