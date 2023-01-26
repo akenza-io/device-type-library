@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/dragino/lsn50v2-d20/iic.schema.json",
+  "$id": "https://akenza.io/dragino/lsn50v2-d23/iic.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "IIC",
   "type": "object",

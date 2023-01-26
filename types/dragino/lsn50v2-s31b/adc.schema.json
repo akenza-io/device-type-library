@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/dragino/lsn50v2-d20/energy.schema.json",
+  "$id": "https://akenza.io/dragino/lsn50v2-s31b/energy.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Energy",
   "type": "object",

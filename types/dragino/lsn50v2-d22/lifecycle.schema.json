@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/dragino/lse01/lifecycle.schema.json",
+  "$id": "https://akenza.io/dragino/lsn50v2-d22/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Lifecycle",
   "type": "object",
