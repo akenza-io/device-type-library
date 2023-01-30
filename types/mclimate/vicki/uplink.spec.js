@@ -29,11 +29,32 @@ describe("MClimate Vicky uplink", () => {
       });
   });
 
+  let mclimateSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/raw_payload.schema.json`)
+      .then((parsedSchema) => {
+        mclimateSchema = parsedSchema;
+        done();
+      });
+  });
+
   describe("consume()", () => {
     it("should decode MClimate Vicky payload", () => {
       const data = {
         data: {
           payloadHex: "011D5A78FA2C01F080",
+        },
+        device: {
+          deviceId: "70B3D52DD300550E",
+        },
+        uplinkMetrics: {
+          timestamp: "1670849361.1912086",
+          port: 2,
+          frameCountUp: 6,
+          rssi: -119,
+          snr: 2,
+          sf: 12,
         },
       };
 
@@ -66,6 +87,24 @@ describe("MClimate Vicky uplink", () => {
         assert.equal(value.data.brokenSensor, false);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "raw_payload");
+        assert.equal(value.data.deviceId, "70B3D52DD300550E");
+        assert.equal(value.data.payloadHex, "011D5A78FA2C01F080");
+        assert.equal(value.data.timestamp, "1670849361.1912086");
+        assert.equal(value.data.port, 2);
+        assert.equal(value.data.frameCountUp, 6);
+        assert.equal(value.data.rssi, -119);
+        assert.equal(value.data.snr, 2);
+        assert.equal(value.data.spreadingFactor, 12);
+
+        utils.validateSchema(value.data, mclimateSchema, { throwError: true });
       });
 
       consume(data);
