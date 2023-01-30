@@ -53,14 +53,11 @@ function consume(event) {
         break;
       case 0x71:
         topic = "accelerometer";
-        data.xAxisAccelerometer =
-          Bits.bitsToSigned(bits.substr(pointer, 16)) / 1000;
+        data.accX = Bits.bitsToSigned(bits.substr(pointer, 16)) / 1000;
         pointer += 16;
-        data.yAxisAccelerometer =
-          Bits.bitsToSigned(bits.substr(pointer, 16)) / 1000;
+        data.accY = Bits.bitsToSigned(bits.substr(pointer, 16)) / 1000;
         pointer += 16;
-        data.zAxisAccelerometer =
-          Bits.bitsToSigned(bits.substr(pointer, 16)) / 1000;
+        data.accZ = Bits.bitsToSigned(bits.substr(pointer, 16)) / 1000;
         pointer += 16;
         break;
       case 0x73:

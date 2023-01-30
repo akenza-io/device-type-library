@@ -158,9 +158,9 @@ describe("Cayenne uplink", () => {
 
         assert.equal(value.topic, "accelerometer");
         assert.equal(value.data.channel, 6);
-        assert.equal(value.data.xAxisAccelerometer, 1234);
-        assert.equal(value.data.yAxisAccelerometer, -1234);
-        assert.equal(value.data.zAxisAccelerometer, 0);
+        assert.equal(value.data.accX, 1.234);
+        assert.equal(value.data.accY, -1.234);
+        assert.equal(value.data.accZ, 0);
 
         utils.validateSchema(value.data, accelerometerSchema, {
           throwError: true,

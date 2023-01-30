@@ -10,25 +10,25 @@
       "description": "Channel number",
       "hideFromKpis": true
     },
-    "xAxisAccelerometer": {
+    "accX": {
       "title": "Accelerometer X Axis",
       "unit": "mg",
       "description": "Acceleration on the X-Axis is mg",
-      "type": "integer",
+      "type": "number",
       "minimum": -32767,
       "maximum": 32767
     },
-    "yAxisAccelerometer": {
+    "accY": {
       "title": "Accelerometer Y Axis",
       "unit": "mg",
       "description": "Acceleration on the Y-Axis is mg",
-      "type": "integer",
+      "type": "number",
       "minimum": -32767,
       "maximum": 32767
     },
-    "zAxisAccelerometer": {
+    "accZ": {
       "title": "Accelerometer Z Axis",
-      "unit": "mg",
+      "unit": "number",
       "description": "Acceleration on the Z-Axis is mg",
       "type": "integer",
       "minimum": -32767,

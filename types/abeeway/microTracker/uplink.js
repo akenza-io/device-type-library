@@ -532,9 +532,9 @@ function consume(event) {
         topic = "configuration";
       } else if (activity === 3) {
         data.shocks = Bits.bitsToUnsigned(bits.substr(48, 8));
-        data.xAxisAccelerometer = Bits.bitsToSigned(bits.substr(56, 16));
-        data.yAxisAccelerometer = Bits.bitsToSigned(bits.substr(72, 16));
-        data.zAxisAccelerometer = Bits.bitsToSigned(bits.substr(88, 16));
+        data.accX = Bits.bitsToSigned(bits.substr(56, 16));
+        data.accY = Bits.bitsToSigned(bits.substr(72, 16));
+        data.accZ = Bits.bitsToSigned(bits.substr(88, 16));
         topic = "shocks";
       } else if (activity === 4) {
         data.window1 = Bits.bitsToUnsigned(bits.substr(48, 16));
@@ -578,9 +578,9 @@ function consume(event) {
           topic = "operation_status";
           break;
         case 2:
-          data.xAxisAccelerometer = Bits.bitsToSigned(bits.substr(48, 16));
-          data.yAxisAccelerometer = Bits.bitsToSigned(bits.substr(64, 16));
-          data.zAxisAccelerometer = Bits.bitsToSigned(bits.substr(80, 16));
+          data.accX = Bits.bitsToSigned(bits.substr(48, 16));
+          data.accY = Bits.bitsToSigned(bits.substr(64, 16));
+          data.accZ = Bits.bitsToSigned(bits.substr(80, 16));
           data.operationStatus = "MOTION_END";
           topic = "operation_status";
           break;
