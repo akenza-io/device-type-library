@@ -17,7 +17,9 @@ function consume(event) {
     lifecycle.productVersion = bytes[1] & 0x0f;
     lifecycle.upCnt = bytes[2];
     lifecycle.batteryVoltage = ((bytes[3] << 8) | bytes[4]) / 1000;
-    lifecycle.internalTemperature = ((bytes[5] << 8) | bytes[6]) / 10 - 100;
+    lifecycle.internalTemperature = Math.round(
+      ((bytes[5] << 8) | bytes[6]) / 10 - 100,
+    );
 
     let it = 7;
 
