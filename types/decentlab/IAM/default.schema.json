@@ -24,7 +24,7 @@
       "title": "VOC",
       "unit": "ppb",
       "type": "integer",
-      "description": "Total Volatile Organic Compounds in ppb",
+      "description": "Total Volatile Organic Compounds in ppb.",
       "minimum": 0,
       "maximum": 60000
     },
