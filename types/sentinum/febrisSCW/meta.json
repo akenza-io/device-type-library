@@ -1,0 +1,20 @@
+{
+  "name": "Febris SCW",
+  "version": "1.0.0",
+  "manufacturer": "Sentinum",
+  "url": "https://www.sentinum.de/iot-schimmelsensor/",
+  "description": "The Febris SCW is a sensor from Sentinum's Febris range, specially designed to meet the needs of mold prevention in residential buildings. The sensor records temperature and relative humidity at regular intervals with high precision and at the same time has a temperature-compensated surface thermometer. When the specified limit value is exceeded, the sensor issues a direct warning both acoustically via a buzzer and visually via bright LEDs. This enables controlled, demand-based ventilation and heating.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "Pressure",
+    "CO2",
+    "Dew point"
+  ],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

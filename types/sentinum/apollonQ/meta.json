@@ -1,9 +1,9 @@
 {
-  "name": "Sentinum",
+  "name": "Apollon Zeta",
   "version": "1.0.0",
-  "manufacturer": "Apollon Q",
-  "url": "https://sentinum.de/apollon-q/",
-  "description": "The glass fiber reinforced housing with IP67 protection class makes the Apollon-Q level sensor from Sentinum a high quality product. Applicable for level measurement of containers, shafts, channels or even in small containers like waste baskets, the sensor provides reliable data with a measurement from 2cm up to 250cm. Even inhomogeneous surfaces are recorded very well due to many small measuring points.",
+  "manufacturer": "Sentinum",
+  "url": "https://www.sentinum.de/apollon-zeta/",
+  "description": "The Apollon-Zeta Smart Waste Sensor stands for wireless sensor technology with the usual high-quality measurement results. The sensor uses an innovative 3D measuring principle and is particularly convincing in small containers. The level sensor measures reliably and detects almost all materials without problems - no matter whether lumpy or liquid material.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
