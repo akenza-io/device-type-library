@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.31.0] - 2023-02-20
+
+### Added
+
+- Sentinum - Apollon Q
+- Sentinum - Febris
+
 # [1.30.6] - 2023-01-25
 
 ### Changed
