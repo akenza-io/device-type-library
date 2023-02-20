@@ -10,8 +10,6 @@
   "availableSensors": [
     "Temperature",
     "Humidity",
-    "Pressure",
-    "CO2",
     "Dew point"
   ],
   "outputTopics": ["default", "lifecycle"],
