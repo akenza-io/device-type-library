@@ -1,0 +1,65 @@
+{
+  "$id": "https://akenza.io/sentinum/febris/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "baseId": {
+      "title": "Base ID",
+      "description": "Base ID",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "majorVersion": {
+      "title": "Software version major",
+      "description": "Software version major",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "minorVersion": {
+      "title": "Software version minor",
+      "description": "Software version minor",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "productVersion": {
+      "title": "Product version",
+      "description": "Product version",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "upCnt": {
+      "title": "Uplink count",
+      "description": "Uplink count",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "internalTemperature": {
+      "title": "Internal temperature",
+      "unit": "°C",
+      "description": "Internal temperature",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "hideFromKpis": true
+    },
+    "batteryVoltage": {
+      "title": "Battery voltage",
+      "unit": "V",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "desciption": "The battery voltage in Volt.",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "baseId",
+    "majorVersion",
+    "minorVersion",
+    "productVersion",
+    "upCnt",
+    "internalTemperature",
+    "batteryVoltage"
+  ]
+}

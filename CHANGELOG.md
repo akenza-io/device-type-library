@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.31.0] - 2023-02-20
+
+### Added
+
+- Sentinum - Apollon Q
+- Sentinum - Apollon Zeta
+- Sentinum - Febris CO2
+- Sentinum - Febris SCW
+- Sentinum - Febris TH
+
 # [1.30.6] - 2023-01-25
 
 ### Changed
