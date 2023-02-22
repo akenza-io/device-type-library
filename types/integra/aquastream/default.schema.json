@@ -1,0 +1,33 @@
+{
+  "$id": "https://akenza.io/imbuildings/moodBox/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "great": {
+      "title": "Great feedback",
+      "type": "integer",
+      "description": "Great feedback"
+    },
+    "good": {
+      "title": "Good feedback",
+      "type": "integer",
+      "description": "Good feedback"
+    },
+    "mid": {
+      "title": "Mid feedback",
+      "type": "integer",
+      "description": "Mid feedback"
+    },
+    "bad": {
+      "title": "Bad feedback",
+      "type": "integer",
+      "description": "Bad feedback"
+    },
+    "worst": {
+      "title": "Worst feedback",
+      "type": "integer",
+      "description": "Worst feedback"
+    }
+  }
+}
