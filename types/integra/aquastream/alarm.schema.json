@@ -1,0 +1,43 @@
+{
+  "$id": "https://akenza.io/integra/aquastream/alarm.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Alarm",
+  "type": "object",
+  "properties": {
+    "tamper": {
+      "title": "Tamper alarm",
+      "description": "Tamper alarm",
+      "type": "boolean"
+    },
+    "burst": {
+      "title": "Burst alarm",
+      "description": "Burst alarm",
+      "type": "boolean"
+    },
+    "leak": {
+      "title": "Leak alarm",
+      "description": "Leak alarm",
+      "type": "boolean"
+    },
+    "noConsumption": {
+      "title": "No consumption alarm",
+      "description": "No consumption alarm",
+      "type": "boolean"
+    },
+    "batteryLow": {
+      "title": "Battery low alarm",
+      "description": "Battery low alarm",
+      "type": "boolean"
+    },
+    "reverseFlow": {
+      "title": "Reverse flow alarm",
+      "description": "Reverse flow alarm",
+      "type": "boolean"
+    },
+    "overflow": {
+      "title": "Overflow alarm",
+      "description": "Overflow alarm",
+      "type": "boolean"
+    }
+  }
+}

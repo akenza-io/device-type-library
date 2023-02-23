@@ -3,36 +3,36 @@ function consume(event) {
   const bits = Bits.hexToBits(payload);
   const data = {};
   const alarm = {};
-  const status = {};
+  const device = {};
 
   // Length // 2D
   // Send no reply // 44
-  status.manufacturerCode = `${payload.substr(6, 2)}${payload.substr(4, 2)}`;
-  status.moduleNumber = `${payload.substr(14, 2)}${payload.substr(
+  device.manufacturerCode = `${payload.substr(6, 2)}${payload.substr(4, 2)}`;
+  device.moduleNumber = `${payload.substr(14, 2)}${payload.substr(
     12,
     2,
   )}${payload.substr(10, 2)}${payload.substr(8, 2)}`;
-  status.versionNumber = payload.substr(16, 2);
-  status.systemComponent = payload.substr(18, 2);
+  device.versionNumber = payload.substr(16, 2);
+  device.systemComponent = payload.substr(18, 2);
   // data.longTelegram = payload.substr(18, 2);
-  status.meterAddress = `${payload.substr(28, 2)}${payload.substr(
+  device.meterAddress = `${payload.substr(28, 2)}${payload.substr(
     26,
     2,
   )}${payload.substr(24, 2)}${payload.substr(22, 2)}`;
-  status.manufacturerCode = `${payload.substr(32, 2)}${payload.substr(30, 2)}`;
-  status.meterVersion = payload.substr(34, 2);
-  status.water = payload.substr(36, 2);
-  status.transmitionCounter = payload.substr(38, 2);
-  status.statusField = payload.substr(40, 2);
-  status.configuration = payload.substr(42, 4);
+  // device.manufacturerCode = `${payload.substr(32, 2)}${payload.substr(30, 2)}`; Gets sent twice
+  device.meterVersion = payload.substr(34, 2);
+  device.waterType = payload.substr(36, 2);
+  device.transmitionCounter = payload.substr(38, 2);
+  device.statusField = payload.substr(40, 2);
+  device.configuration = payload.substr(42, 4);
 
-  // data.dif = Bits.bitsToUnsigned(bits.substr(184, 8)); // 04
-  // data.vif = Bits.bitsToUnsigned(bits.substr(192, 8)); // 13
+  // dif = Bits.bitsToUnsigned(bits.substr(184, 8));
+  // vif = Bits.bitsToUnsigned(bits.substr(192, 8));
+  data.volume = Hex.hexLittleEndianToBigEndian(payload.substr(50, 8), false);
+  data.volumeM3 = data.volume / 1000;
 
-  data.volumen = Hex.hexLittleEndianToBigEndian(payload.substr(50, 8), false);
-
-  // data.dif = Bits.bitsToUnsigned(bits.substr(232, 16)); // 84 10
-  // data.vif = Bits.bitsToUnsigned(bits.substr(248, 8)); // 13
+  // data.dif = Bits.bitsToUnsigned(bits.substr(232, 16));
+  // data.vif = Bits.bitsToUnsigned(bits.substr(248, 8));
   data.backflow = Hex.hexLittleEndianToBigEndian(payload.substr(64, 8), false);
 
   // data.dif = Bits.bitsToUnsigned(bits.substr(288, 8)); // 02
@@ -44,15 +44,15 @@ function consume(event) {
   alarm.noConsumption = !!Bits.bitsToUnsigned(bits.substr(320, 1));
   alarm.batteryLow = !!Bits.bitsToUnsigned(bits.substr(319, 1));
   alarm.reverseFlow = !!Bits.bitsToUnsigned(bits.substr(318, 1));
-  alarm.overFlow = !!Bits.bitsToUnsigned(bits.substr(317, 1));
+  alarm.overflow = !!Bits.bitsToUnsigned(bits.substr(317, 1));
 
   // data.dif = Bits.bitsToUnsigned(bits.substr(328, 8)); // 02
   // data.vif = Bits.bitsToUnsigned(bits.substr(336, 16)); // FD 74
-  data.batteryLifetime = Hex.hexLittleEndianToBigEndian(
+  device.batteryLifetime = Hex.hexLittleEndianToBigEndian(
     payload.substr(88, 4),
     false,
   );
   emit("sample", { data, topic: "default" });
   emit("sample", { data: alarm, topic: "alarm" });
-  emit("sample", { data: status, topic: "status" });
+  emit("sample", { data: device, topic: "device" });
 }

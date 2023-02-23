@@ -1,0 +1,74 @@
+{
+  "$id": "https://akenza.io/integra/aquastream/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "manufacturerCode": {
+      "title": "Manufacturer Code",
+      "type": "string",
+      "description": "Manufacturer Code",
+      "hideFromKpis": true
+    },
+    "moduleNumber": {
+      "title": "Module number",
+      "type": "string",
+      "description": "Module number",
+      "hideFromKpis": true
+    },
+    "versionNumber": {
+      "title": "Version number",
+      "type": "string",
+      "description": "Version number",
+      "hideFromKpis": true
+    },
+    "systemComponent": {
+      "title": "System component",
+      "type": "string",
+      "description": "System component",
+      "hideFromKpis": true
+    },
+    "meterAddress": {
+      "title": "Meter address",
+      "type": "string",
+      "description": "Meter address",
+      "hideFromKpis": true
+    },
+    "meterVersion": {
+      "title": "Meter version",
+      "type": "string",
+      "description": "Manufacturer code",
+      "hideFromKpis": true
+    },
+    "waterType": {
+      "title": "Water type",
+      "type": "string",
+      "description": "Either warm or cold",
+      "hideFromKpis": true
+    },
+    "transmitionCounter": {
+      "title": "Transmition counter",
+      "type": "string",
+      "description": "Transmition counter",
+      "hideFromKpis": true
+    },
+    "statusField": {
+      "title": "Status field",
+      "type": "string",
+      "description": "Status field",
+      "hideFromKpis": true
+    },
+    "configuration": {
+      "title": "Configuration",
+      "type": "string",
+      "description": "Configuration",
+      "hideFromKpis": true
+    },
+    "batteryLifetime": {
+      "title": "Battery lifetime",
+      "unit": "D",
+      "type": "number",
+      "description": "Battery lifetime in days"
+    }
+  }
+}

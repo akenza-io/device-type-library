@@ -1,33 +1,26 @@
 {
-  "$id": "https://akenza.io/imbuildings/moodBox/default.schema.json",
+  "$id": "https://akenza.io/integra/aquastream/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Default",
   "type": "object",
   "properties": {
-    "great": {
-      "title": "Great feedback",
-      "type": "integer",
-      "description": "Great feedback"
+    "volume": {
+      "title": "Volume",
+      "unit": "l",
+      "type": "number",
+      "description": "Total volume in liter"
     },
-    "good": {
-      "title": "Good feedback",
-      "type": "integer",
-      "description": "Good feedback"
+    "volumeM3": {
+      "title": "Volume",
+      "unit": "m^3",
+      "type": "number",
+      "description": "Total volume in cubic meters"
     },
-    "mid": {
-      "title": "Mid feedback",
-      "type": "integer",
-      "description": "Mid feedback"
-    },
-    "bad": {
-      "title": "Bad feedback",
-      "type": "integer",
-      "description": "Bad feedback"
-    },
-    "worst": {
-      "title": "Worst feedback",
-      "type": "integer",
-      "description": "Worst feedback"
+    "backflow": {
+      "title": "Backflow",
+      "unit": "l",
+      "type": "number",
+      "description": "Backflow in liter"
     }
   }
 }
