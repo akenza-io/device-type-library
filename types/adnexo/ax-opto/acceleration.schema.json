@@ -29,5 +29,5 @@
       "maximum": 32767
     }
   },
-  "required": ["xAxisAccelerometer", "yAxisAccelerometer", "zAxisAccelerometer"]
+  "required": ["accX", "accY", "accZ"]
 }
