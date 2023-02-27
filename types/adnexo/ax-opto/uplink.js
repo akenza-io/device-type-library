@@ -142,9 +142,9 @@ function consume(event) {
     }
     topic = "error";
   } else if (port === 99) {
-    data.xAxisAccelerometer = toLittleEndian(payload.substr(0, 4), true);
-    data.yAxisAccelerometer = toLittleEndian(payload.substr(4, 4), true);
-    data.zAxisAccelerometer = toLittleEndian(payload.substr(8, 4), true);
+    data.accX = toLittleEndian(payload.substr(0, 4), true);
+    data.accY = toLittleEndian(payload.substr(4, 4), true);
+    data.accZ = toLittleEndian(payload.substr(8, 4), true);
 
     topic = "acceleration";
   } else if (port === 100 || port === 101 || port === 102) {

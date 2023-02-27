@@ -1,0 +1,22 @@
+{
+  "$id": "https://akenza.io/cayenne/cayenne/barometer.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Barometer",
+  "type": "object",
+  "properties": {
+    "channel": {
+      "title": "Channel",
+      "type": "number",
+      "description": "Channel number",
+      "hideFromKpis": true
+    },
+    "barometer": {
+      "title": "Barometer",
+      "unit": "hPa",
+      "type": "number",
+      "description": "Barometer pressure in hPa",
+      "minimum": 260,
+      "maximum": 1260
+    }
+  }
+}
