@@ -1,0 +1,27 @@
+{
+  "$id": "https://akenza.io/sentinum/apollonQ/tof.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ToF",
+  "type": "object",
+  "properties": {
+    "tofStatus": {
+      "title": "ToF Status",
+      "description": "Time of flight status",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "tofDistance": {
+      "title": "ToF Distance",
+      "unit": "mm",
+      "type": "number",
+      "description": "Time of flight distance measured between the sensor and the surface"
+    },
+    "tofIndex": {
+      "title": "ToF Index",
+      "description": "Time of flight index",
+      "type": "integer",
+      "hideFromKpis": true
+    }
+  },
+  "required": ["tofStatus", "tofDistance", "tofIndex"]
+}

@@ -4,13 +4,41 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-# [1.31.0] - 2023-01-17
+# [1.32.0] - 2023-02-27
+
+### Added
+
+- Milesight - VS132
+- Cayenne
 
 ### Changed
 
 - Added required for keys in schema files
 - Renamed image files to be more standardised
 - Renamed voltage to batteryVoltage to standardise keys
+- Standardised accceleration/gyro keys
+
+# [1.31.0] - 2023-02-20
+
+### Added
+
+- Sentinum - Apollon Q
+- Sentinum - Apollon Zeta
+- Sentinum - Febris CO2
+- Sentinum - Febris SCW
+- Sentinum - Febris TH
+
+# [1.30.6] - 2023-01-25
+
+### Changed
+
+- Xovis - Added timestamp in emit
+
+# [1.30.5] - 2023-01-23
+
+### Changed
+
+- Mclimate - Vicki
 
 # [1.30.4] - 2023-01-17
 

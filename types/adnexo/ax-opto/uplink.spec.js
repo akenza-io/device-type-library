@@ -121,9 +121,9 @@ describe("Adnexo ax-opto Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "acceleration");
-        assert.equal(value.data.xAxisAccelerometer, 3);
-        assert.equal(value.data.yAxisAccelerometer, -942);
-        assert.equal(value.data.zAxisAccelerometer, 277);
+        assert.equal(value.data.accX, 3);
+        assert.equal(value.data.accY, -942);
+        assert.equal(value.data.accZ, 277);
 
         utils.validateSchema(value.data, accelerationSchema, {
           throwError: true,

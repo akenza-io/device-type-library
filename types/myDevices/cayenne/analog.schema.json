@@ -1,0 +1,26 @@
+{
+  "$id": "https://akenza.io/cayenne/cayenne/analog.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Analog",
+  "type": "object",
+  "properties": {
+    "channel": {
+      "title": "Channel",
+      "type": "number",
+      "description": "Channel number",
+      "hideFromKpis": true
+    },
+    "analogInput": {
+      "title": "Analog input",
+      "type": "integer",
+      "description": "Analog input",
+      "hideFromKpis": true
+    },
+    "analogOutput": {
+      "title": "Analog output",
+      "type": "integer",
+      "description": "Analog output",
+      "hideFromKpis": true
+    }
+  }
+}

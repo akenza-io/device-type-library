@@ -1,6 +1,7 @@
 function MakeBitParser(bytes, offset, length) {
+  const bytesArray = Array.from(bytes);
   return {
-    bits: bytes.slice(offset, offset + length),
+    bits: bytesArray.slice(offset, offset + length),
     offset: 0,
     bitLength: length * 8,
     U32LE: function U32LE(bits) {
@@ -147,10 +148,6 @@ function consume(event) {
     l.headingDeg = 45 * bits.U32LE(3);
     l.speedKmph = 5 * bits.U32LE(5);
     data = Object.assign(data, l);
-  } else {
-    return {
-      warnings: ["unknown FPort"],
-    };
   }
 
   // Lifecycle
