@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.32.0] - 2023-02-27
+
+### Added
+
+- Milesight - VS132
+
 # [1.31.0] - 2023-02-20
 
 ### Added
