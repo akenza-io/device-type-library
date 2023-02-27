@@ -1,0 +1,14 @@
+{
+  "name": "Apollon Zeta",
+  "version": "1.0.0",
+  "manufacturer": "Sentinum",
+  "url": "https://www.sentinum.de/apollon-zeta/",
+  "description": "The Apollon-Zeta Smart Waste Sensor stands for wireless sensor technology with the usual high-quality measurement results. The sensor uses an innovative 3D measuring principle and is particularly convincing in small containers. The level sensor measures reliably and detects almost all materials without problems - no matter whether lumpy or liquid material.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Distance"],
+  "outputTopics": ["default", "lifecycle", "tof", "radar", "acc", "hall"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
