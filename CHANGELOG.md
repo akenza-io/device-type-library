@@ -9,6 +9,14 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 - Milesight - VS132
+- Cayenne
+
+### Changed
+
+- Added required for keys in schema files
+- Renamed image files to be more standardised
+- Renamed voltage to batteryVoltage to standardise keys
+- Standardised accceleration/gyro keys
 
 # [1.31.0] - 2023-02-20
 

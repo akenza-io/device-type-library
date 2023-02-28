@@ -19,7 +19,7 @@
       "description": "Software version minor",
       "type": "integer"
     },
-    "batteryPercent": {
+    "batteryLevel": {
       "type": "integer",
       "minimum": 0,
       "maximum": 100,
@@ -27,5 +27,6 @@
       "description": "The battery charge in percent.",
       "unit": "%"
     }
-  }
+  },
+  "required": ["payloadVersion", "batteryLevel"]
 }

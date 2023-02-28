@@ -16,5 +16,6 @@
       "type": "string",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["errorType", "errorCause"]
 }

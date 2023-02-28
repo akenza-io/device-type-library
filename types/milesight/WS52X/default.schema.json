@@ -40,5 +40,13 @@
       "type": "string",
       "enum": ["OPEN", "CLOSED"]
     }
-  }
+  },
+  "required": [
+    "voltage",
+    "power",
+    "factor",
+    "powerConsumption",
+    "current",
+    "state"
+  ]
 }

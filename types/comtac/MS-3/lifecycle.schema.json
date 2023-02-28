@@ -94,7 +94,7 @@
       "type": "boolean",
       "hideFromKpis": true
     },
-    "voltage": {
+    "batteryVoltage": {
       "title": "Battery voltage",
       "desciption": "The battery voltage in Volt.",
       "unit": "V",
@@ -102,5 +102,23 @@
       "minimum": 0,
       "maximum": 24
     }
-  }
+  },
+  "required": [
+    "rs485",
+    "gps",
+    "acc",
+    "mag",
+    "mic",
+    "bright",
+    "tempHum",
+    "txOnEvent",
+    "magActual",
+    "extCon",
+    "booster",
+    "extSupply",
+    "dip3",
+    "dip2",
+    "dip1",
+    "batteryVoltage"
+  ]
 }

@@ -12,5 +12,6 @@
       "minimum": 125,
       "maximum": 600
     }
-  }
+  },
+  "required": ["tvoc"]
 }

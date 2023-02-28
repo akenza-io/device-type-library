@@ -10,5 +10,6 @@
       "type": "number",
       "description": "Distance measured between the sensor and the surface"
     }
-  }
+  },
+  "required": ["distance"]
 }

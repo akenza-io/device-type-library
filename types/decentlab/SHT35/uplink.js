@@ -108,7 +108,7 @@ function consume(event) {
   data.humidity = sample.air_humidity;
 
   // Lifecycle values
-  lifecycle.voltage = sample.battery_voltage;
+  lifecycle.batteryVoltage = sample.battery_voltage;
   lifecycle.protocolVersion = sample.protocol_version;
   lifecycle.deviceId = sample.device_id;
 

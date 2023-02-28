@@ -47,7 +47,7 @@
       "type": "number",
       "description": "Acceleration of the sensor"
     },
-    "voltage": {
+    "batteryVoltage": {
       "type": "number",
       "minimum": 0,
       "maximum": 24,
@@ -55,5 +55,15 @@
       "desciption": "The battery voltage in Volt.",
       "unit": "V"
     }
-  }
+  },
+  "required": [
+    "latitude",
+    "longitude",
+    "inTrip",
+    "fixFailed",
+    "manDown",
+    "headingDeg",
+    "speedKmph",
+    "batteryVoltage"
+  ]
 }

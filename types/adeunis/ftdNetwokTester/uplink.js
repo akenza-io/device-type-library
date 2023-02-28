@@ -80,8 +80,9 @@ function consume(event) {
       offset += 1;
     }
     if (status & 0x02 && offset + 2 <= bytes.length) {
-      decoded.voltage = ((bytes[offset] << 8) | bytes[offset + 1]) / 1000;
-      let batteryLevel = Math.round((decoded.voltage - 3.2) * 100); // 4.2V - 3.2
+      decoded.batteryVoltage =
+        ((bytes[offset] << 8) | bytes[offset + 1]) / 1000;
+      let batteryLevel = Math.round((decoded.batteryVoltage - 3.2) * 100); // 4.2V - 3.2
 
       if (batteryLevel > 100) {
         batteryLevel = 100;

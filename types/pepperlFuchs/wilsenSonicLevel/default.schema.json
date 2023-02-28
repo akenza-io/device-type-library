@@ -21,8 +21,9 @@
       "type": "number",
       "unit": "°C",
       "description": "Temperature in °C",
-      "minimum": -25.0,
-      "maximum": 75.0
+      "minimum": -25,
+      "maximum": 75
     }
-  }
+  },
+  "required": ["proximity", "fillinglvlPercent", "temperature"]
 }

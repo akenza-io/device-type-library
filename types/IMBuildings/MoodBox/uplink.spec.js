@@ -60,7 +60,7 @@ describe("IMBuilding MoodBox Uplink", () => {
 
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.deviceStatus, 0);
-        assert.equal(value.data.voltage, 3.47);
+        assert.equal(value.data.batteryVoltage, 3.47);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });

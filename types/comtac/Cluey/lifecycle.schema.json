@@ -53,5 +53,16 @@
       "description": "Whether there have been TX credits consumed",
       "type": "boolean"
     }
-  }
+  },
+  "required": [
+    "batteryLevel",
+    "batteryPowered",
+    "bufferOverflow",
+    "configurationError",
+    "confirmationTimeout",
+    "deviceRestarted",
+    "lowSupplyVoltage",
+    "timeSynced",
+    "txCreditsConsumed"
+  ]
 }

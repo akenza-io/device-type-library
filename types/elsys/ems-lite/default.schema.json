@@ -68,5 +68,16 @@
       "description": "Equals true if reed is detected",
       "type": "boolean"
     }
-  }
+  },
+  "required": [
+    "temperature",
+    "humidity",
+    "accX",
+    "accY",
+    "accZ",
+    "pulse1",
+    "pulseAbs",
+    "waterleak",
+    "reed"
+  ]
 }

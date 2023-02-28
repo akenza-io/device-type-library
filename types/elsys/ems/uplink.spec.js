@@ -62,7 +62,7 @@ describe("Elsys EMS uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.638);
+        assert.equal(value.data.batteryVoltage, 3.638);
         assert.equal(value.data.batteryLevel, 100);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });

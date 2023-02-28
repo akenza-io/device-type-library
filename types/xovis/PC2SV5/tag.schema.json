@@ -9,5 +9,6 @@
       "description": "Indicates whether a person in view wears a tag.",
       "type": "boolean"
     }
-  }
+  },
+  "required": ["tag"]
 }

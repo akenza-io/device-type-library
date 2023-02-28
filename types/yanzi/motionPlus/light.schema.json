@@ -20,5 +20,6 @@
       "minimum": 0,
       "maximum": 65535
     }
-  }
+  },
+  "required": ["light", "colorTemperature"]
 }

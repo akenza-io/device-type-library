@@ -22,5 +22,6 @@
       "description": "Timestamp",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["rtcWasSet", "cookie", "timestamp"]
 }

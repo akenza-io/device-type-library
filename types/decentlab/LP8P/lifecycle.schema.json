@@ -32,5 +32,11 @@
       "maximum": 255,
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "batteryVoltage",
+    "protocolVersion",
+    "deviceID",
+    "co2SensorStatus"
+  ]
 }

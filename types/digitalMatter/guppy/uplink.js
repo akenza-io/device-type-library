@@ -15,7 +15,7 @@ function decoder(bytes, port) {
     decoded.type = "status";
 
     decoded.inTrip = (bytes[0] & 0x1) !== 0;
-    decoded.voltage = 2.0 + 0.014 * (bytes[0] >> 1);
+    decoded.batteryVoltage = 2.0 + 0.014 * (bytes[0] >> 1);
     decoded.temperature = -40.0 + 0.5 * bytes[1];
 
     if (bytes.length >= 4) {
@@ -69,7 +69,9 @@ function decoder(bytes, port) {
       ];
 
       // Clean up the floats for display
-      decoded.voltage = parseFloat(decoded.voltage.toPrecision(3));
+      decoded.batteryVoltage = parseFloat(
+        decoded.batteryVoltage.toPrecision(3),
+      );
       decoded.downUnit[0] = parseFloat(decoded.downUnit[0].toPrecision(4));
       decoded.downUnit[1] = parseFloat(decoded.downUnit[1].toPrecision(4));
       decoded.downUnit[2] = parseFloat(decoded.downUnit[2].toPrecision(4));

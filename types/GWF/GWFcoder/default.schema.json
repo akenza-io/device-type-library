@@ -24,5 +24,6 @@
       "type": "number",
       "description": "Tank volume in m3"
     }
-  }
+  },
+  "required": ["meterMedium", "actualityDuration", "volume"]
 }

@@ -185,5 +185,30 @@
       "minimum": 0,
       "maximum": 255
     }
-  }
+  },
+  "required": [
+    "anomalyLevel",
+    "nrAlarms",
+    "temperature",
+    "operatingTime",
+    "reportID",
+    "maxAmplitude",
+    "peakFrequencyIndex",
+    "peakFrequency",
+    "goodVibration",
+    "badVibrationPercentage1020",
+    "badVibrationPercentage2040",
+    "badVibrationPercentage4060",
+    "badVibrationPercentage6080",
+    "badVibrationPercentage80100",
+    "anomalyLevelTo20Last24h",
+    "anomalyLevelTo50Last24h",
+    "anomalyLevelTo80Last24h",
+    "anomalyLevelTo20Last30d",
+    "anomalyLevelTo50Last30d",
+    "anomalyLevelTo80Last30d",
+    "anomalyLevelTo20Last6m",
+    "anomalyLevelTo50Last6m",
+    "anomalyLevelTo80Last6m"
+  ]
 }

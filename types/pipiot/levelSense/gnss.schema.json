@@ -36,5 +36,12 @@
       "type": "number",
       "description": "Horizontal Dilution of Precision for the GNSS fix."
     }
-  }
+  },
+  "required": [
+    "gnssFixTime",
+    "gnssLatitude",
+    "gnssLongitude",
+    "gnssAltitude",
+    "gnssHDOP"
+  ]
 }

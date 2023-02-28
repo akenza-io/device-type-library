@@ -50,5 +50,14 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     }
-  }
+  },
+  "required": [
+    "currentLevel",
+    "isTanking",
+    "isEmptying",
+    "hasMeasurementError",
+    "hasOutOfRangeError",
+    "sequenceNumber",
+    "temperature"
+  ]
 }

@@ -21,5 +21,6 @@
       "unit": "m",
       "description": "Periodicity"
     }
-  }
+  },
+  "required": ["batteryStatus", "firmware", "periodicity"]
 }

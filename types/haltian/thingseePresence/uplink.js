@@ -45,8 +45,6 @@ function consume(event) {
         sample.batteryCharge = chrg;
       }
 
-      sample.batteryCharge = chrg;
-
       break;
     }
     case 1111: {

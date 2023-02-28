@@ -56,7 +56,7 @@ describe("Synetica Status T Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.33);
+        assert.equal(value.data.batteryVoltage, 3.33);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });

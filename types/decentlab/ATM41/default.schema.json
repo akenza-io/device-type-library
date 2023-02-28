@@ -85,5 +85,20 @@
       "type": "number",
       "description": "East wind speed"
     }
-  }
+  },
+  "required": [
+    "solarRadiation",
+    "precipitation",
+    "lightningStrikeCount",
+    "lightningAverageDistance",
+    "windSpeed",
+    "windDirection",
+    "maximumWindSpeed",
+    "temperature",
+    "vaporPressure",
+    "atmosphericPressure",
+    "humidity",
+    "northWindSpeed",
+    "eastWindSpeed"
+  ]
 }

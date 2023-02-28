@@ -65,5 +65,19 @@
       "type": "integer",
       "description": "Count of impacts above approx. 16G"
     }
-  }
+  },
+  "required": [
+    "activityLevel",
+    "energyLevel",
+    "histogram0",
+    "histogram1",
+    "histogram2",
+    "histogram3",
+    "histogram4",
+    "histogram5",
+    "histogram6",
+    "histogram7",
+    "histogram8",
+    "histogram9"
+  ]
 }

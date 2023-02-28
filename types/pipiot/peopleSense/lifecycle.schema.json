@@ -48,5 +48,14 @@
       "maximum": 24,
       "desciption": "The battery voltage in Volt."
     }
-  }
+  },
+  "required": [
+    "heartbeatFlag",
+    "magSwitchFlag",
+    "proxHWError",
+    "binsReadyFlag",
+    "forcedDownlinkFlag",
+    "countAlertFlag",
+    "batteryVoltage"
+  ]
 }

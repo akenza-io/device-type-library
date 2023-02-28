@@ -75,5 +75,15 @@
       "maximum": 3276.5,
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "temperature",
+    "tempHistory1",
+    "tempHistory2",
+    "tempHistory3",
+    "tempHistory4",
+    "tempHistory5",
+    "tempHistory6",
+    "tempHistory7"
+  ]
 }

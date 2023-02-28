@@ -66,7 +66,7 @@ describe("Decentlab ATM41 Uplink", () => {
 
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.protocolVersion, 2);
-        assert.equal(value.data.voltage, 3.061);
+        assert.equal(value.data.batteryVoltage, 3.061);
         assert.equal(value.data.deviceID, 858);
 
         assert.equal(value.data.sensorTemperatureInternal, 26.5);

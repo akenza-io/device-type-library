@@ -9,5 +9,6 @@
       "type": "boolean",
       "desciption": "True if the door is open"
     }
-  }
+  },
+  "required": ["open"]
 }

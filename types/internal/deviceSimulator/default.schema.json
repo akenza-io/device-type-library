@@ -47,5 +47,13 @@
       "description": "Space occupancy. false = Unoccupied / true = Occupied.",
       "type": "boolean"
     }
-  }
+  },
+  "required": [
+    "temperature",
+    "humidity",
+    "co2",
+    "noise",
+    "illuminance",
+    "occupied"
+  ]
 }

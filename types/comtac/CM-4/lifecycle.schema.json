@@ -84,5 +84,20 @@
       "description": "The battery charge in percent.",
       "unit": "%"
     }
-  }
+  },
+  "required": [
+    "tempPt100",
+    "tempI2C",
+    "acc",
+    "extMEM",
+    "lastTempValid",
+    "batLow",
+    "async",
+    "history",
+    "alarming",
+    "button",
+    "configRX",
+    "infoReq",
+    "batteryLevel"
+  ]
 }

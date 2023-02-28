@@ -58,7 +58,7 @@ describe("Dragino LSE01 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.625);
+        assert.equal(value.data.batteryVoltage, 3.625);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });

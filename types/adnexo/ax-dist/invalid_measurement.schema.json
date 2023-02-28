@@ -11,5 +11,6 @@
       "description": "Possible measurement variance",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["measurementVariance"]
 }
