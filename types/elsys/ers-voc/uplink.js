@@ -21,7 +21,7 @@ const TYPE_PRESSURE = 0x14; // 4byte pressure data (hPa)
 const TYPE_SOUND = 0x15; // 2byte sound data (peak/avg)
 const TYPE_PULSE2 = 0x16; // 2bytes 0-->0xFFFF
 const TYPE_PULSE2_ABS = 0x17; // 4bytes no 0->0xFFFFFFFF
-const TYPE_ANALOG2 = 0x18; // 2bytes batteryVoltage in mV
+const TYPE_ANALOG2 = 0x18; // 2bytes voltage in mV
 const TYPE_EXT_TEMP2 = 0x19; // 2bytes -3276.5C-->3276.5C
 const TYPE_TVOC = 0x1c; // 2 bytes (ppb)
 

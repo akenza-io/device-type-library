@@ -4,7 +4,7 @@
   "title": "Default",
   "type": "object",
   "properties": {
-    "batteryPercent": {
+    "batteryLevel": {
       "type": "number",
       "minimum": 0,
       "maximum": 100,
@@ -13,5 +13,5 @@
       "unit": "%"
     }
   },
-  "required": ["batteryPercent"]
+  "required": ["batteryLevel"]
 }

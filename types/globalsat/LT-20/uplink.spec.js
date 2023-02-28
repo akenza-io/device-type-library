@@ -43,7 +43,7 @@ describe("Globalsat LT-20 uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.data.batteryPercent, 100);
+        assert.equal(value.data.batteryLevel, 100);
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 

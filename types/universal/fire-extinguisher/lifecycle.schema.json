@@ -19,7 +19,7 @@
       "description": "Software version minor",
       "type": "integer"
     },
-    "batteryPercent": {
+    "batteryLevel": {
       "type": "integer",
       "minimum": 0,
       "maximum": 100,
@@ -28,5 +28,5 @@
       "unit": "%"
     }
   },
-  "required": ["payloadVersion", "batteryPercent"]
+  "required": ["payloadVersion", "batteryLevel"]
 }
