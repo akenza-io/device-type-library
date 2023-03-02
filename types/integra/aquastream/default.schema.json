@@ -6,19 +6,19 @@
   "properties": {
     "volume": {
       "title": "Volume",
-      "unit": "l",
+      "unit": "L",
       "type": "number",
       "description": "Total volume in liter"
     },
     "volumeM3": {
-      "title": "Volume",
+      "title": "Volume M3",
       "unit": "m^3",
       "type": "number",
       "description": "Total volume in cubic meters"
     },
     "backflow": {
       "title": "Backflow",
-      "unit": "l",
+      "unit": "L",
       "type": "number",
       "description": "Backflow in liter"
     }

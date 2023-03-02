@@ -1,7 +1,7 @@
 {
-  "$id": "https://akenza.io/integra/aquastream/default.schema.json",
+  "$id": "https://akenza.io/integra/aquastream/device.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
+  "title": "Device",
   "type": "object",
   "properties": {
     "manufacturerCode": {
