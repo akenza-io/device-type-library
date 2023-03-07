@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.32.1] - 2023-03-07
+
+### Changed
+
+- Fixed some critical and high vulnerabilities for npm packages
+
 # [1.32.0] - 2023-02-27
 
 ### Added
