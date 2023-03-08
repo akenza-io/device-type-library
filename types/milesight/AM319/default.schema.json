@@ -80,5 +80,17 @@
       "type": "integer",
       "description": "Ozon particles in ppm"
     }
-  }
+  },
+  "required": [
+    "temperature",
+    "humidity",
+    "pir",
+    "light",
+    "co2",
+    "tvoc",
+    "pressure",
+    "hcho",
+    "pm2_5",
+    "pm10"
+  ]
 }

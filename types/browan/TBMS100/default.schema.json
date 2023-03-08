@@ -30,5 +30,6 @@
       "description": "Count of all events",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["temperature", "motion", "time", "count"]
 }

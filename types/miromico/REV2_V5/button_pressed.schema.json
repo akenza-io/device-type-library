@@ -89,5 +89,18 @@
       "minimum": 0,
       "maximum": 65535
     }
-  }
+  },
+  "required": [
+    "msgtype",
+    "btnNfirst",
+    "btnEfirst",
+    "btnSfirst",
+    "btnWfirst",
+    "btnNpressed",
+    "btnEpressed",
+    "btnSpressed",
+    "btnWpressed",
+    "buttonCount",
+    "usedCharges"
+  ]
 }

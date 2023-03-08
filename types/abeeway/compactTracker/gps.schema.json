@@ -60,5 +60,12 @@
       "type": "number",
       "description": "The speed the tracker is moving over the ground. It is expressed in cm/second."
     }
-  }
+  },
+  "required": [
+    "gpsMessage",
+    "age",
+    "latitude",
+    "longitude",
+    "horizontalAccuracy"
+  ]
 }

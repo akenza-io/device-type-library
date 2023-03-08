@@ -34,5 +34,12 @@
       "description": "Watchdog reason count",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "resetExternal",
+    "resetPowerOn",
+    "resetSoftware",
+    "resetWatchdog",
+    "watchdogReason"
+  ]
 }

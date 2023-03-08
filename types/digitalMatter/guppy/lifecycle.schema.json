@@ -38,5 +38,12 @@
       "description": "Wakeups per trip",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "initialVoltage",
+    "uptimeWeeks",
+    "txCount",
+    "tripCount",
+    "wakeupsPerTrip"
+  ]
 }

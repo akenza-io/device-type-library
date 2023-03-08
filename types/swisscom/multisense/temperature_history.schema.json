@@ -67,5 +67,14 @@
       "maximum": 3276.5,
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "tempHistory0",
+    "tempHistory1",
+    "tempHistory2",
+    "tempHistory3",
+    "tempHistory4",
+    "tempHistory5",
+    "tempHistory6"
+  ]
 }

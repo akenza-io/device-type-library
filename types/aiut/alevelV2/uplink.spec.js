@@ -44,6 +44,7 @@ describe("Alevel V2 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.sequenceNumber, 175);
         assert.equal(value.data.batteryStatus, "HEALTHY");
         assert.equal(value.data.currentProfile, "IMR_LORA_SIGFOX");
 
@@ -56,7 +57,6 @@ describe("Alevel V2 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.sequenceNumber, 175);
         assert.equal(value.data.temperature, -5);
         assert.equal(value.data.buttonLatched, false);
         assert.equal(value.data.isButtonPressed, true);

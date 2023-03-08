@@ -55,5 +55,14 @@
       "minimum": 0,
       "maximum": 255
     }
-  }
+  },
+  "required": [
+    "temperature",
+    "humidity",
+    "temperaturePT100",
+    "adc1",
+    "adc2",
+    "lem",
+    "brightness"
+  ]
 }

@@ -1,0 +1,38 @@
+{
+  "$id": "https://akenza.io/cayenne/cayenne/accelerometer.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Accelerometer",
+  "type": "object",
+  "properties": {
+    "channel": {
+      "title": "Channel",
+      "type": "number",
+      "description": "Channel number",
+      "hideFromKpis": true
+    },
+    "accX": {
+      "title": "Accelerometer X Axis",
+      "unit": "mg",
+      "description": "Acceleration on the X-Axis is mg",
+      "type": "number",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "accY": {
+      "title": "Accelerometer Y Axis",
+      "unit": "mg",
+      "description": "Acceleration on the Y-Axis is mg",
+      "type": "number",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "accZ": {
+      "title": "Accelerometer Z Axis",
+      "unit": "number",
+      "description": "Acceleration on the Z-Axis is mg",
+      "type": "integer",
+      "minimum": -32767,
+      "maximum": 32767
+    }
+  }
+}

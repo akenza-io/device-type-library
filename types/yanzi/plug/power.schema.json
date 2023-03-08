@@ -10,5 +10,6 @@
       "description": "Device is either on or off",
       "enum": ["ON", "OFF"]
     }
-  }
+  },
+  "required": ["power"]
 }

@@ -71,5 +71,17 @@
       "description": "Uptime weeks",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "initialBatV",
+    "txCount",
+    "tripCount",
+    "gpsSuccesses",
+    "gpsFails",
+    "aveGpsFixS",
+    "aveGpsFailS",
+    "aveGpsFreshenS",
+    "wakeupsPerTrip",
+    "uptimeWeeks"
+  ]
 }

@@ -118,5 +118,22 @@
       "unit": "m",
       "type": "number"
     }
-  }
+  },
+  "required": [
+    "light",
+    "humidity",
+    "temperature",
+    "accX",
+    "accY",
+    "accZ",
+    "gyroX",
+    "gyroY",
+    "gyroZ",
+    "magnX",
+    "magnY",
+    "magnZ",
+    "latitude",
+    "longitude",
+    "altitude"
+  ]
 }

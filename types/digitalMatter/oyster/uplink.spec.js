@@ -50,7 +50,7 @@ describe("Digital matter Oyster Uplink", () => {
         assert.equal(value.data.fixFailed, false);
         assert.equal(value.data.headingDeg, 208.125);
         assert.equal(value.data.speedKmph, 10);
-        assert.equal(value.data.voltage, 4.48);
+        assert.equal(value.data.batteryVoltage, 4.48);
 
         utils.validateSchema(value.data, positionSchema, { throwError: true });
       });

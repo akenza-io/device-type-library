@@ -114,10 +114,9 @@ describe("Xovis Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic === "line_count") {
-          assert.equal(value.topic, "line_count");
-          assert.equal(value.data.fw, 1);
-        }
+        assert.equal(value.topic, "line_count");
+        assert.equal(value.data.fw, 1);
+        assert.equal(value.data.bw, 0);
 
         utils.validateSchema(value.data, lineCountSchema, { throwError: true });
       });
@@ -178,10 +177,9 @@ describe("Xovis Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic === "line_count") {
-          assert.equal(value.topic, "line_count");
-          assert.equal(value.data.fw, 1);
-        }
+        assert.equal(value.topic, "line_count");
+        assert.equal(value.data.fw, 1);
+        assert.equal(value.data.bw, 0);
 
         utils.validateSchema(value.data, lineCountSchema, { throwError: true });
       });

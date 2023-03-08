@@ -60,5 +60,16 @@
       "maximum": 24,
       "desciption": "The battery voltage in Volt."
     }
-  }
+  },
+  "required": [
+    "motionFlag",
+    "dayTimerFlag",
+    "overTempFlag",
+    "tiltedFlag",
+    "magSwitchFlag",
+    "ultrasoundHWErrorFlag",
+    "laserHWErrorFlag",
+    "accelerometerHWErrorFlag",
+    "batteryVoltage"
+  ]
 }

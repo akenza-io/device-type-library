@@ -10,5 +10,6 @@
       "type": "string",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["hex"]
 }

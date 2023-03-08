@@ -29,5 +29,5 @@
       "hideFromKpis": true
     }
   },
-  "required": ["batteryVoltage", "batteryLevel", "transmitInterval"]
+  "required": ["batteryVoltage"]
 }

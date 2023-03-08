@@ -4,7 +4,7 @@
   "title": "Lifecycle",
   "type": "object",
   "properties": {
-    "voltage": {
+    "batteryVoltage": {
       "type": "number",
       "minimum": 0,
       "maximum": 24,
@@ -12,5 +12,6 @@
       "desciption": "The battery voltage in Volt.",
       "unit": "V"
     }
-  }
+  },
+  "required": ["batteryVoltage"]
 }

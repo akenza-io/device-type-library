@@ -23,5 +23,6 @@
       "desciption": "Error flags in hexadecimal",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["header", "serialID", "errFlags"]
 }

@@ -20,5 +20,6 @@
       "minimum": 20,
       "maximum": 120
     }
-  }
+  },
+  "required": ["temperature", "soundAvg"]
 }

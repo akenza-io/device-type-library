@@ -10,5 +10,6 @@
       "description": "Barometric Pressure in kpa",
       "type": "number"
     }
-  }
+  },
+  "required": ["pressure"]
 }

@@ -9,5 +9,6 @@
       "description": "Touch registered",
       "type": "boolean"
     }
-  }
+  },
+  "required": ["touch"]
 }

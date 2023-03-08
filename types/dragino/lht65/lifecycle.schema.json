@@ -40,5 +40,11 @@
       "description": "The battery charge in percent.",
       "unit": "%"
     }
-  }
+  },
+  "required": [
+    "batteryStatus",
+    "batteryVoltage",
+    "connectionStatus",
+    "externalSensor"
+  ]
 }

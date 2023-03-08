@@ -57,5 +57,15 @@
       "type": "number",
       "description": "Acceleration accuracy in kmh"
     }
-  }
+  },
+  "required": [
+    "latitude",
+    "longitude",
+    "altitude",
+    "heading",
+    "pdop",
+    "gpsAccuracy",
+    "speed",
+    "speedAccuracy"
+  ]
 }

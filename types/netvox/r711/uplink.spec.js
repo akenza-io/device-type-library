@@ -58,7 +58,7 @@ describe("Netvox R711 uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.version, 1);
         assert.equal(value.data.deviceType, 1);
-        assert.equal(value.data.voltage, 2.9);
+        assert.equal(value.data.batteryVoltage, 2.9);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });

@@ -5,11 +5,12 @@ function consume(event) {
   const lifecycle = {};
   const topic = "default";
 
-  lifecycle.voltage = Bits.bitsToUnsigned(bits.substr(12, 4));
-  lifecycle.voltage = (25 + lifecycle.voltage) / 10;
-  lifecycle.voltage = Math.round(lifecycle.voltage * 10) / 10;
+  let batteryVoltage = Bits.bitsToUnsigned(bits.substr(12, 4));
+  batteryVoltage = (25 + batteryVoltage) / 10;
+  lifecycle.batteryVoltage = Math.round(batteryVoltage * 10) / 10;
 
-  let batteryLevel = Math.round((lifecycle.voltage - 3.1) / 0.005 / 10) * 10; // 3.1V - 3.6V
+  let batteryLevel =
+    Math.round((lifecycle.batteryVoltage - 3.1) / 0.005 / 10) * 10; // 3.1V - 3.6V
   if (batteryLevel > 100) {
     batteryLevel = 100;
   } else if (batteryLevel < 0) {

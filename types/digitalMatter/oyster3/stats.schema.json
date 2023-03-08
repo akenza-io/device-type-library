@@ -70,5 +70,6 @@
       "description": "Wakeups per trip",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["initialvoltage", "tripCount", "uptimeWeeks", "wakeupsPerTrip"]
 }

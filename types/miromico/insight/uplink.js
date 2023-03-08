@@ -83,7 +83,7 @@ function consume(event) {
         pointer += 16;
         break;
       case 10:
-        lifecycle.voltage =
+        lifecycle.batteryVoltage =
           (Bits.bitsToUnsigned(bits.substr(pointer, 8)) + 170) / 100;
         pointer += 8;
         break;

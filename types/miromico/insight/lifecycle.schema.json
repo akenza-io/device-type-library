@@ -12,7 +12,7 @@
       "maximum": 65535,
       "desciption": "Current battery consumption."
     },
-    "voltage": {
+    "batteryVoltage": {
       "title": "Battery voltage",
       "unit": "V",
       "type": "number",

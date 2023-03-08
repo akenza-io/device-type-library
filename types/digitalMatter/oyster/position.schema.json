@@ -50,7 +50,7 @@
       "description": "Equals true if no movement for configured period got detected (Needs to be activated)",
       "hideFromKpis": true
     },
-    "voltage": {
+    "batteryVoltage": {
       "type": "number",
       "minimum": 0,
       "maximum": 24,
@@ -58,5 +58,14 @@
       "desciption": "The battery voltage in Volt.",
       "unit": "V"
     }
-  }
+  },
+  "required": [
+    "latitude",
+    "longitude",
+    "inTrip",
+    "fixFailed",
+    "headingDeg",
+    "speedKmph",
+    "batteryVoltage"
+  ]
 }

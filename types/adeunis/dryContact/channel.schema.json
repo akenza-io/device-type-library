@@ -29,5 +29,6 @@
       "type": "integer",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["channel", "previousState", "state", "value"]
 }

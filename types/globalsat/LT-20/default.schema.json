@@ -41,5 +41,6 @@
       "enum": ["Not fix", "2D fix", "3D fix"],
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["longitude", "latitude", "reportType", "gpsFix"]
 }

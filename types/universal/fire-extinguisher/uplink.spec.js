@@ -45,7 +45,7 @@ describe("Universal fire extinguisher", () => {
 
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.payloadVersion, 0);
-        assert.equal(value.data.batteryPercent, 100);
+        assert.equal(value.data.batteryLevel, 100);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });

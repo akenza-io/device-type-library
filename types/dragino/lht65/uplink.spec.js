@@ -60,6 +60,7 @@ describe("Dragino LHT65 Uplink", () => {
         assert.equal(value.data.batteryVoltage, 3.116);
         assert.equal(value.data.batteryLevel, 100);
 
+
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 

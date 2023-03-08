@@ -10,5 +10,6 @@
       "type": "boolean",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["faceMask"]
 }

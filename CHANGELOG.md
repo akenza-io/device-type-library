@@ -4,7 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-# [1.31.0] - 2022-26-01
+
+# [1.33.0] - 2022-08-03
 
 ### Added
 
@@ -34,6 +35,36 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 - CM-2 - Updated with new datapoints
+
+# [1.32.1] - 2023-03-07
+
+### Changed
+
+- Fixed some critical and high vulnerabilities for npm packages
+
+# [1.32.0] - 2023-02-27
+
+### Added
+
+- Milesight - VS132
+- Cayenne
+
+### Changed
+
+- Added required for keys in schema files
+- Renamed image files to be more standardised
+- Renamed voltage to batteryVoltage to standardise keys
+- Standardised accceleration/gyro keys
+
+# [1.31.0] - 2023-02-20
+
+### Added
+
+- Sentinum - Apollon Q
+- Sentinum - Apollon Zeta
+- Sentinum - Febris CO2
+- Sentinum - Febris SCW
+- Sentinum - Febris TH
 
 # [1.30.6] - 2023-01-25
 

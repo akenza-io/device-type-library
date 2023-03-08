@@ -35,7 +35,7 @@
       "minimum": 0,
       "maximum": 255
     },
-    "repID": {
+    "reportID": {
       "title": "Report ID",
       "unit": "mg",
       "description": "Used to identify the message (increase with time)",
@@ -51,14 +51,21 @@
       "minimum": 0,
       "maximum": 381
     },
-    "peakFrequency": {
-      "title": "Peak Frequency",
+    "peakFrequencyIndex": {
+      "title": "Peak Frequency index",
       "description": "Peak frequency index (frequency at highest amplitude recorded)",
       "type": "number",
       "minimum": 0,
       "maximum": 255
     },
-    "min0_10": {
+    "peakFrequency": {
+      "title": "Peak Frequency",
+      "description": "Peak frequency (frequency at highest amplitude recorded)",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "goodVibration": {
       "title": "Anomaly level 0%-10%",
       "unit": "min",
       "description": "Time, in minutes, spent in the [0% - 10%] range of anomaly level",
@@ -66,7 +73,7 @@
       "minimum": 0,
       "maximum": 255
     },
-    "min10_20": {
+    "badVibrationPercentage1020": {
       "title": "Anomaly level 10%-20%",
       "unit": "min",
       "description": "Time, in minutes, spent in the [10% - 20%] range of anomaly level",
@@ -74,7 +81,7 @@
       "minimum": 0,
       "maximum": 255
     },
-    "min20_40": {
+    "badVibrationPercentage2040": {
       "title": "Anomaly level 20%-40%",
       "unit": "min",
       "description": "Time, in minutes, spent in the [20% - 40%] range of anomaly level",
@@ -82,7 +89,7 @@
       "minimum": 0,
       "maximum": 255
     },
-    "min40_60": {
+    "badVibrationPercentage4060": {
       "title": "Anomaly level 40%-60%",
       "unit": "min",
       "description": "Time, in minutes, spent in the [40% - 60%] range of anomaly level",
@@ -90,7 +97,7 @@
       "minimum": 0,
       "maximum": 255
     },
-    "min60_80": {
+    "badVibrationPercentage6080": {
       "title": "Anomaly level 60%-80%",
       "unit": "min",
       "description": "Time, in minutes, spent in the [60% - 80%] range of anomaly level",
@@ -98,7 +105,7 @@
       "minimum": 0,
       "maximum": 255
     },
-    "min80_100": {
+    "badVibrationPercentage80100": {
       "title": "Anomaly level 80%-100%",
       "unit": "min",
       "description": "Time, in minutes, spent in the [80% - 100%] range of anomaly level",
@@ -106,7 +113,7 @@
       "minimum": 0,
       "maximum": 255
     },
-    "anomalyLvL20Hours": {
+    "anomalyLevelTo20Last24h": {
       "title": "Anomaly level reaches 20% hours",
       "unit": "h",
       "description": "Anomaly level reaches 20% (Prediction based on the data of last 24 hour",
@@ -114,7 +121,7 @@
       "minimum": 0,
       "maximum": 255
     },
-    "anomalyLvL50Hours": {
+    "anomalyLevelTo50Last24h": {
       "title": "Anomaly level reaches 50% hours",
       "unit": "h",
       "description": "Anomaly level reaches 50% (Prediction based on the data of last 24 hour",
@@ -122,7 +129,7 @@
       "minimum": 0,
       "maximum": 255
     },
-    "anomalyLvL80Hours": {
+    "anomalyLevelTo80Last24h": {
       "title": "Anomaly level reaches 80% hours",
       "unit": "h",
       "description": "Anomaly level reaches 80% (Prediction based on the data of last 24 hour",
@@ -130,7 +137,7 @@
       "minimum": 0,
       "maximum": 255
     },
-    "anomalyLvL20Days": {
+    "anomalyLevelTo20Last30d": {
       "title": "Anomaly level reaches 20% days",
       "unit": "d",
       "description": "Anomaly level reaches 20% (Prediction based on the data of last 30 days",
@@ -138,7 +145,7 @@
       "minimum": 0,
       "maximum": 255
     },
-    "anomalyLvL50Days": {
+    "anomalyLevelTo50Last30d": {
       "title": "Anomaly level reaches 50% days",
       "unit": "d",
       "description": "Anomaly level reaches 50% (Prediction based on the data of last 30 days",
@@ -146,7 +153,7 @@
       "minimum": 0,
       "maximum": 255
     },
-    "anomalyLvL80Days": {
+    "anomalyLevelTo80Last30d": {
       "title": "Anomaly level reaches 80% days",
       "unit": "d",
       "description": "Anomaly level reaches 80% (Prediction based on the data of last 30 days",
@@ -154,7 +161,7 @@
       "minimum": 0,
       "maximum": 255
     },
-    "anomalyLvL20Months": {
+    "anomalyLevelTo20Last6m": {
       "title": "Anomaly level reaches 20% months",
       "unit": "mth",
       "description": "Anomaly level reaches 20% (Prediction based on the data of last 6 Months",
@@ -162,7 +169,7 @@
       "minimum": 0,
       "maximum": 255
     },
-    "anomalyLvL50Months": {
+    "anomalyLevelTo50Last6m": {
       "title": "Anomaly level reaches 50% months",
       "unit": "mth",
       "description": "Anomaly level reaches 50% (Prediction based on the data of last 6 Months",
@@ -170,7 +177,7 @@
       "minimum": 0,
       "maximum": 255
     },
-    "anomalyLvL80Months": {
+    "anomalyLevelTo80Last6m": {
       "title": "Anomaly level reaches 80% months",
       "unit": "mth",
       "description": "Anomaly level reaches 80% (Prediction based on the data of last 6 Months",
@@ -178,5 +185,30 @@
       "minimum": 0,
       "maximum": 255
     }
-  }
+  },
+  "required": [
+    "anomalyLevel",
+    "nrAlarms",
+    "temperature",
+    "operatingTime",
+    "reportID",
+    "maxAmplitude",
+    "peakFrequencyIndex",
+    "peakFrequency",
+    "goodVibration",
+    "badVibrationPercentage1020",
+    "badVibrationPercentage2040",
+    "badVibrationPercentage4060",
+    "badVibrationPercentage6080",
+    "badVibrationPercentage80100",
+    "anomalyLevelTo20Last24h",
+    "anomalyLevelTo50Last24h",
+    "anomalyLevelTo80Last24h",
+    "anomalyLevelTo20Last30d",
+    "anomalyLevelTo50Last30d",
+    "anomalyLevelTo80Last30d",
+    "anomalyLevelTo20Last6m",
+    "anomalyLevelTo50Last6m",
+    "anomalyLevelTo80Last6m"
+  ]
 }

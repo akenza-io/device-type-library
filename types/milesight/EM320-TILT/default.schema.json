@@ -34,5 +34,13 @@
       "type": "boolean",
       "description": "True if the z threshold has been reached"
     }
-  }
+  },
+  "required": [
+    "xAngle",
+    "yAngle",
+    "zAngle",
+    "xThresholdReached",
+    "yThresholdReached",
+    "zThresholdReached"
+  ]
 }

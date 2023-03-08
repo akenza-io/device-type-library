@@ -9,5 +9,6 @@
       "description": "Status of the tab. open = true, closed = false",
       "type": "boolean"
     }
-  }
+  },
+  "required": ["open"]
 }

@@ -41,5 +41,6 @@
       "minimum": 0,
       "maximum": 60000
     }
-  }
+  },
+  "required": ["temperature", "open", "humidity", "co2", "voc"]
 }

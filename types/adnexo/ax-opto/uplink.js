@@ -142,9 +142,9 @@ function consume(event) {
     }
     topic = "error";
   } else if (port === 99) {
-    data.xAxisAccelerometer = toLittleEndian(payload.substr(0, 4), true);
-    data.yAxisAccelerometer = toLittleEndian(payload.substr(4, 4), true);
-    data.zAxisAccelerometer = toLittleEndian(payload.substr(8, 4), true);
+    data.accX = toLittleEndian(payload.substr(0, 4), true);
+    data.accY = toLittleEndian(payload.substr(4, 4), true);
+    data.accZ = toLittleEndian(payload.substr(8, 4), true);
 
     topic = "acceleration";
   } else if (port === 100 || port === 101 || port === 102) {
@@ -286,16 +286,20 @@ function consume(event) {
       data.temperature = null;
     }
 
-    data.voltage = toLittleEndian(payload.substr(48, 4), false) / 1000;
-    let batteryLevel = Math.round((data.voltage - 2.1) / 0.01 / 10) * 10;
+    const lifecycle = {};
+    lifecycle.batteryVoltage =
+      toLittleEndian(payload.substr(48, 4), false) / 1000;
+    let batteryLevel =
+      Math.round((lifecycle.batteryVoltage - 2.1) / 0.01 / 10) * 10;
 
     if (batteryLevel > 100) {
       batteryLevel = 100;
     } else if (batteryLevel < 0) {
       batteryLevel = 0;
     }
-    data.batteryLevel = batteryLevel;
+    lifecycle.batteryLevel = batteryLevel;
 
+    emit("sample", { data: lifecycle, topic: "lifecycle" });
     if (port === 100) {
       data.measurementType = "REGULAR_MEASUREMENT";
     } else if (port === 101) {

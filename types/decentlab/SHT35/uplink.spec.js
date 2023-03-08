@@ -55,7 +55,7 @@ describe("Decentlab SHT35 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.168);
+        assert.equal(value.data.batteryVoltage, 3.168);
         assert.equal(value.data.protocolVersion, 2);
         assert.equal(value.data.deviceId, 782);
 

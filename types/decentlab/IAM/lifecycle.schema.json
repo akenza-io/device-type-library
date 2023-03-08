@@ -4,7 +4,7 @@
   "title": "Lifecycle",
   "type": "object",
   "properties": {
-    "voltage": {
+    "batteryVoltage": {
       "title": "Battery voltage",
       "unit": "V",
       "type": "number",
@@ -40,5 +40,12 @@
       "maximum": 255,
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "batteryVoltage",
+    "batteryLevel",
+    "protocolVersion",
+    "deviceID",
+    "co2SensorStatus"
+  ]
 }

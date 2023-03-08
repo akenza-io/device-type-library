@@ -16,5 +16,6 @@
       "unit": "°",
       "description": "Geographic longitude as decimal value."
     }
-  }
+  },
+  "required": ["latitude", "longitude"]
 }
