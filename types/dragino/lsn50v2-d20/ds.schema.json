@@ -1,7 +1,7 @@
 {
-  "$id": "https://akenza.io/dragino/lsn50v2-d20/default.schema.json",
+  "$id": "https://akenza.io/dragino/lsn50v2-d20/ds.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
+  "title": "Digital sensor",
   "type": "object",
   "properties": {
     "c2temperature": {

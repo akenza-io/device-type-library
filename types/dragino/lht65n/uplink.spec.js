@@ -83,6 +83,17 @@ describe("Dragino LHT65N Uplink", () => {
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "external");
+        assert.equal(value.data.tempDS, 24.12);
+
+        utils.validateSchema(value.data, externalSchema, { throwError: true });
+      });
+
       consume(data);
     });
   });

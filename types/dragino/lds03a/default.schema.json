@@ -14,7 +14,7 @@
       "description": "Status of the magnet. open = true, closed = false",
       "type": "boolean"
     },
-    "openTimes": {
+    "openCounts": {
       "title": "Times open",
       "description": "Number of times the magnet was open",
       "type": "integer"

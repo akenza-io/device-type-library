@@ -48,25 +48,25 @@ function getMyDate(str) {
 function datalog(i, bytes) {
   const Ext = bytes[6] & 0x0f;
   let bb;
-  if (Ext === "1" || Ext === "9") {
+  if (Ext === 1 || Ext === 9) {
     bb = parseFloat(
       ((((bytes[0 + i] << 24) >> 16) | bytes[1 + i]) / 100).toFixed(2),
     );
-  } else if (Ext === "2") {
+  } else if (Ext === 2) {
     bb = parseFloat(
       ((((bytes[0 + i] << 24) >> 16) | bytes[1 + i]) / 100).toFixed(2),
     );
-  } else if (Ext === "4") {
+  } else if (Ext === 4) {
     const extiPinLevel = bytes[0 + i] ? "HIGH" : "LOW";
     const extiStatus = !!bytes[1 + i];
     bb = extiPinLevel + extiStatus;
-  } else if (Ext === "5") {
+  } else if (Ext === 5) {
     bb = (bytes[0 + i] << 8) | bytes[1 + i];
-  } else if (Ext === "6") {
+  } else if (Ext === 6) {
     bb = ((bytes[0 + i] << 8) | bytes[1 + i]) / 1000;
-  } else if (Ext === "7") {
+  } else if (Ext === 7) {
     bb = (bytes[0 + i] << 8) | bytes[1 + i];
-  } else if (Ext === "8") {
+  } else if (Ext === 8) {
     bb = (bytes[0 + i] << 8) | bytes[1 + i];
   }
   const cc = parseFloat(
@@ -183,44 +183,44 @@ function decoder(bytes, port) {
           ((((bytes[4] << 8) | bytes[5]) & 0xfff) / 10).toFixed(1),
         );
       }
-      if (connect === "1") {
+      if (connect === 1) {
         decode.lifecycle.sensor = "SENSOR_NO_CONNECTION";
       }
 
-      if (ext === "0") {
+      if (ext === 0) {
         decode.lifecycle.extSensor = "NO_EXTERNAL_SENSOR";
-      } else if (ext === "1") {
+      } else if (ext === 1) {
         decode.lifecycle.extSensor = "TEMPERATURE_SENSOR";
         decode.external.tempDS = parseFloat(
           ((((bytes[7] << 24) >> 16) | bytes[8]) / 100).toFixed(2),
         );
-      } else if (ext === "2") {
+      } else if (ext === 2) {
         decode.lifecycle.extSensor = "TEMPERATURE_SENSOR";
         decode.external.tempTMP117 = parseFloat(
           ((((bytes[7] << 24) >> 16) | bytes[8]) / 100).toFixed(2),
         );
-      } else if (ext === "4") {
+      } else if (ext === 4) {
         decode.lifecycle.workMode = "INTERRUPT_SENSOR";
         decode.external.extPinLevel = bytes[7] ? "HIGH" : "LOW";
         decode.external.extStatus = bytes[8] ? "TRUE" : "FALSE";
-      } else if (ext === "5") {
+      } else if (ext === 5) {
         decode.lifecycle.workMode = "ILLUMINATION_SENSOR";
         decode.external.light = (bytes[7] << 8) | bytes[8];
-      } else if (ext === "6") {
+      } else if (ext === 6) {
         decode.lifecycle.workMode = "ADC_SENSOR";
         decode.external.adc = ((bytes[7] << 8) | bytes[8]) / 1000;
-      } else if (ext === "7") {
+      } else if (ext === 7) {
         decode.lifecycle.workMode = "INTERRUPT_SENSOR_COUNT";
         decode.external.count = (bytes[7] << 8) | bytes[8];
-      } else if (ext === "8") {
+      } else if (ext === 8) {
         decode.lifecycle.workMode = "INTERRUPT_SENSOR_COUNT";
         decode.external.count =
           (bytes[7] << 24) | (bytes[8] << 16) | (bytes[9] << 8) | bytes[10];
-      } else if (ext === "9") {
+      } else if (ext === 9) {
         decode.lifecycle.workMode = "DS18B20_TIMESTAMP";
         decode.lifecycle.systemTimestamp =
           (bytes[7] << 24) | (bytes[8] << 16) | (bytes[9] << 8) | bytes[10];
-      } else if (ext === "15") {
+      } else if (ext === 15) {
         decode.lifecycle.workMode = "DS18B20ID";
         decode.external.id =
           strPad(bytes[2]) +
@@ -240,7 +240,7 @@ function decoder(bytes, port) {
     case 1:
       for (let i = 0; i < bytes.length; i += 11) {
         const da = datalog(i, bytes);
-        if (i === "0") {
+        if (i === 0) {
           decode.datalog.datalog = da;
         } else {
           decode.datalog.datalog += da;

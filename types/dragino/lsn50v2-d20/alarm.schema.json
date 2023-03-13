@@ -4,7 +4,7 @@
   "title": "Alarm",
   "type": "object",
   "properties": {
-    "c1Temperature": {
+    "channel1Temperature": {
       "title": "Channel 1 temperature",
       "unit": "°C",
       "type": "number",
@@ -12,25 +12,25 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     },
-    "c1tempMin": {
+    "channel1TemperatureMin": {
       "title": "Temperature minimum",
       "unit": "°C",
       "type": "number",
       "description": "The Channel 1 temperature minimum."
     },
-    "c1tempMax": {
+    "channel1TemperatureMax": {
       "title": "Temperature maximum",
       "unit": "°C",
       "type": "number",
       "description": "The Channel 1 temperature maximum."
     },
-    "shtTempMin": {
+    "shtTemperatureMin": {
       "title": "SHT Temperature minimum",
       "unit": "°C",
       "type": "number",
       "description": "The sht temperature minimum."
     },
-    "shTempMax": {
+    "shtTemperatureMax": {
       "title": "SHT Temperature maximum",
       "unit": "°C",
       "type": "number",

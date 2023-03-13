@@ -62,7 +62,7 @@ function consume(event) {
   if (port === 0x02) {
     data.alarm = !!(bytes[0] & 0x02);
     data.open = !!(bytes[0] & 0x01);
-    data.openTimes = (bytes[1] << 16) | (bytes[2] << 8) | bytes[3];
+    data.openCounts = (bytes[1] << 16) | (bytes[2] << 8) | bytes[3];
     data.openDuration = (bytes[4] << 16) | (bytes[5] << 8) | bytes[6];
 
     if (bytes.length === 11) {
@@ -72,7 +72,7 @@ function consume(event) {
     let dataSum = [];
     for (let i = 0; i < bytes.length; i += 11) {
       const log = datalog(i, bytes);
-      if (i === "0") {
+      if (i === 0) {
         dataSum.push(log);
       } else {
         dataSum += log;

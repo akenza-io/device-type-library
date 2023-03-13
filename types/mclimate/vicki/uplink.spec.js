@@ -70,7 +70,7 @@ describe("MClimate Vicky uplink", () => {
         assert.equal(value.data.motorRange, 300);
         assert.equal(value.data.motorPosition, 250);
         assert.equal(value.data.openWindow, false);
-        assert.equal(value.data.childLock, true);
+        assert.equal(value.data.childLock, false);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

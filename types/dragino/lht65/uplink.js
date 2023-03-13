@@ -37,21 +37,21 @@ function strPad(byte) {
 function datalog(i, bytes) {
   const ext = bytes[6] & 0x0f;
   let bb;
-  if (ext === "1" || ext === "9") {
+  if (ext === 1 || ext === 9) {
     bb = parseFloat(
       ((((bytes[0 + i] << 24) >> 16) | bytes[1 + i]) / 100).toFixed(2),
     );
-  } else if (ext === "4") {
+  } else if (ext === 4) {
     const extiPinLevel = bytes[0 + i] ? "HIGH" : "LOW";
     const extiStatus = !!bytes[1 + i];
     bb = extiPinLevel + extiStatus;
-  } else if (ext === "5") {
+  } else if (ext === 5) {
     bb = (bytes[0 + i] << 8) | bytes[1 + i];
-  } else if (ext === "6") {
+  } else if (ext === 6) {
     bb = ((bytes[0 + i] << 8) | bytes[1 + i]) / 1000;
-  } else if (ext === "7") {
+  } else if (ext === 7) {
     bb = (bytes[0 + i] << 8) | bytes[1 + i];
-  } else if (ext === "8") {
+  } else if (ext === 8) {
     bb = (bytes[0 + i] << 8) | bytes[1 + i];
   }
   const cc = parseFloat(
@@ -182,7 +182,7 @@ function decoder(bytes) {
     case 1:
       for (let i = 0; i < bytes.length; i += 11) {
         const da = datalog(i, bytes);
-        if (i === "0") {
+        if (i === 0) {
           response.datalog = da;
         } else {
           response.datalog += da;

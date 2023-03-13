@@ -10,7 +10,7 @@
       "type": "boolean"
     },
     "waterleak": {
-      "title": "Waterleak",
+      "title": "Water leak",
       "description": "Equals true if a waterleak is detected",
       "type": "boolean"
     },
@@ -19,7 +19,7 @@
       "description": "Equals true if the alarm is triggered",
       "type": "boolean"
     },
-    "openTimes": {
+    "openCounts": {
       "title": "Times open",
       "description": "Number of times the magnet was open",
       "type": "integer"

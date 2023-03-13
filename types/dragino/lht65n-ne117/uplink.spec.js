@@ -39,16 +39,6 @@ describe("Dragino LHT65N-NE117 Uplink", () => {
       });
   });
 
-  let datalogSchema = null;
-  before((done) => {
-    utils
-      .loadSchema(`${__dirname}/datalog.schema.json`)
-      .then((parsedSchema) => {
-        datalogSchema = parsedSchema;
-        done();
-      });
-  });
-
   describe("consume()", () => {
     it("should decode the Dragino LHT65N-NE117 report uplink", () => {
       const data = {
@@ -81,6 +71,17 @@ describe("Dragino LHT65N-NE117 Uplink", () => {
         assert.equal(value.data.temperature, 24.96);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "external");
+        assert.equal(value.data.tempDS, 24.12);
+
+        utils.validateSchema(value.data, externalSchema, { throwError: true });
       });
 
       consume(data);

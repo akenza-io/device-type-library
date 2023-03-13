@@ -5,10 +5,10 @@
   "type": "object",
   "properties": {
     "tempDS": {
-      "title": "External temperature DS",
+      "title": "External digital temperature sensor",
       "unit": "°C",
       "type": "number",
-      "description": "The external temperature DS in °C.",
+      "description": "The external digital temperature in °C.",
       "minimum": -3276.5,
       "maximum": 3276.5
     },

@@ -1,7 +1,7 @@
 {
-  "$id": "https://akenza.io/dragino/lsn50v2-s31/energy.schema.json",
+  "$id": "https://akenza.io/dragino/lsn50v2-s31/adc.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Energy",
+  "title": "ADC",
   "type": "object",
   "properties": {
     "c0adc": {

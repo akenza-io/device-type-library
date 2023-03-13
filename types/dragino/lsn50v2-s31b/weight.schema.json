@@ -7,7 +7,7 @@
     "weight": {
       "title": "Weight",
       "type": "number",
-      "description": "Weight "
+      "description": "Weight"
     }
   }
 }

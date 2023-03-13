@@ -65,7 +65,7 @@ describe("Dragino LDS03A Uplink", () => {
         assert.equal(value.data.alarm, false);
         assert.equal(value.data.open, true);
         assert.equal(value.data.openDuration, 0);
-        assert.equal(value.data.openTimes, 5);
+        assert.equal(value.data.openCounts, 5);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

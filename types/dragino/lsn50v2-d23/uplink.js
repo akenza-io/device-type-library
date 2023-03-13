@@ -34,7 +34,7 @@ function consume(event) {
     }
   }
 
-  if (mode === "0") {
+  if (mode === 0) {
     topic = "iic";
 
     if (((bytes[9] << 8) | bytes[10]) === 0) {
@@ -48,7 +48,7 @@ function consume(event) {
         (((bytes[9] << 8) | bytes[10]) / 10).toFixed(1),
       );
     }
-  } else if (mode === "1") {
+  } else if (mode === 1) {
     topic = "distance";
 
     data.distance = parseFloat((((bytes[7] << 8) | bytes[8]) / 10).toFixed(1));
@@ -58,7 +58,7 @@ function consume(event) {
         ((bytes[9] << 8) | bytes[10]).toFixed(0),
       );
     }
-  } else if (mode === "2") {
+  } else if (mode === 2) {
     topic = "adc";
 
     lifecycle.batteryVoltage = bytes[11] / 10;
@@ -95,7 +95,7 @@ function consume(event) {
         (((bytes[9] << 8) | bytes[10]) / 10).toFixed(1),
       );
     }
-  } else if (mode === "3") {
+  } else if (mode === 3) {
     topic = "ds";
 
     data.c2temperature = parseFloat(
@@ -105,11 +105,11 @@ function consume(event) {
     data.c3temperature = parseFloat(
       ((((bytes[9] << 24) >> 16) | bytes[10]) / 10).toFixed(1),
     );
-  } else if (mode === "4") {
+  } else if (mode === 4) {
     topic = "weight";
 
     data.weight = ((bytes[7] << 24) >> 16) | bytes[8];
-  } else if (mode === "5") {
+  } else if (mode === 5) {
     topic = "count";
 
     data.count =
@@ -129,17 +129,17 @@ function consume(event) {
     }
     lifecycle.batteryLevel = batteryLevel;
 
-    data.c1Temperature = parseFloat(
+    data.channel1Temperature = parseFloat(
       ((((bytes[2] << 24) >> 16) | bytes[3]) / 10).toFixed(2),
     );
 
-    data.c1tempMin = (bytes[4] << 24) >> 24;
+    data.channel1TemperatureMin = (bytes[4] << 24) >> 24;
 
-    data.c1tempMax = (bytes[5] << 24) >> 24;
+    data.channel1TemperatureMax = (bytes[5] << 24) >> 24;
 
-    data.shtTempMin = (bytes[7] << 24) >> 24;
+    data.shtTemperatureMin = (bytes[7] << 24) >> 24;
 
-    data.shTempMax = (bytes[8] << 24) >> 24;
+    data.shtTemperatureMax = (bytes[8] << 24) >> 24;
 
     data.shtHumMin = bytes[9];
 

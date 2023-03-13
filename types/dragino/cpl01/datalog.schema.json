@@ -4,10 +4,41 @@
   "title": "Datalog",
   "type": "object",
   "properties": {
-    "datalog": {
+    "log0": {
       "title": "Datalog",
       "type": "array",
-      "description": "Datalog"
+      "description": "Datalog",
+      "hideFromKpis": true
+    },
+    "log11": {
+      "title": "Datalog",
+      "type": "array",
+      "description": "Datalog",
+      "hideFromKpis": true
+    },
+    "log22": {
+      "title": "Datalog",
+      "type": "array",
+      "description": "Datalog",
+      "hideFromKpis": true
+    },
+    "log33": {
+      "title": "Datalog",
+      "type": "array",
+      "description": "Datalog",
+      "hideFromKpis": true
+    },
+    "log44": {
+      "title": "Datalog",
+      "type": "array",
+      "description": "Datalog",
+      "hideFromKpis": true
+    },
+    "log55": {
+      "title": "Datalog",
+      "type": "array",
+      "description": "Datalog",
+      "hideFromKpis": true
     }
   }
 }
