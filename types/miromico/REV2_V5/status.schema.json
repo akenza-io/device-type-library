@@ -27,7 +27,7 @@
       "description": "The battery charge in percent.",
       "unit": "%"
     },
-    "voltage": {
+    "batteryVoltage": {
       "title": "Voltage",
       "unit": "V",
       "type": "number",
@@ -115,5 +115,6 @@
       "maximum": 1,
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["internalTemp", "usedCharges", "batteryLevel", "batteryVoltage"]
 }

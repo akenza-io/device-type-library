@@ -11,5 +11,6 @@
       "type": "string",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["reboot"]
 }

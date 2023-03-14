@@ -64,5 +64,15 @@
       "min": 0,
       "max": 100
     }
-  }
+  },
+  "required": [
+    "maleFw",
+    "femaleFw",
+    "maleBw",
+    "femaleBw",
+    "maleFwPercentage",
+    "femaleFwPercentage",
+    "maleBwPercentage",
+    "femaleBwPercentage"
+  ]
 }

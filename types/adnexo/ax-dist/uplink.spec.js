@@ -39,6 +39,14 @@ describe("Adnexo ax-dist Uplink", () => {
       });
   });
 
+  let statusSchema = null;
+  before((done) => {
+    utils.loadSchema(`${__dirname}/status.schema.json`).then((parsedSchema) => {
+      statusSchema = parsedSchema;
+      done();
+    });
+  });
+
   let errorSchema = null;
   before((done) => {
     utils.loadSchema(`${__dirname}/error.schema.json`).then((parsedSchema) => {
@@ -61,13 +69,26 @@ describe("Adnexo ax-dist Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
+        assert.equal(value.topic, "lifecycle");
+
+        assert.equal(value.data.batteryVoltage, 3.21);
+        assert.equal(value.data.batteryLevel, 100);
+
+        utils.validateSchema(value.data, lifecycleSchema, {
+          throwError: true,
+        });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
         assert.equal(value.topic, "measurement");
 
         assert.equal(value.data.distance, 261.2);
         assert.equal(value.data.measurementType, "REGULAR_MEASUREMENT");
         assert.equal(value.data.temperature, 22);
-        assert.equal(value.data.voltage, 3.21);
-        assert.equal(value.data.batteryLevel, 100);
 
         utils.validateSchema(value.data, measurementSchema, {
           throwError: true,
@@ -137,13 +158,13 @@ describe("Adnexo ax-dist Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.topic, "status");
         assert.equal(value.data.joinInterval, 172800);
         assert.equal(value.data.measurementInterval, 600);
         assert.equal(value.data.payloadType, "REPORT_CONFIGURATION");
         assert.equal(value.data.sendInterval, 6);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, statusSchema, { throwError: true });
       });
 
       consume(data);

@@ -75,5 +75,15 @@
       "maximum": 100,
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "measurementRate",
+    "historyTrigger",
+    "tempOffset",
+    "tempMax",
+    "tempMin",
+    "humOffset",
+    "humMax",
+    "humMin"
+  ]
 }

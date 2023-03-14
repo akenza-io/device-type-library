@@ -17,5 +17,6 @@
       "type": "string",
       "enum": ["DARK", "LIGHT"]
     }
-  }
+  },
+  "required": ["pir", "daylight"]
 }

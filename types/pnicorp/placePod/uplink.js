@@ -27,7 +27,8 @@ function consume(event) {
           break;
         case 3:
           // Battery
-          data.voltage = Bits.bitsToUnsigned(bits.substr(pointer, 16)) * 0.01;
+          data.batteryVoltage =
+            Bits.bitsToUnsigned(bits.substr(pointer, 16)) * 0.01;
           pointer += 8;
           topic = "battery";
           break;

@@ -28,11 +28,12 @@
       "description": "Counter reading for ultrasonic measurements: number of ultrasonic measurements carried out",
       "hideFromKpis": true
     },
-    "voltage": {
+    "batteryVoltage": {
       "title": "Battery Voltage",
       "type": "number",
       "unit": "V",
       "description": "Battery Status."
     }
-  }
+  },
+  "required": ["batteryVoltage"]
 }

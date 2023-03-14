@@ -8,7 +8,13 @@
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Distance"],
-  "outputTopics": ["error", "lifecycle", "measurement", "invalid_measurement"],
+  "outputTopics": [
+    "error",
+    "lifecycle",
+    "measurement",
+    "invalid_measurement",
+    "status"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

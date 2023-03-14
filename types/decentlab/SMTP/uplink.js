@@ -226,7 +226,7 @@ function consume(event) {
   data.soilTemperatureAtDepth7 = sample.soil_temperature_at_depth_7;
 
   // Lifecycle values
-  lifecycle.voltage = sample.battery_voltage;
+  lifecycle.batteryVoltage = sample.battery_voltage;
   lifecycle.protocolVersion = sample.protocol_version;
   lifecycle.deviceId = sample.device_id;
 

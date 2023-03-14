@@ -18,9 +18,9 @@ function consume(event) {
   lifecycle.payloadVersion = Bits.bitsToUnsigned(bits.substr(0, 8));
   lifecycle.mode = Bits.bitsToUnsigned(bits.substr(8, 8));
   const status = Number(Bits.bitsToUnsigned(bits.substr(16, 8)));
-  const voltage = Bits.bitsToUnsigned(bits.substr(24, 8)) * 6 + 2000;
-  lifecycle.voltage = Math.round((voltage / 1000) * 10) / 10;
-  let batteryLevel = Math.round((voltage - 2000) / 15.24);
+  const batteryVoltage = Bits.bitsToUnsigned(bits.substr(24, 8)) * 6 + 2000;
+  lifecycle.batteryVoltage = Math.round((batteryVoltage / 1000) * 10) / 10;
+  let batteryLevel = Math.round((batteryVoltage - 2000) / 15.24);
 
   if (batteryLevel > 100) {
     batteryLevel = 100;

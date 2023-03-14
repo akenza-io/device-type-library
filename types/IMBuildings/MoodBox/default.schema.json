@@ -29,5 +29,6 @@
       "type": "integer",
       "description": "Worst feedback"
     }
-  }
+  },
+  "required": ["great", "good", "mid", "bad", "worst"]
 }

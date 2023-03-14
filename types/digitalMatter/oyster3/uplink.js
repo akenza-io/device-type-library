@@ -45,7 +45,7 @@ function consume(event) {
     data.fixFailed = bits.U32LE(1) !== 0;
     l.headingDeg = Number((bits.U32LE(6) * 5.625).toFixed(2));
     l.speedKmph = bits.U32LE(8);
-    lifecycle.voltage = Number((bits.U32LE(8) * 0.025).toFixed(3));
+    lifecycle.batteryVoltage = Number((bits.U32LE(8) * 0.025).toFixed(3));
     data = Object.assign(data, l);
   } else if (port === 2) {
     topic = "downlink_ack";
@@ -81,14 +81,18 @@ function consume(event) {
     l.longitude = Number(((256 * bits.S32LE(24)) / 1e7).toFixed(7));
     l.headingDeg = 45 * bits.U32LE(3);
     l.speedKmph = 5 * bits.U32LE(5);
-    lifecycle.voltage = bits.U32LE(8);
+    lifecycle.batteryVoltage = bits.U32LE(8);
     data.inTrip = bits.U32LE(1) !== 0;
     data.fixFailed = bits.U32LE(1) !== 0;
     data.inactivityAlarm = bits.U32LE(1) !== 0;
     if (bits.U32LE(1) === 0) {
-      lifecycle.voltage = Number((0.025 * lifecycle.voltage).toFixed(3));
+      lifecycle.batteryVoltage = Number(
+        (0.025 * lifecycle.batteryVoltage).toFixed(3),
+      );
     } else {
-      lifecycle.voltage = Number((3.5 + 0.032 * lifecycle.voltage).toFixed(3));
+      lifecycle.batteryVoltage = Number(
+        (3.5 + 0.032 * lifecycle.batteryVoltage).toFixed(3),
+      );
     }
     const crit = bits.U32LE(2);
     data = Object.assign(data, l);
@@ -140,7 +144,7 @@ function consume(event) {
     data.inactiveDuration = `${Math.floor(mins / 1440)}d${Math.floor(
       (mins % 1440) / 60,
     )}h${mins % 60}m`;
-    lifecycle.voltage = Number((3.5 + 0.032 * bits.U32LE(8)).toFixed(3));
+    lifecycle.batteryVoltage = Number((3.5 + 0.032 * bits.U32LE(8)).toFixed(3));
     l.headingDeg = 45 * bits.U32LE(3);
     l.speedKmph = 5 * bits.U32LE(5);
     data = Object.assign(data, l);
@@ -149,8 +153,8 @@ function consume(event) {
   // Lifecycle
   if (Object.keys(lifecycle).length !== 0) {
     // 5 Volt - 3.5 Volt
-    const { voltage } = lifecycle;
-    let batteryLevel = Math.round((voltage - 3.5) / 0.015 / 10) * 10;
+    const { batteryVoltage } = lifecycle;
+    let batteryLevel = Math.round((batteryVoltage - 3.5) / 0.015 / 10) * 10;
 
     if (batteryLevel > 100) {
       batteryLevel = 100;

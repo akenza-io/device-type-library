@@ -34,5 +34,12 @@
       "type": "string",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "rssi",
+    "rssiDbm",
+    "neighNodeInfo",
+    "neighRadioPower",
+    "neighRadioPowerDbm"
+  ]
 }

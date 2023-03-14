@@ -16,7 +16,7 @@
       "type": "string",
       "hideFromKpis": true
     },
-    "voltage": {
+    "batteryVoltage": {
       "title": "Battery voltage",
       "unit": "V",
       "type": "number",
@@ -24,5 +24,6 @@
       "maximum": 24,
       "desciption": "The battery voltage in Volt."
     }
-  }
+  },
+  "required": ["version", "devType", "batteryVoltage"]
 }

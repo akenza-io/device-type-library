@@ -44,7 +44,7 @@ describe("TBDW100 uplink", () => {
 
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryLevel, 100);
-        assert.equal(value.data.voltage, 3.6);
+        assert.equal(value.data.batteryVoltage, 3.6);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });

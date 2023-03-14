@@ -146,5 +146,23 @@
       "maximum": 100,
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "temperature",
+    "humidity",
+    "tempHistory1",
+    "tempHistory2",
+    "tempHistory3",
+    "tempHistory4",
+    "tempHistory5",
+    "tempHistory6",
+    "tempHistory7",
+    "humHistory1",
+    "humHistory2",
+    "humHistory3",
+    "humHistory4",
+    "humHistory5",
+    "humHistory6",
+    "humHistory7"
+  ]
 }

@@ -29,6 +29,7 @@ function toBitArrray(bytes) {
       b *= 2;
     }
   }
+
   return bitArray;
 }
 

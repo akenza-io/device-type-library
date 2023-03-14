@@ -27,5 +27,11 @@
       "description": "Broken sensor",
       "type": "boolean"
     }
-  }
+  },
+  "required": [
+    "batteryVoltage",
+    "highMotorConsumption",
+    "lowMotorConsumption",
+    "brokenSensor"
+  ]
 }

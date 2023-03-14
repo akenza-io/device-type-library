@@ -28,5 +28,6 @@
       "desciption": "The counting software is currently not running.",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["wifiApEnabled", "multiDevIssue", "tpcStuck", "tpcStopped"]
 }

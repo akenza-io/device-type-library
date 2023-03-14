@@ -48,5 +48,6 @@
       "type": "string",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["externalTemperature"]
 }

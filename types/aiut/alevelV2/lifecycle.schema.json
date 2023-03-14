@@ -4,6 +4,12 @@
   "title": "Lifecycle",
   "type": "object",
   "properties": {
+    "sequenceNumber": {
+      "title": "Sequence number",
+      "description": "Sequence number",
+      "type": "number",
+      "hideFromKpis": true
+    },
     "batteryStatus": {
       "title": "Battery status",
       "description": "Describes the battery status",
@@ -18,5 +24,6 @@
       "enum": ["IMR_LORA_SIGFOX", "SIGFOX", "SIGFOX_LORA"],
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["sequenceNumber", "batteryStatus", "currentProfile"]
 }

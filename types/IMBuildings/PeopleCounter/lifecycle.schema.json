@@ -18,7 +18,7 @@
       ],
       "hideFromKpis": true
     },
-    "voltage": {
+    "batteryVoltage": {
       "title": "Battery voltage",
       "type": "number",
       "unit": "V",
@@ -56,5 +56,11 @@
       "description": "RSSI",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "deviceStatus",
+    "batteryVoltage",
+    "sensorStatus",
+    "payloadCounter"
+  ]
 }

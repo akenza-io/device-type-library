@@ -18,5 +18,6 @@
       "unit": "y",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["xCoordinate", "yCoordinate"]
 }

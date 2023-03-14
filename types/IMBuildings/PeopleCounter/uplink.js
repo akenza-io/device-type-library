@@ -92,10 +92,8 @@ function consume(event) {
 
   switch (payloadType) {
     case payloadTypes.COMFORT_SENSOR: {
-      lifecycle.deviceID = bytes[bytes.length - 10];
-
-      lifecycle.deviceStatus = deviceStatus(bytes[bytes.length - 10]);
-      lifecycle.voltage = readUInt16BE(bytes, bytes.length - 9) / 100;
+      lifecycle.deviceStatus = bytes[bytes.length - 10];
+      lifecycle.batteryVoltage = readUInt16BE(bytes, bytes.length - 9) / 100;
       data.temperature = readUInt16BE(bytes, bytes.length - 7) / 100;
       data.humidity = readUInt16BE(bytes, bytes.length - 5) / 100;
       data.co2 = readUInt16BE(bytes, bytes.length - 3);
@@ -128,7 +126,8 @@ function consume(event) {
         }
         case 0x06:
           lifecycle.deviceStatus = deviceStatus(bytes[bytes.length - 13]);
-          lifecycle.voltage = readUInt16BE(bytes, bytes.length - 12) / 100;
+          lifecycle.batteryVoltage =
+            readUInt16BE(bytes, bytes.length - 12) / 100;
           data.counterA = readUInt16BE(bytes, bytes.length - 10);
           data.counterB = readUInt16BE(bytes, bytes.length - 8);
           lifecycle.sensorStatus = sensorStatus(bytes[bytes.length - 6]);
@@ -146,7 +145,7 @@ function consume(event) {
           break;
         case 0x08:
           lifecycle.deviceStatus = deviceStatus(bytes[bytes.length - 4]);
-          lifecycle.voltage = readUInt16BE(bytes, bytes.length - 3) / 100;
+          lifecycle.batteryVoltage = readUInt16BE(bytes, bytes.length - 3) / 100;
           lifecycle.sensorStatus = bytes[bytes.length - 1];
           break;
         default:
@@ -158,7 +157,8 @@ function consume(event) {
       switch (payloadVariant) {
         case 0x03:
           lifecycle.deviceStatus = deviceStatus(bytes[bytes.length - 4]);
-          lifecycle.voltage = readUInt16BE(bytes, bytes.length - 3) / 100;
+          lifecycle.batteryVoltage =
+            readUInt16BE(bytes, bytes.length - 3) / 100;
           data.buttonPressed = bytes[bytes.length - 1] !== 0;
 
           data.great = bytes[bytes.length - 1] & 0x01;
@@ -170,7 +170,8 @@ function consume(event) {
           break;
         case 0x04:
           lifecycle.deviceStatus = deviceStatus(bytes[bytes.length - 13]);
-          lifecycle.voltage = readUInt16BE(bytes, bytes.length - 12) / 100;
+          lifecycle.batteryVoltage =
+            readUInt16BE(bytes, bytes.length - 12) / 100;
 
           data.great = readUInt16BE(bytes, bytes.length - 10);
           data.good = readUInt16BE(bytes, bytes.length - 8);

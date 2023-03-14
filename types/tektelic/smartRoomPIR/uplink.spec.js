@@ -58,7 +58,7 @@ describe("Tektelic Smart Room PIR Sensor Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.16);
+        assert.equal(value.data.batteryVoltage, 3.16);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });

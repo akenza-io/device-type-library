@@ -39,5 +39,6 @@
       "min": 0,
       "max": 255
     }
-  }
+  },
+  "required": ["red", "green", "blue", "onDuration", "offDuration"]
 }

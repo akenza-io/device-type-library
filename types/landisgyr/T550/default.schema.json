@@ -6,9 +6,9 @@
   "properties": {
     "volume": {
       "title": "Volume",
-      "unit": "m^3",
+      "unit": "m3",
       "type": "number",
-      "description": "Volume in m^3"
+      "description": "Volume in m3"
     },
     "flowTemp": {
       "title": "Flow temperature",
@@ -45,9 +45,18 @@
     },
     "flow": {
       "title": "flow",
-      "unit": "m^3/h",
+      "unit": "m3/h",
       "type": "number",
-      "description": "Flow in m^3/h"
+      "description": "Flow in m3/h"
     }
-  }
+  },
+  "required": [
+    "volume",
+    "flowTemp",
+    "backFlowTemp",
+    "power",
+    "energy",
+    "energyUnit",
+    "flow"
+  ]
 }

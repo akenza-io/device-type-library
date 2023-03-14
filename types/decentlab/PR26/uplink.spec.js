@@ -56,7 +56,7 @@ describe("Decentlab PR26 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.199);
+        assert.equal(value.data.batteryVoltage, 3.199);
         assert.equal(value.data.protocolVersion, 2);
         assert.equal(value.data.deviceID, 359);
 

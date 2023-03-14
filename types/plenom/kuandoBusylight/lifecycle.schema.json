@@ -48,5 +48,14 @@
       "description": "Adaptive data rate state",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "rssi",
+    "snr",
+    "downlinksReceived",
+    "uplinksSent",
+    "swRevision",
+    "hwRevision",
+    "adrState"
+  ]
 }

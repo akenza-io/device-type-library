@@ -24,13 +24,13 @@ function consume(event) {
   if (port === 1) {
     data.payloadType = "ECHO";
     data.echo = payload;
-    topic = "lifecycle";
+    topic = "status";
   } else if (port === 2) {
     data.payloadType = "RESTART";
-    topic = "lifecycle";
+    topic = "status";
   } else if (port === 3) {
     data.payloadType = "NEW_CONFIGURATION_ACCEPTED";
-    topic = "lifecycle";
+    topic = "status";
   } else if (port === 4) {
     let pointer = 0;
 
@@ -73,7 +73,7 @@ function consume(event) {
     }
 
     data.payloadType = "REPORT_CONFIGURATION";
-    topic = "lifecycle";
+    topic = "status";
   } else if (port === 5) {
     const errorPort = Bits.bitsToUnsigned(bits.substr(0, 8));
     const errorCode = Bits.bitsToUnsigned(bits.substr(0, 8));
@@ -142,16 +142,20 @@ function consume(event) {
       data.temperature = null;
     }
 
-    data.voltage = toLittleEndian(payload.substr(8, 4), false) / 1000;
-    let batteryLevel = Math.round((data.voltage - 2.1) / 0.01 / 10) * 10;
+    const lifecycle = {};
+    lifecycle.batteryVoltage =
+      toLittleEndian(payload.substr(8, 4), false) / 1000;
+    let batteryLevel =
+      Math.round((lifecycle.batteryVoltage - 2.1) / 0.01 / 10) * 10;
 
     if (batteryLevel > 100) {
       batteryLevel = 100;
     } else if (batteryLevel < 0) {
       batteryLevel = 0;
     }
-    data.batteryLevel = batteryLevel;
+    lifecycle.batteryLevel = batteryLevel;
 
+    emit("sample", { data: lifecycle, topic: "lifecycle" });
     if (port === 100) {
       data.measurementType = "REGULAR_MEASUREMENT";
     } else if (port === 101) {

@@ -20,5 +20,6 @@
       "maximum": 99,
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["appMainVersion", "appMinorVersion"]
 }

@@ -4,12 +4,6 @@
   "title": "Default",
   "type": "object",
   "properties": {
-    "sequenceNumber": {
-      "title": "Sequence number",
-      "description": "Sequence number",
-      "type": "number",
-      "hideFromKpis": true
-    },
     "temperature": {
       "title": "Temperature",
       "unit": "°C",
@@ -28,13 +22,6 @@
       "title": "Is button pressed",
       "description": "Is true if the button is pressed right now",
       "type": "boolean",
-      "hideFromKpis": true
-    },
-    "currentProfile": {
-      "title": "Current profile",
-      "description": "Currently used radio configuration",
-      "type": "string",
-      "enum": ["IMR_LORA_SIGFOX", "SIGFOX", "SIGFOX_LORA"],
       "hideFromKpis": true
     },
     "currentLevel": {
@@ -81,5 +68,17 @@
       "type": "boolean",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "temperature",
+    "buttonLatched",
+    "isButtonPressed",
+    "currentLevel",
+    "removedFromDial",
+    "isRefilling",
+    "highLPG",
+    "lowLPG",
+    "outOfRange",
+    "notValidReadout"
+  ]
 }

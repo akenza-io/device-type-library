@@ -43,5 +43,6 @@
       "minimum": 0,
       "maximum": 65535
     }
-  }
+  },
+  "required": ["temperature", "humidity", "co2", "pir", "light"]
 }

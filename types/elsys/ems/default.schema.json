@@ -75,5 +75,16 @@
       "minimum": 0,
       "maximum": 255
     }
-  }
+  },
+  "required": [
+    "temperature",
+    "humidity",
+    "accX",
+    "accY",
+    "accZ",
+    "pulseAbs1",
+    "waterleak",
+    "reed",
+    "accMotion"
+  ]
 }

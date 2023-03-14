@@ -67,5 +67,14 @@
       "maximum": 100,
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "humHistory0",
+    "humHistory1",
+    "humHistory2",
+    "humHistory3",
+    "humHistory4",
+    "humHistory5",
+    "humHistory6"
+  ]
 }

@@ -14,5 +14,6 @@
       "type": "integer",
       "description": "Counter B"
     }
-  }
+  },
+  "required": ["counterA", "counterB"]
 }
