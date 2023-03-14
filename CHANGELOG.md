@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.32.2] - 2023-03-14
+
+### Changed
+
+- IMBuildings - Added NBIOT possibilty for the people counter sensor
+
 # [1.32.1] - 2023-03-07
 
 ### Changed
