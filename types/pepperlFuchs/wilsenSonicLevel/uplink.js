@@ -18,13 +18,18 @@ function binaryToFloat(binaryString) {
 
 function emitDefaultPayload(bitString) {
   // in the datasheet proximity is called proxx_cm, but proximity is more readable
-  const proximity = parseInt(bitString.substr(24, 16), 2);
-  const fillinglvlPercent = parseInt(bitString.substr(64, 8), 2);
+  let proximity = parseInt(bitString.substr(24, 16), 2);
+  let fillinglvlPercent = parseInt(bitString.substr(64, 8), 2);
   // in the datasheet temperature is called temp_celsius, but temperature is more readable
   const temperature =
     Math.round(binaryToFloat(bitString.substr(96, 32)) * 100) / 100;
   // in the datasheet voltage is called battery_vol, but voltage is more readable
   const batteryVoltage = parseInt(bitString.substr(152, 8), 2) / 10;
+
+  if (proximity === 65535) {
+    proximity = null;
+    fillinglvlPercent = null;
+  }
 
   emit("sample", {
     topic: "default",
