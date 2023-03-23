@@ -51,6 +51,14 @@
       "maximum": 24,
       "desciption": "The battery voltage in Volt.",
       "hideFromKpis": true
+    },
+    "batteryLevel": {
+      "title": "Battery charge",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "The battery charge in percent.",
+      "unit": "%"
     }
   },
   "required": [
