@@ -26,14 +26,16 @@ function emitDefaultPayload(bitString) {
   // in the datasheet voltage is called battery_vol, but voltage is more readable
   const batteryVoltage = parseInt(bitString.substr(152, 8), 2) / 10;
 
-  emit("sample", {
-    topic: "default",
-    data: {
-      proximity,
-      fillinglvlPercent,
-      temperature,
-    },
-  });
+  if (proximity !== 65535) {
+    emit("sample", {
+      topic: "default",
+      data: {
+        proximity,
+        fillinglvlPercent,
+        temperature,
+      },
+    });
+  }
 
   updateLifeCycle(batteryVoltage);
 }
