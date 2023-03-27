@@ -136,7 +136,7 @@ describe("IMBuilding People counter", () => {
         assert.equal(value.data.deviceStatus, "NO_STATUS");
         assert.equal(value.data.rssi, -113);
         assert.equal(value.data.sensorStatus, "RESERVED");
-        assert.equal(value.data.voltage, 2.67);
+        assert.equal(value.data.batteryVoltage, 2.67);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });

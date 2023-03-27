@@ -113,7 +113,8 @@ function consume(event) {
             Bits.bitsToUnsigned(bits.substr(64, 8)),
           );
 
-          lifecycle.voltage = Bits.bitsToUnsigned(bits.substr(72, 16)) / 100;
+          lifecycle.batteryVoltage =
+            Bits.bitsToUnsigned(bits.substr(72, 16)) / 100;
           lifecycle.rssi = Bits.bitsToSigned(bits.substr(88, 8));
           data.counterA = Bits.bitsToUnsigned(bits.substr(152, 16));
           data.counterB = Bits.bitsToUnsigned(bits.substr(168, 16));
@@ -145,7 +146,8 @@ function consume(event) {
           break;
         case 0x08:
           lifecycle.deviceStatus = deviceStatus(bytes[bytes.length - 4]);
-          lifecycle.batteryVoltage = readUInt16BE(bytes, bytes.length - 3) / 100;
+          lifecycle.batteryVoltage =
+            readUInt16BE(bytes, bytes.length - 3) / 100;
           lifecycle.sensorStatus = bytes[bytes.length - 1];
           break;
         default:

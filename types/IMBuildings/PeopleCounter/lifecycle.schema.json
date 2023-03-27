@@ -57,10 +57,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "deviceStatus",
-    "batteryVoltage",
-    "sensorStatus",
-    "payloadCounter"
-  ]
+  "required": ["deviceStatus", "sensorStatus"]
 }
