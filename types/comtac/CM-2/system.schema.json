@@ -1,0 +1,89 @@
+{
+  "$id": "https://akenza.io/comtac/CM-2/system.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "System",
+  "type": "object",
+  "properties": {
+    "appType": {
+      "title": "Application type",
+      "description": "Application type",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "appVersion": {
+      "title": "Application version",
+      "description": "Application version",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "sendInterval": {
+      "title": "Send interval",
+      "description": "Send interval in minutes",
+      "unit": "m",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "minTempThreshold": {
+      "title": "Minimum temperature threshold",
+      "unit": "°C",
+      "description": "Minimum temperature threshold",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "maxTempThreshold": {
+      "title": "Maximum temperature threshold",
+      "unit": "°C",
+      "description": "Maximum temperature threshold",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "minHumThreshold": {
+      "title": "Minimum humidity threshold",
+      "unit": "%",
+      "description": "Minimum humidity threshold",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "maxHumThreshold": {
+      "title": "Maximum humidity threshold",
+      "unit": "%",
+      "description": "Maximum temperature threshold",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "minPtThreshold": {
+      "title": "Minimum PT100 temperature threshold",
+      "unit": "°C",
+      "description": "Minimum PT100 temperature threshold",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "maxPtThreshold": {
+      "title": "Maximum PT100 temperature threshold",
+      "unit": "°C",
+      "description": "Maximum PT100 temperature threshold",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "minLemThreshold": {
+      "title": "Minimum LEM threshold",
+      "unit": "mA",
+      "description": "Minimum LEM threshold",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "maxLemThreshold": {
+      "title": "Maximum LEM threshold",
+      "unit": "mA",
+      "description": "Maximum LEM threshold",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "dinSettings": {
+      "title": "Din settings",
+      "description": "Din settings",
+      "type": "number",
+      "hideFromKpis": true
+    }
+  }
+}

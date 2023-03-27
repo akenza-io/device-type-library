@@ -1,0 +1,14 @@
+{
+  "name": "LDS03A",
+  "version": "1.0.0",
+  "manufacturer": "Dragino",
+  "url": "https://www.dragino.com/products/lorawan-nb-iot-door-sensor-water-leak/item/196-lds03a.html",
+  "description": "The Dragino LDS03A is a LoRaWAN Door Sensor. It detects door open/close, open time and open counts.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Door"],
+  "outputTopics": ["datalog", "default", "info", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

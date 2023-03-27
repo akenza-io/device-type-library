@@ -1,0 +1,14 @@
+{
+  "name": "LLMS01",
+  "version": "1.0.0",
+  "manufacturer": "Dragino",
+  "url": "https://www.dragino.com/products/agriculture-weather-station/item/183-llms01.html",
+  "description": "The Dragino LLMS01 is a LoRaWAN Leaf Moisture Sensor for IoT of Agriculture. It is designed to measure the leaf moisture and temperature, so to send to the platform to analyze the leaf status such as: watering, moisturizing, dew, frozen. The probe is IP67 waterproof.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Leaf temperature", "Leaf moisture"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

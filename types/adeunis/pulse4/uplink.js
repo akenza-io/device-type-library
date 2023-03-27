@@ -6924,7 +6924,7 @@ var codec;
       const hexLb = payload.readUInt8(1).toString(16);
       const binLb = RepeaterHelper.hex2bin(hexLb);
       const bitLb = binLb[binLb.length - 1];
-      appContent.lowBattery = bitLb === "1";
+      appContent.lowBattery = bitLb === 1;
       return appContent;
     };
     RepeaterHelper.getDownlinkDescriptionForCode = function (code) {

@@ -1,0 +1,33 @@
+{
+  "$id": "https://akenza.io/dragino/cpl01/status.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Status",
+  "type": "object",
+  "properties": {
+    "tdc": {
+      "title": "TDC",
+      "description": "TDC",
+      "type": "integer"
+    },
+    "disalarm": {
+      "title": "Disabling alarm",
+      "description": "Disabling alarm",
+      "type": "boolean"
+    },
+    "keepStatus": {
+      "title": "Keep status",
+      "description": "Keep status",
+      "type": "boolean"
+    },
+    "keepTime": {
+      "title": "Keep time",
+      "description": "Keep time",
+      "type": "integer"
+    },
+    "triggerMode": {
+      "title": "Trigger mode",
+      "description": "Trigger mode",
+      "type": "integer"
+    }
+  }
+}

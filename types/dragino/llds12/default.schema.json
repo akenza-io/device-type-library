@@ -1,0 +1,35 @@
+{
+  "$id": "https://akenza.io/dragino/llds12/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "distance": {
+      "title": "Distance",
+      "unit": "cm",
+      "type": "number",
+      "description": "Distance measured between the sensor and the surface"
+    },
+    "distanceSignalStrength": {
+      "title": "Distance signal strength",
+      "type": "number",
+      "description": "Distance signal strength"
+    },
+    "lidarTemperature": {
+      "title": "Lidar temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The lidar temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    }
+  }
+}
