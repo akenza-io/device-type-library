@@ -77,8 +77,7 @@ function consume(event) {
 
       data = {
         bat: 0,
-        location: null,
-        transmitInterval: null,
+        location: {},
         measurements: [],
       };
 
@@ -86,7 +85,7 @@ function consume(event) {
       const batSet = (info & 0x2000) !== 0;
       const locSet = (info & 0x1000) !== 0;
       const firstTsSet = (info & 0x0800) !== 0;
-      const dBAslowtTsSet = (info & 0x0400) !== 0;
+      const lastTsSet = (info & 0x0400) !== 0;
 
       //
       // Calculate sample count
@@ -95,214 +94,212 @@ function consume(event) {
         (batSet ? 1 : 0) +
         (locSet ? 8 : 0) +
         (firstTsSet ? 2 : 0) +
-        (dBAslowtTsSet ? 2 : 0);
+        (lastTsSet ? 2 : 0);
       const totalBitsPerSample = numberOfBitsSet(info) * 10;
       const totalBitsInPayload = (payload.length - skip) * 8;
       const remainder = totalBitsInPayload % totalBitsPerSample;
       const sampleCount = (totalBitsInPayload - remainder) / totalBitsPerSample;
 
-      //
-      // Parse battery voltage
-      data.bat = batSet ? payload[payloadIndex++] / 10 : 0.0;
+      if (sampleCount !== 0) {
+        //
+        // Parse battery voltage
+        data.bat = batSet ? payload[payloadIndex++] / 10 : 0.0;
 
-      //
-      // Parse latitude and longitude
-      if (locSet) {
-        data.location = {
-          latitude:
-            toNumber(payload.slice(payloadIndex, (payloadIndex += 4))) / 1e7,
-          longitude:
-            toNumber(payload.slice(payloadIndex, (payloadIndex += 4))) / 1e7,
+        //
+        // Parse latitude and longitude
+        if (locSet) {
+          data.location = {
+            latitude:
+              toNumber(payload.slice(payloadIndex, (payloadIndex += 4))) / 1e7,
+            longitude:
+              toNumber(payload.slice(payloadIndex, (payloadIndex += 4))) / 1e7,
+          };
+        }
+
+        //
+        // Parse the timestamps
+        let firstTimestamp = null;
+        let lastTimestamp = null;
+        let sampleInterval = 0;
+
+        if (firstTsSet && lastTsSet) {
+          const firstTS =
+            payload[payloadIndex++] | (payload[payloadIndex++] << 8);
+          const lastTS =
+            payload[payloadIndex++] | (payload[payloadIndex++] << 8);
+
+          if (firstTS !== 0xffff) {
+            // Timestamps available
+            firstTimestamp = parseTimestamp(firstTS);
+            lastTimestamp = parseTimestamp(lastTS);
+            sampleInterval =
+              (lastTimestamp - firstTimestamp) /
+              (sampleCount > 2 ? sampleCount - 1 : 1);
+            data.transmitInterval = sampleInterval * sampleCount;
+          } else {
+            // Parse the transmit interval to millis (HHHHMMMMMMSSSSSS)
+            const hMillis = (lastTS >> 12) * 60 * 60 * 1000;
+            const mMillis = ((lastTS >> 6) & 0x3f) * 60 * 1000;
+            const sMillis = lastTS & (0x3f * 1000);
+
+            data.transmitInterval = hMillis + mMillis + sMillis;
+
+            // Calculate the first timestamp
+            sampleInterval = data.transmitInterval / sampleCount;
+            firstTimestamp =
+              new Date() - data.transmitInterval + sampleInterval;
+          }
+        } else if (firstTsSet && !lastTsSet) {
+          // Not recommended
+          const firstTS =
+            payload[payloadIndex++] | (payload[payloadIndex++] << 8);
+          lastTimestamp = new Date();
+
+          if (firstTS !== 0xffff) {
+            // Timestamp present
+            firstTimestamp = parseTimestamp(firstTS);
+          } else {
+            firstTimestamp = null;
+          }
+        } else if (!firstTsSet && lastTsSet) {
+          // Not recommended
+          const lastTS =
+            payload[payloadIndex++] | (payload[payloadIndex++] << 8);
+
+          // Has the GPS found a fix?
+          if (data.location.latitude !== 0 && data.location.longitude !== 0) {
+            lastTimestamp = parseTimestamp(lastTS);
+            data.transmitInterval = 60000; // WARNING! Unknown transmit interval!
+
+            // Calculate the first timestamp
+            sampleInterval = data.transmitInterval / sampleCount;
+            firstTimestamp =
+              lastTimestamp - data.transmitInterval + sampleInterval;
+          } else {
+            // Parse the transmit interval to millis (HHHHMMMMMMSSSSSS)
+            const hMillis = (lastTS >> 12) * 60 * 60 * 1000;
+            const mMillis = ((lastTS >> 6) & 0x3f) * 60 * 1000;
+            const sMillis = lastTS & (0x3f * 1000);
+
+            data.transmitInterval = hMillis + mMillis + sMillis;
+
+            // Calculate the first timestamp
+            sampleInterval = data.transmitInterval / sampleCount;
+            firstTimestamp =
+              new Date() - data.transmitInterval + sampleInterval;
+          }
+        }
+
+        //
+        // Parse the samples
+        const bitArray = toBitArrray(
+          payload.slice(payloadIndex, payload.length),
+        );
+        let index = 0;
+        for (let i = 0; i < sampleCount; i++) {
+          const measurement = {};
+
+          if (info & 0x0200) {
+            measurement.dBAfast = Number(
+              parseMeasurement(bitArray.slice(index, (index += 10))),
+            );
+          }
+          if (info & 0x0100) {
+            measurement.dBAslow = Number(
+              parseMeasurement(bitArray.slice(index, (index += 10))),
+            );
+          }
+          if (info & 0x0080) {
+            measurement.dBCfast = Number(
+              parseMeasurement(bitArray.slice(index, (index += 10))),
+            );
+          }
+          if (info & 0x0040) {
+            measurement.dBCslow = Number(
+              parseMeasurement(bitArray.slice(index, (index += 10))),
+            );
+          }
+          if (info & 0x0020) {
+            measurement.leqA = Number(
+              parseMeasurement(bitArray.slice(index, (index += 10))),
+            );
+          }
+          if (info & 0x0010) {
+            measurement.leqC = Number(
+              parseMeasurement(bitArray.slice(index, (index += 10))),
+            );
+          }
+          if (info & 0x0008) {
+            measurement.positivePeakHoldA = Number(
+              parseMeasurement(bitArray.slice(index, (index += 10))),
+            );
+          }
+          if (info & 0x0004) {
+            measurement.negativePeakHoldA = Number(
+              parseMeasurement(bitArray.slice(index, (index += 10))),
+            );
+          }
+          if (info & 0x0002) {
+            measurement.positivePeakHoldC = Number(
+              parseMeasurement(bitArray.slice(index, (index += 10))),
+            );
+          }
+          if (info & 0x0001) {
+            measurement.negativePeakHoldC = Number(
+              parseMeasurement(bitArray.slice(index, (index += 10))),
+            );
+          }
+
+          measurement.timestamp = new Date(firstTimestamp).toString();
+          data.measurements.push(measurement);
+
+          firstTimestamp += sampleInterval; // Timestamp of the next sample.
+        }
+
+        let batteryLevel = Math.round((data.bat - 4.5) / 0.023 / 10) * 10;
+
+        if (batteryLevel > 100) {
+          batteryLevel = 100;
+        } else if (batteryLevel < 0) {
+          batteryLevel = 0;
+        }
+
+        const lifecycle = {
+          batteryLevel,
+          batteryVoltage: data.bat,
         };
-      }
 
-      //
-      // Parse the timestamps
-      let firstTimestamp = null;
-      let dBAslowtTimestamp = null;
-      let sampleInterval = 0;
+        const { measurements } = data;
 
-      if (firstTsSet && dBAslowtTsSet) {
-        const firstTS =
-          payload[payloadIndex++] | (payload[payloadIndex++] << 8);
-        const dBAslowtTS =
-          payload[payloadIndex++] | (payload[payloadIndex++] << 8);
+        measurements.forEach((measurement) => {
+          const { timestamp } = measurement;
+          delete measurement.timestamp;
 
-        if (firstTS !== 0xffff) {
-          // Timestamps available
-          firstTimestamp = parseTimestamp(firstTS);
-          dBAslowtTimestamp = parseTimestamp(dBAslowtTS);
-          sampleInterval =
-            (dBAslowtTimestamp - firstTimestamp) /
-            (sampleCount > 2 ? sampleCount - 1 : 1);
-          data.transmitInterval = sampleInterval * sampleCount;
-        } else {
-          // Parse the transmit interval to millis (HHHHMMMMMMSSSSSS)
-          const hMillis = (dBAslowtTS >> 12) * 60 * 60 * 1000;
-          const mMillis = ((dBAslowtTS >> 6) & 0x3f) * 60 * 1000;
-          const sMillis = dBAslowtTS & (0x3f * 1000);
+          if (Object.keys(measurement).length > 0) {
+            emit("sample", {
+              data: measurement,
+              topic: "default",
+              timestamp: new Date(timestamp),
+            });
+          }
 
-          data.transmitInterval = hMillis + mMillis + sMillis;
-
-          // Calculate the first timestamp
-          sampleInterval = data.transmitInterval / sampleCount;
-          firstTimestamp = new Date() - data.transmitInterval + sampleInterval;
-        }
-      } else if (firstTsSet && !dBAslowtTsSet) {
-        // Not recommended
-        const firstTS =
-          payload[payloadIndex++] | (payload[payloadIndex++] << 8);
-        dBAslowtTimestamp = new Date();
-
-        if (firstTS !== 0xffff) {
-          // Timestamp present
-          firstTimestamp = parseTimestamp(firstTS);
-          sampleInterval =
-            (dBAslowtTimestamp - firstTimestamp) /
-            (sampleCount > 2 ? sampleCount - 1 : 1);
-          data.transmitInterval = sampleInterval * sampleCount;
-        } else {
-          // first timestamp unknown!
-          data.transmitInterval = 60000; // WARNING! Unknown transmit interval!
-          sampleInterval = data.transmitInterval / sampleCount;
-          firstTimestamp =
-            dBAslowtTimestamp - data.transmitInterval + sampleInterval;
-        }
-      } else if (!firstTsSet && dBAslowtTsSet) {
-        // Not recommended
-        const dBAslowtTS =
-          payload[payloadIndex++] | (payload[payloadIndex++] << 8);
-
-        // Has the GPS found a fix?
-        if (data.location.latitude !== 0 && data.location.longitude !== 0) {
-          dBAslowtTimestamp = parseTimestamp(dBAslowtTS);
-          data.transmitInterval = 60000; // WARNING! Unknown transmit interval!
-
-          // Calculate the first timestamp
-          sampleInterval = data.transmitInterval / sampleCount;
-          firstTimestamp =
-            dBAslowtTimestamp - data.transmitInterval + sampleInterval;
-        } else {
-          // Parse the transmit interval to millis (HHHHMMMMMMSSSSSS)
-          const hMillis = (dBAslowtTS >> 12) * 60 * 60 * 1000;
-          const mMillis = ((dBAslowtTS >> 6) & 0x3f) * 60 * 1000;
-          const sMillis = dBAslowtTS & (0x3f * 1000);
-
-          data.transmitInterval = hMillis + mMillis + sMillis;
-
-          // Calculate the first timestamp
-          sampleInterval = data.transmitInterval / sampleCount;
-          firstTimestamp = new Date() - data.transmitInterval + sampleInterval;
-        }
-      }
-
-      //
-      // Parse the samples
-      const bitArray = toBitArrray(payload.slice(payloadIndex, payload.length));
-      let index = 0;
-      for (let i = 0; i < sampleCount; i++) {
-        const measurement = {};
-
-        if (info & 0x0200) {
-          measurement.dBAfast = Number(
-            parseMeasurement(bitArray.slice(index, (index += 10))),
-          );
-        }
-        if (info & 0x0100) {
-          measurement.dBAslow = Number(
-            parseMeasurement(bitArray.slice(index, (index += 10))),
-          );
-        }
-        if (info & 0x0080) {
-          measurement.dBCfast = Number(
-            parseMeasurement(bitArray.slice(index, (index += 10))),
-          );
-        }
-        if (info & 0x0040) {
-          measurement.dBCslow = Number(
-            parseMeasurement(bitArray.slice(index, (index += 10))),
-          );
-        }
-        if (info & 0x0020) {
-          measurement.leqA = Number(
-            parseMeasurement(bitArray.slice(index, (index += 10))),
-          );
-        }
-        if (info & 0x0010) {
-          measurement.leqC = Number(
-            parseMeasurement(bitArray.slice(index, (index += 10))),
-          );
-        }
-        if (info & 0x0008) {
-          measurement.positivePeakHoldA = Number(
-            parseMeasurement(bitArray.slice(index, (index += 10))),
-          );
-        }
-        if (info & 0x0004) {
-          measurement.negativePeakHoldA = Number(
-            parseMeasurement(bitArray.slice(index, (index += 10))),
-          );
-        }
-        if (info & 0x0002) {
-          measurement.positivePeakHoldC = Number(
-            parseMeasurement(bitArray.slice(index, (index += 10))),
-          );
-        }
-        if (info & 0x0001) {
-          measurement.negativePeakHoldC = Number(
-            parseMeasurement(bitArray.slice(index, (index += 10))),
-          );
-        }
-
-        measurement.timestamp = new Date(firstTimestamp).toString();
-        data.measurements.push(measurement);
-
-        firstTimestamp += sampleInterval; // Timestamp of the next sample.
-      }
-
-      let batteryLevel = Math.round((data.bat - 4.5) / 0.023 / 10) * 10;
-
-      if (batteryLevel > 100) {
-        batteryLevel = 100;
-      } else if (batteryLevel < 0) {
-        batteryLevel = 0;
-      }
-
-      const lifecycle = {
-        batteryLevel,
-        batteryVoltage: data.bat,
-        transmitInterval: data.transmitInterval,
-      };
-
-      const { measurements } = data;
-
-      measurements.forEach((measurement) => {
-        const { timestamp } = measurement;
-        delete measurement.timestamp;
-
-        if (Object.keys(measurement).length > 0) {
           emit("sample", {
-            data: measurement,
-            topic: "default",
+            data: lifecycle,
+            topic: "lifecycle",
             timestamp: new Date(timestamp),
           });
-        }
 
-        emit("sample", {
-          data: lifecycle,
-          topic: "lifecycle",
-          timestamp: new Date(timestamp),
+          if (Object.keys(data.location).length > 0) {
+            emit("sample", {
+              data: data.location,
+              topic: "gps",
+              timestamp: new Date(timestamp),
+            });
+          }
         });
 
-        if (Object.keys(data.location).length > 0) {
-          emit("sample", {
-            data: data.location,
-            topic: "gps",
-            timestamp: new Date(timestamp),
-          });
-        }
-      });
-
+        break;
+      }
       break;
     }
     case 0x02: {
