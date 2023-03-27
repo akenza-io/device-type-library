@@ -1,0 +1,14 @@
+{
+  "name": "WS156",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight-iot.com/lorawan/panel/ws156/",
+  "description": "WS156 LoRaWAN® Smart Scene Panel gives a multibutton control panel that can simply activate different pre-defined scenes with one-press. Without any additional cable, WS156 can be easily installed anywhere and used tocontrol devices via LoRaWAN®. Besides, it's equipped a user-defined E-ink screen to suit different scenes.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Button"],
+  "outputTopics": ["button_pressed", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

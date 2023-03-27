@@ -34,5 +34,12 @@
       "description": "Timestamp available flag",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "frameCounter",
+    "hardwareError",
+    "lowBattery",
+    "configurationDone",
+    "timestamp"
+  ]
 }

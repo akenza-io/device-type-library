@@ -1,0 +1,52 @@
+{
+  "$id": "https://akenza.io/milesight/WS52X/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "voltage": {
+      "title": "Voltage",
+      "description": "Voltage",
+      "type": "number",
+      "unit": "V"
+    },
+    "power": {
+      "title": "Power",
+      "description": "Active power",
+      "type": "number",
+      "unit": "W"
+    },
+    "factor": {
+      "title": "Factor",
+      "description": "Factor",
+      "type": "number",
+      "unit": "%"
+    },
+    "powerConsumption": {
+      "title": "Power consumptation",
+      "description": "Power consumptation",
+      "type": "number",
+      "unit": "Wh"
+    },
+    "current": {
+      "title": "Current",
+      "description": "Current",
+      "type": "number",
+      "unit": "mA"
+    },
+    "state": {
+      "title": "State",
+      "description": "Plug state",
+      "type": "string",
+      "enum": ["OPEN", "CLOSED"]
+    }
+  },
+  "required": [
+    "voltage",
+    "power",
+    "factor",
+    "powerConsumption",
+    "current",
+    "state"
+  ]
+}

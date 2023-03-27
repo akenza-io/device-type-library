@@ -74,7 +74,7 @@
       "maximum": 3276.5
     },
     "waterleak": {
-      "title": "Waterleak",
+      "title": "Water leak",
       "description": "Equals true if a waterleak is detected",
       "type": "boolean"
     },
@@ -116,5 +116,6 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     }
-  }
+  },
+  "required": ["temperature", "humidity", "pressure"]
 }

@@ -1,11 +1,11 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("AM104 Uplink", () => {
+describe("EM300-TH Uplink", () => {
   let defaultSchema = null;
   let lifecycleSchema = null;
   let consume = null;
@@ -32,7 +32,7 @@ describe("AM104 Uplink", () => {
   });
 
   describe("consume()", () => {
-    it("should decode should decode the AM104 payload", () => {
+    it("should decode should decode the EM300-TH payload", () => {
       const data = {
         data: {
           port: 1,
@@ -47,7 +47,9 @@ describe("AM104 Uplink", () => {
 
         if (value.topic === "lifecycle") {
           assert.equal(value.data.batteryLevel, 100);
-          validate(value.data, lifecycleSchema, { throwError: true });
+          utils.validateSchema(value.data, lifecycleSchema, {
+            throwError: true,
+          });
         }
       });
 
@@ -60,7 +62,7 @@ describe("AM104 Uplink", () => {
           assert.equal(value.data.temperature, 27.2);
           assert.equal(value.data.humidity, 56.5);
 
-          validate(value.data, defaultSchema, { throwError: true });
+          utils.validateSchema(value.data, defaultSchema, { throwError: true });
         }
       });
 

@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -61,7 +61,7 @@ describe("Decentlab IAM Uplink", () => {
         assert.equal(value.data.light, 678.77);
         assert.equal(value.data.pir, 11);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -70,13 +70,13 @@ describe("Decentlab IAM Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 2.96);
+        assert.equal(value.data.batteryVoltage, 2.96);
         assert.equal(value.data.batteryLevel, 96);
         assert.equal(value.data.protocolVersion, 2);
         assert.equal(value.data.deviceID, 3005);
         assert.equal(value.data.co2SensorStatus, 0);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -87,7 +87,7 @@ describe("Decentlab IAM Uplink", () => {
         assert.equal(value.topic, "occupancy");
         assert.equal(value.data.occupancy, true);
 
-        validate(value.data, occupancySchema, { throwError: true });
+        utils.validateSchema(value.data, occupancySchema, { throwError: true });
       });
 
       consume(data);

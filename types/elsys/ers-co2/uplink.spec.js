@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -47,7 +47,7 @@ describe("Elsys CO2 uplink", () => {
         assert.equal(value.data.humidity, 40);
         assert.equal(value.data.temperature, 24.4);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -56,10 +56,10 @@ describe("Elsys CO2 uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.646);
+        assert.equal(value.data.batteryVoltage, 3.646);
         assert.equal(value.data.batteryLevel, 100);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

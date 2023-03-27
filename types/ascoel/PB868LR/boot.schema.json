@@ -1,0 +1,15 @@
+{
+  "$id": "https://akenza.io/ascoel/pb868lr/boot.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Boot",
+  "type": "object",
+  "properties": {
+    "sensor": {
+      "title": "Sensor",
+      "type": "string",
+      "description": "Sensor casing type",
+      "enum": ["PB868LRH", "PB868LRI"]
+    }
+  },
+  "required": ["sensor"]
+}

@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -59,7 +59,7 @@ describe("Comtac LPN MS-3 Uplink", () => {
         assert.equal(value.data.magnZ, 0.023);
         assert.equal(value.data.altitude, 0);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -84,9 +84,9 @@ describe("Comtac LPN MS-3 Uplink", () => {
         assert.equal(value.data.dip3, false);
         assert.equal(value.data.dip2, false);
         assert.equal(value.data.dip1, false);
-        assert.equal(value.data.voltage, 2.88);
+        assert.equal(value.data.batteryVoltage, 2.88);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

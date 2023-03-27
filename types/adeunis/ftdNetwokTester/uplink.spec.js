@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -46,7 +46,7 @@ describe("FTD Network tester", () => {
         assert.equal(value.data.longitude, 8.534333333333333);
         assert.equal(value.data.satellites, 5);
 
-        validate(value.data, gpsSchema, { throwError: true });
+        utils.validateSchema(value.data, gpsSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -59,10 +59,10 @@ describe("FTD Network tester", () => {
         assert.equal(value.data.trigger, "PUSHBUTTON");
         assert.equal(value.data.uplink, 18);
         assert.equal(value.data.downlink, 16);
-        assert.equal(value.data.voltage, 3.489);
+        assert.equal(value.data.batteryVoltage, 3.489);
         assert.equal(value.data.batteryLevel, 29);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

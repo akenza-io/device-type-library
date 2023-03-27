@@ -121,7 +121,7 @@ function dataSpecialFormat(dataId, str) {
 function dataFormat(str) {
   const strReverse = littleEndianTransform(str);
   let str2 = toBinary(strReverse);
-  if (str2.substring(0, 1) === "1") {
+  if (str2.substring(0, 1) === 1) {
     const arr = str2.split("");
     const reverseArr = [];
     for (let forArr = 0; forArr < arr.length; forArr++) {

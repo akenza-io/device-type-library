@@ -8,9 +8,10 @@
       "title": "TVOC",
       "unit": "ppb",
       "type": "integer",
-      "description": "Total Volatile Organic Compunds in ppb",
+      "description": "Total Volatile Organic Compounds in ppb",
       "minimum": 0,
       "maximum": 60000
     }
-  }
+  },
+  "required": ["tvoc"]
 }

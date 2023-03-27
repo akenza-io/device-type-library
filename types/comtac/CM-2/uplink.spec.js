@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -27,6 +27,24 @@ describe("Comtac LPN CM-2 Uplink", () => {
         lifecycleSchema = parsedSchema;
         done();
       });
+  });
+
+  let buttonPressedSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/button_pressed.schema.json`)
+      .then((parsedSchema) => {
+        buttonPressedSchema = parsedSchema;
+        done();
+      });
+  });
+
+  let systemSchema = null;
+  before((done) => {
+    utils.loadSchema(`${__dirname}/system.schema.json`).then((parsedSchema) => {
+      systemSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -60,10 +78,23 @@ describe("Comtac LPN CM-2 Uplink", () => {
         assert.equal(value.data.maxPt100On, false);
         assert.equal(value.data.minLemOn, false);
         assert.equal(value.data.maxLemOn, false);
-        assert.equal(value.data.voltage, 2.654);
+        assert.equal(value.data.batteryVoltage, 2.654);
         assert.equal(value.data.batteryLevel, 60);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "button_pressed");
+        assert.equal(value.data.buttonPressed, true);
+
+        utils.validateSchema(value.data, buttonPressedSchema, {
+          throwError: true,
+        });
       });
 
       utils.expectEmits((type, value) => {
@@ -79,16 +110,39 @@ describe("Comtac LPN CM-2 Uplink", () => {
         assert.equal(value.data.adc2, 1096);
         assert.equal(value.data.lem, 2.506);
         assert.equal(value.data.brightness, 21);
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
+
+      consume(data);
+    });
+
+    it("should decode the Comtac LPN CM-2 system payload", () => {
+      const data = {
+        data: {
+          port: 101,
+          payloadHex: "000af1f10000f1f10000000001",
+        },
+      };
 
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "button_pressed");
-        assert.equal(value.data.buttonPressed, true);
+        assert.equal(value.topic, "system");
+
+        assert.equal(value.data.sendInterval, 10);
+        assert.equal(value.data.minTempThreshold, -15);
+        assert.equal(value.data.maxTempThreshold, -15);
+        assert.equal(value.data.minHumThreshold, 0);
+        assert.equal(value.data.maxHumThreshold, 0);
+        assert.equal(value.data.minPtThreshold, -15);
+        assert.equal(value.data.maxPtThreshold, -15);
+        assert.equal(value.data.minLemThreshold, 0);
+        assert.equal(value.data.maxLemThreshold, 0);
+        assert.equal(value.data.dinSettings, 1);
+
+        utils.validateSchema(value.data, systemSchema, { throwError: true });
       });
 
       consume(data);

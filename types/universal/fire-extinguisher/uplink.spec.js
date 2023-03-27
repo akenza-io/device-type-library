@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -45,9 +45,9 @@ describe("Universal fire extinguisher", () => {
 
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.payloadVersion, 0);
-        assert.equal(value.data.batteryPercent, 100);
+        assert.equal(value.data.batteryLevel, 100);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -60,7 +60,7 @@ describe("Universal fire extinguisher", () => {
         assert.equal(value.data.isRemoved, true);
         assert.equal(value.data.isSecurityUnlocked, false);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

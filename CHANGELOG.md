@@ -4,10 +4,146 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.33.0] - 2023-03-27
+
+### Added
+
+- Dragino - CPL01
+- Dragino - LDDS04
+- Dragino - LDDS20
+- Dragino - LDDS45
+- Dragino - LDDS75
+- Dragino - LDS02
+- Dragino - LDS03A
+- Dragino - LHT52
+- Dragino - LHT65
+- Dragino - LHT65N
+- Dragino - LHT65N-NE117
+- Dragino - LLDS12
+- Dragino - LLMS01
+- Dragino - LSE01
+- Dragino - LSN50V2-D20
+- Dragino - LSN50V2-D22
+- Dragino - LSN50V2-D23
+- Dragino - LSN50V2-S31
+- Dragino - LSN50V2-S31B
+- Dragino - LSPH01
+- Dragino - LTC2
+- Dragino - LWL02
+
+### Changed
+
+- CM-2 - Updated with new datapoints
+- Sentinum - Added Batterylevel
+- PepepperLuchs - Took out invalid datapoints
+- Ranos DB - Added fix from devs
+- IMBuilding Peoplecounter - Added NBIoT functionality
+
+# [1.32.1] - 2023-03-07
+
+### Changed
+
+- Fixed some critical and high vulnerabilities for npm packages
+
+# [1.32.0] - 2023-02-27
+
+### Added
+
+- Milesight - VS132
+- Cayenne
+
+### Changed
+
+- Added required for keys in schema files
+- Renamed image files to be more standardised
+- Renamed voltage to batteryVoltage to standardise keys
+- Standardised accceleration/gyro keys
+
+# [1.31.0] - 2023-02-20
+
+### Added
+
+- Sentinum - Apollon Q
+- Sentinum - Apollon Zeta
+- Sentinum - Febris CO2
+- Sentinum - Febris SCW
+- Sentinum - Febris TH
+
+# [1.30.6] - 2023-01-25
+
+### Changed
+
+- Xovis - Added timestamp in emit
+
+# [1.30.5] - 2023-01-23
+
+### Changed
+
+- Mclimate - Vicki
+
+# [1.30.4] - 2023-01-17
+
+### Changed
+
+- Xovis - Added more outputs to count
+
+# [1.30.3] - 2023-01-03
+
+### Changed
+
+- RanosDB - Changed uplink to match new firmware and added batteryLevel
+
+# [1.30.2] - 2022-12-20
+
+### Changed
+
+- Added check for name length in meta
+
+# [1.30.1] - 2022-12-15
+
+### Changed
+
+- Xovis PC2SV5 - Summating logic samples into one
+
+# [1.30.0] - 2022-12-09
+
+### Added
+
+- Milesight - AM103
+- Milesight - AM307
+- Milesight - AM308
+- Milesight - AM319
+- Milesight - EM300-MCS
+- Milesight - EM300-SLD
+- Milesight - EM310-TILT
+- Milesight - EM310-UDL
+- Milesight - EM320-TH
+- Milesight - EM320-TILT
+- Milesight - EM500-LGT
+- Milesight - EM500PP
+- Milesight - EM500-PT100
+- Milesight - EM500-SMTC
+- Milesight - EM500-UDL
+- Milesight - WS50X
+- Milesight - WS50X2
+- Milesight - WS52X
+- Milesight - WS136
+- Milesight - WS156
+- Milesight - WS302
+
+# [1.29.0] - 2022-12-06
+
+### Changed
+
+- Added check for misspelled/missing keys in schema files
+- Added check for missing topics in meta files
+- Fixed those occurrences
+
 # [1.28.0] - 2022-11-29
 
 ### Added
 
+- Ascoel - PB868LR
 - Seeed - SenseCAP S2101
 - Seeed - SenseCAP S2102
 - Seeed - SenseCAP S2103

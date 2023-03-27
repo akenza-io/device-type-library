@@ -18,5 +18,6 @@
       "minimum": 0,
       "maximum": 2
     }
-  }
+  },
+  "required": ["motion", "occupancy"]
 }

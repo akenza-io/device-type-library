@@ -10,7 +10,7 @@
       "description": "Is true if the accelerometer detects movement",
       "hideFromKpis": true
     },
-    "voltage": {
+    "batteryVoltage": {
       "type": "number",
       "minimum": 0,
       "maximum": 24,
@@ -43,6 +43,22 @@
       "unit": "°",
       "type": "number",
       "description": "Azimuth degree"
+    },
+    "downUnit": {
+      "title": "Unit down coordinates",
+      "type": "array",
+      "description": "Unit down coordinates"
+    },
+    "xyzAzimuthDeg": {
+      "title": "XYZ azimuth degree",
+      "type": "array",
+      "description": "XYZ azimuth degree"
+    },
+    "xyzInclinationDeg": {
+      "title": "XYZ inclination degree",
+      "type": "array",
+      "description": "XYZ inclination degree"
     }
-  }
+  },
+  "required": ["inTrip", "batteryVoltage", "temperature"]
 }

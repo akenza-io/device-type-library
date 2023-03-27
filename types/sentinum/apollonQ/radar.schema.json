@@ -1,0 +1,57 @@
+{
+  "$id": "https://akenza.io/sentinum/apollonQ/radar.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Radar",
+  "type": "object",
+  "properties": {
+    "radarStatus": {
+      "title": "Radar Status",
+      "description": "Radar status",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "radarNoPeaks": {
+      "title": "Radar Number peaks",
+      "description": "Radar Number peaks",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "radarDistance1": {
+      "title": "Radar distance 1",
+      "unit": "mm",
+      "type": "number",
+      "description": "Distance measured between the sensor and the surface"
+    },
+    "radarPeak1": {
+      "title": "Radar 1 peaks",
+      "description": "Radar 1 peaks",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "radarDistance2": {
+      "title": "Radar distance 2",
+      "unit": "mm",
+      "type": "number",
+      "description": "Distance measured between the sensor and the surface"
+    },
+    "radarPeak2": {
+      "title": "Radar 2 peaks",
+      "description": "Radar 2 peaks",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "radarDistance3": {
+      "title": "Radar distance 3",
+      "unit": "mm",
+      "type": "number",
+      "description": "Distance measured between the sensor and the surface"
+    },
+    "radarPeak3": {
+      "title": "Radar 3 peaks",
+      "description": "Radar 3 peaks",
+      "type": "integer",
+      "hideFromKpis": true
+    }
+  },
+  "required": ["alarm", "distance"]
+}

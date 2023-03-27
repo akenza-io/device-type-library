@@ -83,7 +83,7 @@
       "maximum": 3276.5,
       "hideFromKpis": true
     },
-    "humidity1": {
+    "humHistory1": {
       "title": "Humidity History 1",
       "unit": "%",
       "type": "number",
@@ -92,7 +92,7 @@
       "maximum": 100,
       "hideFromKpis": true
     },
-    "humidity2": {
+    "humHistory2": {
       "title": "Humidity History 2",
       "unit": "%",
       "type": "number",
@@ -101,7 +101,7 @@
       "maximum": 100,
       "hideFromKpis": true
     },
-    "humidity3": {
+    "humHistory3": {
       "title": "Humidity History 3",
       "unit": "%",
       "type": "number",
@@ -110,7 +110,7 @@
       "maximum": 100,
       "hideFromKpis": true
     },
-    "humidity4": {
+    "humHistory4": {
       "title": "Humidity History 4",
       "unit": "%",
       "type": "number",
@@ -119,7 +119,7 @@
       "maximum": 100,
       "hideFromKpis": true
     },
-    "humidity5": {
+    "humHistory5": {
       "title": "Humidity History 5",
       "unit": "%",
       "type": "number",
@@ -128,7 +128,7 @@
       "maximum": 100,
       "hideFromKpis": true
     },
-    "humidity6": {
+    "humHistory6": {
       "title": "Humidity History 6",
       "unit": "%",
       "type": "number",
@@ -137,7 +137,7 @@
       "maximum": 100,
       "hideFromKpis": true
     },
-    "humidity7": {
+    "humHistory7": {
       "title": "Humidity History 7",
       "unit": "%",
       "type": "number",
@@ -146,5 +146,23 @@
       "maximum": 100,
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "temperature",
+    "humidity",
+    "tempHistory1",
+    "tempHistory2",
+    "tempHistory3",
+    "tempHistory4",
+    "tempHistory5",
+    "tempHistory6",
+    "tempHistory7",
+    "humHistory1",
+    "humHistory2",
+    "humHistory3",
+    "humHistory4",
+    "humHistory5",
+    "humHistory6",
+    "humHistory7"
+  ]
 }

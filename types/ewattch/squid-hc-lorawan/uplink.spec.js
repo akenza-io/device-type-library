@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -58,7 +58,7 @@ describe("Ewattch squid hc lorawan", () => {
         assert.equal(value.data.channel11, 0.5425);
         assert.equal(value.data.channel12, 1.085);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
@@ -82,7 +82,7 @@ describe("Ewattch squid hc lorawan", () => {
         assert.equal(value.data.firmware, "1.4");
         assert.equal(value.data.periodicity, 60);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

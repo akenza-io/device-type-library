@@ -1,23 +1,17 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
 const { assert } = chai;
 
 describe("Sensative presence Uplink", () => {
-  let defaultSchema = null;
   let lifecycleSchema = null;
   let alarmSchema = null;
   let consume = null;
   before((done) => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-      });
     utils
       .loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
@@ -50,7 +44,7 @@ describe("Sensative presence Uplink", () => {
         assert.equal(value.data.softwareVersion, "2378c84");
         assert.equal(value.data.watchdogCount, 0);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -74,7 +68,7 @@ describe("Sensative presence Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryLevel, 91);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -85,7 +79,7 @@ describe("Sensative presence Uplink", () => {
         assert.equal(value.topic, "alarm");
         assert.equal(value.data.doorAlarm, false);
 
-        validate(value.data, alarmSchema, { throwError: true });
+        utils.validateSchema(value.data, alarmSchema, { throwError: true });
       });
 
       consume(data);
@@ -109,7 +103,7 @@ describe("Sensative presence Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryLevel, 91);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -120,7 +114,7 @@ describe("Sensative presence Uplink", () => {
         assert.equal(value.topic, "alarm");
         assert.equal(value.data.doorAlarm, true);
 
-        validate(value.data, alarmSchema, { throwError: true });
+        utils.validateSchema(value.data, alarmSchema, { throwError: true });
       });
 
       consume(data);

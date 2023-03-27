@@ -1,0 +1,38 @@
+{
+  "$id": "https://akenza.io/cayenne/cayenne/gps.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GPS",
+  "type": "object",
+  "properties": {
+    "channel": {
+      "title": "Channel",
+      "type": "number",
+      "description": "Channel number",
+      "hideFromKpis": true
+    },
+    "latitude": {
+      "title": "Latitude",
+      "unit": "°",
+      "type": "number",
+      "description": "Latitude",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "longitude": {
+      "title": "Longitude",
+      "unit": "°",
+      "type": "number",
+      "description": "Longitude",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "altitude": {
+      "title": "Altitude",
+      "unit": "m",
+      "type": "number",
+      "description": "Altitude",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    }
+  }
+}

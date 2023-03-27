@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -15,6 +15,16 @@ describe("Talkpool OY1110 Uplink", () => {
       .loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
         defaultSchema = parsedSchema;
+        done();
+      });
+  });
+
+  let startupSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/startup.schema.json`)
+      .then((parsedSchema) => {
+        startupSchema = parsedSchema;
         done();
       });
   });
@@ -37,7 +47,7 @@ describe("Talkpool OY1110 Uplink", () => {
         assert.equal(value.data.temperature, -5.2);
         assert.equal(value.data.humidity, 72.3);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -49,7 +59,7 @@ describe("Talkpool OY1110 Uplink", () => {
         assert.equal(value.data.temperature, 2.9);
         assert.equal(value.data.humidity, 64.8);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -61,7 +71,7 @@ describe("Talkpool OY1110 Uplink", () => {
         assert.equal(value.data.temperature, 12.7);
         assert.equal(value.data.humidity, 53.9);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
@@ -85,7 +95,7 @@ describe("Talkpool OY1110 Uplink", () => {
           assert.equal(value.data.temperature, 30.2);
           assert.equal(value.data.humidity, 34);
 
-          validate(value.data, defaultSchema, { throwError: true });
+          utils.validateSchema(value.data, defaultSchema, { throwError: true });
         });
 
         consume(data);
@@ -109,7 +119,7 @@ describe("Talkpool OY1110 Uplink", () => {
           assert.equal(value.topic, "startup");
           assert.equal(value.data.message, "STARTUP_OK");
 
-          validate(value.data, defaultSchema, { throwError: true });
+          utils.validateSchema(value.data, startupSchema, { throwError: true });
         });
 
         consume(data);

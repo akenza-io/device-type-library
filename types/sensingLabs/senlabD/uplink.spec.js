@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -48,7 +48,7 @@ describe("Senlab SenlabD uplink", () => {
         assert.equal(value.data.openDuration, 0);
         assert.equal(value.data.closeDuration, 1);
 
-        validate(value.data, startupSchema, { throwError: true });
+        utils.validateSchema(value.data, startupSchema, { throwError: true });
       });
 
       consume(data);
@@ -71,7 +71,7 @@ describe("Senlab SenlabD uplink", () => {
         assert.equal(value.data.open, false);
         assert.equal(value.data.batteryLevel, 96);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

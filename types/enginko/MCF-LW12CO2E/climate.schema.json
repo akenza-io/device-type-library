@@ -36,7 +36,7 @@
       "title": "VOC",
       "unit": "ppb",
       "type": "integer",
-      "description": "Total Volatile Organic Compunds in ppb",
+      "description": "Total Volatile Organic Compounds in ppb",
       "minimum": 0,
       "maximum": 60000
     },
@@ -47,20 +47,7 @@
       "description": "Carbon Dioxide in ppm",
       "minimum": 0,
       "maximum": 10000
-    },
-    "batteryLevel": {
-      "title": "Battery charge",
-      "description": "The battery charge in percent.",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 100,
-      "unit": "%"
-    },
-    "rfu": {
-      "title": "RFU",
-      "description": "RFU",
-      "type": "integer",
-      "hideFromKpis": true
     }
-  }
+  },
+  "required": ["temperature", "humidity", "pressure", "lux", "voc", "co2"]
 }

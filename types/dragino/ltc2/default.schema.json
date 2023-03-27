@@ -1,0 +1,34 @@
+{
+  "$id": "https://akenza.io/dragino/ltc2/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "channel1temp": {
+      "title": "Channel 1 temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "Channel 1 temperature.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "channel2temp": {
+      "title": "Channel 2 temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "Channel 2 temperature.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "channel1res": {
+      "title": "Channel 1 result",
+      "type": "number",
+      "description": "Channel 1 result."
+    },
+    "channel2res": {
+      "title": "Channel 2 result",
+      "type": "number",
+      "description": "Channel 2 result."
+    }
+  }
+}

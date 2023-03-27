@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/talkpool/oy1700/particle.schema.json",
+  "$id": "https://akenza.io/nordicPropeye/oy1700/particle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Particle",
   "type": "object",
@@ -52,5 +52,13 @@
       "minimum": 0,
       "maximum": 10000
     }
-  }
+  },
+  "required": [
+    "particleCount0_3",
+    "particleCount0_5",
+    "particleCount1",
+    "particleCount2_5",
+    "particleCount5",
+    "particleCount5Bigger"
+  ]
 }

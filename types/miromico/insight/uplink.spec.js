@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -64,9 +64,9 @@ describe("Miromico insight Uplink", () => {
 
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.consumption, 16);
-        assert.equal(value.data.voltage, 3.6);
+        assert.equal(value.data.batteryVoltage, 3.6);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -81,7 +81,7 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.data.abcCalibrationPeriod, 384);
         assert.equal(value.data.firmwareHash, "0389A2B9");
 
-        validate(value.data, settingsSchema, { throwError: true });
+        utils.validateSchema(value.data, settingsSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -92,10 +92,12 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "temperature");
         assert.equal(value.data.temperature, 25);
         assert.equal(value.data.humidity, 60);
-        assert.equal(value.data.temperature1, 25.52);
-        assert.equal(value.data.humidity1, 59.5);
+        assert.equal(value.data.temperature2, 25.52);
+        assert.equal(value.data.humidity2, 59.5);
 
-        validate(value.data, temperatureSchema, { throwError: true });
+        utils.validateSchema(value.data, temperatureSchema, {
+          throwError: true,
+        });
       });
 
       utils.expectEmits((type, value) => {
@@ -106,7 +108,7 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "co2");
         assert.equal(value.data.co2, 779);
 
-        validate(value.data, co2Schema, { throwError: true });
+        utils.validateSchema(value.data, co2Schema, { throwError: true });
       });
 
       consume(data);

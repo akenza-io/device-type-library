@@ -16,7 +16,7 @@ function decoder(bytes, port) {
     decoded.manDown = (bytes[8] & 0x4) !== 0;
     decoded.headingDeg = (bytes[9] & 0x7) * 45;
     decoded.speedKmph = (bytes[9] >> 3) * 5;
-    decoded.voltage = Math.round(bytes[10] * 0.025 * 100) / 100;
+    decoded.batteryVoltage = Math.round(bytes[10] * 0.025 * 100) / 100;
   } else if (port === 2) {
     decoded.type = "downlink_ack";
 
@@ -56,5 +56,6 @@ function consume(event) {
   const { port } = event.data;
   const data = decoder(hexToBytes(payload), port);
   const topic = data.type;
+  delete data.type;
   emit("sample", { data, topic });
 }

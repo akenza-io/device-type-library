@@ -1,26 +1,16 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
 const { assert } = chai;
 
 describe("Digital matter Guppy Uplink", () => {
-  let lifecycleSchema = null;
+  let statusSchema = null;
   let consume = null;
   before((done) => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
-  let statusSchema = null;
-  before((done) => {
     utils.loadSchema(`${__dirname}/status.schema.json`).then((parsedSchema) => {
       statusSchema = parsedSchema;
       done();
@@ -44,10 +34,9 @@ describe("Digital matter Guppy Uplink", () => {
         assert.equal(value.topic, "status");
         assert.equal(value.data.inTrip, true);
         assert.equal(value.data.temperature, 25);
-        assert.equal(value.data.type, "status");
-        assert.equal(value.data.voltage, 3.358);
+        assert.equal(value.data.batteryVoltage, 3.358);
 
-        validate(value.data, statusSchema, { throwError: true });
+        utils.validateSchema(value.data, statusSchema, { throwError: true });
       });
 
       consume(data);
@@ -69,8 +58,7 @@ describe("Digital matter Guppy Uplink", () => {
         assert.equal(value.topic, "status");
         assert.equal(value.data.inTrip, true);
         assert.equal(value.data.temperature, 25);
-        assert.equal(value.data.type, "status");
-        assert.equal(value.data.voltage, 3.36);
+        assert.equal(value.data.batteryVoltage, 3.36);
 
         assert.equal(value.data.inclinationDeg, 51);
         assert.equal(value.data.azimuthDeg, 265.5);
@@ -87,7 +75,7 @@ describe("Digital matter Guppy Uplink", () => {
         assert.equal(value.data.xyzInclinationDeg[1], 51);
         assert.equal(value.data.xyzInclinationDeg[2], 93.5);
 
-        validate(value.data, statusSchema, { throwError: true });
+        utils.validateSchema(value.data, statusSchema, { throwError: true });
       });
 
       consume(data);

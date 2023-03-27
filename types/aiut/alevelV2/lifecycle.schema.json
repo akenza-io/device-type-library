@@ -4,12 +4,26 @@
   "title": "Lifecycle",
   "type": "object",
   "properties": {
+    "sequenceNumber": {
+      "title": "Sequence number",
+      "description": "Sequence number",
+      "type": "number",
+      "hideFromKpis": true
+    },
     "batteryStatus": {
       "title": "Battery status",
       "description": "Describes the battery status",
       "type": "string",
       "enum": ["VERY_LOW", "LOW", "DISCHARGING", "HEALTHY"],
       "hideFromKpis": true
+    },
+    "currentProfile": {
+      "title": "LoRa Profile",
+      "description": "Current LoRa Profile",
+      "type": "string",
+      "enum": ["IMR_LORA_SIGFOX", "SIGFOX", "SIGFOX_LORA"],
+      "hideFromKpis": true
     }
-  }
+  },
+  "required": ["sequenceNumber", "batteryStatus", "currentProfile"]
 }

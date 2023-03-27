@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -61,7 +61,7 @@ describe("Decentlab SMTP Uplink", () => {
         assert.equal(value.data.soilMoistureAtDepth7, -5);
         assert.equal(value.data.soilTemperatureAtDepth7, -327.68);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -70,11 +70,11 @@ describe("Decentlab SMTP Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 2.875);
+        assert.equal(value.data.batteryVoltage, 2.875);
         assert.equal(value.data.protocolVersion, 2);
-        assert.equal(value.data.deviceID, 2896);
+        assert.equal(value.data.deviceId, 2896);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

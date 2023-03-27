@@ -5,7 +5,7 @@ function consume(event) {
   const lifecycle = {};
 
   // Reserved 0-8
-  data.sequenceNumber = Bits.bitsToUnsigned(bits.substr(8, 8));
+  lifecycle.sequenceNumber = Bits.bitsToUnsigned(bits.substr(8, 8));
   data.temperature = Bits.bitsToSigned(bits.substr(16, 8));
 
   const batteryStatus = Bits.bitsToUnsigned(bits.substr(24, 2));

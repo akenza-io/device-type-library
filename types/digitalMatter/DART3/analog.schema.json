@@ -10,5 +10,6 @@
       "description": "List of Analog values",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["analog"]
 }

@@ -10,16 +10,8 @@
       "type": "boolean",
       "hideFromKpis": true
     },
-    "cyclic": {
-      "title": "Cyclic",
-      "description": "Cyclic",
-      "type": "boolean"
-    },
-    "event": {
-      "title": "Event",
-      "description": "Event",
-      "type": "boolean"
-    },
+    "cyclic": { "title": "Cyclic", "description": "Cyclic", "type": "boolean" },
+    "event": { "title": "Event", "description": "Event", "type": "boolean" },
     "inputNr": {
       "title": "Input number",
       "description": "Input number",
@@ -30,15 +22,16 @@
       "description": "Interrogation",
       "type": "boolean"
     },
-    "limit": {
-      "title": "Limit",
-      "description": "Limit",
-      "type": "boolean"
-    },
-    "state": {
-      "title": "State",
-      "description": "State",
-      "type": "integer"
-    }
-  }
+    "limit": { "title": "Limit", "description": "Limit", "type": "boolean" },
+    "state": { "title": "State", "description": "State", "type": "integer" }
+  },
+  "required": [
+    "blocked",
+    "cyclic",
+    "event",
+    "inputNr",
+    "interrogation",
+    "limit",
+    "state"
+  ]
 }

@@ -28,5 +28,11 @@
       "description": "Configuration done flag",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "frameCounter",
+    "hardwareError",
+    "lowBattery",
+    "configurationDone"
+  ]
 }

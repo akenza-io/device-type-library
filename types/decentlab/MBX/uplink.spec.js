@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -45,7 +45,7 @@ describe("Decentlab MBX Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.distance, 1234);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -54,12 +54,12 @@ describe("Decentlab MBX Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 2.993);
+        assert.equal(value.data.batteryVoltage, 2.993);
         assert.equal(value.data.protocolVersion, 2);
-        assert.equal(value.data.deviceID, 303);
+        assert.equal(value.data.deviceId, 303);
         assert.equal(value.data.numberOfValidSamples, 1);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

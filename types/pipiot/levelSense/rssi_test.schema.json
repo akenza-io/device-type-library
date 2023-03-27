@@ -10,5 +10,6 @@
       "description": "Test frames in binary",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["testFrames"]
 }

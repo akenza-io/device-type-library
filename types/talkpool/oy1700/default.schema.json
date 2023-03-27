@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/talkpool/oy1700/default.schema.json",
+  "$id": "https://akenza.io/nordicPropeye/oy1700/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Default",
   "type": "object",
@@ -44,5 +44,6 @@
       "minimum": 0,
       "maximum": 10000
     }
-  }
+  },
+  "required": ["temperature", "humidity", "pm1", "pm2_5", "pm10"]
 }

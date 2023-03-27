@@ -34,6 +34,28 @@
       "description": "The light in lux.",
       "minimum": 0,
       "maximum": 65535
+    },
+    "visibleInfrared": {
+      "title": "Visible infrared",
+      "type": "integer",
+      "description": "Visible infrared",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "infrared": {
+      "title": "Infrared",
+      "type": "integer",
+      "description": "infrared",
+      "minimum": 0,
+      "maximum": 65535
     }
-  }
+  },
+  "required": [
+    "temperature",
+    "humidity",
+    "pir",
+    "light",
+    "visibleInfrared",
+    "infrared"
+  ]
 }

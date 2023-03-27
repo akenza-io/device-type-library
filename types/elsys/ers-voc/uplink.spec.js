@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -58,7 +58,7 @@ describe("Elsys TVOC uplink", () => {
         assert.equal(value.data.temperature, 24.7);
         assert.equal(value.data.tvoc, 12);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -67,10 +67,10 @@ describe("Elsys TVOC uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.625);
+        assert.equal(value.data.batteryVoltage, 3.625);
         assert.equal(value.data.batteryLevel, 100);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -81,7 +81,7 @@ describe("Elsys TVOC uplink", () => {
         assert.equal(value.topic, "occupancy");
         assert.equal(value.data.motion, 3);
 
-        validate(value.data, occupancySchema, { throwError: true });
+        utils.validateSchema(value.data, occupancySchema, { throwError: true });
       });
 
       consume(data);

@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -43,7 +43,7 @@ describe("Kuando busylight Uplink", () => {
         assert.equal(value.data.timeOn, 100);
         assert.equal(value.data.timeOff, 2);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -60,7 +60,7 @@ describe("Kuando busylight Uplink", () => {
         assert.equal(value.data.hwRevision, 12);
         assert.equal(value.data.adrState, 1);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

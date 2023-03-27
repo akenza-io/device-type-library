@@ -1,5 +1,4 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -51,7 +50,7 @@ describe("Tinovi PM-IO-5-SM Uplink", () => {
         assert.equal(value.data.temperature, 34.55);
         assert.equal(value.data.waterContent, 0);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -62,7 +61,7 @@ describe("Tinovi PM-IO-5-SM Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryLevel, 99);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

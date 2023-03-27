@@ -36,5 +36,11 @@
       "minimum": -32767,
       "maximum": 32767
     }
-  }
+  },
+  "required": [
+    "temperature",
+    "light",
+    "maxAccelerationNew",
+    "maxAccelerationHistory"
+  ]
 }

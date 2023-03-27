@@ -114,12 +114,12 @@ function consume(event) {
   data.temperature = sample.temperature;
 
   // Lifecycle values
-  lifecycle.voltage = sample.battery_voltage;
+  lifecycle.batteryVoltage = sample.battery_voltage;
   lifecycle.protocolVersion = sample.protocol_version;
-  lifecycle.deviceID = sample.device_id;
+  lifecycle.deviceId = sample.device_id;
 
   if (deleteUnusedKeys(data)) {
-    emit("sample", { data: data, topic: "default" });
+    emit("sample", { data, topic: "default" });
   }
 
   if (deleteUnusedKeys(lifecycle)) {

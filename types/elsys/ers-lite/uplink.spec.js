@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -33,7 +33,7 @@ describe("Elsys ERS lite uplink", () => {
     it("should decode Elsys ERS lite payload", () => {
       const data = {
         data: {
-          payloadHex: "0100f1021704041a070e5a",
+          payloadHex: "0100f10217070e5a",
         },
       };
 
@@ -46,7 +46,7 @@ describe("Elsys ERS lite uplink", () => {
         assert.equal(value.data.humidity, 23);
         assert.equal(value.data.temperature, 24.1);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -55,10 +55,10 @@ describe("Elsys ERS lite uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.674);
+        assert.equal(value.data.batteryVoltage, 3.674);
         assert.equal(value.data.batteryLevel, 100);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

@@ -32,13 +32,21 @@
       "minimum": 0,
       "maximum": 255
     },
-    "voltage": {
+    "batteryVoltage": {
       "title": "Battery voltage",
       "unit": "V",
       "description": "Battery voltage",
       "type": "number",
       "minimum": 0,
       "maximum": 65535
+    },
+    "batteryLevel": {
+      "title": "Battery charge",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "The battery charge in percent.",
+      "unit": "%"
     },
     "rssi": {
       "title": "RSSI",
@@ -52,5 +60,13 @@
       "description": "Signal-to-Noise Ratio",
       "type": "number"
     }
-  }
+  },
+  "required": [
+    "temperature",
+    "trigger",
+    "uplink",
+    "downlink",
+    "batteryVoltage",
+    "batteryLevel"
+  ]
 }

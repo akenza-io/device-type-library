@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -44,7 +44,9 @@ describe("Digital Technologies Water Sensor Uplink", () => {
         assert.equal(value.topic, "water_present");
         assert.equal(value.data.waterPresent, "NOT_PRESENT");
 
-        validate(value.data, waterPresentSchema, { throwError: true });
+        utils.validateSchema(value.data, waterPresentSchema, {
+          throwError: true,
+        });
       });
 
       consume(data);

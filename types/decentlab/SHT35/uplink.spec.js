@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -46,7 +46,7 @@ describe("Decentlab SHT35 Uplink", () => {
         assert.equal(value.data.humidity, 47.536430914778364);
         assert.equal(value.data.temperature, 23.787670710307466);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -55,11 +55,11 @@ describe("Decentlab SHT35 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.168);
+        assert.equal(value.data.batteryVoltage, 3.168);
         assert.equal(value.data.protocolVersion, 2);
-        assert.equal(value.data.deviceID, 782);
+        assert.equal(value.data.deviceId, 782);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

@@ -22,5 +22,6 @@
       ],
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["event"]
 }

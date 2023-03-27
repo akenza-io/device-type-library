@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -47,7 +47,7 @@ describe("Oxon Buttonboard Uplink", () => {
         assert.equal(value.data.batteryLevel, 100);
         assert.equal(value.data.appMode, 1);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -75,7 +75,7 @@ describe("Oxon Buttonboard Uplink", () => {
         assert.equal(value.data.accY, 0.081);
         assert.equal(value.data.accZ, -0.461);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

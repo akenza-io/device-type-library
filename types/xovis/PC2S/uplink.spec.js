@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -114,12 +114,11 @@ describe("Xovis Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic === "line_count") {
-          assert.equal(value.topic, "line_count");
-          assert.equal(value.data.fw, 1);
-        }
+        assert.equal(value.topic, "line_count");
+        assert.equal(value.data.fw, 1);
+        assert.equal(value.data.bw, 0);
 
-        validate(value.data, lineCountSchema, { throwError: true });
+        utils.validateSchema(value.data, lineCountSchema, { throwError: true });
       });
 
       consume(data);
@@ -178,12 +177,11 @@ describe("Xovis Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        if (value.topic === "line_count") {
-          assert.equal(value.topic, "line_count");
-          assert.equal(value.data.fw, 1);
-        }
+        assert.equal(value.topic, "line_count");
+        assert.equal(value.data.fw, 1);
+        assert.equal(value.data.bw, 0);
 
-        validate(value.data, lineCountSchema, { throwError: true });
+        utils.validateSchema(value.data, lineCountSchema, { throwError: true });
       });
 
       consume(data);

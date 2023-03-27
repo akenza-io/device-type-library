@@ -35,5 +35,12 @@
       "desciption": "Firmware hash",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "measurementInterval",
+    "temperatureSamples",
+    "co2Subsample",
+    "abcCalibrationPeriod",
+    "firmwareHash"
+  ]
 }

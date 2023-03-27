@@ -1,0 +1,17 @@
+{
+  "$id": "https://akenza.io/milesight/EM500-PP/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "batteryLevel": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "unit": "%"
+    }
+  },
+  "required": ["batteryLevel"]
+}

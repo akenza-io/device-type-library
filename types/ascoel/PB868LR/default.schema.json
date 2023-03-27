@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/ascoel/pb868lr/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "buttonPushed": {
+      "title": "Button pushed",
+      "type": "boolean",
+      "description": "True if the button was pushed"
+    },
+    "count": {
+      "title": "Count",
+      "type": "integer",
+      "description": "Count of button presses"
+    }
+  },
+  "required": ["buttonPushed", "count"]
+}

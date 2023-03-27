@@ -20,6 +20,14 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     },
+    "light": {
+      "title": "Light",
+      "unit": "lux",
+      "type": "integer",
+      "description": "The light in lux.",
+      "minimum": 0,
+      "maximum": 65535
+    },
     "co2": {
       "title": "CO2",
       "unit": "ppm",
@@ -28,5 +36,6 @@
       "minimum": 0,
       "maximum": 10000
     }
-  }
+  },
+  "required": ["humidity", "temperature", "light", "co2"]
 }

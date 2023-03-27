@@ -22,9 +22,9 @@
     },
     "voc": {
       "title": "VOC",
-      "unit": "ppm",
+      "unit": "ppb",
       "type": "integer",
-      "description": "Total Volatile Organic Compunds in ppm",
+      "description": "Total Volatile Organic Compounds in ppb.",
       "minimum": 0,
       "maximum": 60000
     },
@@ -66,5 +66,15 @@
       "minimum": 0,
       "maximum": 65535
     }
-  }
+  },
+  "required": [
+    "temperature",
+    "humidity",
+    "voc",
+    "co2",
+    "light",
+    "pressure",
+    "pir",
+    "rawPir"
+  ]
 }

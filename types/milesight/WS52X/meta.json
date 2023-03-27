@@ -1,0 +1,20 @@
+{
+  "name": "WS52X",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight-iot.com/lorawan/socket/ws52x/",
+  "description": "WS52x is a LoRaWAN® smart portable socket for the monitoring and control of electrical appliances. Adopting most of international socket types, WS52X can be used for turning on or off the electrical devices locally or remotely and measuring power consumption data plugged on it and even sending overcurrent alarms.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Voltage",
+    "Current",
+    "Power Factor",
+    "Power",
+    "Power Consumption"
+  ],
+  "outputTopics": ["default"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

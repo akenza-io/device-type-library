@@ -5,6 +5,7 @@ function consume(event) {
     // Live data
     event.data.live_data.frames.forEach((payload) => {
       const object = payload.tracked_objects[0].type;
+      const time = new Date(payload.time);
 
       // Ignore GROUP for now (redundant message)
       if (object === "PERSON") {
@@ -48,14 +49,16 @@ function consume(event) {
               data.countType = type;
               data.logicName = ev.attributes.logic_name;
               data.counterValue = ev.attributes.counter_value;
+              data.direction = ev.attributes.counter_name;
               topic = "count";
             } else if (type === "COUNT_DECREMENT") {
               data.countType = type;
               data.logicName = ev.attributes.logic_name;
               data.counterValue = ev.attributes.counter_value;
+              data.direction = ev.attributes.counter_name;
               topic = "count";
             }
-            emit("sample", { data, topic });
+            emit("sample", { data, topic, timestamp: time });
           });
         } else {
           // Here could the positions for each frame get emited
@@ -127,8 +130,15 @@ function consume(event) {
     const regex = new RegExp("LINE");
     const payload = event.data.logics_data.logics;
 
+    let fw = 0;
+    let bw = 0;
+    let peopleInZone = 0;
+    let timestamp = new Date();
+
     payload.forEach((logic) => {
       logic.records.forEach((record) => {
+        timestamp = new Date(record.to);
+
         record.counts.forEach((count) => {
           const { value } = count;
 
@@ -137,20 +147,28 @@ function consume(event) {
             if (regex.test(logic.info)) {
               // Line
               if (count.name === "fw") {
-                data.fw = value;
-                data.bw = 0;
+                fw += value;
               } else {
-                data.fw = 0;
-                data.bw = value;
+                bw += value;
               }
-              emit("sample", { data, topic: "line_count" });
             } else {
               // Zone
-              emit("sample", { data: { peopleInZone: value }, topic: "zone" });
+              peopleInZone += value;
             }
           }
         });
       });
     });
+
+    if (fw > 0 || bw > 0) {
+      emit("sample", {
+        data: { fw, bw },
+        topic: "line_count",
+        timestamp,
+      });
+    }
+    if (peopleInZone > 0) {
+      emit("sample", { data: { peopleInZone }, topic: "zone", timestamp });
+    }
   }
 }

@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -47,7 +47,7 @@ describe("Netvox R711 uplink", () => {
         assert.equal(value.data.humidity, 26.82);
         assert.equal(value.data.temperature, 21.69);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -58,9 +58,9 @@ describe("Netvox R711 uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.version, 1);
         assert.equal(value.data.deviceType, 1);
-        assert.equal(value.data.voltage, 2.9);
+        assert.equal(value.data.batteryVoltage, 2.9);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

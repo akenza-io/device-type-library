@@ -40,12 +40,10 @@ function consume(event) {
       topic = "battery_level";
       sample.batteryLevel = data.batl;
 
-      let { chrg } = data;
-      if (chrg === undefined) {
-        chrg = null;
+      const { chrg } = data;
+      if (chrg !== undefined) {
+        sample.batteryCharge = chrg;
       }
-
-      sample.batteryCharge = chrg;
 
       break;
     }
@@ -61,25 +59,25 @@ function consume(event) {
       topic = "network";
       sample.rssi = data.rssi;
 
-      let { rssiDbm } = data;
-      let { neighNodeInfo } = data;
-      let { neighRadioPower } = data;
-      let { neighRadioPowerDbm } = data;
+      const { rssiDbm } = data;
+      const { neighNodeInfo } = data;
+      const { neighRadioPower } = data;
+      const { neighRadioPowerDbm } = data;
 
-      if (rssiDbm === undefined) {
-        rssiDbm = null;
+      if (rssiDbm !== undefined) {
+        sample.rssiDbm = rssiDbm;
       }
 
-      if (neighNodeInfo === undefined) {
-        neighNodeInfo = null;
+      if (neighNodeInfo !== undefined) {
+        sample.neighNodeInfo = neighNodeInfo;
       }
 
-      if (neighRadioPower === undefined) {
-        neighRadioPower = null;
+      if (neighRadioPower !== undefined) {
+        sample.neighRadioPower = neighRadioPower;
       }
 
-      if (neighRadioPowerDbm === undefined) {
-        neighRadioPowerDbm = null;
+      if (neighRadioPowerDbm !== undefined) {
+        sample.neighRadioPowerDbm = neighRadioPowerDbm;
       }
 
       sample.rssiDbm = rssiDbm;
@@ -106,25 +104,25 @@ function consume(event) {
     // Sensordata
     case 12100: {
       topic = "environment";
-      let pressure = data.airp;
-      let humidity = data.humd;
-      let temperature = data.temp;
-      let light = data.lght;
+      const pressure = data.airp;
+      const humidity = data.humd;
+      const temperature = data.temp;
+      const light = data.lght;
 
-      if (pressure === undefined) {
-        pressure = null;
+      if (pressure !== undefined) {
+        sample.pressure = pressure;
       }
 
-      if (humidity === undefined) {
-        humidity = null;
+      if (humidity !== undefined) {
+        sample.humidity = humidity;
       }
 
-      if (temperature === undefined) {
-        temperature = null;
+      if (temperature !== undefined) {
+        sample.temperature = temperature;
       }
 
-      if (light === undefined) {
-        light = null;
+      if (light !== undefined) {
+        sample.light = light;
       }
 
       sample.pressure = pressure;

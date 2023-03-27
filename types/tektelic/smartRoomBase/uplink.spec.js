@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -56,9 +56,9 @@ describe("Tektelic Smart Room Base Sensor Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.19);
+        assert.equal(value.data.batteryVoltage, 3.19);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -70,7 +70,7 @@ describe("Tektelic Smart Room Base Sensor Uplink", () => {
         assert.equal(value.data.temperature, 25.1);
         assert.equal(value.data.humidity, 27);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
@@ -93,7 +93,7 @@ describe("Tektelic Smart Room Base Sensor Uplink", () => {
         assert.equal(value.data.reedCount, 1);
         assert.equal(value.data.open, false);
 
-        validate(value.data, reedSchema, { throwError: true });
+        utils.validateSchema(value.data, reedSchema, { throwError: true });
       });
 
       consume(data);
@@ -116,7 +116,7 @@ describe("Tektelic Smart Room Base Sensor Uplink", () => {
         assert.equal(value.data.reedCount, 1);
         assert.equal(value.data.open, true);
 
-        validate(value.data, reedSchema, { throwError: true });
+        utils.validateSchema(value.data, reedSchema, { throwError: true });
       });
 
       consume(data);

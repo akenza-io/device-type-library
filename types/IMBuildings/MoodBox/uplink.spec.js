@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -50,7 +50,7 @@ describe("IMBuilding MoodBox Uplink", () => {
         assert.equal(value.data.bad, 1);
         assert.equal(value.data.worst, 2);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -60,9 +60,9 @@ describe("IMBuilding MoodBox Uplink", () => {
 
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.deviceStatus, 0);
-        assert.equal(value.data.voltage, 3.47);
+        assert.equal(value.data.batteryVoltage, 3.47);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

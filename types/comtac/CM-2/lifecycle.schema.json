@@ -100,7 +100,7 @@
       "type": "boolean",
       "hideFromKpis": true
     },
-    "voltage": {
+    "batteryVoltage": {
       "type": "number",
       "minimum": 0,
       "maximum": 24,
@@ -116,5 +116,25 @@
       "description": "The battery charge in percent.",
       "unit": "%"
     }
-  }
+  },
+  "required": [
+    "version",
+    "booster",
+    "txOnTimer",
+    "txOnEvent",
+    "buttonEvent",
+    "digitalInputEvent",
+    "deepSleepEvent",
+    "digitalInputState",
+    "minTempOn",
+    "maxTempOn",
+    "minHumOn",
+    "maxHumOn",
+    "minPt100On",
+    "maxPt100On",
+    "minLemOn",
+    "maxLemOn",
+    "batteryVoltage",
+    "batteryLevel"
+  ]
 }

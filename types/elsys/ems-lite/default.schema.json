@@ -59,7 +59,7 @@
       "maximum": 4294967295
     },
     "waterleak": {
-      "title": "Waterleak",
+      "title": "Water leak",
       "description": "Equals true if a waterleak is detected",
       "type": "boolean"
     },
@@ -68,5 +68,16 @@
       "description": "Equals true if reed is detected",
       "type": "boolean"
     }
-  }
+  },
+  "required": [
+    "temperature",
+    "humidity",
+    "accX",
+    "accY",
+    "accZ",
+    "pulse1",
+    "pulseAbs",
+    "waterleak",
+    "reed"
+  ]
 }

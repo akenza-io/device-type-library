@@ -23,5 +23,6 @@
       "enum": ["LOW_POWER_STANDARD_MODE", "HIGH_POWER_BOOST_MODE"],
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["signalStrength", "rssi", "transmissionMode"]
 }

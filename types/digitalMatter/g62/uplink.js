@@ -52,7 +52,7 @@ function consume(event) {
     digital.digitalOutput = (bytes[4] & 0x8) !== 0;
     gps.headingDeg = bytes[8] * 2;
     gps.speedKmph = bytes[9];
-    lifecycle.voltage = parseFloat((bytes[10] * 0.02).toFixed(3));
+    lifecycle.batteryVoltage = parseFloat((bytes[10] * 0.02).toFixed(3));
 
     if (port === 1) {
       digital.extVoltage = parseFloat(

@@ -100,19 +100,19 @@ const ENLINK_CPU_TEMP = 0x4e; // S16  -3276.8°C -> 3276.7°C (-10..80) [Divide 
 // --------------------------------------------------------------------------------------
 // Convert binary value bit to Signed 16 bit
 function S16(bin) {
-  var num = bin & 0xffff;
+  let num = bin & 0xffff;
   if (0x8000 & num) num = -(0x010000 - num);
   return num;
 }
 // Convert binary value bit to Signed 8 bit
 function S8(bin) {
-  var num = bin & 0xff;
+  let num = bin & 0xff;
   if (0x80 & num) num = -(0x0100 - num);
   return num;
 }
 // Parse Hex Byte Array
 function parseHexString(str) {
-  var result = [];
+  const result = [];
   while (str.length >= 2) {
     result.push(parseInt(str.substring(0, 2), 16));
 
@@ -123,16 +123,16 @@ function parseHexString(str) {
 }
 // Convert 4 IEEE754 bytes
 function fromF32(byte0, byte1, byte2, byte3) {
-  var bits = (byte0 << 24) | (byte1 << 16) | (byte2 << 8) | byte3;
-  var sign = bits >>> 31 === 0 ? 1.0 : -1.0;
-  var e = (bits >>> 23) & 0xff;
-  var m = e === 0 ? (bits & 0x7fffff) << 1 : (bits & 0x7fffff) | 0x800000;
-  var f = sign * m * Math.pow(2, e - 150);
+  const bits = (byte0 << 24) | (byte1 << 16) | (byte2 << 8) | byte3;
+  const sign = bits >>> 31 === 0 ? 1.0 : -1.0;
+  const e = (bits >>> 23) & 0xff;
+  const m = e === 0 ? (bits & 0x7fffff) << 1 : (bits & 0x7fffff) | 0x800000;
+  const f = sign * m * Math.pow(2, e - 150);
   return f;
 }
 
 function deleteUnusedKeys(data) {
-  var keysRetained = false;
+  let keysRetained = false;
   Object.keys(data).forEach((key) => {
     if (data[key] === undefined) {
       delete data[key];
@@ -144,12 +144,12 @@ function deleteUnusedKeys(data) {
 }
 
 function consume(event) {
-  var payload = event.data.payloadHex;
-  var data = parseHexString(payload);
-  var obj = {};
-  var msg_ok = false;
+  const payload = event.data.payloadHex;
+  const data = parseHexString(payload);
+  const obj = {};
+  let msg_ok = false;
 
-  for (var i = 0; i < data.length; i++) {
+  for (let i = 0; i < data.length; i++) {
     switch (data[i]) {
       // Parse Sensor Message Parts
       case ENLINK_TEMP: // Temperature
@@ -330,7 +330,7 @@ function consume(event) {
         msg_ok = true;
         break;
       case ENLINK_OCC_STATUS: // 1 byte U8, 1 or 0, occupancy status
-        obj.occupied = data[i + 1] ? true : false;
+        obj.occupied = !!data[i + 1];
         i += 1;
         msg_ok = true;
         break;
@@ -529,12 +529,12 @@ function consume(event) {
         msg_ok = true;
         break;
       case ENLINK_LEAK_DETECT_EVT: // 1 byte U8, Leak status changed
-        obj.leak_detect_event = data[i + 1] ? true : false;
+        obj.leak_detect_event = !!data[i + 1];
         i += 1;
         msg_ok = true;
         break;
       case ENLINK_VIBRATION_EVT: // 1 byte U8, 1 or 0, vibration event detected
-        obj.vibration_event = data[i + 1] ? true : false;
+        obj.vibration_event = !!data[i + 1];
         i += 1;
         msg_ok = true;
         break;
@@ -546,7 +546,7 @@ function consume(event) {
         msg_ok = true;
         break;
       case ENLINK_TEMPERATURE_TX:
-        //s16 in deci-celcius
+        // s16 in deci-celcius
         obj.temperature_tx_degc = S16((data[i + 1] << 8) | data[i + 2]) / 10;
         i += 2;
         msg_ok = true;
@@ -812,7 +812,7 @@ function consume(event) {
     }
   }
 
-  var def = {};
+  const def = {};
   def.temperature = obj.temperature_c;
   def.humidity = obj.humidity;
   def.lux = obj.lux;
@@ -882,10 +882,10 @@ function consume(event) {
   def.ncPm10_0 = obj.nc_pm10_0;
   def.pmTps = obj.pm_tps;
 
-  var lifecycle = {};
+  const lifecycle = {};
   lifecycle.cpuTempDep = obj.cpu_temp_dep;
   lifecycle.cpuTemp = obj.cpu_temp;
-  lifecycle.voltage = obj.batt_volt;
+  lifecycle.batteryVoltage = obj.batt_volt;
   lifecycle.rxRssi = obj.rx_rssi;
   lifecycle.rxSnr = obj.rx_snr;
   lifecycle.rxCount = obj.rx_count;

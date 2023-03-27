@@ -35,7 +35,7 @@
       "description": "Threshold of accumulative number of counts",
       "hideFromKpis": true
     },
-    "noInfrared": {
+    "infraredError": {
       "title": "Infrared error",
       "type": "boolean",
       "description": "Infrared error",

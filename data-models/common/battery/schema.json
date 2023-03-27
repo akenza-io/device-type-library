@@ -13,7 +13,7 @@
       "description": "The battery charge in percent.",
       "unit": "%"
     },
-    "voltage": {
+    "batteryVoltage": {
       "type": "number",
       "minimum": 0,
       "maximum": 24,
@@ -22,7 +22,5 @@
       "unit": "V"
     }
   },
-  "required": [
-    "voltage"
-  ]
+  "required": ["batteryVoltage"]
 }

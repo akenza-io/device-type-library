@@ -9,11 +9,12 @@
       "type": "integer",
       "description": "Device status"
     },
-    "voltage": {
+    "batteryVoltage": {
       "title": "Battery voltage",
       "type": "number",
       "unit": "V",
       "desciption": "The battery voltage in Volt."
     }
-  }
+  },
+  "required": ["deviceStatus", "batteryVoltage"]
 }

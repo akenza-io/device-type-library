@@ -91,22 +91,6 @@
       "type": "number",
       "description": "Temperature in °C"
     },
-    "voltage": {
-      "type": "number",
-      "minimum": 0,
-      "maximum": 24,
-      "title": "Battery voltage",
-      "desciption": "The battery voltage in Volt.",
-      "unit": "V"
-    },
-    "batteryLevel": {
-      "title": "Battery charge",
-      "type": "number",
-      "minimum": 0,
-      "maximum": 100,
-      "description": "The battery charge in percent.",
-      "unit": "%"
-    },
     "measurementType": {
       "title": "Measurement type",
       "description": "Measurement type",
@@ -118,5 +102,6 @@
       ],
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["distance", "errorFlags", "temperature", "measurementType"]
 }

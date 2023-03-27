@@ -1,8 +1,8 @@
 function consume(event) {
-  var payload = event.data.payloadHex;
-  var bits = Bits.hexToBits(payload);
-  var data = {};
-  var lifecycle = {};
+  const payload = event.data.payloadHex;
+  const bits = Bits.hexToBits(payload);
+  const data = {};
+  const lifecycle = {};
 
   // Which periphery is on?
   // reserved
@@ -23,7 +23,7 @@ function consume(event) {
   lifecycle.dip3 = !!Bits.bitsToUnsigned(bits.substr(13, 1));
   lifecycle.dip2 = !!Bits.bitsToUnsigned(bits.substr(14, 1));
   lifecycle.dip1 = !!Bits.bitsToUnsigned(bits.substr(15, 1));
-  lifecycle.voltage = Number(
+  lifecycle.batteryVoltage = Number(
     (1 + Bits.bitsToUnsigned(bits.substr(16, 8)) * 0.01).toFixed(2),
   );
 
@@ -43,10 +43,10 @@ function consume(event) {
   data.longitude = Bits.bitsToSigned(bits.substr(232, 32)) / 1000000;
   data.altitude = Bits.bitsToSigned(bits.substr(264, 16)) / 100;
 
-  if (lifecycle.txOnEvent == true) {
+  if (lifecycle.txOnEvent === true) {
     emit("sample", { data: { eventUplink: true }, topic: "event" });
   }
 
-  emit("sample", { data: data, topic: "default" });
+  emit("sample", { data, topic: "default" });
   emit("sample", { data: lifecycle, topic: "lifecycle" });
 }

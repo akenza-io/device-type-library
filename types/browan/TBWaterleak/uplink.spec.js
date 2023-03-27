@@ -1,11 +1,11 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("TBWaterleak uplink", () => {
+describe("TBWater leak uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
@@ -30,7 +30,7 @@ describe("TBWaterleak uplink", () => {
   });
 
   describe("consume()", () => {
-    it("should decode TBWaterleak payload", () => {
+    it("should decode TBWater leak payload", () => {
       const data = {
         data: {
           payloadHex: "000b3628",
@@ -43,10 +43,10 @@ describe("TBWaterleak uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.6);
+        assert.equal(value.data.batteryVoltage, 3.6);
         assert.equal(value.data.batteryLevel, 100);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -59,7 +59,7 @@ describe("TBWaterleak uplink", () => {
         assert.equal(value.data.temperature, 22);
         assert.equal(value.data.humidity, 40);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

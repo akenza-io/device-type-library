@@ -1,0 +1,14 @@
+{
+  "name": "Push button",
+  "version": "1.0.0",
+  "manufacturer": "Ascoel",
+  "url": "http://www.ascoel.it/index.php/products/92-push-buttons/17-pb868lrh",
+  "description": "The PBH sensor is a button sensor specifically designed for indoor application. Its design is meant for homes and offices usage. The PBI sensor on the other hand is a button sensor specifically designed for indoor application. Its design is meant for all kind of businness. The low battery consumption allows this sensor to last for years without battery replacement.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V0.0.7",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Button"],
+  "outputTopics": ["boot", "debug", "default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

@@ -10,5 +10,6 @@
       "type": "string",
       "enum": ["PRESENT", "NOT_PRESENT"]
     }
-  }
+  },
+  "required": ["waterPresent"]
 }

@@ -28,6 +28,12 @@
       "maximum": 255,
       "hideFromKpis": true
     },
+    "rssi": {
+      "title": "RSSI",
+      "unit": "dBm",
+      "description": "Received Signal Strength Indication",
+      "type": "number"
+    },
     "do_1_lora": {
       "title": "Channel 1",
       "description": "Channel 1, 0 = Inactive / 1 = Active .",
@@ -77,5 +83,18 @@
       "minimum": 0,
       "maximum": 1
     }
-  }
+  },
+  "required": [
+    "deviceType",
+    "version",
+    "snr",
+    "rssi",
+    "do_1_lora",
+    "do_2_lora",
+    "do_1_error",
+    "do_2_error",
+    "do_1",
+    "do_2",
+    "manually"
+  ]
 }

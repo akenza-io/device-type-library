@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -69,7 +69,9 @@ describe("Yanzi Motion Plus Sensor Uplink", () => {
         assert.equal(value.topic, "temperature");
         assert.equal(value.data.temperature, 29.21);
 
-        validate(value.data, temperatureSchema, { throwError: true });
+        utils.validateSchema(value.data, temperatureSchema, {
+          throwError: true,
+        });
       });
 
       consume(data);
@@ -96,7 +98,7 @@ describe("Yanzi Motion Plus Sensor Uplink", () => {
         assert.equal(value.topic, "humidity");
         assert.equal(value.data.humidity, 38.3);
 
-        validate(value.data, humiditySchema, { throwError: true });
+        utils.validateSchema(value.data, humiditySchema, { throwError: true });
       });
 
       consume(data);
@@ -124,7 +126,7 @@ describe("Yanzi Motion Plus Sensor Uplink", () => {
         assert.equal(value.topic, "occupancy");
         assert.equal(value.data.motion, 7875);
 
-        validate(value.data, occupancySchema, { throwError: true });
+        utils.validateSchema(value.data, occupancySchema, { throwError: true });
       });
 
       consume(data);
@@ -153,7 +155,7 @@ describe("Yanzi Motion Plus Sensor Uplink", () => {
         assert.equal(value.data.light, 88.3);
         assert.equal(value.data.colorTemperature, 7518);
 
-        validate(value.data, lightSchema, { throwError: true });
+        utils.validateSchema(value.data, lightSchema, { throwError: true });
       });
 
       consume(data);

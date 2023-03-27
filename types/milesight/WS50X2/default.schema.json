@@ -1,0 +1,84 @@
+{
+  "$id": "https://akenza.io/milesight/WS50X2/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "switch1": {
+      "title": "Switch 1",
+      "description": "Switch 1",
+      "type": "string",
+      "enum": ["OPEN", "CLOSE"]
+    },
+    "switch2": {
+      "title": "Switch 2",
+      "description": "Switch 2",
+      "type": "string",
+      "enum": ["OPEN", "CLOSE"]
+    },
+    "switch3": {
+      "title": "Switch 3",
+      "description": "Switch 3",
+      "type": "string",
+      "enum": ["OPEN", "CLOSE"]
+    },
+    "switch1change": {
+      "title": "Switch 1 changed",
+      "description": "Switch 1 changed",
+      "type": "boolean"
+    },
+    "switch2change": {
+      "title": "Switch 2 changed",
+      "description": "Switch 2 changed",
+      "type": "boolean"
+    },
+    "switch3change": {
+      "title": "Switch 3 changed",
+      "description": "Switch 3 changed",
+      "type": "boolean"
+    },
+    "voltage": {
+      "title": "Voltage",
+      "description": "Voltage",
+      "type": "number",
+      "unit": "V"
+    },
+    "power": {
+      "title": "Power",
+      "description": "Active power",
+      "type": "number",
+      "unit": "W"
+    },
+    "factor": {
+      "title": "Factor",
+      "description": "Factor",
+      "type": "number",
+      "unit": "%"
+    },
+    "powerConsumption": {
+      "title": "Power consumptation",
+      "description": "Power consumptation",
+      "type": "number",
+      "unit": "Wh"
+    },
+    "current": {
+      "title": "Current",
+      "description": "Current",
+      "type": "number",
+      "unit": "mA"
+    }
+  },
+  "required": [
+    "switch1",
+    "switch2",
+    "switch3",
+    "switch1change",
+    "switch2change",
+    "switch3change",
+    "voltage",
+    "power",
+    "factor",
+    "powerConsumption",
+    "current"
+  ]
+}

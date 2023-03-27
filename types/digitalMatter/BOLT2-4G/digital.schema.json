@@ -19,5 +19,6 @@
       "type": "integer",
       "description": "Device state"
     }
-  }
+  },
+  "required": ["digitalIn", "digitalOut", "devStat"]
 }

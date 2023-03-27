@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -62,7 +62,7 @@ describe("VS121 Uplink", () => {
 
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.sn, 660012345678);
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -87,7 +87,7 @@ describe("VS121 Uplink", () => {
         assert.equal(value.data.region1, 1);
         assert.equal(value.data.region2, 0);
         assert.equal(value.data.regionCount, 3);
-        validate(value.data, countSchema, { throwError: true });
+        utils.validateSchema(value.data, countSchema, { throwError: true });
       });
 
       consume(data);
@@ -110,7 +110,7 @@ describe("VS121 Uplink", () => {
         assert.equal(value.data.in, 2);
         assert.equal(value.data.out, 1);
 
-        validate(value.data, peopleSchema, { throwError: true });
+        utils.validateSchema(value.data, peopleSchema, { throwError: true });
       });
 
       consume(data);
@@ -132,7 +132,7 @@ describe("VS121 Uplink", () => {
         assert.equal(value.topic, "people_max");
         assert.equal(value.data.peopleMax, 5);
 
-        validate(value.data, peopleMaxSchema, { throwError: true });
+        utils.validateSchema(value.data, peopleMaxSchema, { throwError: true });
       });
 
       consume(data);

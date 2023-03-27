@@ -6,7 +6,7 @@ function consume(event) {
   const lifecycle = {};
   let topic = "default";
 
-  lifecycle.version = Bits.bitsToUnsigned(bits.substr(0, 8));
+  // Version 8
 
   // Status
   // reserved x2
@@ -33,7 +33,10 @@ function consume(event) {
     if (payloadId === 1) {
       data.temperature = Bits.bitsToSigned(bits.substr(40, 16)) / 100;
     } else if (payloadId === 2) {
-      data.temperature = Bits.bitsToSigned(bits.substr(40, 16)) / 100;
+      emit("sample", {
+        data: { temperature: Bits.bitsToSigned(bits.substr(40, 16)) / 100 },
+        topic: "default",
+      });
       data.tempHistory1 = Bits.bitsToSigned(bits.substr(56, 16)) / 100;
       data.tempHistory2 = Bits.bitsToSigned(bits.substr(72, 16)) / 100;
       data.tempHistory3 = Bits.bitsToSigned(bits.substr(88, 16)) / 100;

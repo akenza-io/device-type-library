@@ -1,0 +1,21 @@
+{
+  "$id": "https://akenza.io/sentinum/apollonQ/hall.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Hall",
+  "type": "object",
+  "properties": {
+    "hallOpen": {
+      "title": "Hall Open",
+      "description": "Hall Open",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "hallOpenCnt": {
+      "title": "Hall open count",
+      "description": "Hall open count",
+      "type": "integer",
+      "hideFromKpis": true
+    }
+  },
+  "required": ["hallOpen", "hallOpenCnt"]
+}

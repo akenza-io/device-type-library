@@ -29,7 +29,7 @@ function consume(event) {
             ) * 0.5;
           pointer += 8;
           if (measurement === "") {
-            measurement = 1;
+            measurement = 2;
           } else {
             measurement++;
           }
@@ -83,7 +83,7 @@ function consume(event) {
         pointer += 16;
         break;
       case 10:
-        lifecycle.voltage =
+        lifecycle.batteryVoltage =
           (Bits.bitsToUnsigned(bits.substr(pointer, 8)) + 170) / 100;
         pointer += 8;
         break;
