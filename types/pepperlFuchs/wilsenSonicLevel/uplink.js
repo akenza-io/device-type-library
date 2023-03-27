@@ -1,5 +1,5 @@
 function binaryToFloat(binaryString) {
-  const sign = binaryString[0] === "1" ? -1 : 1;
+  const sign = binaryString[0] === 1 ? -1 : 1;
 
   const exponent = Math.pow(2, parseInt(binaryString.substr(1, 8), 2) - 127);
 
@@ -7,7 +7,7 @@ function binaryToFloat(binaryString) {
   let bitval = 0.5;
   let mantissa = 1.0;
   for (let i = 0; i < mantissaBits.length; i++) {
-    if (mantissaBits.charAt(i) === "1") {
+    if (mantissaBits.charAt(i) === 1) {
       mantissa += bitval;
     }
     bitval /= 2;

@@ -1,0 +1,66 @@
+{
+  "$id": "https://akenza.io/dragino/lsn50v2-s31b/adc.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ADC",
+  "type": "object",
+  "properties": {
+    "c0adc": {
+      "title": "Channel 0 ADC",
+      "type": "number",
+      "unit": "V",
+      "description": "ADC value in voltage"
+    },
+    "c1adc": {
+      "title": "Channel 1 ADC",
+      "type": "number",
+      "unit": "V",
+      "description": "ADC value in voltage"
+    },
+    "c4adc": {
+      "title": "Channel 4 ADC",
+      "type": "number",
+      "unit": "V",
+      "description": "ADC value in voltage"
+    },
+    "digitalStatus": {
+      "title": "Digital status",
+      "type": "string",
+      "description": "Digital status",
+      "enum": ["HIGH", "LOW"]
+    },
+    "extTrigger": {
+      "title": "External trigger",
+      "type": "boolean",
+      "description": "External trigger"
+    },
+    "open": {
+      "title": "Open",
+      "type": "boolean",
+      "description": "True if reed has no contact."
+    },
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "humidity": {
+      "title": "Humidity",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "light": {
+      "title": "Light",
+      "type": "number",
+      "unit": "lux",
+      "description": "Light value",
+      "minimum": 0,
+      "maximum": 255
+    }
+  }
+}

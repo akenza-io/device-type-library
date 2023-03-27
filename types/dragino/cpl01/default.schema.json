@@ -1,0 +1,36 @@
+{
+  "$id": "https://akenza.io/dragino/cpl01/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "alarm": {
+      "title": "Alarm",
+      "description": "Alarm",
+      "type": "boolean"
+    },
+    "pinStatus": {
+      "title": "Pin status",
+      "description": "Pin status",
+      "type": "string",
+      "enum": ["DISCONNECTED", "CONNECTED"]
+    },
+    "calculateFlag": {
+      "title": "Calculate flag",
+      "description": "Calculate flag",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "totalPulse": {
+      "title": "Total pulse",
+      "description": "Total pulse",
+      "type": "number"
+    },
+    "disconnectDuration": {
+      "title": "Disconnect duration",
+      "description": "Disconnect duration",
+      "unit": "m",
+      "type": "number"
+    }
+  }
+}

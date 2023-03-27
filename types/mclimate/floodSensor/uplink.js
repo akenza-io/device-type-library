@@ -1,5 +1,5 @@
 function toBool(value) {
-  return value === "1";
+  return value === 1;
 }
 
 function decoder(bytes) {
