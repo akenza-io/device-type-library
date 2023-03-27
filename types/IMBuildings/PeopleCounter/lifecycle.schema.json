@@ -6,8 +6,16 @@
   "properties": {
     "deviceStatus": {
       "title": "Device status",
-      "type": "integer",
+      "type": "string",
       "description": "Device status",
+      "enum": [
+        "NO_STATUS",
+        "STARTUP",
+        "RECONNECT",
+        "SETTINGS_CHANGED",
+        "BATTERY_NOT_FULL",
+        "RESERVED"
+      ],
       "hideFromKpis": true
     },
     "batteryVoltage": {
@@ -18,8 +26,16 @@
     },
     "sensorStatus": {
       "title": "Sensor status",
-      "type": "integer",
+      "type": "string",
       "description": "Sensor status",
+      "enum": [
+        "INFRARED_BLOCKED",
+        "RECEIVER_DISTURBANCE",
+        "RECEIVER_LOW_BATTERY",
+        "RESERVED",
+        "SENSOR_POWER_UP",
+        "IR_SIGNAL_NOT_AT_FULL_STRENGTH"
+      ],
       "hideFromKpis": true
     },
     "payloadCounter": {
@@ -27,12 +43,19 @@
       "type": "integer",
       "description": "Payload counter",
       "hideFromKpis": true
+    },
+    "deviceID": {
+      "title": "Device ID",
+      "type": "string",
+      "description": "Device ID",
+      "hideFromKpis": true
+    },
+    "rssi": {
+      "title": "RSSI",
+      "type": "number",
+      "description": "RSSI",
+      "hideFromKpis": true
     }
   },
-  "required": [
-    "deviceStatus",
-    "batteryVoltage",
-    "sensorStatus",
-    "payloadCounter"
-  ]
+  "required": ["deviceStatus", "sensorStatus"]
 }
