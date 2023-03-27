@@ -8,7 +8,7 @@
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Temperature", "Humidity", "External Temperature"],
-  "outputTopics": ["default", "external", "lifecycle"],
+  "outputTopics": ["datalog", "default", "external", "lifecycle"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

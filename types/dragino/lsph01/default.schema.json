@@ -1,0 +1,32 @@
+{
+  "$id": "https://akenza.io/dragino/lsph01/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "soilMoisture": {
+      "title": "Soil moisture",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative soil moisture of the soil in %",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "soilTemperature": {
+      "title": "Soil temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The soil temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    }
+  }
+}

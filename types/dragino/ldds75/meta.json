@@ -1,0 +1,14 @@
+{
+  "name": "LDDS75",
+  "version": "1.0.0",
+  "manufacturer": "Dragino",
+  "url": "https://www.dragino.com/products/distance-level-sensor/item/161-ldds75.html",
+  "description": "The Dragino LDDS75 is a LoRaWAN Distance Detection Sensor for Internet of Things solution. It is used to measure the distance between the sensor and a flat object. The distance detection sensor is a module that uses ultrasonic sensing technology for distance measurement, and temperature compensation is performed internally to improve the reliability of data.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Distance", "Temperature"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

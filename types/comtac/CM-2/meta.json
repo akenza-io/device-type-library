@@ -7,13 +7,10 @@
   "author": "Akenza AG",
   "firmwareVersion": "V2.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": [
-    "Humidity",
-    "Temperature",
-    "External Analog Input"
-  ],
+  "availableSensors": ["Humidity", "Temperature", "External Analog Input"],
   "outputTopics": [
     "sleep",
+    "system",
     "event",
     "timer",
     "button_pressed",

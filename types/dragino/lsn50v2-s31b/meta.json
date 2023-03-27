@@ -1,0 +1,33 @@
+{
+  "name": "LSN50v2-S31B",
+  "version": "1.0.0",
+  "manufacturer": "Dragino",
+  "url": "https://www.dragino.com/products/temperature-humidity-sensor/item/189-lsn50v2-s31b.html",
+  "description": "The Dragino LSN50v2-S31B is a LoRaWAN Temperature and Humidity Sensor for Internet of Things solution. It is used to measure the surrounding environment temperature and relative air humidity precisely, and then upload to IoT server via LoRaWAN wireless protocol.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "ADC",
+    "Temperature",
+    "Humidity",
+    "Digital",
+    "Reed",
+    "Distance",
+    "Light",
+    "Weight",
+    "Count"
+  ],
+  "outputTopics": [
+    "adc",
+    "count",
+    "default",
+    "distance",
+    "ds",
+    "iic",
+    "lifecycle",
+    "weight"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
