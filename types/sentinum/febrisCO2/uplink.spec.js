@@ -46,6 +46,7 @@ describe("Sentinum Febris Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.baseId, 1);
         assert.equal(value.data.batteryVoltage, 6.482);
+        assert.equal(value.data.batteryLevel, 100);
         assert.equal(value.data.internalTemperature, 25);
         assert.equal(value.data.majorVersion, 1);
         assert.equal(value.data.minorVersion, 2);
