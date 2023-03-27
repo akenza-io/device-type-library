@@ -39,6 +39,14 @@ describe("Comtac LPN CM-2 Uplink", () => {
       });
   });
 
+  let systemSchema = null;
+  before((done) => {
+    utils.loadSchema(`${__dirname}/system.schema.json`).then((parsedSchema) => {
+      systemSchema = parsedSchema;
+      done();
+    });
+  });
+
   describe("consume()", () => {
     it("should decode the Comtac LPN CM-2 payload default", () => {
       const data = {
@@ -81,6 +89,19 @@ describe("Comtac LPN CM-2 Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
+        assert.equal(value.topic, "button_pressed");
+        assert.equal(value.data.buttonPressed, true);
+
+        utils.validateSchema(value.data, buttonPressedSchema, {
+          throwError: true,
+        });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, -3);
         assert.equal(value.data.humidity, 66.36);
@@ -92,17 +113,36 @@ describe("Comtac LPN CM-2 Uplink", () => {
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
+      consume(data);
+    });
+
+    it("should decode the Comtac LPN CM-2 system payload", () => {
+      const data = {
+        data: {
+          port: 101,
+          payloadHex: "000af1f10000f1f10000000001",
+        },
+      };
+
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "button_pressed");
-        assert.equal(value.data.buttonPressed, true);
+        assert.equal(value.topic, "system");
 
-        utils.validateSchema(value.data, buttonPressedSchema, {
-          throwError: true,
-        });
+        assert.equal(value.data.sendInterval, 10);
+        assert.equal(value.data.minTempThreshold, -15);
+        assert.equal(value.data.maxTempThreshold, -15);
+        assert.equal(value.data.minHumThreshold, 0);
+        assert.equal(value.data.maxHumThreshold, 0);
+        assert.equal(value.data.minPtThreshold, -15);
+        assert.equal(value.data.maxPtThreshold, -15);
+        assert.equal(value.data.minLemThreshold, 0);
+        assert.equal(value.data.maxLemThreshold, 0);
+        assert.equal(value.data.dinSettings, 1);
+
+        utils.validateSchema(value.data, systemSchema, { throwError: true });
       });
 
       consume(data);
