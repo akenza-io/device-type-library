@@ -1,0 +1,14 @@
+{
+  "name": "LLDS12",
+  "version": "1.0.0",
+  "manufacturer": "Dragino",
+  "url": "https://www.dragino.com/products/distance-level-sensor/item/185-llds12.html",
+  "description": "The Dragino LLDS12 is a LoRaWAN LiDAR ToF (Time of Flight) Distance Sensor for Internet of Things solution. It is capable to measure the distance to an object as close as 10 centimeters (+/- 5cm up to 6m) and as far as 12 meters (+/-1% starting at 6m)! The LiDAR probe uses laser induction technology for distance measurement.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Distance", "Temperature"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

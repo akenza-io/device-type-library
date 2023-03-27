@@ -1,0 +1,14 @@
+{
+  "name": "CPL01",
+  "version": "1.0.0",
+  "manufacturer": "Dragino",
+  "url": "https://www.dragino.com/products/lorawan-nb-iot-door-sensor-water-leak/item/205-cpl01.html",
+  "description": "The Dragino CPL01 is a LoRaWAN Contact Sensor. It detects open/close status and uplinks to IoT server via LoRaWAN network. It is capable to measure the dry contact status, open time and open counts",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Switch"],
+  "outputTopics": ["datalog", "default", "lifecycle", "status"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

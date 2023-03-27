@@ -5,7 +5,7 @@
   "type": "object",
   "properties": {
     "waterleak": {
-      "title": "Waterleak",
+      "title": "Water leak",
       "description": "Water leakage detected",
       "type": "boolean"
     },
