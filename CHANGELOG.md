@@ -4,8 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-
-# [1.33.0] - 2022-08-03
+# [1.33.0] - 2023-03-27
 
 ### Added
 
@@ -35,6 +34,10 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 - CM-2 - Updated with new datapoints
+- Sentinum - Added Batterylevel
+- PepepperLuchs - Took out invalid datapoints
+- Ranos DB - Added fix from devs
+- IMBuilding Peoplecounter - Added NBIoT functionality
 
 # [1.32.1] - 2023-03-07
 
