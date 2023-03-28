@@ -1,9 +1,9 @@
 {
-  "name": "Zurich EGK-LW22PLG",
+  "name": "EGK-LW22PLG",
   "version": "1.0.0",
   "manufacturer": "Enginko",
   "url": "https://enginko.com/en/solutions/lorawan-energy-meter-egk-lw22plg/",
-  "description": "This compact energy meter can be used for monitoring the power consumption of the load, which can remotely be switched on/off. Equipped with a rechargeable battery for mains outage detection.",
+  "description": "This compact energy meter can be used for monitoring the power consumption of the load, which can remotely be switched on/off. Equipped with a rechargeable battery for mains outage detection. The internal timestamp is synced with a downlink.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

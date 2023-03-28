@@ -18,18 +18,7 @@ describe("EGK-LW12MET Uplink", () => {
         done();
       });
   });
-  /*
-  before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-*/
+
   describe("consume()", () => {
     it("should decode should decode the EGK-LW12MET payload", () => {
       const data = {

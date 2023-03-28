@@ -6,22 +6,20 @@
   "properties": {
     "softwareVersion": {
       "title": "Software version",
+      "type": "integer",
       "description": "Software version",
       "hideFromKpis": true
     },
     "hardwareVersion": {
       "title": "Hardware version",
+      "type": "integer",
       "description": "Hardware version",
       "hideFromKpis": true
     },
     "dataCode": {
       "title": "Data code",
+      "type": "string",
       "description": "Data code",
-      "hideFromKpis": true
-    },
-    "battery": {
-      "title": "Battery",
-      "description": "Battery",
       "hideFromKpis": true
     }
   }

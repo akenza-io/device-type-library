@@ -4,7 +4,7 @@
   "title": "Raw 2",
   "type": "object",
   "properties": {
-    "battery": {
+    "batteryVoltage": {
       "title": "Battery",
       "description": "Battery",
       "hideFromKpis": true

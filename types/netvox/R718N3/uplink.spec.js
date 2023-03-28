@@ -25,6 +25,16 @@ describe("Netvox R718N3 Uplink", () => {
     });
   });
 
+  let lifecycleSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+      .then((parsedSchema) => {
+        lifecycleSchema = parsedSchema;
+        done();
+      });
+  });
+
   describe("consume()", () => {
     it("should decode should decode the first R718N3 payload", () => {
       const data = {
@@ -65,11 +75,35 @@ describe("Netvox R718N3 Uplink", () => {
         assert.typeOf(value.data, "object");
         assert.equal(value.topic, "raw2");
 
-        assert.equal(value.data.battery, 3.6);
+        assert.equal(value.data.batteryVoltage, 3.6);
         assert.equal(value.data.multiplier2, 1);
         assert.equal(value.data.multiplier3, 1);
 
         validate(value.data, raw2Schema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("should decode should decode the lifecycle R718N3 payload", () => {
+      const data = {
+        data: {
+          port: 1,
+          payloadHex: "014a000A012017050300",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+        assert.equal(value.topic, "lifecycle");
+
+        assert.equal(value.data.softwareVersion, 10);
+        assert.equal(value.data.hardwareVersion, 1);
+        assert.equal(value.data.dataCode, "20170503");
+
+        validate(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

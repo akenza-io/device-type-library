@@ -7,6 +7,12 @@ function consume(event) {
   const reportType = Bits.bitsToUnsigned(bits.substr(16, 8));
 
   switch (reportType) {
+    case 0:
+      data.softwareVersion = Bits.bitsToUnsigned(bits.substr(24, 8));
+      data.hardwareVersion = Bits.bitsToUnsigned(bits.substr(32, 8));
+      data.dataCode = payload.substr(10, 8);
+      emit("sample", { data, topic: "lifecycle" });
+      break;
     case 1:
       // Reserved 8
       data.current1 = Bits.bitsToUnsigned(bits.substr(32, 16));
@@ -16,7 +22,7 @@ function consume(event) {
       emit("sample", { data, topic: "raw1" });
       break;
     case 2:
-      data.battery = Bits.bitsToUnsigned(bits.substr(24, 8)) / 10;
+      data.batteryVoltage = Bits.bitsToUnsigned(bits.substr(24, 8)) / 10;
       data.multiplier2 = Bits.bitsToUnsigned(bits.substr(32, 8));
       data.multiplier3 = Bits.bitsToUnsigned(bits.substr(40, 8));
       emit("sample", { data, topic: "raw2" });

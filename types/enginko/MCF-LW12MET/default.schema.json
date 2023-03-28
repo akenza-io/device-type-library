@@ -35,9 +35,9 @@
       "type": "number"
     },
     "apparentPower": {
-      "title": "Apparent energy",
+      "title": "Apparent power",
       "unit": "VA",
-      "description": "Apparent energy",
+      "description": "Apparent power",
       "type": "number"
     },
     "voltage": {
