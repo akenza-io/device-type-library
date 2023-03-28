@@ -17,6 +17,14 @@ function consume(event) {
     lifecycle.productVersion = bytes[1] & 0x0f;
     lifecycle.upCnt = bytes[2];
     lifecycle.batteryVoltage = ((bytes[3] << 8) | bytes[4]) / 1000;
+    let batteryLevel = Math.round((lifecycle.batteryVoltage - 4.4) / 0.016); // 6V - 4.4V
+
+    if (batteryLevel > 100) {
+      batteryLevel = 100;
+    } else if (batteryLevel < 0) {
+      batteryLevel = 0;
+    }
+    lifecycle.batteryLevel = batteryLevel;
     lifecycle.internalTemperature = Math.round(bytes[5] - 128);
 
     data.alarm = bytes[6] ? "ALARM" : "NO_ALARM";

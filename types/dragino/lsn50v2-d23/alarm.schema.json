@@ -1,0 +1,52 @@
+{
+  "$id": "https://akenza.io/dragino/lsn50v2-d23/alarm.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Alarm",
+  "type": "object",
+  "properties": {
+    "channel1Temperature": {
+      "title": "Channel 1 temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "channel1TemperatureMin": {
+      "title": "Temperature minimum",
+      "unit": "°C",
+      "type": "number",
+      "description": "The Channel 1 temperature minimum."
+    },
+    "channel1TemperatureMax": {
+      "title": "Temperature maximum",
+      "unit": "°C",
+      "type": "number",
+      "description": "The Channel 1 temperature maximum."
+    },
+    "shtTemperatureMin": {
+      "title": "SHT Temperature minimum",
+      "unit": "°C",
+      "type": "number",
+      "description": "The sht temperature minimum."
+    },
+    "shtTemperatureMax": {
+      "title": "SHT Temperature maximum",
+      "unit": "°C",
+      "type": "number",
+      "description": "The sht temperature maximum."
+    },
+    "shtHumMin": {
+      "title": "SHT Humidity minimum",
+      "unit": "°C",
+      "type": "number",
+      "description": "The sht humidity minimum."
+    },
+    "shHumMax": {
+      "title": "SHT Humidity maximum",
+      "unit": "°C",
+      "type": "number",
+      "description": "The sht humidity maximum."
+    }
+  }
+}

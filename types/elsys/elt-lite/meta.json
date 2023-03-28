@@ -14,7 +14,7 @@
     "Pulse",
     "Distance",
     "Motion",
-    "Waterleak",
+    "Water leak",
     "Pressure"
   ],
   "outputTopics": ["default", "lifecycle"],

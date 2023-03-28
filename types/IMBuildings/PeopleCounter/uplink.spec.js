@@ -80,10 +80,63 @@ describe("IMBuilding People counter", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.deviceStatus, 8);
+        assert.equal(value.data.deviceStatus, "BATTERY_NOT_FULL");
         assert.equal(value.data.payloadCounter, 97);
-        assert.equal(value.data.sensorStatus, 32);
+        assert.equal(value.data.sensorStatus, "RECEIVER_LOW_BATTERY");
         assert.equal(value.data.batteryVoltage, 2.48);
+
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("should decode the IMBuilding People NB-IOT payload", () => {
+      const data = {
+        data: {
+          reports: [
+            {
+              serialNumber: "IMEI:861518040266396",
+              timestamp: 1675420474870,
+              subscriptionId: "f05b9df9-76a9-4247-b3f8-b710ee593667",
+              resourcePath: "uplinkMsg/0/data",
+              value: "0204e8eb1b4f131d00010b8f202302031035000000000000",
+              customAttributes: {
+                device_protocol: "udp",
+              },
+            },
+          ],
+          registrations: [],
+          deregistrations: [],
+          updates: [],
+          expirations: [],
+          responses: [],
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.counterA, 0);
+        assert.equal(value.data.counterB, 0);
+
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.deviceID, "23223527791929");
+        assert.equal(value.data.deviceStatus, "NO_STATUS");
+        assert.equal(value.data.rssi, -113);
+        assert.equal(value.data.sensorStatus, "RESERVED");
+        assert.equal(value.data.batteryVoltage, 2.67);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
