@@ -39,9 +39,9 @@ function consume(event) {
 
     emit("sample", { data, topic: "external" });
   } else if (port === 5) {
-    data.sensorModel = bytes[0];
-    data.firmwareVersion = strPad((bytes[1] << 8) | bytes[2]);
-    data.batteryVoltage = ((bytes[5] << 8) | bytes[6]) / 1000;
+    lifecycle.sensorModel = bytes[0];
+    lifecycle.firmwareVersion = strPad((bytes[1] << 8) | bytes[2]);
+    lifecycle.batteryVoltage = ((bytes[5] << 8) | bytes[6]) / 1000;
 
     emit("sample", { data: lifecycle, topic: "lifecycle" });
   }
