@@ -24,8 +24,6 @@
       "title": "Meter ID",
       "type": "integer",
       "description": "Meter ID",
-      "minimum": 0,
-      "maximum": 4294967295,
       "hideFromKpis": true
     },
     "appError": {
