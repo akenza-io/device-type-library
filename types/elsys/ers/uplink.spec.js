@@ -43,6 +43,7 @@ describe("Elsys ERS uplink", () => {
     it("should decode Elsys ERS payload", () => {
       const data = {
         data: {
+          port: 5,
           payloadHex: "0100f1021704041a0500070e5a",
         },
       };

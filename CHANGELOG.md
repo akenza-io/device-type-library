@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.33.1] - 2023-04-18
+
+### Changed
+
+- Added configuration message to all elsys devices
+
 # [1.33.0] - 2023-03-27
 
 ### Added
