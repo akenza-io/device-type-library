@@ -12,9 +12,7 @@
     "pulseAbs1": {
       "title": "Pulse count absolute",
       "description": "Pulse count absolute",
-      "type": "number",
-      "minimum": 0,
-      "maximum": 4294967295
+      "type": "number"
     }
   },
   "required": ["reed", "pulseAbs1"]
