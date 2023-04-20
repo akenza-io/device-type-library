@@ -38,7 +38,7 @@ function consume(event) {
     }
     // TEMPERATURE
     else if (channelId === 0x03 && channelType === 0x67) {
-      decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
+      decoded.temperature = readInt16LE(Array.from(bytes).slice(i, i + 2)) / 10;
       i += 2;
     }
     // HUMIDITY
@@ -58,37 +58,37 @@ function consume(event) {
     }
     // CO2
     else if (channelId === 0x07 && channelType === 0x7d) {
-      decoded.co2 = readUInt16LE(bytes.slice(i, i + 2));
+      decoded.co2 = readUInt16LE(Array.from(bytes).slice(i, i + 2));
       i += 2;
     }
     // TVOC
     else if (channelId === 0x08 && channelType === 0x7d) {
-      decoded.tvoc = readUInt16LE(bytes.slice(i, i + 2));
+      decoded.tvoc = readUInt16LE(Array.from(bytes).slice(i, i + 2));
       i += 2;
     }
     // PRESSURE
     else if (channelId === 0x09 && channelType === 0x73) {
-      decoded.pressure = readUInt16LE(bytes.slice(i, i + 2)) / 10;
+      decoded.pressure = readUInt16LE(Array.from(bytes).slice(i, i + 2)) / 10;
       i += 2;
     }
     // HCHO
     else if (channelId === 0x0a && channelType === 0x7d) {
-      decoded.hcho = readUInt16LE(bytes.slice(i, i + 2)) / 100;
+      decoded.hcho = readUInt16LE(Array.from(bytes).slice(i, i + 2)) / 100;
       i += 2;
     }
     // PM2.5
     else if (channelId === 0x0b && channelType === 0x7d) {
-      decoded.pm2_5 = readUInt16LE(bytes.slice(i, i + 2));
+      decoded.pm2_5 = readUInt16LE(Array.from(bytes).slice(i, i + 2));
       i += 2;
     }
     // PM10
     else if (channelId === 0x0c && channelType === 0x7d) {
-      decoded.pm10 = readUInt16LE(bytes.slice(i, i + 2));
+      decoded.pm10 = readUInt16LE(Array.from(bytes).slice(i, i + 2));
       i += 2;
     }
     // O3
     else if (channelId === 0x0d && channelType === 0x7d) {
-      decoded.o3 = readUInt16LE(bytes.slice(i, i + 2)) / 100;
+      decoded.o3 = readUInt16LE(Array.from(bytes).slice(i, i + 2)) / 100;
       i += 2;
     }
     // BEEP

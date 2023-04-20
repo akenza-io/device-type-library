@@ -78,9 +78,9 @@ function consume(event) {
     else if (channelId === 0x05 && channelType === 0x5b) {
       data.freqWeight = readFrequecyWeightType(bytes[i]);
       data.timeWeight = readTimeWeightType(bytes[i]);
-      data.la = readUInt16LE(bytes.slice(i + 1, i + 3)) / 10;
-      data.laeq = readUInt16LE(bytes.slice(i + 3, i + 5)) / 10;
-      data.lamax = readUInt16LE(bytes.slice(i + 5, i + 7)) / 10;
+      data.la = readUInt16LE(Array.from(bytes).slice(i + 1, i + 3)) / 10;
+      data.laeq = readUInt16LE(Array.from(bytes).slice(i + 3, i + 5)) / 10;
+      data.lamax = readUInt16LE(Array.from(bytes).slice(i + 5, i + 7)) / 10;
       i += 7;
     }
     // LoRaWAN Class Type

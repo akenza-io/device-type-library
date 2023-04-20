@@ -47,12 +47,12 @@ function consume(event) {
     }
     // VOLTAGE
     else if (channelId === 0x03 && channelType === 0x74) {
-      decoded.voltage = readUInt16LE(bytes.slice(i, i + 2)) / 10;
+      decoded.voltage = readUInt16LE(Array.from(bytes).slice(i, i + 2)) / 10;
       i += 2;
     }
     // ACTIVE POWER
     else if (channelId === 0x04 && channelType === 0x80) {
-      decoded.power = readUInt32LE(bytes.slice(i, i + 4));
+      decoded.power = readUInt32LE(Array.from(bytes).slice(i, i + 4));
       i += 4;
     }
     // POWER FACTOR
@@ -62,12 +62,14 @@ function consume(event) {
     }
     // POWER CONSUMPTION
     else if (channelId === 0x06 && channelType === 0x83) {
-      decoded.powerConsumption = readUInt32LE(bytes.slice(i, i + 4));
+      decoded.powerConsumption = readUInt32LE(
+        Array.from(bytes).slice(i, i + 4),
+      );
       i += 4;
     }
     // CURRENT
     else if (channelId === 0x07 && channelType === 0xc9) {
-      decoded.current = readUInt16LE(bytes.slice(i, i + 2));
+      decoded.current = readUInt16LE(Array.from(bytes).slice(i, i + 2));
       i += 2;
     } else {
       break;

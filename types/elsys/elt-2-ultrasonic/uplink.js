@@ -412,7 +412,7 @@ function DecodeElsysSettings(input) {
       return makeError(`unknown setting type; ${type} at offset ${i}`);
     }
     setting = setting[0];
-    const d = bytes.slice(i, i + setting.size);
+    const d = Array.from(bytes).slice(i, i + setting.size);
     if (setting.parse == null) {
       payload[setting.name] = d;
     } else {

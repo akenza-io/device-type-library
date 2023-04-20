@@ -40,7 +40,7 @@ function consume(event) {
     }
     // TEMPERATURE
     else if (channelId === 0x03 && channelType === 0x67) {
-      decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
+      decoded.temperature = readInt16LE(Array.from(bytes).slice(i, i + 2)) / 10;
       i += 2;
     }
     // HUMIDITY
@@ -50,12 +50,14 @@ function consume(event) {
     }
     // HUMIDITY new resolution 0.01
     else if (channelId === 0x04 && channelType === 0xca) {
-      decoded.moisture = readUInt16LE(bytes.slice(i, i + 2)) / 100;
+      decoded.moisture = readUInt16LE(Array.from(bytes).slice(i, i + 2)) / 100;
       i += 2;
     }
     // EC
     else if (channelId === 0x05 && channelType === 0x7f) {
-      decoded.soilConductivity = readUInt16LE(bytes.slice(i, i + 2));
+      decoded.soilConductivity = readUInt16LE(
+        Array.from(bytes).slice(i, i + 2),
+      );
       i += 2;
     } else {
       break;

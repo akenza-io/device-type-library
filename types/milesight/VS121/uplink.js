@@ -65,19 +65,19 @@ function consume(event) {
     }
     // SERIAL NUMBER
     else if (channelId === 0xff && channelType === 0x08) {
-      decoded.sn = readString(bytes.slice(i, i + 6));
+      decoded.sn = readString(Array.from(bytes).slice(i, i + 6));
       i += 6;
       topic = "lifecycle";
     }
     // HARDWARE VERSION
     else if (channelId === 0xff && channelType === 0x09) {
-      decoded.hardwareVersion = readVersion(bytes.slice(i, i + 2));
+      decoded.hardwareVersion = readVersion(Array.from(bytes).slice(i, i + 2));
       i += 2;
       topic = "lifecycle";
     }
     // FIRMWARE VERSION
     else if (channelId === 0xff && channelType === 0x0a) {
-      decoded.firmwareVersion = readVersion(bytes.slice(i, i + 4));
+      decoded.firmwareVersion = readVersion(Array.from(bytes).slice(i, i + 4));
       i += 4;
       topic = "lifecycle";
     }
@@ -85,7 +85,7 @@ function consume(event) {
     else if (channelId === 0x04 && channelType === 0xc9) {
       decoded.peopleCounterAll = bytes[i];
       decoded.regionCount = bytes[i + 1];
-      const region = readUInt16BE(bytes.slice(i + 2, i + 4));
+      const region = readUInt16BE(Array.from(bytes).slice(i + 2, i + 4));
       for (let idx = 0; idx < decoded.regionCount; idx++) {
         const tmp = `region${idx}`;
         decoded[tmp] = (region >> idx) & 1;
@@ -95,8 +95,8 @@ function consume(event) {
     }
     // PEOPLE IN/OUT
     else if (channelId === 0x05 && channelType === 0xcc) {
-      decoded.in = readInt16LE(bytes.slice(i, i + 2));
-      decoded.out = readInt16LE(bytes.slice(i + 2, i + 4));
+      decoded.in = readInt16LE(Array.from(bytes).slice(i, i + 2));
+      decoded.out = readInt16LE(Array.from(bytes).slice(i + 2, i + 4));
       i += 4;
       topic = "people";
     }
