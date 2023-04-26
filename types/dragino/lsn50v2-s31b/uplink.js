@@ -5,7 +5,7 @@ function consume(event) {
   const mode = (bytes[6] & 0x7c) >> 2;
 
   let topic = "default";
-  const data = {};
+  let data = {};
   const lifecycle = {};
 
   if (mode !== 2) {
@@ -32,7 +32,10 @@ function consume(event) {
       data.extTrigger = !!(bytes[6] & 0x01);
       data.open = !!(bytes[6] & 0x80);
     }
+    emit("sample", { data, topic: "default" });
   }
+
+  data = {};
 
   if (mode === 0) {
     topic = "iic";

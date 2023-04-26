@@ -14,11 +14,11 @@
     },
     "c3temperature": {
       "title": "Channel 3 temperature",
-      "unit": "%",
+      "unit": "°C",
       "type": "number",
-      "description": "The relative humidity in %",
-      "minimum": 0,
-      "maximum": 100
+      "description": "Channel 3 Temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
     }
   }
 }
