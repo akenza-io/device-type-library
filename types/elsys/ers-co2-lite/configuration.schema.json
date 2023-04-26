@@ -16,6 +16,18 @@
       "description": "Network session key",
       "hideFromKpis": true
     },
+    "devEui": {
+      "title": "Device eui",
+      "type": "string",
+      "description": "Device eui",
+      "hideFromKpis": true
+    },
+    "appKey": {
+      "title": "Application key",
+      "type": "string",
+      "description": "Application key",
+      "hideFromKpis": true
+    },
     "appEui": {
       "title": "Application eui",
       "type": "string",
@@ -68,6 +80,18 @@
       "title": "Datarate maximum",
       "type": "number",
       "description": "Datarate maximum",
+      "hideFromKpis": true
+    },
+    "payload": {
+      "title": "Payload",
+      "type": "number",
+      "description": "Payload",
+      "hideFromKpis": true
+    },
+    "power": {
+      "title": "Power",
+      "type": "number",
+      "description": "Power",
       "hideFromKpis": true
     },
     "extCfg": {
@@ -191,16 +215,16 @@
       "description": "Lock code",
       "hideFromKpis": true
     },
+    "rfu": {
+      "title": "RFU",
+      "type": "number",
+      "description": "RFU",
+      "hideFromKpis": true
+    },
     "link": {
       "title": "Link check configuration",
       "type": "array",
       "description": "Link check configuration (hex)",
-      "hideFromKpis": true
-    },
-    "keyWdg": {
-      "title": "Key WDG",
-      "type": "number",
-      "description": "Key WDG",
       "hideFromKpis": true
     },
     "pressPer": {
@@ -237,6 +261,12 @@
       "title": "Led configuration",
       "type": "number",
       "description": "Led configuration",
+      "hideFromKpis": true
+    },
+    "co2Action": {
+      "title": "Co2 Action",
+      "type": "number",
+      "description": "Co2 Action",
       "hideFromKpis": true
     },
     "waterPer": {
@@ -330,6 +360,36 @@
         "ERS_SOUND",
         "EMS"
       ],
+      "hideFromKpis": true
+    },
+    "output": {
+      "title": "Output",
+      "type": "string",
+      "description": "Output",
+      "hideFromKpis": true
+    },
+    "pulse1": {
+      "title": "Pulse 1",
+      "type": "string",
+      "description": "Pulse 1",
+      "hideFromKpis": true
+    },
+    "pulse2": {
+      "title": "Pulse 2",
+      "type": "string",
+      "description": "Pulse 2",
+      "hideFromKpis": true
+    },
+    "settings": {
+      "title": "Settings",
+      "type": "string",
+      "description": "Settings",
+      "hideFromKpis": true
+    },
+    "generic": {
+      "title": "Generic",
+      "type": "string",
+      "description": "Generic",
       "hideFromKpis": true
     },
     "external": {

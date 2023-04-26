@@ -279,17 +279,19 @@ function sensor(a) {
 const settings = [
   { size: 16, type: 1, name: "appSKey", hex: true, parse: null },
   { size: 16, type: 2, name: "nwkSKey", hex: true, parse: null },
+  { size: 8, type: 3, name: "devEui", hex: true, parse: null },
   { size: 16, type: 4, name: "appEui", hex: true, parse: null },
+  { size: 16, type: 5, name: "appKey", hex: true, parse: null },
   { size: 4, type: 6, name: "devAddr", hex: true, parse: null },
-
   { size: 1, type: 7, name: "ota", parse: bool },
   { size: 1, type: 8, name: "port", parse: uint },
   { size: 1, type: 9, name: "mode", parse: uint },
   { size: 1, type: 10, name: "ack", parse: bool },
   { size: 1, type: 11, name: "drDef", parse: uint },
-  { size: 1, type: 13, name: "drMin", parse: uint },
   { size: 1, type: 12, name: "drMax", parse: uint },
-
+  { size: 1, type: 13, name: "drMin", parse: uint },
+  { size: 1, type: 14, name: "payload", parse: uint },
+  { size: 1, type: 15, name: "power", parse: uint },
   { size: 1, type: 16, name: "extCfg", parse: extcfg },
   { size: 1, type: 17, name: "pirCfg", parse: uint },
   { size: 1, type: 18, name: "co2Cfg", parse: uint },
@@ -307,14 +309,15 @@ const settings = [
   { size: 4, type: 30, name: "vddPer", parse: uint },
   { size: 4, type: 31, name: "sendPer", parse: uint },
   { size: 4, type: 32, name: "lock", parse: uint },
+  { size: 4, type: 33, name: "rfu", parse: uint },
   { size: 4, type: 34, name: "link", parse: null },
-  { size: 4, type: 33, name: "keyWdg", parse: uint },
   { size: 4, type: 35, name: "pressPer", parse: uint },
   { size: 4, type: 36, name: "soundPer", parse: uint },
   { size: 1, type: 37, name: "plan", parse: uint },
   { size: 1, type: 38, name: "subBand", parse: uint },
   { size: 1, type: 39, name: "lbt", parse: bool },
   { size: 1, type: 40, name: "ledConfig", parse: uint },
+  { size: 1, type: 41, name: "co2Action", parse: uint },
   { size: 4, type: 42, name: "waterPer", parse: uint },
   { size: 4, type: 43, name: "reedPer", parse: uint },
   { size: 4, type: 44, name: "reedCfg", parse: uint },
@@ -322,16 +325,21 @@ const settings = [
   { size: 1, type: 46, name: "qSize", parse: uint },
   { size: 1, type: 47, name: "qOffset", parse: bool },
   { size: 1, type: 48, name: "qPurge", parse: bool },
+
   { size: 4, type: 240, name: "c1", parse: uint },
   { size: 4, type: 241, name: "c2", parse: uint },
   { size: 4, type: 242, name: "c3", parse: uint },
   { size: 4, type: 243, name: "c4", parse: uint },
   { size: 1, type: 244, name: "nfcDisable", parse: bool },
   { size: 1, type: 245, name: "sensor", parse: sensor },
+  { size: 2, type: 246, name: "output", parse: sensor },
+  { size: 4, type: 247, name: "pulse1", parse: sensor },
+  { size: 4, type: 248, name: "pulse2", parse: sensor },
+  { size: 0, type: 249, name: "settings", parse: null },
   { size: 1, type: 250, name: "external", parse: null },
   { size: 2, type: 251, name: "version", parse: uint },
   { size: 4, type: 252, name: "sleep", parse: null },
-  // {size: 0, type: 253, name: 'generic', parse: null},
+  { size: 0, type: 253, name: "generic", parse: null },
   { size: 0, type: 254, name: "reboot", parse: null },
 ];
 
@@ -358,15 +366,18 @@ function DecodeElsysSettings(input) {
 
   let i = 0;
   if (bytes[i++] != SETTINGS_HEADER) {
-    return makeError("incorrect header");
+    return makeError("INCORRECT_HEADER ");
   }
   const size = bytes[i++];
   while (i < bytes.length) {
     var type = bytes[i++];
 
     let setting = settings.filter((s) => s.type == type);
-    if (setting.length == 0) {
-      return makeError(`unknown setting type; ${type} at offset ${i}`);
+    if (setting.length === 0) {
+      payload.error = "UNKWON_HEADER_ABORTING";
+      return {
+        settings: payload,
+      };
     }
     setting = setting[0];
     const d = Array.from(bytes).slice(i, i + setting.size);
@@ -385,7 +396,7 @@ function DecodeElsysSettings(input) {
 
 function makeError(desc) {
   return {
-    error: desc,
+    error: { error: desc },
   };
 }
 
