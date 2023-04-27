@@ -29,6 +29,9 @@ const TYPE_EXT_ANALOG_UV = 0x1b; // 4 bytes signed int (uV)
 const TYPE_TVOC = 0x1c; // 2 bytes (ppb)
 const TYPE_DEBUG = 0x3d; // 4bytes debug
 
+// Settings Decoder
+const SETTINGS_HEADER = 0x3e;
+
 function bin16dec(bin) {
   let num = bin & 0xffff;
   if (0x8000 & num) {
@@ -226,9 +229,6 @@ function DecodeElsysPayload(data) {
   }
   return obj;
 }
-
-// Settings Decoder
-const SETTINGS_HEADER = 0x3e;
 
 function bool(a) {
   return !!a[0];
@@ -459,7 +459,7 @@ function consume(event) {
   const payload = Hex.hexToBytes(event.data.payloadHex);
   const { port } = event.data;
 
-  if (port === 5) {
+  if (payload[0] !== 62) {
     const res = DecodeElsysPayload(payload);
     const data = {};
     const lifecycle = {};
@@ -527,7 +527,7 @@ function consume(event) {
     if (deleteUnusedKeys(noise)) {
       emit("sample", { data: noise, topic: "noise" });
     }
-  } else if (port === 6) {
+  } else if (payload[0] === 62) {
     const res = DecodeElsysSettings(payload);
     if (res.error !== undefined) {
       emit("sample", { data: res.error, topic: "configuration" });
