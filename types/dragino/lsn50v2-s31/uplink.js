@@ -5,7 +5,8 @@ function consume(event) {
   const mode = (bytes[6] & 0x7c) >> 2;
 
   let topic = "default";
-  let data = {};
+  const data = {};
+  const defaultData = {};
   const lifecycle = {};
 
   if (mode !== 2) {
@@ -20,22 +21,20 @@ function consume(event) {
     }
     lifecycle.batteryLevel = batteryLevel;
 
-    data.temperature = parseFloat(
+    defaultData.temperature = parseFloat(
       ((((bytes[2] << 24) >> 16) | bytes[3]) / 10).toFixed(2),
     );
 
-    data.c0adc = ((bytes[4] << 8) | bytes[5]) / 1000;
+    defaultData.c0adc = ((bytes[4] << 8) | bytes[5]) / 1000;
 
-    data.digitalStatus = bytes[6] & 0x02 ? "HIGH" : "LOW";
+    defaultData.digitalStatus = bytes[6] & 0x02 ? "HIGH" : "LOW";
 
     if (mode !== 6) {
-      data.extTrigger = !!(bytes[6] & 0x01);
-      data.open = !!(bytes[6] & 0x80);
+      defaultData.extTrigger = !!(bytes[6] & 0x01);
+      defaultData.open = !!(bytes[6] & 0x80);
     }
-    emit("sample", { data, topic: "default" });
+    emit("sample", { data: defaultData, topic: "default" });
   }
-
-  data = {};
 
   if (mode === 0) {
     topic = "iic";
