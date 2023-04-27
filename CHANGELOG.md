@@ -4,11 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-# [1.33.1] - 2023-04-18
+# [1.33.1] - 2023-04-27
 
 ### Changed
 
 - Added configuration message to all elsys devices
+- Caught to short payload for Abeeway
+- Removed inclusion of timestamp for enginko devicses
+- Dragino LSN50v2 splitted topics and added test
 
 # [1.33.0] - 2023-03-27
 

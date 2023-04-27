@@ -409,9 +409,8 @@ function deleteUnusedKeys(data) {
 
 function consume(event) {
   const payload = Hex.hexToBytes(event.data.payloadHex);
-  const { port } = event.data;
 
-  if (payload[0] !== 62) {
+  if (payload[0] !== SETTINGS_HEADER) {
     const res = DecodeElsysPayload(payload);
     const data = {};
     const lifecycle = {};
@@ -479,7 +478,7 @@ function consume(event) {
     if (deleteUnusedKeys(noise)) {
       emit("sample", { data: noise, topic: "noise" });
     }
-  } else {
+  } else if (payload[0] === SETTINGS_HEADER) {
     const res = DecodeElsysSettings(payload);
     if (res.error !== undefined) {
       emit("sample", { data: res.error, topic: "configuration" });
