@@ -50,33 +50,41 @@ function consume(event) {
     }
     // SERIAL NUMBER
     else if (channelId === 0xff && channelType === 0x16) {
-      lifecycle.sn = readString(bytes.slice(i, i + 8));
+      lifecycle.sn = readString(Array.from(bytes).slice(i, i + 8));
       i += 8;
     }
     // HARDWARE VERSION
     else if (channelId === 0xff && channelType === 0x09) {
-      lifecycle.hardwareVersion = readVersion(bytes.slice(i, i + 2));
+      lifecycle.hardwareVersion = readVersion(
+        Array.from(bytes).slice(i, i + 2),
+      );
       i += 2;
     }
     // FIRMWARE VERSION
     else if (channelId === 0xff && channelType === 0x1f) {
-      lifecycle.firmwareVersion = readVersion(bytes.slice(i, i + 4));
+      lifecycle.firmwareVersion = readVersion(
+        Array.from(bytes).slice(i, i + 4),
+      );
       i += 4;
     }
     // TOTAL COUNTER IN
     else if (channelId === 0x03 && channelType === 0xd2) {
-      decoded.totalCounterIn = readUInt32LE(bytes.slice(i, i + 4));
+      decoded.totalCounterIn = readUInt32LE(Array.from(bytes).slice(i, i + 4));
       i += 4;
     }
     // TOTAL COUNTER OUT
     else if (channelId === 0x04 && channelType === 0xd2) {
-      decoded.totalCounterOut = readUInt32LE(bytes.slice(i, i + 4));
+      decoded.totalCounterOut = readUInt32LE(Array.from(bytes).slice(i, i + 4));
       i += 4;
     }
     // PERIODIC COUNTER
     else if (channelId === 0x05 && channelType === 0xcc) {
-      decoded.periodicCounterIn = readUInt16LE(bytes.slice(i, i + 2));
-      decoded.periodicCounterOut = readUInt16LE(bytes.slice(i + 2, i + 4));
+      decoded.periodicCounterIn = readUInt16LE(
+        Array.from(bytes).slice(i, i + 2),
+      );
+      decoded.periodicCounterOut = readUInt16LE(
+        Array.from(bytes).slice(i + 2, i + 4),
+      );
       i += 4;
     } else {
       break;
