@@ -43,6 +43,7 @@ describe("Elsys eye uplink", () => {
     it("should decode Elsys eye payload", () => {
       const data = {
         data: {
+          port: 5,
           payloadHex: "05011101",
         },
       };
@@ -64,6 +65,7 @@ describe("Elsys eye uplink", () => {
     it("should decode elsys eye default + motion payload", () => {
       const data = {
         data: {
+          port: 5,
           payloadHex: "0100e102280401a00500070dff1102",
         },
       };
