@@ -822,12 +822,11 @@ function emitSample(currentSample, topic) {
   }
 
   if (currentSample.date !== undefined) {
-    const timestamp = new Date(currentSample.date);
+    // const timestamp = new Date(currentSample.date);
     delete currentSample.date;
-    emit("sample", { data: currentSample, topic, timestamp });
-  } else {
-    emit("sample", { data: currentSample, topic });
+    // emit("sample", { data: currentSample, topic, timestamp });
   }
+  emit("sample", { data: currentSample, topic });
 }
 
 function consume(event) {
