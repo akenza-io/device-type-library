@@ -1,0 +1,14 @@
+{
+  "name": "EM400-UDL",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight-iot.com/products/lorawan-sensor/em400-udl/",
+  "description": "EM400-UDL, as the versatile product among EM400 series, offering three versions - Standard, Pro, and Snow Level with varying detection range, resolution, and accuracy, is designed to cater to the demands of professional applications. Equipped with prolonged battery life and robust IP67 rated enclosure, EM400-UDL is the perfect fit for professional and demanding applications.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Distance"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
