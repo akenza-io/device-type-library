@@ -4,7 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-# [1.33.1] - 2023-04-27
+
+# [1.34.0] - 2023-04-03
+
+### Added
+
+- Milesight - EM400-MUD
+- Milesight - EM400-TLD
+- Milesight - EM400-ULD
 
 ### Changed
 
