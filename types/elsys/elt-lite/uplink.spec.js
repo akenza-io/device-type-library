@@ -33,6 +33,7 @@ describe("Elsys ELT Lite uplink", () => {
     it("should decode Elsys ELT Lite payload", () => {
       const data = {
         data: {
+          port: 5,
           payloadHex: "0100e20218070e410cff5614000edd20",
         },
       };

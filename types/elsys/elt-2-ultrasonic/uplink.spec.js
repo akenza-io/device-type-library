@@ -33,7 +33,7 @@ describe("Elsys ELT-2 Ultrasonic uplink", () => {
     it("should decode Elsys ELT-2 Ultrasonic payload", () => {
       const data = {
         data: {
-          port: 6,
+          port: 5,
           payloadHex: "0100dd022b070e2e0e012c14000eb751",
         },
       };

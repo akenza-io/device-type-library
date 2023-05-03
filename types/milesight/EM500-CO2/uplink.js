@@ -40,7 +40,7 @@ function consume(event) {
     }
     // TEMPERATURE
     else if (channelId === 0x03 && channelType === 0x67) {
-      decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
+      decoded.temperature = readInt16LE(Array.from(bytes).slice(i, i + 2)) / 10;
       i += 2;
     }
     // HUMIDITY
@@ -50,12 +50,12 @@ function consume(event) {
     }
     // CO2
     else if (channelId === 0x05 && channelType === 0x7d) {
-      decoded.co2 = readUInt16LE(bytes.slice(i, i + 2));
+      decoded.co2 = readUInt16LE(Array.from(bytes).slice(i, i + 2));
       i += 2;
     }
     // PRESSURE
     else if (channelId === 0x06 && channelType === 0x73) {
-      decoded.pressure = readUInt16LE(bytes.slice(i, i + 2)) / 10;
+      decoded.pressure = readUInt16LE(Array.from(bytes).slice(i, i + 2)) / 10;
       i += 2;
     } else {
       break;
