@@ -33,6 +33,7 @@ describe("Elsys EMS Desk uplink", () => {
     it("should decode Elsys EMS Desk payload", () => {
       const data = {
         data: {
+          port: 5,
           payloadHex: "070e241102",
         },
       };

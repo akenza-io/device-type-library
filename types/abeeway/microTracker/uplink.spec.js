@@ -74,7 +74,7 @@ describe("Abeeway micro tracker uplink", () => {
   });
 
   describe("consume()", () => {
-    it("should decode Abeeway micro tracker GPS payload", (done) => {
+    it("should decode Abeeway micro tracker GPS payload", () => {
       const data = {
         data: {
           port: 1,
@@ -113,10 +113,9 @@ describe("Abeeway micro tracker uplink", () => {
       });
 
       consume(data);
-      done();
     });
 
-    it("should decode Abeeway micro tracker heartbeat payload", (done) => {
+    it("should decode Abeeway micro tracker heartbeat payload", () => {
       const data = {
         data: {
           port: 1,
@@ -155,10 +154,9 @@ describe("Abeeway micro tracker uplink", () => {
       });
 
       consume(data);
-      done();
     });
 
-    it("should decode Abeeway micro tracker angle alarm", (done) => {
+    it("should decode Abeeway micro tracker angle alarm", () => {
       const data = {
         data: {
           port: 1,
@@ -211,10 +209,9 @@ describe("Abeeway micro tracker uplink", () => {
       });
 
       consume(data);
-      done();
     });
 
-    it("should decode Abeeway micro tracker BSSID", (done) => {
+    it("should decode Abeeway micro tracker BSSID", () => {
       const data = {
         data: {
           port: 1,
@@ -262,10 +259,9 @@ describe("Abeeway micro tracker uplink", () => {
       });
 
       consume(data);
-      done();
     });
 
-    it("should decode Abeeway micro tracker activity status", (done) => {
+    it("should decode Abeeway micro tracker activity status", () => {
       const data = {
         data: {
           port: 1,
@@ -304,10 +300,9 @@ describe("Abeeway micro tracker uplink", () => {
       });
 
       consume(data);
-      done();
     });
 
-    it("should decode Abeeway micro tracker geofencing", (done) => {
+    it("should decode Abeeway micro tracker geofencing", () => {
       const data = {
         data: {
           port: 1,
@@ -349,10 +344,9 @@ describe("Abeeway micro tracker uplink", () => {
       });
 
       consume(data);
-      done();
     });
 
-    it("should decode Abeeway micro tracker configuration", (done) => {
+    it("should decode Abeeway micro tracker configuration", () => {
       const data = {
         data: {
           port: 1,
@@ -391,7 +385,6 @@ describe("Abeeway micro tracker uplink", () => {
       });
 
       consume(data);
-      done();
     });
   });
 });
