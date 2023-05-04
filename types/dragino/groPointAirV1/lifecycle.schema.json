@@ -1,0 +1,21 @@
+{
+  "$id": "https://akenza.io/dragino/groPointAir/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "batteryVoltage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "title": "Battery voltage",
+      "desciption": "The battery voltage in Volt.",
+      "unit": "V"
+    },
+    "sensorType": {
+      "title": "Sensor type",
+      "type": "integer",
+      "description": "Sensor type"
+    }
+  }
+}

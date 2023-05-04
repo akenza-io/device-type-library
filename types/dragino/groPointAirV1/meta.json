@@ -1,0 +1,14 @@
+{
+  "name": "GroPoint Air",
+  "version": "1.0.0",
+  "manufacturer": "Dragino",
+  "url": "https://www.dragino.com/products/agriculture-weather-station/item/227-gropoint-air.html",
+  "description": "GroPoint Profile is plug-and-play with GroPoint Air to get soil moisture and send via wireless. GroPoint Profile is powered by GroPoint Air, no need external power source.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Soil moisture"],
+  "outputTopics": ["lifecycle", "soil_moisture", "temperature"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
