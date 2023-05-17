@@ -4,6 +4,34 @@
   "title": "Gender",
   "type": "object",
   "properties": {
+    "fwMen": {
+      "title": "Men forward",
+      "description": "Men moving forward",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    },
+    "fwWoman": {
+      "title": "Woman forward",
+      "description": "Woman moving forward",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    },
+    "bwMen": {
+      "title": "Men backward",
+      "description": "Men moving backwards",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    },
+    "bwWomen": {
+      "title": "Woman backward",
+      "description": "Women moving backwards",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    },
     "gender": {
       "title": "Gender",
       "description": "Gender",
@@ -11,6 +39,5 @@
       "enum": ["MALE", "FEMALE", "UNKNOWN"],
       "hideFromKpis": true
     }
-  },
-  "required": ["gender"]
+  }
 }
