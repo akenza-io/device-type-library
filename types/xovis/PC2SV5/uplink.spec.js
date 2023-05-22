@@ -3939,5 +3939,139 @@ describe("Xovis V5 Uplink", () => {
 
       consume(data);
     });
+
+    it("should decode the Xovis V5 logic mask & gender payload", () => {
+      const data = {
+        data: {
+          logics_data: {
+            package_info: {
+              version: "5.0",
+              id: 2,
+              agent_id: 1003,
+            },
+            sensor_info: {
+              serial_number: "80:1F:12:D3:27:CA",
+              type: "SINGLE_SENSOR",
+            },
+            logics: [
+              {
+                id: 3,
+                name: "Line-based logic 3",
+                info: "XLT_LINE_IN_OUT_COUNT",
+                geometries: [
+                  {
+                    id: 2,
+                    type: "LINE",
+                    name: "Line 0",
+                  },
+                ],
+                records: [
+                  {
+                    from: 1684325340000,
+                    to: 1684325400000,
+                    samples: 1,
+                    samples_expected: 1,
+                    counts: [
+                      {
+                        id: 8,
+                        name: "fw",
+                        value: 1,
+                      },
+                      {
+                        id: 9,
+                        name: "bw",
+                        value: 0,
+                      },
+                      {
+                        id: 10,
+                        name: "fw-male",
+                        value: 1,
+                      },
+                      {
+                        id: 11,
+                        name: "bw-male",
+                        value: 0,
+                      },
+                      {
+                        id: 12,
+                        name: "fw-female",
+                        value: 0,
+                      },
+                      {
+                        id: 13,
+                        name: "bw-female",
+                        value: 0,
+                      },
+                      {
+                        id: 14,
+                        name: "fw-mask",
+                        value: 0,
+                      },
+                      {
+                        id: 15,
+                        name: "bw-mask",
+                        value: 0,
+                      },
+                      {
+                        id: 16,
+                        name: "fw-no_mask",
+                        value: 1,
+                      },
+                      {
+                        id: 17,
+                        name: "bw-no_mask",
+                        value: 0,
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "line_count");
+        assert.equal(value.data.bw, 0);
+        assert.equal(value.data.fw, 1);
+
+        utils.validateSchema(value.data, lineCountSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "gender");
+        assert.equal(value.data.fwMen, 1);
+        assert.equal(value.data.fwWoman, 0);
+        assert.equal(value.data.bwMen, 0);
+        assert.equal(value.data.bwWomen, 0);
+
+        utils.validateSchema(value.data, genderSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "face_mask");
+        assert.equal(value.data.fwMask, 0);
+        assert.equal(value.data.fwNoMask, 1);
+        assert.equal(value.data.bwMask, 0);
+        assert.equal(value.data.bwNoMask, 0);
+
+        utils.validateSchema(value.data, faceMaskSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
   });
 });
