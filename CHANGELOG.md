@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.34.1] - 2023-05-28
+
+### Changed
+
+- Added new button topic for the Swisscom Multisense device
 
 # [1.34.0] - 2023-04-03
 
