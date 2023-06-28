@@ -29,6 +29,16 @@ describe("Swisscom Multisense Uplinks", () => {
       });
   });
 
+  let buttonEventSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/button_event.schema.json`)
+      .then((parsedSchema) => {
+        buttonEventSchema = parsedSchema;
+        done();
+      });
+  });
+
   let reedCounterSchema = null;
   before((done) => {
     utils
@@ -186,6 +196,18 @@ describe("Swisscom Multisense Uplinks", () => {
           payloadHex: "020040b5",
         },
       };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "button_event");
+        assert.equal(value.data.buttonEvent, 1);
+        utils.validateSchema(value.data, buttonEventSchema, {
+          throwError: true,
+        });
+      });
 
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
