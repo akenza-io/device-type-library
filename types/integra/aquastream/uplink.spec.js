@@ -5,7 +5,7 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Aquastream uplink", () => {
+describe("Integra aquastream uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
@@ -83,16 +83,16 @@ describe("Aquastream uplink", () => {
         assert.equal(value.topic, "device");
 
         assert.equal(value.data.batteryLifetime, 5835);
-        assert.equal(value.data.configuration, "0020");
+        assert.equal(value.data.configuration, 32);
         assert.equal(value.data.manufacturerCode, "25B4");
         assert.equal(value.data.meterAddress, "04515321");
-        assert.equal(value.data.meterVersion, "01");
+        assert.equal(value.data.meterVersion, 1);
         assert.equal(value.data.moduleNumber, "10039309");
-        assert.equal(value.data.statusField, "00");
-        assert.equal(value.data.systemComponent, "0E");
-        assert.equal(value.data.transmitionCounter, "01");
-        assert.equal(value.data.versionNumber, "05");
-        assert.equal(value.data.waterType, "07");
+        assert.equal(value.data.statusField, 0);
+        assert.equal(value.data.systemComponent, 14);
+        assert.equal(value.data.transmitionCounter, 1);
+        assert.equal(value.data.versionNumber, 5);
+        assert.equal(value.data.waterType, 7);
 
         utils.validateSchema(value.data, deviceSchema, { throwError: true });
       });

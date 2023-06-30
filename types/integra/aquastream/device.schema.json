@@ -18,13 +18,13 @@
     },
     "versionNumber": {
       "title": "Version number",
-      "type": "string",
+      "type": "integer",
       "description": "Version number",
       "hideFromKpis": true
     },
     "systemComponent": {
       "title": "System component",
-      "type": "string",
+      "type": "integer",
       "description": "System component",
       "hideFromKpis": true
     },
@@ -36,31 +36,31 @@
     },
     "meterVersion": {
       "title": "Meter version",
-      "type": "string",
-      "description": "Manufacturer code",
+      "type": "integer",
+      "description": "Meter version",
       "hideFromKpis": true
     },
     "waterType": {
       "title": "Water type",
-      "type": "string",
+      "type": "integer",
       "description": "Either warm or cold",
       "hideFromKpis": true
     },
     "transmitionCounter": {
       "title": "Transmition counter",
-      "type": "string",
+      "type": "integer",
       "description": "Transmition counter",
       "hideFromKpis": true
     },
     "statusField": {
       "title": "Status field",
-      "type": "string",
+      "type": "integer",
       "description": "Status field",
       "hideFromKpis": true
     },
     "configuration": {
       "title": "Configuration",
-      "type": "string",
+      "type": "integer",
       "description": "Configuration",
       "hideFromKpis": true
     },
