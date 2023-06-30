@@ -70,7 +70,7 @@ describe("Decentlab SMTP Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 2.875);
+        assert.equal(value.data.batteryVoltage, 2.875);
         assert.equal(value.data.protocolVersion, 2);
         assert.equal(value.data.deviceId, 2896);
 

@@ -467,10 +467,10 @@ function consume(event) {
   }
 
   if (currentSample.date !== undefined) {
-    const timestamp = new Date(currentSample.date);
+    // const timestamp = new Date(currentSample.date);
     delete currentSample.date;
-    emit("sample", { data: currentSample, topic, timestamp });
-  } else {
-    emit("sample", { data: currentSample, topic });
+    // TODO: Downlink is needed to sync the internal clock. As this can not be done in the devicetype and theres no standart logic block its disabled for now
+    // emit("sample", { data: currentSample, topic, timestamp });
   }
+  emit("sample", { data: currentSample, topic });
 }

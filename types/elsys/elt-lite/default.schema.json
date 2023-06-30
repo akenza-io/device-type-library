@@ -38,9 +38,7 @@
     "pulseAbs1": {
       "title": "Pulse count absolute",
       "description": "Pulse count absolute",
-      "type": "number",
-      "minimum": 0,
-      "maximum": 4294967295
+      "type": "number"
     },
     "externalTemperature1": {
       "title": "External temperature 1",
@@ -74,7 +72,7 @@
       "maximum": 3276.5
     },
     "waterleak": {
-      "title": "Waterleak",
+      "title": "Water leak",
       "description": "Equals true if a waterleak is detected",
       "type": "boolean"
     },
@@ -86,5 +84,6 @@
       "minimum": 300,
       "maximum": 1100
     }
-  }
+  },
+  "required": ["temperature", "humidity", "pressure"]
 }

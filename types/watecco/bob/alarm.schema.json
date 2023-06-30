@@ -265,5 +265,6 @@
       "description": "FFT Signal 39",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["anomalyLevel", "temperature", "vibration"]
 }

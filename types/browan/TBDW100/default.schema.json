@@ -30,5 +30,6 @@
       "description": "Count of events, resets on reboot",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["temperature", "open", "time", "count"]
 }

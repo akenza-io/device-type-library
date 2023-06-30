@@ -52,5 +52,14 @@
       "minimum": -40,
       "maximum": 125
     }
-  }
+  },
+  "required": [
+    "peopleCount",
+    "peopleCountBin1",
+    "peopleCountBin2",
+    "peopleCountBin3",
+    "peopleCountBin4",
+    "peopleCountBin5",
+    "peopleCountBin6"
+  ]
 }

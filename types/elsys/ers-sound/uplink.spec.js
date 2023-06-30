@@ -41,6 +41,7 @@ describe("Elsys Sound uplink", () => {
     it("should decode Elsys Sound payload", () => {
       const data = {
         data: {
+          port: 5,
           payloadHex: "0100ee02230400bd070df615402c",
         },
       };
@@ -64,7 +65,7 @@ describe("Elsys Sound uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.574);
+        assert.equal(value.data.batteryVoltage, 3.574);
         assert.equal(value.data.batteryLevel, 100);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });

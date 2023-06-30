@@ -1,12 +1,12 @@
 function consume(event) {
-  var payload = event.data.payloadHex;
-  var bits = Bits.hexToBits(payload);
-  var data = {};
+  const payload = event.data.payloadHex;
+  const bits = Bits.hexToBits(payload);
+  const data = {};
 
-  //Header
+  // Header
   data.version = Bits.bitsToUnsigned(bits.substr(0, 8));
   data.deviceType = Bits.bitsToUnsigned(bits.substr(8, 8));
-  data.voltage = Bits.bitsToUnsigned(bits.substr(24, 8)) / 10;
+  data.batteryVoltage = Bits.bitsToUnsigned(bits.substr(24, 8)) / 10;
 
   emit("sample", {
     data: {
@@ -17,5 +17,5 @@ function consume(event) {
   });
 
   // Last 3 Bytes are reserved
-  emit("sample", { data: data, topic: "lifecycle" });
+  emit("sample", { data, topic: "lifecycle" });
 }

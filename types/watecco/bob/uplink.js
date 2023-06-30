@@ -55,7 +55,6 @@ function consume(event) {
     data.temperature = Bits.bitsToUnsigned(bits.substr(40, 8)) - 30;
 
     let reportLength = Bits.bitsToUnsigned(bits.substr(48, 8));
-
     data.operatingTime =
       (Bits.bitsToUnsigned(bits.substr(16, 8)) * reportLength) / 127;
 
@@ -118,7 +117,7 @@ function consume(event) {
       },
       topic: "lifecycle",
     });
-
+    
     // anomaly level: 255 = infinite time
     data.anomalyLevelTo20Last24h = round(
       Bits.bitsToUnsigned(bits.substr(144, 8)),

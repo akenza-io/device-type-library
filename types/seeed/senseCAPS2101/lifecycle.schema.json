@@ -18,5 +18,6 @@
       "description": "The battery charge in percent.",
       "unit": "%"
     }
-  }
+  },
+  "required": ["sendInterval", "batteryLevel"]
 }

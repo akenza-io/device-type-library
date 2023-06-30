@@ -59,7 +59,7 @@ describe("Comfort sensor", () => {
 
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.deviceStatus, 3);
-        assert.equal(value.data.voltage, 3.51);
+        assert.equal(value.data.batteryVoltage, 3.51);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });

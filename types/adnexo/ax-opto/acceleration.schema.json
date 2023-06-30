@@ -4,7 +4,7 @@
   "title": "Acceleration",
   "type": "object",
   "properties": {
-    "xAxisAccelerometer": {
+    "accX": {
       "title": "Accelerometer X Axis",
       "unit": "mg",
       "description": "Acceleration on the X-Axis is mg",
@@ -12,7 +12,7 @@
       "minimum": -32767,
       "maximum": 32767
     },
-    "yAxisAccelerometer": {
+    "accY": {
       "title": "Accelerometer Y Axis",
       "unit": "mg",
       "description": "Acceleration on the Y-Axis is mg",
@@ -20,7 +20,7 @@
       "minimum": -32767,
       "maximum": 32767
     },
-    "zAxisAccelerometer": {
+    "accZ": {
       "title": "Accelerometer Z Axis",
       "unit": "mg",
       "description": "Acceleration on the Z-Axis is mg",
@@ -28,5 +28,6 @@
       "minimum": -32767,
       "maximum": 32767
     }
-  }
+  },
+  "required": ["accX", "accY", "accZ"]
 }

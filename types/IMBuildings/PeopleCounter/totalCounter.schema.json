@@ -14,5 +14,6 @@
       "type": "integer",
       "description": "Summation of all B counts"
     }
-  }
+  },
+  "required": ["totalCounterA", "totalCounterB"]
 }

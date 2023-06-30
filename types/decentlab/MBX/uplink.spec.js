@@ -54,7 +54,7 @@ describe("Decentlab MBX Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 2.993);
+        assert.equal(value.data.batteryVoltage, 2.993);
         assert.equal(value.data.protocolVersion, 2);
         assert.equal(value.data.deviceId, 303);
         assert.equal(value.data.numberOfValidSamples, 1);

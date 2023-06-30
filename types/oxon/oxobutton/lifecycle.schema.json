@@ -24,5 +24,6 @@
       "description": "Is true if accelerometer was interrupted",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["batteryLevel", "hbIRQ", "accIRQ"]
 }

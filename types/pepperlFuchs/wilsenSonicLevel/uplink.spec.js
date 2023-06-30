@@ -68,7 +68,7 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.5);
+        assert.equal(value.data.batteryVoltage, 3.5);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -94,7 +94,7 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.proximity, 65);
         assert.equal(value.data.fillinglvlPercent, 89);
-        assert.equal(value.data.temperature, 8.1);
+        assert.equal(value.data.temperature, 8);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -105,7 +105,7 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.4);
+        assert.equal(value.data.batteryVoltage, 3.4);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -144,7 +144,7 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
         assert.equal(value.data.loraCount, 1793);
         assert.equal(value.data.gpsCount, 802);
         assert.equal(value.data.usSensorCount, 3868);
-        assert.equal(value.data.voltage, 3.5);
+        assert.equal(value.data.batteryVoltage, 3.5);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });

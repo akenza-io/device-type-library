@@ -9,5 +9,6 @@
       "description": "Activity counter",
       "type": "integer"
     }
-  }
+  },
+  "required": ["activityCounter"]
 }

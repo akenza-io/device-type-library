@@ -1,0 +1,38 @@
+{
+  "$id": "https://akenza.io/cayenne/cayenne/gyrometer.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Gyrometer",
+  "type": "object",
+  "properties": {
+    "channel": {
+      "title": "Channel",
+      "type": "number",
+      "description": "Channel number",
+      "hideFromKpis": true
+    },
+    "gyroX": {
+      "title": "X-Gyro velocity",
+      "description": "Angular rotational velocity on the X-Gyro in dps",
+      "unit": "dps",
+      "type": "number",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "gyroY": {
+      "title": "Y-Gyro velocity",
+      "description": "Angular rotational velocity on the Y-Gyro in dps",
+      "unit": "dps",
+      "type": "number",
+      "minimum": -32767,
+      "maximum": 32767
+    },
+    "gyroZ": {
+      "title": "Z-Gyro velocity",
+      "description": "Angular rotational velocity on the Z-Gyro in dps",
+      "unit": "dps",
+      "type": "number",
+      "minimum": -32767,
+      "maximum": 32767
+    }
+  }
+}

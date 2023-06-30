@@ -4,8 +4,16 @@ function consume(event) {
   const data = {};
   const lifecycle = {};
 
-  const voltage = ((bytes[0] << 8) | bytes[1]) & 0x3fff;
-  lifecycle.voltage = voltage / 1000;
+  lifecycle.batteryVoltage = (((bytes[0] << 8) | bytes[1]) & 0x3fff) / 1000;
+  let batteryLevel =
+    Math.round((lifecycle.batteryVoltage - 2.1) / 0.009 / 10) * 10;
+
+  if (batteryLevel > 100) {
+    batteryLevel = 100;
+  } else if (batteryLevel < 0) {
+    batteryLevel = 0;
+  }
+  lifecycle.batteryLevel = batteryLevel;
 
   let temperature = (bytes[2] << 8) | bytes[3];
   if (bytes[2] & 0x80) {

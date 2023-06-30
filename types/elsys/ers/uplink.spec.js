@@ -43,6 +43,7 @@ describe("Elsys ERS uplink", () => {
     it("should decode Elsys ERS payload", () => {
       const data = {
         data: {
+          port: 5,
           payloadHex: "0100f1021704041a0500070e5a",
         },
       };
@@ -66,7 +67,7 @@ describe("Elsys ERS uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.674);
+        assert.equal(value.data.batteryVoltage, 3.674);
         assert.equal(value.data.batteryLevel, 100);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });

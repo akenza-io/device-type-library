@@ -4,6 +4,34 @@
   "title": "Face mask",
   "type": "object",
   "properties": {
+    "fwMask": {
+      "title": "Mask forward",
+      "description": "Masked people moving forward",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    },
+    "fwNoMask": {
+      "title": "No mask forward",
+      "description": "Not masked people moving forward",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    },
+    "bwMask": {
+      "title": "Mask backward",
+      "description": "Masked people moving backwards",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    },
+    "bwNoMask": {
+      "title": "No mask backward",
+      "description": "Not masked people moving backwards",
+      "type": "integer",
+      "min": 0,
+      "max": 65535
+    },
     "faceMask": {
       "title": "Face mask",
       "description": "Indicates whether a person in view wears a mask.",

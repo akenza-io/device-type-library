@@ -1,0 +1,14 @@
+{
+  "name": "LWL02",
+  "version": "1.0.0",
+  "manufacturer": "Dragino",
+  "url": "https://www.dragino.com/products/lorawan-nb-iot-door-sensor-water-leak/item/180-lwl02.html",
+  "description": "The Dragino LWL02 is a LoRaWAN Water Sensor. When there is water between the two metal probes, LWL02 indicates a water leak event.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Water leak"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

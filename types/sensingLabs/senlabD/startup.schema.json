@@ -21,5 +21,6 @@
       "unit": "s",
       "description": "Duration reed closed"
     }
-  }
+  },
+  "required": ["version", "openDuration", "closeDuration"]
 }

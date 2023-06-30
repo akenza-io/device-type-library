@@ -1,3 +1,4 @@
+// Standard Decoder
 const TYPE_TEMP = 0x01; // temp 2 bytes -3276.8°C -->3276.7°C
 const TYPE_RH = 0x02; // Humidity 1 byte  0-100%
 const TYPE_ACC = 0x03; // acceleration 3 bytes X,Y,Z -128 --> 127 +/-63=1G
@@ -23,6 +24,9 @@ const TYPE_PULSE2 = 0x16; // 2bytes 0-->0xFFFF
 const TYPE_PULSE2_ABS = 0x17; // 4bytes no 0->0xFFFFFFFF
 const TYPE_ANALOG2 = 0x18; // 2bytes voltage in mV
 const TYPE_EXT_TEMP2 = 0x19; // 2bytes -3276.5C-->3276.5C
+
+// Settings Decoder
+const SETTINGS_HEADER = 0x3e;
 
 function bin16dec(bin) {
   let num = bin & 0xffff;
@@ -178,6 +182,219 @@ function DecodeElsysPayload(data) {
   return obj;
 }
 
+function bool(a) {
+  return !!a[0];
+}
+
+function uint(a) {
+  if (a.length === 1) return a[0];
+  if (a.length === 2) return (a[0] << 8) | a[1];
+  if (a.length === 4) return (a[0] << 24) | (a[1] << 16) | (a[2] << 8) | a[3];
+  return a;
+}
+
+function extcfg(a) {
+  const cfg = a[0];
+  switch (cfg) {
+    case 1:
+      return "ANALOG";
+    case 2:
+      return "PULSE_PULLDOWN";
+    case 3:
+      return "PULSE_PULLUP";
+    case 4:
+      return "ABSOLUT_PULSE_PULLDOWN";
+    case 5:
+      return "ABSOLUT_PULSE_PULLUP";
+    case 6:
+      return "1_WIRE_TEMP_DS18B20";
+    case 7:
+      return "SWITCH_NO";
+    case 8:
+      return "SWITCH_NC";
+    case 9:
+      return "DIGITAL";
+    case 10:
+      return "SRF_01";
+    case 11:
+      return "DECAGON";
+    case 12:
+      return "WATERLEAK";
+    case 13:
+      return "MAXBOTIX_ML738X";
+    case 14:
+      return "GPS";
+    case 15:
+      return "1_WIRE_TEMP_SWITCH_NO";
+    case 16:
+      return "ANALOG_0_3V";
+    case 17:
+      return "ADC_MODULE_PT1000";
+    default:
+      break;
+  }
+  return a;
+}
+
+function sensor(a) {
+  const t = a[0];
+  switch (t) {
+    case 0:
+      return "UNKNOWN";
+    case 1:
+      return "ESM5K";
+    case 10:
+      return "ELT1";
+    case 11:
+      return "ELT1HP";
+    case 12:
+      return "ELT2HP";
+    case 13:
+      return "ELT_LITE";
+    case 20:
+      return "ERS";
+    case 21:
+      return "ERS_CO2";
+    case 22:
+      return "ERS_LITE";
+    case 23:
+      return "ERS_EYE";
+    case 24:
+      return "ERS_DESK";
+    case 25:
+      return "ERS_SOUND";
+    case 30:
+      return "EMS";
+    default:
+      break;
+  }
+  return a;
+}
+
+const settings = [
+  { size: 16, type: 1, name: "appSKey", hex: true, parse: null },
+  { size: 16, type: 2, name: "nwkSKey", hex: true, parse: null },
+  { size: 8, type: 3, name: "devEui", hex: true, parse: null },
+  { size: 16, type: 4, name: "appEui", hex: true, parse: null },
+  { size: 16, type: 5, name: "appKey", hex: true, parse: null },
+  { size: 4, type: 6, name: "devAddr", hex: true, parse: null },
+  { size: 1, type: 7, name: "ota", parse: bool },
+  { size: 1, type: 8, name: "port", parse: uint },
+  { size: 1, type: 9, name: "mode", parse: uint },
+  { size: 1, type: 10, name: "ack", parse: bool },
+  { size: 1, type: 11, name: "drDef", parse: uint },
+  { size: 1, type: 12, name: "drMax", parse: uint },
+  { size: 1, type: 13, name: "drMin", parse: uint },
+  { size: 1, type: 14, name: "payload", parse: uint },
+  { size: 1, type: 15, name: "power", parse: uint },
+  { size: 1, type: 16, name: "extCfg", parse: extcfg },
+  { size: 1, type: 17, name: "pirCfg", parse: uint },
+  { size: 1, type: 18, name: "co2Cfg", parse: uint },
+  { size: 4, type: 19, name: "accCfg", parse: null },
+  { size: 4, type: 20, name: "splPer", parse: uint },
+  { size: 4, type: 21, name: "tempPer", parse: uint },
+  { size: 4, type: 22, name: "rhPer", parse: uint },
+  { size: 4, type: 23, name: "lightPer", parse: uint },
+  { size: 4, type: 24, name: "pirPer", parse: uint },
+  { size: 4, type: 25, name: "co2Per", parse: uint },
+  { size: 4, type: 26, name: "extPer", parse: uint },
+  { size: 4, type: 27, name: "extPwrTime", parse: uint },
+  { size: 4, type: 28, name: "triggTime", parse: uint },
+  { size: 4, type: 29, name: "accPer", parse: uint },
+  { size: 4, type: 30, name: "vddPer", parse: uint },
+  { size: 4, type: 31, name: "sendPer", parse: uint },
+  { size: 4, type: 32, name: "lock", parse: uint },
+  { size: 4, type: 33, name: "rfu", parse: uint },
+  { size: 4, type: 34, name: "link", parse: null },
+  { size: 4, type: 35, name: "pressPer", parse: uint },
+  { size: 4, type: 36, name: "soundPer", parse: uint },
+  { size: 1, type: 37, name: "plan", parse: uint },
+  { size: 1, type: 38, name: "subBand", parse: uint },
+  { size: 1, type: 39, name: "lbt", parse: bool },
+  { size: 1, type: 40, name: "ledConfig", parse: uint },
+  { size: 1, type: 41, name: "co2Action", parse: uint },
+  { size: 4, type: 42, name: "waterPer", parse: uint },
+  { size: 4, type: 43, name: "reedPer", parse: uint },
+  { size: 4, type: 44, name: "reedCfg", parse: uint },
+  { size: 1, type: 45, name: "pirSens", parse: uint },
+  { size: 1, type: 46, name: "qSize", parse: uint },
+  { size: 1, type: 47, name: "qOffset", parse: bool },
+  { size: 1, type: 48, name: "qPurge", parse: bool },
+
+  { size: 4, type: 240, name: "c1", parse: uint },
+  { size: 4, type: 241, name: "c2", parse: uint },
+  { size: 4, type: 242, name: "c3", parse: uint },
+  { size: 4, type: 243, name: "c4", parse: uint },
+  { size: 1, type: 244, name: "nfcDisable", parse: bool },
+  { size: 1, type: 245, name: "sensor", parse: sensor },
+  { size: 2, type: 246, name: "output", parse: sensor },
+  { size: 4, type: 247, name: "pulse1", parse: sensor },
+  { size: 4, type: 248, name: "pulse2", parse: sensor },
+  { size: 0, type: 249, name: "settings", parse: null },
+  { size: 1, type: 250, name: "external", parse: null },
+  { size: 2, type: 251, name: "version", parse: uint },
+  { size: 4, type: 252, name: "sleep", parse: null },
+  { size: 0, type: 253, name: "generic", parse: null },
+  { size: 0, type: 254, name: "reboot", parse: null },
+];
+
+function DecodeElsysSettings(input) {
+  let bytes = [];
+  if (Array.isArray(input)) {
+    if (input.length > 0 && typeof input[0] === "number") {
+      bytes = input;
+    } else {
+      return makeError("unknown input type; array with non-number elements");
+    }
+  } else if (typeof input === "string") {
+    const result = [];
+    while (input.length >= 2) {
+      result.push(parseInt(input.substring(0, 2), 16));
+      input = input.substring(2, input.length);
+    }
+    bytes = result;
+  } else {
+    return makeError("unknown input type; not array nor string");
+  }
+
+  const payload = {};
+
+  let i = 0;
+  if (bytes[i++] != SETTINGS_HEADER) {
+    return makeError("INCORRECT_HEADER ");
+  }
+  const size = bytes[i++];
+  while (i < bytes.length) {
+    var type = bytes[i++];
+
+    let setting = settings.filter((s) => s.type == type);
+    if (setting.length === 0) {
+      payload.error = "UNKWON_HEADER_ABORTING";
+      return {
+        settings: payload,
+      };
+    }
+    setting = setting[0];
+    const d = Array.from(bytes).slice(i, i + setting.size);
+    if (setting.parse == null) {
+      payload[setting.name] = d;
+    } else {
+      payload[setting.name] = setting.parse(d);
+    }
+    i += setting.size;
+  }
+
+  return {
+    settings: payload,
+  };
+}
+
+function makeError(desc) {
+  return {
+    error: { error: desc },
+  };
+}
+
 function deleteUnusedKeys(data) {
   let keysRetained = false;
   Object.keys(data).forEach((key) => {
@@ -191,70 +408,82 @@ function deleteUnusedKeys(data) {
 }
 
 function consume(event) {
-  const res = DecodeElsysPayload(Hex.hexToBytes(event.data.payloadHex));
-  const data = {};
-  const lifecycle = {};
-  const occupancy = {};
-  const noise = {};
+  const payload = Hex.hexToBytes(event.data.payloadHex);
 
-  // Default values
-  data.temperature = res.temperature;
-  data.humidity = res.humidity;
-  data.accX = res.accX;
-  data.accY = res.accY;
-  data.accZ = res.accZ;
-  data.light = res.light;
-  data.co2 = res.co2;
-  data.reed = res.digital;
-  data.distance = res.distance;
-  data.accMotion = res.accMotion;
-  data.waterleak = res.waterleak;
-  data.pressure = res.pressure;
-  data.lat = res.lat;
-  data.long = res.long;
-  data.analog1 = res.analog1;
-  data.analog2 = res.analog2;
-  data.pulse1 = res.pulse1;
-  data.pulse2 = res.pulse2;
-  data.pulseAbs1 = res.pulseAbs1;
-  data.pulseAbs2 = res.pulseAbs2;
-  data.externalTemperature1 = res.externalTemperature1;
-  data.externalTemperature2 = res.externalTemperature2;
+  if (payload[0] !== SETTINGS_HEADER) {
+    const res = DecodeElsysPayload(payload);
+    const data = {};
+    const lifecycle = {};
+    const occupancy = {};
+    const noise = {};
 
-  // Occupancy values
-  occupancy.motion = res.motion;
-  occupancy.occupancy = res.occupancy;
+    // Default values
+    data.temperature = res.temperature;
+    data.humidity = res.humidity;
+    data.accX = res.accX;
+    data.accY = res.accY;
+    data.accZ = res.accZ;
+    data.light = res.light;
+    data.co2 = res.co2;
+    data.reed = res.digital;
+    data.distance = res.distance;
+    data.accMotion = res.accMotion;
+    data.waterleak = res.waterleak;
+    data.pressure = res.pressure;
+    data.lat = res.lat;
+    data.long = res.long;
+    data.analog1 = res.analog1;
+    data.analog2 = res.analog2;
+    data.pulse1 = res.pulse1;
+    data.pulse2 = res.pulse2;
+    data.pulseAbs1 = res.pulseAbs1;
+    data.pulseAbs2 = res.pulseAbs2;
+    data.externalTemperature1 = res.externalTemperature1;
+    data.externalTemperature2 = res.externalTemperature2;
 
-  // Noise values
-  noise.soundPeak = res.soundPeak;
-  noise.soundAvg = res.soundAvg;
+    // Occupancy values
+    occupancy.motion = res.motion;
+    occupancy.occupancy = res.occupancy;
 
-  // Lifecycle values
-  if (res.vdd !== undefined) {
-    lifecycle.voltage = res.vdd / 1000;
-    let batteryLevel = Math.round((lifecycle.voltage - 2.7) / 0.009 / 10) * 10;
+    // Noise values
+    noise.soundPeak = res.soundPeak;
+    noise.soundAvg = res.soundAvg;
 
-    if (batteryLevel > 100) {
-      batteryLevel = 100;
-    } else if (batteryLevel < 0) {
-      batteryLevel = 0;
+    // Lifecycle values
+    if (res.vdd !== undefined) {
+      lifecycle.batteryVoltage = res.vdd / 1000;
+      let batteryLevel =
+        Math.round((lifecycle.batteryVoltage - 2.7) / 0.009 / 10) * 10;
+
+      if (batteryLevel > 100) {
+        batteryLevel = 100;
+      } else if (batteryLevel < 0) {
+        batteryLevel = 0;
+      }
+      lifecycle.batteryLevel = batteryLevel;
     }
-    lifecycle.batteryLevel = batteryLevel;
-  }
 
-  if (deleteUnusedKeys(data)) {
-    emit("sample", { data, topic: "default" });
-  }
+    if (deleteUnusedKeys(data)) {
+      emit("sample", { data, topic: "default" });
+    }
 
-  if (deleteUnusedKeys(lifecycle)) {
-    emit("sample", { data: lifecycle, topic: "lifecycle" });
-  }
+    if (deleteUnusedKeys(lifecycle)) {
+      emit("sample", { data: lifecycle, topic: "lifecycle" });
+    }
 
-  if (deleteUnusedKeys(occupancy)) {
-    emit("sample", { data: occupancy, topic: "occupancy" });
-  }
+    if (deleteUnusedKeys(occupancy)) {
+      emit("sample", { data: occupancy, topic: "occupancy" });
+    }
 
-  if (deleteUnusedKeys(noise)) {
-    emit("sample", { data: noise, topic: "noise" });
+    if (deleteUnusedKeys(noise)) {
+      emit("sample", { data: noise, topic: "noise" });
+    }
+  } else if (payload[0] === SETTINGS_HEADER) {
+    const res = DecodeElsysSettings(payload);
+    if (res.error !== undefined) {
+      emit("sample", { data: res.error, topic: "configuration" });
+    } else {
+      emit("sample", { data: res.settings, topic: "configuration" });
+    }
   }
 }

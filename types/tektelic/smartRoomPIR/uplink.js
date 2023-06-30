@@ -120,7 +120,7 @@ function decoder(bytes, port) {
       {
         key: [0x00, 0xff],
         fn(arg) {
-          decodedData.voltage = decodeField(arg, 0, 15, "signed") * 0.01;
+          decodedData.batteryVoltage = decodeField(arg, 0, 15, "signed") * 0.01;
           return 2;
         },
       },
@@ -1165,9 +1165,12 @@ function consume(event) {
   const data = decoder(Hex.hexToBytes(payload), port);
   let topic = "default";
 
-  if (data.voltage !== undefined) {
-    emit("sample", { data: { voltage: data.voltage }, topic: "lifecycle" });
-    delete data.voltage;
+  if (data.batteryVoltage !== undefined) {
+    emit("sample", {
+      data: { batteryVoltage: data.batteryVoltage },
+      topic: "lifecycle",
+    });
+    delete data.batteryVoltage;
   }
 
   if (data.reedCount !== undefined) {

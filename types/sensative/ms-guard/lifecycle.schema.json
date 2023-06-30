@@ -34,5 +34,6 @@
       "maximum": 65535,
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["batteryLevel", "historySeqNr", "prevHistSeqNr"]
 }

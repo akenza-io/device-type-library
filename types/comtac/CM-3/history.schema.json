@@ -4,14 +4,6 @@
   "title": "History",
   "type": "object",
   "properties": {
-    "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
     "tempHistory1": {
       "title": "Temperature History 1",
       "unit": "°C",
@@ -75,5 +67,15 @@
       "maximum": 3276.5,
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "temperature",
+    "tempHistory1",
+    "tempHistory2",
+    "tempHistory3",
+    "tempHistory4",
+    "tempHistory5",
+    "tempHistory6",
+    "tempHistory7"
+  ]
 }

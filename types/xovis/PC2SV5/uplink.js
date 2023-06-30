@@ -61,7 +61,7 @@ function consume(event) {
             emit("sample", { data, topic, timestamp: time });
           });
         } else {
-          // Here could the positions for each frame get emited
+          // Here could the positions for each frame get emitted
 
           // Addon messages
           const { attributes } = payload.tracked_objects[0];
@@ -130,8 +130,22 @@ function consume(event) {
     const regex = new RegExp("LINE");
     const payload = event.data.logics_data.logics;
 
+    // Standart Forwards & Backwards
     let fw = 0;
     let bw = 0;
+
+    // Gender Addon
+    let fwMen = 0;
+    let fwWoman = 0;
+    let bwMen = 0;
+    let bwWomen = 0;
+
+    // Gender Mask
+    let fwMask = 0;
+    let fwNoMask = 0;
+    let bwMask = 0;
+    let bwNoMask = 0;
+
     let peopleInZone = 0;
     let timestamp = new Date();
 
@@ -146,10 +160,39 @@ function consume(event) {
           if (value > 0) {
             if (regex.test(logic.info)) {
               // Line
-              if (count.name === "fw") {
-                fw += value;
-              } else {
-                bw += value;
+              switch (count.name) {
+                case "fw":
+                  fw += value;
+                  break;
+                case "bw":
+                  bw += value;
+                  break;
+                case "fw-male":
+                  fwMen += value;
+                  break;
+                case "bw-male":
+                  bwMen += value;
+                  break;
+                case "fw-female":
+                  fwWoman += value;
+                  break;
+                case "bw-female":
+                  bwWomen += value;
+                  break;
+                case "fw-mask":
+                  fwMask += value;
+                  break;
+                case "bw-mask":
+                  bwMask += value;
+                  break;
+                case "fw-no_mask":
+                  fwNoMask += value;
+                  break;
+                case "bw-no_mask":
+                  bwNoMask += value;
+                  break;
+                default:
+                  break;
               }
             } else {
               // Zone
@@ -167,6 +210,23 @@ function consume(event) {
         timestamp,
       });
     }
+
+    if (fwMen > 0 || fwWoman > 0 || bwMen > 0 || bwWomen > 0) {
+      emit("sample", {
+        data: { fwMen, fwWoman, bwMen, bwWomen },
+        topic: "gender",
+        timestamp,
+      });
+    }
+
+    if (fwMask > 0 || fwNoMask > 0 || bwMask > 0 || bwNoMask > 0) {
+      emit("sample", {
+        data: { fwMask, fwNoMask, bwMask, bwNoMask },
+        topic: "face_mask",
+        timestamp,
+      });
+    }
+
     if (peopleInZone > 0) {
       emit("sample", { data: { peopleInZone }, topic: "zone", timestamp });
     }

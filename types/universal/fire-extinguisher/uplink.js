@@ -8,7 +8,7 @@ function consume(event) {
   data.isTestMessage = !!parseInt(bits.substr(15, 1));
   data.isRemoved = !!parseInt(bits.substr(14, 1));
   data.isSecurityUnlocked = !!parseInt(bits.substr(13, 1));
-  lifecycle.batteryPercent = Bits.bitsToUnsigned(bits.substr(16, 8)) * 0.5;
+  lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substr(16, 8)) * 0.5;
 
   if (event.data.port === 101) {
     lifecycle.swVersionMajor = Bits.bitsToUnsigned(bits.substr(24, 8));

@@ -34,7 +34,7 @@ function consume(event) {
     }
     // DISTANCE
     else if (channelId === 0x03 && channelType === 0x82) {
-      decoded.distance = readUInt16LE(bytes.slice(i, i + 2));
+      decoded.distance = readUInt16LE(Array.from(bytes).slice(i, i + 2));
       i += 2;
     }
     // POSITION

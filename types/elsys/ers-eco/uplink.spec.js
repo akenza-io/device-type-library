@@ -33,6 +33,7 @@ describe("Elsys Eco uplink", () => {
     it("should decode Elsys Eco payload", () => {
       const data = {
         data: {
+          port: 5,
           payloadHex: "0100dc023b0400cf070df9",
         },
       };
@@ -56,7 +57,7 @@ describe("Elsys Eco uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.577);
+        assert.equal(value.data.batteryVoltage, 3.577);
         assert.equal(value.data.batteryLevel, 100);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });

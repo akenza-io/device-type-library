@@ -10,5 +10,6 @@
       "type": "number",
       "description": "Energy consumption in kWh"
     }
-  }
+  },
+  "required": ["energy"]
 }

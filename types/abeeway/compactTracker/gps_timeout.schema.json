@@ -35,5 +35,6 @@
       "enum": ["DEFAULT_TIMEOUT", "GPS_T0_TIMEOUT", "GPS_FIX_TIMEOUT"],
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["cn0", "cn1", "cn2", "cn3", "timeoutCause"]
 }

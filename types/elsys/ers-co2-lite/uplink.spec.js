@@ -33,6 +33,7 @@ describe("Elsys CO2 lite uplink", () => {
     it("should decode Elsys CO2 lite payload", () => {
       const data = {
         data: {
+          port: 5,
           payloadHex: "0100f4022804000b0601d8070e3e",
         },
       };
@@ -56,7 +57,7 @@ describe("Elsys CO2 lite uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.646);
+        assert.equal(value.data.batteryVoltage, 3.646);
         assert.equal(value.data.batteryLevel, 100);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });

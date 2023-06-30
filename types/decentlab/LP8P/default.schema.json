@@ -90,5 +90,18 @@
       "minimum": 0,
       "maximum": 65535
     }
-  }
+  },
+  "required": [
+    "temperature",
+    "humidity",
+    "barometricTemperature",
+    "pressure",
+    "co2",
+    "co2LPF",
+    "co2Temperature",
+    "capacitorVoltage1",
+    "capacitorVoltage2",
+    "rawIr",
+    "rawIrLPF"
+  ]
 }

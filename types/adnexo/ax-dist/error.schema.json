@@ -23,5 +23,6 @@
       ],
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["errorOn", "errorCode"]
 }

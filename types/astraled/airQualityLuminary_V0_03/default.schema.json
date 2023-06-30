@@ -115,5 +115,6 @@
       "minimum": 0,
       "maximum": 6555
     }
-  }
+  },
+  "required": ["temperature", "humidity", "voc", "co2", "lightState"]
 }

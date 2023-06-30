@@ -39,5 +39,11 @@
       "maximum": 5000,
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "tempMeasurementRate",
+    "historyTrigger",
+    "tempThreshold",
+    "tempOffset"
+  ]
 }

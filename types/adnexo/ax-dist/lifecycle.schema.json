@@ -4,50 +4,22 @@
   "title": "Lifecycle",
   "type": "object",
   "properties": {
-    "payloadType": {
-      "title": "Payload type",
-      "description": "Type of message",
-      "type": "string",
-      "enum": [
-        "ECHO",
-        "RESTART",
-        "NEW_CONFIGURATION_ACCEPTED",
-        "REPORT_CONFIGURATION"
-      ],
-      "hideFromKpis": true
-    },
-    "measurementInterval": {
-      "title": "Measurement interval",
-      "type": "integer",
-      "unit": "s",
-      "desciption": "Measurement interval in seconds.",
-      "hideFromKpis": true
-    },
-    "sendInterval": {
-      "title": "Send interval",
-      "type": "integer",
-      "desciption": "Send every x samples",
-      "hideFromKpis": true
-    },
-    "joinInterval": {
-      "title": "Join interval",
-      "type": "integer",
-      "unit": "s",
-      "desciption": "Join interval in seconds.",
-      "hideFromKpis": true
-    },
-    "reedActive": {
-      "title": "Reed active",
-      "type": "boolean",
-      "desciption": "True if reed is active",
-      "hideFromKpis": true
-    },
-    "thresholdDistance": {
-      "title": "Threshold distance",
-      "unit": "mm",
+    "batteryVoltage": {
       "type": "number",
-      "description": "Message is sent immediately if distance measured is bigger.",
-      "hideFromKpis": true
+      "minimum": 0,
+      "maximum": 24,
+      "title": "Battery voltage",
+      "desciption": "The battery voltage in Volt.",
+      "unit": "V"
+    },
+    "batteryLevel": {
+      "title": "Battery charge",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "The battery charge in percent.",
+      "unit": "%"
     }
-  }
+  },
+  "required": ["batteryVoltage", "batteryLevel"]
 }

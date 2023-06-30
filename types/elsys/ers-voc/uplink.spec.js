@@ -43,6 +43,7 @@ describe("Elsys TVOC uplink", () => {
     it("should decode Elsys TVOC payload", () => {
       const data = {
         data: {
+          port: 5,
           payloadHex: "0100f702230401650503070e291c000c",
         },
       };
@@ -67,7 +68,7 @@ describe("Elsys TVOC uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.625);
+        assert.equal(value.data.batteryVoltage, 3.625);
         assert.equal(value.data.batteryLevel, 100);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });

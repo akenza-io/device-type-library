@@ -1,0 +1,14 @@
+{
+  "name": "LHT52",
+  "version": "1.0.0",
+  "manufacturer": "Dragino",
+  "url": "https://www.dragino.com/products/temperature-humidity-sensor/item/199-lht52.html",
+  "description": "The Dragino LHT52 Temperature & Humidity sensor is a Long Range LoRaWAN Sensor. It includes a built-in Temperature & Humidity sensor and has a USB Type-C sensor connector to connect to external sensors such as an external temperature sensor.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Humidity"],
+  "outputTopics": ["default", "external", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

@@ -32,5 +32,6 @@
       "maximum": 3,
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["batteryLevel", "hbIRQ", "accIRQ", "appMode"]
 }

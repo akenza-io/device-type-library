@@ -59,7 +59,7 @@ describe("FTD Network tester", () => {
         assert.equal(value.data.trigger, "PUSHBUTTON");
         assert.equal(value.data.uplink, 18);
         assert.equal(value.data.downlink, 16);
-        assert.equal(value.data.voltage, 3.489);
+        assert.equal(value.data.batteryVoltage, 3.489);
         assert.equal(value.data.batteryLevel, 29);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

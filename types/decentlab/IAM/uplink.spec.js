@@ -70,7 +70,7 @@ describe("Decentlab IAM Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 2.96);
+        assert.equal(value.data.batteryVoltage, 2.96);
         assert.equal(value.data.batteryLevel, 96);
         assert.equal(value.data.protocolVersion, 2);
         assert.equal(value.data.deviceID, 3005);

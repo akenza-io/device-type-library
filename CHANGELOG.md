@@ -4,6 +4,82 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.34.1] - 2023-05-28
+
+### Changed
+
+- Added new button topic for the Swisscom Multisense device
+
+# [1.34.0] - 2023-04-03
+
+### Added
+
+- Milesight - EM400-MUD
+- Milesight - EM400-TLD
+- Milesight - EM400-ULD
+
+### Changed
+
+- Added configuration message to all elsys devices
+- Caught to short payload for Abeeway
+- Removed inclusion of timestamp for enginko devicses
+- Dragino LSN50v2 splitted topics and added test
+
+# [1.33.0] - 2023-03-27
+
+### Added
+
+- Dragino - CPL01
+- Dragino - LDDS04
+- Dragino - LDDS20
+- Dragino - LDDS45
+- Dragino - LDDS75
+- Dragino - LDS02
+- Dragino - LDS03A
+- Dragino - LHT52
+- Dragino - LHT65
+- Dragino - LHT65N
+- Dragino - LHT65N-NE117
+- Dragino - LLDS12
+- Dragino - LLMS01
+- Dragino - LSE01
+- Dragino - LSN50V2-D20
+- Dragino - LSN50V2-D22
+- Dragino - LSN50V2-D23
+- Dragino - LSN50V2-S31
+- Dragino - LSN50V2-S31B
+- Dragino - LSPH01
+- Dragino - LTC2
+- Dragino - LWL02
+
+### Changed
+
+- CM-2 - Updated with new datapoints
+- Sentinum - Added Batterylevel
+- PepepperLuchs - Took out invalid datapoints
+- Ranos DB - Added fix from devs
+- IMBuilding Peoplecounter - Added NBIoT functionality
+
+# [1.32.1] - 2023-03-07
+
+### Changed
+
+- Fixed some critical and high vulnerabilities for npm packages
+
+# [1.32.0] - 2023-02-27
+
+### Added
+
+- Milesight - VS132
+- Cayenne
+
+### Changed
+
+- Added required for keys in schema files
+- Renamed image files to be more standardised
+- Renamed voltage to batteryVoltage to standardise keys
+- Standardised accceleration/gyro keys
+
 # [1.31.0] - 2023-02-20
 
 ### Added

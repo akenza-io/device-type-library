@@ -1,0 +1,32 @@
+{
+  "$id": "https://akenza.io/dragino/llms01/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "leafMoisture": {
+      "title": "Leaf moisture",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative leaf moisture of in %",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "leafTemperature": {
+      "title": "Leaf temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The leaf temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    }
+  }
+}

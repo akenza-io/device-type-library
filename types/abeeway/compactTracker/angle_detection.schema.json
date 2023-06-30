@@ -95,5 +95,18 @@
       "unit": "°",
       "type": "number"
     }
-  }
+  },
+  "required": [
+    "transitionState",
+    "trigger",
+    "repetitionCounter",
+    "age",
+    "refVectorX",
+    "refVectorY",
+    "refVectorZ",
+    "critVectorX",
+    "critVectorY",
+    "critVectorZ",
+    "angle"
+  ]
 }

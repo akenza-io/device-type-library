@@ -44,5 +44,15 @@
       "description": "Digital input 2 change count",
       "type": "integer"
     }
-  }
+  },
+  "required": [
+    "digital1",
+    "digital2",
+    "digital3",
+    "output3v3",
+    "digitalState",
+    "digitalTrigger",
+    "digitalChange1",
+    "digitalChange2"
+  ]
 }

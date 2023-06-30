@@ -15,5 +15,6 @@
       "description": "Button command",
       "type": "integer"
     }
-  }
+  },
+  "required": ["buttonNumber", "command"]
 }
