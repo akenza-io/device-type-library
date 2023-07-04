@@ -1,0 +1,14 @@
+{
+  "name": "NDDS20",
+  "version": "1.0.0",
+  "manufacturer": "Dragino",
+  "url": "https://www.dragino.com/products/distance-level-sensor/item/175-ndds20.html",
+  "description": "The Dragino NDDS20 is a NB-IoT Ultrasonic liquid level sensor for Internet of Things solution. It uses non contact method to measure the height of liquid in a container without opening the container, and send the value via wireless to IoT Server via NB-IoT Network.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Distance"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "NB-IoT"
+}
