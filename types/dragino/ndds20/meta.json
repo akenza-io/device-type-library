@@ -10,5 +10,5 @@
   "availableSensors": ["Distance"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "NB-IoT"
+  "connectivity": "NB-IOT"
 }
