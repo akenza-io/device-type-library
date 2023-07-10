@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/milesight/WS201/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "distance": {
+      "title": "Distance",
+      "unit": "mm",
+      "type": "number",
+      "description": "Distance measured between the sensor and the surface"
+    },
+    "remaining": {
+      "title": "Remaining",
+      "type": "integer",
+      "description": "Remaining amount"
+    }
+  }
+}

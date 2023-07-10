@@ -1,0 +1,14 @@
+{
+  "name": "AT101",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight.com/iot/product/lorawan-sensor/at101",
+  "description": "Milesight AT101 is an outdoor tracker that combines GNSS and Wi-Fi AP MAC Address Scanning technologies to deliver highly accurate positioning data. It is equipped with tilt and temperature sensors, enabling extensive data collection and versatile application in various scenarios.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "GPS", "Wifi"],
+  "outputTopics": ["gps", "history", "temperature", "wifi", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

@@ -1,14 +1,14 @@
 {
-  "name": "EM300-DI",
+  "name": "UC300",
   "version": "1.0.0",
   "manufacturer": "Milesight",
-  "url": "https://www.milesight-iot.com/products/lorawan-sensor/em300-di/",
-  "description": "EM300-DI LoRaWAN® Pulse Counter is used to remotely read metering data from water meters. It turns existing traditional water meters into smart meters via LoRaWAN® network which further enables easier management and increases the efficiency of water use.",
+  "url": "https://www.milesight-iot.com/controller/uc300/",
+  "description": "The UC300 is a IoT control and monitoring device.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": ["Temperature", "Humidity", "Pulse", "GPIO"],
-  "outputTopics": ["default", "history", "lifecycle"],
+  "availableSensors": ["Temperature", "Humidity", "Pulse", "GPIO", "Modbus"],
+  "outputTopics": ["adc", "error", "gpio", "modbus", "temperature"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }
