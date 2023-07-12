@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.34.1] - 2023-05-28
+
+### Changed
+
+- Added new button topic for the Swisscom Multisense device
+
 # [1.34.0] - 2023-04-03
 
 ### Added
@@ -11,6 +17,13 @@ All notable changes to this project will be documented in this file.
 - Milesight - EM400-MUD
 - Milesight - EM400-TLD
 - Milesight - EM400-ULD
+
+### Changed
+
+- Added configuration message to all elsys devices
+- Caught to short payload for Abeeway
+- Removed inclusion of timestamp for enginko devicses
+- Dragino LSN50v2 splitted topics and added test
 
 # [1.33.0] - 2023-03-27
 

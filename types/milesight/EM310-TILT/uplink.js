@@ -39,9 +39,9 @@ function consume(event) {
     }
     // ANGLE
     else if (channelId === 0x03 && channelType === 0xcf) {
-      decoded.xAngle = readInt16LE(bytes.slice(i, i + 2)) / 100;
-      decoded.yAngle = readInt16LE(bytes.slice(i + 2, i + 4)) / 100;
-      decoded.zAngle = readInt16LE(bytes.slice(i + 4, i + 6)) / 100;
+      decoded.xAngle = readInt16LE(Array.from(bytes).slice(i, i + 2)) / 100;
+      decoded.yAngle = readInt16LE(Array.from(bytes).slice(i + 2, i + 4)) / 100;
+      decoded.zAngle = readInt16LE(Array.from(bytes).slice(i + 4, i + 6)) / 100;
       decoded.xThresholdReached = (bytes[i + 6] & 1) === 1;
       decoded.yThresholdReached = ((bytes[i + 6] >> 1) & 1) === 1;
       decoded.zThresholdReached = ((bytes[i + 6] >> 2) & 1) === 1;

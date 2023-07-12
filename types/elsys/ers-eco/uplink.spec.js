@@ -33,6 +33,7 @@ describe("Elsys Eco uplink", () => {
     it("should decode Elsys Eco payload", () => {
       const data = {
         data: {
+          port: 5,
           payloadHex: "0100dc023b0400cf070df9",
         },
       };

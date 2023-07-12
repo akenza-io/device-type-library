@@ -36,7 +36,7 @@ function consume(event) {
     }
     // LIGHT
     else if (channelId === 0x03 && channelType === 0x94) {
-      decoded.light = readUInt32LE(bytes.slice(i, i + 4));
+      decoded.light = readUInt32LE(Array.from(bytes).slice(i, i + 4));
       i += 4;
     }
   }
