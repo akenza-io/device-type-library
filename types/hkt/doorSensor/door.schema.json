@@ -24,5 +24,6 @@
       "type": "integer",
       "description": "All closings since sensor boot"
     }
-  }
+  },
+  "required": ["nrOpenings", "nrClosings", "absOpenings", "absClosings"]
 }

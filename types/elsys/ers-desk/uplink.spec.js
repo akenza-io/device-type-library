@@ -43,6 +43,7 @@ describe("Elsys desk uplink", () => {
     it("should decode Elsys desk payload", () => {
       const data = {
         data: {
+          port: 5,
           payloadHex: "05011000f801041101",
         },
       };
@@ -64,6 +65,7 @@ describe("Elsys desk uplink", () => {
     it("should decode Elsys desk Default + Motion payload", () => {
       const data = {
         data: {
+          port: 5,
           payloadHex: "0100f102250400060505070e001100",
         },
       };
@@ -86,7 +88,7 @@ describe("Elsys desk uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.584);
+        assert.equal(value.data.batteryVoltage, 3.584);
         assert.equal(value.data.batteryLevel, 100);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });

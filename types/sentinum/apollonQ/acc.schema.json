@@ -1,0 +1,47 @@
+{
+  "$id": "https://akenza.io/sentinum/apollonQ/acc.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ACC",
+  "type": "object",
+  "properties": {
+    "accStatus": {
+      "title": "ACC Status",
+      "description": "ACC Status",
+      "type": "string",
+      "enum": ["ERROR", "OK"],
+      "hideFromKpis": true
+    },
+    "accOrientation": {
+      "title": "ACC Orientation",
+      "description": "ACC Orientation",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "accOpen": {
+      "title": "ACC Open",
+      "description": "ACC Open",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "accOpenCnt": {
+      "title": "ACC Open count",
+      "description": "ACC Open count",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "accImpact": {
+      "title": "ACC Impact",
+      "description": "ACC Impact",
+      "type": "string",
+      "enum": ["IMPACT", "NO_IMPACT"],
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "accStatus",
+    "accOrientation",
+    "accOpen",
+    "accOpenCnt",
+    "accImpact"
+  ]
+}

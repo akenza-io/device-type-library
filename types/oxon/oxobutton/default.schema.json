@@ -52,5 +52,6 @@
       "minimum": -8192,
       "maximum": 8191
     }
-  }
+  },
+  "required": ["buttonId", "imageID", "temperature", "accX", "accY", "accZ"]
 }

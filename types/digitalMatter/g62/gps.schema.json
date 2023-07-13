@@ -49,5 +49,13 @@
       "unit": "m",
       "description": "GPS accuracy in meters"
     }
-  }
+  },
+  "required": [
+    "latitude",
+    "longitude",
+    "tripType",
+    "gpsFixCurrent",
+    "headingDeg",
+    "speedKmph"
+  ]
 }

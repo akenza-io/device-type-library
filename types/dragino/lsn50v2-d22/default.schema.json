@@ -1,0 +1,38 @@
+{
+  "$id": "https://akenza.io/dragino/lsn50v2-d22/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "c0adc": {
+      "title": "Channel 0 ADC",
+      "type": "number",
+      "unit": "V",
+      "description": "ADC value in voltage"
+    },
+    "digitalStatus": {
+      "title": "Digital status",
+      "type": "string",
+      "description": "Digital status",
+      "enum": ["HIGH", "LOW"]
+    },
+    "extTrigger": {
+      "title": "External trigger",
+      "type": "boolean",
+      "description": "External trigger"
+    },
+    "open": {
+      "title": "Open",
+      "type": "boolean",
+      "description": "True if reed has no contact."
+    }
+  }
+}

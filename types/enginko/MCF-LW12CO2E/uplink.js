@@ -165,11 +165,7 @@ function parseTER(payload) {
       value: Number(parseInt(payload.substring(62, 64), 16)).toFixed(),
       unit: "%",
     };
-    const rfu = {
-      variable: "rfu",
-      value: payload.substring(64),
-    };
-    return [...m1, ...m2, ...m3, battery, rfu];
+    return [...m1, ...m2, ...m3, battery];
   }
   return null;
 }
@@ -300,12 +296,8 @@ function parseVOC(payload, isNew) {
         value: Number(parseInt(payload.substring(58, 60), 16)).toFixed(),
         unit: "%",
       };
-      const rfu = {
-        variable: "rfu",
-        value: payload.substring(60),
-      };
 
-      return [...m1, ...m2, battery, rfu];
+      return [...m1, ...m2, battery];
     }
     return null;
   }
@@ -318,12 +310,8 @@ function parseVOC(payload, isNew) {
       value: Number(parseInt(payload.substring(62, 64), 16)).toFixed(),
       unit: "%",
     };
-    const rfu = {
-      variable: "rfu",
-      value: payload.substring(64),
-    };
 
-    return [...m1, ...m2, battery, rfu];
+    return [...m1, ...m2, battery];
   }
   return null;
 }
@@ -440,12 +428,8 @@ function parseCo2(payload, isNew) {
         value: Number(parseInt(payload.substring(66, 68), 16)).toFixed(),
         unit: "%",
       };
-      const rfu = {
-        variable: "rfu",
-        value: payload.substring(68),
-      };
 
-      return [...m1, ...m2, battery, rfu];
+      return [...m1, ...m2, battery];
     }
     return null;
   }
@@ -458,12 +442,8 @@ function parseCo2(payload, isNew) {
       value: Number(parseInt(payload.substring(70, 72), 16)).toFixed(),
       unit: "%",
     };
-    const rfu = {
-      variable: "rfu",
-      value: payload.substring(72),
-    };
 
-    return [...m1, ...m2, battery, rfu];
+    return [...m1, ...m2, battery];
   }
   return null;
 }
@@ -480,7 +460,7 @@ function parseModBus(payloads) {
     if (uplinkId.toUpperCase() === "0B") {
       let payloadToByteArray = hexStringToByteArray(payload);
       payloadToByteArray = payloadToByteArray.slice(2);
-      if (payload.substring(2, 3) === "1" || payload.substring(2, 3) === "4") {
+      if (payload.substring(2, 3) === 1 || payload.substring(2, 3) === 4) {
         const id = Number(payloadToByteArray[0]).toFixed();
 
         const frameId = {
@@ -514,7 +494,7 @@ function parseModBus(payloads) {
 
           m.push(...[frameId, error]);
         } else {
-          const d = id === "0" ? payload.substring(10) : payload.substring(6);
+          const d = id === 0 ? payload.substring(10) : payload.substring(6);
           const data = {
             variable: "data",
             value: d,
@@ -522,7 +502,7 @@ function parseModBus(payloads) {
 
           dP += d;
 
-          if (id === "0") {
+          if (id === 0) {
             // length is declared only on first payload
             const length = {
               variable: "length",
@@ -554,7 +534,7 @@ function parsePM(payload) {
   if (uplinkId.toUpperCase() === "0B") {
     let payloadToByteArray = hexStringToByteArray(payload);
     payloadToByteArray = payloadToByteArray.slice(3);
-    if (payload.substring(2, 3) === "2" && payload.substring(4, 6) === "01") {
+    if (payload.substring(2, 3) === 2 && payload.substring(4, 6) === "01") {
       const date = {
         variable: "date",
         value: parseDate(payload.substring(6, 14)),
@@ -597,7 +577,7 @@ function parseTERPM(payload) {
   if (uplinkId.toUpperCase() === "0B") {
     let payloadToByteArray = hexStringToByteArray(payload);
     payloadToByteArray = payloadToByteArray.slice(3);
-    if (payload.substring(2, 3) === "3" && payload.substring(4, 6) === "00") {
+    if (payload.substring(2, 3) === 3 && payload.substring(4, 6) === "00") {
       const date = {
         variable: "date",
         value: parseDate(payload.substring(6, 14)),
@@ -668,7 +648,7 @@ function parseWeather(payload) {
   if (uplinkId.toUpperCase() === "0B") {
     let payloadToByteArray = hexStringToByteArray(payload);
     payloadToByteArray = payloadToByteArray.slice(3);
-    if (payload.substring(2, 3) === "2" && payload.substring(4, 6) === "00") {
+    if (payload.substring(2, 3) === 2 && payload.substring(4, 6) === "00") {
       const pressure = {
         variable: "pressure",
         value: getAtmosphericPressure(
@@ -833,13 +813,20 @@ function emitSample(currentSample, topic) {
   if (currentSample.rfu === "") {
     currentSample.rfu = 0;
   }
-  if (currentSample.date !== undefined) {
-    const timestamp = new Date(currentSample.date);
-    delete currentSample.date;
-    emit("sample", { data: currentSample, topic, timestamp });
-  } else {
-    emit("sample", { data: currentSample, topic });
+  if (currentSample.batteryLevel !== undefined) {
+    emit("sample", {
+      data: { batteryLevel: currentSample.batteryLevel },
+      topic: "lifecycle",
+    });
+    delete currentSample.batteryLevel;
   }
+
+  if (currentSample.date !== undefined) {
+    // const timestamp = new Date(currentSample.date);
+    delete currentSample.date;
+    // emit("sample", { data: currentSample, topic, timestamp });
+  }
+  emit("sample", { data: currentSample, topic });
 }
 
 function consume(event) {

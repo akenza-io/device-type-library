@@ -34,5 +34,6 @@
       "unit": "dB",
       "type": "number"
     }
-  }
+  },
+  "required": ["freqWeight", "timeWeight", "la", "laeq", "lamax"]
 }

@@ -21,13 +21,7 @@
       "description": "The battery charge in percent.",
       "unit": "%",
       "hideFromKpis": true
-    },
-    "transmitInterval": {
-      "title": "Transmit interval",
-      "type": "integer",
-      "description": "Transmit interval",
-      "hideFromKpis": true
     }
   },
-  "required": ["batteryVoltage", "batteryLevel", "transmitInterval"]
+  "required": ["batteryVoltage"]
 }

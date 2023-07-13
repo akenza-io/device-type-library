@@ -82,7 +82,7 @@ describe("Digital matter Oyster 3 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 4.475);
+        assert.equal(value.data.batteryVoltage, 4.475);
         assert.equal(value.data.batteryLevel, 60);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
@@ -181,7 +181,7 @@ describe("Digital matter Oyster 3 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.55);
+        assert.equal(value.data.batteryVoltage, 3.55);
         assert.equal(value.data.batteryLevel, 0);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
@@ -291,7 +291,7 @@ describe("Digital matter Oyster 3 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 5.932);
+        assert.equal(value.data.batteryVoltage, 5.932);
         assert.equal(value.data.batteryLevel, 100);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });

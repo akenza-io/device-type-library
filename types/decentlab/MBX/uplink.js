@@ -25,7 +25,7 @@ const decentlab_decoder = {
       length: 1,
       values: [
         {
-          name: "voltage",
+          name: "batteryVoltage",
           displayName: "Battery voltage",
           convert(x) {
             return x[0] / 1000;
@@ -106,7 +106,7 @@ function consume(event) {
   data.distance = sample.distance;
 
   // Lifecycle values
-  lifecycle.voltage = sample.voltage;
+  lifecycle.batteryVoltage = sample.batteryVoltage;
   lifecycle.protocolVersion = sample.protocol_version;
   lifecycle.deviceId = sample.device_id;
   lifecycle.numberOfValidSamples = sample.number_of_valid_samples;

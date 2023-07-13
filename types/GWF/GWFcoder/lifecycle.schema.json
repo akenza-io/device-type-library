@@ -24,8 +24,6 @@
       "title": "Meter ID",
       "type": "integer",
       "description": "Meter ID",
-      "minimum": 0,
-      "maximum": 4294967295,
       "hideFromKpis": true
     },
     "appError": {
@@ -120,5 +118,24 @@
       "minimum": 0,
       "maximum": 186
     }
-  }
+  },
+  "required": [
+    "protocolType",
+    "manufacturerID",
+    "meterID",
+    "appError",
+    "batteryPowerLow",
+    "permantError",
+    "temporaryError",
+    "commandError1",
+    "commandError2",
+    "commandError3",
+    "continuousFlow",
+    "brokenPipe",
+    "batteryLow",
+    "backflow",
+    "noUsage",
+    "loraLinkError",
+    "batteryLifetime"
+  ]
 }

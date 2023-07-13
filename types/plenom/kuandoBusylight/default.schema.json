@@ -19,5 +19,6 @@
       "type": "integer",
       "description": "Lamp time off duration"
     }
-  }
+  },
+  "required": ["lastColorRGB", "timeOn", "timeOff"]
 }

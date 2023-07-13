@@ -36,43 +36,65 @@ function consume(event) {
   lifecycle.batteryLevel = bytes[pos++];
   if (((bytes[0] >> 0) & 1) === 1) {
     // 1st SOIL sensor
-    decoded.e25 = bytesToInt(bytes.slice(pos, pos + 2), 100);
+    decoded.e25 = bytesToInt(Array.from(bytes).slice(pos, pos + 2), 100);
     pos += 2;
-    decoded.soilConductivity = bytesToInt(bytes.slice(pos, pos + 2), 10);
+    decoded.soilConductivity = bytesToInt(
+      Array.from(bytes).slice(pos, pos + 2),
+      10,
+    );
     pos += 2;
-    decoded.temperature = bytesToSignedInt(bytes.slice(pos, pos + 2), 100);
+    decoded.temperature = bytesToSignedInt(
+      Array.from(bytes).slice(pos, pos + 2),
+      100,
+    );
     pos += 2;
-    decoded.waterContent = bytesToInt(bytes.slice(pos, pos + 2), 1);
+    decoded.waterContent = bytesToInt(Array.from(bytes).slice(pos, pos + 2), 1);
     pos += 2;
   }
   if (((bytes[0] >> 1) & 1) === 1) {
     // BME280
-    decoded.airTemperature = bytesToSignedInt(bytes.slice(pos, pos + 2), 100);
+    decoded.airTemperature = bytesToSignedInt(
+      Array.from(bytes).slice(pos, pos + 2),
+      100,
+    );
     pos += 2;
-    decoded.airHumidity = bytesToInt(bytes.slice(pos, pos + 2), 100);
+    decoded.airHumidity = bytesToInt(
+      Array.from(bytes).slice(pos, pos + 2),
+      100,
+    );
     pos += 2;
-    decoded.airPressure = bytesToInt(bytes.slice(pos, pos + 2), 1) + 50000;
+    decoded.airPressure =
+      bytesToInt(Array.from(bytes).slice(pos, pos + 2), 1) + 50000;
     pos += 2;
   }
   if (((bytes[0] >> 2) & 1) === 1) {
     // OPT3001
-    decoded.lux = bytesToInt(bytes.slice(pos, pos + 4), 100);
+    decoded.lux = bytesToInt(Array.from(bytes).slice(pos, pos + 4), 100);
     pos += 4;
   }
   if (((bytes[0] >> 4) & 1) === 1) {
     // PULSE
-    decoded.pulse = bytesToInt(bytes.slice(pos, pos + 4), 1);
+    decoded.pulse = bytesToInt(Array.from(bytes).slice(pos, pos + 4), 1);
     pos += 4;
   }
   if (((bytes[0] >> 3) & 1) === 1) {
     // 2nd soil sensor
-    decoded.e251 = bytesToInt(bytes.slice(pos, pos + 2), 100);
+    decoded.e251 = bytesToInt(Array.from(bytes).slice(pos, pos + 2), 100);
     pos += 2;
-    decoded.soilConductivity1 = bytesToInt(bytes.slice(pos, pos + 2), 10);
+    decoded.soilConductivity1 = bytesToInt(
+      Array.from(bytes).slice(pos, pos + 2),
+      10,
+    );
     pos += 2;
-    decoded.temperature1 = bytesToSignedInt(bytes.slice(pos, pos + 2), 100);
+    decoded.temperature1 = bytesToSignedInt(
+      Array.from(bytes).slice(pos, pos + 2),
+      100,
+    );
     pos += 2;
-    decoded.waterContent1 = bytesToInt(bytes.slice(pos, pos + 2), 1);
+    decoded.waterContent1 = bytesToInt(
+      Array.from(bytes).slice(pos, pos + 2),
+      1,
+    );
     pos += 2;
   }
 

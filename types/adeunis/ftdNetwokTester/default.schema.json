@@ -32,7 +32,7 @@
       "minimum": 0,
       "maximum": 255
     },
-    "voltage": {
+    "batteryVoltage": {
       "title": "Battery voltage",
       "unit": "V",
       "description": "Battery voltage",
@@ -60,5 +60,13 @@
       "description": "Signal-to-Noise Ratio",
       "type": "number"
     }
-  }
+  },
+  "required": [
+    "temperature",
+    "trigger",
+    "uplink",
+    "downlink",
+    "batteryVoltage",
+    "batteryLevel"
+  ]
 }

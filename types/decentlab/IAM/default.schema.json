@@ -66,5 +66,15 @@
       "minimum": 0,
       "maximum": 65535
     }
-  }
+  },
+  "required": [
+    "temperature",
+    "humidity",
+    "voc",
+    "co2",
+    "light",
+    "pressure",
+    "pir",
+    "rawPir"
+  ]
 }

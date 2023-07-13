@@ -56,5 +56,14 @@
       "description": "Barometric Pressure in hpa",
       "type": "number"
     }
-  }
+  },
+  "required": [
+    "temperature",
+    "humidity",
+    "pir",
+    "light",
+    "co2",
+    "tvoc",
+    "pressure"
+  ]
 }

@@ -20,5 +20,6 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     }
-  }
+  },
+  "required": ["soilHumidity", "soilTemperature"]
 }

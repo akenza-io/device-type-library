@@ -11,5 +11,6 @@
       "enum": ["CHANGE", "TIME", "STARTUP", "ERROR", "FIRMWARE_RESPONSE"],
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["reason"]
 }

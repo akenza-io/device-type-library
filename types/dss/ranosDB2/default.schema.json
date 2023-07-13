@@ -64,5 +64,17 @@
       "description": "The lowest dB(C) value in the period between previous measurement and current measurement",
       "type": "number"
     }
-  }
+  },
+  "required": [
+    "dBAfast",
+    "dBAslow",
+    "dBCfast",
+    "dBCslow",
+    "leqA",
+    "leqC",
+    "positivePeakHoldA",
+    "negativePeakHoldA",
+    "positivePeakHoldC",
+    "negativePeakHoldC"
+  ]
 }

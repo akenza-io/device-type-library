@@ -1,0 +1,14 @@
+{
+  "name": "Apollon Q",
+  "version": "1.0.0",
+  "manufacturer": "Sentinum",
+  "url": "https://sentinum.de/apollon-q/",
+  "description": "The glass fiber reinforced housing with IP67 protection class makes the Apollon-Q level sensor from Sentinum a high quality product. Applicable for level measurement of containers, shafts, channels or even in small containers like waste baskets, the sensor provides reliable data with a measurement from 2cm up to 250cm. Even inhomogeneous surfaces are recorded very well due to many small measuring points.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Distance"],
+  "outputTopics": ["default", "lifecycle", "tof", "radar", "acc", "hall"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

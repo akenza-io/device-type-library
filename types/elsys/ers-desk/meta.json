@@ -14,11 +14,7 @@
     "Humidity",
     "Temperature"
   ],
-  "outputTopics": [
-    "default",
-    "occupancy",
-    "lifecycle"
-  ],
+  "outputTopics": ["default", "occupancy", "lifecycle", "configuration"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

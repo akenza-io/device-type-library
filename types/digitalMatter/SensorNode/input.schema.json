@@ -19,5 +19,6 @@
       "description": "Input 3",
       "type": "integer"
     }
-  }
+  },
+  "required": ["input1", "input2", "input3"]
 }

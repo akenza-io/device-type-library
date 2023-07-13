@@ -33,6 +33,7 @@ describe("Elsys EMS Desk uplink", () => {
     it("should decode Elsys EMS Desk payload", () => {
       const data = {
         data: {
+          port: 5,
           payloadHex: "070e241102",
         },
       };
@@ -43,7 +44,7 @@ describe("Elsys EMS Desk uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.voltage, 3.62);
+        assert.equal(value.data.batteryVoltage, 3.62);
         assert.equal(value.data.batteryLevel, 100);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });

@@ -71,5 +71,16 @@
       "description": "Acknowledge byte",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "demandMessage",
+    "positionMessage",
+    "hasMoved",
+    "sos",
+    "operatingMode",
+    "batteryStatus",
+    "batteryLevel",
+    "temperature",
+    "acknowledge"
+  ]
 }

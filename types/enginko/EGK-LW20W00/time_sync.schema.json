@@ -30,5 +30,6 @@
       "type": "integer",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["syncID", "syncVersion", "applicationType", "rfu"]
 }

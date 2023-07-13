@@ -22,5 +22,6 @@
       "type": "string",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["swVersion", "modelCode", "psn"]
 }

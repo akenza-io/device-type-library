@@ -132,5 +132,23 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     }
-  }
+  },
+  "required": [
+    "soilMoistureAtDepth0",
+    "soilTemperatureAtDepth0",
+    "soilMoistureAtDepth1",
+    "soilTemperatureAtDepth1",
+    "soilMoistureAtDepth2",
+    "soilTemperatureAtDepth2",
+    "soilMoistureAtDepth3",
+    "soilTemperatureAtDepth3",
+    "soilMoistureAtDepth4",
+    "soilTemperatureAtDepth4",
+    "soilMoistureAtDepth5",
+    "soilTemperatureAtDepth5",
+    "soilMoistureAtDepth6",
+    "soilTemperatureAtDepth6",
+    "soilMoistureAtDepth7",
+    "soilTemperatureAtDepth7"
+  ]
 }

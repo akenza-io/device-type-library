@@ -17,5 +17,6 @@
       "type": "boolean",
       "description": "True if reed has no contact."
     }
-  }
+  },
+  "required": ["batteryLevel", "open"]
 }

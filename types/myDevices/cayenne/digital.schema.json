@@ -1,0 +1,26 @@
+{
+  "$id": "https://akenza.io/cayenne/cayenne/digital.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Digital",
+  "type": "object",
+  "properties": {
+    "channel": {
+      "title": "Channel",
+      "type": "number",
+      "description": "Channel number",
+      "hideFromKpis": true
+    },
+    "digitalInput": {
+      "title": "Digital input",
+      "type": "integer",
+      "description": "Digital input",
+      "hideFromKpis": true
+    },
+    "digitalOutput": {
+      "title": "Digital output",
+      "type": "integer",
+      "description": "Digital output",
+      "hideFromKpis": true
+    }
+  }
+}

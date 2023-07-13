@@ -46,5 +46,14 @@
       "unit": "V",
       "desciption": "Analog input in Volt."
     }
-  }
+  },
+  "required": [
+    "extPower",
+    "ignition",
+    "digitalInput1",
+    "digitalInput2",
+    "digitalOutput",
+    "extVoltage",
+    "analogInput"
+  ]
 }

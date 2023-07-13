@@ -1,5 +1,5 @@
 function toBool(value) {
-  return value === "1";
+  return value === 1;
 }
 
 function mergeObj(obj1, obj2) {
@@ -271,13 +271,13 @@ function consume(event) {
   let bytes = Hex.hexToBytes(payload);
   let data = {};
   const lifecycle = {};
-  let raw = {};
+  const raw = {};
 
   if (Number(bytes[0]) === 1 || Number(bytes[0]) === 129) {
     data = handleKeepalive(bytes, data);
   } else {
     data = handleResponse(bytes, data);
-    bytes = bytes.slice(-9);
+    bytes = Array.from(bytes).slice(-9);
     data = mergeObj(data, handleKeepalive(bytes, data));
   }
 

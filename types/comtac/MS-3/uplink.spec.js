@@ -84,7 +84,7 @@ describe("Comtac LPN MS-3 Uplink", () => {
         assert.equal(value.data.dip3, false);
         assert.equal(value.data.dip2, false);
         assert.equal(value.data.dip1, false);
-        assert.equal(value.data.voltage, 2.88);
+        assert.equal(value.data.batteryVoltage, 2.88);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });

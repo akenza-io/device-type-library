@@ -34,10 +34,10 @@ function consume(event) {
   } else if (reportType === 15) {
     data.reportType = "Low battery alarm report";
   }
-  const batteryPercent = Bits.bitsToUnsigned(bits.substr(72, 8));
+  const batteryLevel = Bits.bitsToUnsigned(bits.substr(72, 8));
 
   emit("sample", {
-    data: { batteryPercent },
+    data: { batteryLevel },
     topic: "lifecycle",
   });
   emit("sample", { data, topic: "default" });

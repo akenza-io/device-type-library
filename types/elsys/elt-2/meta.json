@@ -14,10 +14,10 @@
     "Pulse",
     "Distance",
     "Motion",
-    "Waterleak",
+    "Water leak",
     "Pressure"
   ],
-  "outputTopics": ["default", "lifecycle"],
+  "outputTopics": ["default", "lifecycle", "configuration"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

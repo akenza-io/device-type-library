@@ -18,11 +18,12 @@ function consume(event) {
   lifecycle.minHumThreshold = Bits.bitsToSigned(bits.substr(24, 8));
   lifecycle.maxHumThreshold = Bits.bitsToSigned(bits.substr(32, 8));
   lifecycle.sendInterval = Bits.bitsToUnsigned(bits.substr(40, 16));
-  lifecycle.voltage = parseFloat(
+  lifecycle.batteryVoltage = parseFloat(
     (Bits.bitsToUnsigned(bits.substr(56, 16)) / 1000).toFixed(2),
   );
 
-  let batteryLevel = Math.round((lifecycle.voltage - 2.2) / 0.008 / 10) * 10; // 2.2V - 3V
+  let batteryLevel =
+    Math.round((lifecycle.batteryVoltage - 2.2) / 0.008 / 10) * 10; // 2.2V - 3V
   if (batteryLevel > 100) {
     batteryLevel = 100;
   } else if (batteryLevel < 0) {

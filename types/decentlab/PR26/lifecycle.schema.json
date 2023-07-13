@@ -4,7 +4,7 @@
   "title": "Lifecycle",
   "type": "object",
   "properties": {
-    "voltage": {
+    "batteryVoltage": {
       "title": "Battery voltage",
       "unit": "V",
       "type": "number",
@@ -24,5 +24,6 @@
       "type": "integer",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["batteryVoltage", "protocolVersion", "deviceID"]
 }

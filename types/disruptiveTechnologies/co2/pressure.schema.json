@@ -10,5 +10,6 @@
       "description": "Barometric Pressure in bar",
       "type": "number"
     }
-  }
+  },
+  "required": ["pressure"]
 }

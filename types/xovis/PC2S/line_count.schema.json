@@ -38,5 +38,6 @@
       "type": "string",
       "enum": ["FEMALE", "MALE"]
     }
-  }
+  },
+  "required": ["fw", "bw"]
 }

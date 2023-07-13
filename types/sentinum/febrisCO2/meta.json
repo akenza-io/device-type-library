@@ -1,0 +1,20 @@
+{
+  "name": "Febris CO2",
+  "version": "1.0.0",
+  "manufacturer": "Sentinum",
+  "url": "https://sentinum.de/febris-co2-sensor/",
+  "description": "Febris is a smart and wireless air quality traffic light that records the CO2 content in the air in ppm, as well as temperature and humidity at regular intervals. Warnings are issued acoustically and visually when the specified limit is exceeded. In addition, the data is transmitted at regular intervals. In this way, rooms or entire buildings can be efficiently monitored. Alternatively, the sensor can also be equipped with an additional VOC sensor. The sensor is operated with 4xAA cells, which are easily replaceable. With a simple KNOCK-KNOCK on the sensor, an immediate measurement can be triggered manually. Unlike other sensors, the sensor additionally features an innovative auto-calibration.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "Pressure",
+    "CO2",
+    "Dew point"
+  ],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

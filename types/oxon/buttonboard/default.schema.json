@@ -106,5 +106,24 @@
       "minimum": -8192,
       "maximum": 8191
     }
-  }
+  },
+  "required": [
+    "longPressed",
+    "button1",
+    "button2",
+    "button3",
+    "button4",
+    "button5",
+    "button6",
+    "button1Enabled",
+    "button2Enabled",
+    "button3Enabled",
+    "button4Enabled",
+    "button5Enabled",
+    "button6Enabled",
+    "temperature",
+    "accX",
+    "accY",
+    "accZ"
+  ]
 }

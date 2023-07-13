@@ -62,5 +62,13 @@
       "description": "Inactivity alarm",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "latitude",
+    "longitude",
+    "inTrip",
+    "fixFailed",
+    "headingDeg",
+    "speedKmph"
+  ]
 }

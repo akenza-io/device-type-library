@@ -68,5 +68,14 @@
       "type": "integer",
       "description": "Particles less than 10 μm in diameter"
     }
-  }
+  },
+  "required": [
+    "temperature",
+    "humidity",
+    "pir",
+    "light",
+    "co2",
+    "tvoc",
+    "pressure"
+  ]
 }
