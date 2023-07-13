@@ -11,9 +11,10 @@
       "description": "Distance measured between the sensor and the surface"
     },
     "remaining": {
-      "title": "Remaining",
-      "type": "integer",
-      "description": "Remaining amount"
+      "title": "Remaining content",
+      "unit": "mm",
+      "type": "number",
+      "description": "Remaining content of the container"
     }
   }
 }

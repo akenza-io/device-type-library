@@ -132,14 +132,16 @@ function consume(event) {
     }
     // HISTORICAL DATA
     else if (channelId === 0x20 && channelType === 0xce) {
-      const pastLocation = {};
-      pastLocation.timestamp = readUInt32LE(bytes.slice(i, i + 4));
-      pastLocation.longitude = readInt32LE(bytes.slice(i + 4, i + 8)) / 1000000;
-      pastLocation.latitude = readInt32LE(bytes.slice(i + 8, i + 12)) / 1000000;
+      const pastLocations = {};
+      pastLocations.timestamp = readUInt32LE(bytes.slice(i, i + 4));
+      pastLocations.longitude =
+        readInt32LE(bytes.slice(i + 4, i + 8)) / 1000000;
+      pastLocations.latitude =
+        readInt32LE(bytes.slice(i + 8, i + 12)) / 1000000;
       i += 12;
 
-      history.pastLocation = history.pastLocation || [];
-      history.pastLocation.push(pastLocation);
+      history.locationHistory = history.locationHistory || [];
+      history.locationHistory.push(pastLocations);
     } else {
       break;
     }
