@@ -42,8 +42,6 @@ function consume(event) {
 
   const senType = bytes[2] - 0x30;
 
-  lifecycle.sensorType = senType;
-
   let isTemFlag = false;
 
   if (
