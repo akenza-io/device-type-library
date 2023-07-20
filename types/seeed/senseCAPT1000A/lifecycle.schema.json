@@ -1,0 +1,88 @@
+{
+  "$id": "https://akenza.io/seeed/senseCAPT1000A/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "batteryLevel": {
+      "title": "Battery charge",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "The battery charge in percent.",
+      "unit": "%"
+    },
+    "firmwareVersion": {
+      "title": "Firmware version",
+      "description": "Firmware version",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "hardwareVersion": {
+      "title": "Hardware version",
+      "description": "Hardware version",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "workMode": {
+      "title": "Work mode",
+      "description": "Work mode",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "heartbeatInterval": {
+      "title": "Heartbeat interval",
+      "type": "integer",
+      "desciption": "Heartbeat interval",
+      "hideFromKpis": true
+    },
+    "periodicInterval": {
+      "title": "Periodic interval",
+      "type": "integer",
+      "desciption": "Periodic interval",
+      "hideFromKpis": true
+    },
+    "eventInterval": {
+      "title": "Event interval",
+      "description": "Event interval",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "sosMode": {
+      "title": "SOS mode",
+      "description": "SOS mode",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "sosEvent": {
+      "title": "SOS Event",
+      "description": "SOS Event",
+      "type": "string",
+      "enum": [
+        "MOVING_STARTING",
+        "MOVING_END",
+        "DEVICE_STATIC",
+        "SHOCK_EVENT",
+        "TEMP_EVENT",
+        "LIGHTING_EVENT",
+        "SOS_EVENT",
+        "CUSTOMER_EVENT",
+        "NO_EVENT"
+      ],
+      "hideFromKpis": true
+    },
+    "wifiScan": {
+      "title": "Wifi Scan",
+      "description": "Wifi Scan",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "bleScan": {
+      "title": "BLE Scan",
+      "description": "BLE Scan",
+      "type": "array",
+      "hideFromKpis": true
+    }
+  },
+  "required": ["batteryLevel"]
+}

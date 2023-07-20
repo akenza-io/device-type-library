@@ -1,0 +1,25 @@
+{
+  "$id": "https://akenza.io/seeed/senseCAPT1000A/gps.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GPS",
+  "type": "object",
+  "properties": {
+    "latitude": {
+      "title": "Latitude",
+      "unit": "°",
+      "type": "number",
+      "description": "Latitude",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "longitude": {
+      "title": "Longitude",
+      "unit": "°",
+      "type": "number",
+      "description": "Longitude",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    }
+  },
+  "required": ["latitude", "longitude"]
+}
