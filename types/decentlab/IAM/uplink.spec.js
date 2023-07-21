@@ -86,6 +86,7 @@ describe("Decentlab IAM Uplink", () => {
 
         assert.equal(value.topic, "occupancy");
         assert.equal(value.data.occupancy, true);
+        assert.equal(value.data.occupied, true);
 
         utils.validateSchema(value.data, occupancySchema, { throwError: true });
       });

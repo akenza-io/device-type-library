@@ -45,8 +45,10 @@ function consume(event) {
           // Parking Status
           if (Bits.bitsToUnsigned(bits.substr(pointer, 8)) === 1) {
             data.occupancy = 1;
+            data.occupied = true;
           } else {
             data.occupancy = 0;
+            data.occupied = false;
           }
           topic = "occupancy";
           break;
@@ -68,8 +70,10 @@ function consume(event) {
           // Keep-Alive
           if (Bits.bitsToUnsigned(bits.substr(pointer, 8)) === 1) {
             data.occupancy = 1;
+            data.occupied = true;
           } else {
             data.occupancy = 0;
+            data.occupied = false;
           }
           topic = "occupancy";
           break;

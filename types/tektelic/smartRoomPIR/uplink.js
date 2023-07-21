@@ -205,9 +205,11 @@ function decoder(bytes, port) {
           if (occupancy === 255) {
             decodedData.occupancy = 1;
             decodedData.motion = 1;
+            decodedData.occupied = true;
           } else {
             decodedData.occupancy = 0;
             decodedData.motion = 0;
+            decodedData.occupied = false;
           }
           return 1;
         },
