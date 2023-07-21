@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.37.0] - 2023-06-21
+
+### Added
+
+- Seed - SenseCAPT1000A
+
 # [1.36.0] - 2023-06-20
 
 ### Added
