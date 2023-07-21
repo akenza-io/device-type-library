@@ -1,0 +1,14 @@
+{
+  "name": "UC300",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight-iot.com/controller/uc300/",
+  "description": "The UC300 is a IoT control and monitoring device.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Humidity", "Pulse", "GPIO", "Modbus"],
+  "outputTopics": ["adc", "error", "gpio", "modbus", "temperature"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

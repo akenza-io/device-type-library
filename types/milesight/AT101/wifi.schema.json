@@ -1,0 +1,14 @@
+{
+  "$id": "https://akenza.io/milesight/AT101/wifi.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Wifi",
+  "type": "object",
+  "properties": {
+    "wifi": {
+      "title": "Wifi",
+      "description": "Wifi stats",
+      "type": "array",
+      "hideFromKpis": true
+    }
+  }
+}

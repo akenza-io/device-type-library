@@ -107,7 +107,7 @@
       "type": "string",
       "title": "The connectivity schema",
       "description": "An explanation about the purpose of this instance.",
-      "enum": ["LORA", "Sigfox", "MQTT", "HTTP"],
+      "enum": ["LORA", "Sigfox", "MQTT", "HTTP", "NB-IOT"],
       "examples": ["LORA"]
     }
   }
