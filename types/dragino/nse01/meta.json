@@ -1,0 +1,18 @@
+{
+  "name": "NSE01",
+  "version": "1.0.0",
+  "manufacturer": "Dragino",
+  "url": "https://www.dragino.com/products/agriculture-weather-station/item/177-nse01.html",
+  "description": "The Dragino NSE01 is a NB-IoT Soil Moisture & EC Sensor designed for IoT of Agriculture. It detects Soil Moisture, Soil Temperature and Soil Conductivity, and upload the value via wireless to IoT Server via NB-IoT Network.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Soil Moisture",
+    "Soil Temperature",
+    "Soil Conductivity"
+  ],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "NB-IOT"
+}

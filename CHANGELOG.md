@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.36.0] - 2023-06-20
+
+### Added
+
+- Dragino - NDDS20
+- Dragino - NDDS75
+- Dragino - NSE01
+
+### Changed
+
+- Added new type NBIOT
+
 # [1.35.0] - 2023-06-13
 
 ### Added
