@@ -508,61 +508,64 @@ function getUpShortInfo(messageValue) {
   };
 }
 
-function isEmpty(obj) {
-  return Object.keys(obj).length === 0;
+function deleteUnusedKeys(data) {
+  let keysRetained = false;
+  Object.keys(data).forEach((key) => {
+    if (data[key] === undefined) {
+      delete data[key];
+    } else {
+      keysRetained = true;
+    }
+  });
+  return keysRetained;
 }
 
 function consume(event) {
   const payload = event.data.payloadHex;
-  const result = messageAnalyzed(payload)[0];
-  const defaultData = {};
+  const res = messageAnalyzed(payload)[0];
+  const data = {};
   const gps = {};
   const error = {};
   const lifecycle = {};
 
-  Object.keys(result).forEach((key) => {
-    if (
-      key === "batteryLevel" ||
-      key === "firmwareVersion" ||
-      key === "hardwareVersion" ||
-      key === "workMode" ||
-      key === "heartbeatInterval" ||
-      key === "periodicInterval" ||
-      key === "eventInterval" ||
-      key === "sosMode" ||
-      key === "sosEvent" ||
-      key === "wifiScan" ||
-      key === "bleScan"
-    ) {
-      lifecycle[key] = result[key];
-    }
+  // Lifecycle values
+  lifecycle.batteryLevel = res.batteryLevel;
+  lifecycle.firmwareVersion = res.firmwareVersion;
+  lifecycle.hardwareVersion = res.hardwareVersion;
+  lifecycle.workMode = res.workMode;
+  lifecycle.heartbeatInterval = res.heartbeatInterval;
+  lifecycle.periodicInterval = res.periodicInterval;
+  lifecycle.eventInterval = res.eventInterval;
+  lifecycle.sosMode = res.sosMode;
+  lifecycle.sosEvent = res.sosEvent;
+  lifecycle.wifiScan = res.wifiScan;
+  lifecycle.bleScan = res.bleScan;
 
-    if (key === "longitude" || key === "latitude") {
-      gps[key] = result[key];
-    }
+  // GPS values
+  gps.longitude = res.longitude;
+  gps.latitude = res.latitude;
 
-    if (key === "temperature" || key === "light") {
-      defaultData[key] = result[key];
-    }
+  // Default values
+  data.temperature = res.temperature;
+  data.light = res.light;
 
-    if (key === "error" || key === "errorCode") {
-      error[key] = result[key];
-    }
-  });
+  // Error values
+  error.error = res.error;
+  error.errorCode = res.errorCode;
 
-  if (!isEmpty(lifecycle)) {
+  if (deleteUnusedKeys(lifecycle)) {
     emit("sample", { data: lifecycle, topic: "lifecycle" });
   }
 
-  if (!isEmpty(gps)) {
+  if (deleteUnusedKeys(gps)) {
     emit("sample", { data: gps, topic: "gps" });
   }
 
-  if (!isEmpty(defaultData)) {
-    emit("sample", { data: defaultData, topic: "default" });
+  if (deleteUnusedKeys(data)) {
+    emit("sample", { data, topic: "default" });
   }
 
-  if (!isEmpty(error)) {
+  if (deleteUnusedKeys(error)) {
     emit("sample", { data: error, topic: "error" });
   }
 }
