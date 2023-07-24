@@ -27,12 +27,14 @@ describe("Integra aquastream uplink", () => {
     });
   });
 
-  let deviceSchema = null;
+  let lifecycleSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/device.schema.json`).then((parsedSchema) => {
-      deviceSchema = parsedSchema;
-      done();
-    });
+    utils
+      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+      .then((parsedSchema) => {
+        lifecycleSchema = parsedSchema;
+        done();
+      });
   });
 
   describe("consume()", () => {
@@ -65,12 +67,12 @@ describe("Integra aquastream uplink", () => {
         assert.equal(value.topic, "alarm");
 
         assert.equal(value.data.batteryLow, false);
-        assert.equal(value.data.burst, false);
+        assert.equal(value.data.burstAlarm, false);
         assert.equal(value.data.leak, false);
         assert.equal(value.data.noConsumption, false);
         assert.equal(value.data.overflow, false);
         assert.equal(value.data.reverseFlow, false);
-        assert.equal(value.data.tamper, false);
+        assert.equal(value.data.tamperAlarm, false);
 
         utils.validateSchema(value.data, alarmSchema, { throwError: true });
       });
@@ -80,7 +82,7 @@ describe("Integra aquastream uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "device");
+        assert.equal(value.topic, "lifecycle");
 
         assert.equal(value.data.batteryLifetime, 5835);
         assert.equal(value.data.configuration, 32);
@@ -94,7 +96,7 @@ describe("Integra aquastream uplink", () => {
         assert.equal(value.data.versionNumber, 5);
         assert.equal(value.data.waterType, 7);
 
-        utils.validateSchema(value.data, deviceSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

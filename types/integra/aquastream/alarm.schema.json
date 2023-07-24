@@ -4,12 +4,12 @@
   "title": "Alarm",
   "type": "object",
   "properties": {
-    "tamper": {
+    "tamperAlarm": {
       "title": "Tamper alarm",
       "description": "Tamper alarm",
       "type": "boolean"
     },
-    "burst": {
+    "burstAlarm": {
       "title": "Burst alarm",
       "description": "Burst alarm",
       "type": "boolean"

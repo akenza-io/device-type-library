@@ -6,7 +6,7 @@
   "properties": {
     "volume": {
       "title": "Volume",
-      "unit": "L",
+      "unit": "l",
       "type": "number",
       "description": "Total volume in liter"
     },
@@ -18,7 +18,7 @@
     },
     "backflow": {
       "title": "Backflow",
-      "unit": "L",
+      "unit": "l",
       "type": "number",
       "description": "Backflow in liter"
     }

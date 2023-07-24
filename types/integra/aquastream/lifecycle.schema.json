@@ -1,7 +1,7 @@
 {
-  "$id": "https://akenza.io/integra/aquastream/device.schema.json",
+  "$id": "https://akenza.io/integra/aquastream/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Device",
+  "title": "Lifecycle",
   "type": "object",
   "properties": {
     "manufacturerCode": {

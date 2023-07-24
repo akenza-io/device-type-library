@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "manufacturer": "Integra",
   "url": "https://ch.integra-metering.com/product/aquastream-m-bus/",
-  "description": "System Modul Mod-Bus for mechanical water metering",
+  "description": "System Module Mod-Bus for mechanical water metering",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Volume", "Backflow"],
-  "outputTopics": ["default", "device", "alarm"],
+  "outputTopics": ["default", "lifecycle", "alarm"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }
