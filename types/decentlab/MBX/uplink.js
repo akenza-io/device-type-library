@@ -84,6 +84,37 @@ const decentlab_decoder = {
   },
 };
 
+function getFillLevel(device, distance) {
+  if (device !== undefined && distance !== undefined) {
+    if (device.customFields !== undefined) {
+      const { customFields } = device;
+      let scaleLength = null;
+      let sensorDistance = 0;
+
+      if (customFields.containerHeight !== undefined) {
+        scaleLength = Number(device.customFields.containerHeight);
+      }
+
+      if (customFields.installationOffset !== undefined) {
+        sensorDistance = Number(device.customFields.installationOffset);
+      }
+
+      if (scaleLength !== null) {
+        const percentExact =
+          (100 / scaleLength) * (scaleLength - (distance - sensorDistance));
+        let fillLevel = Math.round(percentExact);
+        if (fillLevel > 100) {
+          fillLevel = 100;
+        } else if (fillLevel < 0) {
+          fillLevel = 0;
+        }
+        return fillLevel;
+      }
+    }
+  }
+  return undefined;
+}
+
 function deleteUnusedKeys(data) {
   let keysRetained = false;
   Object.keys(data).forEach((key) => {
@@ -104,6 +135,12 @@ function consume(event) {
 
   // Default values
   data.distance = sample.distance;
+  data.distanceCM = sample.distance / 10;
+
+  const fillLevel = getFillLevel(event.device, data.distanceCM);
+  if (fillLevel !== undefined) {
+    data.fillLevel = fillLevel;
+  }
 
   // Lifecycle values
   lifecycle.batteryVoltage = sample.batteryVoltage;
