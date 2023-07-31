@@ -1,3 +1,34 @@
+function getFillLevel(device, distance) {
+  if (device !== undefined && distance !== undefined) {
+    if (device.customFields !== undefined) {
+      const { customFields } = device;
+      let scaleLength = null;
+      let sensorDistance = 0;
+
+      if (customFields.containerHeight !== undefined) {
+        scaleLength = Number(device.customFields.containerHeight);
+      }
+
+      if (customFields.installationOffset !== undefined) {
+        sensorDistance = Number(device.customFields.installationOffset);
+      }
+
+      if (scaleLength !== null) {
+        const percentExact =
+          (100 / scaleLength) * (scaleLength - (distance - sensorDistance));
+        let fillLevel = Math.round(percentExact);
+        if (fillLevel > 100) {
+          fillLevel = 100;
+        } else if (fillLevel < 0) {
+          fillLevel = 0;
+        }
+        return fillLevel;
+      }
+    }
+  }
+  return undefined;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
@@ -13,6 +44,10 @@ function consume(event) {
 
   for (let pointer = 120; pointer < bits.length; pointer++) {
     data.distance = Bits.bitsToUnsigned(bits.substr(pointer, 16));
+    const fillLevel = getFillLevel(event.device, data.distance);
+    if (fillLevel !== undefined) {
+      data.fillLevel = fillLevel;
+    }
     pointer += 16;
     const timestamp = new Date(
       Bits.bitsToUnsigned(bits.substr(pointer, 32)) * 1000,

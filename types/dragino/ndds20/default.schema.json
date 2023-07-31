@@ -9,6 +9,12 @@
       "unit": "cm",
       "type": "number",
       "description": "Distance measured between the sensor and the surface"
+    },
+    "fillLevel": {
+      "title": "Fill level",
+      "unit": "%",
+      "type": "number",
+      "description": "Fill percentage of the container"
     }
   }
 }

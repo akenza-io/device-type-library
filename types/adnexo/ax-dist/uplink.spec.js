@@ -58,6 +58,12 @@ describe("Adnexo ax-dist Uplink", () => {
   describe("consume()", () => {
     it("should decode Adnexo ax-dist measurement payload", () => {
       const data = {
+        device: {
+          customFields: {
+            containerHeight: 600,
+            installationOffset: 0,
+          },
+        },
         data: {
           port: 100,
           payloadHex: "340Adc008A0C",
@@ -87,6 +93,7 @@ describe("Adnexo ax-dist Uplink", () => {
         assert.equal(value.topic, "measurement");
 
         assert.equal(value.data.distance, 261.2);
+        assert.equal(value.data.fillLevel, 56);
         assert.equal(value.data.measurementType, "REGULAR_MEASUREMENT");
         assert.equal(value.data.temperature, 22);
 

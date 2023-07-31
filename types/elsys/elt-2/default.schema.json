@@ -56,6 +56,12 @@
       "minimum": 0,
       "maximum": 65535
     },
+    "fillLevel": {
+      "title": "Fill level",
+      "unit": "%",
+      "type": "number",
+      "description": "Fill percentage of the container"
+    },
     "accMotion": {
       "title": "Motion (Acceleration)",
       "type": "number",
