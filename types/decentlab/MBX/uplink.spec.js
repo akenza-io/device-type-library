@@ -32,6 +32,12 @@ describe("Decentlab MBX Uplink", () => {
   describe("consume()", () => {
     it("should decode Decentlab MBX payload", () => {
       const data = {
+        device: {
+          customFields: {
+            containerHeight: 200,
+            installationOffset: 0,
+          },
+        },
         data: {
           payloadHex: "02012f000304d200010bb1",
         },
@@ -44,6 +50,8 @@ describe("Decentlab MBX Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.distance, 1234);
+        assert.equal(value.data.distanceCM, 123.4);
+        assert.equal(value.data.fillLevel, 38);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
