@@ -28,6 +28,12 @@
       "minimum": 0,
       "maximum": 65535
     },
+    "fillLevel": {
+      "title": "Fill level",
+      "unit": "%",
+      "type": "number",
+      "description": "Fill percentage of the container"
+    },
     "pressure": {
       "title": "Pressure",
       "unit": "hpa",
