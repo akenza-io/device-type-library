@@ -10,6 +10,11 @@
       "type": "integer",
       "minimum": 0,
       "maximum": 1
+    },
+    "occupied": {
+      "title": "Occupied",
+      "description": "Space occupancy. false = Unoccupied / true = Occupied.",
+      "type": "boolean"
     }
   },
   "required": ["occupancy"]

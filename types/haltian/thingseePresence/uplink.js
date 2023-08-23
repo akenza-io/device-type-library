@@ -110,6 +110,7 @@ function consume(event) {
     case 2100: {
       topic = "occupancy";
       sample.occupancy = data.state;
+      sample.occupied = !!sample.occupancy;
       break;
     }
     default:

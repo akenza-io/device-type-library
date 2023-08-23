@@ -8,7 +8,12 @@
       "title": "Occupancy",
       "description": "Space occupancy. false = (PIR == 0) / true = (PIR > 0).",
       "type": "boolean"
+    },
+    "occupied": {
+      "title": "Occupied",
+      "description": "Space occupancy. false = Unoccupied / true = Occupied.",
+      "type": "boolean"
     }
   },
-  "required": ["occupancy"]
+  "required": ["occupancy", "occupied"]
 }

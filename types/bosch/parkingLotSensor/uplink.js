@@ -31,6 +31,7 @@ function consume(event) {
   }
 
   if (port === 1 || port === 2 || port === 3) {
+    occupancy.occupied = !!occupancy.occupancy;
     emit("sample", { data: occupancy, topic: "occupancy" });
   }
 }
