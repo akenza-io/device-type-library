@@ -10,6 +10,12 @@
       "desciption": "Ultrasonic distance measured between the sensor and the surface.",
       "unit": "cm"
     },
+    "fillLevel": {
+      "title": "Fill level",
+      "unit": "%",
+      "type": "number",
+      "description": "Fill percentage of the container"
+    },
     "laserDistance": {
       "title": "Laser distance",
       "type": "number",

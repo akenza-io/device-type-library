@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.37.1] - 2023-06-28
+
+### Changed
+
+- Added filllevel compability to all distance sensors
+
 # [1.37.0] - 2023-06-21
 
 ### Added

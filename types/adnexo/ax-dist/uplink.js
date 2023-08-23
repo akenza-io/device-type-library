@@ -112,12 +112,16 @@ function consume(event) {
 
         if (customFields.tankHeightCm !== undefined) {
           scaleLength = Number(event.device.customFields.tankHeightCm);
+        } else if (customFields.containerHeight !== undefined) {
+          scaleLength = Number(event.device.customFields.containerHeight);
         }
 
         if (customFields.distanceSensorSurfaceCM !== undefined) {
           sensorDistance = Number(
             event.device.customFields.distanceSensorSurfaceCM,
           );
+        } else if (customFields.installationOffset !== undefined) {
+          sensorDistance = Number(event.device.customFields.installationOffset);
         }
 
         if (scaleLength !== null) {

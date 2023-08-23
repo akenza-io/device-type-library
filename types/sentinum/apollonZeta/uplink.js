@@ -1,3 +1,34 @@
+function getFillLevel(device, distance) {
+  if (device !== undefined && distance !== undefined) {
+    if (device.customFields !== undefined) {
+      const { customFields } = device;
+      let scaleLength = null;
+      let sensorDistance = 0;
+
+      if (customFields.containerHeight !== undefined) {
+        scaleLength = Number(device.customFields.containerHeight);
+      }
+
+      if (customFields.installationOffset !== undefined) {
+        sensorDistance = Number(device.customFields.installationOffset);
+      }
+
+      if (scaleLength !== null) {
+        const percentExact =
+          (100 / scaleLength) * (scaleLength - (distance - sensorDistance));
+        let fillLevel = Math.round(percentExact);
+        if (fillLevel > 100) {
+          fillLevel = 100;
+        } else if (fillLevel < 0) {
+          fillLevel = 0;
+        }
+        return fillLevel;
+      }
+    }
+  }
+  return undefined;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const { port } = event.data;
@@ -29,6 +60,12 @@ function consume(event) {
 
     data.alarm = bytes[6] ? "ALARM" : "NO_ALARM";
     data.distance = (bytes[7] << 8) | bytes[8]; // in mm
+    data.distanceCM = (bytes[7] << 8) | (bytes[8] / 10); // in cm
+
+    const fillLevel = getFillLevel(event.device, data.distanceCM);
+    if (fillLevel !== undefined) {
+      data.fillLevel = fillLevel;
+    }
 
     // decode product_version
     let byteCnt = 9;
