@@ -1,0 +1,73 @@
+{
+  "$id": "https://akenza.io/watecco/triphaso/energy.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Energy",
+  "type": "object",
+  "properties": {
+    "activeEnergyWhPhaseA": {
+      "title": "Active energy phase A",
+      "unit": "Wh",
+      "description": "Active energy phase A",
+      "type": "number"
+    },
+    "reactiveEnergyWhPhaseA": {
+      "title": "Reactive energy phase A",
+      "unit": "Wh",
+      "description": "Reactive energy phase A",
+      "type": "number"
+    },
+    "activeEnergyWhPhaseB": {
+      "title": "Active energy phase B",
+      "unit": "Wh",
+      "description": "Active energy phase B",
+      "type": "number"
+    },
+    "reactiveEnergyWhPhaseB": {
+      "title": "Reactive energy phase B",
+      "unit": "Wh",
+      "description": "Reactive energy phase B",
+      "type": "number"
+    },
+    "activeEnergyWhPhaseC": {
+      "title": "Active energy phase C",
+      "unit": "Wh",
+      "description": "Active energy phase C",
+      "type": "number"
+    },
+    "reactiveEnergyWhPhaseC": {
+      "title": "Reactive energy phase C",
+      "unit": "Wh",
+      "description": "Reactive energy phase C",
+      "type": "number"
+    },
+    "activeEnergyWhPhaseABC": {
+      "title": "Active energy phase ABC",
+      "unit": "Wh",
+      "description": "Active energy phase ABC",
+      "type": "number"
+    },
+    "reactiveEnergyWhPhaseABC": {
+      "title": "Reactive energy phase ABC",
+      "unit": "Wh",
+      "description": "Reactive energy phase ABC",
+      "type": "number"
+    },
+    "endpoint": {
+      "title": "Phase endpoint",
+      "description": "Phase endpoint",
+      "type": "integer",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "activeEnergyWhPhaseA",
+    "reactiveEnergyWhPhaseA",
+    "activeEnergyWhPhaseB",
+    "reactiveEnergyWhPhaseB",
+    "activeEnergyWhPhaseC",
+    "reactiveEnergyWhPhaseC",
+    "activeEnergyWhPhaseABC",
+    "reactiveEnergyWhPhaseABC",
+    "endpoint"
+  ]
+}

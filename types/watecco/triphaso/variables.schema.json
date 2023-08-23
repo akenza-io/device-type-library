@@ -1,0 +1,73 @@
+{
+  "$id": "https://akenza.io/watecco/triphaso/variables.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Phase variables",
+  "type": "object",
+  "properties": {
+    "vrmsA": {
+      "title": "Phase A voltage root mean square",
+      "unit": "Vrms",
+      "description": "Phase A voltage root mean square",
+      "type": "number"
+    },
+    "irmsA": {
+      "title": "Phase A current root mean square",
+      "unit": "Irms",
+      "description": "Phase A current root mean square",
+      "type": "number"
+    },
+    "angleA": {
+      "title": "Phase A Angle",
+      "description": "Phase A angle of load impedance",
+      "unit": "°",
+      "type": "number"
+    },
+    "vrmsB": {
+      "title": "Phase B voltage root mean square",
+      "unit": "Vrms",
+      "description": "Phase B voltage root mean square",
+      "type": "number"
+    },
+    "irmsB": {
+      "title": "Phase B current root mean square",
+      "unit": "Irms",
+      "description": "Phase B current root mean square",
+      "type": "number"
+    },
+    "angleB": {
+      "title": "Phase B Angle",
+      "description": "Phase B angle of load impedance",
+      "unit": "°",
+      "type": "number"
+    },
+    "vrmsC": {
+      "title": "Phase C voltage root mean square",
+      "unit": "Vrms",
+      "description": "Phase C voltage root mean square",
+      "type": "number"
+    },
+    "irmsC": {
+      "title": "Phase C current root mean square",
+      "unit": "Irms",
+      "description": "Phase C current root mean square",
+      "type": "number"
+    },
+    "angleC": {
+      "title": "Phase C Angle",
+      "description": "Phase C angle of load impedance",
+      "unit": "°",
+      "type": "number"
+    }
+  },
+  "required": [
+    "vrmsA",
+    "irmsA",
+    "angleA",
+    "vrmsB",
+    "irmsB",
+    "angleB",
+    "vrmsC",
+    "irmsC",
+    "angleC"
+  ]
+}

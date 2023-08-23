@@ -1,0 +1,73 @@
+{
+  "$id": "https://akenza.io/watecco/triphaso/power.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Power",
+  "type": "object",
+  "properties": {
+    "activePowerWhPhaseA": {
+      "title": "Active power phase A",
+      "unit": "Wh",
+      "description": "Active power phase A",
+      "type": "number"
+    },
+    "reactivePowerWhPhaseA": {
+      "title": "Reactive power phase A",
+      "unit": "Wh",
+      "description": "Reactive power phase A",
+      "type": "number"
+    },
+    "activePowerWhPhaseB": {
+      "title": "Active power phase B",
+      "unit": "Wh",
+      "description": "Active power phase B",
+      "type": "number"
+    },
+    "reactivePowerWhPhaseB": {
+      "title": "Reactive power phase B",
+      "unit": "Wh",
+      "description": "Reactive power phase B",
+      "type": "number"
+    },
+    "activePowerWhPhaseC": {
+      "title": "Active power phase C",
+      "unit": "Wh",
+      "description": "Active power phase C",
+      "type": "number"
+    },
+    "reactivePowerWhPhaseC": {
+      "title": "Reactive power phase C",
+      "unit": "Wh",
+      "description": "Reactive power phase C",
+      "type": "number"
+    },
+    "activePowerWhPhaseABC": {
+      "title": "Active power phase ABC",
+      "unit": "Wh",
+      "description": "Active power phase ABC",
+      "type": "number"
+    },
+    "reactivePowerWhPhaseABC": {
+      "title": "Reactive power phase ABC",
+      "unit": "Wh",
+      "description": "Reactive power phase ABC",
+      "type": "number"
+    },
+    "endpoint": {
+      "title": "Phase endpoint",
+      "description": "Phase endpoint",
+      "type": "integer",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "activePowerWhPhaseA",
+    "reactivePowerWhPhaseA",
+    "activePowerWhPhaseB",
+    "reactivePowerWhPhaseB",
+    "activePowerWhPhaseC",
+    "reactivePowerWhPhaseC",
+    "activePowerWhPhaseABC",
+    "reactivePowerWhPhaseABC",
+    "endpoint"
+  ]
+}
