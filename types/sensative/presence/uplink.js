@@ -273,9 +273,15 @@ function consume(event) {
 
   if (decoded.presence !== undefined) {
     if (decoded.presence === true) {
-      emit("sample", { data: { occupancy: 1 }, topic: "occupancy" });
+      emit("sample", {
+        data: { occupancy: 1, occupied: true },
+        topic: "occupancy",
+      });
     } else {
-      emit("sample", { data: { occupancy: 0 }, topic: "occupancy" });
+      emit("sample", {
+        data: { occupancy: 0, occupied: false },
+        topic: "occupancy",
+      });
     }
   }
 }

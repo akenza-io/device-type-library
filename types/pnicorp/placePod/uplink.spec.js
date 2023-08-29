@@ -35,6 +35,7 @@ describe("PNIcorp place pod Uplink", () => {
 
         assert.equal(value.topic, "occupancy");
         assert.equal(value.data.occupancy, 0);
+        assert.equal(value.data.occupied, false);
 
         utils.validateSchema(value.data, occupancySchema, { throwError: true });
       });

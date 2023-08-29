@@ -243,8 +243,14 @@ function consume(event) {
   }
 
   if (data.pir !== 0) {
-    emit("sample", { data: { occupancy: true }, topic: "occupancy" });
+    emit("sample", {
+      data: { occupancy: true, occupied: true },
+      topic: "occupancy",
+    });
   } else {
-    emit("sample", { data: { occupancy: false }, topic: "occupancy" });
+    emit("sample", {
+      data: { occupancy: false, occupied: false },
+      topic: "occupancy",
+    });
   }
 }
