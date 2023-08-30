@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/digitalTechnologies/co2/pressure.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Pressure",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "pressure",
+  "title": "Pressure",
   "properties": {
     "pressure": {
       "title": "Pressure",
@@ -11,5 +13,7 @@
       "type": "number"
     }
   },
-  "required": ["pressure"]
+  "required": [
+    "pressure"
+  ]
 }

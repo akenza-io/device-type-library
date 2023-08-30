@@ -1,68 +1,70 @@
 {
   "$id": "https://akenza.io/xovis/pc2s/gender-mod.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Gender mod",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "gender_mod",
+  "title": "Gender mod",
   "properties": {
     "maleFw": {
       "title": "Men forward",
       "description": "Men moving forward",
       "type": "integer",
-      "min": 0,
-      "max": 65535
+      "minimum": 0,
+      "maximum": 65535
     },
     "femaleFw": {
       "title": "Female forward",
       "description": "Female moving forward",
       "type": "integer",
-      "min": 0,
-      "max": 65535
+      "minimum": 0,
+      "maximum": 65535
     },
     "maleBw": {
       "title": "Men backwards",
       "description": "Men moving backwards",
       "type": "integer",
-      "min": 0,
-      "max": 65535
+      "minimum": 0,
+      "maximum": 65535
     },
     "femaleBw": {
       "title": "Female backwards",
       "description": "Female moving backwards",
       "type": "integer",
-      "min": 0,
-      "max": 65535
+      "minimum": 0,
+      "maximum": 65535
     },
     "maleFwPercentage": {
       "title": "Men forward percentage",
       "description": "Men moving forward in %",
       "unit": "%",
       "type": "integer",
-      "min": 0,
-      "max": 100
+      "minimum": 0,
+      "maximum": 100
     },
     "femaleFwPercentage": {
       "title": "Female forward percentage",
       "description": "Female moving forward in %",
       "unit": "%",
       "type": "integer",
-      "min": 0,
-      "max": 100
+      "minimum": 0,
+      "maximum": 100
     },
     "maleBwPercentage": {
       "title": "Male backward percentage",
       "description": "Men moving backwards in %",
       "unit": "%",
       "type": "integer",
-      "min": 0,
-      "max": 100
+      "minimum": 0,
+      "maximum": 100
     },
     "femaleBwPercentage": {
       "title": "Female backward percentage",
       "description": "Female moving backwards in %",
       "unit": "%",
       "type": "integer",
-      "min": 0,
-      "max": 100
+      "minimum": 0,
+      "maximum": 100
     }
   },
   "required": [

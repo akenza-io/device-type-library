@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/cayenne/cayenne/gps.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "GPS",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "gps",
+  "title": "GPS",
   "properties": {
     "channel": {
       "title": "Channel",

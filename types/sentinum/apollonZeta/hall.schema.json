@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/sentinum/apollonQ/hall.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Hall",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "hall",
+  "title": "Hall",
   "properties": {
     "hallOpen": {
       "title": "Hall Open",
@@ -17,5 +19,8 @@
       "hideFromKpis": true
     }
   },
-  "required": ["hallOpen", "hallOpenCnt"]
+  "required": [
+    "hallOpen",
+    "hallOpenCnt"
+  ]
 }

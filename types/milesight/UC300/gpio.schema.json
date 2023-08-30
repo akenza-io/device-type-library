@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/milesight/UC300/gpio.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "GPIO",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "gpio",
+  "title": "GPIO",
   "properties": {
     "gpioIn": {
       "title": "GPIO Input",

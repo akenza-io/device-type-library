@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/milesight/EM300-DI/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "temperature": {
       "title": "Temperature",
@@ -31,5 +33,8 @@
       "description": "Pulse counter"
     }
   },
-  "required": ["temperature", "humidity"]
+  "required": [
+    "temperature",
+    "humidity"
+  ]
 }

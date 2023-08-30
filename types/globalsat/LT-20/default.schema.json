@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/globalsat/LT-20/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "longitude": {
       "title": "Longitude",
@@ -38,9 +40,18 @@
       "title": "GPS fix",
       "description": "Describes the GPS fix",
       "type": "string",
-      "enum": ["Not fix", "2D fix", "3D fix"],
+      "enum": [
+        "Not fix",
+        "2D fix",
+        "3D fix"
+      ],
       "hideFromKpis": true
     }
   },
-  "required": ["longitude", "latitude", "reportType", "gpsFix"]
+  "required": [
+    "longitude",
+    "latitude",
+    "reportType",
+    "gpsFix"
+  ]
 }

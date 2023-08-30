@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/digitalMatter/dart3/analog.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Analog",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "analog",
+  "title": "Analog",
   "properties": {
     "analog": {
       "title": "Analog",
@@ -11,5 +13,7 @@
       "hideFromKpis": true
     }
   },
-  "required": ["analog"]
+  "required": [
+    "analog"
+  ]
 }

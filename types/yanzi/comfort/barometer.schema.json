@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/yanzi/comfort/barometer.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Barometer",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "barometer",
+  "title": "Barometer",
   "properties": {
     "barometer": {
       "title": "Barometer",
@@ -13,5 +15,7 @@
       "maximum": 1260
     }
   },
-  "required": ["barometer"]
+  "required": [
+    "barometer"
+  ]
 }

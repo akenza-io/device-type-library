@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/digitalMatter/g62/gps.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "GPS",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "gps",
+  "title": "GPS",
   "properties": {
     "latitude": {
       "title": "Latitude",
@@ -24,7 +26,12 @@
       "title": "Trip type",
       "type": "string",
       "description": "Type of movement this trip",
-      "enum": ["NO_TRIP", "IGNITION", "MOVEMENT", "RUN"]
+      "enum": [
+        "NO_TRIP",
+        "IGNITION",
+        "MOVEMENT",
+        "RUN"
+      ]
     },
     "gpsFixCurrent": {
       "title": "GPS fix current",

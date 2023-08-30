@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/haltian/thingseeAir/orientation.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Orientation",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "orientation",
+  "title": "Orientation",
   "properties": {
     "accX": {
       "title": "Acceleration X-Axis",
@@ -29,5 +31,9 @@
       "maximum": 32767
     }
   },
-  "required": ["accX", "accY", "accZ"]
+  "required": [
+    "accX",
+    "accY",
+    "accZ"
+  ]
 }

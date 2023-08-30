@@ -1,23 +1,28 @@
 {
   "$id": "https://akenza.io/terabee/peopleCountingXL/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "fw": {
       "title": "Forward",
       "description": "Absolute count of people moving forward",
       "type": "integer",
-      "min": 0,
-      "max": 65535
+      "minimum": 0,
+      "maximum": 65535
     },
     "bw": {
       "title": "Backward",
       "description": "Absolute count of people moving backwards",
       "type": "integer",
-      "min": 0,
-      "max": 65535
+      "minimum": 0,
+      "maximum": 65535
     }
   },
-  "required": ["fw", "bw"]
+  "required": [
+    "fw",
+    "bw"
+  ]
 }

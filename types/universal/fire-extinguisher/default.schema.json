@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/universal/fire-extinguisher/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "isTestMessage": {
       "title": "Is a test message",
@@ -20,5 +22,9 @@
       "type": "boolean"
     }
   },
-  "required": ["isTestMessage", "isRemoved", "isSecurityUnlocked"]
+  "required": [
+    "isTestMessage",
+    "isRemoved",
+    "isSecurityUnlocked"
+  ]
 }

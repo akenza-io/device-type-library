@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/tektelic/smartRoomSensorPIR/occupancy.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Occupancy",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "occupancy",
+  "title": "Occupancy",
   "properties": {
     "motion": {
       "title": "Motion",
@@ -24,5 +26,9 @@
       "type": "boolean"
     }
   },
-  "required": ["motion", "occupancy", "occupied"]
+  "required": [
+    "motion",
+    "occupancy",
+    "occupied"
+  ]
 }

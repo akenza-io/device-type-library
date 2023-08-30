@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/milesight/EM300-ZLD/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "temperature": {
       "title": "Temperature",
@@ -26,5 +28,9 @@
       "description": "Water leak"
     }
   },
-  "required": ["temperature", "humidity", "waterLeak"]
+  "required": [
+    "temperature",
+    "humidity",
+    "waterLeak"
+  ]
 }

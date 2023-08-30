@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/digitalMatter/oyster3/dowlink_ack.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Downlink acknowledge",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "downlink_ack",
+  "title": "Downlink acknowledge",
   "properties": {
     "accepted": {
       "title": "Accepted",
@@ -41,5 +43,12 @@
       "hideFromKpis": true
     }
   },
-  "required": ["accepted", "firmware", "hwRev", "port", "productId", "sequence"]
+  "required": [
+    "accepted",
+    "firmware",
+    "hwRev",
+    "port",
+    "productId",
+    "sequence"
+  ]
 }
