@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.37.2] - 2023-08-30
+
+### Added
+
+- Added processingType
+
+### Changed
+
+- Renamed min/max to minimum/maximum
+
 # [1.37.1] - 2023-06-28
 
 ### Changed
