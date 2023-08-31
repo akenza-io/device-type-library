@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/miromico/rev2-v5/join.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Join",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "join",
+  "title": "Join",
   "properties": {
     "join": {
       "title": "Join",
@@ -11,5 +13,7 @@
       "hideFromKpis": true
     }
   },
-  "required": ["join"]
+  "required": [
+    "join"
+  ]
 }

@@ -1,14 +1,19 @@
 {
   "$id": "https://akenza.io/abeeway/badgeTracker/gps.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "GPS",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "gps",
+  "title": "GPS",
   "properties": {
     "gpsMessage": {
       "title": "GPS Message",
       "description": "Flag that describes the following values",
       "type": "string",
-      "enum": ["GPS_FIX", "GPS_FIX_EXTENDED"],
+      "enum": [
+        "GPS_FIX",
+        "GPS_FIX_EXTENDED"
+      ],
       "hideFromKpis": true
     },
     "age": {
@@ -44,7 +49,10 @@
       "title": "Dimension fix",
       "description": "Describes the GPS fix",
       "type": "string",
-      "enum": ["2D fix", "3D fix"],
+      "enum": [
+        "2D fix",
+        "3D fix"
+      ],
       "hideFromKpis": true
     },
     "cog": {

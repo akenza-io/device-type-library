@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/haltian/thingseeEnvironment/firmware_response.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Firmware response",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "firmware_response",
+  "title": "Firmware response",
   "properties": {
     "requestTsmId": {
       "title": "Request tsm ID",
@@ -11,5 +13,7 @@
       "hideFromKpis": true
     }
   },
-  "required": ["requestTsmId"]
+  "required": [
+    "requestTsmId"
+  ]
 }

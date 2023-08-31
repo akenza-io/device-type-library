@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/haltian/thingseeAir/tvoc.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "TVOC",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "tvoc",
+  "title": "TVOC",
   "properties": {
     "tvoc": {
       "title": "TVOC",
@@ -13,5 +15,7 @@
       "maximum": 60000
     }
   },
-  "required": ["tvoc"]
+  "required": [
+    "tvoc"
+  ]
 }

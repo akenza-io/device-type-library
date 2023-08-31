@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/comtac/CM-2/timer.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Timer",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "timer",
+  "title": "Timer",
   "properties": {
     "timer": {
       "title": "Timer",
@@ -11,5 +13,7 @@
       "hideFromKpis": true
     }
   },
-  "required": ["timer"]
+  "required": [
+    "timer"
+  ]
 }

@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/rak/rak612/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Lifecycle",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
   "properties": {
     "dataType": {
       "title": "Data type",
@@ -27,5 +29,9 @@
       "unit": "V"
     }
   },
-  "required": ["dataType", "batteryLevel", "batteryVoltage"]
+  "required": [
+    "dataType",
+    "batteryLevel",
+    "batteryVoltage"
+  ]
 }

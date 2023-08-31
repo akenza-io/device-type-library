@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/watecco/bob/alarm.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Alarm",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "alarm",
+  "title": "Alarm",
   "properties": {
     "anomalyLevel": {
       "title": "Anomaly Level",
@@ -266,5 +268,9 @@
       "hideFromKpis": true
     }
   },
-  "required": ["anomalyLevel", "temperature", "vibration"]
+  "required": [
+    "anomalyLevel",
+    "temperature",
+    "vibration"
+  ]
 }

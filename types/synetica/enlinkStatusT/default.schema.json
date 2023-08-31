@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/synetica/enlinkStausT/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "temperature": {
       "title": "Temperature",
@@ -45,5 +47,9 @@
       "maximum": 3276.5
     }
   },
-  "required": ["temperature", "humidity", "tempProbe1"]
+  "required": [
+    "temperature",
+    "humidity",
+    "tempProbe1"
+  ]
 }

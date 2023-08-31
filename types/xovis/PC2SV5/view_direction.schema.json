@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/xovis/pc2s/view_direction.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "View direction",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "view_direction",
+  "title": "View direction",
   "properties": {
     "xCoordinate": {
       "title": "X Coordinate",
@@ -19,5 +21,8 @@
       "hideFromKpis": true
     }
   },
-  "required": ["xCoordinate", "yCoordinate"]
+  "required": [
+    "xCoordinate",
+    "yCoordinate"
+  ]
 }

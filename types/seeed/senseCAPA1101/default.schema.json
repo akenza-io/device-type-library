@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/seeed/senseCAPA1101/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "objectDetected1": {
       "title": "Object detected 1",
@@ -85,5 +87,7 @@
       "maximum": 100
     }
   },
-  "required": ["objectDetected1"]
+  "required": [
+    "objectDetected1"
+  ]
 }

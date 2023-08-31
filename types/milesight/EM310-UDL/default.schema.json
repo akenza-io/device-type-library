@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/milesight/EM310-UDL/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "distance": {
       "title": "Distance",
@@ -22,5 +24,8 @@
       "desciption": "True if the sensor is tilted"
     }
   },
-  "required": ["distance", "tilt"]
+  "required": [
+    "distance",
+    "tilt"
+  ]
 }

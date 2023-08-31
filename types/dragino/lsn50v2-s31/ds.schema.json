@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/dragino/lsn50v2-s31/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "ds",
+  "title": "Default",
   "properties": {
     "c2temperature": {
       "title": "Channel 2 Temperature",

@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/astraled/mantis/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "temperature": {
       "title": "Temperature",
@@ -116,5 +118,11 @@
       "maximum": 6555
     }
   },
-  "required": ["temperature", "humidity", "voc", "co2", "lightState"]
+  "required": [
+    "temperature",
+    "humidity",
+    "voc",
+    "co2",
+    "lightState"
+  ]
 }

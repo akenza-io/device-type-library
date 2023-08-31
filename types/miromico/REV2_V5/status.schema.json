@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/miromico/rev2-v5/status.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Status",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "status",
+  "title": "Status",
   "properties": {
     "internalTemp": {
       "title": "Internal temperature",
@@ -116,5 +118,10 @@
       "hideFromKpis": true
     }
   },
-  "required": ["internalTemp", "usedCharges", "batteryLevel", "batteryVoltage"]
+  "required": [
+    "internalTemp",
+    "usedCharges",
+    "batteryLevel",
+    "batteryVoltage"
+  ]
 }

@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/ascoel/pb868lr/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "buttonPushed": {
       "title": "Button pushed",
@@ -15,5 +17,8 @@
       "description": "Count of button presses"
     }
   },
-  "required": ["buttonPushed", "count"]
+  "required": [
+    "buttonPushed",
+    "count"
+  ]
 }

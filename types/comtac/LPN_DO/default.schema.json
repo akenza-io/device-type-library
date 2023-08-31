@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/comtac/LPN_DO/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "deviceType": {
       "title": "Device Type",

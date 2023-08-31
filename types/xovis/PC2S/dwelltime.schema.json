@@ -1,17 +1,21 @@
 {
   "$id": "https://akenza.io/xovis/pc2s/dwelltime.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Dwelltime",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "dwelltime",
+  "title": "Dwelltime",
   "properties": {
     "dwelltime": {
       "title": "Dwelltime",
       "description": "Dwelltime of people in zone in minutes",
       "unit": "m",
       "type": "integer",
-      "min": 0,
-      "max": 65535
+      "minimum": 0,
+      "maximum": 65535
     }
   },
-  "required": ["dwelltime"]
+  "required": [
+    "dwelltime"
+  ]
 }

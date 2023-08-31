@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/cayenne/cayenne/hummidity.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Humidity",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "humidity",
+  "title": "Humidity",
   "properties": {
     "channel": {
       "title": "Channel",

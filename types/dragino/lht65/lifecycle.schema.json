@@ -1,14 +1,21 @@
 {
   "$id": "https://akenza.io/dragino/lht65/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Lifecycle",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
   "properties": {
     "batteryStatus": {
       "title": "Battery status",
       "description": "Battery status",
       "type": "string",
-      "enum": ["ULTRA_LOW", "LOW", "OK", "GOOD"],
+      "enum": [
+        "ULTRA_LOW",
+        "LOW",
+        "OK",
+        "GOOD"
+      ],
       "hideFromKpis": true
     },
     "batteryVoltage": {
@@ -23,7 +30,10 @@
       "title": "Connection status",
       "description": "Connection status",
       "type": "string",
-      "enum": ["NO_CONNECTION", "CONNECTED"],
+      "enum": [
+        "NO_CONNECTION",
+        "CONNECTED"
+      ],
       "hideFromKpis": true
     },
     "externalSensor": {
