@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/terabee/peopleCountingXLLora/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Lifecycle",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
   "properties": {
     "wifiApEnabled": {
       "title": "Wifi access point enabled",
@@ -29,5 +31,10 @@
       "hideFromKpis": true
     }
   },
-  "required": ["wifiApEnabled", "multiDevIssue", "tpcStuck", "tpcStopped"]
+  "required": [
+    "wifiApEnabled",
+    "multiDevIssue",
+    "tpcStuck",
+    "tpcStopped"
+  ]
 }

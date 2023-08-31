@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/digitalMatter/dart3/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "gps",
+  "title": "Default",
   "properties": {
     "latitude": {
       "title": "Latitude",

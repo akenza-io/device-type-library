@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/adnexo/ax-opto/status.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Status",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "status",
+  "title": "Status",
   "properties": {
     "payloadType": {
       "title": "Payload type",
@@ -53,7 +55,10 @@
       "title": "Range mode",
       "description": "Range mode",
       "type": "string",
-      "enum": ["SHORT_RANGE", "LONG_RANGE"],
+      "enum": [
+        "SHORT_RANGE",
+        "LONG_RANGE"
+      ],
       "hideFromKpis": true
     },
     "magnitudeTolerance": {
@@ -98,5 +103,7 @@
       "hideFromKpis": true
     }
   },
-  "required": ["payloadType"]
+  "required": [
+    "payloadType"
+  ]
 }

@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/digitalMatter/sensorNode/analog.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Analog",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "analog",
+  "title": "Analog",
   "properties": {
     "analog1": {
       "title": "Analog 1",
@@ -25,5 +27,10 @@
       "type": "integer"
     }
   },
-  "required": ["analog1", "analog2", "analog3", "analog4"]
+  "required": [
+    "analog1",
+    "analog2",
+    "analog3",
+    "analog4"
+  ]
 }

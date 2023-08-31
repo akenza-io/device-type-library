@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/sentinum/apollonQ/tof.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "ToF",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "tof",
+  "title": "ToF",
   "properties": {
     "tofStatus": {
       "title": "ToF Status",
@@ -23,5 +25,9 @@
       "hideFromKpis": true
     }
   },
-  "required": ["tofStatus", "tofDistance", "tofIndex"]
+  "required": [
+    "tofStatus",
+    "tofDistance",
+    "tofIndex"
+  ]
 }

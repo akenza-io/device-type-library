@@ -1,14 +1,19 @@
 {
   "$id": "https://akenza.io/sentinum/apollonQ/acc.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "ACC",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "acc",
+  "title": "ACC",
   "properties": {
     "accStatus": {
       "title": "ACC Status",
       "description": "ACC Status",
       "type": "string",
-      "enum": ["ERROR", "OK"],
+      "enum": [
+        "ERROR",
+        "OK"
+      ],
       "hideFromKpis": true
     },
     "accOrientation": {
@@ -33,7 +38,10 @@
       "title": "ACC Impact",
       "description": "ACC Impact",
       "type": "string",
-      "enum": ["IMPACT", "NO_IMPACT"],
+      "enum": [
+        "IMPACT",
+        "NO_IMPACT"
+      ],
       "hideFromKpis": true
     }
   },

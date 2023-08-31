@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/haltian/thingseeAir/error_event.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Error event",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "error_event",
+  "title": "Error event",
   "properties": {
     "errorType": {
       "title": "Error type",
@@ -17,5 +19,8 @@
       "hideFromKpis": true
     }
   },
-  "required": ["errorType", "errorCause"]
+  "required": [
+    "errorType",
+    "errorCause"
+  ]
 }

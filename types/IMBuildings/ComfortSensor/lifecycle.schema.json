@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/imbuildings/peopleCounter/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Lifecycle",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
   "properties": {
     "deviceStatus": {
       "title": "Device status",
@@ -16,5 +18,8 @@
       "desciption": "The battery voltage in Volt."
     }
   },
-  "required": ["deviceStatus", "batteryVoltage"]
+  "required": [
+    "deviceStatus",
+    "batteryVoltage"
+  ]
 }

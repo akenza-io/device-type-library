@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/haltian/thingseeAir/magnet.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Magnet",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "magnet",
+  "title": "Magnet",
   "properties": {
     "open": {
       "title": "Open",
@@ -15,5 +17,8 @@
       "description": "Number of detected state changes during a measurement period."
     }
   },
-  "required": ["open", "numberOfChanges"]
+  "required": [
+    "open",
+    "numberOfChanges"
+  ]
 }

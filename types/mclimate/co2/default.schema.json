@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/mclimate/ht/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "temperature": {
       "title": "Temperature",
@@ -37,5 +39,10 @@
       "unit": "V"
     }
   },
-  "required": ["temperature", "humidity", "co2", "batteryVoltage"]
+  "required": [
+    "temperature",
+    "humidity",
+    "co2",
+    "batteryVoltage"
+  ]
 }

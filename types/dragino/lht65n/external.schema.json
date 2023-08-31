@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/dragino/lht65n/external.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "External",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "external",
+  "title": "External",
   "properties": {
     "tempDS": {
       "title": "External digital temperature sensor",
@@ -24,7 +26,10 @@
       "title": "External Pin Level",
       "description": "External Pin Level",
       "type": "string",
-      "enum": ["HIGH", "LOW"]
+      "enum": [
+        "HIGH",
+        "LOW"
+      ]
     },
     "extStatus": {
       "title": "External status",

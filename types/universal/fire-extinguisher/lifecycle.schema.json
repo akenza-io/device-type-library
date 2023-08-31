@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/universal/fire-extinguisher/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Lifecycle",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
   "properties": {
     "payloadVersion": {
       "title": "Payload version",
@@ -28,5 +30,8 @@
       "unit": "%"
     }
   },
-  "required": ["payloadVersion", "batteryLevel"]
+  "required": [
+    "payloadVersion",
+    "batteryLevel"
+  ]
 }

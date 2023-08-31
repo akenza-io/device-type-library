@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/bosch/parkingLotSensor0_39/start_up.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Start up",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "start_up",
+  "title": "Start up",
   "properties": {
     "debug": {
       "title": "Debug",
@@ -32,5 +34,9 @@
       "hideFromKpis": true
     }
   },
-  "required": ["debug", "fwVersion", "resetCause"]
+  "required": [
+    "debug",
+    "fwVersion",
+    "resetCause"
+  ]
 }

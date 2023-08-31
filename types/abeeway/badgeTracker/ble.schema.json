@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/abeeway/badgeTracker/ble.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Bluetooth low energy",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "ble",
+  "title": "Bluetooth low energy",
   "properties": {
     "bleMessage": {
       "title": "BLE Message",
@@ -120,7 +122,12 @@
       "title": "Notification",
       "description": "Notification",
       "type": "string",
-      "enum": ["SAFE", "ENTRY", "EXIT", "HAZARD"],
+      "enum": [
+        "SAFE",
+        "ENTRY",
+        "EXIT",
+        "HAZARD"
+      ],
       "hideFromKpis": true
     },
     "beaconID": {

@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/decentlab/pr36/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "pressure": {
       "title": "Pressure",
@@ -19,5 +21,8 @@
       "maximum": 3276.5
     }
   },
-  "required": ["pressure", "temperature"]
+  "required": [
+    "pressure",
+    "temperature"
+  ]
 }

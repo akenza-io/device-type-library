@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/sensingLabs/senlabD/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "batteryLevel": {
       "type": "integer",
@@ -18,5 +20,8 @@
       "description": "True if reed has no contact."
     }
   },
-  "required": ["batteryLevel", "open"]
+  "required": [
+    "batteryLevel",
+    "open"
+  ]
 }

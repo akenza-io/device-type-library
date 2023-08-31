@@ -1,14 +1,20 @@
 {
   "$id": "https://akenza.io/gwf/gwfcoder/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "meterMedium": {
       "title": "Meter medium",
       "description": "Meter medium",
       "type": "string",
-      "enum": ["GAS", "WARM_WATER", "WATER"]
+      "enum": [
+        "GAS",
+        "WARM_WATER",
+        "WATER"
+      ]
     },
     "actualityDuration": {
       "title": "Actuality duration",
@@ -25,5 +31,9 @@
       "description": "Tank volume in m3"
     }
   },
-  "required": ["meterMedium", "actualityDuration", "volume"]
+  "required": [
+    "meterMedium",
+    "actualityDuration",
+    "volume"
+  ]
 }

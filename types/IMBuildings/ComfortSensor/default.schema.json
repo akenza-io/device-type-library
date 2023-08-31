@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/imbuildings/peopleCounter/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "temperature": {
       "title": "Temperature",
@@ -34,5 +36,10 @@
       "maximum": 10000
     }
   },
-  "required": ["temperature", "humidity", "presence", "co2"]
+  "required": [
+    "temperature",
+    "humidity",
+    "presence",
+    "co2"
+  ]
 }

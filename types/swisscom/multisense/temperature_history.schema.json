@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/swisscom/multisense/temperature_history.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Temperature history",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "temperature_history",
+  "title": "Temperature history",
   "properties": {
     "tempHistory0": {
       "title": "Temperature history 0",

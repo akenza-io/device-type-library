@@ -1,14 +1,19 @@
 {
   "$id": "https://akenza.io/sentinum/apollonQ/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "alarm": {
       "title": "Alarm",
       "description": "Alarm",
       "type": "string",
-      "enum": ["ALARM", "NO_ALARM"],
+      "enum": [
+        "ALARM",
+        "NO_ALARM"
+      ],
       "hideFromKpis": true
     },
     "distance": {
@@ -30,5 +35,9 @@
       "description": "Fill percentage of the container"
     }
   },
-  "required": ["alarm", "distance", "distanceCM"]
+  "required": [
+    "alarm",
+    "distance",
+    "distanceCM"
+  ]
 }

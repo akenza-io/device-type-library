@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/gavazzi/UWPA_UWPM/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "totalKWh": {
       "title": "Kilowatt hours total",
@@ -29,5 +31,10 @@
       "description": "Phase 2 kilowatt"
     }
   },
-  "required": ["totalKWh", "l2V", "l2A", "l2KW"]
+  "required": [
+    "totalKWh",
+    "l2V",
+    "l2A",
+    "l2KW"
+  ]
 }

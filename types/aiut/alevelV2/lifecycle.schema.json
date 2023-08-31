@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/aiut/alevelV2/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Lifecycle",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
   "properties": {
     "sequenceNumber": {
       "title": "Sequence number",
@@ -14,16 +16,29 @@
       "title": "Battery status",
       "description": "Describes the battery status",
       "type": "string",
-      "enum": ["VERY_LOW", "LOW", "DISCHARGING", "HEALTHY"],
+      "enum": [
+        "VERY_LOW",
+        "LOW",
+        "DISCHARGING",
+        "HEALTHY"
+      ],
       "hideFromKpis": true
     },
     "currentProfile": {
       "title": "LoRa Profile",
       "description": "Current LoRa Profile",
       "type": "string",
-      "enum": ["IMR_LORA_SIGFOX", "SIGFOX", "SIGFOX_LORA"],
+      "enum": [
+        "IMR_LORA_SIGFOX",
+        "SIGFOX",
+        "SIGFOX_LORA"
+      ],
       "hideFromKpis": true
     }
   },
-  "required": ["sequenceNumber", "batteryStatus", "currentProfile"]
+  "required": [
+    "sequenceNumber",
+    "batteryStatus",
+    "currentProfile"
+  ]
 }
