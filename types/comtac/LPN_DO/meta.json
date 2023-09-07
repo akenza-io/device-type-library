@@ -2,17 +2,13 @@
   "name": "LPN DO",
   "version": "1.0.0",
   "manufacturer": "Comtac",
-  "url": "https://www.comtac.ch/de/produkte/lora/ios/lpn-do.html",
+  "url": "https://www.comtac.ch/en/products/all-products/monitoring-ios/lpn-do.html",
   "description": "The device allows the control on two solid state relays (24VDC/500mA).",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "C",
-  "availableSensors": [
-    "Status"
-  ],
-  "outputTopics": [
-    "default"
-  ],
+  "availableSensors": ["Status"],
+  "outputTopics": ["default"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

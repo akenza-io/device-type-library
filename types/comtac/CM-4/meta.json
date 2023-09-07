@@ -2,7 +2,7 @@
   "name": "LPN CM-4 Sensor",
   "version": "1.0.0",
   "manufacturer": "Comtac",
-  "url": "https://www.comtac.ch/de/produkte/lora/condition-monitoring/lpn-cm-4-sensor.html",
+  "url": "https://www.comtac.ch/en/products/all-products/sensors/lpn-cm-4-sensor.html",
   "description": "The LPN CM-4 has a built in temperature and humidity sensor.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
