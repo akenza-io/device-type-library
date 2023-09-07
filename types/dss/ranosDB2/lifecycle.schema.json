@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/dss/ranosDB2/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Lifecycle",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
   "properties": {
     "batteryVoltage": {
       "type": "number",
@@ -23,5 +25,7 @@
       "hideFromKpis": true
     }
   },
-  "required": ["batteryVoltage"]
+  "required": [
+    "batteryVoltage"
+  ]
 }

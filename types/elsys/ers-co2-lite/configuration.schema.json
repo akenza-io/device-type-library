@@ -1,0 +1,428 @@
+{
+  "$id": "https://akenza.io/elsys/ers-co2-lite/configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "configuration",
+  "title": "Configuration",
+  "properties": {
+    "appSKey": {
+      "title": "Application session key",
+      "type": "string",
+      "description": "Application session key",
+      "hideFromKpis": true
+    },
+    "nwkSKey": {
+      "title": "Network session key",
+      "type": "string",
+      "description": "Network session key",
+      "hideFromKpis": true
+    },
+    "devEui": {
+      "title": "Device eui",
+      "type": "string",
+      "description": "Device eui",
+      "hideFromKpis": true
+    },
+    "appKey": {
+      "title": "Application key",
+      "type": "string",
+      "description": "Application key",
+      "hideFromKpis": true
+    },
+    "appEui": {
+      "title": "Application eui",
+      "type": "string",
+      "description": "Application eui",
+      "hideFromKpis": true
+    },
+    "devAddr": {
+      "title": "Device address",
+      "type": "string",
+      "description": "Device address",
+      "hideFromKpis": true
+    },
+    "ota": {
+      "title": "Over the air activation",
+      "type": "boolean",
+      "description": "Over the air activation",
+      "hideFromKpis": true
+    },
+    "port": {
+      "title": "Port",
+      "type": "number",
+      "description": "Port",
+      "hideFromKpis": true
+    },
+    "mode": {
+      "title": "Mode",
+      "type": "number",
+      "description": "Mode",
+      "hideFromKpis": true
+    },
+    "ack": {
+      "title": "Acknowledge Byte",
+      "type": "boolean",
+      "description": "Acknowledge Byte",
+      "hideFromKpis": true
+    },
+    "drDef": {
+      "title": "Datarate default",
+      "type": "number",
+      "description": "Datarate default",
+      "hideFromKpis": true
+    },
+    "drMin": {
+      "title": "Datarate minimum",
+      "type": "number",
+      "description": "Datarate minimum",
+      "hideFromKpis": true
+    },
+    "drMax": {
+      "title": "Datarate maximum",
+      "type": "number",
+      "description": "Datarate maximum",
+      "hideFromKpis": true
+    },
+    "payload": {
+      "title": "Payload",
+      "type": "number",
+      "description": "Payload",
+      "hideFromKpis": true
+    },
+    "power": {
+      "title": "Power",
+      "type": "number",
+      "description": "Power",
+      "hideFromKpis": true
+    },
+    "extCfg": {
+      "title": "External configuration",
+      "type": "string",
+      "description": "External configuration",
+      "enum": [
+        "ANALOG",
+        "PULSE_PULLDOWN",
+        "PULSE_PULLUP",
+        "ABSOLUT_PULSE_PULLDOWN",
+        "ABSOLUT_PULSE_PULLUP",
+        "1_WIRE_TEMP_DS18B20",
+        "SWITCH_NO",
+        "SWITCH_NC",
+        "DIGITAL",
+        "SRF_01",
+        "DECAGON",
+        "WATERLEAK",
+        "MAXBOTIX_ML738X",
+        "GPS",
+        "1_WIRE_TEMP_SWITCH_NO",
+        "ANALOG_0_3V",
+        "ADC_MODULE_PT1000"
+      ],
+      "hideFromKpis": true
+    },
+    "pirCfg": {
+      "title": "Pir configuration",
+      "type": "number",
+      "description": "Pir configuration",
+      "hideFromKpis": true
+    },
+    "co2Cfg": {
+      "title": "CO2 configuration",
+      "type": "number",
+      "description": "CO2 configuration",
+      "hideFromKpis": true
+    },
+    "accCfg": {
+      "title": "Accelerometer configuration",
+      "type": "array",
+      "description": "Accelerometer configuration",
+      "hideFromKpis": true
+    },
+    "splPer": {
+      "title": "Timebase",
+      "type": "number",
+      "description": "Timebase",
+      "hideFromKpis": true
+    },
+    "tempPer": {
+      "title": "Temperature period",
+      "type": "number",
+      "description": "Temperature period",
+      "hideFromKpis": true
+    },
+    "rhPer": {
+      "title": "Humidity period",
+      "type": "number",
+      "description": "Humidity period",
+      "hideFromKpis": true
+    },
+    "lightPer": {
+      "title": "Light period",
+      "type": "number",
+      "description": "Light period",
+      "hideFromKpis": true
+    },
+    "pirPer": {
+      "title": "Pir period",
+      "type": "number",
+      "description": "Pir period",
+      "hideFromKpis": true
+    },
+    "co2Per": {
+      "title": "CO2 period",
+      "type": "number",
+      "description": "CO2 period",
+      "hideFromKpis": true
+    },
+    "extPer": {
+      "title": "External period",
+      "type": "number",
+      "description": "External period",
+      "hideFromKpis": true
+    },
+    "extPwrTime": {
+      "title": "External power time",
+      "type": "number",
+      "description": "External power time",
+      "hideFromKpis": true
+    },
+    "triggTime": {
+      "title": "Trigger time",
+      "type": "number",
+      "description": "Trigger time",
+      "hideFromKpis": true
+    },
+    "accPer": {
+      "title": "Accelerometer period",
+      "type": "number",
+      "description": "Accelerometer period",
+      "hideFromKpis": true
+    },
+    "vddPer": {
+      "title": "Battery period",
+      "type": "number",
+      "description": "Battery period",
+      "hideFromKpis": true
+    },
+    "sendPer": {
+      "title": "Send period",
+      "type": "number",
+      "description": "Send period",
+      "hideFromKpis": true
+    },
+    "lock": {
+      "title": "Lock code",
+      "type": "number",
+      "description": "Lock code",
+      "hideFromKpis": true
+    },
+    "rfu": {
+      "title": "RFU",
+      "type": "number",
+      "description": "RFU",
+      "hideFromKpis": true
+    },
+    "link": {
+      "title": "Link check configuration",
+      "type": "array",
+      "description": "Link check configuration (hex)",
+      "hideFromKpis": true
+    },
+    "pressPer": {
+      "title": "Pressure period",
+      "type": "number",
+      "description": "Pressure period",
+      "hideFromKpis": true
+    },
+    "soundPer": {
+      "title": "Sound period",
+      "type": "number",
+      "description": "Sound period",
+      "hideFromKpis": true
+    },
+    "plan": {
+      "title": "Regional plan",
+      "type": "number",
+      "description": "Regional plan",
+      "hideFromKpis": true
+    },
+    "subBand": {
+      "title": "Regional subband",
+      "type": "number",
+      "description": "Regional subband",
+      "hideFromKpis": true
+    },
+    "lbt": {
+      "title": "Listen before talk",
+      "type": "boolean",
+      "description": "Listen before talk",
+      "hideFromKpis": true
+    },
+    "ledConfig": {
+      "title": "Led configuration",
+      "type": "number",
+      "description": "Led configuration",
+      "hideFromKpis": true
+    },
+    "co2Action": {
+      "title": "Co2 Action",
+      "type": "number",
+      "description": "Co2 Action",
+      "hideFromKpis": true
+    },
+    "waterPer": {
+      "title": "Water period",
+      "type": "number",
+      "description": "Water period",
+      "hideFromKpis": true
+    },
+    "reedPer": {
+      "title": "Reed period",
+      "type": "number",
+      "description": "Reed period",
+      "hideFromKpis": true
+    },
+    "reedCfg": {
+      "title": "Reed configuration",
+      "type": "number",
+      "description": "Reed configuration",
+      "hideFromKpis": true
+    },
+    "pirSens": {
+      "title": "Pir sensor",
+      "type": "number",
+      "description": "Pir sensor",
+      "hideFromKpis": true
+    },
+    "qSize": {
+      "title": "Queue size",
+      "type": "number",
+      "description": "Queue size",
+      "hideFromKpis": true
+    },
+    "qOffset": {
+      "title": "Queue offset",
+      "type": "boolean",
+      "description": "Queue offset",
+      "hideFromKpis": true
+    },
+    "qPurge": {
+      "title": "Queue purge",
+      "type": "boolean",
+      "description": "Queue purge",
+      "hideFromKpis": true
+    },
+    "c1": {
+      "title": "C1",
+      "type": "number",
+      "description": "C1",
+      "hideFromKpis": true
+    },
+    "c2": {
+      "title": "C2",
+      "type": "number",
+      "description": "C2",
+      "hideFromKpis": true
+    },
+    "c3": {
+      "title": "C3",
+      "type": "number",
+      "description": "C3",
+      "hideFromKpis": true
+    },
+    "c4": {
+      "title": "C4",
+      "type": "number",
+      "description": "C4",
+      "hideFromKpis": true
+    },
+    "nfcDisable": {
+      "title": "NFC disabled",
+      "type": "boolean",
+      "description": "NFC disabled",
+      "hideFromKpis": true
+    },
+    "sensor": {
+      "title": "Sensor",
+      "type": "string",
+      "description": "Sensor",
+      "enum": [
+        "UNKNOWN",
+        "ESM5K",
+        "ELT1",
+        "ELT1HP",
+        "ELT2HP",
+        "ELT_LITE",
+        "ERS",
+        "ERS_CO2",
+        "ERS_LITE",
+        "ERS_EYE",
+        "ERS_DESK",
+        "ERS_SOUND",
+        "EMS"
+      ],
+      "hideFromKpis": true
+    },
+    "output": {
+      "title": "Output",
+      "type": "string",
+      "description": "Output",
+      "hideFromKpis": true
+    },
+    "pulse1": {
+      "title": "Pulse 1",
+      "type": "string",
+      "description": "Pulse 1",
+      "hideFromKpis": true
+    },
+    "pulse2": {
+      "title": "Pulse 2",
+      "type": "string",
+      "description": "Pulse 2",
+      "hideFromKpis": true
+    },
+    "settings": {
+      "title": "Settings",
+      "type": "string",
+      "description": "Settings",
+      "hideFromKpis": true
+    },
+    "generic": {
+      "title": "Generic",
+      "type": "string",
+      "description": "Generic",
+      "hideFromKpis": true
+    },
+    "external": {
+      "title": "External IO manipulation",
+      "type": "array",
+      "description": "External IO manipulation",
+      "hideFromKpis": true
+    },
+    "version": {
+      "title": "Sensor version",
+      "type": "number",
+      "description": "Sensor version",
+      "hideFromKpis": true
+    },
+    "sleep": {
+      "title": "Sleep",
+      "type": "array",
+      "description": "Sleep",
+      "hideFromKpis": true
+    },
+    "reboot": {
+      "title": "Reboot",
+      "type": "array",
+      "description": "Reboot",
+      "hideFromKpis": true
+    },
+    "error": {
+      "title": "Error",
+      "type": "string",
+      "description": "Error while reading settings",
+      "hideFromKpis": true
+    }
+  }
+}

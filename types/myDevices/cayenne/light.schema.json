@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/cayenne/cayenne/light.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Light",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "light",
+  "title": "Light",
   "properties": {
     "channel": {
       "title": "Channel",

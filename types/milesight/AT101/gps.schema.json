@@ -1,0 +1,50 @@
+{
+  "$id": "https://akenza.io/milesight/AT101/gps.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "gps",
+  "title": "GPS",
+  "properties": {
+    "latitude": {
+      "title": "Latitude",
+      "unit": "°",
+      "type": "number",
+      "description": "Latitude",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "longitude": {
+      "title": "Longitude",
+      "unit": "°",
+      "type": "number",
+      "description": "Longitude",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "motionStatus": {
+      "title": "Motion status",
+      "description": "Motion status",
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "START",
+        "MOVING",
+        "STOP"
+      ],
+      "hideFromKpis": true
+    },
+    "geofenceStatus": {
+      "title": "Geofence status",
+      "description": "Geofence status",
+      "type": "string",
+      "enum": [
+        "INSIDE",
+        "OUTSIDE",
+        "UNSET",
+        "UNKOWN"
+      ],
+      "hideFromKpis": true
+    }
+  }
+}

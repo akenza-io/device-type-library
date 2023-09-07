@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/milesight/EM310-UDL/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "distance": {
       "title": "Distance",
@@ -10,11 +12,20 @@
       "type": "number",
       "description": "Distance measured between the sensor and the surface"
     },
+    "fillLevel": {
+      "title": "Fill level",
+      "unit": "%",
+      "type": "number",
+      "description": "Fill percentage of the container"
+    },
     "tilt": {
       "title": "Tilt",
       "type": "boolean",
       "desciption": "True if the sensor is tilted"
     }
   },
-  "required": ["distance", "tilt"]
+  "required": [
+    "distance",
+    "tilt"
+  ]
 }

@@ -1,15 +1,44 @@
 {
   "$id": "https://akenza.io/xovis/pc2s/face_mask.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Face mask",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "face_mask",
+  "title": "Face mask",
   "properties": {
+    "fwMask": {
+      "title": "Mask forward",
+      "description": "Masked people moving forward",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "fwNoMask": {
+      "title": "No mask forward",
+      "description": "Not masked people moving forward",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "bwMask": {
+      "title": "Mask backward",
+      "description": "Masked people moving backwards",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "bwNoMask": {
+      "title": "No mask backward",
+      "description": "Not masked people moving backwards",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
     "faceMask": {
       "title": "Face mask",
       "description": "Indicates whether a person in view wears a mask.",
       "type": "boolean",
       "hideFromKpis": true
     }
-  },
-  "required": ["faceMask"]
+  }
 }

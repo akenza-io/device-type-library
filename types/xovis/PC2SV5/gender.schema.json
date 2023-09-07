@@ -1,16 +1,49 @@
 {
   "$id": "https://akenza.io/xovis/pc2sv5/gender.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Gender",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "gender",
+  "title": "Gender",
   "properties": {
+    "fwMen": {
+      "title": "Men forward",
+      "description": "Men moving forward",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "fwWoman": {
+      "title": "Woman forward",
+      "description": "Woman moving forward",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "bwMen": {
+      "title": "Men backward",
+      "description": "Men moving backwards",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "bwWomen": {
+      "title": "Woman backward",
+      "description": "Women moving backwards",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
     "gender": {
       "title": "Gender",
       "description": "Gender",
       "type": "string",
-      "enum": ["MALE", "FEMALE", "UNKNOWN"],
+      "enum": [
+        "MALE",
+        "FEMALE",
+        "UNKNOWN"
+      ],
       "hideFromKpis": true
     }
-  },
-  "required": ["gender"]
+  }
 }

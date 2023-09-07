@@ -4,6 +4,70 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.37.2] - 2023-08-30
+
+### Added
+
+- Added processingType
+
+### Changed
+
+- Renamed min/max to minimum/maximum
+
+# [1.37.1] - 2023-06-28
+
+### Changed
+
+- Added filllevel compability to all distance sensors
+
+# [1.37.0] - 2023-06-21
+
+### Added
+
+- Seed - SenseCAPT1000A
+
+# [1.36.0] - 2023-06-20
+
+### Added
+
+- Dragino - NDDS20
+- Dragino - NDDS75
+- Dragino - NSE01
+
+### Changed
+
+- Added new type NBIOT
+
+# [1.35.0] - 2023-06-13
+
+### Added
+
+- Milesight - UC300
+- Milesight - EM300-DI
+- Milesight - AT101
+- Milesight - WS201
+
+# [1.34.1] - 2023-05-28
+
+### Changed
+
+- Added new button topic for the Swisscom Multisense device
+
+# [1.34.0] - 2023-04-03
+
+### Added
+
+- Milesight - EM400-MUD
+- Milesight - EM400-TLD
+- Milesight - EM400-ULD
+
+### Changed
+
+- Added configuration message to all elsys devices
+- Caught to short payload for Abeeway
+- Removed inclusion of timestamp for enginko devicses
+- Dragino LSN50v2 splitted topics and added test
+
 # [1.33.0] - 2023-03-27
 
 ### Added

@@ -1,0 +1,15 @@
+{
+  "$id": "https://akenza.io/milesight/UC300/modbus.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "modbus",
+  "title": "Modbus",
+  "properties": {
+    "chn": {
+      "title": "Channel",
+      "description": "Channel Value",
+      "hideFromKpis": true
+    }
+  }
+}

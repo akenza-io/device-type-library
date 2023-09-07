@@ -7,6 +7,7 @@ function consume(event) {
 
   if (port === 1 || port === 2) {
     occupancy.occupancy = Bits.bitsToUnsigned(bits.substr(0, 8));
+    occupancy.occupied = !!occupancy.occupancy;
     if (payload.length > 2) {
       data.temperature = Bits.bitsToSigned(bits.substr(8, 8));
       emit("sample", { data, topic: "lifecycle" });

@@ -1,0 +1,28 @@
+{
+  "$id": "https://akenza.io/milesight/UC300/gpio.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "gpio",
+  "title": "GPIO",
+  "properties": {
+    "gpioIn": {
+      "title": "GPIO Input",
+      "type": "boolean",
+      "description": "GPIO Input",
+      "hideFromKpis": true
+    },
+    "gpioOut": {
+      "title": "GPIO Output",
+      "type": "boolean",
+      "description": "GPIO Output",
+      "hideFromKpis": true
+    },
+    "counter": {
+      "title": "Counter",
+      "type": "integer",
+      "description": "Counter",
+      "hideFromKpis": true
+    }
+  }
+}

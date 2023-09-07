@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/comtac/ms-3/event.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Event",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "event",
+  "title": "Event",
   "properties": {
     "eventUplink": {
       "title": "Event uplink",
@@ -11,5 +13,7 @@
       "hideFromKpis": true
     }
   },
-  "required": ["eventUplink"]
+  "required": [
+    "eventUplink"
+  ]
 }

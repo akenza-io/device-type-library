@@ -1,14 +1,24 @@
 {
   "$id": "https://akenza.io/decentlab/iam/occupancy.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Occupancy",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "occupancy",
+  "title": "Occupancy",
   "properties": {
     "occupancy": {
       "title": "Occupancy",
       "description": "Space occupancy. false = (PIR == 0) / true = (PIR > 0).",
       "type": "boolean"
+    },
+    "occupied": {
+      "title": "Occupied",
+      "description": "Space occupancy. false = Unoccupied / true = Occupied.",
+      "type": "boolean"
     }
   },
-  "required": ["occupancy"]
+  "required": [
+    "occupancy",
+    "occupied"
+  ]
 }

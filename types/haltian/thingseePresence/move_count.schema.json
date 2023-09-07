@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/haltian/thingseeEnvironment/move_count.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Move count",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "move_count",
+  "title": "Move count",
   "properties": {
     "moveCount": {
       "title": "Movement count",
@@ -12,5 +14,7 @@
       "maximum": 1
     }
   },
-  "required": ["moveCount"]
+  "required": [
+    "moveCount"
+  ]
 }

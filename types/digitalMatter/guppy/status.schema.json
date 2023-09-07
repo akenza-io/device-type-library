@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/digitalMatter/guppy/status.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Status",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "status",
+  "title": "Status",
   "properties": {
     "inTrip": {
       "title": "In trip",
@@ -60,5 +62,9 @@
       "description": "XYZ inclination degree"
     }
   },
-  "required": ["inTrip", "batteryVoltage", "temperature"]
+  "required": [
+    "inTrip",
+    "batteryVoltage",
+    "temperature"
+  ]
 }

@@ -1,0 +1,30 @@
+{
+  "$id": "https://akenza.io/seeed/senseCAPT1000A/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "light": {
+      "title": "Light",
+      "type": "number",
+      "unit": "lux",
+      "description": "Light value",
+      "minimum": 0,
+      "maximum": 255
+    }
+  },
+  "required": [
+    "temperature",
+    "light"
+  ]
+}

@@ -40,7 +40,7 @@ function consume(event) {
     }
     // PRESSURE
     else if (channelId === 0x03 && channelType === 0x7b) {
-      decoded.pressure = readInt16LE(bytes.slice(i, i + 2));
+      decoded.pressure = readInt16LE(Array.from(bytes).slice(i, i + 2));
       i += 2;
     } else {
       break;

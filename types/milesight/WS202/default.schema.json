@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/milesight/WS202/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "pir": {
       "title": "PIR motion",
@@ -15,8 +17,14 @@
       "title": "Daylight",
       "description": "Light strength",
       "type": "string",
-      "enum": ["DARK", "LIGHT"]
+      "enum": [
+        "DARK",
+        "LIGHT"
+      ]
     }
   },
-  "required": ["pir", "daylight"]
+  "required": [
+    "pir",
+    "daylight"
+  ]
 }

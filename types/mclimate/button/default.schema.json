@@ -1,14 +1,21 @@
 {
   "$id": "https://akenza.io/mclimate/button/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "buttonPressed": {
       "title": "Press event",
       "description": "Press event",
       "type": "string",
-      "enum": ["NO_PRESS", "SINGLE_PRESS", "DOUBLE_PRESS", "TRIPLE_PRESS"]
+      "enum": [
+        "NO_PRESS",
+        "SINGLE_PRESS",
+        "DOUBLE_PRESS",
+        "TRIPLE_PRESS"
+      ]
     },
     "batteryVoltage": {
       "type": "number",

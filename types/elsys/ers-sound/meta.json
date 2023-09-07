@@ -8,7 +8,13 @@
   "firmwareVersion": "V2.3.5",
   "loraDeviceClass": "A",
   "availableSensors": ["Motion", "Light", "Humidity", "Temperature", "Noise"],
-  "outputTopics": ["default", "occupancy", "noise", "lifecycle"],
+  "outputTopics": [
+    "default",
+    "occupancy",
+    "noise",
+    "lifecycle",
+    "configuration"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

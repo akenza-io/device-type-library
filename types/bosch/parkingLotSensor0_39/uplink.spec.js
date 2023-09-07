@@ -44,6 +44,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
         assert.typeOf(value.data, "object");
         assert.equal(value.topic, "occupancy");
         assert.equal(value.data.occupancy, 0);
+        assert.equal(value.data.occupied, false);
 
         utils.validateSchema(value.data, occupancySchema, { throwError: true });
       });
@@ -65,6 +66,8 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
         assert.typeOf(value.data, "object");
         assert.equal(value.topic, "occupancy");
         assert.equal(value.data.occupancy, 1);
+        assert.equal(value.data.occupied, true);
+
         utils.validateSchema(value.data, occupancySchema, { throwError: true });
       });
 

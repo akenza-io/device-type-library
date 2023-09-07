@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/milesight/EM500-SMTC/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "temperature": {
       "title": "Temperature",
@@ -25,5 +27,9 @@
       "description": "Conductivity of the soil"
     }
   },
-  "required": ["temperature", "moisture", "soilConductivity"]
+  "required": [
+    "temperature",
+    "moisture",
+    "soilConductivity"
+  ]
 }

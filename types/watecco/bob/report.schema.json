@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/watecco/bob/report.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Report",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "report",
+  "title": "Report",
   "properties": {
     "anomalyLevel": {
       "title": "Anomaly Level",

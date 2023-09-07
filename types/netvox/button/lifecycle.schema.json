@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/netvox/button/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Lifecycle",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
   "properties": {
     "version": {
       "title": "Protocol Version",
@@ -25,5 +27,9 @@
       "desciption": "The battery voltage in Volt."
     }
   },
-  "required": ["version", "devType", "batteryVoltage"]
+  "required": [
+    "version",
+    "devType",
+    "batteryVoltage"
+  ]
 }

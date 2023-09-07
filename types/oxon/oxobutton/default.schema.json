@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/oxon/oxobutton/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "buttonId": {
       "title": "Button ID",
@@ -53,5 +55,12 @@
       "maximum": 8191
     }
   },
-  "required": ["buttonId", "imageID", "temperature", "accX", "accY", "accZ"]
+  "required": [
+    "buttonId",
+    "imageID",
+    "temperature",
+    "accX",
+    "accY",
+    "accZ"
+  ]
 }

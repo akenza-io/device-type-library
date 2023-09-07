@@ -112,6 +112,7 @@ function consume(event) {
       }
       if (status & 0x20) {
         trigger.event = "BUTTON_EVENT";
+        emit("sample", { data: { buttonEvent: 1 }, topic: "button_event" });
       }
       if (status & 0x10) {
         trigger.event = "LIFECYCLE";
@@ -122,6 +123,7 @@ function consume(event) {
       }
       if (status & 0x40) {
         trigger.event = "BUTTON_EVENT";
+        emit("sample", { data: { buttonEvent: 1 }, topic: "button_event" });
       }
       if (status & 0x20) {
         trigger.event = "REED_EVENT";

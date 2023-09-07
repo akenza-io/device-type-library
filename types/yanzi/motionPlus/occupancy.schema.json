@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/yanzi/motionPlus/occupancy.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Occupancy",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "occupancy",
+  "title": "Occupancy",
   "properties": {
     "motion": {
       "title": "Motion",
@@ -12,5 +14,7 @@
       "maximum": 65535
     }
   },
-  "required": ["motion"]
+  "required": [
+    "motion"
+  ]
 }

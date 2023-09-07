@@ -25,7 +25,8 @@
     "temperature_history",
     "lifecycle",
     "motion_counter",
-    "reed_counter"
+    "reed_counter",
+    "button_event"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/pipiot/levelSense/gnss.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "GNSS",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "gnss",
+  "title": "GNSS",
   "properties": {
     "gnssFixTime": {
       "title": "Fix time",

@@ -260,6 +260,7 @@ function decoder(bytes) {
       decoded.sensorContent.containsRelativeHumidity = !!(sensorContent2 & 2);
       decoded.sensorContent.containsAirPressure = !!(sensorContent2 & 4);
       decoded.sensorContent.containsManDown = !!(sensorContent2 & 8);
+      decoded.sensorContent.containsTilt = !!(sensorContent2 & 16);
     }
 
     if (decoded.sensorContent.containsTemperature) {
@@ -459,6 +460,16 @@ function decoder(bytes) {
         movementAlarm: !!(manDownData & 0x20),
       };
     }
+
+    if (decoded.sensorContent.containsTilt) {
+      decoded.tilt = {
+        currentTilt: toUnsignedShort(bytes[index++], bytes[index++]) / 100,
+        currentDirection: Math.round(bytes[index++] * (360 / 255)),
+        maximumTiltHistory:
+          toUnsignedShort(bytes[index++], bytes[index++]) / 100,
+        directionHistory: Math.round(bytes[index++] * (360 / 255)),
+      };
+    }
   }
 
   if (decoded.containsGps) {
@@ -514,7 +525,14 @@ function consume(event) {
     }
   }
 
-  // Redundant data is only used as flags
+  if (decoded.tilt !== undefined) {
+    if (Object.keys(decoded.tilt).length > 0) {
+      emit("sample", { data: decoded.tilt, topic: "tilt" });
+      delete decoded.tilt;
+    }
+  }
+
+  // Redundant data, is only used as flags
   delete decoded.containsGps;
   delete decoded.containsOnboardSensors;
   delete decoded.containsSpecial;

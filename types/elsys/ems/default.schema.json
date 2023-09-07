@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/elsys/ems/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "temperature": {
       "title": "Temperature",
@@ -54,9 +56,7 @@
     "pulseAbs1": {
       "title": "Pulse count absolute",
       "description": "Pulse count absolute",
-      "type": "number",
-      "minimum": 0,
-      "maximum": 4294967295
+      "type": "number"
     },
     "waterleak": {
       "title": "Water leak",

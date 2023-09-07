@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/gwf/gwfcoder/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Lifecycle",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
   "properties": {
     "protocolType": {
       "title": "Protocol type",
@@ -24,8 +26,6 @@
       "title": "Meter ID",
       "type": "integer",
       "description": "Meter ID",
-      "minimum": 0,
-      "maximum": 4294967295,
       "hideFromKpis": true
     },
     "appError": {
