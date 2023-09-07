@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/cayenne/cayenne/presence.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Presence",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "presence",
+  "title": "Presence",
   "properties": {
     "channel": {
       "title": "Channel",

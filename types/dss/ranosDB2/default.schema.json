@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/dss/ranosDB2/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "dBAfast": {
       "title": "dB A-weighting fast",

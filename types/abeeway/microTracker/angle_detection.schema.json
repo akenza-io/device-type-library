@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/abeeway/microTracker/angle_detection.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Angle Detection",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "angle_detection",
+  "title": "Angle Detection",
   "properties": {
     "transitionState": {
       "title": "Transition state",

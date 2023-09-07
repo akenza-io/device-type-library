@@ -1,14 +1,19 @@
 {
   "$id": "https://akenza.io/xovis/pc2sv5/count.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Count",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "count",
+  "title": "Count",
   "properties": {
     "countType": {
       "title": "Count type",
       "description": "Describes the count type",
       "type": "string",
-      "enum": ["COUNT_INCREMENT", "COUNT_DECREMENT"]
+      "enum": [
+        "COUNT_INCREMENT",
+        "COUNT_DECREMENT"
+      ]
     },
     "logicName": {
       "title": "Logic name",
@@ -19,15 +24,23 @@
       "title": "Direction",
       "description": "Direction passed",
       "type": "string",
-      "enum": ["fw", "bw", "balance"]
+      "enum": [
+        "fw",
+        "bw",
+        "balance"
+      ]
     },
     "counterValue": {
       "title": "Counter value",
       "description": "Counter value",
       "type": "integer",
-      "min": 0,
-      "max": 65535
+      "minimum": 0,
+      "maximum": 65535
     }
   },
-  "required": ["countType", "logicName", "counterValue"]
+  "required": [
+    "countType",
+    "logicName",
+    "counterValue"
+  ]
 }

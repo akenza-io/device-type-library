@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/digitalMatter/oyster3/watchdog.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Watchdog",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "watchdog",
+  "title": "Watchdog",
   "properties": {
     "resetExternal": {
       "title": "Reset external",

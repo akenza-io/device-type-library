@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/swisscom/multisense/reed_counter.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Reed counter",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "reed_counter",
+  "title": "Reed counter",
   "properties": {
     "reedCounter": {
       "title": "Reed counter",
@@ -12,5 +14,7 @@
       "maximum": 65535
     }
   },
-  "required": ["reedCounter"]
+  "required": [
+    "reedCounter"
+  ]
 }

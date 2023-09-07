@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/ewattch/squid-hc-lorawan/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "channel1": {
       "title": "Channel 1",

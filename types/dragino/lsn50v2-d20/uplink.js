@@ -1,3 +1,34 @@
+function getFillLevel(device, distance) {
+  if (device !== undefined && distance !== undefined) {
+    if (device.customFields !== undefined) {
+      const { customFields } = device;
+      let scaleLength = null;
+      let sensorDistance = 0;
+
+      if (customFields.containerHeight !== undefined) {
+        scaleLength = Number(device.customFields.containerHeight);
+      }
+
+      if (customFields.installationOffset !== undefined) {
+        sensorDistance = Number(device.customFields.installationOffset);
+      }
+
+      if (scaleLength !== null) {
+        const percentExact =
+          (100 / scaleLength) * (scaleLength - (distance - sensorDistance));
+        let fillLevel = Math.round(percentExact);
+        if (fillLevel > 100) {
+          fillLevel = 100;
+        } else if (fillLevel < 0) {
+          fillLevel = 0;
+        }
+        return fillLevel;
+      }
+    }
+  }
+  return undefined;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bytes = Hex.hexToBytes(payload);
@@ -6,6 +37,7 @@ function consume(event) {
 
   let topic = "default";
   const data = {};
+  const defaultData = {};
   const lifecycle = {};
 
   if (mode !== 2 && mode !== 31) {
@@ -20,18 +52,19 @@ function consume(event) {
     }
     lifecycle.batteryLevel = batteryLevel;
 
-    data.temperature = parseFloat(
+    defaultData.temperature = parseFloat(
       ((((bytes[2] << 24) >> 16) | bytes[3]) / 10).toFixed(2),
     );
 
-    data.c0adc = ((bytes[4] << 8) | bytes[5]) / 1000;
+    defaultData.c0adc = ((bytes[4] << 8) | bytes[5]) / 1000;
 
-    data.digitalStatus = bytes[6] & 0x02 ? "HIGH" : "LOW";
+    defaultData.digitalStatus = bytes[6] & 0x02 ? "HIGH" : "LOW";
 
     if (mode !== 6) {
-      data.extTrigger = !!(bytes[6] & 0x01);
-      data.open = !!(bytes[6] & 0x80);
+      defaultData.extTrigger = !!(bytes[6] & 0x01);
+      defaultData.open = !!(bytes[6] & 0x80);
     }
+    emit("sample", { data: defaultData, topic: "default" });
   }
 
   if (mode === 0) {
@@ -52,6 +85,10 @@ function consume(event) {
     topic = "distance";
 
     data.distance = parseFloat((((bytes[7] << 8) | bytes[8]) / 10).toFixed(1));
+    const fillLevel = getFillLevel(event.device, data.distance);
+    if (fillLevel !== undefined) {
+      data.fillLevel = fillLevel;
+    }
 
     if (((bytes[9] << 8) | bytes[10]) !== 65535) {
       data.distanceSignalStrength = parseFloat(

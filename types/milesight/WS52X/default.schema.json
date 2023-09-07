@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/milesight/WS52X/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "voltage": {
       "title": "Voltage",
@@ -38,7 +40,10 @@
       "title": "State",
       "description": "Plug state",
       "type": "string",
-      "enum": ["OPEN", "CLOSED"]
+      "enum": [
+        "OPEN",
+        "CLOSED"
+      ]
     }
   },
   "required": [

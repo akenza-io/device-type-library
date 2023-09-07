@@ -1,14 +1,22 @@
 {
   "$id": "https://akenza.io/milesight/EM400-MUD/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "distance": {
       "title": "Distance",
       "unit": "mm",
       "type": "number",
       "description": "Distance measured between the sensor and the surface"
+    },
+    "fillLevel": {
+      "title": "Fill level",
+      "unit": "%",
+      "type": "number",
+      "description": "Fill percentage of the container"
     },
     "distanceAlarming": {
       "title": "Distance alarm",
@@ -34,5 +42,9 @@
       "description": "Temperature abnormal."
     }
   },
-  "required": ["distance", "tilt", "temperature"]
+  "required": [
+    "distance",
+    "tilt",
+    "temperature"
+  ]
 }

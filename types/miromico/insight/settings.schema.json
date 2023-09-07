@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/miromico/insight/settings.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Settings",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "settings",
+  "title": "Settings",
   "properties": {
     "measurementInterval": {
       "title": "Measurement interval",

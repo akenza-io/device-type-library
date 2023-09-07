@@ -57,6 +57,7 @@ describe("Elsys EMS Desk uplink", () => {
 
         assert.equal(value.topic, "occupancy");
         assert.equal(value.data.occupancy, 2);
+        assert.equal(value.data.occupied, true);
 
         utils.validateSchema(value.data, occupancySchema, { throwError: true });
       });

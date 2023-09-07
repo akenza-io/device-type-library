@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/digitalTechnologies/touch/network_status.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Network status",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "network_status",
+  "title": "Network status",
   "properties": {
     "signalStrength": {
       "title": "Signal strength",
@@ -20,9 +22,16 @@
       "title": "Transmission mode",
       "description": "Transmission mode",
       "type": "string",
-      "enum": ["LOW_POWER_STANDARD_MODE", "HIGH_POWER_BOOST_MODE"],
+      "enum": [
+        "LOW_POWER_STANDARD_MODE",
+        "HIGH_POWER_BOOST_MODE"
+      ],
       "hideFromKpis": true
     }
   },
-  "required": ["signalStrength", "rssi", "transmissionMode"]
+  "required": [
+    "signalStrength",
+    "rssi",
+    "transmissionMode"
+  ]
 }

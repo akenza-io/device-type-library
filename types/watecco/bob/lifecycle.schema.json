@@ -1,14 +1,21 @@
 {
   "$id": "https://akenza.io/watecco/bob/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Lifecycle",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
   "properties": {
     "sensorState": {
       "title": "Sensor state",
       "type": "string",
       "description": "Sensor messages which indicate the state.",
-      "enum": ["SENSOR_START", "SENSOR_STOP", "MACHINE_STOP", "MACHINE_START"],
+      "enum": [
+        "SENSOR_START",
+        "SENSOR_STOP",
+        "MACHINE_STOP",
+        "MACHINE_START"
+      ],
       "hideFromKpis": true
     },
     "batteryLevel": {
@@ -20,5 +27,7 @@
       "unit": "%"
     }
   },
-  "required": ["batteryLevel"]
+  "required": [
+    "batteryLevel"
+  ]
 }

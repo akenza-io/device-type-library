@@ -1,14 +1,21 @@
 {
   "$id": "https://akenza.io/landisgyr/t550/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Lifecycle",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
   "properties": {
     "header": {
       "title": "Message header",
       "type": "string",
       "desciption": "Message header",
-      "enum": ["STANDARD", "COMPACT", "JSON", "SCHEDULED"],
+      "enum": [
+        "STANDARD",
+        "COMPACT",
+        "JSON",
+        "SCHEDULED"
+      ],
       "hideFromKpis": true
     },
     "serialID": {
@@ -24,5 +31,9 @@
       "hideFromKpis": true
     }
   },
-  "required": ["header", "serialID", "errFlags"]
+  "required": [
+    "header",
+    "serialID",
+    "errFlags"
+  ]
 }

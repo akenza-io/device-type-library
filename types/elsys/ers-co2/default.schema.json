@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/elsys/ers-co2/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "humidity": {
       "title": "Humidity",
@@ -37,5 +39,10 @@
       "maximum": 10000
     }
   },
-  "required": ["humidity", "temperature", "light", "co2"]
+  "required": [
+    "humidity",
+    "temperature",
+    "light",
+    "co2"
+  ]
 }

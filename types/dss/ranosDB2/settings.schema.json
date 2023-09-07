@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/dss/ranosDB2/settings.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Settings",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "settings",
+  "title": "Settings",
   "properties": {
     "adr": {
       "title": "ADR",
@@ -44,7 +46,11 @@
       "title": "GPS Mode",
       "type": "string",
       "description": "GPS Mode",
-      "enum": ["OFF", "ONCE", "INTERVAL"],
+      "enum": [
+        "OFF",
+        "ONCE",
+        "INTERVAL"
+      ],
       "hideFromKpis": true
     },
     "sampleCount": {

@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/browan/tbwaterleak/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "waterleak": {
       "title": "Water leak",
@@ -26,5 +28,9 @@
       "maximum": 100
     }
   },
-  "required": ["waterleak", "temperature", "humidity"]
+  "required": [
+    "waterleak",
+    "temperature",
+    "humidity"
+  ]
 }

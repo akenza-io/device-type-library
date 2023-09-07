@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/dragino/cpl01/datalog.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Datalog",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "datalog",
+  "title": "Datalog",
   "properties": {
     "log0": {
       "title": "Datalog",

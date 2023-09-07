@@ -1,0 +1,46 @@
+{
+  "$id": "https://akenza.io/milesight/EM300-DI/history.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "history",
+  "title": "History",
+  "properties": {
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5,
+      "hideFromKpis": true
+    },
+    "humidity": {
+      "title": "Humidity",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %",
+      "minimum": 0,
+      "maximum": 100,
+      "hideFromKpis": true
+    },
+    "gpio": {
+      "title": "GPIO",
+      "type": "integer",
+      "description": "General purpose input/output",
+      "hideFromKpis": true
+    },
+    "pulse": {
+      "title": "Pulse",
+      "type": "number",
+      "description": "Pulse counter",
+      "hideFromKpis": true
+    },
+    "timestamp": {
+      "title": "Timstampe",
+      "type": "number",
+      "description": "Timestamp of this datapoint",
+      "hideFromKpis": true
+    }
+  }
+}

@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/browan/tbdw100/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "temperature": {
       "title": "Temperature",
@@ -31,5 +33,10 @@
       "hideFromKpis": true
     }
   },
-  "required": ["temperature", "open", "time", "count"]
+  "required": [
+    "temperature",
+    "open",
+    "time",
+    "count"
+  ]
 }

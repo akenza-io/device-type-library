@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/adeunis/ftd/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "temperature": {
       "title": "Temperature",
@@ -16,7 +18,10 @@
       "title": "Trigger",
       "description": "Action which triggered the uplink",
       "type": "string",
-      "enum": ["ACCELEROMETER", "PUSHBUTTON"]
+      "enum": [
+        "ACCELEROMETER",
+        "PUSHBUTTON"
+      ]
     },
     "uplink": {
       "title": "Uplink count",

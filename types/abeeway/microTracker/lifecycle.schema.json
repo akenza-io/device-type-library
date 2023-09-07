@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/abeeway/microTracker/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Lifecycle",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
   "properties": {
     "demandMessage": {
       "title": "Position on demand message",
@@ -46,7 +48,11 @@
       "title": "Battery status",
       "description": "Battery status",
       "type": "string",
-      "enum": ["CHARGING", "ERROR", "NORMAL"],
+      "enum": [
+        "CHARGING",
+        "ERROR",
+        "NORMAL"
+      ],
       "hideFromKpis": true
     },
     "batteryLevel": {

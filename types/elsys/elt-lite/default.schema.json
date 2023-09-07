@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/elsys/elt-lite/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "temperature": {
       "title": "Temperature",
@@ -56,6 +58,12 @@
       "minimum": 0,
       "maximum": 65535
     },
+    "fillLevel": {
+      "title": "Fill level",
+      "unit": "%",
+      "type": "number",
+      "description": "Fill percentage of the container"
+    },
     "accMotion": {
       "title": "Motion (Acceleration)",
       "type": "number",
@@ -85,5 +93,9 @@
       "maximum": 1100
     }
   },
-  "required": ["temperature", "humidity", "pressure"]
+  "required": [
+    "temperature",
+    "humidity",
+    "pressure"
+  ]
 }

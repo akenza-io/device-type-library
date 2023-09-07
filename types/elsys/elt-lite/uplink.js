@@ -28,6 +28,37 @@ const TYPE_EXT_TEMP2 = 0x19; // 2bytes -3276.5C-->3276.5C
 // Settings Decoder
 const SETTINGS_HEADER = 0x3e;
 
+function getFillLevel(device, distance) {
+  if (device !== undefined && distance !== undefined) {
+    if (device.customFields !== undefined) {
+      const { customFields } = device;
+      let scaleLength = null;
+      let sensorDistance = 0;
+
+      if (customFields.containerHeight !== undefined) {
+        scaleLength = Number(device.customFields.containerHeight);
+      }
+
+      if (customFields.installationOffset !== undefined) {
+        sensorDistance = Number(device.customFields.installationOffset);
+      }
+
+      if (scaleLength !== null) {
+        const percentExact =
+          (100 / scaleLength) * (scaleLength - (distance - sensorDistance));
+        let fillLevel = Math.round(percentExact);
+        if (fillLevel > 100) {
+          fillLevel = 100;
+        } else if (fillLevel < 0) {
+          fillLevel = 0;
+        }
+        return fillLevel;
+      }
+    }
+  }
+  return undefined;
+}
+
 function bin16dec(bin) {
   let num = bin & 0xffff;
   if (0x8000 & num) num = -(0x010000 - num);
@@ -427,6 +458,10 @@ function consume(event) {
     data.co2 = res.co2;
     data.reed = res.digital;
     data.distance = res.distance;
+    const fillLevel = getFillLevel(event.device, data.distance);
+    if (fillLevel !== undefined) {
+      data.fillLevel = fillLevel;
+    }
     data.accMotion = res.accMotion;
     data.waterleak = res.waterleak;
     data.pressure = res.pressure;

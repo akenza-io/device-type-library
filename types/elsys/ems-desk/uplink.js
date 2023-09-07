@@ -128,6 +128,7 @@ function DecodeElsysPayload(data) {
         break;
       case TYPE_OCCUPANCY: // Body occupancy
         obj.occupancy = data[i + 1];
+        obj.occupied = !!obj.occupancy;
         i += 1;
         break;
       case TYPE_WATERLEAK: // Water leak
@@ -444,6 +445,7 @@ function consume(event) {
     // Occupancy values
     occupancy.motion = res.motion;
     occupancy.occupancy = res.occupancy;
+    occupancy.occupied = res.occupied;
 
     // Noise values
     noise.soundPeak = res.soundPeak;

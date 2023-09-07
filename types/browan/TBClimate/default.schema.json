@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/browan/TBClimate/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "temperature": {
       "title": "Temperature",
@@ -42,5 +44,11 @@
       "maximum": 60000
     }
   },
-  "required": ["temperature", "open", "humidity", "co2", "voc"]
+  "required": [
+    "temperature",
+    "open",
+    "humidity",
+    "co2",
+    "voc"
+  ]
 }

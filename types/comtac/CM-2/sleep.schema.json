@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/comtac/CM-2/sleep.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Sleep",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "sleep",
+  "title": "Sleep",
   "properties": {
     "sleep": {
       "title": "Sleep",
@@ -11,5 +13,7 @@
       "hideFromKpis": true
     }
   },
-  "required": ["sleep"]
+  "required": [
+    "sleep"
+  ]
 }

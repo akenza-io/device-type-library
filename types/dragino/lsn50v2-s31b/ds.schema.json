@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/dragino/lsn50v2-s31b/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "ds",
+  "title": "Default",
   "properties": {
     "c2temperature": {
       "title": "Channel 2 Temperature",
@@ -14,11 +16,11 @@
     },
     "c3temperature": {
       "title": "Channel 3 temperature",
-      "unit": "%",
+      "unit": "°C",
       "type": "number",
-      "description": "The relative humidity in %",
-      "minimum": 0,
-      "maximum": 100
+      "description": "Channel 3 Temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
     }
   }
 }

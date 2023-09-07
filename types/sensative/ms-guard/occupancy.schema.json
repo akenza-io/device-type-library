@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/sensative/ms-guard/occupancy.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Occupancy",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "occupancy",
+  "title": "Occupancy",
   "properties": {
     "occupancy": {
       "title": "Occupancy",
@@ -10,7 +12,14 @@
       "type": "integer",
       "minimum": 0,
       "maximum": 1
+    },
+    "occupied": {
+      "title": "Occupied",
+      "description": "Space occupancy. false = Unoccupied / true = Occupied.",
+      "type": "boolean"
     }
   },
-  "required": ["occupancy"]
+  "required": [
+    "occupancy"
+  ]
 }

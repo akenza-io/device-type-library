@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/cayenne/cayenne/digital.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Digital",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "digital",
+  "title": "Digital",
   "properties": {
     "channel": {
       "title": "Channel",

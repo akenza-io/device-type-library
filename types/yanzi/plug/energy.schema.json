@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/yanzi/plug/energy.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Energy",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "energy",
+  "title": "Energy",
   "properties": {
     "energy": {
       "title": "Energy",
@@ -11,5 +13,7 @@
       "description": "Energy consumption in kWh"
     }
   },
-  "required": ["energy"]
+  "required": [
+    "energy"
+  ]
 }

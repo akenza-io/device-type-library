@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/imbuildings/OfficeOccupancyCounter/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "counterA": {
       "title": "Counter A",
@@ -15,5 +17,8 @@
       "description": "Counter B"
     }
   },
-  "required": ["counterA", "counterB"]
+  "required": [
+    "counterA",
+    "counterB"
+  ]
 }

@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/elsys/ems-door/reed.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Reed",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "reed",
+  "title": "Reed",
   "properties": {
     "reed": {
       "title": "Reed",
@@ -15,5 +17,8 @@
       "type": "number"
     }
   },
-  "required": ["reed", "pulseAbs1"]
+  "required": [
+    "reed",
+    "pulseAbs1"
+  ]
 }

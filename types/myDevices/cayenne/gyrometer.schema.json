@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/cayenne/cayenne/gyrometer.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Gyrometer",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "gyrometer",
+  "title": "Gyrometer",
   "properties": {
     "channel": {
       "title": "Channel",

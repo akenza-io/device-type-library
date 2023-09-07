@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/haltian/thingseeAir/battery_level.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Battery level",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "battery_level",
+  "title": "Battery level",
   "properties": {
     "batteryLevel": {
       "title": "Battery level",
@@ -18,5 +20,7 @@
       "description": "Battery charges left"
     }
   },
-  "required": ["batteryLevel"]
+  "required": [
+    "batteryLevel"
+  ]
 }

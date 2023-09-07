@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/digitalMatter/sensorNode/probe.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Probe",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "probe",
+  "title": "Probe",
   "properties": {
     "probe1": {
       "title": "Probe 1",
@@ -21,5 +23,8 @@
       "maximum": 3276.5
     }
   },
-  "required": ["probe1", "probe2"]
+  "required": [
+    "probe1",
+    "probe2"
+  ]
 }

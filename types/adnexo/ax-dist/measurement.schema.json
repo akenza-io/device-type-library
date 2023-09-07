@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/adnexo/ax-dist/measurement.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Measurement",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "measurement",
+  "title": "Measurement",
   "properties": {
     "distance": {
       "title": "Distance",
@@ -34,5 +36,9 @@
       "hideFromKpis": true
     }
   },
-  "required": ["distance", "temperature", "measurementType"]
+  "required": [
+    "distance",
+    "temperature",
+    "measurementType"
+  ]
 }
