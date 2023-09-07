@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/enginko/EGK-LW20W00/distance.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Distance",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "distance",
+  "title": "Distance",
   "properties": {
     "distance": {
       "title": "Distance",
@@ -25,5 +27,9 @@
       "maximum": 3276.5
     }
   },
-  "required": ["distance", "fillLevel", "temperature"]
+  "required": [
+    "distance",
+    "fillLevel",
+    "temperature"
+  ]
 }

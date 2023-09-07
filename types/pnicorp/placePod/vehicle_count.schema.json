@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/pnicorp/placePod/vehicleCount.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Vehicle count",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "vehicle_count",
+  "title": "Vehicle count",
   "properties": {
     "vehicleCount": {
       "title": "Vehicle count",
@@ -12,5 +14,7 @@
       "maximum": 255
     }
   },
-  "required": ["vehicleCount"]
+  "required": [
+    "vehicleCount"
+  ]
 }

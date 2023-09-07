@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/digitalMatter/oyster3/stats.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Stats",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "stats",
+  "title": "Stats",
   "properties": {
     "aveGnssFailS": {
       "title": "Average GNSS fail time",
@@ -71,5 +73,10 @@
       "hideFromKpis": true
     }
   },
-  "required": ["initialvoltage", "tripCount", "uptimeWeeks", "wakeupsPerTrip"]
+  "required": [
+    "initialvoltage",
+    "tripCount",
+    "uptimeWeeks",
+    "wakeupsPerTrip"
+  ]
 }

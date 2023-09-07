@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/enginko/EGK-LW20W00/time_sync.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Time sync",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "time_sync",
+  "title": "Time sync",
   "properties": {
     "syncID": {
       "title": "Sync ID",
@@ -31,5 +33,10 @@
       "hideFromKpis": true
     }
   },
-  "required": ["syncID", "syncVersion", "applicationType", "rfu"]
+  "required": [
+    "syncID",
+    "syncVersion",
+    "applicationType",
+    "rfu"
+  ]
 }

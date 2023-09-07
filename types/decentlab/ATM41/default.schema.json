@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/decentlab/atm41/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "solarRadiation": {
       "title": "Solar radiation",

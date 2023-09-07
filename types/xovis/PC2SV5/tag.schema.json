@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/xovis/pc2s/tag.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Tag",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "tag",
+  "title": "Tag",
   "properties": {
     "tag": {
       "title": "Tag",
@@ -10,5 +12,7 @@
       "type": "boolean"
     }
   },
-  "required": ["tag"]
+  "required": [
+    "tag"
+  ]
 }

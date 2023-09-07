@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/sensingLabs/senlabD/startup.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Startup",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "startup",
+  "title": "Startup",
   "properties": {
     "version": {
       "title": "App version",
@@ -22,5 +24,9 @@
       "description": "Duration reed closed"
     }
   },
-  "required": ["version", "openDuration", "closeDuration"]
+  "required": [
+    "version",
+    "openDuration",
+    "closeDuration"
+  ]
 }

@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/decentlab/iam/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "valve": {
       "title": "Valve",
@@ -28,7 +30,11 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     },
-    "e25": { "title": "E25", "type": "number", "description": "E25" },
+    "e25": {
+      "title": "E25",
+      "type": "number",
+      "description": "E25"
+    },
     "waterContent": {
       "title": "Water content",
       "unit": "VWC",

@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/seeed/senseCAPT1000A/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Lifecycle",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
   "properties": {
     "batteryLevel": {
       "title": "Battery charge",
@@ -84,5 +86,7 @@
       "hideFromKpis": true
     }
   },
-  "required": ["batteryLevel"]
+  "required": [
+    "batteryLevel"
+  ]
 }

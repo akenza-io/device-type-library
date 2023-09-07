@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/elsys/ers-sound/noise.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Noise",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "noise",
+  "title": "Noise",
   "properties": {
     "soundPeak": {
       "title": "Sound Peak",
@@ -21,5 +23,8 @@
       "maximum": 120
     }
   },
-  "required": ["soundPeak", "soundAvg"]
+  "required": [
+    "soundPeak",
+    "soundAvg"
+  ]
 }

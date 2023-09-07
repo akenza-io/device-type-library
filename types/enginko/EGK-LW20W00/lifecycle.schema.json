@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/enginko/EGK-LW20W00/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Lifecycle",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
   "properties": {
     "adc": {
       "title": "ADC",
@@ -18,5 +20,8 @@
       "unit": "%"
     }
   },
-  "required": ["adc", "batteryLevel"]
+  "required": [
+    "adc",
+    "batteryLevel"
+  ]
 }

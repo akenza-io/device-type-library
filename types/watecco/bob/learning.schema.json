@@ -1,14 +1,19 @@
 {
   "$id": "https://akenza.io/watecco/bob/learning.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Learning",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "learning",
+  "title": "Learning",
   "properties": {
     "device": {
       "title": "Device",
       "description": "Device type",
       "type": "string",
-      "enum": ["MPU", "KX"],
+      "enum": [
+        "MPU",
+        "KX"
+      ],
       "hideFromKpis": true
     },
     "learningPercentage": {
@@ -42,7 +47,10 @@
       "title": "Learning",
       "description": "Learning from scratch or additional learning",
       "type": "string",
-      "enum": ["ZERO", "ADDITIONAL_LEARNING"],
+      "enum": [
+        "ZERO",
+        "ADDITIONAL_LEARNING"
+      ],
       "hideFromKpis": true
     },
     "peakFrequencyIndex": {
@@ -294,5 +302,10 @@
       "hideFromKpis": true
     }
   },
-  "required": ["learningPerc", "vibration", "temperature", "learningFrom"]
+  "required": [
+    "learningPerc",
+    "vibration",
+    "temperature",
+    "learningFrom"
+  ]
 }

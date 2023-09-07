@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/digitalMatter/g62/digital.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Digital",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "digital",
+  "title": "Digital",
   "properties": {
     "extPower": {
       "title": "External power",

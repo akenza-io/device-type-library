@@ -1,16 +1,23 @@
 {
   "$id": "https://akenza.io/nordicPropeye/oy1210/startup.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Startup",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "startup",
+  "title": "Startup",
   "properties": {
     "message": {
       "title": "Message",
       "type": "string",
-      "enum": ["STARTUP_OK", "STARTUP_FAIL"],
+      "enum": [
+        "STARTUP_OK",
+        "STARTUP_FAIL"
+      ],
       "description": "Message indicating startup status",
       "hideFromKpis": true
     }
   },
-  "required": ["message"]
+  "required": [
+    "message"
+  ]
 }

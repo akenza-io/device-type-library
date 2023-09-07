@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/digitalMatter/oyster3/stats_v3.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Stats V3",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "stats_v3",
+  "title": "Stats V3",
   "properties": {
     "batCritical": {
       "title": "Battery critical",

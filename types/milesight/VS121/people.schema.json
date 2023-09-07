@@ -1,23 +1,28 @@
 {
   "$id": "https://akenza.io/xovis/VS121/people.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "People",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "people",
+  "title": "People",
   "properties": {
     "in": {
       "title": "Forward",
       "description": "People moving forward",
       "type": "integer",
-      "min": 0,
-      "max": 65535
+      "minimum": 0,
+      "maximum": 65535
     },
     "out": {
       "title": "Backward",
       "description": "People moving backwards",
       "type": "integer",
-      "min": 0,
-      "max": 65535
+      "minimum": 0,
+      "maximum": 65535
     }
   },
-  "required": ["in", "out"]
+  "required": [
+    "in",
+    "out"
+  ]
 }

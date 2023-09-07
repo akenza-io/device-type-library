@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/abeeway/badgeTracker/wifi.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Wifi",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "wifi",
+  "title": "Wifi",
   "properties": {
     "wifiMessage": {
       "title": "WIFI Message",
@@ -174,5 +176,7 @@
       "hideFromKpis": true
     }
   },
-  "required": ["age"]
+  "required": [
+    "age"
+  ]
 }

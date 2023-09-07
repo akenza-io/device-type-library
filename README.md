@@ -17,6 +17,7 @@ Feel free to use them and submit your own decoders.<br>
 - Create a schema for each topic and an entry for each key in the topic
 - Use topics to structure similar data (i.e. ambiance, occupancy, lifecycle)
 - Use a separate topic for shared data keys (e.g. battery or temperature if sent with all messages), this will allow you to properly query and aggregate this data
+- Add a processingType of `uplink_decoder` or `downlink_encoder` depending on the use of the schema
 - Add titles and units for showing more metadata in akenza
 - If preferred, you could create a downlink encoder to make it easier for the user to structure downlinks
 - Be sure to add an image of the sensor

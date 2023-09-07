@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/pnicorp/placePod/battery.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Battery",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "battery",
+  "title": "Battery",
   "properties": {
     "batteryVoltage": {
       "type": "number",
@@ -13,5 +15,7 @@
       "unit": "V"
     }
   },
-  "required": ["batteryVoltage"]
+  "required": [
+    "batteryVoltage"
+  ]
 }

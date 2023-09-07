@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/milesight/EM300-DI/history.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "History",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "history",
+  "title": "History",
   "properties": {
     "temperature": {
       "title": "Temperature",

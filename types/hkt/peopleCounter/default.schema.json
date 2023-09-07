@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/hkt/peopleCounter/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "counterA": {
       "title": "Counter A",
@@ -25,5 +27,10 @@
       "description": "Absoulute count B"
     }
   },
-  "required": ["counterA", "counterB", "absCountA", "absCountB"]
+  "required": [
+    "counterA",
+    "counterB",
+    "absCountA",
+    "absCountB"
+  ]
 }

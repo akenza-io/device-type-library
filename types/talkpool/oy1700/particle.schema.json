@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/nordicPropeye/oy1700/particle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Particle",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "particle",
+  "title": "Particle",
   "properties": {
     "particleCount0_3": {
       "title": "Particulate matter count 0.3",
