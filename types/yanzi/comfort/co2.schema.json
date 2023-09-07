@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/yanzi/comfort/co2.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "CO2",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "co2",
+  "title": "CO2",
   "properties": {
     "co2": {
       "title": "CO2",
@@ -13,5 +15,7 @@
       "maximum": 10000
     }
   },
-  "required": ["co2"]
+  "required": [
+    "co2"
+  ]
 }

@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/adnexo/ax-opto/measurement.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Measurement",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "measurement",
+  "title": "Measurement",
   "properties": {
     "distance": {
       "title": "Distance",
@@ -10,11 +12,11 @@
       "type": "number",
       "description": "Distance measured between the sensor and the surface"
     },
-    "percent": {
-      "title": "Percent",
+    "fillLevel": {
+      "title": "Fill level",
       "unit": "%",
       "type": "number",
-      "description": "Percentage of the container fill"
+      "description": "Fill percentage of the container"
     },
     "topLeft": {
       "title": "Distance top left",
@@ -103,5 +105,10 @@
       "hideFromKpis": true
     }
   },
-  "required": ["distance", "errorFlags", "temperature", "measurementType"]
+  "required": [
+    "distance",
+    "errorFlags",
+    "temperature",
+    "measurementType"
+  ]
 }

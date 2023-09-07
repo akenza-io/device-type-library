@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/dragino/lsn50v2-s31/weight.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Weight",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "weight",
+  "title": "Weight",
   "properties": {
     "weight": {
       "title": "Weight",

@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/decentlab/pr26/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Lifecycle",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
   "properties": {
     "batteryVoltage": {
       "title": "Battery voltage",
@@ -25,5 +27,9 @@
       "hideFromKpis": true
     }
   },
-  "required": ["batteryVoltage", "protocolVersion", "deviceID"]
+  "required": [
+    "batteryVoltage",
+    "protocolVersion",
+    "deviceID"
+  ]
 }

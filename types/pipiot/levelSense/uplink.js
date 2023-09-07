@@ -1,3 +1,34 @@
+function getFillLevel(device, distance) {
+  if (device !== undefined && distance !== undefined) {
+    if (device.customFields !== undefined) {
+      const { customFields } = device;
+      let scaleLength = null;
+      let sensorDistance = 0;
+
+      if (customFields.containerHeight !== undefined) {
+        scaleLength = Number(device.customFields.containerHeight);
+      }
+
+      if (customFields.installationOffset !== undefined) {
+        sensorDistance = Number(device.customFields.installationOffset);
+      }
+
+      if (scaleLength !== null) {
+        const percentExact =
+          (100 / scaleLength) * (scaleLength - (distance - sensorDistance));
+        let fillLevel = Math.round(percentExact);
+        if (fillLevel > 100) {
+          fillLevel = 100;
+        } else if (fillLevel < 0) {
+          fillLevel = 0;
+        }
+        return fillLevel;
+      }
+    }
+  }
+  return undefined;
+}
+
 function ultrasonicDistance(bits, tiltedFlag, overTempFlag) {
   let us = Bits.bitsToUnsigned(bits);
   if (tiltedFlag || overTempFlag) {
@@ -139,6 +170,10 @@ function consume(event) {
       lifecycle.tiltedFlag,
       lifecycle.overTempFlag,
     );
+    const fillLevel = getFillLevel(event.device, distance.ultrasonicDistance);
+    if (fillLevel !== undefined) {
+      distance.fillLevel = fillLevel;
+    }
     distance.laserDistance = laserDistance(
       bits.substr(24, 8),
       lifecycle.tiltedFlag,

@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/tektelic/smartRoomSensorBase/reed.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Reed",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "reed",
+  "title": "Reed",
   "properties": {
     "reedCount": {
       "title": "Reed count",
@@ -15,5 +17,8 @@
       "description": "True if reed has no contact."
     }
   },
-  "required": ["reedCount", "open"]
+  "required": [
+    "reedCount",
+    "open"
+  ]
 }

@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/mclimate/vicki/raw_payload.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Raw",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "raw_payload",
+  "title": "Raw",
   "properties": {
     "deviceId": {
       "title": "Device EUI",

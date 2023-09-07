@@ -1,0 +1,28 @@
+{
+  "$id": "https://akenza.io/milesight/AT101/history.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "history",
+  "title": "History",
+  "properties": {
+    "motionStatus": {
+      "title": "Motion status",
+      "description": "Motion status",
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "START",
+        "MOVING",
+        "STOP"
+      ],
+      "hideFromKpis": true
+    },
+    "wifi": {
+      "title": "Wifi",
+      "description": "Wifi stats",
+      "type": "object",
+      "hideFromKpis": true
+    }
+  }
+}

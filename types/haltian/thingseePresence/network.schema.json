@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/haltian/thingseeEnvironment/network.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Network",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "network",
+  "title": "Network",
   "properties": {
     "rssi": {
       "title": "RSSI",

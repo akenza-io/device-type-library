@@ -1,14 +1,22 @@
 {
   "$id": "https://akenza.io/dragino/lsn50v2-d22/distance.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Distance",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "distance",
+  "title": "Distance",
   "properties": {
     "distance": {
       "title": "Distance",
       "unit": "mm",
       "type": "number",
       "description": "Distance measured between the sensor and the surface"
+    },
+    "fillLevel": {
+      "title": "Fill level",
+      "unit": "%",
+      "type": "number",
+      "description": "Fill percentage of the container"
     },
     "distanceSignalStrength": {
       "title": "Distance signal strength",

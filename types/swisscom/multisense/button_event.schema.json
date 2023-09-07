@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/swisscom/multisense/button_event.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "button_event",
+  "title": "Button event",
+  "properties": {
+    "buttonEvent": {
+      "title": "Button event",
+      "description": "Button got pressed",
+      "type": "number",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "buttonEvent"
+  ]
+}

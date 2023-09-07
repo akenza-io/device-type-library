@@ -1,14 +1,20 @@
 {
   "$id": "https://akenza.io/ewattch/squid-hc-lorawan/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Lifecycle",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
   "properties": {
     "batteryStatus": {
       "title": "Battery status",
       "type": "string",
       "description": "Battery status",
-      "enum": ["CRITICAL", "LOW", "NORMAL"]
+      "enum": [
+        "CRITICAL",
+        "LOW",
+        "NORMAL"
+      ]
     },
     "firmware": {
       "title": "Firmware version",
@@ -22,5 +28,9 @@
       "description": "Periodicity"
     }
   },
-  "required": ["batteryStatus", "firmware", "periodicity"]
+  "required": [
+    "batteryStatus",
+    "firmware",
+    "periodicity"
+  ]
 }

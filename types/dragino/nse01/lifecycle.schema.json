@@ -1,0 +1,58 @@
+{
+  "$id": "https://akenza.io/dragino/nse01/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "deviceId": {
+      "title": "Serial ID",
+      "description": "Serial ID",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "version": {
+      "title": "Version",
+      "type": "integer",
+      "desciption": "Version",
+      "hideFromKpis": true
+    },
+    "signalStrength": {
+      "title": "Signal strength",
+      "description": "Signal strength",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "mod": {
+      "title": "Modification",
+      "description": "Modification",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "interrupt": {
+      "title": "Interrupt",
+      "description": "Interrupt",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "batteryVoltage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "title": "Battery voltage",
+      "desciption": "The battery voltage in Volt.",
+      "unit": "V",
+      "hideFromKpis": true
+    },
+    "batteryLevel": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "unit": "%",
+      "hideFromKpis": true
+    }
+  }
+}

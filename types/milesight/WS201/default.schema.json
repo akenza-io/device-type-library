@@ -1,0 +1,28 @@
+{
+  "$id": "https://akenza.io/milesight/WS201/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "distance": {
+      "title": "Distance",
+      "unit": "mm",
+      "type": "number",
+      "description": "Distance measured between the sensor and the surface"
+    },
+    "fillLevel": {
+      "title": "Fill level",
+      "unit": "%",
+      "type": "number",
+      "description": "Fill percentage of the container"
+    },
+    "remaining": {
+      "title": "Remaining content",
+      "unit": "mm",
+      "type": "number",
+      "description": "Remaining content of the container"
+    }
+  }
+}

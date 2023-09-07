@@ -1,14 +1,21 @@
 {
   "$id": "https://akenza.io/adeunis/dryContact/channel.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Channel",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "channel",
+  "title": "Channel",
   "properties": {
     "channel": {
       "title": "Channel",
       "type": "string",
       "description": "Channel",
-      "enum": ["channelA", "channelB", "channelC", "channelD"],
+      "enum": [
+        "channelA",
+        "channelB",
+        "channelC",
+        "channelD"
+      ],
       "hideFromKpis": true
     },
     "previousState": {
@@ -30,5 +37,10 @@
       "hideFromKpis": true
     }
   },
-  "required": ["channel", "previousState", "state", "value"]
+  "required": [
+    "channel",
+    "previousState",
+    "state",
+    "value"
+  ]
 }

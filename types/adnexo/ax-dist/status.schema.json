@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/adnexo/ax-dist/status.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Status",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "status",
+  "title": "Status",
   "properties": {
     "payloadType": {
       "title": "Payload type",
@@ -50,5 +52,7 @@
       "hideFromKpis": true
     }
   },
-  "required": ["payloadType"]
+  "required": [
+    "payloadType"
+  ]
 }

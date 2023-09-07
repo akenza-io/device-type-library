@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/adeunis/pulse4/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "counterValue": {
       "title": "Counter value",
@@ -60,5 +62,7 @@
       "description": "Counter value time - 10"
     }
   },
-  "required": ["counterValue"]
+  "required": [
+    "counterValue"
+  ]
 }

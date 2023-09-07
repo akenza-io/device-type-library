@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/miromico/rev2-v5/button-pressed.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Button pressed",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "button_pressed",
+  "title": "Button pressed",
   "properties": {
     "msgtype": {
       "title": "Message Type",
