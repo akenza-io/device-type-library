@@ -1,3 +1,4 @@
+// Source https://lora.watteco.fr/Lora/
 const ST_UNDEF = 0;
 const ST_BL = 1;
 const ST_U4 = 2;
@@ -674,10 +675,7 @@ function handleSeparateTimestamp(
  * Translate brUncompress output data to expected structure
  */
 function adaptToExpectedFormat(out, argList, batchAbsoluteTimestamp) {
-  const returnedGlobalObject = {
-    // batch_counter: out.batch_counter,
-    // batchRelativeTimestamp: out.batchRelativeTimestamp
-  };
+  const returnedGlobalObject = {};
   if (batchAbsoluteTimestamp) {
     returnedGlobalObject.b_ts = batchAbsoluteTimestamp;
   }
@@ -717,12 +715,6 @@ function adaptToExpectedFormat(out, argList, batchAbsoluteTimestamp) {
  */
 function computeDataAbsoluteTimestamp(bat, brt, drt) {
   return new Date(new Date(bat) - (brt - drt) * 1000).toISOString();
-}
-
-try {
-  module.exports = brUncompress;
-} catch (e) {
-  // when called from nashorn,  module.exports is unavailable…
 }
 
 function UintToInt(Uint, Size) {
@@ -810,7 +802,7 @@ function consume(event) {
     if (decodedBatch === false) {
       decoded.zclheader = {};
       decoded.zclheader.report = "standard";
-      let attributID = -1;
+      const attributeeID = -1;
       let cmdID = -1;
       let clusterdID = -1;
       // endpoint
@@ -823,14 +815,14 @@ function consume(event) {
       clusterdID = bytes[2] * 256 + bytes[3];
       decoded.zclheader.clusterdID = decimalToHex(clusterdID, 4);
 
-      // decode report and read atrtribut response
+      // decode report and read attribute response
       if ((cmdID === 0x0a) | (cmdID === 0x8a) | (cmdID === 0x01)) {
         const stdData = {};
         const tab = {};
 
-        // Attribut ID
-        attributID = bytes[4] * 256 + bytes[5];
-        decoded.zclheader.attributID = decimalToHex(attributID, 4);
+        // attribute ID
+        const attributeID = bytes[4] * 256 + bytes[5];
+        decoded.zclheader.attributeID = decimalToHex(attributeID, 4);
 
         if (cmdID === 0x8a) {
           decoded.zclheader.alarm = 1;
@@ -846,7 +838,7 @@ function consume(event) {
         // if (cmdID === 0x01) {index = 8; decoded.zclheader.status = bytes[6];}
 
         // on/off present value
-        if ((clusterdID === 0x0006) & (attributID === 0x0000)) {
+        if ((clusterdID === 0x0006) & (attributeID === 0x0000)) {
           const state = bytes[index];
           if (state === 0) {
             tab[`output${decoded.zclheader.endpoint + 1}`] = "OFF";
@@ -857,7 +849,7 @@ function consume(event) {
         }
 
         // energy and power metering
-        if ((clusterdID === 0x800a) & (attributID === 0x0000)) {
+        if ((clusterdID === 0x800a) & (attributeID === 0x0000)) {
           const phase = {};
           phase.pActiveEnergy = UintToInt(
             bytes[index + 1] * 256 * 256 * 256 +
@@ -923,7 +915,7 @@ function consume(event) {
         }
 
         // energy and power metering
-        if ((clusterdID === 0x800b) & (attributID === 0x0000)) {
+        if ((clusterdID === 0x800b) & (attributeID === 0x0000)) {
           const phaseVariables = {};
           phaseVariables.vrms =
             UintToInt(bytes[index + 1] * 256 + bytes[index + 2], 2) / 10;
@@ -937,7 +929,7 @@ function consume(event) {
           emit("sample", { topic: "phase_variables", data: phaseVariables });
         }
         // energy and power multi metering
-        if ((clusterdID === 0x8010) & (attributID === 0x0000)) {
+        if ((clusterdID === 0x8010) & (attributeID === 0x0000)) {
           const energy = {};
 
           energy.activeEnergyWhPhaseA = Int32UnsignedToSigned(
@@ -991,7 +983,7 @@ function consume(event) {
           energy.endpoint = decoded.zclheader.endpoint + 1;
 
           emit("sample", { topic: "energy", data: energy });
-        } else if ((clusterdID === 0x8010) & (attributID === 0x0001)) {
+        } else if ((clusterdID === 0x8010) & (attributeID === 0x0001)) {
           const power = {};
 
           power.activePowerWhPhaseA = Int32UnsignedToSigned(
@@ -1048,7 +1040,7 @@ function consume(event) {
           emit("sample", { topic: "power", data: power });
         }
         // voltage and current multi metering
-        if ((clusterdID === 0x800d) & (attributID === 0x0000)) {
+        if ((clusterdID === 0x800d) & (attributeID === 0x0000)) {
           const variables = {};
 
           variables.vrmsA =
@@ -1072,15 +1064,13 @@ function consume(event) {
 
           emit("sample", { topic: "variables", data: variables });
         }
-
-        // decoded.data = tab;
       }
 
       // decode configuration response
       if (cmdID === 0x07) {
-        // AttributID
-        attributID = bytes[6] * 256 + bytes[7];
-        decoded.zclheader.attributID = decimalToHex(attributID, 4);
+        // attributeID
+        const attributeID = bytes[6] * 256 + bytes[7];
+        decoded.zclheader.attributeID = decimalToHex(attributeID, 4);
         // status
         decoded.zclheader.status = bytes[4];
         // batch
@@ -1089,15 +1079,15 @@ function consume(event) {
 
       // decode read configuration response
       if (cmdID === 0x09) {
-        // AttributID
-        attributID = bytes[6] * 256 + bytes[7];
-        decoded.zclheader.attributID = decimalToHex(attributID, 4);
+        // attributeID
+        const attributeID = bytes[6] * 256 + bytes[7];
+        decoded.zclheader.attributeID = decimalToHex(attributeID, 4);
         // status
         decoded.zclheader.status = bytes[4];
         // batch
         decoded.zclheader.decodedBatch = bytes[5];
-        // AttributType
-        decoded.zclheader.attribut_type = bytes[8];
+        // attributeType
+        decoded.zclheader.attribute_type = bytes[8];
         // min
         decoded.zclheader.min = {};
         if ((bytes[9] & 0x80) === 0x80) {
@@ -1119,6 +1109,4 @@ function consume(event) {
       }
     }
   }
-
-  // emit("sample", { topic: "default", data: decoded.data });
 }

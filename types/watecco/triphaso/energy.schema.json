@@ -2,6 +2,8 @@
   "$id": "https://akenza.io/watecco/triphaso/energy.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Energy",
+  "processingType": "uplink_decoder",
+  "topic": "energy",
   "type": "object",
   "properties": {
     "activeEnergyWhPhaseA": {
