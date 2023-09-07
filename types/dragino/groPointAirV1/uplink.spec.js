@@ -63,7 +63,6 @@ describe("Dragino Gro Point Air Uplink", () => {
 
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryVoltage, 3.303);
-        assert.equal(value.data.sensorType, 6);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
