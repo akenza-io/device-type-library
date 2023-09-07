@@ -2,6 +2,8 @@
   "$id": "https://akenza.io/integra/aquastream/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Default",
+  "processingType": "uplink_decoder",
+  "topic": "default",
   "type": "object",
   "properties": {
     "volume": {
