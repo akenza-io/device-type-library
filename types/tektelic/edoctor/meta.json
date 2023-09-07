@@ -7,8 +7,12 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": [""],
-  "outputTopics": ["default", "reed", "lifecycle", "system"],
+  "availableSensors": [
+    "Heart monitor",
+    "Respiratory monitor",
+    "Body temperature"
+  ],
+  "outputTopics": ["default", "error", "lifecycle", "system"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }
