@@ -1,43 +1,51 @@
 {
   "$id": "https://akenza.io/xovis/pc2s/line_count.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Line count",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "line_count",
+  "title": "Line count",
   "properties": {
     "fw": {
       "title": "Forward",
       "description": "People moving forward",
       "type": "integer",
-      "min": 0,
-      "max": 65535
+      "minimum": 0,
+      "maximum": 65535
     },
     "bw": {
       "title": "Backward",
       "description": "People moving backwards",
       "type": "integer",
-      "min": 0,
-      "max": 65535
+      "minimum": 0,
+      "maximum": 65535
     },
     "count": {
       "title": "Count",
       "description": "Count of People forward and backwards",
       "type": "integer",
-      "min": 0,
-      "max": 65535
+      "minimum": 0,
+      "maximum": 65535
     },
     "faceMask": {
       "title": "Face mask",
       "description": "Checks if people have a facemask. 1 = facemask, 0 = facemask",
       "type": "integer",
-      "min": 0,
-      "max": 1
+      "minimum": 0,
+      "maximum": 1
     },
     "gender": {
       "title": "Gender",
       "description": "Gender of people passing through.",
       "type": "string",
-      "enum": ["FEMALE", "MALE"]
+      "enum": [
+        "FEMALE",
+        "MALE"
+      ]
     }
   },
-  "required": ["fw", "bw"]
+  "required": [
+    "fw",
+    "bw"
+  ]
 }

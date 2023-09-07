@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/landisgyr/t550/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "volume": {
       "title": "Volume",
@@ -41,7 +43,12 @@
       "title": "Energy unit",
       "type": "string",
       "desciption": "Message header",
-      "enum": ["MWH", "KWH", "GJ", "MJ"]
+      "enum": [
+        "MWH",
+        "KWH",
+        "GJ",
+        "MJ"
+      ]
     },
     "flow": {
       "title": "flow",

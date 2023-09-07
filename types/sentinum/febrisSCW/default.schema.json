@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/sentinum/febris/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "humidity": {
       "title": "Humidity",
@@ -32,7 +34,11 @@
       "title": "Alarm",
       "description": "Alarm",
       "type": "string",
-      "enum": ["GREEN", "YELLOW", "RED"]
+      "enum": [
+        "GREEN",
+        "YELLOW",
+        "RED"
+      ]
     },
     "dewPoint": {
       "title": "Dew point",
@@ -67,5 +73,8 @@
       "maximum": 100
     }
   },
-  "required": ["humidity", "alarm"]
+  "required": [
+    "humidity",
+    "alarm"
+  ]
 }

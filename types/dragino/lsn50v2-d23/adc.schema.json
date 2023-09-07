@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/dragino/lsn50v2-d23/adc.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "ADC",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "adc",
+  "title": "ADC",
   "properties": {
     "c0adc": {
       "title": "Channel 0 ADC",
@@ -26,7 +28,10 @@
       "title": "Digital status",
       "type": "string",
       "description": "Digital status",
-      "enum": ["HIGH", "LOW"]
+      "enum": [
+        "HIGH",
+        "LOW"
+      ]
     },
     "extTrigger": {
       "title": "External trigger",

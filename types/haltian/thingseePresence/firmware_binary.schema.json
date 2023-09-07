@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/haltian/thingseeEnvironment/firmware_binary.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Firmware binary",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "firmware_binary",
+  "title": "Firmware binary",
   "properties": {
     "binaryType": {
       "title": "Binary type",
@@ -17,5 +19,8 @@
       "hideFromKpis": true
     }
   },
-  "required": ["binaryType", "binaryVersion"]
+  "required": [
+    "binaryType",
+    "binaryVersion"
+  ]
 }

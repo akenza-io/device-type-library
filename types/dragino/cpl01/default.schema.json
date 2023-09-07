@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/dragino/cpl01/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "alarm": {
       "title": "Alarm",
@@ -13,7 +15,10 @@
       "title": "Pin status",
       "description": "Pin status",
       "type": "string",
-      "enum": ["DISCONNECTED", "CONNECTED"]
+      "enum": [
+        "DISCONNECTED",
+        "CONNECTED"
+      ]
     },
     "calculateFlag": {
       "title": "Calculate flag",

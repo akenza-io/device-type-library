@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/elsys/ems-door/configuration.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Configuration",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "configuration",
+  "title": "Configuration",
   "properties": {
     "appSKey": {
       "title": "Application session key",

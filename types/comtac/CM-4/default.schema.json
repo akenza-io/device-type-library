@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/comtac/CM-4/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "temperature": {
       "title": "Temperature",
@@ -21,5 +23,8 @@
       "maximum": 100
     }
   },
-  "required": ["temperature", "humidity"]
+  "required": [
+    "temperature",
+    "humidity"
+  ]
 }

@@ -1,16 +1,23 @@
 {
   "$id": "https://akenza.io/pnicorp/placePod/reboot.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Reboot",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "reboot",
+  "title": "Reboot",
   "properties": {
     "reboot": {
       "title": "Reboot",
       "description": "Either Sensor reboot, recalibration or reboot finished",
-      "enum": ["DONE", "RECALIBRATION"],
+      "enum": [
+        "DONE",
+        "RECALIBRATION"
+      ],
       "type": "string",
       "hideFromKpis": true
     }
   },
-  "required": ["reboot"]
+  "required": [
+    "reboot"
+  ]
 }

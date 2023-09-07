@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/pnicorp/placePod/contact_pni.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Contact PNI",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "contact_pni",
+  "title": "Contact PNI",
   "properties": {
     "hex": {
       "title": "Hex payload",
@@ -11,5 +13,7 @@
       "hideFromKpis": true
     }
   },
-  "required": ["hex"]
+  "required": [
+    "hex"
+  ]
 }

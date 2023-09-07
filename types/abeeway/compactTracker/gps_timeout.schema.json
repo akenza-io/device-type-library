@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/abeeway/compactTracker/gps_timeout.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "GPS Timeout",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "gps_timeout",
+  "title": "GPS Timeout",
   "properties": {
     "cn0": {
       "title": "Carrier 1 over noise",
@@ -32,9 +34,19 @@
       "title": "Timeout cause",
       "description": "Timeout cause",
       "type": "string",
-      "enum": ["DEFAULT_TIMEOUT", "GPS_T0_TIMEOUT", "GPS_FIX_TIMEOUT"],
+      "enum": [
+        "DEFAULT_TIMEOUT",
+        "GPS_T0_TIMEOUT",
+        "GPS_FIX_TIMEOUT"
+      ],
       "hideFromKpis": true
     }
   },
-  "required": ["cn0", "cn1", "cn2", "cn3", "timeoutCause"]
+  "required": [
+    "cn0",
+    "cn1",
+    "cn2",
+    "cn3",
+    "timeoutCause"
+  ]
 }

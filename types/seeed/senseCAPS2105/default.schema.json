@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/seeed/senseCAPS2105/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "soilHumidity": {
       "title": "Soil humidity",
@@ -27,5 +29,9 @@
       "description": "Conductivity of the soil"
     }
   },
-  "required": ["soilHumidity", "soilTemperature", "soilConductivity"]
+  "required": [
+    "soilHumidity",
+    "soilTemperature",
+    "soilConductivity"
+  ]
 }

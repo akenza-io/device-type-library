@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/digitalMatter/g62/odometer.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Odometer",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "odometer",
+  "title": "Odometer",
   "properties": {
     "runtime": {
       "title": "Total device runtime",
@@ -17,5 +19,8 @@
       "description": "Odometer distance in meters"
     }
   },
-  "required": ["runtime", "odometer"]
+  "required": [
+    "runtime",
+    "odometer"
+  ]
 }

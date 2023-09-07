@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/cayenne/cayenne/accelerometer.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Accelerometer",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "accelerometer",
+  "title": "Accelerometer",
   "properties": {
     "channel": {
       "title": "Channel",

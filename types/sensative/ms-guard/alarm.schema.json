@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/sensative/ms-guard/alarm.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Alarm",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "alarm",
+  "title": "Alarm",
   "properties": {
     "highAlarm": {
       "title": "High alarm",
@@ -48,7 +50,12 @@
       "title": "Disinfect alarm",
       "description": "Status of the disinfection",
       "type": "string",
-      "enum": ["DIRTY", "OCCUPIED", "CLEANING", "CLEAN"]
+      "enum": [
+        "DIRTY",
+        "OCCUPIED",
+        "CLEANING",
+        "CLEAN"
+      ]
     }
   }
 }

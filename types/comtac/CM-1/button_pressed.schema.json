@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/comtac/CM-1/button_pressed.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Button pressed",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "button_pressed",
+  "title": "Button pressed",
   "properties": {
     "buttonPressed": {
       "title": "Button pressed",
@@ -10,5 +12,7 @@
       "type": "boolean"
     }
   },
-  "required": ["buttonPressed"]
+  "required": [
+    "buttonPressed"
+  ]
 }

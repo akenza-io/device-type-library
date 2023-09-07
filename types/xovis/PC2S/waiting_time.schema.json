@@ -1,15 +1,19 @@
 {
   "$id": "https://akenza.io/xovis/pc2s/waiting-time.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Waiting time",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "waiting_time",
+  "title": "Waiting time",
   "properties": {
     "avgWaitingTime": {
       "description": "Average waiting time in Minutes",
       "type": "integer",
-      "min": 0,
-      "max": 65535
+      "minimum": 0,
+      "maximum": 65535
     }
   },
-  "required": ["avgWaitingTime"]
+  "required": [
+    "avgWaitingTime"
+  ]
 }

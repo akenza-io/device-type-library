@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/sentinum/apollonQ/radar.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Radar",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "radar",
+  "title": "Radar",
   "properties": {
     "radarStatus": {
       "title": "Radar Status",
@@ -53,5 +55,8 @@
       "hideFromKpis": true
     }
   },
-  "required": ["alarm", "distance"]
+  "required": [
+    "alarm",
+    "distance"
+  ]
 }

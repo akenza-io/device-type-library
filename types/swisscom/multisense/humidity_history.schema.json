@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/swisscom/multisense/humidity_history.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Humidity history",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "humidity_history",
+  "title": "Humidity history",
   "properties": {
     "humHistory0": {
       "title": "Humidity History 0",

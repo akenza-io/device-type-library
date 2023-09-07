@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/digitalMatter/bolt2/digital.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Digital",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "digital",
+  "title": "Digital",
   "properties": {
     "digitalIn": {
       "title": "Digital input",
@@ -20,5 +22,9 @@
       "description": "Device state"
     }
   },
-  "required": ["digitalIn", "digitalOut", "devStat"]
+  "required": [
+    "digitalIn",
+    "digitalOut",
+    "devStat"
+  ]
 }

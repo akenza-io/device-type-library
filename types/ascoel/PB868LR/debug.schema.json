@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/ascoel/pb868lr/debug.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Debug",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "debug",
+  "title": "Debug",
   "properties": {
     "downlinkNr": {
       "title": "Downlink number",

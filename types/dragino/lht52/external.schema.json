@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/dragino/lht52/external.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "External",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "external",
+  "title": "External",
   "properties": {
     "id": {
       "title": "ID",

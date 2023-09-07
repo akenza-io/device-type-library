@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/haltian/thingseeAir/system_info.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "System info",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "system_info",
+  "title": "System info",
   "properties": {
     "swVersion": {
       "title": "Software version",
@@ -23,5 +25,9 @@
       "hideFromKpis": true
     }
   },
-  "required": ["swVersion", "modelCode", "psn"]
+  "required": [
+    "swVersion",
+    "modelCode",
+    "psn"
+  ]
 }
