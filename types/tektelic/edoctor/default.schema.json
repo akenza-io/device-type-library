@@ -33,7 +33,7 @@
     "csc": {
       "title": "CSC",
       "type": "number",
-      "description": "CSC"
+      "description": "Cycling Speed and Cadence"
     },
     "af": {
       "title": "Activity factor",

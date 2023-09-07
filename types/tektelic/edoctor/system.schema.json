@@ -4,42 +4,6 @@
   "title": "System",
   "type": "object",
   "properties": {
-    "deviceEui": {
-      "title": "Device EUI",
-      "type": "string",
-      "description": "Device EUI",
-      "hideFromKpis": true
-    },
-    "appEui": {
-      "title": "App EUI",
-      "type": "string",
-      "description": "App EUI",
-      "hideFromKpis": true
-    },
-    "appKey": {
-      "title": "App Key",
-      "type": "string",
-      "description": "App Key",
-      "hideFromKpis": true
-    },
-    "deviceAddress": {
-      "title": "Device address",
-      "type": "string",
-      "description": "Device address",
-      "hideFromKpis": true
-    },
-    "networkSessionKey": {
-      "title": "Network session key",
-      "type": "string",
-      "description": "Network session key",
-      "hideFromKpis": true
-    },
-    "appSessionKey": {
-      "title": "App session key",
-      "type": "string",
-      "description": "App session key",
-      "hideFromKpis": true
-    },
     "joinMode": {
       "title": "Join Mode",
       "type": "string",

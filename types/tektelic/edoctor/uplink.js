@@ -1,3 +1,5 @@
+// Source https://github.com/TektelicCommunications/data-converters/blob/master/TTN%20v2/edoctor/edoctor-v0.15-decoder.js
+
 function slice(a, f, t) {
   const res = [];
   for (let i = 0; i < t - f; i++) {
@@ -137,7 +139,7 @@ function convertToUint8Array(byteArray) {
 function decode(bytes, port) {
   const decodedData = {};
   let decoderArray = [];
-  let errors = [];
+  const errors = [];
   bytes = convertToUint8Array(bytes);
 
   if (port === 101) {
@@ -179,48 +181,42 @@ function decode(bytes, port) {
       {
         key: [0x00],
         fn(arg) {
-          decodedData.deviceEui = decodeField(arg, 8, 63, 0, "hexstring");
+          // decodedData.deviceEui = decodeField(arg, 8, 63, 0, "hexstring");
           return 8;
         },
       },
       {
         key: [0x01],
         fn(arg) {
-          decodedData.appEui = decodeField(arg, 8, 63, 0, "hexstring");
+          // decodedData.appEui = decodeField(arg, 8, 63, 0, "hexstring");
           return 8;
         },
       },
       {
         key: [0x02],
         fn(arg) {
-          decodedData.appKey = decodeField(arg, 16, 127, 0, "hexstring");
+          // decodedData.appKey = decodeField(arg, 16, 127, 0, "hexstring");
           return 16;
         },
       },
       {
         key: [0x03],
         fn(arg) {
-          decodedData.deviceAddress = decodeField(arg, 4, 31, 0, "hexstring");
+          // decodedData.deviceAddress = decodeField(arg, 4, 31, 0, "hexstring");
           return 4;
         },
       },
       {
         key: [0x04],
         fn(arg) {
-          decodedData.networkSessionKey = decodeField(
-            arg,
-            16,
-            127,
-            0,
-            "hexstring",
-          );
+          // decodedData.networkSessionKey = decodeField( arg, 16, 127, 0, "hexstring");
           return 16;
         },
       },
       {
         key: [0x05],
         fn(arg) {
-          decodedData.appSessionKey = decodeField(arg, 16, 127, 0, "hexstring");
+          // decodedData.appSessionKey = decodeField(arg, 16, 127, 0, "hexstring");
           return 16;
         },
       },
@@ -728,7 +724,7 @@ function decode(bytes, port) {
       }
     }
   } catch (error) {
-    errors = "Fatal decoder error";
+    return { errors };
   }
 
   return decodedData;
@@ -740,7 +736,9 @@ function consume(event) {
   const data = decode(Hex.hexToBytes(payload), port);
   let topic = "default";
 
-  if (port === 10) {
+  if (data.errors !== undefined) {
+    topic = "error";
+  } else if (port === 10) {
     emit("sample", {
       data: { batteryVoltage: data.batteryVoltage },
       topic: "lifecycle",
