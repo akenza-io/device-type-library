@@ -2,6 +2,8 @@
   "$id": "https://akenza.io/dragino/groPointAir/soil_moisture.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Soil moisture",
+  "processingType": "uplink_decoder",
+  "topic": "soil_moisture",
   "type": "object",
   "properties": {
     "soilMoisture1": {

@@ -2,6 +2,8 @@
   "$id": "https://akenza.io/dragino/groPointAir/temperature.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Temperature",
+  "processingType": "uplink_decoder",
+  "topic": "temperature",
   "type": "object",
   "properties": {
     "temperature1": {

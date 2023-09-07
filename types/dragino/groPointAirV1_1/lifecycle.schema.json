@@ -2,6 +2,8 @@
   "$id": "https://akenza.io/dragino/groPointAir/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Lifecycle",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
   "type": "object",
   "properties": {
     "batteryVoltage": {
