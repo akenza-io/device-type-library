@@ -35,13 +35,13 @@
     "heartbeatInterval": {
       "title": "Heartbeat interval",
       "type": "integer",
-      "desciption": "Heartbeat interval",
+      "description": "Heartbeat interval",
       "hideFromKpis": true
     },
     "periodicInterval": {
       "title": "Periodic interval",
       "type": "integer",
-      "desciption": "Periodic interval",
+      "description": "Periodic interval",
       "hideFromKpis": true
     },
     "eventInterval": {
@@ -86,7 +86,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "batteryLevel"
-  ]
+  "required": ["batteryLevel"]
 }

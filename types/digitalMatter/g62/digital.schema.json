@@ -40,13 +40,13 @@
       "title": "External voltage",
       "type": "number",
       "unit": "V",
-      "desciption": "The external voltage in Volt."
+      "description": "The external voltage in Volt."
     },
     "analogInput": {
       "title": "Analog input",
       "type": "number",
       "unit": "V",
-      "desciption": "Analog input in Volt."
+      "description": "Analog input in Volt."
     }
   },
   "required": [
