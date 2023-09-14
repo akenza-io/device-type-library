@@ -42,13 +42,8 @@
     "energyUnit": {
       "title": "Energy unit",
       "type": "string",
-      "desciption": "Message header",
-      "enum": [
-        "MWH",
-        "KWH",
-        "GJ",
-        "MJ"
-      ]
+      "description": "Message header",
+      "enum": ["MWH", "KWH", "GJ", "MJ"]
     },
     "flow": {
       "title": "flow",

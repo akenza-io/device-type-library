@@ -12,7 +12,7 @@
       "type": "number",
       "minimum": 0,
       "maximum": 24,
-      "desciption": "The battery voltage in Volt."
+      "description": "The battery voltage in Volt."
     },
     "protocolVersion": {
       "title": "Protocol Version",

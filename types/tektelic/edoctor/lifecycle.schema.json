@@ -10,7 +10,7 @@
       "type": "number",
       "minimum": 0,
       "maximum": 24,
-      "desciption": "The battery voltage in Volt. 3.2 max"
+      "description": "The battery voltage in Volt. 3.2 max"
     }
   },
   "required": ["batteryVoltage"]
