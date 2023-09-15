@@ -11,15 +11,10 @@
       "type": "string",
       "description": "Error description",
       "enum": [
-        "GNSS_SCAN_TIME_OUT",
-        "WIFI_SCAN_TIME_OUT",
-        "WIFI_GNSS_SCAN_TIME_OUT",
-        "GNSS_WIFI_SCAN_TIME_OUT",
-        "BEACON_SCAN_TIME_OUT",
-        "BEACON_WIFI_SCAN_TIME_OUT",
-        "BEACON_GNSS_SCAN_TIME_OUT",
-        "BEACON_WIFI_GNSS_SCAN_TIME_OUT",
-        "FAILED_TO_OBTAIN_THE_UTC_TIMESTAMP"
+        "FAILED_TO_OBTAIN_THE_UTC_TIMESTAMP",
+        "ALMANAC_TOO_OLD",
+        "DOPPLER_ERROR",
+        ""
       ]
     },
     "errorCode": {
@@ -28,8 +23,5 @@
       "description": "Error code"
     }
   },
-  "required": [
-    "error",
-    "errorCode"
-  ]
+  "required": ["error", "errorCode"]
 }

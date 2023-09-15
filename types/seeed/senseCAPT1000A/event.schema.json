@@ -1,0 +1,50 @@
+{
+  "$id": "https://akenza.io/seeed/senseCAPT1000A/event.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "event",
+  "title": "Event",
+  "properties": {
+    "startMovingEvent": {
+      "title": "Start moving event",
+      "type": "boolean",
+      "description": "Equals true if event is detected"
+    },
+    "endMovementEvent": {
+      "title": "End movement event",
+      "type": "boolean",
+      "description": "Equals true if event is detected"
+    },
+    "motionlessEvent": {
+      "title": "Motionless event",
+      "type": "boolean",
+      "description": "Equals true if event is detected"
+    },
+    "shockEvent": {
+      "title": "Shock event",
+      "type": "boolean",
+      "description": "Equals true if event is detected"
+    },
+    "temperatureEvent": {
+      "title": "Temperature event",
+      "type": "boolean",
+      "description": "Equals true if event is detected"
+    },
+    "lightEvent": {
+      "title": "Light event",
+      "type": "boolean",
+      "description": "Equals true if event is detected"
+    },
+    "sosEvent": {
+      "title": "SOS event",
+      "type": "boolean",
+      "description": "Equals true if event is detected"
+    },
+    "pressOnceEvent": {
+      "title": "Press once event",
+      "type": "boolean",
+      "description": "Equals true if event is detected"
+    }
+  }
+}
