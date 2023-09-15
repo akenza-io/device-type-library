@@ -9,42 +9,50 @@
     "startMovingEvent": {
       "title": "Start moving event",
       "type": "boolean",
-      "description": "Equals true if event is detected"
+      "description": "Equals true if event is detected",
+      "hideFromKpis": true
     },
     "endMovementEvent": {
       "title": "End movement event",
       "type": "boolean",
-      "description": "Equals true if event is detected"
+      "description": "Equals true if event is detected",
+      "hideFromKpis": true
     },
     "motionlessEvent": {
       "title": "Motionless event",
       "type": "boolean",
-      "description": "Equals true if event is detected"
+      "description": "Equals true if event is detected",
+      "hideFromKpis": true
     },
     "shockEvent": {
       "title": "Shock event",
       "type": "boolean",
-      "description": "Equals true if event is detected"
+      "description": "Equals true if event is detected",
+      "hideFromKpis": true
     },
     "temperatureEvent": {
       "title": "Temperature event",
       "type": "boolean",
-      "description": "Equals true if event is detected"
+      "description": "Equals true if event is detected",
+      "hideFromKpis": true
     },
     "lightEvent": {
       "title": "Light event",
       "type": "boolean",
-      "description": "Equals true if event is detected"
+      "description": "Equals true if event is detected",
+      "hideFromKpis": true
     },
     "sosEvent": {
       "title": "SOS event",
       "type": "boolean",
-      "description": "Equals true if event is detected"
+      "description": "Equals true if event is detected",
+      "hideFromKpis": true
     },
     "pressOnceEvent": {
       "title": "Press once event",
       "type": "boolean",
-      "description": "Equals true if event is detected"
+      "description": "Equals true if event is detected",
+      "hideFromKpis": true
     }
   }
 }

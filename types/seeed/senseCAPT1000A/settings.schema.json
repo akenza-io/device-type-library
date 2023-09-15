@@ -9,103 +9,122 @@
     "motionEnabled": {
       "title": "Motion enabled",
       "type": "integer",
-      "description": "Motion enabled"
+      "description": "Motion enabled",
+      "hideFromKpis": true
     },
     "anyMotionThreshold": {
       "title": "Motion threshold",
       "type": "integer",
-      "description": "Motion threshold"
+      "description": "Motion threshold",
+      "hideFromKpis": true
     },
     "motionStartInterval": {
       "title": "Motion start interval",
       "type": "integer",
       "unit": "min",
-      "description": "Motion start interval"
+      "description": "Motion start interval",
+      "hideFromKpis": true
     },
     "staticEnabled": {
       "title": "Static enabled",
       "type": "integer",
-      "description": "Static enabled"
+      "description": "Static enabled",
+      "hideFromKpis": true
     },
     "deviceStaticTimeout": {
       "title": "Device static timeout",
       "type": "integer",
       "unit": "min",
-      "description": "Device static timeout"
+      "description": "Device static timeout",
+      "hideFromKpis": true
     },
     "shockEnabled": {
       "title": "Shock enabled",
       "type": "integer",
-      "description": "Shock enabled"
+      "description": "Shock enabled",
+      "hideFromKpis": true
     },
     "shockThreshold": {
       "title": "Shock threshold",
       "type": "integer",
-      "description": "Shock threshold"
+      "description": "Shock threshold",
+      "hideFromKpis": true
     },
     "tempEnabled": {
       "title": "Temperature enabled",
       "type": "integer",
-      "description": "Temperature enabled"
+      "description": "Temperature enabled",
+      "hideFromKpis": true
     },
     "eventTempInterval": {
       "title": "Event temperature interval",
       "type": "integer",
       "unit": "min",
-      "description": "Event temperature interval"
+      "description": "Event temperature interval",
+      "hideFromKpis": true
     },
     "eventTempSampleInterval": {
       "title": "Event temperature sample interval",
       "type": "integer",
       "unit": "sec",
-      "description": "Event temperature sample interval"
+      "description": "Event temperature sample interval",
+      "hideFromKpis": true
     },
     "tempThMax": {
       "title": "Temperature threshold max",
       "type": "integer",
-      "description": "Temperature threshold max"
+      "description": "Temperature threshold max",
+      "hideFromKpis": true
     },
     "tempThMin": {
       "title": "Temperature threshold min",
       "type": "integer",
-      "description": "Temperature threshold min"
+      "description": "Temperature threshold min",
+      "hideFromKpis": true
     },
     "tempWarningType": {
       "title": "Temperature warning type",
       "type": "integer",
-      "description": "Temperature warning type"
+      "description": "Temperature warning type",
+      "hideFromKpis": true
     },
     "lightEnabled": {
       "title": "Light enabled",
       "type": "integer",
-      "description": "Light enabled"
+      "description": "Light enabled",
+      "hideFromKpis": true
     },
     "eventLightInterval": {
       "title": "Event light interval",
       "type": "integer",
       "unit": "min",
-      "description": "Event light interval"
+      "description": "Event light interval",
+      "hideFromKpis": true
     },
     "eventLightSampleInterval": {
       "title": "Event light sample interval",
       "type": "integer",
       "unit": "sec",
-      "description": "Event light sample interval"
+      "description": "Event light sample interval",
+      "hideFromKpis": true
     },
     "lightThMax": {
       "title": "Light threshold max",
       "type": "integer",
-      "description": "Light threshold max"
+      "description": "Light threshold max",
+      "hideFromKpis": true
     },
     "lightThMin": {
       "title": "Light threshold min",
       "type": "integer",
-      "description": "Light threshold min"
+      "description": "Light threshold min",
+      "hideFromKpis": true
     },
     "lightWarningType": {
       "title": "Light warning type",
       "type": "integer",
-      "description": "Light warning type"
+      "description": "Light warning type",
+      "hideFromKpis": true
     }
   }
 }

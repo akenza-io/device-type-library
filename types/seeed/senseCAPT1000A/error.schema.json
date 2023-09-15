@@ -15,12 +15,14 @@
         "ALMANAC_TOO_OLD",
         "DOPPLER_ERROR",
         ""
-      ]
+      ],
+      "hideFromKpis": true
     },
     "errorCode": {
       "title": "Error code",
       "type": "integer",
-      "description": "Error code"
+      "description": "Error code",
+      "hideFromKpis": true
     }
   },
   "required": ["error", "errorCode"]
