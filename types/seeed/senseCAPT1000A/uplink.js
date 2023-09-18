@@ -118,12 +118,12 @@ function getShockSetting(str) {
 
 function getTempSetting(str) {
   return {
-    tempEnabled: getInt(str.substring(0, 2)),
-    eventTempInterval: getMinsByMin(str.substring(2, 6)),
-    eventTempSampleInterval: getSecondsByInt(str.substring(6, 10)),
-    tempThMax: getSensorValue(str.substring(10, 14), 10),
-    tempThMin: getSensorValue(str.substring(14, 18), 10),
-    tempWarningType: getInt(str.substring(18, 20)),
+    temperatureEnabled: getInt(str.substring(0, 2)),
+    eventTemperatureInterval: getMinsByMin(str.substring(2, 6)),
+    eventTemperatureSampleInterval: getSecondsByInt(str.substring(6, 10)),
+    temperatureThMax: getSensorValue(str.substring(10, 14), 10),
+    temperatureThMin: getSensorValue(str.substring(14, 18), 10),
+    temperatureWarningType: getInt(str.substring(18, 20)),
   };
 }
 
@@ -224,7 +224,7 @@ function getEventStatus(str) {
   }
   bitArr = bitArr.reverse();
   const event = {
-    startMovingEvent: false,
+    startMovementEvent: false,
     endMovementEvent: false,
     motionlessEvent: false,
     shockEvent: false,
@@ -239,7 +239,7 @@ function getEventStatus(str) {
     }
     switch (i) {
       case 0:
-        event.startMovingEvent = true;
+        event.startMovementEvent = true;
         break;
       case 1:
         event.endMovementEvent = true;
@@ -770,7 +770,7 @@ function consume(event) {
   lifecycle.motionId = res.motionId;
 
   // Events
-  eventSample.startMovingEvent = res.startMovingEvent;
+  eventSample.startMovementEvent = res.startMovementEvent;
   eventSample.endMovementEvent = res.endMovementEvent;
   eventSample.motionlessEvent = res.motionlessEvent;
   eventSample.shockEvent = res.shockEvent;
@@ -787,12 +787,12 @@ function consume(event) {
   settings.deviceStaticTimeout = res.deviceStaticTimeout;
   settings.shockEnabled = res.shockEnabled;
   settings.shockThreshold = res.shockThreshold;
-  settings.tempEnabled = res.tempEnabled;
-  settings.eventTempInterval = res.eventTempInterval;
-  settings.eventTempSampleInterval = res.eventTempSampleInterval;
-  settings.tempThMax = res.tempThMax;
-  settings.tempThMin = res.tempThMin;
-  settings.tempWarningType = res.tempWarningType;
+  settings.temperatureEnabled = res.temperatureEnabled;
+  settings.eventTemperatureInterval = res.eventTemperatureInterval;
+  settings.eventTemperatureSampleInterval = res.eventTemperatureSampleInterval;
+  settings.temperatureThMax = res.temperatureThMax;
+  settings.temperatureThMin = res.temperatureThMin;
+  settings.temperatureWarningType = res.temperatureWarningType;
   settings.lightEnabled = res.lightEnabled;
   settings.eventLightInterval = res.eventLightInterval;
   settings.eventLightSampleInterval = res.eventLightSampleInterval;

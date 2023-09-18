@@ -35,34 +35,34 @@
     "collectTime": {
       "title": "Collecting time",
       "type": "integer",
-      "description": "Collecting time",
+      "description": "Unixtime when the sample got collected",
       "hideFromKpis": true
     },
     "heartbeatInterval": {
       "title": "Heartbeat interval",
       "type": "integer",
-      "unit": "m",
+      "unit": "min",
       "description": "Heartbeat interval",
       "hideFromKpis": true
     },
     "periodicInterval": {
       "title": "Periodic interval",
       "type": "integer",
-      "unit": "m",
+      "unit": "min",
       "description": "Periodic interval",
       "hideFromKpis": true
     },
     "eventInterval": {
       "title": "Event interval",
       "description": "Event interval",
-      "unit": "m",
+      "unit": "min",
       "type": "integer",
       "hideFromKpis": true
     },
     "uplinkInterval": {
       "title": "Uplink interval",
       "description": "Uplink interval",
-      "unit": "m",
+      "unit": "min",
       "type": "integer",
       "hideFromKpis": true
     },

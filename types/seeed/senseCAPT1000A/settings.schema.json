@@ -50,39 +50,39 @@
       "description": "Shock threshold",
       "hideFromKpis": true
     },
-    "tempEnabled": {
+    "temperatureEnabled": {
       "title": "Temperature enabled",
       "type": "integer",
       "description": "Temperature enabled",
       "hideFromKpis": true
     },
-    "eventTempInterval": {
+    "eventTemperatureInterval": {
       "title": "Event temperature interval",
       "type": "integer",
       "unit": "min",
       "description": "Event temperature interval",
       "hideFromKpis": true
     },
-    "eventTempSampleInterval": {
+    "eventTemperatureSampleInterval": {
       "title": "Event temperature sample interval",
       "type": "integer",
       "unit": "sec",
       "description": "Event temperature sample interval",
       "hideFromKpis": true
     },
-    "tempThMax": {
+    "temperatureThMax": {
       "title": "Temperature threshold max",
       "type": "integer",
       "description": "Temperature threshold max",
       "hideFromKpis": true
     },
-    "tempThMin": {
+    "temperatureThMin": {
       "title": "Temperature threshold min",
       "type": "integer",
       "description": "Temperature threshold min",
       "hideFromKpis": true
     },
-    "tempWarningType": {
+    "temperatureWarningType": {
       "title": "Temperature warning type",
       "type": "integer",
       "description": "Temperature warning type",

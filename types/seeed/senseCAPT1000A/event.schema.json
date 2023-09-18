@@ -6,7 +6,7 @@
   "topic": "event",
   "title": "Event",
   "properties": {
-    "startMovingEvent": {
+    "startMovementEvent": {
       "title": "Start moving event",
       "type": "boolean",
       "description": "Equals true if event is detected",
