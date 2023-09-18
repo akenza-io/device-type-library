@@ -547,45 +547,33 @@ function decoder(bytes, port) {
           let val = decodeField(arg, 1, 0, 0, "unsigned");
           switch (val) {
             case 0:
-              decodedData.external_values_to_transmit.report_state_enabled_ex =
-                "Off";
+              decodedData.reportStateEnabledEx = "OFF";
               break;
             case 1:
-              decodedData.external_values_to_transmit.report_state_enabled_ex =
-                "On";
+              decodedData.reportStateEnabledEx = "ON";
               break;
             default:
-              decodedData.external_values_to_transmit.report_state_enabled_ex =
-                "Invalid";
+              decodedData.reportStateEnabledEx = "INVALID";
           }
           val = decodeField(arg, 1, 1, 1, "unsigned");
           switch (val) {
             case 0:
-              decodedData.external_values_to_transmit.report_count_enabled_ex =
-                "Off";
+              decodedData.reportCountEnabledEx = "OFF";
               break;
             case 1:
-              decodedData.external_values_to_transmit.report_count_enabled_ex =
-                "On";
+              decodedData.reportCountEnabledEx = "ON";
               break;
             default:
-              decodedData.external_values_to_transmit.report_count_enabled_ex =
-                "Invalid";
+              decodedData.reportCountEnabledEx = "INVALID";
           }
-          decodedData.external_values_to_transmit.count_type = decodeField(
-            arg,
-            1,
-            4,
-            4,
-            "unsigned",
-          );
+          decodedData.countType = decodeField(arg, 1, 4, 4, "unsigned");
           return 1;
         },
       },
       {
         key: [0x30],
         fn(arg) {
-          decodedData.impact_event_threshold = (
+          decodedData.impactEventThreshold = (
             decodeField(arg, 2, 15, 0, "unsigned") * 0.001
           ).toFixed(3);
           return 2;
@@ -594,7 +582,7 @@ function decoder(bytes, port) {
       {
         key: [0x31],
         fn(arg) {
-          decodedData.acceleration_event_threshold = (
+          decodedData.accelerationEventThreshold = (
             decodeField(arg, 2, 15, 0, "unsigned") * 0.001
           ).toFixed(3);
           return 2;
@@ -603,77 +591,60 @@ function decoder(bytes, port) {
       {
         key: [0x32],
         fn(arg) {
-          if (!decodedData.hasOwnProperty("values_to_transmit")) {
-            decodedData.values_to_transmit = {};
-          }
           let val = decodeField(arg, 1, 0, 0, "unsigned");
           switch (val) {
             case 0:
-              decodedData.values_to_transmit.report_periodic_alarm_enabled =
-                "Off";
+              decodedData.reportPeriodicAlarmEnabled = "OFF";
               break;
             case 1:
-              decodedData.values_to_transmit.report_periodic_alarm_enabled =
-                "On";
+              decodedData.reportPeriodicAlarmEnabled = "ON";
               break;
             default:
-              decodedData.values_to_transmit.report_periodic_alarm_enabled =
-                "Invalid";
+              decodedData.reportPeriodicAlarmEnabled = "INVALID";
           }
           val = decodeField(arg, 1, 1, 1, "unsigned");
           switch (val) {
             case 0:
-              decodedData.values_to_transmit.report_periodic_magnitude_enabled =
-                "Off";
+              decodedData.reportPeriodicMagnitudeEnabled = "OFF";
               break;
             case 1:
-              decodedData.values_to_transmit.report_periodic_magnitude_enabled =
-                "On";
+              decodedData.reportPeriodicMagnitudeEnabled = "ON";
               break;
             default:
-              decodedData.values_to_transmit.report_periodic_magnitude_enabled =
-                "Invalid";
+              decodedData.reportPeriodicMagnitudeEnabled = "INVALID";
           }
           val = decodeField(arg, 1, 2, 2, "unsigned");
           switch (val) {
             case 0:
-              decodedData.values_to_transmit.report_periodic_vector_enabled =
-                "Off";
+              decodedData.reportPeriodicVectorEnabled = "OFF";
               break;
             case 1:
-              decodedData.values_to_transmit.report_periodic_vector_enabled =
-                "On";
+              decodedData.reportPeriodicVectorEnabled = "ON";
               break;
             default:
-              decodedData.values_to_transmit.report_periodic_vector_enabled =
-                "Invalid";
+              decodedData.reportPeriodicVectorEnabled = "INVALID";
           }
           val = decodeField(arg, 1, 4, 4, "unsigned");
           switch (val) {
             case 0:
-              decodedData.values_to_transmit.report_event_magnitude_enabled =
-                "Off";
+              decodedData.reportEventMagnitudeEnabled = "OFF";
               break;
             case 1:
-              decodedData.values_to_transmit.report_event_magnitude_enabled =
-                "On";
+              decodedData.reportEventMagnitudeEnabled = "ON";
               break;
             default:
-              decodedData.values_to_transmit.report_event_magnitude_enabled =
-                "Invalid";
+              decodedData.reportEventMagnitudeEnabled = "INVALID";
           }
           val = decodeField(arg, 1, 5, 5, "unsigned");
           switch (val) {
             case 0:
-              decodedData.values_to_transmit.report_event_vector_enabled =
-                "Off";
+              decodedData.reportEventVectorEnabled = "OFF";
               break;
             case 1:
-              decodedData.values_to_transmit.report_event_vector_enabled = "On";
+              decodedData.reportEventVectorEnabled = "ON";
               break;
             default:
-              decodedData.values_to_transmit.report_event_vector_enabled =
-                "Invalid";
+              decodedData.reportEventVectorEnabled = "INVALID";
           }
           return 1;
         },
@@ -681,7 +652,7 @@ function decoder(bytes, port) {
       {
         key: [0x33],
         fn(arg) {
-          decodedData.acceleration_impact_grace_period = decodeField(
+          decodedData.accelerationImpactGracePeriod = decodeField(
             arg,
             2,
             15,
@@ -694,79 +665,71 @@ function decoder(bytes, port) {
       {
         key: [0x34],
         fn(arg) {
-          if (!decodedData.hasOwnProperty("acceleration_mode")) {
-            decodedData.acceleration_mode = {};
-          }
           let val = decodeField(arg, 1, 0, 0, "unsigned");
           switch (val) {
             case 0:
-              decodedData.acceleration_mode.impact_threshold_enabled =
-                "Disable";
+              decodedData.impactThresholdEnabled = "DISABLE";
               break;
             case 1:
-              decodedData.acceleration_mode.impact_threshold_enabled = "Enable";
+              decodedData.impactThresholdEnabled = "ENABLE";
               break;
             default:
-              decodedData.acceleration_mode.impact_threshold_enabled =
-                "Invalid";
+              decodedData.impactThresholdEnabled = "INVALID";
           }
           val = decodeField(arg, 1, 1, 1, "unsigned");
           switch (val) {
             case 0:
-              decodedData.acceleration_mode.acceleration_threshold_enabled =
-                "Disable";
+              decodedData.accelerationThresholdEnabled = "DISABLE";
               break;
             case 1:
-              decodedData.acceleration_mode.acceleration_threshold_enabled =
-                "Enable";
+              decodedData.accelerationThresholdEnabled = "ENABLE";
               break;
             default:
-              decodedData.acceleration_mode.acceleration_threshold_enabled =
-                "Invalid";
+              decodedData.accelerationThresholdEnabled = "INVALID";
           }
           val = decodeField(arg, 1, 4, 4, "unsigned");
           switch (val) {
             case 0:
-              decodedData.acceleration_mode.xaxis_enabled = "Disable";
+              decodedData.xaxisEnabled = "DISABLE";
               break;
             case 1:
-              decodedData.acceleration_mode.xaxis_enabled = "Enable";
+              decodedData.xaxisEnabled = "ENABLE";
               break;
             default:
-              decodedData.acceleration_mode.xaxis_enabled = "Invalid";
+              decodedData.xaxisEnabled = "INVALID";
           }
           val = decodeField(arg, 1, 5, 5, "unsigned");
           switch (val) {
             case 0:
-              decodedData.acceleration_mode.yaxis_enabled = "Disable";
+              decodedData.yaxisEnabled = "DISABLE";
               break;
             case 1:
-              decodedData.acceleration_mode.yaxis_enabled = "Enable";
+              decodedData.yaxisEnabled = "ENABLE";
               break;
             default:
-              decodedData.acceleration_mode.yaxis_enabled = "Invalid";
+              decodedData.yaxisEnabled = "INVALID";
           }
           val = decodeField(arg, 1, 6, 6, "unsigned");
           switch (val) {
             case 0:
-              decodedData.acceleration_mode.zaxis_enabled = "Disable";
+              decodedData.zaxisEnabled = "DISABLE";
               break;
             case 1:
-              decodedData.acceleration_mode.zaxis_enabled = "Enable";
+              decodedData.zaxisEnabled = "ENABLE";
               break;
             default:
-              decodedData.acceleration_mode.zaxis_enabled = "Invalid";
+              decodedData.zaxisEnabled = "INVALID";
           }
           val = decodeField(arg, 1, 7, 7, "unsigned");
           switch (val) {
             case 0:
-              decodedData.acceleration_mode.poweron = "Off";
+              decodedData.powerOn = "OFF";
               break;
             case 1:
-              decodedData.acceleration_mode.poweron = "On";
+              decodedData.powerOn = "ON";
               break;
             default:
-              decodedData.acceleration_mode.poweron = "Invalid";
+              decodedData.powerOn = "INVALID";
           }
           return 1;
         },
@@ -774,52 +737,48 @@ function decoder(bytes, port) {
       {
         key: [0x35],
         fn(arg) {
-          if (!decodedData.hasOwnProperty("sensitivity")) {
-            decodedData.sensitivity = {};
-          }
           let val = decodeField(arg, 1, 2, 0, "unsigned");
           switch (val) {
             case 1:
-              decodedData.sensitivity.accelerometer_sample_rate = "1 Hz";
+              decodedData.accelerometerSampleRate = 1;
               break;
             case 2:
-              decodedData.sensitivity.accelerometer_sample_rate = "10 Hz";
+              decodedData.accelerometerSampleRate = 10;
               break;
             case 3:
-              decodedData.sensitivity.accelerometer_sample_rate = "25 Hz";
+              decodedData.accelerometerSampleRate = 25;
               break;
             case 4:
-              decodedData.sensitivity.accelerometer_sample_rate = "50 Hz";
+              decodedData.accelerometerSampleRate = 50;
               break;
             case 5:
-              decodedData.sensitivity.accelerometer_sample_rate = "100 Hz";
+              decodedData.accelerometerSampleRate = 100;
               break;
             case 6:
-              decodedData.sensitivity.accelerometer_sample_rate = "200 Hz";
+              decodedData.accelerometerSampleRate = 200;
               break;
             case 7:
-              decodedData.sensitivity.accelerometer_sample_rate = "400 Hz";
+              decodedData.accelerometerSampleRate = 400;
               break;
             default:
-              decodedData.sensitivity.accelerometer_sample_rate = "Invalid";
+              decodedData.accelerometerSampleRate = 0;
           }
           val = decodeField(arg, 1, 5, 4, "unsigned");
           switch (val) {
             case 0:
-              decodedData.sensitivity.accelerometer_measurement_range = "±2 g";
+              decodedData.accelerometerMeasurementRange = 2;
               break;
             case 1:
-              decodedData.sensitivity.accelerometer_measurement_range = "±4 g";
+              decodedData.accelerometerMeasurementRange = 4;
               break;
             case 2:
-              decodedData.sensitivity.accelerometer_measurement_range = "±8 g";
+              decodedData.accelerometerMeasurementRange = 8;
               break;
             case 3:
-              decodedData.sensitivity.accelerometer_measurement_range = "±16 g";
+              decodedData.accelerometerMeasurementRange = 16;
               break;
             default:
-              decodedData.sensitivity.accelerometer_measurement_range =
-                "Invalid";
+              decodedData.accelerometerMeasurementRange = 0;
           }
           return 1;
         },
@@ -827,7 +786,7 @@ function decoder(bytes, port) {
       {
         key: [0x36],
         fn(arg) {
-          decodedData.impact_alarm_grace_period = decodeField(
+          decodedData.impactAlarmGracePeriod = decodeField(
             arg,
             2,
             15,
@@ -840,7 +799,7 @@ function decoder(bytes, port) {
       {
         key: [0x37],
         fn(arg) {
-          decodedData.impact_alarm_threshold_count = decodeField(
+          decodedData.impactAlarmThresholdCount = decodeField(
             arg,
             2,
             15,
@@ -853,7 +812,7 @@ function decoder(bytes, port) {
       {
         key: [0x38],
         fn(arg) {
-          decodedData.impact_alarm_threshold_period = decodeField(
+          decodedData.impactAlarmThresholdPeriod = decodeField(
             arg,
             2,
             15,
@@ -866,15 +825,20 @@ function decoder(bytes, port) {
       {
         key: [0x39],
         fn(arg) {
-          decodedData.temperature_relative_humidity_sample_period_idle =
-            decodeField(arg, 4, 31, 0, "unsigned");
+          decodedData.temperatureRelativeHumiditySamplePeriodIdle = decodeField(
+            arg,
+            4,
+            31,
+            0,
+            "unsigned",
+          );
           return 4;
         },
       },
       {
         key: [0x3a],
         fn(arg) {
-          decodedData.temperature_relative_humidity_sample_period_active =
+          decodedData.temperatureRelativeHumiditySamplePeriodActive =
             decodeField(arg, 4, 31, 0, "unsigned");
           return 4;
         },
@@ -882,23 +846,8 @@ function decoder(bytes, port) {
       {
         key: [0x3b],
         fn(arg) {
-          if (!decodedData.hasOwnProperty("temperature_threshold")) {
-            decodedData.temperature_threshold = {};
-          }
-          decodedData.temperature_threshold.high_temp_threshold = decodeField(
-            arg,
-            2,
-            15,
-            8,
-            "signed",
-          );
-          decodedData.temperature_threshold.low_temp_threshold = decodeField(
-            arg,
-            2,
-            7,
-            0,
-            "signed",
-          );
+          decodedData.highTempThreshold = decodeField(arg, 2, 15, 8, "signed");
+          decodedData.lowTempThreshold = decodeField(arg, 2, 7, 0, "signed");
           return 2;
         },
       },
@@ -908,13 +857,13 @@ function decoder(bytes, port) {
           const val = decodeField(arg, 1, 0, 0, "unsigned");
           switch (val) {
             case 0:
-              decodedData.ambient_temperature_threshold_enabled = "Disable";
+              decodedData.ambientTemperatureThresholdEnabled = "DISABLE";
               break;
             case 1:
-              decodedData.ambient_temperature_threshold_enabled = "Enable";
+              decodedData.ambientTemperatureThresholdEnabled = "ENABLE";
               break;
             default:
-              decodedData.ambient_temperature_threshold_enabled = "Invalid";
+              decodedData.ambientTemperatureThresholdEnabled = "INVALID";
           }
           return 1;
         },
@@ -922,23 +871,8 @@ function decoder(bytes, port) {
       {
         key: [0x3d],
         fn(arg) {
-          if (!decodedData.hasOwnProperty("rh_threshold")) {
-            decodedData.rh_threshold = {};
-          }
-          decodedData.rh_threshold.high_rh_threshold = decodeField(
-            arg,
-            2,
-            15,
-            8,
-            "unsigned",
-          );
-          decodedData.rh_threshold.low_rh_threshold = decodeField(
-            arg,
-            2,
-            7,
-            0,
-            "unsigned",
-          );
+          decodedData.highRhThreshold = decodeField(arg, 2, 15, 8, "unsigned");
+          decodedData.lowRhThreshold = decodeField(arg, 2, 7, 0, "unsigned");
           return 2;
         },
       },
@@ -948,13 +882,13 @@ function decoder(bytes, port) {
           const val = decodeField(arg, 1, 0, 0, "unsigned");
           switch (val) {
             case 0:
-              decodedData.relative_humidity_threshold_enabled = "Disable";
+              decodedData.relativeHumidityThresholdEnabled = "DISABLE";
               break;
             case 1:
-              decodedData.relative_humidity_threshold_enabled = "Enable";
+              decodedData.relativeHumidityThresholdEnabled = "ENABLE";
               break;
             default:
-              decodedData.relative_humidity_threshold_enabled = "Invalid";
+              decodedData.relativeHumidityThresholdEnabled = "INVALID";
           }
           return 1;
         },
@@ -962,7 +896,7 @@ function decoder(bytes, port) {
       {
         key: [0x40],
         fn(arg) {
-          decodedData.mcu_temperature_sample_period_idle = decodeField(
+          decodedData.mcuTemperatureSamplePeriodIdle = decodeField(
             arg,
             4,
             31,

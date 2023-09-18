@@ -88,6 +88,208 @@
       "enum": ["UNCONFIRMED", "CONFIRMED", "INVALID"],
       "hideFromKpis": true
     },
+    "reportStateEnabledEx": {
+      "title": "Report state enabled ex",
+      "type": "string",
+      "description": "Report state enabled ex",
+      "enum": ["OFF", "ON", "INVALID"],
+      "hideFromKpis": true
+    },
+    "reportCountEnabledEx": {
+      "title": "Report count enabled external",
+      "type": "string",
+      "description": "Report count enabled external",
+      "enum": ["OFF", "ON", "INVALID"],
+      "hideFromKpis": true
+    },
+    "countType": {
+      "title": "Count type",
+      "type": "integer",
+      "description": "Count type",
+      "hideFromKpis": true
+    },
+    "impactEventThreshold": {
+      "title": "Impact event threshold",
+      "type": "number",
+      "description": "Impact event threshold",
+      "hideFromKpis": true
+    },
+    "accelerationEventThreshold": {
+      "title": "Acceleration event threshold",
+      "type": "number",
+      "description": "Acceleration event threshold",
+      "hideFromKpis": true
+    },
+    "reportPeriodicAlarmEnabled": {
+      "title": "Report periodic alarm enabled",
+      "type": "string",
+      "description": "Report periodic alarm enabled",
+      "enum": ["OFF", "ON", "INVALID"],
+      "hideFromKpis": true
+    },
+    "reportPeriodicMagnitudeEnabled": {
+      "title": "Report periodic magnitude enabled",
+      "type": "string",
+      "description": "Report periodic magnitude enabled",
+      "enum": ["OFF", "ON", "INVALID"],
+      "hideFromKpis": true
+    },
+    "reportPeriodicVectorEnabled": {
+      "title": "Report periodic vector enabled",
+      "type": "string",
+      "description": "Report periodic vector enabled",
+      "enum": ["OFF", "ON", "INVALID"],
+      "hideFromKpis": true
+    },
+    "reportEventMagnitudeEnabled": {
+      "title": "Report periodic magnitude enabled",
+      "type": "string",
+      "description": "Report periodic magnitude enabled",
+      "enum": ["OFF", "ON", "INVALID"],
+      "hideFromKpis": true
+    },
+    "reportEventVectorEnabled": {
+      "title": "Report periodic vector enabled",
+      "type": "string",
+      "description": "Report periodic vector enabled",
+      "enum": ["OFF", "ON", "INVALID"],
+      "hideFromKpis": true
+    },
+    "accelerationImpactGracePeriod": {
+      "title": "Acceleration impact grace period",
+      "type": "number",
+      "description": "Acceleration impact grace period",
+      "hideFromKpis": true
+    },
+    "impactThresholdEnabled": {
+      "title": "Impact threshold enabled",
+      "type": "string",
+      "description": "Impact threshold enabled",
+      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "hideFromKpis": true
+    },
+    "accelerationThresholdEnabled": {
+      "title": "Acceleration threshold enabled",
+      "type": "string",
+      "description": "Acceleration threshold enabled",
+      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "hideFromKpis": true
+    },
+    "xaxisEnabled": {
+      "title": "X-Axis enabled",
+      "type": "string",
+      "description": "X-Axis enabled",
+      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "hideFromKpis": true
+    },
+    "yaxisEnabled": {
+      "title": "Y-Axis enabled",
+      "type": "string",
+      "description": "Y-Axis enabled",
+      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "hideFromKpis": true
+    },
+    "zaxisEnabled": {
+      "title": "Z-Axis enabled",
+      "type": "string",
+      "description": "Z-Axis enabled",
+      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "hideFromKpis": true
+    },
+    "powerOn": {
+      "title": "Power on",
+      "type": "string",
+      "description": "Power on",
+      "enum": ["OFF", "ON", "INVALID"],
+      "hideFromKpis": true
+    },
+    "accelerometerSampleRate": {
+      "title": "Accelerometer sample rate",
+      "type": "number",
+      "unit": "Hz",
+      "description": "Accelerometer sample rate",
+      "hideFromKpis": true
+    },
+    "accelerometerMeasurementRange": {
+      "title": "Accelerometer measurement range",
+      "type": "number",
+      "unit": "g",
+      "description": "Accelerometer measurement range",
+      "hideFromKpis": true
+    },
+    "impactAlarmGracePeriod": {
+      "title": "Impact alarm grace period",
+      "type": "number",
+      "description": "Impact alarm grace period",
+      "hideFromKpis": true
+    },
+    "impactAlarmThresholdCount": {
+      "title": "Impact alarm threshold count",
+      "type": "number",
+      "description": "Impact alarm threshold count",
+      "hideFromKpis": true
+    },
+    "impactAlarmThresholdPeriod": {
+      "title": "Impact alarm threshold period",
+      "type": "number",
+      "description": "Impact alarm threshold period",
+      "hideFromKpis": true
+    },
+    "temperatureRelativeHumiditySamplePeriodIdle": {
+      "title": "Temperature relative humidity sample period idle",
+      "type": "number",
+      "description": "Temperature relative humidity sample period idle",
+      "hideFromKpis": true
+    },
+    "temperatureRelativeHumiditySamplePeriodActive": {
+      "title": "Temperature relative humidity sample period active",
+      "type": "number",
+      "description": "Temperature relative humidity sample period active",
+      "hideFromKpis": true
+    },
+    "highTempThreshold": {
+      "title": "High temperature threshold",
+      "type": "number",
+      "description": "High temperature threshold",
+      "hideFromKpis": true
+    },
+    "lowTempThreshold": {
+      "title": "Low temperature threshold",
+      "type": "number",
+      "description": "Low temperature threshold",
+      "hideFromKpis": true
+    },
+    "ambientTemperatureThresholdEnabled": {
+      "title": "Ambient temperature threshold enabled",
+      "type": "string",
+      "description": "Ambient temperature threshold enabled",
+      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "hideFromKpis": true
+    },
+    "highRhThreshold": {
+      "title": "High rh threshold",
+      "type": "number",
+      "description": "High rh threshold",
+      "hideFromKpis": true
+    },
+    "lowRhThreshold": {
+      "title": "Low rh threshold",
+      "type": "number",
+      "description": "Low rh threshold",
+      "hideFromKpis": true
+    },
+    "relativeHumidityThresholdEnabled": {
+      "title": "Relative humidity threshold enabled",
+      "type": "string",
+      "description": "Relative humidity threshold enabled",
+      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "hideFromKpis": true
+    },
+    "mcuTemperatureSamplePeriodIdle": {
+      "title": "MCU temperature sample period idle",
+      "type": "number",
+      "description": "MCU temperature sample period idle"
+    },
     "externalConnectorCountThreshold": {
       "title": "External connector count threshold",
       "type": "number",
