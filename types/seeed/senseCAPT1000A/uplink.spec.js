@@ -97,7 +97,7 @@ describe("Seeed SenseCAP T1000A Sensor Uplink", () => {
         assert.equal(value.data.pressOnceEvent, true);
         assert.equal(value.data.shockEvent, false);
         assert.equal(value.data.sosEvent, false);
-        assert.equal(value.data.startMovingEvent, false);
+        assert.equal(value.data.startMovementEvent, false);
         assert.equal(value.data.temperatureEvent, false);
 
         utils.validateSchema(value.data, eventSchema, { throwError: true });
@@ -205,7 +205,7 @@ describe("Seeed SenseCAP T1000A Sensor Uplink", () => {
         assert.equal(value.data.pressOnceEvent, false);
         assert.equal(value.data.shockEvent, false);
         assert.equal(value.data.sosEvent, true);
-        assert.equal(value.data.startMovingEvent, false);
+        assert.equal(value.data.startMovementEvent, false);
         assert.equal(value.data.temperatureEvent, false);
 
         utils.validateSchema(value.data, eventSchema, { throwError: true });
