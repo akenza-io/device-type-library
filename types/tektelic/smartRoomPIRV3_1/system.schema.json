@@ -2,6 +2,8 @@
   "$id": "https://akenza.io/tektelic/edoctor/system.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "System",
+  "processingType": "uplink_decoder",
+  "topic": "system",
   "type": "object",
   "properties": {
     "joinMode": {
@@ -288,7 +290,162 @@
     "mcuTemperatureSamplePeriodIdle": {
       "title": "MCU temperature sample period idle",
       "type": "number",
-      "description": "MCU temperature sample period idle"
+      "description": "MCU temperature sample period idle",
+      "hideFromKpis": true
+    },
+    "mcuTemperatureSamplePeriodActive": {
+      "title": "MCU temperature sample period active",
+      "type": "number",
+      "description": "MCU temperature sample period active",
+      "hideFromKpis": true
+    },
+    "highMcuTempThreshold": {
+      "title": "High MCU temperature threshold",
+      "type": "number",
+      "description": "High MCU temperature threshold",
+      "hideFromKpis": true
+    },
+    "lowMcuTempThreshold": {
+      "title": "Low MCU temperature threshold",
+      "type": "number",
+      "description": "Low MCU temperature threshold",
+      "hideFromKpis": true
+    },
+    "mcuTemperatureThresholdEnabled": {
+      "title": "MCU temperature threshold enabled",
+      "type": "string",
+      "description": "MCU temperature threshold enabled",
+      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "hideFromKpis": true
+    },
+    "analogSamplePeriodIdle": {
+      "title": "Analog sample period idle",
+      "type": "number",
+      "description": "Analog sample period idle",
+      "hideFromKpis": true
+    },
+    "analogSamplePeriodActive": {
+      "title": "Analog sample period active",
+      "type": "number",
+      "description": "Analog sample period active",
+      "hideFromKpis": true
+    },
+    "highAnalogThreshold": {
+      "title": "High analog threshold",
+      "type": "number",
+      "description": "High analog threshold",
+      "hideFromKpis": true
+    },
+    "lowAnalogThreshold": {
+      "title": "Low analog threshold",
+      "type": "number",
+      "description": "Low analog threshold",
+      "hideFromKpis": true
+    },
+    "analogInputThresholdEnabled": {
+      "title": "Analog input threshold enabled",
+      "type": "string",
+      "description": "Analog input threshold enabled",
+      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "hideFromKpis": true
+    },
+    "lightSamplePeriod": {
+      "title": "Light sample period",
+      "type": "number",
+      "description": "Light sample period",
+      "hideFromKpis": true
+    },
+    "lightThreshold": {
+      "title": "Light threshold",
+      "type": "string",
+      "description": "Light threshold",
+      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "hideFromKpis": true
+    },
+    "thresholdEnabled": {
+      "title": "Threshold enabled",
+      "type": "number",
+      "description": "Threshold enabled",
+      "hideFromKpis": true
+    },
+    "lightStateReported": {
+      "title": "Light state threshold",
+      "type": "string",
+      "description": "Light state threshold",
+      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "hideFromKpis": true
+    },
+    "lightIntensityReported": {
+      "title": "Light state threshold",
+      "type": "string",
+      "description": "Light state threshold",
+      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "hideFromKpis": true
+    },
+    "pirGracePeriod": {
+      "title": "Pir grace period",
+      "type": "number",
+      "description": "Pir grace period",
+      "hideFromKpis": true
+    },
+    "pirThreshold": {
+      "title": "Pir threshold",
+      "type": "number",
+      "description": "Pir threshold",
+      "hideFromKpis": true
+    },
+    "pirThresholdPeriod": {
+      "title": "Pir threshold period",
+      "type": "number",
+      "description": "Pir threshold period",
+      "hideFromKpis": true
+    },
+    "motionCountReported": {
+      "title": "Motion count reported",
+      "type": "string",
+      "description": "Motion count reported",
+      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "hideFromKpis": true
+    },
+    "motionStateReported": {
+      "title": "Motion state reported",
+      "type": "string",
+      "description": "Motion state reported",
+      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "hideFromKpis": true
+    },
+    "eventTransmissionEnabled": {
+      "title": "Event transmission enabled",
+      "type": "string",
+      "description": "Event transmission enabled",
+      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "hideFromKpis": true
+    },
+    "transducerEnabled": {
+      "title": "Transducer enabled",
+      "type": "string",
+      "description": "Transducer enabled",
+      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "hideFromKpis": true
+    },
+    "postTurnOn": {
+      "title": "Post turn on",
+      "type": "number",
+      "description": "Post turn on",
+      "hideFromKpis": true
+    },
+    "postDisturbance": {
+      "title": "Post disturbance",
+      "type": "number",
+      "description": "Post disturbance",
+      "hideFromKpis": true
+    },
+    "respToDlCommandFormat": {
+      "title": "Response to downlink command format",
+      "type": "string",
+      "description": "Response to downlink command format",
+      "enum": ["INVALIDE_WRITE_RESPONSE_FORMAT", "4_BYTE_CRC", "INVALID"],
+      "hideFromKpis": true
     },
     "externalConnectorCountThreshold": {
       "title": "External connector count threshold",
@@ -312,6 +469,24 @@
       "title": "TX Power",
       "type": "number",
       "description": "TX Power",
+      "hideFromKpis": true
+    },
+    "loramacMajorVersion": {
+      "title": "Lora MAC major version",
+      "type": "number",
+      "description": "Lora MAC major version",
+      "hideFromKpis": true
+    },
+    "loramacMinorVersion": {
+      "title": "Lora MAC minor version",
+      "type": "number",
+      "description": "Lora MAC minor version",
+      "hideFromKpis": true
+    },
+    "loramacRevision": {
+      "title": "Lora revision",
+      "type": "number",
+      "description": "Lora revision",
       "hideFromKpis": true
     },
     "loramacNetIdMsb": {
@@ -613,6 +788,137 @@
       "title": "App reversion",
       "type": "number",
       "description": "App reversion",
+      "hideFromKpis": true
+    },
+    "hallEffectState": {
+      "title": "Hall effect state",
+      "type": "string",
+      "description": "Hall effect state",
+      "enum": ["MAGNET_PRESENT", "MAGNET_ABSENT", "INVALID"],
+      "hideFromKpis": true
+    },
+    "hallEffectCount": {
+      "title": "Hall effect count",
+      "type": "number",
+      "description": "Hall effect count",
+      "hideFromKpis": true
+    },
+    "impactAlarm": {
+      "title": "Impact alarm",
+      "type": "string",
+      "description": "Impact alarm",
+      "enum": ["IMPACT_ALARM_INACTIVE", "IMPACT_ALARM_ACTIVE", "INVALID"],
+      "hideFromKpis": true
+    },
+    "impactMagnitude": {
+      "title": "Impact magnitude",
+      "type": "number",
+      "description": "Impact magnitude",
+      "hideFromKpis": true
+    },
+    "accelerationXaxis": {
+      "title": "Acceleration X-Axis",
+      "type": "number",
+      "description": "Acceleration X-Axis",
+      "hideFromKpis": true
+    },
+    "accelerationYaxis": {
+      "title": "Acceleration Y-Axis",
+      "type": "number",
+      "description": "Acceleration Y-Axis",
+      "hideFromKpis": true
+    },
+    "accelerationZaxis": {
+      "title": "Acceleration Z-Axis",
+      "type": "number",
+      "description": "Acceleration Z-Axis",
+      "hideFromKpis": true
+    },
+    "extconnectorState": {
+      "title": "External connector state",
+      "type": "string",
+      "description": "External connector state",
+      "enum": ["LOW", "HIGH", "INVALID"],
+      "hideFromKpis": true
+    },
+    "extconnectorCount": {
+      "title": "External connector count",
+      "type": "number",
+      "description": "External connector count",
+      "hideFromKpis": true
+    },
+    "extconnectorTotalCount": {
+      "title": "External connector total count",
+      "type": "number",
+      "description": "External connector total count",
+      "hideFromKpis": true
+    },
+    "extconnectorAnalog": {
+      "title": "External connector analog",
+      "type": "number",
+      "description": "External connector analog",
+      "hideFromKpis": true
+    },
+    "mcuTemperature": {
+      "title": "MCU temperature",
+      "type": "number",
+      "description": "MCU temperature",
+      "hideFromKpis": true
+    },
+    "resetReason": {
+      "title": "Reset reason",
+      "type": "string",
+      "description": "Reset reason",
+      "enum": [
+        "PUSH_BUTTON_RESET",
+        "DL_COMMAND_REST",
+        "INDEPENDENT_WATCHDOG_RESET",
+        "POWER_LOSS_RESET",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "powerLossResetCount": {
+      "title": "Power loss reset count",
+      "type": "number",
+      "description": "Power loss reset count",
+      "hideFromKpis": true
+    },
+    "watchdogResetCount": {
+      "title": "Watchdog reset count",
+      "type": "number",
+      "description": "Watchdog reset count",
+      "hideFromKpis": true
+    },
+    "dlResetCount": {
+      "title": "Downlink reset count",
+      "type": "number",
+      "description": "Downlink reset count",
+      "hideFromKpis": true
+    },
+    "buttonResetCount": {
+      "title": "Button reset count",
+      "type": "number",
+      "description": "Button reset count",
+      "hideFromKpis": true
+    },
+    "lightDetected": {
+      "title": "Light detected",
+      "type": "string",
+      "description": "Light detected",
+      "enum": ["DARK", "BRIGHT", "INVALID"],
+      "hideFromKpis": true
+    },
+    "lightIntensity": {
+      "title": "Light intensity",
+      "type": "number",
+      "description": "Light intensity",
+      "hideFromKpis": true
+    },
+    "motionEventCount": {
+      "title": "Motion event count",
+      "type": "number",
+      "description": "Motion event count",
       "hideFromKpis": true
     },
     "region": {

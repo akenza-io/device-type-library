@@ -48,7 +48,7 @@ describe("Tektelic Smart Room PIR Sensor Uplink", () => {
       const data = {
         data: {
           port: 10,
-          payloadHex: "036700fd04685900ba0c2a",
+          payloadHex: "036700f204686100ba0bc1",
         },
       };
 
@@ -58,7 +58,7 @@ describe("Tektelic Smart Room PIR Sensor Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 3.16);
+        assert.equal(value.data.batteryVoltage, 3.01);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -69,8 +69,8 @@ describe("Tektelic Smart Room PIR Sensor Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.temperature, 23.6);
-        assert.equal(value.data.humidity, 31);
+        assert.equal(value.data.temperature, 24.2);
+        assert.equal(value.data.humidity, 48.5);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -78,7 +78,7 @@ describe("Tektelic Smart Room PIR Sensor Uplink", () => {
       consume(data);
     });
 
-    it("should decode the Tektelic Smart Room PIR Sensor reed payload", () => {
+    it("should decode the Tektelic Smart Room PIR Sensor occupancy payload", () => {
       const data = {
         data: {
           port: 10,
@@ -118,6 +118,7 @@ describe("Tektelic Smart Room PIR Sensor Uplink", () => {
         assert.equal(value.topic, "occupancy");
         assert.equal(value.data.motion, 1);
         assert.equal(value.data.occupancy, 1);
+        assert.equal(value.data.occupied, true);
 
         utils.validateSchema(value.data, occupancySchema, { throwError: true });
       });
