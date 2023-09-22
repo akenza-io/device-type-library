@@ -1,0 +1,68 @@
+{
+  "$id": "https://akenza.io/watecco/triphaso/phase_b.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Phase B",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "phase_b",
+  "properties": {
+    "pActiveEnergyB": {
+      "title": "Positive active energy B",
+      "unit": "Wh",
+      "description": "Positive active energy B",
+      "type": "number"
+    },
+    "nActiveEnergyB": {
+      "title": "Negative active energy B",
+      "unit": "Wh",
+      "description": "Negative active energy B",
+      "type": "number"
+    },
+    "pReactiveEnergyB": {
+      "title": "Positive reactive energy B",
+      "unit": "var",
+      "description": "Positive reactive energy B",
+      "type": "number"
+    },
+    "nReactiveEnergyB": {
+      "title": "Negativee reactive energy B",
+      "unit": "var",
+      "description": "Negativee reactive energy B",
+      "type": "number"
+    },
+    "pActivePowerWB": {
+      "title": "Positive active power B",
+      "unit": "W",
+      "description": "Positive active power B",
+      "type": "number"
+    },
+    "nActivePowerWB": {
+      "title": "Negative active power B",
+      "unit": "W",
+      "description": "Negative active power B",
+      "type": "number"
+    },
+    "pReactivePowerVarB": {
+      "title": "Positive reactive Power B",
+      "unit": "var",
+      "description": "Positive reactive Power B",
+      "type": "number"
+    },
+    "nReactivePowerVarB": {
+      "title": "Negative reactive Power B",
+      "unit": "var",
+      "description": "Negative reactive Power B",
+      "type": "number"
+    }
+  },
+  "required": [
+    "pActiveEnergyB",
+    "nActiveEnergyB",
+    "pReactiveEnergyB",
+    "nReactiveEnergyB",
+    "pActivePowerWB",
+    "nActivePowerWB",
+    "pReactivePowerVarB",
+    "nReactivePowerVarB"
+  ]
+}

@@ -53,12 +53,6 @@
       "unit": "Wh",
       "description": "Reactive energy phase ABC",
       "type": "number"
-    },
-    "endpoint": {
-      "title": "Phase endpoint",
-      "description": "Phase endpoint",
-      "type": "integer",
-      "hideFromKpis": true
     }
   },
   "required": [
@@ -69,7 +63,6 @@
     "activeEnergyWhPhaseC",
     "reactiveEnergyWhPhaseC",
     "activeEnergyWhPhaseABC",
-    "reactiveEnergyWhPhaseABC",
-    "endpoint"
+    "reactiveEnergyWhPhaseABC"
   ]
 }

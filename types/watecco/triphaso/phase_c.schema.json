@@ -1,0 +1,68 @@
+{
+  "$id": "https://akenza.io/watecco/triphaso/phase_c.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Phase C",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "phase_c",
+  "properties": {
+    "pActiveEnergyC": {
+      "title": "Positive active energy C",
+      "unit": "Wh",
+      "description": "Positive active energy C",
+      "type": "number"
+    },
+    "nActiveEnergyC": {
+      "title": "Negative active energy C",
+      "unit": "Wh",
+      "description": "Negative active energy C",
+      "type": "number"
+    },
+    "pReactiveEnergyC": {
+      "title": "Positive reactive energy C",
+      "unit": "var",
+      "description": "Positive reactive energy C",
+      "type": "number"
+    },
+    "nReactiveEnergyC": {
+      "title": "Negativee reactive energy C",
+      "unit": "var",
+      "description": "Negativee reactive energy C",
+      "type": "number"
+    },
+    "pActivePowerWC": {
+      "title": "Positive active power C",
+      "unit": "W",
+      "description": "Positive active power C",
+      "type": "number"
+    },
+    "nActivePowerWC": {
+      "title": "Negative active power C",
+      "unit": "W",
+      "description": "Negative active power C",
+      "type": "number"
+    },
+    "pReactivePowerVarC": {
+      "title": "Positive reactive Power C",
+      "unit": "var",
+      "description": "Positive reactive Power C",
+      "type": "number"
+    },
+    "nReactivePowerVarC": {
+      "title": "Negative reactive Power C",
+      "unit": "var",
+      "description": "Negative reactive Power C",
+      "type": "number"
+    }
+  },
+  "required": [
+    "pActiveEnergyC",
+    "nActiveEnergyC",
+    "pReactiveEnergyC",
+    "nReactiveEnergyC",
+    "pActivePowerWC",
+    "nActivePowerWC",
+    "pReactivePowerVarC",
+    "nReactivePowerVarC"
+  ]
+}

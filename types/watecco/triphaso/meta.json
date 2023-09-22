@@ -8,7 +8,16 @@
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["AC Current"],
-  "outputTopics": ["energy", "phase_variables", "phase", "power", "variables"],
+  "outputTopics": [
+    "energy",
+    "phase_variables",
+    "phase_a",
+    "phase_b",
+    "phase_c",
+    "phase_abc",
+    "power",
+    "variables"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }
