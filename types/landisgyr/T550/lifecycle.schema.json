@@ -9,13 +9,8 @@
     "header": {
       "title": "Message header",
       "type": "string",
-      "desciption": "Message header",
-      "enum": [
-        "STANDARD",
-        "COMPACT",
-        "JSON",
-        "SCHEDULED"
-      ],
+      "description": "Message header",
+      "enum": ["STANDARD", "COMPACT", "JSON", "SCHEDULED"],
       "hideFromKpis": true
     },
     "serialID": {
@@ -27,13 +22,9 @@
     "errFlags": {
       "title": "Error flags",
       "type": "string",
-      "desciption": "Error flags in hexadecimal",
+      "description": "Error flags in hexadecimal",
       "hideFromKpis": true
     }
   },
-  "required": [
-    "header",
-    "serialID",
-    "errFlags"
-  ]
+  "required": ["header", "serialID", "errFlags"]
 }

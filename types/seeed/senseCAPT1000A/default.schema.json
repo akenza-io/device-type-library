@@ -17,14 +17,9 @@
     "light": {
       "title": "Light",
       "type": "number",
-      "unit": "lux",
-      "description": "Light value",
-      "minimum": 0,
-      "maximum": 255
+      "unit": "%",
+      "description": "Light value in percent"
     }
   },
-  "required": [
-    "temperature",
-    "light"
-  ]
+  "required": ["temperature", "light"]
 }

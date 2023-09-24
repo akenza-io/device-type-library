@@ -25,7 +25,7 @@
     "analog1": {
       "type": "number",
       "title": "Analog input 1",
-      "desciption": "Voltage in mV",
+      "description": "Voltage in mV",
       "unit": "mV",
       "minimum": 0,
       "maximum": 65535
@@ -93,9 +93,5 @@
       "maximum": 1100
     }
   },
-  "required": [
-    "temperature",
-    "humidity",
-    "pressure"
-  ]
+  "required": ["temperature", "humidity", "pressure"]
 }
