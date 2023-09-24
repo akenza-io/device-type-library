@@ -9,13 +9,13 @@
     "firmwareVersion": {
       "title": "Firmware version",
       "type": "string",
-      "desciption": "Firmware version",
+      "description": "Firmware version",
       "hideFromKpis": true
     },
     "batteryVoltage": {
       "title": "Battery voltage",
       "type": "number",
-      "desciption": "The battery voltage in Volt.",
+      "description": "The battery voltage in Volt.",
       "unit": "V"
     },
     "batteryLevel": {

@@ -10,12 +10,7 @@
       "title": "Battery status",
       "description": "Battery status",
       "type": "string",
-      "enum": [
-        "ULTRA_LOW",
-        "LOW",
-        "OK",
-        "GOOD"
-      ],
+      "enum": ["ULTRA_LOW", "LOW", "OK", "GOOD"],
       "hideFromKpis": true
     },
     "batteryVoltage": {
@@ -23,17 +18,14 @@
       "minimum": 0,
       "maximum": 24,
       "title": "Battery voltage",
-      "desciption": "The battery voltage in Volt.",
+      "description": "The battery voltage in Volt.",
       "unit": "V"
     },
     "connectionStatus": {
       "title": "Connection status",
       "description": "Connection status",
       "type": "string",
-      "enum": [
-        "NO_CONNECTION",
-        "CONNECTED"
-      ],
+      "enum": ["NO_CONNECTION", "CONNECTED"],
       "hideFromKpis": true
     },
     "externalSensor": {

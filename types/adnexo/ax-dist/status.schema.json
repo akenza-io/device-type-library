@@ -22,26 +22,26 @@
       "title": "Measurement interval",
       "type": "integer",
       "unit": "s",
-      "desciption": "Measurement interval in seconds.",
+      "description": "Measurement interval in seconds.",
       "hideFromKpis": true
     },
     "sendInterval": {
       "title": "Send interval",
       "type": "integer",
-      "desciption": "Send every x samples",
+      "description": "Send every x samples",
       "hideFromKpis": true
     },
     "joinInterval": {
       "title": "Join interval",
       "type": "integer",
       "unit": "s",
-      "desciption": "Join interval in seconds.",
+      "description": "Join interval in seconds.",
       "hideFromKpis": true
     },
     "reedActive": {
       "title": "Reed active",
       "type": "boolean",
-      "desciption": "True if reed is active",
+      "description": "True if reed is active",
       "hideFromKpis": true
     },
     "thresholdDistance": {
@@ -52,7 +52,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "payloadType"
-  ]
+  "required": ["payloadType"]
 }

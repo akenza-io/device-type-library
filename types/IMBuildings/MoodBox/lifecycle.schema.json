@@ -16,11 +16,8 @@
       "title": "Battery voltage",
       "type": "number",
       "unit": "V",
-      "desciption": "The battery voltage in Volt."
+      "description": "The battery voltage in Volt."
     }
   },
-  "required": [
-    "deviceStatus",
-    "batteryVoltage"
-  ]
+  "required": ["deviceStatus", "batteryVoltage"]
 }

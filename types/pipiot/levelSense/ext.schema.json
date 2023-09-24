@@ -9,18 +9,15 @@
     "ultrasonicDistanceExt": {
       "title": "Ultrasonic distance ext",
       "type": "number",
-      "desciption": "Ultrasonic distance measured between the sensor and the surface.",
+      "description": "Ultrasonic distance measured between the sensor and the surface.",
       "unit": "cm"
     },
     "laserDistanceExt": {
       "title": "Laser distance ext",
       "type": "number",
-      "desciption": "Laser distance measured between the sensor and the surface.",
+      "description": "Laser distance measured between the sensor and the surface.",
       "unit": "cm"
     }
   },
-  "required": [
-    "ultrasonicDistanceExt",
-    "laserDistanceExt"
-  ]
+  "required": ["ultrasonicDistanceExt", "laserDistanceExt"]
 }
