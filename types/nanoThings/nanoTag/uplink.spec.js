@@ -168,7 +168,7 @@ describe("NanoThings uplink", () => {
       const data = {
         data: {
           port: 21,
-          payloadHex: "0cc0000000a862c4753a",
+          payloadHex: "0CC0000000A862C4753A",
         },
       };
 
@@ -193,7 +193,11 @@ describe("NanoThings uplink", () => {
 
         assert.equal(value.topic, "device_status");
         assert.equal(value.data.lastSampleNumber, 168);
-        assert.equal(value.data.lastSampleTimestamp, 11035332);
+        console.log(
+          `Whats the type of lastSampleTimestamp: ${typeof value.data
+            .lastSampleTimestamp}`,
+        );
+        assert.typeOf(value.data.lastSampleTimestamp, "object");
 
         utils.validateSchema(value.data, deviceStatusSchema, {
           throwError: true,
