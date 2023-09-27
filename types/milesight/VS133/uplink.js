@@ -67,9 +67,11 @@ function consume(event) {
     }
   }
 
+  /*
   Object.keys(decoded).forEach((key) => {
     console.log(key, obj[key]);
   });
+  */
 
   if (!isEmpty(decoded)) {
     emit("sample", { data: decoded, topic: "default" });

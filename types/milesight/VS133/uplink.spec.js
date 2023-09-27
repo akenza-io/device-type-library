@@ -20,14 +20,12 @@ describe("VS121 Uplink", () => {
       });
   });
 
-  let defaultSchema = null;
+  let lineSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    utils.loadSchema(`${__dirname}/line.schema.json`).then((parsedSchema) => {
+      lineSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -36,7 +34,7 @@ describe("VS121 Uplink", () => {
         data: {
           port: 1,
           payloadHex:
-            "FF0101FF166614C39694870000FF090102FF1F8401000103D2BE00000004D23101000005CC00000000",
+            "03d24800000004d2c800000006d20000000007d20000000009d2000000000ad2000000000cd2b41400000dd28d1a0000",
         },
       };
 
@@ -65,7 +63,7 @@ describe("VS121 Uplink", () => {
         assert.equal(value.data.totalCounterIn, 190);
         assert.equal(value.data.totalCounterOut, 305);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, lineSchema, { throwError: true });
       });
 
       consume(data);

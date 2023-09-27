@@ -1,9 +1,9 @@
 {
-  "name": "VS132",
+  "name": "VS133",
   "version": "1.0.0",
   "manufacturer": "Milesight",
-  "url": "https://www.milesight-iot.com/lorawan/sensor/vs132/",
-  "description": "This sensor applies state-of-the-art 3D ToF technology that is deployed wirelessly via LoRaWAN®. The VS132 3D ToF people counting sensor has the advantages of ultra-high accuracy of 99.5% and 100% anonymous detection. This is well suited for bi-directional cross-line people counting applications to obtain accurate and valuable statistics for further decision-making.",
+  "url": "https://www.milesight.com/iot/product/lorawan-sensor/vs133",
+  "description": "VS133 is a sensor that uses second-generation ToF technology to accurately count people. This technology provides more precise depth maps and longer detection distances while maintaining an excellent privacy protection. The advanced ToF technology combined with an AI algorithm enables the sensor to handle complex scenes and distinguish non-human objects with up to 99.8% accuracy.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
