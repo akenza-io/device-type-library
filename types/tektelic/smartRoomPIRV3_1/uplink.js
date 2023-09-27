@@ -256,10 +256,10 @@ function decoder(bytes, port) {
           val = decodeField(arg, 2, 2, 2, "unsigned");
           switch (val) {
             case 0:
-              decodedData.dutyCycle = "DISABLE";
+              decodedData.dutyCycle = "DISABLED";
               break;
             case 1:
-              decodedData.dutyCycle = "ENABLE";
+              decodedData.dutyCycle = "ENABLED";
               break;
             default:
               decodedData.dutyCycle = "INVALID";
@@ -267,10 +267,10 @@ function decoder(bytes, port) {
           val = decodeField(arg, 2, 3, 3, "unsigned");
           switch (val) {
             case 0:
-              decodedData.adr = "DISABLE";
+              decodedData.adr = "DISABLED";
               break;
             case 1:
-              decodedData.adr = "ENABLE";
+              decodedData.adr = "ENABLED";
               break;
             default:
               decodedData.adr = "INVALID";
@@ -426,10 +426,10 @@ function decoder(bytes, port) {
           let val = decodeField(arg, 1, 0, 0, "unsigned");
           switch (val) {
             case 0:
-              decodedData.risingEdgeEnabled = "DISABLE";
+              decodedData.risingEdgeEnabled = "DISABLED";
               break;
             case 1:
-              decodedData.risingEdgeEnabled = "ENABLE";
+              decodedData.risingEdgeEnabled = "ENABLED";
               break;
             default:
               decodedData.risingEdgeEnabled = "INVALID";
@@ -437,10 +437,10 @@ function decoder(bytes, port) {
           val = decodeField(arg, 1, 1, 1, "unsigned");
           switch (val) {
             case 0:
-              decodedData.fallingEdgeEnabled = "DISABLE";
+              decodedData.fallingEdgeEnabled = "DISABLED";
               break;
             case 1:
-              decodedData.fallingEdgeEnabled = "ENABLE";
+              decodedData.fallingEdgeEnabled = "ENABLED";
               break;
             default:
               decodedData.fallingEdgeEnabled = "INVALID";
@@ -495,10 +495,10 @@ function decoder(bytes, port) {
           let val = decodeField(arg, 1, 0, 0, "unsigned");
           switch (val) {
             case 0:
-              decodedData.risingEdgeEnabledEx = "DISABLE";
+              decodedData.risingEdgeEnabledEx = "DISABLED";
               break;
             case 1:
-              decodedData.risingEdgeEnabledEx = "ENABLE";
+              decodedData.risingEdgeEnabledEx = "ENABLED";
               break;
             default:
               decodedData.risingEdgeEnabledEx = "INVALID";
@@ -506,10 +506,10 @@ function decoder(bytes, port) {
           val = decodeField(arg, 1, 1, 1, "unsigned");
           switch (val) {
             case 0:
-              decodedData.fallingEdgeEnabledEx = "DISABLE";
+              decodedData.fallingEdgeEnabledEx = "DISABLED";
               break;
             case 1:
-              decodedData.fallingEdgeEnabledEx = "ENABLE";
+              decodedData.fallingEdgeEnabledEx = "ENABLED";
               break;
             default:
               decodedData.fallingEdgeEnabledEx = "INVALID";
@@ -668,10 +668,10 @@ function decoder(bytes, port) {
           let val = decodeField(arg, 1, 0, 0, "unsigned");
           switch (val) {
             case 0:
-              decodedData.impactThresholdEnabled = "DISABLE";
+              decodedData.impactThresholdEnabled = "DISABLED";
               break;
             case 1:
-              decodedData.impactThresholdEnabled = "ENABLE";
+              decodedData.impactThresholdEnabled = "ENABLED";
               break;
             default:
               decodedData.impactThresholdEnabled = "INVALID";
@@ -679,10 +679,10 @@ function decoder(bytes, port) {
           val = decodeField(arg, 1, 1, 1, "unsigned");
           switch (val) {
             case 0:
-              decodedData.accelerationThresholdEnabled = "DISABLE";
+              decodedData.accelerationThresholdEnabled = "DISABLED";
               break;
             case 1:
-              decodedData.accelerationThresholdEnabled = "ENABLE";
+              decodedData.accelerationThresholdEnabled = "ENABLED";
               break;
             default:
               decodedData.accelerationThresholdEnabled = "INVALID";
@@ -690,10 +690,10 @@ function decoder(bytes, port) {
           val = decodeField(arg, 1, 4, 4, "unsigned");
           switch (val) {
             case 0:
-              decodedData.xaxisEnabled = "DISABLE";
+              decodedData.xaxisEnabled = "DISABLED";
               break;
             case 1:
-              decodedData.xaxisEnabled = "ENABLE";
+              decodedData.xaxisEnabled = "ENABLED";
               break;
             default:
               decodedData.xaxisEnabled = "INVALID";
@@ -701,10 +701,10 @@ function decoder(bytes, port) {
           val = decodeField(arg, 1, 5, 5, "unsigned");
           switch (val) {
             case 0:
-              decodedData.yaxisEnabled = "DISABLE";
+              decodedData.yaxisEnabled = "DISABLED";
               break;
             case 1:
-              decodedData.yaxisEnabled = "ENABLE";
+              decodedData.yaxisEnabled = "ENABLED";
               break;
             default:
               decodedData.yaxisEnabled = "INVALID";
@@ -712,10 +712,10 @@ function decoder(bytes, port) {
           val = decodeField(arg, 1, 6, 6, "unsigned");
           switch (val) {
             case 0:
-              decodedData.zaxisEnabled = "DISABLE";
+              decodedData.zaxisEnabled = "DISABLED";
               break;
             case 1:
-              decodedData.zaxisEnabled = "ENABLE";
+              decodedData.zaxisEnabled = "ENABLED";
               break;
             default:
               decodedData.zaxisEnabled = "INVALID";
@@ -857,10 +857,10 @@ function decoder(bytes, port) {
           const val = decodeField(arg, 1, 0, 0, "unsigned");
           switch (val) {
             case 0:
-              decodedData.ambientTemperatureThresholdEnabled = "DISABLE";
+              decodedData.ambientTemperatureThresholdEnabled = "DISABLED";
               break;
             case 1:
-              decodedData.ambientTemperatureThresholdEnabled = "ENABLE";
+              decodedData.ambientTemperatureThresholdEnabled = "ENABLED";
               break;
             default:
               decodedData.ambientTemperatureThresholdEnabled = "INVALID";
@@ -882,10 +882,10 @@ function decoder(bytes, port) {
           const val = decodeField(arg, 1, 0, 0, "unsigned");
           switch (val) {
             case 0:
-              decodedData.relativeHumidityThresholdEnabled = "DISABLE";
+              decodedData.relativeHumidityThresholdEnabled = "DISABLED";
               break;
             case 1:
-              decodedData.relativeHumidityThresholdEnabled = "ENABLE";
+              decodedData.relativeHumidityThresholdEnabled = "ENABLED";
               break;
             default:
               decodedData.relativeHumidityThresholdEnabled = "INVALID";
@@ -939,10 +939,10 @@ function decoder(bytes, port) {
           const val = decodeField(arg, 1, 0, 0, "unsigned");
           switch (val) {
             case 0:
-              decodedData.mcuTemperatureThresholdEnabled = "DISABLE";
+              decodedData.mcuTemperatureThresholdEnabled = "DISABLED";
               break;
             case 1:
-              decodedData.mcuTemperatureThresholdEnabled = "ENABLE";
+              decodedData.mcuTemperatureThresholdEnabled = "ENABLED";
               break;
             default:
               decodedData.mcuTemperatureThresholdEnabled = "INVALID";
@@ -994,10 +994,10 @@ function decoder(bytes, port) {
           const val = decodeField(arg, 1, 0, 0, "unsigned");
           switch (val) {
             case 0:
-              decodedData.analogInputThresholdEnabled = "DISABLE";
+              decodedData.analogInputThresholdEnabled = "DISABLED";
               break;
             case 1:
-              decodedData.analogInputThresholdEnabled = "ENABLE";
+              decodedData.analogInputThresholdEnabled = "ENABLED";
               break;
             default:
               decodedData.analogInputThresholdEnabled = "INVALID";
@@ -1024,10 +1024,10 @@ function decoder(bytes, port) {
           const val = decodeField(arg, 1, 7, 7, "unsigned");
           switch (val) {
             case 0:
-              decodedData.lightThreshold = "DISABLE";
+              decodedData.lightThreshold = "DISABLED";
               break;
             case 1:
-              decodedData.lightThreshold = "ENABLE";
+              decodedData.lightThreshold = "ENABLED";
               break;
             default:
               decodedData.lightThreshold = "INVALID";
@@ -1307,13 +1307,13 @@ function decoder(bytes, port) {
           const val = decodeField(arg, 1, 7, 0, "unsigned");
           switch (val) {
             case 0:
-              decodedData.extconnectorState = "LOW";
+              decodedData.extConnectorState = "LOW";
               break;
             case 255:
-              decodedData.extconnectorState = "HIGH";
+              decodedData.extConnectorState = "HIGH";
               break;
             default:
-              decodedData.extconnectorState = "INVALID";
+              decodedData.extConnectorState = "INVALID";
           }
           return 1;
         },
@@ -1321,7 +1321,7 @@ function decoder(bytes, port) {
       {
         key: [0x0f, 0x04],
         fn(arg) {
-          decodedData.extconnectorCount = decodeField(
+          decodedData.extConnectorCount = decodeField(
             arg,
             2,
             15,
@@ -1334,7 +1334,7 @@ function decoder(bytes, port) {
       {
         key: [0x12, 0x04],
         fn(arg) {
-          decodedData.extconnectorTotalCount = decodeField(
+          decodedData.extConnectorTotalCount = decodeField(
             arg,
             4,
             31,
@@ -1347,7 +1347,7 @@ function decoder(bytes, port) {
       {
         key: [0x11, 0x02],
         fn(arg) {
-          decodedData.extconnectorAnalog = (
+          decodedData.extConnectorAnalog = (
             decodeField(arg, 2, 15, 0, "signed") * 0.001
           ).toFixed(3);
           return 2;
@@ -1443,7 +1443,7 @@ function decoder(bytes, port) {
               decodedData.resetReason = "PUSH_BUTTON_RESET";
               break;
             case 2:
-              decodedData.resetReason = "DL_COMMAND_REST";
+              decodedData.resetReason = "DL_COMMAND_RESET";
               break;
             case 4:
               decodedData.resetReason = "INDEPENDENT_WATCHDOG_RESET";

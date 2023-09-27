@@ -17,14 +17,14 @@
       "title": "Adaptive datarate",
       "type": "string",
       "description": "Adaptive datarate",
-      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "enum": ["DISABLED", "ENABLED", "INVALID"],
       "hideFromKpis": true
     },
     "dutyCycle": {
       "title": "Duty cycle",
       "type": "string",
       "description": "Duty cycle",
-      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "enum": ["DISABLED", "ENABLED", "INVALID"],
       "hideFromKpis": true
     },
     "syncWord": {
@@ -38,28 +38,28 @@
       "title": "Rising edge enabled",
       "type": "string",
       "description": "Rising edge enabled",
-      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "enum": ["DISABLED", "ENABLED", "INVALID"],
       "hideFromKpis": true
     },
     "risingEdgeEnabledEx": {
       "title": "Rising edge enabled ex",
       "type": "string",
       "description": "Rising edge enabled ex",
-      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "enum": ["DISABLED", "ENABLED", "INVALID"],
       "hideFromKpis": true
     },
     "fallingEdgeEnabled": {
       "title": "Falling edge enabled",
       "type": "string",
       "description": "Falling edge enabled",
-      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "enum": ["DISABLED", "ENABLED", "INVALID"],
       "hideFromKpis": true
     },
     "fallingEdgeEnabledEx": {
       "title": "Falling edge enabled ex",
       "type": "string",
       "description": "Falling edge enabled ex",
-      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "enum": ["DISABLED", "ENABLED", "INVALID"],
       "hideFromKpis": true
     },
     "confirmMode": {
@@ -167,35 +167,35 @@
       "title": "Impact threshold enabled",
       "type": "string",
       "description": "Impact threshold enabled",
-      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "enum": ["DISABLED", "ENABLED", "INVALID"],
       "hideFromKpis": true
     },
     "accelerationThresholdEnabled": {
       "title": "Acceleration threshold enabled",
       "type": "string",
       "description": "Acceleration threshold enabled",
-      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "enum": ["DISABLED", "ENABLED", "INVALID"],
       "hideFromKpis": true
     },
-    "xaxisEnabled": {
+    "xAxisEnabled": {
       "title": "X-Axis enabled",
       "type": "string",
       "description": "X-Axis enabled",
-      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "enum": ["DISABLED", "ENABLED", "INVALID"],
       "hideFromKpis": true
     },
-    "yaxisEnabled": {
+    "yAxisEnabled": {
       "title": "Y-Axis enabled",
       "type": "string",
       "description": "Y-Axis enabled",
-      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "enum": ["DISABLED", "ENABLED", "INVALID"],
       "hideFromKpis": true
     },
-    "zaxisEnabled": {
+    "zAxisEnabled": {
       "title": "Z-Axis enabled",
       "type": "string",
       "description": "Z-Axis enabled",
-      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "enum": ["DISABLED", "ENABLED", "INVALID"],
       "hideFromKpis": true
     },
     "powerOn": {
@@ -265,7 +265,7 @@
       "title": "Ambient temperature threshold enabled",
       "type": "string",
       "description": "Ambient temperature threshold enabled",
-      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "enum": ["DISABLED", "ENABLED", "INVALID"],
       "hideFromKpis": true
     },
     "highRhThreshold": {
@@ -284,7 +284,7 @@
       "title": "Relative humidity threshold enabled",
       "type": "string",
       "description": "Relative humidity threshold enabled",
-      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "enum": ["DISABLED", "ENABLED", "INVALID"],
       "hideFromKpis": true
     },
     "mcuTemperatureSamplePeriodIdle": {
@@ -315,7 +315,7 @@
       "title": "MCU temperature threshold enabled",
       "type": "string",
       "description": "MCU temperature threshold enabled",
-      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "enum": ["DISABLED", "ENABLED", "INVALID"],
       "hideFromKpis": true
     },
     "analogSamplePeriodIdle": {
@@ -346,7 +346,7 @@
       "title": "Analog input threshold enabled",
       "type": "string",
       "description": "Analog input threshold enabled",
-      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "enum": ["DISABLED", "ENABLED", "INVALID"],
       "hideFromKpis": true
     },
     "lightSamplePeriod": {
@@ -359,7 +359,7 @@
       "title": "Light threshold",
       "type": "string",
       "description": "Light threshold",
-      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "enum": ["DISABLED", "ENABLED", "INVALID"],
       "hideFromKpis": true
     },
     "thresholdEnabled": {
@@ -595,7 +595,7 @@
       "title": "Enabled",
       "type": "string",
       "description": "Enabled",
-      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "enum": ["DISABLED", "ENABLED", "INVALID"],
       "hideFromKpis": true
     },
     "gamma": {
@@ -834,26 +834,26 @@
       "description": "Acceleration Z-Axis",
       "hideFromKpis": true
     },
-    "extconnectorState": {
+    "extConnectorState": {
       "title": "External connector state",
       "type": "string",
       "description": "External connector state",
       "enum": ["LOW", "HIGH", "INVALID"],
       "hideFromKpis": true
     },
-    "extconnectorCount": {
+    "extConnectorCount": {
       "title": "External connector count",
       "type": "number",
       "description": "External connector count",
       "hideFromKpis": true
     },
-    "extconnectorTotalCount": {
+    "extConnectorTotalCount": {
       "title": "External connector total count",
       "type": "number",
       "description": "External connector total count",
       "hideFromKpis": true
     },
-    "extconnectorAnalog": {
+    "extConnectorAnalog": {
       "title": "External connector analog",
       "type": "number",
       "description": "External connector analog",
@@ -871,7 +871,7 @@
       "description": "Reset reason",
       "enum": [
         "PUSH_BUTTON_RESET",
-        "DL_COMMAND_REST",
+        "DL_COMMAND_RESET",
         "INDEPENDENT_WATCHDOG_RESET",
         "POWER_LOSS_RESET",
         "INVALID"

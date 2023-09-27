@@ -11,11 +11,9 @@
       "unit": "V",
       "type": "number",
       "minimum": 0,
-      "maximum": 24,
+      "maximum": 3.2,
       "desciption": "The battery voltage in Volt. 3.2 Max"
     }
   },
-  "required": [
-    "batteryVoltage"
-  ]
+  "required": ["batteryVoltage"]
 }
