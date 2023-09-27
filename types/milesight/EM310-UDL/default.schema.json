@@ -21,11 +21,8 @@
     "tilt": {
       "title": "Tilt",
       "type": "boolean",
-      "desciption": "True if the sensor is tilted"
+      "description": "True if the sensor is tilted"
     }
   },
-  "required": [
-    "distance",
-    "tilt"
-  ]
+  "required": ["distance", "tilt"]
 }

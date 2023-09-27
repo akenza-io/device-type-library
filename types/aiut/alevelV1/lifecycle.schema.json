@@ -19,18 +19,14 @@
       "minimum": 0,
       "maximum": 24,
       "title": "Battery voltage",
-      "desciption": "The battery voltage in Volt.",
+      "description": "The battery voltage in Volt.",
       "unit": "V"
     },
     "deviceStatusFlag": {
       "type": "integer",
       "title": "Device status flag",
-      "desciption": "Device status flag"
+      "description": "Device status flag"
     }
   },
-  "required": [
-    "batteryLevel",
-    "batteryVoltage",
-    "deviceStatusFlag"
-  ]
+  "required": ["batteryLevel", "batteryVoltage", "deviceStatusFlag"]
 }

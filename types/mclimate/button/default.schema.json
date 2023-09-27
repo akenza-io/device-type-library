@@ -10,19 +10,14 @@
       "title": "Press event",
       "description": "Press event",
       "type": "string",
-      "enum": [
-        "NO_PRESS",
-        "SINGLE_PRESS",
-        "DOUBLE_PRESS",
-        "TRIPLE_PRESS"
-      ]
+      "enum": ["NO_PRESS", "SINGLE_PRESS", "DOUBLE_PRESS", "TRIPLE_PRESS"]
     },
     "batteryVoltage": {
       "type": "number",
       "minimum": 0,
       "maximum": 24,
       "title": "Battery voltage",
-      "desciption": "The battery voltage in Volt.",
+      "description": "The battery voltage in Volt.",
       "unit": "V"
     },
     "thermistorOperational": {

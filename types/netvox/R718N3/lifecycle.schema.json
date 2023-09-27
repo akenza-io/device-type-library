@@ -1,0 +1,26 @@
+{
+  "$id": "https://akenza.io/netvox/r718n3/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "properties": {
+    "softwareVersion": {
+      "title": "Software version",
+      "type": "integer",
+      "description": "Software version",
+      "hideFromKpis": true
+    },
+    "hardwareVersion": {
+      "title": "Hardware version",
+      "type": "integer",
+      "description": "Hardware version",
+      "hideFromKpis": true
+    },
+    "dataCode": {
+      "title": "Data code",
+      "type": "string",
+      "description": "Data code",
+      "hideFromKpis": true
+    }
+  }
+}

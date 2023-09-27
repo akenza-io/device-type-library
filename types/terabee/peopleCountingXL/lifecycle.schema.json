@@ -9,32 +9,27 @@
     "wifiApEnabled": {
       "title": "Wifi access point enabled",
       "type": "boolean",
-      "desciption": "The wifi access point is enabled.",
+      "description": "The wifi access point is enabled.",
       "hideFromKpis": true
     },
     "multiDevIssue": {
       "title": "Multi device issue",
       "type": "boolean",
-      "desciption": "The multi-device is not set up properly or there is an issue with the coordinator or one of the subordinate devices.",
+      "description": "The multi-device is not set up properly or there is an issue with the coordinator or one of the subordinate devices.",
       "hideFromKpis": true
     },
     "tpcStuck": {
       "title": "TPC stuck",
       "type": "boolean",
-      "desciption": "The counting software is started but nor responding.",
+      "description": "The counting software is started but nor responding.",
       "hideFromKpis": true
     },
     "tpcStopped": {
       "title": "TPC stopped",
       "type": "boolean",
-      "desciption": "The counting software is currently not running.",
+      "description": "The counting software is currently not running.",
       "hideFromKpis": true
     }
   },
-  "required": [
-    "wifiApEnabled",
-    "multiDevIssue",
-    "tpcStuck",
-    "tpcStopped"
-  ]
+  "required": ["wifiApEnabled", "multiDevIssue", "tpcStuck", "tpcStopped"]
 }
