@@ -1,7 +1,7 @@
 {
   "$id": "https://akenza.io/watecco/triphaso/variables.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Phase variables",
+  "title": "Variables",
   "processingType": "uplink_decoder",
   "topic": "variables",
   "type": "object",

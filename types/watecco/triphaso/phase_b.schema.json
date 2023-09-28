@@ -25,9 +25,9 @@
       "type": "number"
     },
     "nReactiveEnergyB": {
-      "title": "Negativee reactive energy B",
+      "title": "Negative reactive energy B",
       "unit": "var",
-      "description": "Negativee reactive energy B",
+      "description": "Negative reactive energy B",
       "type": "number"
     },
     "pActivePowerWB": {

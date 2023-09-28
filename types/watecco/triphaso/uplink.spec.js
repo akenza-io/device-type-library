@@ -134,11 +134,11 @@ describe("Wattecco Triphaso uplink", () => {
         assert.equal(value.topic, "energy");
 
         assert.equal(value.data.activeEnergyWhPhaseA, 1298);
-        assert.equal(value.data.activeEnergyWhPhaseABC, -10449);
+        assert.equal(value.data.activeEnergyWhPhaseABC, -10449); //
         assert.equal(value.data.activeEnergyWhPhaseB, -11718);
         assert.equal(value.data.activeEnergyWhPhaseC, -29);
         assert.equal(value.data.reactiveEnergyWhPhaseA, 11284);
-        assert.equal(value.data.reactiveEnergyWhPhaseABC, -4611);
+        assert.equal(value.data.reactiveEnergyWhPhaseABC, -4611); //
         assert.equal(value.data.reactiveEnergyWhPhaseB, -15899);
         assert.equal(value.data.reactiveEnergyWhPhaseC, 4);
 

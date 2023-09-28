@@ -103,7 +103,7 @@ function consume(event) {
     // batch
     decodedBatch = !(bytes[0] & 0x01);
 
-    // trame standard
+    // standard frame
     if (decodedBatch === false) {
       decoded.zclheader = {};
       decoded.zclheader.report = "standard";
@@ -162,7 +162,6 @@ function consume(event) {
         if ((cmdID === 0x0a) | (cmdID === 0x8a)) {
           index = 7;
         }
-        // if (cmdID === 0x01) {index = 8; decoded.zclheader.status = bytes[6];}
 
         // on/off present value
         if ((clusterdID === 0x0006) & (attributeID === 0x0000)) {

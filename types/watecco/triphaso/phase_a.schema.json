@@ -25,9 +25,9 @@
       "type": "number"
     },
     "nReactiveEnergyA": {
-      "title": "Negativee reactive energy A",
+      "title": "Negative reactive energy A",
       "unit": "var",
-      "description": "Negativee reactive energy A",
+      "description": "Negative reactive energy A",
       "type": "number"
     },
     "pActivePowerWA": {

@@ -25,9 +25,9 @@
       "type": "number"
     },
     "nReactiveEnergyC": {
-      "title": "Negativee reactive energy C",
+      "title": "Negative reactive energy C",
       "unit": "var",
-      "description": "Negativee reactive energy C",
+      "description": "Negative reactive energy C",
       "type": "number"
     },
     "pActivePowerWC": {
