@@ -1,3 +1,5 @@
+// Source https://github.com/dragino/dragino-end-node-decoder/blob/main/GroPoint%20Air/gropoint_Decoder_decoder_v1.1.txt
+
 function consume(event) {
   const bytes = Hex.hexToBytes(event.data.payloadHex);
   const moisture = {};
