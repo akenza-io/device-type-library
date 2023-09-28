@@ -115,23 +115,23 @@ function consume(event) {
         ((bytes[0] & 0xe0) >> 5) | ((bytes[0] & 0x06) << 2);
 
       let key = "";
-      let topic = "";
+      let phaseChar = "";
       switch (decoded.zclheader.endpoint) {
         case 0:
           key = "A";
-          topic = "a";
+          phaseChar = "a";
           break;
         case 1:
           key = "B";
-          topic = "b";
+          phaseChar = "b";
           break;
         case 2:
           key = "C";
-          topic = "c";
+          phaseChar = "c";
           break;
         case 3:
           key = "ABC";
-          topic = "abc";
+          phaseChar = "abc";
           break;
         default:
           break;
@@ -236,7 +236,7 @@ function consume(event) {
           );
 
           emit("sample", {
-            topic: `phase_${topic}`,
+            topic: `phase_${phaseChar}`,
             data: phase,
           });
         }
@@ -244,16 +244,23 @@ function consume(event) {
         // energy and power metering
         if ((clusterdID === 0x800b) & (attributeID === 0x0000)) {
           const phaseVariables = {};
-          phaseVariables.vrms =
-            UintToInt(bytes[index + 1] * 256 + bytes[index + 2], 2) / 10;
-          phaseVariables.irms =
-            UintToInt(bytes[index + 3] * 256 + bytes[index + 4], 2) / 10;
+          phaseVariables.vrms = UintToInt(
+            bytes[index + 1] * 256 + bytes[index + 2],
+            2,
+          );
+          phaseVariables.irms = UintToInt(
+            bytes[index + 3] * 256 + bytes[index + 4],
+            2,
+          );
           phaseVariables.angle = UintToInt(
             bytes[index + 5] * 256 + bytes[index + 6],
             2,
           );
 
-          emit("sample", { topic: "phase_variables", data: phaseVariables });
+          emit("sample", {
+            topic: `phase_${phaseChar}_variables`,
+            data: phaseVariables,
+          });
         }
         // energy and power multi metering
         if ((clusterdID === 0x8010) & (attributeID === 0x0000)) {
@@ -367,26 +374,41 @@ function consume(event) {
         if ((clusterdID === 0x800d) & (attributeID === 0x0000)) {
           const variables = {};
 
-          variables.vrmsA =
-            UintToInt(bytes[index + 1] * 256 + bytes[index + 2], 2) / 10;
-          variables.irmsA =
-            UintToInt(bytes[index + 3] * 256 + bytes[index + 4], 2) / 10;
-          variables.angleA =
+          variables.vrms = UintToInt(
+            bytes[index + 1] * 256 + bytes[index + 2],
+            2,
+          );
+          variables.irms = UintToInt(
+            bytes[index + 3] * 256 + bytes[index + 4],
+            2,
+          );
+          variables.angle =
             UintToInt(bytes[index + 5] * 256 + bytes[index + 6], 2) / 10;
-          variables.vrmsB =
-            UintToInt(bytes[index + 7] * 256 + bytes[index + 8], 2) / 10;
-          variables.irmsB =
-            UintToInt(bytes[index + 9] * 256 + bytes[index + 10], 2) / 10;
-          variables.angleB =
-            UintToInt(bytes[index + 11] * 256 + bytes[index + 12], 2) / 10;
-          variables.vrmsC =
-            UintToInt(bytes[index + 13] * 256 + bytes[index + 14], 2) / 10;
-          variables.irmsC =
-            UintToInt(bytes[index + 15] * 256 + bytes[index + 16], 2) / 10;
-          variables.angleC =
-            UintToInt(bytes[index + 17] * 256 + bytes[index + 18], 2) / 10;
+          emit("sample", { topic: "phase_a_variables", data: variables });
 
-          emit("sample", { topic: "variables", data: variables });
+          variables.vrms = UintToInt(
+            bytes[index + 7] * 256 + bytes[index + 8],
+            2,
+          );
+          variables.irms = UintToInt(
+            bytes[index + 9] * 256 + bytes[index + 10],
+            2,
+          );
+          variables.angle =
+            UintToInt(bytes[index + 11] * 256 + bytes[index + 12], 2) / 10;
+          emit("sample", { topic: "phase_b_variables", data: variables });
+
+          variables.vrms = UintToInt(
+            bytes[index + 13] * 256 + bytes[index + 14],
+            2,
+          );
+          variables.irms = UintToInt(
+            bytes[index + 15] * 256 + bytes[index + 16],
+            2,
+          );
+          variables.angle =
+            UintToInt(bytes[index + 17] * 256 + bytes[index + 18], 2) / 10;
+          emit("sample", { topic: "phase_c_variables", data: variables });
         }
       }
 

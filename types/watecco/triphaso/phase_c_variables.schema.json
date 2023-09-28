@@ -1,28 +1,31 @@
 {
-  "$id": "https://akenza.io/watecco/triphaso/phase_variables.schema.json",
+  "$id": "https://akenza.io/watecco/triphaso/phase_c_variables.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Phase variables",
+  "title": "Phase C variables",
   "type": "object",
   "processingType": "uplink_decoder",
-  "topic": "phase_variables",
+  "topic": "phase_c_variables",
   "properties": {
     "vrms": {
       "title": "Voltage root mean square",
       "unit": "Vrms",
       "description": "Voltage root mean square",
-      "type": "number"
+      "type": "number",
+      "hideFromKpis": true
     },
     "irms": {
       "title": "Current root mean square",
       "unit": "Irms",
       "description": "Current root mean square",
-      "type": "number"
+      "type": "number",
+      "hideFromKpis": true
     },
     "angle": {
       "title": "Angle",
       "description": "Angle of load impedance",
       "unit": "°",
-      "type": "number"
+      "type": "number",
+      "hideFromKpis": true
     }
   },
   "required": ["vrms", "irms", "angle"]

@@ -17,12 +17,22 @@ describe("Wattecco Triphaso uplink", () => {
     });
   });
 
-  let phaseVariablesSchema = null;
+  let phaseAVariablesSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/phase_variables.schema.json`)
+      .loadSchema(`${__dirname}/phase_a_variables.schema.json`)
       .then((parsedSchema) => {
-        phaseVariablesSchema = parsedSchema;
+        phaseAVariablesSchema = parsedSchema;
+        done();
+      });
+  });
+
+  let phaseBVariablesSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/phase_b_variables.schema.json`)
+      .then((parsedSchema) => {
+        phaseBVariablesSchema = parsedSchema;
         done();
       });
   });
@@ -73,16 +83,6 @@ describe("Wattecco Triphaso uplink", () => {
       powerSchema = parsedSchema;
       done();
     });
-  });
-
-  let variablesSchema = null;
-  before((done) => {
-    utils
-      .loadSchema(`${__dirname}/variables.schema.json`)
-      .then((parsedSchema) => {
-        variablesSchema = parsedSchema;
-        done();
-      });
   });
 
   describe("consume()", () => {
@@ -143,6 +143,60 @@ describe("Wattecco Triphaso uplink", () => {
         assert.equal(value.data.reactiveEnergyWhPhaseC, 4);
 
         utils.validateSchema(value.data, energySchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("should decode Wattecco Triphaso phase b variables payload", () => {
+      const data = {
+        data: {
+          payloadHex: "310a800b00004106090500010118",
+          port: 125,
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "phase_b_variables");
+
+        assert.equal(value.data.angle, 280);
+        assert.equal(value.data.irms, 1);
+        assert.equal(value.data.vrms, 2309);
+
+        utils.validateSchema(value.data, phaseBVariablesSchema, {
+          throwError: true,
+        });
+      });
+
+      consume(data);
+    });
+
+    it("should decode Wattecco Triphaso phase a variables payload", () => {
+      const data = {
+        data: {
+          payloadHex: "110a800b00004106090700000114",
+          port: 125,
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "phase_a_variables");
+
+        assert.equal(value.data.angle, 276);
+        assert.equal(value.data.irms, 0);
+        assert.equal(value.data.vrms, 2311);
+
+        utils.validateSchema(value.data, phaseAVariablesSchema, {
+          throwError: true,
+        });
       });
 
       consume(data);
