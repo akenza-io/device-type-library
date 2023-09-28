@@ -1,0 +1,28 @@
+{
+  "$id": "https://akenza.io/integra/aquastream/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "type": "object",
+  "properties": {
+    "volume": {
+      "title": "Volume",
+      "unit": "l",
+      "type": "number",
+      "description": "Total volume in liter"
+    },
+    "volumeM3": {
+      "title": "Volume M3",
+      "unit": "m^3",
+      "type": "number",
+      "description": "Total volume in cubic meters"
+    },
+    "backflow": {
+      "title": "Backflow",
+      "unit": "l",
+      "type": "number",
+      "description": "Backflow in liter"
+    }
+  }
+}

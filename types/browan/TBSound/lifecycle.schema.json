@@ -19,12 +19,9 @@
       "minimum": 0,
       "maximum": 24,
       "title": "Battery voltage",
-      "desciption": "The battery voltage in Volt.",
+      "description": "The battery voltage in Volt.",
       "unit": "V"
     }
   },
-  "required": [
-    "batteryLevel",
-    "batteryVoltage"
-  ]
+  "required": ["batteryLevel", "batteryVoltage"]
 }

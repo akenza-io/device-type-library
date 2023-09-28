@@ -12,7 +12,7 @@
       "type": "number",
       "minimum": 0,
       "maximum": 65535,
-      "desciption": "Current battery consumption."
+      "description": "Current battery consumption."
     },
     "batteryVoltage": {
       "title": "Battery voltage",
@@ -20,12 +20,12 @@
       "type": "number",
       "minimum": 0,
       "maximum": 24,
-      "desciption": "The battery voltage in Volt."
+      "description": "The battery voltage in Volt."
     },
     "error": {
       "title": "Error",
       "type": "string",
-      "desciption": "Wrong length of payload",
+      "description": "Wrong length of payload",
       "hideFromKpis": true
     }
   }

@@ -1,0 +1,76 @@
+{
+  "$id": "https://akenza.io/integra/aquastream/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "type": "object",
+  "properties": {
+    "manufacturerCode": {
+      "title": "Manufacturer Code",
+      "type": "string",
+      "description": "Manufacturer Code",
+      "hideFromKpis": true
+    },
+    "moduleNumber": {
+      "title": "Module number",
+      "type": "string",
+      "description": "Module number",
+      "hideFromKpis": true
+    },
+    "versionNumber": {
+      "title": "Version number",
+      "type": "integer",
+      "description": "Version number",
+      "hideFromKpis": true
+    },
+    "systemComponent": {
+      "title": "System component",
+      "type": "integer",
+      "description": "System component",
+      "hideFromKpis": true
+    },
+    "meterAddress": {
+      "title": "Meter address",
+      "type": "string",
+      "description": "Meter address",
+      "hideFromKpis": true
+    },
+    "meterVersion": {
+      "title": "Meter version",
+      "type": "integer",
+      "description": "Meter version",
+      "hideFromKpis": true
+    },
+    "waterType": {
+      "title": "Water type",
+      "type": "integer",
+      "description": "Either warm or cold",
+      "hideFromKpis": true
+    },
+    "transmitionCounter": {
+      "title": "Transmition counter",
+      "type": "integer",
+      "description": "Transmition counter",
+      "hideFromKpis": true
+    },
+    "statusField": {
+      "title": "Status field",
+      "type": "integer",
+      "description": "Status field",
+      "hideFromKpis": true
+    },
+    "configuration": {
+      "title": "Configuration",
+      "type": "integer",
+      "description": "Configuration",
+      "hideFromKpis": true
+    },
+    "batteryLifetime": {
+      "title": "Battery lifetime",
+      "unit": "D",
+      "type": "number",
+      "description": "Battery lifetime in days"
+    }
+  }
+}
