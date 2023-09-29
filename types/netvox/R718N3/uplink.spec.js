@@ -35,8 +35,28 @@ describe("Netvox R718N3 Uplink", () => {
       });
   });
 
+  let defaultSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/default.schema.json`)
+      .then((parsedSchema) => {
+        defaultSchema = parsedSchema;
+        done();
+      });
+  });
+
+  let versionSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/version.schema.json`)
+      .then((parsedSchema) => {
+        versionSchema = parsedSchema;
+        done();
+      });
+  });
+
   describe("consume()", () => {
-    it("should decode should decode the first R718N3 payload", () => {
+    it("should decode the first raw R718N3 payload", () => {
       const data = {
         data: {
           port: 1,
@@ -58,10 +78,21 @@ describe("Netvox R718N3 Uplink", () => {
         validate(value.data, raw1Schema, { throwError: true });
       });
 
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+        assert.equal(value.topic, "lifecycle");
+
+        assert.equal(value.data.batteryVoltage, 3.6);
+
+        validate(value.data, lifecycleSchema, { throwError: true });
+      });
+
       consume(data);
     });
 
-    it("should decode should decode the second R718N3 payload", () => {
+    it("should decode the second raw R718N3 payload", () => {
       const data = {
         data: {
           port: 1,
@@ -75,17 +106,27 @@ describe("Netvox R718N3 Uplink", () => {
         assert.typeOf(value.data, "object");
         assert.equal(value.topic, "raw2");
 
-        assert.equal(value.data.batteryVoltage, 3.6);
         assert.equal(value.data.multiplier2, 1);
         assert.equal(value.data.multiplier3, 1);
 
         validate(value.data, raw2Schema, { throwError: true });
       });
 
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+        assert.equal(value.topic, "lifecycle");
+
+        assert.equal(value.data.batteryVoltage, 3.6);
+
+        validate(value.data, lifecycleSchema, { throwError: true });
+      });
+
       consume(data);
     });
 
-    it("should decode should decode the lifecycle R718N3 payload", () => {
+    it("should decode the verion R718N3 payload", () => {
       const data = {
         data: {
           port: 1,
@@ -102,6 +143,41 @@ describe("Netvox R718N3 Uplink", () => {
         assert.equal(value.data.softwareVersion, 10);
         assert.equal(value.data.hardwareVersion, 1);
         assert.equal(value.data.dataCode, "20170503");
+
+        validate(value.data, versionSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("should decode the combined message R718N3 payload", () => {
+      const data = {
+        data: {
+          port: 1,
+          payloadHex: "014A032405DC36B080E824",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+        assert.equal(value.topic, "default");
+
+        assert.equal(value.data.current1, 1.5);
+        assert.equal(value.data.current2, 70);
+        assert.equal(value.data.current3, 330);
+
+        validate(value.data, defaultSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+        assert.equal(value.topic, "lifecycle");
+
+        assert.equal(value.data.batteryVoltage, 3.6);
 
         validate(value.data, lifecycleSchema, { throwError: true });
       });

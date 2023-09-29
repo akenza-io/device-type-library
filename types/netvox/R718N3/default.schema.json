@@ -1,26 +1,29 @@
 {
   "$id": "https://akenza.io/netvox/r718n3/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Default",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "current1": {
       "title": "Current 1",
-      "unit": "mA",
+      "unit": "A",
       "description": "Current 1",
       "type": "number"
     },
     "current2": {
       "title": "Current 2",
-      "unit": "mA",
+      "unit": "A",
       "description": "Current 2",
       "type": "number"
     },
     "current3": {
       "title": "Current 3",
-      "unit": "mA",
+      "unit": "A",
       "description": "Current 3",
       "type": "number"
     }
-  }
+  },
+  "required": ["current1", "current2", "current3"]
 }
