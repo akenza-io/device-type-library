@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 
 # [1.38.0] - 2023-09-28
 
+- Nanothings - Nanotag
+
+# [1.38.0] - 2023-09-28
+
 - Integra - Aquastream
 - Enginko - EGK-LW22PLG
 - Enginko - MCF-LW12MET
