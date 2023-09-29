@@ -1,26 +1,20 @@
 {
   "$id": "https://akenza.io/netvox/r718n3/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Lifecycle",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
   "properties": {
-    "softwareVersion": {
-      "title": "Software version",
-      "type": "integer",
-      "description": "Software version",
-      "hideFromKpis": true
-    },
-    "hardwareVersion": {
-      "title": "Hardware version",
-      "type": "integer",
-      "description": "Hardware version",
-      "hideFromKpis": true
-    },
-    "dataCode": {
-      "title": "Data code",
-      "type": "string",
-      "description": "Data code",
+    "batteryVoltage": {
+      "title": "Battery voltage",
+      "unit": "V",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "description": "The battery voltage in Volt.",
       "hideFromKpis": true
     }
-  }
+  },
+  "required": ["batteryVoltage"]
 }
