@@ -11,7 +11,7 @@
       "type": "number",
       "minimum": 0,
       "maximum": 24,
-      "desciption": "Initial battery voltage",
+      "description": "Initial battery voltage",
       "unit": "V",
       "hideFromKpis": true
     },

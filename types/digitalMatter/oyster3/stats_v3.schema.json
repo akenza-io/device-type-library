@@ -23,7 +23,7 @@
       "minimum": 0,
       "maximum": 24,
       "title": "Current battery voltage",
-      "desciption": "Current battery voltage",
+      "description": "Current battery voltage",
       "unit": "V",
       "hideFromKpis": true
     },
