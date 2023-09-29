@@ -1,0 +1,26 @@
+{
+  "$id": "https://akenza.io/netvox/r718n3/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "properties": {
+    "current1": {
+      "title": "Current 1",
+      "unit": "mA",
+      "description": "Current 1",
+      "type": "number"
+    },
+    "current2": {
+      "title": "Current 2",
+      "unit": "mA",
+      "description": "Current 2",
+      "type": "number"
+    },
+    "current3": {
+      "title": "Current 3",
+      "unit": "mA",
+      "description": "Current 3",
+      "type": "number"
+    }
+  }
+}

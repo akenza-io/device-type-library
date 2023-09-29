@@ -24,12 +24,8 @@
       "type": "number",
       "minimum": 0,
       "maximum": 24,
-      "desciption": "The battery voltage in Volt."
+      "description": "The battery voltage in Volt."
     }
   },
-  "required": [
-    "version",
-    "deviceType",
-    "batteryVoltage"
-  ]
+  "required": ["version", "deviceType", "batteryVoltage"]
 }

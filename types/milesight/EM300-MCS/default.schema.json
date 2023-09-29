@@ -25,12 +25,8 @@
     "open": {
       "title": "Door open",
       "type": "boolean",
-      "desciption": "True if the door is open"
+      "description": "True if the door is open"
     }
   },
-  "required": [
-    "temperature",
-    "humidity",
-    "open"
-  ]
+  "required": ["temperature", "humidity", "open"]
 }
