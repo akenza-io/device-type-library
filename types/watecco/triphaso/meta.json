@@ -17,7 +17,8 @@
     "phase_a",
     "phase_b",
     "phase_c",
-    "phase_abc"
+    "phase_abc",
+    "power_consumption"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"
