@@ -14,7 +14,7 @@
     },
     "lastSampleTimestamp": {
       "title": "Last sample timestamp",
-      "type": "object",
+      "type": "number",
       "description": "Timestamp of the last sampled temperature which is identified by the number above.",
       "hideFromKpis": true
     }

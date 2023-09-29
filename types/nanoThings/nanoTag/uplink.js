@@ -57,9 +57,8 @@ function consume(event) {
     }
     case 22:
       topic = "first_timestamp";
-      data.firstSampleTimestamp = new Date(
-        Bits.bitsToUnsigned(bits.substr(0, 32)) * 1000,
-      );
+      data.firstSampleTimestamp =
+        Bits.bitsToUnsigned(bits.substr(0, 32)) * 1000;
       lifecycle.batteryVoltage =
         Bits.bitsToUnsigned(bits.substr(32, 16)) / 1000;
       break;
@@ -67,9 +66,8 @@ function consume(event) {
       topic = "device_status";
       lifecycle.batteryVoltage = Bits.bitsToUnsigned(bits.substr(0, 16)) / 1000;
       data.lastSampleNumber = Bits.bitsToUnsigned(bits.substr(16, 32));
-      data.lastSampleTimestamp = new Date(
-        Bits.bitsToUnsigned(bits.substr(48, 32)) * 1000,
-      );
+      data.lastSampleTimestamp =
+        Bits.bitsToUnsigned(bits.substr(48, 32)) * 1000;
 
       break;
     case 31:

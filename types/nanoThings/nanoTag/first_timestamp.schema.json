@@ -8,7 +8,7 @@
   "properties": {
     "firstSampleTimestamp": {
       "title": "First sample timestamp",
-      "type": "string",
+      "type": "number",
       "description": "Timestamp of the first sampled value.",
       "hideFromKpis": true
     }

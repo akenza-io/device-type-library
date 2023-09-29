@@ -193,12 +193,13 @@ describe("NanoThings uplink", () => {
 
         assert.equal(value.topic, "device_status");
         assert.equal(value.data.lastSampleNumber, 168);
+        /*
         console.log(
           `Whats the type of lastSampleTimestamp: ${typeof value.data
             .lastSampleTimestamp}`,
         );
         assert.typeOf(value.data.lastSampleTimestamp, "object");
-
+        */
         utils.validateSchema(value.data, deviceStatusSchema, {
           throwError: true,
         });
