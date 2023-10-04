@@ -1,0 +1,53 @@
+{
+  "$id": "https://akenza.io/comtac/cluey/counter_input_.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "counter_input_",
+  "title": "Counter Inputs ",
+  "properties": {
+    "limit": {
+      "title": "Limit",
+      "description": "Limit",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "event": {
+      "title": "Event",
+      "description": "Event",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "interrogation": {
+      "title": "Interrogation",
+      "description": "Interrogation",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "cyclic": {
+      "title": "Cyclic",
+      "description": "Cyclic",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "overflow": {
+      "title": "Cyclic",
+      "description": "Cyclic",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "reset": {
+      "title": "Cyclic",
+      "description": "Cyclic",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "value": {
+      "title": "Value",
+      "description": "Value",
+      "type": "number",
+      "hideFromKpis": true
+    }
+  },
+  "required": []
+}
