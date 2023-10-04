@@ -1,10 +1,10 @@
 {
-  "$id": "https://akenza.io/xovis/VS132/default.schema.json",
+  "$id": "https://akenza.io/xovis/VS133/line.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
+  "topic": "line",
+  "title": "Line",
   "properties": {
     "totalCounterIn": {
       "title": "Total counter in",

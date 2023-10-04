@@ -6,18 +6,16 @@ const utils = require("test-utils");
 const { assert } = chai;
 
 describe("VS121 Uplink", () => {
-  let lifecycleSchema = null;
+  let lineSchema = null;
   let consume = null;
 
   before((done) => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    utils.loadSchema(`${__dirname}/line.schema.json`).then((parsedSchema) => {
+      lineSchema = parsedSchema;
+      done();
+    });
   });
 
   let lineSchema = null;
