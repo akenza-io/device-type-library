@@ -1019,11 +1019,11 @@ function decodeAiDataPayload(data) {
   pointer += 4;
 
   do {
+    const id = data[pointer] & 0x0f;
     if ((data[pointer] & 0xf0) === OBJECT_TYPE_AI) {
       // AI Type
       obj.payload.data.analogInputs.push({
-        type: "ANALOG_VALUE",
-        id: data[pointer] & 0x0f,
+        topic: `analog_input_${id}`,
         cot: decodeCot(data[pointer + 1] & 0xf0),
         invalid: Boolean(data[pointer + 1] & 0x08),
         overflow: Boolean(data[pointer + 1] & 0x04),
@@ -1038,8 +1038,7 @@ function decodeAiDataPayload(data) {
     } else if ((data[pointer] & 0xf0) === OBJECT_TYPE_TEMP) {
       // TEMP Type
       obj.payload.data.analogInputs.push({
-        type: "TEMPERATURE_VALUE",
-        id: data[pointer] & 0x0f,
+        topic: `temperature_input_${id}`,
         cot: decodeCot(data[pointer + 1] & 0xf0),
         invalid: Boolean(data[pointer + 1] & 0x08),
         overflow: Boolean(data[pointer + 1] & 0x04),
@@ -2536,6 +2535,7 @@ function consume(event) {
 
   switch (type) {
     case "FIXED_DATA":
+      delete data.timestamp;
       Object.keys(data).forEach((key) => {
         data[key].limit = data[key].cot.limit;
         data[key].event = data[key].cot.event;
@@ -2570,20 +2570,22 @@ function consume(event) {
       break;
     case "AI_DATA":
       data.analogInputs.forEach((dataPoint) => {
+        const { topic } = dataPoint;
+        const { timestamp } = dataPoint;
+
         const result = {};
         result.limit = dataPoint.cot.limit;
         result.event = dataPoint.cot.event;
         result.interrogation = dataPoint.cot.interrogation;
         result.cyclic = dataPoint.cot.cyclic;
-        delete dataPoint.cot;
 
-        // Timestamp
-        const { timestamp } = dataPoint;
+        delete dataPoint.cot;
+        delete dataPoint.topic;
         delete dataPoint.timestamp;
 
         dataPoint = Object.assign(result, dataPoint);
 
-        emit("sample", { data: result, topic: "analog_input_data", timestamp });
+        emit("sample", { data: result, topic, timestamp });
       });
       break;
     case "CNT_DATA":
