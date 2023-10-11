@@ -6,10 +6,10 @@
 */
 
 // DEFINES
-const PAYLOAD_DECODER_VERSION = "00.09";
+const PAYLOAD_DECODER_VERSION = "00.11";
 const PAYLOAD_DECODER_INFO = "comtac Cluey";
 const DEVICE_DESIGNATION_CLUEY_KM = "Cluey-KM";
-const DEVICE_DESIGNATION_CLUEY_AM = "Cluey-AM";
+const DEVICE_DESIGNATION_CLUEY_AM = "Cluey-AM/MB";
 const DEVICE_DESIGNATION_CLUEY_TM = "Cluey-TM";
 const DEVICE_MANUFACTURER = "comtac AG";
 
@@ -220,11 +220,11 @@ function decodeUplink(input) {
       if (input.fPort === PING_PORT) {
         return decodePingPayload(input.bytes);
       }
-      errors.push("not a valid port");
+      errors.push("INVALID_PORT");
       return {
         data: {
           port: input.fPort,
-          portFunction: "unknown",
+          portFunction: "UNKNOWN",
           payloadLength: input.bytes.length,
           payload: {
             device: deviceHeader,
@@ -257,11 +257,11 @@ function decodeUplink(input) {
       if (input.fPort === INFO_PORT) {
         return decodeInfoPayload(input.bytes);
       }
-      errors.push("not a valid port");
+      errors.push("INVALID_PORT");
       return {
         data: {
           port: input.fPort,
-          portFunction: "unknown",
+          portFunction: "UNKNOWN",
           payloadLength: input.bytes.length,
           payload: {
             device: deviceHeader,
@@ -294,11 +294,11 @@ function decodeUplink(input) {
       if (input.fPort === INFO_PORT) {
         return decodeInfoPayload(input.bytes);
       }
-      errors.push("not a valid port");
+      errors.push("INVALID_PORT");
       return {
         data: {
           port: input.fPort,
-          portFunction: "unknown",
+          portFunction: "UNKNOWN",
           payloadLength: input.bytes.length,
           payload: {
             device: deviceHeader,
@@ -337,11 +337,11 @@ function decodeUplink(input) {
       if (input.fPort === MODBUS_TP_PORT) {
         return decodeModbusTransparentPayload(input.bytes);
       }
-      errors.push("not a valid port");
+      errors.push("INVALID_PORT");
       return {
         data: {
           port: input.fPort,
-          portFunction: "unknown",
+          portFunction: "UNKNOWN",
           payloadLength: input.bytes.length,
           payload: {
             device: deviceHeader,
@@ -355,11 +355,11 @@ function decodeUplink(input) {
         errors,
       };
     }
-    errors.push("Device version not supported by this decoder");
+    errors.push("DEVICE_VERSION_NOT_SUPPORTED");
     return {
       data: {
         port: input.fPort,
-        portFunction: "unknown",
+        portFunction: "UNKNOWN",
         payloadLength: input.bytes.length,
         payload: {
           device: deviceHeader,
@@ -396,11 +396,11 @@ function decodeUplink(input) {
       if (input.fPort === INFO_PORT) {
         return decodeInfoPayload(input.bytes);
       }
-      errors.push("not a valid port");
+      errors.push("INVALID_PORT");
       return {
         data: {
           port: input.fPort,
-          portFunction: "unknown",
+          portFunction: "UNKNOWN",
           payloadLength: input.bytes.length,
           payload: {
             device: deviceHeader,
@@ -436,11 +436,17 @@ function decodeUplink(input) {
       if (input.fPort === INFO_PORT) {
         return decodeInfoPayload(input.bytes);
       }
-      errors.push("not a valid port");
+      if (input.fPort === MODBUS_PORT) {
+        return decodeModbusPayload(input.bytes);
+      }
+      if (input.fPort === MODBUS_TP_PORT) {
+        return decodeModbusTransparentPayload(input.bytes);
+      }
+      errors.push("INVALID_PORT");
       return {
         data: {
           port: input.fPort,
-          portFunction: "unknown",
+          portFunction: "UNKOWN",
           payloadLength: input.bytes.length,
           payload: {
             device: deviceHeader,
@@ -476,11 +482,11 @@ function decodeUplink(input) {
       if (input.fPort === INFO_PORT) {
         return decodeInfoPayload(input.bytes);
       }
-      errors.push("not a valid port");
+      errors.push("INVALID_PORT");
       return {
         data: {
           port: input.fPort,
-          portFunction: "unknown",
+          portFunction: "UNKOWN",
           payloadLength: input.bytes.length,
           payload: {
             device: deviceHeader,
@@ -494,11 +500,11 @@ function decodeUplink(input) {
         errors,
       };
     }
-    errors.push("Device version not supported by this decoder");
+    errors.push("DEVICE_VERSION_NOT_SUPPORTED");
     return {
       data: {
         port: input.fPort,
-        portFunction: "unknown",
+        portFunction: "UNKOWN",
         payloadLength: input.bytes.length,
         payload: {
           device: deviceHeader,
@@ -535,11 +541,11 @@ function decodeUplink(input) {
       if (input.fPort === INFO_PORT) {
         return decodeInfoPayload(input.bytes);
       }
-      errors.push("not a valid port");
+      errors.push("INVALID_PORT");
       return {
         data: {
           port: input.fPort,
-          portFunction: "unknown",
+          portFunction: "UNKOWN",
           payloadLength: input.bytes.length,
           payload: {
             device: deviceHeader,
@@ -575,11 +581,11 @@ function decodeUplink(input) {
       if (input.fPort === INFO_PORT) {
         return decodeInfoPayload(input.bytes);
       }
-      errors.push("not a valid port");
+      errors.push("INVALID_PORT");
       return {
         data: {
           port: input.fPort,
-          portFunction: "unknown",
+          portFunction: "UNKOWN",
           payloadLength: input.bytes.length,
           payload: {
             device: deviceHeader,
@@ -615,11 +621,11 @@ function decodeUplink(input) {
       if (input.fPort === INFO_PORT) {
         return decodeInfoPayload(input.bytes);
       }
-      errors.push("not a valid port");
+      errors.push("INVALID_PORT");
       return {
         data: {
           port: input.fPort,
-          portFunction: "unknown",
+          portFunction: "UNKOWN",
           payloadLength: input.bytes.length,
           payload: {
             device: deviceHeader,
@@ -633,11 +639,11 @@ function decodeUplink(input) {
         errors,
       };
     }
-    errors.push("Device version not supported by this decoder");
+    errors.push("DEVICE_VERSION_NOT_SUPPORTED");
     return {
       data: {
         port: input.fPort,
-        portFunction: "unknown",
+        portFunction: "UNKOWN",
         payloadLength: input.bytes.length,
         payload: {
           device: deviceHeader,
@@ -651,11 +657,11 @@ function decodeUplink(input) {
       errors,
     };
   }
-  errors.push("Device ID not supported by this decoder");
+  errors.push("DEVICE_ID_NOT_SUPPORTED");
   return {
     data: {
       port: input.fPort,
-      portFunction: "unknown",
+      portFunction: "UNKOWN",
       payloadLength: input.bytes.length,
       payload: {
         device: deviceHeader,
@@ -852,13 +858,7 @@ function decodeFixedDataPayload(data) {
 
   obj.payload = {
     device: deviceHeader,
-    data: {
-      timestamp: {},
-      digitalInputs: {},
-      analogInputs: {},
-      counterInputs: {},
-      temperatureInputs: {},
-    },
+    data: {},
   };
 
   obj.payload.data.timestamp = decodeTimestamp(
@@ -963,7 +963,7 @@ function decodeDiDataPayload(data) {
   do {
     if ((data[pointer] & 0xf0) === OBJECT_TYPE_DI) {
       obj.payload.data.digitalInputs.push({
-        type: "singlePointInfo",
+        type: "SINGLE_POINT_INFO",
         id: data[pointer] & 0x0f,
         cot: decodeCot(data[pointer + 1] & 0xf0),
         blocked: Boolean(data[pointer + 1] & 0x04),
@@ -975,7 +975,7 @@ function decodeDiDataPayload(data) {
       });
     } else if ((data[pointer] & 0xf0) === OBJECT_TYPE_DBL) {
       obj.payload.data.digitalInputs.push({
-        type: "doublePointInfo",
+        type: "DOUBLE_POINT_INFO",
         id: data[pointer] & 0x0f,
         cot: decodeCot(data[pointer + 1] & 0xf0),
         blocked: Boolean(data[pointer + 1] & 0x04),
@@ -1022,17 +1022,13 @@ function decodeAiDataPayload(data) {
     if ((data[pointer] & 0xf0) === OBJECT_TYPE_AI) {
       // AI Type
       obj.payload.data.analogInputs.push({
-        info: {
-          type: "analogValue",
-          id: data[pointer] & 0x0f,
-        },
+        type: "ANALOG_VALUE",
+        id: data[pointer] & 0x0f,
         cot: decodeCot(data[pointer + 1] & 0xf0),
-        status: {
-          invalid: Boolean(data[pointer + 1] & 0x08),
-          overflow: Boolean(data[pointer + 1] & 0x04),
-          limit2: Boolean(data[pointer + 1] & 0x02),
-          limit1: Boolean(data[pointer + 1] & 0x01),
-        },
+        invalid: Boolean(data[pointer + 1] & 0x08),
+        overflow: Boolean(data[pointer + 1] & 0x04),
+        limit2: Boolean(data[pointer + 1] & 0x02),
+        limit1: Boolean(data[pointer + 1] & 0x01),
         value: decToInt(data[pointer + 3] + (data[pointer + 2] << 8)),
         timestamp: addTimeToTimestamp(
           timestampAbsolute.unix,
@@ -1042,17 +1038,13 @@ function decodeAiDataPayload(data) {
     } else if ((data[pointer] & 0xf0) === OBJECT_TYPE_TEMP) {
       // TEMP Type
       obj.payload.data.analogInputs.push({
-        info: {
-          type: "Temperature",
-          id: data[pointer] & 0x0f,
-        },
+        type: "TEMPERATURE_VALUE",
+        id: data[pointer] & 0x0f,
         cot: decodeCot(data[pointer + 1] & 0xf0),
-        status: {
-          invalid: Boolean(data[pointer + 1] & 0x08),
-          overflow: Boolean(data[pointer + 1] & 0x04),
-          limit2: Boolean(data[pointer + 1] & 0x02),
-          limit1: Boolean(data[pointer + 1] & 0x01),
-        },
+        invalid: Boolean(data[pointer + 1] & 0x08),
+        overflow: Boolean(data[pointer + 1] & 0x04),
+        limit2: Boolean(data[pointer + 1] & 0x02),
+        limit1: Boolean(data[pointer + 1] & 0x01),
         value: decToInt(data[pointer + 3] + (data[pointer + 2] << 8)) / 100,
         timestamp: addTimeToTimestamp(
           timestampAbsolute.unix,
@@ -1096,16 +1088,13 @@ function decodeCntDataPayload(data) {
     pointer += 4;
     for (let i = 0; i < objectCount; i++) {
       obj.payload.data.counters.push({
-        info: {
-          type: (data[pointer] & 0xf0) === 0x50 ? "counterdiff" : "counter",
-          id: data[pointer] & 0x0f,
-        },
+        type:
+          (data[pointer] & 0xf0) === 0x50 ? "COUNTER_DIFFERENCE" : "COUNTER",
+        id: data[pointer] & 0x0f,
         cot: decodeCot(data[pointer + 1] & 0xf0),
-        status: {
-          overflow: Boolean(data[pointer + 1] & 0x01),
-          reset: Boolean(data[pointer + 1] & 0x02),
-          limit: Boolean(data[pointer + 1] & 0x04),
-        },
+        overflow: Boolean(data[pointer + 1] & 0x01),
+        reset: Boolean(data[pointer + 1] & 0x02),
+        limit: Boolean(data[pointer + 1] & 0x04),
         timestamp: timestampCommon,
         value:
           data[pointer + 4] +
@@ -2399,25 +2388,33 @@ function decodeModbusPayload(data) {
 
   obj.payload = {
     device: deviceHeader,
-    datapoints: [],
+    datapoints: {},
   };
-
-  do {
-    obj.payload.datapoints.push({
-      state: decodeModbusState((data[pointer] & 0xf0) >> 4),
+  while (pointer <= data.length - 5) {
+    // there must be at leased 5 additional bytes in the payload (state(=1) + timestamp(=4)
+    const dpErrorCode = (data[pointer] & 0xf0) >> 4;
+    const keyName = `dp_${(data[pointer] & 0x0f)
+      .toString(10)
+      .padStart(2, "0")}`;
+    obj.payload.datapoints[keyName] = {
+      errorVerbose: decodeModbusState(dpErrorCode),
+      errorCode: dpErrorCode,
       index: data[pointer] & 0x0f,
       timestamp: decodeTimestamp(data.slice(pointer + 1, pointer + 5)),
       registers: [],
-    });
-
-    for (let i = 0; i < data[pointer + 5] * 2; i++) {
-      obj.payload.datapoints[obj.payload.datapoints.length - 1].registers.push(
-        data[pointer + 6 + i],
-      );
+    };
+    pointer += 5;
+    // datenlength & Registers only present if no error!!
+    if (dpErrorCode === 0) {
+      const regCount = data[pointer];
+      for (let i = 0; i < regCount; i++) {
+        obj.payload.datapoints[keyName].registers.push(
+          (data[pointer + 1 + 2 * i] << 8) + data[pointer + 2 + 2 * i],
+        );
+      }
+      pointer += 1 + regCount * 2;
     }
-
-    pointer += 1 + 4 + 1 + data[pointer + 5] * 2;
-  } while (pointer - 1 < data.length - 1);
+  }
 
   return {
     data: obj,
@@ -2430,7 +2427,7 @@ function decodeModbusTransparentPayload(data) {
   const warnings = [];
 
   obj.port = MODBUS_PORT;
-  obj.portFunction = "MODBUS TRANSPARENT";
+  obj.portFunction = "MODBUS_TRANSPARENT";
   obj.payloadLength = data.length;
 
   obj.decoder = {
@@ -2444,7 +2441,7 @@ function decodeModbusTransparentPayload(data) {
 
   obj.payload = {
     command: {
-      slave_adress: data[pointer],
+      slaveAdress: data[pointer],
       fc: data[pointer + 1],
       answer: [],
     },
@@ -2533,9 +2530,9 @@ function consume(event) {
   });
 
   const { device } = decoded.data.payload;
-  const type = decoded.data.portFunction; // FIXED_DATA
+  const type = decoded.data.portFunction;
   const { data } = decoded.data.payload;
-  const { warnings } = decoded;
+  const { errors } = decoded;
 
   switch (type) {
     case "FIXED_DATA":
@@ -2549,50 +2546,120 @@ function consume(event) {
         emit("sample", { data: data[key], topic: key });
       });
       break;
-    case "FIXED_DATA":
-      break;
-    case "FIXED_DATA":
-      break;
-    case "FIXED_DATA":
-      break;
-    case "FIXED_DATA":
-      break;
+    case "DI_DATA":
+      data.digitalInputs.forEach((dataPoint) => {
+        let result = {};
+        result.limit = dataPoint.cot.limit;
+        result.event = dataPoint.cot.event;
+        result.interrogation = dataPoint.cot.interrogation;
+        result.cyclic = dataPoint.cot.cyclic;
+        delete dataPoint.cot;
 
+        // Timestamp
+        const { timestamp } = dataPoint;
+        delete dataPoint.timestamp;
+
+        result = Object.assign(result, dataPoint);
+
+        emit("sample", {
+          data: result,
+          topic: "point_info",
+          timestamp,
+        });
+      });
+      break;
+    case "AI_DATA":
+      data.analogInputs.forEach((dataPoint) => {
+        const result = {};
+        result.limit = dataPoint.cot.limit;
+        result.event = dataPoint.cot.event;
+        result.interrogation = dataPoint.cot.interrogation;
+        result.cyclic = dataPoint.cot.cyclic;
+        delete dataPoint.cot;
+
+        // Timestamp
+        const { timestamp } = dataPoint;
+        delete dataPoint.timestamp;
+
+        dataPoint = Object.assign(result, dataPoint);
+
+        emit("sample", { data: result, topic: "analog_input_data", timestamp });
+      });
+      break;
+    case "CNT_DATA":
+      data.digitalInputs.forEach((dataPoint) => {
+        const result = {};
+        result.limit = dataPoint.cot.limit;
+        result.event = dataPoint.cot.event;
+        result.interrogation = dataPoint.cot.interrogation;
+        result.cyclic = dataPoint.cot.cyclic;
+        delete dataPoint.cot;
+
+        // Timestamp
+        const { timestamp } = dataPoint;
+        delete dataPoint.timestamp;
+
+        dataPoint = Object.assign(result, dataPoint);
+
+        emit("sample", { data: result, topic: "count_data", timestamp });
+      });
+      break;
+    case "MODBUS": {
+      const { datapoints } = decoded.data.payload;
+      Object.keys(datapoints).forEach((key) => {
+        let result = {};
+        result.modbusId = key;
+        // Timestamp
+        const { timestamp } = datapoints[key];
+        delete dataPoint.timestamp;
+        result = Object.assign(result, datapoints[key]);
+
+        emit("sample", { data: result, topic: "modbus", timestamp });
+      });
+      break;
+    }
+    case "MODBUS_TRANSPARENT": {
+      const { command } = decoded.data.payload;
+      emit("sample", { data: command, topic: "modbus_transparent" });
+      break;
+    }
+    case "TIMESYNC":
+      emit("sample", { data: data.data, topic: "time_sync" });
+      break;
+    case "CONFIG":
+      // Could be singular datapoints instead of an array.
+      emit("sample", {
+        data: { parameters: data.parameters },
+        topic: "configuration",
+      });
+      break;
+    case "INFO":
+      // Empty
+      break;
+    case "GPS":
+      emit("sample", { data: data.coordinates, topic: "gps" });
+      // Empty
+      break;
+    case "PING":
+      // Empty
+      break;
+    case "UNKNOWN":
+      // Empty
+      break;
     default:
       break;
   }
 
-  // Digital inputs
-  for (let i = 0; i < data.digitalInputs.length; i++) {
-    const digitalInputs = {};
-    const digital = data.digitalInputs[i];
-
-    digitalInputs.inputNr = digital.info.id;
-    digitalInputs.limit = digital.cot.limit;
-    digitalInputs.event = digital.cot.event;
-    digitalInputs.interrogation = digital.cot.interrogation;
-    digitalInputs.cyclic = digital.cot.cyclic;
-
-    digitalInputs.blocked = digital.status.blocked;
-    digitalInputs.state = digital.status.state;
-
-    const timestamp = new Date(digital.timestamp.string);
-
-    emit("sample", {
-      data: digitalInputs,
-      topic: "digital",
-      timestamp,
-    });
-  }
-
   // Lifecycle
   const lifecycle = device.deviceStatus;
-  lifecycle.batteryLevel = Number(device.batteryLevel.replace(/\D/g, ""));
+  lifecycle.batteryLevel = device.batteryLevel;
 
   emit("sample", { data: lifecycle, topic: "lifecycle" });
 
-  // Warnings
-  if (warnings.length > 0) {
-    emit("sample", { data: warnings, topic: "warnings" });
+  // Errors
+  if (errors !== undefined) {
+    if (errors.length > 0) {
+      emit("sample", { data: { errors }, topic: "error" });
+    }
   }
 }

@@ -1,10 +1,10 @@
 {
-  "$id": "https://akenza.io/comtac/cluey/counter_input_6.schema.json",
+  "$id": "https://akenza.io/comtac/cluey/analog_input_data.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
-  "topic": "counter_input_6",
-  "title": "Counter Input 6",
+  "topic": "analog_input_data",
+  "title": "Analog Input Data",
   "properties": {
     "limit": {
       "title": "Limit",
@@ -30,15 +30,41 @@
       "type": "boolean",
       "hideFromKpis": true
     },
+
+    "type": {
+      "title": "Type",
+      "description": "Type",
+      "type": "string",
+      "enum": ["ANALOG_VALUE", "TEMPERATURE_VALUE"],
+      "hideFromKpis": true
+    },
+    "id": {
+      "title": "ID",
+      "description": "ID",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "invalid": {
+      "title": "Invalid",
+      "description": "Invalid",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
     "overflow": {
       "title": "Overflow",
       "description": "Overflow",
       "type": "boolean",
       "hideFromKpis": true
     },
-    "reset": {
-      "title": "Reset",
-      "description": "Reset",
+    "limit1": {
+      "title": "Limit 1",
+      "description": "Limit 1",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "limit2": {
+      "title": "Limit 2",
+      "description": "Limit 2",
       "type": "boolean",
       "hideFromKpis": true
     },
@@ -54,8 +80,12 @@
     "event",
     "interrogation",
     "cyclic",
+    "type",
+    "id",
+    "invalid",
     "overflow",
-    "reset",
+    "limit1",
+    "limit2",
     "value"
   ]
 }

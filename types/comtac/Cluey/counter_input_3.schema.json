@@ -1,10 +1,10 @@
 {
-  "$id": "https://akenza.io/comtac/cluey/counter_input_.schema.json",
+  "$id": "https://akenza.io/comtac/cluey/counter_input_3.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
-  "topic": "counter_input_",
-  "title": "Counter Inputs ",
+  "topic": "counter_input_3",
+  "title": "Counter Input 3",
   "properties": {
     "limit": {
       "title": "Limit",
@@ -31,14 +31,14 @@
       "hideFromKpis": true
     },
     "overflow": {
-      "title": "Cyclic",
-      "description": "Cyclic",
+      "title": "Overflow",
+      "description": "Overflow",
       "type": "boolean",
       "hideFromKpis": true
     },
     "reset": {
-      "title": "Cyclic",
-      "description": "Cyclic",
+      "title": "Reset",
+      "description": "Reset",
       "type": "boolean",
       "hideFromKpis": true
     },
@@ -49,5 +49,13 @@
       "hideFromKpis": true
     }
   },
-  "required": []
+  "required": [
+    "limit",
+    "event",
+    "interrogation",
+    "cyclic",
+    "overflow",
+    "reset",
+    "value"
+  ]
 }

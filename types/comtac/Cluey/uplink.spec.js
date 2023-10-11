@@ -5,16 +5,16 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Comtac Cluey KM Uplink", () => {
-  let digitalSchema = null;
+describe("Comtac Cluey Uplink", () => {
+  let digitalInputsSchema = null;
   let consume = null;
   before((done) => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
     utils
-      .loadSchema(`${__dirname}/digital.schema.json`)
+      .loadSchema(`${__dirname}/digital_inputs.schema.json`)
       .then((parsedSchema) => {
-        digitalSchema = parsedSchema;
+        digitalInputsSchema = parsedSchema;
         done();
       });
   });
@@ -29,8 +29,18 @@ describe("Comtac Cluey KM Uplink", () => {
       });
   });
 
+  let pointInfoSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/point_info.schema.json`)
+      .then((parsedSchema) => {
+        pointInfoSchema = parsedSchema;
+        done();
+      });
+  });
+
   describe("consume()", () => {
-    it("should decode the Comtac Cluey KM payload", () => {
+    it("should decode the Comtac Cluey point_info payload", () => {
       const data = {
         data: {
           port: 20,
@@ -44,16 +54,16 @@ describe("Comtac Cluey KM Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "digital");
+        assert.equal(value.topic, "point_info");
         assert.equal(value.data.blocked, false);
         assert.equal(value.data.cyclic, false);
         assert.equal(value.data.event, false);
-        assert.equal(value.data.inputNr, 1);
+        assert.equal(value.data.id, 1);
         assert.equal(value.data.interrogation, true);
         assert.equal(value.data.limit, false);
-        assert.equal(value.data.state, 1);
+        assert.equal(value.data.type, "SINGLE_POINT_INFO");
 
-        utils.validateSchema(value.data, digitalSchema, { throwError: true });
+        utils.validateSchema(value.data, pointInfoSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -61,16 +71,16 @@ describe("Comtac Cluey KM Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "digital");
+        assert.equal(value.topic, "point_info");
         assert.equal(value.data.blocked, false);
         assert.equal(value.data.cyclic, false);
         assert.equal(value.data.event, false);
-        assert.equal(value.data.inputNr, 2);
+        assert.equal(value.data.id, 2);
         assert.equal(value.data.interrogation, true);
         assert.equal(value.data.limit, false);
-        assert.equal(value.data.state, 1);
+        assert.equal(value.data.type, "SINGLE_POINT_INFO");
 
-        utils.validateSchema(value.data, digitalSchema, { throwError: true });
+        utils.validateSchema(value.data, pointInfoSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -78,16 +88,16 @@ describe("Comtac Cluey KM Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "digital");
+        assert.equal(value.topic, "point_info");
         assert.equal(value.data.blocked, false);
         assert.equal(value.data.cyclic, false);
         assert.equal(value.data.event, false);
-        assert.equal(value.data.inputNr, 3);
+        assert.equal(value.data.id, 3);
         assert.equal(value.data.interrogation, true);
         assert.equal(value.data.limit, false);
-        assert.equal(value.data.state, 1);
+        assert.equal(value.data.type, "SINGLE_POINT_INFO");
 
-        utils.validateSchema(value.data, digitalSchema, { throwError: true });
+        utils.validateSchema(value.data, pointInfoSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -95,16 +105,16 @@ describe("Comtac Cluey KM Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "digital");
+        assert.equal(value.topic, "point_info");
         assert.equal(value.data.blocked, false);
         assert.equal(value.data.cyclic, false);
         assert.equal(value.data.event, false);
-        assert.equal(value.data.inputNr, 4);
+        assert.equal(value.data.id, 4);
         assert.equal(value.data.interrogation, true);
         assert.equal(value.data.limit, false);
-        assert.equal(value.data.state, 1);
+        assert.equal(value.data.type, "SINGLE_POINT_INFO");
 
-        utils.validateSchema(value.data, digitalSchema, { throwError: true });
+        utils.validateSchema(value.data, pointInfoSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -112,16 +122,16 @@ describe("Comtac Cluey KM Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "digital");
+        assert.equal(value.topic, "point_info");
         assert.equal(value.data.blocked, false);
         assert.equal(value.data.cyclic, false);
         assert.equal(value.data.event, false);
-        assert.equal(value.data.inputNr, 5);
+        assert.equal(value.data.id, 5);
         assert.equal(value.data.interrogation, true);
         assert.equal(value.data.limit, false);
-        assert.equal(value.data.state, 1);
+        assert.equal(value.data.type, "SINGLE_POINT_INFO");
 
-        utils.validateSchema(value.data, digitalSchema, { throwError: true });
+        utils.validateSchema(value.data, pointInfoSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -129,16 +139,16 @@ describe("Comtac Cluey KM Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "digital");
+        assert.equal(value.topic, "point_info");
         assert.equal(value.data.blocked, false);
         assert.equal(value.data.cyclic, false);
         assert.equal(value.data.event, false);
-        assert.equal(value.data.inputNr, 6);
+        assert.equal(value.data.id, 6);
         assert.equal(value.data.interrogation, true);
         assert.equal(value.data.limit, false);
-        assert.equal(value.data.state, 1);
+        assert.equal(value.data.type, "SINGLE_POINT_INFO");
 
-        utils.validateSchema(value.data, digitalSchema, { throwError: true });
+        utils.validateSchema(value.data, pointInfoSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -146,16 +156,16 @@ describe("Comtac Cluey KM Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "digital");
+        assert.equal(value.topic, "point_info");
         assert.equal(value.data.blocked, false);
         assert.equal(value.data.cyclic, false);
         assert.equal(value.data.event, false);
-        assert.equal(value.data.inputNr, 7);
+        assert.equal(value.data.id, 7);
         assert.equal(value.data.interrogation, true);
         assert.equal(value.data.limit, false);
-        assert.equal(value.data.state, 1);
+        assert.equal(value.data.type, "SINGLE_POINT_INFO");
 
-        utils.validateSchema(value.data, digitalSchema, { throwError: true });
+        utils.validateSchema(value.data, pointInfoSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -163,16 +173,16 @@ describe("Comtac Cluey KM Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "digital");
+        assert.equal(value.topic, "point_info");
         assert.equal(value.data.blocked, false);
         assert.equal(value.data.cyclic, false);
         assert.equal(value.data.event, false);
-        assert.equal(value.data.inputNr, 8);
+        assert.equal(value.data.id, 8);
         assert.equal(value.data.interrogation, true);
         assert.equal(value.data.limit, false);
-        assert.equal(value.data.state, 1);
+        assert.equal(value.data.type, "SINGLE_POINT_INFO");
 
-        utils.validateSchema(value.data, digitalSchema, { throwError: true });
+        utils.validateSchema(value.data, pointInfoSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
