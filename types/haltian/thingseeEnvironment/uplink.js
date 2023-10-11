@@ -80,11 +80,6 @@ function consume(event) {
         sample.neighRadioPowerDbm = neighRadioPowerDbm;
       }
 
-      sample.rssiDbm = rssiDbm;
-      sample.neighNodeInfo = neighNodeInfo;
-      sample.neighRadioPower = neighRadioPower;
-      sample.neighRadioPowerDbm = neighRadioPowerDbm;
-
       break;
     }
     case 1312: {
@@ -124,11 +119,6 @@ function consume(event) {
       if (light !== undefined) {
         sample.light = light;
       }
-
-      sample.pressure = pressure;
-      sample.humidity = humidity;
-      sample.temperature = temperature;
-      sample.light = light;
 
       break;
     }
