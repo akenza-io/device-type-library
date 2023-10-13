@@ -8,7 +8,7 @@
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["People"],
-  "outputTopics": ["default", "lifecycle"],
+  "outputTopics": ["line_1", "line_2", "line_3", "line_4"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

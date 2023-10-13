@@ -41,22 +41,28 @@ function consume(event) {
     if (includes(totalInChns, channelId) && channelType === 0xd2) {
       const channelInName = `line_${(channelId - totalInChns[0]) / 3 + 1}`;
       decoded[channelInName] = decoded[channelInName] || {};
-      decoded[channelInName].totalIn = readUInt32LE(bytes.slice(i, i + 4));
+      decoded[channelInName].totalCounterIn = readUInt32LE(
+        bytes.slice(i, i + 4),
+      );
       i += 4;
     }
     // LINE TOTAL OUT
     else if (includes(totalOutChns, channelId) && channelType === 0xd2) {
       const channelOutName = `line_${(channelId - totalOutChns[0]) / 3 + 1}`;
       decoded[channelOutName] = decoded[channelOutName] || {};
-      decoded[channelOutName].totalOut = readUInt32LE(bytes.slice(i, i + 4));
+      decoded[channelOutName].totalCounterOut = readUInt32LE(
+        bytes.slice(i, i + 4),
+      );
       i += 4;
     }
     // LINE PERIOD
     else if (includes(periodChns, channelId) && channelType === 0xcc) {
       const channelPeriodName = `line_${(channelId - periodChns[0]) / 3 + 1}`;
       decoded[channelPeriodName] = decoded[channelPeriodName] || {};
-      decoded[channelPeriodName].periodIn = readUInt16LE(bytes.slice(i, i + 2));
-      decoded[channelPeriodName].periodOut = readUInt16LE(
+      decoded[channelPeriodName].periodicCounterIn = readUInt16LE(
+        bytes.slice(i, i + 2),
+      );
+      decoded[channelPeriodName].periodicCounterOut = readUInt16LE(
         bytes.slice(i + 2, i + 4),
       );
       i += 4;
@@ -66,7 +72,7 @@ function consume(event) {
   }
 
   if (!isEmpty(decoded.line_1)) {
-    emit("sample", { data: decoded.line_1, topic: "line" });
+    emit("sample", { data: decoded.line_1, topic: "line_1" });
   }
 
   if (!isEmpty(decoded.line_2)) {

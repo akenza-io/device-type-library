@@ -1,0 +1,14 @@
+{
+  "name": "TS101",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight.com/iot/product/lorawan-sensor/ts101",
+  "description": "Milesight TS101, an innovative all-in-one insertion temperature sensor with an integrated transmitter, offers a wide temperature measuring range, making it versatile for various applications.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
