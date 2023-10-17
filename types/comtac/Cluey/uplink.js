@@ -2564,7 +2564,6 @@ function consume(event) {
         emit("sample", {
           data: result,
           topic: "point_info",
-          timestamp,
         });
       });
       break;
@@ -2585,7 +2584,7 @@ function consume(event) {
 
         dataPoint = Object.assign(result, dataPoint);
 
-        emit("sample", { data: result, topic, timestamp });
+        emit("sample", { data: result, topic });
       });
       break;
     case "CNT_DATA":
@@ -2603,7 +2602,7 @@ function consume(event) {
 
         dataPoint = Object.assign(result, dataPoint);
 
-        emit("sample", { data: result, topic: "count_data", timestamp });
+        emit("sample", { data: result, topic: "count_data" });
       });
       break;
     case "MODBUS": {
@@ -2616,7 +2615,7 @@ function consume(event) {
         delete dataPoint.timestamp;
         result = Object.assign(result, datapoints[key]);
 
-        emit("sample", { data: result, topic: "modbus", timestamp });
+        emit("sample", { data: result, topic: "modbus" });
       });
       break;
     }
