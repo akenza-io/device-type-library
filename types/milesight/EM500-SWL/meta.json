@@ -1,0 +1,14 @@
+{
+  "name": "EM500-SWL",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight-iot.com/lorawan/sensor/em500-swl/",
+  "description": "EM500-SWL is designed to measure the tank level or open water applications while fully submerged in liquid. It is robust and sealed to prevent corrosion and failure.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Distance"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

@@ -1,14 +1,13 @@
 const chai = require("chai");
-
+const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Milesight EM300-DI Uplink", () => {
+describe("EM300-MLD Uplink", () => {
   let defaultSchema = null;
   let lifecycleSchema = null;
-
   let consume = null;
   before((done) => {
     const script = rewire("./uplink.js");
@@ -33,11 +32,11 @@ describe("Milesight EM300-DI Uplink", () => {
   });
 
   describe("consume()", () => {
-    it("should decode should decode the Milesight EM300-DI payload", () => {
+    it("should decode should decode the EM300-MLD payload", () => {
       const data = {
         data: {
           port: 1,
-          payloadHex: "01755C0367340104686520CE9E74466310015D020000010000",
+          payloadHex: "01755C050000",
         },
       };
 
@@ -48,9 +47,7 @@ describe("Milesight EM300-DI Uplink", () => {
 
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryLevel, 92);
-        utils.validateSchema(value.data, lifecycleSchema, {
-          throwError: true,
-        });
+        validate(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -59,12 +56,20 @@ describe("Milesight EM300-DI Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.temperature, 27.2);
-        assert.equal(value.data.humidity, 46.5);
-        assert.equal(value.data.pulse, 256);
-
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        assert.equal(value.data.leakage, false);
+        validate(value.data, defaultSchema, { throwError: true });
       });
+
+      consume(data);
+    });
+
+    it("should decode should decode the EM300-MLD history payload", () => {
+      const data = {
+        data: {
+          port: 1,
+          payloadHex: "20CE9E74466300000001",
+        },
+      };
 
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
@@ -72,10 +77,8 @@ describe("Milesight EM300-DI Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.temperature, 30.8);
-        assert.equal(value.data.humidity, 50.5);
-
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        assert.equal(value.data.leakage, true);
+        validate(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

@@ -1,0 +1,31 @@
+{
+  "$id": "https://akenza.io/milesight/GS101/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "lifeRemain": {
+      "title": "Life time remain",
+      "type": "number",
+      "description": "Life time remaining of the sensor",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "alarm": {
+      "title": "Device alarm",
+      "type": "string",
+      "description": "Device alarm",
+      "enum": [
+        "POWER_DOWN",
+        "POWER_ON",
+        "SENSOR_FAILURE",
+        "SENSOR_RECOVER",
+        "SENSOR_ABOUT_TO_FAIL",
+        "SENSOR_FAILED"
+      ],
+      "hideFromKpis": true
+    }
+  }
+}

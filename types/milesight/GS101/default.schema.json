@@ -1,0 +1,28 @@
+{
+  "$id": "https://akenza.io/milesight/GS101/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "gasState": {
+      "title": "Gas state",
+      "description": "Gas state",
+      "type": "string",
+      "enum": ["NORMAL", "ABNORMAL"]
+    },
+    "valve": {
+      "title": "Gas valve",
+      "description": "Gas valve",
+      "type": "string",
+      "enum": ["CLOSED", "OPENED"]
+    },
+    "relay": {
+      "title": "Relay",
+      "description": "Relay",
+      "type": "string",
+      "enum": ["CLOSED", "OPENED"]
+    }
+  }
+}
