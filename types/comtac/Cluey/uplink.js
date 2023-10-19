@@ -2556,7 +2556,7 @@ function consume(event) {
         delete dataPoint.cot;
 
         // Timestamp
-        const { timestamp } = dataPoint;
+        const timestamp = new Date(dataPoint.timestamp.unix * 1000);
         delete dataPoint.timestamp;
 
         result = Object.assign(result, dataPoint);
@@ -2564,13 +2564,14 @@ function consume(event) {
         emit("sample", {
           data: result,
           topic: "point_info",
+          timestamp,
         });
       });
       break;
     case "AI_DATA":
       data.analogInputs.forEach((dataPoint) => {
         const { topic } = dataPoint;
-        const { timestamp } = dataPoint;
+        const timestamp = new Date(dataPoint.timestamp.unix * 1000);
 
         const result = {};
         result.limit = dataPoint.cot.limit;
@@ -2584,7 +2585,7 @@ function consume(event) {
 
         dataPoint = Object.assign(result, dataPoint);
 
-        emit("sample", { data: result, topic });
+        emit("sample", { data: result, topic, timestamp });
       });
       break;
     case "CNT_DATA":
@@ -2597,12 +2598,12 @@ function consume(event) {
         delete dataPoint.cot;
 
         // Timestamp
-        const { timestamp } = dataPoint;
+        const timestamp = new Date(dataPoint.timestamp.unix * 1000);
         delete dataPoint.timestamp;
 
         dataPoint = Object.assign(result, dataPoint);
 
-        emit("sample", { data: result, topic: "count_data" });
+        emit("sample", { data: result, topic: "count_data", timestamp });
       });
       break;
     case "MODBUS": {
@@ -2611,11 +2612,12 @@ function consume(event) {
         let result = {};
         result.modbusId = key;
         // Timestamp
-        const { timestamp } = datapoints[key];
-        delete dataPoint.timestamp;
+        const timestamp = new Date(datapoints[key].timestamp.unix * 1000);
+
+        delete datapoints[key].timestamp;
         result = Object.assign(result, datapoints[key]);
 
-        emit("sample", { data: result, topic: "modbus" });
+        emit("sample", { data: result, topic: "modbus", timestamp });
       });
       break;
     }
@@ -2654,6 +2656,10 @@ function consume(event) {
   // Lifecycle
   const lifecycle = device.deviceStatus;
   lifecycle.batteryLevel = device.batteryLevel;
+
+  if (lifecycle.batteryLevel === 0) {
+    delete lifecycle.batteryLevel;
+  }
 
   emit("sample", { data: lifecycle, topic: "lifecycle" });
 
