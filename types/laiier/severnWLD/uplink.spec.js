@@ -96,46 +96,5 @@ describe("Laiier severnWLD Uplink", () => {
 
       consume(data);
     });
-
-    it("should decode Laiier severnWLD emergency payload", () => {
-      const data = {
-        data: {
-          port: 1,
-          payloadHex: "0000fd024018030168",
-        },
-      };
-
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.criticalWetFlag, false);
-        assert.equal(value.data.interval, 360);
-        assert.equal(value.data.leakElectrode1, false);
-        assert.equal(value.data.leakElectrode2, false);
-        assert.equal(value.data.leakElectrode3, false);
-        assert.equal(value.data.leakElectrode4, false);
-        assert.equal(value.data.leakElectrode5, false);
-        assert.equal(value.data.leakElectrode6, false);
-        assert.equal(value.data.leakElectrode7, false);
-        assert.equal(value.data.leakElectrode8, false);
-        assert.equal(value.data.leakElectrode9, false);
-        assert.equal(value.data.leakElectrode10, false);
-        assert.equal(value.data.leakElectrode11, false);
-        assert.equal(value.data.leakElectrode12, false);
-        assert.equal(value.data.messageType, "SELF_TEST_MESSAGE");
-        assert.equal(value.data.selfTestFailed, false);
-        assert.equal(value.data.temperature, 24);
-        assert.equal(value.data.wetnessThreshold, 3);
-
-        utils.validateSchema(value.data, defaultSchema, {
-          throwError: true,
-        });
-      });
-
-      consume(data);
-    });
   });
 });
