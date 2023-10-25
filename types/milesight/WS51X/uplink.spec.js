@@ -5,7 +5,7 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("WS50X Uplink", () => {
+describe("WS51X Uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
@@ -20,11 +20,11 @@ describe("WS50X Uplink", () => {
   });
 
   describe("consume()", () => {
-    it("should decode should decode the WS50X payload", () => {
+    it("should decode should decode the WS51X payload", () => {
       const data = {
         data: {
           port: 1,
-          payloadHex: "FF2931",
+          payloadHex: "08700105816107c9a8000374830806831d000000",
         },
       };
 
@@ -33,12 +33,11 @@ describe("WS50X Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.data.switch1, "OPEN");
-        assert.equal(value.data.switch2, "CLOSE");
-        assert.equal(value.data.switch3, "CLOSE");
-        assert.equal(value.data.switch1change, true);
-        assert.equal(value.data.switch2change, true);
-        assert.equal(value.data.switch3change, false);
+        assert.equal(value.data.current, 168);
+        assert.equal(value.data.factor, 97);
+        assert.equal(value.data.powerConsumption, 29);
+        assert.equal(value.data.powerOn, true);
+        assert.equal(value.data.voltage, 217.9);
 
         validate(value.data, defaultSchema, { throwError: true });
       });

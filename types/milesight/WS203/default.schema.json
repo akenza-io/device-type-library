@@ -1,0 +1,30 @@
+{
+  "$id": "https://akenza.io/milesight/WS202/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "pir": {
+      "title": "PIR motion",
+      "description": "PIR motion sensor measuring activity level",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "daylight": {
+      "title": "Daylight",
+      "description": "Light strength",
+      "type": "string",
+      "enum": [
+        "DARK",
+        "LIGHT"
+      ]
+    }
+  },
+  "required": [
+    "pir",
+    "daylight"
+  ]
+}

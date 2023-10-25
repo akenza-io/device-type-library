@@ -9,6 +9,10 @@ function readUInt32LE(bytes) {
   return (value & 0xffffffff) >>> 0;
 }
 
+function isEmpty(obj) {
+  return Object.keys(obj).length === 0;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bytes = Hex.hexToBytes(payload);
@@ -51,5 +55,9 @@ function consume(event) {
     } else {
       break;
     }
+  }
+
+  if (!isEmpty(decoded)) {
+    emit("sample", { data: decoded, topic: "default" });
   }
 }

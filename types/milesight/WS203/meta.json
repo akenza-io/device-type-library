@@ -1,0 +1,14 @@
+{
+  "name": "WS202",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight-iot.com/lorawan/sensor/ws202/",
+  "description": "Compact indoor device for motion and brightness detection. Collaborative interaction with Milesight IoT devices to realize automatic lighting control.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["PIR", "Light"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
