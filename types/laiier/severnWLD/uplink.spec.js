@@ -6,67 +6,35 @@ const utils = require("test-utils");
 const { assert } = chai;
 
 describe("Laiier severnWLD Uplink", () => {
-  let measurementSchema = null;
+  let defaultSchema = null;
   let consume = null;
   before((done) => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
     utils
-      .loadSchema(`${__dirname}/measurement.schema.json`)
+      .loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
-        measurementSchema = parsedSchema;
+        defaultSchema = parsedSchema;
         done();
       });
   });
 
-  let invalidMeasurementSchema = null;
+  let startUpSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/invalid_measurement.schema.json`)
+      .loadSchema(`${__dirname}/start_up.schema.json`)
       .then((parsedSchema) => {
-        invalidMeasurementSchema = parsedSchema;
+        startUpSchema = parsedSchema;
         done();
       });
-  });
-
-  let lifecycleSchema = null;
-  before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
-  let statusSchema = null;
-  before((done) => {
-    utils.loadSchema(`${__dirname}/status.schema.json`).then((parsedSchema) => {
-      statusSchema = parsedSchema;
-      done();
-    });
-  });
-
-  let errorSchema = null;
-  before((done) => {
-    utils.loadSchema(`${__dirname}/error.schema.json`).then((parsedSchema) => {
-      errorSchema = parsedSchema;
-      done();
-    });
   });
 
   describe("consume()", () => {
-    it("should decode Adnexo ax-dist measurement payload", () => {
+    it("should decode Laiier severnWLD measurement payload", () => {
       const data = {
-        device: {
-          customFields: {
-            containerHeight: 600,
-            installationOffset: 0,
-          },
-        },
         data: {
-          port: 100,
-          payloadHex: "340Adc008A0C",
+          port: 104,
+          payloadHex: "340A7102dc008A0C",
         },
       };
 
@@ -80,7 +48,7 @@ describe("Laiier severnWLD Uplink", () => {
         assert.equal(value.data.batteryVoltage, 3.21);
         assert.equal(value.data.batteryLevel, 100);
 
-        utils.validateSchema(value.data, lifecycleSchema, {
+        utils.validateSchema(value.data, startUpSchema, {
           throwError: true,
         });
       });
@@ -97,7 +65,7 @@ describe("Laiier severnWLD Uplink", () => {
         assert.equal(value.data.measurementType, "REGULAR_MEASUREMENT");
         assert.equal(value.data.temperature, 22);
 
-        utils.validateSchema(value.data, measurementSchema, {
+        utils.validateSchema(value.data, defaultSchema, {
           throwError: true,
         });
       });
@@ -124,54 +92,6 @@ describe("Laiier severnWLD Uplink", () => {
         utils.validateSchema(value.data, invalidMeasurementSchema, {
           throwError: true,
         });
-      });
-
-      consume(data);
-    });
-
-    it("should decode Adnexo ax-dist error payload", () => {
-      const data = {
-        data: {
-          port: 5,
-          payloadHex: "045802000005060600a30200",
-        },
-      };
-
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "error");
-        assert.equal(value.data.errorOn, "PARAM_READ");
-        assert.equal(value.data.errorCode, "PARAM_NOT_READABLE");
-
-        utils.validateSchema(value.data, errorSchema, { throwError: true });
-      });
-
-      consume(data);
-    });
-
-    it("should decode Adnexo ax-dist config payload", () => {
-      const data = {
-        data: {
-          port: 4,
-          payloadHex: "045802000005060600a30200",
-        },
-      };
-
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "status");
-        assert.equal(value.data.joinInterval, 172800);
-        assert.equal(value.data.measurementInterval, 600);
-        assert.equal(value.data.payloadType, "REPORT_CONFIGURATION");
-        assert.equal(value.data.sendInterval, 6);
-
-        utils.validateSchema(value.data, statusSchema, { throwError: true });
       });
 
       consume(data);

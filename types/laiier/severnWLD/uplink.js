@@ -6,7 +6,9 @@ function consume(event) {
   let topic = "default";
 
   switch (port) {
-    case 1 || 99 || 102:
+    case 1:
+    case 99:
+    case 102:
       switch (port) {
         case 1:
           data.messageType = "REGULAR_MESSAGE";
