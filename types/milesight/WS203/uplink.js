@@ -45,8 +45,8 @@ function consume(event) {
     }
     // OCCUPANCY
     else if (channelId === 0x05 && channelType === 0x00) {
-      decoded.occupancy = bytes[i] !== 0;
-      decoded.occupied = Number(decoded.occupancy);
+      decoded.occupied = bytes[i] !== 0;
+      decoded.occupancy = Number(decoded.occupied);
       i += 1;
     }
     // TEMPERATURE WITH ABNORMAL
@@ -82,13 +82,13 @@ function consume(event) {
           break;
       }
 
-      data.occupancy = bytes[i] !== 0;
-      data.occupied = Number(data.occupancy);
+      data.occupied = bytes[i + 5] !== 0;
+      data.occupancy = Number(data.occupied);
       data.temperature = readInt16LE(bytes.slice(i + 6, i + 8)) / 10;
       data.humidity = bytes[i + 8] / 2;
       i += 9;
 
-      emit("sample", { data: decoded, topic: "default", timestamp });
+      emit("sample", { data, topic: "default", timestamp });
     } else {
       break;
     }

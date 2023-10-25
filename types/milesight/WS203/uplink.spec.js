@@ -5,7 +5,7 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("WS202 Uplink", () => {
+describe("WS203 Uplink", () => {
   let defaultSchema = null;
   let lifecycleSchema = null;
   let consume = null;
@@ -32,11 +32,11 @@ describe("WS202 Uplink", () => {
   });
 
   describe("consume()", () => {
-    it("should decode should decode the WS202 payload", () => {
+    it("should decode should decode the WS203 payload", () => {
       const data = {
         data: {
           port: 1,
-          payloadHex: "017510030001040000",
+          payloadHex: "01756403673401046865050000",
         },
       };
 
@@ -45,8 +45,12 @@ describe("WS202 Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.data.batteryLevel, 16);
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        assert.equal(value.data.humidity, 50.5);
+        assert.equal(value.data.occupied, false);
+        assert.equal(value.data.occupancy, 0);
+        assert.equal(value.data.temperature, 30.8);
+
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -54,8 +58,45 @@ describe("WS202 Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.data.pir, 1);
-        assert.equal(value.data.daylight, "DARK");
+        assert.equal(value.data.batteryLevel, 100);
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("should decode should decode the WS203 history payload", () => {
+      const data = {
+        data: {
+          port: 1,
+          payloadHex: "20CEAE5BA664040024016520CE5C5CA6640301340165",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.data.humidity, 50.5);
+        assert.equal(value.data.occupied, false);
+        assert.equal(value.data.occupancy, 0);
+        assert.equal(value.data.temperature, 29.2);
+        assert.equal(value.data.reportType, "PERIOD");
+
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.data.humidity, 50.5);
+        assert.equal(value.data.occupied, true);
+        assert.equal(value.data.occupancy, 1);
+        assert.equal(value.data.temperature, 30.8);
+        assert.equal(value.data.reportType, "PIR_OCCUPANCY");
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

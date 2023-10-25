@@ -1,30 +1,57 @@
 {
-  "$id": "https://akenza.io/milesight/WS202/default.schema.json",
+  "$id": "https://akenza.io/milesight/WS203/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "default",
   "title": "Default",
   "properties": {
-    "pir": {
-      "title": "PIR motion",
-      "description": "PIR motion sensor measuring activity level",
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "humidity": {
+      "title": "Humidity",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "occupancy": {
+      "title": "Occupancy",
+      "description": "Space occupancy. 0 = Unoccupied / 1 = Occupied.",
       "type": "integer",
       "minimum": 0,
       "maximum": 1
     },
-    "daylight": {
-      "title": "Daylight",
-      "description": "Light strength",
+    "occupied": {
+      "title": "Occupied",
+      "description": "Space occupancy. false = Unoccupied / true = Occupied.",
+      "type": "boolean"
+    },
+    "temperatureAbnormal": {
+      "title": "Abnormal temperature flag",
+      "type": "boolean",
+      "description": "Abnormal temperature flag",
+      "hideFromKpis": true
+    },
+    "reportType": {
+      "title": "Report type",
       "type": "string",
+      "description": "Report type",
       "enum": [
-        "DARK",
-        "LIGHT"
-      ]
+        "TEMPERATURE_RESUME",
+        "TEMPERATURE_THRESHOLD",
+        "PIR_IDLE",
+        "PIR_OCCUPANCY",
+        "PERIOD"
+      ],
+      "hideFromKpis": true
     }
-  },
-  "required": [
-    "pir",
-    "daylight"
-  ]
+  }
 }
