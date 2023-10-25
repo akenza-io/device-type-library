@@ -22,7 +22,7 @@ function consume(event) {
         default:
           break;
       }
-
+      // 00 00
       data.leakElectrode12 = !!Bits.bitsToUnsigned(bits.substr(0, 1));
       data.leakElectrode11 = !!Bits.bitsToUnsigned(bits.substr(1, 1));
       data.leakElectrode10 = !!Bits.bitsToUnsigned(bits.substr(2, 1));
@@ -40,13 +40,14 @@ function consume(event) {
       data.leakElectrode2 = !!Bits.bitsToUnsigned(bits.substr(14, 1));
       data.leakElectrode1 = !!Bits.bitsToUnsigned(bits.substr(15, 1));
 
-      data.accX = Hex.hexLittleEndianToBigEndian(payload.substr(4, 2), true); //  1/63 g
-      data.accY = Hex.hexLittleEndianToBigEndian(payload.substr(6, 2), true); //  1/63 g
-      data.accZ = Hex.hexLittleEndianToBigEndian(payload.substr(8, 2), true); //  1/63 g
+      // fd 02 3f
+      data.accX = Bits.bitsToUnsigned(bits.substr(16, 8)); //  1/63 g
+      data.accY = Bits.bitsToUnsigned(bits.substr(24, 8)); //  1/63 g
+      data.accZ = Bits.bitsToUnsigned(bits.substr(32, 8)); //  1/63 g
 
-      data.temperature = Bits.bitsToSigned(bits.substr(48, 8));
-      data.wetnessThreshold = Bits.bitsToUnsigned(bits.substr(56, 8));
-      data.interval = Bits.bitsToUnsigned(bits.substr(64, 8));
+      data.temperature = Bits.bitsToSigned(bits.substr(40, 8)); // 18
+      data.wetnessThreshold = Bits.bitsToUnsigned(bits.substr(48, 8)); // 03
+      data.interval = Bits.bitsToUnsigned(bits.substr(56, 16)); // 0168
 
       break;
     case 100:
