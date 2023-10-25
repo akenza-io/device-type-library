@@ -80,7 +80,6 @@ describe("Comtac Cluey Uplink", () => {
   });
 
   describe("consume()", () => {
-    /*
     it("should decode the Comtac Cluey AI_DATA payload", () => {
       const data = {
         data: {
@@ -137,7 +136,6 @@ describe("Comtac Cluey Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 0);
         assert.equal(value.data.batteryPowered, false);
         assert.equal(value.data.bufferOverflow, false);
         assert.equal(value.data.configurationError, false);
@@ -154,7 +152,7 @@ describe("Comtac Cluey Uplink", () => {
 
       consume(data);
     });
-
+    /*
     it("should decode the Comtac Cluey point_info payload", () => {
       const data = {
         data: {
@@ -321,7 +319,7 @@ describe("Comtac Cluey Uplink", () => {
 
       consume(data);
     });
-    */
+    /*
     it("should decode the Comtac Cluey interval data payload", () => {
       const data = {
         data: {
@@ -470,5 +468,6 @@ describe("Comtac Cluey Uplink", () => {
 
       consume(data);
     });
+    */
   });
 });

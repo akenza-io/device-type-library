@@ -2519,6 +2519,19 @@ function decodePingPayload(data) {
   };
 }
 
+function checkTimestamp(timestamp) {
+  let now = new Date();
+  now = now.getTime();
+  const sampleTime = timestamp.getTime();
+
+  if (sampleTime < now - 2629746000 || sampleTime > now) {
+    // Only give out data with a timestamp within a month
+    // Also if its in the future i will just use now
+    return new Date();
+  }
+  return timestamp;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const { port } = event.data;
@@ -2556,7 +2569,9 @@ function consume(event) {
         delete dataPoint.cot;
 
         // Timestamp
-        const timestamp = new Date(dataPoint.timestamp.unix * 1000);
+        const timestamp = checkTimestamp(
+          new Date(dataPoint.timestamp.unix * 1000),
+        );
         delete dataPoint.timestamp;
 
         result = Object.assign(result, dataPoint);
@@ -2571,7 +2586,9 @@ function consume(event) {
     case "AI_DATA":
       data.analogInputs.forEach((dataPoint) => {
         const { topic } = dataPoint;
-        const timestamp = new Date(dataPoint.timestamp.unix * 1000);
+        const timestamp = checkTimestamp(
+          new Date(dataPoint.timestamp.unix * 1000),
+        );
 
         const result = {};
         result.limit = dataPoint.cot.limit;
@@ -2598,7 +2615,9 @@ function consume(event) {
         delete dataPoint.cot;
 
         // Timestamp
-        const timestamp = new Date(dataPoint.timestamp.unix * 1000);
+        const timestamp = checkTimestamp(
+          new Date(dataPoint.timestamp.unix * 1000),
+        );
         delete dataPoint.timestamp;
 
         dataPoint = Object.assign(result, dataPoint);
@@ -2612,7 +2631,9 @@ function consume(event) {
         let result = {};
         result.modbusId = key;
         // Timestamp
-        const timestamp = new Date(datapoints[key].timestamp.unix * 1000);
+        const timestamp = checkTimestamp(
+          new Date(datapoints[key].timestamp.unix * 1000),
+        );
 
         delete datapoints[key].timestamp;
         result = Object.assign(result, datapoints[key]);
