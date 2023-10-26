@@ -1,0 +1,14 @@
+{
+  "name": "Severn WLD",
+  "version": "1.0.0",
+  "manufacturer": "Laiier",
+  "url": "https://www.laiier.io/severn-wld",
+  "description": "Sever WLD is a water leak detector that installs like tape. You can use it to monitor for water leaks where you couldn't monitor before.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Leak"],
+  "outputTopics": ["default", "start_up"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
