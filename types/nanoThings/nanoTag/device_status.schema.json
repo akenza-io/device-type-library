@@ -1,0 +1,22 @@
+{
+  "$id": "https://akenza.io/nanoThings/nanoTag/device_status.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "device_status",
+  "title": "Device status",
+  "properties": {
+    "lastSampleNumber": {
+      "title": "Last sample number",
+      "type": "number",
+      "description": "Number of the last temperature sampled.",
+      "hideFromKpis": true
+    },
+    "lastSampleTimestamp": {
+      "title": "Last sample timestamp",
+      "type": "number",
+      "description": "Timestamp of the last sampled temperature which is identified by the number above.",
+      "hideFromKpis": true
+    }
+  }
+}

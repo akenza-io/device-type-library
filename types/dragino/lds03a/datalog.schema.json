@@ -9,7 +9,7 @@
     "datalog": {
       "title": "Data log",
       "type": "array",
-      "desciption": "Data log",
+      "description": "Data log",
       "hideFromKpis": true
     }
   }

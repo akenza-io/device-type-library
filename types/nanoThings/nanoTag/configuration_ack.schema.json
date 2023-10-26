@@ -1,0 +1,35 @@
+{
+  "$id": "https://akenza.io/nanoThings/nanoTag/configuration_ack.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "configuration_ack",
+  "title": "Configuration Acknowledgement",
+  "properties": {
+    "ackId": {
+      "title": "Acknowledgement Frame ID",
+      "type": "integer",
+      "description": "The identification number of the acknowledgement frame, which can be 1 to 3.",
+      "hideFromKpis": true
+    },
+    "recordPeriod": {
+      "title": "Record period",
+      "type": "number",
+      "description": "Record period being acknowledged by the device.",
+      "hideFromKpis": true
+    },
+    "reportPeriod": {
+      "title": "Report period",
+      "type": "number",
+      "description": "Report period being acknowledged by the device.",
+      "hideFromKpis": true
+    },
+    "unit": {
+      "title": "Unit",
+      "type": "string",
+      "description": "Represents the unit that the acknowledged record and report periods should be expressed in.",
+      "enum": ["MINUTES", "SECONDS"],
+      "hideFromKpis": true
+    }
+  }
+}
