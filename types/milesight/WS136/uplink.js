@@ -55,7 +55,7 @@ function consume(event) {
     // PRESS STATE
     else if (channelId === 0xff && channelType === 0x34) {
       data.buttonNumber = bytes[i];
-      data.command = Hex.hexLittleEndianToBigEndian(payload.substr(++i * 2, 4));
+      data.command = Hex.hexLittleEndianToBigEndian(payload.substr(++i * 2, 4), false);
       i += 1;
     } else {
       break;

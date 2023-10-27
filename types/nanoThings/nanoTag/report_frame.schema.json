@@ -1,0 +1,88 @@
+{
+  "$id": "https://akenza.io/nanoThings/nanoTag/report_frame.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "report_frame",
+  "title": "Report Frame",
+  "properties": {
+    "fid": {
+      "title": "Frame ID",
+      "type": "integer",
+      "description": "Uniqe frame identification number.",
+      "hideFromKpis": true
+    },
+    "temperature1": {
+      "title": "Temperature 1",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "temperature2": {
+      "title": "Temperature 2",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "temperature3": {
+      "title": "Temperature 3",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "temperature4": {
+      "title": "Temperature 4",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "temperature5": {
+      "title": "Temperature 5",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "temperature6": {
+      "title": "Temperature 6",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "temperature7": {
+      "title": "Temperature 7",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "temperature8": {
+      "title": "Temperature 8",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "temperature9": {
+      "title": "Temperature 9",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    }
+  }
+}

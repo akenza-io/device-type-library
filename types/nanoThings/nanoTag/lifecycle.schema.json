@@ -1,0 +1,35 @@
+{
+  "$id": "https://akenza.io/nanoThings/nanoTag/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "batteryVoltage": {
+      "title": "Battery voltage",
+      "unit": "V",
+      "type": "number",
+      "desciption": "The battery voltage in Volt.",
+      "hideFromKpis": true
+    },
+    "batteryLevel": {
+      "title": "Battery charge",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "The battery charge in percent.",
+      "unit": "%",
+      "hideFromKpis": true
+    },
+    "internalTemperature": {
+      "title": "Internal temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "Internal temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5,
+      "hideFromKpis": true
+    }
+  }
+}
