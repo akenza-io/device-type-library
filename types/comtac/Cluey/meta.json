@@ -43,7 +43,8 @@
     "temperature_input_6",
     "temperature_input_7",
     "temperature_input_8",
-    "time_sync"
+    "time_sync",
+    "event"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

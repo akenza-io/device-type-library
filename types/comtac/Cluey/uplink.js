@@ -2526,9 +2526,10 @@ function checkTimestamp(timestamp) {
   const sampleTime = timestamp.getTime();
   const secondsPerMonth = 2629746000;
 
-  // Only give out data with a timestamp within a month
-  // Also if its in the future i will just use now
+  // Only output data with a timestamp not older than a month
+  // For future dates default to now
   if (sampleTime < now - secondsPerMonth || sampleTime > now) {
+    emit("log", { wrongTime: timestamp });
     return new Date();
   }
   return timestamp;
@@ -2552,31 +2553,31 @@ function consume(event) {
     case "FIXED_DATA":
       delete data.timestamp;
       Object.keys(data).forEach((key) => {
-        data[key].limit = data[key].cot.limit;
-        data[key].event = data[key].cot.event;
-        data[key].interrogation = data[key].cot.interrogation;
-        data[key].cyclic = data[key].cot.cyclic;
-        delete data[key].cot;
+        const result = Object.assign({}, data[key]);
+        result.limit = result.cot.limit;
+        result.event = result.cot.event;
+        result.interrogation = result.cot.interrogation;
+        result.cyclic = result.cot.cyclic;
+        delete result.cot;
 
-        emit("sample", { data: data[key], topic: key });
+        emit("sample", { data: result, topic: key });
       });
       break;
     case "DI_DATA":
       data.digitalInputs.forEach((dataPoint) => {
-        let result = {};
-        result.limit = dataPoint.cot.limit;
-        result.event = dataPoint.cot.event;
+        const result = Object.assign({}, dataPoint);
+        result.limit = result.cot.limit;
+        result.event = result.cot.event;
         result.interrogation = dataPoint.cot.interrogation;
         result.cyclic = dataPoint.cot.cyclic;
-        delete dataPoint.cot;
 
         // Timestamp
         const timestamp = checkTimestamp(
-          new Date(dataPoint.timestamp.unix * 1000),
+          new Date(result.timestamp.unix * 1000),
         );
-        delete dataPoint.timestamp;
 
-        result = Object.assign(result, dataPoint);
+        delete result.cot;
+        delete result.timestamp;
 
         emit("sample", {
           data: result,
@@ -2592,37 +2593,33 @@ function consume(event) {
           new Date(dataPoint.timestamp.unix * 1000),
         );
 
-        const result = {};
-        result.limit = dataPoint.cot.limit;
-        result.event = dataPoint.cot.event;
-        result.interrogation = dataPoint.cot.interrogation;
-        result.cyclic = dataPoint.cot.cyclic;
+        const result = Object.assign({}, dataPoint);
+        result.limit = result.cot.limit;
+        result.event = result.cot.event;
+        result.interrogation = result.cot.interrogation;
+        result.cyclic = result.cot.cyclic;
 
-        delete dataPoint.cot;
-        delete dataPoint.topic;
-        delete dataPoint.timestamp;
-
-        dataPoint = Object.assign(result, dataPoint);
+        delete result.cot;
+        delete result.topic;
+        delete result.timestamp;
 
         emit("sample", { data: result, topic, timestamp });
       });
       break;
     case "CNT_DATA":
       data.digitalInputs.forEach((dataPoint) => {
-        const result = {};
-        result.limit = dataPoint.cot.limit;
-        result.event = dataPoint.cot.event;
-        result.interrogation = dataPoint.cot.interrogation;
-        result.cyclic = dataPoint.cot.cyclic;
-        delete dataPoint.cot;
+        const result = Object.assign({}, dataPoint);
+        result.limit = result.cot.limit;
+        result.event = result.cot.event;
+        result.interrogation = result.cot.interrogation;
+        result.cyclic = result.cot.cyclic;
+        delete result.cot;
 
         // Timestamp
         const timestamp = checkTimestamp(
-          new Date(dataPoint.timestamp.unix * 1000),
+          new Date(result.timestamp.unix * 1000),
         );
-        delete dataPoint.timestamp;
-
-        dataPoint = Object.assign(result, dataPoint);
+        delete result.timestamp;
 
         emit("sample", { data: result, topic: "count_data", timestamp });
       });
@@ -2630,15 +2627,14 @@ function consume(event) {
     case "MODBUS": {
       const { datapoints } = decoded.data.payload;
       Object.keys(datapoints).forEach((key) => {
-        let result = {};
+        const result = Object.assign({}, datapoints[key]);
         result.modbusId = key;
+
         // Timestamp
         const timestamp = checkTimestamp(
-          new Date(datapoints[key].timestamp.unix * 1000),
+          new Date(result.timestamp.unix * 1000),
         );
-
-        delete datapoints[key].timestamp;
-        result = Object.assign(result, datapoints[key]);
+        delete result.timestamp;
 
         emit("sample", { data: result, topic: "modbus", timestamp });
       });
@@ -2664,7 +2660,6 @@ function consume(event) {
       break;
     case "GPS":
       emit("sample", { data: data.coordinates, topic: "gps" });
-      // Empty
       break;
     case "PING":
       // Empty
@@ -2675,6 +2670,8 @@ function consume(event) {
     default:
       break;
   }
+
+  emit("sample", { data: { eventType: type }, topic: "event" });
 
   // Lifecycle
   const lifecycle = device.deviceStatus;
