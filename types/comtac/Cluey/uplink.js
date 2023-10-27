@@ -2553,11 +2553,7 @@ function consume(event) {
     case "FIXED_DATA":
       delete data.timestamp;
       Object.keys(data).forEach((key) => {
-        const result = Object.assign({}, data[key]);
-        result.limit = result.cot.limit;
-        result.event = result.cot.event;
-        result.interrogation = result.cot.interrogation;
-        result.cyclic = result.cot.cyclic;
+        const result = Object.assign({}, data[key], data[key].cot);
         delete result.cot;
 
         emit("sample", { data: result, topic: key });
@@ -2565,18 +2561,13 @@ function consume(event) {
       break;
     case "DI_DATA":
       data.digitalInputs.forEach((dataPoint) => {
-        const result = Object.assign({}, dataPoint);
-        result.limit = result.cot.limit;
-        result.event = result.cot.event;
-        result.interrogation = dataPoint.cot.interrogation;
-        result.cyclic = dataPoint.cot.cyclic;
+        const result = Object.assign({}, dataPoint, dataPoint.cot);
+        delete result.cot;
 
         // Timestamp
         const timestamp = checkTimestamp(
           new Date(result.timestamp.unix * 1000),
         );
-
-        delete result.cot;
         delete result.timestamp;
 
         emit("sample", {
@@ -2593,12 +2584,7 @@ function consume(event) {
           new Date(dataPoint.timestamp.unix * 1000),
         );
 
-        const result = Object.assign({}, dataPoint);
-        result.limit = result.cot.limit;
-        result.event = result.cot.event;
-        result.interrogation = result.cot.interrogation;
-        result.cyclic = result.cot.cyclic;
-
+        const result = Object.assign({}, dataPoint, dataPoint.cot);
         delete result.cot;
         delete result.topic;
         delete result.timestamp;
@@ -2608,11 +2594,7 @@ function consume(event) {
       break;
     case "CNT_DATA":
       data.digitalInputs.forEach((dataPoint) => {
-        const result = Object.assign({}, dataPoint);
-        result.limit = result.cot.limit;
-        result.event = result.cot.event;
-        result.interrogation = result.cot.interrogation;
-        result.cyclic = result.cot.cyclic;
+        const result = Object.assign({}, dataPoint, dataPoint.cot);
         delete result.cot;
 
         // Timestamp
