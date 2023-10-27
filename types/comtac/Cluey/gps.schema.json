@@ -10,17 +10,13 @@
       "title": "Latitude",
       "unit": "°",
       "type": "number",
-      "description": "Latitude",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "description": "Latitude"
     },
     "longitude": {
       "title": "Longitude",
       "unit": "°",
       "type": "number",
-      "description": "Longitude",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "description": "Longitude"
     }
   },
   "required": ["latitude", "longitude"]

@@ -30,7 +30,6 @@
       "type": "boolean",
       "hideFromKpis": true
     },
-
     "invalid": {
       "title": "Invalid",
       "description": "Invalid",

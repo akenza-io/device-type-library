@@ -191,6 +191,7 @@ let deviceHeader = {};
 function decodeUplink(input) {
   const warnings = [];
   const errors = [];
+  const invalidPort = "INVALID_PORT";
 
   deviceHeader = decodeDeviceHeader(input.bytes);
 
@@ -220,7 +221,7 @@ function decodeUplink(input) {
       if (input.fPort === PING_PORT) {
         return decodePingPayload(input.bytes);
       }
-      errors.push("INVALID_PORT");
+      errors.push(invalidPort);
       return {
         data: {
           port: input.fPort,
@@ -257,7 +258,7 @@ function decodeUplink(input) {
       if (input.fPort === INFO_PORT) {
         return decodeInfoPayload(input.bytes);
       }
-      errors.push("INVALID_PORT");
+      errors.push(invalidPort);
       return {
         data: {
           port: input.fPort,
@@ -294,7 +295,7 @@ function decodeUplink(input) {
       if (input.fPort === INFO_PORT) {
         return decodeInfoPayload(input.bytes);
       }
-      errors.push("INVALID_PORT");
+      errors.push(invalidPort);
       return {
         data: {
           port: input.fPort,
@@ -337,7 +338,7 @@ function decodeUplink(input) {
       if (input.fPort === MODBUS_TP_PORT) {
         return decodeModbusTransparentPayload(input.bytes);
       }
-      errors.push("INVALID_PORT");
+      errors.push(invalidPort);
       return {
         data: {
           port: input.fPort,
@@ -396,7 +397,7 @@ function decodeUplink(input) {
       if (input.fPort === INFO_PORT) {
         return decodeInfoPayload(input.bytes);
       }
-      errors.push("INVALID_PORT");
+      errors.push(invalidPort);
       return {
         data: {
           port: input.fPort,
@@ -442,7 +443,7 @@ function decodeUplink(input) {
       if (input.fPort === MODBUS_TP_PORT) {
         return decodeModbusTransparentPayload(input.bytes);
       }
-      errors.push("INVALID_PORT");
+      errors.push(invalidPort);
       return {
         data: {
           port: input.fPort,
@@ -482,7 +483,7 @@ function decodeUplink(input) {
       if (input.fPort === INFO_PORT) {
         return decodeInfoPayload(input.bytes);
       }
-      errors.push("INVALID_PORT");
+      errors.push(invalidPort);
       return {
         data: {
           port: input.fPort,
@@ -541,7 +542,7 @@ function decodeUplink(input) {
       if (input.fPort === INFO_PORT) {
         return decodeInfoPayload(input.bytes);
       }
-      errors.push("INVALID_PORT");
+      errors.push(invalidPort);
       return {
         data: {
           port: input.fPort,
@@ -581,7 +582,7 @@ function decodeUplink(input) {
       if (input.fPort === INFO_PORT) {
         return decodeInfoPayload(input.bytes);
       }
-      errors.push("INVALID_PORT");
+      errors.push(invalidPort);
       return {
         data: {
           port: input.fPort,
@@ -621,7 +622,7 @@ function decodeUplink(input) {
       if (input.fPort === INFO_PORT) {
         return decodeInfoPayload(input.bytes);
       }
-      errors.push("INVALID_PORT");
+      errors.push(invalidPort);
       return {
         data: {
           port: input.fPort,
@@ -2523,10 +2524,11 @@ function checkTimestamp(timestamp) {
   let now = new Date();
   now = now.getTime();
   const sampleTime = timestamp.getTime();
+  const secondsPerMonth = 2629746000;
 
-  if (sampleTime < now - 2629746000 || sampleTime > now) {
-    // Only give out data with a timestamp within a month
-    // Also if its in the future i will just use now
+  // Only give out data with a timestamp within a month
+  // Also if its in the future i will just use now
+  if (sampleTime < now - secondsPerMonth || sampleTime > now) {
     return new Date();
   }
   return timestamp;

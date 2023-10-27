@@ -30,7 +30,6 @@
       "type": "boolean",
       "hideFromKpis": true
     },
-
     "type": {
       "title": "Type",
       "description": "Type",
