@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.38.1] - 2023-09-28
+
+### Added
+
+- Added multiple data-models examples
+
 # [1.38.0] - 2023-09-28
 
 - Nanothings - Nanotag
