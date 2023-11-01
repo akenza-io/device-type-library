@@ -1,0 +1,74 @@
+{
+  "$id": "https://akenza.io/comtac/cluey/analog_input_4.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "analog_input_4",
+  "title": "Analog Input 4",
+  "properties": {
+    "limit": {
+      "title": "Limit",
+      "description": "Limit",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "event": {
+      "title": "Event",
+      "description": "Event",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "interrogation": {
+      "title": "Interrogation",
+      "description": "Interrogation",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "cyclic": {
+      "title": "Cyclic",
+      "description": "Cyclic",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "invalid": {
+      "title": "Invalid",
+      "description": "Invalid",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "overflow": {
+      "title": "Overflow",
+      "description": "Overflow",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "limit1": {
+      "title": "Limit 1",
+      "description": "Limit 1",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "limit2": {
+      "title": "Limit 2",
+      "description": "Limit 2",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "value": {
+      "title": "Value",
+      "description": "Value",
+      "type": "number",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "limit",
+    "event",
+    "interrogation",
+    "cyclic",
+    "overflow",
+    "limit1",
+    "limit2",
+    "value"
+  ]
+}

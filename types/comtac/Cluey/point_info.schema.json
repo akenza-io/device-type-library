@@ -1,0 +1,69 @@
+{
+  "$id": "https://akenza.io/comtac/cluey/point_info.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "point_info",
+  "title": "Point Info",
+  "properties": {
+    "limit": {
+      "title": "Limit",
+      "description": "Limit",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "event": {
+      "title": "Event",
+      "description": "Event",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "interrogation": {
+      "title": "Interrogation",
+      "description": "Interrogation",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "cyclic": {
+      "title": "Cyclic",
+      "description": "Cyclic",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "type": {
+      "title": "Type",
+      "description": "Type",
+      "type": "string",
+      "enum": ["SINGLE_POINT_INFO", "DOUBLE_POINT_INFO"],
+      "hideFromKpis": true
+    },
+    "id": {
+      "title": "ID",
+      "description": "ID",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "blocked": {
+      "title": "Blocked",
+      "description": "Blocked",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "state": {
+      "title": "State",
+      "description": "State",
+      "type": "number",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "limit",
+    "event",
+    "interrogation",
+    "cyclic",
+    "type",
+    "id",
+    "blocked",
+    "state"
+  ]
+}

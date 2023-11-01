@@ -1,0 +1,17 @@
+{
+  "$id": "https://akenza.io/comtac/cluey/time_sync.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "time_sync",
+  "title": "Time Synchronization",
+  "properties": {
+    "timestamp": {
+      "title": "Device Timestamp",
+      "description": "Device Timestamp",
+      "type": "number",
+      "hideFromKpis": true
+    }
+  },
+  "required": ["timestamp"]
+}
