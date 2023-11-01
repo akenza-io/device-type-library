@@ -2,7 +2,7 @@
   "name": "Comfort sensor",
   "version": "1.0.0",
   "manufacturer": "IMBuildings",
-  "url": "https://www.imbuildings.com/lorawan-comfort-sensor/",
+  "url": "https://imbuildings.com/products/co2-sensor-lorawan/",
   "description": "Measure indoor comfort by monitoring CO2, temperature, humidity, presence.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
