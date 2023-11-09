@@ -1,14 +1,22 @@
 {
-  "name": "Push button",
+  "name": "Klax 2.0",
   "version": "1.0.0",
-  "manufacturer": "Ascoel",
-  "url": "http://www.ascoel.it/index.php/products/92-push-buttons/17-pb868lrh",
-  "description": "The PBH sensor is a button sensor specifically designed for indoor application. Its design is meant for homes and offices usage. The PBI sensor on the other hand is a button sensor specifically designed for indoor application. Its design is meant for all kind of businness. The low battery consumption allows this sensor to last for years without battery replacement.",
+  "manufacturer": "Alpha Omega Technology",
+  "url": "https://iot-shop.de/en/shop/klax-2-0-lorawan-sml-opto-head-for-modern-electricity-meters-4365",
+  "description": "The KLAX makes the values of modern electricity meters immediately available and thus helps to implement effective energy-saving measures and create transparency. For this purpose, the KLAX is attached by magnet to the integrated optical interface of modern measuring devices (mME). The signals from the infrared interface are picked up by the optical head and transmitted via LoRaWAN. The measured values are available in the LoRaWAN backend shortly after the measurement and can be further processed with suitable software. This allows the customer to continuously measure his energy consumption every 15 minutes and directly influence his current power consumption.",
   "author": "Akenza AG",
-  "firmwareVersion": "V0.0.7",
+  "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": ["Button"],
-  "outputTopics": ["boot", "debug", "default", "lifecycle"],
+  "availableSensors": ["Energy Metering"],
+  "outputTopics": [
+    "lifecycle",
+    "register_1",
+    "register_2",
+    "register_3",
+    "register_4",
+    "register_search",
+    "register_set"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

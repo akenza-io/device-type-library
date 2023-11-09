@@ -4,25 +4,63 @@ const rewire = require("rewire");
 const utils = require("test-utils");
 
 const { assert } = chai;
-describe("Ascoel Push button Uplink", () => {
-  let debugSchema = null;
-  let defaultSchema = null;
+describe("Aplha Omega Technologoy KlaxV2 Uplink", () => {
+  let register1Schema = null;
+  let register2Schema = null;
+  let register3Schema = null;
+  let register4Schema = null;
   let lifecycleSchema = null;
+  let registerSearchSchema = null;
+  let registerSetSchema = null;
   let consume = null;
 
   before((done) => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/debug.schema.json`).then((parsedSchema) => {
-      debugSchema = parsedSchema;
-      done();
-    });
+    utils
+      .loadSchema(`${__dirname}/register_1.schema.json`)
+      .then((parsedSchema) => {
+        register1Schema = parsedSchema;
+        done();
+      });
   });
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/default.schema.json`)
+      .loadSchema(`${__dirname}/register_2.schema.json`)
       .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
+        register2Schema = parsedSchema;
+        done();
+      });
+  });
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/register_3.schema.json`)
+      .then((parsedSchema) => {
+        register3Schema = parsedSchema;
+        done();
+      });
+  });
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/register_4.schema.json`)
+      .then((parsedSchema) => {
+        register4Schema = parsedSchema;
+        done();
+      });
+  });
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/register_search.schema.json`)
+      .then((parsedSchema) => {
+        registerSearchSchema = parsedSchema;
+        done();
+      });
+  });
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/register_set.schema.json`)
+      .then((parsedSchema) => {
+        registerSetSchema = parsedSchema;
         done();
       });
   });
@@ -35,11 +73,12 @@ describe("Ascoel Push button Uplink", () => {
       });
   });
   describe("consume()", () => {
-    it("should decode the Ascoel Push button firmware payload", () => {
+    it("should decode the Aplha Omega Technologoy KlaxV2 App payload", () => {
       const data = {
         data: {
-          port: 7,
-          payloadHex: "010B0A4F04030F42",
+          port: 3,
+          payloadHex:
+            "0445BD11030A014C475A00028131F701110F46A4100046A4100046A4100046A4100001130F46A4100046A4100046A4100046A4100001150F46A4100046A4100046A4100046A4100001170F46A4100046A4100046A4100046A41000",
         },
       };
 
@@ -48,22 +87,113 @@ describe("Ascoel Push button Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "debug");
-        assert.equal(value.data.firmwareVersion, "1.11.2639");
-        assert.equal(value.data.hardwareRevision, "B");
-        assert.equal(value.data.loraVersion, "4.3.15");
+        assert.equal(value.topic, "register_1");
+        assert.equal(value.data.filterPositionActive, true);
+        assert.equal(value.data.filterPositionUnit, "Wh");
 
-        validate(value.data, debugSchema, { throwError: true });
+        assert.equal(value.data.dataPointValid, true);
+        assert.equal(value.data.dataPoint1Valid, true);
+        assert.equal(value.data.dataPoint2Valid, true);
+        assert.equal(value.data.dataPoint3Valid, true);
+
+        assert.equal(value.data.dataPoint, 21000);
+        assert.equal(value.data.dataPoint1, 21000);
+        assert.equal(value.data.dataPoint2, 21000);
+        assert.equal(value.data.dataPoint3, 21000);
+
+        validate(value.data, register1Schema, { throwError: true });
       });
 
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "register_2");
+        assert.equal(value.data.filterPositionActive, true);
+        assert.equal(value.data.filterPositionUnit, "Wh");
+
+        assert.equal(value.data.dataPointValid, true);
+        assert.equal(value.data.dataPoint1Valid, true);
+        assert.equal(value.data.dataPoint2Valid, true);
+        assert.equal(value.data.dataPoint3Valid, true);
+
+        assert.equal(value.data.dataPoint, 21000);
+        assert.equal(value.data.dataPoint1, 21000);
+        assert.equal(value.data.dataPoint2, 21000);
+        assert.equal(value.data.dataPoint3, 21000);
+
+        validate(value.data, register2Schema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "register_3");
+        assert.equal(value.data.filterPositionActive, true);
+        assert.equal(value.data.filterPositionUnit, "Wh");
+
+        assert.equal(value.data.dataPointValid, true);
+        assert.equal(value.data.dataPoint1Valid, true);
+        assert.equal(value.data.dataPoint2Valid, true);
+        assert.equal(value.data.dataPoint3Valid, true);
+
+        assert.equal(value.data.dataPoint, 21000);
+        assert.equal(value.data.dataPoint1, 21000);
+        assert.equal(value.data.dataPoint2, 21000);
+        assert.equal(value.data.dataPoint3, 21000);
+
+        validate(value.data, register3Schema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "register_4");
+        assert.equal(value.data.filterPositionActive, true);
+        assert.equal(value.data.filterPositionUnit, "Wh");
+
+        assert.equal(value.data.dataPointValid, true);
+        assert.equal(value.data.dataPoint1Valid, true);
+        assert.equal(value.data.dataPoint2Valid, true);
+        assert.equal(value.data.dataPoint3Valid, true);
+
+        assert.equal(value.data.dataPoint, 21000);
+        assert.equal(value.data.dataPoint1, 21000);
+        assert.equal(value.data.dataPoint2, 21000);
+        assert.equal(value.data.dataPoint3, 21000);
+
+        validate(value.data, register4Schema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batteryLevel, 100);
+        assert.equal(value.data.connectionTest, false);
+        assert.equal(value.data.registersConfigured, true);
+        assert.equal(value.data.deviceType, "SML_KLAX");
+        assert.equal(value.data.payloadVersion, 4);
+        assert.equal(value.data.readingMode, "SML_MODE");
+        assert.equal(value.data.serverID, "0A014C475A00028131F7");
+
+        validate(value.data, lifecycleSchema, { throwError: true });
+      });
       consume(data);
     });
 
-    it("should decode the Ascoel Push button batteryLevel payload", () => {
+    it("should decode the Aplha Omega Technologoy KlaxV2 Config payload", () => {
       const data = {
         data: {
-          port: 8,
-          payloadHex: "5E",
+          port: 100,
+          payloadHex: "0445000F",
         },
       };
 
@@ -73,19 +203,24 @@ describe("Ascoel Push button Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 94);
+        assert.equal(value.data.batteryLevel, 100);
+        assert.equal(value.data.connectionTest, false);
+        assert.equal(value.data.registersConfigured, true);
+        assert.equal(value.data.deviceType, "SML_KLAX");
+        assert.equal(value.data.payloadVersion, 4);
+        assert.equal(value.data.readingMode, "SML_MODE");
+        assert.equal(value.data.measurementInterval, 15);
 
         validate(value.data, lifecycleSchema, { throwError: true });
       });
-
       consume(data);
     });
 
-    it("should decode the Ascoel Push button button payload", () => {
+    it("should decode the Aplha Omega Technologoy KlaxV2 Info payload", () => {
       const data = {
         data: {
-          port: 40,
-          payloadHex: "010001",
+          port: 101,
+          payloadHex: "04450103",
         },
       };
 
@@ -94,13 +229,101 @@ describe("Ascoel Push button Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.buttonPushed, true);
-        assert.equal(value.data.count, 1);
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batteryLevel, 100);
+        assert.equal(value.data.connectionTest, false);
+        assert.equal(value.data.registersConfigured, true);
+        assert.equal(value.data.deviceType, "SML_KLAX");
+        assert.equal(value.data.payloadVersion, 4);
+        assert.equal(value.data.readingMode, "SML_MODE");
+        assert.equal(value.data.appVersion, "1.3");
 
-        validate(value.data, defaultSchema, { throwError: true });
+        validate(value.data, lifecycleSchema, { throwError: true });
+      });
+      consume(data);
+    });
+
+    it("should decode the Aplha Omega Technologoy KlaxV2 Reg Search payload", () => {
+      const data = {
+        data: {
+          port: 103,
+          payloadHex: "0445C011010800010802",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "register_search");
+        assert.equal(value.data.register1ID, "1.8.0");
+        assert.equal(value.data.register2ID, "1.8.2");
+
+        validate(value.data, registerSearchSchema, { throwError: true });
       });
 
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batteryLevel, 100);
+        assert.equal(value.data.connectionTest, false);
+        assert.equal(value.data.registersConfigured, true);
+        assert.equal(value.data.deviceType, "SML_KLAX");
+        assert.equal(value.data.payloadVersion, 4);
+        assert.equal(value.data.readingMode, "SML_MODE");
+
+        validate(value.data, lifecycleSchema, { throwError: true });
+      });
+      consume(data);
+    });
+
+    it("should decode the Aplha Omega Technologoy KlaxV2 Reg set payload", () => {
+      const data = {
+        data: {
+          port: 104,
+          payloadHex: "044503010800020800000000000000",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "register_set");
+
+        assert.equal(value.data.registerfilter1Set, true);
+        assert.equal(value.data.registerfilter2Set, true);
+        assert.equal(value.data.registerfilter3Set, false);
+        assert.equal(value.data.registerfilter4Set, false);
+
+        assert.equal(value.data.registerFilter1ID, "1.8.0");
+        assert.equal(value.data.registerFilter2ID, "2.8.0");
+        assert.equal(value.data.registerFilter3ID, "0.0.0");
+        assert.equal(value.data.registerFilter4ID, "0.0.0");
+
+        validate(value.data, registerSearchSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batteryLevel, 100);
+        assert.equal(value.data.connectionTest, false);
+        assert.equal(value.data.registersConfigured, true);
+        assert.equal(value.data.deviceType, "SML_KLAX");
+        assert.equal(value.data.payloadVersion, 4);
+        assert.equal(value.data.readingMode, "SML_MODE");
+
+        validate(value.data, lifecycleSchema, { throwError: true });
+      });
       consume(data);
     });
   });
