@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.39.0] - 2023-09-27
+
+### Added
+
+- Laiier - SevernWLD
+
+### Changed
+
+- Comtac - Cluey
+
 # [1.38.1] - 2023-09-28
 
 ### Added
@@ -12,9 +22,13 @@ All notable changes to this project will be documented in this file.
 
 # [1.38.0] - 2023-09-28
 
+### Added
+
 - Nanothings - Nanotag
 
 # [1.38.0] - 2023-09-28
+
+### Added
 
 - Integra - Aquastream
 - Enginko - EGK-LW22PLG
@@ -22,8 +36,6 @@ All notable changes to this project will be documented in this file.
 - Enginko - R718N3
 - Dragino - Gropoint Air
 - Dragino - Gropoint Air V1.1
-
-### Added
 
 # [1.37.2] - 2023-08-30
 

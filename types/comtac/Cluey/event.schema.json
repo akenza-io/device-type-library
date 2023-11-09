@@ -1,0 +1,31 @@
+{
+  "$id": "https://akenza.io/comtac/cluey/event.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "event",
+  "title": "Event",
+  "properties": {
+    "eventType": {
+      "title": "Event type",
+      "type": "string",
+      "description": "Event type",
+      "enum": [
+        "FIXED_DATA",
+        "DI_DATA",
+        "AI_DATA",
+        "CNT_DATA",
+        "MODBUS",
+        "MODBUS_TRANSPARENT",
+        "TIMESYNC",
+        "CONFIG",
+        "INFO",
+        "GPS",
+        "PING",
+        "UNKNOWN"
+      ],
+      "hideFromKpis": true
+    }
+  },
+  "required": ["eventType"]
+}
