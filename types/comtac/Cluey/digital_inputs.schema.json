@@ -1,0 +1,148 @@
+{
+  "$id": "https://akenza.io/comtac/cluey/digital_inputs.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "digital_inputs",
+  "title": "Digital Inputs",
+  "properties": {
+    "limit": {
+      "title": "Limit",
+      "description": "Limit",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "event": {
+      "title": "Event",
+      "description": "Event",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "interrogation": {
+      "title": "Interrogation",
+      "description": "Interrogation",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "cyclic": {
+      "title": "Cyclic",
+      "description": "Cyclic",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "digitalInput1": {
+      "title": "Digital input 1",
+      "description": "Digital input 1",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "digitalInput2": {
+      "title": "Digital input 2",
+      "description": "Digital input 2",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "digitalInput3": {
+      "title": "Digital input 3",
+      "description": "Digital input 3",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "digitalInput4": {
+      "title": "Digital input 4",
+      "description": "Digital input 4",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "digitalInput5": {
+      "title": "Digital input 5",
+      "description": "Digital input 5",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "digitalInput6": {
+      "title": "Digital input 6",
+      "description": "Digital input 6",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "digitalInput7": {
+      "title": "Digital input 7",
+      "description": "Digital input 7",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "digitalInput8": {
+      "title": "Digital input 8",
+      "description": "Digital input 8",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "digitalInput9": {
+      "title": "Digital input 9",
+      "description": "Digital input 9",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "digitalInput10": {
+      "title": "Digital input 10",
+      "description": "Digital input 10",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "digitalInput11": {
+      "title": "Digital input 11",
+      "description": "Digital input 11",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "digitalInput12": {
+      "title": "Digital input 12",
+      "description": "Digital input 12",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "digitalInput13": {
+      "title": "Digital input 13",
+      "description": "Digital input 13",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "digitalInput14": {
+      "title": "Digital input 14",
+      "description": "Digital input 14",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "digitalInput15": {
+      "title": "Digital input 15",
+      "description": "Digital input 15",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "digitalInput16": {
+      "title": "Digital input 16",
+      "description": "Digital input 16",
+      "type": "boolean",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "digitalInput1",
+    "digitalInput2",
+    "digitalInput3",
+    "digitalInput4",
+    "digitalInput5",
+    "digitalInput6",
+    "digitalInput7",
+    "digitalInput8",
+    "digitalInput9",
+    "digitalInput10",
+    "digitalInput11",
+    "digitalInput12",
+    "digitalInput13",
+    "digitalInput14",
+    "digitalInput15",
+    "digitalInput16"
+  ]
+}

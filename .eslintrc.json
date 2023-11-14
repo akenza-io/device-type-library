@@ -24,6 +24,7 @@
         "object": true
       }
     ],
+    "prefer-object-spread": "off",
     "no-bitwise": "off",
     "no-plusplus": "off",
     "curly": "error",
