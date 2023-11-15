@@ -9,7 +9,7 @@
     "laserReflectance": {
       "title": "Laser reflectance",
       "type": "number",
-      "desciption": "Laser reflectance"
+      "description": "Laser reflectance"
     },
     "temperature": {
       "title": "Temperature",
@@ -28,9 +28,5 @@
       "maximum": 180
     }
   },
-  "required": [
-    "laserReflectance",
-    "temperature",
-    "tiltAngle"
-  ]
+  "required": ["laserReflectance", "temperature", "tiltAngle"]
 }

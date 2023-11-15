@@ -98,7 +98,7 @@
     },
     "batteryVoltage": {
       "title": "Battery voltage",
-      "desciption": "The battery voltage in Volt.",
+      "description": "The battery voltage in Volt.",
       "unit": "V",
       "type": "number",
       "minimum": 0,

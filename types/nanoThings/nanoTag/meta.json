@@ -1,0 +1,21 @@
+{
+  "name": "nanoTag",
+  "version": "1.0.0",
+  "manufacturer": "nanoThings",
+  "url": "https://www.nanothingsinc.com/nanotag",
+  "description": "NanoTags are manufactured with an innovative hybrid printing process. Developed and patented by NanoThings, hybrid printing is a manufacturing process that enables 10X the scalability of traditional electronics manufacturing. Key components, like the antenna and connective circuitry, are printed on a flexible substrate to reduce size and cost while enabling mechanical flexibility. Non printable components, like the silicon and an ultra thin flexible battery, are surface mounted after the printing process. The result is a device with a significantly smaller form factor, carbon footprint, and cost to produce.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature"],
+  "outputTopics": [
+    "configuration_ack",
+    "device_status",
+    "first_timestamp",
+    "lifecycle",
+    "report_frame",
+    "temperature"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

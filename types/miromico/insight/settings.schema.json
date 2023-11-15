@@ -10,31 +10,31 @@
       "title": "Measurement interval",
       "type": "integer",
       "unit": "s",
-      "desciption": "Measurement interval in seconds.",
+      "description": "Measurement interval in seconds.",
       "hideFromKpis": true
     },
     "temperatureSamples": {
       "title": "Temperature samples",
       "type": "integer",
-      "desciption": "Temperature samples",
+      "description": "Temperature samples",
       "hideFromKpis": true
     },
     "co2Subsample": {
       "title": "CO2 Subsample",
       "type": "integer",
-      "desciption": "CO2 Subsample",
+      "description": "CO2 Subsample",
       "hideFromKpis": true
     },
     "abcCalibrationPeriod": {
       "title": "ABC calibration period",
       "type": "integer",
       "unit": "h",
-      "desciption": "ABC calibration period in hours",
+      "description": "ABC calibration period in hours",
       "hideFromKpis": true
     },
     "firmwareHash": {
       "title": "Firmware hash",
-      "desciption": "Firmware hash",
+      "description": "Firmware hash",
       "hideFromKpis": true
     }
   },

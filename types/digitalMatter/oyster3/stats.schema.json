@@ -44,7 +44,7 @@
       "minimum": 0,
       "maximum": 24,
       "title": "Initial battery voltage",
-      "desciption": "Initial battery voltage",
+      "description": "Initial battery voltage",
       "unit": "V"
     },
     "tripCount": {
@@ -73,10 +73,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "initialvoltage",
-    "tripCount",
-    "uptimeWeeks",
-    "wakeupsPerTrip"
-  ]
+  "required": ["initialvoltage", "tripCount", "uptimeWeeks", "wakeupsPerTrip"]
 }
