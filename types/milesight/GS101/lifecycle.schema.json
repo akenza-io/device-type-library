@@ -6,10 +6,10 @@
   "topic": "lifecycle",
   "title": "Lifecycle",
   "properties": {
-    "lifeRemain": {
-      "title": "Life time remain",
+    "remainingLifetime": {
+      "title": "Remaining lifetime",
       "type": "number",
-      "description": "Life time remaining of the sensor",
+      "description": "Remaining life time of the sensor",
       "unit": "min",
       "hideFromKpis": true
     },

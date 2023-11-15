@@ -55,7 +55,7 @@ function consume(event) {
     }
     // TEMPERATURE TARGET
     else if (channelId === 0x04 && channelType === 0x67) {
-      decoded.temperatureTarget = readInt16LE(bytes.slice(i, i + 2)) / 10;
+      decoded.targetTemperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
       i += 2;
     }
     // VALVE OPENING

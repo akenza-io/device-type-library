@@ -35,7 +35,7 @@ function consume(event) {
     }
     // Remained life time for the sensor
     else if (channelId === 0x08 && channelType === 0x90) {
-      lifecycle.lifeRemain = `${readUInt32LE(bytes.slice(i, i + 4))}s`;
+      lifecycle.remainingLifetime = `${readUInt32LE(bytes.slice(i, i + 4))}s`;
       i += 4;
     }
     // Alarm info

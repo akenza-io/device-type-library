@@ -13,14 +13,14 @@
       "enum": ["NORMAL", "ABNORMAL"]
     },
     "valve": {
-      "title": "Gas valve",
-      "description": "Gas valve",
+      "title": "Valve state",
+      "description": "Valve state",
       "type": "string",
       "enum": ["CLOSED", "OPENED"]
     },
     "relay": {
-      "title": "Relay",
-      "description": "Relay",
+      "title": "Relay state",
+      "description": "Relay state",
       "type": "string",
       "enum": ["CLOSED", "OPENED"]
     }

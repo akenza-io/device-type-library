@@ -63,7 +63,7 @@
       "type": "string",
       "description": "Text 9"
     },
-    "qrcode": {
+    "qrCode": {
       "title": "QR Code",
       "type": "string",
       "description": "QR Code"

@@ -46,7 +46,7 @@ describe("DS3604 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.qrcode, "hello");
+        assert.equal(value.data.qrCode, "hello");
         assert.equal(value.data.templateId, 1);
         assert.equal(value.data.text1, "Miles");
 

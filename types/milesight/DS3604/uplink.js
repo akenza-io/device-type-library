@@ -39,7 +39,7 @@ function consume(event) {
         decoded[blockName] = fromUtf8Bytes(bytes.slice(i, i + blockLength));
         i += blockLength;
       } else if (blockId === 10) {
-        const blockName = "qrcode";
+        const blockName = "qrCode";
         const blockLength = bytes[i++];
         decoded[blockName] = fromUtf8Bytes(bytes.slice(i, i + blockLength));
         i += blockLength;
