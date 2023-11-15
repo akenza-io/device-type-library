@@ -296,10 +296,10 @@ describe("Aplha Omega Technologoy KlaxV2 Uplink", () => {
 
         assert.equal(value.topic, "register_set");
 
-        assert.equal(value.data.registerfilter1Set, true);
-        assert.equal(value.data.registerfilter2Set, true);
-        assert.equal(value.data.registerfilter3Set, false);
-        assert.equal(value.data.registerfilter4Set, false);
+        assert.equal(value.data.registerFilter1Set, true);
+        assert.equal(value.data.registerFilter2Set, true);
+        assert.equal(value.data.registerFilter3Set, false);
+        assert.equal(value.data.registerFilter4Set, false);
 
         assert.equal(value.data.registerFilter1ID, "1.8.0");
         assert.equal(value.data.registerFilter2ID, "2.8.0");

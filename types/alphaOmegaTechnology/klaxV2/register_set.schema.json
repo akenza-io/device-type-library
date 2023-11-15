@@ -6,25 +6,25 @@
   "topic": "register_set",
   "title": "Register set",
   "properties": {
-    "registerfilter1Set": {
+    "registerFilter1Set": {
       "title": "Registerfilter 1 set",
       "type": "boolean",
       "description": "Registerfilter 1 set",
       "hideFromKpis": true
     },
-    "registerfilter2Set": {
+    "registerFilter2Set": {
       "title": "Registerfilter 2 set",
       "type": "boolean",
       "description": "Registerfilter 2 set",
       "hideFromKpis": true
     },
-    "registerfilter3Set": {
+    "registerFilter3Set": {
       "title": "Registerfilter 3 set",
       "type": "boolean",
       "description": "Registerfilter 3 set",
       "hideFromKpis": true
     },
-    "registerfilter4Set": {
+    "registerFilter4Set": {
       "title": "Registerfilter 4 set",
       "type": "boolean",
       "description": "Registerfilter 4 set",
@@ -56,10 +56,10 @@
     }
   },
   "required": [
-    "registerfilter1Set",
-    "registerfilter2Set",
-    "registerfilter3Set",
-    "registerfilter4Set",
+    "registerFilter1Set",
+    "registerFilter2Set",
+    "registerFilter3Set",
+    "registerFilter4Set",
     "registerFilter1ID",
     "registerFilter2ID",
     "registerFilter3ID",

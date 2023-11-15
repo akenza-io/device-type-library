@@ -341,10 +341,10 @@ function consume(event) {
     // REG-SET
     case 104: {
       const data = {};
-      data.registerfilter4Set = !!Bits.bitsToUnsigned(bits.substr(20, 1));
-      data.registerfilter3Set = !!Bits.bitsToUnsigned(bits.substr(21, 1));
-      data.registerfilter2Set = !!Bits.bitsToUnsigned(bits.substr(22, 1));
-      data.registerfilter1Set = !!Bits.bitsToUnsigned(bits.substr(23, 1));
+      data.registerFilter4Set = !!Bits.bitsToUnsigned(bits.substr(20, 1));
+      data.registerFilter3Set = !!Bits.bitsToUnsigned(bits.substr(21, 1));
+      data.registerFilter2Set = !!Bits.bitsToUnsigned(bits.substr(22, 1));
+      data.registerFilter1Set = !!Bits.bitsToUnsigned(bits.substr(23, 1));
 
       data.registerFilter1ID = `${Bits.bitsToUnsigned(
         bits.substr(24, 8),
