@@ -1,0 +1,17 @@
+{
+  "$id": "https://akenza.io/comtac/cluey/configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "configuration",
+  "title": "Configuration",
+  "properties": {
+    "parameters": {
+      "title": "Configuration Parameters",
+      "description": "Configuration Parameters",
+      "type": "array",
+      "hideFromKpis": true
+    }
+  },
+  "required": ["parameters"]
+}
