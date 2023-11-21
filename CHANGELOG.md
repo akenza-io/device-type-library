@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.39.1] - 2023-11-21
+
+### Changed
+
+- Fixed several data quality issues and improved the overall test setup
+
 # [1.39.0] - 2023-09-27
 
 ### Added
@@ -18,7 +24,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- Added multiple data-models examples
+- Added multiple data model examples
 
 # [1.38.0] - 2023-09-28
 
