@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/sensative/presence/lifecycle.schema.json",
+  "$id": "https://akenza.io/sensative/ms-guard/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
@@ -18,6 +18,22 @@
       "title": "Error message",
       "description": "Error info which contains: wrong length of RX package",
       "type": "string",
+      "hideFromKpis": true
+    },
+    "historySeqNr": {
+      "title": "History sequence number",
+      "type": "integer",
+      "description": "History sequence number",
+      "minimum": 0,
+      "maximum": 65535,
+      "hideFromKpis": true
+    },
+    "prevHistSeqNr": {
+      "title": "Previous history sequence number",
+      "type": "integer",
+      "description": "Previous history sequence number",
+      "minimum": 0,
+      "maximum": 65535,
       "hideFromKpis": true
     },
     "badConditionsCounter": {

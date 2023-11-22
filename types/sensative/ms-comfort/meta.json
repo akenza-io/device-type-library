@@ -1,0 +1,14 @@
+{
+  "name": "Strips Multi-sensor +Comfort",
+  "version": "1.0.0",
+  "manufacturer": "Sensative",
+  "url": "https://sensative.com/sensors/strips-sensors-for-lorawan/strips-lorawan-ms-comfort/",
+  "description": "MS +Comfort's precise measuring gives you a great overview of your indoor climate. Maybe you want to keep your office environment optimal for the well-being of your staff or keep a close eye on changes in temperature and humidity in remote areas such as cellars or attics.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Magnet", "Temperature"],
+  "outputTopics": ["alarm", "default", "lifecycle", "occupancy"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

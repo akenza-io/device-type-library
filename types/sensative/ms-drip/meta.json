@@ -1,0 +1,14 @@
+{
+  "name": "Strips Multi-sensor +Drip",
+  "version": "1.0.0",
+  "manufacturer": "Sensative",
+  "url": "https://sensative.com/sensors/strips-sensors-for-lorawan/strips-lorawan-ms-drip/",
+  "description": "Strips MS +Drip is an innovative ultra-thin (3mm/0.12in) and wireless multi-sensor for LoRaWAN with water leak detection, developed for smart IoT applications such as building monitoring and operations.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Water Leak", "Temperature"],
+  "outputTopics": ["alarm", "default", "lifecycle", "occupancy"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
