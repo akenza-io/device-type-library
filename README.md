@@ -26,8 +26,8 @@ Feel free to use them and submit your own decoders.<br>
 ## Creating a uplink decoder
 
 - Have the payload documentation ready
-- If you need some inspiration, copy an already existing one e.g. [./types/comtac/CM-1](https://github.com/akenza-io/device-type-library/blob/master/types/comtac/CM-1/uplink.js)
-- If you already got a javascript decoder, you could integrate it like [./types/digitalMatter/oyster](https://github.com/akenza-io/device-type-library/blob/master/types/digitalMatter/oyster/uplink.js)
+- If you need some inspiration, copy an already existing one e.g. [./types/comtac/CM-1](https://github.com/akenza-io/device-type-library/blob/main/types/comtac/CM-1/uplink.js)
+- If you already got a javascript decoder, you could integrate it like [./types/digitalMatter/oyster](https://github.com/akenza-io/device-type-library/blob/main/types/digitalMatter/oyster/uplink.js)
 - Adhere wherever possible to the eslint rules
 
 ## Helper function usage
@@ -47,10 +47,10 @@ Common data types can be reused by combining schemas.
   "type": "object",
   "allOf": [
     {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/master/data-models/ambiance/temperature/schema.json"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ambiance/temperature/schema.json"
     },
     {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/master/data-models/common/battery/schema.json"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/common/battery/schema.json"
     },
     {
       "properties": {
