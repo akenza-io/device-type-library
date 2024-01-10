@@ -1,4 +1,4 @@
-// refer to: https://github.com/Milesight-IoT/SensorDecoders/blob/main/UC_Series/UC300/UC300_TTN.js
+// inspired by: https://github.com/Milesight-IoT/SensorDecoders/blob/main/UC_Series/UC300/UC300_TTN.js
 
 function numToBits(num, bitCount) {
   const bits = [];
@@ -100,11 +100,11 @@ function readSerialNumber(bytes) {
   return temp.join("");
 }
 
-const gpio_in_chns = [0x03, 0x04, 0x05, 0x06];
-const gpio_out_chns = [0x07, 0x08];
-const pt100_chns = [0x09, 0x0a];
-const ai_chns = [0x0b, 0x0c];
-const av_chns = [0x0d, 0x0e];
+const gpioInChns = [0x03, 0x04, 0x05, 0x06];
+const gpioOutChns = [0x07, 0x08];
+const pt100Chns = [0x09, 0x0a];
+const aiChns = [0x0b, 0x0c];
+const avChns = [0x0d, 0x0e];
 
 function isEmpty(obj) {
   return Object.keys(obj).length === 0;
@@ -147,61 +147,61 @@ function consume(event) {
       i += 2;
     }
     // GPIO INPUT
-    else if (includes(gpio_in_chns, channelId) && channelType === 0x00) {
-      const id = channelId - gpio_in_chns[0] + 1;
+    else if (includes(gpioInChns, channelId) && channelType === 0x00) {
+      const id = channelId - gpioInChns[0] + 1;
       const gpioInName = `gpioIn${id}`;
       decoded[gpioInName] = bytes[i] === 0 ? "off" : "on";
       topic = "gpio";
       i += 1;
     }
     // GPIO OUTPUT
-    else if (includes(gpio_out_chns, channelId) && channelType === 0x01) {
-      const id = channelId - gpio_out_chns[0] + 1;
+    else if (includes(gpioOutChns, channelId) && channelType === 0x01) {
+      const id = channelId - gpioOutChns[0] + 1;
       const gpioOutName = `gpioOut${id}`;
       decoded[gpioOutName] = bytes[i] === 0 ? "off" : "on";
       topic = "gpio";
       i += 1;
     }
     // GPIO AS COUNTER
-    else if (includes(gpio_in_chns, channelId) && channelType === 0xc8) {
-      const id = channelId - gpio_in_chns[0] + 1;
+    else if (includes(gpioInChns, channelId) && channelType === 0xc8) {
+      const id = channelId - gpioInChns[0] + 1;
       const counterName = `counter${id}`;
       decoded[counterName] = readUInt32LE(bytes.slice(i, i + 4));
       topic = "gpio";
       i += 4;
     }
     // PT100
-    else if (includes(pt100_chns, channelId) && channelType === 0x67) {
-      const id = channelId - pt100_chns[0] + 1;
+    else if (includes(pt100Chns, channelId) && channelType === 0x67) {
+      const id = channelId - pt100Chns[0] + 1;
       const pt100Name = `temperature${id}`;
       decoded[pt100Name] = readInt16LE(bytes.slice(i, i + 2)) / 10;
       i += 2;
       topic = "temperature";
     }
     // ADC CHANNEL
-    else if (includes(ai_chns, channelId) && channelType === 0x02) {
-      const id = channelId - ai_chns[0] + 1;
+    else if (includes(aiChns, channelId) && channelType === 0x02) {
+      const id = channelId - aiChns[0] + 1;
       const adcName = `adc${id}`;
       decoded[adcName] = readUInt32LE(bytes.slice(i, i + 4)) / 100;
       i += 4;
       topic = "adc";
     }
     // ADC CHANNEL FOR VOLTAGE
-    else if (includes(av_chns, channelId) && channelType === 0x02) {
-      const id = channelId - av_chns[0] + 1;
-      const adv_name = `adv${id}`;
-      decoded[adv_name] = readUInt32LE(bytes.slice(i, i + 4)) / 100;
+    else if (includes(avChns, channelId) && channelType === 0x02) {
+      const id = channelId - avChns[0] + 1;
+      const advName = `adv${id}`;
+      decoded[advName] = readUInt32LE(bytes.slice(i, i + 4)) / 100;
       i += 4;
       topic = "adc";
     }
     // MODBUS
     else if (channelId === 0xff && channelType === 0x19) {
-      const modbus_chn_id = bytes[i++] + 1;
-      const data_length = bytes[i++];
-      const data_type = bytes[i++];
-      const sign = (data_type >>> 7) & 0x01;
-      const type = data_type & 0x7f; // 0b01111111
-      const chn = `chn${modbus_chn_id}`;
+      const modbusChnId = bytes[i++] + 1;
+      const dataLength = bytes[i++];
+      const dataType = bytes[i++];
+      const sign = (dataType >>> 7) & 0x01;
+      const type = dataType & 0x7f; // 0b01111111
+      const chn = `chn${modbusChnId}`;
       topic = "modbus";
       switch (type) {
         case 0:
@@ -253,15 +253,15 @@ function consume(event) {
     }
     // MODBUS READ ERROR
     else if (channelId === 0xff && channelType === 0x15) {
-      const modbus_chn_id = bytes[i] + 1;
-      const channel_name = `channel${modbus_chn_id}error`;
-      decoded[channel_name] = "read error";
+      const modbusChnId = bytes[i] + 1;
+      const channelName = `channel${modbusChnId}error`;
+      decoded[channelName] = "read error";
       topic = "error";
       i += 1;
     }
     // ANALOG INPUT STATISTICS
-    else if (includes(ai_chns, channelId) && channelType === 0xe2) {
-      const id = channelId - ai_chns[0] + 1;
+    else if (includes(aiChns, channelId) && channelType === 0xe2) {
+      const id = channelId - aiChns[0] + 1;
       const adcName = `adc${id}`;
       decoded[adcName] = readFloat16LE(bytes.slice(i, i + 2));
       decoded[`${adcName}Max`] = readFloat16LE(bytes.slice(i + 2, i + 4));
@@ -271,8 +271,8 @@ function consume(event) {
       i += 8;
     }
     // ANALOG VOLTAGE STATISTICS
-    else if (includes(av_chns, channelId) && channelType === 0xe2) {
-      const id = channelId - av_chns[0] + 1;
+    else if (includes(avChns, channelId) && channelType === 0xe2) {
+      const id = channelId - avChns[0] + 1;
       const adcName = `adv${id}`;
       decoded[adcName] = readFloat16LE(bytes.slice(i, i + 2));
       decoded[`${adcName}Max`] = readFloat16LE(bytes.slice(i + 2, i + 4));
@@ -282,8 +282,8 @@ function consume(event) {
       i += 8;
     }
     // PT100 ARGS
-    else if (includes(pt100_chns, channelId) && channelType === 0xe2) {
-      const ptChnId = channelId - pt100_chns[0] + 1;
+    else if (includes(pt100Chns, channelId) && channelType === 0xe2) {
+      const ptChnId = channelId - pt100Chns[0] + 1;
       const pt100Name = `pt100${ptChnId}`;
       decoded[pt100Name] = readFloat16LE(bytes.slice(i, i + 2));
       decoded[`${pt100Name}Max`] = readFloat16LE(bytes.slice(i + 2, i + 4));
@@ -296,16 +296,18 @@ function consume(event) {
     else if (channelId === 0x20 && channelType === 0xdc) {
       const timestamp = readUInt32LE(bytes.slice(i, i + 4));
       topic = "channel_history";
-      const channel_mask = numToBits(
+      const channelMask = numToBits(
         readUInt16LE(bytes.slice(i + 4, i + 6)),
         16,
       );
       i += 6;
 
       const data = { timestamp };
-      for (let j = 0; j < channel_mask.length; j++) {
+      for (let j = 0; j < channelMask.length; j++) {
         // SKIP UNUSED CHANNELS
-        if (channel_mask[j] !== 1) continue;
+        if (channelMask[j] !== 1) {
+          continue;
+        }
 
         // GPIO INPUT
         if (j < 4) {
@@ -368,20 +370,22 @@ function consume(event) {
     else if (channelId === 0x20 && channelType === 0xdd) {
       const timestamp = readUInt32LE(bytes.slice(i, i + 4));
       topic = "modbus_history";
-      const modbus_chn_mask = numToBits(
+      const modbusChnMask = numToBits(
         readUInt32LE(bytes.slice(i + 4, i + 8)),
         32,
       );
       i += 8;
 
       const data = { timestamp };
-      for (let j = 0; j < modbus_chn_mask.length; j++) {
-        if (modbus_chn_mask[j] !== 1) continue;
+      for (let j = 0; j < modbusChnMask.length; j++) {
+        if (modbusChnMask[j] !== 1) {
+          continue;
+        }
 
         const chn = `chn${j + 1}`;
-        const data_type = bytes[i++];
-        const sign = (data_type >>> 7) & 0x01;
-        const type = data_type & 0x7f; // 0b01111111
+        const dataType = bytes[i++];
+        const sign = (dataType >>> 7) & 0x01;
+        const type = dataType & 0x7f; // 0b01111111
         switch (type) {
           case 0: // MB_COIL
             decoded[chn] = bytes[i] ? "on" : "off";
