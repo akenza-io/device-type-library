@@ -9,8 +9,10 @@
     "leakage": {
       "title": "Leakage",
       "type": "boolean",
-      "desciption": "True if there is a leakage"
+      "description": "True if there is a leakage"
     }
   },
-  "required": ["leakage"]
+  "required": [
+    "leakage"
+  ]
 }

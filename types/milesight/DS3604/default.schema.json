@@ -10,8 +10,8 @@
       "title": "Template ID",
       "type": "number",
       "description": "Template ID",
-      "min": 0,
-      "max": 1
+      "minimum": 0,
+      "maximum": 1
     },
     "text0": {
       "title": "Text 0",
