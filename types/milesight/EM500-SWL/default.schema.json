@@ -1,0 +1,17 @@
+{
+  "$id": "https://akenza.io/milesight/EM500-SWL/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "waterLevel": {
+      "title": "Water level",
+      "unit": "cm",
+      "type": "number",
+      "description": "Water level in cm"
+    }
+  },
+  "required": ["waterLevel"]
+}

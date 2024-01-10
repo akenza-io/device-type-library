@@ -5,11 +5,10 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Milesight EM300-DI Uplink", () => {
+describe("Milesight GS301 Uplink", () => {
   let defaultSchema = null;
-  let lifecycleSchema = null;
-
   let consume = null;
+
   before((done) => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
@@ -21,9 +20,8 @@ describe("Milesight EM300-DI Uplink", () => {
       });
   });
 
+  let lifecycleSchema = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
     utils
       .loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
@@ -33,11 +31,11 @@ describe("Milesight EM300-DI Uplink", () => {
   });
 
   describe("consume()", () => {
-    it("should decode should decode the Milesight EM300-DI payload", () => {
+    it("should decode should decode the Milesight GS301 payload", () => {
       const data = {
         data: {
           port: 1,
-          payloadHex: "01755C0367340104686520CE9E74466310015D020000010000",
+          payloadHex: "01756402671C01036864047D0000057D0100",
         },
       };
 
@@ -46,36 +44,24 @@ describe("Milesight EM300-DI Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.temperature, 28.4);
+        assert.equal(value.data.humidity, 50);
+        assert.equal(value.data.h2s, 0.01);
+        assert.equal(value.data.nh3, 0);
+
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 92);
-        utils.validateSchema(value.data, lifecycleSchema, {
-          throwError: true,
-        });
-      });
+        assert.equal(value.data.batteryLevel, 100);
 
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.temperature, 27.2);
-        assert.equal(value.data.humidity, 46.5);
-        assert.equal(value.data.pulse, 256);
-
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
-      });
-
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.temperature, 30.8);
-        assert.equal(value.data.humidity, 50.5);
-
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

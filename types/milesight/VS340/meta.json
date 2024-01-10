@@ -1,0 +1,14 @@
+{
+  "name": "VS340",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight.com/iot/product/lorawan-sensor/vs34x",
+  "description": "Based on the highly sensitive PIR, VS340 is designed for high-cost performance, which meets general needs.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Desk"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

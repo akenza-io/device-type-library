@@ -5,10 +5,9 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Milesight EM300-DI Uplink", () => {
+describe("WS203 Uplink", () => {
   let defaultSchema = null;
   let lifecycleSchema = null;
-
   let consume = null;
   before((done) => {
     const script = rewire("./uplink.js");
@@ -33,11 +32,11 @@ describe("Milesight EM300-DI Uplink", () => {
   });
 
   describe("consume()", () => {
-    it("should decode should decode the Milesight EM300-DI payload", () => {
+    it("should decode should decode the WS203 payload", () => {
       const data = {
         data: {
           port: 1,
-          payloadHex: "01755C0367340104686520CE9E74466310015D020000010000",
+          payloadHex: "01756403673401046865050000",
         },
       };
 
@@ -46,22 +45,10 @@ describe("Milesight EM300-DI Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 92);
-        utils.validateSchema(value.data, lifecycleSchema, {
-          throwError: true,
-        });
-      });
-
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.temperature, 27.2);
-        assert.equal(value.data.humidity, 46.5);
-        assert.equal(value.data.pulse, 256);
+        assert.equal(value.data.humidity, 50.5);
+        assert.equal(value.data.occupied, false);
+        assert.equal(value.data.occupancy, 0);
+        assert.equal(value.data.temperature, 30.8);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -71,9 +58,45 @@ describe("Milesight EM300-DI Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.temperature, 30.8);
+        assert.equal(value.data.batteryLevel, 100);
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("should decode should decode the WS203 history payload", () => {
+      const data = {
+        data: {
+          port: 1,
+          payloadHex: "20CEAE5BA664040024016520CE5C5CA6640301340165",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
         assert.equal(value.data.humidity, 50.5);
+        assert.equal(value.data.occupied, false);
+        assert.equal(value.data.occupancy, 0);
+        assert.equal(value.data.temperature, 29.2);
+        assert.equal(value.data.reportType, "PERIOD");
+
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.data.humidity, 50.5);
+        assert.equal(value.data.occupied, true);
+        assert.equal(value.data.occupancy, 1);
+        assert.equal(value.data.temperature, 30.8);
+        assert.equal(value.data.reportType, "PIR_OCCUPANCY");
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

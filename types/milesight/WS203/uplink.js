@@ -11,7 +11,7 @@ function readInt16LE(bytes) {
 function readUInt32LE(bytes) {
   const value =
     (bytes[3] << 24) + (bytes[2] << 16) + (bytes[1] << 8) + bytes[0];
-  return value & 0xffffffff;
+  return (value & 0xffffffff) >>> 0;
 }
 
 function isEmpty(obj) {
@@ -31,7 +31,6 @@ function consume(event) {
     // BATTERY
     if (channelId === 0x01 && channelType === 0x75) {
       lifecycle.batteryLevel = bytes[i];
-      emit("sample", { data: lifecycle, topic: "lifecycle" });
       i += 1;
     }
     // TEMPERATURE
@@ -44,36 +43,52 @@ function consume(event) {
       decoded.humidity = bytes[i] / 2;
       i += 1;
     }
-    // GPIO
+    // OCCUPANCY
     else if (channelId === 0x05 && channelType === 0x00) {
-      decoded.gpio = bytes[i];
+      decoded.occupied = bytes[i] !== 0;
+      decoded.occupancy = Number(decoded.occupied);
       i += 1;
     }
-    // PULSE COUNTER
-    else if (channelId === 0x05 && channelType === 0xc8) {
-      decoded.pulse = readUInt32LE(bytes.slice(i, i + 4));
-      i += 4;
+    // TEMPERATURE WITH ABNORMAL
+    else if (channelId === 0x83 && channelType === 0x67) {
+      decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
+      decoded.temperatureAbnormal = bytes[i + 2] !== 0;
+      i += 3;
     }
-    // HISTROY
+    // HISTORICAL DATA
     else if (channelId === 0x20 && channelType === 0xce) {
-      // maybe not historical raw data
-      if (bytes.slice(i).length < 12) {
-        break;
-      }
-      const point = {};
+      const data = {};
       const timestamp = new Date(readUInt32LE(bytes.slice(i, i + 4)) * 1000);
-      point.temperature = readInt16LE(bytes.slice(i + 4, i + 6)) / 10;
-      point.humidity = bytes[i + 6] / 2;
-      const mode = bytes[i + 7];
+      const reportType = bytes[i + 4];
 
-      if (mode === 1) {
-        point.gpio = bytes[i + 8];
-      } else if (mode === 2) {
-        point.pulse = readUInt32LE(bytes.slice(i + 9, i + 13));
+      switch (reportType & 0x07) {
+        case 0:
+          data.reportType = "TEMPERATURE_RESUME";
+          break;
+        case 1:
+          data.reportType = "TEMPERATURE_THRESHOLD";
+          break;
+        case 2:
+          data.reportType = "PIR_IDLE";
+          break;
+        case 3:
+          data.reportType = "PIR_OCCUPANCY";
+          break;
+        case 4:
+          data.reportType = "PERIOD";
+          break;
+
+        default:
+          break;
       }
 
-      emit("sample", { data: point, topic: "default", timestamp });
-      i += 13;
+      data.occupied = bytes[i + 5] !== 0;
+      data.occupancy = Number(data.occupied);
+      data.temperature = readInt16LE(bytes.slice(i + 6, i + 8)) / 10;
+      data.humidity = bytes[i + 8] / 2;
+      i += 9;
+
+      emit("sample", { data, topic: "default", timestamp });
     } else {
       break;
     }
@@ -81,5 +96,9 @@ function consume(event) {
 
   if (!isEmpty(decoded)) {
     emit("sample", { data: decoded, topic: "default" });
+  }
+
+  if (!isEmpty(lifecycle)) {
+    emit("sample", { data: lifecycle, topic: "lifecycle" });
   }
 }
