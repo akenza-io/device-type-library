@@ -8,6 +8,12 @@ function parseHexString(str) {
   return result;
 }
 
+function readUInt32LE(bytes) {
+  const value =
+    (bytes[3] << 24) + (bytes[2] << 16) + (bytes[1] << 8) + bytes[0];
+  return (value & 0xffffffff) >>> 0;
+}
+
 function readUInt16LE(bytes) {
   const value = (bytes[1] << 8) + bytes[0];
   return value & 0xffff;
@@ -16,12 +22,6 @@ function readUInt16LE(bytes) {
 function readInt16LE(bytes) {
   const ref = readUInt16LE(bytes);
   return ref > 0x7fff ? ref - 0x10000 : ref;
-}
-
-function readUInt32LE(bytes) {
-  const value =
-    (bytes[3] << 24) + (bytes[2] << 16) + (bytes[1] << 8) + bytes[0];
-  return value & 0xffffffff;
 }
 
 function isEmpty(obj) {
@@ -55,9 +55,12 @@ function consume(event) {
     }
     // TEMPERATURE & HUMIDITY HISTROY
     else if (channelId === 0x20 && channelType === 0xce) {
-      decoded.temperatureHistory =
-        readInt16LE(Array.from(bytes).slice(i + 4, i + 6)) / 10;
-      decoded.humidityHistory = bytes[i + 6] / 2;
+      const point = {};
+      const timestamp = new Date(readUInt32LE(bytes.slice(i, i + 4)) * 1000);
+      point.temperature = readInt16LE(bytes.slice(i + 4, i + 6)) / 10;
+      point.humidity = bytes[i + 6] / 2;
+
+      emit("sample", { data: point, topic: "default", timestamp });
       i += 7;
     } else {
       break;

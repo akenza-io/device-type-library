@@ -1,0 +1,14 @@
+{
+  "name": "GS301",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight-iot.com/products/lorawan-sensor/gs301/",
+  "description": "GS301 LoRaWAN® Bathroom Odor Detector is compact in size and easy to install and maintain. With damp proof coating, the detector can work on various conditions of bathrooms.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Odor"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

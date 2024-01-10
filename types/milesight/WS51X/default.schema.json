@@ -1,0 +1,45 @@
+{
+  "$id": "https://akenza.io/milesight/WS51X/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "voltage": {
+      "title": "Voltage",
+      "unit": "V",
+      "description": "Voltage",
+      "type": "number"
+    },
+    "power": {
+      "title": "Active power",
+      "unit": "W",
+      "description": "Active power",
+      "type": "number"
+    },
+    "factor": {
+      "title": "Active factor",
+      "unit": "%",
+      "description": "Active factor",
+      "type": "number"
+    },
+    "powerConsumption": {
+      "title": "Power consumption",
+      "unit": "W*h",
+      "description": "Power consumption",
+      "type": "number"
+    },
+    "current": {
+      "title": "Current",
+      "unit": "mA",
+      "description": "Current",
+      "type": "number"
+    },
+    "powerOn": {
+      "title": "Power on",
+      "description": "Power on if value is true",
+      "type": "boolean"
+    }
+  }
+}
