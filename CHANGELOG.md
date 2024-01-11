@@ -4,6 +4,48 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.41.0] - 2024-01-10
+
+### Added
+
+- tektelik/VIVID - Smart Room Sensor V3.1
+
+### Changed
+
+- renamed tektelik/VIVID - Smart Room Sensor to VIVID - Smart Room Sensor V2.2.0
+
+# [1.40.0] - 2024-01-10
+
+### Added
+
+- Milesight/DS3604
+- Milesight/EM300-MLD
+- Milesight/EM500-SWL
+- Milesight/GS101
+- Milesight/GS301
+- Milesight/TS101
+- Milesight/VS133
+- Milesight/VS330
+- Milesight/VS340
+- Milesight/VS341
+- Milesight/WS203
+- Milesight/WS51X
+- Milesight/WT101
+
+### Changed
+
+- Milesight/AT101: removes location history
+- Milesight/EM300-DI: removes location history
+- Milesight/EM320-TH: removes temperature/humidity history
+- Milesight/WS50X: fixes the output
+- Tektelic/EDOCTOR: adjusts name
+
+# [1.39.1] - 2023-11-21
+
+### Changed
+
+- Fixed several data quality issues and improved the overall test setup
+
 # [1.39.0] - 2023-09-27
 
 ### Added
@@ -18,7 +60,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- Added multiple data-models examples
+- Added multiple data model examples
 
 # [1.38.0] - 2023-09-28
 

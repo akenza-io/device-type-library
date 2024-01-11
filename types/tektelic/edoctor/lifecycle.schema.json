@@ -3,6 +3,8 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Lifecycle",
   "type": "object",
+  "topic": "lifecycle",
+  "processingType": "uplink_decoder",
   "properties": {
     "batteryVoltage": {
       "title": "Battery voltage",
