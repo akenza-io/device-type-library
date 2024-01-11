@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.41.0] - 2024-01-10
+
+### Added
+
+- tektelik/VIVID - Smart Room Sensor V3.1
+
+### Changed
+
+- renamed tektelik/VIVID - Smart Room Sensor to VIVID - Smart Room Sensor V2.2.0
+
 # [1.40.0] - 2024-01-10
 
 ### Added
