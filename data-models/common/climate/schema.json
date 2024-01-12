@@ -1,30 +1,30 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://akenza.github.io/device-types-library/data-models/ambiance/climate/schema.json",
+  "$id": "https://akenza.github.io/device-types-library/data-models/common/climate/schema.json",
   "$defs": {
     "temperatureC": {
-      "measurementType": "ambiance/climate/temperatureC/C",
+      "measurementType": "common/climate/temperatureC/C",
       "title": "Temperature",
       "type": "number",
       "unit": "°C",
       "description": "The temperature in degrees Celcius."
     },
     "temperatureF": {
-      "measurementType": "ambiance/climate/temperatureF/F",
+      "measurementType": "common/climate/temperatureF/F",
       "title": "Temperature",
       "type": "number",
       "unit": "F",
       "description": "The temperature in Fahrenheit."
     },
     "temperatureK": {
-      "measurementType": "ambiance/climate/temperatureK/K",
+      "measurementType": "common/climate/temperatureK/K",
       "title": "Temperature",
       "type": "number",
       "unit": "K",
       "description": "The temperature in Kelvin."
     },
     "humdity": {
-      "measurementType": "ambiance/climate/humidity/percent",
+      "measurementType": "common/climate/humidity/percent",
       "type": "number",
       "title": "Humidity",
       "description": "The relative humidity in percent.",
@@ -33,7 +33,7 @@
       "minimum": 0
     },
     "pressure": {
-      "measurementType": "ambiance/climate/pressure/hpa",
+      "measurementType": "common/climate/pressure/hpa",
       "title": "Pressure",
       "unit": "hpa",
       "description": "Barometric Pressure in hpa",

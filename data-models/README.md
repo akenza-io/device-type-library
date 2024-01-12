@@ -31,3 +31,14 @@ Data models are referenced by using the id and relevant definition:
   ]
 }
 ```
+
+## Units
+
+- Metric
+  - Degrees Celcius
+  - Centimeters
+  - Meters
+- Imperial
+  - Fahrenheit
+  - Inch
+  - Foot

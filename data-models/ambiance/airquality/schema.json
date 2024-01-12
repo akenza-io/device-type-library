@@ -1,37 +1,37 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ambiance/iaq/schema.json",
+    "$id": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ambiance/airquality/schema.json",
     "$defs": {
         "co2": {
-            "measurementType": "ambiance/iaq/co2/ppm",
+            "measurementType": "ambiance/airquality/co2/ppm",
             "title": "CO2",
             "unit": "ppm",
             "type": "integer",
             "description": "Carbon Dioxide in ppm"
         },
         "tvoc": {
-            "measurementType": "ambiance/iaq/tvoc/ppb",
+            "measurementType": "ambiance/airquality/tvoc/ppb",
             "title": "TVOC",
             "unit": "ppb",
             "type": "integer",
             "description": "Total Volatile Organic Compunds in ppb"
         },
         "pm1": {
-            "measurementType": "ambiance/iaq/pm1/microgramspercubicmeter",
+            "measurementType": "ambiance/airquality/pm1/microgramspercubicmeter",
             "title": "Particulate Matter (PM1.0)",
             "unit": "μg/m3",
             "type": "integer",
             "description": "Particles with a diameter of less than 1.0 micrometers."
         },
         "pm2_5": {
-            "measurementType": "ambiance/iaq/pm2_5/microgramspercubicmeter",
+            "measurementType": "ambiance/airquality/pm2_5/microgramspercubicmeter",
             "title": "Particulate Matter (PM2.5)",
             "unit": "μg/m3",
             "type": "integer",
             "description": "Particles with a diameter of less than 2.5 micrometers."
         },
         "pm10": {
-            "measurementType": "ambiance/iaq/pm10/microgramspercubicmeter",
+            "measurementType": "ambiance/airquality/pm10/microgramspercubicmeter",
             "title": "Particulate Matter (PM10)",
             "unit": "μg/m3",
             "type": "integer",
