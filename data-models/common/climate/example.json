@@ -1,7 +1,7 @@
 {
-  "temperatureC": 25.6,
-  "temperatureF": 25.6,
-  "temperatureK": 25.6,
+  "temperatureDegreesCelsius": 25.6,
+  "temperatureFahrenheit": 25.6,
+  "temperatureKelvin": 25.6,
   "humidity": 68,
   "pressure": 45
 }

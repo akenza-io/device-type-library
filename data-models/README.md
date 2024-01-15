@@ -14,7 +14,7 @@ Data models are referenced by using the id and relevant definition:
   "title": "Default",
   "properties": {
     "temperature": {
-      "$ref": "https://akenza.github.io/device-types-library/data-models/ambiance/climate/schema.json#/$defs/temperatureC"
+      "$ref": "https://akenza.github.io/device-types-library/data-models/ambiance/climate/schema.json#/$defs/temperatureDegreesCelsius"
     },
     "humidity": {
       "title": "Humidity",

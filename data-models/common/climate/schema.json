@@ -2,22 +2,22 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://akenza.github.io/device-types-library/data-models/common/climate/schema.json",
   "$defs": {
-    "temperatureC": {
-      "measurementType": "common/climate/temperatureC/C",
+    "temperatureDegreesCelsius": {
+      "measurementType": "common/climate/temperatureDegreesCelsius/degreesC",
       "title": "Temperature",
       "type": "number",
       "unit": "°C",
       "description": "The temperature in degrees Celcius."
     },
-    "temperatureF": {
-      "measurementType": "common/climate/temperatureF/F",
+    "temperatureFahrenheit": {
+      "measurementType": "common/climate/temperatureFahrenheit/F",
       "title": "Temperature",
       "type": "number",
       "unit": "F",
       "description": "The temperature in Fahrenheit."
     },
-    "temperatureK": {
-      "measurementType": "common/climate/temperatureK/K",
+    "temperatureKelvin": {
+      "measurementType": "common/climate/temperatureKelvin/K",
       "title": "Temperature",
       "type": "number",
       "unit": "K",

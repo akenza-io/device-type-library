@@ -6,15 +6,17 @@
             "measurementType": "ambiance/illuminance/light/lux",
             "title": "Light",
             "unit": "lux",
-            "type": "integer",
+            "type": "number",
             "description": "The light in lux."
         },
         "brightness": {
             "measurementType": "ambiance/illuminance/brightness/percent",
             "title": "Brightness",
             "unit": "%",
-            "type": "integer",
-            "description": "The perceived brightness in percent."
+            "type": "number",
+            "description": "The perceived brightness in percent.",
+            "minimum": 0,
+            "maximum": 100
         }
     }
 }
