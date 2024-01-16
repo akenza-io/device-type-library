@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Alpha Omega Technology / Klax 2.0
 - intial set of data models 
 
 # [1.41.0] - 2024-01-10
