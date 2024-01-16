@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.42.0] - 2024-01-16
+
+### Added
+
+- intial set of data models 
+
 # [1.41.0] - 2024-01-10
 
 ### Added

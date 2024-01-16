@@ -20,7 +20,7 @@
       "type": "string",
       "enum": ["NORMAL", "THRESHOLD", "MUTATION", "UNKNOWN"]
     },
-    "temperatureChange": {
+    "temperatureDegreesCelsiushange": {
       "title": "Temperature change",
       "description": "Temperature change",
       "type": "number"
