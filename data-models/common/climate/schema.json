@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://akenza.github.io/device-types-library/data-models/common/climate/schema.json",
+  "$defs": {
+    "temperatureDegreesCelsius": {
+      "measurementType": "common/climate/temperatureDegreesCelsius/degreesC",
+      "title": "Temperature",
+      "type": "number",
+      "unit": "°C",
+      "description": "The temperature in degrees Celcius."
+    },
+    "temperatureFahrenheit": {
+      "measurementType": "common/climate/temperatureFahrenheit/F",
+      "title": "Temperature",
+      "type": "number",
+      "unit": "F",
+      "description": "The temperature in Fahrenheit."
+    },
+    "temperatureKelvin": {
+      "measurementType": "common/climate/temperatureKelvin/K",
+      "title": "Temperature",
+      "type": "number",
+      "unit": "K",
+      "description": "The temperature in Kelvin."
+    },
+    "humdity": {
+      "measurementType": "common/climate/humidity/percent",
+      "type": "number",
+      "title": "Humidity",
+      "description": "The relative humidity in percent.",
+      "unit": "%",
+      "maximum": 100,
+      "minimum": 0
+    },
+    "pressure": {
+      "measurementType": "common/climate/pressure/hpa",
+      "title": "Pressure",
+      "unit": "hpa",
+      "description": "Barometric Pressure in hpa",
+      "type": "number"
+    }
+  }
+}

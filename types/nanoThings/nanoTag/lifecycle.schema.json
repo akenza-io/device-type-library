@@ -10,7 +10,7 @@
       "title": "Battery voltage",
       "unit": "V",
       "type": "number",
-      "desciption": "The battery voltage in Volt.",
+      "description": "The battery voltage in Volt.",
       "hideFromKpis": true
     },
     "batteryLevel": {

@@ -77,6 +77,6 @@ function consume(event) {
   }
 
   if (!isEmpty(decoded)) {
-    emit("sample", { decoded, topic: "default" });
+    emit("sample", { data: decoded, topic: "default" });
   }
 }

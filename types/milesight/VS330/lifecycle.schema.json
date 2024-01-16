@@ -1,0 +1,30 @@
+{
+  "$id": "https://akenza.io/milesight/VS330/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "batteryLevel": {
+      "title": "Battery level",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "The battery level in percent.",
+      "unit": "%"
+    },
+    "calibration": {
+      "title": "Calibration",
+      "type": "string",
+      "description": "Calibration status",
+      "enum": ["FAILED", "SUCCESS"]
+    },
+    "distance": {
+      "title": "Distance",
+      "unit": "mm",
+      "type": "number",
+      "description": "Distance"
+    }
+  }
+}

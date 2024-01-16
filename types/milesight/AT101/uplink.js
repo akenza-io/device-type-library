@@ -132,16 +132,16 @@ function consume(event) {
     }
     // HISTORICAL DATA
     else if (channelId === 0x20 && channelType === 0xce) {
-      const pastLocations = {};
-      pastLocations.timestamp = readUInt32LE(bytes.slice(i, i + 4));
-      pastLocations.longitude =
-        readInt32LE(bytes.slice(i + 4, i + 8)) / 1000000;
-      pastLocations.latitude =
-        readInt32LE(bytes.slice(i + 8, i + 12)) / 1000000;
+      const timestamp = new Date(readUInt32LE(bytes.slice(i, i + 4)) * 1000);
+      const longitude = readInt32LE(bytes.slice(i + 4, i + 8)) / 1000000;
+      const latitude = readInt32LE(bytes.slice(i + 8, i + 12)) / 1000000;
       i += 12;
 
-      history.locationHistory = history.locationHistory || [];
-      history.locationHistory.push(pastLocations);
+      emit("sample", {
+        data: { longitude, latitude },
+        topic: "gps",
+        timestamp,
+      });
     } else {
       break;
     }

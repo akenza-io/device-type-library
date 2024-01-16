@@ -3,6 +3,8 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Raw 2",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "raw2",
   "properties": {
     "batteryVoltage": {
       "title": "Battery",

@@ -1,0 +1,38 @@
+{
+  "$id": "https://akenza.io/milesight/GS301/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "humidity": {
+      "title": "Humidity",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "nh3": {
+      "title": "Ammonia",
+      "unit": "ppm",
+      "type": "number",
+      "description": "Colourless gas with a pungent odour"
+    },
+    "h2s": {
+      "title": "Hydrogen sulfide",
+      "unit": "ppm",
+      "type": "number",
+      "description": "Colourless gas with a rotten egg smell"
+    }
+  }
+}

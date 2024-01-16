@@ -60,18 +60,19 @@ function consume(event) {
       if (bytes.slice(i).length < 12) {
         break;
       }
-
       const point = {};
-      point.timestamp = readUInt32LE(bytes.slice(i, i + 4));
+      const timestamp = new Date(readUInt32LE(bytes.slice(i, i + 4)) * 1000);
       point.temperature = readInt16LE(bytes.slice(i + 4, i + 6)) / 10;
       point.humidity = bytes[i + 6] / 2;
       const mode = bytes[i + 7];
+
       if (mode === 1) {
         point.gpio = bytes[i + 8];
       } else if (mode === 2) {
         point.pulse = readUInt32LE(bytes.slice(i + 9, i + 13));
       }
-      emit("sample", { data: point, topic: "history" });
+
+      emit("sample", { data: point, topic: "default", timestamp });
       i += 13;
     } else {
       break;

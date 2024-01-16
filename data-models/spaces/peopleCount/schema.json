@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/peopleCount/schema.json",
+    "$defs": {
+        "peopleIn": {
+            "measurementType": "spaces/peopleCount/peopleIn",
+            "title": "People moving inside",
+            "description": "People moving inside the area.",
+            "type": "integer"
+        },
+        "peopleOut": {
+            "measurementType": "spaces/peopleCount/peopleOut",
+            "title": "People moving outside",
+            "description": "People moving out of the area.",
+            "type": "integer"
+        },
+        "peopleCount": {
+            "measurementType": "spaces/peopleCount/peopleCount",
+            "title": "People count",
+            "description": "People in the area.",
+            "type": "integer"
+        }
+    }
+}
