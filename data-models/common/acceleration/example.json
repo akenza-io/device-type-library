@@ -1,5 +1,5 @@
 {
-    "accX": 12,
-    "accY": -2,
-    "accZ": 5
+    "accelerationX": 12,
+    "accelerationY": -2,
+    "accelerationZ": 5
 }

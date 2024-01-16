@@ -5,22 +5,22 @@
     "description": "Acceleration measurement.",
     "type": "object",
     "$defs": {
-        "accX": {
-            "measurementType": "location/acceleration/accX/mG",
+        "accelerationX": {
+            "measurementType": "location/acceleration/accelerationX/mG",
             "title": "Acceleration X",
             "description": "Acceleration on the x-axis.",
             "type": "number",
             "unit": "mG"
         },
-        "accY": {
-            "measurementType": "location/acceleration/accY/mG",
+        "accelerationY": {
+            "measurementType": "location/acceleration/accelerationY/mG",
             "title": "Acceleration Y",
             "description": "Acceleration on the y-axis.",
             "type": "number",
             "unit": "mG"
         },
-        "accZ": {
-            "measurementType": "location/acceleration/accZ/mG",
+        "accelerationZ": {
+            "measurementType": "location/acceleration/accelerationZ/mG",
             "title": "Acceleration Z",
             "description": "Acceleration on the z-axis.",
             "type": "number",
