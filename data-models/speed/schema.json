@@ -6,8 +6,8 @@
     "type": "object",
     "$defs": {
         "acceleration": {
-            "mg": {
-                "measurementType": "akenza/speed/acceleration/mg",
+            "mG": {
+                "measurementType": "akenza/speed/acceleration/mG",
                 "title": "Acceleration",
                 "description": "Acceleration",
                 "type": "number",

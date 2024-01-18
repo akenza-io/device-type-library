@@ -19,9 +19,9 @@
         "pressure": {
             "measurementType": "custom/example/climate/pressure/hpa",
             "title": "Pressure",
-            "description": "Barometric Pressure in HPA",
+            "description": "Barometric Pressure in hPa",
             "type": "number",
-            "unit": "HPA",
+            "unit": "hPa",
             "hideFromKpis": true
         }
     },

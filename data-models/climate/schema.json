@@ -8,7 +8,7 @@
         "temperature": {
             "celsius": {
                 "measurementType": "akenza/climate/temperature/celsius",
-                "title": "Temperature (C)",
+                "title": "Temperature (°C)",
                 "description": "The temperature in degrees Celcius.",
                 "type": "number",
                 "unit": "°C"
@@ -40,12 +40,12 @@
             }
         },
         "pressure": {
-            "hpa": {
-                "measurementType": "akenza/climate/pressure/hpa",
-                "title": "Pressure (HPA)",
-                "description": "Barometric Pressure in hpa",
+            "hPa": {
+                "measurementType": "akenza/climate/pressure/hPa",
+                "title": "Pressure (hPa)",
+                "description": "Barometric Pressure in hPa",
                 "type": "number",
-                "unit": "hpa"
+                "unit": "hPa"
             }
         }
     }
