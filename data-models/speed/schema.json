@@ -9,7 +9,7 @@
             "mg": {
                 "measurementType": "akenza/speed/acceleration/mg",
                 "title": "Acceleration",
-                "description": "Acceleration on the x-axis.",
+                "description": "Acceleration",
                 "type": "number",
                 "unit": "mG"
             }
