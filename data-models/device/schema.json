@@ -1,13 +1,13 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/defaults/battery/schema.json",
-    "title": "Battery",
-    "description": "Battery measurements.",
+    "$id": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json",
+    "title": "Device",
+    "description": "Device properties.",
     "type": "object",
     "$defs": {
-        "level": {
+        "batteryLevel": {
             "percent": {
-                "measurementType": "akenza.io/data-models/defaults/battery/level/percent",
+                "measurementType": "akenza/device/batteryLevel/percent",
                 "title": "Battery Level",
                 "description": "The battery level in percent.",
                 "type": "number",
@@ -16,9 +16,9 @@
                 "maximum": 100.0
             }
         },
-        "voltage": {
+        "batteryVoltage": {
             "volt": {
-                "measurementType": "akenza.io/data-models/defaults/battery/voltage/volt",
+                "measurementType": "akenza/device/batteryVoltage/volt",
                 "title": "Battery Voltage (V)",
                 "description": "The battery voltage in Volt.",
                 "type": "number",

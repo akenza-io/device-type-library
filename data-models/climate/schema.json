@@ -1,27 +1,27 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://akenza.github.io/device-types-library/data-models/main/data-models/defaults/climate/schema.json",
+    "$id": "https://akenza.github.io/device-types-library/data-models/main/data-models/climate/schema.json",
     "title": "Climate",
     "description": "Climate measurements.",
     "type": "object",
     "$defs": {
         "temperature": {
             "celsius": {
-                "measurementType": "akenza.io/data-models/defaults/climate/temperature/celsius",
+                "measurementType": "akenza/climate/temperature/celsius",
                 "title": "Temperature (C)",
                 "description": "The temperature in degrees Celcius.",
                 "type": "number",
                 "unit": "°C"
             },
             "fahrenheit": {
-                "measurementType": "akenza.io/data-models/defaults/climate/temperature/fahrenheit",
+                "measurementType": "akenza/climate/temperature/fahrenheit",
                 "title": "Temperature (F)",
                 "description": "The temperature in degrees Fahrenheit.",
                 "type": "number",
                 "unit": "F"
             },
             "kelvin": {
-                "measurementType": "akenza.io/data-models/defaults/climate/temperature/kelvin",
+                "measurementType": "akenza/climate/temperature/kelvin",
                 "title": "Temperature (K)",
                 "description": "The temperature in degrees Kelvin.",
                 "type": "number",
@@ -30,7 +30,7 @@
         },
         "humidity": {
             "percent": {
-                "measurementType": "akenza.io/data-models/defaults/climate/humidity/percent",
+                "measurementType": "akenza/climate/humidity/percent",
                 "title": "Humidity",
                 "description": "The relative humidity in percent.",
                 "type": "number",
@@ -41,7 +41,7 @@
         },
         "pressure": {
             "hpa": {
-                "measurementType": "akenza.io/data-models/defaults/climate/pressure/hpa",
+                "measurementType": "akenza/climate/pressure/hpa",
                 "title": "Pressure (HPA)",
                 "description": "Barometric Pressure in hpa",
                 "type": "number",

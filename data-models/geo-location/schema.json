@@ -1,13 +1,13 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/defaults/geo-location/schema.json",
+    "$id": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/geo-location/schema.json",
     "title": "Geo-Location",
     "description": "Geo-Location measurements.",
     "type": "object",
     "$defs": {
         "gps": {
             "latitude": {
-                "measurementType": "akenza.io/data-models/defaults/geo-location/gps/latitude",
+                "measurementType": "akenza/geo-location/gps/latitude",
                 "title": "Latitude",
                 "description": "The latitude of a GPS measurement in degrees.",
                 "type": "number",
@@ -16,7 +16,7 @@
                 "maximum": 90.0
             },
             "longitude": {
-                "measurementType": "akenza.io/data-models/defaults/geo-location/gps/longitude",
+                "measurementType": "akenza/geo-location/gps/longitude",
                 "title": "Longitude",
                 "description": "The longitude of a GPS measurement in degrees.",
                 "type": "number",

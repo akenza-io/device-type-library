@@ -1,0 +1,18 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/acoustics/schema.json",
+    "title": "Acoustics",
+    "description": "Acoustics measurements.",
+    "type": "object",
+    "$defs": {
+        "soundLevel": {
+            "dba": {
+                "measurementType": "akenza/acoustics/soundLevel/dba",
+                "title": "Sound Level",
+                "unit": "dB(A)",
+                "description": "Sound level in dB(A) (relative loudness of sounds as perceived by the human ear)",
+                "type": "number"
+            }
+        }
+    }
+}
