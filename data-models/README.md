@@ -1,8 +1,8 @@
-# Data models
+# Default data-models
 
-Common Akenza data models that are used throughout the device types.
+We provide common default Akenza data-models that can be used by either custom device-types or incorporated into device-types provided by our device-type library.
 
-Data models are referenced by using the id and relevant definition:
+The default data-models can be used by referencing the `$id` and it's sub-path of the relevant schema-definition in the `$ref` of a new schema as illustrated below:
 
 ```
 {
@@ -14,7 +14,7 @@ Data models are referenced by using the id and relevant definition:
   "title": "Default",
   "properties": {
     "temperature": {
-      "$ref": "https://akenza.github.io/device-types-library/data-models/ambiance/climate/schema.json#/$defs/temperatureDegreesCelsius"
+      "$ref": "https://akenza.github.io/device-types-library/data-models/main/defaults/climate/schema.json#/$defs/temperature/celsius"
     },
     "humidity": {
       "title": "Humidity",
@@ -31,14 +31,3 @@ Data models are referenced by using the id and relevant definition:
   ]
 }
 ```
-
-## Units
-
-- Metric
-  - Degrees Celcius
-  - Centimeters
-  - Meters
-- Imperial
-  - Fahrenheit
-  - Inch
-  - Foot

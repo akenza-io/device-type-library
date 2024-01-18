@@ -1,0 +1,31 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/defaults/acoustics/schema.json",
+    "title": "Acoustics",
+    "description": "Acoustics measurements.",
+    "type": "object",
+    "$defs": {
+        "max": {
+            "dba": {
+                "measurementType": "akenza.io/data-models/defaults/acoustics/max/dba",
+                "title": "Sound Peak",
+                "unit": "dB(A)",
+                "description": "Peak value in dB SPL (relative loudness of sounds as perceived by the human ear)",
+                "type": "number",
+                "minimum": 20.0,
+                "maximum": 120.0
+            }
+        },
+        "avg": {
+            "dba": {
+                "measurementType": "akenza.io/data-models/defaults/accoustics/avg/dba",
+                "title": "Sound Average",
+                "unit": "dB(A)",
+                "description": "Average value in dB SPL (relative loudness of sounds as perceived by the human ear)",
+                "type": "number",
+                "minimum": 20.0,
+                "maximum": 120.0
+            }
+        }
+    }
+}
