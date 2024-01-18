@@ -4,12 +4,18 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.42.1] - 2024-01-18
+
+### Changed
+
+- update data-models and add an `example.schema.json` for each default schema
+
 # [1.42.0] - 2024-01-16
 
 ### Added
 
 - Alpha Omega Technology / Klax 2.0
-- intial set of data models 
+- intial set of data models
 
 # [1.41.0] - 2024-01-10
 
