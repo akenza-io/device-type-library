@@ -7,11 +7,11 @@
     "title": "Geo-Location Example",
     "properties": {
         "latitude": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/geo-location/schema.json/#$defs/gps/latitude",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/geo-location/schema.json#/$defs/gps/latitude",
             "hideFromKpis": false
         },
         "longitude": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/geo-location/schema.json/#$defs/gps/longitude",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/geo-location/schema.json#/$defs/gps/longitude",
             "hideFromKpis": false
         }
     },

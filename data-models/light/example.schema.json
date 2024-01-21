@@ -7,13 +7,13 @@
     "title": "Light Example",
     "properties": {
         "illuminance": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/light/schema.json/#$defs/illuminance/lux",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/light/schema.json#/$defs/illuminance/lux",
             "minimum": 0.0,
             "maximum": 1200,
             "hideFromKpis": false
         },
         "brightness": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/light/schema.json/#$defs/brightness/percent",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/light/schema.json#/$defs/brightness/percent",
             "hideFromKpis": false
         }
     },
