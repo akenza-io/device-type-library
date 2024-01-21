@@ -9,7 +9,7 @@
             "mG": {
                 "measurementType": "akenza/speed/acceleration/mG",
                 "title": "Acceleration",
-                "description": "Acceleration",
+                "description": "The acceleration into a direction.",
                 "type": "number",
                 "unit": "mG"
             }

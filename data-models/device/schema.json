@@ -19,7 +19,7 @@
         "batteryVoltage": {
             "volt": {
                 "measurementType": "akenza/device/batteryVoltage/volt",
-                "title": "Battery Voltage (V)",
+                "title": "Battery Voltage",
                 "description": "The battery voltage in Volt.",
                 "type": "number",
                 "unit": "V"

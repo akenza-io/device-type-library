@@ -8,8 +8,8 @@
         "co2": {
             "ppm": {
                 "measurementType": "akenza/air-quality/co2/ppm",
-                "title": "Carbon Dioxide (CO2)",
-                "description": "Carbon Dioxide in ppm",
+                "title": "CO2",
+                "description": "Carbon Dioxide in ppm.",
                 "type": "integer",
                 "unit": "ppm",
                 "minimum": 0
@@ -18,8 +18,8 @@
         "tvoc": {
             "ppb": {
                 "measurementType": "akenza/air-quality/tvoc/ppm",
-                "title": "Total Volatile Organic Compounds (TVOC)",
-                "description": "Total Volatile Organic Compunds in ppb",
+                "title": "TVOC",
+                "description": "Total Volatile Organic Compunds in ppb.",
                 "type": "integer",
                 "unit": "ppb",
                 "minimum": 0
@@ -28,7 +28,7 @@
         "pm1": {
             "mcgm3": {
                 "measurementType": "akenza/air-quality/pm1/mcgm3",
-                "title": "Particulate Matter (PM1.0)",
+                "title": "PM1.0",
                 "description": "Particles with a diameter of less than 1.0 micrometers.",
                 "type": "integer",
                 "unit": "μg/m3",
@@ -38,7 +38,7 @@
         "pm2_5": {
             "mcgm3": {
                 "measurementType": "akenza/air-quality/pm2_5/mcgm3",
-                "title": "Particulate Matter (PM2.5)",
+                "title": "PM2.5",
                 "description": "Particles with a diameter of less than 2.5 micrometers.",
                 "type": "integer",
                 "unit": "μg/m3",
@@ -48,7 +48,7 @@
         "pm10": {
             "mcgm3": {
                 "measurementType": "akenza/air-quality/pm10/mcgm3",
-                "title": "Particulate Matter (PM10)",
+                "title": "PM10",
                 "description": "Particles with a diameter of less than 10 micrometers.",
                 "type": "integer",
                 "unit": "μg/m3",
