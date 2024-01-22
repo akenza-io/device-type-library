@@ -5,18 +5,20 @@
     "description": "Geo-Location measurements.",
     "type": "object",
     "$defs": {
-        "gps": {
-            "latitude": {
-                "measurementType": "akenza/geo-location/gps/latitude",
+        "latitude": {
+            "degrees": {
+                "measurementType": "akenza/geo-location/latitude/degrees",
                 "title": "Latitude",
                 "description": "The latitude of a GPS measurement in degrees.",
                 "type": "number",
                 "unit": "°",
                 "minimum": -90.0,
                 "maximum": 90.0
-            },
-            "longitude": {
-                "measurementType": "akenza/geo-location/gps/longitude",
+            }
+        },
+        "longitude": {
+            "degrees": {
+                "measurementType": "akenza/geo-location/longitude/degrees",
                 "title": "Longitude",
                 "description": "The longitude of a GPS measurement in degrees.",
                 "type": "number",
