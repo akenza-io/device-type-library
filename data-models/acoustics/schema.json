@@ -10,7 +10,7 @@
                 "measurementType": "akenza/acoustics/soundLevel/dba",
                 "title": "Sound Level",
                 "unit": "dB(A)",
-                "description": "Sound level in dB(A) (relative loudness of sounds as perceived by the human ear)",
+                "description": "Sound level in dB(A) (relative loudness of sounds as perceived by the human ear).",
                 "type": "number"
             }
         }

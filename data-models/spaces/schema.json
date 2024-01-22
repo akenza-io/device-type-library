@@ -23,8 +23,8 @@
             }
         },
         "peopleIn": {
-            "count": {
-                "measurementType": "akenza/spaces/peopleIn/count",
+            "people": {
+                "measurementType": "akenza/spaces/peopleIn/people",
                 "title": "People moving inside",
                 "description": "People moving inside the area.",
                 "unit": "people",
@@ -33,19 +33,21 @@
             }
         },
         "peopleOut": {
-            "count": {
-                "measurementType": "akenza/spaces/peopleOut/count",
+            "people": {
+                "measurementType": "akenza/spaces/peopleOut/people",
                 "title": "People moving outside",
                 "description": "People moving out of the area.",
+                "unit": "people",
                 "type": "integer",
                 "minimum": 0
             }
         },
         "peopleCount": {
-            "count": {
-                "measurementType": "akenza/spaces/peopleCount/count",
+            "people": {
+                "measurementType": "akenza/spaces/peopleCount/people",
                 "title": "People count",
                 "description": "People in the area.",
+                "unit": "people",
                 "type": "integer",
                 "minimum": 0
             }

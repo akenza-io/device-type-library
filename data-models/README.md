@@ -90,3 +90,23 @@ akenza/light/illuminance/lux
 - light
 - spaces
 - speed
+
+## Guidelines
+
+- The unit should not be repeated in the name
+- The name should be concise and the description should be used to add more information
+
+## Generating Schemas from CSV
+
+The two Jupyter notebooks `schemas-to-csv.ipynb` and `csv-to-schemas.ipynb` can be used to convert the existing measurement type schemas into a csv for easier editing and back to measurement type schemas.
+
+Run the following commands to run the notebooks:
+
+```
+cd data-models
+pip3 install -U virtualenv
+virtualenv .venv
+source .venv/bin/activate
+pip install jupyterlab
+jupyter lab
+```

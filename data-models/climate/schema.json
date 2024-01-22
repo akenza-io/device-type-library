@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://akenza.github.io/device-types-library/data-models/main/data-models/climate/schema.json",
+    "$id": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/climate/schema.json",
     "title": "Climate",
     "description": "Climate measurements.",
     "type": "object",
@@ -8,22 +8,22 @@
         "temperature": {
             "celsius": {
                 "measurementType": "akenza/climate/temperature/celsius",
-                "title": "Temperature (°C)",
+                "title": "Temperature",
                 "description": "The temperature in degrees Celcius.",
                 "type": "number",
                 "unit": "°C"
             },
             "fahrenheit": {
                 "measurementType": "akenza/climate/temperature/fahrenheit",
-                "title": "Temperature (F)",
+                "title": "Temperature",
                 "description": "The temperature in degrees Fahrenheit.",
                 "type": "number",
-                "unit": "F"
+                "unit": "°F"
             },
             "kelvin": {
                 "measurementType": "akenza/climate/temperature/kelvin",
-                "title": "Temperature (K)",
-                "description": "The temperature in degrees Kelvin.",
+                "title": "Temperature",
+                "description": "The temperature in Kelvin.",
                 "type": "number",
                 "unit": "K"
             }
@@ -42,8 +42,8 @@
         "pressure": {
             "hPa": {
                 "measurementType": "akenza/climate/pressure/hPa",
-                "title": "Pressure (hPa)",
-                "description": "Barometric Pressure in hPa",
+                "title": "Pressure",
+                "description": "Barometric Pressure in hPa.",
                 "type": "number",
                 "unit": "hPa"
             }
