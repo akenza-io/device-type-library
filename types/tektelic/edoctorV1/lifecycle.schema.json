@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/tektelic/edoctor/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lifecycle",
+  "type": "object",
+  "topic": "lifecycle",
+  "processingType": "uplink_decoder",
+  "properties": {
+    "batteryVoltage": {
+      "title": "Battery voltage",
+      "unit": "V",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "description": "The battery voltage in Volt. 3.2 max"
+    }
+  },
+  "required": ["batteryVoltage"]
+}
