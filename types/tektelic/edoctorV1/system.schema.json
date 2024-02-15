@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/tektelic/edoctor/system.schema.json",
+  "$id": "https://akenza.io/tektelic/edoctorV1/system.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "System",
   "type": "object",
@@ -10,35 +10,55 @@
       "title": "Join Mode",
       "type": "string",
       "description": "Join Mode",
-      "enum": ["ABP", "OTAA", "INVALID"],
+      "enum": [
+        "ABP",
+        "OTAA",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "adr": {
       "title": "Adaptive datarate",
       "type": "string",
       "description": "Adaptive datarate",
-      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "enum": [
+        "DISABLE",
+        "ENABLE",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "dutyCycle": {
       "title": "Duty cycle",
       "type": "string",
       "description": "Duty cycle",
-      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "enum": [
+        "DISABLE",
+        "ENABLE",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "syncWord": {
       "title": "Sync word",
       "type": "string",
       "description": "Sync word",
-      "enum": ["PRIVATE", "PUBLIC", "INVALID"],
+      "enum": [
+        "PRIVATE",
+        "PUBLIC",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "confirmMode": {
       "title": "Confirm mode",
       "type": "string",
       "description": "Confirm mode",
-      "enum": ["UNCONFIRMED", "CONFIRMED", "INVALID"],
+      "enum": [
+        "UNCONFIRMED",
+        "CONFIRMED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "drNumber": {
@@ -99,7 +119,11 @@
       "title": "Enabled",
       "type": "string",
       "description": "Enabled",
-      "enum": ["DISABLE", "ENABLE", "INVALID"],
+      "enum": [
+        "DISABLE",
+        "ENABLE",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "gamma": {

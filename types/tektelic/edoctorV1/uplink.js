@@ -673,30 +673,53 @@ function decode(bytes, port) {
       {
         key: [],
         fn(arg) {
-          decodedData.batteryVoltage = (
-            decodeField(arg, 9, 71, 64, "unsigned") * 0.391304348 +
-            0.608695652
-          ).toFixed(2);
-          decodedData.st = (
-            decodeField(arg, 9, 63, 56, "unsigned") * 0.05 +
-            30
-          ).toFixed(2); // ?
+          decodedData.batteryLevel = Math.round(
+            decodeField(arg, 9, 71, 64, "unsigned") * 0.391304348 + 0.608695652,
+          );
+          decodedData.skinTemperature =
+            Math.round(
+              (decodeField(arg, 9, 63, 56, "unsigned") * 0.05 + 30) * 10,
+            ) / 10;
           decodedData.respiratoryRate = decodeField(arg, 9, 55, 48, "unsigned");
           decodedData.uaModeActive = !!decodeField(arg, 9, 47, 47, "unsigned");
 
-          decodedData.ce = (
-            decodeField(arg, 9, 45, 40, "unsigned") * 0.2
-          ).toFixed(2);
-          decodedData.af = decodeField(arg, 9, 31, 31, "unsigned");
+          decodedData.chestExpansion =
+            decodeField(arg, 9, 45, 40, "unsigned") * 0.2;
+          decodedData.activityFactor = decodeField(arg, 9, 31, 31, "unsigned");
           decodedData.position = decodeField(arg, 9, 30, 24, "unsigned");
           decodedData.heartRate = decodeField(arg, 9, 23, 16, "unsigned");
-          decodedData.st2 = (
-            decodeField(arg, 9, 15, 8, "unsigned") * 0.05 +
-            30
-          ).toFixed(2);
-          decodedData.af2 = (
-            decodeField(arg, 9, 7, 0, "unsigned") * 0.01
-          ).toFixed(2);
+          decodedData.skinTemperature2 =
+            Math.round(
+              (decodeField(arg, 9, 15, 8, "unsigned") * 0.05 + 30) * 10,
+            ) / 10;
+          decodedData.activityIntensity =
+            decodeField(arg, 9, 7, 0, "unsigned") * 0.01;
+
+          // Filter invalid datapoints
+          if (decodeField(arg, 9, 7, 0, "unsigned") === 255) {
+            delete decodedData.activityIntensity;
+          }
+          if (decodeField(arg, 9, 15, 8, "unsigned") === 255) {
+            delete decodedData.skinTemperature2;
+          }
+          if (decodeField(arg, 9, 23, 16, "unsigned") === 255) {
+            delete decodedData.heartRate;
+          }
+          if (decodeField(arg, 9, 30, 24, "unsigned") === 127) {
+            delete decodedData.position;
+          }
+          if (decodeField(arg, 9, 45, 40, "unsigned") === 63) {
+            delete decodedData.chestExpansion;
+          }
+          if (decodeField(arg, 9, 55, 48, "unsigned") === 255) {
+            delete decodedData.respiratoryRate;
+          }
+          if (decodeField(arg, 9, 63, 56, "unsigned") === 255) {
+            delete decodedData.skinTemperature;
+          }
+          if (decodeField(arg, 9, 71, 64, "unsigned") === 255) {
+            delete decodedData.batteryLevel;
+          }
           return 9;
         },
       },
@@ -756,11 +779,13 @@ function consume(event) {
   if (data.errors !== undefined) {
     topic = "error";
   } else if (port === 10) {
-    emit("sample", {
-      data: { batteryVoltage: data.batteryVoltage },
-      topic: "lifecycle",
-    });
-    delete data.batteryVoltage;
+    if (data.batteryLevel !== undefined) {
+      emit("sample", {
+        data: { batteryLevel: data.batteryLevel },
+        topic: "lifecycle",
+      });
+      delete data.batteryLevel;
+    }
   } else if (port === 100) {
     topic = "system";
   } else if (port === 101) {
