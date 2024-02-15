@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.43.0] - 2024-02-14
+
+### Added
+
+- Elsys - ETHd10
+- Elsys - EIAQd10
+
 # [1.42.1] - 2024-01-18
 
 ### Changed
