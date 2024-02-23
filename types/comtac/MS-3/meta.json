@@ -12,12 +12,16 @@
     "Light",
     "Humidity",
     "Temperature",
-    "Acceleration",
+    "Accelerometer",
     "Gyro",
     "Magnetometer",
     "GPS"
   ],
-  "outputTopics": ["event", "default", "lifecycle"],
+  "outputTopics": [
+    "event",
+    "default",
+    "lifecycle"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

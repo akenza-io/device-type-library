@@ -10,7 +10,7 @@
   "availableSensors": [
     "Temperature",
     "Humidity",
-    "PM2.5"
+    "Particulate Matter"
   ],
   "outputTopics": [
     "default"

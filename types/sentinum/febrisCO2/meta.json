@@ -12,9 +12,12 @@
     "Humidity",
     "Pressure",
     "CO2",
-    "Dew point"
+    "Dew Point"
   ],
-  "outputTopics": ["default", "lifecycle"],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

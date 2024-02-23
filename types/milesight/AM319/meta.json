@@ -15,12 +15,14 @@
     "TVOC",
     "Pressure",
     "CO2",
-    "PM 2.5",
-    "PM 10",
+    "Particulate Matter",
     "Formaldehyde",
     "Ozone"
   ],
-  "outputTopics": ["default", "lifecycle"],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

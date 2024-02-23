@@ -11,7 +11,7 @@
     "Humidity",
     "Temperature",
     "Light",
-    "Magnet",
+    "Reed",
     "Vibration"
   ],
   "outputTopics": [

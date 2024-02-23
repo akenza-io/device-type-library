@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.43.1] - 2024-02-23
+
+### Added
+
+- Unifyed available sensors in the meta.json
+
 # [1.43.0] - 2024-02-14
 
 ### Added

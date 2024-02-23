@@ -6,8 +6,15 @@
   "description": "The Office Occupancy Counter measures how rooms are used. By measuring traffic in the passageways, occupancy can be clarified and the information used to determine the utilisation of a building or room.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
-  "availableSensors": ["People counting"],
-  "outputTopics": ["default", "totalCounter", "lifecycle"],
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "People Counting"
+  ],
+  "outputTopics": [
+    "default",
+    "totalCounter",
+    "lifecycle"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

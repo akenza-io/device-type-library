@@ -7,8 +7,13 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "C",
-  "availableSensors": ["Energy"],
-  "outputTopics": ["default", "lifecycle"],
+  "availableSensors": [
+    "Energy Metering"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }
