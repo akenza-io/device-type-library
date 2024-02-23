@@ -2,7 +2,6 @@ function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
   const data = {};
-  const numeric = {};
   const lifecycle = {};
 
   if (Bits.bitsToUnsigned(bits.substr(0, 8)) === 49) {
@@ -18,14 +17,14 @@ function consume(event) {
     //
 
     // Numeric Buttons Pressed
-    numeric.longPressed = Number(data.longPressed);
+    data.numericLongPressed = Number(data.longPressed);
     // Reserved 1
-    numeric.button6 = Number(data.button6);
-    numeric.button5 = Number(data.button5);
-    numeric.button4 = Number(data.button4);
-    numeric.button3 = Number(data.button3);
-    numeric.button2 = Number(data.button2);
-    numeric.button1 = Number(data.button1);
+    data.numericButton6 = Number(data.button6);
+    data.numericButton5 = Number(data.button5);
+    data.numericButton4 = Number(data.button4);
+    data.numericButton3 = Number(data.button3);
+    data.numericButton2 = Number(data.button2);
+    data.numericButton1 = Number(data.button1);
 
     lifecycle.hbIRQ = !!Bits.bitsToUnsigned(bits.substr(16, 8));
     lifecycle.accIRQ = !!Bits.bitsToUnsigned(bits.substr(24, 8));
@@ -61,6 +60,5 @@ function consume(event) {
 
     emit("sample", { data: lifecycle, topic: "lifecycle" });
     emit("sample", { data, topic: "default" });
-    emit("sample", { data: numeric, topic: "numeric" });
   }
 }

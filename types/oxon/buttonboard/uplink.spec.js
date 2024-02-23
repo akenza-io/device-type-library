@@ -29,16 +29,6 @@ describe("Oxon Buttonboard Uplink", () => {
       });
   });
 
-  let numericSchema = null;
-  before((done) => {
-    utils
-      .loadSchema(`${__dirname}/numeric.schema.json`)
-      .then((parsedSchema) => {
-        numericSchema = parsedSchema;
-        done();
-      });
-  });
-
   describe("consume()", () => {
     it("should decode the Oxon Buttonboard payload", () => {
       const data = {
@@ -74,6 +64,14 @@ describe("Oxon Buttonboard Uplink", () => {
         assert.equal(value.data.button5, false);
         assert.equal(value.data.button6, false);
 
+        assert.equal(value.data.longPressed, 0);
+        assert.equal(value.data.button1, 0);
+        assert.equal(value.data.button2, 0);
+        assert.equal(value.data.button3, 1);
+        assert.equal(value.data.button4, 0);
+        assert.equal(value.data.button5, 0);
+        assert.equal(value.data.button6, 0);
+
         assert.equal(value.data.button1Enabled, false);
         assert.equal(value.data.button2Enabled, false);
         assert.equal(value.data.button3Enabled, true);
@@ -86,23 +84,6 @@ describe("Oxon Buttonboard Uplink", () => {
         assert.equal(value.data.accZ, -0.461);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
-      });
-
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "numeric");
-        assert.equal(value.data.longPressed, 0);
-        assert.equal(value.data.button1, 0);
-        assert.equal(value.data.button2, 0);
-        assert.equal(value.data.button3, 1);
-        assert.equal(value.data.button4, 0);
-        assert.equal(value.data.button5, 0);
-        assert.equal(value.data.button6, 0);
-
-        utils.validateSchema(value.data, numericSchema, { throwError: true });
       });
 
       consume(data);
