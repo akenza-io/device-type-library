@@ -16,6 +16,16 @@ function consume(event) {
     data.button1 = !!Bits.bitsToUnsigned(bits.substr(15, 1));
     //
 
+    // Numeric Buttons Pressed
+    data.numericLongPressed = Number(data.longPressed);
+    // Reserved 1
+    data.numericButton6 = Number(data.button6);
+    data.numericButton5 = Number(data.button5);
+    data.numericButton4 = Number(data.button4);
+    data.numericButton3 = Number(data.button3);
+    data.numericButton2 = Number(data.button2);
+    data.numericButton1 = Number(data.button1);
+
     lifecycle.hbIRQ = !!Bits.bitsToUnsigned(bits.substr(16, 8));
     lifecycle.accIRQ = !!Bits.bitsToUnsigned(bits.substr(24, 8));
     lifecycle.appMode = Bits.bitsToUnsigned(bits.substr(32, 8));
