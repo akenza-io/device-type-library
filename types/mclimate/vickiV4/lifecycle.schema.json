@@ -1,0 +1,64 @@
+{
+  "$id": "https://akenza.io/mclimate/vicki4/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "batteryVoltage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "title": "Battery voltage",
+      "description": "The battery voltage in Volt.",
+      "unit": "V"
+    },
+    "highMotorConsumption": {
+      "title": "High motor consumption",
+      "description": "High motor consumption",
+      "type": "boolean"
+    },
+    "lowMotorConsumption": {
+      "title": "Low motor consumption",
+      "description": "Low motor consumption",
+      "type": "boolean"
+    },
+    "brokenSensor": {
+      "title": "Broken sensor",
+      "description": "Broken sensor",
+      "type": "boolean"
+    },
+    "calibrationFailed": {
+      "title": "Calibration failed",
+      "description": "Calibration failed",
+      "type": "boolean"
+    },
+    "attachedBackplate": {
+      "title": "Attached backplate",
+      "description": "Attached backplate",
+      "type": "boolean"
+    },
+    "perceiveAsOnline": {
+      "title": "Perceive as online",
+      "description": "Perceive as online",
+      "type": "boolean"
+    },
+    "antiFreezeProtection": {
+      "title": "Anti freeze protection",
+      "description": "Anti freeze protection",
+      "type": "boolean"
+    },
+    "motorOpenness": {
+      "title": "Motor openness",
+      "description": "Motor openness",
+      "type": "number"
+    }
+  },
+  "required": [
+    "batteryVoltage",
+    "highMotorConsumption",
+    "lowMotorConsumption",
+    "brokenSensor"
+  ]
+}
