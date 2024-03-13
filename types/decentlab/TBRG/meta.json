@@ -1,0 +1,20 @@
+{
+  "name": "DL-SMTP",
+  "version": "1.0.0",
+  "manufacturer": "Decentlab",
+  "url": "https://www.decentlab.com/products/soil-moisture-and-temperature-profile-for-lorawan",
+  "description": "Measures the soil moisture and temperature in 100mm, 200mm, 300mm, 400mm, 500mm and 600mm depth with a very robust probe design. This enables precise statements to be made about the soil and enables intelligent agriculture and monitoring of greenhouses, parks or golf courses.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V2.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Soil moisture",
+    "Soil temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

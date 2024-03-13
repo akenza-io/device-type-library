@@ -1,0 +1,156 @@
+{
+  "$id": "https://akenza.io/decentlab/smtp/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "soilMoistureAtDepth0": {
+      "title": "Soil moisture at depth 0",
+      "unit": "SFU",
+      "type": "number",
+      "description": "Soil moisture at depth 0",
+      "minimum": -5,
+      "maximum": 120
+    },
+    "soilTemperatureAtDepth0": {
+      "title": "Soil temperature at depth 0",
+      "unit": "°C",
+      "type": "number",
+      "description": "Soil temperature at depth 0",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "soilMoistureAtDepth1": {
+      "title": "Soil moisture at depth 1",
+      "unit": "SFU",
+      "type": "number",
+      "description": "Soil moisture at depth 1",
+      "minimum": -5,
+      "maximum": 120
+    },
+    "soilTemperatureAtDepth1": {
+      "title": "Soil temperature at depth 1",
+      "unit": "°C",
+      "type": "number",
+      "description": "Soil temperature at depth 1",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "soilMoistureAtDepth2": {
+      "title": "Soil moisture at depth 2",
+      "unit": "SFU",
+      "type": "number",
+      "description": "Soil moisture at depth 2",
+      "minimum": -5,
+      "maximum": 120
+    },
+    "soilTemperatureAtDepth2": {
+      "title": "Soil temperature at depth 2",
+      "unit": "°C",
+      "type": "number",
+      "description": "Soil temperature at depth 2",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "soilMoistureAtDepth3": {
+      "title": "Soil moisture at depth 3",
+      "unit": "SFU",
+      "type": "number",
+      "description": "Soil moisture at depth 3",
+      "minimum": -5,
+      "maximum": 120
+    },
+    "soilTemperatureAtDepth3": {
+      "title": "Soil temperature at depth 3",
+      "unit": "°C",
+      "type": "number",
+      "description": "Soil temperature at depth 3",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "soilMoistureAtDepth4": {
+      "title": "Soil moisture at depth 4",
+      "unit": "SFU",
+      "type": "number",
+      "description": "Soil moisture at depth 4",
+      "minimum": -5,
+      "maximum": 120
+    },
+    "soilTemperatureAtDepth4": {
+      "title": "Soil temperature at depth 4",
+      "unit": "°C",
+      "type": "number",
+      "description": "Soil temperature at depth 4",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "soilMoistureAtDepth5": {
+      "title": "Soil moisture at depth 5",
+      "unit": "SFU",
+      "type": "number",
+      "description": "Soil moisture at depth 5",
+      "minimum": -5,
+      "maximum": 120
+    },
+    "soilTemperatureAtDepth5": {
+      "title": "Soil temperature at depth 5",
+      "unit": "°C",
+      "type": "number",
+      "description": "Soil temperature at depth 5",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "soilMoistureAtDepth6": {
+      "title": "Soil moisture at depth 6",
+      "unit": "SFU",
+      "type": "number",
+      "description": "Soil moisture at depth 6",
+      "minimum": -5,
+      "maximum": 120
+    },
+    "soilTemperatureAtDepth6": {
+      "title": "Soil temperature at depth 6",
+      "unit": "°C",
+      "type": "number",
+      "description": "Soil temperature at depth 6",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "soilMoistureAtDepth7": {
+      "title": "Soil moisture at depth 7",
+      "unit": "SFU",
+      "type": "number",
+      "description": "Soil moisture at depth 7",
+      "minimum": -5,
+      "maximum": 120
+    },
+    "soilTemperatureAtDepth7": {
+      "title": "Soil temperature at depth 7",
+      "unit": "°C",
+      "type": "number",
+      "description": "Soil temperature at depth 7",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    }
+  },
+  "required": [
+    "soilMoistureAtDepth0",
+    "soilTemperatureAtDepth0",
+    "soilMoistureAtDepth1",
+    "soilTemperatureAtDepth1",
+    "soilMoistureAtDepth2",
+    "soilTemperatureAtDepth2",
+    "soilMoistureAtDepth3",
+    "soilTemperatureAtDepth3",
+    "soilMoistureAtDepth4",
+    "soilTemperatureAtDepth4",
+    "soilMoistureAtDepth5",
+    "soilTemperatureAtDepth5",
+    "soilMoistureAtDepth6",
+    "soilTemperatureAtDepth6",
+    "soilMoistureAtDepth7",
+    "soilTemperatureAtDepth7"
+  ]
+}
