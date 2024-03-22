@@ -1,0 +1,58 @@
+{
+  "$id": "https://akenza.io/smartEnds/brigtherBins/system.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "system",
+  "title": "System",
+  "properties": {
+    "hardwareVersion": {
+      "title": "Hardware version",
+      "type": "integer",
+      "description": "Hardware version"
+    },
+    "softwareVersion": {
+      "title": "Software version",
+      "type": "string",
+      "description": "Software version"
+    },
+    "noOfDownlink": {
+      "title": "Number of downlinks",
+      "type": "integer",
+      "description": "Number of downlinks"
+    },
+    "downlinkFreq": {
+      "title": "Downlink frequency",
+      "type": "integer",
+      "description": "Downlink frequency"
+    },
+    "totalResetCount": {
+      "title": "Total reset count",
+      "type": "integer",
+      "description": "Total reset count"
+    },
+    "runTime": {
+      "title": "Run time",
+      "type": "integer",
+      "description": "Run time"
+    },
+    "comTest": {
+      "title": "Com test",
+      "type": "boolean",
+      "description": "Com test equals true if working"
+    },
+    "distanceTest": {
+      "title": "Distance test",
+      "type": "boolean",
+      "description": "Distance test equals true if working"
+    },
+    "tempTest": {
+      "title": "Temperature test",
+      "type": "boolean",
+      "description": "Temperature test equals true if working"
+    }
+  },
+  "required": [
+    "batteryLevel"
+  ]
+}
