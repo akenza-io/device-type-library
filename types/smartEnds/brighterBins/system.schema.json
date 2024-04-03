@@ -8,51 +8,76 @@
   "properties": {
     "hardwareVersion": {
       "title": "Hardware version",
-      "type": "integer",
-      "description": "Hardware version"
+      "type": "number",
+      "description": "Hardware version",
+      "hideFromKpis": true
     },
     "softwareVersion": {
       "title": "Software version",
       "type": "string",
-      "description": "Software version"
+      "description": "Software version",
+      "hideFromKpis": true
     },
     "noOfDownlink": {
       "title": "Number of downlinks",
       "type": "integer",
-      "description": "Number of downlinks"
+      "description": "Number of downlinks",
+      "hideFromKpis": true
     },
     "downlinkFreq": {
       "title": "Downlink frequency",
       "type": "integer",
-      "description": "Downlink frequency"
+      "description": "Downlink frequency",
+      "hideFromKpis": true
     },
     "totalResetCount": {
       "title": "Total reset count",
       "type": "integer",
-      "description": "Total reset count"
+      "description": "Total reset count",
+      "hideFromKpis": true
     },
     "runTime": {
       "title": "Run time",
       "type": "integer",
-      "description": "Run time"
+      "description": "Run time",
+      "hideFromKpis": true
+    },
+    "totalRuntime": {
+      "title": "Total run time",
+      "type": "integer",
+      "description": "Total run time",
+      "hideFromKpis": true
+    },
+    "configsTest": {
+      "title": "Configuration test",
+      "type": "boolean",
+      "description": "Configuration test equals true if working",
+      "hideFromKpis": true
     },
     "comTest": {
       "title": "Com test",
       "type": "boolean",
-      "description": "Com test equals true if working"
+      "description": "Com test equals true if working",
+      "hideFromKpis": true
     },
     "distanceTest": {
       "title": "Distance test",
       "type": "boolean",
-      "description": "Distance test equals true if working"
+      "description": "Distance test equals true if working",
+      "hideFromKpis": true
+    },
+    "accelTest": {
+      "title": "Acceleration test",
+      "type": "boolean",
+      "description": "Acceleration test equals true if working",
+      "hideFromKpis": true
     },
     "tempTest": {
       "title": "Temperature test",
       "type": "boolean",
-      "description": "Temperature test equals true if working"
+      "description": "Temperature test equals true if working",
+      "hideFromKpis": true
     }
   },
-  "required": [
-    "batteryLevel"
-  ]
+  "required": []
 }

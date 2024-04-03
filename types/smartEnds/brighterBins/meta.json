@@ -11,8 +11,15 @@
     "Distance"
   ],
   "outputTopics": [
-    "default",
-    "lifecycle"
+    "depth",
+    "distance_history",
+    "distance",
+    "event",
+    "fill_level",
+    "lifecycle",
+    "motion_history",
+    "orientation",
+    "system"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

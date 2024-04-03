@@ -29,7 +29,16 @@ describe("Brigther Bins uplink", () => {
       });
   });
 
-  /*
+  let fillLevelSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/fill_level.schema.json`)
+      .then((parsedSchema) => {
+        fillLevelSchema = parsedSchema;
+        done();
+      });
+  });
+
   let systemSchema = null;
   before((done) => {
     utils.loadSchema(`${__dirname}/system.schema.json`).then((parsedSchema) => {
@@ -37,7 +46,7 @@ describe("Brigther Bins uplink", () => {
       done();
     });
   });
-
+  /*
   const eventsSchema = null;
   before((done) => {
     utils.loadSchema(`${__dirname}/system.schema.json`).then((parsedSchema) => {
@@ -52,16 +61,6 @@ describe("Brigther Bins uplink", () => {
       depthSchema = parsedSchema;
       done();
     });
-  });
-
-  const historySchema = null;
-  before((done) => {
-    utils
-      .loadSchema(`${__dirname}/history.schema.json`)
-      .then((parsedSchema) => {
-        historySchema = parsedSchema;
-        done();
-      });
   });
 
   */
@@ -80,10 +79,10 @@ describe("Brigther Bins uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "default");
+        assert.equal(value.topic, "fill_level");
         assert.equal(value.data.fillLevel, 12);
 
-        // utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, fillLevelSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -96,7 +95,7 @@ describe("Brigther Bins uplink", () => {
         assert.equal(value.data.temperature, 31);
         assert.equal(value.data.resetReason, "ALL_OK");
 
-        // utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -115,10 +114,10 @@ describe("Brigther Bins uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "default");
+        assert.equal(value.topic, "distance");
         assert.equal(value.data.distance, 396);
 
-        // utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, distanceSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -130,7 +129,7 @@ describe("Brigther Bins uplink", () => {
         assert.equal(value.data.temperature, -23);
         assert.equal(value.data.batteryLevel, 24);
 
-        // utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -161,7 +160,7 @@ describe("Brigther Bins uplink", () => {
         assert.equal(value.data.downlinkFreq, 2);
         assert.equal(value.data.noOfDownlink, 2);
 
-        // utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, systemSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -174,7 +173,7 @@ describe("Brigther Bins uplink", () => {
         assert.equal(value.data.batteryVoltage, 3.6);
         assert.equal(value.data.resetReason, "ALL_OK");
 
-        // utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

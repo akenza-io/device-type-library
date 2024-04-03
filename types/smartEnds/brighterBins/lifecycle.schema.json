@@ -36,6 +36,14 @@
       "description": "The battery charge in percent.",
       "unit": "%"
     },
+    "batteryVoltage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "title": "Battery voltage",
+      "description": "The battery voltage in Volt.",
+      "unit": "V"
+    },
     "temperature": {
       "title": "Temperature",
       "unit": "°C",
@@ -54,6 +62,31 @@
         "DOWNLINK_BOUND_ERROR",
         "DOWNLINK_PROCESSING_FAILED"
       ],
+      "hideFromKpis": true
+    },
+    "txReason": {
+      "title": "TX Reason",
+      "type": "string",
+      "description": "TX Reason",
+      "enum": [
+        "OTHER",
+        "FIRST",
+        "TIME_UPDATE",
+        "BOTH_CHANGE",
+        "POSITIV_CHANGE",
+        "NEGATIVE_CHANGE",
+        "TRANSMIT_INTERVAL",
+        "MOTION_EVENT_BUFFER_FULL",
+        "MOTION_EVENT_PICKUP",
+        "MOTION_EVENT_FIRE_ALARM",
+        "MOTION_EVENT_TAMPER"
+      ],
+      "hideFromKpis": true
+    },
+    "measurementInterval": {
+      "title": "Measurement interval",
+      "type": "number",
+      "description": "Measurement interval",
       "hideFromKpis": true
     }
   },

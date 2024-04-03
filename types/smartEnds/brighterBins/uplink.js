@@ -8,6 +8,7 @@ function consume(event) {
   const system = {};
   const events = {};
   const depth = {};
+  const orientation = {};
   const bitsLength = bits.length;
 
   const uplinkType = Bits.bitsToUnsigned(bits.substr(bitsLength - 2, 2));
@@ -153,9 +154,12 @@ function consume(event) {
           // Reserved 48
           events.tamperEvent = !!Bits.bitsToUnsigned(bits.substr(48, 1));
 
-          data.zOrientation = Bits.bitsToUnsigned(bits.substr(49, 5)) * 6 - 90;
-          data.yOrientation = Bits.bitsToUnsigned(bits.substr(54, 5)) * 6 - 90;
-          data.xOrientation = Bits.bitsToUnsigned(bits.substr(59, 5)) * 6 - 90;
+          orientation.zOrientation =
+            Bits.bitsToUnsigned(bits.substr(49, 5)) * 6 - 90;
+          orientation.yOrientation =
+            Bits.bitsToUnsigned(bits.substr(54, 5)) * 6 - 90;
+          orientation.xOrientation =
+            Bits.bitsToUnsigned(bits.substr(59, 5)) * 6 - 90;
 
           events.fireAlarm = !!Bits.bitsToUnsigned(bits.substr(64, 1));
           const pickupType = Bits.bitsToUnsigned(bits.substr(65, 2));
@@ -204,7 +208,7 @@ function consume(event) {
           system.configsTest = Bits.bitsToUnsigned(bits.substr(58, 1));
           system.comTest = Bits.bitsToUnsigned(bits.substr(59, 1));
           system.distanceTest = Bits.bitsToUnsigned(bits.substr(60, 1));
-          system.acceleroTest = Bits.bitsToUnsigned(bits.substr(61, 1));
+          system.accelTest = Bits.bitsToUnsigned(bits.substr(61, 1));
           system.tempTest = Bits.bitsToUnsigned(bits.substr(62, 1));
 
           const resetReason = Bits.bitsToUnsigned(bits.substr(63, 4));
@@ -279,9 +283,12 @@ function consume(event) {
         // General Fill Level Uplink
         case 5: {
           // Reserved 27
-          data.zOrientation = Bits.bitsToUnsigned(bits.substr(27, 5)) * 6 - 90;
-          data.yOrientation = Bits.bitsToUnsigned(bits.substr(32, 5)) * 6 - 90;
-          data.xOrientation = Bits.bitsToUnsigned(bits.substr(37, 5)) * 6 - 90;
+          orientation.zOrientation =
+            Bits.bitsToUnsigned(bits.substr(27, 5)) * 6 - 90;
+          orientation.yOrientation =
+            Bits.bitsToUnsigned(bits.substr(32, 5)) * 6 - 90;
+          orientation.xOrientation =
+            Bits.bitsToUnsigned(bits.substr(37, 5)) * 6 - 90;
 
           const downlinkValidity = Bits.bitsToUnsigned(bits.substr(42, 2));
           switch (downlinkValidity) {
@@ -314,14 +321,14 @@ function consume(event) {
         }
         // Multi Points Raw Uplink
         case 6: {
-          data.point8 = Bits.bitsToUnsigned(bits.substr(0, 8));
-          data.point7 = Bits.bitsToUnsigned(bits.substr(8, 8));
-          data.point6 = Bits.bitsToUnsigned(bits.substr(16, 8));
-          data.point5 = Bits.bitsToUnsigned(bits.substr(24, 8));
-          data.point4 = Bits.bitsToUnsigned(bits.substr(32, 8));
-          data.point3 = Bits.bitsToUnsigned(bits.substr(40, 8));
-          data.point2 = Bits.bitsToUnsigned(bits.substr(48, 8));
-          data.point1 = Bits.bitsToUnsigned(bits.substr(56, 8));
+          depth.point8 = Bits.bitsToUnsigned(bits.substr(0, 8));
+          depth.point7 = Bits.bitsToUnsigned(bits.substr(8, 8));
+          depth.point6 = Bits.bitsToUnsigned(bits.substr(16, 8));
+          depth.point5 = Bits.bitsToUnsigned(bits.substr(24, 8));
+          depth.point4 = Bits.bitsToUnsigned(bits.substr(32, 8));
+          depth.point3 = Bits.bitsToUnsigned(bits.substr(40, 8));
+          depth.point2 = Bits.bitsToUnsigned(bits.substr(48, 8));
+          depth.point1 = Bits.bitsToUnsigned(bits.substr(56, 8));
 
           // Reserved 6
           lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substr(64, 6)) * 2;
@@ -541,20 +548,28 @@ function consume(event) {
       break;
   }
 
-  if (Object.keys(fillLevel).length !== 0) {
-    emit("sample", { data: fillLevel, topic: "fill_level" });
+  if (Object.keys(depth).length !== 0) {
+    emit("sample", { data: depth, topic: "depth" });
   }
 
   if (Object.keys(distance).length !== 0) {
     emit("sample", { data: distance, topic: "distance" });
   }
 
-  if (Object.keys(system).length !== 0) {
-    emit("sample", { data: system, topic: "system" });
-  }
-
   if (Object.keys(events).length !== 0) {
     emit("sample", { data: events, topic: "event" });
+  }
+
+  if (Object.keys(fillLevel).length !== 0) {
+    emit("sample", { data: fillLevel, topic: "fill_level" });
+  }
+
+  if (Object.keys(orientation).length !== 0) {
+    emit("sample", { data: orientation, topic: "orientation" });
+  }
+
+  if (Object.keys(system).length !== 0) {
+    emit("sample", { data: system, topic: "system" });
   }
 
   if (Object.keys(lifecycle).length !== 0) {
