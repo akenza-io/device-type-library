@@ -17,7 +17,7 @@
         },
         "tvoc": {
             "ppb": {
-                "measurementType": "akenza/air-quality/tvoc/ppm",
+                "measurementType": "akenza/air-quality/tvoc/ppb",
                 "title": "TVOC",
                 "description": "Total Volatile Organic Compunds in ppb.",
                 "type": "integer",
