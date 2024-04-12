@@ -1,0 +1,62 @@
+{
+    "$id": "https://akenza.io/climate/example.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "example",
+    "title": "Climate Example",
+    "properties": {
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "minimum": -10.0,
+            "maximum": 60.0,
+            "hideFromKpis": false
+        },
+        "humidity": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
+            "hideFromKpis": false
+        },
+        "pressure": {
+            "measurementType": "custom/example/environment/pressure/hpa",
+            "title": "Pressure",
+            "description": "Barometric Pressure in hPa",
+            "type": "number",
+            "unit": "hPa",
+            "hideFromKpis": true
+        },
+        "soundAvg": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/soundLevel/dba",
+            "title": "Maximum Sound Level",
+            "maximum": 180.0,
+            "hideFromKpis": false
+        },
+        "soundMax": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/soundLevel/dba",
+            "title": "Average Sound Level",
+            "hideFromKpis": false
+        },
+        "co2": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm",
+            "hideFromKpis": false
+        },
+        "pm1": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pm1/mcgm3",
+            "hideFromKpis": false
+        },
+        "pm10": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pm10/mcgm3",
+            "hideFromKpis": false
+        },
+        "illuminance": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/illuminance/lux",
+            "minimum": 0.0,
+            "maximum": 1200,
+            "hideFromKpis": false
+        },
+        "brightness": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/brightness/percent",
+            "hideFromKpis": false
+        }
+    },
+    "required": []
+}

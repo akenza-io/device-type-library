@@ -1,0 +1,48 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json",
+    "title": "Motion",
+    "description": "Motion measurements of physical objects",
+    "type": "object",
+    "$defs": {
+        "acceleration": {
+            "G": {
+                "measurementType": "akenza/motion/acceleration/G",
+                "title": "Acceleration",
+                "description": "Acceleration in G",
+                "type": "number",
+                "unit": "G"
+            },
+            "mG": {
+                "measurementType": "akenza/motion/acceleration/mG",
+                "title": "Acceleration",
+                "description": "Acceleration in mG",
+                "type": "number",
+                "unit": "mG"
+            },
+            "m/s^2": {
+                "measurementType": "akenza/motion/acceleration/m/s^2",
+                "title": "Acceleration",
+                "description": "Acceleration in m/s^2",
+                "type": "number",
+                "unit": "m/s^2"
+            }
+        },
+        "speed": {
+            "km/h": {
+                "measurementType": "akenza/motion/speed/km/h",
+                "title": "Speed",
+                "description": "Speed in km/h",
+                "type": "number",
+                "unit": "km/h"
+            },
+            "m/s": {
+                "measurementType": "akenza/motion/speed/m/s",
+                "title": "Speed",
+                "description": "Speed in m/s",
+                "type": "number",
+                "unit": "m/s"
+            }
+        }
+    }
+}

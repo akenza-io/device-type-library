@@ -7,7 +7,7 @@
     "title": "Acceleration Example",
     "properties": {
         "accelerationX": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/speed/schema.json#/$defs/acceleration/mg",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/mG",
             "title": "Acceleration - X (in mG)",
             "description": "Acceleration on the x-axis in mG.",
             "minimum": -180.0,
@@ -15,7 +15,7 @@
             "hideFromKpis": false
         },
         "accelerationY": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/speed/schema.json#/$defs/acceleration/mg",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/mG",
             "title": "Acceleration - Y (in mG)",
             "description": "Acceleration on the y-axis in mG.",
             "minimum": -180.0,
