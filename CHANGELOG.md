@@ -4,7 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-# [1.43.0] - 2024-02-14
+# [1.45.0] - 2024-04-12
+
+### Added
+
+- sensingLabs - senlabM
+
+# [1.44.0] - 2024-02-14
 
 ### Added
 
