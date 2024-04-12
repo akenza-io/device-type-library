@@ -8,6 +8,12 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Tektelic - EdoctorV1
+
+# [1.43.0] - 2024-02-14
+
+### Added
+
 - Elsys - ETHd10
 - Elsys - EIAQd10
 

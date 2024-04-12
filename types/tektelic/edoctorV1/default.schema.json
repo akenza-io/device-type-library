@@ -1,0 +1,62 @@
+{
+  "$id": "https://akenza.io/tektelic/edoctorV1/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "topic": "default",
+  "processingType": "uplink_decoder",
+  "properties": {
+    "skinTemperature": {
+      "title": "Skin temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "Skin temperature"
+    },
+    "respiratoryRate": {
+      "title": "Respiratory rate",
+      "unit": "bpm",
+      "type": "number",
+      "description": "Respiratory rate"
+    },
+    "uaModeActive": {
+      "title": "UA mode active",
+      "type": "boolean",
+      "description": "UA mode active"
+    },
+    "chestExpansion": {
+      "title": "Chest expansion",
+      "unit": "%",
+      "type": "number",
+      "description": "Chest expansion"
+    },
+    "activityFactor": {
+      "title": "Activity factor",
+      "type": "number",
+      "description": "Activity factor"
+    },
+    "position": {
+      "title": "Position",
+      "unit": "°",
+      "type": "number",
+      "description": "Position"
+    },
+    "heartRate": {
+      "title": "Heart rate",
+      "unit": "bpm",
+      "type": "number",
+      "description": "Heart rate"
+    },
+    "skinTemperature2": {
+      "title": "Skin temperature 2",
+      "unit": "°C",
+      "type": "number",
+      "description": "Body temperature 2"
+    },
+    "activityIntensity": {
+      "title": "Activity intensity",
+      "unit": "g",
+      "type": "number",
+      "description": "Activity intensity"
+    }
+  }
+}

@@ -1,0 +1,340 @@
+{
+  "$id": "https://akenza.io/tektelic/edoctorV1/system.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "System",
+  "type": "object",
+  "topic": "system",
+  "processingType": "uplink_decoder",
+  "properties": {
+    "joinMode": {
+      "title": "Join Mode",
+      "type": "string",
+      "description": "Join Mode",
+      "enum": [
+        "ABP",
+        "OTAA",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "adr": {
+      "title": "Adaptive datarate",
+      "type": "string",
+      "description": "Adaptive datarate",
+      "enum": [
+        "DISABLE",
+        "ENABLE",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "dutyCycle": {
+      "title": "Duty cycle",
+      "type": "string",
+      "description": "Duty cycle",
+      "enum": [
+        "DISABLE",
+        "ENABLE",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "syncWord": {
+      "title": "Sync word",
+      "type": "string",
+      "description": "Sync word",
+      "enum": [
+        "PRIVATE",
+        "PUBLIC",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "confirmMode": {
+      "title": "Confirm mode",
+      "type": "string",
+      "description": "Confirm mode",
+      "enum": [
+        "UNCONFIRMED",
+        "CONFIRMED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "drNumber": {
+      "title": "DR Number",
+      "type": "number",
+      "description": "DR Number",
+      "hideFromKpis": true
+    },
+    "frequency": {
+      "title": "Frequency",
+      "type": "number",
+      "description": "Frequency",
+      "hideFromKpis": true
+    },
+    "txPower": {
+      "title": "TX Power",
+      "type": "number",
+      "description": "TX Power",
+      "hideFromKpis": true
+    },
+    "loramacNetIdMsb": {
+      "title": "Loramac net id msb",
+      "type": "string",
+      "description": "Loramac net id msb",
+      "hideFromKpis": true
+    },
+    "loramacNetIdLsb": {
+      "title": "Loramac net id lsb",
+      "type": "string",
+      "description": "Loramac net id lsb",
+      "hideFromKpis": true
+    },
+    "normalReportPeriod": {
+      "title": "Normal report period",
+      "type": "number",
+      "description": "Normal report period",
+      "hideFromKpis": true
+    },
+    "uaReportPeriod": {
+      "title": "UA report period",
+      "type": "number",
+      "description": "UA report period",
+      "hideFromKpis": true
+    },
+    "restReportPeriod": {
+      "title": "Rest report period",
+      "type": "number",
+      "description": "Rest report period",
+      "hideFromKpis": true
+    },
+    "metadataReportPeriod": {
+      "title": "Metadata report period",
+      "type": "number",
+      "description": "Metadata report period",
+      "hideFromKpis": true
+    },
+    "enabled": {
+      "title": "Enabled",
+      "type": "string",
+      "description": "Enabled",
+      "enum": [
+        "DISABLE",
+        "ENABLE",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "gamma": {
+      "title": "Gamma",
+      "type": "number",
+      "description": "Gamma",
+      "hideFromKpis": true
+    },
+    "beta": {
+      "title": "Beta",
+      "type": "number",
+      "description": "Beta",
+      "hideFromKpis": true
+    },
+    "alpha": {
+      "title": "Alpha",
+      "type": "number",
+      "description": "Alpha",
+      "hideFromKpis": true
+    },
+    "a0": {
+      "title": "A0",
+      "type": "number",
+      "description": "A0",
+      "hideFromKpis": true
+    },
+    "a1": {
+      "title": "A1",
+      "type": "number",
+      "description": "A1",
+      "hideFromKpis": true
+    },
+    "a2": {
+      "title": "A2",
+      "type": "number",
+      "description": "A2",
+      "hideFromKpis": true
+    },
+    "btCountThreshold": {
+      "title": "BT count threshold",
+      "type": "number",
+      "description": "BT count threshold",
+      "hideFromKpis": true
+    },
+    "btLimitsHigh": {
+      "title": "BT limits high",
+      "type": "number",
+      "description": "BT limits high",
+      "hideFromKpis": true
+    },
+    "btLimitsLow": {
+      "title": "BT limits low",
+      "type": "number",
+      "description": "BT limits low",
+      "hideFromKpis": true
+    },
+    "btMaLen": {
+      "title": "BT Ma Len",
+      "type": "number",
+      "description": "BT Ma Len",
+      "hideFromKpis": true
+    },
+    "rrWindowSize": {
+      "title": "RR window size",
+      "type": "number",
+      "description": "RR window size",
+      "hideFromKpis": true
+    },
+    "rrLimitsHigh": {
+      "title": "RR limits high",
+      "type": "number",
+      "description": "RR limits high",
+      "hideFromKpis": true
+    },
+    "rrLimitsLow": {
+      "title": "RR limits low",
+      "type": "number",
+      "description": "RR limits low",
+      "hideFromKpis": true
+    },
+    "ceConversionFactor": {
+      "title": "CE conversion factor",
+      "type": "number",
+      "description": "CE conversion factor",
+      "hideFromKpis": true
+    },
+    "ceStatFunction": {
+      "title": "CE stat function",
+      "type": "number",
+      "description": "CE stat function",
+      "hideFromKpis": true
+    },
+    "sampleRate": {
+      "title": "Sample rate",
+      "type": "number",
+      "description": "Sample rate",
+      "hideFromKpis": true
+    },
+    "measurementRange": {
+      "title": "Measurement rate",
+      "type": "number",
+      "description": "Measurement rate",
+      "hideFromKpis": true
+    },
+    "timePercentage": {
+      "title": "Time percentage",
+      "type": "number",
+      "description": "Time percentage",
+      "hideFromKpis": true
+    },
+    "intensity": {
+      "title": "Intensity",
+      "type": "number",
+      "description": "Intensity",
+      "hideFromKpis": true
+    },
+    "rToRwindowAveraging": {
+      "title": "R to R window averaging",
+      "type": "number",
+      "description": "R to R window averaging",
+      "hideFromKpis": true
+    },
+    "rToRgain": {
+      "title": "R to R gain",
+      "type": "number",
+      "description": "R to R gain",
+      "hideFromKpis": true
+    },
+    "rToRpeakAveragingWeightFactor": {
+      "title": "R to R averaging weight factor",
+      "type": "number",
+      "description": "R to R averaging weight factor",
+      "hideFromKpis": true
+    },
+    "rToRpeakThresholdScalingFactor": {
+      "title": "R to R threshold scaling factor",
+      "type": "number",
+      "description": "R to R threshold scaling factor",
+      "hideFromKpis": true
+    },
+    "rToRminimumHoldOff": {
+      "title": "R to R minimum hold off",
+      "type": "number",
+      "description": "R to R minimum hold off",
+      "hideFromKpis": true
+    },
+    "rToRintervalAveragingWeightFactor": {
+      "title": "R to R interval averaging weight factor",
+      "type": "number",
+      "description": "R to R interval averaging weight factor",
+      "hideFromKpis": true
+    },
+    "rToRintervalHoldOffScalingFactor": {
+      "title": "R to R interval hold off scaling factor",
+      "type": "number",
+      "description": "R to R interval hold off scaling factor",
+      "hideFromKpis": true
+    },
+    "hrWindowSize": {
+      "title": "HR window size",
+      "type": "number",
+      "description": "HR window size",
+      "hideFromKpis": true
+    },
+    "hrStepLimitM": {
+      "title": "HR step limit M",
+      "type": "number",
+      "description": "HR step limit M",
+      "hideFromKpis": true
+    },
+    "hrStepLimitS": {
+      "title": "HR step limit S",
+      "type": "number",
+      "description": "HR step limit S",
+      "hideFromKpis": true
+    },
+    "appMajorVersion": {
+      "title": "App major version",
+      "type": "number",
+      "description": "App major version",
+      "hideFromKpis": true
+    },
+    "appMinorVersion": {
+      "title": "App minor version",
+      "type": "number",
+      "description": "App minor version",
+      "hideFromKpis": true
+    },
+    "appRevision": {
+      "title": "App reversion",
+      "type": "number",
+      "description": "App reversion",
+      "hideFromKpis": true
+    },
+    "region": {
+      "title": "Region",
+      "type": "string",
+      "description": "Region",
+      "enum": [
+        "EU868",
+        "US916",
+        "AS923",
+        "AU915",
+        "IN865",
+        "CN470",
+        "KR920",
+        "RU864",
+        "DN915",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    }
+  }
+}
