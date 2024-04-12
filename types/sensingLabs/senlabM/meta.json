@@ -13,7 +13,7 @@
   "outputTopics": [
     "default",
     "lifecycle",
-    "start_up"
+    "system"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

@@ -58,7 +58,7 @@ function consume(event) {
       data.txPeriod = Bits.bitsToUnsigned(bits.substr(128, 16));
       data.randWindow = Bits.bitsToUnsigned(bits.substr(144, 16));
       data.redundancyFactor = Bits.bitsToUnsigned(bits.substr(160, 8));
-      topic = "start_up";
+      topic = "system";
       break;
     }
     // Log
@@ -110,8 +110,10 @@ function consume(event) {
         conversion = Number(event.device.customFields.conversion);
       }
 
-      if (pulseType !== "" && conversion === 0) {
-        data[pulseType] = data.pulse * conversion;
+      if (data.pulse !== undefined) {
+        if (pulseType !== "" && conversion === 0) {
+          data[pulseType] = data.pulse * conversion;
+        }
       }
     }
   }

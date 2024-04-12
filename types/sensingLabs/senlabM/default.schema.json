@@ -9,7 +9,7 @@
     "pulse": {
       "title": "Pulse",
       "type": "integer",
-      "description": "Total praw ulses gotten"
+      "description": "Total raw pulses received"
     },
     "wireCutStatus": {
       "title": "Wire cut status",
@@ -19,12 +19,12 @@
     "pulse1": {
       "title": "Pulse 1",
       "type": "integer",
-      "description": "Total raw pulses with first node gotten"
+      "description": "Total raw pulses with first node received"
     },
     "pulse2": {
       "title": "Pulse 2",
       "type": "integer",
-      "description": "Total raw pulses with second node gotten"
+      "description": "Total raw pulses with second node received"
     }
   },
   "required": [

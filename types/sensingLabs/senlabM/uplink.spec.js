@@ -19,14 +19,12 @@ describe("Senlab SenlabM uplink", () => {
       });
   });
 
-  let startupSchema = null;
+  let systemSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/start_up.schema.json`)
-      .then((parsedSchema) => {
-        startupSchema = parsedSchema;
-        done();
-      });
+    utils.loadSchema(`${__dirname}/system.schema.json`).then((parsedSchema) => {
+      systemSchema = parsedSchema;
+      done();
+    });
   });
 
   let lifecycleSchema = null;
@@ -53,7 +51,7 @@ describe("Senlab SenlabM uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "start_up");
+        assert.equal(value.topic, "system");
         assert.equal(value.data.appType, "SENLABM");
         assert.equal(value.data.firmwareVersion, "2.1.0");
         assert.equal(value.data.functionMode, "BASIC");
@@ -62,7 +60,7 @@ describe("Senlab SenlabM uplink", () => {
         assert.equal(value.data.redundancyFactor, 1);
         assert.equal(value.data.txPeriod, 1800);
 
-        utils.validateSchema(value.data, startupSchema, { throwError: true });
+        utils.validateSchema(value.data, systemSchema, { throwError: true });
       });
 
       consume(data);
