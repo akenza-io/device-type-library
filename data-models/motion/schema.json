@@ -20,8 +20,8 @@
                 "type": "number",
                 "unit": "mG"
             },
-            "m/s^2": {
-                "measurementType": "akenza/motion/acceleration/m/s^2",
+            "mPerSsquared": {
+                "measurementType": "akenza/motion/acceleration/mPerSsquared",
                 "title": "Acceleration",
                 "description": "Acceleration in m/s^2",
                 "type": "number",
@@ -29,15 +29,15 @@
             }
         },
         "speed": {
-            "km/h": {
-                "measurementType": "akenza/motion/speed/km/h",
+            "kmPerH": {
+                "measurementType": "akenza/motion/speed/kmPerH",
                 "title": "Speed",
                 "description": "Speed in km/h",
                 "type": "number",
                 "unit": "km/h"
             },
-            "m/s": {
-                "measurementType": "akenza/motion/speed/m/s",
+            "mPerS": {
+                "measurementType": "akenza/motion/speed/mPerS",
                 "title": "Speed",
                 "description": "Speed in m/s",
                 "type": "number",
