@@ -4,11 +4,23 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-# [1.43.1] - 2024-02-23
+# [1.45.1] - 2024-04-17
 
 ### Added
 
-- Unifyed available sensors in the meta.json
+- Unified available sensors in the meta.json
+
+# [1.45.0] - 2024-04-12
+
+### Added
+
+- sensingLabs - senlabM
+
+# [1.44.0] - 2024-02-14
+
+### Added
+
+- Tektelic - EdoctorV1
 
 # [1.43.0] - 2024-02-14
 
