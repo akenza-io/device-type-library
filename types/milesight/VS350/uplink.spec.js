@@ -6,16 +6,16 @@ const utils = require("test-utils");
 const { assert } = chai;
 
 describe("Milesight VS350 Uplink", () => {
-  let counterSchema = null;
+  let peopleFlowSchema = null;
   let consume = null;
 
   before((done) => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
     utils
-      .loadSchema(`${__dirname}/counter.schema.json`)
+      .loadSchema(`${__dirname}/people_flow.schema.json`)
       .then((parsedSchema) => {
-        counterSchema = parsedSchema;
+        peopleFlowSchema = parsedSchema;
         done();
       });
   });
@@ -54,7 +54,7 @@ describe("Milesight VS350 Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "counter");
+        assert.equal(value.topic, "people_flow");
         assert.equal(value.data.periodicCountAlarm, "THRESHOLD_ALARM");
         assert.equal(value.data.periodicCountIn, 1000);
         assert.equal(value.data.periodicCountOut, 1001);
@@ -62,7 +62,9 @@ describe("Milesight VS350 Uplink", () => {
         assert.equal(value.data.totalCountIn, 4353);
         assert.equal(value.data.totalCountOut, 4360);
 
-        utils.validateSchema(value.data, counterSchema, { throwError: true });
+        utils.validateSchema(value.data, peopleFlowSchema, {
+          throwError: true,
+        });
       });
 
       consume(data);

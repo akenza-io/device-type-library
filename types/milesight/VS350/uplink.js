@@ -106,7 +106,7 @@ function consume(event) {
         i += 13;
       }
 
-      emit("sample", { data, topic: "counter", timestamp });
+      emit("sample", { data, topic: "people_flow", timestamp });
     } else {
       break;
     }
@@ -117,7 +117,7 @@ function consume(event) {
   }
 
   if (!isEmpty(decoded)) {
-    emit("sample", { data: decoded, topic: "counter" });
+    emit("sample", { data: decoded, topic: "people_flow" });
   }
 
   if (!isEmpty(lifecycle)) {

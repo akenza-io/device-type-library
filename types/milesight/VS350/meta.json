@@ -8,11 +8,11 @@
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": [
-    "Passage People Counter"
+    "People Counter"
   ],
   "outputTopics": [
     "climate",
-    "counter",
+    "people_flow",
     "lifecycle"
   ],
   "encoding": "HEX",
