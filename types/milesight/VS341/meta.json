@@ -7,8 +7,13 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": ["Desk"],
-  "outputTopics": ["default", "lifecycle"],
+  "availableSensors": [
+    "Occupancy"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

@@ -7,8 +7,16 @@
   "author": "Akenza AG",
   "firmwareVersion": "V2.3.5",
   "loraDeviceClass": "A",
-  "availableSensors": ["Temperature", "Humidity", "Water leak"],
-  "outputTopics": ["default", "lifecycle", "configuration"],
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "Water Leak"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }
