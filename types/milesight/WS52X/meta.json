@@ -10,11 +10,11 @@
   "availableSensors": [
     "Voltage",
     "Current",
-    "Power Factor",
-    "Power",
-    "Power Consumption"
+    "Power"
   ],
-  "outputTopics": ["default"],
+  "outputTopics": [
+    "default"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

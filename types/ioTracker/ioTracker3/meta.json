@@ -9,16 +9,21 @@
   "loraDeviceClass": "A",
   "availableSensors": [
     "Button",
-    "3D Accelerometer",
+    "Accelerometer",
     "Light",
     "Temperature",
     "Motion",
     "Shock",
     "Tilt",
     "Humidity",
-    "Air pressure"
+    "Air Pressure"
   ],
-  "outputTopics": ["default", "gps", "lifecycle", "tilt"],
+  "outputTopics": [
+    "default",
+    "gps",
+    "lifecycle",
+    "tilt"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

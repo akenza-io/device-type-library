@@ -7,8 +7,15 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": ["Temperature", "Soil moisture", "Soil temperature"],
-  "outputTopics": ["default", "lifecycle"],
+  "availableSensors": [
+    "Temperature",
+    "Soil Moisture",
+    "Soil Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }
