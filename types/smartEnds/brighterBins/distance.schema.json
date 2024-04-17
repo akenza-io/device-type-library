@@ -12,6 +12,14 @@
       "type": "number",
       "description": "Distance measured between the sensor and the surface"
     },
+    "fillLevel": {
+      "title": "Fill Level",
+      "unit": "%",
+      "type": "number",
+      "description": "Total fill level in percent",
+      "minimum": 0,
+      "maximum": 100
+    },
     "distanceError": {
       "title": "Distance error",
       "unit": "string",

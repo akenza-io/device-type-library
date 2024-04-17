@@ -60,6 +60,38 @@ function consume(event) {
         delete distance.distance;
         distance.distanceError = "LASER_SENSOR_INVALID_CONFIGURATIONS";
       }
+
+      if (event.device !== undefined && distance.distance !== undefined) {
+        if (event.device.customFields !== undefined) {
+          const { customFields } = event.device;
+          let scaleLength = null;
+          let sensorDistance = 0;
+
+          if (customFields.containerHeight !== undefined) {
+            scaleLength = Number(event.device.customFields.containerHeight);
+          }
+
+          if (customFields.installationOffset !== undefined) {
+            sensorDistance = Number(
+              event.device.customFields.installationOffset,
+            );
+          }
+
+          if (scaleLength !== null) {
+            const percentExact =
+              (100 / scaleLength) *
+              (scaleLength - (distance.distance - sensorDistance));
+            let fillpercent = Math.round(percentExact);
+            if (fillpercent > 100) {
+              fillpercent = 100;
+            } else if (fillpercent < 0) {
+              fillpercent = 0;
+            }
+            distance.fillLevel = fillpercent;
+          }
+        }
+      }
+
       break;
     }
     // System
