@@ -4,9 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-# [1.45.1] - 2024-04-17
+# [1.46.0] - 2024-04-17
 
 ### Added
+
+- Milesight - VS350
+
+### Changed
 
 - Unified available sensors in the meta.json
 
