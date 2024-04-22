@@ -1,0 +1,14 @@
+{
+    "temperature": 25.6,
+    "humidity": 68,
+    "pressure": 45,
+    "soundAvg": 76,
+    "soundMax": 98,
+    "co2": 776,
+    "tvoc": 23,
+    "pm1": 5,
+    "pm2_5": 12,
+    "pm10": 54,
+    "illuminance": 650,
+    "brightness": 76
+}

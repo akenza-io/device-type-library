@@ -1,0 +1,132 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json",
+    "title": "Electricity",
+    "description": "Electricity measurements",
+    "type": "object",
+    "$defs": {
+        "voltage": {
+            "volt": {
+                "measurementType": "akenza/electricity/voltage/volt",
+                "title": "Voltage",
+                "description": "Voltage in V",
+                "type": "number",
+                "unit": "V"
+            },
+            "milliVolt": {
+                "measurementType": "akenza/electricity/voltage/milliVolt",
+                "title": "Voltage",
+                "description": "Voltage in mV",
+                "type": "number",
+                "unit": "mV"
+            }
+        },
+        "current": {
+            "ampere": {
+                "measurementType": "akenza/electricity/current/ampere",
+                "title": "Current",
+                "description": "Current in A",
+                "type": "number",
+                "unit": "A"
+            },
+            "milliAmpere": {
+                "measurementType": "akenza/electricity/current/milliAmpere",
+                "title": "Current",
+                "description": "Current mA",
+                "type": "number",
+                "unit": "mA"
+            }
+        },
+        "activePower": {
+            "watt": {
+                "measurementType": "akenza/electricity/activePower/watt",
+                "title": "Active Power",
+                "description": "Active Power in W",
+                "type": "number",
+                "unit": "W"
+            },
+            "kiloWatt": {
+                "measurementType": "akenza/electricity/activePower/kiloWatt",
+                "title": "Active Power",
+                "description": "Active Power in kW",
+                "type": "number",
+                "unit": "kW"
+            }
+        },
+        "apparentPower": {
+            "voltAmpere": {
+                "measurementType": "akenza/electricity/apparentPower/voltAmpere",
+                "title": "Apparent Power",
+                "description": "Apparent Power in VA",
+                "type": "number",
+                "unit": "VA"
+            }
+        },
+        "reactivePower": {
+            "voltAmpereReactive": {
+                "measurementType": "akenza/electricity/reactivePower/voltAmpereReactive",
+                "title": "Reactive Power",
+                "description": "Apparent Power in VAR",
+                "type": "number",
+                "unit": "VAR"
+            }
+        },
+        "activeEnergy": {
+            "wattHours": {
+                "measurementType": "akenza/electricity/activeEnergy/wattHours",
+                "title": "Active Energy",
+                "description": "Active Energy in Wh",
+                "type": "number",
+                "unit": "Wh"
+            },
+            "kiloWattHours": {
+                "measurementType": "akenza/electricity/activeEnergy/kiloWattHours",
+                "title": "Active Energy",
+                "description": "Active Energy in kWh",
+                "type": "number",
+                "unit": "kWh"
+            }
+        },
+        "apparentEnergy": {
+            "voltAmpereHours": {
+                "measurementType": "akenza/electricity/apparentEnergy/voltAmpereHours",
+                "title": "Apparent Energy",
+                "description": "Apparent Energy in VAh",
+                "type": "number",
+                "unit": "VAh"
+            },
+            "kiloVoltAmpereHours": {
+                "measurementType": "akenza/electricity/apparentEnergy/kiloVoltAmpereHours",
+                "title": "Apparent Energy",
+                "description": "Apparent Energy in kVAh",
+                "type": "number",
+                "unit": "kVAh"
+            }
+        },
+        "reactiveEnergy": {
+            "voltAmpereReactiveHours": {
+                "measurementType": "akenza/electricity/reactiveEnergy/voltAmpereReactiveHours",
+                "title": "Reactive Energy",
+                "description": "Reactive Energy VARh",
+                "type": "number",
+                "unit": "VARh"
+            },
+            "kiloVoltAmpereReactiveHours": {
+                "measurementType": "akenza/electricity/reactiveEnergy/kiloVoltAmpereReactiveHours",
+                "title": "Reactive Energy",
+                "description": "Reactive Energy kVARh",
+                "type": "number",
+                "unit": "kVARh"
+            }
+        },
+        "frequency": {
+            "hertz": {
+                "measurementType": "akenza/electricity/frequency/hertz",
+                "title": "Frequency",
+                "description": "Frequency in Hz",
+                "type": "number",
+                "unit": "Hz"
+            }
+        }
+    }
+}
