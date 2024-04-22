@@ -8,8 +8,8 @@
   "firmwareVersion": "V2.0.0",
   "loraDeviceClass": "A",
   "availableSensors": [
-    "Soil moisture",
-    "Soil temperature"
+    "Soil Moisture",
+    "Soil Temperature"
   ],
   "outputTopics": [
     "default",

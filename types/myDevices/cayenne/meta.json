@@ -10,7 +10,7 @@
   "availableSensors": [
     "Accelerometer",
     "Analog",
-    "Barometer",
+    "Barometric Pressure",
     "Digital",
     "GPS",
     "Gyrometer",

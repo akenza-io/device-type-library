@@ -14,8 +14,7 @@
     "VOC",
     "Noise",
     "Occupancy",
-    "Light State",
-    "Energy"
+    "Light"
   ],
   "outputTopics": [
     "default",

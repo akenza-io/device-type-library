@@ -8,12 +8,14 @@
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": [
-    "Active energy",
-    "Reactive energy",
-    "Apparent energy",
+    "Energy Metering",
     "IO"
   ],
-  "outputTopics": ["default", "time_sync", "io"],
+  "outputTopics": [
+    "default",
+    "time_sync",
+    "io"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

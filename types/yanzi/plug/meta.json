@@ -6,8 +6,15 @@
   "description": "This device monitors energy usage and the health condition of the power line. It controls connected appliances via an internal 16A relay. Simply plug into the power socket.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
-  "availableSensors": ["Energy"],
-  "outputTopics": ["energy", "power"],
+  "availableSensors": [
+    "Voltage",
+    "Current",
+    "Power"
+  ],
+  "outputTopics": [
+    "energy",
+    "power"
+  ],
   "encoding": "JSON",
   "connectivity": "HTTP"
 }
