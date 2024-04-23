@@ -100,19 +100,25 @@ function consume(event) {
     if (event.device.customFields !== undefined) {
       const { customFields } = event.device;
       let pulseType = "";
-      let conversion = 1;
+      let multiplier = 1;
+      let divider = 1;
 
       if (customFields.pulseType !== undefined) {
         pulseType = event.device.customFields.pulseType;
       }
 
-      if (customFields.conversion !== undefined) {
-        conversion = Number(event.device.customFields.conversion);
+      if (customFields.multiplier !== undefined) {
+        multiplier = Number(event.device.customFields.multiplier);
+      }
+
+      if (customFields.divider !== undefined) {
+        divider = Number(event.device.customFields.divider);
       }
 
       if (data.pulse !== undefined) {
         if (pulseType !== "") {
-          data[pulseType] = Math.round(data.pulse * conversion * 1000) / 1000;
+          data[pulseType] =
+            Math.round(((data.pulse * multiplier) / divider) * 1000) / 1000;
         }
       }
     }
