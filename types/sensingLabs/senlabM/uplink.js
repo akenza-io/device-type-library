@@ -112,7 +112,7 @@ function consume(event) {
 
       if (data.pulse !== undefined) {
         if (pulseType !== "") {
-          data[pulseType] = data.pulse * conversion;
+          data[pulseType] = Math.round(data.pulse * conversion * 1000) / 1000;
         }
       }
     }
