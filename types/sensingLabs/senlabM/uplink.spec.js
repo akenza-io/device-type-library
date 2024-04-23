@@ -71,7 +71,7 @@ describe("Senlab SenlabM uplink", () => {
         device: {
           customFields: {
             pulseType: "kwh",
-            conversion: 0.01,
+            divider: 100,
           },
         },
         data: {
