@@ -103,7 +103,7 @@ function consume(event) {
       let conversion = 1;
 
       if (customFields.pulseType !== undefined) {
-        pulseType = Number(event.device.customFields.pulseType);
+        pulseType = event.device.customFields.pulseType;
       }
 
       if (customFields.conversion !== undefined) {
