@@ -103,7 +103,7 @@ function consume(event) {
       let conversion = 1;
 
       if (customFields.pulseType !== undefined) {
-        pulseType = Number(event.device.customFields.pulseType);
+        pulseType = event.device.customFields.pulseType;
       }
 
       if (customFields.conversion !== undefined) {
@@ -112,7 +112,7 @@ function consume(event) {
 
       if (data.pulse !== undefined) {
         if (pulseType !== "") {
-          data[pulseType] = data.pulse * conversion;
+          data[pulseType] = Math.round(data.pulse * conversion * 1000) / 1000;
         }
       }
     }

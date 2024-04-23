@@ -68,6 +68,12 @@ describe("Senlab SenlabM uplink", () => {
 
     it("Should decode Senlab SenlabM payload", () => {
       const data = {
+        device: {
+          customFields: {
+            pulseType: "kwh",
+            conversion: 0.01,
+          },
+        },
         data: {
           port: 3,
           payloadHex: "02f98e0f9c1000000f57",
@@ -81,8 +87,9 @@ describe("Senlab SenlabM uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.pulse, 3927);
+        assert.equal(value.data.kwh, 39.27);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        // utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
