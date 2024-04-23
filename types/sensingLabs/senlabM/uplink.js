@@ -100,7 +100,7 @@ function consume(event) {
     if (event.device.customFields !== undefined) {
       const { customFields } = event.device;
       let pulseType = "";
-      let conversion = 0;
+      let conversion = 1;
 
       if (customFields.pulseType !== undefined) {
         pulseType = Number(event.device.customFields.pulseType);
@@ -111,7 +111,7 @@ function consume(event) {
       }
 
       if (data.pulse !== undefined) {
-        if (pulseType !== "" && conversion === 0) {
+        if (pulseType !== "") {
           data[pulseType] = data.pulse * conversion;
         }
       }
