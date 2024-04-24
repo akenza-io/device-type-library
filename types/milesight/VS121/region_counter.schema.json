@@ -1,0 +1,122 @@
+{
+  "$id": "https://akenza.io/xovis/VS121/region_counter.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "region_counter",
+  "title": "Region counter",
+  "properties": {
+    "region1count": {
+      "title": "Region 1 count",
+      "description": "Region 1 count",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "region2count": {
+      "title": "Region 2 count",
+      "description": "Region 2 count",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "region3count": {
+      "title": "Region 3 count",
+      "description": "Region 3 count",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "region4count": {
+      "title": "Region 4 count",
+      "description": "Region 4 count",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "region5count": {
+      "title": "Region 5 count",
+      "description": "Region 5 count",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "region6count": {
+      "title": "Region 6 count",
+      "description": "Region 6 count",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "region7count": {
+      "title": "Region 7 count",
+      "description": "Region 7 count",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "region8count": {
+      "title": "Region 8 count",
+      "description": "Region 8 count",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "region9count": {
+      "title": "Region 9 count",
+      "description": "Region 9 count",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "region10count": {
+      "title": "Region 10 count",
+      "description": "Region 10 count",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "region11count": {
+      "title": "Region 11 count",
+      "description": "Region 11 count",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "region12count": {
+      "title": "Region 12 count",
+      "description": "Region 12 count",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "region13count": {
+      "title": "Region 13 count",
+      "description": "Region 13 count",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "region14count": {
+      "title": "Region 14 count",
+      "description": "Region 14 count",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "region15count": {
+      "title": "Region 15 count",
+      "description": "Region 15 count",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "region16count": {
+      "title": "Region 16 count",
+      "description": "Region 16 count",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    }
+  }
+}

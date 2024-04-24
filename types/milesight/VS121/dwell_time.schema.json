@@ -1,0 +1,35 @@
+{
+  "$id": "https://akenza.io/xovis/VS121/dwell_time.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "dwell_time",
+  "title": "Dwell time",
+  "properties": {
+    "region": {
+      "title": "Region",
+      "description": "Region",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 16
+    },
+    "dwellTimeAvg": {
+      "title": "Dwell time average",
+      "description": "Dwell time average",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "dwellTimeMax": {
+      "title": "Dwell time maximum",
+      "description": "Dwell time maximum",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    }
+  },
+  "required": [
+    "dwellTimeAvg",
+    "dwellTimeMax"
+  ]
+}

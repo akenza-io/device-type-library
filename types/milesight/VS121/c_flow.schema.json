@@ -1,0 +1,42 @@
+{
+  "$id": "https://akenza.io/xovis/VS121/c_flow.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "c_flow",
+  "title": "C flow",
+  "properties": {
+    "cToA": {
+      "title": "C to A",
+      "description": "C flow to A flow",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535,
+      "hideFromKpis": true
+    },
+    "cToB": {
+      "title": "C to B",
+      "description": "C flow to B flow",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535,
+      "hideFromKpis": true
+    },
+    "cToC": {
+      "title": "C to C",
+      "description": "C flow to C flow",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535,
+      "hideFromKpis": true
+    },
+    "cToD": {
+      "title": "C to D",
+      "description": "C flow to D flow",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535,
+      "hideFromKpis": true
+    }
+  }
+}
