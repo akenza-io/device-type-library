@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.47.0] - 2024-04-26
+
+### Added
+
+- Milesight - CT101
+- Milesight - VS135
+- Milesight - TS301
+- Milesight - TS302
+
 # [1.46.1] - 2024-04-22
 
 ### Changed

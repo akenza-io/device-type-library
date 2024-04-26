@@ -1,0 +1,54 @@
+{
+  "$id": "https://akenza.io/milesight/TS301/climate.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "climate",
+  "title": "Climate",
+  "properties": {
+    "temperatureChannel1": {
+      "title": "Temperature channel 1",
+      "unit": "°C",
+      "type": [
+        "number",
+        "null"
+      ],
+      "description": "Temperature channel 1",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "temperatureChannel1Change": {
+      "title": "Temperature change channel 1",
+      "unit": "°C",
+      "type": [
+        "number",
+        "null"
+      ],
+      "description": "Temperature change channel 1",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "temperatureChannel2": {
+      "title": "Temperature channel 2",
+      "unit": "°C",
+      "type": [
+        "number",
+        "null"
+      ],
+      "description": "Temperature channel 2",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "temperatureChannel2Change": {
+      "title": "Temperature change channel 2",
+      "unit": "°C",
+      "type": [
+        "number",
+        "null"
+      ],
+      "description": "Temperature change channel 2",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    }
+  }
+}

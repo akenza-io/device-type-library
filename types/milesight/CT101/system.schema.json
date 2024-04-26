@@ -1,0 +1,47 @@
+{
+  "$id": "https://akenza.io/milesight/CT101/system.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "system",
+  "title": "System",
+  "properties": {
+    "powerOn": {
+      "title": "Power on",
+      "type": "boolean",
+      "description": "Power on",
+      "hideFromKpis": true
+    },
+    "ipsoVersion": {
+      "title": "IPSO Version",
+      "type": "string",
+      "description": "IPSO Version",
+      "hideFromKpis": true
+    },
+    "sn": {
+      "title": "Serial number",
+      "type": "string",
+      "description": "Serial number",
+      "hideFromKpis": true
+    },
+    "hardwareVersion": {
+      "title": "Hardware version",
+      "type": "string",
+      "description": "Hardware version",
+      "hideFromKpis": true
+    },
+    "firmwareVersion": {
+      "title": "Firmware version",
+      "type": "string",
+      "description": "Firmware version",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "powerOn",
+    "ipsoVersion",
+    "sn",
+    "hardwareVersion",
+    "firmwareVersion"
+  ]
+}
