@@ -1,0 +1,21 @@
+{
+  "name": "CT101",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://resource.milesight.com/milesight/iot/document/ct10x-datasheet-en.pdf",
+  "description": "CT101 is a LoRaWAN® Smart Current Transformer for monitoring the energy and analyzing consumption remotely. CT10x provides multiple current options to suit energy monitoring and supports ending threshold alarms.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Current"
+  ],
+  "outputTopics": [
+    "alarm",
+    "default",
+    "system",
+    "totalCurrent"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
