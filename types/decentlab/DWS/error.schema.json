@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/decentlab/dws/error.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "error",
+  "title": "Error",
+  "properties": {
+    "error": {
+      "title": "Error",
+      "description": "Please define customfields: force, underLoad & strain. They should be defined on the sensor.",
+      "type": "string",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "error"
+  ]
+}

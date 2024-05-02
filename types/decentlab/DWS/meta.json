@@ -1,0 +1,19 @@
+{
+  "name": "DL-DWS",
+  "version": "1.0.0",
+  "manufacturer": "Decentlab",
+  "url": "https://www.decentlab.com/products/weighing-scale-for-lorawan",
+  "description": "The DL-DWS provides a weight sensor which meassure cyclyc ",
+  "author": "Akenza AG",
+  "firmwareVersion": "V2.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Weight"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

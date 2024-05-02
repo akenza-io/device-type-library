@@ -1,0 +1,26 @@
+{
+  "$id": "https://akenza.io/decentlab/dws/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "frequency": {
+      "title": "Frequency",
+      "unit": "Hz",
+      "description": "Frequency",
+      "type": "number"
+    },
+    "weight": {
+      "title": "Weight",
+      "unit": "g",
+      "description": "Weight",
+      "type": "number"
+    }
+  },
+  "required": [
+    "frequency",
+    "weight"
+  ]
+}
