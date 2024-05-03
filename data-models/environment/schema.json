@@ -95,9 +95,9 @@
       "pa": {
         "measurementType": "akenza/environment/pressure/pa",
         "title": "Pressure",
-        "description": "Barometric pressure in pa",
+        "description": "Barometric pressure in Pa",
         "type": "number",
-        "unit": "pa"
+        "unit": "Pa"
       },
       "hPa": {
         "measurementType": "akenza/environment/pressure/hPa",
