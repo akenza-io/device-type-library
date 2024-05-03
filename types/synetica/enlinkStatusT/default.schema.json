@@ -47,9 +47,5 @@
       "maximum": 3276.5
     }
   },
-  "required": [
-    "temperature",
-    "humidity",
-    "tempProbe1"
-  ]
+  "required": ["temperature", "humidity", "tempProbe1"]
 }

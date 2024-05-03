@@ -15,7 +15,5 @@
       "unit": "%"
     }
   },
-  "required": [
-    "batteryLevel"
-  ]
+  "required": ["batteryLevel"]
 }

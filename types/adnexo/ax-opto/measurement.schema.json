@@ -105,10 +105,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "distance",
-    "errorFlags",
-    "temperature",
-    "measurementType"
-  ]
+  "required": ["distance", "errorFlags", "temperature", "measurementType"]
 }

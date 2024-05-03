@@ -17,8 +17,5 @@
       "description": "Count of button presses"
     }
   },
-  "required": [
-    "buttonPushed",
-    "count"
-  ]
+  "required": ["buttonPushed", "count"]
 }

@@ -31,9 +31,5 @@
       "maximum": 32767
     }
   },
-  "required": [
-    "accX",
-    "accY",
-    "accZ"
-  ]
+  "required": ["accX", "accY", "accZ"]
 }

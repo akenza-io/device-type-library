@@ -27,10 +27,5 @@
       "description": "All closings since sensor boot"
     }
   },
-  "required": [
-    "nrOpenings",
-    "nrClosings",
-    "absOpenings",
-    "absClosings"
-  ]
+  "required": ["nrOpenings", "nrClosings", "absOpenings", "absClosings"]
 }

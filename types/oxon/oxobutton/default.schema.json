@@ -55,12 +55,5 @@
       "maximum": 8191
     }
   },
-  "required": [
-    "buttonId",
-    "imageID",
-    "temperature",
-    "accX",
-    "accY",
-    "accZ"
-  ]
+  "required": ["buttonId", "imageID", "temperature", "accX", "accY", "accZ"]
 }

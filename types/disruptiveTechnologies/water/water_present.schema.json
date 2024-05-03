@@ -10,13 +10,8 @@
       "title": "Water present",
       "description": "Water present",
       "type": "string",
-      "enum": [
-        "PRESENT",
-        "NOT_PRESENT"
-      ]
+      "enum": ["PRESENT", "NOT_PRESENT"]
     }
   },
-  "required": [
-    "waterPresent"
-  ]
+  "required": ["waterPresent"]
 }

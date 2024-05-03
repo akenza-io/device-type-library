@@ -38,11 +38,7 @@
       "title": "Gender",
       "description": "Gender",
       "type": "string",
-      "enum": [
-        "MALE",
-        "FEMALE",
-        "UNKNOWN"
-      ],
+      "enum": ["MALE", "FEMALE", "UNKNOWN"],
       "hideFromKpis": true
     }
   }

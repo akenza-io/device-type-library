@@ -61,7 +61,8 @@ function consume(event) {
     // Temperature mutation alert
     else if (channelId === 0x93 && channelType === 0xd7) {
       decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
-      decoded.temperatureDegreesCelsiushange = readInt16LE(bytes.slice(i + 2, i + 4)) / 100;
+      decoded.temperatureDegreesCelsiushange =
+        readInt16LE(bytes.slice(i + 2, i + 4)) / 100;
       decoded.temperatureAlert = readAlertType(bytes[i + 4]);
       i += 5;
     }

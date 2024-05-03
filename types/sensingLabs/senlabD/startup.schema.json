@@ -24,9 +24,5 @@
       "description": "Duration reed closed"
     }
   },
-  "required": [
-    "version",
-    "openDuration",
-    "closeDuration"
-  ]
+  "required": ["version", "openDuration", "closeDuration"]
 }

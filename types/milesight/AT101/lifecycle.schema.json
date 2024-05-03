@@ -18,20 +18,14 @@
       "title": "Tamper status",
       "description": "Tamper status",
       "type": "string",
-      "enum": [
-        "INSTALL",
-        "UNINSTALL"
-      ],
+      "enum": ["INSTALL", "UNINSTALL"],
       "hideFromKpis": true
     },
     "position": {
       "title": "Position",
       "description": "Position",
       "type": "string",
-      "enum": [
-        "NORMAL",
-        "TILT"
-      ],
+      "enum": ["NORMAL", "TILT"],
       "hideFromKpis": true
     }
   }

@@ -31,9 +31,5 @@
       "maximum": 10000
     }
   },
-  "required": [
-    "temperature",
-    "humidity",
-    "co2"
-  ]
+  "required": ["temperature", "humidity", "co2"]
 }

@@ -26,12 +26,7 @@
       "title": "Trip type",
       "type": "string",
       "description": "Type of movement this trip",
-      "enum": [
-        "NO_TRIP",
-        "IGNITION",
-        "MOVEMENT",
-        "RUN"
-      ]
+      "enum": ["NO_TRIP", "IGNITION", "MOVEMENT", "RUN"]
     },
     "gpsFixCurrent": {
       "title": "GPS fix current",

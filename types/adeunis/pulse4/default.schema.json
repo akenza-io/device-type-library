@@ -62,7 +62,5 @@
       "description": "Counter value time - 10"
     }
   },
-  "required": [
-    "counterValue"
-  ]
+  "required": ["counterValue"]
 }

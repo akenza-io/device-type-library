@@ -23,8 +23,5 @@
       "maximum": 3276.5
     }
   },
-  "required": [
-    "humidity",
-    "temperature"
-  ]
+  "required": ["humidity", "temperature"]
 }

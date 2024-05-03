@@ -31,9 +31,5 @@
       "maximum": 10000
     }
   },
-  "required": [
-    "humidity",
-    "temperature",
-    "pm2_5"
-  ]
+  "required": ["humidity", "temperature", "pm2_5"]
 }

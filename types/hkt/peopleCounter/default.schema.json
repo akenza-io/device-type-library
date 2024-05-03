@@ -27,10 +27,5 @@
       "description": "Absoulute count B"
     }
   },
-  "required": [
-    "counterA",
-    "counterB",
-    "absCountA",
-    "absCountB"
-  ]
+  "required": ["counterA", "counterB", "absCountA", "absCountB"]
 }

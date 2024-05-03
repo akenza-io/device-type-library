@@ -13,7 +13,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "eventUplink"
-  ]
+  "required": ["eventUplink"]
 }

@@ -18,10 +18,7 @@
       "title": "Trigger",
       "description": "Action which triggered the uplink",
       "type": "string",
-      "enum": [
-        "ACCELEROMETER",
-        "PUSHBUTTON"
-      ]
+      "enum": ["ACCELEROMETER", "PUSHBUTTON"]
     },
     "uplink": {
       "title": "Uplink count",

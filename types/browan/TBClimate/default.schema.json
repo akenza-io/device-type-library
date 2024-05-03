@@ -44,11 +44,5 @@
       "maximum": 60000
     }
   },
-  "required": [
-    "temperature",
-    "open",
-    "humidity",
-    "co2",
-    "voc"
-  ]
+  "required": ["temperature", "open", "humidity", "co2", "voc"]
 }

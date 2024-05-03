@@ -1,32 +1,30 @@
 {
-    "$id": "https://akenza.io/geo-location/example.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "example",
-    "title": "Spaces Example",
-    "properties": {
-        "occupied": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupied/boolean",
-            "description": "Is the room occupied.",
-            "hideFromKpis": false
-        },
-        "motionCount": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/motion/count",
-            "hideFromKpis": true
-        },
-        "peopleIn": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleIn/count",
-            "hideFromKpis": true
-        },
-        "peopleOut": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleOut/count"
-        },
-        "peopleCount": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleCount/count"
-        }
+  "$id": "https://akenza.io/geo-location/example.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "example",
+  "title": "Spaces Example",
+  "properties": {
+    "occupied": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupied/boolean",
+      "description": "Is the room occupied.",
+      "hideFromKpis": false
     },
-    "required": [
-        "occupied"
-    ]
+    "motionCount": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/motion/count",
+      "hideFromKpis": true
+    },
+    "peopleIn": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleIn/count",
+      "hideFromKpis": true
+    },
+    "peopleOut": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleOut/count"
+    },
+    "peopleCount": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleCount/count"
+    }
+  },
+  "required": ["occupied"]
 }

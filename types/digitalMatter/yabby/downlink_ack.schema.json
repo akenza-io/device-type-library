@@ -31,10 +31,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "sequenceNumber",
-    "accepted",
-    "fwMaj",
-    "fwMin"
-  ]
+  "required": ["sequenceNumber", "accepted", "fwMaj", "fwMin"]
 }

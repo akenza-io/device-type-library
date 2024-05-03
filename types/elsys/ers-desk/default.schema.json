@@ -31,9 +31,5 @@
       "maximum": 65535
     }
   },
-  "required": [
-    "humidity",
-    "temperature",
-    "light"
-  ]
+  "required": ["humidity", "temperature", "light"]
 }

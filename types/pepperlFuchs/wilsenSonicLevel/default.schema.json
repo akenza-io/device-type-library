@@ -27,9 +27,5 @@
       "maximum": 75
     }
   },
-  "required": [
-    "proximity",
-    "fillinglvlPercent",
-    "temperature"
-  ]
+  "required": ["proximity", "fillinglvlPercent", "temperature"]
 }

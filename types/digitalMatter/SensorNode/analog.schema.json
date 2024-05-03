@@ -27,10 +27,5 @@
       "type": "integer"
     }
   },
-  "required": [
-    "analog1",
-    "analog2",
-    "analog3",
-    "analog4"
-  ]
+  "required": ["analog1", "analog2", "analog3", "analog4"]
 }

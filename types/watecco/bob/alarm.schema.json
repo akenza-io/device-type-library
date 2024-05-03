@@ -268,9 +268,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "anomalyLevel",
-    "temperature",
-    "vibration"
-  ]
+  "required": ["anomalyLevel", "temperature", "vibration"]
 }

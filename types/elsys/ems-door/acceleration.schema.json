@@ -38,10 +38,5 @@
       "maximum": 255
     }
   },
-  "required": [
-    "accX",
-    "accY",
-    "accZ",
-    "accMotion"
-  ]
+  "required": ["accX", "accY", "accZ", "accMotion"]
 }

@@ -15,7 +15,5 @@
       "maximum": 100
     }
   },
-  "required": [
-    "humidity"
-  ]
+  "required": ["humidity"]
 }

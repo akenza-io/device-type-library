@@ -39,10 +39,5 @@
       "maximum": 60000
     }
   },
-  "required": [
-    "humidity",
-    "temperature",
-    "light",
-    "tvoc"
-  ]
+  "required": ["humidity", "temperature", "light", "tvoc"]
 }

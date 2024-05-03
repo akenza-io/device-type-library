@@ -7,20 +7,8 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": [
-    "Temperature",
-    "Light",
-    "GPS",
-    "Wifi"
-  ],
-  "outputTopics": [
-    "default",
-    "error",
-    "event",
-    "gps",
-    "lifecycle",
-    "settings"
-  ],
+  "availableSensors": ["Temperature", "Light", "GPS", "Wifi"],
+  "outputTopics": ["default", "error", "event", "gps", "lifecycle", "settings"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }
