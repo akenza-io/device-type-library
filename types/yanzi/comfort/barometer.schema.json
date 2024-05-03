@@ -15,7 +15,5 @@
       "maximum": 1260
     }
   },
-  "required": [
-    "barometer"
-  ]
+  "required": ["barometer"]
 }

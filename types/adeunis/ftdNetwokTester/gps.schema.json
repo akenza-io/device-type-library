@@ -28,9 +28,5 @@
       "description": "Available satellites"
     }
   },
-  "required": [
-    "latitude",
-    "longitude",
-    "satellites"
-  ]
+  "required": ["latitude", "longitude", "satellites"]
 }

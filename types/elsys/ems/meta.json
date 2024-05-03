@@ -14,11 +14,7 @@
     "Water Leak",
     "Reed"
   ],
-  "outputTopics": [
-    "default",
-    "lifecycle",
-    "configuration"
-  ],
+  "outputTopics": ["default", "lifecycle", "configuration"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

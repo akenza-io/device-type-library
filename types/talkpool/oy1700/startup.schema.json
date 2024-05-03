@@ -9,15 +9,10 @@
     "message": {
       "title": "Message",
       "type": "string",
-      "enum": [
-        "STARTUP_OK",
-        "STARTUP_FAIL"
-      ],
+      "enum": ["STARTUP_OK", "STARTUP_FAIL"],
       "description": "Message indicating startup status",
       "hideFromKpis": true
     }
   },
-  "required": [
-    "message"
-  ]
+  "required": ["message"]
 }

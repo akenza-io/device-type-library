@@ -34,11 +34,7 @@
       "title": "Alarm",
       "description": "Alarm",
       "type": "string",
-      "enum": [
-        "GREEN",
-        "YELLOW",
-        "RED"
-      ]
+      "enum": ["GREEN", "YELLOW", "RED"]
     },
     "dewPoint": {
       "title": "Dew point",
@@ -73,8 +69,5 @@
       "maximum": 100
     }
   },
-  "required": [
-    "humidity",
-    "alarm"
-  ]
+  "required": ["humidity", "alarm"]
 }

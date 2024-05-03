@@ -13,7 +13,5 @@
       "description": "Total current"
     }
   },
-  "required": [
-    "totalCurrent"
-  ]
+  "required": ["totalCurrent"]
 }

@@ -25,7 +25,5 @@
       "type": "number"
     }
   },
-  "required": [
-    "current"
-  ]
+  "required": ["current"]
 }

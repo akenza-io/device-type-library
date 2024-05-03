@@ -1,57 +1,57 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json",
-    "title": "Distance",
-    "description": "Distance measurements",
-    "type": "object",
-    "$defs": {
-        "distance": {
-            "km": {
-                "measurementType": "akenza/distance/distance/km",
-                "title": "Distance",
-                "description": "Distance in km",
-                "type": "number",
-                "unit": "km"
-            },
-            "m": {
-                "measurementType": "akenza/distance/distance/m",
-                "title": "Distance",
-                "description": "Distance in meters",
-                "type": "number",
-                "unit": "m"
-            },
-            "cm": {
-                "measurementType": "akenza/distance/distance/cm",
-                "title": "Distance",
-                "description": "Distance in cm",
-                "type": "number",
-                "unit": "cm"
-            },
-            "mm": {
-                "measurementType": "akenza/distance/distance/mm",
-                "title": "Distance",
-                "description": "Distance in mm",
-                "type": "number",
-                "unit": "mm"
-            }
-        },
-        "fillLevel": {
-            "percent": {
-                "measurementType": "akenza/distance/fillLevel/percent",
-                "title": "Fill level",
-                "description": "Fill level in %",
-                "type": "number",
-                "unit": "%",
-                "minimum": 0,
-                "maximum": 100
-            },
-            "absolute": {
-                "measurementType": "akenza/distance/fillLevel/absolute",
-                "title": "Fill level",
-                "description": "Fill level in meters",
-                "type": "number",
-                "unit": "m"
-            }
-        }
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json",
+  "title": "Distance",
+  "description": "Distance measurements",
+  "type": "object",
+  "$defs": {
+    "distance": {
+      "km": {
+        "measurementType": "akenza/distance/distance/km",
+        "title": "Distance",
+        "description": "Distance in km",
+        "type": "number",
+        "unit": "km"
+      },
+      "m": {
+        "measurementType": "akenza/distance/distance/m",
+        "title": "Distance",
+        "description": "Distance in meters",
+        "type": "number",
+        "unit": "m"
+      },
+      "cm": {
+        "measurementType": "akenza/distance/distance/cm",
+        "title": "Distance",
+        "description": "Distance in cm",
+        "type": "number",
+        "unit": "cm"
+      },
+      "mm": {
+        "measurementType": "akenza/distance/distance/mm",
+        "title": "Distance",
+        "description": "Distance in mm",
+        "type": "number",
+        "unit": "mm"
+      }
+    },
+    "fillLevel": {
+      "percent": {
+        "measurementType": "akenza/distance/fillLevel/percent",
+        "title": "Fill level",
+        "description": "Fill level in %",
+        "type": "number",
+        "unit": "%",
+        "minimum": 0,
+        "maximum": 100
+      },
+      "absolute": {
+        "measurementType": "akenza/distance/fillLevel/absolute",
+        "title": "Fill level",
+        "description": "Fill level in meters",
+        "type": "number",
+        "unit": "m"
+      }
     }
+  }
 }

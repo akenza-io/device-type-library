@@ -12,7 +12,5 @@
       "type": "integer"
     }
   },
-  "required": [
-    "activityCounter"
-  ]
+  "required": ["activityCounter"]
 }

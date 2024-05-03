@@ -8,18 +8,12 @@
   "properties": {
     "magnetChannel1": {
       "title": "Magnet channel 1",
-      "type": [
-        "boolean",
-        "null"
-      ],
+      "type": ["boolean", "null"],
       "description": "True if contact is closed"
     },
     "magnetChannel2": {
       "title": "Magnet channel 2",
-      "type": [
-        "boolean",
-        "null"
-      ],
+      "type": ["boolean", "null"],
       "description": "True if contact is closed"
     }
   }

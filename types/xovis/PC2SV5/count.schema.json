@@ -10,10 +10,7 @@
       "title": "Count type",
       "description": "Describes the count type",
       "type": "string",
-      "enum": [
-        "COUNT_INCREMENT",
-        "COUNT_DECREMENT"
-      ]
+      "enum": ["COUNT_INCREMENT", "COUNT_DECREMENT"]
     },
     "logicName": {
       "title": "Logic name",
@@ -24,11 +21,7 @@
       "title": "Direction",
       "description": "Direction passed",
       "type": "string",
-      "enum": [
-        "fw",
-        "bw",
-        "balance"
-      ]
+      "enum": ["fw", "bw", "balance"]
     },
     "counterValue": {
       "title": "Counter value",
@@ -38,9 +31,5 @@
       "maximum": 65535
     }
   },
-  "required": [
-    "countType",
-    "logicName",
-    "counterValue"
-  ]
+  "required": ["countType", "logicName", "counterValue"]
 }

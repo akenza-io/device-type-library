@@ -23,8 +23,5 @@
       "maximum": 65535
     }
   },
-  "required": [
-    "light",
-    "colorTemperature"
-  ]
+  "required": ["light", "colorTemperature"]
 }

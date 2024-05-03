@@ -48,11 +48,7 @@
       "title": "Battery status",
       "description": "Battery status",
       "type": "string",
-      "enum": [
-        "CHARGING",
-        "ERROR",
-        "NORMAL"
-      ],
+      "enum": ["CHARGING", "ERROR", "NORMAL"],
       "hideFromKpis": true
     },
     "batteryLevel": {

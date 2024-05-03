@@ -19,8 +19,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "errorType",
-    "errorCause"
-  ]
+  "required": ["errorType", "errorCause"]
 }

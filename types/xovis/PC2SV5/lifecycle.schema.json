@@ -10,10 +10,7 @@
       "title": "Device status",
       "type": "string",
       "description": "Device status",
-      "enum": [
-        "OK",
-        "NOT_OK"
-      ]
+      "enum": ["OK", "NOT_OK"]
     },
     "multisensor": {
       "title": "Multisensor",
@@ -24,37 +21,25 @@
       "title": "Network status",
       "type": "string",
       "description": "Network status",
-      "enum": [
-        "OK",
-        "NOT_OK"
-      ]
+      "enum": ["OK", "NOT_OK"]
     },
     "singleSensorIllumination": {
       "title": "Illumination",
       "type": "string",
       "description": "Illumination status",
-      "enum": [
-        "SUFFICIENT",
-        "NOT_SUFFICIENT"
-      ]
+      "enum": ["SUFFICIENT", "NOT_SUFFICIENT"]
     },
     "timeStatus": {
       "title": "Time status",
       "type": "string",
       "description": "Time status",
-      "enum": [
-        "OK",
-        "NOT_OK"
-      ]
+      "enum": ["OK", "NOT_OK"]
     },
     "updateStatus": {
       "title": "Update status",
       "type": "string",
       "description": "Update status",
-      "enum": [
-        "OK",
-        "NOT_OK"
-      ]
+      "enum": ["OK", "NOT_OK"]
     }
   },
   "required": [

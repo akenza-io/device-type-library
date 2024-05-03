@@ -33,8 +33,5 @@
       "description": "Pulse counter"
     }
   },
-  "required": [
-    "temperature",
-    "humidity"
-  ]
+  "required": ["temperature", "humidity"]
 }

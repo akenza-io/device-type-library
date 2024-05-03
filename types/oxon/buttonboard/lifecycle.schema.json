@@ -35,10 +35,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "batteryLevel",
-    "hbIRQ",
-    "accIRQ",
-    "appMode"
-  ]
+  "required": ["batteryLevel", "hbIRQ", "accIRQ", "appMode"]
 }

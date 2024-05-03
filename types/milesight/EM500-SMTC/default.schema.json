@@ -27,9 +27,5 @@
       "description": "Conductivity of the soil"
     }
   },
-  "required": [
-    "temperature",
-    "moisture",
-    "soilConductivity"
-  ]
+  "required": ["temperature", "moisture", "soilConductivity"]
 }

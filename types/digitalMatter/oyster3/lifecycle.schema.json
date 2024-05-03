@@ -23,8 +23,5 @@
       "unit": "%"
     }
   },
-  "required": [
-    "batteryVoltage",
-    "batteryLevel"
-  ]
+  "required": ["batteryVoltage", "batteryLevel"]
 }

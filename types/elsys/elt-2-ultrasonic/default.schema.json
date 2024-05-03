@@ -45,10 +45,5 @@
       "maximum": 1100
     }
   },
-  "required": [
-    "temperature",
-    "humidity",
-    "distance",
-    "pressure"
-  ]
+  "required": ["temperature", "humidity", "distance", "pressure"]
 }

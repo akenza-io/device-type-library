@@ -20,7 +20,5 @@
       "description": "Battery charges left"
     }
   },
-  "required": [
-    "batteryLevel"
-  ]
+  "required": ["batteryLevel"]
 }

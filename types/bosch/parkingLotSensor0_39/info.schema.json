@@ -28,17 +28,9 @@
       "title": "LoRa Frequency",
       "description": "LoRa Frequency",
       "type": "string",
-      "enum": [
-        "EU868",
-        "AS923"
-      ],
+      "enum": ["EU868", "AS923"],
       "hideFromKpis": true
     }
   },
-  "required": [
-    "devEUI",
-    "hwRevision",
-    "productCode",
-    "frequency"
-  ]
+  "required": ["devEUI", "hwRevision", "productCode", "frequency"]
 }

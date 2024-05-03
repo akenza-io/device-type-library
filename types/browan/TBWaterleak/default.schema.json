@@ -28,9 +28,5 @@
       "maximum": 100
     }
   },
-  "required": [
-    "waterleak",
-    "temperature",
-    "humidity"
-  ]
+  "required": ["waterleak", "temperature", "humidity"]
 }

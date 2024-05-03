@@ -33,10 +33,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "temperature",
-    "open",
-    "time",
-    "count"
-  ]
+  "required": ["temperature", "open", "time", "count"]
 }

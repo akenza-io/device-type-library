@@ -15,10 +15,7 @@
       "title": "Pin status",
       "description": "Pin status",
       "type": "string",
-      "enum": [
-        "DISCONNECTED",
-        "CONNECTED"
-      ]
+      "enum": ["DISCONNECTED", "CONNECTED"]
     },
     "calculateFlag": {
       "title": "Calculate flag",

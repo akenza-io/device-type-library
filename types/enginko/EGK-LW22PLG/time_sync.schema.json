@@ -33,10 +33,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "syncID",
-    "syncVersion",
-    "applicationType",
-    "rfu"
-  ]
+  "required": ["syncID", "syncVersion", "applicationType", "rfu"]
 }

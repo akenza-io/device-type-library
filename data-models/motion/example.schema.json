@@ -1,30 +1,27 @@
 {
-    "$id": "https://akenza.io/acceleration/example.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "example",
-    "title": "Acceleration Example",
-    "properties": {
-        "accelerationX": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/mG",
-            "title": "Acceleration - X (in mG)",
-            "description": "Acceleration on the x-axis in mG.",
-            "minimum": -180.0,
-            "maximum": 180.0,
-            "hideFromKpis": false
-        },
-        "accelerationY": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/mG",
-            "title": "Acceleration - Y (in mG)",
-            "description": "Acceleration on the y-axis in mG.",
-            "minimum": -180.0,
-            "maximum": 180.0,
-            "hideFromKpis": false
-        }
+  "$id": "https://akenza.io/acceleration/example.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "example",
+  "title": "Acceleration Example",
+  "properties": {
+    "accelerationX": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/mG",
+      "title": "Acceleration - X (in mG)",
+      "description": "Acceleration on the x-axis in mG.",
+      "minimum": -180.0,
+      "maximum": 180.0,
+      "hideFromKpis": false
     },
-    "required": [
-        "accelerationX",
-        "accelerationY"
-    ]
+    "accelerationY": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/mG",
+      "title": "Acceleration - Y (in mG)",
+      "description": "Acceleration on the y-axis in mG.",
+      "minimum": -180.0,
+      "maximum": 180.0,
+      "hideFromKpis": false
+    }
+  },
+  "required": ["accelerationX", "accelerationY"]
 }

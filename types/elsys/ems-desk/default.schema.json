@@ -47,11 +47,5 @@
       "maximum": 32767
     }
   },
-  "required": [
-    "temperature",
-    "humidity",
-    "accX",
-    "accY",
-    "accZ"
-  ]
+  "required": ["temperature", "humidity", "accX", "accY", "accZ"]
 }

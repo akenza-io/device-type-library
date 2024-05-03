@@ -46,11 +46,5 @@
       "maximum": 65535
     }
   },
-  "required": [
-    "temperature",
-    "humidity",
-    "co2",
-    "pir",
-    "light"
-  ]
+  "required": ["temperature", "humidity", "co2", "pir", "light"]
 }

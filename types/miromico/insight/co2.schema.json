@@ -15,7 +15,5 @@
       "maximum": 10000
     }
   },
-  "required": [
-    "co2"
-  ]
+  "required": ["co2"]
 }
