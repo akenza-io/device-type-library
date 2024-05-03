@@ -1,80 +1,56 @@
 {
-  "$id": "https://akenza.io/sentinum/febris/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
-  "properties": {
-    "humidity": {
-      "title": "Humidity",
-      "unit": "%",
-      "type": "number",
-      "description": "The relative humidity in %",
-      "minimum": 0,
-      "maximum": 100
+    "$id": "https://akenza.io/sentinum/febris/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "humidity": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+        },
+        "pressure": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/hPa"
+        },
+        "co2": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm"
+        },
+        "alarm": {
+            "title": "Alarm",
+            "description": "Alarm",
+            "type": "string",
+            "enum": [
+                "GREEN",
+                "YELLOW",
+                "RED"
+            ]
+        },
+        "dewPoint": {
+            "title": "Dew point",
+            "unit": "°C",
+            "type": "number",
+            "description": "Dew point  in °C.",
+            "minimum": -3276.5,
+            "maximum": 3276.5
+        },
+        "wallTemperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/wallTemperature/celsius",
+            "description": "Wall temperature in °C.",
+            "title": "Wall temperature"
+        },
+        "thermTemperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/thermTemperature/celsius",
+            "description": "Thermometer temperature in °C.",
+            "title": "Thermometer temperature"
+        },
+        "wallHumidity": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/wallHumidity/percent",
+            "description": "The relative wall humidity in %",
+            "title": "Wall humidity"
+        }
     },
-    "pressure": {
-      "title": "Pressure",
-      "unit": "hpa",
-      "description": "Barometric Pressure in hpa",
-      "type": "number",
-      "minimum": 300,
-      "maximum": 1100
-    },
-    "co2": {
-      "title": "CO2",
-      "unit": "ppm",
-      "type": "integer",
-      "description": "Carbon Dioxide in ppm",
-      "minimum": 0,
-      "maximum": 10000
-    },
-    "alarm": {
-      "title": "Alarm",
-      "description": "Alarm",
-      "type": "string",
-      "enum": [
-        "GREEN",
-        "YELLOW",
-        "RED"
-      ]
-    },
-    "dewPoint": {
-      "title": "Dew point",
-      "unit": "°C",
-      "type": "number",
-      "description": "Dew point  in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "wallTemperature": {
-      "title": "Wall temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "Wall temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "thermTemperature": {
-      "title": "Thermometer temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "Thermometer temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "wallHumidity": {
-      "title": "Wall humidity",
-      "unit": "%",
-      "type": "number",
-      "description": "The relative wall humidity in %",
-      "minimum": 0,
-      "maximum": 100
-    }
-  },
-  "required": [
-    "humidity",
-    "alarm"
-  ]
+    "required": [
+        "humidity",
+        "alarm"
+    ]
 }

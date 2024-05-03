@@ -1,101 +1,77 @@
 {
-  "$id": "https://akenza.io/milesight/AM319/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
-  "properties": {
-    "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+    "$id": "https://akenza.io/milesight/AM319/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "humidity": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+        },
+        "pir": {
+            "title": "PIR",
+            "description": "PIR is either trigger or idle",
+            "type": "string",
+            "enum": [
+                "TRIGGER",
+                "IDLE"
+            ]
+        },
+        "light": {
+            "title": "Light",
+            "unit": "lx",
+            "type": "number",
+            "description": "The light in lux.",
+            "minimum": 0,
+            "maximum": 65535
+        },
+        "co2": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm"
+        },
+        "tvoc": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/tvoc/ppm"
+        },
+        "pressure": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/hPa"
+        },
+        "hcho": {
+            "title": "Formaldehyde",
+            "unit": "mg/m3",
+            "description": "Formaldehyde in mg/m3",
+            "type": "number"
+        },
+        "pm2_5": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pm2_5/mcgm3",
+            "description": "Particles less than 2.5 μm in diameter",
+            "title": "Particles 2.5"
+        },
+        "pm10": {
+            "title": "Particles 10",
+            "unit": "μm/m3",
+            "type": "integer",
+            "description": "Particles less than 10 μm in diameter"
+        },
+        "o3": {
+            "title": "Ozone",
+            "unit": "ppm",
+            "type": "integer",
+            "description": "Ozon particles in ppm"
+        }
     },
-    "humidity": {
-      "title": "Humidity",
-      "unit": "%",
-      "type": "number",
-      "description": "The relative humidity in %",
-      "minimum": 0,
-      "maximum": 100
-    },
-    "pir": {
-      "title": "PIR",
-      "description": "PIR is either trigger or idle",
-      "type": "string",
-      "enum": [
-        "TRIGGER",
-        "IDLE"
-      ]
-    },
-    "light": {
-      "title": "Light",
-      "unit": "lux",
-      "type": "number",
-      "description": "The light in lux.",
-      "minimum": 0,
-      "maximum": 65535
-    },
-    "co2": {
-      "title": "CO2",
-      "unit": "ppm",
-      "type": "integer",
-      "description": "Carbon Dioxide in ppm",
-      "minimum": 0,
-      "maximum": 10000
-    },
-    "tvoc": {
-      "title": "VOC",
-      "unit": "ppm",
-      "type": "integer",
-      "description": "Total Volatile Organic Compounds in ppm",
-      "minimum": 0,
-      "maximum": 60000
-    },
-    "pressure": {
-      "title": "Pressure",
-      "unit": "hpa",
-      "description": "Barometric Pressure in hpa",
-      "type": "number"
-    },
-    "hcho": {
-      "title": "Formaldehyde",
-      "unit": "mg/m3",
-      "description": "Formaldehyde in mg/m3",
-      "type": "number"
-    },
-    "pm2_5": {
-      "title": "Particles 2.5",
-      "unit": "μg/m3",
-      "type": "integer",
-      "description": "Particles less than 2.5 μm in diameter"
-    },
-    "pm10": {
-      "title": "Particles 10",
-      "unit": "μm/m3",
-      "type": "integer",
-      "description": "Particles less than 10 μm in diameter"
-    },
-    "o3": {
-      "title": "Ozone",
-      "unit": "ppm",
-      "type": "integer",
-      "description": "Ozon particles in ppm"
-    }
-  },
-  "required": [
-    "temperature",
-    "humidity",
-    "pir",
-    "light",
-    "co2",
-    "tvoc",
-    "pressure",
-    "hcho",
-    "pm2_5",
-    "pm10"
-  ]
+    "required": [
+        "temperature",
+        "humidity",
+        "pir",
+        "light",
+        "co2",
+        "tvoc",
+        "pressure",
+        "hcho",
+        "pm2_5",
+        "pm10"
+    ]
 }

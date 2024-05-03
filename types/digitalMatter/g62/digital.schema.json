@@ -1,61 +1,59 @@
 {
-  "$id": "https://akenza.io/digitalMatter/g62/digital.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "digital",
-  "title": "Digital",
-  "properties": {
-    "extPower": {
-      "title": "External power",
-      "type": "boolean",
-      "description": "Equals true if there is external power.",
-      "hideFromKpis": true
+    "$id": "https://akenza.io/digitalMatter/g62/digital.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "digital",
+    "title": "Digital",
+    "properties": {
+        "extPower": {
+            "title": "External power",
+            "type": "boolean",
+            "description": "Equals true if there is external power.",
+            "hideFromKpis": true
+        },
+        "ignition": {
+            "title": "Ignition state",
+            "type": "boolean",
+            "description": "Equals true if there is ignition detected.",
+            "hideFromKpis": true
+        },
+        "digitalInput1": {
+            "title": "Digital input 1",
+            "type": "boolean",
+            "description": "Equals true if there is digital input.",
+            "hideFromKpis": true
+        },
+        "digitalInput2": {
+            "title": "Digital input 2",
+            "type": "boolean",
+            "description": "Equals true if there is digital input.",
+            "hideFromKpis": true
+        },
+        "digitalOutput": {
+            "title": "Digital output",
+            "type": "boolean",
+            "description": "Equals true if there is digital output.",
+            "hideFromKpis": true
+        },
+        "extVoltage": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/extVoltage/volt",
+            "description": "The external voltage in Volt.",
+            "title": "External voltage"
+        },
+        "analogInput": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/iOs/schema.json#/$defs/analogInput/volt",
+            "description": "Analog input in Volt.",
+            "title": "Analog input"
+        }
     },
-    "ignition": {
-      "title": "Ignition state",
-      "type": "boolean",
-      "description": "Equals true if there is ignition detected.",
-      "hideFromKpis": true
-    },
-    "digitalInput1": {
-      "title": "Digital input 1",
-      "type": "boolean",
-      "description": "Equals true if there is digital input.",
-      "hideFromKpis": true
-    },
-    "digitalInput2": {
-      "title": "Digital input 2",
-      "type": "boolean",
-      "description": "Equals true if there is digital input.",
-      "hideFromKpis": true
-    },
-    "digitalOutput": {
-      "title": "Digital output",
-      "type": "boolean",
-      "description": "Equals true if there is digital output.",
-      "hideFromKpis": true
-    },
-    "extVoltage": {
-      "title": "External voltage",
-      "type": "number",
-      "unit": "V",
-      "description": "The external voltage in Volt."
-    },
-    "analogInput": {
-      "title": "Analog input",
-      "type": "number",
-      "unit": "V",
-      "description": "Analog input in Volt."
-    }
-  },
-  "required": [
-    "extPower",
-    "ignition",
-    "digitalInput1",
-    "digitalInput2",
-    "digitalOutput",
-    "extVoltage",
-    "analogInput"
-  ]
+    "required": [
+        "extPower",
+        "ignition",
+        "digitalInput1",
+        "digitalInput2",
+        "digitalOutput",
+        "extVoltage",
+        "analogInput"
+    ]
 }

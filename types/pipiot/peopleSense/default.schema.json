@@ -1,67 +1,62 @@
 {
-  "$id": "https://akenza.io/levelSense/levelSense/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
-  "properties": {
-    "peopleCount": {
-      "title": "People count",
-      "type": "integer",
-      "description": "People count of the whole timeframe"
+    "$id": "https://akenza.io/levelSense/levelSense/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "peopleCount": {
+            "title": "People count",
+            "type": "integer",
+            "description": "People count of the whole timeframe"
+        },
+        "peopleCountBin1": {
+            "title": "People count bin 1",
+            "type": "integer",
+            "description": "People count bin 1 timeframe"
+        },
+        "peopleCountBin2": {
+            "title": "People count bin 2",
+            "type": "integer",
+            "description": "People count bin 2 timeframe"
+        },
+        "peopleCountBin3": {
+            "title": "People count bin 3",
+            "type": "integer",
+            "description": "People count bin 3 timeframe"
+        },
+        "peopleCountBin4": {
+            "title": "People count bin 4",
+            "type": "integer",
+            "description": "People count bin 4 timeframe"
+        },
+        "peopleCountBin5": {
+            "title": "People count bin 5",
+            "type": "integer",
+            "description": "People count bin 5 timeframe"
+        },
+        "peopleCountBin6": {
+            "title": "People count bin 6",
+            "type": "integer",
+            "description": "People count bin 6 timeframe"
+        },
+        "alertCount": {
+            "title": "Alert count",
+            "type": "integer",
+            "description": "Alert count"
+        },
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        }
     },
-    "peopleCountBin1": {
-      "title": "People count bin 1",
-      "type": "integer",
-      "description": "People count bin 1 timeframe"
-    },
-    "peopleCountBin2": {
-      "title": "People count bin 2",
-      "type": "integer",
-      "description": "People count bin 2 timeframe"
-    },
-    "peopleCountBin3": {
-      "title": "People count bin 3",
-      "type": "integer",
-      "description": "People count bin 3 timeframe"
-    },
-    "peopleCountBin4": {
-      "title": "People count bin 4",
-      "type": "integer",
-      "description": "People count bin 4 timeframe"
-    },
-    "peopleCountBin5": {
-      "title": "People count bin 5",
-      "type": "integer",
-      "description": "People count bin 5 timeframe"
-    },
-    "peopleCountBin6": {
-      "title": "People count bin 6",
-      "type": "integer",
-      "description": "People count bin 6 timeframe"
-    },
-    "alertCount": {
-      "title": "Alert count",
-      "type": "integer",
-      "description": "Alert count"
-    },
-    "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "Temperature in °C",
-      "minimum": -40,
-      "maximum": 125
-    }
-  },
-  "required": [
-    "peopleCount",
-    "peopleCountBin1",
-    "peopleCountBin2",
-    "peopleCountBin3",
-    "peopleCountBin4",
-    "peopleCountBin5",
-    "peopleCountBin6"
-  ]
+    "required": [
+        "peopleCount",
+        "peopleCountBin1",
+        "peopleCountBin2",
+        "peopleCountBin3",
+        "peopleCountBin4",
+        "peopleCountBin5",
+        "peopleCountBin6"
+    ]
 }

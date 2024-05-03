@@ -1,48 +1,37 @@
 {
-  "$id": "https://akenza.io/ioTracker/ioTracker3/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
-  "properties": {
-    "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+    "$id": "https://akenza.io/ioTracker/ioTracker3/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "light": {
+            "title": "Light",
+            "unit": "lx",
+            "type": "number",
+            "description": "The light in lux.",
+            "minimum": 0,
+            "maximum": 65535
+        },
+        "maxAccelerationNew": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/maxAccelerationNew/mG",
+            "description": "Max acceleration of the sensor since the last event.",
+            "title": "Max acceleration"
+        },
+        "maxAccelerationHistory": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/maxAccelerationHistory/mG",
+            "description": "Max acceleration over all events.",
+            "title": "Max acceleration history"
+        }
     },
-    "light": {
-      "title": "Light",
-      "unit": "lux",
-      "type": "number",
-      "description": "The light in lux.",
-      "minimum": 0,
-      "maximum": 65535
-    },
-    "maxAccelerationNew": {
-      "title": "Max acceleration",
-      "unit": "mg",
-      "description": "Max acceleration of the sensor since the last event.",
-      "type": "number",
-      "minimum": -32767,
-      "maximum": 32767
-    },
-    "maxAccelerationHistory": {
-      "title": "Max acceleration history",
-      "unit": "mg",
-      "description": "Max acceleration over all events.",
-      "type": "number",
-      "minimum": -32767,
-      "maximum": 32767
-    }
-  },
-  "required": [
-    "temperature",
-    "light",
-    "maxAccelerationNew",
-    "maxAccelerationHistory"
-  ]
+    "required": [
+        "temperature",
+        "light",
+        "maxAccelerationNew",
+        "maxAccelerationHistory"
+    ]
 }

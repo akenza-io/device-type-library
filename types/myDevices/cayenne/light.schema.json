@@ -14,7 +14,7 @@
     },
     "light": {
       "title": "Light",
-      "unit": "lux",
+      "unit": "lx",
       "type": "number",
       "description": "The light in lux.",
       "minimum": 0,

@@ -1,45 +1,40 @@
 {
-  "$id": "https://akenza.io/sensative/ms-guard/lifecycle.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "lifecycle",
-  "title": "Lifecycle",
-  "properties": {
-    "batteryLevel": {
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 100,
-      "title": "Battery charge",
-      "description": "The battery charge in percent.",
-      "unit": "%"
+    "$id": "https://akenza.io/sensative/ms-guard/lifecycle.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "lifecycle",
+    "title": "Lifecycle",
+    "properties": {
+        "batteryLevel": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
+        },
+        "error": {
+            "title": "Error message",
+            "description": "Error info which contains: wrong length of RX package",
+            "type": "string",
+            "hideFromKpis": true
+        },
+        "historySeqNr": {
+            "title": "History sequence number",
+            "type": "integer",
+            "description": "History sequence number",
+            "minimum": 0,
+            "maximum": 65535,
+            "hideFromKpis": true
+        },
+        "prevHistSeqNr": {
+            "title": "Previous history sequence number",
+            "type": "integer",
+            "description": "Previous history sequence number",
+            "minimum": 0,
+            "maximum": 65535,
+            "hideFromKpis": true
+        }
     },
-    "error": {
-      "title": "Error message",
-      "description": "Error info which contains: wrong length of RX package",
-      "type": "string",
-      "hideFromKpis": true
-    },
-    "historySeqNr": {
-      "title": "History sequence number",
-      "type": "integer",
-      "description": "History sequence number",
-      "minimum": 0,
-      "maximum": 65535,
-      "hideFromKpis": true
-    },
-    "prevHistSeqNr": {
-      "title": "Previous history sequence number",
-      "type": "integer",
-      "description": "Previous history sequence number",
-      "minimum": 0,
-      "maximum": 65535,
-      "hideFromKpis": true
-    }
-  },
-  "required": [
-    "batteryLevel",
-    "historySeqNr",
-    "prevHistSeqNr"
-  ]
+    "required": [
+        "batteryLevel",
+        "historySeqNr",
+        "prevHistSeqNr"
+    ]
 }

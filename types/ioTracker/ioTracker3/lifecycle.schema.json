@@ -1,41 +1,36 @@
 {
-  "$id": "https://akenza.io/ioTracker/ioTracker3/lifecycle.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "lifecycle",
-  "title": "Lifecycle",
-  "properties": {
-    "uplinkReason": {
-      "title": "Uplink reason",
-      "description": "Describes why a message got sent",
-      "type": "string",
-      "enum": [
-        "BUTTON",
-        "MOVEMENT",
-        "GPIO",
-        "STATUS"
-      ],
-      "hideFromKpis": true
+    "$id": "https://akenza.io/ioTracker/ioTracker3/lifecycle.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "lifecycle",
+    "title": "Lifecycle",
+    "properties": {
+        "uplinkReason": {
+            "title": "Uplink reason",
+            "description": "Describes why a message got sent",
+            "type": "string",
+            "enum": [
+                "BUTTON",
+                "MOVEMENT",
+                "GPIO",
+                "STATUS"
+            ],
+            "hideFromKpis": true
+        },
+        "crc": {
+            "title": "Cyclic redundancy check",
+            "description": "Cyclic redundancy check",
+            "type": "integer",
+            "hideFromKpis": true
+        },
+        "batteryLevel": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
+        }
     },
-    "crc": {
-      "title": "Cyclic redundancy check",
-      "description": "Cyclic redundancy check",
-      "type": "integer",
-      "hideFromKpis": true
-    },
-    "batteryLevel": {
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 100,
-      "title": "Battery charge",
-      "description": "The battery charge in percent.",
-      "unit": "%"
-    }
-  },
-  "required": [
-    "uplinkReason",
-    "crc",
-    "batteryLevel"
-  ]
+    "required": [
+        "uplinkReason",
+        "crc",
+        "batteryLevel"
+    ]
 }

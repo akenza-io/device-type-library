@@ -1,94 +1,91 @@
 {
-  "$id": "https://akenza.io/digitalMatter/oyster3/stats_v3.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "stats_v3",
-  "title": "Stats V3",
-  "properties": {
-    "batCritical": {
-      "title": "Battery critical",
-      "type": "boolean",
-      "description": "Battery critical",
-      "hideFromKpis": true
+    "$id": "https://akenza.io/digitalMatter/oyster3/stats_v3.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "stats_v3",
+    "title": "Stats V3",
+    "properties": {
+        "batCritical": {
+            "title": "Battery critical",
+            "type": "boolean",
+            "description": "Battery critical",
+            "hideFromKpis": true
+        },
+        "batLow": {
+            "title": "Battery low",
+            "type": "boolean",
+            "description": "Battery low",
+            "hideFromKpis": true
+        },
+        "currentvoltage": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/currentvoltage/volt",
+            "description": "Current battery voltage",
+            "title": "Current battery voltage",
+            "hideFromKpis": true
+        },
+        "mWhUsed": {
+            "title": "Megawatt hours used",
+            "unit": "mWh",
+            "type": "number",
+            "description": "Megawatt hours used",
+            "minimum": 0,
+            "maximum": 6555,
+            "hideFromKpis": true
+        },
+        "percentGnssFail": {
+            "title": "Percent GNSS fail",
+            "type": "number",
+            "unit": "%",
+            "description": "Percent GNSS failed fix attempt",
+            "hideFromKpis": true
+        },
+        "percentGnssSucc": {
+            "title": "Percent GNSS successes",
+            "type": "number",
+            "unit": "%",
+            "description": "Percent GNSS success",
+            "hideFromKpis": true
+        },
+        "percentLora": {
+            "title": "Percent LoRa",
+            "type": "number",
+            "unit": "%",
+            "description": "Percent LoRa",
+            "hideFromKpis": true
+        },
+        "percentOther": {
+            "title": "Percent other",
+            "type": "number",
+            "unit": "%",
+            "description": "Percent other",
+            "hideFromKpis": true
+        },
+        "percentSleepDis": {
+            "title": "Percent sleep",
+            "type": "number",
+            "unit": "%",
+            "description": "Percent sleep",
+            "hideFromKpis": true
+        },
+        "ttff": {
+            "title": "Time to first fix",
+            "type": "integer",
+            "unit": "s",
+            "description": "Time to first fix",
+            "hideFromKpis": true
+        }
     },
-    "batLow": {
-      "title": "Battery low",
-      "type": "boolean",
-      "description": "Battery low",
-      "hideFromKpis": true
-    },
-    "currentvoltage": {
-      "type": "number",
-      "minimum": 0,
-      "maximum": 24,
-      "title": "Current battery voltage",
-      "description": "Current battery voltage",
-      "unit": "V",
-      "hideFromKpis": true
-    },
-    "mWhUsed": {
-      "title": "Megawatt hours used",
-      "unit": "mWh",
-      "type": "number",
-      "description": "Megawatt hours used",
-      "minimum": 0,
-      "maximum": 6555,
-      "hideFromKpis": true
-    },
-    "percentGnssFail": {
-      "title": "Percent GNSS fail",
-      "type": "number",
-      "unit": "%",
-      "description": "Percent GNSS failed fix attempt",
-      "hideFromKpis": true
-    },
-    "percentGnssSucc": {
-      "title": "Percent GNSS successes",
-      "type": "number",
-      "unit": "%",
-      "description": "Percent GNSS success",
-      "hideFromKpis": true
-    },
-    "percentLora": {
-      "title": "Percent LoRa",
-      "type": "number",
-      "unit": "%",
-      "description": "Percent LoRa",
-      "hideFromKpis": true
-    },
-    "percentOther": {
-      "title": "Percent other",
-      "type": "number",
-      "unit": "%",
-      "description": "Percent other",
-      "hideFromKpis": true
-    },
-    "percentSleepDis": {
-      "title": "Percent sleep",
-      "type": "number",
-      "unit": "%",
-      "description": "Percent sleep",
-      "hideFromKpis": true
-    },
-    "ttff": {
-      "title": "Time to first fix",
-      "type": "integer",
-      "unit": "s",
-      "description": "Time to first fix",
-      "hideFromKpis": true
-    }
-  },
-  "required": [
-    "batCritical",
-    "batLow",
-    "currentvoltage",
-    "mWhUsed",
-    "percentGnssFail",
-    "percentGnssSucc",
-    "percentLora",
-    "percentOther",
-    "percentSleepDis",
-    "ttff"
-  ]
+    "required": [
+        "batCritical",
+        "batLow",
+        "currentvoltage",
+        "mWhUsed",
+        "percentGnssFail",
+        "percentGnssSucc",
+        "percentLora",
+        "percentOther",
+        "percentSleepDis",
+        "ttff"
+    ]
 }

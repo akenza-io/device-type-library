@@ -1,26 +1,20 @@
 {
-  "$id": "https://akenza.io/dragino/lsn50v2-d20/ds.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "ds",
-  "title": "Digital sensor",
-  "properties": {
-    "c2temperature": {
-      "title": "Channel 2 Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "c3temperature": {
-      "title": "Channel 3 temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "Channel 3 Temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+    "$id": "https://akenza.io/dragino/lsn50v2-d20/ds.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "ds",
+    "title": "Digital sensor",
+    "properties": {
+        "c2temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/c2temperature/celsius",
+            "description": "Channel 2 Temperature in °C.",
+            "title": "Channel 2 Temperature"
+        },
+        "c3temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/c3temperature/celsius",
+            "description": "Channel 3 Temperature in °C.",
+            "title": "Channel 3 temperature"
+        }
     }
-  }
 }

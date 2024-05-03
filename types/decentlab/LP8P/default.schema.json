@@ -1,109 +1,72 @@
 {
-  "$id": "https://akenza.io/decentlab/lp8p/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
-  "properties": {
-    "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+    "$id": "https://akenza.io/decentlab/lp8p/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "humidity": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+        },
+        "barometricTemperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/barometricTemperature/celsius",
+            "description": "The barometric temperature in °C.",
+            "title": "Barometric temperature"
+        },
+        "pressure": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/hPa"
+        },
+        "co2": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm"
+        },
+        "co2LPF": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2LPF/ppm",
+            "description": "Carbon Dioxide in ppm",
+            "title": "CO2 low-pass filtered"
+        },
+        "co2Temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2Temperature/celsius""title": "CO2 sensor temperature"
+        },
+        "capacitorVoltage1": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/capacitorVoltage1/volt",
+            "description": "Capacitor voltage 1",
+            "title": "Capacitor voltage 1"
+        },
+        "capacitorVoltage2": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/capacitorVoltage2/volt",
+            "description": "Capacitor voltage 2",
+            "title": "Capacitor voltage 2"
+        },
+        "rawIr": {
+            "title": "Raw infrared",
+            "description": "Raw infrared",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 65535
+        },
+        "rawIrLPF": {
+            "title": "Raw infrared lpf",
+            "description": "Raw infrared lpf",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 65535
+        }
     },
-    "humidity": {
-      "title": "Humidity",
-      "unit": "%",
-      "type": "number",
-      "description": "The relative humidity in %",
-      "minimum": 0,
-      "maximum": 100
-    },
-    "barometricTemperature": {
-      "title": "Barometric temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The barometric temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "pressure": {
-      "title": "Pressure",
-      "unit": "hpa",
-      "description": "Barometric Pressure in hpa",
-      "type": "number",
-      "minimum": 300,
-      "maximum": 1100
-    },
-    "co2": {
-      "title": "CO2",
-      "unit": "ppm",
-      "type": "integer",
-      "description": "Carbon Dioxide in ppm",
-      "minimum": 0,
-      "maximum": 10000
-    },
-    "co2LPF": {
-      "title": "CO2 low-pass filtered",
-      "unit": "ppm",
-      "type": "integer",
-      "description": "Carbon Dioxide in ppm",
-      "minimum": 0,
-      "maximum": 10000
-    },
-    "co2Temperature": {
-      "title": "CO2 sensor temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "capacitorVoltage1": {
-      "title": "Capacitor voltage 1",
-      "unit": "V",
-      "type": "number",
-      "description": "Capacitor voltage 1",
-      "minimum": 0,
-      "maximum": 24
-    },
-    "capacitorVoltage2": {
-      "title": "Capacitor voltage 2",
-      "unit": "V",
-      "type": "number",
-      "description": "Capacitor voltage 2",
-      "minimum": 0,
-      "maximum": 24
-    },
-    "rawIr": {
-      "title": "Raw infrared",
-      "description": "Raw infrared",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 65535
-    },
-    "rawIrLPF": {
-      "title": "Raw infrared lpf",
-      "description": "Raw infrared lpf",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 65535
-    }
-  },
-  "required": [
-    "temperature",
-    "humidity",
-    "barometricTemperature",
-    "pressure",
-    "co2",
-    "co2LPF",
-    "co2Temperature",
-    "capacitorVoltage1",
-    "capacitorVoltage2",
-    "rawIr",
-    "rawIrLPF"
-  ]
+    "required": [
+        "temperature",
+        "humidity",
+        "barometricTemperature",
+        "pressure",
+        "co2",
+        "co2LPF",
+        "co2Temperature",
+        "capacitorVoltage1",
+        "capacitorVoltage2",
+        "rawIr",
+        "rawIrLPF"
+    ]
 }

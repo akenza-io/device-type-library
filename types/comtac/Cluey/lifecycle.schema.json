@@ -1,69 +1,64 @@
 {
-  "$id": "https://akenza.io/comtac/cluey/lifecycle.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "lifecycle",
-  "title": "Lifecycle",
-  "properties": {
-    "batteryLevel": {
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 100,
-      "title": "Battery charge",
-      "description": "The battery charge in percent.",
-      "unit": "%"
+    "$id": "https://akenza.io/comtac/cluey/lifecycle.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "lifecycle",
+    "title": "Lifecycle",
+    "properties": {
+        "batteryLevel": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
+        },
+        "batteryPowered": {
+            "title": "Battery powered",
+            "description": "Whether the battery is powered",
+            "type": "boolean",
+            "hideFromKpis": true
+        },
+        "bufferOverflow": {
+            "title": "Buffer overflow",
+            "description": "Whether there is a buffer overflow",
+            "type": "boolean"
+        },
+        "configurationError": {
+            "title": "Configuration error",
+            "description": "Whether there is a configuration error",
+            "type": "boolean"
+        },
+        "confirmationTimeout": {
+            "title": "Confirmation timeout",
+            "description": "Whether there is a confirmation timeout",
+            "type": "boolean"
+        },
+        "deviceRestarted": {
+            "title": "Device restarted",
+            "description": "Whether there the device has restarted",
+            "type": "boolean"
+        },
+        "lowSupplyVoltage": {
+            "title": "Low supply voltage",
+            "description": "Whether there is a low supply voltage",
+            "type": "boolean"
+        },
+        "timeSynced": {
+            "title": "Time synced",
+            "description": "Whether the time is synced",
+            "type": "boolean"
+        },
+        "txCreditsConsumed": {
+            "title": "TX credits consumed",
+            "description": "Whether there have been TX credits consumed",
+            "type": "boolean"
+        }
     },
-    "batteryPowered": {
-      "title": "Battery powered",
-      "description": "Whether the battery is powered",
-      "type": "boolean",
-      "hideFromKpis": true
-    },
-    "bufferOverflow": {
-      "title": "Buffer overflow",
-      "description": "Whether there is a buffer overflow",
-      "type": "boolean"
-    },
-    "configurationError": {
-      "title": "Configuration error",
-      "description": "Whether there is a configuration error",
-      "type": "boolean"
-    },
-    "confirmationTimeout": {
-      "title": "Confirmation timeout",
-      "description": "Whether there is a confirmation timeout",
-      "type": "boolean"
-    },
-    "deviceRestarted": {
-      "title": "Device restarted",
-      "description": "Whether there the device has restarted",
-      "type": "boolean"
-    },
-    "lowSupplyVoltage": {
-      "title": "Low supply voltage",
-      "description": "Whether there is a low supply voltage",
-      "type": "boolean"
-    },
-    "timeSynced": {
-      "title": "Time synced",
-      "description": "Whether the time is synced",
-      "type": "boolean"
-    },
-    "txCreditsConsumed": {
-      "title": "TX credits consumed",
-      "description": "Whether there have been TX credits consumed",
-      "type": "boolean"
-    }
-  },
-  "required": [
-    "batteryPowered",
-    "bufferOverflow",
-    "configurationError",
-    "confirmationTimeout",
-    "deviceRestarted",
-    "lowSupplyVoltage",
-    "timeSynced",
-    "txCreditsConsumed"
-  ]
+    "required": [
+        "batteryPowered",
+        "bufferOverflow",
+        "configurationError",
+        "confirmationTimeout",
+        "deviceRestarted",
+        "lowSupplyVoltage",
+        "timeSynced",
+        "txCreditsConsumed"
+    ]
 }

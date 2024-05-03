@@ -1,34 +1,28 @@
 {
-  "$id": "https://akenza.io/dragino/lsn50v2-s31/iic.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "iic",
-  "title": "IIC",
-  "properties": {
-    "light": {
-      "title": "Light",
-      "unit": "lux",
-      "type": "number",
-      "description": "The light in lux.",
-      "minimum": 0,
-      "maximum": 65535
-    },
-    "extTemperature": {
-      "title": "External temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The external temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "extHumidity": {
-      "title": "External humidity",
-      "unit": "%",
-      "type": "number",
-      "description": "The external relative humidity in %",
-      "minimum": 0,
-      "maximum": 100
+    "$id": "https://akenza.io/dragino/lsn50v2-s31/iic.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "iic",
+    "title": "IIC",
+    "properties": {
+        "light": {
+            "title": "Light",
+            "unit": "lx",
+            "type": "number",
+            "description": "The light in lux.",
+            "minimum": 0,
+            "maximum": 65535
+        },
+        "extTemperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/extTemperature/celsius",
+            "description": "The external temperature in °C.",
+            "title": "External temperature"
+        },
+        "extHumidity": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/extHumidity/percent",
+            "description": "The external relative humidity in %",
+            "title": "External humidity"
+        }
     }
-  }
 }

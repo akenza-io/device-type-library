@@ -1,19 +1,16 @@
 {
-  "$id": "https://akenza.io/digitalTechnologies/co2/pressure.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "pressure",
-  "title": "Pressure",
-  "properties": {
-    "pressure": {
-      "title": "Pressure",
-      "unit": "pa",
-      "description": "Barometric Pressure in bar",
-      "type": "number"
-    }
-  },
-  "required": [
-    "pressure"
-  ]
+    "$id": "https://akenza.io/digitalTechnologies/co2/pressure.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "pressure",
+    "title": "Pressure",
+    "properties": {
+        "pressure": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/pa"
+        }
+    },
+    "required": [
+        "pressure"
+    ]
 }

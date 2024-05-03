@@ -1,21 +1,18 @@
 {
-  "$id": "https://akenza.io/tektelic/smartRoomSensorPIR/lifecycle.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "lifecycle",
-  "title": "Lifecycle",
-  "properties": {
-    "batteryVoltage": {
-      "title": "Battery voltage",
-      "unit": "V",
-      "type": "number",
-      "minimum": 0,
-      "maximum": 3.2,
-      "description": "The battery voltage in Volt. 3.2 Max"
-    }
-  },
-  "required": [
-    "batteryVoltage"
-  ]
+    "$id": "https://akenza.io/tektelic/smartRoomSensorPIR/lifecycle.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "lifecycle",
+    "title": "Lifecycle",
+    "properties": {
+        "batteryVoltage": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt",
+            "description": "The battery voltage in Volt. 3.2 Max",
+            "title": "Battery voltage"
+        }
+    },
+    "required": [
+        "batteryVoltage"
+    ]
 }

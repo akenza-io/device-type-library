@@ -1,66 +1,60 @@
 {
-  "$id": "https://akenza.io/digitalMatter/guppy/status.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "status",
-  "title": "Status",
-  "properties": {
-    "inTrip": {
-      "title": "In trip",
-      "type": "boolean",
-      "description": "Is true if the accelerometer detects movement",
-      "hideFromKpis": true
+    "$id": "https://akenza.io/digitalMatter/guppy/status.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "status",
+    "title": "Status",
+    "properties": {
+        "inTrip": {
+            "title": "In trip",
+            "type": "boolean",
+            "description": "Is true if the accelerometer detects movement",
+            "hideFromKpis": true
+        },
+        "batteryVoltage": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+        },
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "manDown": {
+            "title": "Man down",
+            "type": "boolean",
+            "description": "Equals true if no movement for configured period got detected (Needs to be activated)",
+            "hideFromKpis": true
+        },
+        "inclinationDeg": {
+            "title": "Inclination degree",
+            "unit": "°",
+            "type": "number",
+            "description": "Inclination degree"
+        },
+        "azimuthDeg": {
+            "title": "Azimuth degree",
+            "unit": "°",
+            "type": "number",
+            "description": "Azimuth degree"
+        },
+        "downUnit": {
+            "title": "Unit down coordinates",
+            "type": "array",
+            "description": "Unit down coordinates"
+        },
+        "xyzAzimuthDeg": {
+            "title": "XYZ azimuth degree",
+            "type": "array",
+            "description": "XYZ azimuth degree"
+        },
+        "xyzInclinationDeg": {
+            "title": "XYZ inclination degree",
+            "type": "array",
+            "description": "XYZ inclination degree"
+        }
     },
-    "batteryVoltage": {
-      "type": "number",
-      "minimum": 0,
-      "maximum": 24,
-      "title": "Battery voltage",
-      "description": "The battery voltage in Volt.",
-      "unit": "V"
-    },
-    "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "manDown": {
-      "title": "Man down",
-      "type": "boolean",
-      "description": "Equals true if no movement for configured period got detected (Needs to be activated)",
-      "hideFromKpis": true
-    },
-    "inclinationDeg": {
-      "title": "Inclination degree",
-      "unit": "°",
-      "type": "number",
-      "description": "Inclination degree"
-    },
-    "azimuthDeg": {
-      "title": "Azimuth degree",
-      "unit": "°",
-      "type": "number",
-      "description": "Azimuth degree"
-    },
-    "downUnit": {
-      "title": "Unit down coordinates",
-      "type": "array",
-      "description": "Unit down coordinates"
-    },
-    "xyzAzimuthDeg": {
-      "title": "XYZ azimuth degree",
-      "type": "array",
-      "description": "XYZ azimuth degree"
-    },
-    "xyzInclinationDeg": {
-      "title": "XYZ inclination degree",
-      "type": "array",
-      "description": "XYZ inclination degree"
-    }
-  },
-  "required": ["inTrip", "batteryVoltage", "temperature"]
+    "required": [
+        "inTrip",
+        "batteryVoltage",
+        "temperature"
+    ]
 }

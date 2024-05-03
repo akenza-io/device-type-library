@@ -1,31 +1,30 @@
 {
-  "$id": "https://akenza.io/netvox/r771/lifecycle.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "lifecycle",
-  "title": "Lifecycle",
-  "properties": {
-    "version": {
-      "title": "Protocol Version",
-      "description": "Protocol Version",
-      "type": "integer",
-      "hideFromKpis": true
+    "$id": "https://akenza.io/netvox/r771/lifecycle.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "lifecycle",
+    "title": "Lifecycle",
+    "properties": {
+        "version": {
+            "title": "Protocol Version",
+            "description": "Protocol Version",
+            "type": "integer",
+            "hideFromKpis": true
+        },
+        "deviceType": {
+            "title": "Device type ID",
+            "description": "Device type ID",
+            "type": "integer",
+            "hideFromKpis": true
+        },
+        "batteryVoltage": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+        }
     },
-    "deviceType": {
-      "title": "Device type ID",
-      "description": "Device type ID",
-      "type": "integer",
-      "hideFromKpis": true
-    },
-    "batteryVoltage": {
-      "title": "Battery voltage",
-      "unit": "V",
-      "type": "number",
-      "minimum": 0,
-      "maximum": 24,
-      "description": "The battery voltage in Volt."
-    }
-  },
-  "required": ["version", "deviceType", "batteryVoltage"]
+    "required": [
+        "version",
+        "deviceType",
+        "batteryVoltage"
+    ]
 }

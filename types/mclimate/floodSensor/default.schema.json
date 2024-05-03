@@ -1,54 +1,44 @@
 {
-  "$id": "https://akenza.io/mclimate/tbwaterleak/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
-  "properties": {
-    "messageType": {
-      "title": "Message type",
-      "description": "Message type",
-      "type": "string",
-      "enum": [
-        "KEEPALIVE",
-        "TEST_BUTTON_PRESSED",
-        "FLOOD_DETECTED",
-        "FRAUD_DETECTED"
-      ]
+    "$id": "https://akenza.io/mclimate/tbwaterleak/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "messageType": {
+            "title": "Message type",
+            "description": "Message type",
+            "type": "string",
+            "enum": [
+                "KEEPALIVE",
+                "TEST_BUTTON_PRESSED",
+                "FLOOD_DETECTED",
+                "FRAUD_DETECTED"
+            ]
+        },
+        "boxTamper": {
+            "title": "Box tamper",
+            "description": "Box tamper detected",
+            "type": "boolean"
+        },
+        "flood": {
+            "title": "Flood",
+            "description": "Flood detected",
+            "type": "boolean"
+        },
+        "batteryVoltage": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+        },
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        }
     },
-    "boxTamper": {
-      "title": "Box tamper",
-      "description": "Box tamper detected",
-      "type": "boolean"
-    },
-    "flood": {
-      "title": "Flood",
-      "description": "Flood detected",
-      "type": "boolean"
-    },
-    "batteryVoltage": {
-      "type": "number",
-      "minimum": 0,
-      "maximum": 24,
-      "title": "Battery voltage",
-      "description": "The battery voltage in Volt.",
-      "unit": "V"
-    },
-    "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    }
-  },
-  "required": [
-    "messageType",
-    "boxTamper",
-    "flood",
-    "batteryVoltage",
-    "temperature"
-  ]
+    "required": [
+        "messageType",
+        "boxTamper",
+        "flood",
+        "batteryVoltage",
+        "temperature"
+    ]
 }

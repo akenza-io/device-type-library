@@ -7,20 +7,14 @@
   "title": "External",
   "properties": {
     "tempDS": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/externalTemperature/celsius",
       "title": "External digital temperature sensor",
-      "unit": "°C",
-      "type": "number",
-      "description": "The external digital temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "description": "The external digital temperature in °C."
     },
     "tempTMP117": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/externalTemperature/celsius",
       "title": "External temperature TMP117",
-      "unit": "°C",
-      "type": "number",
-      "description": "The external temperature TMP117 in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "description": "The external temperature TMP117 in °C."
     },
     "extPinLevel": {
       "title": "External Pin Level",
@@ -39,7 +33,7 @@
     "light": {
       "title": "Light",
       "type": "number",
-      "unit": "lux",
+      "unit": "lx",
       "description": "Light value",
       "minimum": 0,
       "maximum": 255

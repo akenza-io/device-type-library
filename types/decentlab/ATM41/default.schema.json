@@ -1,106 +1,97 @@
 {
-  "$id": "https://akenza.io/decentlab/atm41/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
-  "properties": {
-    "solarRadiation": {
-      "title": "Solar radiation",
-      "unit": "W⋅m⁻²",
-      "type": "number",
-      "description": "Solar radiation"
+    "$id": "https://akenza.io/decentlab/atm41/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "solarRadiation": {
+            "title": "Solar radiation",
+            "unit": "W⋅m⁻²",
+            "type": "number",
+            "description": "Solar radiation"
+        },
+        "precipitation": {
+            "title": "Precipitation",
+            "unit": "mm",
+            "type": "number",
+            "description": "Precipitation"
+        },
+        "lightningStrikeCount": {
+            "title": "Lightning strike count",
+            "type": "integer",
+            "description": "Lightning strike count"
+        },
+        "lightningAverageDistance": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/lightningAverageDistance/km",
+            "description": "Lightning average distance",
+            "title": "Lightning average distance"
+        },
+        "windSpeed": {
+            "title": "Wind speed",
+            "unit": "m⋅s⁻¹",
+            "type": "number",
+            "description": "Wind speed"
+        },
+        "windDirection": {
+            "title": "Wind direction",
+            "unit": "°",
+            "type": "number",
+            "description": "Wind direction"
+        },
+        "maximumWindSpeed": {
+            "title": "Maximum wind speed",
+            "unit": "m⋅s⁻¹",
+            "type": "number",
+            "description": "Maximum wind speed"
+        },
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "description": "Air temperature",
+            "title": "Air temperature"
+        },
+        "vaporPressure": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/vaporPressure/kPa",
+            "description": "Vapor pressure",
+            "title": "Vapor pressure"
+        },
+        "atmosphericPressure": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/atmosphericPressure/kPa",
+            "description": "Atmospheric pressure",
+            "title": "Atmospheric pressure"
+        },
+        "humidity": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
+            "description": "Relative humidity",
+            "title": "Relative humidity"
+        },
+        "northWindSpeed": {
+            "title": "North wind speed",
+            "unit": "m⋅s⁻¹",
+            "type": "number",
+            "description": "North wind speed"
+        },
+        "eastWindSpeed": {
+            "title": "East wind speed",
+            "unit": "m⋅s⁻¹",
+            "type": "number",
+            "description": "East wind speed"
+        }
     },
-    "precipitation": {
-      "title": "Precipitation",
-      "unit": "mm",
-      "type": "number",
-      "description": "Precipitation"
-    },
-    "lightningStrikeCount": {
-      "title": "Lightning strike count",
-      "type": "integer",
-      "description": "Lightning strike count"
-    },
-    "lightningAverageDistance": {
-      "title": "Lightning average distance",
-      "unit": "km",
-      "type": "number",
-      "description": "Lightning average distance"
-    },
-    "windSpeed": {
-      "title": "Wind speed",
-      "unit": "m⋅s⁻¹",
-      "type": "number",
-      "description": "Wind speed"
-    },
-    "windDirection": {
-      "title": "Wind direction",
-      "unit": "°",
-      "type": "number",
-      "description": "Wind direction"
-    },
-    "maximumWindSpeed": {
-      "title": "Maximum wind speed",
-      "unit": "m⋅s⁻¹",
-      "type": "number",
-      "description": "Maximum wind speed"
-    },
-    "temperature": {
-      "title": "Air temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "Air temperature",
-      "minimum": -50,
-      "maximum": 80
-    },
-    "vaporPressure": {
-      "title": "Vapor pressure",
-      "unit": "kPa",
-      "type": "number",
-      "description": "Vapor pressure"
-    },
-    "atmosphericPressure": {
-      "title": "Atmospheric pressure",
-      "unit": "kPa",
-      "type": "number",
-      "description": "Atmospheric pressure"
-    },
-    "humidity": {
-      "title": "Relative humidity",
-      "unit": "%",
-      "type": "number",
-      "description": "Relative humidity",
-      "minimum": 0,
-      "maximum": 100
-    },
-    "northWindSpeed": {
-      "title": "North wind speed",
-      "unit": "m⋅s⁻¹",
-      "type": "number",
-      "description": "North wind speed"
-    },
-    "eastWindSpeed": {
-      "title": "East wind speed",
-      "unit": "m⋅s⁻¹",
-      "type": "number",
-      "description": "East wind speed"
-    }
-  },
-  "required": [
-    "solarRadiation",
-    "precipitation",
-    "lightningStrikeCount",
-    "lightningAverageDistance",
-    "windSpeed",
-    "windDirection",
-    "maximumWindSpeed",
-    "temperature",
-    "vaporPressure",
-    "atmosphericPressure",
-    "humidity",
-    "northWindSpeed",
-    "eastWindSpeed"
-  ]
+    "required": [
+        "solarRadiation",
+        "precipitation",
+        "lightningStrikeCount",
+        "lightningAverageDistance",
+        "windSpeed",
+        "windDirection",
+        "maximumWindSpeed",
+        "temperature",
+        "vaporPressure",
+        "atmosphericPressure",
+        "humidity",
+        "northWindSpeed",
+        "eastWindSpeed"
+    ]
 }

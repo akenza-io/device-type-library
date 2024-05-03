@@ -39,7 +39,7 @@
     "light": {
       "title": "Light",
       "type": "number",
-      "unit": "lux",
+      "unit": "lx",
       "description": "Light value",
       "minimum": 0,
       "maximum": 255

@@ -1,39 +1,30 @@
 {
-  "$id": "https://akenza.io/decentlab/pr26/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
-  "properties": {
-    "pressure": {
-      "title": "Pressure",
-      "unit": "bar",
-      "description": "Hydrostatic Pressure in bar",
-      "type": "number",
-      "minimum": -0.1,
-      "maximum": 1
+    "$id": "https://akenza.io/decentlab/pr26/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "pressure": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/bar",
+            "description": "Hydrostatic Pressure in bar",
+            "title": "Pressure"
+        },
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "description": "The water temperature in °C.",
+            "title": "Water Temperature"
+        },
+        "level": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/level/absolute",
+            "description": "The water level above the sensor in m.",
+            "title": "Water Level"
+        }
     },
-    "temperature": {
-      "title": "Water Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The water temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "level": {
-      "title": "Water Level",
-      "unit": "m",
-      "type": "number",
-      "description": "The water level above the sensor in m.",
-      "minimum": 0,
-      "maximum": 10
-    }
-  },
-  "required": [
-    "pressure",
-    "temperature",
-    "level"
-  ]
+    "required": [
+        "pressure",
+        "temperature",
+        "level"
+    ]
 }

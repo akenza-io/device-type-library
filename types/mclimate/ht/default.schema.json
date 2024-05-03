@@ -1,53 +1,35 @@
 {
-  "$id": "https://akenza.io/mclimate/ht/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
-  "properties": {
-    "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+    "$id": "https://akenza.io/mclimate/ht/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "humidity": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+        },
+        "batteryVoltage": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+        },
+        "thermistorOperational": {
+            "title": "Thermistor properly connected",
+            "description": "Equals true if the thermistor is properly connected",
+            "type": "boolean"
+        },
+        "extTemperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/extTemperature/celsius",
+            "description": "The external thermistor temperature in °C.",
+            "title": "External thermistor temperature"
+        }
     },
-    "humidity": {
-      "title": "Humidity",
-      "unit": "%",
-      "type": "number",
-      "description": "The relative humidity in %",
-      "minimum": 0,
-      "maximum": 100
-    },
-    "batteryVoltage": {
-      "type": "number",
-      "minimum": 0,
-      "maximum": 24,
-      "title": "Battery voltage",
-      "description": "The battery voltage in Volt.",
-      "unit": "V"
-    },
-    "thermistorOperational": {
-      "title": "Thermistor properly connected",
-      "description": "Equals true if the thermistor is properly connected",
-      "type": "boolean"
-    },
-    "extTemperature": {
-      "title": "External thermistor temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The external thermistor temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    }
-  },
-  "required": [
-    "temperature",
-    "humidity",
-    "batteryVoltage",
-    "thermistorOperational"
-  ]
+    "required": [
+        "temperature",
+        "humidity",
+        "batteryVoltage",
+        "thermistorOperational"
+    ]
 }

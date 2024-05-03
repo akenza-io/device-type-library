@@ -1,122 +1,66 @@
 {
-  "$id": "https://akenza.io/dragino/groPointAir/temperature.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Temperature",
-  "processingType": "uplink_decoder",
-  "topic": "temperature",
-  "type": "object",
-  "properties": {
-    "temperature1": {
-      "title": "Temperature 1",
-      "unit": "°C",
-      "type": "number",
-      "description": "Temperature 1",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "temperature2": {
-      "title": "Temperature 2",
-      "unit": "°C",
-      "type": "number",
-      "description": "Temperature 2",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "temperature3": {
-      "title": "Temperature 3",
-      "unit": "°C",
-      "type": "number",
-      "description": "Temperature 3",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "temperature4": {
-      "title": "Temperature 4",
-      "unit": "°C",
-      "type": "number",
-      "description": "Temperature 4",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "temperature5": {
-      "title": "Temperature 5",
-      "unit": "°C",
-      "type": "number",
-      "description": "Temperature 5",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "temperature6": {
-      "title": "Temperature 6",
-      "unit": "°C",
-      "type": "number",
-      "description": "Temperature 6",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "temperature7": {
-      "title": "Temperature 7",
-      "unit": "°C",
-      "type": "number",
-      "description": "Temperature 7",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "temperature8": {
-      "title": "Temperature 8",
-      "unit": "°C",
-      "type": "number",
-      "description": "Temperature 8",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "temperature9": {
-      "title": "Temperature 9",
-      "unit": "°C",
-      "type": "number",
-      "description": "Temperature 9",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "temperature10": {
-      "title": "Temperature 10",
-      "unit": "°C",
-      "type": "number",
-      "description": "Temperature 10",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "temperature11": {
-      "title": "Temperature 11",
-      "unit": "°C",
-      "type": "number",
-      "description": "Temperature 11",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "temperature12": {
-      "title": "Temperature 12",
-      "unit": "°C",
-      "type": "number",
-      "description": "Temperature 12",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "temperature13": {
-      "title": "Temperature 13",
-      "unit": "°C",
-      "type": "number",
-      "description": "Temperature 13",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "temperature14": {
-      "title": "Temperature 14",
-      "unit": "°C",
-      "type": "number",
-      "description": "Temperature 14",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+    "$id": "https://akenza.io/dragino/groPointAir/temperature.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Temperature",
+    "processingType": "uplink_decoder",
+    "topic": "temperature",
+    "type": "object",
+    "properties": {
+        "temperature1": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature1/celsius",
+            "title": "Temperature 1"
+        },
+        "temperature2": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature2/celsius",
+            "title": "Temperature 2"
+        },
+        "temperature3": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature3/celsius",
+            "title": "Temperature 3"
+        },
+        "temperature4": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature4/celsius",
+            "title": "Temperature 4"
+        },
+        "temperature5": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature5/celsius",
+            "title": "Temperature 5"
+        },
+        "temperature6": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature6/celsius",
+            "title": "Temperature 6"
+        },
+        "temperature7": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature7/celsius",
+            "title": "Temperature 7"
+        },
+        "temperature8": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature8/celsius",
+            "title": "Temperature 8"
+        },
+        "temperature9": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature9/celsius",
+            "title": "Temperature 9"
+        },
+        "temperature10": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature10/celsius",
+            "title": "Temperature 10"
+        },
+        "temperature11": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature11/celsius",
+            "title": "Temperature 11"
+        },
+        "temperature12": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature12/celsius",
+            "title": "Temperature 12"
+        },
+        "temperature13": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature13/celsius",
+            "title": "Temperature 13"
+        },
+        "temperature14": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature14/celsius",
+            "title": "Temperature 14"
+        }
     }
-  }
 }

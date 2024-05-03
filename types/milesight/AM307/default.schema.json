@@ -1,74 +1,51 @@
 {
-  "$id": "https://akenza.io/milesight/AM307/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
-  "properties": {
-    "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+    "$id": "https://akenza.io/milesight/AM307/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "humidity": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+        },
+        "pir": {
+            "title": "PIR",
+            "description": "PIR is either trigger or idle",
+            "type": "string",
+            "enum": [
+                "TRIGGER",
+                "IDLE"
+            ]
+        },
+        "light": {
+            "title": "Light",
+            "unit": "lx",
+            "type": "number",
+            "description": "The light in lux.",
+            "minimum": 0,
+            "maximum": 65535
+        },
+        "co2": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm"
+        },
+        "tvoc": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/tvoc/ppm"
+        },
+        "pressure": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/hPa"
+        }
     },
-    "humidity": {
-      "title": "Humidity",
-      "unit": "%",
-      "type": "number",
-      "description": "The relative humidity in %",
-      "minimum": 0,
-      "maximum": 100
-    },
-    "pir": {
-      "title": "PIR",
-      "description": "PIR is either trigger or idle",
-      "type": "string",
-      "enum": [
-        "TRIGGER",
-        "IDLE"
-      ]
-    },
-    "light": {
-      "title": "Light",
-      "unit": "lux",
-      "type": "number",
-      "description": "The light in lux.",
-      "minimum": 0,
-      "maximum": 65535
-    },
-    "co2": {
-      "title": "CO2",
-      "unit": "ppm",
-      "type": "integer",
-      "description": "Carbon Dioxide in ppm",
-      "minimum": 0,
-      "maximum": 10000
-    },
-    "tvoc": {
-      "title": "VOC",
-      "unit": "ppm",
-      "type": "integer",
-      "description": "Total Volatile Organic Compounds in ppm",
-      "minimum": 0,
-      "maximum": 60000
-    },
-    "pressure": {
-      "title": "Pressure",
-      "unit": "hpa",
-      "description": "Barometric Pressure in hpa",
-      "type": "number"
-    }
-  },
-  "required": [
-    "temperature",
-    "humidity",
-    "pir",
-    "light",
-    "co2",
-    "tvoc",
-    "pressure"
-  ]
+    "required": [
+        "temperature",
+        "humidity",
+        "pir",
+        "light",
+        "co2",
+        "tvoc",
+        "pressure"
+    ]
 }

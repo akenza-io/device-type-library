@@ -1,40 +1,27 @@
 {
-  "$id": "https://akenza.io/haltian/thingseeAir/environment.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "environment",
-  "title": "Environment",
-  "properties": {
-    "pressure": {
-      "title": "Pressure",
-      "unit": "hpa",
-      "description": "Barometric Pressure in hpa",
-      "type": "number"
-    },
-    "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "humidity": {
-      "title": "Humidity",
-      "unit": "%",
-      "type": "number",
-      "description": "The relative humidity in %",
-      "minimum": 0,
-      "maximum": 100
-    },
-    "light": {
-      "title": "Light",
-      "unit": "lux",
-      "type": "integer",
-      "description": "The light in lux.",
-      "minimum": 0,
-      "maximum": 65535
+    "$id": "https://akenza.io/haltian/thingseeAir/environment.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "environment",
+    "title": "Environment",
+    "properties": {
+        "pressure": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/hPa"
+        },
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "humidity": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+        },
+        "light": {
+            "title": "Light",
+            "unit": "lx",
+            "type": "integer",
+            "description": "The light in lux.",
+            "minimum": 0,
+            "maximum": 65535
+        }
     }
-  }
 }

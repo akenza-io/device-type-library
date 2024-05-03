@@ -1,128 +1,87 @@
 {
-  "$id": "https://akenza.io/astraled/airQualityLuminary_V0_02/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
-  "properties": {
-    "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+    "$id": "https://akenza.io/astraled/airQualityLuminary_V0_02/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "humidity": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+        },
+        "voc": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/voc/ppm"
+        },
+        "co2": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm"
+        },
+        "eco2": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/eco2/ppm",
+            "description": "Estimated concentration of carbon dioxide calculated from known TVOC",
+            "title": "eCO2"
+        },
+        "pm1_0": {
+            "title": "Particles 1.0",
+            "unit": "μm",
+            "type": "integer",
+            "description": "Particles less than 1.0 μm in diameter",
+            "minimum": 0,
+            "maximum": 10000
+        },
+        "pm2_5": {
+            "title": "Particles 2.5",
+            "unit": "μm",
+            "type": "integer",
+            "description": "Particles less than 2.5 μm in diameter",
+            "minimum": 0,
+            "maximum": 10000
+        },
+        "pm4_0": {
+            "title": "Particles 4.0",
+            "unit": "μm",
+            "type": "integer",
+            "description": "Particles less than 4.0 μm in diameter",
+            "minimum": 0,
+            "maximum": 10000
+        },
+        "pm10": {
+            "title": "Particles 10",
+            "unit": "μm",
+            "type": "integer",
+            "description": "Particles less than 10 μm in diameter",
+            "minimum": 0,
+            "maximum": 10000
+        },
+        "latitude": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/latitude/degrees"
+        },
+        "longitude": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/longitude/degrees"
+        },
+        "altitude": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/altitude/meter"
+        },
+        "lightState": {
+            "title": "Light State",
+            "type": "integer",
+            "description": "State of the Light",
+            "minimum": 0,
+            "maximum": 255
+        },
+        "energy": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/energy/kiloWattHours",
+            "description": "Energy consumption in kWh",
+            "title": "Energy"
+        }
     },
-    "humidity": {
-      "title": "Humidity",
-      "unit": "%",
-      "type": "number",
-      "description": "The relative humidity in %",
-      "minimum": 0,
-      "maximum": 100
-    },
-    "voc": {
-      "title": "VOC",
-      "unit": "ppm",
-      "type": "integer",
-      "description": "Total Volatile Organic Compounds in ppm",
-      "minimum": 0,
-      "maximum": 60000
-    },
-    "co2": {
-      "title": "CO2",
-      "unit": "ppm",
-      "type": "integer",
-      "description": "Carbon Dioxide in ppm",
-      "minimum": 0,
-      "maximum": 10000
-    },
-    "eco2": {
-      "title": "eCO2",
-      "unit": "ppm",
-      "type": "integer",
-      "description": "Estimated concentration of carbon dioxide calculated from known TVOC",
-      "minimum": 0,
-      "maximum": 10000
-    },
-    "pm1_0": {
-      "title": "Particles 1.0",
-      "unit": "μm",
-      "type": "integer",
-      "description": "Particles less than 1.0 μm in diameter",
-      "minimum": 0,
-      "maximum": 10000
-    },
-    "pm2_5": {
-      "title": "Particles 2.5",
-      "unit": "μm",
-      "type": "integer",
-      "description": "Particles less than 2.5 μm in diameter",
-      "minimum": 0,
-      "maximum": 10000
-    },
-    "pm4_0": {
-      "title": "Particles 4.0",
-      "unit": "μm",
-      "type": "integer",
-      "description": "Particles less than 4.0 μm in diameter",
-      "minimum": 0,
-      "maximum": 10000
-    },
-    "pm10": {
-      "title": "Particles 10",
-      "unit": "μm",
-      "type": "integer",
-      "description": "Particles less than 10 μm in diameter",
-      "minimum": 0,
-      "maximum": 10000
-    },
-    "latitude": {
-      "title": "Latitude",
-      "unit": "°",
-      "type": "number",
-      "description": "Latitude",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "longitude": {
-      "title": "Longitude",
-      "unit": "°",
-      "type": "number",
-      "description": "Longitude",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "altitude": {
-      "title": "Altitude",
-      "unit": "m",
-      "type": "number",
-      "description": "Altitude",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "lightState": {
-      "title": "Light State",
-      "type": "integer",
-      "description": "State of the Light",
-      "minimum": 0,
-      "maximum": 255
-    },
-    "energy": {
-      "title": "Energy",
-      "unit": "kWh",
-      "type": "number",
-      "description": "Energy consumption in kWh",
-      "minimum": 0,
-      "maximum": 6555
-    }
-  },
-  "required": [
-    "temperature",
-    "humidity",
-    "voc",
-    "co2",
-    "lightState"
-  ]
+    "required": [
+        "temperature",
+        "humidity",
+        "voc",
+        "co2",
+        "lightState"
+    ]
 }

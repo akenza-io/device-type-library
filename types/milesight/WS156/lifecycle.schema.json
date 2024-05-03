@@ -1,48 +1,43 @@
 {
-  "$id": "https://akenza.io/milesight/WS156/lifecycle.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "lifecycle",
-  "title": "Lifecycle",
-  "properties": {
-    "batteryLevel": {
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 100,
-      "title": "Battery charge",
-      "description": "The battery charge in percent.",
-      "unit": "%"
-    },
-    "powerOn": {
-      "title": "Power on",
-      "description": "Power on event",
-      "type": "boolean",
-      "hideFromKpis": true
-    },
-    "protocolVersion": {
-      "title": "Protocol Version",
-      "description": "Protocol Version",
-      "type": "integer",
-      "hideFromKpis": true
-    },
-    "serialNumber": {
-      "title": "Serial number",
-      "description": "Serial number",
-      "type": "string",
-      "hideFromKpis": true
-    },
-    "hardwareVersion": {
-      "title": "Hardware version",
-      "description": "Hardware version",
-      "type": "string",
-      "hideFromKpis": true
-    },
-    "softwareVersion": {
-      "title": "Software version",
-      "description": "Software version",
-      "type": "string",
-      "hideFromKpis": true
+    "$id": "https://akenza.io/milesight/WS156/lifecycle.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "lifecycle",
+    "title": "Lifecycle",
+    "properties": {
+        "batteryLevel": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
+        },
+        "powerOn": {
+            "title": "Power on",
+            "description": "Power on event",
+            "type": "boolean",
+            "hideFromKpis": true
+        },
+        "protocolVersion": {
+            "title": "Protocol Version",
+            "description": "Protocol Version",
+            "type": "integer",
+            "hideFromKpis": true
+        },
+        "serialNumber": {
+            "title": "Serial number",
+            "description": "Serial number",
+            "type": "string",
+            "hideFromKpis": true
+        },
+        "hardwareVersion": {
+            "title": "Hardware version",
+            "description": "Hardware version",
+            "type": "string",
+            "hideFromKpis": true
+        },
+        "softwareVersion": {
+            "title": "Software version",
+            "description": "Software version",
+            "type": "string",
+            "hideFromKpis": true
+        }
     }
-  }
 }

@@ -1,90 +1,88 @@
 {
-  "$id": "https://akenza.io/alphaOmegaTechnology/klaxV2/lifecycle.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "lifecycle",
-  "title": "Lifecycle",
-  "properties": {
-    "deviceType": {
-      "title": "Device type",
-      "type": "string",
-      "description": "Device type",
-      "enum": ["SML_KLAX", "MODBUS_KLAX"],
-      "hideFromKpis": true
+    "$id": "https://akenza.io/alphaOmegaTechnology/klaxV2/lifecycle.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "lifecycle",
+    "title": "Lifecycle",
+    "properties": {
+        "deviceType": {
+            "title": "Device type",
+            "type": "string",
+            "description": "Device type",
+            "enum": [
+                "SML_KLAX",
+                "MODBUS_KLAX"
+            ],
+            "hideFromKpis": true
+        },
+        "payloadVersion": {
+            "title": "Payload version",
+            "type": "number",
+            "description": "Payload version",
+            "hideFromKpis": true
+        },
+        "batteryLevel": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent",
+            "hideFromKpis": true
+        },
+        "readingMode": {
+            "title": "Reading mode",
+            "type": "string",
+            "description": "Reading mode",
+            "enum": [
+                "SML_MODE",
+                "IEC_NORMAL_MODE",
+                "IEC_BATTERY_MODE",
+                "LOGAREX_MODE",
+                "EBZ_MODE",
+                "TRITSCHLER_VC3_MODE"
+            ],
+            "hideFromKpis": true
+        },
+        "registersConfigured": {
+            "title": "Registers configured",
+            "type": "boolean",
+            "description": "Registers configured",
+            "hideFromKpis": true
+        },
+        "connectionTest": {
+            "title": "Connection test",
+            "type": "boolean",
+            "description": "Connection test",
+            "hideFromKpis": true
+        },
+        "serverID": {
+            "title": "Server ID",
+            "type": "string",
+            "description": "Server ID",
+            "hideFromKpis": true
+        },
+        "deviceID": {
+            "title": "Device ID",
+            "type": "number",
+            "description": "Device ID",
+            "hideFromKpis": true
+        },
+        "measurementInterval": {
+            "title": "Measurement interval",
+            "type": "number",
+            "description": "Measurement interval",
+            "hideFromKpis": true
+        },
+        "appVersion": {
+            "title": "Application version",
+            "type": "string",
+            "description": "Application version",
+            "hideFromKpis": true
+        }
     },
-    "payloadVersion": {
-      "title": "Payload version",
-      "type": "number",
-      "description": "Payload version",
-      "hideFromKpis": true
-    },
-    "batteryLevel": {
-      "title": "Battery charge",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 100,
-      "description": "The battery charge in percent.",
-      "unit": "%",
-      "hideFromKpis": true
-    },
-    "readingMode": {
-      "title": "Reading mode",
-      "type": "string",
-      "description": "Reading mode",
-      "enum": [
-        "SML_MODE",
-        "IEC_NORMAL_MODE",
-        "IEC_BATTERY_MODE",
-        "LOGAREX_MODE",
-        "EBZ_MODE",
-        "TRITSCHLER_VC3_MODE"
-      ],
-      "hideFromKpis": true
-    },
-    "registersConfigured": {
-      "title": "Registers configured",
-      "type": "boolean",
-      "description": "Registers configured",
-      "hideFromKpis": true
-    },
-    "connectionTest": {
-      "title": "Connection test",
-      "type": "boolean",
-      "description": "Connection test",
-      "hideFromKpis": true
-    },
-    "serverID": {
-      "title": "Server ID",
-      "type": "string",
-      "description": "Server ID",
-      "hideFromKpis": true
-    },
-    "deviceID": {
-      "title": "Device ID",
-      "type": "number",
-      "description": "Device ID",
-      "hideFromKpis": true
-    },
-    "measurementInterval": {
-      "title": "Measurement interval",
-      "type": "number",
-      "description": "Measurement interval",
-      "hideFromKpis": true
-    },
-    "appVersion": {
-      "title": "Application version",
-      "type": "string",
-      "description": "Application version",
-      "hideFromKpis": true
-    }
-  },
-  "required": [
-    "deviceType",
-    "payloadVersion",
-    "batteryLevel",
-    "readingMode",
-    "registersConfigured",
-    "connectionTest"
-  ]
+    "required": [
+        "deviceType",
+        "payloadVersion",
+        "batteryLevel",
+        "readingMode",
+        "registersConfigured",
+        "connectionTest"
+    ]
 }

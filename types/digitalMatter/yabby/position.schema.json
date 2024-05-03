@@ -1,71 +1,56 @@
 {
-  "$id": "https://akenza.io/digitalMatter/yabby/position.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "position",
-  "title": "Position",
-  "properties": {
-    "latitude": {
-      "title": "Latitude",
-      "unit": "°",
-      "type": "number",
-      "description": "Latitude",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+    "$id": "https://akenza.io/digitalMatter/yabby/position.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "position",
+    "title": "Position",
+    "properties": {
+        "latitude": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/latitude/degrees"
+        },
+        "longitude": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/longitude/degrees"
+        },
+        "inTrip": {
+            "title": "In trip",
+            "type": "boolean",
+            "description": "Is true if the accelerometer detects movement"
+        },
+        "fixFailed": {
+            "title": "Fix failed",
+            "type": "boolean",
+            "description": "Equals true if the last GPS fix failed"
+        },
+        "manDown": {
+            "title": "Man down",
+            "type": "boolean",
+            "description": "Equals true if no movement for configured period got detected (Needs to be activated)"
+        },
+        "headingDeg": {
+            "title": "Heading",
+            "unit": "°",
+            "type": "number",
+            "description": "The direction where the sensor is heading"
+        },
+        "speedKmph": {
+            "title": "Speed",
+            "unit": "kmPerH",
+            "type": "number",
+            "description": "Acceleration of the sensor"
+        },
+        "batteryVoltage": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+        }
     },
-    "longitude": {
-      "title": "Longitude",
-      "unit": "°",
-      "type": "number",
-      "description": "Longitude",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "inTrip": {
-      "title": "In trip",
-      "type": "boolean",
-      "description": "Is true if the accelerometer detects movement"
-    },
-    "fixFailed": {
-      "title": "Fix failed",
-      "type": "boolean",
-      "description": "Equals true if the last GPS fix failed"
-    },
-    "manDown": {
-      "title": "Man down",
-      "type": "boolean",
-      "description": "Equals true if no movement for configured period got detected (Needs to be activated)"
-    },
-    "headingDeg": {
-      "title": "Heading",
-      "unit": "°",
-      "type": "number",
-      "description": "The direction where the sensor is heading"
-    },
-    "speedKmph": {
-      "title": "Speed",
-      "unit": "kmh",
-      "type": "number",
-      "description": "Acceleration of the sensor"
-    },
-    "batteryVoltage": {
-      "type": "number",
-      "minimum": 0,
-      "maximum": 24,
-      "title": "Battery voltage",
-      "description": "The battery voltage in Volt.",
-      "unit": "V"
-    }
-  },
-  "required": [
-    "latitude",
-    "longitude",
-    "inTrip",
-    "fixFailed",
-    "manDown",
-    "headingDeg",
-    "speedKmph",
-    "batteryVoltage"
-  ]
+    "required": [
+        "latitude",
+        "longitude",
+        "inTrip",
+        "fixFailed",
+        "manDown",
+        "headingDeg",
+        "speedKmph",
+        "batteryVoltage"
+    ]
 }

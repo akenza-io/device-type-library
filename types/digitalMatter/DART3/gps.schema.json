@@ -1,73 +1,58 @@
 {
-  "$id": "https://akenza.io/digitalMatter/dart3/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "gps",
-  "title": "Default",
-  "properties": {
-    "latitude": {
-      "title": "Latitude",
-      "unit": "°",
-      "type": "number",
-      "description": "Latitude",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+    "$id": "https://akenza.io/digitalMatter/dart3/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "gps",
+    "title": "Default",
+    "properties": {
+        "latitude": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/latitude/degrees"
+        },
+        "longitude": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/longitude/degrees"
+        },
+        "altitude": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/altitude/meter"
+        },
+        "heading": {
+            "title": "Heading",
+            "unit": "°",
+            "type": "number",
+            "description": "The direction where the sensor is heading"
+        },
+        "pdop": {
+            "title": "Dilution of Precision",
+            "type": "number",
+            "description": "Dilution of Precision"
+        },
+        "gpsAccuracy": {
+            "title": "GPS accuracy",
+            "type": "number",
+            "unit": "m",
+            "description": "GPS accuracy in meters"
+        },
+        "speed": {
+            "title": "Speed",
+            "unit": "kmPerH",
+            "type": "number",
+            "description": "Acceleration of the sensor"
+        },
+        "speedAccuracy": {
+            "title": "Speed accuracy",
+            "unit": "kmPerH",
+            "type": "number",
+            "description": "Acceleration accuracy in kmh"
+        }
     },
-    "longitude": {
-      "title": "Longitude",
-      "unit": "°",
-      "type": "number",
-      "description": "Longitude",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "altitude": {
-      "title": "Altitude",
-      "unit": "m",
-      "type": "number",
-      "description": "Altitude",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "heading": {
-      "title": "Heading",
-      "unit": "°",
-      "type": "number",
-      "description": "The direction where the sensor is heading"
-    },
-    "pdop": {
-      "title": "Dilution of Precision",
-      "type": "number",
-      "description": "Dilution of Precision"
-    },
-    "gpsAccuracy": {
-      "title": "GPS accuracy",
-      "type": "number",
-      "unit": "m",
-      "description": "GPS accuracy in meters"
-    },
-    "speed": {
-      "title": "Speed",
-      "unit": "kmh",
-      "type": "number",
-      "description": "Acceleration of the sensor"
-    },
-    "speedAccuracy": {
-      "title": "Speed accuracy",
-      "unit": "kmh",
-      "type": "number",
-      "description": "Acceleration accuracy in kmh"
-    }
-  },
-  "required": [
-    "latitude",
-    "longitude",
-    "altitude",
-    "heading",
-    "pdop",
-    "gpsAccuracy",
-    "speed",
-    "speedAccuracy"
-  ]
+    "required": [
+        "latitude",
+        "longitude",
+        "altitude",
+        "heading",
+        "pdop",
+        "gpsAccuracy",
+        "speed",
+        "speedAccuracy"
+    ]
 }

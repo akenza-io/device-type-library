@@ -1,63 +1,63 @@
 {
-  "$id": "https://akenza.io/imbuildings/peopleCounter/lifecycle.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "lifecycle",
-  "title": "Lifecycle",
-  "properties": {
-    "deviceStatus": {
-      "title": "Device status",
-      "type": "string",
-      "description": "Device status",
-      "enum": [
-        "NO_STATUS",
-        "STARTUP",
-        "RECONNECT",
-        "SETTINGS_CHANGED",
-        "BATTERY_NOT_FULL",
-        "RESERVED"
-      ],
-      "hideFromKpis": true
+    "$id": "https://akenza.io/imbuildings/peopleCounter/lifecycle.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "lifecycle",
+    "title": "Lifecycle",
+    "properties": {
+        "deviceStatus": {
+            "title": "Device status",
+            "type": "string",
+            "description": "Device status",
+            "enum": [
+                "NO_STATUS",
+                "STARTUP",
+                "RECONNECT",
+                "SETTINGS_CHANGED",
+                "BATTERY_NOT_FULL",
+                "RESERVED"
+            ],
+            "hideFromKpis": true
+        },
+        "batteryVoltage": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+        },
+        "sensorStatus": {
+            "title": "Sensor status",
+            "type": "string",
+            "description": "Sensor status",
+            "enum": [
+                "INFRARED_BLOCKED",
+                "RECEIVER_DISTURBANCE",
+                "RECEIVER_LOW_BATTERY",
+                "RESERVED",
+                "SENSOR_POWER_UP",
+                "IR_SIGNAL_NOT_AT_FULL_STRENGTH"
+            ],
+            "hideFromKpis": true
+        },
+        "payloadCounter": {
+            "title": "Payload counter",
+            "type": "integer",
+            "description": "Payload counter",
+            "hideFromKpis": true
+        },
+        "deviceID": {
+            "title": "Device ID",
+            "type": "string",
+            "description": "Device ID",
+            "hideFromKpis": true
+        },
+        "rssi": {
+            "title": "RSSI",
+            "type": "number",
+            "description": "RSSI",
+            "hideFromKpis": true
+        }
     },
-    "batteryVoltage": {
-      "title": "Battery voltage",
-      "type": "number",
-      "unit": "V",
-      "description": "The battery voltage in Volt."
-    },
-    "sensorStatus": {
-      "title": "Sensor status",
-      "type": "string",
-      "description": "Sensor status",
-      "enum": [
-        "INFRARED_BLOCKED",
-        "RECEIVER_DISTURBANCE",
-        "RECEIVER_LOW_BATTERY",
-        "RESERVED",
-        "SENSOR_POWER_UP",
-        "IR_SIGNAL_NOT_AT_FULL_STRENGTH"
-      ],
-      "hideFromKpis": true
-    },
-    "payloadCounter": {
-      "title": "Payload counter",
-      "type": "integer",
-      "description": "Payload counter",
-      "hideFromKpis": true
-    },
-    "deviceID": {
-      "title": "Device ID",
-      "type": "string",
-      "description": "Device ID",
-      "hideFromKpis": true
-    },
-    "rssi": {
-      "title": "RSSI",
-      "type": "number",
-      "description": "RSSI",
-      "hideFromKpis": true
-    }
-  },
-  "required": ["deviceStatus", "sensorStatus"]
+    "required": [
+        "deviceStatus",
+        "sensorStatus"
+    ]
 }

@@ -6,25 +6,25 @@ const utils = require("test-utils");
 const { assert } = chai;
 
 describe("Abeeway badge tracker uplink", () => {
-  let gpsFixSchema = null;
+  let lifecycleSchema = null;
   let consume = null;
   before((done) => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
-      gpsFixSchema = parsedSchema;
-      done();
-    });
-  });
-
-  let lifecycleSchema = null;
-  before((done) => {
     utils
       .loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
       });
+  });
+
+  let gpsFixSchema = null;
+  before((done) => {
+    utils.loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
+      gpsFixSchema = parsedSchema;
+      done();
+    });
   });
 
   let heartbeatSchema = null;

@@ -1,37 +1,32 @@
 {
-  "$id": "https://akenza.io/universal/fire-extinguisher/lifecycle.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "lifecycle",
-  "title": "Lifecycle",
-  "properties": {
-    "payloadVersion": {
-      "title": "Payload version",
-      "description": "Payload version",
-      "type": "integer"
+    "$id": "https://akenza.io/universal/fire-extinguisher/lifecycle.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "lifecycle",
+    "title": "Lifecycle",
+    "properties": {
+        "payloadVersion": {
+            "title": "Payload version",
+            "description": "Payload version",
+            "type": "integer"
+        },
+        "swVersionMajor": {
+            "title": "Software version major",
+            "description": "Software version major",
+            "type": "integer"
+        },
+        "swVersionMinor": {
+            "title": "Software version minor",
+            "description": "Software version minor",
+            "type": "integer"
+        },
+        "batteryLevel": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
+        }
     },
-    "swVersionMajor": {
-      "title": "Software version major",
-      "description": "Software version major",
-      "type": "integer"
-    },
-    "swVersionMinor": {
-      "title": "Software version minor",
-      "description": "Software version minor",
-      "type": "integer"
-    },
-    "batteryLevel": {
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 100,
-      "title": "Battery charge",
-      "description": "The battery charge in percent.",
-      "unit": "%"
-    }
-  },
-  "required": [
-    "payloadVersion",
-    "batteryLevel"
-  ]
+    "required": [
+        "payloadVersion",
+        "batteryLevel"
+    ]
 }

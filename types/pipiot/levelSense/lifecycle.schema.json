@@ -1,77 +1,72 @@
 {
-  "$id": "https://akenza.io/pipiot/levelSense/lifecycle.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "lifecycle",
-  "title": "Lifecycle",
-  "properties": {
-    "motionFlag": {
-      "title": "Motion event",
-      "type": "boolean",
-      "description": "Occurs if the device is woken due to a change in acceleration.",
-      "hideFromKpis": true
+    "$id": "https://akenza.io/pipiot/levelSense/lifecycle.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "lifecycle",
+    "title": "Lifecycle",
+    "properties": {
+        "motionFlag": {
+            "title": "Motion event",
+            "type": "boolean",
+            "description": "Occurs if the device is woken due to a change in acceleration.",
+            "hideFromKpis": true
+        },
+        "dayTimerFlag": {
+            "title": "Inactivity event",
+            "type": "boolean",
+            "description": "Occurs if the device is woken due to the 24 hour since last transmit timer.",
+            "hideFromKpis": true
+        },
+        "overTempFlag": {
+            "title": "Over temperature event",
+            "type": "boolean",
+            "description": "Occurs if the device detected a temperature above the safe operating temperature.",
+            "hideFromKpis": true
+        },
+        "tiltedFlag": {
+            "title": "Tilted event",
+            "type": "boolean",
+            "description": "Occurs if the device detects that it is operating outside of its allowed tilt angle range.",
+            "hideFromKpis": true
+        },
+        "magSwitchFlag": {
+            "title": "Magnet switch event",
+            "type": "boolean",
+            "description": "Occurs if the device was woken by the magnetic switch.",
+            "hideFromKpis": true
+        },
+        "ultrasoundHWErrorFlag": {
+            "title": "Ultrasound Hardware Error",
+            "type": "boolean",
+            "description": "A problem was detected with the ultrasonic hardware. Device service required.",
+            "hideFromKpis": true
+        },
+        "laserHWErrorFlag": {
+            "title": "Laser Hardware Error",
+            "type": "boolean",
+            "description": "A problem was detected with the laser hardware. Device service required.",
+            "hideFromKpis": true
+        },
+        "accelerometerHWErrorFlag": {
+            "title": "Accelerometer Hardware Error",
+            "type": "boolean",
+            "description": "A problem was detected with the accelerometer. Device service required.",
+            "hideFromKpis": true
+        },
+        "batteryVoltage": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+        }
     },
-    "dayTimerFlag": {
-      "title": "Inactivity event",
-      "type": "boolean",
-      "description": "Occurs if the device is woken due to the 24 hour since last transmit timer.",
-      "hideFromKpis": true
-    },
-    "overTempFlag": {
-      "title": "Over temperature event",
-      "type": "boolean",
-      "description": "Occurs if the device detected a temperature above the safe operating temperature.",
-      "hideFromKpis": true
-    },
-    "tiltedFlag": {
-      "title": "Tilted event",
-      "type": "boolean",
-      "description": "Occurs if the device detects that it is operating outside of its allowed tilt angle range.",
-      "hideFromKpis": true
-    },
-    "magSwitchFlag": {
-      "title": "Magnet switch event",
-      "type": "boolean",
-      "description": "Occurs if the device was woken by the magnetic switch.",
-      "hideFromKpis": true
-    },
-    "ultrasoundHWErrorFlag": {
-      "title": "Ultrasound Hardware Error",
-      "type": "boolean",
-      "description": "A problem was detected with the ultrasonic hardware. Device service required.",
-      "hideFromKpis": true
-    },
-    "laserHWErrorFlag": {
-      "title": "Laser Hardware Error",
-      "type": "boolean",
-      "description": "A problem was detected with the laser hardware. Device service required.",
-      "hideFromKpis": true
-    },
-    "accelerometerHWErrorFlag": {
-      "title": "Accelerometer Hardware Error",
-      "type": "boolean",
-      "description": "A problem was detected with the accelerometer. Device service required.",
-      "hideFromKpis": true
-    },
-    "batteryVoltage": {
-      "title": "Battery voltage",
-      "unit": "V",
-      "type": "number",
-      "minimum": 0,
-      "maximum": 24,
-      "description": "The battery voltage in Volt."
-    }
-  },
-  "required": [
-    "motionFlag",
-    "dayTimerFlag",
-    "overTempFlag",
-    "tiltedFlag",
-    "magSwitchFlag",
-    "ultrasoundHWErrorFlag",
-    "laserHWErrorFlag",
-    "accelerometerHWErrorFlag",
-    "batteryVoltage"
-  ]
+    "required": [
+        "motionFlag",
+        "dayTimerFlag",
+        "overTempFlag",
+        "tiltedFlag",
+        "magSwitchFlag",
+        "ultrasoundHWErrorFlag",
+        "laserHWErrorFlag",
+        "accelerometerHWErrorFlag",
+        "batteryVoltage"
+    ]
 }

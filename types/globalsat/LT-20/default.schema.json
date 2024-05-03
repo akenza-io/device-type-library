@@ -1,57 +1,47 @@
 {
-  "$id": "https://akenza.io/globalsat/LT-20/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
-  "properties": {
-    "longitude": {
-      "title": "Longitude",
-      "unit": "°",
-      "type": "number",
-      "description": "Longitude",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+    "$id": "https://akenza.io/globalsat/LT-20/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "longitude": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/longitude/degrees"
+        },
+        "latitude": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/latitude/degrees"
+        },
+        "reportType": {
+            "title": "Report type",
+            "description": "Describes why a message got sent",
+            "type": "string",
+            "enum": [
+                "Periodic mode report",
+                "Motion mode static report",
+                "Motion mode moving report",
+                "Motion mode static to moving report",
+                "Motion mode moving to static report",
+                "Low battery alarm report"
+            ],
+            "hideFromKpis": true
+        },
+        "gpsFix": {
+            "title": "GPS fix",
+            "description": "Describes the GPS fix",
+            "type": "string",
+            "enum": [
+                "Not fix",
+                "2D fix",
+                "3D fix"
+            ],
+            "hideFromKpis": true
+        }
     },
-    "latitude": {
-      "title": "Latitude",
-      "unit": "°",
-      "type": "number",
-      "description": "Latitude",
-      "minimum": -3276.5,
-      "maximum": 3276.5
-    },
-    "reportType": {
-      "title": "Report type",
-      "description": "Describes why a message got sent",
-      "type": "string",
-      "enum": [
-        "Periodic mode report",
-        "Motion mode static report",
-        "Motion mode moving report",
-        "Motion mode static to moving report",
-        "Motion mode moving to static report",
-        "Low battery alarm report"
-      ],
-      "hideFromKpis": true
-    },
-    "gpsFix": {
-      "title": "GPS fix",
-      "description": "Describes the GPS fix",
-      "type": "string",
-      "enum": [
-        "Not fix",
-        "2D fix",
-        "3D fix"
-      ],
-      "hideFromKpis": true
-    }
-  },
-  "required": [
-    "longitude",
-    "latitude",
-    "reportType",
-    "gpsFix"
-  ]
+    "required": [
+        "longitude",
+        "latitude",
+        "reportType",
+        "gpsFix"
+    ]
 }

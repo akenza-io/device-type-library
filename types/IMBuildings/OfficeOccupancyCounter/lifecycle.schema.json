@@ -1,39 +1,36 @@
 {
-  "$id": "https://akenza.io/imbuildings/OfficeOccupancyCounter/lifecycle.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "lifecycle",
-  "title": "Lifecycle",
-  "properties": {
-    "deviceStatus": {
-      "title": "Device status",
-      "type": "integer",
-      "description": "Device status"
+    "$id": "https://akenza.io/imbuildings/OfficeOccupancyCounter/lifecycle.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "lifecycle",
+    "title": "Lifecycle",
+    "properties": {
+        "deviceStatus": {
+            "title": "Device status",
+            "type": "integer",
+            "description": "Device status"
+        },
+        "batteryVoltage": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+        },
+        "sensorStatus": {
+            "title": "Sensor status",
+            "type": "integer",
+            "description": "Sensor status",
+            "hideFromKpis": true
+        },
+        "payloadCounter": {
+            "title": "Payload counter",
+            "type": "integer",
+            "description": "Payload counter",
+            "hideFromKpis": true
+        }
     },
-    "batteryVoltage": {
-      "title": "Battery voltage",
-      "type": "number",
-      "unit": "V",
-      "description": "The battery voltage in Volt."
-    },
-    "sensorStatus": {
-      "title": "Sensor status",
-      "type": "integer",
-      "description": "Sensor status",
-      "hideFromKpis": true
-    },
-    "payloadCounter": {
-      "title": "Payload counter",
-      "type": "integer",
-      "description": "Payload counter",
-      "hideFromKpis": true
-    }
-  },
-  "required": [
-    "deviceStatus",
-    "batteryVoltage",
-    "sensorStatus",
-    "payloadCounter"
-  ]
+    "required": [
+        "deviceStatus",
+        "batteryVoltage",
+        "sensorStatus",
+        "payloadCounter"
+    ]
 }

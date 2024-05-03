@@ -1,30 +1,27 @@
 {
-  "$id": "https://akenza.io/yanzi/motionPlus/light.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "light",
-  "title": "Light",
-  "properties": {
-    "light": {
-      "title": "Light",
-      "unit": "lux",
-      "type": "number",
-      "description": "The light in lux.",
-      "minimum": 0,
-      "maximum": 65535
+    "$id": "https://akenza.io/yanzi/motionPlus/light.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "light",
+    "title": "Light",
+    "properties": {
+        "light": {
+            "title": "Light",
+            "unit": "lx",
+            "type": "number",
+            "description": "The light in lux.",
+            "minimum": 0,
+            "maximum": 65535
+        },
+        "colorTemperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/colorTemperature/kelvin",
+            "description": "Color temperature in K",
+            "title": "Color temperature"
+        }
     },
-    "colorTemperature": {
-      "title": "Color temperature",
-      "unit": "K",
-      "type": "integer",
-      "description": "Color temperature in K",
-      "minimum": 0,
-      "maximum": 65535
-    }
-  },
-  "required": [
-    "light",
-    "colorTemperature"
-  ]
+    "required": [
+        "light",
+        "colorTemperature"
+    ]
 }
