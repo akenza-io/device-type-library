@@ -17,8 +17,5 @@
       "type": "number"
     }
   },
-  "required": [
-    "reed",
-    "pulseAbs1"
-  ]
+  "required": ["reed", "pulseAbs1"]
 }

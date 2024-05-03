@@ -7,16 +7,8 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": [
-    "Current"
-  ],
-  "outputTopics": [
-    "default",
-    "lifecycle",
-    "raw1",
-    "raw2",
-    "version"
-  ],
+  "availableSensors": ["Current"],
+  "outputTopics": ["default", "lifecycle", "raw1", "raw2", "version"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

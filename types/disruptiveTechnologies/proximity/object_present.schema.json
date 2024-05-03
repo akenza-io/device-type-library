@@ -10,13 +10,8 @@
       "title": "Object present",
       "description": "Object present",
       "type": "string",
-      "enum": [
-        "PRESENT",
-        "NOT_PRESENT"
-      ]
+      "enum": ["PRESENT", "NOT_PRESENT"]
     }
   },
-  "required": [
-    "objectPresent"
-  ]
+  "required": ["objectPresent"]
 }

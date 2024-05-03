@@ -18,10 +18,7 @@
     "Altitude",
     "Light State"
   ],
-  "outputTopics": [
-    "default",
-    "lifecycle"
-  ],
+  "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

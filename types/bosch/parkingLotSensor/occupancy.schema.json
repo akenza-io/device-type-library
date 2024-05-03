@@ -19,8 +19,5 @@
       "type": "boolean"
     }
   },
-  "required": [
-    "occupancy",
-    "occupied"
-  ]
+  "required": ["occupancy", "occupied"]
 }

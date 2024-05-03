@@ -55,8 +55,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "alarm",
-    "distance"
-  ]
+  "required": ["alarm", "distance"]
 }

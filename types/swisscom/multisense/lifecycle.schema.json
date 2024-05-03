@@ -47,10 +47,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "mode",
-    "payloadVersion",
-    "batteryVoltage",
-    "batteryLevel"
-  ]
+  "required": ["mode", "payloadVersion", "batteryVoltage", "batteryLevel"]
 }

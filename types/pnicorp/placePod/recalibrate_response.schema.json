@@ -9,15 +9,10 @@
     "recalibrateResponse": {
       "title": "Recalibrate response",
       "description": "Either successful or failed",
-      "enum": [
-        "SUCCESSFUL",
-        "FAILED"
-      ],
+      "enum": ["SUCCESSFUL", "FAILED"],
       "type": "string",
       "hideFromKpis": true
     }
   },
-  "required": [
-    "recalibrateResponse"
-  ]
+  "required": ["recalibrateResponse"]
 }

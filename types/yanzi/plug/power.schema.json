@@ -10,13 +10,8 @@
       "title": "Power",
       "type": "string",
       "description": "Device is either on or off",
-      "enum": [
-        "ON",
-        "OFF"
-      ]
+      "enum": ["ON", "OFF"]
     }
   },
-  "required": [
-    "power"
-  ]
+  "required": ["power"]
 }

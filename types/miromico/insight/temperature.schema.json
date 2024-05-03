@@ -87,8 +87,5 @@
       "maximum": 100
     }
   },
-  "required": [
-    "temperature",
-    "humidity"
-  ]
+  "required": ["temperature", "humidity"]
 }

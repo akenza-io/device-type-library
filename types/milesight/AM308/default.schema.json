@@ -26,10 +26,7 @@
       "title": "PIR",
       "description": "PIR is either trigger or idle",
       "type": "string",
-      "enum": [
-        "TRIGGER",
-        "IDLE"
-      ]
+      "enum": ["TRIGGER", "IDLE"]
     },
     "light": {
       "title": "Light",

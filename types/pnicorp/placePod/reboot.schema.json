@@ -9,15 +9,10 @@
     "reboot": {
       "title": "Reboot",
       "description": "Either Sensor reboot, recalibration or reboot finished",
-      "enum": [
-        "DONE",
-        "RECALIBRATION"
-      ],
+      "enum": ["DONE", "RECALIBRATION"],
       "type": "string",
       "hideFromKpis": true
     }
   },
-  "required": [
-    "reboot"
-  ]
+  "required": ["reboot"]
 }

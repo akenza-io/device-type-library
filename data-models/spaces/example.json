@@ -1,7 +1,7 @@
 {
-    "occupied": true,
-    "motion": 98,
-    "peopleIn": 12,
-    "peopleOut": 5,
-    "peopleCount": 20
+  "occupied": true,
+  "motion": 98,
+  "peopleIn": 12,
+  "peopleOut": 5,
+  "peopleCount": 20
 }

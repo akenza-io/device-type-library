@@ -25,8 +25,5 @@
       "description": "Fill percentage of the container"
     }
   },
-  "required": [
-    "distance",
-    "distanceCM"
-  ]
+  "required": ["distance", "distanceCM"]
 }

@@ -13,7 +13,5 @@
       "type": "number"
     }
   },
-  "required": [
-    "pressure"
-  ]
+  "required": ["pressure"]
 }

@@ -10,12 +10,7 @@
       "title": "Channel",
       "type": "string",
       "description": "Channel",
-      "enum": [
-        "channelA",
-        "channelB",
-        "channelC",
-        "channelD"
-      ],
+      "enum": ["channelA", "channelB", "channelC", "channelD"],
       "hideFromKpis": true
     },
     "previousState": {
@@ -37,10 +32,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "channel",
-    "previousState",
-    "state",
-    "value"
-  ]
+  "required": ["channel", "previousState", "state", "value"]
 }

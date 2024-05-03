@@ -76,10 +76,5 @@
       "maximum": 1100
     }
   },
-  "required": [
-    "temperature",
-    "humidity",
-    "co2",
-    "pressure"
-  ]
+  "required": ["temperature", "humidity", "co2", "pressure"]
 }

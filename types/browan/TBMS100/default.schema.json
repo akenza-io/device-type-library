@@ -33,10 +33,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "temperature",
-    "motion",
-    "time",
-    "count"
-  ]
+  "required": ["temperature", "motion", "time", "count"]
 }

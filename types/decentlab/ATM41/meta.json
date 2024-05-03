@@ -18,10 +18,7 @@
     "Vapor Pressure",
     "Barometric Pressure"
   ],
-  "outputTopics": [
-    "default",
-    "lifecycle"
-  ],
+  "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }
