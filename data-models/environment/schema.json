@@ -21,6 +21,13 @@
                 "description": "Total Volatile Organic Compunds in ppb",
                 "type": "number",
                 "unit": "ppb"
+            },
+            "ppm": {
+                "measurementType": "akenza/environment/tvoc/ppm",
+                "title": "TVOC",
+                "description": "Total Volatile Organic Compunds in ppm",
+                "type": "number",
+                "unit": "ppm"
             }
         },
         "pm1": {
@@ -85,6 +92,13 @@
             }
         },
         "pressure": {
+            "pa": {
+                "measurementType": "akenza/environment/pressure/pa",
+                "title": "Pressure",
+                "description": "Barometric pressure in pa",
+                "type": "number",
+                "unit": "pa"
+            },
             "hPa": {
                 "measurementType": "akenza/environment/pressure/hPa",
                 "title": "Pressure",

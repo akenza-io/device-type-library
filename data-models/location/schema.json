@@ -27,9 +27,9 @@
                 "maximum": 180
             }
         },
-        "distance": {
-            "altitude": {
-                "measurementType": "akenza/location/distance/altitude",
+        "altitude": {
+            "meter": {
+                "measurementType": "akenza/location/altitude/meter",
                 "title": "Altitude",
                 "description": "Altitude of a location in meters",
                 "type": "number",
