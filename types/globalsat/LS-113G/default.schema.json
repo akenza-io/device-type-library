@@ -1,29 +1,25 @@
 {
-    "$id": "https://akenza.io/globalsat/LS-113G/default.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "default",
-    "title": "Default",
-    "properties": {
-        "humidity": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
-        },
-        "temperature": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-        },
-        "pm2_5": {
-            "title": "Particulate matter 2.5",
-            "unit": "μm",
-            "type": "integer",
-            "description": "Particles less than 2.5 μm in diameter",
-            "minimum": 0,
-            "maximum": 10000
-        }
+  "$id": "https://akenza.io/globalsat/LS-113G/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "humidity": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
     },
-    "required": [
-        "humidity",
-        "temperature",
-        "pm2_5"
-    ]
+    "temperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    },
+    "pm2_5": {
+      "title": "Particulate matter 2.5",
+      "unit": "μm",
+      "type": "integer",
+      "description": "Particles less than 2.5 μm in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    }
+  },
+  "required": ["humidity", "temperature", "pm2_5"]
 }

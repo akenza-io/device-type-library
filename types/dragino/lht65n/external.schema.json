@@ -20,10 +20,7 @@
       "title": "External Pin Level",
       "description": "External Pin Level",
       "type": "string",
-      "enum": [
-        "HIGH",
-        "LOW"
-      ]
+      "enum": ["HIGH", "LOW"]
     },
     "extStatus": {
       "title": "External status",

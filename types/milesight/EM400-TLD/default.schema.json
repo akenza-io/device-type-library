@@ -1,43 +1,39 @@
 {
-    "$id": "https://akenza.io/milesight/EM400-TLD/default.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "default",
-    "title": "Default",
-    "properties": {
-        "distance": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/mm",
-            "description": "Distance measured between the sensor and the surface",
-            "title": "Distance"
-        },
-        "fillLevel": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/fillLevel/percent",
-            "description": "Fill percentage of the container",
-            "title": "Fill level"
-        },
-        "distanceAlarming": {
-            "title": "Distance alarm",
-            "type": "boolean",
-            "description": "Distance alarm."
-        },
-        "tilt": {
-            "title": "Tilt",
-            "type": "boolean",
-            "description": "True if the sensor is tilted"
-        },
-        "temperature": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-        },
-        "temperatureAbnormal": {
-            "title": "Temperature abnormal",
-            "type": "boolean",
-            "description": "Temperature abnormal."
-        }
+  "$id": "https://akenza.io/milesight/EM400-TLD/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "distance": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/mm",
+      "description": "Distance measured between the sensor and the surface",
+      "title": "Distance"
     },
-    "required": [
-        "distance",
-        "tilt",
-        "temperature"
-    ]
+    "fillLevel": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/fillLevel/percent",
+      "description": "Fill percentage of the container",
+      "title": "Fill level"
+    },
+    "distanceAlarming": {
+      "title": "Distance alarm",
+      "type": "boolean",
+      "description": "Distance alarm."
+    },
+    "tilt": {
+      "title": "Tilt",
+      "type": "boolean",
+      "description": "True if the sensor is tilted"
+    },
+    "temperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    },
+    "temperatureAbnormal": {
+      "title": "Temperature abnormal",
+      "type": "boolean",
+      "description": "Temperature abnormal."
+    }
+  },
+  "required": ["distance", "tilt", "temperature"]
 }

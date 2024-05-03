@@ -17,8 +17,5 @@
       "type": "boolean"
     }
   },
-  "required": [
-    "open",
-    "installed"
-  ]
+  "required": ["open", "installed"]
 }

@@ -31,9 +31,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "debug",
-    "fwVersion",
-    "resetCause"
-  ]
+  "required": ["debug", "fwVersion", "resetCause"]
 }

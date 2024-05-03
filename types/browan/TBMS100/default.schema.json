@@ -1,37 +1,32 @@
 {
-    "$id": "https://akenza.io/browan/tbdms100/default.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "default",
-    "title": "Default",
-    "properties": {
-        "temperature": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-        },
-        "motion": {
-            "title": "Motion",
-            "description": "Motion detected",
-            "type": "boolean"
-        },
-        "time": {
-            "title": "Time between events",
-            "unit": "m",
-            "type": "integer",
-            "description": "Time between events in minutes.",
-            "hideFromKpis": true
-        },
-        "count": {
-            "title": "Count",
-            "type": "integer",
-            "description": "Count of all events",
-            "hideFromKpis": true
-        }
+  "$id": "https://akenza.io/browan/tbdms100/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "temperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
-    "required": [
-        "temperature",
-        "motion",
-        "time",
-        "count"
-    ]
+    "motion": {
+      "title": "Motion",
+      "description": "Motion detected",
+      "type": "boolean"
+    },
+    "time": {
+      "title": "Time between events",
+      "unit": "m",
+      "type": "integer",
+      "description": "Time between events in minutes.",
+      "hideFromKpis": true
+    },
+    "count": {
+      "title": "Count",
+      "type": "integer",
+      "description": "Count of all events",
+      "hideFromKpis": true
+    }
+  },
+  "required": ["temperature", "motion", "time", "count"]
 }

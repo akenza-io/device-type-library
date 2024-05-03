@@ -1,26 +1,22 @@
 {
-    "$id": "https://akenza.io/aiut/alevelV1/lifecycle.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "lifecycle",
-    "title": "Lifecycle",
-    "properties": {
-        "batteryLevel": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
-        },
-        "batteryVoltage": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
-        },
-        "deviceStatusFlag": {
-            "type": "integer",
-            "title": "Device status flag",
-            "description": "Device status flag"
-        }
+  "$id": "https://akenza.io/aiut/alevelV1/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "batteryLevel": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
     },
-    "required": [
-        "batteryLevel",
-        "batteryVoltage",
-        "deviceStatusFlag"
-    ]
+    "batteryVoltage": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+    },
+    "deviceStatusFlag": {
+      "type": "integer",
+      "title": "Device status flag",
+      "description": "Device status flag"
+    }
+  },
+  "required": ["batteryLevel", "batteryVoltage", "deviceStatusFlag"]
 }

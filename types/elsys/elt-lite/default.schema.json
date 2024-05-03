@@ -1,74 +1,70 @@
 {
-    "$id": "https://akenza.io/elsys/elt-lite/default.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "default",
-    "title": "Default",
-    "properties": {
-        "temperature": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-        },
-        "humidity": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
-        },
-        "analog1": {
-            "type": "number",
-            "title": "Analog input 1",
-            "description": "Voltage in mV",
-            "unit": "mV",
-            "minimum": 0,
-            "maximum": 65535
-        },
-        "pulse1": {
-            "title": "Pulse 1 count",
-            "description": "Pulse count between events",
-            "type": "number",
-            "minimum": 0,
-            "maximum": 65535
-        },
-        "pulseAbs1": {
-            "title": "Pulse count absolute",
-            "description": "Pulse count absolute",
-            "type": "number"
-        },
-        "externalTemperature1": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/externalTemperature1/celsius",
-            "description": "The external temperature in °C.",
-            "title": "External temperature 1"
-        },
-        "distance": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/mm"
-        },
-        "fillLevel": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/fillLevel/percent",
-            "description": "Fill percentage of the container",
-            "title": "Fill level"
-        },
-        "accMotion": {
-            "title": "Motion (Acceleration)",
-            "type": "number",
-            "description": "Motion (Acceleration)",
-            "minimum": 0,
-            "maximum": 255
-        },
-        "irExternalTemperature": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/irExternalTemperature/celsius",
-            "description": "Infrared external temperature in °C.",
-            "title": "Infrared external temperature"
-        },
-        "waterleak": {
-            "title": "Water leak",
-            "description": "Equals true if a waterleak is detected",
-            "type": "boolean"
-        },
-        "pressure": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/hPa"
-        }
+  "$id": "https://akenza.io/elsys/elt-lite/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "temperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
-    "required": [
-        "temperature",
-        "humidity",
-        "pressure"
-    ]
+    "humidity": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+    },
+    "analog1": {
+      "type": "number",
+      "title": "Analog input 1",
+      "description": "Voltage in mV",
+      "unit": "mV",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "pulse1": {
+      "title": "Pulse 1 count",
+      "description": "Pulse count between events",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "pulseAbs1": {
+      "title": "Pulse count absolute",
+      "description": "Pulse count absolute",
+      "type": "number"
+    },
+    "externalTemperature1": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/externalTemperature1/celsius",
+      "description": "The external temperature in °C.",
+      "title": "External temperature 1"
+    },
+    "distance": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/mm"
+    },
+    "fillLevel": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/fillLevel/percent",
+      "description": "Fill percentage of the container",
+      "title": "Fill level"
+    },
+    "accMotion": {
+      "title": "Motion (Acceleration)",
+      "type": "number",
+      "description": "Motion (Acceleration)",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "irExternalTemperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/irExternalTemperature/celsius",
+      "description": "Infrared external temperature in °C.",
+      "title": "Infrared external temperature"
+    },
+    "waterleak": {
+      "title": "Water leak",
+      "description": "Equals true if a waterleak is detected",
+      "type": "boolean"
+    },
+    "pressure": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/hPa"
+    }
+  },
+  "required": ["temperature", "humidity", "pressure"]
 }

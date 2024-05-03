@@ -17,8 +17,5 @@
       "description": "Summation of all B counts"
     }
   },
-  "required": [
-    "totalCounterA",
-    "totalCounterB"
-  ]
+  "required": ["totalCounterA", "totalCounterB"]
 }

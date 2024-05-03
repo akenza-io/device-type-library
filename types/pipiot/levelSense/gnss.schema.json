@@ -1,43 +1,43 @@
 {
-    "$id": "https://akenza.io/pipiot/levelSense/gnss.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "gnss",
-    "title": "GNSS",
-    "properties": {
-        "gnssFixTime": {
-            "title": "Fix time",
-            "type": "integer",
-            "unit": "s",
-            "description": "GNSS fix time",
-            "minimum": 0,
-            "maximum": 254,
-            "hideFromKpis": true
-        },
-        "gnssLatitude": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/gnssLatitude/degrees"
-        },
-        "gnssLongitude": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/gnssLongitude/degrees"
-        },
-        "gnssAltitude": {
-            "title": "Altitude",
-            "unit": "m",
-            "type": "number",
-            "description": "Altitude"
-        },
-        "gnssHDOP": {
-            "title": "GNSS HDOP",
-            "type": "number",
-            "description": "Horizontal Dilution of Precision for the GNSS fix."
-        }
+  "$id": "https://akenza.io/pipiot/levelSense/gnss.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "gnss",
+  "title": "GNSS",
+  "properties": {
+    "gnssFixTime": {
+      "title": "Fix time",
+      "type": "integer",
+      "unit": "s",
+      "description": "GNSS fix time",
+      "minimum": 0,
+      "maximum": 254,
+      "hideFromKpis": true
     },
-    "required": [
-        "gnssFixTime",
-        "gnssLatitude",
-        "gnssLongitude",
-        "gnssAltitude",
-        "gnssHDOP"
-    ]
+    "gnssLatitude": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/gnssLatitude/degrees"
+    },
+    "gnssLongitude": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/gnssLongitude/degrees"
+    },
+    "gnssAltitude": {
+      "title": "Altitude",
+      "unit": "m",
+      "type": "number",
+      "description": "Altitude"
+    },
+    "gnssHDOP": {
+      "title": "GNSS HDOP",
+      "type": "number",
+      "description": "Horizontal Dilution of Precision for the GNSS fix."
+    }
+  },
+  "required": [
+    "gnssFixTime",
+    "gnssLatitude",
+    "gnssLongitude",
+    "gnssAltitude",
+    "gnssHDOP"
+  ]
 }

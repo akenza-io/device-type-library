@@ -1,27 +1,23 @@
 {
-    "$id": "https://akenza.io/netvox/r718n3/default.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "default",
-    "title": "Default",
-    "properties": {
-        "current1": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current1/ampere",
-            "title": "Current 1"
-        },
-        "current2": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current2/ampere",
-            "title": "Current 2"
-        },
-        "current3": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current3/ampere",
-            "title": "Current 3"
-        }
+  "$id": "https://akenza.io/netvox/r718n3/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "current1": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current1/ampere",
+      "title": "Current 1"
     },
-    "required": [
-        "current1",
-        "current2",
-        "current3"
-    ]
+    "current2": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current2/ampere",
+      "title": "Current 2"
+    },
+    "current3": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current3/ampere",
+      "title": "Current 3"
+    }
+  },
+  "required": ["current1", "current2", "current3"]
 }

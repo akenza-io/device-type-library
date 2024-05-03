@@ -42,11 +42,5 @@
       "maximum": 255
     }
   },
-  "required": [
-    "red",
-    "green",
-    "blue",
-    "onDuration",
-    "offDuration"
-  ]
+  "required": ["red", "green", "blue", "onDuration", "offDuration"]
 }

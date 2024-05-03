@@ -1,92 +1,83 @@
 {
-    "$id": "https://akenza.io/milesight/WS50X2/default.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "default",
-    "title": "Default",
-    "properties": {
-        "switch1": {
-            "title": "Switch 1",
-            "description": "Switch 1",
-            "type": "string",
-            "enum": [
-                "OPEN",
-                "CLOSE"
-            ]
-        },
-        "switch2": {
-            "title": "Switch 2",
-            "description": "Switch 2",
-            "type": "string",
-            "enum": [
-                "OPEN",
-                "CLOSE"
-            ]
-        },
-        "switch3": {
-            "title": "Switch 3",
-            "description": "Switch 3",
-            "type": "string",
-            "enum": [
-                "OPEN",
-                "CLOSE"
-            ]
-        },
-        "switch1change": {
-            "title": "Switch 1 changed",
-            "description": "Switch 1 changed",
-            "type": "boolean"
-        },
-        "switch2change": {
-            "title": "Switch 2 changed",
-            "description": "Switch 2 changed",
-            "type": "boolean"
-        },
-        "switch3change": {
-            "title": "Switch 3 changed",
-            "description": "Switch 3 changed",
-            "type": "boolean"
-        },
-        "voltage": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/voltage/volt",
-            "description": "Voltage",
-            "title": "Voltage"
-        },
-        "power": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/power/watt",
-            "description": "Active power",
-            "title": "Power"
-        },
-        "factor": {
-            "title": "Factor",
-            "description": "Factor",
-            "type": "number",
-            "unit": "%"
-        },
-        "powerConsumption": {
-            "title": "Power consumptation",
-            "description": "Power consumptation",
-            "type": "number",
-            "unit": "Wh"
-        },
-        "current": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/milliAmpere",
-            "description": "Current",
-            "title": "Current"
-        }
+  "$id": "https://akenza.io/milesight/WS50X2/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "switch1": {
+      "title": "Switch 1",
+      "description": "Switch 1",
+      "type": "string",
+      "enum": ["OPEN", "CLOSE"]
     },
-    "required": [
-        "switch1",
-        "switch2",
-        "switch3",
-        "switch1change",
-        "switch2change",
-        "switch3change",
-        "voltage",
-        "power",
-        "factor",
-        "powerConsumption",
-        "current"
-    ]
+    "switch2": {
+      "title": "Switch 2",
+      "description": "Switch 2",
+      "type": "string",
+      "enum": ["OPEN", "CLOSE"]
+    },
+    "switch3": {
+      "title": "Switch 3",
+      "description": "Switch 3",
+      "type": "string",
+      "enum": ["OPEN", "CLOSE"]
+    },
+    "switch1change": {
+      "title": "Switch 1 changed",
+      "description": "Switch 1 changed",
+      "type": "boolean"
+    },
+    "switch2change": {
+      "title": "Switch 2 changed",
+      "description": "Switch 2 changed",
+      "type": "boolean"
+    },
+    "switch3change": {
+      "title": "Switch 3 changed",
+      "description": "Switch 3 changed",
+      "type": "boolean"
+    },
+    "voltage": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/voltage/volt",
+      "description": "Voltage",
+      "title": "Voltage"
+    },
+    "power": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/power/watt",
+      "description": "Active power",
+      "title": "Power"
+    },
+    "factor": {
+      "title": "Factor",
+      "description": "Factor",
+      "type": "number",
+      "unit": "%"
+    },
+    "powerConsumption": {
+      "title": "Power consumptation",
+      "description": "Power consumptation",
+      "type": "number",
+      "unit": "Wh"
+    },
+    "current": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/milliAmpere",
+      "description": "Current",
+      "title": "Current"
+    }
+  },
+  "required": [
+    "switch1",
+    "switch2",
+    "switch3",
+    "switch1change",
+    "switch2change",
+    "switch3change",
+    "voltage",
+    "power",
+    "factor",
+    "powerConsumption",
+    "current"
+  ]
 }

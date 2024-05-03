@@ -1,39 +1,34 @@
 {
-    "$id": "https://akenza.io/oxon/buttonboard/lifecycle.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "lifecycle",
-    "title": "Lifecycle",
-    "properties": {
-        "batteryLevel": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
-        },
-        "hbIRQ": {
-            "title": "Heartbeat timeout occurred",
-            "type": "boolean",
-            "description": "Is true heartbeat timeout occurred",
-            "hideFromKpis": true
-        },
-        "accIRQ": {
-            "title": "Accelerometer interrupt event",
-            "type": "boolean",
-            "description": "Is true if accelerometer was interrupted",
-            "hideFromKpis": true
-        },
-        "appMode": {
-            "title": "Application mode",
-            "type": "integer",
-            "description": "Application mode 1-3",
-            "minimum": 1,
-            "maximum": 3,
-            "hideFromKpis": true
-        }
+  "$id": "https://akenza.io/oxon/buttonboard/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "batteryLevel": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
     },
-    "required": [
-        "batteryLevel",
-        "hbIRQ",
-        "accIRQ",
-        "appMode"
-    ]
+    "hbIRQ": {
+      "title": "Heartbeat timeout occurred",
+      "type": "boolean",
+      "description": "Is true heartbeat timeout occurred",
+      "hideFromKpis": true
+    },
+    "accIRQ": {
+      "title": "Accelerometer interrupt event",
+      "type": "boolean",
+      "description": "Is true if accelerometer was interrupted",
+      "hideFromKpis": true
+    },
+    "appMode": {
+      "title": "Application mode",
+      "type": "integer",
+      "description": "Application mode 1-3",
+      "minimum": 1,
+      "maximum": 3,
+      "hideFromKpis": true
+    }
+  },
+  "required": ["batteryLevel", "hbIRQ", "accIRQ", "appMode"]
 }

@@ -1,25 +1,22 @@
 {
-    "$id": "https://akenza.io/browan/tbsound/default.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "default",
-    "title": "Default",
-    "properties": {
-        "temperature": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-        },
-        "soundAvg": {
-            "title": "Sound Average",
-            "unit": "dBA",
-            "description": "Average value of the sound pressure level in decibel",
-            "type": "number",
-            "minimum": 20,
-            "maximum": 120
-        }
+  "$id": "https://akenza.io/browan/tbsound/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "temperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
-    "required": [
-        "temperature",
-        "soundAvg"
-    ]
+    "soundAvg": {
+      "title": "Sound Average",
+      "unit": "dBA",
+      "description": "Average value of the sound pressure level in decibel",
+      "type": "number",
+      "minimum": 20,
+      "maximum": 120
+    }
+  },
+  "required": ["temperature", "soundAvg"]
 }

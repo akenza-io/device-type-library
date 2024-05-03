@@ -1,33 +1,25 @@
 {
-    "$id": "https://akenza.io/milesight/TS101/default.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "default",
-    "title": "Default",
-    "properties": {
-        "temperature": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-        },
-        "temperatureAlert": {
-            "title": "Temperature alert",
-            "description": "Temperature alert",
-            "type": "string",
-            "enum": [
-                "NORMAL",
-                "THRESHOLD",
-                "MUTATION",
-                "UNKNOWN"
-            ]
-        },
-        "temperatureDegreesCelsiushange": {
-            "title": "Temperature change",
-            "description": "Temperature change",
-            "type": "number"
-        }
+  "$id": "https://akenza.io/milesight/TS101/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "temperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
-    "required": [
-        "temperature",
-        "temperatureAlert"
-    ]
+    "temperatureAlert": {
+      "title": "Temperature alert",
+      "description": "Temperature alert",
+      "type": "string",
+      "enum": ["NORMAL", "THRESHOLD", "MUTATION", "UNKNOWN"]
+    },
+    "temperatureDegreesCelsiushange": {
+      "title": "Temperature change",
+      "description": "Temperature change",
+      "type": "number"
+    }
+  },
+  "required": ["temperature", "temperatureAlert"]
 }

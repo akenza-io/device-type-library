@@ -1,99 +1,99 @@
 {
-    "$id": "https://akenza.io/comtac/CM-3/lifecycle.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "lifecycle",
-    "title": "Lifecycle",
-    "properties": {
-        "tempPt100": {
-            "title": "Temperature PT100",
-            "description": "TEMP PT100 placed",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "tempI2C": {
-            "title": "Temperature I2C",
-            "description": "TEMP I2C placed",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "acc": {
-            "title": "ACC",
-            "description": "ACC placed",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "extMEM": {
-            "title": "EXT MEM",
-            "description": "EXT MEM placed",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "lastTempValid": {
-            "title": "Last temperature measurement",
-            "description": "Last temperature measurement valid",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "batLow": {
-            "title": "Battery Low",
-            "description": "Low Battery flag set",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "async": {
-            "title": "Asynchronous",
-            "description": "ASYNCHRONOUS Event set",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "history": {
-            "title": "History",
-            "description": "HISTORY Event flag set (SYNC)",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "alarming": {
-            "title": "Alarming",
-            "description": "ALARMING Event flag set (SYNC)",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "button": {
-            "title": "Button",
-            "description": "BUTTON Event flag set (ASYNC)",
-            "type": "boolean"
-        },
-        "configRX": {
-            "title": "Config RX",
-            "description": "CONFIG RX Event flag set (ASYNC)",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "infoReq": {
-            "title": "Info request",
-            "description": "INFO REQ Event flag set (ASYNC)",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "batteryLevel": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
-        }
+  "$id": "https://akenza.io/comtac/CM-3/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "tempPt100": {
+      "title": "Temperature PT100",
+      "description": "TEMP PT100 placed",
+      "type": "boolean",
+      "hideFromKpis": true
     },
-    "required": [
-        "tempPt100",
-        "tempI2C",
-        "acc",
-        "extMEM",
-        "lastTempValid",
-        "batLow",
-        "async",
-        "history",
-        "alarming",
-        "button",
-        "configRX",
-        "infoReq",
-        "batteryLevel"
-    ]
+    "tempI2C": {
+      "title": "Temperature I2C",
+      "description": "TEMP I2C placed",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "acc": {
+      "title": "ACC",
+      "description": "ACC placed",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "extMEM": {
+      "title": "EXT MEM",
+      "description": "EXT MEM placed",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "lastTempValid": {
+      "title": "Last temperature measurement",
+      "description": "Last temperature measurement valid",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "batLow": {
+      "title": "Battery Low",
+      "description": "Low Battery flag set",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "async": {
+      "title": "Asynchronous",
+      "description": "ASYNCHRONOUS Event set",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "history": {
+      "title": "History",
+      "description": "HISTORY Event flag set (SYNC)",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "alarming": {
+      "title": "Alarming",
+      "description": "ALARMING Event flag set (SYNC)",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "button": {
+      "title": "Button",
+      "description": "BUTTON Event flag set (ASYNC)",
+      "type": "boolean"
+    },
+    "configRX": {
+      "title": "Config RX",
+      "description": "CONFIG RX Event flag set (ASYNC)",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "infoReq": {
+      "title": "Info request",
+      "description": "INFO REQ Event flag set (ASYNC)",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "batteryLevel": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
+    }
+  },
+  "required": [
+    "tempPt100",
+    "tempI2C",
+    "acc",
+    "extMEM",
+    "lastTempValid",
+    "batLow",
+    "async",
+    "history",
+    "alarming",
+    "button",
+    "configRX",
+    "infoReq",
+    "batteryLevel"
+  ]
 }

@@ -18,12 +18,7 @@
     "Humidity",
     "Air Pressure"
   ],
-  "outputTopics": [
-    "default",
-    "gps",
-    "lifecycle",
-    "tilt"
-  ],
+  "outputTopics": ["default", "gps", "lifecycle", "tilt"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

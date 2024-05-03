@@ -1,40 +1,38 @@
 {
-    "$id": "https://akenza.io/pepperlFuchs/wilsenSonicLevel/lifecycle.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "lifecycle",
-    "title": "LifeCycle",
-    "properties": {
-        "serialNumber": {
-            "title": "Serial Number",
-            "type": "number",
-            "description": "P+F serial number, ASCII-coded.",
-            "hideFromKpis": true
-        },
-        "loraCount": {
-            "title": "Lora Counter",
-            "type": "number",
-            "description": "Counter reading for LoRa transmissions: number of LoRa transmissions.",
-            "hideFromKpis": true
-        },
-        "gpsCount": {
-            "title": "GPS Counter",
-            "type": "number",
-            "description": "Counter reading for GPS position determination: number of times the GPS position was determined",
-            "hideFromKpis": true
-        },
-        "usSensorCount": {
-            "title": "Ultrasonic Measurements Counter",
-            "type": "number",
-            "description": "Counter reading for ultrasonic measurements: number of ultrasonic measurements carried out",
-            "hideFromKpis": true
-        },
-        "batteryVoltage": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
-        }
+  "$id": "https://akenza.io/pepperlFuchs/wilsenSonicLevel/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "LifeCycle",
+  "properties": {
+    "serialNumber": {
+      "title": "Serial Number",
+      "type": "number",
+      "description": "P+F serial number, ASCII-coded.",
+      "hideFromKpis": true
     },
-    "required": [
-        "batteryVoltage"
-    ]
+    "loraCount": {
+      "title": "Lora Counter",
+      "type": "number",
+      "description": "Counter reading for LoRa transmissions: number of LoRa transmissions.",
+      "hideFromKpis": true
+    },
+    "gpsCount": {
+      "title": "GPS Counter",
+      "type": "number",
+      "description": "Counter reading for GPS position determination: number of times the GPS position was determined",
+      "hideFromKpis": true
+    },
+    "usSensorCount": {
+      "title": "Ultrasonic Measurements Counter",
+      "type": "number",
+      "description": "Counter reading for ultrasonic measurements: number of ultrasonic measurements carried out",
+      "hideFromKpis": true
+    },
+    "batteryVoltage": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+    }
+  },
+  "required": ["batteryVoltage"]
 }

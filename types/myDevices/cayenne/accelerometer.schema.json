@@ -1,31 +1,31 @@
 {
-    "$id": "https://akenza.io/cayenne/cayenne/accelerometer.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "accelerometer",
-    "title": "Accelerometer",
-    "properties": {
-        "channel": {
-            "title": "Channel",
-            "type": "number",
-            "description": "Channel number",
-            "hideFromKpis": true
-        },
-        "accX": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/accX/mG",
-            "description": "Acceleration on the X-Axis is mg",
-            "title": "Accelerometer X Axis"
-        },
-        "accY": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/accY/mG",
-            "description": "Acceleration on the Y-Axis is mg",
-            "title": "Accelerometer Y Axis"
-        },
-        "accZ": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/accY/mG",
-            "description": "Acceleration on the Z-Axis is mg",
-            "title": "Accelerometer Z Axis"
-        }
+  "$id": "https://akenza.io/cayenne/cayenne/accelerometer.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "accelerometer",
+  "title": "Accelerometer",
+  "properties": {
+    "channel": {
+      "title": "Channel",
+      "type": "number",
+      "description": "Channel number",
+      "hideFromKpis": true
+    },
+    "accX": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/accX/mG",
+      "description": "Acceleration on the X-Axis is mg",
+      "title": "Accelerometer X Axis"
+    },
+    "accY": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/accY/mG",
+      "description": "Acceleration on the Y-Axis is mg",
+      "title": "Accelerometer Y Axis"
+    },
+    "accZ": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/accY/mG",
+      "description": "Acceleration on the Z-Axis is mg",
+      "title": "Accelerometer Z Axis"
     }
+  }
 }

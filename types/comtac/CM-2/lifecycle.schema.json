@@ -1,132 +1,132 @@
 {
-    "$id": "https://akenza.io/comtac/CM-2/lifecycle.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "lifecycle",
-    "title": "Lifecycle",
-    "properties": {
-        "version": {
-            "title": "Message Version",
-            "type": "integer",
-            "description": "Message Version",
-            "hideFromKpis": true
-        },
-        "booster": {
-            "title": "Booster",
-            "description": "Is Booster on? Usually on when battery level low",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "txOnTimer": {
-            "title": "TX on Timer",
-            "description": "Was it a “timer” uplink",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "txOnEvent": {
-            "title": "TX on Event",
-            "description": "Was it an “event” uplink",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "buttonEvent": {
-            "title": "Button Event",
-            "description": "Was it a “button“ uplink",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "digitalInputEvent": {
-            "title": "Digital Input Event",
-            "description": "Was it a “digital“ uplink",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "deepSleepEvent": {
-            "title": "Deep Sleep Event",
-            "description": "Was it a “Deep Sleep“ uplink",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "digitalInputState": {
-            "title": "Digital Input State",
-            "description": "State of the digital input",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "minTempOn": {
-            "title": "Min temperature on",
-            "description": "Is minimum temperature control on",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "maxTempOn": {
-            "title": "Max temperature on",
-            "description": "Is maximum temperature control on",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "minHumOn": {
-            "title": "Min humidity on",
-            "description": "Is minimum humidity control on",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "maxHumOn": {
-            "title": "Max humidity on",
-            "description": "Is maximum humidity control on",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "minPt100On": {
-            "title": "Min temperature 100 on",
-            "description": "Is minimum temperature 100 control on",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "maxPt100On": {
-            "title": "Max temperature 100 on",
-            "description": "Is maximum temperature 100 control on",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "minLemOn": {
-            "title": "Min LEM on",
-            "description": "Is minimum LEM control on",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "maxLemOn": {
-            "title": "Max LEM on",
-            "description": "Is maximum LEM control on",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "batteryVoltage": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
-        },
-        "batteryLevel": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
-        }
+  "$id": "https://akenza.io/comtac/CM-2/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "version": {
+      "title": "Message Version",
+      "type": "integer",
+      "description": "Message Version",
+      "hideFromKpis": true
     },
-    "required": [
-        "version",
-        "booster",
-        "txOnTimer",
-        "txOnEvent",
-        "buttonEvent",
-        "digitalInputEvent",
-        "deepSleepEvent",
-        "digitalInputState",
-        "minTempOn",
-        "maxTempOn",
-        "minHumOn",
-        "maxHumOn",
-        "minPt100On",
-        "maxPt100On",
-        "minLemOn",
-        "maxLemOn",
-        "batteryVoltage",
-        "batteryLevel"
-    ]
+    "booster": {
+      "title": "Booster",
+      "description": "Is Booster on? Usually on when battery level low",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "txOnTimer": {
+      "title": "TX on Timer",
+      "description": "Was it a “timer” uplink",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "txOnEvent": {
+      "title": "TX on Event",
+      "description": "Was it an “event” uplink",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "buttonEvent": {
+      "title": "Button Event",
+      "description": "Was it a “button“ uplink",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "digitalInputEvent": {
+      "title": "Digital Input Event",
+      "description": "Was it a “digital“ uplink",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "deepSleepEvent": {
+      "title": "Deep Sleep Event",
+      "description": "Was it a “Deep Sleep“ uplink",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "digitalInputState": {
+      "title": "Digital Input State",
+      "description": "State of the digital input",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "minTempOn": {
+      "title": "Min temperature on",
+      "description": "Is minimum temperature control on",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "maxTempOn": {
+      "title": "Max temperature on",
+      "description": "Is maximum temperature control on",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "minHumOn": {
+      "title": "Min humidity on",
+      "description": "Is minimum humidity control on",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "maxHumOn": {
+      "title": "Max humidity on",
+      "description": "Is maximum humidity control on",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "minPt100On": {
+      "title": "Min temperature 100 on",
+      "description": "Is minimum temperature 100 control on",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "maxPt100On": {
+      "title": "Max temperature 100 on",
+      "description": "Is maximum temperature 100 control on",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "minLemOn": {
+      "title": "Min LEM on",
+      "description": "Is minimum LEM control on",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "maxLemOn": {
+      "title": "Max LEM on",
+      "description": "Is maximum LEM control on",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "batteryVoltage": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+    },
+    "batteryLevel": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
+    }
+  },
+  "required": [
+    "version",
+    "booster",
+    "txOnTimer",
+    "txOnEvent",
+    "buttonEvent",
+    "digitalInputEvent",
+    "deepSleepEvent",
+    "digitalInputState",
+    "minTempOn",
+    "maxTempOn",
+    "minHumOn",
+    "maxHumOn",
+    "minPt100On",
+    "maxPt100On",
+    "minLemOn",
+    "maxLemOn",
+    "batteryVoltage",
+    "batteryLevel"
+  ]
 }

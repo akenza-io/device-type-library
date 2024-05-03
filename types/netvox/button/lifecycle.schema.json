@@ -1,30 +1,26 @@
 {
-    "$id": "https://akenza.io/netvox/button/lifecycle.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "lifecycle",
-    "title": "Lifecycle",
-    "properties": {
-        "version": {
-            "title": "Protocol Version",
-            "description": "Protocol Version",
-            "type": "string",
-            "hideFromKpis": true
-        },
-        "devType": {
-            "title": "Device type ID",
-            "description": "Device type ID",
-            "type": "string",
-            "hideFromKpis": true
-        },
-        "batteryVoltage": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
-        }
+  "$id": "https://akenza.io/netvox/button/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "version": {
+      "title": "Protocol Version",
+      "description": "Protocol Version",
+      "type": "string",
+      "hideFromKpis": true
     },
-    "required": [
-        "version",
-        "devType",
-        "batteryVoltage"
-    ]
+    "devType": {
+      "title": "Device type ID",
+      "description": "Device type ID",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "batteryVoltage": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+    }
+  },
+  "required": ["version", "devType", "batteryVoltage"]
 }

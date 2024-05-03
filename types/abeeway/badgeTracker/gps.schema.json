@@ -1,69 +1,63 @@
 {
-    "$id": "https://akenza.io/abeeway/badgeTracker/gps.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "gps",
-    "title": "GPS",
-    "properties": {
-        "gpsMessage": {
-            "title": "GPS Message",
-            "description": "Flag that describes the following values",
-            "type": "string",
-            "enum": [
-                "GPS_FIX",
-                "GPS_FIX_EXTENDED"
-            ],
-            "hideFromKpis": true
-        },
-        "age": {
-            "title": "Age",
-            "unit": "s",
-            "type": "integer",
-            "description": "Age of the measurement in seconds",
-            "hideFromKpis": true
-        },
-        "latitude": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/latitude/degrees"
-        },
-        "longitude": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/longitude/degrees"
-        },
-        "horizontalAccuracy": {
-            "title": "Estimated horizontal position error",
-            "unit": "m",
-            "type": "number",
-            "description": "Estimated horizontal position error in meters"
-        },
-        "dimensionFix": {
-            "title": "Dimension fix",
-            "description": "Describes the GPS fix",
-            "type": "string",
-            "enum": [
-                "2D fix",
-                "3D fix"
-            ],
-            "hideFromKpis": true
-        },
-        "cog": {
-            "title": "Course over ground",
-            "unit": "°",
-            "type": "number",
-            "description": "The direction the tracker is moving over the ground expressed in degrees.",
-            "hideFromKpis": true
-        },
-        "sog": {
-            "title": "Speed over ground",
-            "unit": "cm/s",
-            "type": "number",
-            "description": "The speed the tracker is moving over the ground. It is expressed in cm/second."
-        }
+  "$id": "https://akenza.io/abeeway/badgeTracker/gps.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "gps",
+  "title": "GPS",
+  "properties": {
+    "gpsMessage": {
+      "title": "GPS Message",
+      "description": "Flag that describes the following values",
+      "type": "string",
+      "enum": ["GPS_FIX", "GPS_FIX_EXTENDED"],
+      "hideFromKpis": true
     },
-    "required": [
-        "gpsMessage",
-        "age",
-        "latitude",
-        "longitude",
-        "horizontalAccuracy"
-    ]
+    "age": {
+      "title": "Age",
+      "unit": "s",
+      "type": "integer",
+      "description": "Age of the measurement in seconds",
+      "hideFromKpis": true
+    },
+    "latitude": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/latitude/degrees"
+    },
+    "longitude": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/longitude/degrees"
+    },
+    "horizontalAccuracy": {
+      "title": "Estimated horizontal position error",
+      "unit": "m",
+      "type": "number",
+      "description": "Estimated horizontal position error in meters"
+    },
+    "dimensionFix": {
+      "title": "Dimension fix",
+      "description": "Describes the GPS fix",
+      "type": "string",
+      "enum": ["2D fix", "3D fix"],
+      "hideFromKpis": true
+    },
+    "cog": {
+      "title": "Course over ground",
+      "unit": "°",
+      "type": "number",
+      "description": "The direction the tracker is moving over the ground expressed in degrees.",
+      "hideFromKpis": true
+    },
+    "sog": {
+      "title": "Speed over ground",
+      "unit": "cm/s",
+      "type": "number",
+      "description": "The speed the tracker is moving over the ground. It is expressed in cm/second."
+    }
+  },
+  "required": [
+    "gpsMessage",
+    "age",
+    "latitude",
+    "longitude",
+    "horizontalAccuracy"
+  ]
 }

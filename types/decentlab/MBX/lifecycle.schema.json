@@ -1,39 +1,39 @@
 {
-    "$id": "https://akenza.io/decentlab/mbx/lifecycle.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "lifecycle",
-    "title": "Lifecycle",
-    "properties": {
-        "batteryVoltage": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
-        },
-        "protocolVersion": {
-            "title": "Protocol Version",
-            "description": "Protocol Version",
-            "type": "integer",
-            "hideFromKpis": true
-        },
-        "deviceId": {
-            "title": "Device ID",
-            "description": "Device ID",
-            "type": "integer",
-            "hideFromKpis": true
-        },
-        "numberOfValidSamples": {
-            "title": "Number of valid samples",
-            "description": "Number of valid samples",
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 255,
-            "hideFromKpis": true
-        }
+  "$id": "https://akenza.io/decentlab/mbx/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "batteryVoltage": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
     },
-    "required": [
-        "batteryVoltage",
-        "protocolVersion",
-        "deviceId",
-        "numberOfValidSamples"
-    ]
+    "protocolVersion": {
+      "title": "Protocol Version",
+      "description": "Protocol Version",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "deviceId": {
+      "title": "Device ID",
+      "description": "Device ID",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "numberOfValidSamples": {
+      "title": "Number of valid samples",
+      "description": "Number of valid samples",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255,
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "batteryVoltage",
+    "protocolVersion",
+    "deviceId",
+    "numberOfValidSamples"
+  ]
 }

@@ -1,39 +1,34 @@
 {
-    "$id": "https://akenza.io/mclimate/button/default.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "default",
-    "title": "Default",
-    "properties": {
-        "buttonPressed": {
-            "title": "Press event",
-            "description": "Press event",
-            "type": "string",
-            "enum": [
-                "NO_PRESS",
-                "SINGLE_PRESS",
-                "DOUBLE_PRESS",
-                "TRIPLE_PRESS"
-            ]
-        },
-        "batteryVoltage": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
-        },
-        "thermistorOperational": {
-            "title": "Thermistor properly connected",
-            "description": "Equals true if the thermistor is properly connected",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "temperature": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-        }
+  "$id": "https://akenza.io/mclimate/button/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "buttonPressed": {
+      "title": "Press event",
+      "description": "Press event",
+      "type": "string",
+      "enum": ["NO_PRESS", "SINGLE_PRESS", "DOUBLE_PRESS", "TRIPLE_PRESS"]
     },
-    "required": [
-        "buttonPressed",
-        "batteryVoltage",
-        "thermistorOperational",
-        "temperature"
-    ]
+    "batteryVoltage": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+    },
+    "thermistorOperational": {
+      "title": "Thermistor properly connected",
+      "description": "Equals true if the thermistor is properly connected",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "temperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    }
+  },
+  "required": [
+    "buttonPressed",
+    "batteryVoltage",
+    "thermistorOperational",
+    "temperature"
+  ]
 }

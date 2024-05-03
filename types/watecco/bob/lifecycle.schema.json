@@ -1,28 +1,21 @@
 {
-    "$id": "https://akenza.io/watecco/bob/lifecycle.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "lifecycle",
-    "title": "Lifecycle",
-    "properties": {
-        "sensorState": {
-            "title": "Sensor state",
-            "type": "string",
-            "description": "Sensor messages which indicate the state.",
-            "enum": [
-                "SENSOR_START",
-                "SENSOR_STOP",
-                "MACHINE_STOP",
-                "MACHINE_START"
-            ],
-            "hideFromKpis": true
-        },
-        "batteryLevel": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
-        }
+  "$id": "https://akenza.io/watecco/bob/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "sensorState": {
+      "title": "Sensor state",
+      "type": "string",
+      "description": "Sensor messages which indicate the state.",
+      "enum": ["SENSOR_START", "SENSOR_STOP", "MACHINE_STOP", "MACHINE_START"],
+      "hideFromKpis": true
     },
-    "required": [
-        "batteryLevel"
-    ]
+    "batteryLevel": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
+    }
+  },
+  "required": ["batteryLevel"]
 }

@@ -1,45 +1,45 @@
 {
-    "$id": "https://akenza.io/internal/deviceSimulator/default.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "default",
-    "title": "Default",
-    "properties": {
-        "temperature": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-        },
-        "humidity": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
-        },
-        "co2": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm"
-        },
-        "noise": {
-            "title": "Noise",
-            "unit": "dBA",
-            "description": "Average value of the sound pressure level in decibel",
-            "type": "number",
-            "minimum": 20,
-            "maximum": 120
-        },
-        "illuminance": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/illuminance/lux",
-            "description": "Light value",
-            "title": "Light"
-        },
-        "occupied": {
-            "title": "Occupied",
-            "description": "Space occupancy. false = Unoccupied / true = Occupied.",
-            "type": "boolean"
-        }
+  "$id": "https://akenza.io/internal/deviceSimulator/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "temperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
-    "required": [
-        "temperature",
-        "humidity",
-        "co2",
-        "noise",
-        "illuminance",
-        "occupied"
-    ]
+    "humidity": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+    },
+    "co2": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm"
+    },
+    "noise": {
+      "title": "Noise",
+      "unit": "dBA",
+      "description": "Average value of the sound pressure level in decibel",
+      "type": "number",
+      "minimum": 20,
+      "maximum": 120
+    },
+    "illuminance": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/illuminance/lux",
+      "description": "Light value",
+      "title": "Light"
+    },
+    "occupied": {
+      "title": "Occupied",
+      "description": "Space occupancy. false = Unoccupied / true = Occupied.",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "temperature",
+    "humidity",
+    "co2",
+    "noise",
+    "illuminance",
+    "occupied"
+  ]
 }

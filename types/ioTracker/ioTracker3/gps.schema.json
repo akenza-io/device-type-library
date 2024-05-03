@@ -1,74 +1,74 @@
 {
-    "$id": "https://akenza.io/ioTracker/ioTracker3/default.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "gps",
-    "title": "GPS",
-    "properties": {
-        "navStat": {
-            "title": "Navigation statistics",
-            "description": "Navigation statistics",
-            "type": "integer",
-            "hideFromKpis": true
-        },
-        "longitude": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/longitude/degrees"
-        },
-        "latitude": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/latitude/degrees"
-        },
-        "altitude": {
-            "title": "Altitude reference",
-            "description": "Altitude above user datum ellipsoid",
-            "type": "number",
-            "hideFromKpis": true
-        },
-        "hAcc": {
-            "title": "Horizontal accuracy estimate",
-            "description": "Horizontal accuracy estimate",
-            "type": "integer",
-            "hideFromKpis": true
-        },
-        "vAcc": {
-            "title": "Vertical accuracy estimate",
-            "description": "Vertical accuracy estimate",
-            "type": "integer",
-            "hideFromKpis": true
-        },
-        "sog": {
-            "title": "Speed over ground",
-            "description": "Speed over ground",
-            "type": "number"
-        },
-        "cog": {
-            "title": "Course over ground",
-            "description": "Course over ground",
-            "type": "number"
-        },
-        "hdop": {
-            "title": "HDOP",
-            "description": "Horizontal Dilution of Precision",
-            "type": "number",
-            "hideFromKpis": true
-        },
-        "numSvs": {
-            "title": "Number of satellites",
-            "description": "Number of satellites used in the navigation solution",
-            "type": "integer",
-            "hideFromKpis": true
-        }
+  "$id": "https://akenza.io/ioTracker/ioTracker3/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "gps",
+  "title": "GPS",
+  "properties": {
+    "navStat": {
+      "title": "Navigation statistics",
+      "description": "Navigation statistics",
+      "type": "integer",
+      "hideFromKpis": true
     },
-    "required": [
-        "navStat",
-        "longitude",
-        "latitude",
-        "altitude",
-        "hAcc",
-        "vAcc",
-        "sog",
-        "cog",
-        "hdop",
-        "numSvs"
-    ]
+    "longitude": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/longitude/degrees"
+    },
+    "latitude": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/latitude/degrees"
+    },
+    "altitude": {
+      "title": "Altitude reference",
+      "description": "Altitude above user datum ellipsoid",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "hAcc": {
+      "title": "Horizontal accuracy estimate",
+      "description": "Horizontal accuracy estimate",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "vAcc": {
+      "title": "Vertical accuracy estimate",
+      "description": "Vertical accuracy estimate",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "sog": {
+      "title": "Speed over ground",
+      "description": "Speed over ground",
+      "type": "number"
+    },
+    "cog": {
+      "title": "Course over ground",
+      "description": "Course over ground",
+      "type": "number"
+    },
+    "hdop": {
+      "title": "HDOP",
+      "description": "Horizontal Dilution of Precision",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "numSvs": {
+      "title": "Number of satellites",
+      "description": "Number of satellites used in the navigation solution",
+      "type": "integer",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "navStat",
+    "longitude",
+    "latitude",
+    "altitude",
+    "hAcc",
+    "vAcc",
+    "sog",
+    "cog",
+    "hdop",
+    "numSvs"
+  ]
 }

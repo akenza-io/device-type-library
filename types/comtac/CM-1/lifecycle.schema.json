@@ -1,112 +1,112 @@
 {
-    "$id": "https://akenza.io/comtac/CM-1/lifecycle.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "lifecycle",
-    "title": "Lifecycle",
-    "properties": {
-        "booster": {
-            "title": "Booster",
-            "description": "Is Booster on? Usually on when battery level low",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "minHumOn": {
-            "title": "Min humidity on",
-            "description": "Is min humidity control on",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "maxHumOn": {
-            "title": "Max humidity on",
-            "description": "Is max humidity control on",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "txOnEvent": {
-            "title": "TX on Event",
-            "description": "Was it an “event” uplink",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "minTempOn": {
-            "title": "Min temperature on",
-            "description": "Is min temperature control on",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "maxTempOn": {
-            "title": "Max temperature on",
-            "description": "Is max temperature control on",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "minTempThreshold": {
-            "title": "Min Temperature Threshold",
-            "unit": "°C",
-            "type": "number",
-            "description": "Minimum temperature threshold, where -15 means OFF",
-            "minimum": -15,
-            "maximum": 75,
-            "hideFromKpis": true
-        },
-        "maxTempThreshold": {
-            "title": "Max Temperature Threshold",
-            "unit": "°C",
-            "type": "number",
-            "description": "Maximum temperature threshold, where -15 means OFF",
-            "minimum": -15,
-            "maximum": 75,
-            "hideFromKpis": true
-        },
-        "minHumThreshold": {
-            "title": "Min Humidity Threshold",
-            "unit": "%",
-            "type": "number",
-            "description": "Minimum humidity threshold, where 0 means OFF",
-            "minimum": 0,
-            "maximum": 99,
-            "hideFromKpis": true
-        },
-        "maxHumThreshold": {
-            "title": "Max Humidity Threshold",
-            "unit": "%",
-            "type": "number",
-            "description": "Maximum humidity threshold, where 0 means OFF",
-            "minimum": 0,
-            "maximum": 99,
-            "hideFromKpis": true
-        },
-        "sendInterval": {
-            "title": "Send interval",
-            "unit": "min",
-            "description": "Actual send interval.",
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 65535,
-            "hideFromKpis": true
-        },
-        "batteryVoltage": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
-        },
-        "batteryLevel": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
-        }
+  "$id": "https://akenza.io/comtac/CM-1/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "booster": {
+      "title": "Booster",
+      "description": "Is Booster on? Usually on when battery level low",
+      "type": "boolean",
+      "hideFromKpis": true
     },
-    "required": [
-        "booster",
-        "minHumOn",
-        "maxHumOn",
-        "txOnEvent",
-        "minTempOn",
-        "maxTempOn",
-        "minTempThreshold",
-        "maxTempThreshold",
-        "minHumThreshold",
-        "maxHumThreshold",
-        "sendInterval",
-        "batteryVoltage",
-        "batteryLevel"
-    ]
+    "minHumOn": {
+      "title": "Min humidity on",
+      "description": "Is min humidity control on",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "maxHumOn": {
+      "title": "Max humidity on",
+      "description": "Is max humidity control on",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "txOnEvent": {
+      "title": "TX on Event",
+      "description": "Was it an “event” uplink",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "minTempOn": {
+      "title": "Min temperature on",
+      "description": "Is min temperature control on",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "maxTempOn": {
+      "title": "Max temperature on",
+      "description": "Is max temperature control on",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "minTempThreshold": {
+      "title": "Min Temperature Threshold",
+      "unit": "°C",
+      "type": "number",
+      "description": "Minimum temperature threshold, where -15 means OFF",
+      "minimum": -15,
+      "maximum": 75,
+      "hideFromKpis": true
+    },
+    "maxTempThreshold": {
+      "title": "Max Temperature Threshold",
+      "unit": "°C",
+      "type": "number",
+      "description": "Maximum temperature threshold, where -15 means OFF",
+      "minimum": -15,
+      "maximum": 75,
+      "hideFromKpis": true
+    },
+    "minHumThreshold": {
+      "title": "Min Humidity Threshold",
+      "unit": "%",
+      "type": "number",
+      "description": "Minimum humidity threshold, where 0 means OFF",
+      "minimum": 0,
+      "maximum": 99,
+      "hideFromKpis": true
+    },
+    "maxHumThreshold": {
+      "title": "Max Humidity Threshold",
+      "unit": "%",
+      "type": "number",
+      "description": "Maximum humidity threshold, where 0 means OFF",
+      "minimum": 0,
+      "maximum": 99,
+      "hideFromKpis": true
+    },
+    "sendInterval": {
+      "title": "Send interval",
+      "unit": "min",
+      "description": "Actual send interval.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535,
+      "hideFromKpis": true
+    },
+    "batteryVoltage": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+    },
+    "batteryLevel": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
+    }
+  },
+  "required": [
+    "booster",
+    "minHumOn",
+    "maxHumOn",
+    "txOnEvent",
+    "minTempOn",
+    "maxTempOn",
+    "minTempThreshold",
+    "maxTempThreshold",
+    "minHumThreshold",
+    "maxHumThreshold",
+    "sendInterval",
+    "batteryVoltage",
+    "batteryLevel"
+  ]
 }

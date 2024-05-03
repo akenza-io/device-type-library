@@ -17,8 +17,5 @@
       "description": "Number of detected state changes during a measurement period."
     }
   },
-  "required": [
-    "open",
-    "numberOfChanges"
-  ]
+  "required": ["open", "numberOfChanges"]
 }

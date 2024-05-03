@@ -1,121 +1,121 @@
 {
-    "$id": "https://akenza.io/comtac/ms-3/lifecycle.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "lifecycle",
-    "title": "Lifecycle",
-    "properties": {
-        "rs485": {
-            "title": "RS485",
-            "description": "RS485 active",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "gps": {
-            "title": "GPS",
-            "description": "GPS active",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "acc": {
-            "title": "Accelerometer",
-            "description": "Accelerometer active",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "mag": {
-            "title": "Magnetometer",
-            "description": "Magnetometer active",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "mic": {
-            "title": "Microphone",
-            "description": "Microphone active",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "bright": {
-            "title": "Brightness",
-            "description": "Brightness sensor active",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "tempHum": {
-            "title": "Temperature & Humidity",
-            "description": "Temperature & Humidity sensors active",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "txOnEvent": {
-            "title": "Event",
-            "description": "Event registered",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "magActual": {
-            "title": "Magnetometer",
-            "description": "Magnetometer active",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "extCon": {
-            "title": "External connection",
-            "description": "External connection detected",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "booster": {
-            "title": "Booster",
-            "description": "Booster active",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "extSupply": {
-            "title": "External supply",
-            "description": "External supply detected",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "dip3": {
-            "title": "DIP 3",
-            "description": "DIP 3",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "dip2": {
-            "title": "DIP 2",
-            "description": "DIP 2",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "dip1": {
-            "title": "DIP 1",
-            "description": "DIP 1",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "batteryVoltage": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
-        }
+  "$id": "https://akenza.io/comtac/ms-3/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "rs485": {
+      "title": "RS485",
+      "description": "RS485 active",
+      "type": "boolean",
+      "hideFromKpis": true
     },
-    "required": [
-        "rs485",
-        "gps",
-        "acc",
-        "mag",
-        "mic",
-        "bright",
-        "tempHum",
-        "txOnEvent",
-        "magActual",
-        "extCon",
-        "booster",
-        "extSupply",
-        "dip3",
-        "dip2",
-        "dip1",
-        "batteryVoltage"
-    ]
+    "gps": {
+      "title": "GPS",
+      "description": "GPS active",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "acc": {
+      "title": "Accelerometer",
+      "description": "Accelerometer active",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "mag": {
+      "title": "Magnetometer",
+      "description": "Magnetometer active",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "mic": {
+      "title": "Microphone",
+      "description": "Microphone active",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "bright": {
+      "title": "Brightness",
+      "description": "Brightness sensor active",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "tempHum": {
+      "title": "Temperature & Humidity",
+      "description": "Temperature & Humidity sensors active",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "txOnEvent": {
+      "title": "Event",
+      "description": "Event registered",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "magActual": {
+      "title": "Magnetometer",
+      "description": "Magnetometer active",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "extCon": {
+      "title": "External connection",
+      "description": "External connection detected",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "booster": {
+      "title": "Booster",
+      "description": "Booster active",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "extSupply": {
+      "title": "External supply",
+      "description": "External supply detected",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "dip3": {
+      "title": "DIP 3",
+      "description": "DIP 3",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "dip2": {
+      "title": "DIP 2",
+      "description": "DIP 2",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "dip1": {
+      "title": "DIP 1",
+      "description": "DIP 1",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "batteryVoltage": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+    }
+  },
+  "required": [
+    "rs485",
+    "gps",
+    "acc",
+    "mag",
+    "mic",
+    "bright",
+    "tempHum",
+    "txOnEvent",
+    "magActual",
+    "extCon",
+    "booster",
+    "extSupply",
+    "dip3",
+    "dip2",
+    "dip1",
+    "batteryVoltage"
+  ]
 }

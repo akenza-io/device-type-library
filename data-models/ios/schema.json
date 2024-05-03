@@ -1,73 +1,73 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/iOs/schema.json",
-    "title": "IOs",
-    "description": "IO measurements",
-    "type": "object",
-    "$defs": {
-        "digitalInput": {
-            "boolean": {
-                "measurementType": "akenza/iOs/digitalInput/boolean",
-                "title": "Digital input",
-                "description": "Digital input T/F",
-                "type": "boolean"
-            }
-        },
-        "analogInput": {
-            "volt": {
-                "measurementType": "akenza/iOs/analogInput/volt",
-                "title": "Analog input",
-                "description": "Analog input in V",
-                "type": "number",
-                "unit": "V"
-            },
-            "milliVolt": {
-                "measurementType": "akenza/iOs/analogInput/milliVolt",
-                "title": "Analog input",
-                "description": "Analog input in mV",
-                "type": "number",
-                "unit": "mV"
-            }
-        },
-        "digitalOutput": {
-            "boolean": {
-                "measurementType": "akenza/iOs/digitalOutput/boolean",
-                "title": "Digital output",
-                "description": "Digital output T/F",
-                "type": "boolean"
-            }
-        },
-        "pulseInput": {
-            "count": {
-                "measurementType": "akenza/iOs/pulseInput/count",
-                "title": "Pulse input",
-                "description": "Pulse count",
-                "type": "integer"
-            }
-        },
-        "buttonStatus": {
-            "status": {
-                "measurementType": "akenza/iOs/buttonStatus/status",
-                "title": "Button status",
-                "description": "Butten status T/F",
-                "type": "boolean"
-            }
-        },
-        "buttonEvent": {
-            "event": {
-                "measurementType": "akenza/iOs/buttonEvent/event",
-                "title": "Button event",
-                "description": "Button event T/F",
-                "type": "boolean"
-            }
-        },
-        "reedContact": {
-            "status": {
-                "measurementType": "akenza/iOs/reedContact/status",
-                "title": "Reed contact",
-                "description": "Reed contact T/F",
-                "type": "boolean"
-            }
-        }
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/iOs/schema.json",
+  "title": "IOs",
+  "description": "IO measurements",
+  "type": "object",
+  "$defs": {
+    "digitalInput": {
+      "boolean": {
+        "measurementType": "akenza/iOs/digitalInput/boolean",
+        "title": "Digital input",
+        "description": "Digital input T/F",
+        "type": "boolean"
+      }
+    },
+    "analogInput": {
+      "volt": {
+        "measurementType": "akenza/iOs/analogInput/volt",
+        "title": "Analog input",
+        "description": "Analog input in V",
+        "type": "number",
+        "unit": "V"
+      },
+      "milliVolt": {
+        "measurementType": "akenza/iOs/analogInput/milliVolt",
+        "title": "Analog input",
+        "description": "Analog input in mV",
+        "type": "number",
+        "unit": "mV"
+      }
+    },
+    "digitalOutput": {
+      "boolean": {
+        "measurementType": "akenza/iOs/digitalOutput/boolean",
+        "title": "Digital output",
+        "description": "Digital output T/F",
+        "type": "boolean"
+      }
+    },
+    "pulseInput": {
+      "count": {
+        "measurementType": "akenza/iOs/pulseInput/count",
+        "title": "Pulse input",
+        "description": "Pulse count",
+        "type": "integer"
+      }
+    },
+    "buttonStatus": {
+      "status": {
+        "measurementType": "akenza/iOs/buttonStatus/status",
+        "title": "Button status",
+        "description": "Butten status T/F",
+        "type": "boolean"
+      }
+    },
+    "buttonEvent": {
+      "event": {
+        "measurementType": "akenza/iOs/buttonEvent/event",
+        "title": "Button event",
+        "description": "Button event T/F",
+        "type": "boolean"
+      }
+    },
+    "reedContact": {
+      "status": {
+        "measurementType": "akenza/iOs/reedContact/status",
+        "title": "Reed contact",
+        "description": "Reed contact T/F",
+        "type": "boolean"
+      }
     }
+  }
 }

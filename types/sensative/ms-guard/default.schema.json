@@ -1,81 +1,81 @@
 {
-    "$id": "https://akenza.io/sensative/ms-guard/default.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "default",
-    "title": "Default",
-    "properties": {
-        "temperature": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-        },
-        "averageTemperature": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/averageTemperature/celsius",
-            "description": "Average temperature report in °C.",
-            "title": "Average temperature report"
-        },
-        "humidity": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
-        },
-        "light": {
-            "title": "Light",
-            "unit": "lx",
-            "type": "integer",
-            "description": "The light in lux.",
-            "minimum": 0,
-            "maximum": 65535
-        },
-        "light2": {
-            "title": "Light 2",
-            "unit": "lx",
-            "type": "integer",
-            "description": "The light in lux.",
-            "minimum": 0,
-            "maximum": 65535
-        },
-        "closed": {
-            "title": "Closed",
-            "description": "Status of the strip. closed = true, open = false",
-            "type": "boolean"
-        },
-        "tamperReport": {
-            "title": "Tamper report",
-            "description": "Status if the device got tampered the strip. open = true, closed = false",
-            "type": "boolean"
-        },
-        "flood": {
-            "title": "Flood",
-            "unit": "%",
-            "type": "number",
-            "description": "Flood relative wetness",
-            "minimum": 0,
-            "maximum": 100
-        },
-        "doorCount": {
-            "title": "Door count",
-            "type": "integer",
-            "description": "Door opening count",
-            "minimum": 0,
-            "maximum": 65535
-        },
-        "presence": {
-            "title": "Presence",
-            "description": "Status if the device reads presence",
-            "type": "boolean"
-        },
-        "irProximity": {
-            "title": "Infrared proximity",
-            "description": "Count of objects in proximity",
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 255
-        },
-        "irCloseProximity": {
-            "title": "Infrared close proximity",
-            "description": "Count of objects in close proximity",
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 255
-        }
+  "$id": "https://akenza.io/sensative/ms-guard/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "temperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    },
+    "averageTemperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/averageTemperature/celsius",
+      "description": "Average temperature report in °C.",
+      "title": "Average temperature report"
+    },
+    "humidity": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+    },
+    "light": {
+      "title": "Light",
+      "unit": "lx",
+      "type": "integer",
+      "description": "The light in lux.",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "light2": {
+      "title": "Light 2",
+      "unit": "lx",
+      "type": "integer",
+      "description": "The light in lux.",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "closed": {
+      "title": "Closed",
+      "description": "Status of the strip. closed = true, open = false",
+      "type": "boolean"
+    },
+    "tamperReport": {
+      "title": "Tamper report",
+      "description": "Status if the device got tampered the strip. open = true, closed = false",
+      "type": "boolean"
+    },
+    "flood": {
+      "title": "Flood",
+      "unit": "%",
+      "type": "number",
+      "description": "Flood relative wetness",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "doorCount": {
+      "title": "Door count",
+      "type": "integer",
+      "description": "Door opening count",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "presence": {
+      "title": "Presence",
+      "description": "Status if the device reads presence",
+      "type": "boolean"
+    },
+    "irProximity": {
+      "title": "Infrared proximity",
+      "description": "Count of objects in proximity",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "irCloseProximity": {
+      "title": "Infrared close proximity",
+      "description": "Count of objects in close proximity",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
     }
+  }
 }

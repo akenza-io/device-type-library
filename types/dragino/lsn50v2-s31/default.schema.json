@@ -1,38 +1,35 @@
 {
-    "$id": "https://akenza.io/dragino/lsn50v2-s31/default.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "default",
-    "title": "Default",
-    "properties": {
-        "temperature": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-        },
-        "c0adc": {
-            "title": "Channel 0 ADC",
-            "type": "number",
-            "unit": "V",
-            "description": "ADC value in voltage"
-        },
-        "digitalStatus": {
-            "title": "Digital status",
-            "type": "string",
-            "description": "Digital status",
-            "enum": [
-                "HIGH",
-                "LOW"
-            ]
-        },
-        "extTrigger": {
-            "title": "External trigger",
-            "type": "boolean",
-            "description": "External trigger"
-        },
-        "open": {
-            "title": "Open",
-            "type": "boolean",
-            "description": "True if reed has no contact."
-        }
+  "$id": "https://akenza.io/dragino/lsn50v2-s31/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "temperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    },
+    "c0adc": {
+      "title": "Channel 0 ADC",
+      "type": "number",
+      "unit": "V",
+      "description": "ADC value in voltage"
+    },
+    "digitalStatus": {
+      "title": "Digital status",
+      "type": "string",
+      "description": "Digital status",
+      "enum": ["HIGH", "LOW"]
+    },
+    "extTrigger": {
+      "title": "External trigger",
+      "type": "boolean",
+      "description": "External trigger"
+    },
+    "open": {
+      "title": "Open",
+      "type": "boolean",
+      "description": "True if reed has no contact."
     }
+  }
 }

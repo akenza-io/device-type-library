@@ -1,26 +1,22 @@
 {
-    "$id": "https://akenza.io/adeunis/ftd/gps.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "gps",
-    "title": "GPS",
-    "properties": {
-        "latitude": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/latitude/degrees"
-        },
-        "longitude": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/longitude/degrees"
-        },
-        "satellites": {
-            "title": "Available satellites",
-            "type": "integer",
-            "description": "Available satellites"
-        }
+  "$id": "https://akenza.io/adeunis/ftd/gps.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "gps",
+  "title": "GPS",
+  "properties": {
+    "latitude": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/latitude/degrees"
     },
-    "required": [
-        "latitude",
-        "longitude",
-        "satellites"
-    ]
+    "longitude": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/longitude/degrees"
+    },
+    "satellites": {
+      "title": "Available satellites",
+      "type": "integer",
+      "description": "Available satellites"
+    }
+  },
+  "required": ["latitude", "longitude", "satellites"]
 }

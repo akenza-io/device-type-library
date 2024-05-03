@@ -1,50 +1,42 @@
 {
-    "$id": "https://akenza.io/dragino/lht65/lifecycle.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "lifecycle",
-    "title": "Lifecycle",
-    "properties": {
-        "batteryStatus": {
-            "title": "Battery status",
-            "description": "Battery status",
-            "type": "string",
-            "enum": [
-                "ULTRA_LOW",
-                "LOW",
-                "OK",
-                "GOOD"
-            ],
-            "hideFromKpis": true
-        },
-        "batteryVoltage": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
-        },
-        "connectionStatus": {
-            "title": "Connection status",
-            "description": "Connection status",
-            "type": "string",
-            "enum": [
-                "NO_CONNECTION",
-                "CONNECTED"
-            ],
-            "hideFromKpis": true
-        },
-        "externalSensor": {
-            "title": "External sensor",
-            "description": "Equals true if theres an external sensor.",
-            "type": "boolean",
-            "hideFromKpis": true
-        },
-        "batteryLevel": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
-        }
+  "$id": "https://akenza.io/dragino/lht65/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "batteryStatus": {
+      "title": "Battery status",
+      "description": "Battery status",
+      "type": "string",
+      "enum": ["ULTRA_LOW", "LOW", "OK", "GOOD"],
+      "hideFromKpis": true
     },
-    "required": [
-        "batteryStatus",
-        "batteryVoltage",
-        "connectionStatus",
-        "externalSensor"
-    ]
+    "batteryVoltage": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+    },
+    "connectionStatus": {
+      "title": "Connection status",
+      "description": "Connection status",
+      "type": "string",
+      "enum": ["NO_CONNECTION", "CONNECTED"],
+      "hideFromKpis": true
+    },
+    "externalSensor": {
+      "title": "External sensor",
+      "description": "Equals true if theres an external sensor.",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "batteryLevel": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
+    }
+  },
+  "required": [
+    "batteryStatus",
+    "batteryVoltage",
+    "connectionStatus",
+    "externalSensor"
+  ]
 }
