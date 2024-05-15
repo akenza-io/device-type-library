@@ -1,0 +1,22 @@
+{
+    "$id": "https://akenza.io/yosensi/YO-RefrigerantMonitor/temperature.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "temperature",
+    "title": "Temperature",
+    "properties": {
+      "temperature": {
+        "title": "Temperature",
+        "type": "number",
+        "description": "Temperature in degrees celsius.",
+        "unit": "°C",
+        "minimum": -20,
+        "maximum": 70,
+        "hideFromKpis": true
+      }
+    },
+    "required": [
+      "temperature"
+    ]
+}

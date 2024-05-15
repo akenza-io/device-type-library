@@ -1,0 +1,22 @@
+{
+    "$id": "https://akenza.io/yosensi/YO-RefrigerantMonitor/humidity.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "humidity",
+    "title": "Humidity",
+    "properties": {
+      "humidity": {
+        "title": "Relative Humidity",
+        "type": "number",
+        "description": "Relative Humidity in %.",
+        "unit": "%",
+        "minimum": 0,
+        "maximum": 100,
+        "hideFromKpis": true
+      }
+    },
+    "required": [
+      "humidity"
+    ]
+}

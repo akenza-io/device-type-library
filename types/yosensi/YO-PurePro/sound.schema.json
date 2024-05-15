@@ -1,0 +1,22 @@
+{
+    "$id": "https://akenza.io/yosensi/YO-PurePro/sound.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "sound",
+    "title": "Sound",
+    "properties": {
+      "sound": {
+        "title": "Sound Pressure",
+        "type": "number",
+        "description": "Sound Pressure in dB",
+        "unit": "dB",
+        "minimum": 45,
+        "maximum": 110,
+        "hideFromKpis": true
+      }
+    },
+    "required": [
+      "sound"
+    ]
+}

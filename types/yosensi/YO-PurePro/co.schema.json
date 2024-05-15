@@ -1,0 +1,22 @@
+{
+    "$id": "https://akenza.io/yosensi/YO-PurePro/co.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "co",
+    "title": "CO",
+    "properties": {
+      "co": {
+        "title": "CO Concentration",
+        "type": "number",
+        "description": "CO Concentration in ppm.",
+        "unit": "ppm",
+        "minimum": 0,
+        "maximum": 1000,
+        "hideFromKpis": true
+      }
+    },
+    "required": [
+      "co"
+    ]
+  }

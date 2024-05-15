@@ -1,0 +1,22 @@
+{
+    "$id": "https://akenza.io/yosensi/YO-Temp/externalTemperature1.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "externalTemperature1",
+    "title": "ExternalTemperature1",
+    "properties": {
+      "externalTemperature1": {
+        "title": "External Temperature - Probe 1",
+        "type": "number",
+        "description": "Probe 1 Temperature in degrees celsius.",
+        "unit": "°C",
+        "minimum": -55,
+        "maximum": 125,
+        "hideFromKpis": true
+      }
+    },
+    "required": [
+      "externalTemperature1"
+    ]
+}

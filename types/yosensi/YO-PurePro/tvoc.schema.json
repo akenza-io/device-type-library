@@ -1,0 +1,22 @@
+{
+    "$id": "https://akenza.io/yosensi/YO-PurePro/tvoc.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "tvoc",
+    "title": "TVOC",
+    "properties": {
+      "tvoc": {
+        "title": "TVOC",
+        "type": "number",
+        "description": "TVOC in mg/m3.",
+        "unit": "mg/m3",
+        "minimum": 0,
+        "maximum": 20,
+        "hideFromKpis": true
+      }
+    },
+    "required": [
+      "tvoc"
+    ]
+}

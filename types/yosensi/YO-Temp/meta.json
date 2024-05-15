@@ -1,0 +1,25 @@
+{
+  "name": "YO Temp",
+  "version": "1.0.0",
+  "manufacturer": "Yosensi",
+  "url": "https://www.yosensi.io/products/yo_temp/",
+  "description": "YO Temp measures the temperature at up to three external locations.",
+  "author": "Maciej Sacewicz",
+  "firmwareVersion": "V3.6.5",
+  "availableSensors": [
+    "Battery Voltage",
+    "Internal Temperature",
+    "3x External Temperature",
+    "Relative Humidity"
+  ],
+  "outputTopics": [
+    "batteryVoltage",
+    "externalTemperature1",
+    "externalTemperature2",
+    "externalTemperature3",
+    "humidity",
+    "internalTemperature"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
