@@ -7,20 +7,24 @@
   "title": "Acceleration",
   "properties": {
     "accX": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/accX/mG",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/mG",
       "description": "Acceleration on the X-Axis is mg",
       "title": "Acceleration X"
     },
     "accY": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/accY/mG",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/mG",
       "description": "Acceleration on the Y-Axis is mg",
       "title": "Acceleration Y"
     },
     "accZ": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/accZ/mG",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/mG",
       "description": "Acceleration on the Z-Axis is mg",
       "title": "Acceleration Z"
     }
   },
-  "required": ["accX", "accY", "accZ"]
+  "required": [
+    "accX",
+    "accY",
+    "accZ"
+  ]
 }
