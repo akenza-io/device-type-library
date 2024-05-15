@@ -7,7 +7,7 @@
   "title": "Default",
   "properties": {
     "soilHumidity": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/soilHumidity/percent",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
       "description": "The relative humidity of the soil in %",
       "title": "Soil humidity"
     },

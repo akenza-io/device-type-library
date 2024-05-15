@@ -13,17 +13,17 @@
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
     },
     "accX": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/accX/G",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G",
       "description": "Acceleration on the X-Axis in gravitational acceleration",
       "title": "Acceleration X"
     },
     "accY": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/accY/G",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G",
       "description": "Acceleration on the Y-Axis in gravitational acceleration",
       "title": "Acceleration Y"
     },
     "accZ": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/accZ/G",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G",
       "description": "Acceleration on the Z-Axis in gravitational acceleration",
       "title": "Acceleration Z"
     }

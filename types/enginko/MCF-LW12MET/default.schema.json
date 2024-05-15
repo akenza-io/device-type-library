@@ -37,7 +37,7 @@
       "title": "Apparent power"
     },
     "voltage": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/voltage/volt",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
       "description": "Voltage",
       "title": "Voltage"
     },

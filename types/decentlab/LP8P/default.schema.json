@@ -13,7 +13,7 @@
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
     },
     "barometricTemperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/barometricTemperature/celsius",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "The barometric temperature in °C.",
       "title": "Barometric temperature"
     },
@@ -24,21 +24,21 @@
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm"
     },
     "co2LPF": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2LPF/ppm",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm",
       "description": "Carbon Dioxide in ppm",
       "title": "CO2 low-pass filtered"
     },
     "co2Temperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2Temperature/celsius",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "title": "CO2 sensor temperature"
     },
     "capacitorVoltage1": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/capacitorVoltage1/volt",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
       "description": "Capacitor voltage 1",
       "title": "Capacitor voltage 1"
     },
     "capacitorVoltage2": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/capacitorVoltage2/volt",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
       "description": "Capacitor voltage 2",
       "title": "Capacitor voltage 2"
     },

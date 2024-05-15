@@ -82,17 +82,6 @@
       "type": "number",
       "minimum": -32767,
       "maximum": 32767
-    },
-    "latitude": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/latitude/degrees"
-    },
-    "longitude": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/longitude/degrees"
-    },
-    "altitude": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/altitude/meter",
-      "title": "Altitude",
-      "description": "Estimated position error in meters"
     }
   },
   "required": [
@@ -107,9 +96,6 @@
     "gyroZ",
     "magnX",
     "magnY",
-    "magnZ",
-    "latitude",
-    "longitude",
-    "altitude"
+    "magnZ"
   ]
 }

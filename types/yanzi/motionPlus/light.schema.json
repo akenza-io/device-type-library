@@ -15,7 +15,7 @@
       "maximum": 65535
     },
     "colorTemperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/colorTemperature/kelvin",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/kelvin",
       "description": "Color temperature in K",
       "title": "Color temperature"
     }

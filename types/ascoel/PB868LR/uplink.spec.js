@@ -1,5 +1,4 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -53,7 +52,7 @@ describe("Ascoel Push button Uplink", () => {
         assert.equal(value.data.hardwareRevision, "B");
         assert.equal(value.data.loraVersion, "4.3.15");
 
-        validate(value.data, debugSchema, { throwError: true });
+        utils.validateSchema(value.data, debugSchema, { throwError: true });
       });
 
       consume(data);
@@ -75,7 +74,7 @@ describe("Ascoel Push button Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryLevel, 94);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -98,7 +97,7 @@ describe("Ascoel Push button Uplink", () => {
         assert.equal(value.data.buttonPushed, true);
         assert.equal(value.data.count, 1);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

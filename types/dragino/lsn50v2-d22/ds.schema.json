@@ -7,12 +7,12 @@
   "title": "Digital sensor",
   "properties": {
     "c2temperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/c2temperature/celsius",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "Channel 2 Temperature in °C.",
       "title": "Channel 2 Temperature"
     },
     "c3temperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/c3temperature/celsius",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "Channel 3 Temperature in °C.",
       "title": "Channel 3 temperature"
     }

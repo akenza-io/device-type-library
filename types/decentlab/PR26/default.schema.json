@@ -17,7 +17,7 @@
       "title": "Water Temperature"
     },
     "level": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/level/absolute",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/fillLevel/absolute",
       "description": "The water level above the sensor in m.",
       "title": "Water Level"
     }

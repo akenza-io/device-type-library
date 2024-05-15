@@ -7,22 +7,22 @@
   "title": "Default",
   "properties": {
     "distance1": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance1/cm",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
       "description": "Distance 1 measured between the sensor and the surface",
       "title": "Distance 1"
     },
     "distance2": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance2/cm",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
       "description": "Distance 2 measured between the sensor and the surface",
       "title": "Distance 2"
     },
     "distance3": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance3/cm",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
       "description": "Distance 3 measured between the sensor and the surface",
       "title": "Distance 3"
     },
     "distance4": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance4/cm",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
       "description": "Distance 4 measured between the sensor and the surface",
       "title": "Distance 4"
     },

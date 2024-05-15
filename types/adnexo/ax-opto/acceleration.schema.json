@@ -22,9 +22,5 @@
       "title": "Accelerometer Z Axis"
     }
   },
-  "required": [
-    "accX",
-    "accY",
-    "accZ"
-  ]
+  "required": ["accX", "accY", "accZ"]
 }

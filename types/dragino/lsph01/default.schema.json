@@ -18,7 +18,7 @@
       "maximum": 100
     },
     "soilTemperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/soilTemperature/celsius",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "The soil temperature in °C.",
       "title": "Soil temperature"
     }

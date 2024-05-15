@@ -30,17 +30,17 @@
       "maximum": 3276.5
     },
     "wallTemperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/wallTemperature/celsius",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "Wall temperature in °C.",
       "title": "Wall temperature"
     },
     "thermTemperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/thermTemperature/celsius",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "Thermometer temperature in °C.",
       "title": "Thermometer temperature"
     },
     "wallHumidity": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/wallHumidity/percent",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
       "description": "The relative wall humidity in %",
       "title": "Wall humidity"
     }

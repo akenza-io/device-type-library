@@ -70,12 +70,7 @@
       "title": "Shutdown cause",
       "description": "Shutdown cause",
       "type": "string",
-      "enum": [
-        "USER_ACTION",
-        "LOW_BATTERY",
-        "DOWNLINK_REQUEST",
-        "BLE_REQUEST"
-      ],
+      "enum": ["USER_ACTION", "LOW_BATTERY", "DOWNLINK_REQUEST", "BLE_REQUEST"],
       "hideFromKpis": true
     },
     "tempState": {

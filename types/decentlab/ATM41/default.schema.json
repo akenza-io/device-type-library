@@ -24,7 +24,7 @@
       "description": "Lightning strike count"
     },
     "lightningAverageDistance": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/lightningAverageDistance/km",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/km",
       "description": "Lightning average distance",
       "title": "Lightning average distance"
     },
@@ -52,12 +52,12 @@
       "title": "Air temperature"
     },
     "vaporPressure": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/vaporPressure/kPa",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/kPa",
       "description": "Vapor pressure",
       "title": "Vapor pressure"
     },
     "atmosphericPressure": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/atmosphericPressure/kPa",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/kPa",
       "description": "Atmospheric pressure",
       "title": "Atmospheric pressure"
     },

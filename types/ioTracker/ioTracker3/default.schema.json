@@ -18,12 +18,12 @@
       "maximum": 65535
     },
     "maxAccelerationNew": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/maxAccelerationNew/mG",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/mG",
       "description": "Max acceleration of the sensor since the last event.",
       "title": "Max acceleration"
     },
     "maxAccelerationHistory": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/maxAccelerationHistory/mG",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/mG",
       "description": "Max acceleration over all events.",
       "title": "Max acceleration history"
     }

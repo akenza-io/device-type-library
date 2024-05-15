@@ -40,12 +40,12 @@
       "type": "boolean"
     },
     "voltage": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/voltage/volt",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
       "description": "Voltage",
       "title": "Voltage"
     },
     "power": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/power/watt",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activePower/watt",
       "description": "Active power",
       "title": "Power"
     },

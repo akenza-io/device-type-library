@@ -10,11 +10,7 @@
       "title": "Message type",
       "type": "string",
       "description": "Message type",
-      "enum": [
-        "REGULAR_MESSAGE",
-        "EMERGENCY_MESSAGE",
-        "SELF_TEST_MESSAGE"
-      ]
+      "enum": ["REGULAR_MESSAGE", "EMERGENCY_MESSAGE", "SELF_TEST_MESSAGE"]
     },
     "leakElectrode1": {
       "title": "Leak electrode 1",

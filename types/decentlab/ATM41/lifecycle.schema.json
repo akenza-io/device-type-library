@@ -22,7 +22,7 @@
       "hideFromKpis": true
     },
     "sensorTemperatureInternal": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/sensorTemperatureInternal/celsius",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "Sensor temperature (internal)",
       "title": "Sensor temperature (internal)",
       "hideFromKpis": true

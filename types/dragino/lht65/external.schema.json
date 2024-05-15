@@ -7,7 +7,7 @@
   "title": "External",
   "properties": {
     "externalTemperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/externalTemperature/celsius",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "The external temperature in °C.",
       "title": "External temperature"
     },

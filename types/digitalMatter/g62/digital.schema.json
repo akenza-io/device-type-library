@@ -37,12 +37,12 @@
       "hideFromKpis": true
     },
     "extVoltage": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/extVoltage/volt",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
       "description": "The external voltage in Volt.",
       "title": "External voltage"
     },
     "analogInput": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/iOs/schema.json#/$defs/analogInput/volt",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/analogInput/volt",
       "description": "Analog input in Volt.",
       "title": "Analog input"
     }

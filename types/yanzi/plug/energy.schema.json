@@ -7,7 +7,7 @@
   "title": "Energy",
   "properties": {
     "energy": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/energy/kiloWattHours",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours",
       "description": "Energy consumption in kWh",
       "title": "Energy"
     }

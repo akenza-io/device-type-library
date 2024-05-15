@@ -45,7 +45,7 @@
       "hideFromKpis": true
     },
     "thresholdDistance": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/thresholdDistance/mm",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/mm",
       "description": "Message is sent immediately if distance measured is bigger.",
       "title": "Threshold distance",
       "hideFromKpis": true

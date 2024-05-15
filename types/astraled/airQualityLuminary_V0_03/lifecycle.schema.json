@@ -283,7 +283,7 @@
       "hideFromKpis": true
     },
     "deviceTemperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/deviceTemperature/celsius",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "Internal device device temperature",
       "title": "Device temperature",
       "hideFromKpis": true

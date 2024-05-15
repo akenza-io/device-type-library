@@ -37,7 +37,7 @@
       "hideFromKpis": true
     },
     "internalTemperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/internalTemperature/celsius",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "Internal temperature",
       "title": "Internal temperature",
       "hideFromKpis": true

@@ -7,15 +7,15 @@
   "title": "Default",
   "properties": {
     "current1": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current1/ampere",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere",
       "title": "Current 1"
     },
     "current2": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current2/ampere",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere",
       "title": "Current 2"
     },
     "current3": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current3/ampere",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere",
       "title": "Current 3"
     }
   },

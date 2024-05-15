@@ -22,9 +22,5 @@
       "title": "Acceleration Z"
     }
   },
-  "required": [
-    "accX",
-    "accY",
-    "accZ"
-  ]
+  "required": ["accX", "accY", "accZ"]
 }
