@@ -93,7 +93,7 @@ describe("Brigther Bins uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryLevel, 96);
         assert.equal(value.data.temperature, 31);
-        assert.equal(value.data.resetReason, "ALL_OK");
+        assert.equal(value.data.resetReason, "CLEARED");
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -171,7 +171,7 @@ describe("Brigther Bins uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryLevel, 98);
         assert.equal(value.data.batteryVoltage, 3.6);
-        assert.equal(value.data.resetReason, "ALL_OK");
+        assert.equal(value.data.resetReason, "CLEARED");
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });

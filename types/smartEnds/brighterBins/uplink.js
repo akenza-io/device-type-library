@@ -1,3 +1,58 @@
+function resetReason(flag) {
+  let reason = "UNKNOWN";
+
+  switch (flag) {
+    case 0:
+      reason = "CLEARED";
+      break;
+    case 1:
+      reason = "POWER_OR_BROWNOUT";
+      break;
+    case 2:
+      reason = "WATCH_DOG";
+      break;
+    case 3:
+      reason = "SOFTWARE/OTHER_RESETS";
+      break;
+    case 4:
+      reason = "PIN_RESET";
+      break;
+    case 5:
+      reason = "CPU_LOCKUP";
+      break;
+    case 6:
+      reason = "SYS_OFF_GPIO";
+      break;
+    case 7:
+      reason = "VBUS";
+      break;
+    case 8:
+      reason = "SYS_OFF_LPCOM";
+      break;
+    case 9:
+      reason = "DEBUG_INTERFACE";
+      break;
+    case 10:
+      reason = "NFC";
+      break;
+    case 11:
+      reason = "SILENT_RESET_DOWNLINK";
+      break;
+    case 12:
+      reason = "RECOVERY_TIMEOUT";
+      break;
+    case 13:
+      reason = "RECOVERY_OVERFLOW";
+      break;
+    case 14:
+      reason = "RECOVERY_TIMEOUT_OVERFLOW";
+      break;
+    default:
+      break;
+  }
+  return reason;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
@@ -15,23 +70,9 @@ function consume(event) {
   switch (uplinkType) {
     // Filllevel
     case 0: {
-      const resetReason = Bits.bitsToUnsigned(bits.substr(0, 2));
-      switch (resetReason) {
-        case 0:
-          lifecycle.resetReason = "ALL_OK";
-          break;
-        case 1:
-          lifecycle.resetReason = "POWER_ON";
-          break;
-        case 2:
-          lifecycle.resetReason = "WATCHDOG";
-          break;
-        case 3:
-          lifecycle.resetReason = "SOFTWARE";
-          break;
-        default:
-          break;
-      }
+      lifecycle.resetReason = resetReason(
+        Bits.bitsToUnsigned(bits.substr(0, 2)),
+      );
 
       lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substr(2, 6)) * 2;
       if (lifecycle.batteryLevel === 126) {
@@ -120,23 +161,9 @@ function consume(event) {
       }
       lifecycle.batteryVoltage =
         (Bits.bitsToUnsigned(bits.substr(87, 4)) * 100 + 2200) / 1000;
-      const resetReason = Bits.bitsToUnsigned(bits.substr(91, 2));
-      switch (resetReason) {
-        case 0:
-          lifecycle.resetReason = "ALL_OK";
-          break;
-        case 1:
-          lifecycle.resetReason = "POWER_ON";
-          break;
-        case 2:
-          lifecycle.resetReason = "WATCHDOG";
-          break;
-        case 3:
-          lifecycle.resetReason = "SOFTWARE";
-          break;
-        default:
-          break;
-      }
+      lifecycle.resetReason = resetReason(
+        Bits.bitsToUnsigned(bits.substr(91, 2)),
+      );
       break;
     }
     case 3: {
@@ -243,53 +270,9 @@ function consume(event) {
           system.accelTest = Bits.bitsToUnsigned(bits.substr(61, 1));
           system.tempTest = Bits.bitsToUnsigned(bits.substr(62, 1));
 
-          const resetReason = Bits.bitsToUnsigned(bits.substr(63, 4));
-          switch (resetReason) {
-            case 0:
-              lifecycle.resetReason = "ALL_OK";
-              break;
-            case 1:
-              lifecycle.resetReason = "POWER_OR_BROWNOUT";
-              break;
-            case 2:
-              lifecycle.resetReason = "WATCHDOG";
-              break;
-            case 3:
-              lifecycle.resetReason = "SOFTWARE";
-              break;
-            case 4:
-              lifecycle.resetReason = "PIN_RESET";
-              break;
-            case 5:
-              lifecycle.resetReason = "CPU_LOCKUP";
-              break;
-            case 6:
-              lifecycle.resetReason = "SYS_OFF_GPYO";
-              break;
-            case 7:
-              lifecycle.resetReason = "VBUS";
-              break;
-            case 8:
-              lifecycle.resetReason = "SYS_OFF_LPCOM";
-              break;
-            case 9:
-              lifecycle.resetReason = "DEBUG_INTERFACE";
-              break;
-            case 10:
-              lifecycle.resetReason = "NFC";
-              break;
-            case 11:
-              lifecycle.resetReason = "SILENT_RESET";
-              break;
-            case 12:
-              lifecycle.resetReason = "RESERVED";
-              break;
-            case 13:
-              lifecycle.resetReason = "RESERVED";
-              break;
-            default:
-              break;
-          }
+          lifecycle.resetReason = resetReason(
+            Bits.bitsToUnsigned(bits.substr(63, 4)),
+          );
           break;
         }
         // Depth map
