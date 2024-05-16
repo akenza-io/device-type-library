@@ -204,10 +204,21 @@ function consume(event) {
   data.rawIrLPF = sample.raw_ir_reading_lpf;
 
   // Lifecycle values
-  lifecycle.batteryVoltage = sample.battery_voltage;
+  lifecycle.batteryVoltage = Math.round(sample.battery_voltage * 100) / 100;
   lifecycle.protocolVersion = sample.protocol_version;
   lifecycle.deviceID = sample.device_id;
   lifecycle.co2SensorStatus = sample.co2_sensor_status;
+
+  // Voltage drops of at 2V (0%) max voltage is 3.7V (100%)
+  // ((Max voltage - voltage now) * voltage to percent - inverting) getting rid of the -
+  let batteryLevel = Math.round(((lifecycle.batteryVoltage - 2) / 1.1) * 100);
+
+  if (batteryLevel > 100) {
+    batteryLevel = 100;
+  } else if (batteryLevel < 0) {
+    batteryLevel = 0;
+  }
+  lifecycle.batteryLevel = batteryLevel;
 
   if (deleteUnusedKeys(data)) {
     emit("sample", { data, topic: "default" });
