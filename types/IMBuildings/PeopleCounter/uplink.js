@@ -196,6 +196,20 @@ function consume(event) {
   }
 
   if (Object.keys(lifecycle).length !== 0) {
+    if (lifecycle.batteryVoltage !== undefined) {
+      // Voltage drops of at 2.1V (0%) max voltage is 3.0V (100%)
+      // ((Max voltage - voltage now) * voltage to percent - inverting) getting rid of the -
+      let batteryLevel = Math.round(
+        ((lifecycle.batteryVoltage - 2.1) / 0.9) * 100,
+      );
+
+      if (batteryLevel > 100) {
+        batteryLevel = 100;
+      } else if (batteryLevel < 0) {
+        batteryLevel = 0;
+      }
+      lifecycle.batteryLevel = batteryLevel;
+    }
     emit("sample", { data: lifecycle, topic: "lifecycle" });
   }
 }
