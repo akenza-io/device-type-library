@@ -122,12 +122,7 @@
       "title": "Notification",
       "description": "Notification",
       "type": "string",
-      "enum": [
-        "SAFE",
-        "ENTRY",
-        "EXIT",
-        "HAZARD"
-      ],
+      "enum": ["SAFE", "ENTRY", "EXIT", "HAZARD"],
       "hideFromKpis": true
     },
     "beaconID": {

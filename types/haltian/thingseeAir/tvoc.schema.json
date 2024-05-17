@@ -15,7 +15,5 @@
       "maximum": 60000
     }
   },
-  "required": [
-    "tvoc"
-  ]
+  "required": ["tvoc"]
 }

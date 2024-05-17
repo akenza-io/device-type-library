@@ -36,9 +36,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "distance",
-    "temperature",
-    "measurementType"
-  ]
+  "required": ["distance", "temperature", "measurementType"]
 }

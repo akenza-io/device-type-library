@@ -1,0 +1,29 @@
+{
+  "$id": "https://akenza.io/milesight/CT101/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "current": {
+      "title": "Current",
+      "unit": "A",
+      "description": "Current",
+      "type": "number"
+    },
+    "currentMin": {
+      "title": "Minimal current",
+      "unit": "A",
+      "description": "Minimal current recorded",
+      "type": "number"
+    },
+    "currentMax": {
+      "title": "Maximal current",
+      "unit": "A",
+      "description": "Maximal current recorded",
+      "type": "number"
+    }
+  },
+  "required": ["current"]
+}

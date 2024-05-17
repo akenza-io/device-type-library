@@ -10,11 +10,11 @@
   "availableSensors": [
     "Temperature",
     "Humidity",
-    "Analog Input",
+    "Analog",
     "Pulse",
     "Distance",
     "Motion",
-    "Water leak",
+    "Water Leak",
     "Pressure"
   ],
   "outputTopics": ["default", "lifecycle", "configuration"],

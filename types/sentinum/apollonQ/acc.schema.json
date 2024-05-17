@@ -10,10 +10,7 @@
       "title": "ACC Status",
       "description": "ACC Status",
       "type": "string",
-      "enum": [
-        "ERROR",
-        "OK"
-      ],
+      "enum": ["ERROR", "OK"],
       "hideFromKpis": true
     },
     "accOrientation": {
@@ -38,10 +35,7 @@
       "title": "ACC Impact",
       "description": "ACC Impact",
       "type": "string",
-      "enum": [
-        "IMPACT",
-        "NO_IMPACT"
-      ],
+      "enum": ["IMPACT", "NO_IMPACT"],
       "hideFromKpis": true
     }
   },

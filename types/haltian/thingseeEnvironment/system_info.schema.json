@@ -25,9 +25,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "swVersion",
-    "modelCode",
-    "psn"
-  ]
+  "required": ["swVersion", "modelCode", "psn"]
 }

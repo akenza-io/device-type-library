@@ -13,7 +13,5 @@
       "description": "Energy consumption in kWh"
     }
   },
-  "required": [
-    "energy"
-  ]
+  "required": ["energy"]
 }

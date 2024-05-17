@@ -31,9 +31,5 @@
       "type": "number"
     }
   },
-  "required": [
-    "activeEnergy",
-    "reactiveEnergy",
-    "apparentEnergy"
-  ]
+  "required": ["activeEnergy", "reactiveEnergy", "apparentEnergy"]
 }

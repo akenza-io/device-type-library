@@ -27,8 +27,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "co2",
-    "co2Status"
-  ]
+  "required": ["co2", "co2Status"]
 }

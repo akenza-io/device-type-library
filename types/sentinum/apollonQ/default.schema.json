@@ -10,10 +10,7 @@
       "title": "Alarm",
       "description": "Alarm",
       "type": "string",
-      "enum": [
-        "ALARM",
-        "NO_ALARM"
-      ],
+      "enum": ["ALARM", "NO_ALARM"],
       "hideFromKpis": true
     },
     "distance": {
@@ -35,9 +32,5 @@
       "description": "Fill percentage of the container"
     }
   },
-  "required": [
-    "alarm",
-    "distance",
-    "distanceCM"
-  ]
+  "required": ["alarm", "distance", "distanceCM"]
 }

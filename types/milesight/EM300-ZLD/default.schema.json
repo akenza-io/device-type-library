@@ -28,9 +28,5 @@
       "description": "Water leak"
     }
   },
-  "required": [
-    "temperature",
-    "humidity",
-    "waterLeak"
-  ]
+  "required": ["temperature", "humidity", "waterLeak"]
 }

@@ -7,7 +7,7 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": ["Volume", "Backflow"],
+  "availableSensors": ["Volume", "Flow"],
   "outputTopics": ["default", "lifecycle", "alarm"],
   "encoding": "HEX",
   "connectivity": "LORA"

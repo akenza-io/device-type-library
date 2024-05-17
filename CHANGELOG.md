@@ -4,7 +4,38 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-# [1.43.0] - 2024-02-14
+# [1.47.0] - 2024-04-26
+
+### Added
+
+- Milesight - CT101
+- Milesight - VS135
+- Milesight - TS301
+- Milesight - TS302
+
+# [1.46.1] - 2024-04-22
+
+### Changed
+
+- Updated data models
+
+# [1.46.0] - 2024-04-17
+
+### Added
+
+- Milesight - VS350
+
+### Changed
+
+- Unified available sensors in the meta.json
+
+# [1.45.0] - 2024-04-12
+
+### Added
+
+- sensingLabs - senlabM
+
+# [1.44.0] - 2024-02-14
 
 ### Added
 

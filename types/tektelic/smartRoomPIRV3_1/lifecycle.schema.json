@@ -15,7 +15,5 @@
       "description": "The battery voltage in Volt. 3.2 Max"
     }
   },
-  "required": [
-    "batteryVoltage"
-  ]
+  "required": ["batteryVoltage"]
 }

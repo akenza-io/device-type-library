@@ -26,24 +26,14 @@
       "title": "Motion status",
       "description": "Motion status",
       "type": "string",
-      "enum": [
-        "UNKNOWN",
-        "START",
-        "MOVING",
-        "STOP"
-      ],
+      "enum": ["UNKNOWN", "START", "MOVING", "STOP"],
       "hideFromKpis": true
     },
     "geofenceStatus": {
       "title": "Geofence status",
       "description": "Geofence status",
       "type": "string",
-      "enum": [
-        "INSIDE",
-        "OUTSIDE",
-        "UNSET",
-        "UNKOWN"
-      ],
+      "enum": ["INSIDE", "OUTSIDE", "UNSET", "UNKOWN"],
       "hideFromKpis": true
     }
   }

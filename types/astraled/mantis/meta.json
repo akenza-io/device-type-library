@@ -14,13 +14,9 @@
     "VOC",
     "Noise",
     "Occupancy",
-    "Light State",
-    "Energy"
+    "Light"
   ],
-  "outputTopics": [
-    "default",
-    "lifecycle"
-  ],
+  "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

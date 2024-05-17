@@ -23,8 +23,5 @@
       "maximum": 120
     }
   },
-  "required": [
-    "temperature",
-    "soundAvg"
-  ]
+  "required": ["temperature", "soundAvg"]
 }

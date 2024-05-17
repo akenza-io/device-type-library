@@ -509,18 +509,20 @@ function consume(event) {
 
   if (decoded.gps !== undefined) {
     if (Object.keys(decoded.gps).length > 0) {
-      gps.navStat = decoded.gps.navStat;
-      gps.longitude = decoded.gps.longitude;
-      gps.latitude = decoded.gps.latitude;
-      gps.altitude = decoded.gps.altitude;
-      gps.hAcc = decoded.gps.hAcc;
-      gps.vAcc = decoded.gps.vAcc;
-      gps.sog = decoded.gps.sog;
-      gps.cog = decoded.gps.cog;
-      gps.hdop = decoded.gps.hdop;
-      gps.numSvs = decoded.gps.numSvs;
+      if (gps.latitude !== 0 && gps.longitude !== 0) {
+        gps.navStat = decoded.gps.navStat;
+        gps.longitude = decoded.gps.longitude;
+        gps.latitude = decoded.gps.latitude;
+        gps.altitude = decoded.gps.altitude;
+        gps.hAcc = decoded.gps.hAcc;
+        gps.vAcc = decoded.gps.vAcc;
+        gps.sog = decoded.gps.sog;
+        gps.cog = decoded.gps.cog;
+        gps.hdop = decoded.gps.hdop;
+        gps.numSvs = decoded.gps.numSvs;
 
-      emit("sample", { data: decoded.gps, topic: "gps" });
+        emit("sample", { data: decoded.gps, topic: "gps" });
+      }
       delete decoded.gps;
     }
   }

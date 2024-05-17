@@ -10,10 +10,7 @@
       "title": "GPS Message",
       "description": "Flag that describes the following values",
       "type": "string",
-      "enum": [
-        "GPS_FIX",
-        "GPS_FIX_EXTENDED"
-      ],
+      "enum": ["GPS_FIX", "GPS_FIX_EXTENDED"],
       "hideFromKpis": true
     },
     "age": {
@@ -49,10 +46,7 @@
       "title": "Dimension fix",
       "description": "Describes the GPS fix",
       "type": "string",
-      "enum": [
-        "2D fix",
-        "3D fix"
-      ],
+      "enum": ["2D fix", "3D fix"],
       "hideFromKpis": true
     },
     "cog": {

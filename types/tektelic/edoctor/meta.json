@@ -8,16 +8,11 @@
   "firmwareVersion": "V0.1.5",
   "loraDeviceClass": "A",
   "availableSensors": [
-    "Heart monitor",
-    "Respiratory monitor",
-    "Body temperature"
+    "Heart Monitor",
+    "Respiratory Monitor",
+    "Body Temperature"
   ],
-  "outputTopics": [
-    "default",
-    "error",
-    "lifecycle",
-    "system"
-  ],
+  "outputTopics": ["default", "error", "lifecycle", "system"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

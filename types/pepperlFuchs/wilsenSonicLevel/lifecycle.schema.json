@@ -37,7 +37,5 @@
       "description": "Battery Status."
     }
   },
-  "required": [
-    "batteryVoltage"
-  ]
+  "required": ["batteryVoltage"]
 }

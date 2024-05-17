@@ -10,11 +10,7 @@
       "title": "Battery status",
       "type": "string",
       "description": "Battery status",
-      "enum": [
-        "CRITICAL",
-        "LOW",
-        "NORMAL"
-      ]
+      "enum": ["CRITICAL", "LOW", "NORMAL"]
     },
     "firmware": {
       "title": "Firmware version",
@@ -28,9 +24,5 @@
       "description": "Periodicity"
     }
   },
-  "required": [
-    "batteryStatus",
-    "firmware",
-    "periodicity"
-  ]
+  "required": ["batteryStatus", "firmware", "periodicity"]
 }

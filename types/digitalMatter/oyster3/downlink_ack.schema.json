@@ -43,12 +43,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "accepted",
-    "firmware",
-    "hwRev",
-    "port",
-    "productId",
-    "sequence"
-  ]
+  "required": ["accepted", "firmware", "hwRev", "port", "productId", "sequence"]
 }

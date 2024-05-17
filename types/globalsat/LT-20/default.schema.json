@@ -40,18 +40,9 @@
       "title": "GPS fix",
       "description": "Describes the GPS fix",
       "type": "string",
-      "enum": [
-        "Not fix",
-        "2D fix",
-        "3D fix"
-      ],
+      "enum": ["Not fix", "2D fix", "3D fix"],
       "hideFromKpis": true
     }
   },
-  "required": [
-    "longitude",
-    "latitude",
-    "reportType",
-    "gpsFix"
-  ]
+  "required": ["longitude", "latitude", "reportType", "gpsFix"]
 }
