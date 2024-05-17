@@ -5,7 +5,7 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Decentlab TRBG Uplink", () => {
+describe("Decentlab MES5 Uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
@@ -30,10 +30,10 @@ describe("Decentlab TRBG Uplink", () => {
   });
 
   describe("consume()", () => {
-    it("should decode Decentlab TRBG payload", () => {
+    it("should decode Decentlab MES5 payload", () => {
       const data = {
         data: {
-          payloadHex: "0202f8000300040258409a00000c54",
+          payloadHex: "024E030003000088e6210800f223650af5",
         },
       };
 
@@ -43,9 +43,11 @@ describe("Decentlab TRBG Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.precipitation, 0.4);
-        assert.equal(value.data.cumulativePrecipitation, 1653.8);
-        assert.equal(value.data.precipitationInterval, 600);
+        assert.equal(value.data.status, 0);
+        assert.equal(value.data.temperature, 22.78);
+        assert.equal(value.data.turbidity, 906.1);
+        assert.equal(value.data.sludgeBlanket, 84.56);
+        assert.equal(value.data.suspendedSolid, 2.42);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -56,9 +58,9 @@ describe("Decentlab TRBG Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 3.156);
+        assert.equal(value.data.batteryVoltage, 2.805);
         assert.equal(value.data.protocolVersion, 2);
-        assert.equal(value.data.deviceId, 760);
+        assert.equal(value.data.deviceId, 19971);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });

@@ -1,15 +1,14 @@
 {
-  "name": "DL-SMTP",
+  "name": "DL-TBRG",
   "version": "1.0.0",
   "manufacturer": "Decentlab",
-  "url": "https://www.decentlab.com/products/soil-moisture-and-temperature-profile-for-lorawan",
-  "description": "Measures the soil moisture and temperature in 100mm, 200mm, 300mm, 400mm, 500mm and 600mm depth with a very robust probe design. This enables precise statements to be made about the soil and enables intelligent agriculture and monitoring of greenhouses, parks or golf courses.",
+  "url": "https://www.decentlab.com/products/tipping-bucket-rain-gauge-for-lorawan",
+  "description": "The tipping bucket rain gauge generates a pulse every time it senses 0.1 mm of water. In regular intervals, usually after 10 minutes, the device reports three values: the number of pulses (precipitation) during the last interval, the duration of the interval in seconds and the total accumulated number of pulses (precipitation) since the last reset. The accumulated precipitation is very useful for reporting the amount of rain water over long periods. Moreover, the accumulated precipitation allows to calculate precipitation even for periods when no data could be transmitted to the network.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.0.0",
   "loraDeviceClass": "A",
   "availableSensors": [
-    "Soil moisture",
-    "Soil temperature"
+    "Precipitation"
   ],
   "outputTopics": [
     "default",

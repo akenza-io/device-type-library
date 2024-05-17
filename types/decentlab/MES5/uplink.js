@@ -1,36 +1,47 @@
 const decentlab_decoder = {
   PROTOCOL_VERSION: 2,
-  /* device-specific parameters */
-  PARAMETERS: {
-    resolution: 0.1,
-  },
   SENSORS: [
     {
-      length: 4,
+      length: 5,
       values: [
         {
-          name: "precipitation",
-          displayName: "Precipitation",
+          name: "status",
+          displayName: "Status",
           convert(x) {
-            return x[0] * this.PARAMETERS.resolution;
+            return x[0];
           },
-          unit: "mm",
         },
         {
-          name: "precipitation_interval",
-          displayName: "Precipitation interval",
+          name: "temperature",
+          displayName: "Temperature",
           convert(x) {
-            return x[1];
+            return (x[1] - 32768) / 100;
           },
-          unit: "s",
+          unit: "°C",
         },
         {
-          name: "cumulative_precipitation",
-          displayName: "Cumulative precipitation",
+          name: "sludge_blanket",
+          displayName: "Sludge blanket",
           convert(x) {
-            return (x[2] + x[3] * 65536) * this.PARAMETERS.resolution;
+            return x[2] / 100;
           },
-          unit: "mm",
+          unit: "%",
+        },
+        {
+          name: "suspended_solid",
+          displayName: "Suspended solid",
+          convert(x) {
+            return x[3] / 100;
+          },
+          unit: "g⋅L⁻¹",
+        },
+        {
+          name: "turbidity",
+          displayName: "Turbidity",
+          convert(x) {
+            return x[4] / 10;
+          },
+          unit: "FAU",
         },
       ],
     },
@@ -116,10 +127,11 @@ function consume(event) {
   const lifecycle = {};
 
   // Default values
-  data.precipitation = sample.precipitation;
-  data.precipitationInterval = sample.precipitation_interval;
-  data.cumulativePrecipitation =
-    Math.round(sample.cumulative_precipitation * 100) / 100;
+  data.status = sample.status;
+  data.temperature = sample.temperature;
+  data.sludgeBlanket = sample.sludge_blanket;
+  data.suspendedSolid = sample.suspended_solid;
+  data.turbidity = sample.turbidity;
 
   // Lifecycle values
   lifecycle.batteryVoltage = sample.battery_voltage;

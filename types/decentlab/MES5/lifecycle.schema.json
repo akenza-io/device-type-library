@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/decentlab/trbg/lifecycle.schema.json",
+  "$id": "https://akenza.io/decentlab/mes5/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
