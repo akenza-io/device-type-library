@@ -42,6 +42,26 @@ describe("Milesight VS133 Uplink", () => {
     });
   });
 
+  let regionCountSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/region_count.schema.json`)
+      .then((parsedSchema) => {
+        regionCountSchema = parsedSchema;
+        done();
+      });
+  });
+
+  let dwellTimeSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/dwell_time.schema.json`)
+      .then((parsedSchema) => {
+        dwellTimeSchema = parsedSchema;
+        done();
+      });
+  });
+
   describe("consume()", () => {
     it("should decode should decode the Milesight VS133 Total payload", () => {
       const data = {
@@ -157,6 +177,65 @@ describe("Milesight VS133 Uplink", () => {
         assert.equal(value.data.periodicCounterOut, 7);
 
         utils.validateSchema(value.data, line4Schema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("should decode should decode the Milesight VS133 Region count payload", () => {
+      const data = {
+        data: {
+          port: 1,
+          payloadHex: "0FE302100709",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "region_count");
+        assert.equal(value.data.region1count, 2);
+        assert.equal(value.data.region2count, 16);
+        assert.equal(value.data.region3count, 7);
+        assert.equal(value.data.region4count, 9);
+
+        utils.validateSchema(value.data, regionCountSchema, {
+          throwError: true,
+        });
+      });
+
+      consume(data);
+    });
+
+    it("should decode should decode the Milesight VS133 Dwell time payload", () => {
+      const data = {
+        data: {
+          port: 1,
+          payloadHex:
+            "10E4010910112110E4027521753310E4038121238910E40476001387",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "dwell_time");
+        assert.equal(value.data.region1avgDwell, 4105);
+        assert.equal(value.data.region1maxDwell, 8465);
+        assert.equal(value.data.region2avgDwell, 8565);
+        assert.equal(value.data.region2maxDwell, 13173);
+        assert.equal(value.data.region3avgDwell, 8577);
+        assert.equal(value.data.region3maxDwell, 35107);
+        assert.equal(value.data.region4avgDwell, 118);
+        assert.equal(value.data.region4maxDwell, 34579);
+
+        utils.validateSchema(value.data, dwellTimeSchema, {
+          throwError: true,
+        });
       });
 
       consume(data);

@@ -1,0 +1,30 @@
+{
+  "$id": "https://akenza.io/xovis/VS133/region_count.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "region_count",
+  "title": "Region count",
+  "properties": {
+    "region1count": {
+      "title": "Region 1 count",
+      "description": "Region 1 count",
+      "type": "integer"
+    },
+    "region2count": {
+      "title": "Region 2 count",
+      "description": "Region 2 count",
+      "type": "integer"
+    },
+    "region3count": {
+      "title": "Region 3 count",
+      "description": "Region 3 count",
+      "type": "integer"
+    },
+    "region4count": {
+      "title": "Region 4 count",
+      "description": "Region 4 count",
+      "type": "integer"
+    }
+  }
+}

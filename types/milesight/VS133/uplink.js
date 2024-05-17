@@ -10,6 +10,10 @@ function readUInt32LE(bytes) {
   return value & 0xffffffff;
 }
 
+function readUInt8(bytes) {
+  return bytes & 0xff;
+}
+
 function includes(datas, value) {
   const size = datas.length;
   for (let i = 0; i < size; i++) {
@@ -66,24 +70,52 @@ function consume(event) {
         bytes.slice(i + 2, i + 4),
       );
       i += 4;
+    } // REGION COUNT
+    else if (channelId === 0x0f && channelType === 0xe3) {
+      decoded.regionCount = decoded.regionCount || {};
+      decoded.regionCount.region1count = readUInt8(bytes[i]);
+      decoded.regionCount.region2count = readUInt8(bytes[i + 1]);
+      decoded.regionCount.region3count = readUInt8(bytes[i + 2]);
+      decoded.regionCount.region4count = readUInt8(bytes[i + 3]);
+      i += 4;
+    }
+    // REGION DWELL TIME
+    else if (channelId === 0x10 && channelType === 0xe4) {
+      decoded.dwellTime = decoded.dwellTime || {};
+      const dwellChannelName = `region${bytes[i]}`;
+      decoded.dwellTime[`${dwellChannelName}avgDwell`] = readUInt16LE(
+        bytes.slice(i + 1, i + 3),
+      );
+      decoded.dwellTime[`${dwellChannelName}maxDwell`] = readUInt16LE(
+        bytes.slice(i + 3, i + 5),
+      );
+      i += 5;
     } else {
       break;
     }
   }
 
-  if (!isEmpty(decoded.line_1)) {
+  if (decoded.regionCount !== undefined && !isEmpty(decoded.regionCount)) {
+    emit("sample", { data: decoded.regionCount, topic: "region_count" });
+  }
+
+  if (decoded.dwellTime !== undefined && !isEmpty(decoded.dwellTime)) {
+    emit("sample", { data: decoded.dwellTime, topic: "dwell_time" });
+  }
+
+  if (decoded.line_1 !== undefined && !isEmpty(decoded.line_1)) {
     emit("sample", { data: decoded.line_1, topic: "line_1" });
   }
 
-  if (!isEmpty(decoded.line_2)) {
+  if (decoded.line_2 !== undefined && !isEmpty(decoded.line_2)) {
     emit("sample", { data: decoded.line_2, topic: "line_2" });
   }
 
-  if (!isEmpty(decoded.line_3)) {
+  if (decoded.line_3 !== undefined && !isEmpty(decoded.line_3)) {
     emit("sample", { data: decoded.line_3, topic: "line_3" });
   }
 
-  if (!isEmpty(decoded.line_4)) {
+  if (decoded.line_4 !== undefined && !isEmpty(decoded.line_4)) {
     emit("sample", { data: decoded.line_4, topic: "line_4" });
   }
 }

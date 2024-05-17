@@ -7,8 +7,18 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": ["People"],
-  "outputTopics": ["line_1", "line_2", "line_3", "line_4"],
+  "availableSensors": [
+    "People",
+    "Dwell time"
+  ],
+  "outputTopics": [
+    "line_1",
+    "line_2",
+    "line_3",
+    "line_4",
+    "dwell_time",
+    "region_count"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

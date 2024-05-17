@@ -1,0 +1,50 @@
+{
+  "$id": "https://akenza.io/xovis/VS133/dwell_time.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "dwell_time",
+  "title": "Dwell time",
+  "properties": {
+    "region1avgDwell": {
+      "title": "Region 1 average dwell time",
+      "description": "Region 1 average dwell time",
+      "type": "integer"
+    },
+    "region1maxDwell": {
+      "title": "Region 1 maximum dwell time",
+      "description": "Region 1 maximum dwell time",
+      "type": "integer"
+    },
+    "region2avgDwell": {
+      "title": "Region 2 average dwell time",
+      "description": "Region 2 average dwell time",
+      "type": "integer"
+    },
+    "region2maxDwell": {
+      "title": "Region 2 maximum dwell time",
+      "description": "Region 2 maximum dwell time",
+      "type": "integer"
+    },
+    "region3avgDwell": {
+      "title": "Region 3 average dwell time",
+      "description": "Region 3 average dwell time",
+      "type": "integer"
+    },
+    "region3maxDwell": {
+      "title": "Region 3 maximum dwell time",
+      "description": "Region 3 maximum dwell time",
+      "type": "integer"
+    },
+    "region4avgDwell": {
+      "title": "Region 4 average dwell time",
+      "description": "Region 4 average dwell time",
+      "type": "integer"
+    },
+    "region4maxDwell": {
+      "title": "Region 4 maximum dwell time",
+      "description": "Region 4 maximum dwell time",
+      "type": "integer"
+    }
+  }
+}
