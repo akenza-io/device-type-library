@@ -42,7 +42,7 @@ describe("Senlab SenlabM uplink", () => {
       const data = {
         data: {
           port: 1,
-          payloadHex: "008c7f10a080d5b3704d0201000107080708000f01",
+          payloadHex: "00797f10a080d5b3704d0201000107080708000f01",
         },
       };
 
@@ -55,10 +55,10 @@ describe("Senlab SenlabM uplink", () => {
         assert.equal(value.data.appType, "SENLABM");
         assert.equal(value.data.firmwareVersion, "2.1.0");
         assert.equal(value.data.functionMode, "BASIC");
-        assert.equal(value.data.logPeriod, 1800);
+        assert.equal(value.data.logPeriod, 3600);
         assert.equal(value.data.randWindow, 15);
         assert.equal(value.data.redundancyFactor, 1);
-        assert.equal(value.data.txPeriod, 1800);
+        assert.equal(value.data.txPeriod, 3600);
 
         utils.validateSchema(value.data, systemSchema, { throwError: true });
       });
