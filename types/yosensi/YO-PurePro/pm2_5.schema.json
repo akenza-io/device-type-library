@@ -1,22 +1,20 @@
 {
-    "$id": "https://akenza.io/yosensi/YO-PurePro/pm2_5.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "pm2_5",
-    "title": "PM2_5",
-    "properties": {
-      "pm2_5": {
-        "title": "PM 2.5",
-        "type": "number",
-        "description": "PM 2.5 in μg/m3.",
-        "unit": "μg/m3",
-        "minimum": 0,
-        "maximum": 1000,
-        "hideFromKpis": true
-      }
-    },
-    "required": [
-      "pm2_5"
-    ]
+  "$id": "https://akenza.io/yosensi/YO-PurePro/pm2_5.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "pm2_5",
+  "title": "PM2_5",
+  "properties": {
+    "pm2_5": {
+      "title": "PM 2.5",
+      "type": "number",
+      "description": "PM 2.5 in μg/m3.",
+      "unit": "μg/m3",
+      "minimum": 0,
+      "maximum": 1000,
+      "hideFromKpis": false
+    }
+  },
+  "required": ["pm2_5"]
 }

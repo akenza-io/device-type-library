@@ -1,22 +1,20 @@
 {
-    "$id": "https://akenza.io/yosensi/YO-PurePro/pm4.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "processingType": "uplink_decoder",
-    "topic": "pm4",
-    "title": "PM4",
-    "properties": {
-      "pm4": {
-        "title": "PM 4",
-        "type": "number",
-        "description": "PM 4 in μg/m3.",
-        "unit": "μg/m3",
-        "minimum": 0,
-        "maximum": 1000,
-        "hideFromKpis": true
-      }
-    },
-    "required": [
-      "pm4"
-    ]
+  "$id": "https://akenza.io/yosensi/YO-PurePro/pm4.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "pm4",
+  "title": "PM4",
+  "properties": {
+    "pm4": {
+      "title": "PM 4",
+      "type": "number",
+      "description": "PM 4 in μg/m3.",
+      "unit": "μg/m3",
+      "minimum": 0,
+      "maximum": 1000,
+      "hideFromKpis": false
+    }
+  },
+  "required": ["pm4"]
 }

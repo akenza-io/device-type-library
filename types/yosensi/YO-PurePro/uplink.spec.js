@@ -21,26 +21,32 @@ describe("Yosensi YO Pure Pro uplink", () => {
 
   let humiditySchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/humidity.schema.json`).then((parsedSchema) => {
-      humiditySchema = parsedSchema;
-      done();
-    });
+    utils
+      .loadSchema(`${__dirname}/humidity.schema.json`)
+      .then((parsedSchema) => {
+        humiditySchema = parsedSchema;
+        done();
+      });
   });
 
   let pressureSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/pressure.schema.json`).then((parsedSchema) => {
-      pressureSchema = parsedSchema;
-      done();
-    });
+    utils
+      .loadSchema(`${__dirname}/pressure.schema.json`)
+      .then((parsedSchema) => {
+        pressureSchema = parsedSchema;
+        done();
+      });
   });
 
   let illuminanceSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/illuminance.schema.json`).then((parsedSchema) => {
-      illuminanceSchema = parsedSchema;
-      done();
-    });
+    utils
+      .loadSchema(`${__dirname}/illuminance.schema.json`)
+      .then((parsedSchema) => {
+        illuminanceSchema = parsedSchema;
+        done();
+      });
   });
 
   let tvocSchema = null;
@@ -104,7 +110,8 @@ describe("Yosensi YO Pure Pro uplink", () => {
       const data = {
         data: {
           port: 0,
-          payloadHex: "02f602460d000101081000001a15000127221a000100012200030000007d69000100116c000102797000010032"  
+          payloadHex:
+            "02f602460d000101081000001a15000127221a000100012200030000007d69000100116c000102797000010032",
         },
       };
 
@@ -116,7 +123,9 @@ describe("Yosensi YO Pure Pro uplink", () => {
         assert.equal(value.topic, "temperature");
         assert.equal(value.data.temperature, 26.4);
 
-        utils.validateSchema(value.data, temperatureSchema, { throwError: true });
+        utils.validateSchema(value.data, temperatureSchema, {
+          throwError: true,
+        });
       });
 
       utils.expectEmits((type, value) => {
@@ -149,7 +158,9 @@ describe("Yosensi YO Pure Pro uplink", () => {
         assert.equal(value.topic, "illuminance");
         assert.equal(value.data.illuminance, 0.01);
 
-        utils.validateSchema(value.data, illuminanceSchema, { throwError: true });
+        utils.validateSchema(value.data, illuminanceSchema, {
+          throwError: true,
+        });
       });
 
       utils.expectEmits((type, value) => {
@@ -243,7 +254,6 @@ describe("Yosensi YO Pure Pro uplink", () => {
       consume(data);
     });
 
-
     it("should decode the Yosensi YO Pure Pro (PM10) payload", () => {
       const data = {
         data: {
@@ -282,7 +292,9 @@ describe("Yosensi YO Pure Pro uplink", () => {
         assert.equal(value.topic, "illuminance");
         assert.equal(value.data.illuminance, 0.11);
 
-        utils.validateSchema(value.data, illuminanceSchema, { throwError: true });
+        utils.validateSchema(value.data, illuminanceSchema, {
+          throwError: true,
+        });
       });
 
       utils.expectEmits((type, value) => {
@@ -298,6 +310,5 @@ describe("Yosensi YO Pure Pro uplink", () => {
 
       consume(data);
     });
-
   });
 });
