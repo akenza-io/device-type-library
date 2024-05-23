@@ -196,10 +196,10 @@ describe("Milesight VS133 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "region_count");
-        assert.equal(value.data.region1count, 2);
-        assert.equal(value.data.region2count, 16);
-        assert.equal(value.data.region3count, 7);
-        assert.equal(value.data.region4count, 9);
+        assert.equal(value.data.region1Count, 2);
+        assert.equal(value.data.region2Count, 16);
+        assert.equal(value.data.region3Count, 7);
+        assert.equal(value.data.region4Count, 9);
 
         utils.validateSchema(value.data, regionCountSchema, {
           throwError: true,
@@ -224,14 +224,14 @@ describe("Milesight VS133 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "dwell_time");
-        assert.equal(value.data.region1avgDwell, 4105);
-        assert.equal(value.data.region1maxDwell, 8465);
-        assert.equal(value.data.region2avgDwell, 8565);
-        assert.equal(value.data.region2maxDwell, 13173);
-        assert.equal(value.data.region3avgDwell, 8577);
-        assert.equal(value.data.region3maxDwell, 35107);
-        assert.equal(value.data.region4avgDwell, 118);
-        assert.equal(value.data.region4maxDwell, 34579);
+        assert.equal(value.data.region1AvgDwell, 4105);
+        assert.equal(value.data.region1MaxDwell, 8465);
+        assert.equal(value.data.region2AvgDwell, 8565);
+        assert.equal(value.data.region2MaxDwell, 13173);
+        assert.equal(value.data.region3AvgDwell, 8577);
+        assert.equal(value.data.region3MaxDwell, 35107);
+        assert.equal(value.data.region4AvgDwell, 118);
+        assert.equal(value.data.region4MaxDwell, 34579);
 
         utils.validateSchema(value.data, dwellTimeSchema, {
           throwError: true,

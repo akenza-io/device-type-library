@@ -1,0 +1,24 @@
+{
+  "$id": "https://akenza.io/xovis/VS121/total.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "total",
+  "title": "Total",
+  "properties": {
+    "peopleTotalIn": {
+      "title": "People total in",
+      "description": "People total in",
+      "type": "integer"
+    },
+    "peopleTotalOut": {
+      "title": "People total out",
+      "description": "People total out",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "peopleTotalIn",
+    "peopleTotalOut"
+  ]
+}

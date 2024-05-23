@@ -6,22 +6,22 @@
   "topic": "region_count",
   "title": "Region count",
   "properties": {
-    "region1count": {
+    "region1Count": {
       "title": "Region 1 count",
       "description": "Region 1 count",
       "type": "integer"
     },
-    "region2count": {
+    "region2Count": {
       "title": "Region 2 count",
       "description": "Region 2 count",
       "type": "integer"
     },
-    "region3count": {
+    "region3Count": {
       "title": "Region 3 count",
       "description": "Region 3 count",
       "type": "integer"
     },
-    "region4count": {
+    "region4Count": {
       "title": "Region 4 count",
       "description": "Region 4 count",
       "type": "integer"

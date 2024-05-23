@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/xovis/VS133/dwell_time.schema.json",
+  "$id": "https://akenza.io/xovis/VS121/dwell_time.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
