@@ -48,11 +48,6 @@
       "title": "Anti freeze protection",
       "description": "Anti freeze protection",
       "type": "boolean"
-    },
-    "motorOpenness": {
-      "title": "Motor openness",
-      "description": "Motor openness",
-      "type": "number"
     }
   },
   "required": [

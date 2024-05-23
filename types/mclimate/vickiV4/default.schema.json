@@ -22,7 +22,7 @@
       "minimum": -3276.5,
       "maximum": 3276.5
     },
-    "relativeHumidity": {
+    "humidity": {
       "title": "Humidity",
       "unit": "%",
       "type": "number",
@@ -32,29 +32,31 @@
     },
     "motorRange": {
       "title": "Motor range",
+      "unit": "°",
       "type": "integer",
       "description": "Maximal motor range"
     },
     "motorPosition": {
       "title": "Motor position",
       "type": "integer",
+      "unit": "°",
       "description": "Motor position"
     },
     "openWindow": {
       "title": "Open window",
-      "description": "Open window",
+      "description": "Equals true if an open window is detected",
       "type": "boolean"
     },
     "childLock": {
       "title": "Child lock",
-      "description": "Child lock",
+      "description": "Equals true if the child lock is enabled",
       "type": "boolean"
     }
   },
   "required": [
     "targetTemperature",
     "sensorTemperature",
-    "relativeHumidity",
+    "humidity",
     "motorRange",
     "motorPosition",
     "openWindow",

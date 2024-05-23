@@ -66,7 +66,7 @@ describe("MClimate Vicky uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.targetTemperature, 29);
         assert.equal(value.data.sensorTemperature, 18.01);
-        assert.equal(value.data.relativeHumidity, 46.88);
+        assert.equal(value.data.humidity, 46.88);
         assert.equal(value.data.motorRange, 300);
         assert.equal(value.data.motorPosition, 250);
         assert.equal(value.data.openWindow, false);

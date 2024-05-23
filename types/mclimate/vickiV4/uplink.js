@@ -56,7 +56,7 @@ function handleKeepalive(bytes, data) {
   }
   data.targetTemperature = Number(bytes[1]);
   data.sensorTemperature = Number(sensorTemp.toFixed(2));
-  data.relativeHumidity = Number(((bytes[3] * 100) / 256).toFixed(2));
+  data.humidity = Number(((bytes[3] * 100) / 256).toFixed(2));
   data.motorRange = motorRange;
   data.motorPosition = motorPosition;
   data.batteryVoltage = Number(batteryVoltageCalculated.toFixed(2));
@@ -70,7 +70,6 @@ function handleKeepalive(bytes, data) {
   data.attachedBackplate = toBool(attachedBackplate);
   data.perceiveAsOnline = toBool(perceiveAsOnline);
   data.antiFreezeProtection = toBool(antiFreezeProtection);
-  data.motorOpenness = Math.round((1 - motorPosition / motorRange) * 100);
   if (!data.hasOwnProperty("targetTemperatureFloat")) {
     data.targetTemperatureFloat = bytes[1].toFixed(2);
   }
@@ -404,7 +403,6 @@ function consume(event) {
   lifecycle.attachedBackplate = data.attachedBackplate;
   lifecycle.perceiveAsOnline = data.perceiveAsOnline;
   lifecycle.antiFreezeProtection = data.antiFreezeProtection;
-  lifecycle.motorOpenness = data.motorOpenness;
 
   delete data.batteryVoltage;
   delete data.highMotorConsumption;
@@ -415,7 +413,6 @@ function consume(event) {
   delete data.attachedBackplate;
   delete data.perceiveAsOnline;
   delete data.antiFreezeProtection;
-  delete data.motorOpenness;
   delete data.targetTemperatureFloat;
 
   // Add raw metadata for mclimate integration. Sent to mclimate broker.
