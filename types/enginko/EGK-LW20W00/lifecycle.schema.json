@@ -20,8 +20,5 @@
       "unit": "%"
     }
   },
-  "required": [
-    "adc",
-    "batteryLevel"
-  ]
+  "required": ["adc", "batteryLevel"]
 }

@@ -17,14 +17,8 @@
       "title": "Daylight",
       "description": "Light strength",
       "type": "string",
-      "enum": [
-        "DARK",
-        "LIGHT"
-      ]
+      "enum": ["DARK", "LIGHT"]
     }
   },
-  "required": [
-    "pir",
-    "daylight"
-  ]
+  "required": ["pir", "daylight"]
 }

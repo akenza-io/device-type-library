@@ -31,9 +31,5 @@
       "maximum": 10
     }
   },
-  "required": [
-    "pressure",
-    "temperature",
-    "level"
-  ]
+  "required": ["pressure", "temperature", "level"]
 }

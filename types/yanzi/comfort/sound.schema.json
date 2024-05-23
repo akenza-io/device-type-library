@@ -15,7 +15,5 @@
       "maximum": 90
     }
   },
-  "required": [
-    "soundPressure"
-  ]
+  "required": ["soundPressure"]
 }

@@ -21,8 +21,5 @@
       "maximum": 3276.5
     }
   },
-  "required": [
-    "pressure",
-    "temperature"
-  ]
+  "required": ["pressure", "temperature"]
 }

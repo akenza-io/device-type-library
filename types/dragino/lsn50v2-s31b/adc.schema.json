@@ -28,10 +28,7 @@
       "title": "Digital status",
       "type": "string",
       "description": "Digital status",
-      "enum": [
-        "HIGH",
-        "LOW"
-      ]
+      "enum": ["HIGH", "LOW"]
     },
     "extTrigger": {
       "title": "External trigger",

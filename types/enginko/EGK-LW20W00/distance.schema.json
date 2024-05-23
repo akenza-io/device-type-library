@@ -27,9 +27,5 @@
       "maximum": 3276.5
     }
   },
-  "required": [
-    "distance",
-    "fillLevel",
-    "temperature"
-  ]
+  "required": ["distance", "fillLevel", "temperature"]
 }

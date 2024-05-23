@@ -118,11 +118,5 @@
       "maximum": 6555
     }
   },
-  "required": [
-    "temperature",
-    "humidity",
-    "voc",
-    "co2",
-    "lightState"
-  ]
+  "required": ["temperature", "humidity", "voc", "co2", "lightState"]
 }

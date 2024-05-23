@@ -10,12 +10,7 @@
       "title": "Track type",
       "description": "Describes the track type",
       "type": "string",
-      "enum": [
-        "TRACK_CREATE",
-        "TRACK_DELETE",
-        "ZONE_ENTRY",
-        "ZONE_EXIT"
-      ]
+      "enum": ["TRACK_CREATE", "TRACK_DELETE", "ZONE_ENTRY", "ZONE_EXIT"]
     },
     "trackId": {
       "title": "Track id",
@@ -37,9 +32,5 @@
       "type": "string"
     }
   },
-  "required": [
-    "trackType",
-    "trackId",
-    "sequenceNumber"
-  ]
+  "required": ["trackType", "trackId", "sequenceNumber"]
 }

@@ -176,7 +176,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "age"
-  ]
+  "required": ["age"]
 }

@@ -27,9 +27,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "batteryLevel",
-    "hbIRQ",
-    "accIRQ"
-  ]
+  "required": ["batteryLevel", "hbIRQ", "accIRQ"]
 }

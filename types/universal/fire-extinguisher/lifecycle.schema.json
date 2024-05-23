@@ -30,8 +30,5 @@
       "unit": "%"
     }
   },
-  "required": [
-    "payloadVersion",
-    "batteryLevel"
-  ]
+  "required": ["payloadVersion", "batteryLevel"]
 }

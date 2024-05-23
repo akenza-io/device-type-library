@@ -12,7 +12,5 @@
       "description": "True if there is a leakage"
     }
   },
-  "required": [
-    "leakage"
-  ]
+  "required": ["leakage"]
 }

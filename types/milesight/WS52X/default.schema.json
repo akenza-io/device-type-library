@@ -40,10 +40,7 @@
       "title": "State",
       "description": "Plug state",
       "type": "string",
-      "enum": [
-        "OPEN",
-        "CLOSED"
-      ]
+      "enum": ["OPEN", "CLOSED"]
     }
   },
   "required": [

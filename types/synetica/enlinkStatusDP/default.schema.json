@@ -39,10 +39,5 @@
       "maximum": 5000
     }
   },
-  "required": [
-    "temperature",
-    "humidity",
-    "af",
-    "dp"
-  ]
+  "required": ["temperature", "humidity", "af", "dp"]
 }

@@ -17,8 +17,5 @@
       "description": "Counter B"
     }
   },
-  "required": [
-    "counterA",
-    "counterB"
-  ]
+  "required": ["counterA", "counterB"]
 }

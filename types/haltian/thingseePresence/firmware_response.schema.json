@@ -13,7 +13,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "requestTsmId"
-  ]
+  "required": ["requestTsmId"]
 }

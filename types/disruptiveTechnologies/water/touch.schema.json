@@ -12,7 +12,5 @@
       "type": "boolean"
     }
   },
-  "required": [
-    "touch"
-  ]
+  "required": ["touch"]
 }
