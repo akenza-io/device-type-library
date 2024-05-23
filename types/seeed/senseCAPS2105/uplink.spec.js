@@ -67,6 +67,7 @@ describe("Seeed SenseCAP 2105 Soil Moisture, Temperature and EC Sensor Uplink", 
 
         assert.equal(value.topic, "error");
         assert.equal(value.data.errorCode, "NO_SENSOR_RESPONSE");
+        assert.equal(value.data.fieldName, "soilTemperature");
 
         utils.validateSchema(value.data, errorSchema, { throwError: true });
       });

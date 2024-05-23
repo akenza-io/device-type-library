@@ -1,10 +1,24 @@
-function checkForIllegalValue(value) {
-  if (
-    value === 2000001 ||
-    value === 2000002 ||
-    value === 2000003 ||
-    value === 2000257
-  ) {
+function checkForIllegalValue(value, fieldName) {
+  let errorCode = "";
+  switch (value) {
+    case 2000001:
+      errorCode = "NO_SENSOR_RESPONSE";
+      break;
+    case 2000002:
+      errorCode = "SENSOR_DATA_HEAD_ERROR";
+      break;
+    case 2000003:
+      errorCode = "SENSOR_ARG_INVAILD";
+      break;
+    case 2000257:
+      errorCode = "SENSOR_DATA_ERROR_UNKONW";
+      break;
+    default:
+      break;
+  }
+
+  if (errorCode.length > 0) {
+    emit("sample", { data: { errorCode, fieldName }, topic: "error" });
     return null;
   }
   return value;
@@ -13,13 +27,11 @@ function checkForIllegalValue(value) {
 function consume(event) {
   const payload = event.data.payloadHex;
   const data = {};
-  const error = {};
   let pointer = 0;
 
   while (pointer < payload.length) {
     let measurementID = payload.substr((pointer += 2), 4);
     measurementID = Hex.hexLittleEndianToBigEndian(measurementID, false);
-    let value = 0;
 
     switch (measurementID) {
       case 7: {
@@ -37,72 +49,78 @@ function consume(event) {
         break;
       }
       case 4097: {
-        value =
+        const temperature =
           Hex.hexLittleEndianToBigEndian(
             payload.substr((pointer += 4), 8),
             true,
           ) / 1000;
-        data.temperature = checkForIllegalValue(value);
+        data.temperature = checkForIllegalValue(temperature, "temperature");
         pointer += 8;
         break;
       }
       case 4098: {
-        value =
+        const humidity =
           Hex.hexLittleEndianToBigEndian(
             payload.substr((pointer += 4), 8),
-            true,
+            false,
           ) / 1000;
-        data.humidity = checkForIllegalValue(value);
+        data.humidity = checkForIllegalValue(humidity, "humidity");
         pointer += 8;
         break;
       }
       case 4099: {
-        value =
+        const light =
           Hex.hexLittleEndianToBigEndian(
             payload.substr((pointer += 4), 8),
-            true,
+            false,
           ) / 1000;
-        data.light = checkForIllegalValue(value);
+        data.light = checkForIllegalValue(light, "light");
         pointer += 8;
         break;
       }
       case 4100: {
-        value =
+        const co2 =
           Hex.hexLittleEndianToBigEndian(
             payload.substr((pointer += 4), 8),
-            true,
+            false,
           ) / 1000;
-        data.co2 = checkForIllegalValue(value);
+        data.co2 = checkForIllegalValue(co2, "co2");
         pointer += 8;
         break;
       }
       case 4102: {
-        value =
+        const soilTemperature =
           Hex.hexLittleEndianToBigEndian(
             payload.substr((pointer += 4), 8),
             true,
           ) / 1000;
-        data.soilTemperature = checkForIllegalValue(value);
+        data.soilTemperature = checkForIllegalValue(
+          soilTemperature,
+          "soilTemperature",
+        );
         pointer += 8;
         break;
       }
       case 4103: {
-        value =
+        const soilHumidity =
           Hex.hexLittleEndianToBigEndian(
             payload.substr((pointer += 4), 8),
-            true,
+            false,
           ) / 1000;
-        data.soilHumidity = checkForIllegalValue(value);
+        data.soilHumidity = checkForIllegalValue(soilHumidity, "soilHumidity");
         pointer += 8;
         break;
       }
       case 4108: {
-        value =
+        const soilConductivity =
           Hex.hexLittleEndianToBigEndian(
             payload.substr((pointer += 4), 8),
-            true,
+            false,
           ) / 1000;
-        data.soilConductivity = checkForIllegalValue(value);
+        data.soilConductivity = checkForIllegalValue(
+          soilConductivity,
+          "soilConductivity",
+        );
         pointer += 8;
         break;
       }
@@ -110,30 +128,6 @@ function consume(event) {
         pointer = payload.length;
         break;
     }
-    if (checkForIllegalValue(value) === null) {
-      let errorCode = "";
-      switch (value) {
-        case 2000001:
-          errorCode = "NO_SENSOR_RESPONSE";
-          break;
-        case 2000002:
-          errorCode = "SENSOR_DATA_HEAD_ERROR";
-          break;
-        case 2000003:
-          errorCode = "SENSOR_ARG_INVAILD";
-          break;
-        case 2000257:
-          errorCode = "SENSOR_DATA_ERROR_UNKONW";
-          break;
-        default:
-          break;
-      }
-      error.errorCode = errorCode;
-    }
-  }
-
-  if (Object.keys(error).length > 0) {
-    emit("sample", { data: error, topic: "error" });
   }
 
   emit("sample", { data, topic: "default" });

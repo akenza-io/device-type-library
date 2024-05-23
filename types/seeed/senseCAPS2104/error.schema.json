@@ -16,9 +16,15 @@
         "SENSOR_ARG_INVAILD",
         "SENSOR_DATA_ERROR_UNKONW"
       ]
+    },
+    "fieldName": {
+      "title": "Field name",
+      "type": "string",
+      "description": "Name which the error correlates to"
     }
   },
   "required": [
-    "errorCode"
+    "errorCode",
+    "fieldName"
   ]
 }
