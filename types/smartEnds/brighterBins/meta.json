@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "smartEnds",
   "url": "https://www.brighterbins.com/",
-  "description": "BrighterBins smart sensor is an loT product from SmartEnds that makes your waste collection intelligent and cost-effective. The device has many advantages over currently available solutions in the market. The device is more rugged, has a 40% smaller body design, and has an adjustable transducer to fit 90% of bins. The moveable transducer tunnel allows the device to be mounted in different orientations and the installation takes around 10 minutes.",
+  "description": "BrighterBins is an IoT product from SmartEnds to monitor your waste collection. The moveable transducer tunnel allows the device to be mounted in different orientations.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

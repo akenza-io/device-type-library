@@ -9,31 +9,37 @@
     "point1": {
       "title": "Point 1",
       "type": "integer",
+      "unit": "cm",
       "description": "Point 1"
     },
     "point2": {
       "title": "Point 2",
       "type": "integer",
+      "unit": "cm",
       "description": "Point 2"
     },
     "point3": {
       "title": "Point 3",
       "type": "integer",
+      "unit": "cm",
       "description": "Point 3"
     },
     "point4": {
       "title": "Point 4",
       "type": "integer",
+      "unit": "cm",
       "description": "Point 4"
     },
     "point5": {
       "title": "Point 5",
       "type": "integer",
+      "unit": "cm",
       "description": "Point 5"
     },
     "point6": {
       "title": "Point 6",
       "type": "integer",
+      "unit": "cm",
       "description": "Point 6"
     },
     "point7": {
@@ -44,6 +50,7 @@
     "point8": {
       "title": "Point 8",
       "type": "integer",
+      "unit": "cm",
       "description": "Point 8"
     }
   }

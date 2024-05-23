@@ -145,15 +145,15 @@ function consume(event) {
       )}.${Bits.bitsToUnsigned(bits.substr(36, 6))}.${Bits.bitsToUnsigned(
         bits.substr(44, 6),
       )}`;
-      system.noOfDownlink = Bits.bitsToUnsigned(bits.substr(50, 2));
+      system.noOfDownlinks = Bits.bitsToUnsigned(bits.substr(50, 2));
       system.downlinkFreq = Bits.bitsToUnsigned(bits.substr(52, 2));
       system.totalResetCount = Bits.bitsToUnsigned(bits.substr(54, 7));
-      system.runTime = Bits.bitsToUnsigned(bits.substr(61, 12));
+      system.runtime = Bits.bitsToUnsigned(bits.substr(61, 12));
       // Reserved 1
-      system.comTest = !!Bits.bitsToUnsigned(bits.substr(74, 1));
+      system.communicationTest = !!Bits.bitsToUnsigned(bits.substr(74, 1));
       // Reserved 1
       system.distanceTest = !!Bits.bitsToUnsigned(bits.substr(76, 1));
-      system.tempTest = !!Bits.bitsToUnsigned(bits.substr(77, 1));
+      system.temperatureTest = !!Bits.bitsToUnsigned(bits.substr(77, 1));
       // Reserved 3
       lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substr(81, 6)) * 2;
       if (lifecycle.batteryLevel === 126) {
@@ -265,10 +265,10 @@ function consume(event) {
 
           // Reserved
           system.configsTest = Bits.bitsToUnsigned(bits.substr(58, 1));
-          system.comTest = Bits.bitsToUnsigned(bits.substr(59, 1));
+          system.communicationTest = Bits.bitsToUnsigned(bits.substr(59, 1));
           system.distanceTest = Bits.bitsToUnsigned(bits.substr(60, 1));
-          system.accelTest = Bits.bitsToUnsigned(bits.substr(61, 1));
-          system.tempTest = Bits.bitsToUnsigned(bits.substr(62, 1));
+          system.accelerationTest = Bits.bitsToUnsigned(bits.substr(61, 1));
+          system.temperatureTest = Bits.bitsToUnsigned(bits.substr(62, 1));
 
           lifecycle.resetReason = resetReason(
             Bits.bitsToUnsigned(bits.substr(63, 4)),
@@ -476,7 +476,7 @@ function consume(event) {
             const numberOfPoints = Bits.bitsToUnsigned(
               bits.substr(bitsLength - 58, 6),
             );
-            const numberOfMoitionEvents = Bits.bitsToUnsigned(
+            const numberOfMotionEvents = Bits.bitsToUnsigned(
               bits.substr(64, 6),
             );
 
@@ -525,7 +525,7 @@ function consume(event) {
               });
             }
 
-            for (let i = 0; i < numberOfMoitionEvents; i++) {
+            for (let i = 0; i < numberOfMotionEvents; i++) {
               const history = {};
               const secondsNow = new Date().getTime();
               pointer += 16;

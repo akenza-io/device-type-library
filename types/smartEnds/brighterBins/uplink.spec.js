@@ -46,24 +46,6 @@ describe("Brigther Bins uplink", () => {
       done();
     });
   });
-  /*
-  const eventsSchema = null;
-  before((done) => {
-    utils.loadSchema(`${__dirname}/system.schema.json`).then((parsedSchema) => {
-      systemSchema = parsedSchema;
-      done();
-    });
-  });
-
-  let depthSchema = null;
-  before((done) => {
-    utils.loadSchema(`${__dirname}/depth.schema.json`).then((parsedSchema) => {
-      depthSchema = parsedSchema;
-      done();
-    });
-  });
-
-  */
 
   describe("consume()", () => {
     it("should decode Brigther Bins Type Filllevel payload", () => {
@@ -149,16 +131,16 @@ describe("Brigther Bins uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "system");
-        assert.equal(value.data.comTest, true);
+        assert.equal(value.data.communicationTest, true);
         assert.equal(value.data.distanceTest, true);
-        assert.equal(value.data.tempTest, true);
+        assert.equal(value.data.temperatureTest, true);
 
         assert.equal(value.data.hardwareVersion, 22);
         assert.equal(value.data.softwareVersion, "1.15.1");
         assert.equal(value.data.totalResetCount, 1);
-        assert.equal(value.data.runTime, 2);
+        assert.equal(value.data.runtime, 2);
         assert.equal(value.data.downlinkFreq, 2);
-        assert.equal(value.data.noOfDownlink, 2);
+        assert.equal(value.data.noOfDownlinks, 2);
 
         utils.validateSchema(value.data, systemSchema, { throwError: true });
       });

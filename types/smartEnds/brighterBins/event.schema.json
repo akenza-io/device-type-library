@@ -7,15 +7,15 @@
   "title": "Event",
   "properties": {
     "tamperEvent": {
-      "title": "Tamper Event",
+      "title": "Tamper event",
       "type": "boolean",
-      "description": "Tamper Event",
+      "description": "Tamper event equals true if the device got tampered with",
       "hideFromKpis": true
     },
     "fireAlarm": {
-      "title": "Fire Alarm",
+      "title": "Fire alarm",
       "type": "boolean",
-      "description": "Fire Alarm",
+      "description": "Fire alarm",
       "hideFromKpis": true
     },
     "pickupAlert": {
@@ -33,7 +33,7 @@
     "pickupEvent": {
       "title": "Pickup event",
       "type": "boolean",
-      "description": "Pickup event",
+      "description": "Pickup event equals true if an pickup alert is issued.",
       "hideFromKpis": true
     }
   },

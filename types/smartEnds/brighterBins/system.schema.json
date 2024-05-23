@@ -18,7 +18,7 @@
       "description": "Software version",
       "hideFromKpis": true
     },
-    "noOfDownlink": {
+    "noOfDownlinks": {
       "title": "Number of downlinks",
       "type": "integer",
       "description": "Number of downlinks",
@@ -36,16 +36,16 @@
       "description": "Total reset count",
       "hideFromKpis": true
     },
-    "runTime": {
-      "title": "Run time",
+    "runtime": {
+      "title": "Runtime",
       "type": "integer",
-      "description": "Run time",
+      "description": "Runtime",
       "hideFromKpis": true
     },
     "totalRuntime": {
-      "title": "Total run time",
+      "title": "Total runtime",
       "type": "integer",
-      "description": "Total run time",
+      "description": "Total runtime",
       "hideFromKpis": true
     },
     "configsTest": {
@@ -54,10 +54,10 @@
       "description": "Configuration test equals true if working",
       "hideFromKpis": true
     },
-    "comTest": {
-      "title": "Com test",
+    "communicationTest": {
+      "title": "Communication test",
       "type": "boolean",
-      "description": "Com test equals true if working",
+      "description": "Communication test equals true if working",
       "hideFromKpis": true
     },
     "distanceTest": {
@@ -66,13 +66,13 @@
       "description": "Distance test equals true if working",
       "hideFromKpis": true
     },
-    "accelTest": {
+    "accelerationTest": {
       "title": "Acceleration test",
       "type": "boolean",
       "description": "Acceleration test equals true if working",
       "hideFromKpis": true
     },
-    "tempTest": {
+    "temperatureTest": {
       "title": "Temperature test",
       "type": "boolean",
       "description": "Temperature test equals true if working",
