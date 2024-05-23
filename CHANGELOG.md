@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.48.0] - 2024-05-22
+
+### Added
+
+- Yosensi - Temp
+- Yosensi - Pure Pro
+- Yosensi - Refrigerant Monitor
+
+### Changed
+
+- ioTracker - Removed 0 gps values in case of an illegal datapoint
+- senlabM - Changed txPeriod and logperiod as they where expressed in 2 second intervals
+- PeopleCounter - Added batteryLevel
+- LP8P - Added batteryLevel
+
 # [1.47.0] - 2024-04-26
 
 ### Added
