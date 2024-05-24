@@ -7,7 +7,7 @@
   "title": "Lifecycle",
   "properties": {
     "initialVoltage": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/initialVoltage/volt",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
       "description": "Initial battery voltage",
       "title": "Initial battery voltage",
       "hideFromKpis": true
