@@ -9,10 +9,7 @@
     "soilHumidity": {
       "title": "Soil humidity",
       "unit": "%",
-      "type": [
-        "number",
-        "null"
-      ],
+      "type": "number",
       "description": "The relative humidity of the soil in %",
       "minimum": 0,
       "maximum": 100
@@ -20,10 +17,7 @@
     "soilTemperature": {
       "title": "Soil temperature",
       "unit": "°C",
-      "type": [
-        "number",
-        "null"
-      ],
+      "type": "number",
       "description": "The temperature in °C.",
       "minimum": -3276.5,
       "maximum": 3276.5
@@ -31,10 +25,7 @@
     "soilConductivity": {
       "title": "Soil conductivity",
       "unit": "uS/cm",
-      "type": [
-        "number",
-        "null"
-      ],
+      "type": "number",
       "description": "Conductivity of the soil"
     }
   },

@@ -9,7 +9,7 @@
     "temperatureChannel1": {
       "title": "Temperature channel 1",
       "unit": "°C",
-      "type": ["number", "null"],
+      "type": "number",
       "description": "Temperature channel 1",
       "minimum": -3276.5,
       "maximum": 3276.5
@@ -17,7 +17,7 @@
     "temperatureChannel1Change": {
       "title": "Temperature change channel 1",
       "unit": "°C",
-      "type": ["number", "null"],
+      "type": "number",
       "description": "Temperature change channel 1",
       "minimum": -3276.5,
       "maximum": 3276.5
@@ -25,7 +25,7 @@
     "temperatureChannel2": {
       "title": "Temperature channel 2",
       "unit": "°C",
-      "type": ["number", "null"],
+      "type": "number",
       "description": "Temperature channel 2",
       "minimum": -3276.5,
       "maximum": 3276.5
@@ -33,7 +33,7 @@
     "temperatureChannel2Change": {
       "title": "Temperature change channel 2",
       "unit": "°C",
-      "type": ["number", "null"],
+      "type": "number",
       "description": "Temperature change channel 2",
       "minimum": -3276.5,
       "maximum": 3276.5
