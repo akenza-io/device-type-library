@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.49.0] - 2024-05-23
+
+### Changed
+
+- Catching illegal datapoints for the seeed senseCAPS210X series
+
 # [1.48.0] - 2024-05-22
 
 ### Added
