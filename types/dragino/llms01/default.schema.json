@@ -18,7 +18,7 @@
       "maximum": 100
     },
     "leafTemperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/leafTemperature/celsius",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "The leaf temperature in °C.",
       "title": "Leaf temperature"
     }

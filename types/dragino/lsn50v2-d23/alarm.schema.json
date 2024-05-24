@@ -7,37 +7,37 @@
   "title": "Alarm",
   "properties": {
     "channel1Temperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/channel1Temperature/celsius",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "The Channel 1 temperature.",
       "title": "Channel 1 temperature"
     },
     "channel1TemperatureMin": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/channel1TemperatureMin/celsius",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "The Channel 1 temperature minimum.",
       "title": "Temperature minimum"
     },
     "channel1TemperatureMax": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/channel1TemperatureMax/celsius",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "The Channel 1 temperature maximum.",
       "title": "Temperature maximum"
     },
     "shtTemperatureMin": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/shtTemperatureMin/celsius",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "The sht temperature minimum.",
       "title": "SHT Temperature minimum"
     },
     "shtTemperatureMax": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/shtTemperatureMax/celsius",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "The sht temperature maximum.",
       "title": "SHT Temperature maximum"
     },
     "shtHumMin": {
       "title": "SHT Humidity minimum",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/extHumidity/percent",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
       "description": "The sht humidity minimum."
     },
     "shHumMax": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/extHumidity/percent",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
       "title": "SHT Humidity maximum",
       "description": "The sht humidity maximum."
     }

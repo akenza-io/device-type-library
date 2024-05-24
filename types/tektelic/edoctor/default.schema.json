@@ -7,7 +7,7 @@
   "processingType": "uplink_decoder",
   "properties": {
     "bodyTemperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/bodyTemperature/celsius",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "Body temperature",
       "title": "Body temperature"
     },

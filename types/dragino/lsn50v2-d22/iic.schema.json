@@ -20,7 +20,7 @@
       "title": "External temperature"
     },
     "extHumidity": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/extHumidity/percent",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
       "description": "The external relative humidity in %",
       "title": "External humidity"
     }

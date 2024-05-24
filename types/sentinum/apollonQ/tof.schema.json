@@ -13,7 +13,7 @@
       "hideFromKpis": true
     },
     "tofDistance": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/tofDistance/mm",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/mm",
       "description": "Time of flight distance measured between the sensor and the surface",
       "title": "ToF Distance"
     },
@@ -24,5 +24,9 @@
       "hideFromKpis": true
     }
   },
-  "required": ["tofStatus", "tofDistance", "tofIndex"]
+  "required": [
+    "tofStatus",
+    "tofDistance",
+    "tofIndex"
+  ]
 }
