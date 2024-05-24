@@ -12,7 +12,11 @@
     "Soil Temperature",
     "Soil Conductivity"
   ],
-  "outputTopics": ["default", "lifecycle"],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "error"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

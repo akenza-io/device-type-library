@@ -8,15 +8,25 @@
   "properties": {
     "alarmChannel1": {
       "title": "Alarm channel 1",
-      "type": ["string", "null"],
+      "type": "string",
       "description": "Alarm message channel 1",
-      "enum": ["THRESHOLD", "THRESHOLD_RELEASE", "MUTATION", "UNKNOWN"]
+      "enum": [
+        "THRESHOLD",
+        "THRESHOLD_RELEASE",
+        "MUTATION",
+        "UNKNOWN"
+      ]
     },
     "alarmChannel2": {
       "title": "Alarm channel 2",
-      "type": ["string", "null"],
+      "type": "string",
       "description": "Alarm message channel 2",
-      "enum": ["THRESHOLD", "THRESHOLD_RELEASE", "MUTATION", "UNKNOWN"]
+      "enum": [
+        "THRESHOLD",
+        "THRESHOLD_RELEASE",
+        "MUTATION",
+        "UNKNOWN"
+      ]
     }
   }
 }

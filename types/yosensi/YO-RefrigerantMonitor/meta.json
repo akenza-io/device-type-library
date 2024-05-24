@@ -1,0 +1,24 @@
+{
+  "name": "YO Refrigerant Monitor",
+  "version": "1.0.0",
+  "manufacturer": "Yosensi",
+  "url": "https://www.yosensi.io/products/yo_refrigerant_monitor/",
+  "description": "YO Refrigerant Monitor provides data on installation pressure.",
+  "author": "Maciej Sacewicz",
+  "firmwareVersion": "V3.6.2",
+  "availableSensors": [
+    "Battery Voltage",
+    "Pressure",
+    "Internal Temperature",
+    "Relative Humidity"
+  ],
+  "outputTopics": [
+    "batteryVoltage",
+    "internalTemperature",
+    "temperature",
+    "humidity",
+    "pressure"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
