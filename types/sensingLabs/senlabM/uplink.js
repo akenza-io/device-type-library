@@ -54,8 +54,8 @@ function consume(event) {
         data.functionMode = "OTHER";
       }
 
-      data.logPeriod = Bits.bitsToUnsigned(bits.substr(112, 16));
-      data.txPeriod = Bits.bitsToUnsigned(bits.substr(128, 16));
+      data.logPeriod = Bits.bitsToUnsigned(bits.substr(112, 16)) * 2;
+      data.txPeriod = Bits.bitsToUnsigned(bits.substr(128, 16)) * 2;
       data.randWindow = Bits.bitsToUnsigned(bits.substr(144, 16));
       data.redundancyFactor = Bits.bitsToUnsigned(bits.substr(160, 8));
       topic = "system";
