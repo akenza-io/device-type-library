@@ -1,0 +1,36 @@
+{
+  "$id": "https://akenza.io/xovis/VS121/b_flow.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "b_flow",
+  "title": "B flow",
+  "properties": {
+    "bToA": {
+      "title": "B to A flow",
+      "description": "B to A flow",
+      "type": "integer"
+    },
+    "bToB": {
+      "title": "B to B flow",
+      "description": "B to B flow",
+      "type": "integer"
+    },
+    "bToC": {
+      "title": "B to C flow",
+      "description": "B to C flow",
+      "type": "integer"
+    },
+    "bToD": {
+      "title": "B to D flow",
+      "description": "B to D flow",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "bToA",
+    "bToB",
+    "bToC",
+    "bToD"
+  ]
+}

@@ -7,8 +7,22 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "C",
-  "availableSensors": ["Occupancy"],
-  "outputTopics": ["count", "people", "people_max", "lifecycle"],
+  "availableSensors": [
+    "Occupancy"
+  ],
+  "outputTopics": [
+    "a_flow",
+    "b_flow",
+    "c_flow",
+    "d_flow",
+    "dwell_time",
+    "region_count",
+    "total",
+    "count",
+    "people",
+    "people_max",
+    "lifecycle"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }
