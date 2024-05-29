@@ -5,7 +5,7 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Decentlab PR36 Uplink", () => {
+describe("Decentlab DWS Uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
@@ -30,10 +30,17 @@ describe("Decentlab PR36 Uplink", () => {
   });
 
   describe("consume()", () => {
-    it("should decode Decentlab PR36 payload", () => {
+    it("should decode Decentlab DWS payload", () => {
       const data = {
+        device: {
+          customFields: {
+            force: 9.8067,
+            underLoad: 0.0000000475,
+            strain: 0.066,
+          },
+        },
         data: {
-          payloadHex: "02032b0003806797810c2b",
+          payloadHex: "0203d400033bf67fff3bf60c60",
         },
       };
 
@@ -43,8 +50,8 @@ describe("Decentlab PR36 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.pressure, 0.0125732421875);
-        assert.equal(value.data.temperature, 23.50390625);
+        assert.equal(value.data.frequency, 15350.47);
+        assert.equal(value.data.weight, 11.26);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -54,9 +61,10 @@ describe("Decentlab PR36 Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.data.batteryVoltage, 3.115);
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batteryVoltage, 3.168);
         assert.equal(value.data.protocolVersion, 2);
-        assert.equal(value.data.deviceId, 811);
+        assert.equal(value.data.deviceId, 980);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });

@@ -89,13 +89,7 @@ const decentlab_decoder = {
       for (j = 0; j < sensor.values.length; j++) {
         const value = sensor.values[j];
         if ("convert" in value) {
-          result[value.name] = {
-            displayName: value.displayName,
-            value: value.convert.bind(this)(x),
-          };
-          if ("unit" in value) {
-            result[value.name].unit = value.unit;
-          }
+          result[value.name] = value.convert.bind(this)(x);
         }
       }
     }
@@ -119,7 +113,7 @@ function consume(event) {
   const payload = event.data.payloadHex;
   let customFieldsUsed = false;
 
-  if (event.device !== undefined && data.distance !== undefined) {
+  if (event.device !== undefined) {
     if (event.device.customFields !== undefined) {
       const { customFields } = event.device;
 
@@ -145,8 +139,8 @@ function consume(event) {
   const lifecycle = {};
 
   // Default values
-  data.frequency = sample.frequency;
-  data.weight = sample.weight;
+  data.frequency = Math.round(sample.frequency * 100) / 100;
+  data.weight = Math.round(sample.weight * 100) / 100;
 
   // Lifecycle values
   lifecycle.batteryVoltage = sample.battery_voltage;
