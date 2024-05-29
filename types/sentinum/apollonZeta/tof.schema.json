@@ -24,9 +24,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "tofStatus",
-    "tofDistance",
-    "tofIndex"
-  ]
+  "required": ["tofStatus", "tofDistance", "tofIndex"]
 }

@@ -34,7 +34,6 @@
     },
     "reportID": {
       "title": "Report ID",
-      "unit": "mG",
       "description": "Used to identify the message (increase with time)",
       "type": "integer",
       "minimum": 0,

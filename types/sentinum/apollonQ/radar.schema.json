@@ -20,7 +20,6 @@
     },
     "radarDistance1": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/mm",
-      "description": "Distance measured between the sensor and the surface",
       "title": "Radar distance 1"
     },
     "radarPeak1": {
@@ -31,7 +30,6 @@
     },
     "radarDistance2": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/mm",
-      "description": "Distance measured between the sensor and the surface",
       "title": "Radar distance 2"
     },
     "radarPeak2": {
@@ -42,7 +40,6 @@
     },
     "radarDistance3": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/mm",
-      "description": "Distance measured between the sensor and the surface",
       "title": "Radar distance 3"
     },
     "radarPeak3": {
@@ -52,8 +49,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "alarm",
-    "distance"
-  ]
+  "required": ["alarm", "distance"]
 }

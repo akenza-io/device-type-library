@@ -64,8 +64,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "deviceStatus",
-    "sensorStatus"
-  ]
+  "required": ["deviceStatus", "sensorStatus"]
 }
