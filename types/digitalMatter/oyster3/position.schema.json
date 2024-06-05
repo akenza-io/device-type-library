@@ -31,10 +31,7 @@
       "description": "The direction where the sensor is heading"
     },
     "speedKmph": {
-      "title": "speedKmph",
-      "unit": "kmPerH",
-      "type": "number",
-      "description": "Acceleration of the sensor"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/speed/kmPerH"
     },
     "manDown": {
       "title": "Man down",

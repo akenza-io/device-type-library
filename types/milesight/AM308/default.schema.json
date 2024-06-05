@@ -16,7 +16,10 @@
       "title": "PIR",
       "description": "PIR is either trigger or idle",
       "type": "string",
-      "enum": ["TRIGGER", "IDLE"]
+      "enum": [
+        "TRIGGER",
+        "IDLE"
+      ]
     },
     "light": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/illuminance/lux"
@@ -31,15 +34,10 @@
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/hPa"
     },
     "pm2_5": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pm2_5/mcgm3",
-      "description": "Particles less than 2.5 μm in diameter",
-      "title": "Particles 2.5"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pm2_5/mcgm3"
     },
     "pm10": {
-      "title": "Particles 10",
-      "unit": "μm/m3",
-      "type": "integer",
-      "description": "Particles less than 10 μm in diameter"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pm10/mcgm3"
     }
   },
   "required": [

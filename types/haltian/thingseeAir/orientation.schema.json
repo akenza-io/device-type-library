@@ -7,29 +7,24 @@
   "title": "Orientation",
   "properties": {
     "accX": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G",
       "title": "Acceleration X-Axis",
-      "description": "Acceleration on the X-Axis in gravitational acceleration",
-      "unit": "g",
-      "type": "number",
-      "minimum": -32767,
-      "maximum": 32767
+      "description": "Acceleration on the X-Axis in gravitational acceleration"
     },
     "accY": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G",
       "title": "Acceleration Y-Axis",
-      "description": "Acceleration on the Y-Axis in gravitational acceleration",
-      "unit": "g",
-      "type": "number",
-      "minimum": -32767,
-      "maximum": 32767
+      "description": "Acceleration on the Y-Axis in gravitational acceleration"
     },
     "accZ": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G",
       "title": "Acceleration Z-Axis",
-      "description": "Acceleration on the Z-Axis in gravitational acceleration",
-      "unit": "g",
-      "type": "number",
-      "minimum": -32767,
-      "maximum": 32767
+      "description": "Acceleration on the Z-Axis in gravitational acceleration"
     }
   },
-  "required": ["accX", "accY", "accZ"]
+  "required": [
+    "accX",
+    "accY",
+    "accZ"
+  ]
 }

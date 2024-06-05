@@ -7,9 +7,7 @@
   "title": "Default",
   "properties": {
     "voltage": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
-      "description": "Voltage",
-      "title": "Voltage"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt"
     },
     "power": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activePower/watt",
@@ -29,9 +27,7 @@
       "type": "number"
     },
     "current": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/milliAmpere",
-      "description": "Current",
-      "title": "Current"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/milliAmpere"
     },
     "powerOn": {
       "title": "Power on",

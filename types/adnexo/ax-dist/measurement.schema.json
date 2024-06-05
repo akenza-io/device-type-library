@@ -11,8 +11,7 @@
     },
     "fillLevel": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/fillLevel/percent",
-      "description": "Fill level of the container",
-      "title": "Fill level"
+      "description": "Fill level of the container"
     },
     "temperature": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
@@ -29,5 +28,9 @@
       "hideFromKpis": true
     }
   },
-  "required": ["distance", "temperature", "measurementType"]
+  "required": [
+    "distance",
+    "temperature",
+    "measurementType"
+  ]
 }

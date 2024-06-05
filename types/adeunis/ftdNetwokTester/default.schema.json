@@ -7,14 +7,16 @@
   "title": "Default",
   "properties": {
     "temperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
     "trigger": {
       "title": "Trigger",
       "description": "Action which triggered the uplink",
       "type": "string",
-      "enum": ["ACCELEROMETER", "PUSHBUTTON"]
+      "enum": [
+        "ACCELEROMETER",
+        "PUSHBUTTON"
+      ]
     },
     "uplink": {
       "title": "Uplink count",

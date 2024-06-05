@@ -26,29 +26,27 @@
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
     "accX": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G",
       "title": "Acceleration X-Axis",
-      "description": "Acceleration on the X-Axis is g",
-      "type": "number",
-      "unit": "g",
-      "minimum": -8192,
-      "maximum": 8191
+      "description": "Acceleration on the X-Axis is g"
     },
     "accY": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G",
       "title": "Acceleration Y-Axis",
-      "description": "Acceleration on the Y-Axis is g",
-      "type": "number",
-      "unit": "g",
-      "minimum": -8192,
-      "maximum": 8191
+      "description": "Acceleration on the Y-Axis is g"
     },
     "accZ": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G",
       "title": "Acceleration Z-Axis",
-      "description": "Acceleration on the Z-Axis is g",
-      "type": "number",
-      "unit": "g",
-      "minimum": -8192,
-      "maximum": 8191
+      "description": "Acceleration on the Z-Axis is g"
     }
   },
-  "required": ["buttonId", "imageID", "temperature", "accX", "accY", "accZ"]
+  "required": [
+    "buttonId",
+    "imageID",
+    "temperature",
+    "accX",
+    "accY",
+    "accZ"
+  ]
 }

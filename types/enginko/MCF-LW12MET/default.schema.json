@@ -37,14 +37,10 @@
       "title": "Apparent power"
     },
     "voltage": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
-      "description": "Voltage",
-      "title": "Voltage"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt"
     },
     "current": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere",
-      "description": "Current",
-      "title": "Current"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere"
     },
     "period": {
       "title": "Period",
@@ -63,5 +59,9 @@
       "type": "number"
     }
   },
-  "required": ["activeEnergy", "reactiveEnergy", "apparentEnergy"]
+  "required": [
+    "activeEnergy",
+    "reactiveEnergy",
+    "apparentEnergy"
+  ]
 }

@@ -13,12 +13,9 @@
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
     },
     "analog1": {
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/milliVolt",
       "title": "Analog input 1",
-      "description": "Voltage in mV",
-      "unit": "mV",
-      "minimum": 0,
-      "maximum": 65535
+      "description": "Voltage in mV"
     },
     "pulse1": {
       "title": "Pulse 1 count",
@@ -64,12 +61,9 @@
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/hPa"
     },
     "analog2": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/milliVolt",
       "title": "Analog input 2",
-      "unit": "mV",
-      "type": "number",
-      "description": "Voltage in mV",
-      "minimum": 0,
-      "maximum": 65535
+      "description": "Voltage in mV"
     },
     "pulse2": {
       "title": "Pulse 2 count",
@@ -89,5 +83,9 @@
       "title": "External temperature 2"
     }
   },
-  "required": ["temperature", "humidity", "pressure"]
+  "required": [
+    "temperature",
+    "humidity",
+    "pressure"
+  ]
 }

@@ -10,19 +10,28 @@
       "title": "Switch 1",
       "description": "Switch 1",
       "type": "string",
-      "enum": ["OPEN", "CLOSE"]
+      "enum": [
+        "OPEN",
+        "CLOSE"
+      ]
     },
     "switch2": {
       "title": "Switch 2",
       "description": "Switch 2",
       "type": "string",
-      "enum": ["OPEN", "CLOSE"]
+      "enum": [
+        "OPEN",
+        "CLOSE"
+      ]
     },
     "switch3": {
       "title": "Switch 3",
       "description": "Switch 3",
       "type": "string",
-      "enum": ["OPEN", "CLOSE"]
+      "enum": [
+        "OPEN",
+        "CLOSE"
+      ]
     },
     "switch1change": {
       "title": "Switch 1 changed",
@@ -40,9 +49,7 @@
       "type": "boolean"
     },
     "voltage": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
-      "description": "Voltage",
-      "title": "Voltage"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt"
     },
     "power": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activePower/watt",
@@ -62,9 +69,7 @@
       "unit": "Wh"
     },
     "current": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/milliAmpere",
-      "description": "Current",
-      "title": "Current"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/milliAmpere"
     }
   },
   "required": [
