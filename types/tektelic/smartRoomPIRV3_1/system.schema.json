@@ -10,98 +10,154 @@
       "title": "Join Mode",
       "type": "string",
       "description": "Join Mode",
-      "enum": ["ABP", "OTAA", "INVALID"],
+      "enum": [
+        "ABP",
+        "OTAA",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "adr": {
       "title": "Adaptive datarate",
       "type": "string",
       "description": "Adaptive datarate",
-      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "dutyCycle": {
       "title": "Duty cycle",
       "type": "string",
       "description": "Duty cycle",
-      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "syncWord": {
       "title": "Sync word",
       "type": "string",
       "description": "Sync word",
-      "enum": ["PRIVATE", "PUBLIC", "INVALID"],
+      "enum": [
+        "PRIVATE",
+        "PUBLIC",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "risingEdgeEnabled": {
       "title": "Rising edge enabled",
       "type": "string",
       "description": "Rising edge enabled",
-      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "risingEdgeEnabledEx": {
       "title": "Rising edge enabled ex",
       "type": "string",
       "description": "Rising edge enabled ex",
-      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "fallingEdgeEnabled": {
       "title": "Falling edge enabled",
       "type": "string",
       "description": "Falling edge enabled",
-      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "fallingEdgeEnabledEx": {
       "title": "Falling edge enabled ex",
       "type": "string",
       "description": "Falling edge enabled ex",
-      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "confirmMode": {
       "title": "Confirm mode",
       "type": "string",
       "description": "Confirm mode",
-      "enum": ["UNCONFIRMED", "CONFIRMED", "INVALID"],
+      "enum": [
+        "UNCONFIRMED",
+        "CONFIRMED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "mode": {
       "title": "Sensor mode",
       "type": "string",
       "description": "Sensor mode",
-      "enum": ["DIGITAL", "ANALOG", "INVALID"],
+      "enum": [
+        "DIGITAL",
+        "ANALOG",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "reportStateEnabled": {
       "title": "Report state enabled",
       "type": "string",
       "description": "Report state enabled",
-      "enum": ["UNCONFIRMED", "CONFIRMED", "INVALID"],
+      "enum": [
+        "UNCONFIRMED",
+        "CONFIRMED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "reportCountEnabled": {
       "title": "Report count enabled",
       "type": "string",
       "description": "Report count enabled",
-      "enum": ["UNCONFIRMED", "CONFIRMED", "INVALID"],
+      "enum": [
+        "UNCONFIRMED",
+        "CONFIRMED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "reportStateEnabledEx": {
       "title": "Report state enabled ex",
       "type": "string",
       "description": "Report state enabled ex",
-      "enum": ["OFF", "ON", "INVALID"],
+      "enum": [
+        "OFF",
+        "ON",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "reportCountEnabledEx": {
       "title": "Report count enabled external",
       "type": "string",
       "description": "Report count enabled external",
-      "enum": ["OFF", "ON", "INVALID"],
+      "enum": [
+        "OFF",
+        "ON",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "countType": {
@@ -126,35 +182,55 @@
       "title": "Report periodic alarm enabled",
       "type": "string",
       "description": "Report periodic alarm enabled",
-      "enum": ["OFF", "ON", "INVALID"],
+      "enum": [
+        "OFF",
+        "ON",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "reportPeriodicMagnitudeEnabled": {
       "title": "Report periodic magnitude enabled",
       "type": "string",
       "description": "Report periodic magnitude enabled",
-      "enum": ["OFF", "ON", "INVALID"],
+      "enum": [
+        "OFF",
+        "ON",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "reportPeriodicVectorEnabled": {
       "title": "Report periodic vector enabled",
       "type": "string",
       "description": "Report periodic vector enabled",
-      "enum": ["OFF", "ON", "INVALID"],
+      "enum": [
+        "OFF",
+        "ON",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "reportEventMagnitudeEnabled": {
       "title": "Report periodic magnitude enabled",
       "type": "string",
       "description": "Report periodic magnitude enabled",
-      "enum": ["OFF", "ON", "INVALID"],
+      "enum": [
+        "OFF",
+        "ON",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "reportEventVectorEnabled": {
       "title": "Report periodic vector enabled",
       "type": "string",
       "description": "Report periodic vector enabled",
-      "enum": ["OFF", "ON", "INVALID"],
+      "enum": [
+        "OFF",
+        "ON",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "accelerationImpactGracePeriod": {
@@ -167,42 +243,66 @@
       "title": "Impact threshold enabled",
       "type": "string",
       "description": "Impact threshold enabled",
-      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "accelerationThresholdEnabled": {
       "title": "Acceleration threshold enabled",
       "type": "string",
       "description": "Acceleration threshold enabled",
-      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "xAxisEnabled": {
       "title": "X-Axis enabled",
       "type": "string",
       "description": "X-Axis enabled",
-      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "yAxisEnabled": {
       "title": "Y-Axis enabled",
       "type": "string",
       "description": "Y-Axis enabled",
-      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "zAxisEnabled": {
       "title": "Z-Axis enabled",
       "type": "string",
       "description": "Z-Axis enabled",
-      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "powerOn": {
       "title": "Power on",
       "type": "string",
       "description": "Power on",
-      "enum": ["OFF", "ON", "INVALID"],
+      "enum": [
+        "OFF",
+        "ON",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "accelerometerSampleRate": {
@@ -213,9 +313,8 @@
       "hideFromKpis": true
     },
     "accelerometerMeasurementRange": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G",
       "title": "Accelerometer measurement range",
-      "type": "number",
-      "unit": "g",
       "description": "Accelerometer measurement range",
       "hideFromKpis": true
     },
@@ -265,7 +364,11 @@
       "title": "Ambient temperature threshold enabled",
       "type": "string",
       "description": "Ambient temperature threshold enabled",
-      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "highRhThreshold": {
@@ -284,7 +387,11 @@
       "title": "Relative humidity threshold enabled",
       "type": "string",
       "description": "Relative humidity threshold enabled",
-      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "mcuTemperatureSamplePeriodIdle": {
@@ -315,7 +422,11 @@
       "title": "MCU temperature threshold enabled",
       "type": "string",
       "description": "MCU temperature threshold enabled",
-      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "analogSamplePeriodIdle": {
@@ -346,7 +457,11 @@
       "title": "Analog input threshold enabled",
       "type": "string",
       "description": "Analog input threshold enabled",
-      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "lightSamplePeriod": {
@@ -359,7 +474,11 @@
       "title": "Light threshold",
       "type": "string",
       "description": "Light threshold",
-      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "thresholdEnabled": {
@@ -372,14 +491,22 @@
       "title": "Light state threshold",
       "type": "string",
       "description": "Light state threshold",
-      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "lightIntensityReported": {
       "title": "Light state threshold",
       "type": "string",
       "description": "Light state threshold",
-      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "pirGracePeriod": {
@@ -404,28 +531,44 @@
       "title": "Motion count reported",
       "type": "string",
       "description": "Motion count reported",
-      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "motionStateReported": {
       "title": "Motion state reported",
       "type": "string",
       "description": "Motion state reported",
-      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "eventTransmissionEnabled": {
       "title": "Event transmission enabled",
       "type": "string",
       "description": "Event transmission enabled",
-      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "transducerEnabled": {
       "title": "Transducer enabled",
       "type": "string",
       "description": "Transducer enabled",
-      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "postTurnOn": {
@@ -444,7 +587,11 @@
       "title": "Response to downlink command format",
       "type": "string",
       "description": "Response to downlink command format",
-      "enum": ["INVALIDE_WRITE_RESPONSE_FORMAT", "4_BYTE_CRC", "INVALID"],
+      "enum": [
+        "INVALIDE_WRITE_RESPONSE_FORMAT",
+        "4_BYTE_CRC",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "externalConnectorCountThreshold": {
@@ -595,7 +742,11 @@
       "title": "Enabled",
       "type": "string",
       "description": "Enabled",
-      "enum": ["DISABLED", "ENABLED", "INVALID"],
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "gamma": {
@@ -794,7 +945,11 @@
       "title": "Hall effect state",
       "type": "string",
       "description": "Hall effect state",
-      "enum": ["MAGNET_PRESENT", "MAGNET_ABSENT", "INVALID"],
+      "enum": [
+        "MAGNET_PRESENT",
+        "MAGNET_ABSENT",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "hallEffectCount": {
@@ -807,7 +962,11 @@
       "title": "Impact alarm",
       "type": "string",
       "description": "Impact alarm",
-      "enum": ["IMPACT_ALARM_INACTIVE", "IMPACT_ALARM_ACTIVE", "INVALID"],
+      "enum": [
+        "IMPACT_ALARM_INACTIVE",
+        "IMPACT_ALARM_ACTIVE",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "impactMagnitude": {
@@ -838,7 +997,11 @@
       "title": "External connector state",
       "type": "string",
       "description": "External connector state",
-      "enum": ["LOW", "HIGH", "INVALID"],
+      "enum": [
+        "LOW",
+        "HIGH",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "extConnectorCount": {
@@ -906,7 +1069,11 @@
       "title": "Light detected",
       "type": "string",
       "description": "Light detected",
-      "enum": ["DARK", "BRIGHT", "INVALID"],
+      "enum": [
+        "DARK",
+        "BRIGHT",
+        "INVALID"
+      ],
       "hideFromKpis": true
     },
     "lightIntensity": {

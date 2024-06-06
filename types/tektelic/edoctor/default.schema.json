@@ -7,10 +7,9 @@
   "processingType": "uplink_decoder",
   "properties": {
     "bodyTemperature": {
-      "title": "Body temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "Body temperature"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "description": "Body temperature",
+      "title": "Body temperature"
     },
     "respiratoryRate": {
       "title": "Respiratory rate",

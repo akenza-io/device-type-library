@@ -7,12 +7,7 @@
   "title": "Battery level",
   "properties": {
     "batteryLevel": {
-      "title": "Battery level",
-      "type": "number",
-      "description": "The battery level in percent.",
-      "minimum": 0,
-      "maximum": 100,
-      "unit": "%"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
     },
     "batteryCharge": {
       "title": "Battery charge",

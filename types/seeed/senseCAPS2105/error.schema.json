@@ -23,8 +23,5 @@
       "description": "Name which the error correlates to"
     }
   },
-  "required": [
-    "errorCode",
-    "fieldName"
-  ]
+  "required": ["errorCode", "fieldName"]
 }

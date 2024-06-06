@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.50.0] - 2024-05-24
+
+### Changed
+
+- Implemented references for commonly used datapoints
+
 # [1.49.0] - 2024-05-23
 
 ### Changed

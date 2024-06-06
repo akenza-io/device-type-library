@@ -24,10 +24,9 @@
       "description": "Lightning strike count"
     },
     "lightningAverageDistance": {
-      "title": "Lightning average distance",
-      "unit": "km",
-      "type": "number",
-      "description": "Lightning average distance"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/km",
+      "description": "Lightning average distance",
+      "title": "Lightning average distance"
     },
     "windSpeed": {
       "title": "Wind speed",
@@ -48,32 +47,24 @@
       "description": "Maximum wind speed"
     },
     "temperature": {
-      "title": "Air temperature",
-      "unit": "°C",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "Air temperature",
-      "minimum": -50,
-      "maximum": 80
+      "title": "Air temperature"
     },
     "vaporPressure": {
-      "title": "Vapor pressure",
-      "unit": "kPa",
-      "type": "number",
-      "description": "Vapor pressure"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/kPa",
+      "description": "Vapor pressure",
+      "title": "Vapor pressure"
     },
     "atmosphericPressure": {
-      "title": "Atmospheric pressure",
-      "unit": "kPa",
-      "type": "number",
-      "description": "Atmospheric pressure"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/kPa",
+      "description": "Atmospheric pressure",
+      "title": "Atmospheric pressure"
     },
     "humidity": {
-      "title": "Relative humidity",
-      "unit": "%",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
       "description": "Relative humidity",
-      "minimum": 0,
-      "maximum": 100
+      "title": "Relative humidity"
     },
     "northWindSpeed": {
       "title": "North wind speed",

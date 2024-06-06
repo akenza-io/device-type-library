@@ -1,5 +1,4 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -52,7 +51,7 @@ describe("WS136 & WS156 Uplink", () => {
         assert.equal(value.data.serialNumber, "6592b32851010013");
         assert.equal(value.data.softwareVersion, "1.2");
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -73,7 +72,7 @@ describe("WS136 & WS156 Uplink", () => {
         assert.equal(value.topic, "lifecycle");
 
         assert.equal(value.data.batteryLevel, 100);
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -85,7 +84,9 @@ describe("WS136 & WS156 Uplink", () => {
         assert.equal(value.data.buttonNumber, 1);
         assert.equal(value.data.command, 24);
 
-        validate(value.data, buttonPressedSchema, { throwError: true });
+        utils.validateSchema(value.data, buttonPressedSchema, {
+          throwError: true,
+        });
       });
 
       consume(data);

@@ -24,57 +24,39 @@
       "hideFromKpis": true
     },
     "tempOffset": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "title": "Temperature offset",
-      "unit": "°C",
-      "type": "number",
       "description": "Temperature offset used when calculating actual temperature",
-      "minimum": -5000,
-      "maximum": 5000,
       "hideFromKpis": true
     },
     "tempMax": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "title": "Temperature maximum",
-      "unit": "°C",
-      "type": "number",
       "description": "Temperature maximum",
-      "minimum": -25,
-      "maximum": 80,
       "hideFromKpis": true
     },
     "tempMin": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "title": "Temperature minimum",
-      "unit": "°C",
-      "type": "number",
       "description": "Temperature minimum",
-      "minimum": -25,
-      "maximum": 80,
       "hideFromKpis": true
     },
     "humOffset": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
       "title": "Humidity offset",
-      "unit": "%",
-      "type": "number",
       "description": "Humidity offset used when calculating actual temperature",
-      "minimum": 0,
-      "maximum": 100,
       "hideFromKpis": true
     },
     "humMax": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
       "title": "Humidity maximum",
-      "unit": "%",
-      "type": "number",
       "description": "Humidity maximum",
-      "minimum": 0,
-      "maximum": 100,
       "hideFromKpis": true
     },
     "humMin": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
       "title": "Humidity minimum",
-      "unit": "%",
-      "type": "number",
       "description": "The relative humidity in %",
-      "minimum": 0,
-      "maximum": 100,
       "hideFromKpis": true
     }
   },
