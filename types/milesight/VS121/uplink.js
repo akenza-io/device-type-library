@@ -41,8 +41,10 @@ function readString(bytes) {
   }
   return temp.join("");
 }
-
 function isEmpty(obj) {
+  if (obj === undefined) {
+    return true;
+  }
   return Object.keys(obj).length === 0;
 }
 
