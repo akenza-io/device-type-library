@@ -112,6 +112,7 @@ function deleteUnusedKeys(data) {
 function consume(event) {
   const payload = event.data.payloadHex;
   let customFieldsUsed = false;
+  let tare = 0;
 
   if (event.device !== undefined) {
     if (event.device.customFields !== undefined) {
@@ -129,6 +130,9 @@ function consume(event) {
         decentlab_decoder.PARAMETERS.s = underLoad;
         decentlab_decoder.PARAMETERS.m0 = strain;
 
+        if (customFields.tare !== undefined) {
+          tare = customFields.tare;
+        }
         customFieldsUsed = true;
       }
     }
@@ -140,7 +144,7 @@ function consume(event) {
 
   // Default values
   data.frequency = Math.round(sample.frequency * 100) / 100;
-  data.weight = Math.round(sample.weight * 100) / 100;
+  data.weight = Math.round(sample.weight * 100) / 100 - tare;
 
   // Lifecycle values
   lifecycle.batteryVoltage = sample.battery_voltage;

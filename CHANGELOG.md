@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.50.0] - 2024-06-12
+
+### Added
+
+- Decentlab - DWS
+
+### Changed
+
+- Updated isEmpty to react correctly to not initialized objects
+- Updated a few urls in the meta
+- Updated some images
+
 # [1.50.0] - 2024-05-24
 
 ### Changed
