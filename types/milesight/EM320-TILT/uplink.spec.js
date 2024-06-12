@@ -1,5 +1,4 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -47,7 +46,7 @@ describe("EM320-TILT Uplink", () => {
 
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryLevel, 100);
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -62,7 +61,7 @@ describe("EM320-TILT Uplink", () => {
         assert.equal(value.data.xThresholdReached, false);
         assert.equal(value.data.yThresholdReached, true);
         assert.equal(value.data.zThresholdReached, false);
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

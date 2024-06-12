@@ -27,7 +27,5 @@
       "description": "Total raw pulses with second node received"
     }
   },
-  "required": [
-    "pulse"
-  ]
+  "required": ["pulse"]
 }

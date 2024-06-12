@@ -60,7 +60,7 @@
     },
     "magnitudeTolerance": {
       "title": "Magnitude tolerance",
-      "unit": "mg",
+      "unit": "mG",
       "type": "number",
       "description": "How strong the device can move to detect an orientation",
       "minimum": 10,
@@ -69,7 +69,7 @@
     },
     "tiltTolerance": {
       "title": "Tilt tolerance",
-      "unit": "mg",
+      "unit": "mG",
       "type": "number",
       "description": "How strong the device can be tilted to detect an orientation",
       "minimum": 10,

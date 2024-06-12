@@ -23,8 +23,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "appMainVersion",
-    "appMinorVersion"
-  ]
+  "required": ["appMainVersion", "appMinorVersion"]
 }

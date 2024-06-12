@@ -1,5 +1,4 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -39,7 +38,7 @@ describe("WS51X Uplink", () => {
         assert.equal(value.data.powerOn, true);
         assert.equal(value.data.voltage, 217.9);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

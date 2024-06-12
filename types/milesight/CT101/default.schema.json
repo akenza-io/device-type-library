@@ -7,22 +7,17 @@
   "title": "Default",
   "properties": {
     "current": {
-      "title": "Current",
-      "unit": "A",
-      "description": "Current",
-      "type": "number"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere"
     },
     "currentMin": {
-      "title": "Minimal current",
-      "unit": "A",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere",
       "description": "Minimal current recorded",
-      "type": "number"
+      "title": "Minimal current"
     },
     "currentMax": {
-      "title": "Maximal current",
-      "unit": "A",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere",
       "description": "Maximal current recorded",
-      "type": "number"
+      "title": "Maximal current"
     }
   },
   "required": [

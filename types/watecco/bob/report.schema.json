@@ -22,12 +22,7 @@
       "maximum": 255
     },
     "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
     "operatingTime": {
       "title": "Operating Time",
@@ -39,7 +34,6 @@
     },
     "reportID": {
       "title": "Report ID",
-      "unit": "mg",
       "description": "Used to identify the message (increase with time)",
       "type": "integer",
       "minimum": 0,

@@ -7,36 +7,20 @@
   "title": "Default",
   "properties": {
     "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
     "light": {
-      "title": "Light",
-      "unit": "lux",
-      "type": "number",
-      "description": "The light in lux.",
-      "minimum": 0,
-      "maximum": 65535
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/illuminance/lux"
     },
     "maxAccelerationNew": {
-      "title": "Max acceleration",
-      "unit": "mg",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/mG",
       "description": "Max acceleration of the sensor since the last event.",
-      "type": "number",
-      "minimum": -32767,
-      "maximum": 32767
+      "title": "Max acceleration"
     },
     "maxAccelerationHistory": {
-      "title": "Max acceleration history",
-      "unit": "mg",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/mG",
       "description": "Max acceleration over all events.",
-      "type": "number",
-      "minimum": -32767,
-      "maximum": 32767
+      "title": "Max acceleration history"
     }
   },
   "required": [

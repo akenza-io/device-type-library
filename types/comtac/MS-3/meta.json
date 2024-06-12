@@ -17,11 +17,7 @@
     "Magnetometer",
     "GPS"
   ],
-  "outputTopics": [
-    "event",
-    "default",
-    "lifecycle"
-  ],
+  "outputTopics": ["event", "default", "lifecycle", "gps"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

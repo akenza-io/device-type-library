@@ -13,7 +13,5 @@
       "maximum": 65535
     }
   },
-  "required": [
-    "avgWaitingTime"
-  ]
+  "required": ["avgWaitingTime"]
 }

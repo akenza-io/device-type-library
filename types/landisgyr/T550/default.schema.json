@@ -29,9 +29,8 @@
       "maximum": 3276.5
     },
     "power": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours",
       "title": "Power",
-      "unit": "kWh",
-      "type": "number",
       "description": "Power in kWh"
     },
     "energy": {
@@ -43,7 +42,12 @@
       "title": "Energy unit",
       "type": "string",
       "description": "Message header",
-      "enum": ["MWH", "KWH", "GJ", "MJ"]
+      "enum": [
+        "MWH",
+        "KWH",
+        "GJ",
+        "MJ"
+      ]
     },
     "flow": {
       "title": "flow",

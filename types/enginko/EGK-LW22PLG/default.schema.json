@@ -7,22 +7,19 @@
   "topic": "default",
   "properties": {
     "activeEnergy": {
-      "title": "Active energy",
-      "unit": "Wh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/wattHours",
       "description": "Cumulative Active energy",
-      "type": "number"
+      "title": "Active energy"
     },
     "reactiveEnergy": {
-      "title": "Reactive energy",
-      "unit": "VARh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/reactiveEnergy/voltAmpereReactiveHours",
       "description": "Cumulative Reactive energy",
-      "type": "number"
+      "title": "Reactive energy"
     },
     "apparentEnergy": {
-      "title": "Apparent energy",
-      "unit": "VAh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/apparentEnergy/voltAmpereHours",
       "description": "Cumulative Apparent energy",
-      "type": "number"
+      "title": "Apparent energy"
     },
     "activation": {
       "title": "Activation",
@@ -31,9 +28,5 @@
       "type": "number"
     }
   },
-  "required": [
-    "activeEnergy",
-    "reactiveEnergy",
-    "apparentEnergy"
-  ]
+  "required": ["activeEnergy", "reactiveEnergy", "apparentEnergy"]
 }

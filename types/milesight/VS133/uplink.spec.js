@@ -161,5 +161,30 @@ describe("Milesight VS133 Uplink", () => {
 
       consume(data);
     });
+
+    it("should decode should decode the Milesight VS133 1 Line", () => {
+      const data = {
+        data: {
+          port: 85,
+          payloadHex: "03d2d915000004d25514000005cc00000000",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "line_1");
+        assert.equal(value.data.periodicCounterIn, 0);
+        assert.equal(value.data.periodicCounterOut, 0);
+        assert.equal(value.data.totalCounterIn, 5593);
+        assert.equal(value.data.totalCounterOut, 5205);
+
+        utils.validateSchema(value.data, line1Schema, { throwError: true });
+      });
+
+      consume(data);
+    });
   });
 });

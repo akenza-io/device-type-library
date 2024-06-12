@@ -7,52 +7,40 @@
   "topic": "default",
   "properties": {
     "activeEnergy": {
-      "title": "Active energy",
-      "unit": "Wh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/wattHours",
       "description": "Cumulative Active energy",
-      "type": "number"
+      "title": "Active energy"
     },
     "reactiveEnergy": {
-      "title": "Reactive energy",
-      "unit": "VARh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/reactiveEnergy/voltAmpereReactiveHours",
       "description": "Cumulative Reactive energy",
-      "type": "number"
+      "title": "Reactive energy"
     },
     "apparentEnergy": {
-      "title": "Apparent energy",
-      "unit": "VAh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/apparentEnergy/voltAmpereHours",
       "description": "Cumulative Apparent energy",
-      "type": "number"
+      "title": "Apparent energy"
     },
     "activePower": {
-      "title": "Active power",
-      "unit": "W",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activePower/watt",
       "description": "Active power",
-      "type": "number"
+      "title": "Active power"
     },
     "reactivePower": {
-      "title": "Reactive power",
-      "unit": "VAR",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/reactivePower/voltAmpereReactive",
       "description": "Reactive power",
-      "type": "number"
+      "title": "Reactive power"
     },
     "apparentPower": {
-      "title": "Apparent power",
-      "unit": "VA",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/apparentPower/voltAmpere",
       "description": "Apparent power",
-      "type": "number"
+      "title": "Apparent power"
     },
     "voltage": {
-      "title": "Voltage",
-      "unit": "V",
-      "description": "Voltage",
-      "type": "number"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt"
     },
     "current": {
-      "title": "Current",
-      "unit": "A",
-      "description": "Current",
-      "type": "number"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere"
     },
     "period": {
       "title": "Period",
@@ -60,10 +48,9 @@
       "type": "number"
     },
     "frequency": {
-      "title": "Frequency",
-      "unit": "Hz",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/frequency/hertz",
       "description": "Frequency",
-      "type": "number"
+      "title": "Frequency"
     },
     "activation": {
       "title": "Activation",

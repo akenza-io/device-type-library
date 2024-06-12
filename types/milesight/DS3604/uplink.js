@@ -3,8 +3,10 @@ function fromUtf8Bytes(bytes) {
     bytes.map((ch) => `%${ch < 16 ? "0" : ""}${ch.toString(16)}`).join(""),
   );
 }
-
 function isEmpty(obj) {
+  if (obj === undefined) {
+    return true;
+  }
   return Object.keys(obj).length === 0;
 }
 

@@ -30,10 +30,7 @@
       "title": "Function mode",
       "description": "Function mode",
       "type": "string",
-      "enum": [
-        "BASIC",
-        "OTHER"
-      ]
+      "enum": ["BASIC", "OTHER"]
     },
     "logPeriod": {
       "title": "Log period",

@@ -7,14 +7,8 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": [
-    "Pulse"
-  ],
-  "outputTopics": [
-    "default",
-    "lifecycle",
-    "system"
-  ],
+  "availableSensors": ["Pulse"],
+  "outputTopics": ["default", "lifecycle", "system"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

@@ -7,33 +7,18 @@
   "title": "Default",
   "properties": {
     "pressure": {
-      "title": "Pressure",
-      "unit": "bar",
-      "description": "Hydrostatic Pressure in bar",
-      "type": "number",
-      "minimum": -0.1,
-      "maximum": 1
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/bar"
     },
     "temperature": {
-      "title": "Water Temperature",
-      "unit": "°C",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "The water temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "title": "Water Temperature"
     },
     "level": {
-      "title": "Water Level",
-      "unit": "m",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/fillLevel/absolute",
       "description": "The water level above the sensor in m.",
-      "minimum": 0,
-      "maximum": 10
+      "title": "Water Level"
     }
   },
-  "required": [
-    "pressure",
-    "temperature",
-    "level"
-  ]
+  "required": ["pressure", "temperature", "level"]
 }

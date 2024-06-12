@@ -22,16 +22,9 @@
       "title": "Transmission mode",
       "description": "Transmission mode",
       "type": "string",
-      "enum": [
-        "LOW_POWER_STANDARD_MODE",
-        "HIGH_POWER_BOOST_MODE"
-      ],
+      "enum": ["LOW_POWER_STANDARD_MODE", "HIGH_POWER_BOOST_MODE"],
       "hideFromKpis": true
     }
   },
-  "required": [
-    "signalStrength",
-    "rssi",
-    "transmissionMode"
-  ]
+  "required": ["signalStrength", "rssi", "transmissionMode"]
 }

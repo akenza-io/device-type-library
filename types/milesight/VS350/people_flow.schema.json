@@ -30,22 +30,14 @@
       "title": "Periodic out",
       "description": "Periodic out",
       "type": "string",
-      "enum": [
-        "THRESHOLD_ALARM_RELEASE",
-        "THRESHOLD_ALARM",
-        "UNKNOWN"
-      ],
+      "enum": ["THRESHOLD_ALARM_RELEASE", "THRESHOLD_ALARM", "UNKNOWN"],
       "hideFromKpis": true
     },
     "periodicCountAlarm": {
       "title": "Periodic out",
       "description": "Periodic out",
       "type": "string",
-      "enum": [
-        "THRESHOLD_ALARM_RELEASE",
-        "THRESHOLD_ALARM",
-        "UNKNOWN"
-      ],
+      "enum": ["THRESHOLD_ALARM_RELEASE", "THRESHOLD_ALARM", "UNKNOWN"],
       "hideFromKpis": true
     }
   }
