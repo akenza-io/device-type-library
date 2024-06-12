@@ -43,8 +43,10 @@ function readUInt16LE(bytes) {
   const value = (bytes[1] << 8) + bytes[0];
   return value & 0xffff;
 }
-
 function isEmpty(obj) {
+  if (obj === undefined) {
+    return true;
+  }
   return Object.keys(obj).length === 0;
 }
 
