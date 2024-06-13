@@ -1,0 +1,99 @@
+{
+  "$id": "https://akenza.io/smartEnds/brigtherBins/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "resetReason": {
+      "title": "Reset reason",
+      "type": "string",
+      "description": "Reset reason",
+      "enum": [
+        "CLEARED",
+        "POWER_OR_BROWNOUT",
+        "POWER_ON",
+        "WATCH_DOG",
+        "SOFTWARE/OTHER_RESETS",
+        "PIN_RESET",
+        "CPU_LOCKUP",
+        "SYS_OFF_GPIO",
+        "VBUS",
+        "SYS_OFF_LPCOM",
+        "DEBUG_INTERFACE",
+        "NFC",
+        "SILENT_RESET_DOWNLINK",
+        "RECOVERY_TIMEOUT",
+        "RECOVERY_OVERFLOW",
+        "RECOVERY_TIMEOUT_OVERFLOW",
+        "RESERVED"
+      ],
+      "hideFromKpis": true
+    },
+    "batteryLevel": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "unit": "%"
+    },
+    "batteryVoltage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "title": "Battery voltage",
+      "description": "The battery voltage in Volt.",
+      "unit": "V"
+    },
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "downlinkValidity": {
+      "title": "Downlink validity",
+      "type": "string",
+      "description": "Downlink validity",
+      "enum": [
+        "DOWNLINK_NOT_RESEVED",
+        "DOWNLINK_SUCCSESFUL",
+        "DOWNLINK_BOUND_ERROR",
+        "DOWNLINK_PROCESSING_FAILED"
+      ],
+      "hideFromKpis": true
+    },
+    "txReason": {
+      "title": "TX Reason",
+      "type": "string",
+      "description": "TX Reason",
+      "enum": [
+        "OTHER",
+        "FIRST",
+        "TIME_UPDATE",
+        "BOTH_CHANGE",
+        "POSITIV_CHANGE",
+        "NEGATIVE_CHANGE",
+        "TRANSMIT_INTERVAL",
+        "MOTION_EVENT_BUFFER_FULL",
+        "MOTION_EVENT_PICKUP",
+        "MOTION_EVENT_FIRE_ALARM",
+        "MOTION_EVENT_TAMPER"
+      ],
+      "hideFromKpis": true
+    },
+    "measurementInterval": {
+      "title": "Measurement interval",
+      "type": "number",
+      "description": "Measurement interval",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "batteryLevel"
+  ]
+}

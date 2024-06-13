@@ -1,0 +1,41 @@
+{
+  "$id": "https://akenza.io/smartEnds/brigtherBins/event.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "event",
+  "title": "Event",
+  "properties": {
+    "tamperEvent": {
+      "title": "Tamper event",
+      "type": "boolean",
+      "description": "Tamper event equals true if the device got tampered with",
+      "hideFromKpis": true
+    },
+    "fireAlarm": {
+      "title": "Fire alarm",
+      "type": "boolean",
+      "description": "Fire alarm",
+      "hideFromKpis": true
+    },
+    "pickupAlert": {
+      "title": "Pickup alert",
+      "type": "string",
+      "description": "Pickup alert",
+      "enum": [
+        "NONE",
+        "MOTION",
+        "FILL_LEVEL_PERCENTAGE",
+        "MOTION_AND_FILL_LEVEL"
+      ],
+      "hideFromKpis": true
+    },
+    "pickupEvent": {
+      "title": "Pickup event",
+      "type": "boolean",
+      "description": "Pickup event equals true if an pickup alert is issued.",
+      "hideFromKpis": true
+    }
+  },
+  "required": []
+}

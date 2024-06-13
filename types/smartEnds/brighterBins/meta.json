@@ -1,0 +1,26 @@
+{
+  "name": "Brighter Bins",
+  "version": "1.0.0",
+  "manufacturer": "smartEnds",
+  "url": "https://www.brighterbins.com/",
+  "description": "BrighterBins is an IoT product from SmartEnds to monitor your waste collection. The moveable transducer tunnel allows the device to be mounted in different orientations.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Distance"
+  ],
+  "outputTopics": [
+    "depth",
+    "distance_history",
+    "distance",
+    "event",
+    "fill_level",
+    "lifecycle",
+    "motion_history",
+    "orientation",
+    "system"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
