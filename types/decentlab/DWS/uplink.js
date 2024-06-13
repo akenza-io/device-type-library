@@ -145,6 +145,23 @@ function consume(event) {
   // Default values
   data.frequency = Math.round(sample.frequency * 100) / 100;
   data.weight = Math.round(sample.weight * 100) / 100 - tare;
+  data.weightKg = data.weight / 1000;
+
+  // Init state
+  if (event.state.lastWeighting === undefined) {
+    event.state.lastWeighting = data.weight;
+  }
+
+  // Calculate increment
+  data.incrementGram = data.weight - event.state.lastWeighting;
+  data.incrementKg = data.weightKg - event.state.lastWeighting / 1000;
+  event.state.lastWeighting = data.weight;
+
+  // Zero negative weight
+  if (data.incrementGram < 0) {
+    data.incrementGram = 0;
+    data.incrementKg = 0;
+  }
 
   // Lifecycle values
   lifecycle.batteryVoltage = sample.battery_voltage;
@@ -168,4 +185,5 @@ function consume(event) {
   if (deleteUnusedKeys(lifecycle)) {
     emit("sample", { data: lifecycle, topic: "lifecycle" });
   }
+  emit("state", { state: event.state });
 }
