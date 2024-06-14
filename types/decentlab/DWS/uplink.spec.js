@@ -77,7 +77,7 @@ describe("Decentlab DWS Uplink", () => {
         assert.equal(type, "state");
         assert.isNotNull(value);
 
-        assert.equal(value.state.lastWeighting, 11.26);
+        assert.equal(value.lastWeighting, 11.26);
       });
 
       consume(data);
@@ -130,7 +130,7 @@ describe("Decentlab DWS Uplink", () => {
         assert.equal(type, "state");
         assert.isNotNull(value);
 
-        assert.equal(value.state.lastWeighting, 11.26);
+        assert.equal(value.lastWeighting, 11.26);
       });
 
       consume(data);
