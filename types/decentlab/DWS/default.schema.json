@@ -15,12 +15,33 @@
     "weight": {
       "title": "Weight",
       "unit": "g",
-      "description": "Weight",
+      "description": "Weight in gram",
+      "type": "number"
+    },
+    "weightKg": {
+      "title": "Weight",
+      "unit": "kg",
+      "description": "Weight in kilogram",
+      "type": "number"
+    },
+    "incrementGram": {
+      "title": "Increment gram",
+      "unit": "g",
+      "description": "Increment gram",
+      "type": "number"
+    },
+    "incrementKg": {
+      "title": "Increment kilogram",
+      "unit": "kg",
+      "description": "Increment kilogram",
       "type": "number"
     }
   },
   "required": [
     "frequency",
-    "weight"
+    "weight",
+    "weightKg",
+    "incrementGram",
+    "incrementKg"
   ]
 }
