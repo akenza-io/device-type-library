@@ -185,5 +185,5 @@ function consume(event) {
   if (deleteUnusedKeys(lifecycle)) {
     emit("sample", { data: lifecycle, topic: "lifecycle" });
   }
-  emit("state", { state: event.state });
+  emit("state", event.state);
 }
