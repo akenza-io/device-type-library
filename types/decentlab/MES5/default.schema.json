@@ -1,0 +1,42 @@
+{
+  "$id": "https://akenza.io/decentlab/mes5/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "status": {
+      "title": "Status",
+      "type": "integer",
+      "description": "Device status"
+    },
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "sludgeBlanket": {
+      "title": "Sludge blanket",
+      "unit": "%",
+      "type": "number",
+      "description": "Coverage of the sludge blanket in percent."
+    },
+    "suspendedSolid": {
+      "title": "Suspended solid",
+      "unit": "g*L-1",
+      "type": "number",
+      "description": "Suspended solid displayed as g*L-1."
+    },
+    "turbidity": {
+      "title": "Turbidity",
+      "unit": "FAU",
+      "type": "number",
+      "description": "Turbidity measures the level of particles such as sediment, plankton, or organic by-products, in the water."
+    }
+  },
+  "required": []
+}
