@@ -127,7 +127,8 @@ function consume(event) {
     emit("sample", { data, topic: "lifecycle" });
   } else if (event.data.logics_data !== undefined) {
     // Logic data
-    const regex = new RegExp("LINE");
+    const lineRegex = new RegExp("LINE");
+    const queueRegex = new RegExp("QUEUE_STATISTICS");
     const payload = event.data.logics_data.logics;
 
     // Standart Forwards & Backwards
@@ -146,6 +147,12 @@ function consume(event) {
     let bwMask = 0;
     let bwNoMask = 0;
 
+    // Queue statistics
+    let queueLength = 0;
+    let outflow = 0;
+    let queueingTime = 0;
+    let queueFlag = false;
+
     let peopleInZone = 0;
     let timestamp = new Date();
 
@@ -158,7 +165,7 @@ function consume(event) {
 
           // Dont send empty samples
           if (value > 0) {
-            if (regex.test(logic.info)) {
+            if (lineRegex.test(logic.info)) {
               // Line
               switch (count.name) {
                 case "fw":
@@ -194,6 +201,22 @@ function consume(event) {
                 default:
                   break;
               }
+            } else if (queueRegex.test(logic.info)) {
+              const { name } = count;
+              switch (name) {
+                case "queue-length":
+                  queueLength = value;
+                  break;
+                case "outflow":
+                  outflow = value;
+                  break;
+                case "queueing-time":
+                  queueingTime = Math.round(value);
+                  break;
+                default:
+                  break;
+              }
+              queueFlag = true;
             } else {
               // Zone
               peopleInZone += value;
@@ -229,6 +252,14 @@ function consume(event) {
 
     if (peopleInZone > 0) {
       emit("sample", { data: { peopleInZone }, topic: "zone", timestamp });
+    }
+
+    if (queueFlag) {
+      emit("sample", {
+        data: { outflow, queueLength, queueingTime },
+        topic: "queue",
+        timestamp,
+      });
     }
   }
 }

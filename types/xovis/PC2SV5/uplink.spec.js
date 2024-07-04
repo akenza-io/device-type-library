@@ -81,6 +81,14 @@ describe("Xovis V5 Uplink", () => {
       });
   });
 
+  let queueSchema = null;
+  before((done) => {
+    utils.loadSchema(`${__dirname}/queue.schema.json`).then((parsedSchema) => {
+      queueSchema = parsedSchema;
+      done();
+    });
+  });
+
   describe("consume()", () => {
     it("should decode the Xovis V5 event payload", () => {
       const data = {
@@ -4073,5 +4081,78 @@ describe("Xovis V5 Uplink", () => {
 
       consume(data);
     });
+  });
+
+  it("should decode the Xovis V5 logic queue statistic payload", () => {
+    const data = {
+      data: {
+        logics_data: {
+          package_info: {
+            version: "5.0",
+            id: 71,
+            agent_id: 1001,
+          },
+          sensor_info: {
+            serial_number: "00:6E:02:00:6D:BC",
+            type: "SINGLE_SENSOR",
+          },
+          logics: [
+            {
+              id: 1000,
+              name: "Queue statistics 1",
+              info: "XLT_QUEUE_STATISTICS",
+              geometries: [
+                {
+                  id: 1000,
+                  type: "ZONE",
+                  name: "Zone 1",
+                },
+              ],
+              records: [
+                {
+                  from: 1720000500000,
+                  to: 1720000560000,
+                  samples: 1,
+                  samples_expected: 1,
+                  counts: [
+                    {
+                      id: 1000001,
+                      name: "queue-length",
+                      value: 0,
+                    },
+                    {
+                      id: 1000002,
+                      name: "outflow",
+                      value: 8,
+                    },
+                    {
+                      id: 1000003,
+                      name: "queueing-time",
+                      value: 124.426003,
+                      unit: "seconds",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      },
+    };
+
+    utils.expectEmits((type, value) => {
+      assert.equal(type, "sample");
+      assert.isNotNull(value);
+      assert.typeOf(value.data, "object");
+
+      assert.equal(value.topic, "queue");
+      assert.equal(value.data.outflow, 8);
+      assert.equal(value.data.queueingTime, 124);
+      assert.equal(value.data.queueLength, 0);
+
+      utils.validateSchema(value.data, queueSchema, { throwError: true });
+    });
+
+    consume(data);
   });
 });
