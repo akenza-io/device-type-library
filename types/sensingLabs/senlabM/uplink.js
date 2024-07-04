@@ -95,6 +95,45 @@ function consume(event) {
       break;
   }
 
+  if (data.pulse !== undefined || data.pulse !== undefined) {
+    // Init state && Check for the case the counter reseted
+    if (
+      event.state.lastPulse === undefined ||
+      event.state.lastPulse > data.pulse
+    ) {
+      event.state.lastPulse = data.pulse;
+    }
+    // Calculate increment
+    data.incrementPuls = data.pulse - event.state.lastPulse;
+    event.state.lastPulse = data.pulse;
+  }
+
+  if (data.pulse1 !== undefined || data.pulse1 !== undefined) {
+    // Init state && Check for the case the counter reseted
+    if (
+      event.state.lastPulse1 === undefined ||
+      event.state.lastPulse1 > data.pulse1
+    ) {
+      event.state.lastPulse1 = data.pulse1;
+    }
+    // Calculate increment
+    data.incrementPuls1 = data.pulse1 - event.state.lastPulse1;
+    event.state.lastPulse1 = data.pulse1;
+  }
+
+  if (data.pulse2 !== undefined || data.pulse2 !== undefined) {
+    // Init state && Check for the case the counter reseted
+    if (
+      event.state.lastPulse2 === undefined ||
+      event.state.lastPulse2 > data.pulse2
+    ) {
+      event.state.lastPulse2 = data.pulse2;
+    }
+    // Calculate increment
+    data.incrementPuls2 = data.pulse2 - event.state.lastPulse2;
+    event.state.lastPulse2 = data.pulse2;
+  }
+
   // Customfields
   if (event.device !== undefined) {
     if (event.device.customFields !== undefined) {
@@ -125,6 +164,7 @@ function consume(event) {
   }
 
   emit("sample", { data, topic });
+  emit("state", event.state);
 
   if (lifecycle.batteryLevel !== undefined) {
     emit("sample", { data: lifecycle, topic: "lifecycle" });
