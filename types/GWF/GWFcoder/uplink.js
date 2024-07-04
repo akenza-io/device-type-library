@@ -59,6 +59,19 @@ function consume(event) {
   } else if (volumeVIF === 21) {
     data.volume /= 10;
   }
+
+  // Init state && Check for the case the counter reseted
+  if (
+    event.state.lastVolume === undefined ||
+    event.state.lastVolume > data.volume
+  ) {
+    event.state.lastVolume = data.volume;
+  }
+
+  // Calculate increment
+  data.incrementVolume = data.volume - event.state.lastVolume;
+  event.state.lastVolume = data.volume;
+
   // Additional functions
   // reserved
   lifecycle.continuousFlow = !!Bits.bitsToUnsigned(bits.substr(129, 1));
@@ -81,4 +94,5 @@ function consume(event) {
   // reserved
   emit("sample", { data, topic });
   emit("sample", { data: lifecycle, topic: "lifecycle" });
+  emit("state", event.state);
 }

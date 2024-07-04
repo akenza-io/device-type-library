@@ -10,7 +10,11 @@
       "title": "Meter medium",
       "description": "Meter medium",
       "type": "string",
-      "enum": ["GAS", "WARM_WATER", "WATER"]
+      "enum": [
+        "GAS",
+        "WARM_WATER",
+        "WATER"
+      ]
     },
     "actualityDuration": {
       "title": "Actuality duration",
@@ -25,7 +29,17 @@
       "unit": "m^3",
       "type": "number",
       "description": "Tank volume in m3"
+    },
+    "incrementVolume": {
+      "title": "Increment Volume",
+      "unit": "m^3",
+      "type": "number",
+      "description": "Increment since last sample of the tank volume in m3"
     }
   },
-  "required": ["meterMedium", "actualityDuration", "volume"]
+  "required": [
+    "meterMedium",
+    "actualityDuration",
+    "volume"
+  ]
 }

@@ -54,6 +54,18 @@ function consume(event) {
           data.reedCounter = Bits.bitsToUnsigned(bits.substr(pointer, 16));
           pointer += 16;
           topic = "reed_counter";
+
+          // Init state && Check for the case the counter reseted
+          if (
+            event.state.lastReed === undefined ||
+            event.state.lastReed > data.reedCounter
+          ) {
+            event.state.lastReed = data.reedCounter;
+          }
+          // Calculate increment
+          data.incrementReedCounter = data.reedCounter - event.state.lastReed;
+          event.state.lastReed = data.reedCounter;
+
           break;
         case 4:
           data.motionCounter = Bits.bitsToUnsigned(bits.substr(pointer, 16));
@@ -148,4 +160,5 @@ function consume(event) {
 
   emit("sample", { data: trigger, topic: "event" });
   emit("sample", { data: lifecycle, topic: "lifecycle" });
+  emit("state", event.state);
 }
