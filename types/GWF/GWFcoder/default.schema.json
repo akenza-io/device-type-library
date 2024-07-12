@@ -30,11 +30,11 @@
       "type": "number",
       "description": "Tank volume in m3"
     },
-    "incrementVolume": {
-      "title": "Increment Volume",
+    "absoluteVolume": {
+      "title": "Absolute Volume",
       "unit": "m^3",
       "type": "number",
-      "description": "Increment since last sample of the tank volume in m3"
+      "description": "Absolute tank volume in m3"
     }
   },
   "required": [

@@ -61,6 +61,7 @@ describe("Yanzi Presence Mini Sensor Uplink", () => {
 
     it("should decode the Yanzi Presence Mini Sensor Motion payload", () => {
       const data = {
+        state: {},
         data: {
           values: [
             {
@@ -74,12 +75,63 @@ describe("Yanzi Presence Mini Sensor Uplink", () => {
       };
 
       utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+        assert.typeOf(value, "object");
+
+        assert.equal(value.lastMotion, 24873);
+      });
+
+      utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "occupancy");
-        assert.equal(value.data.motion, 24873);
+        assert.equal(value.data.absoluteMotion, 24873);
+        assert.equal(value.data.motion, 0);
+        assert.equal(value.data.occupancy, 0);
+        assert.equal(value.data.occupied, false);
+
+        utils.validateSchema(value.data, occupancySchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("should decode the Yanzi Presence Mini Sensor Motion payload", () => {
+      const data = {
+        state: { lastMotion: 24800 },
+        data: {
+          values: [
+            {
+              resourceType: "SampleMotion",
+              sampleTime: 1643365120931,
+              value: 24873,
+              timeLastMotion: 1643365120931,
+            },
+          ],
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+        assert.typeOf(value, "object");
+
+        assert.equal(value.lastMotion, 24873);
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "occupancy");
+        assert.equal(value.data.absoluteMotion, 24873);
+        assert.equal(value.data.motion, 73);
+        assert.equal(value.data.occupancy, 2);
+        assert.equal(value.data.occupied, true);
 
         utils.validateSchema(value.data, occupancySchema, { throwError: true });
       });

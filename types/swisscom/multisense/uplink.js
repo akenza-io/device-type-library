@@ -51,20 +51,22 @@ function consume(event) {
           topic = "humidity";
           break;
         case 3:
-          data.reedCounter = Bits.bitsToUnsigned(bits.substr(pointer, 16));
+          data.absoluteReedCounter = Bits.bitsToUnsigned(
+            bits.substr(pointer, 16),
+          );
           pointer += 16;
           topic = "reed_counter";
 
           // Init state && Check for the case the counter reseted
           if (
             event.state.lastReed === undefined ||
-            event.state.lastReed > data.reedCounter
+            event.state.lastReed > data.absoluteReedCounter
           ) {
-            event.state.lastReed = data.reedCounter;
+            event.state.lastReed = data.absoluteReedCounter;
           }
           // Calculate increment
-          data.incrementReedCounter = data.reedCounter - event.state.lastReed;
-          event.state.lastReed = data.reedCounter;
+          data.reedCounter = data.absoluteReedCounter - event.state.lastReed;
+          event.state.lastReed = data.absoluteReedCounter;
 
           break;
         case 4:

@@ -1,3 +1,36 @@
+function incrementValue(lastPulse, pulse) {
+  // Init state && Check for the case the counter reseted
+  if (lastPulse === undefined || lastPulse > pulse) {
+    lastPulse = pulse;
+  }
+  // Calculate increment
+  return pulse - lastPulse;
+}
+
+function customPulse(cPulseType, cMultiplier, cDivider, pulse) {
+  let pulseType = "";
+  let multiplier = 1;
+  let divider = 1;
+  let value = 0;
+
+  if (cPulseType !== undefined) {
+    pulseType = cPulseType;
+  }
+
+  if (cMultiplier !== undefined) {
+    multiplier = Number(cMultiplier);
+  }
+
+  if (cDivider !== undefined) {
+    divider = Number(cDivider);
+  }
+
+  if (pulseType !== "") {
+    value = Math.round(((pulse * multiplier) / divider) * 1000) / 1000;
+    return [true, pulseType, value];
+  }
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
@@ -67,7 +100,9 @@ function consume(event) {
         (Bits.bitsToUnsigned(bits.substr(8, 8)) / 254) * 100,
       );
       // Reserved internal data (Variable length & confidential)
-      data.pulse = Bits.bitsToUnsigned(bits.substr(bitsLength - 32, 32));
+      data.pulseCumulutaive = Bits.bitsToUnsigned(
+        bits.substr(bitsLength - 32, 32),
+      );
       break;
     // Log & Wirecut
     case 7:
@@ -76,7 +111,9 @@ function consume(event) {
       );
       data.wireCutStatus = !!Bits.bitsToUnsigned(bits.substr(16, 8));
       // Reserved internal data (Variable length & confidential)
-      data.pulse = Bits.bitsToUnsigned(bits.substr(bitsLength - 32, 32));
+      data.pulseCumulutaive = Bits.bitsToUnsigned(
+        bits.substr(bitsLength - 32, 32),
+      );
       break;
     // Log & Wirecut & DUAL Input
     case 10:
@@ -85,8 +122,12 @@ function consume(event) {
       );
       data.wireCutStatus = !!Bits.bitsToUnsigned(bits.substr(16, 8));
       // Reserved internal data (Variable length & confidential)
-      data.pulse1 = Bits.bitsToUnsigned(bits.substr(bitsLength - 64, 32));
-      data.pulse2 = Bits.bitsToUnsigned(bits.substr(bitsLength - 32, 32));
+      data.pulseCumulutaive1 = Bits.bitsToUnsigned(
+        bits.substr(bitsLength - 64, 32),
+      );
+      data.pulseCumulutaive2 = Bits.bitsToUnsigned(
+        bits.substr(bitsLength - 32, 32),
+      );
 
       topic = "default";
       break;
@@ -95,76 +136,75 @@ function consume(event) {
       break;
   }
 
-  if (data.pulse !== undefined || data.pulse !== undefined) {
-    // Init state && Check for the case the counter reseted
-    if (
-      event.state.lastPulse === undefined ||
-      event.state.lastPulse > data.pulse
-    ) {
-      event.state.lastPulse = data.pulse;
-    }
-    // Calculate increment
-    data.incrementPuls = data.pulse - event.state.lastPulse;
-    event.state.lastPulse = data.pulse;
+  if (data.pulseCumulutaive !== undefined) {
+    data.pulse = incrementValue(event.state.lastPulse, data.pulseCumulutaive);
+    event.state.lastPulse = data.pulseCumulutaive;
   }
 
-  if (data.pulse1 !== undefined || data.pulse1 !== undefined) {
-    // Init state && Check for the case the counter reseted
-    if (
-      event.state.lastPulse1 === undefined ||
-      event.state.lastPulse1 > data.pulse1
-    ) {
-      event.state.lastPulse1 = data.pulse1;
-    }
-    // Calculate increment
-    data.incrementPuls1 = data.pulse1 - event.state.lastPulse1;
-    event.state.lastPulse1 = data.pulse1;
+  if (data.pulseCumulutaive1 !== undefined) {
+    data.pulse1 = incrementValue(
+      event.state.lastPulse1,
+      data.pulseCumulutaive1,
+    );
+    event.state.lastPulse1 = data.pulseCumulutaive1;
   }
 
-  if (data.pulse2 !== undefined || data.pulse2 !== undefined) {
-    // Init state && Check for the case the counter reseted
-    if (
-      event.state.lastPulse2 === undefined ||
-      event.state.lastPulse2 > data.pulse2
-    ) {
-      event.state.lastPulse2 = data.pulse2;
-    }
-    // Calculate increment
-    data.incrementPuls2 = data.pulse2 - event.state.lastPulse2;
-    event.state.lastPulse2 = data.pulse2;
+  if (data.pulseCumulutaive2 !== undefined) {
+    data.pulse2 = incrementValue(
+      event.state.lastPulse2,
+      data.pulseCumulutaive2,
+    );
+    event.state.lastPulse2 = data.pulseCumulutaive2;
   }
 
-  // Customfields
+  // Customfields for calculation and key name
   if (event.device !== undefined) {
     if (event.device.customFields !== undefined) {
       const { customFields } = event.device;
-      let pulseType = "";
-      let multiplier = 1;
-      let divider = 1;
-
-      if (customFields.pulseType !== undefined) {
-        pulseType = event.device.customFields.pulseType;
-      }
-
-      if (customFields.multiplier !== undefined) {
-        multiplier = Number(event.device.customFields.multiplier);
-      }
-
-      if (customFields.divider !== undefined) {
-        divider = Number(event.device.customFields.divider);
-      }
-
+      let res = [false];
       if (data.pulse !== undefined) {
-        if (pulseType !== "") {
-          data[pulseType] =
-            Math.round(((data.pulse * multiplier) / divider) * 1000) / 1000;
+        res = customPulse(
+          customFields.pulseType,
+          customFields.multiplier,
+          customFields.divider,
+          data.pulse,
+        );
+
+        if (res[0]) {
+          data[res[1]] = res[2];
+        }
+      }
+
+      if (data.pulse1 !== undefined) {
+        res = customPulse(
+          customFields.pulseType1,
+          customFields.multiplier1,
+          customFields.divider1,
+          data.pulse1,
+        );
+
+        if (res[0]) {
+          data[res[1]] = res[2];
+        }
+      }
+
+      if (data.pulse2 !== undefined) {
+        res = customPulse(
+          customFields.pulseType2,
+          customFields.multiplier2,
+          customFields.divider2,
+          data.pulse2,
+        );
+
+        if (res[0]) {
+          data[res[1]] = res[2];
         }
       }
     }
   }
 
-  emit("sample", { data, topic });
   emit("state", event.state);
+  emit("sample", { data, topic });
 
   if (lifecycle.batteryLevel !== undefined) {
     emit("sample", { data: lifecycle, topic: "lifecycle" });

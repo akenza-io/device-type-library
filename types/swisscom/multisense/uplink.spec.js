@@ -127,8 +127,8 @@ describe("Swisscom Multisense Uplinks", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "reed_counter");
-        assert.equal(value.data.reedCounter, 23);
-        assert.equal(value.data.incrementReedCounter, 0);
+        assert.equal(value.data.absoluteReedCounter, 23);
+        assert.equal(value.data.reedCounter, 0);
 
         utils.validateSchema(value.data, reedCounterSchema, {
           throwError: true,
@@ -269,8 +269,9 @@ describe("Swisscom Multisense Uplinks", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "reed_counter");
-        assert.equal(value.data.reedCounter, 2694);
-        assert.equal(value.data.incrementReedCounter, 200);
+        assert.equal(value.data.absoluteReedCounter, 2694);
+        assert.equal(value.data.reedCounter, 200);
+
         utils.validateSchema(value.data, reedCounterSchema, {
           throwError: true,
         });

@@ -465,7 +465,7 @@ function consume(event) {
       lifecycle.batteryLevel = batteryLevel;
     }
 
-    if (reed.pulseAbs1 !== undefined || reed.pulseAbs1 !== undefined) {
+    if (reed.pulseAbs1 !== undefined) {
       // Init state && Check for the case the counter reseted
       if (
         event.state.lastPulse1 === undefined ||
@@ -474,11 +474,11 @@ function consume(event) {
         event.state.lastPulse1 = reed.pulseAbs1;
       }
       // Calculate increment
-      reed.incrementPulse1 = reed.pulseAbs1 - event.state.lastPulse1;
+      reed.pulse1 = reed.pulseAbs1 - event.state.lastPulse1;
       event.state.lastPulse1 = reed.pulseAbs1;
     }
 
-    if (reed.pulseAbs2 !== undefined || reed.pulseAbs2 !== undefined) {
+    if (reed.pulseAbs2 !== undefined) {
       // Init state && Check for the case the counter reseted
       if (
         event.state.lastPulse2 === undefined ||
@@ -487,7 +487,7 @@ function consume(event) {
         event.state.lastPulse2 = reed.pulseAbs2;
       }
       // Calculate increment
-      reed.incrementPulse2 = reed.pulseAbs2 - event.state.lastPulse2;
+      reed.pulse2 = reed.pulseAbs2 - event.state.lastPulse2;
       event.state.lastPulse2 = reed.pulseAbs2;
     }
 

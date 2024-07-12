@@ -6,14 +6,14 @@
   "topic": "reed_counter",
   "title": "Reed counter",
   "properties": {
-    "reedCounter": {
+    "absoluteReedCounter": {
       "title": "Reed counter",
       "description": "Magnet count. Sum of all Events",
       "type": "integer",
       "minimum": 0,
       "maximum": 65535
     },
-    "incrementReedCounter": {
+    "reedCounter": {
       "title": "Increment reed counter",
       "description": "Magnet count. Sum between the two events.",
       "type": "integer",

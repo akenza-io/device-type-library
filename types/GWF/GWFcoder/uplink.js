@@ -45,32 +45,35 @@ function consume(event) {
     false,
   );
   const volumeVIF = Bits.bitsToUnsigned(bits.substr(88, 8));
-  data.volume = Hex.hexLittleEndianToBigEndian(payload.substr(24, 8), false);
+  data.absoluteVolume = Hex.hexLittleEndianToBigEndian(
+    payload.substr(24, 8),
+    false,
+  );
   if (volumeVIF === 16) {
-    data.volume /= 1000000;
+    data.absoluteVolume /= 1000000;
   } else if (volumeVIF === 17) {
-    data.volume /= 100000;
+    data.absoluteVolume /= 100000;
   } else if (volumeVIF === 18) {
-    data.volume /= 10000;
+    data.absoluteVolume /= 10000;
   } else if (volumeVIF === 19) {
-    data.volume /= 1000;
+    data.absoluteVolume /= 1000;
   } else if (volumeVIF === 20) {
-    data.volume /= 100;
+    data.absoluteVolume /= 100;
   } else if (volumeVIF === 21) {
-    data.volume /= 10;
+    data.absoluteVolume /= 10;
   }
 
   // Init state && Check for the case the counter reseted
   if (
     event.state.lastVolume === undefined ||
-    event.state.lastVolume > data.volume
+    event.state.lastVolume > data.absoluteVolume
   ) {
-    event.state.lastVolume = data.volume;
+    event.state.lastVolume = data.absoluteVolume;
   }
 
   // Calculate increment
-  data.incrementVolume = data.volume - event.state.lastVolume;
-  event.state.lastVolume = data.volume;
+  data.volume = data.absoluteVolume - event.state.lastVolume;
+  event.state.lastVolume = data.absoluteVolume;
 
   // Additional functions
   // reserved

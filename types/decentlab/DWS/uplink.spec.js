@@ -52,10 +52,10 @@ describe("Decentlab DWS Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.frequency, 15350.47);
-        assert.equal(value.data.weight, 11.26);
-        assert.equal(value.data.weightKg, 0.01126);
-        assert.equal(value.data.incrementGram, 0);
-        assert.equal(value.data.incrementKg, 0);
+        assert.equal(value.data.absoluteWeight, 11.26);
+        assert.equal(value.data.absoluteWeightKg, 0.0113);
+        assert.equal(value.data.weightGram, 0);
+        assert.equal(value.data.weightKilogramm, 0);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -105,10 +105,10 @@ describe("Decentlab DWS Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.frequency, 15350.47);
-        assert.equal(value.data.weight, 11.26);
-        assert.equal(value.data.weightKg, 0.01126);
-        assert.equal(value.data.incrementGram, 6.26);
-        assert.equal(value.data.incrementKg, 0.006259999999999999);
+        assert.equal(value.data.absoluteWeight, 11.26);
+        assert.equal(value.data.absoluteWeightKg, 0.0113);
+        assert.equal(value.data.weightGram, 6.26);
+        assert.equal(value.data.weightKilogramm, 0.006299999999999999);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

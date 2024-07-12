@@ -16,7 +16,7 @@
       "description": "Pulse count absolute",
       "type": "number"
     },
-    "incrementPulse1": {
+    "pulse1": {
       "title": "Increment pulse 1 count",
       "description": "Increment pulse 1 count",
       "type": "number"
@@ -24,6 +24,7 @@
   },
   "required": [
     "reed",
+    "pulse1",
     "pulseAbs1"
   ]
 }

@@ -144,23 +144,27 @@ function consume(event) {
 
   // Default values
   data.frequency = Math.round(sample.frequency * 100) / 100;
-  data.weight = Math.round(sample.weight * 100) / 100 - tare;
-  data.weightKg = data.weight / 1000;
+  data.absoluteWeight = Math.round(sample.weight * 100) / 100 - tare;
+  data.absoluteWeightKg = Math.round(sample.weight * 10) / 10000;
 
   // Init state
-  if (event.state.lastWeighting === undefined) {
-    event.state.lastWeighting = data.weight;
+  if (
+    event.state.lastWeighting === undefined ||
+    event.state.lastWeighting > data.absoluteWeight
+  ) {
+    event.state.lastWeighting = data.absoluteWeight;
   }
 
   // Calculate increment
-  data.incrementGram = data.weight - event.state.lastWeighting;
-  data.incrementKg = data.weightKg - event.state.lastWeighting / 1000;
-  event.state.lastWeighting = data.weight;
+  data.weightGram = data.absoluteWeight - event.state.lastWeighting;
+  data.weightKilogramm =
+    data.absoluteWeightKg - event.state.lastWeighting / 1000;
+  event.state.lastWeighting = data.absoluteWeight;
 
   // Zero negative weight
-  if (data.incrementGram < 0) {
-    data.incrementGram = 0;
-    data.incrementKg = 0;
+  if (data.weightGram <= 0) {
+    data.weightGram = 0;
+    data.weightKilogramm = 0;
   }
 
   // Lifecycle values
