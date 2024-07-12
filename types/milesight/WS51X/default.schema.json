@@ -7,16 +7,12 @@
   "title": "Default",
   "properties": {
     "voltage": {
-      "title": "Voltage",
-      "unit": "V",
-      "description": "Voltage",
-      "type": "number"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt"
     },
     "power": {
-      "title": "Active power",
-      "unit": "W",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activePower/watt",
       "description": "Active power",
-      "type": "number"
+      "title": "Active power"
     },
     "factor": {
       "title": "Active factor",
@@ -31,10 +27,7 @@
       "type": "number"
     },
     "current": {
-      "title": "Current",
-      "unit": "mA",
-      "description": "Current",
-      "type": "number"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/milliAmpere"
     },
     "powerOn": {
       "title": "Power on",

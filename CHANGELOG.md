@@ -4,6 +4,45 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.50.0] - 2024-06-12
+
+### Added
+
+- Decentlab - DWS
+
+### Changed
+
+- Updated isEmpty to react correctly to not initialized objects
+- Updated a few urls in the meta
+- Updated some images
+
+# [1.50.0] - 2024-05-24
+
+### Changed
+
+- Implemented references for commonly used datapoints
+
+# [1.49.0] - 2024-05-23
+
+### Changed
+
+- Catching illegal datapoints for the seeed senseCAPS210X series
+
+# [1.48.0] - 2024-05-22
+
+### Added
+
+- Yosensi - Temp
+- Yosensi - Pure Pro
+- Yosensi - Refrigerant Monitor
+
+### Changed
+
+- ioTracker - Removed 0 gps values in case of an illegal datapoint
+- senlabM - Changed txPeriod and logperiod as they where expressed in 2 second intervals
+- PeopleCounter - Added batteryLevel
+- LP8P - Added batteryLevel
+
 # [1.47.0] - 2024-04-26
 
 ### Added

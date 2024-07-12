@@ -39,10 +39,20 @@ function consume(event) {
   data.magnX = Bits.bitsToSigned(bits.substr(152, 16)) / 1000;
   data.magnY = Bits.bitsToSigned(bits.substr(168, 16)) / 1000;
   data.magnZ = Bits.bitsToSigned(bits.substr(184, 16)) / 1000;
-  data.latitude = Bits.bitsToSigned(bits.substr(200, 32)) / 1000000;
-  data.longitude = Bits.bitsToSigned(bits.substr(232, 32)) / 1000000;
-  data.altitude = Bits.bitsToSigned(bits.substr(264, 16)) / 100;
 
+  const latitude = Bits.bitsToSigned(bits.substr(200, 32)) / 1000000;
+  const longitude = Bits.bitsToSigned(bits.substr(232, 32)) / 1000000;
+  const altitude = Bits.bitsToSigned(bits.substr(264, 16)) / 100;
+
+  // GPS is off with a value 2147.483647
+  if (latitude !== 2147.483647 && longitude !== 2147.483647) {
+    const gps = {};
+    gps.latitude = latitude;
+    gps.longitude = longitude;
+    gps.altitude = altitude;
+
+    emit("sample", { data: gps, topic: "gps" });
+  }
   if (lifecycle.txOnEvent === true) {
     emit("sample", { data: { eventUplink: true }, topic: "event" });
   }

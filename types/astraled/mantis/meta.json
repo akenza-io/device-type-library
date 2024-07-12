@@ -2,7 +2,7 @@
   "name": "Mantis",
   "version": "1.0.0",
   "manufacturer": "AstraLED",
-  "url": "https://www.astra-led.ch/produkte/buerostehleuchte/",
+  "url": "https://www.astra-led.ch/produkte/mantis/",
   "description": "AstraLED Mantis floor lamp sends information on brightness, air quality and noise level. Can get combined with other floor lamps for area-wide lighting control",
   "author": "Akenza AG",
   "firmwareVersion": "V0.0.2",
@@ -16,7 +16,10 @@
     "Occupancy",
     "Light"
   ],
-  "outputTopics": ["default", "lifecycle"],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

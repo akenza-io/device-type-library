@@ -14,22 +14,14 @@
       "hideFromKpis": true
     },
     "distance": {
-      "title": "Distance",
-      "unit": "mm",
-      "type": "number",
-      "description": "Distance measured between the sensor and the surface"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/mm"
     },
     "distanceCM": {
-      "title": "Distance CM",
-      "unit": "cm",
-      "type": "number",
-      "description": "Distance measured between the sensor and the surface"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
+      "title": "Distance CM"
     },
     "fillLevel": {
-      "title": "Fill level",
-      "unit": "%",
-      "type": "number",
-      "description": "Fill percentage of the container"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/fillLevel/percent"
     }
   },
   "required": ["alarm", "distance", "distanceCM"]

@@ -8,7 +8,7 @@
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Soil Humidity", "Soil Temperature"],
-  "outputTopics": ["default", "lifecycle"],
+  "outputTopics": ["default", "lifecycle", "error"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

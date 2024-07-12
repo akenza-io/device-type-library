@@ -1,5 +1,4 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -39,7 +38,7 @@ describe("EGK-LW22PLG Uplink", () => {
         assert.equal(value.data.apparentEnergy, 119881);
         assert.equal(value.data.reactiveEnergy, -74178);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

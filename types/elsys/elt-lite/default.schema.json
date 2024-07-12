@@ -7,28 +7,15 @@
   "title": "Default",
   "properties": {
     "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
     "humidity": {
-      "title": "Humidity",
-      "unit": "%",
-      "type": "number",
-      "description": "The relative humidity in %",
-      "minimum": 0,
-      "maximum": 100
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
     },
     "analog1": {
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/milliVolt",
       "title": "Analog input 1",
-      "description": "Voltage in mV",
-      "unit": "mV",
-      "minimum": 0,
-      "maximum": 65535
+      "description": "Voltage in mV"
     },
     "pulse1": {
       "title": "Pulse 1 count",
@@ -43,26 +30,15 @@
       "type": "number"
     },
     "externalTemperature1": {
-      "title": "External temperature 1",
-      "unit": "°C",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "The external temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "title": "External temperature 1"
     },
     "distance": {
-      "title": "Distance",
-      "unit": "mm",
-      "type": "number",
-      "description": "Distance in mm",
-      "minimum": 0,
-      "maximum": 65535
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/mm"
     },
     "fillLevel": {
-      "title": "Fill level",
-      "unit": "%",
-      "type": "number",
-      "description": "Fill percentage of the container"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/fillLevel/percent"
     },
     "accMotion": {
       "title": "Motion (Acceleration)",
@@ -72,12 +48,9 @@
       "maximum": 255
     },
     "irExternalTemperature": {
-      "title": "Infrared external temperature",
-      "unit": "°C",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "Infrared external temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "title": "Infrared external temperature"
     },
     "waterleak": {
       "title": "Water leak",
@@ -85,13 +58,12 @@
       "type": "boolean"
     },
     "pressure": {
-      "title": "Pressure",
-      "unit": "hpa",
-      "description": "Barometric Pressure in hpa",
-      "type": "number",
-      "minimum": 300,
-      "maximum": 1100
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/hPa"
     }
   },
-  "required": ["temperature", "humidity", "pressure"]
+  "required": [
+    "temperature",
+    "humidity",
+    "pressure"
+  ]
 }

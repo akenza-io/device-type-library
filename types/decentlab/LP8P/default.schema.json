@@ -7,76 +7,40 @@
   "title": "Default",
   "properties": {
     "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
     "humidity": {
-      "title": "Humidity",
-      "unit": "%",
-      "type": "number",
-      "description": "The relative humidity in %",
-      "minimum": 0,
-      "maximum": 100
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
     },
     "barometricTemperature": {
-      "title": "Barometric temperature",
-      "unit": "°C",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "The barometric temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "title": "Barometric temperature"
     },
     "pressure": {
-      "title": "Pressure",
-      "unit": "hpa",
-      "description": "Barometric Pressure in hpa",
-      "type": "number",
-      "minimum": 300,
-      "maximum": 1100
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/hPa"
     },
     "co2": {
-      "title": "CO2",
-      "unit": "ppm",
-      "type": "integer",
-      "description": "Carbon Dioxide in ppm",
-      "minimum": 0,
-      "maximum": 10000
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm"
     },
     "co2LPF": {
-      "title": "CO2 low-pass filtered",
-      "unit": "ppm",
-      "type": "integer",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm",
       "description": "Carbon Dioxide in ppm",
-      "minimum": 0,
-      "maximum": 10000
+      "title": "CO2 low-pass filtered"
     },
     "co2Temperature": {
-      "title": "CO2 sensor temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "CO2 sensor temperature"
     },
     "capacitorVoltage1": {
-      "title": "Capacitor voltage 1",
-      "unit": "V",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
       "description": "Capacitor voltage 1",
-      "minimum": 0,
-      "maximum": 24
+      "title": "Capacitor voltage 1"
     },
     "capacitorVoltage2": {
-      "title": "Capacitor voltage 2",
-      "unit": "V",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
       "description": "Capacitor voltage 2",
-      "minimum": 0,
-      "maximum": 24
+      "title": "Capacitor voltage 2"
     },
     "rawIr": {
       "title": "Raw infrared",
