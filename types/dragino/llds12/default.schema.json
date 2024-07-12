@@ -7,24 +7,13 @@
   "title": "Default",
   "properties": {
     "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
     "distance": {
-      "title": "Distance",
-      "unit": "cm",
-      "type": "number",
-      "description": "Distance measured between the sensor and the surface"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm"
     },
     "fillLevel": {
-      "title": "Fill level",
-      "unit": "%",
-      "type": "number",
-      "description": "Fill percentage of the container"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/fillLevel/percent"
     },
     "distanceSignalStrength": {
       "title": "Distance signal strength",
@@ -32,12 +21,9 @@
       "description": "Distance signal strength"
     },
     "lidarTemperature": {
-      "title": "Lidar temperature",
-      "unit": "°C",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "The lidar temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "title": "Lidar temperature"
     }
   }
 }

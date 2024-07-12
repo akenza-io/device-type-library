@@ -15,12 +15,9 @@
       "maximum": 120
     },
     "soilTemperatureAtDepth0": {
-      "title": "Soil temperature at depth 0",
-      "unit": "°C",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "Soil temperature at depth 0",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "title": "Soil temperature at depth 0"
     },
     "soilMoistureAtDepth1": {
       "title": "Soil moisture at depth 1",
@@ -31,12 +28,9 @@
       "maximum": 120
     },
     "soilTemperatureAtDepth1": {
-      "title": "Soil temperature at depth 1",
-      "unit": "°C",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "Soil temperature at depth 1",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "title": "Soil temperature at depth 1"
     },
     "soilMoistureAtDepth2": {
       "title": "Soil moisture at depth 2",
@@ -47,12 +41,9 @@
       "maximum": 120
     },
     "soilTemperatureAtDepth2": {
-      "title": "Soil temperature at depth 2",
-      "unit": "°C",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "Soil temperature at depth 2",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "title": "Soil temperature at depth 2"
     },
     "soilMoistureAtDepth3": {
       "title": "Soil moisture at depth 3",
@@ -63,12 +54,9 @@
       "maximum": 120
     },
     "soilTemperatureAtDepth3": {
-      "title": "Soil temperature at depth 3",
-      "unit": "°C",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "Soil temperature at depth 3",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "title": "Soil temperature at depth 3"
     },
     "soilMoistureAtDepth4": {
       "title": "Soil moisture at depth 4",
@@ -79,12 +67,9 @@
       "maximum": 120
     },
     "soilTemperatureAtDepth4": {
-      "title": "Soil temperature at depth 4",
-      "unit": "°C",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "Soil temperature at depth 4",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "title": "Soil temperature at depth 4"
     },
     "soilMoistureAtDepth5": {
       "title": "Soil moisture at depth 5",
@@ -95,12 +80,9 @@
       "maximum": 120
     },
     "soilTemperatureAtDepth5": {
-      "title": "Soil temperature at depth 5",
-      "unit": "°C",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "Soil temperature at depth 5",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "title": "Soil temperature at depth 5"
     },
     "soilMoistureAtDepth6": {
       "title": "Soil moisture at depth 6",
@@ -111,12 +93,9 @@
       "maximum": 120
     },
     "soilTemperatureAtDepth6": {
-      "title": "Soil temperature at depth 6",
-      "unit": "°C",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "Soil temperature at depth 6",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "title": "Soil temperature at depth 6"
     },
     "soilMoistureAtDepth7": {
       "title": "Soil moisture at depth 7",
@@ -127,12 +106,9 @@
       "maximum": 120
     },
     "soilTemperatureAtDepth7": {
-      "title": "Soil temperature at depth 7",
-      "unit": "°C",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "Soil temperature at depth 7",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "title": "Soil temperature at depth 7"
     }
   },
   "required": [
