@@ -1,0 +1,29 @@
+{
+  "$id": "https://akenza.io/decentlab/trbg/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "precipitation": {
+      "title": "Precipitation",
+      "unit": "mm",
+      "type": "number",
+      "description": "Precipitation measured through cycle."
+    },
+    "precipitationInterval": {
+      "title": "Precipitation interval",
+      "unit": "s",
+      "type": "number",
+      "description": "Precipitation interval."
+    },
+    "cumulativePrecipitation": {
+      "title": "Cumulative precipitation",
+      "unit": "mm",
+      "type": "number",
+      "description": "Cumulative precipitation measured."
+    }
+  },
+  "required": []
+}

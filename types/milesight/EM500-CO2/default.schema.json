@@ -7,20 +7,10 @@
   "title": "Default",
   "properties": {
     "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
     "humidity": {
-      "title": "Humidity",
-      "unit": "%",
-      "type": "number",
-      "description": "The relative humidity in %",
-      "minimum": 0,
-      "maximum": 100
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
     },
     "pir": {
       "title": "PIR motion",
@@ -30,12 +20,7 @@
       "maximum": 65535
     },
     "light": {
-      "title": "Light",
-      "unit": "lux",
-      "type": "integer",
-      "description": "The light in lux.",
-      "minimum": 0,
-      "maximum": 65535
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/illuminance/lux"
     },
     "visibleInfrared": {
       "title": "Visible infrared",
@@ -52,28 +37,15 @@
       "maximum": 65535
     },
     "co2": {
-      "title": "CO2",
-      "unit": "ppm",
-      "type": "integer",
-      "description": "Carbon Dioxide in ppm",
-      "minimum": 0,
-      "maximum": 10000
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm"
     },
     "tvoc": {
-      "title": "TVOC",
-      "unit": "ppm",
-      "type": "integer",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/tvoc/ppm",
       "description": "Total Volatile Organic Compounds in ppm",
-      "minimum": 0,
-      "maximum": 60000
+      "title": "TVOC"
     },
     "pressure": {
-      "title": "Pressure",
-      "unit": "hpa",
-      "description": "Barometric Pressure in hpa",
-      "type": "number",
-      "minimum": 300,
-      "maximum": 1100
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/hPa"
     }
   },
   "required": ["temperature", "humidity", "co2", "pressure"]

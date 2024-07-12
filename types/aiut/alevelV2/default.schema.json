@@ -7,12 +7,7 @@
   "title": "Default",
   "properties": {
     "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "Temperature in °C",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
     "buttonLatched": {
       "title": "Button latched",
@@ -27,12 +22,9 @@
       "hideFromKpis": true
     },
     "currentLevel": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/fillLevel/percent",
       "title": "Current level",
-      "unit": "%",
-      "type": "number",
-      "description": "Current tank level %",
-      "minimum": 0,
-      "maximum": 100
+      "description": "Current tank level %"
     },
     "removedFromDial": {
       "title": "Removed from dial",

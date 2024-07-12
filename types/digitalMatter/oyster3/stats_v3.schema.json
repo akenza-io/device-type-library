@@ -19,12 +19,9 @@
       "hideFromKpis": true
     },
     "currentvoltage": {
-      "type": "number",
-      "minimum": 0,
-      "maximum": 24,
-      "title": "Current battery voltage",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
       "description": "Current battery voltage",
-      "unit": "V",
+      "title": "Current battery voltage",
       "hideFromKpis": true
     },
     "mWhUsed": {

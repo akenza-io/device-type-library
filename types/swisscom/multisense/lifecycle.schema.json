@@ -23,20 +23,10 @@
       "hideFromKpis": true
     },
     "batteryVoltage": {
-      "title": "Battery voltage",
-      "unit": "V",
-      "description": "Battery voltage in V.",
-      "type": "number",
-      "minimum": 0,
-      "maximum": 65535
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
     },
     "batteryLevel": {
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 100,
-      "title": "Battery charge",
-      "description": "The battery charge in percent.",
-      "unit": "%"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
     },
     "modeSelect": {
       "title": "Mode select",

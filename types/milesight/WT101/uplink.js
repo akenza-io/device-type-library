@@ -28,8 +28,10 @@ function readMotorCalibration(type) {
       return "UNKOWN";
   }
 }
-
 function isEmpty(obj) {
+  if (obj === undefined) {
+    return true;
+  }
   return Object.keys(obj).length === 0;
 }
 

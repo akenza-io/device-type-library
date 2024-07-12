@@ -7,12 +7,7 @@
   "title": "Sound",
   "properties": {
     "sound": {
-      "title": "Sound Pressure",
-      "type": "number",
-      "description": "Sound Pressure in dB",
-      "unit": "dB",
-      "minimum": 45,
-      "maximum": 110,
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/soundLevel/dba",
       "hideFromKpis": false
     }
   },

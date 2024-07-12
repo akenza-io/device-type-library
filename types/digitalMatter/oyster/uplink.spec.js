@@ -34,7 +34,7 @@ describe("Digital matter Oyster Uplink", () => {
       const data = {
         data: {
           port: 1,
-          payloadHex: "53AB783C0421F98E940AB3",
+          payloadHex: "0030edec003224450000de",
         },
       };
 
@@ -44,13 +44,13 @@ describe("Digital matter Oyster Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "position");
-        assert.equal(value.data.latitude, 101.4541139);
-        assert.equal(value.data.longitude, -189.6275708);
+        assert.equal(value.data.latitude, -32);
+        assert.equal(value.data.longitude, 116);
         assert.equal(value.data.inTrip, false);
         assert.equal(value.data.fixFailed, false);
-        assert.equal(value.data.headingDeg, 208.125);
-        assert.equal(value.data.speedKmph, 10);
-        assert.equal(value.data.batteryVoltage, 4.48);
+        assert.equal(value.data.headingDeg, 0);
+        assert.equal(value.data.speedKmph, 0);
+        assert.equal(value.data.batteryVoltage, 5.55);
 
         utils.validateSchema(value.data, positionSchema, { throwError: true });
       });

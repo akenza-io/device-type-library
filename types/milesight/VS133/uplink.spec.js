@@ -182,11 +182,12 @@ describe("Milesight VS133 Uplink", () => {
       consume(data);
     });
 
-    it("should decode should decode the Milesight VS133 Region count payload", () => {
+    
+    it("should decode should decode the Milesight VS133 1 Line", () => {
       const data = {
         data: {
-          port: 1,
-          payloadHex: "0FE302100709",
+          port: 85,
+          payloadHex: "03d2d915000004d25514000005cc00000000",
         },
       };
 
@@ -195,7 +196,25 @@ describe("Milesight VS133 Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "region_count");
+        assert.equal(value.topic, "line_1");
+        assert.equal(value.data.periodicCounterIn, 0);
+        assert.equal(value.data.periodicCounterOut, 0);
+        assert.equal(value.data.totalCounterIn, 5593);
+        assert.equal(value.data.totalCounterOut, 5205);
+
+        utils.validateSchema(value.data, line1Schema, { throwError: true });
+      });
+
+      consume(data);
+    });
+    
+        it("should decode should decode the Milesight VS133 Region count payload", () => {
+      const data = {
+        data: {
+          port: 1,
+          payloadHex: "0FE302100709",
+          
+                  assert.equal(value.topic, "region_count");
         assert.equal(value.data.region1Count, 2);
         assert.equal(value.data.region2Count, 16);
         assert.equal(value.data.region3Count, 7);
@@ -236,9 +255,7 @@ describe("Milesight VS133 Uplink", () => {
         utils.validateSchema(value.data, dwellTimeSchema, {
           throwError: true,
         });
-      });
-
-      consume(data);
-    });
+        
+        consume(data);
   });
 });
