@@ -21,8 +21,5 @@
       "maximum": 65535
     }
   },
-  "required": [
-    "in",
-    "out"
-  ]
+  "required": ["in", "out"]
 }

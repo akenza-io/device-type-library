@@ -117,7 +117,7 @@ function consume(event) {
       },
       topic: "lifecycle",
     });
-    
+
     // anomaly level: 255 = infinite time
     data.anomalyLevelTo20Last24h = round(
       Bits.bitsToUnsigned(bits.substr(144, 8)),

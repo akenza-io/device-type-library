@@ -7,12 +7,7 @@
   "title": "Lifecycle",
   "properties": {
     "batteryLevel": {
-      "type": "number",
-      "minimum": 0,
-      "maximum": 100,
-      "title": "Battery charge",
-      "description": "The battery charge in percent.",
-      "unit": "%"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
     },
     "hbIRQ": {
       "title": "Heartbeat timeout occurred",
@@ -27,9 +22,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "batteryLevel",
-    "hbIRQ",
-    "accIRQ"
-  ]
+  "required": ["batteryLevel", "hbIRQ", "accIRQ"]
 }

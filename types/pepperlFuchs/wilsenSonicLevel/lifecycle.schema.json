@@ -31,13 +31,8 @@
       "hideFromKpis": true
     },
     "batteryVoltage": {
-      "title": "Battery Voltage",
-      "type": "number",
-      "unit": "V",
-      "description": "Battery Status."
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
     }
   },
-  "required": [
-    "batteryVoltage"
-  ]
+  "required": ["batteryVoltage"]
 }

@@ -6,7 +6,7 @@
   "description": "The Wireless Water Sensor detects if there is water in contact with the sensor or not. The moment water comes in contact with the sensor it wirelessly transmits the results to the cloud through Cloud Connectors (gateway).",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
-  "availableSensors": ["Water presence", "Touch"],
+  "availableSensors": ["Water Leak", "Touch"],
   "outputTopics": ["water_present", "touch", "network_status", "lifecycle"],
   "encoding": "JSON",
   "connectivity": "HTTP"

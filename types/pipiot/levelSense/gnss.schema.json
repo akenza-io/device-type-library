@@ -16,16 +16,10 @@
       "hideFromKpis": true
     },
     "gnssLatitude": {
-      "title": "Latitude",
-      "unit": "°",
-      "type": "number",
-      "description": "Latitude"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/latitude/degrees"
     },
     "gnssLongitude": {
-      "title": "Longitude",
-      "unit": "°",
-      "type": "number",
-      "description": "Longitude"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/longitude/degrees"
     },
     "gnssAltitude": {
       "title": "Altitude",

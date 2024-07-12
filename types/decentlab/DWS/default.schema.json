@@ -1,0 +1,47 @@
+{
+  "$id": "https://akenza.io/decentlab/dws/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "frequency": {
+      "title": "Frequency",
+      "unit": "Hz",
+      "description": "Frequency",
+      "type": "number"
+    },
+    "weight": {
+      "title": "Weight",
+      "unit": "g",
+      "description": "Weight in gram",
+      "type": "number"
+    },
+    "weightKg": {
+      "title": "Weight",
+      "unit": "kg",
+      "description": "Weight in kilogram",
+      "type": "number"
+    },
+    "incrementGram": {
+      "title": "Increment gram",
+      "unit": "g",
+      "description": "Increment gram",
+      "type": "number"
+    },
+    "incrementKg": {
+      "title": "Increment kilogram",
+      "unit": "kg",
+      "description": "Increment kilogram",
+      "type": "number"
+    }
+  },
+  "required": [
+    "frequency",
+    "weight",
+    "weightKg",
+    "incrementGram",
+    "incrementKg"
+  ]
+}

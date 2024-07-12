@@ -7,77 +7,62 @@
   "title": "Measurement",
   "properties": {
     "distance": {
-      "title": "Distance",
-      "unit": "cm",
-      "type": "number",
-      "description": "Distance measured between the sensor and the surface"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm"
     },
     "fillLevel": {
-      "title": "Fill level",
-      "unit": "%",
-      "type": "number",
-      "description": "Fill percentage of the container"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/fillLevel/percent"
     },
     "topLeft": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
       "title": "Distance top left",
-      "unit": "cm",
-      "type": "number",
       "description": "Distance measured top left",
       "hideFromKpis": true
     },
     "topCenter": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
       "title": "Distance top center",
-      "unit": "cm",
-      "type": "number",
       "description": "Distance measured top center",
       "hideFromKpis": true
     },
     "topRight": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
       "title": "Distance top right",
-      "unit": "cm",
-      "type": "number",
       "description": "Distance measured top right",
       "hideFromKpis": true
     },
     "middleLeft": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
       "title": "Distance middle left",
-      "unit": "cm",
-      "type": "number",
       "description": "Distance measured middle left",
       "hideFromKpis": true
     },
     "middleCenter": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
       "title": "Distance middle center",
-      "unit": "cm",
-      "type": "number",
       "description": "Distance measured middle center",
       "hideFromKpis": true
     },
     "middleRight": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
       "title": "Distance middle right",
-      "unit": "cm",
-      "type": "number",
       "description": "Distance measured middle right",
       "hideFromKpis": true
     },
     "bottomLeft": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
       "title": "Distance bottom left",
-      "unit": "cm",
-      "type": "number",
       "description": "Distance measured bottom left",
       "hideFromKpis": true
     },
     "bottomCenter": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
       "title": "Distance bottom center",
-      "unit": "cm",
-      "type": "number",
       "description": "Distance measured bottom center",
       "hideFromKpis": true
     },
     "bottomRight": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
       "title": "Distance bottom right",
-      "unit": "cm",
-      "type": "number",
       "description": "Distance measured bottom right",
       "hideFromKpis": true
     },
@@ -88,10 +73,7 @@
       "hideFromKpis": true
     },
     "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "Temperature in °C"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
     "measurementType": {
       "title": "Measurement type",

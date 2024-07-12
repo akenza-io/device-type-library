@@ -10,21 +10,13 @@
       "title": "Frequency weighting",
       "type": "string",
       "description": "Frequency weighting",
-      "enum": [
-        "Z",
-        "A",
-        "B"
-      ]
+      "enum": ["Z", "A", "B"]
     },
     "timeWeight": {
       "title": "Time weighting",
       "type": "string",
       "description": "Time weighting",
-      "enum": [
-        "IMPULSE",
-        "FAST",
-        "SLOW"
-      ]
+      "enum": ["IMPULSE", "FAST", "SLOW"]
     },
     "la": {
       "title": "Sound Pressure Level",
@@ -45,11 +37,5 @@
       "type": "number"
     }
   },
-  "required": [
-    "freqWeight",
-    "timeWeight",
-    "la",
-    "laeq",
-    "lamax"
-  ]
+  "required": ["freqWeight", "timeWeight", "la", "laeq", "lamax"]
 }

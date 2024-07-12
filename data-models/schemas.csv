@@ -1,24 +1,63 @@
-id,category,categoryDescription,measurementType,subtype,title,unit,datatype,description,minimum,maximum,measurementTypeID
-https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/geo-location/schema.json,Geo-Location,Geo-Location measurements.,latitude,degrees,Latitude,°,number,The latitude of a GPS measurement in degrees.,-90.0,90.0,akenza/geo-location/latitude/degrees
-https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/geo-location/schema.json,Geo-Location,Geo-Location measurements.,longitude,degrees,Longitude,°,number,The longitude of a GPS measurement in degrees.,-180.0,180.0,akenza/geo-location/longitude/degrees
-https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/air-quality/schema.json,Air-Quality,Air-Quality measurements.,co2,ppm,CO2,ppm,integer,Carbon Dioxide in ppm.,0,,akenza/air-quality/co2/ppm
-https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/air-quality/schema.json,Air-Quality,Air-Quality measurements.,tvoc,ppb,TVOC,ppb,integer,Total Volatile Organic Compunds in ppb.,0,,akenza/air-quality/tvoc/ppm
-https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/air-quality/schema.json,Air-Quality,Air-Quality measurements.,pm1,mcgm3,PM1.0,μg/m3,integer,Particles with a diameter of less than 1.0 micrometers.,0,,akenza/air-quality/pm1/mcgm3
-https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/air-quality/schema.json,Air-Quality,Air-Quality measurements.,pm2_5,mcgm3,PM2.5,μg/m3,integer,Particles with a diameter of less than 2.5 micrometers.,0,,akenza/air-quality/pm2_5/mcgm3
-https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/air-quality/schema.json,Air-Quality,Air-Quality measurements.,pm10,mcgm3,PM10,μg/m3,integer,Particles with a diameter of less than 10 micrometers.,0,,akenza/air-quality/pm10/mcgm3
-https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/acceleration/schema.json,Speed,Speed measurements.,acceleration,mG,Acceleration,mG,number,The acceleration into a direction.,,,akenza/speed/acceleration/mG
-https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/acoustics/schema.json,Acoustics,Acoustics measurements.,soundLevel,dba,Sound Level,dB(A),number,Sound level in dB(A) (relative loudness of sounds as perceived by the human ear).,,,akenza/acoustics/soundLevel/dba
-https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json,Spaces,Space measurements.,occupied,boolean,Occupied,,boolean,Whether the space is occupied.,,,akenza/spaces/occupied/boolean
-https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json,Spaces,Space measurements.,motion,count,Motion Count,,integer,The number of detected motion counts.,0,,akenza/spaces/motion/count
-https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json,Spaces,Space measurements.,peopleIn,people,People moving inside,people,integer,People moving inside the area.,0,,akenza/spaces/peopleIn/people
-https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json,Spaces,Space measurements.,peopleOut,people,People moving outside,people,integer,People moving out of the area.,0,,akenza/spaces/peopleOut/people
-https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json,Spaces,Space measurements.,peopleCount,people,People count,people,integer,People in the area.,0,,akenza/spaces/peopleCount/people
-https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json,Device,Device properties.,batteryLevel,percent,Battery Level,%,number,The battery level in percent.,0.0,100.0,akenza/device/batteryLevel/percent
-https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json,Device,Device properties.,batteryVoltage,volt,Battery Voltage,V,number,The battery voltage in Volt.,,,akenza/device/batteryVoltage/volt
-https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/light/schema.json,Light,Light measurements.,illuminance,lux,Illuminance (Lux),lx,number,The illuminance in lux.,,,akenza/light/illuminance/lux
-https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/light/schema.json,Light,Light measurements.,brightness,percent,Brightness,%,number,The perceived brightness in percent.,0.0,100.0,akenza/light/brightness/percent
-https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/climate/schema.json,Climate,Climate measurements.,temperature,celsius,Temperature,°C,number,The temperature in degrees Celcius.,,,akenza/climate/temperature/celsius
-https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/climate/schema.json,Climate,Climate measurements.,temperature,fahrenheit,Temperature,°F,number,The temperature in degrees Fahrenheit.,,,akenza/climate/temperature/fahrenheit
-https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/climate/schema.json,Climate,Climate measurements.,temperature,kelvin,Temperature,K,number,The temperature in Kelvin.,,,akenza/climate/temperature/kelvin
-https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/climate/schema.json,Climate,Climate measurements.,humidity,percent,Humidity,%,number,The relative humidity in percent.,0.0,100.0,akenza/climate/humidity/percent
-https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/climate/schema.json,Climate,Climate measurements.,pressure,hPa,Pressure,hPa,number,Barometric Pressure in hPa.,,,akenza/climate/pressure/hPa
+﻿id,category,categoryDescription,measurementType,subtype,title,unit,datatype,description,minimum,maximum,measurementTypeID
+,Location,Object location,latitude,degrees,Latitude,°,number,Latitude of a location in degrees,-90,90,
+,Location,Object location,longitude,degrees,Longitude,°,number,Longitude of a location in degrees,-180,180,
+,Location,Object location,distance,altitude,Altitude,m,number,Altitude of a location in meters,,,
+,Distance,Distance measurements,distance,km,Distance,km,number,Distance in km,,,
+,Distance,Distance measurements,distance,m,Distance,m,number,Distance in meters,,,
+,Distance,Distance measurements,distance,cm,Distance,cm,number,Distance in cm,,,
+,Distance,Distance measurements,distance,mm,Distance,mm,number,Distance in mm,,,
+,Distance,Distance measurements,fillLevel,percent,Fill level,%,number,Fill level in %,0,100,
+,Distance,Distance measurements,fillLevel,absolute,Fill level,m,number,Fill level in meters,,,
+,Environment,Environmental and ambient measurements,co2,ppm,CO2,ppm,number,Carbon Dioxide in ppm,,,
+,Environment,Environmental and ambient measurements,tvoc,ppb,TVOC,ppb,number,Total Volatile Organic Compunds in ppb,,,
+,Environment,Environmental and ambient measurements,pm1,mcgm3,PM1.0,μg/m3,number,Particles with a diameter of less than 1.0 micrometers,,,
+,Environment,Environmental and ambient measurements,pm2_5,mcgm3,PM2.5,μg/m3,number,Particles with a diameter of less than 2.5 micrometers,,,
+,Environment,Environmental and ambient measurements,pm10,mcgm3,PM10,μg/m3,number,Particles with a diameter of less than 10 micrometers,,,
+,Environment,Environmental and ambient measurements,temperature,celsius,Temperature,°C,number,Temperature in degrees Celcius,,,
+,Environment,Environmental and ambient measurements,temperature,fahrenheit,Temperature,°F,number,Temperature in degrees Fahrenheit,,,
+,Environment,Environmental and ambient measurements,temperature,kelvin,Temperature,K,number,Temperature in Kelvin,,,
+,Environment,Environmental and ambient measurements,humidity,percent,Humidity,%,number,Relative humidity in percent,0,100,
+,Environment,Environmental and ambient measurements,pressure,hPa,Pressure,hPa,number,Barometric pressure in hPa,,,
+,Environment,Environmental and ambient measurements,pressure,kPa,Pressure,kPa,number,Barometric pressure in kPa,,,
+,Environment,Environmental and ambient measurements,pressure,bar,Pressure,bar,number,Pressure in bar,,,
+,Environment,Environmental and ambient measurements,illuminance,lux,Illuminance,lx,number,Illuminance in lux,,,
+,Environment,Environmental and ambient measurements,illuminance,lm,Illuminance,lm,number,Illuminance in lumen,,,
+,Environment,Environmental and ambient measurements,brightness,percent,Brightness,%,number,Perceived brightness in percent,0,100,
+,Environment,Environmental and ambient measurements,soundLevel,dba,Sound Level,dB(A),number,Sound level in dB(A),,,
+,Environment,Environmental and ambient measurements,soundLevel,dbspl,Sound Level,dB(SPL),number,Sound level in dB(SPL),,,
+,Motion,Motion measurements of physical objects,acceleration,G,Acceleration,G,number,Acceleration in G,,,
+,Motion,Motion measurements of physical objects,acceleration,mG,Acceleration,mG,number,Acceleration in mG,,,
+,Motion,Motion measurements of physical objects,acceleration,mPerSsquared,Acceleration,m/s^2,number,Acceleration in m/s^2,,,
+,Motion,Motion measurements of physical objects,speed,kmPerH,Speed,km/h,number,Speed in km/h,,,
+,Motion,Motion measurements of physical objects,speed,mPerS,Speed,m/s,number,Speed in m/s,,,
+,Spaces,Measurements related to a space in a building,occupied,boolean,Occupied,,boolean,Whether the space is occupied,,,
+,Spaces,Measurements related to a space in a building,motion,count,Motion Count,,integer,Number of detected motions,0,,
+,Spaces,Measurements related to a space in a building,peopleIn,people,People moving inside,people,integer,People moving into the area,0,,
+,Spaces,Measurements related to a space in a building,peopleOut,people,People moving outside,people,integer,People moving out of the area,0,,
+,Spaces,Measurements related to a space in a building,peopleCount,people,People count,people,integer,People in the area,0,,
+,Device,Device properties,batteryLevel,percent,Battery Level,%,number,Battery level in percent,0,100,
+,Device,Device properties,batteryVoltage,volt,Battery Voltage,V,number,Battery voltage in Volt,,,
+,Device,Device properties,system,status,System status,,string,System status message,,,
+,Electricity,Electricity measurements,voltage,volt,Voltage,V,number,Voltage in V,,,
+,Electricity,Electricity measurements,voltage,milliVolt,Voltage,mV,number,Voltage in mV,,,
+,Electricity,Electricity measurements,current,ampere,Current,A,number,Current in A,,,
+,Electricity,Electricity measurements,current,milliAmpere,Current,mA,number,Current mA,,,
+,Electricity,Electricity measurements,activePower,watt,Active Power,W,number,Active Power in W,,,
+,Electricity,Electricity measurements,activePower,kiloWatt,Active Power,kW,number,Active Power in kW,,,
+,Electricity,Electricity measurements,apparentPower,voltAmpere,Apparent Power,VA,number,Apparent Power in VA,,,
+,Electricity,Electricity measurements,reactivePower,voltAmpereReactive,Reactive Power,VAR,number,Apparent Power in VAR,,,
+,Electricity,Electricity measurements,activeEnergy,wattHours,Active Energy,Wh,number,Active Energy in Wh,,,
+,Electricity,Electricity measurements,activeEnergy,kiloWattHours,Active Energy,kWh,number,Active Energy in kWh,,,
+,Electricity,Electricity measurements,apparentEnergy,voltAmpereHours,Apparent Energy,VAh,number,Apparent Energy in VAh,,,
+,Electricity,Electricity measurements,apparentEnergy,kiloVoltAmpereHours,Apparent Energy,kVAh,number,Apparent Energy in kVAh,,,
+,Electricity,Electricity measurements,reactiveEnergy,voltAmpereReactiveHours,Reactive Energy,VARh,number,Reactive Energy VARh,,,
+,Electricity,Electricity measurements,reactiveEnergy,kiloVoltAmpereReactiveHours,Reactive Energy,kVARh,number,Reactive Energy kVARh,,,
+,Electricity,Electricity measurements,frequency,hertz,Frequency,Hz,number,Frequency in Hz,,,
+,IOs,IO measurements,digitalInput,boolean,Digital input,,boolean,Digital input T/F,,,
+,IOs,IO measurements,analogInput,volt,Analog input,V,number,Analog input in V,,,
+,IOs,IO measurements,analogInput,milliVolt,Analog input,mV,number,Analog input in mV,,,
+,IOs,IO measurements,digitalOutput,boolean,Digital output,,boolean,Digital output T/F,,,
+,IOs,IO measurements,pulseInput,count,Pulse input,,integer,Pulse count,,,
+,IOs,IO measurements,buttonStatus,status,Button status,,boolean,Butten status T/F,,,
+,IOs,IO measurements,buttonEvent,event,Button event,,boolean,Button event T/F,,,
+,IOs,IO measurements,reedContact,status,Reed contact,,boolean,Reed contact T/F,,,

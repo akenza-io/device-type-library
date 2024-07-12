@@ -38,8 +38,10 @@ function readFloatLE(bytes) {
   const f = sign * m * Math.pow(2, e - 150);
   return f;
 }
-
 function isEmpty(obj) {
+  if (obj === undefined) {
+    return true;
+  }
   return Object.keys(obj).length === 0;
 }
 

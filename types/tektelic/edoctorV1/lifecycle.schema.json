@@ -7,15 +7,8 @@
   "processingType": "uplink_decoder",
   "properties": {
     "batteryLevel": {
-      "title": "Battery charge",
-      "type": "number",
-      "minimum": 0,
-      "maximum": 100,
-      "description": "The battery charge in percent.",
-      "unit": "%"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
     }
   },
-  "required": [
-    "batteryLevel"
-  ]
+  "required": ["batteryLevel"]
 }

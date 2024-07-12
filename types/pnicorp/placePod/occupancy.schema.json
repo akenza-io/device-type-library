@@ -19,7 +19,5 @@
       "type": "boolean"
     }
   },
-  "required": [
-    "occupancy"
-  ]
+  "required": ["occupancy"]
 }

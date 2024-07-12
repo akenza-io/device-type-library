@@ -15,7 +15,5 @@
       "maximum": 65535
     }
   },
-  "required": [
-    "dwelltime"
-  ]
+  "required": ["dwelltime"]
 }

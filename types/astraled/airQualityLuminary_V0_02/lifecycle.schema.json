@@ -283,12 +283,9 @@
       "hideFromKpis": true
     },
     "deviceTemperature": {
-      "title": "Device temperature",
-      "unit": "°C",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "Internal device device temperature",
-      "minimum": -3276.5,
-      "maximum": 3276.5,
+      "title": "Device temperature",
       "hideFromKpis": true
     },
     "error": {

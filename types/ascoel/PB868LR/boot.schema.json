@@ -10,13 +10,8 @@
       "title": "Sensor",
       "type": "string",
       "description": "Sensor casing type",
-      "enum": [
-        "PB868LRH",
-        "PB868LRI"
-      ]
+      "enum": ["PB868LRH", "PB868LRI"]
     }
   },
-  "required": [
-    "sensor"
-  ]
+  "required": ["sensor"]
 }

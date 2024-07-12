@@ -12,7 +12,7 @@
     "Humidity",
     "Pressure",
     "CO2",
-    "Dew point"
+    "Dew Point"
   ],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",

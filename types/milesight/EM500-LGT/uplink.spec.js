@@ -1,5 +1,4 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -46,7 +45,7 @@ describe("EM500-LGT Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.data.batteryLevel, 100);
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -56,7 +55,7 @@ describe("EM500-LGT Uplink", () => {
 
         assert.equal(value.data.light, 80);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

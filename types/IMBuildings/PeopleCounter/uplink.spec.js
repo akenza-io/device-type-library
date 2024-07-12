@@ -84,6 +84,7 @@ describe("IMBuilding People counter", () => {
         assert.equal(value.data.payloadCounter, 97);
         assert.equal(value.data.sensorStatus, "RECEIVER_LOW_BATTERY");
         assert.equal(value.data.batteryVoltage, 2.48);
+        assert.equal(value.data.batteryLevel, 42);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -137,6 +138,7 @@ describe("IMBuilding People counter", () => {
         assert.equal(value.data.rssi, -113);
         assert.equal(value.data.sensorStatus, "RESERVED");
         assert.equal(value.data.batteryVoltage, 2.67);
+        assert.equal(value.data.batteryLevel, 63);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });

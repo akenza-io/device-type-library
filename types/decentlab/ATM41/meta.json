@@ -8,20 +8,17 @@
   "firmwareVersion": "V2.0.0",
   "loraDeviceClass": "A",
   "availableSensors": [
-    "Solar radiation",
+    "Solar Radiation",
     "Precipitation",
-    "Lightning strike detector",
-    "Wind speed",
-    "Wind direction",
+    "Lightning Strike Detector",
+    "Wind Speed",
+    "Wind Direction",
     "Humidity",
     "Temperature",
     "Vapor Pressure",
     "Barometric Pressure"
   ],
-  "outputTopics": [
-    "default",
-    "lifecycle"
-  ],
+  "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

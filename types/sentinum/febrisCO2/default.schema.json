@@ -7,38 +7,19 @@
   "title": "Default",
   "properties": {
     "humidity": {
-      "title": "Humidity",
-      "unit": "%",
-      "type": "number",
-      "description": "The relative humidity in %",
-      "minimum": 0,
-      "maximum": 100
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
     },
     "pressure": {
-      "title": "Pressure",
-      "unit": "hpa",
-      "description": "Barometric Pressure in hpa",
-      "type": "number",
-      "minimum": 300,
-      "maximum": 1100
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/hPa"
     },
     "co2": {
-      "title": "CO2",
-      "unit": "ppm",
-      "type": "integer",
-      "description": "Carbon Dioxide in ppm",
-      "minimum": 0,
-      "maximum": 10000
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm"
     },
     "alarm": {
       "title": "Alarm",
       "description": "Alarm",
       "type": "string",
-      "enum": [
-        "GREEN",
-        "YELLOW",
-        "RED"
-      ]
+      "enum": ["GREEN", "YELLOW", "RED"]
     },
     "dewPoint": {
       "title": "Dew point",
@@ -49,32 +30,20 @@
       "maximum": 3276.5
     },
     "wallTemperature": {
-      "title": "Wall temperature",
-      "unit": "°C",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "Wall temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "title": "Wall temperature"
     },
     "thermTemperature": {
-      "title": "Thermometer temperature",
-      "unit": "°C",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "Thermometer temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "title": "Thermometer temperature"
     },
     "wallHumidity": {
-      "title": "Wall humidity",
-      "unit": "%",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
       "description": "The relative wall humidity in %",
-      "minimum": 0,
-      "maximum": 100
+      "title": "Wall humidity"
     }
   },
-  "required": [
-    "humidity",
-    "alarm"
-  ]
+  "required": ["humidity", "alarm"]
 }

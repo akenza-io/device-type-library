@@ -1,5 +1,4 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -101,7 +100,7 @@ describe("Aplha Omega Technologoy KlaxV2 Uplink", () => {
         assert.equal(value.data.dataPoint2, 21000);
         assert.equal(value.data.dataPoint3, 21000);
 
-        validate(value.data, register1Schema, { throwError: true });
+        utils.validateSchema(value.data, register1Schema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -123,7 +122,7 @@ describe("Aplha Omega Technologoy KlaxV2 Uplink", () => {
         assert.equal(value.data.dataPoint2, 21000);
         assert.equal(value.data.dataPoint3, 21000);
 
-        validate(value.data, register2Schema, { throwError: true });
+        utils.validateSchema(value.data, register2Schema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -145,7 +144,7 @@ describe("Aplha Omega Technologoy KlaxV2 Uplink", () => {
         assert.equal(value.data.dataPoint2, 21000);
         assert.equal(value.data.dataPoint3, 21000);
 
-        validate(value.data, register3Schema, { throwError: true });
+        utils.validateSchema(value.data, register3Schema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -167,7 +166,7 @@ describe("Aplha Omega Technologoy KlaxV2 Uplink", () => {
         assert.equal(value.data.dataPoint2, 21000);
         assert.equal(value.data.dataPoint3, 21000);
 
-        validate(value.data, register4Schema, { throwError: true });
+        utils.validateSchema(value.data, register4Schema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -184,7 +183,7 @@ describe("Aplha Omega Technologoy KlaxV2 Uplink", () => {
         assert.equal(value.data.readingMode, "SML_MODE");
         assert.equal(value.data.serverID, "0A014C475A00028131F7");
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
       consume(data);
     });
@@ -211,7 +210,7 @@ describe("Aplha Omega Technologoy KlaxV2 Uplink", () => {
         assert.equal(value.data.readingMode, "SML_MODE");
         assert.equal(value.data.measurementInterval, 15);
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
       consume(data);
     });
@@ -238,7 +237,7 @@ describe("Aplha Omega Technologoy KlaxV2 Uplink", () => {
         assert.equal(value.data.readingMode, "SML_MODE");
         assert.equal(value.data.appVersion, "1.3");
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
       consume(data);
     });
@@ -260,7 +259,9 @@ describe("Aplha Omega Technologoy KlaxV2 Uplink", () => {
         assert.equal(value.data.register1ID, "1.8.0");
         assert.equal(value.data.register2ID, "1.8.2");
 
-        validate(value.data, registerSearchSchema, { throwError: true });
+        utils.validateSchema(value.data, registerSearchSchema, {
+          throwError: true,
+        });
       });
 
       utils.expectEmits((type, value) => {
@@ -276,7 +277,7 @@ describe("Aplha Omega Technologoy KlaxV2 Uplink", () => {
         assert.equal(value.data.payloadVersion, 4);
         assert.equal(value.data.readingMode, "SML_MODE");
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
       consume(data);
     });
@@ -306,7 +307,9 @@ describe("Aplha Omega Technologoy KlaxV2 Uplink", () => {
         assert.equal(value.data.registerFilter3ID, "0.0.0");
         assert.equal(value.data.registerFilter4ID, "0.0.0");
 
-        validate(value.data, registerSearchSchema, { throwError: true });
+        utils.validateSchema(value.data, registerSetSchema, {
+          throwError: true,
+        });
       });
 
       utils.expectEmits((type, value) => {
@@ -322,7 +325,7 @@ describe("Aplha Omega Technologoy KlaxV2 Uplink", () => {
         assert.equal(value.data.payloadVersion, 4);
         assert.equal(value.data.readingMode, "SML_MODE");
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
       consume(data);
     });

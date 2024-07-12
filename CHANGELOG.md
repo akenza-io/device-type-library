@@ -4,7 +4,77 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-# [1.43.0] - 2024-02-14
+# [1.50.0] - 2024-06-12
+
+### Added
+
+- Decentlab - DWS
+
+### Changed
+
+- Updated isEmpty to react correctly to not initialized objects
+- Updated a few urls in the meta
+- Updated some images
+
+# [1.50.0] - 2024-05-24
+
+### Changed
+
+- Implemented references for commonly used datapoints
+
+# [1.49.0] - 2024-05-23
+
+### Changed
+
+- Catching illegal datapoints for the seeed senseCAPS210X series
+
+# [1.48.0] - 2024-05-22
+
+### Added
+
+- Yosensi - Temp
+- Yosensi - Pure Pro
+- Yosensi - Refrigerant Monitor
+
+### Changed
+
+- ioTracker - Removed 0 gps values in case of an illegal datapoint
+- senlabM - Changed txPeriod and logperiod as they where expressed in 2 second intervals
+- PeopleCounter - Added batteryLevel
+- LP8P - Added batteryLevel
+
+# [1.47.0] - 2024-04-26
+
+### Added
+
+- Milesight - CT101
+- Milesight - VS135
+- Milesight - TS301
+- Milesight - TS302
+
+# [1.46.1] - 2024-04-22
+
+### Changed
+
+- Updated data models
+
+# [1.46.0] - 2024-04-17
+
+### Added
+
+- Milesight - VS350
+
+### Changed
+
+- Unified available sensors in the meta.json
+
+# [1.45.0] - 2024-04-12
+
+### Added
+
+- sensingLabs - senlabM
+
+# [1.44.0] - 2024-02-14
 
 ### Added
 

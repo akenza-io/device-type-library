@@ -10,10 +10,7 @@
       "title": "Device",
       "description": "Device type",
       "type": "string",
-      "enum": [
-        "MPU",
-        "KX"
-      ],
+      "enum": ["MPU", "KX"],
       "hideFromKpis": true
     },
     "learningPercentage": {
@@ -35,36 +32,26 @@
       "hideFromKpis": true
     },
     "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5,
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "hideFromKpis": true
     },
     "learningFrom": {
       "title": "Learning",
       "description": "Learning from scratch or additional learning",
       "type": "string",
-      "enum": [
-        "ZERO",
-        "ADDITIONAL_LEARNING"
-      ],
+      "enum": ["ZERO", "ADDITIONAL_LEARNING"],
       "hideFromKpis": true
     },
     "peakFrequencyIndex": {
-      "title": "Peak frequency index",
-      "unit": "Hz",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/frequency/hertz",
       "description": "Peak frequency index",
+      "title": "Peak frequency index",
       "hideFromKpis": true
     },
     "peakFrequency": {
-      "title": "Peak frequency",
-      "unit": "Hz",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/frequency/hertz",
       "description": "Peak frequency",
+      "title": "Peak frequency",
       "hideFromKpis": true
     },
     "fft1": {
@@ -302,10 +289,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "learningPerc",
-    "vibration",
-    "temperature",
-    "learningFrom"
-  ]
+  "required": ["learningPerc", "vibration", "temperature", "learningFrom"]
 }

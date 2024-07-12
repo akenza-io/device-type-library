@@ -10,12 +10,7 @@
       "title": "Uplink reason",
       "description": "Describes why a message got sent",
       "type": "string",
-      "enum": [
-        "BUTTON",
-        "MOVEMENT",
-        "GPIO",
-        "STATUS"
-      ],
+      "enum": ["BUTTON", "MOVEMENT", "GPIO", "STATUS"],
       "hideFromKpis": true
     },
     "crc": {
@@ -25,17 +20,8 @@
       "hideFromKpis": true
     },
     "batteryLevel": {
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 100,
-      "title": "Battery charge",
-      "description": "The battery charge in percent.",
-      "unit": "%"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
     }
   },
-  "required": [
-    "uplinkReason",
-    "crc",
-    "batteryLevel"
-  ]
+  "required": ["uplinkReason", "crc", "batteryLevel"]
 }

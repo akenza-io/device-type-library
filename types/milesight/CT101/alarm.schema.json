@@ -1,0 +1,46 @@
+{
+  "$id": "https://akenza.io/milesight/CT101/alarm.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "alarm",
+  "title": "Alarm",
+  "properties": {
+    "thresholdAlarm": {
+      "title": "Threshold alarm",
+      "type": "boolean",
+      "description": "Threshold alarm",
+      "hideFromKpis": true
+    },
+    "thresholdAlarmRelease": {
+      "title": "Threshold alarm release",
+      "type": "boolean",
+      "description": "Threshold alarm release",
+      "hideFromKpis": true
+    },
+    "overRangeAlarm": {
+      "title": "Over range alarm",
+      "type": "boolean",
+      "description": "Over range alarm",
+      "hideFromKpis": true
+    },
+    "overRangeAlarmRelease": {
+      "title": "Over range alarm release",
+      "type": "boolean",
+      "description": "Over range alarm release",
+      "hideFromKpis": true
+    },
+    "readAlarm": {
+      "title": "Read alarm",
+      "type": "boolean",
+      "description": "Could not read current if boolean is true",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "thresholdAlarm",
+    "thresholdAlarmRelease",
+    "overRangeAlarm",
+    "overRangeAlarmRelease"
+  ]
+}
