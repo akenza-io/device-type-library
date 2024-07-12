@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.51.0] - 2024-07-12
+
+### Added
+
+- Decentlab - MES5
+- Decentlab - TBRG
+- smartEnds - Brigther Bins
+- mclimate - Cicki V4
+
+### Changed
+
+- Added new possible datapoints for milesight VS133 & VS121
+
 # [1.50.0] - 2024-06-12
 
 ### Added

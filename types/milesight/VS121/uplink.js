@@ -51,9 +51,17 @@ function isEmpty(obj) {
 function consume(event) {
   const payload = event.data.payloadHex;
   const bytes = parseHexString(payload);
-
-  const decoded = {};
-  let topic = "default";
+  const lifecycle = {};
+  const count = {};
+  const people = {};
+  const peopleMax = {};
+  const regionCount = {};
+  const aFlow = {};
+  const bFlow = {};
+  const cFlow = {};
+  const dFlow = {};
+  const total = {};
+  const dwellTime = {};
 
   for (let i = 0; i < bytes.length; ) {
     const channelId = bytes[i++];
@@ -61,58 +69,168 @@ function consume(event) {
 
     // PROTOCOL VESION
     if (channelId === 0xff && channelType === 0x01) {
-      decoded.protocolVersion = bytes[i];
+      lifecycle.protocolVersion = bytes[i];
       i += 1;
-      topic = "lifecycle";
     }
     // SERIAL NUMBER
     else if (channelId === 0xff && channelType === 0x08) {
-      decoded.sn = readString(Array.from(bytes).slice(i, i + 6));
+      lifecycle.sn = readString(Array.from(bytes).slice(i, i + 6));
       i += 6;
-      topic = "lifecycle";
     }
     // HARDWARE VERSION
     else if (channelId === 0xff && channelType === 0x09) {
-      decoded.hardwareVersion = readVersion(Array.from(bytes).slice(i, i + 2));
+      lifecycle.hardwareVersion = readVersion(
+        Array.from(bytes).slice(i, i + 2),
+      );
       i += 2;
-      topic = "lifecycle";
     }
     // FIRMWARE VERSION
     else if (channelId === 0xff && channelType === 0x0a) {
-      decoded.firmwareVersion = readVersion(Array.from(bytes).slice(i, i + 4));
+      lifecycle.firmwareVersion = readVersion(
+        Array.from(bytes).slice(i, i + 4),
+      );
       i += 4;
-      topic = "lifecycle";
     }
     // PEOPLE COUNTER
     else if (channelId === 0x04 && channelType === 0xc9) {
-      decoded.peopleCounterAll = bytes[i];
-      decoded.regionCount = bytes[i + 1];
+      count.peopleCounterAll = bytes[i];
+      count.regionCount = bytes[i + 1];
       const region = readUInt16BE(Array.from(bytes).slice(i + 2, i + 4));
-      for (let idx = 0; idx < decoded.regionCount; idx++) {
+      for (let idx = 0; idx < count.regionCount; idx++) {
         const tmp = `region${idx}`;
-        decoded[tmp] = (region >> idx) & 1;
+        count[tmp] = (region >> idx) & 1;
       }
       i += 4;
-      topic = "count";
     }
     // PEOPLE IN/OUT
     else if (channelId === 0x05 && channelType === 0xcc) {
-      decoded.in = readInt16LE(Array.from(bytes).slice(i, i + 2));
-      decoded.out = readInt16LE(Array.from(bytes).slice(i + 2, i + 4));
+      people.in = readInt16LE(Array.from(bytes).slice(i, i + 2));
+      people.out = readInt16LE(Array.from(bytes).slice(i + 2, i + 4));
       i += 4;
-      topic = "people";
     }
     // PEOPLE MAX
     else if (channelId === 0x06 && channelType === 0xcd) {
-      decoded.peopleMax = bytes[i];
+      peopleMax.peopleMax = bytes[i];
       i += 1;
-      topic = "people_max";
+    }
+    // REGION COUNTER
+    else if (channelId === 0x07 && channelType === 0xd5) {
+      regionCount.region1count = bytes[i];
+      regionCount.region2count = bytes[i + 1];
+      regionCount.region3count = bytes[i + 2];
+      regionCount.region4count = bytes[i + 3];
+      regionCount.region5count = bytes[i + 4];
+      regionCount.region6count = bytes[i + 5];
+      regionCount.region7count = bytes[i + 6];
+      regionCount.region8count = bytes[i + 7];
+      i += 8;
+    }
+    // REGION COUNTER
+    else if (channelId === 0x08 && channelType === 0xd5) {
+      regionCount.region9count = bytes[i];
+      regionCount.region10count = bytes[i + 1];
+      regionCount.region11count = bytes[i + 2];
+      regionCount.region12count = bytes[i + 3];
+      regionCount.region13count = bytes[i + 4];
+      regionCount.region14count = bytes[i + 5];
+      regionCount.region15count = bytes[i + 6];
+      regionCount.region16count = bytes[i + 7];
+      i += 8;
+    }
+    // A FLOW
+    else if (channelId === 0x09 && channelType === 0xda) {
+      aFlow.aToA = readUInt16LE(bytes.slice(i, i + 2));
+      aFlow.aToB = readUInt16LE(bytes.slice(i + 2, i + 4));
+      aFlow.aToC = readUInt16LE(bytes.slice(i + 4, i + 6));
+      aFlow.aToD = readUInt16LE(bytes.slice(i + 6, i + 8));
+      i += 8;
+    }
+    // B FLOW
+    else if (channelId === 0x0a && channelType === 0xda) {
+      bFlow.bToA = readUInt16LE(bytes.slice(i, i + 2));
+      bFlow.bToB = readUInt16LE(bytes.slice(i + 2, i + 4));
+      bFlow.bToC = readUInt16LE(bytes.slice(i + 4, i + 6));
+      bFlow.bToD = readUInt16LE(bytes.slice(i + 6, i + 8));
+      i += 8;
+    }
+    // C FLOW
+    else if (channelId === 0x0b && channelType === 0xda) {
+      cFlow.cToA = readUInt16LE(bytes.slice(i, i + 2));
+      cFlow.cToB = readUInt16LE(bytes.slice(i + 2, i + 4));
+      cFlow.cToC = readUInt16LE(bytes.slice(i + 4, i + 6));
+      cFlow.cToD = readUInt16LE(bytes.slice(i + 6, i + 8));
+      i += 8;
+    }
+    // D FLOW
+    else if (channelId === 0x0c && channelType === 0xda) {
+      dFlow.dToA = readUInt16LE(bytes.slice(i, i + 2));
+      dFlow.dToB = readUInt16LE(bytes.slice(i + 2, i + 4));
+      dFlow.dToC = readUInt16LE(bytes.slice(i + 4, i + 6));
+      dFlow.dToD = readUInt16LE(bytes.slice(i + 6, i + 8));
+      i += 8;
+    }
+    // TOTAL IN/OUT
+    else if (channelId === 0x0d && channelType === 0xcc) {
+      total.peopleTotalIn = readUInt16LE(bytes.slice(i, i + 2));
+      total.peopleTotalOut = readUInt16LE(bytes.slice(i + 2, i + 4));
+      i += 4;
+    }
+    // DWELL TIME
+    else if (channelId === 0x0e && channelType === 0xe4) {
+      const region = bytes[i];
+      dwellTime[`region${region}AvgDwell`] = readUInt16LE(
+        bytes.slice(i + 1, i + 3),
+      );
+      dwellTime[`region${region}MaxDwell`] = readUInt16LE(
+        bytes.slice(i + 3, i + 5),
+      );
+      i += 5;
     } else {
       break;
     }
   }
 
-  if (!isEmpty(decoded)) {
-    emit("sample", { data: decoded, topic });
+  if (!isEmpty(lifecycle)) {
+    emit("sample", { data: lifecycle, topic: "lifecycle" });
+  }
+
+  if (!isEmpty(count)) {
+    emit("sample", { data: count, topic: "count" });
+  }
+
+  if (!isEmpty(people)) {
+    emit("sample", { data: people, topic: "people" });
+  }
+
+  if (!isEmpty(peopleMax)) {
+    emit("sample", { data: peopleMax, topic: "people_max" });
+  }
+
+  if (!isEmpty(regionCount)) {
+    emit("sample", { data: regionCount, topic: "region_count" });
+  }
+
+  if (!isEmpty(aFlow)) {
+    emit("sample", { data: aFlow, topic: "a_flow" });
+  }
+
+  if (!isEmpty(bFlow)) {
+    emit("sample", { data: bFlow, topic: "b_flow" });
+  }
+
+  if (!isEmpty(cFlow)) {
+    emit("sample", { data: cFlow, topic: "c_flow" });
+  }
+
+  if (!isEmpty(dFlow)) {
+    emit("sample", { data: dFlow, topic: "d_flow" });
+  }
+
+  if (!isEmpty(total)) {
+    emit("sample", { data: total, topic: "total" });
+  }
+
+  if (!isEmpty(dwellTime)) {
+    emit("sample", { data: dwellTime, topic: "dwell_time" });
   }
 }
