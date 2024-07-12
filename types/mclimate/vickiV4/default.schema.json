@@ -1,0 +1,65 @@
+{
+  "$id": "https://akenza.io/mclimate/vicki4/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "targetTemperature": {
+      "title": "Target temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The target temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "sensorTemperature": {
+      "title": "Sensor temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The sensor temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "humidity": {
+      "title": "Humidity",
+      "unit": "%",
+      "type": "number",
+      "description": "The relative humidity in %",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "motorRange": {
+      "title": "Motor range",
+      "unit": "°",
+      "type": "integer",
+      "description": "Maximal motor range"
+    },
+    "motorPosition": {
+      "title": "Motor position",
+      "type": "integer",
+      "unit": "°",
+      "description": "Motor position"
+    },
+    "openWindow": {
+      "title": "Open window",
+      "description": "Equals true if an open window is detected",
+      "type": "boolean"
+    },
+    "childLock": {
+      "title": "Child lock",
+      "description": "Equals true if the child lock is enabled",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "targetTemperature",
+    "sensorTemperature",
+    "humidity",
+    "motorRange",
+    "motorPosition",
+    "openWindow",
+    "childLock"
+  ]
+}
