@@ -15,19 +15,19 @@ function consume(event) {
   const trigger = {};
   let topic = "default";
 
-  lifecycle.payloadVersion = Bits.bitsToUnsigned(bits.substr(0, 8));
-  lifecycle.mode = Bits.bitsToUnsigned(bits.substr(8, 8));
-  const status = Number(Bits.bitsToUnsigned(bits.substr(16, 8)));
-  const batteryVoltage = Bits.bitsToUnsigned(bits.substr(24, 8)) * 6 + 2000;
-  lifecycle.batteryVoltage = Math.round((batteryVoltage / 1000) * 10) / 10;
-  let batteryLevel = Math.round((batteryVoltage - 2000) / 15.24);
+lifecycle.payloadVersion = Bits.bitsToUnsigned(bits.substr(0, 8));
+lifecycle.mode = Bits.bitsToUnsigned(bits.substr(8, 8));
+const status = Number(Bits.bitsToUnsigned(bits.substr(16, 8)));
+const batteryVoltage = Bits.bitsToUnsigned(bits.substr(24, 8)) * 6 + 2000;
+lifecycle.batteryVoltage = Math.round((batteryVoltage / 1000) * 10) / 10;
+let batteryLevel = Math.round((batteryVoltage - 2550) / 4.6);
 
-  if (batteryLevel > 100) {
-    batteryLevel = 100;
-  } else if (batteryLevel < 0) {
-    batteryLevel = 0;
-  }
-  lifecycle.batteryLevel = batteryLevel;
+if (batteryLevel > 100) {
+  batteryLevel = 100;
+} else if (batteryLevel < 0) {
+  batteryLevel = 0;
+}
+lifecycle.batteryLevel = batteryLevel;
 
   if (port === 3) {
     let pointer = 32;
