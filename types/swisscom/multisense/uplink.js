@@ -20,12 +20,16 @@ function consume(event) {
   const status = Number(Bits.bitsToUnsigned(bits.substr(16, 8)));
   const batteryVoltage = Bits.bitsToUnsigned(bits.substr(24, 8)) * 6 + 2000;
   lifecycle.batteryVoltage = Math.round((batteryVoltage / 1000) * 10) / 10;
-  let batteryLevel = Math.round((batteryVoltage - 2000) / 15.24);
 
-  if (batteryLevel > 100) {
-    batteryLevel = 100;
-  } else if (batteryLevel < 0) {
-    batteryLevel = 0;
+  let batteryLevel = 0;
+  // Battery level curve with drop off point
+  if (batteryVoltage >= 2820) {
+    batteryLevel = Math.round(((batteryVoltage - 2820) / 1.9) * 0.8) + 20; // 3010 -- 2820
+    if (batteryLevel > 100) {
+      batteryLevel = 100;
+    }
+  } else if (batteryVoltage >= 2550) {
+    batteryLevel = Math.round(((batteryVoltage - 2550) / 2.7) * 0.2); // 2820 -- 2550
   }
   lifecycle.batteryLevel = batteryLevel;
 
