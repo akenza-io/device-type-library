@@ -1,0 +1,46 @@
+{
+  "$id": "https://akenza.io/milesight/UC510/status.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "status",
+  "title": "Status",
+  "properties": {
+    "valve1": {
+      "title": "Valve 1 status",
+      "unit": "string",
+      "description": "Valve 1 status",
+      "enum": [
+        "OPEN",
+        "CLOSED"
+      ]
+    },
+    "valve2": {
+      "title": "Valve 2 status",
+      "unit": "string",
+      "description": "Valve 2 status",
+      "enum": [
+        "OPEN",
+        "CLOSED"
+      ]
+    },
+    "gpio1": {
+      "title": "GPIO 1 status",
+      "unit": "string",
+      "description": "GPIO 1 status",
+      "enum": [
+        "OFF",
+        "ON"
+      ]
+    },
+    "gpio2": {
+      "title": "GPIO 2 status",
+      "unit": "string",
+      "description": "GPIO 2 status",
+      "enum": [
+        "OFF",
+        "ON"
+      ]
+    }
+  }
+}
