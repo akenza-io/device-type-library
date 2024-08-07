@@ -1,0 +1,21 @@
+{
+  "name": "Flash'O",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/product/flasho-sensor-lorawan/",
+  "description": "",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Pulse"
+  ],
+  "outputTopics": [
+    "phase1",
+    "phase2",
+    "phase3",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
