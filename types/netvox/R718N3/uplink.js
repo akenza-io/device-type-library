@@ -59,7 +59,7 @@ function consume(event) {
       data.current2 = (current2 * multiplier2) / 1000;
       data.current3 = (current3 * multiplier3) / 1000;
 
-      emit("sample", { data, topic: "raw2" });
+      emit("sample", { data, topic: "default" });
       break;
     }
     case 3: {
