@@ -1,0 +1,37 @@
+{
+  "$id": "https://akenza.io/smartEnds/brigtherBins/distance.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "distance",
+  "title": "Distance",
+  "properties": {
+    "distance": {
+      "title": "Distance",
+      "unit": "cm",
+      "type": "number",
+      "description": "Distance measured between the sensor and the surface"
+    },
+    "fillLevel": {
+      "title": "Fill Level",
+      "unit": "%",
+      "type": "number",
+      "description": "Total fill level in percent",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "distanceError": {
+      "title": "Distance error",
+      "unit": "string",
+      "type": "number",
+      "description": "Distance error",
+      "enum": [
+        "SENSOR_MODULE_NOT_RESPONDING",
+        "LASER_SENSOR_INVALID_CONFIGURATIONS"
+      ]
+    }
+  },
+  "required": [
+    "distance"
+  ]
+}
