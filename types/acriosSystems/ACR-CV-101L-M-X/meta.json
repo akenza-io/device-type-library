@@ -7,8 +7,12 @@
     "author": "Akenza AG",
     "firmwareVersion": "V2.3.18",
     "loraDeviceClass": "A",
-    "availableSensors": [],
-    "outputTopics": [],
+    "availableSensors": [
+        "M-Bus"
+    ],
+    "outputTopics": [
+        "mbus"
+    ],
     "encoding": "HEX",
     "connectivity": "LORA"
 }
