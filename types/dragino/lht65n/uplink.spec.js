@@ -97,4 +97,51 @@ describe("Dragino LHT65N Uplink", () => {
       consume(data);
     });
   });
+
+  it("should decode the Dragino LHT65N report uplink", () => {
+    const data = {
+      data: {
+        port: 2,
+        payloadHex: "CCB5026C039F010A857FFF",
+      },
+    };
+
+    utils.expectEmits((type, value) => {
+      assert.equal(type, "sample");
+      assert.isNotNull(value);
+      assert.typeOf(value.data, "object");
+
+      assert.equal(value.topic, "lifecycle");
+      assert.equal(value.data.batteryStatus, "GOOD");
+      assert.equal(value.data.batteryVoltage, 3.253);
+      assert.equal(value.data.batteryLevel, 100);
+
+      utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+    });
+
+    utils.expectEmits((type, value) => {
+      assert.equal(type, "sample");
+      assert.isNotNull(value);
+      assert.typeOf(value.data, "object");
+
+      assert.equal(value.topic, "default");
+      assert.equal(value.data.humidity, 92.7);
+      assert.equal(value.data.temperature, 6.2);
+
+      utils.validateSchema(value.data, defaultSchema, { throwError: true });
+    });
+
+    utils.expectEmits((type, value) => {
+      assert.equal(type, "sample");
+      assert.isNotNull(value);
+      assert.typeOf(value.data, "object");
+
+      assert.equal(value.topic, "external");
+      assert.equal(value.data.tempDS, 26.93);
+
+      utils.validateSchema(value.data, externalSchema, { throwError: true });
+    });
+
+    consume(data);
+  });
 });
