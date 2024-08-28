@@ -1,3 +1,12 @@
+function incrementValue(lastPulse, pulse) {
+  // Init state && Check for the case the counter reseted
+  if (lastPulse === undefined || lastPulse > pulse) {
+    lastPulse = pulse;
+  }
+  // Calculate increment
+  return pulse - lastPulse;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
@@ -21,10 +30,16 @@ function consume(event) {
 
   data.temperature = Bits.bitsToUnsigned(bits.substr(17, 7));
   data.temperature -= 32;
-
   data.time = Hex.hexLittleEndianToBigEndian(payload.substr(6, 4), false);
-  data.count = Hex.hexLittleEndianToBigEndian(payload.substr(10, 6), false);
 
+  data.absoluteCount = Hex.hexLittleEndianToBigEndian(
+    payload.substr(10, 6),
+    false,
+  );
+  data.count = incrementValue(event.state.lastCount, data.absoluteCount);
+  event.state.lastCount = data.absoluteCount;
+
+  emit("state", event.state);
   emit("sample", { data: lifecycle, topic: "lifecycle" });
   emit("sample", { data, topic: "default" });
 }

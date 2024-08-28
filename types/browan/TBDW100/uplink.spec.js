@@ -32,10 +32,16 @@ describe("TBDW100 uplink", () => {
   describe("consume()", () => {
     it("Should decode TBDW100 payload", () => {
       const data = {
+        state: {},
         data: {
           payloadHex: "017b345cb1510c00",
         },
       };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value.lastCount, 3153);
+      });
 
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
@@ -58,7 +64,51 @@ describe("TBDW100 uplink", () => {
         assert.equal(value.data.open, true);
         assert.equal(value.data.temperature, 20);
         assert.equal(value.data.time, 45404);
-        assert.equal(value.data.count, 3153);
+        assert.equal(value.data.count, 0);
+        assert.equal(value.data.absoluteCount, 3153);
+
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("Should decode TBDW100 payload", () => {
+      const data = {
+        state: { lastCount: 3053 },
+        data: {
+          payloadHex: "017b345cb1510c00",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value.lastCount, 3153);
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batteryLevel, 100);
+        assert.equal(value.data.batteryVoltage, 3.6);
+
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.open, true);
+        assert.equal(value.data.temperature, 20);
+        assert.equal(value.data.time, 45404);
+        assert.equal(value.data.count, 100);
+        assert.equal(value.data.absoluteCount, 3153);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
