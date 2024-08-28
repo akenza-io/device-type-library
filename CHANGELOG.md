@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.51.1] - 2024-07-30
+
+### Changed
+
+- Swisscom Multisense changed the batteryLevel percentage calculation to include the dropoff
+
 # [1.51.0] - 2024-07-12
 
 ### Added
