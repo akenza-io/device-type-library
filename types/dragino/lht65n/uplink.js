@@ -93,7 +93,7 @@ function decoder(bytes, port) {
   const pollMessageStatus = (bytes[6] >> 7) & 0x01;
   const connect = (bytes[6] & 0x80) >> 7;
   const decode = { lifecycle: {}, decoded: {}, external: {}, datalog: {} };
-  if (((port === 3) & (bytes[2] === 0x01)) | (bytes[2] === 0x02)) {
+  if ((port === 3) & ((bytes[2] === 0x01) | (bytes[2] === 0x02))) {
     const array1 = [];
     const bytes1 = "0x";
     const str1 = Str1(bytes);
