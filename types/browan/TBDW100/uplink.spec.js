@@ -64,8 +64,8 @@ describe("TBDW100 uplink", () => {
         assert.equal(value.data.open, true);
         assert.equal(value.data.temperature, 20);
         assert.equal(value.data.time, 45404);
-        assert.equal(value.data.count, 0);
-        assert.equal(value.data.absoluteCount, 3153);
+        assert.equal(value.data.relativeCount, 0);
+        assert.equal(value.data.count, 3153);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -107,8 +107,8 @@ describe("TBDW100 uplink", () => {
         assert.equal(value.data.open, true);
         assert.equal(value.data.temperature, 20);
         assert.equal(value.data.time, 45404);
-        assert.equal(value.data.count, 100);
-        assert.equal(value.data.absoluteCount, 3153);
+        assert.equal(value.data.relativeCount, 100);
+        assert.equal(value.data.count, 3153);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

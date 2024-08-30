@@ -24,13 +24,13 @@
       "minimum": 0,
       "maximum": 65535
     },
-    "volume": {
+    "relativeVolume": {
       "title": "Volume",
       "unit": "m^3",
       "type": "number",
       "description": "Tank volume in m3"
     },
-    "absoluteVolume": {
+    "volume": {
       "title": "Absolute Volume",
       "unit": "m^3",
       "type": "number",

@@ -54,7 +54,7 @@ describe("Elsys EMS Door uplink", () => {
 
         assert.equal(value.topic, "reed");
         assert.equal(value.data.pulseAbs1, 1938);
-        assert.equal(value.data.pulse1, 0);
+        assert.equal(value.data.relativePulse1, 0);
         assert.equal(value.data.reed, true);
 
         utils.validateSchema(value.data, reedSchema, { throwError: true });
@@ -116,7 +116,7 @@ describe("Elsys EMS Door uplink", () => {
 
         assert.equal(value.topic, "reed");
         assert.equal(value.data.pulseAbs1, 1938);
-        assert.equal(value.data.pulse1, 238);
+        assert.equal(value.data.relativePulse1, 238);
         assert.equal(value.data.reed, true);
 
         utils.validateSchema(value.data, reedSchema, { throwError: true });

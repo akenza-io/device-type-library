@@ -27,8 +27,9 @@ function customPulse(cPulseType, cMultiplier, cDivider, pulse) {
 
   if (pulseType !== "") {
     value = Math.round(((pulse * multiplier) / divider) * 1000) / 1000;
-    return [true, pulseType, value];
+    return { valid: true, pulseType, value };
   }
+  return { valid: false };
 }
 
 function consume(event) {
@@ -100,9 +101,7 @@ function consume(event) {
         (Bits.bitsToUnsigned(bits.substr(8, 8)) / 254) * 100,
       );
       // Reserved internal data (Variable length & confidential)
-      data.pulseCumulutaive = Bits.bitsToUnsigned(
-        bits.substr(bitsLength - 32, 32),
-      );
+      data.pulse = Bits.bitsToUnsigned(bits.substr(bitsLength - 32, 32));
       break;
     // Log & Wirecut
     case 7:
@@ -111,9 +110,7 @@ function consume(event) {
       );
       data.wireCutStatus = !!Bits.bitsToUnsigned(bits.substr(16, 8));
       // Reserved internal data (Variable length & confidential)
-      data.pulseCumulutaive = Bits.bitsToUnsigned(
-        bits.substr(bitsLength - 32, 32),
-      );
+      data.pulse = Bits.bitsToUnsigned(bits.substr(bitsLength - 32, 32));
       break;
     // Log & Wirecut & DUAL Input
     case 10:
@@ -122,12 +119,8 @@ function consume(event) {
       );
       data.wireCutStatus = !!Bits.bitsToUnsigned(bits.substr(16, 8));
       // Reserved internal data (Variable length & confidential)
-      data.pulseCumulutaive1 = Bits.bitsToUnsigned(
-        bits.substr(bitsLength - 64, 32),
-      );
-      data.pulseCumulutaive2 = Bits.bitsToUnsigned(
-        bits.substr(bitsLength - 32, 32),
-      );
+      data.pulse1 = Bits.bitsToUnsigned(bits.substr(bitsLength - 64, 32));
+      data.pulse2 = Bits.bitsToUnsigned(bits.substr(bitsLength - 32, 32));
 
       topic = "default";
       break;
@@ -136,68 +129,61 @@ function consume(event) {
       break;
   }
 
-  if (data.pulseCumulutaive !== undefined) {
-    data.pulse = incrementValue(event.state.lastPulse, data.pulseCumulutaive);
-    event.state.lastPulse = data.pulseCumulutaive;
+  if (data.pulse !== undefined) {
+    data.relativePulse = incrementValue(event.state.lastPulse, data.pulse);
+    event.state.lastPulse = data.pulse;
   }
 
-  if (data.pulseCumulutaive1 !== undefined) {
-    data.pulse1 = incrementValue(
-      event.state.lastPulse1,
-      data.pulseCumulutaive1,
-    );
-    event.state.lastPulse1 = data.pulseCumulutaive1;
+  if (data.pulse1 !== undefined) {
+    data.relativePulse1 = incrementValue(event.state.lastPulse1, data.pulse1);
+    event.state.lastPulse1 = data.pulse1;
   }
 
-  if (data.pulseCumulutaive2 !== undefined) {
-    data.pulse2 = incrementValue(
-      event.state.lastPulse2,
-      data.pulseCumulutaive2,
-    );
-    event.state.lastPulse2 = data.pulseCumulutaive2;
+  if (data.pulse2 !== undefined) {
+    data.relativePulse2 = incrementValue(event.state.lastPulse2, data.pulse2);
+    event.state.lastPulse2 = data.pulse2;
   }
 
   // Customfields for calculation and key name
   if (event.device !== undefined) {
     if (event.device.customFields !== undefined) {
       const { customFields } = event.device;
-      let res = [false];
       if (data.pulse !== undefined) {
-        res = customPulse(
+        const res = customPulse(
           customFields.pulseType,
           customFields.multiplier,
           customFields.divider,
           data.pulse,
         );
 
-        if (res[0]) {
-          data[res[1]] = res[2];
+        if (res.valid) {
+          data[res.pulseType] = res.value;
         }
       }
 
       if (data.pulse1 !== undefined) {
-        res = customPulse(
+        const res = customPulse(
           customFields.pulseType1,
           customFields.multiplier1,
           customFields.divider1,
           data.pulse1,
         );
 
-        if (res[0]) {
-          data[res[1]] = res[2];
+        if (res.valid) {
+          data[res.pulseType] = res.value;
         }
       }
 
       if (data.pulse2 !== undefined) {
-        res = customPulse(
+        const res = customPulse(
           customFields.pulseType2,
           customFields.multiplier2,
           customFields.divider2,
           data.pulse2,
         );
 
-        if (res[0]) {
-          data[res[1]] = res[2];
+        if (res.valid) {
+          data[res.pulseType] = res.value;
         }
       }
     }

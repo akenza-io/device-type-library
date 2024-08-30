@@ -88,8 +88,8 @@ describe("Yanzi Presence Mini Sensor Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "occupancy");
-        assert.equal(value.data.absoluteMotion, 24873);
-        assert.equal(value.data.motion, 0);
+        assert.equal(value.data.motion, 24873);
+        assert.equal(value.data.relativeMotion, 0);
         assert.equal(value.data.occupancy, 0);
         assert.equal(value.data.occupied, false);
 
@@ -128,8 +128,8 @@ describe("Yanzi Presence Mini Sensor Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "occupancy");
-        assert.equal(value.data.absoluteMotion, 24873);
-        assert.equal(value.data.motion, 73);
+        assert.equal(value.data.motion, 24873);
+        assert.equal(value.data.relativeMotion, 73);
         assert.equal(value.data.occupancy, 2);
         assert.equal(value.data.occupied, true);
 

@@ -21,13 +21,13 @@
       "description": "Time in minutes between samples",
       "hideFromKpis": true
     },
-    "absoluteCount": {
+    "count": {
       "title": "Absolute count",
       "type": "integer",
       "description": "Absolute count of events, resets on reboot",
       "hideFromKpis": true
     },
-    "count": {
+    "relativeCount": {
       "title": "Count",
       "type": "integer",
       "description": "Count of events between cycles",
@@ -38,7 +38,7 @@
     "temperature",
     "open",
     "time",
-    "absoluteCount",
+    "relativeCount",
     "count"
   ]
 }

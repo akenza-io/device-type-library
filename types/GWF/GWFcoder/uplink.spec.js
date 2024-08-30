@@ -47,8 +47,8 @@ describe("GWF RCM®-LRW10", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.meterMedium, "WATER");
         assert.equal(value.data.actualityDuration, 456);
-        assert.equal(value.data.absoluteVolume, 1.016);
-        assert.equal(value.data.volume, 0);
+        assert.equal(value.data.volume, 1.016);
+        assert.equal(value.data.relativeVolume, 0);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -107,8 +107,8 @@ describe("GWF RCM®-LRW10", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.meterMedium, "WATER");
         assert.equal(value.data.actualityDuration, 456);
-        assert.equal(value.data.absoluteVolume, 1.016);
-        assert.equal(value.data.volume, 0.516);
+        assert.equal(value.data.volume, 1.016);
+        assert.equal(value.data.relativeVolume, 0.516);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

@@ -144,28 +144,28 @@ function consume(event) {
 
   // Default values
   data.frequency = Math.round(sample.frequency * 100) / 100;
-  data.absoluteWeight = Math.round(sample.weight * 100) / 100 - tare;
-  data.absoluteWeightKg = Math.round(sample.weight * 10) / 10000;
+  data.weight = Math.round(sample.weight * 100) / 100 - tare;
+  data.weightKg = Math.round(data.weight * 10) / 10000;
 
   // Init state
   if (
     event.state.lastWeighting === undefined ||
-    event.state.lastWeighting > data.absoluteWeight
+    event.state.lastWeighting > data.weight
   ) {
-    event.state.lastWeighting = data.absoluteWeight;
+    event.state.lastWeighting = data.weight;
   }
 
   // Calculate increment
-  data.weightGram = data.absoluteWeight - event.state.lastWeighting;
-  data.weightKilogramm =
-    data.absoluteWeightKg - event.state.lastWeighting / 1000;
-  event.state.lastWeighting = data.absoluteWeight;
+  data.relativeWeightGram = data.weight - event.state.lastWeighting;
+  data.relativeWeightKilogramm =
+    Math.round(data.relativeWeightGram * 10) / 10000;
 
   // Zero negative weight
   if (data.weightGram <= 0) {
-    data.weightGram = 0;
-    data.weightKilogramm = 0;
+    data.relativeWeightGram = 0;
+    data.relativeWeightKilogramm = 0;
   }
+  event.state.lastWeighting = data.weight;
 
   // Lifecycle values
   lifecycle.batteryVoltage = sample.battery_voltage;

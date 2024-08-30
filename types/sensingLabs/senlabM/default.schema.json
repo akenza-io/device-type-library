@@ -25,7 +25,24 @@
       "title": "Pulse 2",
       "type": "integer",
       "description": "Total raw pulses with second node received"
+    },
+    "relativePulse": {
+      "title": "Relative pulse",
+      "type": "integer",
+      "description": "Relative pulses received"
+    },
+    "relativePulse1": {
+      "title": "Relative pulse 1",
+      "type": "integer",
+      "description": "Relative pulses with first node received"
+    },
+    "relativePulse2": {
+      "title": "Relative pulse 2",
+      "type": "integer",
+      "description": "Relative pulses with second node received"
     }
   },
-  "required": ["pulse"]
+  "required": [
+    "pulse"
+  ]
 }

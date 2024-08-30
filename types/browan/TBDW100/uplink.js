@@ -32,12 +32,9 @@ function consume(event) {
   data.temperature -= 32;
   data.time = Hex.hexLittleEndianToBigEndian(payload.substr(6, 4), false);
 
-  data.absoluteCount = Hex.hexLittleEndianToBigEndian(
-    payload.substr(10, 6),
-    false,
-  );
-  data.count = incrementValue(event.state.lastCount, data.absoluteCount);
-  event.state.lastCount = data.absoluteCount;
+  data.count = Hex.hexLittleEndianToBigEndian(payload.substr(10, 6), false);
+  data.relativeCount = incrementValue(event.state.lastCount, data.count);
+  event.state.lastCount = data.count;
 
   emit("state", event.state);
   emit("sample", { data: lifecycle, topic: "lifecycle" });

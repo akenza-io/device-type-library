@@ -6,14 +6,14 @@
   "topic": "occupancy",
   "title": "Occupancy",
   "properties": {
-    "motion": {
+    "relativeMotion": {
       "title": "Motion",
       "description": "Motion sensor measuring activity level",
       "type": "integer",
       "minimum": 0,
       "maximum": 65535
     },
-    "absoluteMotion": {
+    "motion": {
       "title": "Absolute motion",
       "description": "Absolute motion sensor measuring activity level",
       "type": "integer",
@@ -34,8 +34,8 @@
     }
   },
   "required": [
-    "absoluteMotion",
     "motion",
+    "relativeMotion",
     "occupancy",
     "occupied"
   ]

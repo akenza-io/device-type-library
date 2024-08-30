@@ -21,17 +21,17 @@ function consume(event) {
     }
 
     if (resourceType === "SampleMotion") {
-      sample.absoluteMotion = value;
+      sample.motion = value;
       topic = "occupancy";
 
       // Calculate increment
-      sample.motion = incrementValue(
+      sample.relativeMotion = incrementValue(
         event.state.lastMotion,
-        sample.absoluteMotion,
+        sample.motion,
       );
-      event.state.lastMotion = sample.absoluteMotion;
+      event.state.lastMotion = sample.motion;
 
-      if (sample.motion > 1) {
+      if (sample.relativeMotion > 1) {
         sample.occupancy = 2;
         sample.occupied = true;
       } else {

@@ -102,9 +102,9 @@ describe("Senlab SenlabM uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.pulse, 0);
-        assert.equal(value.data.kwh, 0);
-        assert.equal(value.data.pulseCumulutaive, 3927);
+        assert.equal(value.data.relativePulse, 0);
+        assert.equal(value.data.kwh, 39.27);
+        assert.equal(value.data.pulse, 3927);
 
         // utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -152,8 +152,9 @@ describe("Senlab SenlabM uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.pulse, 927);
-        assert.equal(value.data.kwh, 9.27);
+        assert.equal(value.data.pulse, 3927);
+        assert.equal(value.data.relativePulse, 927);
+        assert.equal(value.data.kwh, 39.27);
 
         // utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

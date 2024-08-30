@@ -12,25 +12,25 @@
       "description": "Frequency",
       "type": "number"
     },
-    "absoluteWeight": {
+    "weight": {
       "title": "Weight",
       "unit": "g",
       "description": "Weight in gram",
       "type": "number"
     },
-    "absoluteWeightKg": {
+    "weightKg": {
       "title": "Weight",
       "unit": "kg",
       "description": "Weight in kilogram",
       "type": "number"
     },
-    "weightGram": {
+    "relativeWeightGram": {
       "title": "Increment gram",
       "unit": "g",
       "description": "Increment gram",
       "type": "number"
     },
-    "weightKilogramm": {
+    "relativeWeightKilogramm": {
       "title": "Increment kilogram",
       "unit": "kg",
       "description": "Increment kilogram",
@@ -39,9 +39,9 @@
   },
   "required": [
     "frequency",
-    "absoluteWeight",
-    "absoluteWeightKg",
-    "weightGram",
-    "weightKilogramm"
+    "weight",
+    "weightKg",
+    "relativeWeightGram",
+    "relativeWeightKilogramm"
   ]
 }
