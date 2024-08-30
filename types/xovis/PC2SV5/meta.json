@@ -19,7 +19,8 @@
     "track",
     "view_direction",
     "zone",
-    "queue"
+    "queue",
+    "queue_time"
   ],
   "encoding": "JSON",
   "connectivity": "HTTP"
