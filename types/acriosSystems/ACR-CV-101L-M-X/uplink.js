@@ -689,14 +689,13 @@ return {
 * @param {ConsumeEvent} event
 */ 
 function consume(event) {
-	var parsed;
 	var lastFrameIndex = (event.state || {}).lastFrameIndex;
 	var thisFrameHex = event.data["payloadHex"];
 	var thisFrameIndex = parseInt(thisFrameHex.substr(0,2),16);
 	var totalBatchFrames = parseInt(thisFrameHex.substr(2,2),16);
 	var thisFramePayload = thisFrameHex.substr(4);
 	var previousPayloads = (event.state || {}).previousPayloads;
-
+	var data;
 
 	if (typeof lastFrameIndex === "undefined") {
 		lastFrameIndex = 0;
@@ -712,14 +711,14 @@ function consume(event) {
 
 	if(thisFrameIndex == totalBatchFrames){
 		if(thisFrameIndex == 1) {
-			parsed = tmbus(thisFramePayload);
+			data = tmbus(thisFramePayload);
 		} else {
 			var aggregatedPayload = previousPayloads.reduce((aggregated, payload) => aggregated + payload);
 			aggregatedPayload += thisFramePayload;
-			parsed = tmbus(aggregatedPayload);
+			data = tmbus(aggregatedPayload);
 		}
 		emit("state", {lastFrameIndex: 0, previousPayloads: []});
-		emit("sample", {data: parsed, topic: "mbus"});
+		emit("sample", {data, topic: "mbus"});
 	} else {
 		if (typeof previousPayloads === "undefined") {
 			previousPayloads = [thisFramePayload];
