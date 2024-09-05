@@ -4229,7 +4229,7 @@ describe("Xovis V5 Uplink", () => {
 
       assert.equal(value.topic, "queue_time");
       assert.equal(value.data.counterValue, 10.922001);
-      assert.equal(value.data.queueingTime, 4.2);
+      assert.equal(value.data.queueTime, 4.2);
 
       utils.validateSchema(value.data, queueTimeSchema, { throwError: true });
     });

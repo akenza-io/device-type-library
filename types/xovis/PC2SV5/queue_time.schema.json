@@ -6,9 +6,9 @@
   "topic": "queue_time",
   "title": "Queue time",
   "properties": {
-    "queueingTime": {
-      "title": "Counter value",
-      "description": "Counter value",
+    "queueTime": {
+      "title": "Queue time",
+      "description": "Queue time",
       "type": "number",
       "unit": "s"
     },
@@ -19,7 +19,7 @@
     }
   },
   "required": [
-    "queueingTime",
+    "queueTime",
     "counterValue"
   ]
 }
