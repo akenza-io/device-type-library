@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.52.0] - 2024-08-28
+
+### Added
+
+- ACRIOS Systems - ACR-CV-101L-M-X
+
 # [1.51.1] - 2024-07-30
 
 ### Changed
