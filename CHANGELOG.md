@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.52.1] - 2024-09-10
+
+### Changed
+
+- Added data flattening on port 100 for ACRIOS Systems ACR-CV-101L-M-X
+
 # [1.52.0] - 2024-08-28
 
 ### Added
