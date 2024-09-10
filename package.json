@@ -4,6 +4,7 @@
   "description": "Akenza Device Type Library",
   "main": "index.js",
   "scripts": {
+    "test-pmx": "mocha \"types/pmx/**/*.spec.js\" \"lib/**/*.spec.js\"",
     "test": "mocha \"types/**/*.spec.js\" \"lib/**/*.spec.js\"",
     "integration-test": "TEST_MODE=INTEGRATION API_KEY=$API_KEY SCRIPT_RUN_URL=$SCRIPT_RUN_URL npm run test"
   },
