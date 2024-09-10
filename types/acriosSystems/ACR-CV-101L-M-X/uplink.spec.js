@@ -37,7 +37,7 @@ describe("ACRIOS Systems ACR-CV-101L-M-X Uplink", () => {
                 assert.typeOf(value.data, "object");
 
                 assert.equal(value.topic, "mbus");
-                assert.deepEqual(value.data, {"len":25,"type":"Data","l":19,"c":8,"a":5,"ci":115,"errors":[],"fixed":true,"id":12345678,"accessN":10,"status":0,"cStored":"Actual","deviceCode":7,"deviceType":"Water meter","data":[{"id":0,"storage":0,"func":"Instantaneous","value":1,"unit":"l"},{"id":1,"storage":1,"func":"Instantaneous","value":135,"unit":"l"}], "data_0_value": 1,"data_0_unit": "l","data_0_func": "Instantaneous","data_0_storage": 0,"data_1_value": 135,"data_1_unit": "l","data_1_func": "Instantaneous","data_1_storage": 1});
+                assert.deepEqual(value.data, {"len":25,"type":"Data","l":19,"c":8,"a":5,"ci":115,"errors":[],"fixed":true,"id":12345678,"accessN":10,"status":0,"cStored":"Actual","deviceCode":7,"deviceType":"Water meter","data":[{"id":0,"storage":0,"func":"Instantaneous","value":1,"unit":"l"},{"id":1,"storage":1,"func":"Instantaneous","value":135,"unit":"l"}], "data0Unit": "l","data0Value": 1,"data0Func": "Instantaneous","data0Storage": 0,"data1Unit": "l","data1Value": 135,"data1Func": "Instantaneous","data1Storage": 1});
             });
             consume(data);
         });        

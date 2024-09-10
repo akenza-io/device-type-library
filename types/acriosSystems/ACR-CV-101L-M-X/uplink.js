@@ -687,18 +687,17 @@ function flattenData(data) {
 	// delete flatData.data;
 
 	data.data.forEach((item, index) => {
-		if (item.dif && item.vif) {
-			const difVif = `${item.dif ? item.dif.join('_') : ""}__${item.vif ? item.vif.join('_') : ""}`;
-			flatData[`data_${index}_vif_dif`] = difVif;
-		} else if (item.dif) {
-			flatData[`data_${index}_dif`] = item.dif.length === 1 ? item.dif[0] : item.dif.join('_');
+		if (item.vif && item.dif) {
+			flatData[`data${index}VifDif`] = `${item.vif.join('_')}__${item.dif.join('_')}`;
 		} else if (item.vif) {
-			flatData[`data_${index}_vif`] = item.vif.length === 1 ? item.vif[0] : item.vif.join('_')
+			flatData[`data${index}Vif`] = item.vif.length === 1 ? item.vif[0] : item.vif.join('_');
+		} else if (item.dif) {
+			flatData[`data${index}Dif`] = item.dif.length === 1 ? item.dif[0] : item.dif.join('_');
 		}
 
 		['type', 'unit', 'value', 'func', 'device', 'tariff', 'storage'].forEach(key => {
 			if (item[key] !== undefined) {
-				flatData[`data_${index}_${key}`] = item[key];
+				flatData[`data${index}${key.charAt(0).toUpperCase() + key.slice(1).toLowerCase()}`] = item[key];
 			}
 		});
     });
