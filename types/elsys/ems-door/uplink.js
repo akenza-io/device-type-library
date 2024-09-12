@@ -407,13 +407,18 @@ function deleteUnusedKeys(data) {
   return keysRetained;
 }
 
-function incrementValue(lastPulse, pulse) {
+function calculateIncrement(lastValue, currentValue) {
+  // Check if current value exists
+  if (currentValue === undefined || Number.isNaN(currentValue)) {
+    return 0;
+  }
+
   // Init state && Check for the case the counter reseted
-  if (lastPulse === undefined || lastPulse > pulse) {
-    lastPulse = pulse;
+  if (lastValue === undefined || lastValue > currentValue) {
+    lastValue = currentValue;
   }
   // Calculate increment
-  return pulse - lastPulse;
+  return currentValue - lastValue;
 }
 
 function consume(event) {
@@ -476,12 +481,18 @@ function consume(event) {
     }
 
     if (reed.pulseAbs1 !== undefined) {
-      reed.relativePulse1 = incrementValue(state.lastPulse1, reed.pulseAbs1);
+      reed.relativePulse1 = calculateIncrement(
+        state.lastPulse1,
+        reed.pulseAbs1,
+      );
       state.lastPulse1 = reed.pulseAbs1;
     }
 
     if (reed.pulseAbs2 !== undefined) {
-      reed.relativePulse2 = incrementValue(state.lastPulse2, reed.pulseAbs2);
+      reed.relativePulse2 = calculateIncrement(
+        state.lastPulse2,
+        reed.pulseAbs2,
+      );
       state.lastPulse2 = reed.pulseAbs2;
     }
 

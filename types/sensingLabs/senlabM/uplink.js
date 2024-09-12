@@ -1,10 +1,15 @@
-function incrementValue(lastPulse, pulse) {
+function calculateIncrement(lastValue, currentValue) {
+  // Check if current value exists
+  if (currentValue === undefined || Number.isNaN(currentValue)) {
+    return 0;
+  }
+
   // Init state && Check for the case the counter reseted
-  if (lastPulse === undefined || lastPulse > pulse) {
-    lastPulse = pulse;
+  if (lastValue === undefined || lastValue > currentValue) {
+    lastValue = currentValue;
   }
   // Calculate increment
-  return pulse - lastPulse;
+  return currentValue - lastValue;
 }
 
 function customDatapointTransformation(
@@ -136,17 +141,17 @@ function consume(event) {
 
   const state = event.state || {};
   if (data.pulse !== undefined) {
-    data.relativePulse = incrementValue(state.lastPulse, data.pulse);
+    data.relativePulse = calculateIncrement(state.lastPulse, data.pulse);
     state.lastPulse = data.pulse;
   }
 
   if (data.pulse1 !== undefined) {
-    data.relativePulse1 = incrementValue(state.lastPulse1, data.pulse1);
+    data.relativePulse1 = calculateIncrement(state.lastPulse1, data.pulse1);
     state.lastPulse1 = data.pulse1;
   }
 
   if (data.pulse2 !== undefined) {
-    data.relativePulse2 = incrementValue(state.lastPulse2, data.pulse2);
+    data.relativePulse2 = calculateIncrement(state.lastPulse2, data.pulse2);
     state.lastPulse2 = data.pulse2;
   }
 

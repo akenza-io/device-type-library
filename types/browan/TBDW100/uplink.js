@@ -1,10 +1,15 @@
-function incrementValue(lastPulse, pulse) {
+function calculateIncrement(lastValue, currentValue) {
+  // Check if current value exists
+  if (currentValue === undefined || Number.isNaN(currentValue)) {
+    return 0;
+  }
+
   // Init state && Check for the case the counter reseted
-  if (lastPulse === undefined || lastPulse > pulse) {
-    lastPulse = pulse;
+  if (lastValue === undefined || lastValue > currentValue) {
+    lastValue = currentValue;
   }
   // Calculate increment
-  return pulse - lastPulse;
+  return currentValue - lastValue;
 }
 
 function consume(event) {
@@ -34,7 +39,7 @@ function consume(event) {
   data.count = Hex.hexLittleEndianToBigEndian(payload.substr(10, 6), false);
 
   const state = event.state || {};
-  data.relativeCount = incrementValue(state.lastCount, data.count);
+  data.relativeCount = calculateIncrement(state.lastCount, data.count);
   state.lastCount = data.count;
 
   emit("state", state);

@@ -7,13 +7,18 @@ function int16(hex) {
   return a;
 }
 
-function incrementValue(lastPulse, pulse) {
+function calculateIncrement(lastValue, currentValue) {
+  // Check if current value exists
+  if (currentValue === undefined || Number.isNaN(currentValue)) {
+    return 0;
+  }
+
   // Init state && Check for the case the counter reseted
-  if (lastPulse === undefined || lastPulse > pulse) {
-    lastPulse = pulse;
+  if (lastValue === undefined || lastValue > currentValue) {
+    lastValue = currentValue;
   }
   // Calculate increment
-  return pulse - lastPulse;
+  return currentValue - lastValue;
 }
 
 function consume(event) {
@@ -69,7 +74,7 @@ function consume(event) {
           pointer += 16;
           topic = "reed_counter";
 
-          data.relativeReedCounter = incrementValue(
+          data.relativeReedCounter = calculateIncrement(
             state.lastReed,
             data.reedCounter,
           );
