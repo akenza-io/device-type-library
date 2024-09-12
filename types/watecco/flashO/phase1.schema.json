@@ -1,17 +1,17 @@
 {
-  "$id": "https://akenza.io/watecco/flashO/phase2.schema.json",
+  "$id": "https://akenza.io/watecco/flashO/phase1.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
-  "topic": "phase2",
-  "title": "Phase 2",
+  "topic": "phase1",
+  "title": "Phase 1",
   "properties": {
-    "pulse": {
-      "title": "Pulse",
+    "relativePulse": {
+      "title": "Relative pulse",
       "type": "integer",
       "description": "Raw pulse of the phase"
     },
-    "absolutePulse": {
+    "pulse": {
       "title": "Absolute pulse",
       "type": "integer",
       "description": "Raw absolute pulse of the phase"
@@ -19,6 +19,6 @@
   },
   "required": [
     "pulse",
-    "absolutePulse"
+    "relativePulse"
   ]
 }

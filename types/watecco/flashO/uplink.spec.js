@@ -59,8 +59,8 @@ describe("Watecco Flash'O Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "phase1");
-        assert.equal(value.data.absolutePulse, 23633);
-        assert.equal(value.data.pulse, 0);
+        assert.equal(value.data.pulse, 23633);
+        assert.equal(value.data.relativePulse, 0);
 
         utils.validateSchema(value.data, phase1Schema, { throwError: true });
       });
@@ -71,8 +71,8 @@ describe("Watecco Flash'O Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "phase2");
-        assert.equal(value.data.absolutePulse, 93513);
-        assert.equal(value.data.pulse, 0);
+        assert.equal(value.data.pulse, 93513);
+        assert.equal(value.data.relativePulse, 0);
 
         utils.validateSchema(value.data, phase2Schema, { throwError: true });
       });
@@ -83,8 +83,8 @@ describe("Watecco Flash'O Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "phase3");
-        assert.equal(value.data.absolutePulse, 84685);
-        assert.equal(value.data.pulse, 0);
+        assert.equal(value.data.pulse, 84685);
+        assert.equal(value.data.relativePulse, 0);
 
         utils.validateSchema(value.data, phase3Schema, { throwError: true });
       });
@@ -134,8 +134,8 @@ describe("Watecco Flash'O Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "phase1");
-        assert.equal(value.data.absolutePulse, 23633);
-        assert.equal(value.data.pulse, 3000);
+        assert.equal(value.data.pulse, 23633);
+        assert.equal(value.data.relativePulse, 3000);
         assert.equal(value.data.consumption, 180);
         assert.equal(value.data.consumptionCumulative, 1417.98);
       });
@@ -146,8 +146,8 @@ describe("Watecco Flash'O Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "phase2");
-        assert.equal(value.data.absolutePulse, 93513);
-        assert.equal(value.data.pulse, 500);
+        assert.equal(value.data.pulse, 93513);
+        assert.equal(value.data.relativePulse, 500);
         assert.equal(value.data.consumption, 8);
         assert.equal(value.data.consumptionCumulative, 1496.208);
       });
@@ -158,8 +158,8 @@ describe("Watecco Flash'O Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "phase3");
-        assert.equal(value.data.absolutePulse, 84685);
-        assert.equal(value.data.pulse, 200);
+        assert.equal(value.data.pulse, 84685);
+        assert.equal(value.data.relativePulse, 200);
         assert.equal(value.data.consumption, 2.4);
         assert.equal(value.data.consumptionCumulative, 1016.22);
       });
@@ -192,8 +192,8 @@ describe("Watecco Flash'O Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "phase1");
-        assert.equal(value.data.absolutePulse, 4646);
-        assert.equal(value.data.pulse, 0);
+        assert.equal(value.data.pulse, 4646);
+        assert.equal(value.data.relativePulse, 0);
 
         utils.validateSchema(value.data, phase1Schema, { throwError: true });
       });
@@ -233,10 +233,10 @@ describe("Watecco Flash'O Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "phase1");
-        assert.equal(value.data.absolutePulse, 4646);
+        assert.equal(value.data.pulse, 4646);
         assert.equal(value.data.consumption, 18);
         assert.equal(value.data.consumptionCumulative, 278.76);
-        assert.equal(value.data.pulse, 300);
+        assert.equal(value.data.relativePulse, 300);
       });
 
       utils.expectEmits((type, value) => {

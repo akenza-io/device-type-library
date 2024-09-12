@@ -954,10 +954,25 @@ function Decoder(bytes, port) {
   return decoded;
 }
 
+function calculateIncrement(lastValue, currentValue) {
+  // Check if current value exists
+  if (currentValue === undefined || Number.isNaN(currentValue)) {
+    return 0;
+  }
+
+  // Init state && Check for the case the counter reseted
+  if (lastValue === undefined || lastValue > currentValue) {
+    lastValue = currentValue;
+  }
+  // Calculate increment
+  return currentValue - lastValue;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const { port } = event.data;
   const raw = Decoder(Hex.hexToBytes(payload), port);
+  const state = event.state || {};
 
   raw.data.forEach((point) => {
     const data = {};
@@ -968,19 +983,13 @@ function consume(event) {
       });
     } else {
       const phase = point.label.substr(-1);
-      data.absolutePulse = point.value;
+      data.pulse = point.value;
 
-      // Init state
-      if (
-        event.state[`lastPulse${phase}`] === undefined ||
-        Number.isNaN(event.state[`lastPulse${phase}`])
-      ) {
-        event.state[`lastPulse${phase}`] = data.absolutePulse;
-      }
-
-      // Calculate increment pulse
-      data.pulse = data.absolutePulse - event.state[`lastPulse${phase}`];
-      event.state[`lastPulse${phase}`] = data.absolutePulse;
+      data.relativePulse = calculateIncrement(
+        state[`lastPulse${phase}`],
+        data.pulse,
+      );
+      state[`lastPulse${phase}`] = data.pulse;
 
       // Customfields
       if (event.device !== undefined) {
@@ -1002,14 +1011,14 @@ function consume(event) {
             divider = Number(customFields[`divider${phase}`]);
           }
 
-          if (data.pulse !== undefined) {
+          if (data.relativePulse !== undefined) {
             if (pulseType !== "") {
               data[pulseType] =
-                Math.round(((data.pulse * multiplier) / divider) * 1000) / 1000;
-              data[`${pulseType}Cumulative`] =
                 Math.round(
-                  ((data.absolutePulse * multiplier) / divider) * 1000,
+                  ((data.relativePulse * multiplier) / divider) * 1000,
                 ) / 1000;
+              data[`${pulseType}Cumulative`] =
+                Math.round(((data.pulse * multiplier) / divider) * 1000) / 1000;
             }
           }
         }
@@ -1018,5 +1027,5 @@ function consume(event) {
     }
   });
 
-  emit("state", event.state);
+  emit("state", state);
 }
