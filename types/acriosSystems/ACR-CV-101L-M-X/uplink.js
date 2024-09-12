@@ -682,12 +682,35 @@ return {
 
 }
 
+function flattenData(data) {
+	const flatData = { ...data };
+	// delete flatData.data;
+
+	data.data.forEach((item, index) => {
+		if (item.vif && item.dif) {
+			flatData[`data${index}VifDif`] = `${item.vif.join('_')}__${item.dif.join('_')}`;
+		} else if (item.vif) {
+			flatData[`data${index}Vif`] = item.vif.length === 1 ? item.vif[0] : item.vif.join('_');
+		} else if (item.dif) {
+			flatData[`data${index}Dif`] = item.dif.length === 1 ? item.dif[0] : item.dif.join('_');
+		}
+
+		['type', 'unit', 'value', 'func', 'device', 'tariff', 'storage'].forEach(key => {
+			if (item[key] !== undefined) {
+				flatData[`data${index}${key.charAt(0).toUpperCase() + key.slice(1).toLowerCase()}`] = item[key];
+			}
+		});
+    });
+
+	return flatData;
+}
 
 /**
 * The consume(event) function is the entry point for the script and will be invoked upon execution.
 * An error will be returned if the script doesn't implement a consume(event) function.
 * @param {ConsumeEvent} event
-*/ 
+*/
+
 function consume(event) {
 	var lastFrameIndex = (event.state || {}).lastFrameIndex;
 	var thisFrameHex = event.data["payloadHex"];
@@ -695,6 +718,7 @@ function consume(event) {
 	var totalBatchFrames = parseInt(thisFrameHex.substr(2,2),16);
 	var thisFramePayload = thisFrameHex.substr(4);
 	var previousPayloads = (event.state || {}).previousPayloads;
+	var port = event.data["port"];
 	var data;
 
 	if (typeof lastFrameIndex === "undefined") {
@@ -718,6 +742,9 @@ function consume(event) {
 			data = tmbus(aggregatedPayload);
 		}
 		emit("state", {lastFrameIndex: 0, previousPayloads: []});
+		if (port === 100) {
+			data = flattenData(data);
+		}
 		emit("sample", {data, topic: "mbus"});
 	} else {
 		if (typeof previousPayloads === "undefined") {
