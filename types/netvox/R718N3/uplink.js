@@ -22,8 +22,8 @@ function multipier(val) {
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
+  const state = event.state || {};
   const data = {};
-  const { state } = event;
 
   // Reserved 16
   const reportType = Bits.bitsToUnsigned(bits.substr(16, 8));
@@ -42,7 +42,7 @@ function consume(event) {
       state.current2 = Bits.bitsToUnsigned(bits.substr(48, 16));
       state.current3 = Bits.bitsToUnsigned(bits.substr(64, 16));
       state.multiplier1 = Bits.bitsToUnsigned(bits.substr(80, 8));
-      emit("state", event.state);
+      emit("state", state);
       break;
     case 2: {
       batteryVoltage = Bits.bitsToUnsigned(bits.substr(24, 8)) / 10;

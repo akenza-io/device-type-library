@@ -22,6 +22,7 @@ function consume(event) {
   const bits = Bits.hexToBits(payload);
   const lifecycle = {};
   const trigger = {};
+  const state = event.state || {};
   let topic = "default";
 
   lifecycle.payloadVersion = Bits.bitsToUnsigned(bits.substr(0, 8));
@@ -69,10 +70,10 @@ function consume(event) {
           topic = "reed_counter";
 
           data.relativeReedCounter = incrementValue(
-            event.state.lastReed,
+            state.lastReed,
             data.reedCounter,
           );
-          event.state.lastReed = data.reedCounter;
+          state.lastReed = data.reedCounter;
 
           break;
         case 4:
@@ -168,5 +169,5 @@ function consume(event) {
 
   emit("sample", { data: trigger, topic: "event" });
   emit("sample", { data: lifecycle, topic: "lifecycle" });
-  emit("state", event.state);
+  emit("state", state);
 }

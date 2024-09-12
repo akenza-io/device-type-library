@@ -31,12 +31,13 @@ function consume(event) {
   data.temperature = Bits.bitsToUnsigned(bits.substr(17, 7));
   data.temperature -= 32;
   data.time = Hex.hexLittleEndianToBigEndian(payload.substr(6, 4), false);
-
   data.count = Hex.hexLittleEndianToBigEndian(payload.substr(10, 6), false);
-  data.relativeCount = incrementValue(event.state.lastCount, data.count);
-  event.state.lastCount = data.count;
 
-  emit("state", event.state);
+  const state = event.state || {};
+  data.relativeCount = incrementValue(state.lastCount, data.count);
+  state.lastCount = data.count;
+
+  emit("state", state);
   emit("sample", { data: lifecycle, topic: "lifecycle" });
   emit("sample", { data, topic: "default" });
 }

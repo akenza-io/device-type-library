@@ -7,7 +7,12 @@ function incrementValue(lastPulse, pulse) {
   return pulse - lastPulse;
 }
 
-function customPulse(cPulseType, cMultiplier, cDivider, pulse) {
+function customDatapointTransformation(
+  cPulseType,
+  cMultiplier,
+  cDivider,
+  pulse,
+) {
   let pulseType = "";
   let multiplier = 1;
   let divider = 1;
@@ -129,19 +134,20 @@ function consume(event) {
       break;
   }
 
+  const state = event.state || {};
   if (data.pulse !== undefined) {
-    data.relativePulse = incrementValue(event.state.lastPulse, data.pulse);
-    event.state.lastPulse = data.pulse;
+    data.relativePulse = incrementValue(state.lastPulse, data.pulse);
+    state.lastPulse = data.pulse;
   }
 
   if (data.pulse1 !== undefined) {
-    data.relativePulse1 = incrementValue(event.state.lastPulse1, data.pulse1);
-    event.state.lastPulse1 = data.pulse1;
+    data.relativePulse1 = incrementValue(state.lastPulse1, data.pulse1);
+    state.lastPulse1 = data.pulse1;
   }
 
   if (data.pulse2 !== undefined) {
-    data.relativePulse2 = incrementValue(event.state.lastPulse2, data.pulse2);
-    event.state.lastPulse2 = data.pulse2;
+    data.relativePulse2 = incrementValue(state.lastPulse2, data.pulse2);
+    state.lastPulse2 = data.pulse2;
   }
 
   // Customfields for calculation and key name
@@ -149,7 +155,7 @@ function consume(event) {
     if (event.device.customFields !== undefined) {
       const { customFields } = event.device;
       if (data.pulse !== undefined) {
-        const res = customPulse(
+        const res = customDatapointTransformation(
           customFields.pulseType,
           customFields.multiplier,
           customFields.divider,
@@ -162,7 +168,7 @@ function consume(event) {
       }
 
       if (data.pulse1 !== undefined) {
-        const res = customPulse(
+        const res = customDatapointTransformation(
           customFields.pulseType1,
           customFields.multiplier1,
           customFields.divider1,
@@ -175,7 +181,7 @@ function consume(event) {
       }
 
       if (data.pulse2 !== undefined) {
-        const res = customPulse(
+        const res = customDatapointTransformation(
           customFields.pulseType2,
           customFields.multiplier2,
           customFields.divider2,
@@ -189,7 +195,7 @@ function consume(event) {
     }
   }
 
-  emit("state", event.state);
+  emit("state", state);
   emit("sample", { data, topic });
 
   if (lifecycle.batteryLevel !== undefined) {

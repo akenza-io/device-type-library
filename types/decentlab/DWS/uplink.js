@@ -109,6 +109,15 @@ function deleteUnusedKeys(data) {
   return keysRetained;
 }
 
+function incrementValue(lastPulse, pulse) {
+  // Init state && Check for the case the counter reseted
+  if (lastPulse === undefined || lastPulse > pulse) {
+    lastPulse = pulse;
+  }
+  // Calculate increment
+  return pulse - lastPulse;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   let customFieldsUsed = false;
@@ -147,25 +156,17 @@ function consume(event) {
   data.weight = Math.round(sample.weight * 100) / 100 - tare;
   data.weightKg = Math.round(data.weight * 10) / 10000;
 
-  // Init state
-  if (
-    event.state.lastWeighting === undefined ||
-    event.state.lastWeighting > data.weight
-  ) {
-    event.state.lastWeighting = data.weight;
-  }
-
-  // Calculate increment
-  data.relativeWeightGram = data.weight - event.state.lastWeighting;
+  const state = event.state || {};
+  data.relativeWeightGram = incrementValue(state.lastWeighting, data.weight);
   data.relativeWeightKilogramm =
     Math.round(data.relativeWeightGram * 10) / 10000;
+  state.lastWeighting = data.weight;
 
   // Zero negative weight
   if (data.weightGram <= 0) {
     data.relativeWeightGram = 0;
     data.relativeWeightKilogramm = 0;
   }
-  event.state.lastWeighting = data.weight;
 
   // Lifecycle values
   lifecycle.batteryVoltage = sample.battery_voltage;
@@ -189,5 +190,5 @@ function consume(event) {
   if (deleteUnusedKeys(lifecycle)) {
     emit("sample", { data: lifecycle, topic: "lifecycle" });
   }
-  emit("state", event.state);
+  emit("state", state);
 }

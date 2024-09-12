@@ -23,14 +23,13 @@ function consume(event) {
     if (resourceType === "SampleMotion") {
       sample.motion = value;
       topic = "occupancy";
+      const state = event.state || {};
 
       // Calculate increment
-      sample.relativeMotion = incrementValue(
-        event.state.lastMotion,
-        sample.motion,
-      );
-      event.state.lastMotion = sample.motion;
+      sample.relativeMotion = incrementValue(state.lastMotion, sample.motion);
+      state.lastMotion = sample.motion;
 
+      // Occupancy is always counted as 0 or 2. No pending 1 at the moment for yanzi
       if (sample.relativeMotion > 1) {
         sample.occupancy = 2;
         sample.occupied = true;
@@ -39,7 +38,7 @@ function consume(event) {
         sample.occupied = false;
       }
 
-      emit("state", event.state);
+      emit("state", state);
     }
 
     if (Object.keys(sample).length > 0) {

@@ -1,3 +1,12 @@
+function incrementValue(lastPulse, pulse) {
+  // Init state && Check for the case the counter reseted
+  if (lastPulse === undefined || lastPulse > pulse) {
+    lastPulse = pulse;
+  }
+  // Calculate increment
+  return pulse - lastPulse;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
@@ -60,17 +69,9 @@ function consume(event) {
     data.volume /= 10;
   }
 
-  // Init state && Check for the case the counter reseted
-  if (
-    event.state.lastVolume === undefined ||
-    event.state.lastVolume > data.volume
-  ) {
-    event.state.lastVolume = data.volume;
-  }
-
-  // Calculate increment
-  data.relativeVolume = data.volume - event.state.lastVolume;
-  event.state.lastVolume = data.volume;
+  const state = event.state || {};
+  data.relativeVolume = incrementValue(state.lastVolume, data.volume);
+  state.lastVolume = data.volume;
 
   // Additional functions
   // reserved
@@ -94,5 +95,5 @@ function consume(event) {
   // reserved
   emit("sample", { data, topic });
   emit("sample", { data: lifecycle, topic: "lifecycle" });
-  emit("state", event.state);
+  emit("state", state);
 }

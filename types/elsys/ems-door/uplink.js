@@ -417,6 +417,7 @@ function incrementValue(lastPulse, pulse) {
 }
 
 function consume(event) {
+  const state = event.state || {};
   const payload = Hex.hexToBytes(event.data.payloadHex);
 
   if (payload[0] !== SETTINGS_HEADER) {
@@ -475,19 +476,13 @@ function consume(event) {
     }
 
     if (reed.pulseAbs1 !== undefined) {
-      reed.relativePulse1 = incrementValue(
-        event.state.lastPulse1,
-        reed.pulseAbs1,
-      );
-      event.state.lastPulse1 = reed.pulseAbs1;
+      reed.relativePulse1 = incrementValue(state.lastPulse1, reed.pulseAbs1);
+      state.lastPulse1 = reed.pulseAbs1;
     }
 
     if (reed.pulseAbs2 !== undefined) {
-      reed.relativePulse2 = incrementValue(
-        event.state.lastPulse2,
-        reed.pulseAbs2,
-      );
-      event.state.lastPulse2 = reed.pulseAbs2;
+      reed.relativePulse2 = incrementValue(state.lastPulse2, reed.pulseAbs2);
+      state.lastPulse2 = reed.pulseAbs2;
     }
 
     if (deleteUnusedKeys(data)) {
@@ -520,5 +515,5 @@ function consume(event) {
       emit("sample", { data: res.settings, topic: "configuration" });
     }
   }
-  emit("state", event.state);
+  emit("state", state);
 }
