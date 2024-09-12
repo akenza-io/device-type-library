@@ -8,13 +8,16 @@
   "firmwareVersion": "V1.1.0",
   "loraDeviceClass": "A",
   "availableSensors": [
-    "Counting",
-    "Speed"
+    "Traffic Counter"
   ],
   "outputTopics": [
     "id",
     "lifecycle",
-    "default"
+    "udc",
+    "cat1",
+    "cat2",
+    "cat3",
+    "cat4"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

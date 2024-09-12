@@ -118,16 +118,18 @@ function a2_decoder(bytes, port) {
 
   if (port == 13) // Unfiltered Detections Counter
   {
-    obj.udc_time = bytes[1] * 100 + bytes[2];              // Measure Interval End Timestamp (Military Time format)
+    obj.udc_hours = bytes[1];                           // Measure Interval End Timestamp (Hours)
+    obj.udc_minutes = bytes[2];                         // Measure Interval End Timestamp (Minutes)
     obj.udc_ltr_cnt = (bytes[3] << 8) | (bytes[4]);    // Left-to-Right (LTR) Counter Value (0-65535)
     obj.udc_ltr_spd = bytes[5];                        // Left-to-Right (LTR) average speed of all objects counted in this interval [km/h]
     obj.udc_rtl_cnt = (bytes[6] << 8) | (bytes[7]);    // Right-to-Left (RTL) Counter Value (0-65535)
-    obj.ucd_rtl_spd = bytes[8];                        // Right-to-Left (RTL) average speed of all objects counted in this interval  [km/h]     
+    obj.udc_rtl_spd = bytes[8];                        // Right-to-Left (RTL) average speed of all objects counted in this interval  [km/h]     
   }
 
   if (port == 14) // Filter Category 1 
   {
-    obj.cat1_time = bytes[1] * 100 + bytes[2];               // Measure Interval End Timestamp (Military Time format)
+    obj.cat1_hours = bytes[1];                           // Measure Interval End Timestamp (Hours)
+    obj.cat1_minutes = bytes[2];                         // Measure Interval End Timestamp (Minutes)    
     obj.cat1_ltr_cnt = (bytes[3] << 8) | (bytes[4]);    // Left-to-Right (LTR) Counter Value (0-65535)
     obj.cat1_ltr_spd = bytes[5];                        // Left-to-Right (LTR) average speed of all objects counted in this interval [km/h]
     obj.cat1_rtl_cnt = (bytes[6] << 8) | (bytes[7]);    // Right-to-Left (RTL) Counter Value (0-65535)
@@ -136,7 +138,8 @@ function a2_decoder(bytes, port) {
 
   if (port == 15) // Filter Category 2 
   {
-    obj.cat2_time = bytes[1] * 100 + bytes[2];               // Measure Interval End Timestamp (Military Time format)
+    obj.cat2_hours = bytes[1];                           // Measure Interval End Timestamp (Hours)
+    obj.cat2_minutes = bytes[2];                         // Measure Interval End Timestamp (Minutes)    
     obj.cat2_ltr_cnt = (bytes[3] << 8) | (bytes[4]);    // Left-to-Right (LTR) Counter Value (0-65535)
     obj.cat2_ltr_spd = bytes[5];                        // Left-to-Right (LTR) average speed of all objects counted in this interval [km/h]
     obj.cat2_rtl_cnt = (bytes[6] << 8) | (bytes[7]);    // Right-to-Left (RTL) Counter Value (0-65535)
@@ -145,7 +148,8 @@ function a2_decoder(bytes, port) {
 
   if (port == 16) // Filter Category 3 
   {
-    obj.cat3_time = bytes[1] * 100 + bytes[2];               // Measure Interval End Timestamp (Military Time format)
+    obj.cat3_hours = bytes[1];                           // Measure Interval End Timestamp (Hours)
+    obj.cat3_minutes = bytes[2];                         // Measure Interval End Timestamp (Minutes)     
     obj.cat3_ltr_cnt = (bytes[3] << 8) | (bytes[4]);    // Left-to-Right (LTR) Counter Value (0-65535)
     obj.cat3_ltr_spd = bytes[5];                        // Left-to-Right (LTR) average speed of all objects counted in this interval [km/h]
     obj.cat3_rtl_cnt = (bytes[6] << 8) | (bytes[7]);    // Right-to-Left (RTL) Counter Value (0-65535)
@@ -154,7 +158,8 @@ function a2_decoder(bytes, port) {
 
   if (port == 17) // Filter Category 4 
   {
-    obj.cat4_time = bytes[1] * 100 + bytes[2];          // Measure Interval End Timestamp (Military Time format)
+    obj.cat4_hours = bytes[1];                           // Measure Interval End Timestamp (Hours)
+    obj.cat4_minutes = bytes[2];                         // Measure Interval End Timestamp (Minutes)     
     obj.cat4_ltr_cnt = (bytes[3] << 8) | (bytes[4]);    // Left-to-Right (LTR) Counter Value (0-65535)
     obj.cat4_ltr_spd = bytes[5];                        // Left-to-Right (LTR) average speed of all objects counted in this interval [km/h]
     obj.cat4_rtl_cnt = (bytes[6] << 8) | (bytes[7]);    // Right-to-Left (RTL) Counter Value (0-65535)
@@ -227,7 +232,7 @@ function deleteUnusedKeys(data) {
 
 function consume(event) {
   const bytes = Hex.hexToBytes(event.data.payloadHex);
-  const port = event.data.fPort;
+  const port = event.data.port;
 
   var counts = {};
   var lifecycle = {};
@@ -235,28 +240,83 @@ function consume(event) {
 
   // it's a Device ID Payload V2 (PMX Firmware for TCR)
   if (port == 190 && bytes[0] == 0xd2) {
+    let topic = "id";
+    let data = {};
+
     id = d2_decoder(bytes, port);
 
-    if (deleteUnusedKeys(id)) {
-      emit("sample", { data: id, topic: "id" });
-    }
+    data.type = id.typestr;
+    data.licence = id.fu_level;
+    data.speedclass = id.speedclass;
+    data.firmware = id.fw_version;
+    data.sbx = id.sbx_version
+
+    emit("sample", { data, topic });
   }
 
   // it's a Counter Payload V2 (PMX Firmware for TCR)
-  if (port >= 13 && port <= 17 && bytes[0] == 0xa2) {
-    counts = a2_decoder(bytes, port);
+  if (bytes[0] == 0xa2) {
+    let topic = "default";
+    let data = {};
+    let time = new Date();
 
-    if (deleteUnusedKeys(id)) {
-      emit("sample", { data: counts, topic: "default" });
+    let cnt = a2_decoder(bytes, port);  // decode counter payload
+
+    switch (port) {
+      case 13:
+        topic = "udc";
+        data.LTRCounter = cnt.udc_ltr_cnt;
+        data.LTRSpeed = cnt.udc_ltr_spd;
+        data.RTLCounter = cnt.udc_rtl_cnt;
+        data.RTLSpeed = cnt.udc_rtl_spd;
+        time.setHours(cnt.udc_hours);
+        time.setMinutes(cnt.udc_minutes);
+        break;
+
+      case 14:
+        topic = "cat1";
+        data.LTRCounter = cnt.cat1_ltr_cnt;
+        data.LTRSpeed = cnt.cat1_ltr_spd;
+        data.RTLCounter = cnt.cat1_rtl_cnt;
+        data.RTLSpeed = cnt.cat1_rtl_spd;
+        time.setHours(cnt.cat1_hours);
+        time.setMinutes(cnt.cat1_minutes);
+        break;
+
+      case 15:
+        topic = "cat2";
+        data.LTRCounter = cnt.cat2_ltr_cnt;
+        data.LTRSpeed = cnt.cat2_ltr_spd;
+        data.RTLCounter = cnt.cat2_rtl_cnt;
+        data.RTLSpeed = cnt.cat2_rtl_spd;
+        time.setHours(cnt.cat2_hours);
+        time.setMinutes(cnt.cat2_minutes);
+        break;
+
+      case 16:
+        topic = "cat3";
+        data.LTRCounter = cnt.cat3_ltr_cnt;
+        data.LTRSpeed = cnt.cat3_ltr_spd;
+        data.RTLCounter = cnt.cat3_rtl_cnt;
+        data.RTLSpeed = cnt.cat3_rtl_spd;
+        time.setHours(cnt.cat3_hours);
+        time.setMinutes(cnt.cat3_minutes);
+        break;
+
+      case 17:
+        topic = "cat4";
+        data.LTRCounter = cnt.cat4_ltr_cnt;
+        data.LTRSpeed = cnt.cat4_ltr_spd;
+        data.RTLCounter = cnt.cat4_rtl_cnt;
+        data.RTLSpeed = cnt.cat4_rtl_spd;
+        time.setHours(cnt.cat4_hours);
+        time.setMinutes(cnt.cat4_minutes);
+        break;
     }
+    emit("sample", { data, topic });
 
-    lifecycle = counts.time;
-    lifecycle.batteryVoltage = counts.volts;
-
-    if (deleteUnusedKeys(id)) {
-      emit("sample", { data: lifecycle, topic: "lifecycle" });
-    }
-
+    lifecycle.batteryVoltage = cnt.volts;
+    emit("sample", { data: lifecycle, topic: "lifecycle" });
   }
 
   // it's a Config Payload Response (PMX Firmware for TCR)

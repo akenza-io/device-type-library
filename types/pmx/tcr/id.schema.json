@@ -6,11 +6,37 @@
   "topic": "id",
   "title": "Device Identification",
   "properties": {
-    "batteryVoltage": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+    "type": {
+      "title": "Device Type",
+      "type": "string",
+      "description": "PMX TCR Device Type"
+    },
+    "licence": {
+      "title": "Licence",
+      "type": "string",
+      "description": "Installed Licence Type (Functionality Level)"
+    },
+    "speedclass": {
+      "title": "Speed Class",
+      "type": "string",
+      "description": "Activated Speed Class"
+    },
+    "firmware": {
+      "title": "Firmware Version",
+      "type": "string",
+      "description": "Device Firmware Version"
+    },
+    "sbx": {
+      "title": "SBX Version",
+      "type": "string",
+      "description": "Solar Charger Firmware Version"
     }
   },
   "required": [
-    "batteryVoltage"
+    "type",
+    "licence",
+    "speedclass",
+    "firmware",
+    "sbx"
   ]
 }
