@@ -31,6 +31,27 @@ function customPulse(device, pulse, phase) {
   return false;
 }
 
+function calculateValveOpeningTime(valveStatus, openingStart) {
+  const response = { durationMessage: false };
+  if (valveStatus !== undefined) {
+    const now = new Date().getTime();
+    if (valveStatus === "OPEN") {
+      if (openingStart === undefined || openingStart === null) {
+        response.durationMessage = true;
+        response.openingTime = now;
+      }
+    } else if (valveStatus === "CLOSED") {
+      if (openingStart !== undefined && openingStart !== null) {
+        response.durationMessage = true;
+        response.openingTime = undefined;
+        response.openDuration = Math.round((now - openingStart) / 1000);
+      }
+    }
+  }
+
+  return response;
+}
+
 function readUInt16LE(bytes) {
   const value = (bytes[1] << 8) + bytes[0];
   return value & 0xffff;
@@ -93,9 +114,24 @@ function isEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
 
+function calculateIncrement(lastValue, currentValue) {
+  // Check if current value exists
+  if (currentValue === undefined || Number.isNaN(currentValue)) {
+    return 0;
+  }
+
+  // Init state && Check for the case the counter reseted
+  if (lastValue === undefined || lastValue > currentValue) {
+    lastValue = currentValue;
+  }
+  // Calculate increment
+  return currentValue - lastValue;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bytes = Hex.hexToBytes(payload);
+  const state = event.state || {};
 
   const pulse = {};
   const status = {};
@@ -153,26 +189,16 @@ function consume(event) {
     }
     // VALVE 1 Pulse
     else if (channelId === 0x04 && channelType === 0xc8) {
-      pulse.absolutePulse1 = readUInt32LE(bytes.slice(i, i + 4));
-      // Init state
-      if (event.state.lastPulse1 === undefined) {
-        event.state.lastPulse1 = pulse.absolutePulse1;
-      }
-      // Calculate increment
-      pulse.pulse1 = pulse.absolutePulse1 - event.state.lastPulse1;
-      event.state.lastPulse1 = pulse.absolutePulse1;
+      pulse.pulse1 = readUInt32LE(bytes.slice(i, i + 4));
+      pulse.relativePulse1 = calculateIncrement(state.lastPulse1, pulse.pulse1);
+      state.lastPulse1 = pulse.pulse1;
       i += 4;
     }
     // VALVE 2 Pulse
     else if (channelId === 0x06 && channelType === 0xc8) {
-      pulse.absolutePulse2 = readUInt32LE(bytes.slice(i, i + 4));
-      // Init state
-      if (event.state.lastPulse2 === undefined) {
-        event.state.lastPulse2 = pulse.absolutePulse2;
-      }
-      // Calculate increment
-      pulse.pulse2 = pulse.absolutePulse2 - event.state.lastPulse2;
-      event.state.lastPulse2 = pulse.absolutePulse2;
+      pulse.pulse2 = readUInt32LE(bytes.slice(i, i + 4));
+      pulse.relativePulse2 = calculateIncrement(state.lastPulse2, pulse.pulse2);
+      state.lastPulse2 = pulse.pulse2;
       i += 4;
     }
     // GPIO 1
@@ -336,15 +362,12 @@ function consume(event) {
   }
 
   if (!isEmpty(pulse)) {
-    // Emit lastPulses
-    emit("state", event.state);
-
-    const customPulse1 = customPulse(event.device, pulse.pulse1, 1);
+    const customPulse1 = customPulse(event.device, pulse.relativePulse1, 1);
     if (customPulse1 !== false) {
       pulse[event.device.customFields.pulseType1] = customPulse1;
     }
 
-    const customPulse2 = customPulse(event.device, pulse.pulse2, 2);
+    const customPulse2 = customPulse(event.device, pulse.relativePulse2, 2);
     if (customPulse2 !== false) {
       pulse[event.device.customFields.pulseType2] = customPulse2;
     }
@@ -353,6 +376,36 @@ function consume(event) {
   }
 
   if (!isEmpty(status)) {
+    if (status.valve1 !== undefined || status.valve2 !== undefined) {
+      const valveOpeningTime1 = calculateValveOpeningTime(
+        status.valve1,
+        state.openingTime1,
+      );
+      if (valveOpeningTime1.durationMessage) {
+        state.openingTime1 = valveOpeningTime1.openingTime;
+        if (valveOpeningTime1.openDuration !== undefined) {
+          emit("sample", {
+            data: { openDuration: valveOpeningTime1.openDuration },
+            topic: "open_duration_valve_1",
+          });
+        }
+      }
+
+      const valveOpeningTime2 = calculateValveOpeningTime(
+        status.valve2,
+        state.openingTime2,
+      );
+      if (valveOpeningTime2.durationMessage) {
+        state.openingTime2 = valveOpeningTime2.openingTime;
+        if (valveOpeningTime2.openDuration !== undefined) {
+          emit("sample", {
+            data: { openDuration: valveOpeningTime2.openDuration },
+            topic: "open_duration_valve_2",
+          });
+        }
+      }
+    }
+
     emit("sample", { data: status, topic: "status" });
   }
 
@@ -371,4 +424,5 @@ function consume(event) {
   if (!isEmpty(rule)) {
     emit("sample", { data: rule, topic: "rule" });
   }
+  emit("state", state);
 }

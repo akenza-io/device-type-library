@@ -6,25 +6,25 @@
   "topic": "pulse",
   "title": "Pulse",
   "properties": {
-    "absolutePulse1": {
+    "pulse1": {
       "title": "Absolute pulse 1",
       "unit": "integer",
       "description": "Absolute pulse 1"
     },
-    "absolutePulse2": {
+    "pulse2": {
       "title": "Absolute pulse 2",
       "unit": "integer",
       "description": "Absolute pulse 2"
     },
-    "pulse1": {
-      "title": "Pulse 1",
+    "relativePulse1": {
+      "title": "Relative pulse 1",
       "unit": "integer",
-      "description": "Pulse 1"
+      "description": "Relative pulse 1"
     },
-    "pulse2": {
-      "title": "Pulse 2",
+    "relativePulse2": {
+      "title": "Relative pulse 2",
       "unit": "integer",
-      "description": "Pulse 2"
+      "description": "Relative pulse 2"
     }
   }
 }

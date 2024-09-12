@@ -17,7 +17,9 @@
     "pressure",
     "pulse",
     "rule",
-    "status"
+    "status",
+    "open_duration_valve_1",
+    "open_duration_valve_2"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

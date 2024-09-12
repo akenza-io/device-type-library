@@ -65,19 +65,13 @@ describe("UC510 Uplink", () => {
       };
 
       utils.expectEmits((type, value) => {
-        assert.equal(type, "state");
-        assert.isNotNull(value);
-        assert.equal(value.lastPulse1, 5);
-      });
-
-      utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "pulse");
-        assert.equal(value.data.absolutePulse1, 5);
-        assert.equal(value.data.pulse1, 4);
+        assert.equal(value.data.pulse1, 5);
+        assert.equal(value.data.relativePulse1, 4);
         utils.validateSchema(value.data, pulseSchema, { throwError: true });
       });
 
@@ -101,6 +95,12 @@ describe("UC510 Uplink", () => {
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+        assert.equal(value.lastPulse1, 5);
+      });
+
       consume(data);
     });
 
@@ -120,19 +120,13 @@ describe("UC510 Uplink", () => {
       };
 
       utils.expectEmits((type, value) => {
-        assert.equal(type, "state");
-        assert.isNotNull(value);
-        assert.equal(value.lastPulse1, 5);
-      });
-
-      utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "pulse");
-        assert.equal(value.data.absolutePulse1, 5);
-        assert.equal(value.data.pulse1, 4);
+        assert.equal(value.data.pulse1, 5);
+        assert.equal(value.data.relativePulse1, 4);
         assert.equal(value.data.watt, 6);
       });
 
@@ -156,11 +150,18 @@ describe("UC510 Uplink", () => {
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+        assert.equal(value.lastPulse1, 5);
+      });
+
       consume(data);
     });
 
     it("should decode should decode the UC510 standard payload", () => {
       const data = {
+        state: {},
         data: {
           port: 1,
           payloadHex: "20CE3FA109641700000000",
@@ -176,6 +177,11 @@ describe("UC510 Uplink", () => {
         assert.equal(value.data.gpio2, "ON");
         assert.equal(value.data.valve2, "OPEN");
         utils.validateSchema(value.data, statusSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
       });
 
       consume(data);
