@@ -109,6 +109,20 @@ function deleteUnusedKeys(data) {
   return keysRetained;
 }
 
+function calculateIncrement(lastValue, currentValue) {
+  // Check if current value exists
+  if (currentValue === undefined || Number.isNaN(currentValue)) {
+    return 0;
+  }
+
+  // Init state && Check for the case the counter reseted
+  if (lastValue === undefined || lastValue > currentValue) {
+    lastValue = currentValue;
+  }
+  // Calculate increment
+  return currentValue - lastValue;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   let customFieldsUsed = false;
@@ -145,22 +159,21 @@ function consume(event) {
   // Default values
   data.frequency = Math.round(sample.frequency * 100) / 100;
   data.weight = Math.round(sample.weight * 100) / 100 - tare;
-  data.weightKg = data.weight / 1000;
+  data.weightKg = Math.round(data.weight * 10) / 10000;
 
-  // Init state
-  if (event.state.lastWeighting === undefined) {
-    event.state.lastWeighting = data.weight;
-  }
-
-  // Calculate increment
-  data.incrementGram = data.weight - event.state.lastWeighting;
-  data.incrementKg = data.weightKg - event.state.lastWeighting / 1000;
-  event.state.lastWeighting = data.weight;
+  const state = event.state || {};
+  data.relativeWeightGram = calculateIncrement(
+    state.lastWeighting,
+    data.weight,
+  );
+  data.relativeWeightKilogramm =
+    Math.round(data.relativeWeightGram * 10) / 10000;
+  state.lastWeighting = data.weight;
 
   // Zero negative weight
-  if (data.incrementGram < 0) {
-    data.incrementGram = 0;
-    data.incrementKg = 0;
+  if (data.weightGram <= 0) {
+    data.relativeWeightGram = 0;
+    data.relativeWeightKilogramm = 0;
   }
 
   // Lifecycle values
@@ -185,5 +198,5 @@ function consume(event) {
   if (deleteUnusedKeys(lifecycle)) {
     emit("sample", { data: lifecycle, topic: "lifecycle" });
   }
-  emit("state", event.state);
+  emit("state", state);
 }

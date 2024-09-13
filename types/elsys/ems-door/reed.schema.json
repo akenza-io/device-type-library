@@ -15,7 +15,26 @@
       "title": "Pulse count absolute",
       "description": "Pulse count absolute",
       "type": "number"
+    },
+    "relativePulse1": {
+      "title": "Increment pulse 1 count",
+      "description": "Increment pulse 1 count",
+      "type": "number"
+    },
+    "pulseAbs2": {
+      "title": "Pulse count absolute",
+      "description": "Pulse count absolute",
+      "type": "number"
+    },
+    "relativePulse2": {
+      "title": "Increment pulse 2 count",
+      "description": "Increment pulse 2 count",
+      "type": "number"
     }
   },
-  "required": ["reed", "pulseAbs1"]
+  "required": [
+    "reed",
+    "relativePulse1",
+    "pulseAbs1"
+  ]
 }

@@ -57,6 +57,10 @@ function consume(event) {
               data.counterValue = ev.attributes.counter_value;
               data.direction = ev.attributes.counter_name;
               topic = "count";
+            } else if (type === "TIME_CHANGE") {
+              data.queueTime = Math.round(ev.attributes.amount * 10) / 10;
+              data.counterValue = ev.attributes.counter_value;
+              topic = "queue_time";
             }
             emit("sample", { data, topic, timestamp: time });
           });

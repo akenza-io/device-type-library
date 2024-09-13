@@ -6,13 +6,37 @@
   "topic": "occupancy",
   "title": "Occupancy",
   "properties": {
-    "motion": {
+    "relativeMotion": {
       "title": "Motion",
       "description": "Motion sensor measuring activity level",
       "type": "integer",
       "minimum": 0,
       "maximum": 65535
+    },
+    "motion": {
+      "title": "Absolute motion",
+      "description": "Absolute motion sensor measuring activity level",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "occupancy": {
+      "title": "Occupancy",
+      "description": "Space occupancy. 0 = Unoccupied / 1 = Pending(Entering or leaving) / 2 = Occupied.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 2
+    },
+    "occupied": {
+      "title": "Occupied",
+      "description": "Space occupancy. false = Unoccupied / true = Occupied.",
+      "type": "boolean"
     }
   },
-  "required": ["motion"]
+  "required": [
+    "motion",
+    "relativeMotion",
+    "occupancy",
+    "occupied"
+  ]
 }

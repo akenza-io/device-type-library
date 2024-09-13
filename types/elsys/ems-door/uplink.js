@@ -407,7 +407,22 @@ function deleteUnusedKeys(data) {
   return keysRetained;
 }
 
+function calculateIncrement(lastValue, currentValue) {
+  // Check if current value exists
+  if (currentValue === undefined || Number.isNaN(currentValue)) {
+    return 0;
+  }
+
+  // Init state && Check for the case the counter reseted
+  if (lastValue === undefined || lastValue > currentValue) {
+    lastValue = currentValue;
+  }
+  // Calculate increment
+  return currentValue - lastValue;
+}
+
 function consume(event) {
+  const state = event.state || {};
   const payload = Hex.hexToBytes(event.data.payloadHex);
 
   if (payload[0] !== SETTINGS_HEADER) {
@@ -465,6 +480,22 @@ function consume(event) {
       lifecycle.batteryLevel = batteryLevel;
     }
 
+    if (reed.pulseAbs1 !== undefined) {
+      reed.relativePulse1 = calculateIncrement(
+        state.lastPulse1,
+        reed.pulseAbs1,
+      );
+      state.lastPulse1 = reed.pulseAbs1;
+    }
+
+    if (reed.pulseAbs2 !== undefined) {
+      reed.relativePulse2 = calculateIncrement(
+        state.lastPulse2,
+        reed.pulseAbs2,
+      );
+      state.lastPulse2 = reed.pulseAbs2;
+    }
+
     if (deleteUnusedKeys(data)) {
       emit("sample", { data, topic: "default" });
     }
@@ -495,4 +526,5 @@ function consume(event) {
       emit("sample", { data: res.settings, topic: "configuration" });
     }
   }
+  emit("state", state);
 }

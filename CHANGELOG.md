@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.52.0] - 2024-09-13
+
+### Added
+
+- Milesight - UC51X
+- Watteco - Flash'O
+
+### Changed
+
+- Added state to get the relative counts for: GWFCoder, TBDW100, DWS, EMS-Door, R718N3, SenlabM, Multisense & Presence Mini
+- Added new queue_time topic to Xovis
+
 # [1.52.1] - 2024-09-10
 
 ### Changed

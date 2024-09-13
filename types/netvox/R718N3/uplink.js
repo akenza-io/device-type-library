@@ -22,6 +22,7 @@ function multipier(val) {
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
+  const state = event.state || {};
   const data = {};
 
   // Reserved 16
@@ -37,18 +38,30 @@ function consume(event) {
       break;
     case 1:
       batteryVoltage = Bits.bitsToUnsigned(bits.substr(24, 8)) / 10;
-      data.current1 = Bits.bitsToUnsigned(bits.substr(32, 16));
-      data.current2 = Bits.bitsToUnsigned(bits.substr(48, 16));
-      data.current3 = Bits.bitsToUnsigned(bits.substr(64, 16));
-      data.multiplier1 = Bits.bitsToUnsigned(bits.substr(80, 8));
-      emit("sample", { data, topic: "raw1" });
+      state.current1 = Bits.bitsToUnsigned(bits.substr(32, 16));
+      state.current2 = Bits.bitsToUnsigned(bits.substr(48, 16));
+      state.current3 = Bits.bitsToUnsigned(bits.substr(64, 16));
+      state.multiplier1 = Bits.bitsToUnsigned(bits.substr(80, 8));
+      emit("state", state);
       break;
-    case 2:
+    case 2: {
       batteryVoltage = Bits.bitsToUnsigned(bits.substr(24, 8)) / 10;
-      data.multiplier2 = Bits.bitsToUnsigned(bits.substr(32, 8));
-      data.multiplier3 = Bits.bitsToUnsigned(bits.substr(40, 8));
-      emit("sample", { data, topic: "raw2" });
+
+      const { current1 } = state;
+      const { current2 } = state;
+      const { current3 } = state;
+
+      const { multiplier1 } = state;
+      const multiplier2 = Bits.bitsToUnsigned(bits.substr(32, 8));
+      const multiplier3 = Bits.bitsToUnsigned(bits.substr(40, 8));
+
+      data.current1 = (current1 * multiplier1) / 1000;
+      data.current2 = (current2 * multiplier2) / 1000;
+      data.current3 = (current3 * multiplier3) / 1000;
+
+      emit("sample", { data, topic: "default" });
       break;
+    }
     case 3: {
       batteryVoltage = Bits.bitsToUnsigned(bits.substr(24, 8)) / 10;
 
