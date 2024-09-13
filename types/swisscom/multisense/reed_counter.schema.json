@@ -12,7 +12,16 @@
       "type": "integer",
       "minimum": 0,
       "maximum": 65535
+    },
+    "relativeReedCounter": {
+      "title": "Increment reed counter",
+      "description": "Magnet count. Sum between the two events.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
     }
   },
-  "required": ["reedCounter"]
+  "required": [
+    "reedCounter"
+  ]
 }

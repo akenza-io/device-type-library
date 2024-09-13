@@ -17,7 +17,7 @@ describe("ACRIOS Systems ACR-CV-101L-M-X Uplink", () => {
         it("should decode the ACR-CV-101L-M-X payload", () => {
             const data = {
                 data: {
-                    port: 1,
+                    port: 100,
                     payloadHex: "010168131368080573785634120a00e97e01000000350100003c16",
                 },
             };
@@ -37,7 +37,7 @@ describe("ACRIOS Systems ACR-CV-101L-M-X Uplink", () => {
                 assert.typeOf(value.data, "object");
 
                 assert.equal(value.topic, "mbus");
-                assert.deepEqual(value.data, {"len":25,"type":"Data","l":19,"c":8,"a":5,"ci":115,"errors":[],"fixed":true,"id":12345678,"accessN":10,"status":0,"cStored":"Actual","deviceCode":7,"deviceType":"Water meter","data":[{"id":0,"storage":0,"func":"Instantaneous","value":1,"unit":"l"},{"id":1,"storage":1,"func":"Instantaneous","value":135,"unit":"l"}]});
+                assert.deepEqual(value.data, {"len":25,"type":"Data","l":19,"c":8,"a":5,"ci":115,"errors":[],"fixed":true,"id":12345678,"accessN":10,"status":0,"cStored":"Actual","deviceCode":7,"deviceType":"Water meter","data":[{"id":0,"storage":0,"func":"Instantaneous","value":1,"unit":"l"},{"id":1,"storage":1,"func":"Instantaneous","value":135,"unit":"l"}], "data0Unit": "l","data0Value": 1,"data0Func": "Instantaneous","data0Storage": 0,"data1Unit": "l","data1Value": 135,"data1Func": "Instantaneous","data1Storage": 1});
             });
             consume(data);
         });        

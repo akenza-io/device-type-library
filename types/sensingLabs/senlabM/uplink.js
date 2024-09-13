@@ -1,3 +1,47 @@
+function calculateIncrement(lastValue, currentValue) {
+  // Check if current value exists
+  if (currentValue === undefined || Number.isNaN(currentValue)) {
+    return 0;
+  }
+
+  // Init state && Check for the case the counter reseted
+  if (lastValue === undefined || lastValue > currentValue) {
+    lastValue = currentValue;
+  }
+  // Calculate increment
+  return currentValue - lastValue;
+}
+
+function customDatapointTransformation(
+  cPulseType,
+  cMultiplier,
+  cDivider,
+  pulse,
+) {
+  let pulseType = "";
+  let multiplier = 1;
+  let divider = 1;
+  let value = 0;
+
+  if (cPulseType !== undefined) {
+    pulseType = cPulseType;
+  }
+
+  if (cMultiplier !== undefined) {
+    multiplier = Number(cMultiplier);
+  }
+
+  if (cDivider !== undefined) {
+    divider = Number(cDivider);
+  }
+
+  if (pulseType !== "") {
+    value = Math.round(((pulse * multiplier) / divider) * 1000) / 1000;
+    return { valid: true, pulseType, value };
+  }
+  return { valid: false };
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
@@ -95,35 +139,68 @@ function consume(event) {
       break;
   }
 
-  // Customfields
+  const state = event.state || {};
+  if (data.pulse !== undefined) {
+    data.relativePulse = calculateIncrement(state.lastPulse, data.pulse);
+    state.lastPulse = data.pulse;
+  }
+
+  if (data.pulse1 !== undefined) {
+    data.relativePulse1 = calculateIncrement(state.lastPulse1, data.pulse1);
+    state.lastPulse1 = data.pulse1;
+  }
+
+  if (data.pulse2 !== undefined) {
+    data.relativePulse2 = calculateIncrement(state.lastPulse2, data.pulse2);
+    state.lastPulse2 = data.pulse2;
+  }
+
+  // Customfields for calculation and key name
   if (event.device !== undefined) {
     if (event.device.customFields !== undefined) {
       const { customFields } = event.device;
-      let pulseType = "";
-      let multiplier = 1;
-      let divider = 1;
-
-      if (customFields.pulseType !== undefined) {
-        pulseType = event.device.customFields.pulseType;
-      }
-
-      if (customFields.multiplier !== undefined) {
-        multiplier = Number(event.device.customFields.multiplier);
-      }
-
-      if (customFields.divider !== undefined) {
-        divider = Number(event.device.customFields.divider);
-      }
-
       if (data.pulse !== undefined) {
-        if (pulseType !== "") {
-          data[pulseType] =
-            Math.round(((data.pulse * multiplier) / divider) * 1000) / 1000;
+        const res = customDatapointTransformation(
+          customFields.pulseType,
+          customFields.multiplier,
+          customFields.divider,
+          data.pulse,
+        );
+
+        if (res.valid) {
+          data[res.pulseType] = res.value;
+        }
+      }
+
+      if (data.pulse1 !== undefined) {
+        const res = customDatapointTransformation(
+          customFields.pulseType1,
+          customFields.multiplier1,
+          customFields.divider1,
+          data.pulse1,
+        );
+
+        if (res.valid) {
+          data[res.pulseType] = res.value;
+        }
+      }
+
+      if (data.pulse2 !== undefined) {
+        const res = customDatapointTransformation(
+          customFields.pulseType2,
+          customFields.multiplier2,
+          customFields.divider2,
+          data.pulse2,
+        );
+
+        if (res.valid) {
+          data[res.pulseType] = res.value;
         }
       }
     }
   }
 
+  emit("state", state);
   emit("sample", { data, topic });
 
   if (lifecycle.batteryLevel !== undefined) {

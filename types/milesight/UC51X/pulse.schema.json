@@ -1,0 +1,30 @@
+{
+  "$id": "https://akenza.io/milesight/UC510/pulse.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "pulse",
+  "title": "Pulse",
+  "properties": {
+    "pulse1": {
+      "title": "Absolute pulse 1",
+      "type": "integer",
+      "description": "Absolute pulse 1"
+    },
+    "pulse2": {
+      "title": "Absolute pulse 2",
+      "type": "integer",
+      "description": "Absolute pulse 2"
+    },
+    "relativePulse1": {
+      "title": "Relative pulse 1",
+      "type": "integer",
+      "description": "Relative pulse 1"
+    },
+    "relativePulse2": {
+      "title": "Relative pulse 2",
+      "type": "integer",
+      "description": "Relative pulse 2"
+    }
+  }
+}

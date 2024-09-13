@@ -1,0 +1,16 @@
+{
+  "$id": "https://akenza.io/milesight/UC510/open_duration_valve_1.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "open_duration_valve_1",
+  "title": "Open duration valve 1",
+  "properties": {
+    "openDuration": {
+      "title": "Open duration",
+      "unit": "s",
+      "type": "integer",
+      "description": "Opening duration in seconds"
+    }
+  }
+}

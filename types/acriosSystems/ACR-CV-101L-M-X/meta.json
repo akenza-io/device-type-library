@@ -1,10 +1,10 @@
 {
-    "name": "ACR-CV101L-M-X",
+    "name": "ACR-CV-101L-M-X",
     "version": "1.1.0",
     "manufacturer": "ACRIOS Systems",
-    "url": "https://wiking.acrios.com/products/ACR-CV-101L-M-D/",
+    "url": "https://www.acrios.com/converters/m-bus-lorawan",
     "description": "Versatile IoT converter that enables readout of M-Bus devices.",
-    "author": "Akenza AG",
+    "author": "ACRIOS Systems",
     "firmwareVersion": "V2.3.18",
     "loraDeviceClass": "A",
     "availableSensors": [
