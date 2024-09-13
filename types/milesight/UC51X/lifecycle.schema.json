@@ -1,0 +1,43 @@
+{
+  "$id": "https://akenza.io/milesight/UC510/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "ipsoVersion": {
+      "title": "IPSO Version",
+      "type": "string",
+      "description": "IPSO Version",
+      "hideFromKpis": true
+    },
+    "hardwareVersion": {
+      "title": "Hardware Version",
+      "type": "string",
+      "description": "Hardware Version",
+      "hideFromKpis": true
+    },
+    "firmwareVersion": {
+      "title": "Firmware Version",
+      "type": "string",
+      "description": "Firmware Version",
+      "hideFromKpis": true
+    },
+    "serialNumber": {
+      "title": "Serial number",
+      "type": "string",
+      "description": "Serial number",
+      "hideFromKpis": true
+    },
+    "batteryLevel": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
+    },
+    "text": {
+      "title": "Custom message",
+      "type": "string",
+      "description": "Custom message",
+      "hideFromKpis": true
+    }
+  }
+}
