@@ -7,20 +7,10 @@
   "title": "Position",
   "properties": {
     "latitude": {
-      "title": "Latitude",
-      "unit": "°",
-      "type": "number",
-      "description": "Latitude",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/latitude/degrees"
     },
     "longitude": {
-      "title": "Longitude",
-      "unit": "°",
-      "type": "number",
-      "description": "Longitude",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/longitude/degrees"
     },
     "inTrip": {
       "title": "In trip",
@@ -41,10 +31,7 @@
       "description": "The direction where the sensor is heading"
     },
     "speedKmph": {
-      "title": "speedKmph",
-      "unit": "kmh",
-      "type": "number",
-      "description": "Acceleration of the sensor"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/speed/kmPerH"
     },
     "manDown": {
       "title": "Man down",
@@ -53,12 +40,7 @@
       "hideFromKpis": true
     },
     "batteryVoltage": {
-      "type": "number",
-      "minimum": 0,
-      "maximum": 24,
-      "title": "Battery voltage",
-      "desciption": "The battery voltage in Volt.",
-      "unit": "V"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
     }
   },
   "required": [

@@ -7,12 +7,7 @@
   "title": "Default",
   "properties": {
     "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
     "soilMoisture": {
       "title": "Soil moisture",
@@ -23,12 +18,9 @@
       "maximum": 100
     },
     "soilTemperature": {
-      "title": "Soil temperature",
-      "unit": "°C",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "The soil temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "title": "Soil temperature"
     }
   }
 }

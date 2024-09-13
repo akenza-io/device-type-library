@@ -22,26 +22,26 @@
       "title": "Measurement interval",
       "type": "integer",
       "unit": "s",
-      "desciption": "Measurement interval in seconds.",
+      "description": "Measurement interval in seconds.",
       "hideFromKpis": true
     },
     "sendInterval": {
       "title": "Send interval",
       "type": "integer",
-      "desciption": "Send every x samples",
+      "description": "Send every x samples",
       "hideFromKpis": true
     },
     "joinInterval": {
       "title": "Join interval",
       "type": "integer",
       "unit": "s",
-      "desciption": "Join interval in seconds.",
+      "description": "Join interval in seconds.",
       "hideFromKpis": true
     },
     "reedActive": {
       "title": "Reed active",
       "type": "boolean",
-      "desciption": "True if reed is active",
+      "description": "True if reed is active",
       "hideFromKpis": true
     },
     "timingBudget": {
@@ -55,15 +55,12 @@
       "title": "Range mode",
       "description": "Range mode",
       "type": "string",
-      "enum": [
-        "SHORT_RANGE",
-        "LONG_RANGE"
-      ],
+      "enum": ["SHORT_RANGE", "LONG_RANGE"],
       "hideFromKpis": true
     },
     "magnitudeTolerance": {
       "title": "Magnitude tolerance",
-      "unit": "mg",
+      "unit": "mG",
       "type": "number",
       "description": "How strong the device can move to detect an orientation",
       "minimum": 10,
@@ -72,7 +69,7 @@
     },
     "tiltTolerance": {
       "title": "Tilt tolerance",
-      "unit": "mg",
+      "unit": "mG",
       "type": "number",
       "description": "How strong the device can be tilted to detect an orientation",
       "minimum": 10,
@@ -103,7 +100,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "payloadType"
-  ]
+  "required": ["payloadType"]
 }

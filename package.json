@@ -23,8 +23,12 @@
     "hex": "file:lib/hex",
     "jsonschema": "^1.2.6",
     "mocha": "^10.2.0",
+    "prettier": "3.2.5",
     "rewire": "^5.0.0",
     "sync-request": "^6.1.0",
     "test-utils": "file:lib/test"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
   }
 }

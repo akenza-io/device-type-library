@@ -1,0 +1,16 @@
+{
+  "$id": "https://akenza.io/nanoThings/nanoTag/first_timestamp.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "first_timestamp",
+  "title": "First timestamp",
+  "properties": {
+    "firstSampleTimestamp": {
+      "title": "First sample timestamp",
+      "type": "number",
+      "description": "Timestamp of the first sampled value.",
+      "hideFromKpis": true
+    }
+  }
+}

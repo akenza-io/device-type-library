@@ -10,49 +10,27 @@
       "title": "Battery status",
       "description": "Battery status",
       "type": "string",
-      "enum": [
-        "ULTRA_LOW",
-        "LOW",
-        "OK",
-        "GOOD"
-      ],
+      "enum": ["ULTRA_LOW", "LOW", "OK", "GOOD"],
       "hideFromKpis": true
     },
     "batteryVoltage": {
-      "type": "number",
-      "minimum": 0,
-      "maximum": 24,
-      "title": "Battery voltage",
-      "desciption": "The battery voltage in Volt.",
-      "unit": "V"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
     },
     "batteryLevel": {
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 100,
-      "title": "Battery charge",
-      "description": "The battery charge in percent.",
-      "unit": "%"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
     },
     "sensor": {
       "title": "Sensor",
       "description": "Sensor",
       "type": "string",
-      "enum": [
-        "SENSOR_NO_CONNECTION",
-        "DS18B20",
-        "TMP117"
-      ],
+      "enum": ["SENSOR_NO_CONNECTION", "DS18B20", "TMP117"],
       "hideFromKpis": true
     },
     "extSensor": {
       "title": "External sensor",
       "description": "External Sensor",
       "type": "string",
-      "enum": [
-        "NO_EXTERNAL_SENSOR",
-        "TEMPERATURE_SENSOR"
-      ],
+      "enum": ["NO_EXTERNAL_SENSOR", "TEMPERATURE_SENSOR"],
       "hideFromKpis": true
     },
     "workMode": {

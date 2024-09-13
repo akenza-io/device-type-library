@@ -1,3 +1,29 @@
+function checkForIllegalValue(value, fieldName) {
+  let errorCode = "";
+  switch (value) {
+    case 2000001:
+      errorCode = "NO_SENSOR_RESPONSE";
+      break;
+    case 2000002:
+      errorCode = "SENSOR_DATA_HEAD_ERROR";
+      break;
+    case 2000003:
+      errorCode = "SENSOR_ARG_INVAILD";
+      break;
+    case 2000257:
+      errorCode = "SENSOR_DATA_ERROR_UNKONW";
+      break;
+    default:
+      break;
+  }
+
+  if (errorCode.length > 0) {
+    emit("sample", { data: { errorCode, fieldName }, topic: "error" });
+    return null;
+  }
+  return value;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const data = {};
@@ -23,48 +49,78 @@ function consume(event) {
         break;
       }
       case 4097: {
-        const temperature = payload.substr((pointer += 4), 8);
-        data.temperature =
-          Hex.hexLittleEndianToBigEndian(temperature, true) / 1000;
+        const temperature =
+          Hex.hexLittleEndianToBigEndian(
+            payload.substr((pointer += 4), 8),
+            true,
+          ) / 1000;
+        data.temperature = checkForIllegalValue(temperature, "temperature");
         pointer += 8;
         break;
       }
       case 4098: {
-        const humidity = payload.substr((pointer += 4), 8);
-        data.humidity = Hex.hexLittleEndianToBigEndian(humidity, false) / 1000;
+        const humidity =
+          Hex.hexLittleEndianToBigEndian(
+            payload.substr((pointer += 4), 8),
+            false,
+          ) / 1000;
+        data.humidity = checkForIllegalValue(humidity, "humidity");
         pointer += 8;
         break;
       }
       case 4099: {
-        const light = payload.substr((pointer += 4), 8);
-        data.light = Hex.hexLittleEndianToBigEndian(light, false) / 1000;
+        const light =
+          Hex.hexLittleEndianToBigEndian(
+            payload.substr((pointer += 4), 8),
+            false,
+          ) / 1000;
+        data.light = checkForIllegalValue(light, "light");
         pointer += 8;
         break;
       }
       case 4100: {
-        const co2 = payload.substr((pointer += 4), 8);
-        data.co2 = Hex.hexLittleEndianToBigEndian(co2, false) / 1000;
+        const co2 =
+          Hex.hexLittleEndianToBigEndian(
+            payload.substr((pointer += 4), 8),
+            false,
+          ) / 1000;
+        data.co2 = checkForIllegalValue(co2, "co2");
         pointer += 8;
         break;
       }
       case 4102: {
-        const soilTemperature = payload.substr((pointer += 4), 8);
-        data.soilTemperature =
-          Hex.hexLittleEndianToBigEndian(soilTemperature, true) / 1000;
+        const soilTemperature =
+          Hex.hexLittleEndianToBigEndian(
+            payload.substr((pointer += 4), 8),
+            true,
+          ) / 1000;
+        data.soilTemperature = checkForIllegalValue(
+          soilTemperature,
+          "soilTemperature",
+        );
         pointer += 8;
         break;
       }
       case 4103: {
-        const soilHumidity = payload.substr((pointer += 4), 8);
-        data.soilHumidity =
-          Hex.hexLittleEndianToBigEndian(soilHumidity, false) / 1000;
+        const soilHumidity =
+          Hex.hexLittleEndianToBigEndian(
+            payload.substr((pointer += 4), 8),
+            false,
+          ) / 1000;
+        data.soilHumidity = checkForIllegalValue(soilHumidity, "soilHumidity");
         pointer += 8;
         break;
       }
       case 4108: {
-        const soilConductivity = payload.substr((pointer += 4), 8);
-        data.soilConductivity =
-          Hex.hexLittleEndianToBigEndian(soilConductivity, false) / 1000;
+        const soilConductivity =
+          Hex.hexLittleEndianToBigEndian(
+            payload.substr((pointer += 4), 8),
+            false,
+          ) / 1000;
+        data.soilConductivity = checkForIllegalValue(
+          soilConductivity,
+          "soilConductivity",
+        );
         pointer += 8;
         break;
       }

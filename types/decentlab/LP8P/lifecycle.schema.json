@@ -7,12 +7,15 @@
   "title": "Lifecycle",
   "properties": {
     "batteryVoltage": {
-      "title": "Battery voltage",
-      "unit": "V",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+    },
+    "batteryLevel": {
+      "type": "integer",
       "minimum": 0,
-      "maximum": 24,
-      "desciption": "The battery voltage in Volt."
+      "maximum": 100,
+      "title": "Battery charge",
+      "description": "The battery charge in percent.",
+      "unit": "%"
     },
     "protocolVersion": {
       "title": "Protocol Version",

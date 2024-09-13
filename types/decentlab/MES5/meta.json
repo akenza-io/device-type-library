@@ -1,0 +1,22 @@
+{
+  "name": "DL-MES5",
+  "version": "1.0.0",
+  "manufacturer": "Decentlab",
+  "url": "https://www.decentlab.com/products/large-range-optical-turbidity-and-temperature-sensor-for-lorawan",
+  "description": "The Decentlab MES5 can be used for urban waste water treatment, treatment of industrial effluents, sludge treatment or dredging site observation.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V2.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Turbidity",
+    "Sludge blanket",
+    "Suspended solid",
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

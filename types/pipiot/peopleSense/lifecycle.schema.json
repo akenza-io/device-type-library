@@ -9,46 +9,41 @@
     "heartbeatFlag": {
       "title": "Heartbeat",
       "type": "boolean",
-      "desciption": "Occurs if the device is woken due periodical heartbeat messages.",
+      "description": "Occurs if the device is woken due periodical heartbeat messages.",
       "hideFromKpis": true
     },
     "magSwitchFlag": {
       "title": "Magnet switch event",
       "type": "boolean",
-      "desciption": "Occurs if the device was woken by the magnetic switch.",
+      "description": "Occurs if the device was woken by the magnetic switch.",
       "hideFromKpis": true
     },
     "proxHWError": {
       "title": "Proximity hardware error",
       "type": "boolean",
-      "desciption": "A problem was detected communicating with the proximity sensor. Device service required.",
+      "description": "A problem was detected communicating with the proximity sensor. Device service required.",
       "hideFromKpis": true
     },
     "binsReadyFlag": {
       "title": "Bins ready",
       "type": "boolean",
-      "desciption": "Occurs if at least one bin is non-zero at the end of all sensing periods.",
+      "description": "Occurs if at least one bin is non-zero at the end of all sensing periods.",
       "hideFromKpis": true
     },
     "forcedDownlinkFlag": {
       "title": "Forced downlink flag",
       "type": "boolean",
-      "desciption": "Flag indicating the frame has an associated forced downlink associated with the message.",
+      "description": "Flag indicating the frame has an associated forced downlink associated with the message.",
       "hideFromKpis": true
     },
     "countAlertFlag": {
       "title": "Count alert",
       "type": "boolean",
-      "desciption": "Flag indicating alert count event triggered frame.",
+      "description": "Flag indicating alert count event triggered frame.",
       "hideFromKpis": true
     },
     "batteryVoltage": {
-      "title": "Battery voltage",
-      "unit": "V",
-      "type": "number",
-      "minimum": 0,
-      "maximum": 24,
-      "desciption": "The battery voltage in Volt."
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
     }
   },
   "required": [

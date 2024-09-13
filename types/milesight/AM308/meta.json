@@ -15,8 +15,7 @@
     "TVOC",
     "Pressure",
     "CO2",
-    "PM2.5",
-    "PM10"
+    "Particulate Matter"
   ],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",

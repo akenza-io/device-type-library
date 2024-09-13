@@ -7,12 +7,27 @@ function int16(hex) {
   return a;
 }
 
+function calculateIncrement(lastValue, currentValue) {
+  // Check if current value exists
+  if (currentValue === undefined || Number.isNaN(currentValue)) {
+    return 0;
+  }
+
+  // Init state && Check for the case the counter reseted
+  if (lastValue === undefined || lastValue > currentValue) {
+    lastValue = currentValue;
+  }
+  // Calculate increment
+  return currentValue - lastValue;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const { port } = event.data;
   const bits = Bits.hexToBits(payload);
   const lifecycle = {};
   const trigger = {};
+  const state = event.state || {};
   let topic = "default";
 
   lifecycle.payloadVersion = Bits.bitsToUnsigned(bits.substr(0, 8));
@@ -20,12 +35,16 @@ function consume(event) {
   const status = Number(Bits.bitsToUnsigned(bits.substr(16, 8)));
   const batteryVoltage = Bits.bitsToUnsigned(bits.substr(24, 8)) * 6 + 2000;
   lifecycle.batteryVoltage = Math.round((batteryVoltage / 1000) * 10) / 10;
-  let batteryLevel = Math.round((batteryVoltage - 2000) / 15.24);
 
-  if (batteryLevel > 100) {
-    batteryLevel = 100;
-  } else if (batteryLevel < 0) {
-    batteryLevel = 0;
+  let batteryLevel = 0;
+  // Battery level curve with drop off point
+  if (batteryVoltage >= 2820) {
+    batteryLevel = Math.round(((batteryVoltage - 2820) / 1.9) * 0.8) + 20; // 3010 -- 2820
+    if (batteryLevel > 100) {
+      batteryLevel = 100;
+    }
+  } else if (batteryVoltage >= 2550) {
+    batteryLevel = Math.round(((batteryVoltage - 2550) / 2.7) * 0.2); // 2820 -- 2550
   }
   lifecycle.batteryLevel = batteryLevel;
 
@@ -54,6 +73,13 @@ function consume(event) {
           data.reedCounter = Bits.bitsToUnsigned(bits.substr(pointer, 16));
           pointer += 16;
           topic = "reed_counter";
+
+          data.relativeReedCounter = calculateIncrement(
+            state.lastReed,
+            data.reedCounter,
+          );
+          state.lastReed = data.reedCounter;
+
           break;
         case 4:
           data.motionCounter = Bits.bitsToUnsigned(bits.substr(pointer, 16));
@@ -148,4 +174,5 @@ function consume(event) {
 
   emit("sample", { data: trigger, topic: "event" });
   emit("sample", { data: lifecycle, topic: "lifecycle" });
+  emit("state", state);
 }

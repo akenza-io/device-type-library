@@ -1,0 +1,130 @@
+{
+  "$id": "https://akenza.io/seeed/senseCAPT1000A/settings.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "settings",
+  "title": "Settings",
+  "properties": {
+    "motionEnabled": {
+      "title": "Motion enabled",
+      "type": "integer",
+      "description": "Motion enabled",
+      "hideFromKpis": true
+    },
+    "anyMotionThreshold": {
+      "title": "Motion threshold",
+      "type": "integer",
+      "description": "Motion threshold",
+      "hideFromKpis": true
+    },
+    "motionStartInterval": {
+      "title": "Motion start interval",
+      "type": "integer",
+      "unit": "min",
+      "description": "Motion start interval",
+      "hideFromKpis": true
+    },
+    "staticEnabled": {
+      "title": "Static enabled",
+      "type": "integer",
+      "description": "Static enabled",
+      "hideFromKpis": true
+    },
+    "deviceStaticTimeout": {
+      "title": "Device static timeout",
+      "type": "integer",
+      "unit": "min",
+      "description": "Device static timeout",
+      "hideFromKpis": true
+    },
+    "shockEnabled": {
+      "title": "Shock enabled",
+      "type": "integer",
+      "description": "Shock enabled",
+      "hideFromKpis": true
+    },
+    "shockThreshold": {
+      "title": "Shock threshold",
+      "type": "integer",
+      "description": "Shock threshold",
+      "hideFromKpis": true
+    },
+    "temperatureEnabled": {
+      "title": "Temperature enabled",
+      "type": "integer",
+      "description": "Temperature enabled",
+      "hideFromKpis": true
+    },
+    "eventTemperatureInterval": {
+      "title": "Event temperature interval",
+      "type": "integer",
+      "unit": "min",
+      "description": "Event temperature interval",
+      "hideFromKpis": true
+    },
+    "eventTemperatureSampleInterval": {
+      "title": "Event temperature sample interval",
+      "type": "integer",
+      "unit": "sec",
+      "description": "Event temperature sample interval",
+      "hideFromKpis": true
+    },
+    "temperatureThMax": {
+      "title": "Temperature threshold max",
+      "type": "integer",
+      "description": "Temperature threshold max",
+      "hideFromKpis": true
+    },
+    "temperatureThMin": {
+      "title": "Temperature threshold min",
+      "type": "integer",
+      "description": "Temperature threshold min",
+      "hideFromKpis": true
+    },
+    "temperatureWarningType": {
+      "title": "Temperature warning type",
+      "type": "integer",
+      "description": "Temperature warning type",
+      "hideFromKpis": true
+    },
+    "lightEnabled": {
+      "title": "Light enabled",
+      "type": "integer",
+      "description": "Light enabled",
+      "hideFromKpis": true
+    },
+    "eventLightInterval": {
+      "title": "Event light interval",
+      "type": "integer",
+      "unit": "min",
+      "description": "Event light interval",
+      "hideFromKpis": true
+    },
+    "eventLightSampleInterval": {
+      "title": "Event light sample interval",
+      "type": "integer",
+      "unit": "sec",
+      "description": "Event light sample interval",
+      "hideFromKpis": true
+    },
+    "lightThMax": {
+      "title": "Light threshold max",
+      "type": "integer",
+      "description": "Light threshold max",
+      "hideFromKpis": true
+    },
+    "lightThMin": {
+      "title": "Light threshold min",
+      "type": "integer",
+      "description": "Light threshold min",
+      "hideFromKpis": true
+    },
+    "lightWarningType": {
+      "title": "Light warning type",
+      "type": "integer",
+      "description": "Light warning type",
+      "hideFromKpis": true
+    }
+  }
+}

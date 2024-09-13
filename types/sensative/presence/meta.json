@@ -7,7 +7,7 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": ["Proximity", "Magnet"],
+  "availableSensors": ["Presence", "Reed"],
   "outputTopics": ["alarm", "default", "lifecycle", "occupancy"],
   "encoding": "HEX",
   "connectivity": "LORA"

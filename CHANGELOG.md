@@ -4,6 +4,220 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.52.0] - 2024-09-13
+
+### Added
+
+- Milesight - UC51X
+- Watteco - Flash'O
+
+### Changed
+
+- Added state to get the relative counts for: GWFCoder, TBDW100, DWS, EMS-Door, R718N3, SenlabM, Multisense & Presence Mini
+- Added new queue_time topic to Xovis
+
+# [1.52.1] - 2024-09-10
+
+### Changed
+
+- Added data flattening on port 100 for ACRIOS Systems ACR-CV-101L-M-X and updated URL
+
+# [1.52.0] - 2024-08-28
+
+### Added
+
+- ACRIOS Systems - ACR-CV-101L-M-X
+
+# [1.51.1] - 2024-07-30
+
+### Changed
+
+- Swisscom Multisense changed the batteryLevel percentage calculation to include the dropoff
+
+# [1.51.0] - 2024-07-12
+
+### Added
+
+- Decentlab - MES5
+- Decentlab - TBRG
+- smartEnds - Brigther Bins
+- mclimate - Cicki V4
+
+### Changed
+
+- Added new possible datapoints for milesight VS133 & VS121
+
+# [1.50.0] - 2024-06-12
+
+### Added
+
+- Decentlab - DWS
+
+### Changed
+
+- Updated isEmpty to react correctly to not initialized objects
+- Updated a few urls in the meta
+- Updated some images
+
+# [1.50.0] - 2024-05-24
+
+### Changed
+
+- Implemented references for commonly used datapoints
+
+# [1.49.0] - 2024-05-23
+
+### Changed
+
+- Catching illegal datapoints for the seeed senseCAPS210X series
+
+# [1.48.0] - 2024-05-22
+
+### Added
+
+- Yosensi - Temp
+- Yosensi - Pure Pro
+- Yosensi - Refrigerant Monitor
+
+### Changed
+
+- ioTracker - Removed 0 gps values in case of an illegal datapoint
+- senlabM - Changed txPeriod and logperiod as they where expressed in 2 second intervals
+- PeopleCounter - Added batteryLevel
+- LP8P - Added batteryLevel
+
+# [1.47.0] - 2024-04-26
+
+### Added
+
+- Milesight - CT101
+- Milesight - VS135
+- Milesight - TS301
+- Milesight - TS302
+
+# [1.46.1] - 2024-04-22
+
+### Changed
+
+- Updated data models
+
+# [1.46.0] - 2024-04-17
+
+### Added
+
+- Milesight - VS350
+
+### Changed
+
+- Unified available sensors in the meta.json
+
+# [1.45.0] - 2024-04-12
+
+### Added
+
+- sensingLabs - senlabM
+
+# [1.44.0] - 2024-02-14
+
+### Added
+
+- Tektelic - EdoctorV1
+
+# [1.43.0] - 2024-02-14
+
+### Added
+
+- Elsys - ETHd10
+- Elsys - EIAQd10
+
+# [1.42.1] - 2024-01-18
+
+### Changed
+
+- update data-models and add an `example.schema.json` for each default schema
+
+# [1.42.0] - 2024-01-16
+
+### Added
+
+- Alpha Omega Technology / Klax 2.0
+- intial set of data models
+
+# [1.41.0] - 2024-01-10
+
+### Added
+
+- tektelik/VIVID - Smart Room Sensor V3.1
+
+### Changed
+
+- renamed tektelik/VIVID - Smart Room Sensor to VIVID - Smart Room Sensor V2.2.0
+
+# [1.40.0] - 2024-01-10
+
+### Added
+
+- Milesight/DS3604
+- Milesight/EM300-MLD
+- Milesight/EM500-SWL
+- Milesight/GS101
+- Milesight/GS301
+- Milesight/TS101
+- Milesight/VS133
+- Milesight/VS330
+- Milesight/VS340
+- Milesight/VS341
+- Milesight/WS203
+- Milesight/WS51X
+- Milesight/WT101
+
+### Changed
+
+- Milesight/AT101: removes location history
+- Milesight/EM300-DI: removes location history
+- Milesight/EM320-TH: removes temperature/humidity history
+- Milesight/WS50X: fixes the output
+- Tektelic/EDOCTOR: adjusts name
+
+# [1.39.1] - 2023-11-21
+
+### Changed
+
+- Fixed several data quality issues and improved the overall test setup
+
+# [1.39.0] - 2023-09-27
+
+### Added
+
+- Laiier - SevernWLD
+
+### Changed
+
+- Comtac - Cluey
+
+# [1.38.1] - 2023-09-28
+
+### Added
+
+- Added multiple data model examples
+
+# [1.38.0] - 2023-09-28
+
+### Added
+
+- Nanothings - Nanotag
+
+# [1.38.0] - 2023-09-28
+
+### Added
+
+- Integra - Aquastream
+- Enginko - EGK-LW22PLG
+- Enginko - MCF-LW12MET
+- Enginko - R718N3
+- Dragino - Gropoint Air
+- Dragino - Gropoint Air V1.1
+
 # [1.37.2] - 2023-08-30
 
 ### Added

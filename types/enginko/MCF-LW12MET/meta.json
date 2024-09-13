@@ -1,0 +1,14 @@
+{
+  "name": "MCF-LW12MET",
+  "version": "1.0.0",
+  "manufacturer": "Enginko",
+  "url": "https://enginko.com/soluzioni/misuratore-di-energia-monofase-lorawan-con-i-o/",
+  "description": "The MCF-LW12MET is an Enginko mcf88 LoRaWAN sensor with 1-phase energy measurement, which allows to monitor the power, voltage and current of electrical devices. It has an operating temperature of -10 °C to 70 °C and can be used in a variety of applications. The internal timestamp is synced with a downlink.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Energy Metering", "IO"],
+  "outputTopics": ["default", "time_sync", "io"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

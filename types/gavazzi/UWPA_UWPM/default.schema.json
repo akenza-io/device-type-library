@@ -31,10 +31,5 @@
       "description": "Phase 2 kilowatt"
     }
   },
-  "required": [
-    "totalKWh",
-    "l2V",
-    "l2A",
-    "l2KW"
-  ]
+  "required": ["totalKWh", "l2V", "l2A", "l2KW"]
 }

@@ -1,0 +1,18 @@
+{
+  "name": "EDOCTOR - Respiratory Health Monitor V1",
+  "version": "1.0.0",
+  "manufacturer": "Tektelic",
+  "url": "https://tektelic.com/products/sensors/e-doctor-health-monitoring-iot-device/",
+  "description": "The TEKTELIC eDoctor Device is the ideal solution to monitor patients and vulnerable individuals for potential respiratory illness. This specialized device is designed to continuously monitor and detect the most common symptoms of respiratory illness including increased body temperature and breathing rate, persistent cough and accelerated heart rate. An adjustable, washable strap ensures the device can be worn comfortably and discreetly in any situation.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Heart monitor",
+    "Respiratory monitor",
+    "Body temperature"
+  ],
+  "outputTopics": ["default", "error", "lifecycle", "system"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

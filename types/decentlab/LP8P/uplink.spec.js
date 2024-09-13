@@ -65,7 +65,8 @@ describe("Decentlab LP8P Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 3.109);
+        assert.equal(value.data.batteryVoltage, 3.11);
+        assert.equal(value.data.batteryLevel, 100);
         assert.equal(value.data.protocolVersion, 2);
         assert.equal(value.data.deviceID, 1400);
         assert.equal(value.data.co2SensorStatus, 0);

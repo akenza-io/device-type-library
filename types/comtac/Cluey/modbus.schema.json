@@ -1,0 +1,55 @@
+{
+  "$id": "https://akenza.io/comtac/cluey/modbus.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "modbus",
+  "title": "Modbus",
+  "properties": {
+    "modbusId": {
+      "title": "Modbis ID",
+      "description": "Modbis ID",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "errorVerbose": {
+      "title": "Error Verbose",
+      "description": "Error Verbose",
+      "type": "string",
+      "enum": [
+        "MB_STATE_OK",
+        "MB_STATE_NOT_INIT",
+        "MB_STATE_BUSY",
+        "MB_STATE_BUS_ERROR",
+        "MB_STATE_FC_NOT_SUPPORTED",
+        "MB_STATE_RX_TIMEOUT",
+        "MB_STATE_RX_CHAR_TIMEOUT",
+        "MB_STATE_RX_ERR",
+        "MB_STATE_RX_CRC_ERR",
+        "MB_STATE_RX_DATA_ERR",
+        "MB_STATE_RX_EXCEPTION",
+        "MB_STATE_WRONG_SLV_ADR"
+      ],
+      "hideFromKpis": true
+    },
+    "errorCode": {
+      "title": "Error code",
+      "description": "Error code",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "index": {
+      "title": "Index",
+      "description": "Index",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "registers": {
+      "title": "Registers",
+      "description": "Registers",
+      "type": "array",
+      "hideFromKpis": true
+    }
+  },
+  "required": ["modbusId", "errorVerbose", "errorCode", "index", "registers"]
+}

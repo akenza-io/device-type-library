@@ -1,0 +1,14 @@
+{
+  "name": "Aquastream",
+  "version": "1.0.0",
+  "manufacturer": "Integra",
+  "url": "https://ch.integra-metering.com/product/aquastream-lora/",
+  "description": "LoRa communication module for mechanical water meters",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Volume", "Flow"],
+  "outputTopics": ["default", "lifecycle", "alarm"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

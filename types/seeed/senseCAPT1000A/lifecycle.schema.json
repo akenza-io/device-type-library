@@ -7,12 +7,7 @@
   "title": "Lifecycle",
   "properties": {
     "batteryLevel": {
-      "title": "Battery charge",
-      "type": "number",
-      "minimum": 0,
-      "maximum": 100,
-      "description": "The battery charge in percent.",
-      "unit": "%"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
     },
     "firmwareVersion": {
       "title": "Firmware version",
@@ -32,21 +27,55 @@
       "type": "integer",
       "hideFromKpis": true
     },
+    "collectTime": {
+      "title": "Collecting time",
+      "type": "integer",
+      "description": "Unixtime when the sample got collected",
+      "hideFromKpis": true
+    },
     "heartbeatInterval": {
       "title": "Heartbeat interval",
       "type": "integer",
-      "desciption": "Heartbeat interval",
+      "unit": "min",
+      "description": "Heartbeat interval",
       "hideFromKpis": true
     },
     "periodicInterval": {
       "title": "Periodic interval",
       "type": "integer",
-      "desciption": "Periodic interval",
+      "unit": "min",
+      "description": "Periodic interval",
       "hideFromKpis": true
     },
     "eventInterval": {
       "title": "Event interval",
       "description": "Event interval",
+      "unit": "min",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "uplinkInterval": {
+      "title": "Uplink interval",
+      "description": "Uplink interval",
+      "unit": "min",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "sensorEnabled": {
+      "title": "Sensor enabled",
+      "description": "Sensor enabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "positioningStrategy": {
+      "title": "Position strategy",
+      "description": "Position strategy",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "motionId": {
+      "title": "Motion ID",
+      "description": "Motion ID",
       "type": "integer",
       "hideFromKpis": true
     },
@@ -54,23 +83,6 @@
       "title": "SOS mode",
       "description": "SOS mode",
       "type": "integer",
-      "hideFromKpis": true
-    },
-    "sosEvent": {
-      "title": "SOS Event",
-      "description": "SOS Event",
-      "type": "string",
-      "enum": [
-        "MOVING_STARTING",
-        "MOVING_END",
-        "DEVICE_STATIC",
-        "SHOCK_EVENT",
-        "TEMP_EVENT",
-        "LIGHTING_EVENT",
-        "SOS_EVENT",
-        "CUSTOMER_EVENT",
-        "NO_EVENT"
-      ],
       "hideFromKpis": true
     },
     "wifiScan": {
@@ -85,8 +97,5 @@
       "type": "array",
       "hideFromKpis": true
     }
-  },
-  "required": [
-    "batteryLevel"
-  ]
+  }
 }

@@ -23,8 +23,5 @@
       "maximum": 3276.5
     }
   },
-  "required": [
-    "probe1",
-    "probe2"
-  ]
+  "required": ["probe1", "probe2"]
 }

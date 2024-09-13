@@ -10,30 +10,17 @@
       "title": "Battery status",
       "description": "Battery status",
       "type": "string",
-      "enum": [
-        "ULTRA_LOW",
-        "LOW",
-        "OK",
-        "GOOD"
-      ],
+      "enum": ["ULTRA_LOW", "LOW", "OK", "GOOD"],
       "hideFromKpis": true
     },
     "batteryVoltage": {
-      "type": "number",
-      "minimum": 0,
-      "maximum": 24,
-      "title": "Battery voltage",
-      "desciption": "The battery voltage in Volt.",
-      "unit": "V"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
     },
     "connectionStatus": {
       "title": "Connection status",
       "description": "Connection status",
       "type": "string",
-      "enum": [
-        "NO_CONNECTION",
-        "CONNECTED"
-      ],
+      "enum": ["NO_CONNECTION", "CONNECTED"],
       "hideFromKpis": true
     },
     "externalSensor": {
@@ -43,12 +30,7 @@
       "hideFromKpis": true
     },
     "batteryLevel": {
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 100,
-      "title": "Battery charge",
-      "description": "The battery charge in percent.",
-      "unit": "%"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
     }
   },
   "required": [

@@ -21,10 +21,15 @@
       "hideFromKpis": true
     },
     "batteryVoltage": {
-      "title": "Battery voltage",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+    },
+    "batteryLevel": {
+      "title": "Battery charge",
       "type": "number",
-      "unit": "V",
-      "desciption": "The battery voltage in Volt."
+      "minimum": 0,
+      "maximum": 100,
+      "description": "The battery charge in percent.",
+      "unit": "%"
     },
     "sensorStatus": {
       "title": "Sensor status",
@@ -59,8 +64,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "deviceStatus",
-    "sensorStatus"
-  ]
+  "required": ["deviceStatus", "sensorStatus"]
 }

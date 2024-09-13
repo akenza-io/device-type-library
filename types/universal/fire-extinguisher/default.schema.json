@@ -22,9 +22,5 @@
       "type": "boolean"
     }
   },
-  "required": [
-    "isTestMessage",
-    "isRemoved",
-    "isSecurityUnlocked"
-  ]
+  "required": ["isTestMessage", "isRemoved", "isSecurityUnlocked"]
 }

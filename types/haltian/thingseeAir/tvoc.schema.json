@@ -7,15 +7,8 @@
   "title": "TVOC",
   "properties": {
     "tvoc": {
-      "title": "TVOC",
-      "unit": "ppb",
-      "type": "integer",
-      "description": "Total Volatile Organic Compounds in ppb",
-      "minimum": 0,
-      "maximum": 60000
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/tvoc/ppb"
     }
   },
-  "required": [
-    "tvoc"
-  ]
+  "required": ["tvoc"]
 }

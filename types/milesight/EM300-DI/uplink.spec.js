@@ -8,7 +8,6 @@ const { assert } = chai;
 describe("Milesight EM300-DI Uplink", () => {
   let defaultSchema = null;
   let lifecycleSchema = null;
-  let historySchema = null;
 
   let consume = null;
   before((done) => {
@@ -29,17 +28,6 @@ describe("Milesight EM300-DI Uplink", () => {
       .loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
-  before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/history.schema.json`)
-      .then((parsedSchema) => {
-        historySchema = parsedSchema;
         done();
       });
   });
@@ -70,13 +58,12 @@ describe("Milesight EM300-DI Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "history");
+        assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 27.2);
         assert.equal(value.data.humidity, 46.5);
         assert.equal(value.data.pulse, 256);
-        assert.equal(value.data.timestamp, 1665561758);
 
-        utils.validateSchema(value.data, historySchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {

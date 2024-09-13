@@ -1,0 +1,83 @@
+{
+  "$id": "https://akenza.io/smartEnds/brigtherBins/system.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "system",
+  "title": "System",
+  "properties": {
+    "hardwareVersion": {
+      "title": "Hardware version",
+      "type": "number",
+      "description": "Hardware version",
+      "hideFromKpis": true
+    },
+    "softwareVersion": {
+      "title": "Software version",
+      "type": "string",
+      "description": "Software version",
+      "hideFromKpis": true
+    },
+    "noOfDownlinks": {
+      "title": "Number of downlinks",
+      "type": "integer",
+      "description": "Number of downlinks",
+      "hideFromKpis": true
+    },
+    "downlinkFreq": {
+      "title": "Downlink frequency",
+      "type": "integer",
+      "description": "Downlink frequency",
+      "hideFromKpis": true
+    },
+    "totalResetCount": {
+      "title": "Total reset count",
+      "type": "integer",
+      "description": "Total reset count",
+      "hideFromKpis": true
+    },
+    "runtime": {
+      "title": "Runtime",
+      "type": "integer",
+      "description": "Runtime",
+      "hideFromKpis": true
+    },
+    "totalRuntime": {
+      "title": "Total runtime",
+      "type": "integer",
+      "description": "Total runtime",
+      "hideFromKpis": true
+    },
+    "configsTest": {
+      "title": "Configuration test",
+      "type": "boolean",
+      "description": "Configuration test equals true if working",
+      "hideFromKpis": true
+    },
+    "communicationTest": {
+      "title": "Communication test",
+      "type": "boolean",
+      "description": "Communication test equals true if working",
+      "hideFromKpis": true
+    },
+    "distanceTest": {
+      "title": "Distance test",
+      "type": "boolean",
+      "description": "Distance test equals true if working",
+      "hideFromKpis": true
+    },
+    "accelerationTest": {
+      "title": "Acceleration test",
+      "type": "boolean",
+      "description": "Acceleration test equals true if working",
+      "hideFromKpis": true
+    },
+    "temperatureTest": {
+      "title": "Temperature test",
+      "type": "boolean",
+      "description": "Temperature test equals true if working",
+      "hideFromKpis": true
+    }
+  },
+  "required": []
+}

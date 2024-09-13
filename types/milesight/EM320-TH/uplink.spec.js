@@ -1,5 +1,4 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -45,9 +44,20 @@ describe("EM320-TH Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.temperature, 27.2);
+        assert.equal(value.data.humidity, 46.5);
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryLevel, 92);
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -58,9 +68,7 @@ describe("EM320-TH Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 30.8);
         assert.equal(value.data.humidity, 50.5);
-        assert.equal(value.data.humidityHistory, 46.5);
-        assert.equal(value.data.temperatureHistory, 27.2);
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

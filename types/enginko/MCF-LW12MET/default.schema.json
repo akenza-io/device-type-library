@@ -1,0 +1,67 @@
+{
+  "$id": "https://akenza.io/enginko/EGK-LW12MET/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "properties": {
+    "activeEnergy": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/wattHours",
+      "description": "Cumulative Active energy",
+      "title": "Active energy"
+    },
+    "reactiveEnergy": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/reactiveEnergy/voltAmpereReactiveHours",
+      "description": "Cumulative Reactive energy",
+      "title": "Reactive energy"
+    },
+    "apparentEnergy": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/apparentEnergy/voltAmpereHours",
+      "description": "Cumulative Apparent energy",
+      "title": "Apparent energy"
+    },
+    "activePower": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activePower/watt",
+      "description": "Active power",
+      "title": "Active power"
+    },
+    "reactivePower": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/reactivePower/voltAmpereReactive",
+      "description": "Reactive power",
+      "title": "Reactive power"
+    },
+    "apparentPower": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/apparentPower/voltAmpere",
+      "description": "Apparent power",
+      "title": "Apparent power"
+    },
+    "voltage": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt"
+    },
+    "current": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere"
+    },
+    "period": {
+      "title": "Period",
+      "description": "Period",
+      "type": "number"
+    },
+    "frequency": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/frequency/hertz",
+      "description": "Frequency",
+      "title": "Frequency"
+    },
+    "activation": {
+      "title": "Activation",
+      "unit": "s",
+      "description": "Activation time in seconds since start",
+      "type": "number"
+    }
+  },
+  "required": [
+    "activeEnergy",
+    "reactiveEnergy",
+    "apparentEnergy"
+  ]
+}

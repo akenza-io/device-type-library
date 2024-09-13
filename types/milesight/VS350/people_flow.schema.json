@@ -1,0 +1,44 @@
+{
+  "$id": "https://akenza.io/milesight/VS350/people_flow.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "people_flow",
+  "title": "People Flow",
+  "properties": {
+    "totalCountIn": {
+      "title": "Total count in",
+      "description": "Total count in",
+      "type": "integer"
+    },
+    "totalCountOut": {
+      "title": "Total count out",
+      "description": "Total counter out",
+      "type": "integer"
+    },
+    "periodicCountIn": {
+      "title": "Periodic count in",
+      "description": "Periodic count in",
+      "type": "integer"
+    },
+    "periodicCountOut": {
+      "title": "Periodic count out",
+      "description": "Periodic count out",
+      "type": "integer"
+    },
+    "totalCountAlarm": {
+      "title": "Periodic out",
+      "description": "Periodic out",
+      "type": "string",
+      "enum": ["THRESHOLD_ALARM_RELEASE", "THRESHOLD_ALARM", "UNKNOWN"],
+      "hideFromKpis": true
+    },
+    "periodicCountAlarm": {
+      "title": "Periodic out",
+      "description": "Periodic out",
+      "type": "string",
+      "enum": ["THRESHOLD_ALARM_RELEASE", "THRESHOLD_ALARM", "UNKNOWN"],
+      "hideFromKpis": true
+    }
+  }
+}

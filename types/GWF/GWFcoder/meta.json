@@ -6,7 +6,7 @@
   "description": "Simple readout of water and gas meters with GWFcoder® registers without necessity to access buildings",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
-  "availableSensors": ["Water/Gas", "Volume"],
+  "availableSensors": ["Water", "Gas", "Volume"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
   "connectivity": "LORA"

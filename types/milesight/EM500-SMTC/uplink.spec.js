@@ -1,5 +1,4 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -46,7 +45,7 @@ describe("EM500-PP Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.data.batteryLevel, 100);
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -58,7 +57,7 @@ describe("EM500-PP Uplink", () => {
         assert.equal(value.data.moisture, 57.5);
         assert.equal(value.data.soilConductivity, 240);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

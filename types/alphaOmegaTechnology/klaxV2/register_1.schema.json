@@ -1,0 +1,82 @@
+{
+  "$id": "https://akenza.io/alphaOmegaTechnology/klaxV2/register_1.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "register_1",
+  "title": "Register 1",
+  "properties": {
+    "filterPositionActive": {
+      "title": "Filter position active",
+      "type": "boolean",
+      "description": "Filter position active",
+      "hideFromKpis": true
+    },
+    "filterPositionUnit": {
+      "title": "Filter unit",
+      "type": "string",
+      "description": "Filter unit",
+      "enum": ["NDEF", "Wh", "W", "V", "A", "HZ", "VARH", "VAR", "VAH", "VA"],
+      "hideFromKpis": true
+    },
+    "registerfilterSet": {
+      "title": "Registerfilter set",
+      "type": "boolean",
+      "description": "Registerfilter set",
+      "hideFromKpis": true
+    },
+    "registerfilterValid": {
+      "title": "Registerfilter valid",
+      "type": "boolean",
+      "description": "Registerfilter valid",
+      "hideFromKpis": true
+    },
+    "dataPointValid": {
+      "title": "Datapoint now valid",
+      "type": "boolean",
+      "description": "Datapoint now valid",
+      "hideFromKpis": true
+    },
+    "dataPoint1Valid": {
+      "title": "Datapoint -1 interval valid",
+      "type": "boolean",
+      "description": "Datapoint -1 interval valid",
+      "hideFromKpis": true
+    },
+    "dataPoint2Valid": {
+      "title": "Datapoint -2 interval valid",
+      "type": "boolean",
+      "description": "Datapoint -2 interval valid",
+      "hideFromKpis": true
+    },
+    "dataPoint3Valid": {
+      "title": "Datapoint -3 interval valid",
+      "type": "boolean",
+      "description": "Datapoint -3 interval valid",
+      "hideFromKpis": true
+    },
+    "dataPoint": {
+      "title": "Datapoint",
+      "type": "number",
+      "description": "Datapoint"
+    },
+    "dataPoint1": {
+      "title": "Datapoint -1 interval",
+      "type": "number",
+      "description": "Datapoint -1 interval",
+      "hideFromKpis": true
+    },
+    "dataPoint2": {
+      "title": "Datapoint -2 interval",
+      "type": "number",
+      "description": "Datapoint -2 interval",
+      "hideFromKpis": true
+    },
+    "dataPoint3": {
+      "title": "Datapoint -3 interval",
+      "type": "number",
+      "description": "Datapoint -3 interval",
+      "hideFromKpis": true
+    }
+  }
+}

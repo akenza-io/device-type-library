@@ -1,0 +1,58 @@
+{
+  "$id": "https://akenza.io/dragino/groPointAir/soil_moisture.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Soil moisture",
+  "processingType": "uplink_decoder",
+  "topic": "soil_moisture",
+  "type": "object",
+  "properties": {
+    "soilMoisture1": {
+      "title": "Soil moisture 1",
+      "unit": "%",
+      "type": "number",
+      "description": "Soil moisture as volumetric moisture Content (VMC)"
+    },
+    "soilMoisture2": {
+      "title": "Soil moisture 2",
+      "unit": "%",
+      "type": "number",
+      "description": "Soil moisture as volumetric moisture Content (VMC)"
+    },
+    "soilMoisture3": {
+      "title": "Soil moisture 3",
+      "unit": "%",
+      "type": "number",
+      "description": "Soil moisture as volumetric moisture Content (VMC)"
+    },
+    "soilMoisture4": {
+      "title": "Soil moisture 4",
+      "unit": "%",
+      "type": "number",
+      "description": "Soil moisture as volumetric moisture Content (VMC)"
+    },
+    "soilMoisture5": {
+      "title": "Soil moisture 5",
+      "unit": "%",
+      "type": "number",
+      "description": "Soil moisture as volumetric moisture Content (VMC)"
+    },
+    "soilMoisture6": {
+      "title": "Soil moisture 6",
+      "unit": "%",
+      "type": "number",
+      "description": "Soil moisture as volumetric moisture Content (VMC)"
+    },
+    "soilMoisture7": {
+      "title": "Soil moisture 7",
+      "unit": "%",
+      "type": "number",
+      "description": "Soil moisture as volumetric moisture Content (VMC)"
+    },
+    "soilMoisture8": {
+      "title": "Soil moisture 8",
+      "unit": "%",
+      "type": "number",
+      "description": "Soil moisture as volumetric moisture Content (VMC)"
+    }
+  }
+}

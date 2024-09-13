@@ -1,0 +1,14 @@
+{
+  "name": "EM300-MLD",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight.com/iot/product/lorawan-sensor/em300-mld",
+  "description": "The EM300-MLD Membrane Leakage Detection Sensor, our newest addition to the water leak detection product line, features a 40 cm x 40 cm detection membrane, ensuring dependable water leak monitoring for both residential and commercial applications.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Water Leak"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
