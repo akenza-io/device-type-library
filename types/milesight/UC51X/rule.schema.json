@@ -1,0 +1,34 @@
+{
+  "$id": "https://akenza.io/milesight/UC510/rule.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "rule",
+  "title": "Rule",
+  "properties": {
+    "index": {
+      "title": "Index",
+      "type": "number",
+      "description": "Index",
+      "hideFromKpis": true
+    },
+    "enabled": {
+      "title": "Enabled",
+      "type": "boolean",
+      "description": "Enabled",
+      "hideFromKpis": true
+    },
+    "ruleCondition": {
+      "title": "Rule condition",
+      "type": "object",
+      "description": "Device interanl rule condition",
+      "hideFromKpis": true
+    },
+    "ruleAction": {
+      "title": "Rule action",
+      "type": "object",
+      "description": "Device interanl rule action",
+      "hideFromKpis": true
+    }
+  }
+}
