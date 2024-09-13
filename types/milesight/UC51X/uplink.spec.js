@@ -82,6 +82,7 @@ describe("UC510 Uplink", () => {
 
         assert.equal(value.topic, "status");
         assert.equal(value.data.valve1, "CLOSED");
+        assert.equal(value.data.valve1Open, false);
         utils.validateSchema(value.data, statusSchema, { throwError: true });
       });
 
@@ -137,6 +138,7 @@ describe("UC510 Uplink", () => {
 
         assert.equal(value.topic, "status");
         assert.equal(value.data.valve1, "CLOSED");
+        assert.equal(value.data.valve1Open, false);
         utils.validateSchema(value.data, statusSchema, { throwError: true });
       });
 

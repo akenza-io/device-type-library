@@ -8,22 +8,22 @@
   "properties": {
     "pulse1": {
       "title": "Absolute pulse 1",
-      "unit": "integer",
+      "type": "integer",
       "description": "Absolute pulse 1"
     },
     "pulse2": {
       "title": "Absolute pulse 2",
-      "unit": "integer",
+      "type": "integer",
       "description": "Absolute pulse 2"
     },
     "relativePulse1": {
       "title": "Relative pulse 1",
-      "unit": "integer",
+      "type": "integer",
       "description": "Relative pulse 1"
     },
     "relativePulse2": {
       "title": "Relative pulse 2",
-      "unit": "integer",
+      "type": "integer",
       "description": "Relative pulse 2"
     }
   }

@@ -8,7 +8,7 @@
   "properties": {
     "valve1": {
       "title": "Valve 1 status",
-      "unit": "string",
+      "type": "string",
       "description": "Valve 1 status",
       "enum": [
         "OPEN",
@@ -17,17 +17,27 @@
     },
     "valve2": {
       "title": "Valve 2 status",
-      "unit": "string",
+      "type": "string",
       "description": "Valve 2 status",
       "enum": [
         "OPEN",
         "CLOSED"
       ]
     },
+    "valve1Open": {
+      "title": "Valve 1 open",
+      "type": "boolean",
+      "description": "Valve 1. open = true, closed = false"
+    },
+    "valve2Open": {
+      "title": "Valve 1 open",
+      "type": "boolean",
+      "description": "Valve 1. open = true, closed = false"
+    },
     "gpio1": {
       "title": "GPIO 1 status",
-      "unit": "string",
-      "description": "GPIO 1 status",
+      "type": "string",
+      "description": "General purpose Input/Output status",
       "enum": [
         "OFF",
         "ON"
@@ -35,12 +45,22 @@
     },
     "gpio2": {
       "title": "GPIO 2 status",
-      "unit": "string",
-      "description": "GPIO 2 status",
+      "type": "string",
+      "description": "General purpose Input/Output status",
       "enum": [
         "OFF",
         "ON"
       ]
+    },
+    "gpio1Enabled": {
+      "title": "GPIO 1 enabled",
+      "type": "boolean",
+      "description": "General purpose Input/Output. Enabled = true, disabled = false"
+    },
+    "gpio2Enabled": {
+      "title": "GPIO 2 enabled",
+      "type": "boolean",
+      "description": "General purpose Input/Output. Enabled = true, disabled = false"
     }
   }
 }

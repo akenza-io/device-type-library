@@ -19,15 +19,15 @@
       "hideFromKpis": true
     },
     "ruleCondition": {
-      "title": "Device intern rule condition",
+      "title": "Rule condition",
       "type": "object",
-      "description": "Device intern rule condition",
+      "description": "Device interanl rule condition",
       "hideFromKpis": true
     },
     "ruleAction": {
-      "title": "Device intern rule action",
+      "title": "Rule action",
       "type": "object",
-      "description": "Device intern rule action",
+      "description": "Device interanl rule action",
       "hideFromKpis": true
     }
   }

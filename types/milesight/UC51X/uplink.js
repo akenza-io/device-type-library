@@ -1,4 +1,4 @@
-function customPulse(device, pulse, phase) {
+function customFieldValueTransformation(device, pulse, phase) {
   if (pulse !== undefined) {
     // Customfields
     if (device !== undefined) {
@@ -36,14 +36,16 @@ function calculateValveOpeningTime(valveStatus, openingStart) {
   if (valveStatus !== undefined) {
     const now = new Date().getTime();
     if (valveStatus === "OPEN") {
+      // If a valve got opened and the start has not been defined yet, it will save the timestamp
       if (openingStart === undefined || openingStart === null) {
         response.durationMessage = true;
         response.openingTime = now;
       }
     } else if (valveStatus === "CLOSED") {
+      // If a valve got closed and a start has been defined, the opening duration will be given out
       if (openingStart !== undefined && openingStart !== null) {
         response.durationMessage = true;
-        response.openingTime = undefined;
+        response.openingTime = undefined; // Reset start time for the next duration calculation
         response.openDuration = Math.round((now - openingStart) / 1000);
       }
     }
@@ -180,11 +182,13 @@ function consume(event) {
     // VALVE 1
     else if (channelId === 0x03 && channelType === 0x01) {
       status.valve1 = bytes[i] === 0 ? "CLOSED" : "OPEN";
+      status.valve1Open = bytes[i] !== 0;
       i += 1;
     }
     // VALVE 2
     else if (channelId === 0x05 && channelType === 0x01) {
-      status.valve2 = bytes[i] === 0 ? "CLOSED" : "OPEN";
+      status.valve2 = bytes[i] !== 0;
+      status.valve2Open = bytes[i] !== 0;
       i += 1;
     }
     // VALVE 1 Pulse
@@ -204,11 +208,13 @@ function consume(event) {
     // GPIO 1
     else if (channelId === 0x07 && channelType === 0x01) {
       status.gpio1 = bytes[i] === 0 ? "OFF" : "ON";
+      status.gpio1Enabled = bytes[i] !== 0;
       i += 1;
     }
     // GPIO 2
     else if (channelId === 0x08 && channelType === 0x01) {
       status.gpio2 = bytes[i] === 0 ? "OFF" : "ON";
+      status.gpio2Enabled = bytes[i] !== 0;
       i += 1;
     }
     // PRESSURE
@@ -362,12 +368,20 @@ function consume(event) {
   }
 
   if (!isEmpty(pulse)) {
-    const customPulse1 = customPulse(event.device, pulse.relativePulse1, 1);
+    const customPulse1 = customFieldValueTransformation(
+      event.device,
+      pulse.relativePulse1,
+      1,
+    );
     if (customPulse1 !== false) {
       pulse[event.device.customFields.pulseType1] = customPulse1;
     }
 
-    const customPulse2 = customPulse(event.device, pulse.relativePulse2, 2);
+    const customPulse2 = customFieldValueTransformation(
+      event.device,
+      pulse.relativePulse2,
+      2,
+    );
     if (customPulse2 !== false) {
       pulse[event.device.customFields.pulseType2] = customPulse2;
     }

@@ -8,25 +8,25 @@
   "properties": {
     "ipsoVersion": {
       "title": "IPSO Version",
-      "unit": "string",
+      "type": "string",
       "description": "IPSO Version",
       "hideFromKpis": true
     },
     "hardwareVersion": {
       "title": "Hardware Version",
-      "unit": "string",
+      "type": "string",
       "description": "Hardware Version",
       "hideFromKpis": true
     },
     "firmwareVersion": {
       "title": "Firmware Version",
-      "unit": "string",
+      "type": "string",
       "description": "Firmware Version",
       "hideFromKpis": true
     },
     "serialNumber": {
       "title": "Serial number",
-      "unit": "string",
+      "type": "string",
       "description": "Serial number",
       "hideFromKpis": true
     },
@@ -35,7 +35,7 @@
     },
     "text": {
       "title": "Custom message",
-      "unit": "string",
+      "type": "string",
       "description": "Custom message",
       "hideFromKpis": true
     }

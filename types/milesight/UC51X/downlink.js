@@ -1,7 +1,7 @@
 // Special EF CD AB -> AB CD EF Case
 function intToHex(number) {
   let base = Number(number).toString(16);
-  if (base.length === 1) {
+  if (base.length % 2) {
     base = `0${base}`;
   }
 
@@ -18,7 +18,7 @@ function timeSync() {
   return "ff4a00";
 }
 
-function standardDonwlinkStructure(valve, action, time) {
+function standardDownlinkStructure(valve, action, time) {
   let hex = "ff1d"; // Channel & Type
   let settings = "00"; // Disable time and flow control
   if (time) {
@@ -50,7 +50,7 @@ function standardDonwlinkStructure(valve, action, time) {
 }
 
 function timedValvePayload(valve, action, durationSeconds) {
-  let hex = standardDonwlinkStructure(valve, action, true);
+  let hex = standardDownlinkStructure(valve, action, true);
 
   // Add duration for action which should be taken
   hex += intToHex(durationSeconds);
@@ -132,36 +132,39 @@ function schedulePayload(valve, action, plan, enable, days, start, end) {
   return hex;
 }
 
+function checkExpectedValues(value, defaultValue) {
+  if (value !== undefined && value !== null) {
+    return value;
+  }
+  return defaultValue;
+}
+
 function consume(event) {
-  let port = event.port !== null && event.port !== undefined ? event.port : 1;
-  const confirmed =
-    event.confirmed !== null && event.confirmed !== undefined
-      ? event.confirmed
-      : true;
-  const payloadHex =
-    event.payloadHex !== null && event.payloadHex !== undefined
-      ? event.payloadHex
-      : "";
+  const port = checkExpectedValues(event.port, 85);
+  const confirmed = checkExpectedValues(event.confirmed, true);
+  let payloadHex = checkExpectedValues(event.payloadHex, "");
 
   if (payloadHex.length > 1) {
     emit("downlink", { payloadHex, port, confirmed });
   } else if (event.payload.actionType !== undefined) {
-    let hex;
     const { payload } = event;
-    port = 85;
     switch (payload.actionType) {
       case "control":
-        hex = standardDonwlinkStructure(payload.valve, payload.open, false);
+        payloadHex = standardDownlinkStructure(
+          payload.valve,
+          payload.open,
+          false,
+        );
         break;
       case "timedControl":
-        hex = timedValvePayload(
+        payloadHex = timedValvePayload(
           payload.valve,
           payload.open,
           payload.durationSeconds,
         );
         break;
       case "milesightSchedule":
-        hex = schedulePayload(
+        payloadHex = schedulePayload(
           payload.valve,
           payload.open,
           payload.schedule,
@@ -177,7 +180,7 @@ function consume(event) {
     }
 
     emit("downlink", {
-      payloadHex: hex,
+      payloadHex,
       port,
       confirmed: true,
     });
