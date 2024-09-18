@@ -25,9 +25,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "rtcWasSet",
-    "cookie",
-    "timestamp"
-  ]
+  "required": ["rtcWasSet", "cookie", "timestamp"]
 }

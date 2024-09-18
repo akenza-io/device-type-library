@@ -13,28 +13,15 @@
       "hideFromKpis": true
     },
     "latitude": {
-      "title": "Latitude",
-      "unit": "°",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/latitude/degrees",
       "description": "Latitude",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "title": "Latitude"
     },
     "longitude": {
-      "title": "Longitude",
-      "unit": "°",
-      "type": "number",
-      "description": "Longitude",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/longitude/degrees"
     },
     "altitude": {
-      "title": "Altitude",
-      "unit": "m",
-      "type": "number",
-      "description": "Altitude",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/altitude/meter"
     }
   }
 }

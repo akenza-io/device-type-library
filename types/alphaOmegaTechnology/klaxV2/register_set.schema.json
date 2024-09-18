@@ -1,0 +1,68 @@
+{
+  "$id": "https://akenza.io/alphaOmegaTechnology/klaxV2/register_set.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "register_set",
+  "title": "Register set",
+  "properties": {
+    "registerFilter1Set": {
+      "title": "Registerfilter 1 set",
+      "type": "boolean",
+      "description": "Registerfilter 1 set",
+      "hideFromKpis": true
+    },
+    "registerFilter2Set": {
+      "title": "Registerfilter 2 set",
+      "type": "boolean",
+      "description": "Registerfilter 2 set",
+      "hideFromKpis": true
+    },
+    "registerFilter3Set": {
+      "title": "Registerfilter 3 set",
+      "type": "boolean",
+      "description": "Registerfilter 3 set",
+      "hideFromKpis": true
+    },
+    "registerFilter4Set": {
+      "title": "Registerfilter 4 set",
+      "type": "boolean",
+      "description": "Registerfilter 4 set",
+      "hideFromKpis": true
+    },
+    "registerFilter1ID": {
+      "title": "Registerfilter 1 ID",
+      "type": "string",
+      "description": "Registerfilter 1 ID",
+      "hideFromKpis": true
+    },
+    "registerFilter2ID": {
+      "title": "Registerfilter 2 ID",
+      "type": "string",
+      "description": "Registerfilter 2 ID",
+      "hideFromKpis": true
+    },
+    "registerFilter3ID": {
+      "title": "Registerfilter 3 ID",
+      "type": "string",
+      "description": "Registerfilter 3 ID",
+      "hideFromKpis": true
+    },
+    "registerFilter4ID": {
+      "title": "Registerfilter 4 ID",
+      "type": "string",
+      "description": "Registerfilter 4 ID",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "registerFilter1Set",
+    "registerFilter2Set",
+    "registerFilter3Set",
+    "registerFilter4Set",
+    "registerFilter1ID",
+    "registerFilter2ID",
+    "registerFilter3ID",
+    "registerFilter4ID"
+  ]
+}

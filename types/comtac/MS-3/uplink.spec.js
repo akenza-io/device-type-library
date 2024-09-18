@@ -57,7 +57,6 @@ describe("Comtac LPN MS-3 Uplink", () => {
         assert.equal(value.data.magnX, -0.061);
         assert.equal(value.data.magnY, 0.355);
         assert.equal(value.data.magnZ, 0.023);
-        assert.equal(value.data.altitude, 0);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

@@ -1,0 +1,57 @@
+{
+  "$id": "https://akenza.io/smartEnds/brigtherBins/depth.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "depth",
+  "title": "Depth Map",
+  "properties": {
+    "point1": {
+      "title": "Point 1",
+      "type": "integer",
+      "unit": "cm",
+      "description": "Point 1"
+    },
+    "point2": {
+      "title": "Point 2",
+      "type": "integer",
+      "unit": "cm",
+      "description": "Point 2"
+    },
+    "point3": {
+      "title": "Point 3",
+      "type": "integer",
+      "unit": "cm",
+      "description": "Point 3"
+    },
+    "point4": {
+      "title": "Point 4",
+      "type": "integer",
+      "unit": "cm",
+      "description": "Point 4"
+    },
+    "point5": {
+      "title": "Point 5",
+      "type": "integer",
+      "unit": "cm",
+      "description": "Point 5"
+    },
+    "point6": {
+      "title": "Point 6",
+      "type": "integer",
+      "unit": "cm",
+      "description": "Point 6"
+    },
+    "point7": {
+      "title": "Point 7",
+      "type": "integer",
+      "description": "Point 7"
+    },
+    "point8": {
+      "title": "Point 8",
+      "type": "integer",
+      "unit": "cm",
+      "description": "Point 8"
+    }
+  }
+}

@@ -40,12 +40,9 @@
       "hideFromKpis": true
     },
     "initialvoltage": {
-      "type": "number",
-      "minimum": 0,
-      "maximum": 24,
-      "title": "Initial battery voltage",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
       "description": "Initial battery voltage",
-      "unit": "V"
+      "title": "Initial battery voltage"
     },
     "tripCount": {
       "title": "Trip count",

@@ -1,0 +1,48 @@
+{
+  "$id": "https://akenza.io/sensingLabs/senlabM/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "pulse": {
+      "title": "Pulse",
+      "type": "integer",
+      "description": "Total raw pulses received"
+    },
+    "wireCutStatus": {
+      "title": "Wire cut status",
+      "type": "integer",
+      "description": "Wire cut status"
+    },
+    "pulse1": {
+      "title": "Pulse 1",
+      "type": "integer",
+      "description": "Total raw pulses with first node received"
+    },
+    "pulse2": {
+      "title": "Pulse 2",
+      "type": "integer",
+      "description": "Total raw pulses with second node received"
+    },
+    "relativePulse": {
+      "title": "Relative pulse",
+      "type": "integer",
+      "description": "Relative pulses received"
+    },
+    "relativePulse1": {
+      "title": "Relative pulse 1",
+      "type": "integer",
+      "description": "Relative pulses with first node received"
+    },
+    "relativePulse2": {
+      "title": "Relative pulse 2",
+      "type": "integer",
+      "description": "Relative pulses with second node received"
+    }
+  },
+  "required": [
+    "pulse"
+  ]
+}

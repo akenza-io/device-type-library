@@ -23,8 +23,5 @@
       "maximum": 120
     }
   },
-  "required": [
-    "soundPeak",
-    "soundAvg"
-  ]
+  "required": ["soundPeak", "soundAvg"]
 }

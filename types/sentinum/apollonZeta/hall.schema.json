@@ -19,8 +19,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "hallOpen",
-    "hallOpenCnt"
-  ]
+  "required": ["hallOpen", "hallOpenCnt"]
 }

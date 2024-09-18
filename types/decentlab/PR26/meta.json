@@ -12,10 +12,7 @@
     "Hydrostatic Pressure",
     "Water Level"
   ],
-  "outputTopics": [
-    "default",
-    "lifecycle"
-  ],
+  "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

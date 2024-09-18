@@ -19,8 +19,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "binaryType",
-    "binaryVersion"
-  ]
+  "required": ["binaryType", "binaryVersion"]
 }

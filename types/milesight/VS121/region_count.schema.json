@@ -1,0 +1,108 @@
+{
+  "$id": "https://akenza.io/xovis/VS121/region_count.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "region_count",
+  "title": "Region count",
+  "properties": {
+    "region1count": {
+      "title": "Region 1 count",
+      "description": "Region 1 count",
+      "type": "integer"
+    },
+    "region2count": {
+      "title": "Region 2 count",
+      "description": "Region 2 count",
+      "type": "integer"
+    },
+    "region3count": {
+      "title": "Region 3 count",
+      "description": "Region 3 count",
+      "type": "integer"
+    },
+    "region4count": {
+      "title": "Region 4 count",
+      "description": "Region 4 count",
+      "type": "integer"
+    },
+    "region5count": {
+      "title": "Region 5 count",
+      "description": "Region 5 count",
+      "type": "integer"
+    },
+    "region6count": {
+      "title": "Region 6 count",
+      "description": "Region 6 count",
+      "type": "integer"
+    },
+    "region7count": {
+      "title": "Region 7 count",
+      "description": "Region 7 count",
+      "type": "integer"
+    },
+    "region8count": {
+      "title": "Region 8 count",
+      "description": "Region 8 count",
+      "type": "integer"
+    },
+    "region9count": {
+      "title": "Region 9 count",
+      "description": "Region 9 count",
+      "type": "integer"
+    },
+    "region10count": {
+      "title": "Region 10 count",
+      "description": "Region 10 count",
+      "type": "integer"
+    },
+    "region11count": {
+      "title": "Region 11 count",
+      "description": "Region 11 count",
+      "type": "integer"
+    },
+    "region12count": {
+      "title": "Region 12 count",
+      "description": "Region 12 count",
+      "type": "integer"
+    },
+    "region13count": {
+      "title": "Region 13 count",
+      "description": "Region 13 count",
+      "type": "integer"
+    },
+    "region14count": {
+      "title": "Region 14 count",
+      "description": "Region 14 count",
+      "type": "integer"
+    },
+    "region15count": {
+      "title": "Region 15 count",
+      "description": "Region 15 count",
+      "type": "integer"
+    },
+    "region16count": {
+      "title": "Region 16 count",
+      "description": "Region 16 count",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "region1count",
+    "region2count",
+    "region3count",
+    "region4count",
+    "region5count",
+    "region6count",
+    "region7count",
+    "region8count",
+    "region9count",
+    "region10count",
+    "region11count",
+    "region12count",
+    "region13count",
+    "region14count",
+    "region15count",
+    "region16count"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "$id": "https://akenza.io/xovis/VS133/dwell_time.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "dwell_time",
+  "title": "Dwell time",
+  "properties": {
+    "region1AvgDwell": {
+      "title": "Region 1 average dwell time",
+      "description": "Region 1 average dwell time in seconds",
+      "unit": "s",
+      "type": "integer"
+    },
+    "region1MaxDwell": {
+      "title": "Region 1 maximum dwell time",
+      "description": "Region 1 maximum dwell time in seconds",
+      "unit": "s",
+      "type": "integer"
+    },
+    "region2AvgDwell": {
+      "title": "Region 2 average dwell time",
+      "description": "Region 2 average dwell time in seconds",
+      "unit": "s",
+      "type": "integer"
+    },
+    "region2MaxDwell": {
+      "title": "Region 2 maximum dwell time",
+      "description": "Region 2 maximum dwell time in seconds",
+      "unit": "s",
+      "type": "integer"
+    },
+    "region3AvgDwell": {
+      "title": "Region 3 average dwell time",
+      "description": "Region 3 average dwell time in seconds",
+      "unit": "s",
+      "type": "integer"
+    },
+    "region3MaxDwell": {
+      "title": "Region 3 maximum dwell time",
+      "description": "Region 3 maximum dwell time in seconds",
+      "unit": "s",
+      "type": "integer"
+    },
+    "region4AvgDwell": {
+      "title": "Region 4 average dwell time",
+      "description": "Region 4 average dwell time in seconds",
+      "unit": "s",
+      "type": "integer"
+    },
+    "region4MaxDwell": {
+      "title": "Region 4 maximum dwell time",
+      "description": "Region 4 maximum dwell time in seconds",
+      "unit": "s",
+      "type": "integer"
+    }
+  }
+}
