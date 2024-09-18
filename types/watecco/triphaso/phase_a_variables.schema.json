@@ -1,9 +1,9 @@
 {
   "$id": "https://akenza.io/watecco/triphaso/phase_a_variables.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Phase A variables",
   "type": "object",
   "processingType": "uplink_decoder",
+  "title": "Phase A Variables",
   "topic": "phase_a_variables",
   "properties": {
     "vrms": {
@@ -28,5 +28,9 @@
       "hideFromKpis": true
     }
   },
-  "required": ["vrms", "irms", "angle"]
+  "required": [
+    "vrms",
+    "irms",
+    "angle"
+  ]
 }

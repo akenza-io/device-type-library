@@ -1,8 +1,10 @@
 {
   "$id": "https://akenza.io/watteco/triphaso/power_consumption.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Power consumption",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "title": "Power consumption",
+  "topic": "power_consumption",
   "properties": {
     "consumption": {
       "title": "Consumption",

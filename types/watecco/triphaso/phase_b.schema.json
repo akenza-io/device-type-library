@@ -1,9 +1,9 @@
 {
   "$id": "https://akenza.io/watecco/triphaso/phase_b.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Phase B",
   "type": "object",
   "processingType": "uplink_decoder",
+  "title": "Phase B",
   "topic": "phase_b",
   "properties": {
     "pActiveEnergyB": {

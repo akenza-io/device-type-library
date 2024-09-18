@@ -1,9 +1,9 @@
 {
   "$id": "https://akenza.io/watecco/triphaso/phase_abc.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Phase ABC",
   "type": "object",
   "processingType": "uplink_decoder",
+  "title": "Phase ABC",
   "topic": "phase_abc",
   "properties": {
     "pActiveEnergyABC": {
