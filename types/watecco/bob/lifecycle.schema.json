@@ -10,12 +10,23 @@
       "title": "Sensor state",
       "type": "string",
       "description": "Sensor messages which indicate the state.",
-      "enum": ["SENSOR_START", "SENSOR_STOP", "MACHINE_STOP", "MACHINE_START"],
+      "enum": [
+        "SENSOR_START",
+        "SENSOR_STOP",
+        "SENSOR_START_NO_VIBRATION",
+        "SENSOR_STOP_NO_VIBRATION",
+        "SENSOR_LEARN_KEEPALIVE",
+        "SENSOR_STOP_WITH_ERASE",
+        "MACHINE_STOP",
+        "MACHINE_START"
+      ],
       "hideFromKpis": true
     },
     "batteryLevel": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
     }
   },
-  "required": ["batteryLevel"]
+  "required": [
+    "batteryLevel"
+  ]
 }
