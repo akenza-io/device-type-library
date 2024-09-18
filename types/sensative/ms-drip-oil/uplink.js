@@ -248,8 +248,6 @@ function consume(event) {
   lifecycle.watchdogCount = decoded.watchdogCount;
   lifecycle.stackTxFailRebootCount = decoded.stackTxFailRebootCount;
   lifecycle.badConditionsCounter = decoded.badConditionsCounter;
-  lifecycle.historySeqNr = decoded.historySeqNr;
-  lifecycle.prevHistSeqNr = decoded.prevHistSeqNr;
 
   if (deleteUnusedKeys(lifecycle)) {
     emit("sample", { data: lifecycle, topic: "lifecycle" });
