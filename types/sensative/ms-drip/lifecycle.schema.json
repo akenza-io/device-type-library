@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/sensative/ms-guard/lifecycle.schema.json",
+  "$id": "https://akenza.io/sensative/ms-drip/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
@@ -36,7 +36,7 @@
       "maximum": 65535,
       "hideFromKpis": true
     },
-    "startUpCount": {
+    "startupCount": {
       "title": "Start up count",
       "type": "integer",
       "description": "Start up count",

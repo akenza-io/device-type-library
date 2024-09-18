@@ -28,6 +28,11 @@
       "description": "Status of the strip. open = true, closed = false",
       "type": "boolean"
     },
+    "closed": {
+      "title": "Closed",
+      "description": "Status of the strip. closed = true, open = false",
+      "type": "boolean"
+    },
     "tamperReport": {
       "title": "Tamper report",
       "description": "Status if the device got tampered the strip. open = true, closed = false",

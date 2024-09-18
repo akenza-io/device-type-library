@@ -132,7 +132,7 @@ function decodeFrame(bytes, type, pos) {
           bytes[pointer++]) >>>
         0;
       data.softwareVersion = number.toString(16);
-      data.startUpCount = bytes[pointer++];
+      data.startupCount = bytes[pointer++];
       data.watchdogCount = bytes[pointer++];
       data.stackTxFailRebootCount = bytes[pointer++];
       data.badConditionsCounter = bytes[pointer++];
@@ -244,7 +244,7 @@ function consume(event) {
   }
   lifecycle.error = decoded.error;
   lifecycle.softwareVersion = decoded.softwareVersion;
-  lifecycle.startUpCount = decoded.startUpCount;
+  lifecycle.startupCount = decoded.startupCount;
   lifecycle.watchdogCount = decoded.watchdogCount;
   lifecycle.stackTxFailRebootCount = decoded.stackTxFailRebootCount;
   lifecycle.badConditionsCounter = decoded.badConditionsCounter;

@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/sensative/ms-guard/default.schema.json",
+  "$id": "https://akenza.io/sensative/ms-comfort/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
@@ -7,44 +7,21 @@
   "title": "Default",
   "properties": {
     "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
     "averageTemperature": {
-      "title": "Average temperature report",
-      "unit": "°C",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "Average temperature report in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "title": "Average temperature report"
     },
     "humidity": {
-      "title": "Humidity",
-      "unit": "%",
-      "type": "number",
-      "description": "The relative humidity in %",
-      "minimum": 0,
-      "maximum": 100
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
     },
     "light": {
-      "title": "Light",
-      "unit": "lux",
-      "type": "integer",
-      "description": "The light in lux.",
-      "minimum": 0,
-      "maximum": 65535
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/illuminance/lux"
     },
     "light2": {
-      "title": "Light 2",
-      "unit": "lux",
-      "type": "integer",
-      "description": "The light in lux.",
-      "minimum": 0,
-      "maximum": 65535
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/illuminance/lux"
     },
     "closed": {
       "title": "Closed",
