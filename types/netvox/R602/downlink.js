@@ -37,9 +37,6 @@ function startSiren(warningMode, strobeMode, duration) {
       break;
   }
 
-  // Reserved
-  hex += "00";
-
   switch (strobeMode) {
     case "NO_LED":
       hex += "00";
