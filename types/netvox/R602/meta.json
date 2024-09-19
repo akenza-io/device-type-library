@@ -1,0 +1,19 @@
+{
+  "name": "R602",
+  "version": "1.0.0",
+  "manufacturer": "Netvox",
+  "url": "http://www.netvox.com.tw/product.asp?pro=R602A",
+  "description": "R602A is a smart wireless alarm. It has a high-decibel speaker and high-brightness LED which can realize sound and light alarms. It adopts SX1276 wireless communication module.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "C",
+  "availableSensors": [
+    "Siren"
+  ],
+  "outputTopics": [
+    "default",
+    "downlink_response"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
