@@ -1,0 +1,29 @@
+{
+  "$id": "https://akenza.io/dragino/sw3l/timer.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "timer",
+  "title": "Timer",
+  "properties": {
+    "tdc": {
+      "title": "TDC",
+      "description": "Transforms the pulse into liter if set. Needs a command to be active.",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "stopTimer": {
+      "title": "Stop timer",
+      "description": "Stop timer",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "alarmTimer": {
+      "title": "Alarm timer",
+      "unit": "s",
+      "description": "Alarm timer",
+      "type": "number",
+      "hideFromKpis": true
+    }
+  }
+}
