@@ -16,7 +16,7 @@
       "type": "string",
       "description": "Installed Licence Type (Functionality Level)"
     },
-    "speedclass": {
+    "speedClass": {
       "title": "Speed Class",
       "type": "string",
       "description": "Activated Speed Class"
