@@ -198,20 +198,6 @@ function hexToBytes(hex) {
   return bytes;
 }
 
-/**
-* Decode uplink
-* @param {Object} input - An object provided by the IoT Flow framework
-* @param {number[]} input.bytes - Array of bytes represented as numbers as it has been sent from the device
-* @param {number} input.fPort - The Port Field on which the uplink has been sent
-* @param {Date} input.recvTime - The uplink message time recorded by the LoRaWAN network server
-* @returns {DecodedUplink} The decoded object
-*/
-function decodeUplink(input) {
-
-}
-
-
-
 function makeError(desc) {
   return {
     error: { error: desc },
@@ -247,7 +233,7 @@ function consume(event) {
 
     data.type = id.typestr;
     data.licence = id.fu_level;
-    data.speedclass = id.speedclass;
+    data.speedClass = id.speedclass;
     data.firmware = id.fw_version;
     data.sbx = id.sbx_version
 
@@ -258,62 +244,62 @@ function consume(event) {
   if (bytes[0] == 0xa2) {
     let topic = "default";
     let data = {};
-    let time = new Date();
+    let timestamp = new Date();
 
     let cnt = a2_decoder(bytes, port);  // decode counter payload
 
     switch (port) {
       case 13:
         topic = "udc";
-        data.LTRCounter = cnt.udc_ltr_cnt;
-        data.LTRSpeed = cnt.udc_ltr_spd;
-        data.RTLCounter = cnt.udc_rtl_cnt;
-        data.RTLSpeed = cnt.udc_rtl_spd;
-        time.setHours(cnt.udc_hours);
-        time.setMinutes(cnt.udc_minutes);
+        data.ltrCounter = cnt.udc_ltr_cnt;
+        data.ltrSpeed = cnt.udc_ltr_spd;
+        data.rtlCounter = cnt.udc_rtl_cnt;
+        data.rtlSpeed = cnt.udc_rtl_spd;
+        timestamp.setHours(cnt.udc_hours);
+        timestamp.setMinutes(cnt.udc_minutes);
         break;
 
       case 14:
         topic = "cat1";
-        data.LTRCounter = cnt.cat1_ltr_cnt;
-        data.LTRSpeed = cnt.cat1_ltr_spd;
-        data.RTLCounter = cnt.cat1_rtl_cnt;
-        data.RTLSpeed = cnt.cat1_rtl_spd;
-        time.setHours(cnt.cat1_hours);
-        time.setMinutes(cnt.cat1_minutes);
+        data.ltrCounter = cnt.cat1_ltr_cnt;
+        data.ltrSpeed = cnt.cat1_ltr_spd;
+        data.rtlCounter = cnt.cat1_rtl_cnt;
+        data.rtlSpeed = cnt.cat1_rtl_spd;
+        timestamp.setHours(cnt.cat1_hours);
+        timestamp.setMinutes(cnt.cat1_minutes);
         break;
 
       case 15:
         topic = "cat2";
-        data.LTRCounter = cnt.cat2_ltr_cnt;
-        data.LTRSpeed = cnt.cat2_ltr_spd;
-        data.RTLCounter = cnt.cat2_rtl_cnt;
-        data.RTLSpeed = cnt.cat2_rtl_spd;
-        time.setHours(cnt.cat2_hours);
-        time.setMinutes(cnt.cat2_minutes);
+        data.ltrCounter = cnt.cat2_ltr_cnt;
+        data.ltrSpeed = cnt.cat2_ltr_spd;
+        data.rtlCounter = cnt.cat2_rtl_cnt;
+        data.rtlSpeed = cnt.cat2_rtl_spd;
+        timestamp.setHours(cnt.cat2_hours);
+        timestamp.setMinutes(cnt.cat2_minutes);
         break;
 
       case 16:
         topic = "cat3";
-        data.LTRCounter = cnt.cat3_ltr_cnt;
-        data.LTRSpeed = cnt.cat3_ltr_spd;
-        data.RTLCounter = cnt.cat3_rtl_cnt;
-        data.RTLSpeed = cnt.cat3_rtl_spd;
-        time.setHours(cnt.cat3_hours);
-        time.setMinutes(cnt.cat3_minutes);
+        data.ltrCounter = cnt.cat3_ltr_cnt;
+        data.ltrSpeed = cnt.cat3_ltr_spd;
+        data.rtlCounter = cnt.cat3_rtl_cnt;
+        data.rtlSpeed = cnt.cat3_rtl_spd;
+        timestamp.setHours(cnt.cat3_hours);
+        timestamp.setMinutes(cnt.cat3_minutes);
         break;
 
       case 17:
         topic = "cat4";
-        data.LTRCounter = cnt.cat4_ltr_cnt;
-        data.LTRSpeed = cnt.cat4_ltr_spd;
-        data.RTLCounter = cnt.cat4_rtl_cnt;
-        data.RTLSpeed = cnt.cat4_rtl_spd;
-        time.setHours(cnt.cat4_hours);
-        time.setMinutes(cnt.cat4_minutes);
+        data.ltrCounter = cnt.cat4_ltr_cnt;
+        data.ltrSpeed = cnt.cat4_ltr_spd;
+        data.rtlCounter = cnt.cat4_rtl_cnt;
+        data.rtlSpeed = cnt.cat4_rtl_spd;
+        timestamp.setHours(cnt.cat4_hours);
+        timestamp.setMinutes(cnt.cat4_minutes);
         break;
     }
-    emit("sample", { data, topic });
+    emit("sample", { data, topic, timestamp });
 
     lifecycle.batteryVoltage = cnt.volts;
     emit("sample", { data: lifecycle, topic: "lifecycle" });

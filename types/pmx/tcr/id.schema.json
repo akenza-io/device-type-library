@@ -35,7 +35,7 @@
   "required": [
     "type",
     "licence",
-    "speedclass",
+    "speedClass",
     "firmware",
     "sbx"
   ]

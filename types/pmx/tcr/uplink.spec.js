@@ -95,11 +95,10 @@ describe("PMX TCR Uplinks", () => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
-
         assert.equal(value.topic, "id");
         assert.equal(value.data.type, "TCR-DLI");
         assert.equal(value.data.licence, "PRO");
-        assert.equal(value.data.speedclass, "HS");
+        assert.equal(value.data.speedClass, "HS");
         assert.equal(value.data.firmware, "1.1.0");
         assert.equal(value.data.sbx, "4.2.0");
 
@@ -126,10 +125,10 @@ describe("PMX TCR Uplinks", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "udc");
-        assert.equal(value.data.LTRCounter, 1000);
-        assert.equal(value.data.LTRSpeed, 50);
-        assert.equal(value.data.RTLCounter, 1100);
-        assert.equal(value.data.RTLSpeed, 52);
+        assert.equal(value.data.ltrCounter, 1000);
+        assert.equal(value.data.ltrSpeed, 50);
+        assert.equal(value.data.rtlCounter, 1100);
+        assert.equal(value.data.rtlSpeed, 52);
 
         utils.validateSchema(value.data, udcSchema, { throwError: true });
       });
@@ -165,10 +164,10 @@ describe("PMX TCR Uplinks", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "cat1");
-        assert.equal(value.data.LTRCounter, 1000);
-        assert.equal(value.data.LTRSpeed, 50);
-        assert.equal(value.data.RTLCounter, 1100);
-        assert.equal(value.data.RTLSpeed, 52);
+        assert.equal(value.data.ltrCounter, 1000);
+        assert.equal(value.data.ltrSpeed, 50);
+        assert.equal(value.data.rtlCounter, 1100);
+        assert.equal(value.data.rtlSpeed, 52);
 
         utils.validateSchema(value.data, cat1Schema, { throwError: true });
       });
@@ -204,10 +203,10 @@ describe("PMX TCR Uplinks", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "cat2");
-        assert.equal(value.data.LTRCounter, 1000);
-        assert.equal(value.data.LTRSpeed, 50);
-        assert.equal(value.data.RTLCounter, 1100);
-        assert.equal(value.data.RTLSpeed, 52);
+        assert.equal(value.data.ltrCounter, 1000);
+        assert.equal(value.data.ltrSpeed, 50);
+        assert.equal(value.data.rtlCounter, 1100);
+        assert.equal(value.data.rtlSpeed, 52);
 
         utils.validateSchema(value.data, cat2Schema, { throwError: true });
       });
@@ -243,10 +242,10 @@ describe("PMX TCR Uplinks", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "cat3");
-        assert.equal(value.data.LTRCounter, 1000);
-        assert.equal(value.data.LTRSpeed, 50);
-        assert.equal(value.data.RTLCounter, 1100);
-        assert.equal(value.data.RTLSpeed, 52);
+        assert.equal(value.data.ltrCounter, 1000);
+        assert.equal(value.data.ltrSpeed, 50);
+        assert.equal(value.data.rtlCounter, 1100);
+        assert.equal(value.data.rtlSpeed, 52);
 
         utils.validateSchema(value.data, cat3Schema, { throwError: true });
       });
@@ -282,10 +281,10 @@ describe("PMX TCR Uplinks", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "cat4");
-        assert.equal(value.data.LTRCounter, 1000);
-        assert.equal(value.data.LTRSpeed, 50);
-        assert.equal(value.data.RTLCounter, 1100);
-        assert.equal(value.data.RTLSpeed, 52);
+        assert.equal(value.data.ltrCounter, 1000);
+        assert.equal(value.data.ltrSpeed, 50);
+        assert.equal(value.data.rtlCounter, 1100);
+        assert.equal(value.data.rtlSpeed, 52);
 
         utils.validateSchema(value.data, cat4Schema, { throwError: true });
       });
