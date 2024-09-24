@@ -1,0 +1,26 @@
+{
+  "$id": "https://akenza.io/decentlab/dev/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "dendrometerAPosition": {
+      "title": "Dendrometer A Position",
+      "unit": "µm",
+      "description": "Dendrometer A Position in µm",
+      "type": "number"
+    },
+    "dendrometerBPosition": {
+      "title": "Dendrometer B Position",
+      "unit": "µm",
+      "description": "Dendrometer B Position in µm",
+      "type": "number"
+    }
+  },
+  "required": [
+    "dendrometerAPosition",
+    "dendrometerBPosition"
+  ]
+}

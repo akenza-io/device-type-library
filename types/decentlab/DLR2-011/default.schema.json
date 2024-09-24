@@ -1,0 +1,20 @@
+{
+  "$id": "https://akenza.io/decentlab/dev/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "digitalInput0": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/digitalInput/boolean"
+    },
+    "digitalInput1": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/digitalInput/boolean"
+    }
+  },
+  "required": [
+    "digitalInput0",
+    "digitalInput1"
+  ]
+}

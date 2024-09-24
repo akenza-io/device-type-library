@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/decentlab/dev/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "totalSolarRadiation": {
+      "title": "Total Solar Radiation",
+      "unit": "W⋅m⁻²",
+      "description": "Total Solar Radiation in W⋅m⁻²",
+      "type": "number"
+    }
+  },
+  "required": [
+    "totalSolarRadiation"
+  ]
+}

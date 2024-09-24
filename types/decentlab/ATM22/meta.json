@@ -1,0 +1,21 @@
+{
+  "name": "DL-ATM22",
+  "version": "1.0.0",
+  "manufacturer": "Decentlab",
+  "url": "https://www.decentlab.com/products/wind-speed-wind-direction-and-temperature-sensor-for-lorawan",
+  "description": "ATM22 consists of wind speed, wind gust, wind direction, tilt, and temperature sensors. It is suitable for smart agriculture, urban heat islands, and building automation.",
+  "author": "Decentlab",
+  "firmwareVersion": "V1.6.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Wind Direction",
+    "Wind Speed"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

@@ -1,0 +1,69 @@
+{
+  "$id": "https://akenza.io/decentlab/dev/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "distanceAverage": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/mm",
+      "title": "Distance Average"
+    },
+    "distanceMinimum": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/mm",
+      "title": "Distance Minimum"
+    },
+    "distanceMaximum": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/mm",
+      "title": "Distance Maximum"
+    },
+    "distanceMedian": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/mm",
+      "title": "Distance Median"
+    },
+    "distance10thPercentile": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/mm",
+      "title": "Distance 10th Percentile"
+    },
+    "distance25thPercentile": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/mm",
+      "title": "Distance 25th Percentile"
+    },
+    "distance75thPercentile": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/mm",
+      "title": "Distance 75th Percentile"
+    },
+    "distance90thPercentile": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/mm",
+      "title": "Distance 90th Percentile"
+    },
+    "distanceMostFrequentValue": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/mm",
+      "title": "Distance Most Frequent Value"
+    },
+    "numberOfSamples": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/mm",
+      "title": "Number of Samples"
+    },
+    "totalAcquisitionTime": {
+      "title": "Total Acquisition Time",
+      "unit": "ms",
+      "description": "Total Acquisition Time in ms",
+      "type": "number"
+    }
+  },
+  "required": [
+    "distanceAverage",
+    "distanceMinimum",
+    "distanceMaximum",
+    "distanceMedian",
+    "distance10thPercentile",
+    "distance25thPercentile",
+    "distance75thPercentile",
+    "distance90thPercentile",
+    "distanceMostFrequentValue",
+    "numberOfSamples",
+    "totalAcquisitionTime"
+  ]
+}

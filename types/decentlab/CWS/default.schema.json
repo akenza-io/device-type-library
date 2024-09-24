@@ -1,0 +1,42 @@
+{
+  "$id": "https://akenza.io/decentlab/dev/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "surfaceTemperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Surface Temperature"
+    },
+    "temperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    },
+    "humidity": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+    },
+    "dewPoint": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Dew Point"
+    },
+    "angle": {
+      "title": "Angle",
+      "unit": "°",
+      "description": "Angle in °",
+      "type": "number"
+    },
+    "sensorTemperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Sensor Temperature"
+    }
+  },
+  "required": [
+    "surfaceTemperature",
+    "temperature",
+    "humidity",
+    "dewPoint",
+    "angle",
+    "sensorTemperature"
+  ]
+}

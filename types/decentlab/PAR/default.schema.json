@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/decentlab/dev/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "photosyntheticallyActiveRadiation": {
+      "title": "Photosynthetically Active Radiation",
+      "unit": "µmol⋅m⁻²⋅s⁻¹",
+      "description": "Photosynthetically Active Radiation in µmol⋅m⁻²⋅s⁻¹",
+      "type": "number"
+    }
+  },
+  "required": [
+    "photosyntheticallyActiveRadiation"
+  ]
+}
