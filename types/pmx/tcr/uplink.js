@@ -26,6 +26,8 @@ const DeviceTypes = [
   "TCR-DLE",        /* 11 DC powered, LoRaWAN, External Antenna */
   "TCR-SLI",        /* 12 Solar powered, LoRaWAN, Internal Antenna */
   "TCR-SLE",        /* 13 Solar powered, LoRaWAN, External Antenna */
+  "PCR2-OD",        /* 14 Outdoor Models w/o battery*/
+  "PCR2-ODS",       /* 15 Outdoor Models, Solar Powered */
 ];
 
 // Function levels 
