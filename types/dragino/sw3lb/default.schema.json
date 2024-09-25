@@ -17,14 +17,20 @@
       "description": "Equals true if the alarm is triggered.",
       "type": "boolean"
     },
-    "waterFlow": {
-      "title": "Water flow",
+    "currentWaterConsumption": {
+      "title": "Current water consumption",
       "unit": "l",
-      "description": "Calculated water flow in liters with the transformation.",
+      "description": "Current water consumption in liters with the transformation.",
       "type": "number"
     },
-    "lastPulse": {
-      "title": "Last pulse",
+    "totalWaterConsumption": {
+      "title": "Total water consumption",
+      "unit": "l",
+      "description": "Total water consumption in liters with the transformation.",
+      "type": "number"
+    },
+    "relativePulse": {
+      "title": "Relative pulse",
       "description": "Pulses detected between the last event and now.",
       "type": "integer"
     },

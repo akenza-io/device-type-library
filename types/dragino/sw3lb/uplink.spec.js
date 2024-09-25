@@ -32,11 +32,21 @@ describe("Dragino SW3L Uplink", () => {
   describe("consume()", () => {
     it("should decode the Dragino SW3L report uplink", () => {
       const data = {
+        device: {
+          customFields: {
+            transformation: 12,
+          },
+        },
         data: {
           payloadHex: "01000000c3000166ec3c7e",
           port: 2,
         },
       };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value.lastPulse, 195);
+      });
 
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
@@ -46,8 +56,10 @@ describe("Dragino SW3L Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.alarm, false);
         assert.equal(value.data.calculateFlag, 0);
+        assert.equal(value.data.relativePulse, 0);
         assert.equal(value.data.totalPulse, 195);
-        assert.equal(value.data.waterFlow, 0.4);
+        assert.equal(value.data.currentWaterConsumption, 0);
+        assert.equal(value.data.totalWaterConsumption, 16.3);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -57,11 +69,19 @@ describe("Dragino SW3L Uplink", () => {
 
     it("should decode the Dragino SW3L report uplink", () => {
       const data = {
+        state: {
+          lastPulse: 120,
+        },
         data: {
           payloadHex: "01000000c3000166ec3c7e",
           port: 2,
         },
       };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value.lastPulse, 195);
+      });
 
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
@@ -71,8 +91,10 @@ describe("Dragino SW3L Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.alarm, false);
         assert.equal(value.data.calculateFlag, 0);
+        assert.equal(value.data.relativePulse, 75);
         assert.equal(value.data.totalPulse, 195);
-        assert.equal(value.data.waterFlow, 0.4);
+        assert.equal(value.data.currentWaterConsumption, 0.2);
+        assert.equal(value.data.totalWaterConsumption, 0.4);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

@@ -6,9 +6,10 @@
   "topic": "timer",
   "title": "Timer",
   "properties": {
-    "tdc": {
-      "title": "TDC",
-      "description": "Transforms the pulse into liter if set. Needs a command to be active.",
+    "transmitDutyCycle": {
+      "title": "Transmit duty cycle",
+      "unit": "s",
+      "description": "Transmit duty cycle",
       "type": "integer",
       "hideFromKpis": true
     },
