@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/decentlab/dev/default.schema.json",
+  "$id": "https://akenza.io/decentlab/pheht/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
