@@ -7,7 +7,9 @@
   "author": "Decentlab",
   "firmwareVersion": "V1.6.0",
   "loraDeviceClass": "A",
-  "availableSensors": [],
+  "availableSensors": [
+    "Temperature"
+  ],
   "outputTopics": [
     "default",
     "lifecycle"

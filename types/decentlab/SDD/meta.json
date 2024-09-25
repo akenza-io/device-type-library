@@ -8,18 +8,9 @@
   "firmwareVersion": "V1.6.0",
   "loraDeviceClass": "A",
   "availableSensors": [
-    "Moisture at Level 0",
-    "Moisture at Level 1",
-    "Moisture at Level 2",
-    "Moisture at Level 3",
-    "Moisture at Level 4",
-    "Moisture at Level 5",
-    "Salinity at Level 0",
-    "Salinity at Level 1",
-    "Salinity at Level 2",
-    "Salinity at Level 3",
-    "Salinity at Level 4",
-    "Salinity at Level 5"
+    "Moisture",
+    "Salinity",
+    "Temperature"
   ],
   "outputTopics": [
     "default",
