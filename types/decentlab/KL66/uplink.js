@@ -114,11 +114,11 @@ function consume(event) {
     if (event.device.customFields !== undefined) {
       const { customFields } = event.device;
 
-      if (customFields.f0 !== undefined) {
-        decentlab_decoder.PARAMETER.f0 = customFields.f0;
+      if (customFields.f0_frequencyUnderZeroLoad !== undefined) {
+        decentlab_decoder.PARAMETER.f0 = customFields.f0_frequencyUnderZeroLoad;
       }
-      if (customFields.k !== undefined) {
-        decentlab_decoder.PARAMETER.k = customFields.k;
+      if (customFields.k_scalingFactor !== undefined) {
+        decentlab_decoder.PARAMETER.k = customFields.k_scalingFactor;
       }
     }
   }

@@ -108,11 +108,11 @@ function consume(event) {
     if (event.device.customFields !== undefined) {
       const { customFields } = event.device;
 
-      if (customFields.kp !== undefined) {
-        decentlab_decoder.PARAMETER.kp = customFields.kp;
+      if (customFields.kp_pressureMultiplier !== undefined) {
+        decentlab_decoder.PARAMETER.kp = customFields.kp_pressureMultiplier;
       }
-      if (customFields.kec !== undefined) {
-        decentlab_decoder.PARAMETER.kec = customFields.kec;
+      if (customFields.kec_electricalConductivityMultiplier !== undefined) {
+        decentlab_decoder.PARAMETER.kec = customFields.kec_electricalConductivityMultiplier;
       }
     }
   }

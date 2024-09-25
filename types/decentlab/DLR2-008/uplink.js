@@ -95,8 +95,8 @@ function consume(event) {
     if (event.device.customFields !== undefined) {
       const { customFields } = event.device;
 
-      if (customFields.R !== undefined) {
-        decentlab_decoder.PARAMETER.R = customFields.R;
+      if (customFields.R_referenceResistor !== undefined) {
+        decentlab_decoder.PARAMETER.R = customFields.R_referenceResistor;
       }
     }
   }
