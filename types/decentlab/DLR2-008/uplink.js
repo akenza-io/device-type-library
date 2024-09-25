@@ -103,8 +103,8 @@ function consume(event) {
 
   const sample = decentlab_decoder.decode(payload);
 
-  const default_ = {};
-  default_.temperature = sample.temperature.value;
+  const data = {};
+  data.temperature = sample.temperature.value;
 
   const lifecycle = {};
   lifecycle.batteryVoltage = sample.battery_voltage.value;
@@ -112,8 +112,8 @@ function consume(event) {
   lifecycle.protocolVersion = sample.protocol_version;
   lifecycle.deviceId = sample.device_id;
 
-  if (deleteUnusedKeys(default_)) {
-    emit("sample", { data: default_, topic: "default" });
+  if (deleteUnusedKeys(data)) {
+    emit("sample", { data: data, topic: "default" });
   }
 
   if (deleteUnusedKeys(lifecycle)) {

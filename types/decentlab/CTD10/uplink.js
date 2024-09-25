@@ -99,11 +99,11 @@ function consume(event) {
   const payload = event.data.payloadHex;
   const sample = decentlab_decoder.decode(payload);
 
-  const default_ = {};
-  default_.electricalConductivity = sample.electrical_conductivity.value;
-  default_.waterDepth = sample.water_depth.value;
-  default_.temperature = sample.temperature.value;
-  default_.freezingFlag = sample.freezing_flag.value;
+  const data = {};
+  data.electricalConductivity = sample.electrical_conductivity.value;
+  data.waterDepth = sample.water_depth.value;
+  data.temperature = sample.temperature.value;
+  data.freezingFlag = sample.freezing_flag.value;
 
   const lifecycle = {};
   lifecycle.batteryVoltage = sample.battery_voltage.value;
@@ -111,8 +111,8 @@ function consume(event) {
   lifecycle.protocolVersion = sample.protocol_version;
   lifecycle.deviceId = sample.device_id;
 
-  if (deleteUnusedKeys(default_)) {
-    emit("sample", { data: default_, topic: "default" });
+  if (deleteUnusedKeys(data)) {
+    emit("sample", { data: data, topic: "default" });
   }
 
   if (deleteUnusedKeys(lifecycle)) {

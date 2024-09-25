@@ -148,23 +148,23 @@ function consume(event) {
   const payload = event.data.payloadHex;
   const sample = decentlab_decoder.decode(payload);
 
-  const default_ = {};
-  default_.temperatureAtLevel0 = sample.temperature_at_level_0.value;
-  default_.temperatureAtLevel1 = sample.temperature_at_level_1.value;
-  default_.temperatureAtLevel2 = sample.temperature_at_level_2.value;
-  default_.temperatureAtLevel3 = sample.temperature_at_level_3.value;
-  default_.temperatureAtLevel4 = sample.temperature_at_level_4.value;
-  default_.temperatureAtLevel5 = sample.temperature_at_level_5.value;
-  default_.temperatureAtLevel6 = sample.temperature_at_level_6.value;
-  default_.temperatureAtLevel7 = sample.temperature_at_level_7.value;
-  default_.temperatureAtLevel8 = sample.temperature_at_level_8.value;
-  default_.temperatureAtLevel9 = sample.temperature_at_level_9.value;
-  default_.temperatureAtLevel10 = sample.temperature_at_level_10.value;
-  default_.temperatureAtLevel11 = sample.temperature_at_level_11.value;
-  default_.temperatureAtLevel12 = sample.temperature_at_level_12.value;
-  default_.temperatureAtLevel13 = sample.temperature_at_level_13.value;
-  default_.temperatureAtLevel14 = sample.temperature_at_level_14.value;
-  default_.temperatureAtLevel15 = sample.temperature_at_level_15.value;
+  const data = {};
+  data.temperatureAtLevel0 = sample.temperature_at_level_0.value;
+  data.temperatureAtLevel1 = sample.temperature_at_level_1.value;
+  data.temperatureAtLevel2 = sample.temperature_at_level_2.value;
+  data.temperatureAtLevel3 = sample.temperature_at_level_3.value;
+  data.temperatureAtLevel4 = sample.temperature_at_level_4.value;
+  data.temperatureAtLevel5 = sample.temperature_at_level_5.value;
+  data.temperatureAtLevel6 = sample.temperature_at_level_6.value;
+  data.temperatureAtLevel7 = sample.temperature_at_level_7.value;
+  data.temperatureAtLevel8 = sample.temperature_at_level_8.value;
+  data.temperatureAtLevel9 = sample.temperature_at_level_9.value;
+  data.temperatureAtLevel10 = sample.temperature_at_level_10.value;
+  data.temperatureAtLevel11 = sample.temperature_at_level_11.value;
+  data.temperatureAtLevel12 = sample.temperature_at_level_12.value;
+  data.temperatureAtLevel13 = sample.temperature_at_level_13.value;
+  data.temperatureAtLevel14 = sample.temperature_at_level_14.value;
+  data.temperatureAtLevel15 = sample.temperature_at_level_15.value;
 
   const lifecycle = {};
   lifecycle.batteryVoltage = sample.battery_voltage.value;
@@ -172,8 +172,8 @@ function consume(event) {
   lifecycle.protocolVersion = sample.protocol_version;
   lifecycle.deviceId = sample.device_id;
 
-  if (deleteUnusedKeys(default_)) {
-    emit("sample", { data: default_, topic: "default" });
+  if (deleteUnusedKeys(data)) {
+    emit("sample", { data: data, topic: "default" });
   }
 
   if (deleteUnusedKeys(lifecycle)) {

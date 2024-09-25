@@ -105,13 +105,13 @@ function consume(event) {
   const payload = event.data.payloadHex;
   const sample = decentlab_decoder.decode(payload);
 
-  const default_ = {};
-  default_.pulseInput0 = sample.ch0_pulse_count.value;
-  default_.pulseInterval0 = sample.ch0_pulse_interval.value;
-  default_.cumulativePulseCount0 = sample.ch0_cumulative_pulse_count.value;
-  default_.pulseInput1 = sample.ch1_pulse_count.value;
-  default_.pulseInterval1 = sample.ch1_pulse_interval.value;
-  default_.cumulativePulseCount1 = sample.ch1_cumulative_pulse_count.value;
+  const data = {};
+  data.pulseInput0 = sample.ch0_pulse_count.value;
+  data.pulseInterval0 = sample.ch0_pulse_interval.value;
+  data.cumulativePulseCount0 = sample.ch0_cumulative_pulse_count.value;
+  data.pulseInput1 = sample.ch1_pulse_count.value;
+  data.pulseInterval1 = sample.ch1_pulse_interval.value;
+  data.cumulativePulseCount1 = sample.ch1_cumulative_pulse_count.value;
 
   const lifecycle = {};
   lifecycle.batteryVoltage = sample.battery_voltage.value;
@@ -119,8 +119,8 @@ function consume(event) {
   lifecycle.protocolVersion = sample.protocol_version;
   lifecycle.deviceId = sample.device_id;
 
-  if (deleteUnusedKeys(default_)) {
-    emit("sample", { data: default_, topic: "default" });
+  if (deleteUnusedKeys(data)) {
+    emit("sample", { data: data, topic: "default" });
   }
 
   if (deleteUnusedKeys(lifecycle)) {

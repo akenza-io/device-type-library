@@ -138,20 +138,20 @@ function consume(event) {
   const payload = event.data.payloadHex;
   const sample = decentlab_decoder.decode(payload);
 
-  const default_ = {};
-  default_.pm1_0MassConcentration = sample.pm1_0_mass_concentration.value;
-  default_.pm2_5MassConcentration = sample.pm2_5_mass_concentration.value;
-  default_.pm4MassConcentration = sample.pm4_mass_concentration.value;
-  default_.pm10MassConcentration = sample.pm10_mass_concentration.value;
-  default_.typicalParticleSize = sample.typical_particle_size.value;
-  default_.pm0_5NumberConcentration = sample.pm0_5_number_concentration.value;
-  default_.pm1_0NumberConcentration = sample.pm1_0_number_concentration.value;
-  default_.pm2_5NumberConcentration = sample.pm2_5_number_concentration.value;
-  default_.pm4NumberConcentration = sample.pm4_number_concentration.value;
-  default_.pm10NumberConcentration = sample.pm10_number_concentration.value;
-  default_.temperature = sample.air_temperature.value;
-  default_.humidity = sample.air_humidity.value;
-  default_.pressure = sample.barometric_pressure.value;
+  const data = {};
+  data.pm1_0MassConcentration = sample.pm1_0_mass_concentration.value;
+  data.pm2_5MassConcentration = sample.pm2_5_mass_concentration.value;
+  data.pm4MassConcentration = sample.pm4_mass_concentration.value;
+  data.pm10MassConcentration = sample.pm10_mass_concentration.value;
+  data.typicalParticleSize = sample.typical_particle_size.value;
+  data.pm0_5NumberConcentration = sample.pm0_5_number_concentration.value;
+  data.pm1_0NumberConcentration = sample.pm1_0_number_concentration.value;
+  data.pm2_5NumberConcentration = sample.pm2_5_number_concentration.value;
+  data.pm4NumberConcentration = sample.pm4_number_concentration.value;
+  data.pm10NumberConcentration = sample.pm10_number_concentration.value;
+  data.temperature = sample.air_temperature.value;
+  data.humidity = sample.air_humidity.value;
+  data.pressure = sample.barometric_pressure.value;
 
   const lifecycle = {};
   lifecycle.batteryVoltage = sample.battery_voltage.value;
@@ -159,8 +159,8 @@ function consume(event) {
   lifecycle.protocolVersion = sample.protocol_version;
   lifecycle.deviceId = sample.device_id;
 
-  if (deleteUnusedKeys(default_)) {
-    emit("sample", { data: default_, topic: "default" });
+  if (deleteUnusedKeys(data)) {
+    emit("sample", { data: data, topic: "default" });
   }
 
   if (deleteUnusedKeys(lifecycle)) {

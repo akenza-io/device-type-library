@@ -95,10 +95,10 @@ function consume(event) {
   const payload = event.data.payloadHex;
   const sample = decentlab_decoder.decode(payload);
 
-  const default_ = {};
-  default_.dielectricPermittivity = sample.dielectric_permittivity.value;
-  default_.volumetricWaterContent = sample.volumetric_water_content.value;
-  default_.soilTemperature = sample.soil_temperature.value;
+  const data = {};
+  data.dielectricPermittivity = sample.dielectric_permittivity.value;
+  data.volumetricWaterContent = sample.volumetric_water_content.value;
+  data.soilTemperature = sample.soil_temperature.value;
 
   const lifecycle = {};
   lifecycle.batteryVoltage = sample.battery_voltage.value;
@@ -106,8 +106,8 @@ function consume(event) {
   lifecycle.protocolVersion = sample.protocol_version;
   lifecycle.deviceId = sample.device_id;
 
-  if (deleteUnusedKeys(default_)) {
-    emit("sample", { data: default_, topic: "default" });
+  if (deleteUnusedKeys(data)) {
+    emit("sample", { data: data, topic: "default" });
   }
 
   if (deleteUnusedKeys(lifecycle)) {

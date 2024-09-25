@@ -125,13 +125,13 @@ function consume(event) {
 
   const sample = decentlab_decoder.decode(payload);
 
-  const default_ = {};
-  default_.weight = sample.weight.value;
-  default_.frequency = sample.frequency.value;
-  default_.counterReading = sample.counter_reading.value;
-  default_.measurementInterval = sample.measurement_interval.value;
-  default_.elongation = sample.elongation.value;
-  default_.strain = sample.strain.value;
+  const data = {};
+  data.weight = sample.weight.value;
+  data.frequency = sample.frequency.value;
+  data.counterReading = sample.counter_reading.value;
+  data.measurementInterval = sample.measurement_interval.value;
+  data.elongation = sample.elongation.value;
+  data.strain = sample.strain.value;
 
   const lifecycle = {};
   lifecycle.batteryVoltage = sample.battery_voltage.value;
@@ -139,8 +139,8 @@ function consume(event) {
   lifecycle.protocolVersion = sample.protocol_version;
   lifecycle.deviceId = sample.device_id;
 
-  if (deleteUnusedKeys(default_)) {
-    emit("sample", { data: default_, topic: "default" });
+  if (deleteUnusedKeys(data)) {
+    emit("sample", { data: data, topic: "default" });
   }
 
   if (deleteUnusedKeys(lifecycle)) {

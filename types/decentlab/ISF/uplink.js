@@ -139,21 +139,21 @@ function consume(event) {
   const payload = event.data.payloadHex;
   const sample = decentlab_decoder.decode(payload);
 
-  const default_ = {};
-  default_.sapFlow = sample.sap_flow.value;
-  default_.heatVelocityOuter = sample.heat_velocity_outer.value;
-  default_.heatVelocityInner = sample.heat_velocity_inner.value;
-  default_.alphaOuter = sample.alpha_outer.value;
-  default_.alphaInner = sample.alpha_inner.value;
-  default_.betaOuter = sample.beta_outer.value;
-  default_.betaInner = sample.beta_inner.value;
-  default_.tmaxOuter = sample.tmax_outer.value;
-  default_.tmaxInner = sample.tmax_inner.value;
-  default_.temperatureOuter = sample.temperature_outer.value;
-  default_.maxVoltage = sample.max_voltage.value;
-  default_.minVoltage = sample.min_voltage.value;
-  default_.upstreamTmaxOuter = sample.upstream_tmax_outer.value;
-  default_.upstreamTmaxInner = sample.upstream_tmax_inner.value;
+  const data = {};
+  data.sapFlow = sample.sap_flow.value;
+  data.heatVelocityOuter = sample.heat_velocity_outer.value;
+  data.heatVelocityInner = sample.heat_velocity_inner.value;
+  data.alphaOuter = sample.alpha_outer.value;
+  data.alphaInner = sample.alpha_inner.value;
+  data.betaOuter = sample.beta_outer.value;
+  data.betaInner = sample.beta_inner.value;
+  data.tmaxOuter = sample.tmax_outer.value;
+  data.tmaxInner = sample.tmax_inner.value;
+  data.temperatureOuter = sample.temperature_outer.value;
+  data.maxVoltage = sample.max_voltage.value;
+  data.minVoltage = sample.min_voltage.value;
+  data.upstreamTmaxOuter = sample.upstream_tmax_outer.value;
+  data.upstreamTmaxInner = sample.upstream_tmax_inner.value;
 
   const lifecycle = {};
   lifecycle.batteryVoltage = sample.battery_voltage.value;
@@ -162,8 +162,8 @@ function consume(event) {
   lifecycle.protocolVersion = sample.protocol_version;
   lifecycle.deviceId = sample.device_id;
 
-  if (deleteUnusedKeys(default_)) {
-    emit("sample", { data: default_, topic: "default" });
+  if (deleteUnusedKeys(data)) {
+    emit("sample", { data: data, topic: "default" });
   }
 
   if (deleteUnusedKeys(lifecycle)) {

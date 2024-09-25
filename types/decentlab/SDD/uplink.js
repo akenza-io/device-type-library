@@ -217,25 +217,25 @@ function consume(event) {
   const payload = event.data.payloadHex;
   const sample = decentlab_decoder.decode(payload);
 
-  const default_ = {};
-  default_.moistureAtLevel0 = sample.moisture_at_level_0.value;
-  default_.moistureAtLevel1 = sample.moisture_at_level_1.value;
-  default_.moistureAtLevel2 = sample.moisture_at_level_2.value;
-  default_.moistureAtLevel3 = sample.moisture_at_level_3.value;
-  default_.moistureAtLevel4 = sample.moisture_at_level_4.value;
-  default_.moistureAtLevel5 = sample.moisture_at_level_5.value;
-  default_.temperatureAtLevel0 = sample.temperature_at_level_0.value;
-  default_.temperatureAtLevel1 = sample.temperature_at_level_1.value;
-  default_.temperatureAtLevel2 = sample.temperature_at_level_2.value;
-  default_.temperatureAtLevel3 = sample.temperature_at_level_3.value;
-  default_.temperatureAtLevel4 = sample.temperature_at_level_4.value;
-  default_.temperatureAtLevel5 = sample.temperature_at_level_5.value;
-  default_.salinityAtLevel0 = sample.salinity_at_level_0.value;
-  default_.salinityAtLevel1 = sample.salinity_at_level_1.value;
-  default_.salinityAtLevel2 = sample.salinity_at_level_2.value;
-  default_.salinityAtLevel3 = sample.salinity_at_level_3.value;
-  default_.salinityAtLevel4 = sample.salinity_at_level_4.value;
-  default_.salinityAtLevel5 = sample.salinity_at_level_5.value;
+  const data = {};
+  data.moistureAtLevel0 = sample.moisture_at_level_0.value;
+  data.moistureAtLevel1 = sample.moisture_at_level_1.value;
+  data.moistureAtLevel2 = sample.moisture_at_level_2.value;
+  data.moistureAtLevel3 = sample.moisture_at_level_3.value;
+  data.moistureAtLevel4 = sample.moisture_at_level_4.value;
+  data.moistureAtLevel5 = sample.moisture_at_level_5.value;
+  data.temperatureAtLevel0 = sample.temperature_at_level_0.value;
+  data.temperatureAtLevel1 = sample.temperature_at_level_1.value;
+  data.temperatureAtLevel2 = sample.temperature_at_level_2.value;
+  data.temperatureAtLevel3 = sample.temperature_at_level_3.value;
+  data.temperatureAtLevel4 = sample.temperature_at_level_4.value;
+  data.temperatureAtLevel5 = sample.temperature_at_level_5.value;
+  data.salinityAtLevel0 = sample.salinity_at_level_0.value;
+  data.salinityAtLevel1 = sample.salinity_at_level_1.value;
+  data.salinityAtLevel2 = sample.salinity_at_level_2.value;
+  data.salinityAtLevel3 = sample.salinity_at_level_3.value;
+  data.salinityAtLevel4 = sample.salinity_at_level_4.value;
+  data.salinityAtLevel5 = sample.salinity_at_level_5.value;
 
   const lifecycle = {};
   lifecycle.batteryVoltage = sample.battery_voltage.value;
@@ -243,8 +243,8 @@ function consume(event) {
   lifecycle.protocolVersion = sample.protocol_version;
   lifecycle.deviceId = sample.device_id;
 
-  if (deleteUnusedKeys(default_)) {
-    emit("sample", { data: default_, topic: "default" });
+  if (deleteUnusedKeys(data)) {
+    emit("sample", { data: data, topic: "default" });
   }
 
   if (deleteUnusedKeys(lifecycle)) {

@@ -127,18 +127,18 @@ function consume(event) {
   const payload = event.data.payloadHex;
   const sample = decentlab_decoder.decode(payload);
 
-  const default_ = {};
-  default_.distanceAverage = sample.distance_average.value;
-  default_.distanceMinimum = sample.distance_minimum.value;
-  default_.distanceMaximum = sample.distance_maximum.value;
-  default_.distanceMedian = sample.distance_median.value;
-  default_.distance10thPercentile = sample.distance_10th_percentile.value;
-  default_.distance25thPercentile = sample.distance_25th_percentile.value;
-  default_.distance75thPercentile = sample.distance_75th_percentile.value;
-  default_.distance90thPercentile = sample.distance_90th_percentile.value;
-  default_.distanceMostFrequentValue = sample.distance_most_frequent_value.value;
-  default_.numberOfSamples = sample.number_of_samples.value;
-  default_.totalAcquisitionTime = sample.total_acquisition_time.value;
+  const data = {};
+  data.distanceAverage = sample.distance_average.value;
+  data.distanceMinimum = sample.distance_minimum.value;
+  data.distanceMaximum = sample.distance_maximum.value;
+  data.distanceMedian = sample.distance_median.value;
+  data.distance10thPercentile = sample.distance_10th_percentile.value;
+  data.distance25thPercentile = sample.distance_25th_percentile.value;
+  data.distance75thPercentile = sample.distance_75th_percentile.value;
+  data.distance90thPercentile = sample.distance_90th_percentile.value;
+  data.distanceMostFrequentValue = sample.distance_most_frequent_value.value;
+  data.numberOfSamples = sample.number_of_samples.value;
+  data.totalAcquisitionTime = sample.total_acquisition_time.value;
 
   const lifecycle = {};
   lifecycle.batteryVoltage = sample.battery_voltage.value;
@@ -146,8 +146,8 @@ function consume(event) {
   lifecycle.protocolVersion = sample.protocol_version;
   lifecycle.deviceId = sample.device_id;
 
-  if (deleteUnusedKeys(default_)) {
-    emit("sample", { data: default_, topic: "default" });
+  if (deleteUnusedKeys(data)) {
+    emit("sample", { data: data, topic: "default" });
   }
 
   if (deleteUnusedKeys(lifecycle)) {

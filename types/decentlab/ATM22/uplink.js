@@ -116,15 +116,15 @@ function consume(event) {
   const payload = event.data.payloadHex;
   const sample = decentlab_decoder.decode(payload);
 
-  const default_ = {};
-  default_.windSpeed = sample.wind_speed.value;
-  default_.windDirection = sample.wind_direction.value;
-  default_.maximumWindSpeed = sample.maximum_wind_speed.value;
-  default_.temperature = sample.air_temperature.value;
-  default_.xOrientationAngle = sample.x_orientation_angle.value;
-  default_.yOrientationAngle = sample.y_orientation_angle.value;
-  default_.northWindSpeed = sample.north_wind_speed.value;
-  default_.eastWindSpeed = sample.east_wind_speed.value;
+  const data = {};
+  data.windSpeed = sample.wind_speed.value;
+  data.windDirection = sample.wind_direction.value;
+  data.maximumWindSpeed = sample.maximum_wind_speed.value;
+  data.temperature = sample.air_temperature.value;
+  data.xOrientationAngle = sample.x_orientation_angle.value;
+  data.yOrientationAngle = sample.y_orientation_angle.value;
+  data.northWindSpeed = sample.north_wind_speed.value;
+  data.eastWindSpeed = sample.east_wind_speed.value;
 
   const lifecycle = {};
   lifecycle.batteryVoltage = sample.battery_voltage.value;
@@ -132,8 +132,8 @@ function consume(event) {
   lifecycle.protocolVersion = sample.protocol_version;
   lifecycle.deviceId = sample.device_id;
 
-  if (deleteUnusedKeys(default_)) {
-    emit("sample", { data: default_, topic: "default" });
+  if (deleteUnusedKeys(data)) {
+    emit("sample", { data: data, topic: "default" });
   }
 
   if (deleteUnusedKeys(lifecycle)) {
