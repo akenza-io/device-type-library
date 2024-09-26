@@ -1,0 +1,29 @@
+{
+  "$id": "https://akenza.io/decentlab/blg/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "voltageRatio": {
+      "title": "Voltage Ratio",
+      "description": "Voltage Ratio",
+      "type": "number"
+    },
+    "thermistorResistance": {
+      "title": "Thermistor Resistance",
+      "unit": "Ω",
+      "description": "Thermistor Resistance in Ω",
+      "type": "number"
+    },
+    "temperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    }
+  },
+  "required": [
+    "voltageRatio",
+    "thermistorResistance",
+    "temperature"
+  ]
+}

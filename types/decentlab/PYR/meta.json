@@ -1,0 +1,19 @@
+{
+  "name": "DL-PYR",
+  "version": "1.0.0",
+  "manufacturer": "Decentlab",
+  "url": "https://www.decentlab.com/products/total-solar-radiation-sensor-for-lorawan",
+  "description": "PYR consists of a solar radiation sensor for measuring solar radiation. It is suitable for measuring radiations in solar panel arrays, smart agriculture, and building automation.",
+  "author": "Decentlab",
+  "firmwareVersion": "V1.6.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Total Solar Radiation"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

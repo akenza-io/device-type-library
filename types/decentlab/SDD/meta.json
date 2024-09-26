@@ -1,0 +1,21 @@
+{
+  "name": "DL-SDD",
+  "version": "1.0.0",
+  "manufacturer": "Decentlab",
+  "url": "https://www.decentlab.com/products/soil-moisture-temperature-and-salinity-profile",
+  "description": "SDD includes 6 soil moisture, temperature and salinity sensors. Suitable for applications such as outdoor remote monitoring, irrigation control, smart agriculture, greenhouse and soil-less plantations, parks, and golf courses.",
+  "author": "Decentlab",
+  "firmwareVersion": "V1.6.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Moisture",
+    "Salinity",
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
