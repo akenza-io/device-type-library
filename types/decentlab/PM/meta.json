@@ -1,0 +1,25 @@
+{
+  "name": "DL-PM",
+  "version": "1.0.0",
+  "manufacturer": "Decentlab",
+  "url": "https://www.decentlab.com/products/particulate-matter-temperature-humidity-and-barometric-pressure-sensor-for-lorawan",
+  "description": "PM is equipped with PM1, PM2.5, PM4, PM10, temperature, humidity, and barometric pressure sensors for air quality and environmental monitoring.",
+  "author": "Decentlab",
+  "firmwareVersion": "V1.6.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Humidity",
+    "PM1.0 Mass Concentration",
+    "PM10 Mass Concentration",
+    "PM2.5 Mass Concentration",
+    "PM4 Mass Concentration",
+    "Pressure",
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

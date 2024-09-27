@@ -1,0 +1,19 @@
+{
+  "name": "DL-BLG",
+  "version": "1.0.0",
+  "manufacturer": "Decentlab",
+  "url": "https://www.decentlab.com/products/black-globe-temperature-sensor-for-lorawan",
+  "description": "BLG is equipped with a black globe temperature sensor. It is suitable for use in workplace safety, heat stress measurement, WBGT calculation for heat stress and meteorology.",
+  "author": "Decentlab",
+  "firmwareVersion": "V1.6.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

@@ -1,0 +1,21 @@
+{
+  "name": "DL-PHEHT",
+  "version": "1.0.0",
+  "manufacturer": "Decentlab",
+  "url": "https://www.decentlab.com/products/ph-orp-and-temperature-sensor-for-lorawan",
+  "description": "PHEHT is a water ph sensor. Suitable for applications such as industrial and municipal sewage treatment plants, wastewater management (nitrification and de-nitrification), surface water monitoring, and drinking water monitoring.",
+  "author": "Decentlab",
+  "firmwareVersion": "V1.6.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Redox",
+    "Temperature",
+    "pH"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
