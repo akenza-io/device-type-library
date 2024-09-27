@@ -87,9 +87,20 @@ describe("Netvox R603 Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.version, 1);
+        assert.equal(value.data.contactSwitchStatus, false);
+
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
         assert.equal(value.topic, "default");
         assert.equal(value.data.warning, false);
-        assert.equal(value.data.contactSwitchStatus, false);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

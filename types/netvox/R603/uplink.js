@@ -15,7 +15,11 @@ function consume(event) {
 
     // If there is no battery voltage the device is plugged in
     if (batteryVoltage === 0) {
-      data.contactSwitchStatus = !!Bits.bitsToUnsigned(bits.substr(40, 8));
+      const contactSwitchStatus = !!Bits.bitsToUnsigned(bits.substr(40, 8));
+      emit("sample", {
+        data: { contactSwitchStatus, version },
+        topic: "lifecycle",
+      });
     } else {
       emit("sample", { data: { batteryVoltage, version }, topic: "lifecycle" });
     }

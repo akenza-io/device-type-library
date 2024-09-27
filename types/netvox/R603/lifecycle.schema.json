@@ -14,10 +14,14 @@
       "description": "Protocol Version",
       "type": "integer",
       "hideFromKpis": true
+    },
+    "contactSwitchStatus": {
+      "title": "Contact switch status",
+      "type": "boolean",
+      "description": "True if the switch is connected"
     }
   },
   "required": [
-    "batteryVoltage",
     "version"
   ]
 }
