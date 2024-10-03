@@ -1,0 +1,18 @@
+{
+  "$id": "https://akenza.io/decentlab/lws/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "leafWetnessIndex": {
+      "title": "Leaf Wetness Index",
+      "description": "Leaf Wetness Index",
+      "type": "number"
+    }
+  },
+  "required": [
+    "leafWetnessIndex"
+  ]
+}

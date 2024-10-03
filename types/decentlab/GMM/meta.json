@@ -1,0 +1,25 @@
+{
+  "name": "DL-GMM",
+  "version": "1.0.0",
+  "manufacturer": "Decentlab",
+  "url": "https://www.decentlab.com/products/greenhouse-multi-monitor-for-lorawan",
+  "description": "GMM includes a Photosynthetically Active Radiation (PAR), temperature, humidity, barometric pressure and CO2 sensors. Suitable for applications such as smart agriculture, greenhouses, grow rooms, and vertical farms.",
+  "author": "Decentlab",
+  "firmwareVersion": "V1.6.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "CO2",
+    "Dew Point",
+    "Humidity",
+    "Photosynthetically Active Radiation",
+    "Pressure",
+    "Temperature",
+    "Vapor Pressure Deficit"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
