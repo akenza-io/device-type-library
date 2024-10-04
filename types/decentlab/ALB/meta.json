@@ -1,0 +1,21 @@
+{
+  "name": "DL-ALB",
+  "version": "1.0.0",
+  "manufacturer": "Decentlab",
+  "url": "https://www.decentlab.com/products/albedometer-sensor-for-lorawan",
+  "description": "ALB is an albedometer sensor. Suitable for applications such as solar panel arrays, incoming and reflected shortwave radiation measurement, agricultural measurements, and ecological and hydrological weather networks.",
+  "author": "Decentlab",
+  "firmwareVersion": "V1.6.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Albedo",
+    "Incoming Radiation",
+    "Reflected Radiation"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

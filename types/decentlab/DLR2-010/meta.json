@@ -1,0 +1,20 @@
+{
+  "name": "DL-DLR2-010",
+  "version": "1.0.0",
+  "manufacturer": "Decentlab",
+  "url": "https://www.decentlab.com/products/analog-or-digital-sensor-device-for-lorawan",
+  "description": "DLR2-010 is an Analog or Digital Sensor Device that consists of a Dual Pulse Counter Dry Contact sensor interface.",
+  "author": "Decentlab",
+  "firmwareVersion": "V1.6.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Pulse Input Ch0",
+    "Pulse Input Ch1"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
