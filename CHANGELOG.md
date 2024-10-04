@@ -4,13 +4,114 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.55.0] - 2024-10-04
+
+### Added
+
+- Dragino - SW3L
+- Netvox - R602
+- Netvox - R603
+- Watecco - Triphaso
+
+### Changed
+
+- Fixed tests for the acrios system device
+- Updated Watteco BoB to also interpret V2 Messages
+- Updated picture for Milesight AT101
+
+# [1.54.0] - 2024-09-26
+
+### Added
+
+- Decentlab - ALB
+- Decentlab - ATM22
+- Decentlab - BLG
+- Decentlab - CTD10
+- Decentlab - CWS
+- Decentlab - DLR2-002
+- Decentlab - DLR2-003
+- Decentlab - DLR2-004
+- Decentlab - DLR2-005
+- Decentlab - DLR2-006
+- Decentlab - DLR2-008
+- Decentlab - DLR2-009
+- Decentlab - DLR2-010
+- Decentlab - DLR2-011
+- Decentlab - DLR2-012
+- Decentlab - DS18
+- Decentlab - GMM
+- Decentlab - ISF
+- Decentlab - ITST
+- Decentlab - KL66
+- Decentlab - LID
+- Decentlab - LPW
+- Decentlab - LWS
+- Decentlab - NTU
+- Decentlab - OPTOD
+- Decentlab - PAR
+- Decentlab - PHEHT
+- Decentlab - PM
+- Decentlab - PR36CTD
+- Decentlab - PYR
+- Decentlab - RHC
+- Decentlab - SDD
+- Decentlab - TP
+- Decentlab - TRS11
+- Decentlab - TRS12
+- Decentlab - TRS21
+- Decentlab - WRM
+- Decentlab - ZN1
+- Decentlab - ZN2
+
+# [1.54.0] - 2024-09-26
+
+### Added
+
+- Decentlab - ALB
+- Decentlab - ATM22
+- Decentlab - BLG
+- Decentlab - CTD10
+- Decentlab - CWS
+- Decentlab - DLR2-002
+- Decentlab - DLR2-003
+- Decentlab - DLR2-004
+- Decentlab - DLR2-005
+- Decentlab - DLR2-006
+- Decentlab - DLR2-008
+- Decentlab - DLR2-009
+- Decentlab - DLR2-010
+- Decentlab - DLR2-011
+- Decentlab - DLR2-012
+- Decentlab - DS18
+- Decentlab - GMM
+- Decentlab - ISF
+- Decentlab - ITST
+- Decentlab - KL66
+- Decentlab - LID
+- Decentlab - LPW
+- Decentlab - LWS
+- Decentlab - NTU
+- Decentlab - OPTOD
+- Decentlab - PAR
+- Decentlab - PHEHT
+- Decentlab - PM
+- Decentlab - PR36CTD
+- Decentlab - PYR
+- Decentlab - RHC
+- Decentlab - SDD
+- Decentlab - TP
+- Decentlab - TRS11
+- Decentlab - TRS12
+- Decentlab - TRS21
+- Decentlab - WRM
+- Decentlab - ZN1
+- Decentlab - ZN2
 
 # [1.53.0] - 2024-09-24
 
 ### Added
 
 - PMX Systems - PMX TCR Radar Object Counter
-
 
 # [1.52.0] - 2024-09-13
 
