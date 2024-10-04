@@ -1,0 +1,30 @@
+{
+  "$id": "https://akenza.io/dragino/sw3l/timer.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "timer",
+  "title": "Timer",
+  "properties": {
+    "transmitDutyCycle": {
+      "title": "Transmit duty cycle",
+      "unit": "s",
+      "description": "Transmit duty cycle",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "stopTimer": {
+      "title": "Stop timer",
+      "description": "Stop timer",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "alarmTimer": {
+      "title": "Alarm timer",
+      "unit": "s",
+      "description": "Alarm timer",
+      "type": "number",
+      "hideFromKpis": true
+    }
+  }
+}
