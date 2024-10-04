@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/netvox/R603/downlink_response.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "downlink_response",
+  "title": "Downlink response",
+  "properties": {
+    "configurationSuccess": {
+      "title": "Configuration success",
+      "description": "Configuration has been successful if response is true",
+      "type": "boolean",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "configurationSuccess"
+  ]
+}
