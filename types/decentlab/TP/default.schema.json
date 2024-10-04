@@ -1,0 +1,92 @@
+{
+  "$id": "https://akenza.io/decentlab/tp/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "temperatureAtLevel0": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Temperature at Level 0"
+    },
+    "temperatureAtLevel1": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Temperature at Level 1"
+    },
+    "temperatureAtLevel2": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Temperature at Level 2"
+    },
+    "temperatureAtLevel3": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Temperature at Level 3"
+    },
+    "temperatureAtLevel4": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Temperature at Level 4"
+    },
+    "temperatureAtLevel5": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Temperature at Level 5"
+    },
+    "temperatureAtLevel6": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Temperature at Level 6"
+    },
+    "temperatureAtLevel7": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Temperature at Level 7"
+    },
+    "temperatureAtLevel8": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Temperature at Level 8"
+    },
+    "temperatureAtLevel9": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Temperature at Level 9"
+    },
+    "temperatureAtLevel10": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Temperature at Level 10"
+    },
+    "temperatureAtLevel11": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Temperature at Level 11"
+    },
+    "temperatureAtLevel12": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Temperature at Level 12"
+    },
+    "temperatureAtLevel13": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Temperature at Level 13"
+    },
+    "temperatureAtLevel14": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Temperature at Level 14"
+    },
+    "temperatureAtLevel15": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Temperature at Level 15"
+    }
+  },
+  "required": [
+    "temperatureAtLevel0",
+    "temperatureAtLevel1",
+    "temperatureAtLevel2",
+    "temperatureAtLevel3",
+    "temperatureAtLevel4",
+    "temperatureAtLevel5",
+    "temperatureAtLevel6",
+    "temperatureAtLevel7",
+    "temperatureAtLevel8",
+    "temperatureAtLevel9",
+    "temperatureAtLevel10",
+    "temperatureAtLevel11",
+    "temperatureAtLevel12",
+    "temperatureAtLevel13",
+    "temperatureAtLevel14",
+    "temperatureAtLevel15"
+  ]
+}

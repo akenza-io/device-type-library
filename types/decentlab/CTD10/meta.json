@@ -1,0 +1,22 @@
+{
+  "name": "DL-CTD10",
+  "version": "1.0.0",
+  "manufacturer": "Decentlab",
+  "url": "https://www.decentlab.com/products/pressure-/-liquid-level-temperature-and-electrical-conductivity-sensor-for-lorawan",
+  "description": "CTD10 consists of pressure/liquid level, temperature, and electrical conductivity sensors. It is suitable for use in monitoring level/depth and water quality in tanks for liquids, groundwater and wells, running or open water level and quality, and salinity and chloride monitoring.",
+  "author": "Decentlab",
+  "firmwareVersion": "V1.6.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Electrical Conductivity",
+    "Freezing Flag",
+    "Temperature",
+    "Water Depth"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

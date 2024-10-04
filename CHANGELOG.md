@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+
+# [1.53.0] - 2024-09-24
+
+### Added
+
+- PMX Systems - PMX TCR Radar Object Counter
+
+
 # [1.52.0] - 2024-09-13
 
 ### Added
