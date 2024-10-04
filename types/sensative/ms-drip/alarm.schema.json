@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/sensative/ms-guard/alarm.schema.json",
+  "$id": "https://akenza.io/sensative/ms-drip/alarm.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
@@ -55,7 +55,12 @@
       "title": "Disinfect alarm",
       "description": "Status of the disinfection",
       "type": "string",
-      "enum": ["DIRTY", "OCCUPIED", "CLEANING", "CLEAN"]
+      "enum": [
+        "DIRTY",
+        "OCCUPIED",
+        "CLEANING",
+        "CLEAN"
+      ]
     }
   }
 }

@@ -31,6 +31,11 @@
       "description": "Equals to true if a flood is detected",
       "type": "boolean"
     },
+    "oilAlarm": {
+      "title": "Oil alarm",
+      "description": "Equals to true if oil is detected",
+      "type": "boolean"
+    },
     "foilAlarm": {
       "title": "Foil alarm",
       "description": "Equals to true if a foil is detected",
@@ -50,7 +55,12 @@
       "title": "Disinfect alarm",
       "description": "Status of the disinfection",
       "type": "string",
-      "enum": ["DIRTY", "OCCUPIED", "CLEANING", "CLEAN"]
+      "enum": [
+        "DIRTY",
+        "OCCUPIED",
+        "CLEANING",
+        "CLEAN"
+      ]
     }
   }
 }

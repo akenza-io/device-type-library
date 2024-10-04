@@ -31,7 +31,7 @@
       "maximum": 65535,
       "hideFromKpis": true
     },
-    "startUpCount": {
+    "startupCount": {
       "title": "Start up count",
       "type": "integer",
       "description": "Start up count",
