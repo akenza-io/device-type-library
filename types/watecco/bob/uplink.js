@@ -36,7 +36,14 @@ function consume(event) {
       data.learningFrom = "ADDITIONAL_LEARNING";
     }
     data.peakFrequencyIndex = Bits.bitsToUnsigned(bits.substr(40, 8)) + 1;
-    data.peakFrequency = (data.peakFrequencyIndex * frequency) / 256;
+
+    if (data.peakFrequencyIndex < 128) {
+      data.peakFrequency = (data.peakFrequencyIndex * frequency) / 256;
+    } else if (data.peakFrequencyIndex >= 128) {
+      data.peakFrequency =
+        (((Bits.bitsToUnsigned(bits.substr(40, 8)) & 0x7) + 1) * frequency) /
+        256;
+    }
     // FFT Signal
     for (let i = 8; i <= 39; i++) {
       data[`fft${i - 7}`] =
@@ -71,8 +78,13 @@ function consume(event) {
     // Frequency_index
 
     data.peakFrequencyIndex = Bits.bitsToUnsigned(bits.substr(88, 8)) + 1;
-
-    data.peakFrequency = (data.peakFrequencyIndex * frequency) / 256;
+    if (data.peakFrequencyIndex < 128) {
+      data.peakFrequency = (data.peakFrequencyIndex * frequency) / 256;
+    } else if (data.peakFrequencyIndex >= 128) {
+      data.peakFrequency =
+        (((Bits.bitsToUnsigned(bits.substr(88, 8)) & 0x7) + 1) * frequency) /
+        256;
+    }
 
     // Anomaly level time 0 - 10%, ok frequencies
     data.goodVibration = round(
@@ -174,6 +186,14 @@ function consume(event) {
       sensorState = "SENSOR_START";
     } else if (sensorState === 101) {
       sensorState = "SENSOR_STOP";
+    } else if (sensorState === 104) {
+      sensorState = "SENSOR_START_NO_VIBRATION";
+    } else if (sensorState === 105) {
+      sensorState = "SENSOR_STOP_NO_VIBRATION";
+    } else if (sensorState === 106) {
+      sensorState = "SENSOR_LEARN_KEEPALIVE";
+    } else if (sensorState === 110) {
+      sensorState = "SENSOR_STOP_WITH_ERASE";
     } else if (sensorState === 125) {
       sensorState = "MACHINE_STOP";
     } else if (sensorState === 126) {
