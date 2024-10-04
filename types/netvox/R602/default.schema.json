@@ -1,0 +1,25 @@
+{
+  "$id": "https://akenza.io/netvox/R602/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "heartbeat": {
+      "title": "Heartbeat interval",
+      "unit": "s",
+      "type": "integer",
+      "description": "Heartbeat interval in seconds"
+    },
+    "warning": {
+      "title": "Warning",
+      "type": "boolean",
+      "description": "True if a warning is active"
+    }
+  },
+  "required": [
+    "heartbeat",
+    "warning"
+  ]
+}

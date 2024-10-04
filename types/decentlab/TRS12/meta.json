@@ -1,0 +1,22 @@
+{
+  "name": "DL-TRS12",
+  "version": "1.0.0",
+  "manufacturer": "Decentlab",
+  "url": "https://www.decentlab.com/products/soil-moisture-temperature-and-electrical-conductivity-sensor-for-lorawan",
+  "description": "TRS12 includes a volumetric water content (VWC), temperature, and dielectric permittivity sensor. It is suitable for irrigation control, smart agriculture, greenhouse and soilless plantations, parks, and golf courses.",
+  "author": "Decentlab",
+  "firmwareVersion": "V1.6.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Dielectric Permittivity",
+    "Electrical Conductivity",
+    "Soil Temperature",
+    "Volumetric Water Content"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

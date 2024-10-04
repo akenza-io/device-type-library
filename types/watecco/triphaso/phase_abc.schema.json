@@ -1,0 +1,68 @@
+{
+  "$id": "https://akenza.io/watecco/triphaso/phase_abc.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "title": "Phase ABC",
+  "topic": "phase_abc",
+  "properties": {
+    "pActiveEnergyABC": {
+      "title": "Positive active energy ABC",
+      "unit": "Wh",
+      "description": "Positive active energy ABC",
+      "type": "number"
+    },
+    "nActiveEnergyABC": {
+      "title": "Negative active energy ABC",
+      "unit": "Wh",
+      "description": "Negative active energy ABC",
+      "type": "number"
+    },
+    "pReactiveEnergyABC": {
+      "title": "Positive reactive energy ABC",
+      "unit": "var",
+      "description": "Positive reactive energy ABC",
+      "type": "number"
+    },
+    "nReactiveEnergyABC": {
+      "title": "Negative reactive energy ABC",
+      "unit": "var",
+      "description": "Negative reactive energy ABC",
+      "type": "number"
+    },
+    "pActivePowerWABC": {
+      "title": "Positive active power ABC",
+      "unit": "W",
+      "description": "Positive active power ABC",
+      "type": "number"
+    },
+    "nActivePowerWABC": {
+      "title": "Negative active power ABC",
+      "unit": "W",
+      "description": "Negative active power ABC",
+      "type": "number"
+    },
+    "pReactivePowerVarABC": {
+      "title": "Positive reactive Power ABC",
+      "unit": "var",
+      "description": "Positive reactive Power ABC",
+      "type": "number"
+    },
+    "nReactivePowerVarABC": {
+      "title": "Negative reactive Power ABC",
+      "unit": "var",
+      "description": "Negative reactive Power ABC",
+      "type": "number"
+    }
+  },
+  "required": [
+    "pActiveEnergyABC",
+    "nActiveEnergyABC",
+    "pReactiveEnergyABC",
+    "nReactiveEnergyABC",
+    "pActivePowerWABC",
+    "nActivePowerWABC",
+    "pReactivePowerVarABC",
+    "nReactivePowerVarABC"
+  ]
+}
