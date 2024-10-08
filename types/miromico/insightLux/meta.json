@@ -1,9 +1,9 @@
 {
-  "name": "miro Insight",
+  "name": "miro Insight Lux",
   "version": "1.0.0",
   "manufacturer": "Miromico",
-  "url": "https://miromico.ch/en/products/details/miro-Insight",
-  "description": "Advanced indoor air quality sensor device featuring various sensors environmental conditions such as temperature, relative humidity and Co2.",
+  "url": "https://miromico.ch/en/products/details/miro-Insight-Lux",
+  "description": "Advanced indoor air quality sensor device featuring various sensors environmental conditions such as temperature, relative humidity and Co2. Its equiped with a solar panel for energy self-sufficiency.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.5.0",
   "loraDeviceClass": "A",

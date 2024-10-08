@@ -1,0 +1,149 @@
+{
+  "$id": "https://akenza.io/miromico/insight/climate.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "climate",
+  "title": "Climate",
+  "properties": {
+    "temperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    },
+    "temperature2": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Temperature 2"
+    },
+    "temperature3": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Temperature 3"
+    },
+    "temperature4": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Temperature 4"
+    },
+    "temperature5": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Temperature 5"
+    },
+    "humidity": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+    },
+    "humidity2": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
+      "title": "Humidity 2"
+    },
+    "humidity3": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
+      "title": "Humidity 3"
+    },
+    "humidity4": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
+      "title": "Humidity 4"
+    },
+    "humidity5": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
+      "title": "Humidity 5"
+    },
+    "co2": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm"
+    },
+    "co2_2": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm",
+      "title": "CO2 2"
+    },
+    "co2_3": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm",
+      "title": "CO2 3"
+    },
+    "co2_4": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm",
+      "title": "CO2 4"
+    },
+    "co2_5": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm",
+      "title": "CO2 5"
+    },
+    "iaq": {
+      "title": "Indoor air quality",
+      "description": "Indoor air quality",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "iaq2": {
+      "title": "Indoor air quality 2",
+      "description": "Indoor air quality",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "iaq3": {
+      "title": "Indoor air quality 3",
+      "description": "Indoor air quality",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "iaq4": {
+      "title": "Indoor air quality 4",
+      "description": "Indoor air quality",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "iaq5": {
+      "title": "Indoor air quality 5",
+      "description": "Indoor air quality",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "iaqAccuracy": {
+      "title": "Indoor air quality accuracy",
+      "description": "Indoor air quality accuracy",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "iaqAccuracy2": {
+      "title": "Indoor air quality accuracy 2",
+      "description": "Indoor air quality accuracy 2",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "iaqAccuracy3": {
+      "title": "Indoor air quality accuracy 3",
+      "description": "Indoor air quality accuracy 3",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "iaqAccuracy4": {
+      "title": "Indoor air quality accuracy 4",
+      "description": "Indoor air quality accuracy 4",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "iaqAccuracy5": {
+      "title": "Indoor air quality accuracy 5",
+      "description": "Indoor air quality accuracy 5",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "pressure": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/kPa"
+    },
+    "pressure2": {
+      "title": "Pressure 2",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/kPa"
+    },
+    "pressure3": {
+      "title": "Pressure 3",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/kPa"
+    },
+    "pressure4": {
+      "title": "Pressure 4",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/kPa"
+    },
+    "pressure5": {
+      "title": "Pressure 5",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/kPa"
+    },
+    "light": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/illuminance/lux"
+    }
+  }
+}

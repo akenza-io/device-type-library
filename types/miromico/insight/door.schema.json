@@ -1,0 +1,25 @@
+{
+  "$id": "https://akenza.io/miromico/insight/door.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "door",
+  "title": "Door",
+  "properties": {
+    "doorAlarm": {
+      "title": "Door alarm",
+      "type": "boolean",
+      "description": "Door alarm"
+    },
+    "openCounter": {
+      "title": "Open counter",
+      "type": "integer",
+      "description": "Open counter"
+    },
+    "alarmCounter": {
+      "title": "Alarm counter",
+      "type": "integer",
+      "description": "Alarm counter"
+    }
+  }
+}
