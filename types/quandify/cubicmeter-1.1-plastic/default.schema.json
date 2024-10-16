@@ -7,16 +7,20 @@
   "title": "Default",
   "properties": {
     "totalVolume": {
-      "description": "Total volume (L)",
+      "title": "Total volume",
+      "description": "The total volume since creation measured in liters.",
+      "unit": "L",
       "type": "number",
       "minimum": 0
     },
     "leakIsOngoing": {
-      "description": "Is there an ongoing leak?",
+      "title": "Is leak ongoing",
+      "description": "Is there an ongoing leak at the time of the message transmission?",
       "type": "boolean"
     },
     "leakState": {
-      "description": "Current leak state",
+      "title": "Current leak state",
+      "description": "The leak state is an integer describing the severity of the leak. The states 3 and 4 means the devices found a leak.",
       "enum": [
         0,
         2,
@@ -25,22 +29,27 @@
       ]
     },
     "leakStatus": {
-      "description": "Current leak status",
+      "title": "Current leak status",
+      "description": "The leak status is a nice naming of the current leak state.",
       "enum": [
-        "",
-        "medium",
-        "large"
+        "NO_LEAK",
+        "MEDIUM",
+        "LARGE"
       ]
     },
     "waterTemperatureMin": {
+      "title": "Water temperature min",
       "description": "Minimum temperature, within the set report interval, in degrees Celcius",
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
     "waterTemperatureMax": {
+      "title": "Water temperature max",
       "description": "Maximum temperature, within the set report interval, in degrees Celcius",
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
     "ambientTemperature": {
+      "title": "Ambient temperature",
+      "description": "The ambient temperature, in degrees Celcius",
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     }
   },

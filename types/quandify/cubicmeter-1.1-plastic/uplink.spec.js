@@ -76,7 +76,7 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
           totalVolume: 5342,
           leakIsOngoing: false,
           leakState: 2,
-          leakStatus: "",
+          leakStatus: "NO_LEAK",
           waterTemperatureMin: 21.5,
           waterTemperatureMax: 22,
           ambientTemperature: 22.5,
@@ -94,7 +94,7 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
         assert.deepStrictEqual(value.data, {
           isSensing: true,
           batteryVoltage: 3.640,
-          batteryStatus: "ok",
+          batteryStatus: "OK",
         });
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
@@ -118,6 +118,15 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
       assert.typeOf(value.data, "object");
 
       assert.equal(value.topic, "default");
+      assert.deepStrictEqual(value.data, {
+        totalVolume: 5342,
+        leakIsOngoing: false,
+        leakState: 2,
+        leakStatus: "NO_LEAK",
+        waterTemperatureMin: 21.5,
+        waterTemperatureMax: 22,
+        ambientTemperature: 22.5,
+      });
     });
 
     utils.expectEmits((type, value) => {
@@ -126,6 +135,11 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
       assert.typeOf(value.data, "object");
 
       assert.equal(value.topic, "lifecycle");
+      assert.deepStrictEqual(value.data, {
+        isSensing: true,
+        batteryVoltage: 1.816,
+        batteryStatus: "LOW"
+      });
     });
 
     utils.expectEmits((type, value) => {
@@ -157,6 +171,15 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
       assert.typeOf(value.data, "object");
 
       assert.equal(value.topic, "default");
+      assert.deepStrictEqual(value.data, {
+        totalVolume: 5342,
+        leakIsOngoing: false,
+        leakState: 2,
+        leakStatus: "NO_LEAK",
+        waterTemperatureMin: 21.5,
+        waterTemperatureMax: 22,
+        ambientTemperature: 22.5,
+      });
     });
 
     utils.expectEmits((type, value) => {
@@ -165,6 +188,11 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
       assert.typeOf(value.data, "object");
 
       assert.equal(value.topic, "lifecycle");
+      assert.deepStrictEqual(value.data, {
+        isSensing: true,
+        batteryVoltage: 3.640,
+        batteryStatus: "OK"
+      });
     });
 
     utils.expectEmits((type, value) => {
@@ -175,7 +203,7 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
       assert.equal(value.topic, "error");
       assert.deepStrictEqual(value.data, {
         level: "warning",
-        message: "Contact support, error 999",
+        message: "Contact Quandify support, error 999",
       });
 
       utils.validateSchema(value.data, errorSchema, { throwError: true });
@@ -201,8 +229,8 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
       assert.equal(value.topic, "response");
       assert.deepStrictEqual(value.data, {
         fPort: 55,
-        status: "ok",
-        type: "statusReport"
+        status: "OK",
+        type: "STATUS_REPORT"
       });
 
       utils.validateSchema(value.data, responseSchema, { throwError: true });
@@ -218,7 +246,7 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
         totalVolume: 33655,
         leakIsOngoing: false,
         leakState: 0,
-        leakStatus: "",
+        leakStatus: "NO_LEAK",
         waterTemperatureMin: 11,
         waterTemperatureMax: 11,
         ambientTemperature: 9,
@@ -236,7 +264,7 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
       assert.deepStrictEqual(value.data, {
         isSensing: true,
         batteryVoltage: 3.624,
-        batteryStatus: "ok",
+        batteryStatus: "OK",
       });
 
       utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
@@ -261,8 +289,8 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
       assert.equal(value.topic, "response");
       assert.deepStrictEqual(value.data, {
         fPort: 50,
-        status: "ok",
-        type: "hardwareReport"
+        status: "OK",
+        type: "HARDWARE_REPORT"
       });
 
       utils.validateSchema(value.data, responseSchema, { throwError: true });
@@ -277,7 +305,7 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
       assert.deepStrictEqual(value.data, {
         firmwareVersion: "22.0.19",
         hardwareVersion: 2,
-        appState: "metering",
+        appState: "METERING",
         pipeId: 1,
         pipeType: "Copper 15 mm",
       });
@@ -304,8 +332,8 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
       assert.equal(value.topic, "response");
       assert.deepStrictEqual(value.data, {
         fPort: 4,
-        status: "ok",
-        type: "hardwareReport"
+        status: "OK",
+        type: "HARDWARE_REPORT"
       });
 
       utils.validateSchema(value.data, responseSchema, { throwError: true });
@@ -320,7 +348,7 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
       assert.deepStrictEqual(value.data, {
         firmwareVersion: "22.0.16",
         hardwareVersion: 2,
-        appState: "metering",
+        appState: "METERING",
         pipeId: 0,
         pipeType: "Custom",
       });
@@ -347,8 +375,8 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
       assert.equal(value.topic, "response");
       assert.deepStrictEqual(value.data, {
         fPort: 19,
-        status: "ok",
-        type: "settingsReport"
+        status: "OK",
+        type: "SETTINGS_REPORT"
       });
 
       utils.validateSchema(value.data, responseSchema, { throwError: true });

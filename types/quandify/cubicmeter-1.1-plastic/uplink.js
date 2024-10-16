@@ -115,7 +115,7 @@ var statusReportDecoder = function (data) {
   const decoded = {
     errorCode: errorCode, // current error code
     isSensing: isSensing, // is the ultrasonic sensor sensing water
-    totalVolume: data.getUint32(6, LSB), // All-time aggregated water usage in litres
+    totalVolume: data.getUint32(6, LSB), // All-time aggregated water usage in liters
     leakState: data.getUint8(22), // current water leakage state
     batteryActive: decodeBatteryLevel(data.getUint8(23)), // battery mV active
     batteryRecovered: decodeBatteryLevel(data.getUint8(24)), // battery mV recovered
@@ -249,7 +249,7 @@ var parseErrorCode = function (errorCode) {
     case 384:
       return "Reverse flow";
     default:
-      return `Contact support, error ${errorCode}`;
+      return `Contact Quandify support, error ${errorCode}`;
   }
 };
 
@@ -305,8 +305,8 @@ var normalizeResponse = function (decoded) {
       topic: "response",
       data: {
         fPort: decoded.fPort,
-        status: decoded.status,
-        type: decoded.type,
+        status: camelToSnakeCase(decoded.status),
+        type: camelToSnakeCase(decoded.type),
       }
     }
   ];
@@ -333,7 +333,7 @@ var normalizeHardwareReport = function (data) {
       data: {
         firmwareVersion: data.firmwareVersion,
         hardwareVersion: data.hardwareVersion,
-        appState: data.appState,
+        appState: camelToSnakeCase(data.appState),
         pipeId: data.pipe.id,
         pipeType: data.pipe.type,
       }
@@ -360,7 +360,7 @@ var normalizeStatusReport = function (decoded) {
         totalVolume: decoded.totalVolume,
         leakIsOngoing: decoded.leakState > 2,
         leakState: decoded.leakState,
-        leakStatus: leakStates[decoded.leakState] ?? "",
+        leakStatus: camelToSnakeCase(leakStates[decoded.leakState] ?? "noLeak"),
         waterTemperatureMin: decoded.waterTemperatureMin,
         waterTemperatureMax: decoded.waterTemperatureMax,
         ambientTemperature: decoded.ambientTemperature,
@@ -371,11 +371,15 @@ var normalizeStatusReport = function (decoded) {
       data: {
         isSensing: decoded.isSensing,
         batteryVoltage: decoded.batteryRecovered / 1000,
-        batteryStatus: isLowBattery(decoded.batteryRecovered) ? "low" : "ok",
+        batteryStatus: isLowBattery(decoded.batteryRecovered) ? "LOW" : "OK",
       }
     },
   ];
 };
+
+function camelToSnakeCase(str) {
+  return str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`).toUpperCase();
+}
 
 function hexToBytes(hex) {
   for (var bytes = [], c = 0; c < hex.length; c += 2) {

@@ -7,23 +7,32 @@
   "title": "Lifecycle",
   "properties": {
     "firmwareVersion": {
-      "description": "Firmware version",
+      "title": "Firmware version",
+      "description": "Firmware verison, in semver version formatting",
       "type": "string"
     },
     "hardwareVersion": {
-      "description": "Hardware version",
+      "title": "Hardware version",
+      "description": "Can be used to assess if the device is a copper or plastic device, and hardware configuration.",
       "type": "number"
     },
     "appState": {
-      "description": "App state",
-      "type": "string"
+      "title": "App state",
+      "description": "In which state is the device is? Metering is the state where the device increments the total volume.",
+      "enum": [
+        "READY",
+        "PIPE_SELECTION",
+        "METERING"
+      ]
     },
     "pipeId": {
-      "description": "Pipe id",
+      "title": "Pipe id",
+      "description": "The pipe index refers to the pipe currenly set.",
       "type": "number"
     },
     "pipeType": {
-      "description": "Pipe type",
+      "title": "Pipe type",
+      "description": "The pipe type is the name of the pipe index currently set.",
       "type": "string"
     }
   },

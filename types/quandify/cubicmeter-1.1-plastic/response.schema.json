@@ -7,16 +7,29 @@
   "title": "Response",
   "properties": {
     "fPort": {
-      "description": "From port",
+      "title": "From port",
+      "description": "Describes which downlink fPort this response corresponds to.",
       "type": "number"
     },
     "status": {
-      "description": "Status",
-      "type": "string"
+      "title": "Status",
+      "description": "If the downlink failed, the response status will tell you why.",
+      "enum": [
+        "OK",
+        "COMMAND_ERROR",
+        "PAYLOAD_ERROR",
+        "VALUE_ERROR"
+      ]
     },
     "type": {
-      "description": "Type",
-      "type": "string"
+      "title": "Type",
+      "description": "What type of response content is uploaded? Useful for parsing and debugging.",
+      "enum": [
+        "NONE",
+        "STATUS_REPORT",
+        "HARDWARE_REPORT",
+        "SETTINGS_REPORT"
+      ]
     }
   },
   "required": [

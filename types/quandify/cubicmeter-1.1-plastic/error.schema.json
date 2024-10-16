@@ -7,11 +7,13 @@
   "title": "Error",
   "properties": {
     "level": {
-      "description": "Level",
+      "title": "Level",
+      "description": "The level indicates if it is a warning or an error.",
       "type": "string"
     },
     "message": {
-      "description": "Message",
+      "title": "Message",
+      "description": "Error or warning message in clear text.",
       "type": "string"
     }
   }
