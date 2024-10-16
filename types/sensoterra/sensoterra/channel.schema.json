@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/sensoterra/sensoterra/channel.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "channel",
+  "title": "Channel",
+  "properties": {
+    "channelMask": {
+      "title": "Channel mask",
+      "type": "array",
+      "description": "Channel mask",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "channelMask"
+  ]
+}
