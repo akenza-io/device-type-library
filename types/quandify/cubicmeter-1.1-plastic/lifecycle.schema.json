@@ -1,0 +1,29 @@
+{
+  "$id": "https://akenza.io/quandify/cubicmeter-1.1/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "isSensing": {
+      "description": "Is the device sensing water?",
+      "type": "boolean"
+    },
+    "batteryVoltage": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+    },
+    "batteryStatus": {
+      "description": "Battery status",
+      "enum": [
+        "low",
+        "ok"
+      ]
+    }
+  },
+  "required": [
+    "isSensing",
+    "batteryVoltage",
+    "batteryStatus"
+  ]
+}

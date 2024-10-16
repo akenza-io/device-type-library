@@ -1,0 +1,17 @@
+{
+  "$id": "https://akenza.io/quandify/cubicmeter-1.1/settings.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "settings",
+  "title": "Settings",
+  "properties": {
+    "lorawanReportInterval": {
+      "description": "LoRaWAN report interval",
+      "type": "number"
+    }
+  },
+  "required": [
+    "lorawanReportInterval"
+  ]
+}

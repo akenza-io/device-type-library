@@ -1,0 +1,37 @@
+{
+  "$id": "https://akenza.io/quandify/cubicmeter-1.1/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "firmwareVersion": {
+      "description": "Firmware version",
+      "type": "string"
+    },
+    "hardwareVersion": {
+      "description": "Hardware version",
+      "type": "number"
+    },
+    "appState": {
+      "description": "App state",
+      "type": "string"
+    },
+    "pipeId": {
+      "description": "Pipe id",
+      "type": "number"
+    },
+    "pipeType": {
+      "description": "Pipe type",
+      "type": "string"
+    }
+  },
+  "required": [
+    "firmwareVersion",
+    "hardwareVersion",
+    "appState",
+    "pipeId",
+    "pipeType"
+  ]
+}

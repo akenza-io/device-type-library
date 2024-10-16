@@ -1,0 +1,27 @@
+{
+  "$id": "https://akenza.io/quandify/cubicmeter-1.1/response.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "response",
+  "title": "Response",
+  "properties": {
+    "fPort": {
+      "description": "From port",
+      "type": "number"
+    },
+    "status": {
+      "description": "Status",
+      "type": "string"
+    },
+    "type": {
+      "description": "Type",
+      "type": "string"
+    }
+  },
+  "required": [
+    "fPort",
+    "status",
+    "type"
+  ]
+}
