@@ -1,0 +1,20 @@
+{
+  "$id": "https://akenza.io/quandify/cubicmeter-1.1/error.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "error",
+  "title": "Error",
+  "properties": {
+    "level": {
+      "title": "Level",
+      "description": "The level indicates if it is a warning or an error.",
+      "type": "string"
+    },
+    "message": {
+      "title": "Message",
+      "description": "Error or warning message in clear text.",
+      "type": "string"
+    }
+  }
+}
