@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.56.0] - 2024-10-17
+
+### Added
+
+- Quandify - Cubicmeter 1.1 plastic
+- Quandify - Cubicmeter 1.1 copper
+
 # [1.55.0] - 2024-10-04
 
 ### Added
