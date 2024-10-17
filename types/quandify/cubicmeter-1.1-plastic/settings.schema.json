@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/quandify/cubicmeter-1.1-plastic/default.schema.json",
+  "$id": "https://akenza.io/quandify/cubicmeter-1.1-plastic/settings.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
