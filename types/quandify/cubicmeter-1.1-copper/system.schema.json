@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/quandify/cubicmeter-1.1/lifecycle.schema.json",
+  "$id": "https://akenza.io/quandify/cubicmeter-1.1-copper/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
@@ -9,12 +9,14 @@
     "firmwareVersion": {
       "title": "Firmware version",
       "description": "Firmware verison, in semver version formatting",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     },
     "hardwareVersion": {
       "title": "Hardware version",
       "description": "Can be used to assess if the device is a copper or plastic device, and hardware configuration.",
-      "type": "number"
+      "type": "number",
+      "hideFromKpis": true
     },
     "appState": {
       "title": "App state",
@@ -23,17 +25,20 @@
         "READY",
         "PIPE_SELECTION",
         "METERING"
-      ]
+      ],
+      "hideFromKpis": true
     },
     "pipeId": {
       "title": "Pipe id",
       "description": "The pipe index refers to the pipe currenly set.",
-      "type": "number"
+      "type": "number",
+      "hideFromKpis": true
     },
     "pipeType": {
       "title": "Pipe type",
       "description": "The pipe type is the name of the pipe index currently set.",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     }
   },
   "required": [

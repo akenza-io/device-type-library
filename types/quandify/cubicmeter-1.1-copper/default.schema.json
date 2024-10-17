@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/quandify/cubicmeter-1.1/default.schema.json",
+  "$id": "https://akenza.io/quandify/cubicmeter-1.1-copper/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
@@ -14,7 +14,7 @@
       "minimum": 0
     },
     "leakIsOngoing": {
-      "title": "Is leak ongoing",
+      "title": "Ongoing leak",
       "description": "Is there an ongoing leak at the time of the message transmission?",
       "type": "boolean"
     },

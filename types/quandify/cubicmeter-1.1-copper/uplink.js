@@ -1,18 +1,18 @@
 // Cubicmeter 1.1 uplink decoder
 
-var appStates = {
+const appStates = {
   3: "ready",
   4: "pipeSelection",
   5: "metering",
 };
 
-var uplinkTypes = {
+const uplinkTypes = {
   0: "ping",
   1: "statusReport",
   6: "response",
 };
 
-var responseStatuses = {
+const responseStatuses = {
   0: "ok",
   1: "commandError",
   2: "payloadError",
@@ -20,7 +20,7 @@ var responseStatuses = {
 };
 
 // More uplink types only available when using Quandify platform API
-var responseTypes = {
+const responseTypes = {
   0: "none",
   1: "statusReport",
   2: "hardwareReport",
@@ -29,12 +29,12 @@ var responseTypes = {
 
 /* Smaller water leakages only availble when using Quandify platform API
 as it requires cloud analytics */
-var leakStates = {
+const leakStates = {
   3: "medium",
   4: "large",
 };
 
-var pipeTypes = {
+const pipeTypes = {
   0: "Custom",
   1: "Copper 15 mm",
   2: "Copper 18 mm",
@@ -65,9 +65,9 @@ function decodeUplink(input) {
     data.setUint8(index, input.bytes[index]);
   }
 
-  var decoded = {};
-  var errors = [];
-  var warnings = [];
+  let decoded = {};
+  const errors = [];
+  let warnings = [];
 
   try {
     switch (input.fPort) {
@@ -76,6 +76,8 @@ function decodeUplink(input) {
         break;
       case 6: // Response
         ({ decoded, warnings } = responseDecoder(data));
+        break;
+      default:
         break;
     }
   } catch (err) {
@@ -98,14 +100,14 @@ function decodeUplink(input) {
 
 const LSB = true;
 
-var statusReportDecoder = function (data) {
-  if (data.byteLength != 28) {
+const statusReportDecoder = function (data) {
+  if (data.byteLength !== 28) {
     throw new Error(
       `Wrong payload length (${data.byteLength}), should be 28 bytes`
     );
   }
 
-  let warnings = [];
+  const warnings = [];
   const error = data.getUint16(4, LSB);
 
   // The is sensing value is a bit flag of the error field
@@ -113,8 +115,8 @@ var statusReportDecoder = function (data) {
   const errorCode = error & 0x7fff;
 
   const decoded = {
-    errorCode: errorCode, // current error code
-    isSensing: isSensing, // is the ultrasonic sensor sensing water
+    errorCode, // current error code
+    isSensing, // is the ultrasonic sensor sensing water
     totalVolume: data.getUint32(6, LSB), // All-time aggregated water usage in liters
     leakState: data.getUint8(22), // current water leakage state
     batteryActive: decodeBatteryLevel(data.getUint8(23)), // battery mV active
@@ -143,7 +145,7 @@ var statusReportDecoder = function (data) {
   };
 };
 
-var responseDecoder = function (data) {
+const responseDecoder = function (data) {
   const status = responseStatuses[data.getUint8(1)];
   if (status === undefined) {
     throw new Error(`Invalid response status: ${data.getUint8(1)}`);
@@ -156,7 +158,7 @@ var responseDecoder = function (data) {
 
   const payload = new DataView(data.buffer, 3);
 
-  var response = {
+  let response = {
     decoded: {},
     warnings: [],
   };
@@ -171,20 +173,22 @@ var responseDecoder = function (data) {
     case "settingsReport":
       response = settingsReportDecoder(payload);
       break;
+    default:
+      break;
   }
 
   return {
     decoded: {
       fPort: data.getUint8(0),
-      status: status,
-      type: type,
+      status,
+      type,
       data: response.decoded,
     },
     warnings: response.warnings,
   };
 };
 
-var hardwareReportDecoder = function (data) {
+const hardwareReportDecoder = function (data) {
   if (data.byteLength != 35) {
     throw new Error(
       `Wrong payload length (${data.byteLength}), should be 35 bytes`
@@ -207,7 +211,7 @@ var hardwareReportDecoder = function (data) {
     decoded: {
       firmwareVersion,
       hardwareVersion: data.getUint8(4),
-      appState: appState,
+      appState,
       pipe: {
         id: data.getUint8(28),
         type: pipeType,
@@ -217,7 +221,7 @@ var hardwareReportDecoder = function (data) {
   };
 };
 
-var settingsReportDecoder = function (data) {
+const settingsReportDecoder = function (data) {
   if (data.byteLength != 38) {
     throw new Error(
       `Wrong payload length (${data.byteLength}), should be 38 bytes`
@@ -232,19 +236,19 @@ var settingsReportDecoder = function (data) {
   };
 };
 
-var decodeBatteryLevel = function (input) {
+const decodeBatteryLevel = function (input) {
   return 1800 + (input << 3); // convert to milliVolt
 };
 
-var decodeTemperature = function (input) {
+const decodeTemperature = function (input) {
   return parseFloat(input) * 0.5 - 20.0; // to °C
 };
 
-var isLowBattery = function (batteryRecovered) {
+const isLowBattery = function (batteryRecovered) {
   return batteryRecovered <= 3100;
 };
 
-var parseErrorCode = function (errorCode) {
+const parseErrorCode = function (errorCode) {
   switch (errorCode) {
     case 384:
       return "Reverse flow";
@@ -254,7 +258,7 @@ var parseErrorCode = function (errorCode) {
 };
 
 // Convert a hex string to decimal array
-var hexToDecArray = function (hexString) {
+const hexToDecArray = function (hexString) {
   const size = 2;
   const length = Math.ceil(hexString.length / size);
   const decimalList = new Array(length);
@@ -266,20 +270,18 @@ var hexToDecArray = function (hexString) {
   return decimalList;
 };
 
-var base64ToDecArray = function (base64String) {
+const base64ToDecArray = function (base64String) {
   const buffer = Buffer.from(base64String, "base64");
   const bufString = buffer.toString("hex");
 
   return hexToDecArray(bufString);
 };
 
-var decArrayToStr = function (byteArray) {
-  return Array.from(byteArray, function (byte) {
-    return ("0" + (byte & 0xff).toString(16)).slice(-2).toUpperCase();
-  }).join("");
+const decArrayToStr = function (byteArray) {
+  return Array.from(byteArray, (byte) => (`0${(byte & 0xff).toString(16)}`).slice(-2).toUpperCase()).join("");
 };
 
-var intToSemver = function (version) {
+const intToSemver = function (version) {
   const major = (version >> 24) & 0xff;
   const minor = (version >> 16) & 0xff;
   const patch = version & 0xffff;
@@ -288,19 +290,21 @@ var intToSemver = function (version) {
 
 // Wrapping functions around the LoRaWAN decoder API standard
 
-var normalizeUplink = function (input) {
+const normalizeUplink = function (input) {
   switch (input.data.type) {
     case "statusReport":
       return normalizeStatusReport(input.data.decoded);
     case "response":
       return normalizeResponse(input.data.decoded);
+    default:
+      break;
   }
 
   return [];
 }
 
-var normalizeResponse = function (decoded) {
-  var response = [
+const normalizeResponse = function (decoded) {
+  let response = [
     {
       topic: "response",
       data: {
@@ -321,12 +325,14 @@ var normalizeResponse = function (decoded) {
     case "settingsReport":
       response = response.concat(normalizeSettingsReport(decoded.data));
       break;
+    default:
+      break;
   }
 
   return response;
 }
 
-var normalizeHardwareReport = function (data) {
+const normalizeHardwareReport = function (data) {
   return [
     {
       topic: "system",
@@ -341,7 +347,7 @@ var normalizeHardwareReport = function (data) {
   ];
 };
 
-var normalizeSettingsReport = function (data) {
+const normalizeSettingsReport = function (data) {
   return [
     {
       topic: "settings",
@@ -352,7 +358,7 @@ var normalizeSettingsReport = function (data) {
   ];
 };
 
-var normalizeStatusReport = function (decoded) {
+const normalizeStatusReport = function (decoded) {
   return [
     {
       topic: "default",
@@ -401,7 +407,7 @@ function consume(event) {
     topics.push({
       topic: "error",
       data: {
-        level: "warning",
+        level: "WARNING",
         message: warning
       }
     });
@@ -411,7 +417,7 @@ function consume(event) {
     topics.push({
       topic: "error",
       data: {
-        level: "error",
+        level: "ERROR",
         message: error
       }
     });

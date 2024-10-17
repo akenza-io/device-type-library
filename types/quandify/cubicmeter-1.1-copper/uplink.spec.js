@@ -149,7 +149,7 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
 
       assert.equal(value.topic, "error");
       assert.deepStrictEqual(value.data, {
-        level: "warning",
+        level: "WARNING",
         message: "Low battery",
       });
     });
@@ -202,7 +202,7 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
 
       assert.equal(value.topic, "error");
       assert.deepStrictEqual(value.data, {
-        level: "warning",
+        level: "WARNING",
         message: "Contact Quandify support, error 999",
       });
 
