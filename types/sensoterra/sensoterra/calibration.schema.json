@@ -1,0 +1,48 @@
+{
+  "$id": "https://akenza.io/sensoterra/sensoterra/calibration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "calibration",
+  "title": "Calibration",
+  "properties": {
+    "depthCM": {
+      "title": "Depth",
+      "type": "number",
+      "unit": "cm",
+      "description": "Depth",
+      "hideFromKpis": true
+    },
+    "channelA": {
+      "title": "Channel A",
+      "type": "number",
+      "description": "Channel A configuration",
+      "hideFromKpis": true
+    },
+    "channelB": {
+      "title": "Channel B",
+      "type": "number",
+      "description": "Channel B configuration",
+      "hideFromKpis": true
+    },
+    "channelC": {
+      "title": "Channel C",
+      "type": "number",
+      "description": "Channel C configuration",
+      "hideFromKpis": true
+    },
+    "channelSP": {
+      "title": "Channel SP",
+      "type": "number",
+      "description": "Channel SP configuration",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "depthCM",
+    "channelA",
+    "channelB",
+    "channelC",
+    "channelSP"
+  ]
+}

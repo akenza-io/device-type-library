@@ -1,0 +1,40 @@
+{
+  "$id": "https://akenza.io/sensoterra/sensoterra/reset.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "reset",
+  "title": "Reset",
+  "properties": {
+    "totalNumberResets": {
+      "title": "Total number of resets",
+      "type": "integer",
+      "description": "Total number of resets",
+      "hideFromKpis": true
+    },
+    "totalNumberSuccessfulJoinSessions": {
+      "title": "Total number successful join sessions",
+      "type": "integer",
+      "description": "Total number successful join sessions",
+      "hideFromKpis": true
+    },
+    "totalNumberFailedJoinSessions": {
+      "title": "Total number failed join sessions",
+      "type": "integer",
+      "description": "Total number failed join sessions",
+      "hideFromKpis": true
+    },
+    "totalTimeOnAir": {
+      "title": "Total time on air",
+      "type": "integer",
+      "description": "Total time on air",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "totalNumberResets",
+    "totalNumberSuccessfulJoinSessions",
+    "totalNumberFailedJoinSessions",
+    "totalTimeOnAir"
+  ]
+}
