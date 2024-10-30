@@ -20,9 +20,9 @@ function consume(event) {
     );
     data.lastColorRGB = `${Bits.bitsToUnsigned(
       bits.substr(128, 8),
-    )},${Bits.bitsToUnsigned(bits.substr(136, 8))},${Bits.bitsToUnsigned(
+    )},${Bits.bitsToUnsigned(
       bits.substr(144, 8),
-    )}`;
+    )},${Bits.bitsToUnsigned(bits.substr(136, 8))}`;
     data.timeOn = Bits.bitsToUnsigned(bits.substr(152, 8));
     data.timeOff = Bits.bitsToUnsigned(bits.substr(160, 8));
     lifecycle.swRevision = Bits.bitsToUnsigned(bits.substr(168, 8));

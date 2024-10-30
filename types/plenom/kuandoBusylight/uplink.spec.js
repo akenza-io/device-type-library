@@ -39,7 +39,7 @@ describe("Kuando busylight Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.lastColorRGB, "255,255,0");
+        assert.equal(value.data.lastColorRGB, "255,0,255");
         assert.equal(value.data.timeOn, 100);
         assert.equal(value.data.timeOff, 2);
 
