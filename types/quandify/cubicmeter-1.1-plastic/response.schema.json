@@ -14,6 +14,7 @@
     },
     "status": {
       "title": "Status",
+      "type": "string",
       "description": "If the downlink failed, the response status will tell you why.",
       "enum": [
         "OK",
@@ -26,6 +27,7 @@
     "type": {
       "title": "Type",
       "description": "What type of response content is uploaded? Useful for parsing and debugging.",
+      "type": "string",
       "enum": [
         "NONE",
         "STATUS_REPORT",
