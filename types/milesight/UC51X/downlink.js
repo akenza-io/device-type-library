@@ -174,6 +174,20 @@ function consume(event) {
           payload.end,
         );
         break;
+      case "milesightRule":
+        payloadHex = rulePayload(
+          payload.valve,
+          payload.open,
+          payload.schedule,
+          payload.enable,
+          payload.weekdays,
+          payload.start,
+          payload.end,
+        );
+        break;
+      case "timeSync":
+        payloadHex = timeSync();
+        break;
       default:
         emit("log", { "Something went wrong with": payload });
         break;

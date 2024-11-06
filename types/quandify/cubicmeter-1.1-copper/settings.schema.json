@@ -9,9 +9,9 @@
     "lorawanReportInterval": {
       "description": "LoRaWAN report interval",
       "title": "Describes with what interval the device send a status report uplink.",
-      "type": "number"
-    },
-    "hideFromKpis": true
+      "type": "number",
+      "hideFromKpis": true
+    }
   },
   "required": [
     "lorawanReportInterval"
