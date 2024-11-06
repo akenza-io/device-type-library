@@ -18,6 +18,7 @@
     "batteryStatus": {
       "title": "Battery status",
       "description": "The battery status, is evaluted from the battery voltage, and is an indicator of when the battery is reaching end of life.",
+      "type": "string",
       "enum": [
         "LOW",
         "OK"

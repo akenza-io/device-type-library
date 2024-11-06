@@ -21,6 +21,7 @@
     "leakState": {
       "title": "Current leak state",
       "description": "The leak state is an integer describing the severity of the leak. The states 3 and 4 means the devices found a leak.",
+      "type": "integer",
       "enum": [
         0,
         2,
@@ -31,6 +32,7 @@
     "leakStatus": {
       "title": "Current leak status",
       "description": "The leak status is a nice naming of the current leak state.",
+      "type": "string",
       "enum": [
         "NO_LEAK",
         "MEDIUM",

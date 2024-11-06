@@ -21,6 +21,7 @@
     "appState": {
       "title": "App state",
       "description": "In which state is the device is? Metering is the state where the device increments the total volume.",
+      "type": "string",
       "enum": [
         "READY",
         "PIPE_SELECTION",
