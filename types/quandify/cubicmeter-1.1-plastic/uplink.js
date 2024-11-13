@@ -257,26 +257,6 @@ const parseErrorCode = function (errorCode) {
   }
 };
 
-// Convert a hex string to decimal array
-const hexToDecArray = function (hexString) {
-  const size = 2;
-  const length = Math.ceil(hexString.length / size);
-  const decimalList = new Array(length);
-
-  for (let i = 0, o = 0; i < length; ++i, o += size) {
-    decimalList[i] = parseInt(hexString.substr(o, size), 16);
-  }
-
-  return decimalList;
-};
-
-const base64ToDecArray = function (base64String) {
-  const buffer = Buffer.from(base64String, "base64");
-  const bufString = buffer.toString("hex");
-
-  return hexToDecArray(bufString);
-};
-
 const decArrayToStr = function (byteArray) {
   return Array.from(byteArray, (byte) => (`0${(byte & 0xff).toString(16)}`).slice(-2).toUpperCase()).join("");
 };
