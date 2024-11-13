@@ -15,7 +15,12 @@ function intToHex(number) {
 
 // Syncs with network server
 function timeSync() {
-  return "ff4a00";
+  return "ff4aff";
+}
+
+// Syncs with network server
+function deleteAllRules() {
+  return "ff4b020000";
 }
 
 function standardDownlinkStructure(valve, action, time) {
@@ -132,6 +137,138 @@ function schedulePayload(valve, action, plan, enable, days, start, end) {
   return hex;
 }
 
+
+function rulePayload(valve, action, plan, enable, days, start, end, loop, period, interval, durationSeconds, timeControl, flowControl, pulse) {
+  /// / Headers
+  let hex = "ff55"; // Channel & Type
+  hex += intToHex(plan);
+
+  // Enable / Disable plan
+  if (enable) {
+    hex += "01";
+  } else {
+    hex += "00";
+  }
+  /// /
+
+  /// / Condition Field
+  // Reserved
+  hex += "01";
+
+  // Start time
+  let startHex = intToHex(start);
+  while (startHex.length < 8) {
+    startHex += "0";
+  }
+  hex += startHex;
+
+  // End time
+  let endHex = "00000000";
+  if (end !== undefined) {
+    endHex = intToHex(end);
+    while (endHex.length < 8) {
+      endHex += "0";
+    }
+  }
+
+  hex += endHex;
+
+  // Enable / Disable loop
+  if (loop) {
+    hex += "01";
+  } else {
+    hex += "00";
+  }
+
+  // Loop period
+  switch (period) {
+    case "MONTHLY":
+      hex += "00";
+      hex += intToHex(Number(interval));
+      break;
+    case "DAILY":
+      hex += "01";
+      hex += intToHex(Number(interval));
+      break;
+    case "WEEKLY": {
+      hex += "02";
+
+      // Add days which this rule should run at
+      let weekdays = "0";
+      weekdays += checkWeekDay(days.sunday);
+      weekdays += checkWeekDay(days.saturday);
+      weekdays += checkWeekDay(days.friday);
+      weekdays += checkWeekDay(days.thursday);
+      weekdays += checkWeekDay(days.wednesday);
+      weekdays += checkWeekDay(days.tuesday);
+      weekdays += checkWeekDay(days.monday);
+
+      const weekdaysHex = parseInt(weekdays, 2).toString(16);
+      if (weekdaysHex.length < 2) {
+        hex += "0";
+      }
+      hex += weekdaysHex;
+      break;
+    }
+    default:
+      break;
+  }
+
+  hex += "00"; // Rerserved
+  /// /
+
+  /// / Action field
+  hex += "02"; // Rerserved
+
+  // Targeted valve
+  if (valve === 1) {
+    hex += "01";
+  } else if (valve === 2) {
+    hex += "02";
+  }
+
+  // Open or close
+  if (action) {
+    hex += "01";
+  } else {
+    hex += "00";
+  }
+
+  // Time control
+  if (timeControl) {
+    hex += "01";
+
+    // Add duration for action which should be taken
+    let duration = intToHex(durationSeconds);
+    // Fill with zeros for unused time
+    while (duration.length < 8) {
+      duration += "0";
+    }
+    hex += duration;
+  } else {
+    hex += "0000000000";
+  }
+
+  // Pulse control
+  if (flowControl) {
+    hex += "01";
+
+    let hexPulse = intToHex(pulse);
+    // Fill with zeros for unused time
+    while (hexPulse.length < 8) {
+      hexPulse += "0";
+    }
+    hex += hexPulse;
+  } else {
+    hex += "00";
+    // Reserved
+    hex += "00000000";
+  }
+  /// /
+
+  return hex;
+}
+
 function checkExpectedValues(value, defaultValue) {
   if (value !== undefined && value !== null) {
     return value;
@@ -178,15 +315,25 @@ function consume(event) {
         payloadHex = rulePayload(
           payload.valve,
           payload.open,
-          payload.schedule,
+          payload.ruleId,
           payload.enable,
           payload.weekdays,
           payload.start,
           payload.end,
+          payload.loop,
+          payload.period,
+          payload.interval,
+          payload.durationSeconds,
+          payload.timeControl,
+          payload.flowControl,
+          payload.pulse
         );
         break;
       case "timeSync":
         payloadHex = timeSync();
+        break;
+      case "deleteAllRules":
+        payloadHex = deleteAllRules();
         break;
       default:
         emit("log", { "Something went wrong with": payload });

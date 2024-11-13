@@ -142,7 +142,7 @@ function consume(event) {
   const rule = {};
   const lifecycle = {};
 
-  for (let i = 0; i < bytes.length; ) {
+  for (let i = 0; i < bytes.length;) {
     const channelId = bytes[i++];
     const channelType = bytes[i++];
 
@@ -187,7 +187,7 @@ function consume(event) {
     }
     // VALVE 2
     else if (channelId === 0x05 && channelType === 0x01) {
-      status.valve2 = bytes[i] !== 0;
+      status.valve2 = bytes[i] === 0 ? "CLOSED" : "OPEN";
       status.valve2Open = bytes[i] !== 0;
       i += 1;
     }
