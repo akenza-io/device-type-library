@@ -1,0 +1,46 @@
+{
+  "$id": "https://akenza.io/milesight/EM400-UDL/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "distance": {
+      "title": "Distance",
+      "unit": "mm",
+      "type": "number",
+      "description": "Distance measured between the sensor and the surface"
+    },
+    "fillLevel": {
+      "title": "Fill level",
+      "unit": "%",
+      "type": "number",
+      "description": "Fill percentage of the container"
+    },
+    "distanceAlarming": {
+      "title": "Distance alarm",
+      "type": "boolean",
+      "description": "Distance alarm."
+    },
+    "tilt": {
+      "title": "Tilt",
+      "type": "boolean",
+      "description": "True if the sensor is tilted"
+    },
+    "temperature": {
+      "title": "Temperature",
+      "unit": "°C",
+      "type": "number",
+      "description": "The temperature in °C.",
+      "minimum": -3276.5,
+      "maximum": 3276.5
+    },
+    "temperatureAbnormal": {
+      "title": "Temperature abnormal",
+      "type": "boolean",
+      "description": "Temperature abnormal."
+    }
+  },
+  "required": ["distance", "tilt", "temperature"]
+}
