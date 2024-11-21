@@ -49,8 +49,5 @@
       "maximum": 65535
     }
   },
-  "required": [
-    "peopleCounterAll",
-    "regionCount"
-  ]
+  "required": ["peopleCounterAll", "regionCount"]
 }

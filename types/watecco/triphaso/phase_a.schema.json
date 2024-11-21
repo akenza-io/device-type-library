@@ -1,0 +1,68 @@
+{
+  "$id": "https://akenza.io/watecco/triphaso/phase_a.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "title": "Phase A",
+  "topic": "phase_a",
+  "properties": {
+    "pActiveEnergyA": {
+      "title": "Positive active energy A",
+      "unit": "Wh",
+      "description": "Positive active energy A",
+      "type": "number"
+    },
+    "nActiveEnergyA": {
+      "title": "Negative active energy A",
+      "unit": "Wh",
+      "description": "Negative active energy A",
+      "type": "number"
+    },
+    "pReactiveEnergyA": {
+      "title": "Positive reactive energy A",
+      "unit": "var",
+      "description": "Positive reactive energy A",
+      "type": "number"
+    },
+    "nReactiveEnergyA": {
+      "title": "Negative reactive energy A",
+      "unit": "var",
+      "description": "Negative reactive energy A",
+      "type": "number"
+    },
+    "pActivePowerWA": {
+      "title": "Positive active power A",
+      "unit": "W",
+      "description": "Positive active power A",
+      "type": "number"
+    },
+    "nActivePowerWA": {
+      "title": "Negative active power A",
+      "unit": "W",
+      "description": "Negative active power A",
+      "type": "number"
+    },
+    "pReactivePowerVarA": {
+      "title": "Positive reactive Power A",
+      "unit": "var",
+      "description": "Positive reactive Power A",
+      "type": "number"
+    },
+    "nReactivePowerVarA": {
+      "title": "Negative reactive Power A",
+      "unit": "var",
+      "description": "Negative reactive Power A",
+      "type": "number"
+    }
+  },
+  "required": [
+    "pActiveEnergyA",
+    "nActiveEnergyA",
+    "pReactiveEnergyA",
+    "nReactiveEnergyA",
+    "pActivePowerWA",
+    "nActivePowerWA",
+    "pReactivePowerVarA",
+    "nReactivePowerVarA"
+  ]
+}

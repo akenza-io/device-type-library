@@ -1,0 +1,28 @@
+{
+  "$id": "https://akenza.io/smartEnds/brigtherBins/motion_history.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "motion_history",
+  "title": "Motion History",
+  "properties": {
+    "motionOrientation": {
+      "title": "Motion Orientation",
+      "type": "number",
+      "description": "Motion Orientation",
+      "hideFromKpis": true
+    },
+    "motionDeviation": {
+      "title": "Motion Deviation",
+      "type": "number",
+      "description": "Motion Deviation",
+      "hideFromKpis": true
+    },
+    "motionDuration": {
+      "title": "Motion Duration",
+      "type": "number",
+      "description": "Motion Duration",
+      "hideFromKpis": true
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "$id": "https://akenza.io/pmx/tcr/id.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "id",
+  "title": "Device Identification",
+  "properties": {
+    "type": {
+      "title": "Device Type",
+      "type": "string",
+      "description": "PMX TCR Device Type"
+    },
+    "licence": {
+      "title": "Licence",
+      "type": "string",
+      "description": "Installed Licence Type (Functionality Level)"
+    },
+    "speedClass": {
+      "title": "Speed Class",
+      "type": "string",
+      "description": "Activated Speed Class"
+    },
+    "firmware": {
+      "title": "Firmware Version",
+      "type": "string",
+      "description": "Device Firmware Version"
+    },
+    "sbx": {
+      "title": "SBX Version",
+      "type": "string",
+      "description": "Solar Charger Firmware Version"
+    }
+  },
+  "required": [
+    "type",
+    "licence",
+    "speedClass",
+    "firmware",
+    "sbx"
+  ]
+}

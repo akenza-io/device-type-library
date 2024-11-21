@@ -1,0 +1,19 @@
+{
+  "name": "DL-DLR2-004",
+  "version": "1.0.0",
+  "manufacturer": "Decentlab",
+  "url": "https://www.decentlab.com/products/analog-or-digital-sensor-device-for-lorawan",
+  "description": "DLR2-004 is an Analog or Digital Sensor Device that consists of an Analog 4 \u2026 20 mA Sensor.",
+  "author": "Decentlab",
+  "firmwareVersion": "V1.6.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Analog 4-20 mA current"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

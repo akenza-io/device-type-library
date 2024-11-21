@@ -3,6 +3,8 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Time sync",
   "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "time_sync",
   "properties": {
     "syncID": {
       "title": "Sync ID",

@@ -1,0 +1,47 @@
+{
+  "$id": "https://akenza.io/milesight/WT101/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "batteryLevel": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
+    },
+    "installed": {
+      "title": "Installed",
+      "type": "boolean",
+      "description": "Installed",
+      "hideFromKpis": true
+    },
+    "fenestration": {
+      "title": "Fenestration",
+      "type": "string",
+      "description": "Fenestration",
+      "enum": ["NORMAL", "OPEN"],
+      "hideFromKpis": true
+    },
+    "motorCalibration": {
+      "title": "Motor calibration",
+      "type": "string",
+      "description": "Motor calibration",
+      "enum": [
+        "SUCCESS",
+        "OUT_OF_RANGE",
+        "UNINSTALLED",
+        "CALIBRATION_CLEARED",
+        "TEMPERATURE_CONTROL_DISABLED",
+        "UNKOWN"
+      ],
+      "hideFromKpis": true
+    },
+    "freezeProtection": {
+      "title": "Freeze protection",
+      "type": "string",
+      "description": "Freeze protection",
+      "enum": ["NORMAL", "TRIGGERED"],
+      "hideFromKpis": true
+    }
+  }
+}

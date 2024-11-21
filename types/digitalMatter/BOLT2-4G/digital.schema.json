@@ -22,9 +22,5 @@
       "description": "Device state"
     }
   },
-  "required": [
-    "digitalIn",
-    "digitalOut",
-    "devStat"
-  ]
+  "required": ["digitalIn", "digitalOut", "devStat"]
 }

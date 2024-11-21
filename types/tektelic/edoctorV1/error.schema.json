@@ -1,0 +1,16 @@
+{
+  "$id": "https://akenza.io/tektelic/edoctorV1/error.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Error",
+  "type": "object",
+  "topic": "error",
+  "processingType": "uplink_decoder",
+  "properties": {
+    "errors": {
+      "title": "List of errors",
+      "type": "array",
+      "description": "List of errors"
+    }
+  },
+  "required": ["errors"]
+}

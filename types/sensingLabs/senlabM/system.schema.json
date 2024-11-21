@@ -1,0 +1,67 @@
+{
+  "$id": "https://akenza.io/sensingLabs/senlabM/system.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "system",
+  "title": "System",
+  "properties": {
+    "appType": {
+      "title": "App type",
+      "description": "App type",
+      "type": "string",
+      "enum": [
+        "SENLABA",
+        "SENLABD",
+        "SENLABH",
+        "SENLABM",
+        "SENLABO",
+        "SENLABP",
+        "SENLABT",
+        "SENLABV"
+      ]
+    },
+    "firmwareVersion": {
+      "title": "Firmware version",
+      "type": "string",
+      "description": "Firmware version"
+    },
+    "functionMode": {
+      "title": "Function mode",
+      "description": "Function mode",
+      "type": "string",
+      "enum": ["BASIC", "OTHER"]
+    },
+    "logPeriod": {
+      "title": "Log period",
+      "type": "integer",
+      "unit": "s",
+      "description": "Log period"
+    },
+    "randWindow": {
+      "title": "Random window",
+      "type": "integer",
+      "description": "Random window"
+    },
+    "redundancyFactor": {
+      "title": "Redundancy factor",
+      "type": "integer",
+      "description": "Redundancy factor"
+    },
+    "txPeriod": {
+      "title": "TX Period",
+      "type": "integer",
+      "unit": "s",
+      "description": "TX Period"
+    }
+  },
+  "required": [
+    "appType",
+    "firmwareVersion",
+    "functionMode",
+    "logPeriod",
+    "randWindow",
+    "redundancyFactor",
+    "txPeriod"
+  ]
+}

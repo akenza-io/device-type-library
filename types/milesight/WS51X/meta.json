@@ -1,0 +1,14 @@
+{
+  "name": "WS51X",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://github.com/Milesight-IoT/SensorDecoders/tree/main/WS_Series/WS51x",
+  "description": "WS51x is a smart LoRaWAN® wall switch for the local and remote control of lights and electrical appliances. It adopts three standard sizes for most of international wall switch types, which can replace the traditional wall switches directly.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Switch", "Energy Metering"],
+  "outputTopics": ["default"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

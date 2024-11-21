@@ -14,7 +14,5 @@
       "maximum": 255
     }
   },
-  "required": [
-    "vehicleCount"
-  ]
+  "required": ["vehicleCount"]
 }

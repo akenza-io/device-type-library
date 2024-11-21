@@ -28,10 +28,7 @@
       "title": "Digital status",
       "type": "string",
       "description": "Digital status",
-      "enum": [
-        "HIGH",
-        "LOW"
-      ]
+      "enum": ["HIGH", "LOW"]
     },
     "extTrigger": {
       "title": "External trigger",
@@ -44,28 +41,13 @@
       "description": "True if reed has no contact."
     },
     "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
     "humidity": {
-      "title": "Humidity",
-      "unit": "%",
-      "type": "number",
-      "description": "The relative humidity in %",
-      "minimum": 0,
-      "maximum": 100
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
     },
     "light": {
-      "title": "Light",
-      "type": "number",
-      "unit": "lux",
-      "description": "Light value",
-      "minimum": 0,
-      "maximum": 255
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/illuminance/lux"
     }
   }
 }

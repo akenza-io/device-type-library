@@ -1,0 +1,1110 @@
+{
+  "$id": "https://akenza.io/tektelic/edoctor/system.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "System",
+  "processingType": "uplink_decoder",
+  "topic": "system",
+  "type": "object",
+  "properties": {
+    "joinMode": {
+      "title": "Join Mode",
+      "type": "string",
+      "description": "Join Mode",
+      "enum": [
+        "ABP",
+        "OTAA",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "adr": {
+      "title": "Adaptive datarate",
+      "type": "string",
+      "description": "Adaptive datarate",
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "dutyCycle": {
+      "title": "Duty cycle",
+      "type": "string",
+      "description": "Duty cycle",
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "syncWord": {
+      "title": "Sync word",
+      "type": "string",
+      "description": "Sync word",
+      "enum": [
+        "PRIVATE",
+        "PUBLIC",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "risingEdgeEnabled": {
+      "title": "Rising edge enabled",
+      "type": "string",
+      "description": "Rising edge enabled",
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "risingEdgeEnabledEx": {
+      "title": "Rising edge enabled ex",
+      "type": "string",
+      "description": "Rising edge enabled ex",
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "fallingEdgeEnabled": {
+      "title": "Falling edge enabled",
+      "type": "string",
+      "description": "Falling edge enabled",
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "fallingEdgeEnabledEx": {
+      "title": "Falling edge enabled ex",
+      "type": "string",
+      "description": "Falling edge enabled ex",
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "confirmMode": {
+      "title": "Confirm mode",
+      "type": "string",
+      "description": "Confirm mode",
+      "enum": [
+        "UNCONFIRMED",
+        "CONFIRMED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "mode": {
+      "title": "Sensor mode",
+      "type": "string",
+      "description": "Sensor mode",
+      "enum": [
+        "DIGITAL",
+        "ANALOG",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "reportStateEnabled": {
+      "title": "Report state enabled",
+      "type": "string",
+      "description": "Report state enabled",
+      "enum": [
+        "UNCONFIRMED",
+        "CONFIRMED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "reportCountEnabled": {
+      "title": "Report count enabled",
+      "type": "string",
+      "description": "Report count enabled",
+      "enum": [
+        "UNCONFIRMED",
+        "CONFIRMED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "reportStateEnabledEx": {
+      "title": "Report state enabled ex",
+      "type": "string",
+      "description": "Report state enabled ex",
+      "enum": [
+        "OFF",
+        "ON",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "reportCountEnabledEx": {
+      "title": "Report count enabled external",
+      "type": "string",
+      "description": "Report count enabled external",
+      "enum": [
+        "OFF",
+        "ON",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "countType": {
+      "title": "Count type",
+      "type": "integer",
+      "description": "Count type",
+      "hideFromKpis": true
+    },
+    "impactEventThreshold": {
+      "title": "Impact event threshold",
+      "type": "number",
+      "description": "Impact event threshold",
+      "hideFromKpis": true
+    },
+    "accelerationEventThreshold": {
+      "title": "Acceleration event threshold",
+      "type": "number",
+      "description": "Acceleration event threshold",
+      "hideFromKpis": true
+    },
+    "reportPeriodicAlarmEnabled": {
+      "title": "Report periodic alarm enabled",
+      "type": "string",
+      "description": "Report periodic alarm enabled",
+      "enum": [
+        "OFF",
+        "ON",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "reportPeriodicMagnitudeEnabled": {
+      "title": "Report periodic magnitude enabled",
+      "type": "string",
+      "description": "Report periodic magnitude enabled",
+      "enum": [
+        "OFF",
+        "ON",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "reportPeriodicVectorEnabled": {
+      "title": "Report periodic vector enabled",
+      "type": "string",
+      "description": "Report periodic vector enabled",
+      "enum": [
+        "OFF",
+        "ON",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "reportEventMagnitudeEnabled": {
+      "title": "Report periodic magnitude enabled",
+      "type": "string",
+      "description": "Report periodic magnitude enabled",
+      "enum": [
+        "OFF",
+        "ON",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "reportEventVectorEnabled": {
+      "title": "Report periodic vector enabled",
+      "type": "string",
+      "description": "Report periodic vector enabled",
+      "enum": [
+        "OFF",
+        "ON",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "accelerationImpactGracePeriod": {
+      "title": "Acceleration impact grace period",
+      "type": "number",
+      "description": "Acceleration impact grace period",
+      "hideFromKpis": true
+    },
+    "impactThresholdEnabled": {
+      "title": "Impact threshold enabled",
+      "type": "string",
+      "description": "Impact threshold enabled",
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "accelerationThresholdEnabled": {
+      "title": "Acceleration threshold enabled",
+      "type": "string",
+      "description": "Acceleration threshold enabled",
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "xAxisEnabled": {
+      "title": "X-Axis enabled",
+      "type": "string",
+      "description": "X-Axis enabled",
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "yAxisEnabled": {
+      "title": "Y-Axis enabled",
+      "type": "string",
+      "description": "Y-Axis enabled",
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "zAxisEnabled": {
+      "title": "Z-Axis enabled",
+      "type": "string",
+      "description": "Z-Axis enabled",
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "powerOn": {
+      "title": "Power on",
+      "type": "string",
+      "description": "Power on",
+      "enum": [
+        "OFF",
+        "ON",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "accelerometerSampleRate": {
+      "title": "Accelerometer sample rate",
+      "type": "number",
+      "unit": "Hz",
+      "description": "Accelerometer sample rate",
+      "hideFromKpis": true
+    },
+    "accelerometerMeasurementRange": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G",
+      "title": "Accelerometer measurement range",
+      "description": "Accelerometer measurement range",
+      "hideFromKpis": true
+    },
+    "impactAlarmGracePeriod": {
+      "title": "Impact alarm grace period",
+      "type": "number",
+      "description": "Impact alarm grace period",
+      "hideFromKpis": true
+    },
+    "impactAlarmThresholdCount": {
+      "title": "Impact alarm threshold count",
+      "type": "number",
+      "description": "Impact alarm threshold count",
+      "hideFromKpis": true
+    },
+    "impactAlarmThresholdPeriod": {
+      "title": "Impact alarm threshold period",
+      "type": "number",
+      "description": "Impact alarm threshold period",
+      "hideFromKpis": true
+    },
+    "temperatureRelativeHumiditySamplePeriodIdle": {
+      "title": "Temperature relative humidity sample period idle",
+      "type": "number",
+      "description": "Temperature relative humidity sample period idle",
+      "hideFromKpis": true
+    },
+    "temperatureRelativeHumiditySamplePeriodActive": {
+      "title": "Temperature relative humidity sample period active",
+      "type": "number",
+      "description": "Temperature relative humidity sample period active",
+      "hideFromKpis": true
+    },
+    "highTempThreshold": {
+      "title": "High temperature threshold",
+      "type": "number",
+      "description": "High temperature threshold",
+      "hideFromKpis": true
+    },
+    "lowTempThreshold": {
+      "title": "Low temperature threshold",
+      "type": "number",
+      "description": "Low temperature threshold",
+      "hideFromKpis": true
+    },
+    "ambientTemperatureThresholdEnabled": {
+      "title": "Ambient temperature threshold enabled",
+      "type": "string",
+      "description": "Ambient temperature threshold enabled",
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "highRhThreshold": {
+      "title": "High rh threshold",
+      "type": "number",
+      "description": "High rh threshold",
+      "hideFromKpis": true
+    },
+    "lowRhThreshold": {
+      "title": "Low rh threshold",
+      "type": "number",
+      "description": "Low rh threshold",
+      "hideFromKpis": true
+    },
+    "relativeHumidityThresholdEnabled": {
+      "title": "Relative humidity threshold enabled",
+      "type": "string",
+      "description": "Relative humidity threshold enabled",
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "mcuTemperatureSamplePeriodIdle": {
+      "title": "MCU temperature sample period idle",
+      "type": "number",
+      "description": "MCU temperature sample period idle",
+      "hideFromKpis": true
+    },
+    "mcuTemperatureSamplePeriodActive": {
+      "title": "MCU temperature sample period active",
+      "type": "number",
+      "description": "MCU temperature sample period active",
+      "hideFromKpis": true
+    },
+    "highMcuTempThreshold": {
+      "title": "High MCU temperature threshold",
+      "type": "number",
+      "description": "High MCU temperature threshold",
+      "hideFromKpis": true
+    },
+    "lowMcuTempThreshold": {
+      "title": "Low MCU temperature threshold",
+      "type": "number",
+      "description": "Low MCU temperature threshold",
+      "hideFromKpis": true
+    },
+    "mcuTemperatureThresholdEnabled": {
+      "title": "MCU temperature threshold enabled",
+      "type": "string",
+      "description": "MCU temperature threshold enabled",
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "analogSamplePeriodIdle": {
+      "title": "Analog sample period idle",
+      "type": "number",
+      "description": "Analog sample period idle",
+      "hideFromKpis": true
+    },
+    "analogSamplePeriodActive": {
+      "title": "Analog sample period active",
+      "type": "number",
+      "description": "Analog sample period active",
+      "hideFromKpis": true
+    },
+    "highAnalogThreshold": {
+      "title": "High analog threshold",
+      "type": "number",
+      "description": "High analog threshold",
+      "hideFromKpis": true
+    },
+    "lowAnalogThreshold": {
+      "title": "Low analog threshold",
+      "type": "number",
+      "description": "Low analog threshold",
+      "hideFromKpis": true
+    },
+    "analogInputThresholdEnabled": {
+      "title": "Analog input threshold enabled",
+      "type": "string",
+      "description": "Analog input threshold enabled",
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "lightSamplePeriod": {
+      "title": "Light sample period",
+      "type": "number",
+      "description": "Light sample period",
+      "hideFromKpis": true
+    },
+    "lightThreshold": {
+      "title": "Light threshold",
+      "type": "string",
+      "description": "Light threshold",
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "thresholdEnabled": {
+      "title": "Threshold enabled",
+      "type": "number",
+      "description": "Threshold enabled",
+      "hideFromKpis": true
+    },
+    "lightStateReported": {
+      "title": "Light state threshold",
+      "type": "string",
+      "description": "Light state threshold",
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "lightIntensityReported": {
+      "title": "Light state threshold",
+      "type": "string",
+      "description": "Light state threshold",
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "pirGracePeriod": {
+      "title": "Pir grace period",
+      "type": "number",
+      "description": "Pir grace period",
+      "hideFromKpis": true
+    },
+    "pirThreshold": {
+      "title": "Pir threshold",
+      "type": "number",
+      "description": "Pir threshold",
+      "hideFromKpis": true
+    },
+    "pirThresholdPeriod": {
+      "title": "Pir threshold period",
+      "type": "number",
+      "description": "Pir threshold period",
+      "hideFromKpis": true
+    },
+    "motionCountReported": {
+      "title": "Motion count reported",
+      "type": "string",
+      "description": "Motion count reported",
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "motionStateReported": {
+      "title": "Motion state reported",
+      "type": "string",
+      "description": "Motion state reported",
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "eventTransmissionEnabled": {
+      "title": "Event transmission enabled",
+      "type": "string",
+      "description": "Event transmission enabled",
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "transducerEnabled": {
+      "title": "Transducer enabled",
+      "type": "string",
+      "description": "Transducer enabled",
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "postTurnOn": {
+      "title": "Post turn on",
+      "type": "number",
+      "description": "Post turn on",
+      "hideFromKpis": true
+    },
+    "postDisturbance": {
+      "title": "Post disturbance",
+      "type": "number",
+      "description": "Post disturbance",
+      "hideFromKpis": true
+    },
+    "respToDlCommandFormat": {
+      "title": "Response to downlink command format",
+      "type": "string",
+      "description": "Response to downlink command format",
+      "enum": [
+        "INVALIDE_WRITE_RESPONSE_FORMAT",
+        "4_BYTE_CRC",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "externalConnectorCountThreshold": {
+      "title": "External connector count threshold",
+      "type": "number",
+      "description": "External connector count threshold",
+      "hideFromKpis": true
+    },
+    "drNumber": {
+      "title": "DR Number",
+      "type": "number",
+      "description": "DR Number",
+      "hideFromKpis": true
+    },
+    "frequency": {
+      "title": "Frequency",
+      "type": "number",
+      "description": "Frequency",
+      "hideFromKpis": true
+    },
+    "txPower": {
+      "title": "TX Power",
+      "type": "number",
+      "description": "TX Power",
+      "hideFromKpis": true
+    },
+    "loramacMajorVersion": {
+      "title": "Lora MAC major version",
+      "type": "number",
+      "description": "Lora MAC major version",
+      "hideFromKpis": true
+    },
+    "loramacMinorVersion": {
+      "title": "Lora MAC minor version",
+      "type": "number",
+      "description": "Lora MAC minor version",
+      "hideFromKpis": true
+    },
+    "loramacRevision": {
+      "title": "Lora revision",
+      "type": "number",
+      "description": "Lora revision",
+      "hideFromKpis": true
+    },
+    "loramacNetIdMsb": {
+      "title": "Loramac net id msb",
+      "type": "string",
+      "description": "Loramac net id msb",
+      "hideFromKpis": true
+    },
+    "loramacNetIdLsb": {
+      "title": "Loramac net id lsb",
+      "type": "string",
+      "description": "Loramac net id lsb",
+      "hideFromKpis": true
+    },
+    "normalReportPeriod": {
+      "title": "Normal report period",
+      "type": "number",
+      "description": "Normal report period",
+      "hideFromKpis": true
+    },
+    "secondsPerCoreTick": {
+      "title": "Second per core tick",
+      "type": "number",
+      "description": "Second per core tick",
+      "hideFromKpis": true
+    },
+    "tickPerBattery": {
+      "title": "Tick per battery",
+      "type": "number",
+      "description": "Tick per battery",
+      "hideFromKpis": true
+    },
+    "tickPerAmbientTemperature": {
+      "title": "Tick per ambient temperature",
+      "type": "number",
+      "description": "Tick per ambient temperature",
+      "hideFromKpis": true
+    },
+    "tickPerRelativeHumidity": {
+      "title": "Tick per relative humidity",
+      "type": "number",
+      "description": "Tick per relative humidity",
+      "hideFromKpis": true
+    },
+    "tickPerReedSwitch": {
+      "title": "Tick per reed switch",
+      "type": "number",
+      "description": "Tick per reed switch",
+      "hideFromKpis": true
+    },
+    "tickPerLight": {
+      "title": "Tick per Light",
+      "type": "number",
+      "description": "Tick per Light",
+      "hideFromKpis": true
+    },
+    "tickPerAccelerometer": {
+      "title": "Tick per accelerometer",
+      "type": "number",
+      "description": "Tick per accelerometer",
+      "hideFromKpis": true
+    },
+    "tickPerMcuTemperature": {
+      "title": "Tick per mcu temperature",
+      "type": "number",
+      "description": "Tick per mcu temperature",
+      "hideFromKpis": true
+    },
+    "tickPerPir": {
+      "title": "Tick per pir",
+      "type": "number",
+      "description": "Tick per pir",
+      "hideFromKpis": true
+    },
+    "tickPerExternalConnector": {
+      "title": "Tick per external connector",
+      "type": "number",
+      "description": "Tick per external connector",
+      "hideFromKpis": true
+    },
+    "reedSwitchCountThreshold": {
+      "title": "Reed switch count threshold",
+      "type": "number",
+      "description": "Reed switch count threshold",
+      "hideFromKpis": true
+    },
+    "uaReportPeriod": {
+      "title": "UA report period",
+      "type": "number",
+      "description": "UA report period",
+      "hideFromKpis": true
+    },
+    "restReportPeriod": {
+      "title": "Rest report period",
+      "type": "number",
+      "description": "Rest report period",
+      "hideFromKpis": true
+    },
+    "metadataReportPeriod": {
+      "title": "Metadata report period",
+      "type": "number",
+      "description": "Metadata report period",
+      "hideFromKpis": true
+    },
+    "enabled": {
+      "title": "Enabled",
+      "type": "string",
+      "description": "Enabled",
+      "enum": [
+        "DISABLED",
+        "ENABLED",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "gamma": {
+      "title": "Gamma",
+      "type": "number",
+      "description": "Gamma",
+      "hideFromKpis": true
+    },
+    "beta": {
+      "title": "Beta",
+      "type": "number",
+      "description": "Beta",
+      "hideFromKpis": true
+    },
+    "alpha": {
+      "title": "Alpha",
+      "type": "number",
+      "description": "Alpha",
+      "hideFromKpis": true
+    },
+    "a0": {
+      "title": "A0",
+      "type": "number",
+      "description": "A0",
+      "hideFromKpis": true
+    },
+    "a1": {
+      "title": "A1",
+      "type": "number",
+      "description": "A1",
+      "hideFromKpis": true
+    },
+    "a2": {
+      "title": "A2",
+      "type": "number",
+      "description": "A2",
+      "hideFromKpis": true
+    },
+    "btCountThreshold": {
+      "title": "BT count threshold",
+      "type": "number",
+      "description": "BT count threshold",
+      "hideFromKpis": true
+    },
+    "btLimitsHigh": {
+      "title": "BT limits high",
+      "type": "number",
+      "description": "BT limits high",
+      "hideFromKpis": true
+    },
+    "btLimitsLow": {
+      "title": "BT limits low",
+      "type": "number",
+      "description": "BT limits low",
+      "hideFromKpis": true
+    },
+    "btMaLen": {
+      "title": "BT Ma Len",
+      "type": "number",
+      "description": "BT Ma Len",
+      "hideFromKpis": true
+    },
+    "rrWindowSize": {
+      "title": "RR window size",
+      "type": "number",
+      "description": "RR window size",
+      "hideFromKpis": true
+    },
+    "rrLimitsHigh": {
+      "title": "RR limits high",
+      "type": "number",
+      "description": "RR limits high",
+      "hideFromKpis": true
+    },
+    "rrLimitsLow": {
+      "title": "RR limits low",
+      "type": "number",
+      "description": "RR limits low",
+      "hideFromKpis": true
+    },
+    "ceConversionFactor": {
+      "title": "CE conversion factor",
+      "type": "number",
+      "description": "CE conversion factor",
+      "hideFromKpis": true
+    },
+    "ceStatFunction": {
+      "title": "CE stat function",
+      "type": "number",
+      "description": "CE stat function",
+      "hideFromKpis": true
+    },
+    "sampleRate": {
+      "title": "Sample rate",
+      "type": "number",
+      "description": "Sample rate",
+      "hideFromKpis": true
+    },
+    "measurementRange": {
+      "title": "Measurement rate",
+      "type": "number",
+      "description": "Measurement rate",
+      "hideFromKpis": true
+    },
+    "timePercentage": {
+      "title": "Time percentage",
+      "type": "number",
+      "description": "Time percentage",
+      "hideFromKpis": true
+    },
+    "intensity": {
+      "title": "Intensity",
+      "type": "number",
+      "description": "Intensity",
+      "hideFromKpis": true
+    },
+    "rToRwindowAveraging": {
+      "title": "R to R window averaging",
+      "type": "number",
+      "description": "R to R window averaging",
+      "hideFromKpis": true
+    },
+    "rToRgain": {
+      "title": "R to R gain",
+      "type": "number",
+      "description": "R to R gain",
+      "hideFromKpis": true
+    },
+    "rToRpeakAveragingWeightFactor": {
+      "title": "R to R averaging weight factor",
+      "type": "number",
+      "description": "R to R averaging weight factor",
+      "hideFromKpis": true
+    },
+    "rToRpeakThresholdScalingFactor": {
+      "title": "R to R threshold scaling factor",
+      "type": "number",
+      "description": "R to R threshold scaling factor",
+      "hideFromKpis": true
+    },
+    "rToRminimumHoldOff": {
+      "title": "R to R minimum hold off",
+      "type": "number",
+      "description": "R to R minimum hold off",
+      "hideFromKpis": true
+    },
+    "rToRintervalAveragingWeightFactor": {
+      "title": "R to R interval averaging weight factor",
+      "type": "number",
+      "description": "R to R interval averaging weight factor",
+      "hideFromKpis": true
+    },
+    "rToRintervalHoldOffScalingFactor": {
+      "title": "R to R interval hold off scaling factor",
+      "type": "number",
+      "description": "R to R interval hold off scaling factor",
+      "hideFromKpis": true
+    },
+    "hrWindowSize": {
+      "title": "HR window size",
+      "type": "number",
+      "description": "HR window size",
+      "hideFromKpis": true
+    },
+    "hrStepLimitM": {
+      "title": "HR step limit M",
+      "type": "number",
+      "description": "HR step limit M",
+      "hideFromKpis": true
+    },
+    "hrStepLimitS": {
+      "title": "HR step limit S",
+      "type": "number",
+      "description": "HR step limit S",
+      "hideFromKpis": true
+    },
+    "appMajorVersion": {
+      "title": "App major version",
+      "type": "number",
+      "description": "App major version",
+      "hideFromKpis": true
+    },
+    "appMinorVersion": {
+      "title": "App minor version",
+      "type": "number",
+      "description": "App minor version",
+      "hideFromKpis": true
+    },
+    "appRevision": {
+      "title": "App reversion",
+      "type": "number",
+      "description": "App reversion",
+      "hideFromKpis": true
+    },
+    "hallEffectState": {
+      "title": "Hall effect state",
+      "type": "string",
+      "description": "Hall effect state",
+      "enum": [
+        "MAGNET_PRESENT",
+        "MAGNET_ABSENT",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "hallEffectCount": {
+      "title": "Hall effect count",
+      "type": "number",
+      "description": "Hall effect count",
+      "hideFromKpis": true
+    },
+    "impactAlarm": {
+      "title": "Impact alarm",
+      "type": "string",
+      "description": "Impact alarm",
+      "enum": [
+        "IMPACT_ALARM_INACTIVE",
+        "IMPACT_ALARM_ACTIVE",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "impactMagnitude": {
+      "title": "Impact magnitude",
+      "type": "number",
+      "description": "Impact magnitude",
+      "hideFromKpis": true
+    },
+    "accelerationXaxis": {
+      "title": "Acceleration X-Axis",
+      "type": "number",
+      "description": "Acceleration X-Axis",
+      "hideFromKpis": true
+    },
+    "accelerationYaxis": {
+      "title": "Acceleration Y-Axis",
+      "type": "number",
+      "description": "Acceleration Y-Axis",
+      "hideFromKpis": true
+    },
+    "accelerationZaxis": {
+      "title": "Acceleration Z-Axis",
+      "type": "number",
+      "description": "Acceleration Z-Axis",
+      "hideFromKpis": true
+    },
+    "extConnectorState": {
+      "title": "External connector state",
+      "type": "string",
+      "description": "External connector state",
+      "enum": [
+        "LOW",
+        "HIGH",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "extConnectorCount": {
+      "title": "External connector count",
+      "type": "number",
+      "description": "External connector count",
+      "hideFromKpis": true
+    },
+    "extConnectorTotalCount": {
+      "title": "External connector total count",
+      "type": "number",
+      "description": "External connector total count",
+      "hideFromKpis": true
+    },
+    "extConnectorAnalog": {
+      "title": "External connector analog",
+      "type": "number",
+      "description": "External connector analog",
+      "hideFromKpis": true
+    },
+    "mcuTemperature": {
+      "title": "MCU temperature",
+      "type": "number",
+      "description": "MCU temperature",
+      "hideFromKpis": true
+    },
+    "resetReason": {
+      "title": "Reset reason",
+      "type": "string",
+      "description": "Reset reason",
+      "enum": [
+        "PUSH_BUTTON_RESET",
+        "DL_COMMAND_RESET",
+        "INDEPENDENT_WATCHDOG_RESET",
+        "POWER_LOSS_RESET",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "powerLossResetCount": {
+      "title": "Power loss reset count",
+      "type": "number",
+      "description": "Power loss reset count",
+      "hideFromKpis": true
+    },
+    "watchdogResetCount": {
+      "title": "Watchdog reset count",
+      "type": "number",
+      "description": "Watchdog reset count",
+      "hideFromKpis": true
+    },
+    "dlResetCount": {
+      "title": "Downlink reset count",
+      "type": "number",
+      "description": "Downlink reset count",
+      "hideFromKpis": true
+    },
+    "buttonResetCount": {
+      "title": "Button reset count",
+      "type": "number",
+      "description": "Button reset count",
+      "hideFromKpis": true
+    },
+    "lightDetected": {
+      "title": "Light detected",
+      "type": "string",
+      "description": "Light detected",
+      "enum": [
+        "DARK",
+        "BRIGHT",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    },
+    "lightIntensity": {
+      "title": "Light intensity",
+      "type": "number",
+      "description": "Light intensity",
+      "hideFromKpis": true
+    },
+    "motionEventCount": {
+      "title": "Motion event count",
+      "type": "number",
+      "description": "Motion event count",
+      "hideFromKpis": true
+    },
+    "region": {
+      "title": "Region",
+      "type": "string",
+      "description": "Region",
+      "enum": [
+        "EU868",
+        "US916",
+        "AS923",
+        "AU915",
+        "IN865",
+        "CN470",
+        "KR920",
+        "RU864",
+        "DN915",
+        "INVALID"
+      ],
+      "hideFromKpis": true
+    }
+  }
+}

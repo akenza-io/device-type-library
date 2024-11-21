@@ -18,8 +18,10 @@ function readUInt32LE(bytes) {
     (bytes[3] << 24) + (bytes[2] << 16) + (bytes[1] << 8) + bytes[0];
   return value & 0xffffffff;
 }
-
 function isEmpty(obj) {
+  if (obj === undefined) {
+    return true;
+  }
   return Object.keys(obj).length === 0;
 }
 
@@ -77,6 +79,6 @@ function consume(event) {
   }
 
   if (!isEmpty(decoded)) {
-    emit("sample", { decoded, topic: "default" });
+    emit("sample", { data: decoded, topic: "default" });
   }
 }

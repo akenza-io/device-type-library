@@ -1,0 +1,25 @@
+{
+  "$id": "https://akenza.io/xovis/pc2sv5/queue_time.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "queue_time",
+  "title": "Queue time",
+  "properties": {
+    "queueTime": {
+      "title": "Queue time",
+      "description": "Queue time",
+      "type": "number",
+      "unit": "s"
+    },
+    "counterValue": {
+      "title": "Counter value",
+      "description": "Counter value",
+      "type": "number"
+    }
+  },
+  "required": [
+    "queueTime",
+    "counterValue"
+  ]
+}

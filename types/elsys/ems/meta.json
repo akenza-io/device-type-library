@@ -11,7 +11,7 @@
     "Temperature",
     "Humidity",
     "Accelerometer",
-    "Water leak",
+    "Water Leak",
     "Reed"
   ],
   "outputTopics": ["default", "lifecycle", "configuration"],

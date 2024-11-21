@@ -32,11 +32,5 @@
       "description": "Worst feedback"
     }
   },
-  "required": [
-    "great",
-    "good",
-    "mid",
-    "bad",
-    "worst"
-  ]
+  "required": ["great", "good", "mid", "bad", "worst"]
 }

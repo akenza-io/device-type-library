@@ -1,0 +1,26 @@
+{
+  "name": "UC51X",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight.com/iot/product/iot-controller/uc51x",
+  "description": "The UC51X is an IoT control and monitoring device.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Pulse",
+    "GPIO",
+    "Pressure"
+  ],
+  "outputTopics": [
+    "lifecycle",
+    "pressure",
+    "pulse",
+    "rule",
+    "status",
+    "open_duration_valve_1",
+    "open_duration_valve_2"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
