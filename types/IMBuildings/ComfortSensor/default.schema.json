@@ -7,20 +7,10 @@
   "title": "Default",
   "properties": {
     "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
     "humidity": {
-      "title": "Humidity",
-      "unit": "%",
-      "type": "number",
-      "description": "The relative humidity in %",
-      "minimum": 0,
-      "maximum": 100
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
     },
     "presence": {
       "title": "Presence",
@@ -28,18 +18,8 @@
       "type": "boolean"
     },
     "co2": {
-      "title": "CO2",
-      "unit": "ppm",
-      "type": "integer",
-      "description": "Carbon Dioxide in ppm",
-      "minimum": 0,
-      "maximum": 10000
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm"
     }
   },
-  "required": [
-    "temperature",
-    "humidity",
-    "presence",
-    "co2"
-  ]
+  "required": ["temperature", "humidity", "presence", "co2"]
 }

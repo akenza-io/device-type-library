@@ -17,8 +17,5 @@
       "description": "True if reed has no contact."
     }
   },
-  "required": [
-    "reedCount",
-    "open"
-  ]
+  "required": ["reedCount", "open"]
 }

@@ -22,9 +22,5 @@
       "type": "integer"
     }
   },
-  "required": [
-    "input1",
-    "input2",
-    "input3"
-  ]
+  "required": ["input1", "input2", "input3"]
 }

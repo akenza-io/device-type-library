@@ -7,11 +7,7 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": [
-    "Temperature",
-    "Humidity",
-    "Dew point"
-  ],
+  "availableSensors": ["Temperature", "Humidity", "Dew Point"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
   "connectivity": "LORA"

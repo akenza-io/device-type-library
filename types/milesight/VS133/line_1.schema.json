@@ -1,0 +1,30 @@
+{
+  "$id": "https://akenza.io/xovis/VS133/line_1.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "line_1",
+  "title": "Line 1",
+  "properties": {
+    "totalCounterIn": {
+      "title": "Total counter in",
+      "description": "Total counter in",
+      "type": "integer"
+    },
+    "totalCounterOut": {
+      "title": "Total counter out",
+      "description": "Total counter out",
+      "type": "integer"
+    },
+    "periodicCounterIn": {
+      "title": "Periodic counter in",
+      "description": "Periodic counter in",
+      "type": "integer"
+    },
+    "periodicCounterOut": {
+      "title": "Periodic counter out",
+      "description": "Periodic counter out",
+      "type": "integer"
+    }
+  }
+}

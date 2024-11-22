@@ -1,3 +1,17 @@
+function calculateIncrement(lastValue, currentValue) {
+  // Check if current value exists
+  if (currentValue === undefined || Number.isNaN(currentValue)) {
+    return 0;
+  }
+
+  // Init state && Check for the case the counter reseted
+  if (lastValue === undefined || lastValue > currentValue) {
+    lastValue = currentValue;
+  }
+  // Calculate increment
+  return currentValue - lastValue;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
@@ -59,6 +73,11 @@ function consume(event) {
   } else if (volumeVIF === 21) {
     data.volume /= 10;
   }
+
+  const state = event.state || {};
+  data.relativeVolume = calculateIncrement(state.lastVolume, data.volume);
+  state.lastVolume = data.volume;
+
   // Additional functions
   // reserved
   lifecycle.continuousFlow = !!Bits.bitsToUnsigned(bits.substr(129, 1));
@@ -81,4 +100,5 @@ function consume(event) {
   // reserved
   emit("sample", { data, topic });
   emit("sample", { data: lifecycle, topic: "lifecycle" });
+  emit("state", state);
 }

@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/quandify/cubicmeter-1.1-copper/settings.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "settings",
+  "title": "Settings",
+  "properties": {
+    "lorawanReportInterval": {
+      "description": "LoRaWAN report interval",
+      "title": "Describes with what interval the device send a status report uplink.",
+      "type": "number",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "lorawanReportInterval"
+  ]
+}

@@ -7,52 +7,28 @@
   "title": "Default",
   "properties": {
     "light": {
-      "title": "Light",
-      "type": "number",
-      "unit": "lux",
-      "description": "Light value",
-      "minimum": 0,
-      "maximum": 255
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/illuminance/lux"
     },
     "humidity": {
-      "title": "Humidity",
-      "unit": "%",
-      "type": "number",
-      "description": "The relative humidity in %",
-      "minimum": 0,
-      "maximum": 100
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
     },
     "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
     "accX": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G",
       "title": "Acceleration X-Axis",
-      "description": "Acceleration on the X-Axis in gravitational acceleration",
-      "unit": "g",
-      "type": "number",
-      "minimum": -32767,
-      "maximum": 32767
+      "description": "Acceleration on the X-Axis in gravitational acceleration"
     },
     "accY": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G",
       "title": "Acceleration Y-Axis",
-      "description": "Acceleration on the Y-Axis in gravitational acceleration",
-      "unit": "g",
-      "type": "number",
-      "minimum": -32767,
-      "maximum": 32767
+      "description": "Acceleration on the Y-Axis in gravitational acceleration"
     },
     "accZ": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G",
       "title": "Acceleration Z-Axis",
-      "description": "Acceleration on the Z-Axis in gravitational acceleration",
-      "unit": "g",
-      "type": "number",
-      "minimum": -32767,
-      "maximum": 32767
+      "description": "Acceleration on the Z-Axis in gravitational acceleration"
     },
     "gyroX": {
       "title": "X-Gyro velocity",
@@ -101,24 +77,6 @@
       "type": "number",
       "minimum": -32767,
       "maximum": 32767
-    },
-    "latitude": {
-      "title": "Latitude",
-      "description": "Latitude",
-      "unit": "°",
-      "type": "number"
-    },
-    "longitude": {
-      "title": "Longitude",
-      "description": "Longitude",
-      "unit": "°",
-      "type": "number"
-    },
-    "altitude": {
-      "title": "Altitude",
-      "description": "Estimated position error in meters",
-      "unit": "m",
-      "type": "number"
     }
   },
   "required": [
@@ -133,9 +91,6 @@
     "gyroZ",
     "magnX",
     "magnY",
-    "magnZ",
-    "latitude",
-    "longitude",
-    "altitude"
+    "magnZ"
   ]
 }

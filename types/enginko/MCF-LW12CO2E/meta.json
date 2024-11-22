@@ -13,7 +13,7 @@
     "Pressure",
     "VOC",
     "CO2",
-    "Lux"
+    "Light"
   ],
   "outputTopics": ["climate", "time_sync", "lifecycle"],
   "encoding": "HEX",

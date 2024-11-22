@@ -7,16 +7,14 @@
   "title": "Default",
   "properties": {
     "dBAfast": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/soundLevel/dba",
       "title": "dB A-weighting fast",
-      "unit": "dB(A)",
-      "description": "Measurement with fast response",
-      "type": "number"
+      "description": "Measurement with fast response"
     },
     "dBAslow": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/soundLevel/dba",
       "title": "dB A-weighting slow",
-      "unit": "dB(A)",
-      "description": "Measurement with slow response",
-      "type": "number"
+      "description": "Measurement with slow response"
     },
     "dBCfast": {
       "title": "dB C-weighting fast",
@@ -31,10 +29,9 @@
       "type": "number"
     },
     "leqA": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/soundLevel/dba",
       "title": "Leq A-weighting",
-      "unit": "dB(A)",
-      "description": "Average over set Leq time. Between the current measurement and current measurement time minus Leq time.",
-      "type": "number"
+      "description": "Average over set Leq time. Between the current measurement and current measurement time minus Leq time."
     },
     "leqC": {
       "title": "Leq C-weighting",
@@ -43,16 +40,14 @@
       "type": "number"
     },
     "positivePeakHoldA": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/soundLevel/dba",
       "title": "Positive peak hold A-weighting",
-      "unit": "dB(A)",
-      "description": "The highest dB(A) value in the period between previous measurement and current measurement",
-      "type": "number"
+      "description": "The highest dB(A) value in the period between previous measurement and current measurement"
     },
     "negativePeakHoldA": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/soundLevel/dba",
       "title": "Negative peak hold A-weighting",
-      "unit": "dB(A)",
-      "description": "The lowest dB(A) value in the period between previous measurement and current measurement",
-      "type": "number"
+      "description": "The lowest dB(A) value in the period between previous measurement and current measurement"
     },
     "positivePeakHoldC": {
       "title": "Positive peak hold C-weighting",

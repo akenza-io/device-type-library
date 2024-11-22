@@ -26,9 +26,5 @@
       "type": "boolean"
     }
   },
-  "required": [
-    "motion",
-    "occupancy",
-    "occupied"
-  ]
+  "required": ["motion", "occupancy", "occupied"]
 }

@@ -1,0 +1,21 @@
+{
+  "name": "Vicki V4",
+  "version": "1.0.0",
+  "manufacturer": "MClimate",
+  "url": "https://mclimate.eu/products/vicki-lorawan",
+  "description": "With Vicki's multi-room home heating control, you can not only turn on and off the radiators in your house, but adjust the heating power of each of them separately.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V4.0.0",
+  "loraDeviceClass": "C",
+  "availableSensors": [
+    "Temperature",
+    "Humidity"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "raw_payload"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

@@ -1,0 +1,22 @@
+{
+  "$id": "https://akenza.io/milesight/TS301/alarm.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "alarm",
+  "title": "Alarm",
+  "properties": {
+    "alarmChannel1": {
+      "title": "Alarm channel 1",
+      "type": "string",
+      "description": "Alarm message channel 1",
+      "enum": ["THRESHOLD", "THRESHOLD_RELEASE", "MUTATION", "UNKNOWN"]
+    },
+    "alarmChannel2": {
+      "title": "Alarm channel 2",
+      "type": "string",
+      "description": "Alarm message channel 2",
+      "enum": ["THRESHOLD", "THRESHOLD_RELEASE", "MUTATION", "UNKNOWN"]
+    }
+  }
+}

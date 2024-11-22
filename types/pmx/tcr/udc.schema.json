@@ -1,0 +1,38 @@
+{
+  "$id": "https://akenza.io/pmx/tcr/udc.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "udc",
+  "title": "Unfiltered Detections Values",
+  "properties": {
+    "ltrCounter": {
+      "title": "Left-to-right Counts (LTR)",
+      "type": "number",
+      "description": "All objects passed by from left to right in the last measure interval"
+    },
+    "ltrSpeed": {
+      "title": "Avg Speed (LTR)",
+      "type": "number",
+      "unit": "km/h",
+      "description": "Average speed of all objects passed by from left to right in the last measure interval"
+    },
+    "rtlCounter": {
+      "title": "Right-to-left Counts (RTL)",
+      "type": "number",
+      "description": "All objects passed by from left to right in the last measure interval"
+    },
+    "rtlSpeed": {
+      "title": "Avg Speed (RTL)",
+      "type": "number",
+      "unit": "km/h",
+      "description": "Average speed of objects passed by from right to left in the last measure interval"
+    }
+  },
+  "required": [
+    "ltrCounter",
+    "ltrSpeed",
+    "rtlCounter",
+    "rtlSpeed"
+  ]
+}

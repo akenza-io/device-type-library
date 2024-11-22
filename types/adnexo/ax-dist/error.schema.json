@@ -10,11 +10,7 @@
       "title": "Error occurance",
       "description": "Error occurance at following time",
       "type": "string",
-      "enum": [
-        "RESTART",
-        "PARAM_CHANGE",
-        "PARAM_READ"
-      ],
+      "enum": ["RESTART", "PARAM_CHANGE", "PARAM_READ"],
       "hideFromKpis": true
     },
     "errorCode": {
@@ -30,8 +26,5 @@
       "hideFromKpis": true
     }
   },
-  "required": [
-    "errorOn",
-    "errorCode"
-  ]
+  "required": ["errorOn", "errorCode"]
 }

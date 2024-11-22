@@ -1,0 +1,25 @@
+{
+  "name": "CubicMeter 1.1 Plastic",
+  "version": "1.0.0",
+  "manufacturer": "Quandify",
+  "url": "https://quandify.com/cubicmeter",
+  "description": "Clamp-on water flow meter and leak sensor.",
+  "author": "Quandify AB",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Volume",
+    "Leak"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "settings",
+    "system",
+    "error",
+    "response"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

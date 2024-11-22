@@ -14,7 +14,5 @@
       "maximum": 255
     }
   },
-  "required": [
-    "motion"
-  ]
+  "required": ["motion"]
 }

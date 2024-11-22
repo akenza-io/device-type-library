@@ -46,11 +46,7 @@
       "title": "GPS Mode",
       "type": "string",
       "description": "GPS Mode",
-      "enum": [
-        "OFF",
-        "ONCE",
-        "INTERVAL"
-      ],
+      "enum": ["OFF", "ONCE", "INTERVAL"],
       "hideFromKpis": true
     },
     "sampleCount": {

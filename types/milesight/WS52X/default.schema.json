@@ -7,16 +7,12 @@
   "title": "Default",
   "properties": {
     "voltage": {
-      "title": "Voltage",
-      "description": "Voltage",
-      "type": "number",
-      "unit": "V"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt"
     },
     "power": {
-      "title": "Power",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activePower/watt",
       "description": "Active power",
-      "type": "number",
-      "unit": "W"
+      "title": "Power"
     },
     "factor": {
       "title": "Factor",
@@ -31,19 +27,13 @@
       "unit": "Wh"
     },
     "current": {
-      "title": "Current",
-      "description": "Current",
-      "type": "number",
-      "unit": "mA"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/milliAmpere"
     },
     "state": {
       "title": "State",
       "description": "Plug state",
       "type": "string",
-      "enum": [
-        "OPEN",
-        "CLOSED"
-      ]
+      "enum": ["OPEN", "CLOSED"]
     }
   },
   "required": [

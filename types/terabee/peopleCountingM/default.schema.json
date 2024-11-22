@@ -21,8 +21,5 @@
       "maximum": 65535
     }
   },
-  "required": [
-    "fw",
-    "bw"
-  ]
+  "required": ["fw", "bw"]
 }

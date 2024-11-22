@@ -1,0 +1,34 @@
+{
+  "$id": "https://akenza.io/alphaOmegaTechnology/klaxV2/register_search.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "register_search",
+  "title": "Register search",
+  "properties": {
+    "register1ID": {
+      "title": "Register 1 ID",
+      "type": "string",
+      "description": "Register 1 ID",
+      "hideFromKpis": true
+    },
+    "register2ID": {
+      "title": "Register 2 ID",
+      "type": "string",
+      "description": "Register 2 ID",
+      "hideFromKpis": true
+    },
+    "register3ID": {
+      "title": "Register 3 ID",
+      "type": "string",
+      "description": "Register 3 ID",
+      "hideFromKpis": true
+    },
+    "register4ID": {
+      "title": "Register 4 ID",
+      "type": "string",
+      "description": "Register 4 ID",
+      "hideFromKpis": true
+    }
+  }
+}

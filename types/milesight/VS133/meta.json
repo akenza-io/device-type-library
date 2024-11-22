@@ -1,0 +1,24 @@
+{
+  "name": "VS133",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight.com/iot/product/lorawan-sensor/vs133",
+  "description": "VS133 is a sensor that uses second-generation ToF technology to accurately count people. This technology provides more precise depth maps and longer detection distances while maintaining an excellent privacy protection. The advanced ToF technology combined with an AI algorithm enables the sensor to handle complex scenes and distinguish non-human objects with up to 99.8% accuracy.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "People",
+    "Dwell time"
+  ],
+  "outputTopics": [
+    "line_1",
+    "line_2",
+    "line_3",
+    "line_4",
+    "dwell_time",
+    "region_count"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

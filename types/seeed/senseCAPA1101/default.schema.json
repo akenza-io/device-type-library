@@ -87,7 +87,5 @@
       "maximum": 100
     }
   },
-  "required": [
-    "objectDetected1"
-  ]
+  "required": ["objectDetected1"]
 }
