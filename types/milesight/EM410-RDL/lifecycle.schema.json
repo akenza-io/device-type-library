@@ -1,11 +1,16 @@
 {
-  "$id": "https://akenza.io/milesight/EM400-UDL/lifecycle.schema.json",
+  "$id": "https://akenza.io/milesight/EM410-RDL/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "lifecycle",
   "title": "Lifecycle",
   "properties": {
+    "resetEvent": {
+      "title": "Battery charge",
+      "type": "boolean",
+      "description": "The battery charge in percent."
+    },
     "batteryLevel": {
       "type": "integer",
       "minimum": 0,
@@ -15,7 +20,5 @@
       "unit": "%"
     }
   },
-  "required": [
-    "batteryLevel"
-  ]
+  "required": ["batteryLevel"]
 }
