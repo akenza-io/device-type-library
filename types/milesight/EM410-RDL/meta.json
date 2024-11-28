@@ -7,8 +7,16 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": ["Temperature", "Distance"],
-  "outputTopics": ["default", "lifecycle"],
+  "availableSensors": [
+    "Temperature",
+    "Distance"
+  ],
+  "outputTopics": [
+    "alert",
+    "default",
+    "lifecycle",
+    "system"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

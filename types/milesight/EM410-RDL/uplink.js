@@ -360,14 +360,22 @@ if (!Object.assign) {
   });
 }
 
+function isEmpty(obj) {
+  if (obj === undefined) {
+    return true;
+  }
+  return Object.keys(obj).length === 0;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bytes = Hex.hexToBytes(payload);
   const decoded = {};
   const lifecycle = {};
   const system = {};
+  const alert = {};
 
-  for (let i = 0; i < bytes.length; ) {
+  for (let i = 0; i < bytes.length;) {
     const channelId = bytes[i++];
     const channelType = bytes[i++];
 
@@ -437,26 +445,16 @@ function consume(event) {
     }
     // DISTANCE ALARM
     else if (channelId === 0x84 && channelType === 0x82) {
-      const data = {};
-      data.distance = readInt16LE(bytes.slice(i, i + 2));
-      data.distanceAlarm = readDistanceAlarm(bytes[i + 2]);
+      decoded.distance = readInt16LE(bytes.slice(i, i + 2));
+      alert.distanceAlarm = readDistanceAlarm(bytes[i + 2]);
       i += 3;
-
-      decoded.distance = data.distance;
-      decoded.event = decoded.event || [];
-      decoded.event.push(data);
     }
     // DISTANCE MUTATION ALARM
     else if (channelId === 0x94 && channelType === 0x82) {
-      const data = {};
-      data.distance = readInt16LE(bytes.slice(i, i + 2));
-      data.distanceMutation = readInt16LE(bytes.slice(i + 2, i + 4));
-      data.distanceAlarm = readDistanceAlarm(bytes[i + 4]);
+      decoded.distance = readInt16LE(bytes.slice(i, i + 2));
+      decoded.distanceMutation = readInt16LE(bytes.slice(i + 2, i + 4));
+      alert.distanceAlarm = readDistanceAlarm(bytes[i + 4]);
       i += 5;
-
-      decoded.distance = data.distance;
-      decoded.event = decoded.event || [];
-      decoded.event.push(data);
     }
     // DISTANCE EXCEPTION ALARM
     else if (channelId === 0xb4 && channelType === 0x82) {
@@ -465,20 +463,16 @@ function consume(event) {
       const distanceException = readDistanceException(bytes[i + 2]);
       i += 3;
 
-      const data = {};
       if (distanceRawData === 0xfffd || distanceRawData === 0xffff) {
         // IGNORE NO TARGET AND SENSOR EXCEPTION
       } else {
-        data.distance = distanceValue;
+        decoded.distance = distanceValue;
       }
-      data.distanceException = distanceException;
-
-      decoded.event = decoded.event || [];
-      decoded.event.push(data);
+      alert.distanceException = distanceException;
     }
     // HISTORY
     else if (channelId === 0x20 && channelType === 0xce) {
-      const timestamp = readUInt32LE(bytes.slice(i, i + 4));
+      const timestamp = new Date(readUInt32LE(bytes.slice(i, i + 4)) * 1000);
       const distanceRawData = readUInt16LE(bytes.slice(i + 4, i + 6));
       const distanceValue = readInt16LE(bytes.slice(i + 4, i + 6));
       const temperatureRawData = readUInt16LE(bytes.slice(i + 6, i + 8));
@@ -487,48 +481,53 @@ function consume(event) {
       const eventValue = readUInt8(bytes[i + 10]);
       i += 11;
 
-      const data = {};
-      data.timestamp = timestamp;
+      const historicData = {};
+      const historicAlert = {};
       if (distanceRawData === 0xfffd) {
-        data.distanceException = "NO_TARGET";
+        historicAlert.distanceException = "NO_TARGET";
       } else if (distanceRawData === 0xffff) {
-        data.distanceException = "SENSOR_EXCEPTION";
+        historicAlert.distanceException = "SENSOR_EXCEPTION";
       } else if (distanceRawData === 0xfffe) {
-        data.distanceException = "DISABLED";
+        historicAlert.distanceException = "DISABLED";
       } else {
-        data.distance = distanceValue;
+        historicData.distance = distanceValue;
       }
 
       if (temperatureRawData === 0xfffe) {
-        data.temperatureException = "DISABLED";
+        historicAlert.temperatureException = "DISABLED";
       } else if (temperatureRawData === 0xffff) {
-        data.temperatureException = "SENSOR_EXCEPTION";
+        historicAlert.temperatureException = "SENSOR_EXCEPTION";
       } else {
-        data.temperature = temperatureValue;
+        historicData.temperature = temperatureValue;
       }
 
       const historicEvent = readHistoryEvent(eventValue);
       if (historicEvent.length > 0) {
-        data.historicEvent = historicEvent;
+        historicAlert.historicEvent = historicEvent;
       }
       if (historicEvent.indexOf("MUTATION_ALARM") !== -1) {
-        data.distanceMutation = mutation;
+        historicData.distanceMutation = mutation;
       }
 
-      decoded.history = decoded.history || [];
-      decoded.history.push(data);
+      if (!isEmpty(historicAlert)) {
+        emit("sample", { data: historicAlert, topic: "alert", timestamp });
+      }
+
+      if (!isEmpty(historicData)) {
+        emit("sample", { data: decoded, topic: "default", timestamp });
+      }
     }
     // DOWNLINK RESPONSE
     else if (channelId === 0xfe) {
       const result = handleDownlinkResponse(channelType, bytes, i);
-      Object.assign(decoded, result.data);
       i = result.offset;
+      emit("sample", { data: result.data, topic: "downlink_response" });
     }
     // DOWNLINK RESPONSE
     else if (channelId === 0xf8) {
       const result = handleDownlinkResponseExt(channelType, bytes, i);
-      Object.assign(decoded, result.data);
       i = result.offset;
+      emit("sample", { data: result.data, topic: "downlink_response" });
     } else {
       break;
     }

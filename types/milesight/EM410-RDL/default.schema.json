@@ -7,19 +7,27 @@
   "title": "Default",
   "properties": {
     "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
     "distance": {
-      "title": "Distance",
-      "unit": "cm",
-      "type": "number",
-      "description": "Distance measured between the sensor and the surface"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm"
+    },
+    "distanceMutation": {
+      "title": "Distance mutation",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm"
+    },
+    "position": {
+      "title": "Position",
+      "description": "Position",
+      "type": "string",
+      "enum": [
+        "NORMAL",
+        "TILT"
+      ],
+      "hideFromKpis": true
     }
   },
-  "required": ["temperature", "distance"]
+  "required": [
+    "distance"
+  ]
 }
