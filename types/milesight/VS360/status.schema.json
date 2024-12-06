@@ -1,0 +1,67 @@
+{
+  "$id": "https://akenza.io/milesight/VS360/status.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "status",
+  "title": "Status",
+  "properties": {
+    "deviceStatus": {
+      "title": "Device status",
+      "type": "string",
+      "description": "Device status",
+      "hideFromKpis": true
+    },
+    "ipsoVersion": {
+      "title": "IPSO version",
+      "type": "string",
+      "description": "IPSO version",
+      "hideFromKpis": true
+    },
+    "serialNumber": {
+      "title": "Serial number",
+      "type": "string",
+      "description": "Serial number",
+      "hideFromKpis": true
+    },
+    "hardwareVersion": {
+      "title": "Hardware version",
+      "type": "string",
+      "description": "Hardware version",
+      "hideFromKpis": true
+    },
+    "firmwareVersion": {
+      "title": "Firmware version",
+      "type": "string",
+      "description": "Firmware version",
+      "hideFromKpis": true
+    },
+    "tslVersion": {
+      "title": "TSL version",
+      "type": "string",
+      "description": "TSL version",
+      "hideFromKpis": true
+    },
+    "powerStatus": {
+      "title": "Power status",
+      "type": "string",
+      "description": "Power status",
+      "enum": [
+        "BATTERY_SUPPLY",
+        "EXTERNAL_POWER_SUPPLY",
+        "BATTERY_CHARGING",
+        "UNKNOWN"
+      ],
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "deviceStatus",
+    "powerStatus",
+    "ipsoVersion",
+    "serialNumber",
+    "hardwareVersion",
+    "firmwareVersion",
+    "tslVersion"
+  ]
+}

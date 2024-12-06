@@ -1,0 +1,51 @@
+{
+  "$id": "https://akenza.io/milesight/WT201/alert.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "alert",
+  "title": "Alert",
+  "properties": {
+    "temperatureAlarm": {
+      "title": "Temperature alert",
+      "type": "string",
+      "description": "Temperature alert",
+      "enum": [
+        "EMERGENCY_HEATING_TIMEOUT_ALARM",
+        "AUXILIARY_HEATING_TIMEOUT_ALARM",
+        "PERSISTENT_LOW_TEMPERATURE_ALARM",
+        "PERSISTENT_LOW_TEMPERATURE_ALARM_RELEASE",
+        "PERSISTENT_HIGH_TEMPERATURE_ALARM",
+        "PERSISTENT_HIGH_TEMPERATURE_ALARM_RELEASE",
+        "FREEZE_PROTECTION_ALARM",
+        "FREEZE_PROTECTION_ALARM_RELEASE",
+        "THRESHOLD_ALARM",
+        "THRESHOLD_ALARM_RELEASE",
+        "UKNOWN"
+      ],
+      "hideFromKpis": true
+    },
+    "temperatureException": {
+      "title": "Temperature exception",
+      "type": "string",
+      "description": "Temperature exception",
+      "enum": [
+        "READ_FAILED",
+        "OUT_OF_RANGE",
+        "UKNOWN"
+      ],
+      "hideFromKpis": true
+    },
+    "humidityException": {
+      "title": "Humidity exception",
+      "type": "string",
+      "description": "Humidity exception",
+      "enum": [
+        "READ_FAILED",
+        "OUT_OF_RANGE",
+        "UKNOWN"
+      ],
+      "hideFromKpis": true
+    }
+  }
+}

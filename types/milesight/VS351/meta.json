@@ -1,0 +1,21 @@
+{
+  "name": "VS351",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight.com/iot/product/lorawan-sensor/vs351",
+  "description": "Utilizing thermopile and radar technologies, it counts people passing through designated areas in and out.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "People Counter"
+  ],
+  "outputTopics": [
+    "climate",
+    "people_flow",
+    "lifecycle",
+    "status"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

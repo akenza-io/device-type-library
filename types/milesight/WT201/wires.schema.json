@@ -1,0 +1,69 @@
+{
+  "$id": "https://akenza.io/milesight/WT201/wires.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "wires",
+  "title": "Wires",
+  "properties": {
+    "y1Status": {
+      "title": "Y1 status",
+      "type": "integer",
+      "description": "Y1 status",
+      "hideFromKpis": true
+    },
+    "y2GlStatus": {
+      "title": "Y2GL status",
+      "type": "integer",
+      "description": "Y2GL status",
+      "hideFromKpis": true
+    },
+    "w1Status": {
+      "title": "W1 status",
+      "type": "integer",
+      "description": "W1 status",
+      "hideFromKpis": true
+    },
+    "w2AuxStatus": {
+      "title": "W2 Aux status",
+      "type": "integer",
+      "description": "W2 Aux status",
+      "hideFromKpis": true
+    },
+    "eStatus": {
+      "title": "E status",
+      "type": "integer",
+      "description": "E status",
+      "hideFromKpis": true
+    },
+    "gStatus": {
+      "title": "G status",
+      "type": "integer",
+      "description": "G status",
+      "hideFromKpis": true
+    },
+    "obStatus": {
+      "title": "OB status",
+      "type": "integer",
+      "description": "OB status",
+      "hideFromKpis": true
+    },
+    "wires": {
+      "title": "Wires",
+      "type": "array",
+      "description": "Active wires",
+      "hideFromKpis": true
+    },
+    "obMode": {
+      "title": "OB Mode",
+      "type": "string",
+      "description": "OB Mode",
+      "enum": [
+        "UKNOWN",
+        "HEAT",
+        "COOL"
+      ],
+      "hideFromKpis": true
+    }
+  }
+}

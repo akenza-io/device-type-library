@@ -1,0 +1,41 @@
+{
+  "$id": "https://akenza.io/milesight/EM410-RDL/alert.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "alert",
+  "title": "Alert",
+  "properties": {
+    "distanceAlarm": {
+      "title": "Distance alarm",
+      "description": "Distance alarm",
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "THRESHOLD_ALARM_RELEASE",
+        "THRESHOLD_ALARM",
+        "MUTATION_ALARM"
+      ],
+      "hideFromKpis": true
+    },
+    "distanceException": {
+      "title": "Distance exception",
+      "description": "Distance exception",
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "BLIND_SPOT_ALARM_RELEASE",
+        "BLIND_SPOT_ALARM",
+        "NO_TARGET",
+        "SENSOR_EXCEPTION"
+      ],
+      "hideFromKpis": true
+    },
+    "historicEvent": {
+      "title": "Historic event",
+      "description": "Historic event",
+      "type": "array",
+      "hideFromKpis": true
+    }
+  }
+}
