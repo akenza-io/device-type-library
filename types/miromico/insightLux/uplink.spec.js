@@ -5,7 +5,7 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Miromico insight Uplink", () => {
+describe("Miromico insight lux Uplink", () => {
   let climateSchema = null;
   let consume = null;
   before((done) => {
@@ -48,7 +48,7 @@ describe("Miromico insight Uplink", () => {
   });
 
   describe("consume()", () => {
-    it("should decode Miromico insight standard payload", () => {
+    it("should decode Miromico insight lux standard payload", () => {
       const data = {
         data: {
           port: 15,
@@ -106,7 +106,7 @@ describe("Miromico insight Uplink", () => {
       consume(data);
     });
 
-    it("should decode Miromico insight settings payload", () => {
+    it("should decode Miromico insight lux settings payload", () => {
       const data = {
         data: {
           port: 15,
@@ -142,7 +142,7 @@ describe("Miromico insight Uplink", () => {
       consume(data);
     });
 
-    it("should decode Miromico insight door payload", () => {
+    it("should decode Miromico insight lux door payload", () => {
       const data = {
         data: {
           port: 15,
