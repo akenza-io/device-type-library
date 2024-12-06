@@ -559,8 +559,6 @@ function decodePayload(fport, payload) {
       if (dataPoint.type === "volumetric_moisture" && dataPoint.error_flag === false) {
         if (volNumber === 0) {
           result.data.moisture = dataPoint.value;
-        } else {
-          result.data[`moisture${volNumber}`] = dataPoint.value;
         }
         volNumber++;
       }
@@ -568,8 +566,6 @@ function decodePayload(fport, payload) {
       if (dataPoint.type === "temperature" && dataPoint.error_flag === false) {
         if (tempNumber === 0) {
           result.data.temperature = dataPoint.value;
-        } else {
-          result.data[`moisture${tempNumber}`] = dataPoint.value;
         }
         tempNumber++;
       }
