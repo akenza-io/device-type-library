@@ -34,6 +34,7 @@
     },
     "firmwareHash": {
       "title": "Firmware hash",
+      "unit": "string",
       "description": "Firmware hash",
       "hideFromKpis": true
     }
