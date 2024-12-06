@@ -1,0 +1,22 @@
+{
+  "$id": "https://akenza.io/vergeSense/cloudConnector/space_availability.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "space_availability",
+  "title": "Space availability",
+  "properties": {
+    "state": {
+      "title": "State",
+      "description": "Represents the availability",
+      "type": "string",
+      "enum": [
+        "OCCUPIED",
+        "UNOCCUPIED"
+      ]
+    }
+  },
+  "required": [
+    "state"
+  ]
+}

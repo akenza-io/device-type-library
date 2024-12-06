@@ -1,0 +1,20 @@
+{
+  "name": "VergeSense Cloud Connector",
+  "version": "1.0.0",
+  "manufacturer": "VergeSense",
+  "url": "https://www.vergesense.com/",
+  "description": "This device monitors desk and small room occupancy. Easily mounted directly onto surfaces, no drilling required.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": [
+    "Motion",
+    "Occupancy"
+  ],
+  "outputTopics": [
+    "occupancy",
+    "space_availability",
+    "space_report"
+  ],
+  "encoding": "JSON",
+  "connectivity": "HTTP"
+}
