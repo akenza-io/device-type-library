@@ -5,7 +5,7 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Milesight VS350 Uplink", () => {
+describe("Milesight VS351 Uplink", () => {
   let peopleFlowSchema = null;
   let consume = null;
 
@@ -41,7 +41,7 @@ describe("Milesight VS350 Uplink", () => {
   });
 
   describe("consume()", () => {
-    it("should decode should decode the Milesight VS350 payload", () => {
+    it("should decode should decode the Milesight VS351 payload", () => {
       const data = {
         data: {
           port: 1,
