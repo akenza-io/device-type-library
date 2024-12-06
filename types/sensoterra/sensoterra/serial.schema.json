@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/sensoterra/sensoterra/serial.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "serial",
+  "title": "Serial",
+  "properties": {
+    "serialNumber": {
+      "title": "Serial number",
+      "type": "string",
+      "description": "Serial number",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "serialNumber"
+  ]
+}
