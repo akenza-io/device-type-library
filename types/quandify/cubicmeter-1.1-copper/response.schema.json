@@ -1,0 +1,45 @@
+{
+  "$id": "https://akenza.io/quandify/cubicmeter-1.1-copper/response.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "response",
+  "title": "Response",
+  "properties": {
+    "fPort": {
+      "title": "From port",
+      "description": "Describes which downlink fPort this response corresponds to.",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "status": {
+      "title": "Status",
+      "description": "If the downlink failed, the response status will tell you why.",
+      "type": "string",
+      "enum": [
+        "OK",
+        "COMMAND_ERROR",
+        "PAYLOAD_ERROR",
+        "VALUE_ERROR"
+      ],
+      "hideFromKpis": true
+    },
+    "type": {
+      "title": "Type",
+      "description": "What type of response content is uploaded? Useful for parsing and debugging.",
+      "type": "string",
+      "enum": [
+        "NONE",
+        "STATUS_REPORT",
+        "HARDWARE_REPORT",
+        "SETTINGS_REPORT"
+      ],
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "fPort",
+    "status",
+    "type"
+  ]
+}

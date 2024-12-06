@@ -8,6 +8,7 @@
   "properties": {
     "chn": {
       "title": "Channel",
+      "type": "number",
       "description": "Channel Value",
       "hideFromKpis": true
     }

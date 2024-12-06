@@ -1,0 +1,52 @@
+{
+  "$id": "https://akenza.io/quandify/cubicmeter-1.1-plastic/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "firmwareVersion": {
+      "title": "Firmware version",
+      "description": "Firmware verison, in semver version formatting",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "hardwareVersion": {
+      "title": "Hardware version",
+      "description": "Can be used to assess if the device is a copper or plastic device, and hardware configuration.",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "appState": {
+      "title": "App state",
+      "description": "In which state is the device is? Metering is the state where the device increments the total volume.",
+      "type": "string",
+      "enum": [
+        "READY",
+        "PIPE_SELECTION",
+        "METERING"
+      ],
+      "hideFromKpis": true
+    },
+    "pipeId": {
+      "title": "Pipe id",
+      "description": "The pipe index refers to the pipe currenly set.",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "pipeType": {
+      "title": "Pipe type",
+      "description": "The pipe type is the name of the pipe index currently set.",
+      "type": "string",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "firmwareVersion",
+    "hardwareVersion",
+    "appState",
+    "pipeId",
+    "pipeType"
+  ]
+}
