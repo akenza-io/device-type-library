@@ -33,31 +33,31 @@
     "periodicUplink": {
       "title": "Periodic uplink",
       "type": "integer",
-      "description": "Its a periodic uplink if the number is 1",
+      "description": "It is a periodic uplink if the number is 1",
       "hideFromKpis": true
     },
     "heartbeatEvent": {
       "title": "Heartbeat event",
       "type": "integer",
-      "description": "Its a heartbeat event if the number is 1",
+      "description": "It is a heartbeat event if the number is 1",
       "hideFromKpis": true
     },
     "temperatureEvent": {
       "title": "Temperature event",
       "type": "integer",
-      "description": "Its a temperature event if the number is 1",
+      "description": "It is a temperature event if the number is 1",
       "hideFromKpis": true
     },
     "humidityEvent": {
       "title": "Humidity event",
       "type": "integer",
-      "description": "Its a humidity event if the number is 1",
+      "description": "It is a humidity event if the number is 1",
       "hideFromKpis": true
     },
     "ambientLightEvent": {
       "title": "Light event",
       "type": "integer",
-      "description": "Its a light event if the number is 1",
+      "description": "It is a light event if the number is 1",
       "hideFromKpis": true
     },
     "temperature": {
