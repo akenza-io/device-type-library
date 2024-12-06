@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.57.0] - 2024-11-28
+
+### Added
+
+- Lansen - G2-LDP
+- Miromico - Insight MIOTY
+- Sentinum - FebrisCO2 MIOTY
+
 # [1.56.0] - 2024-10-17
 
 ### Added
