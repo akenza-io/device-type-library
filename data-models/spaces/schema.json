@@ -14,7 +14,7 @@
       }
     },
     "occupancy": {
-      "occupancy": {
+      "integer": {
         "title": "Occupancy",
         "description": "Space occupancy. 0 = Unoccupied / 1 = Occupied but movement detected / 2 = Occupied.",
         "type": "integer",
