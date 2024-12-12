@@ -80,6 +80,12 @@ describe("Decentlab IAM Uplink", () => {
       });
 
       utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+        assert.equal(value.lastOccupancyValue, true);
+      });
+
+      utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -87,6 +93,7 @@ describe("Decentlab IAM Uplink", () => {
         assert.equal(value.topic, "occupancy");
         assert.equal(value.data.occupancy, true);
         assert.equal(value.data.occupied, true);
+        assert.equal(value.data.minutesSinceLastOccupied, 0);
 
         utils.validateSchema(value.data, occupancySchema, { throwError: true });
       });
