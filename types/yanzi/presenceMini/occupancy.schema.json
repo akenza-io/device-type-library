@@ -21,7 +21,7 @@
       "maximum": 65535
     },
     "occupancy": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupancy/occupancy"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupancy/integer"
     },
     "occupied": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupied/boolean"
