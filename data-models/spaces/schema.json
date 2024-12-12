@@ -13,6 +13,23 @@
         "type": "boolean"
       }
     },
+    "occupancy": {
+      "occupancy": {
+        "title": "Occupancy",
+        "description": "Space occupancy. 0 = Unoccupied / 1 = Occupied but movement detected / 2 = Occupied.",
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 2
+      }
+    },
+    "minutesSinceLastOccupied": {
+      "minutes": {
+        "title": "Minutes since last occupied",
+        "description": "Minutes since last occupied value was registered",
+        "type": "integer",
+        "unit": "m"
+      }
+    },
     "motion": {
       "count": {
         "measurementType": "akenza/spaces/motion/count",
