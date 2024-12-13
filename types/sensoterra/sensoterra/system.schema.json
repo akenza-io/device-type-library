@@ -1,0 +1,70 @@
+{
+  "$id": "https://akenza.io/sensoterra/sensoterra/system.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "system",
+  "title": "System",
+  "properties": {
+    "historyEnabled": {
+      "title": "History enabled",
+      "description": "History enabled",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "probeMode": {
+      "title": "Probe mode",
+      "description": "Probe mode",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "watchdogEnabled": {
+      "title": "Watchdog enabled",
+      "description": "Watchdog enabled",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "linkCheckMode": {
+      "title": "Link check mode",
+      "description": "Link check mode",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "networkCheckCounterInterval": {
+      "title": "Network check counter interval",
+      "type": "integer",
+      "unit": "s",
+      "description": "Network check counter interval",
+      "hideFromKpis": true
+    },
+    "networkCheckCounterThreshold": {
+      "title": "Network check counter threshold",
+      "type": "integer",
+      "description": "Network check counter threshold",
+      "hideFromKpis": true
+    },
+    "numberRetransmissions": {
+      "title": "Number of retransmissions",
+      "type": "integer",
+      "description": "Number of retransmissions",
+      "hideFromKpis": true
+    },
+    "sleepInterval": {
+      "title": "Sleep interval",
+      "type": "integer",
+      "unit": "s",
+      "description": "Sleep interval",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "historyEnabled",
+    "probeMode",
+    "watchdogEnabled",
+    "linkCheckMode",
+    "networkCheckCounterInterval",
+    "networkCheckCounterThreshold",
+    "numberRetransmissions",
+    "sleepInterval"
+  ]
+}

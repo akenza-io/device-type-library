@@ -1,0 +1,40 @@
+{
+  "$id": "https://akenza.io/sensoterra/sensoterra/uplink.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "uplink",
+  "title": "Uplink",
+  "properties": {
+    "totalNumberUplinks": {
+      "title": "Total number of uplinks",
+      "type": "integer",
+      "description": "Total number of uplinks",
+      "hideFromKpis": true
+    },
+    "totalNumberUplinksSF12": {
+      "title": "Total number of uplinks SF12",
+      "type": "integer",
+      "description": "Total number of uplinks SF12",
+      "hideFromKpis": true
+    },
+    "totalNumberUplinksSF11": {
+      "title": "Total number of uplinks SF11",
+      "type": "integer",
+      "description": "Total number of uplinks SF11",
+      "hideFromKpis": true
+    },
+    "totalNumberUplinksSF10": {
+      "title": "Total number of uplinks SF10",
+      "type": "integer",
+      "description": "Total number of uplinks SF10",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "totalNumberUplinks",
+    "totalNumberUplinksSF12",
+    "totalNumberUplinksSF11",
+    "totalNumberUplinksSF10"
+  ]
+}
