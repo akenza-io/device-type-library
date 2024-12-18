@@ -49,6 +49,12 @@ describe("Elsys eye uplink", () => {
       };
 
       utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+        assert.equal(value.lastOccupancyValue, true);
+      });
+
+      utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -56,6 +62,7 @@ describe("Elsys eye uplink", () => {
         assert.equal(value.data.motion, 1);
         assert.equal(value.data.occupancy, 1);
         assert.equal(value.data.occupied, true);
+        assert.equal(value.data.minutesSinceLastOccupied, 0);
 
         utils.validateSchema(value.data, occupancySchema, { throwError: true });
       });
@@ -96,6 +103,12 @@ describe("Elsys eye uplink", () => {
       });
 
       utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+        assert.equal(value.lastOccupancyValue, true);
+      });
+
+      utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -103,6 +116,7 @@ describe("Elsys eye uplink", () => {
         assert.equal(value.data.motion, 0);
         assert.equal(value.data.occupancy, 2);
         assert.equal(value.data.occupied, true);
+        assert.equal(value.data.minutesSinceLastOccupied, 0);
 
         utils.validateSchema(value.data, occupancySchema, { throwError: true });
       });

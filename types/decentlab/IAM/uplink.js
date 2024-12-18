@@ -75,8 +75,8 @@ const decentlabDecoder = {
                   Math.max(1.0 * x[0] - 1.64 * x[1], 0.59 * x[0] - 0.86 * x[1]),
                   0,
                 ) *
-                  1.5504 *
-                  100,
+                1.5504 *
+                100,
               ) / 100
             );
           },
@@ -205,6 +205,7 @@ function consume(event) {
   const sample = decentlabDecoder.decode(payload);
   const data = {};
   const lifecycle = {};
+  const occupancy = {};
 
   data.temperature = sample.air_temperature;
   data.humidity = sample.air_humidity;
@@ -243,14 +244,31 @@ function consume(event) {
   }
 
   if (data.pir !== 0) {
-    emit("sample", {
-      data: { occupancy: true, occupied: true },
-      topic: "occupancy",
-    });
+    occupancy.occupancy = true;
+    occupancy.occupied = true;
   } else {
-    emit("sample", {
-      data: { occupancy: false, occupied: false },
-      topic: "occupancy",
-    });
+    occupancy.occupancy = false;
+    occupancy.occupied = false;
   }
+
+  // Warm desk 
+  const time = new Date().getTime();
+  const state = event.state || {};
+  occupancy.minutesSinceLastOccupied = 0; // Always give out freeSincce for consistancy
+  if (occupancy.occupied) {
+    delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
+  } else if (state.lastOccupancyTimestamp !== undefined) {
+    occupancy.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
+  } else if (state.lastOccupancyValue) { //
+    state.lastOccupancyTimestamp = time; // Start with first no occupancy
+  }
+
+  if (Number.isNaN(occupancy.minutesSinceLastOccupied)) {
+    occupancy.minutesSinceLastOccupied = 0;
+  }
+  state.lastOccupancyValue = occupancy.occupied;
+  emit("state", state);
+  //
+
+  emit("sample", { data: occupancy, topic: "occupancy" });
 }

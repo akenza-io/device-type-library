@@ -119,6 +119,7 @@ describe("Yanzi Presence Mini Sensor Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value, "object");
 
+        assert.equal(value.lastOccupancyValue, true);
         assert.equal(value.lastMotion, 24873);
       });
 

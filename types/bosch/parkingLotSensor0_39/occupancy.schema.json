@@ -7,17 +7,17 @@
   "title": "Occupancy",
   "properties": {
     "occupancy": {
-      "title": "Occupancy",
-      "description": "Space occupancy. 0 = Unoccupied / 1 = Occupied.",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 1
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupancy/integer"
     },
     "occupied": {
-      "title": "Occupied",
-      "description": "Space occupancy. false = Unoccupied / true = Occupied.",
-      "type": "boolean"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupied/boolean"
+    },
+    "minutesSinceLastOccupied": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/minutesSinceLastOccupied/minutes"
     }
   },
-  "required": ["occupancy", "occupied"]
+  "required": [
+    "occupancy",
+    "occupied"
+  ]
 }

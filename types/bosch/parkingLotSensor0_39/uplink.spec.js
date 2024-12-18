@@ -39,6 +39,12 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
       };
 
       utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+        assert.equal(value.lastOccupancyValue, false);
+      });
+
+      utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -59,6 +65,12 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
           payloadHex: "01",
         },
       };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+        assert.equal(value.lastOccupancyValue, true);
+      });
 
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");

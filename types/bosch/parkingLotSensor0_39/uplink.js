@@ -8,6 +8,26 @@ function consume(event) {
   if (port === 1 || port === 2) {
     occupancy.occupancy = Bits.bitsToUnsigned(bits.substr(0, 8));
     occupancy.occupied = !!occupancy.occupancy;
+
+    // Warm desk 
+    const time = new Date().getTime();
+    const state = event.state || {};
+    occupancy.minutesSinceLastOccupied = 0; // Always give out freeSincce for consistancy
+    if (occupancy.occupied) {
+      delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
+    } else if (state.lastOccupancyTimestamp !== undefined) {
+      occupancy.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
+    } else if (state.lastOccupancyValue) { //
+      state.lastOccupancyTimestamp = time; // Start with first no occupancy
+    }
+
+    if (Number.isNaN(occupancy.minutesSinceLastOccupied)) {
+      occupancy.minutesSinceLastOccupied = 0;
+    }
+    state.lastOccupancyValue = occupancy.occupied;
+    emit("state", state);
+    //
+
     if (payload.length > 2) {
       data.temperature = Bits.bitsToSigned(bits.substr(8, 8));
       emit("sample", { data, topic: "lifecycle" });

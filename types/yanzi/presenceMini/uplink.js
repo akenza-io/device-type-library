@@ -46,7 +46,23 @@ function consume(event) {
         sample.occupied = false;
       }
 
+      // Warm desk 
+      const time = new Date().getTime();
+      sample.minutesSinceLastOccupied = 0; // Always give out freeSincce for consistancy
+      if (sample.occupied) {
+        delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
+      } else if (state.lastOccupancyTimestamp !== undefined) {
+        sample.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
+      } else if (state.lastOccupancyValue) { //
+        state.lastOccupancyTimestamp = time; // Start with first no occupancy
+      }
+
+      if (Number.isNaN(sample.minutesSinceLastOccupied)) {
+        sample.minutesSinceLastOccupied = 0;
+      }
+      state.lastOccupancyValue = sample.occupied;
       emit("state", state);
+      //
     }
 
     if (Object.keys(sample).length > 0) {
