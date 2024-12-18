@@ -1,0 +1,22 @@
+{
+  "name": "VS360",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight.com/iot/product/lorawan-sensor/vs360",
+  "description": "With bi-directional detection using dual PIR sensors, the passage people counter brings applicable accuracy and redefines the way you track foot traffic in a cost-effective way.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "People Counter"
+  ],
+  "outputTopics": [
+    "event",
+    "people_flow",
+    "lifecycle",
+    "status",
+    "system"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

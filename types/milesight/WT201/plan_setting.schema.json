@@ -1,0 +1,68 @@
+{
+  "$id": "https://akenza.io/milesight/WT201/plan_setting.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "plan_setting",
+  "title": "Plan setting",
+  "properties": {
+    "type": {
+      "title": "Type of the plan",
+      "type": "string",
+      "description": "Type of the plan",
+      "enum": [
+        "UKNOWN",
+        "WAKE",
+        "AWAY",
+        "HOME",
+        "SLEEP"
+      ],
+      "hideFromKpis": true
+    },
+    "temperatureCtlMode": {
+      "title": "Temperature control mode",
+      "type": "string",
+      "description": "Temperature control mode",
+      "enum": [
+        "HEAT",
+        "EM_HEAT",
+        "COOL",
+        "AUTO",
+        "UKNOWN"
+      ],
+      "hideFromKpis": true
+    },
+    "fanMode": {
+      "title": "Fan mode",
+      "type": "string",
+      "description": "Fan mode",
+      "enum": [
+        "AUTO",
+        "UKNOWN",
+        "ON",
+        "CIRCULATE",
+        "DISABLE"
+      ],
+      "hideFromKpis": true
+    },
+    "targetTemperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "description": "The temperature target in °C.",
+      "title": "Temperature target",
+      "hideFromKpis": true
+    },
+    "temperatureError": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "description": "The temperature target in °C.",
+      "title": "Temperature target",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "type",
+    "temperatureCtlMode",
+    "fanMode",
+    "targetTemperature",
+    "temperatureError"
+  ]
+}
