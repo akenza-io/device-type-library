@@ -1,5 +1,5 @@
 {
-  "name": "miro Insight",
+  "name": "miro Insight Mioty",
   "version": "1.0.0",
   "manufacturer": "Miromico",
   "url": "https://miromico.ch/en/products/details/miro-Insight",
@@ -19,5 +19,5 @@
     "temperature"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "MIOTY"
 }
