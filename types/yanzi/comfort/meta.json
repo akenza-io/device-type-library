@@ -11,7 +11,7 @@
     "Temperature",
     "Humidity",
     "Pressure",
-    "Noise",
+    "Sound",
     "CO2"
   ],
   "outputTopics": [

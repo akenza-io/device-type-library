@@ -7,11 +7,17 @@
   "author": "Akenza AG",
   "firmwareVersion": "V2.3.5",
   "loraDeviceClass": "A",
-  "availableSensors": ["Motion", "Light", "Humidity", "Temperature", "Noise"],
+  "availableSensors": [
+    "Motion",
+    "Light",
+    "Humidity",
+    "Temperature",
+    "Sound"
+  ],
   "outputTopics": [
     "default",
     "occupancy",
-    "noise",
+    "sound",
     "lifecycle",
     "configuration"
   ],

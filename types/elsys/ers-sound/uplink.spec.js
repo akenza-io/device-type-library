@@ -6,13 +6,13 @@ const utils = require("test-utils");
 const { assert } = chai;
 
 describe("Elsys Sound uplink", () => {
-  let noiseSchema = null;
+  let soundSchema = null;
   let consume = null;
   before((done) => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/noise.schema.json`).then((parsedSchema) => {
-      noiseSchema = parsedSchema;
+    utils.loadSchema(`${__dirname}/sound.schema.json`).then((parsedSchema) => {
+      soundSchema = parsedSchema;
       done();
     });
   });
@@ -76,11 +76,11 @@ describe("Elsys Sound uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "noise");
+        assert.equal(value.topic, "sound");
         assert.equal(value.data.soundPeak, 64);
         assert.equal(value.data.soundAvg, 44);
 
-        utils.validateSchema(value.data, noiseSchema, { throwError: true });
+        utils.validateSchema(value.data, soundSchema, { throwError: true });
       });
 
       consume(data);
