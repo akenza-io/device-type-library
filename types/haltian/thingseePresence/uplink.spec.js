@@ -42,6 +42,13 @@ describe("Haltian Thingsee Presence Sensor Uplink", () => {
           state: 0,
         },
       };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+        assert.equal(value.lastOccupiedValue, false);
+      });
+
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
@@ -50,6 +57,7 @@ describe("Haltian Thingsee Presence Sensor Uplink", () => {
         assert.equal(value.topic, "occupancy");
         assert.equal(value.data.occupancy, 0);
         assert.equal(value.data.occupied, false);
+        assert.equal(value.data.minutesSinceLastOccupied, 0);
 
         utils.validateSchema(value.data, occupancySchema, { throwError: true });
       });

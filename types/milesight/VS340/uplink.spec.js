@@ -40,6 +40,12 @@ describe("Milesight VS340 Uplink", () => {
       };
 
       utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+        assert.equal(value.lastOccupiedValue, true);
+      });
+
+      utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -47,6 +53,7 @@ describe("Milesight VS340 Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.occupancy, 1);
         assert.equal(value.data.occupied, true);
+        assert.equal(value.data.minutesSinceLastOccupied, 0);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
