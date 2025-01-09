@@ -1,0 +1,14 @@
+{
+  "name": "Strips Multi-sensor +Drip Oil",
+  "version": "1.0.0",
+  "manufacturer": "Sensative",
+  "url": "https://sensative.com/sensors/strips-sensors-for-lorawan/strips-multi-sensor-oil-for-lorawan/",
+  "description": "MStrips MS +Drip Oil is an innovative ultra-thin (4mm/0.16in) and wireless multi-sensor for LoRaWAN with water & oil leak detection, developed for smart IoT applications such as heavy machinery, transmission and hydraulics monitoring.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Water Leak", "Oil Leak", "Temperature"],
+  "outputTopics": ["alarm", "default", "lifecycle", "occupancy"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

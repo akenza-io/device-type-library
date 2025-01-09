@@ -40,7 +40,7 @@ describe("Sensative presence Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.badConditionsCounter, 0);
         assert.equal(value.data.stackTxFailRebootCount, 0);
-        assert.equal(value.data.startUpCount, 72);
+        assert.equal(value.data.startupCount, 72);
         assert.equal(value.data.softwareVersion, "2378c84");
         assert.equal(value.data.watchdogCount, 0);
 

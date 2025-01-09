@@ -1,0 +1,25 @@
+{
+  "$id": "https://akenza.io/sensative/ms-drip-oil/occupancy.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "occupancy",
+  "title": "Occupancy",
+  "properties": {
+    "occupancy": {
+      "title": "Occupancy",
+      "description": "Space occupancy. 0 = Unoccupied / 1 = Occupied.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "occupied": {
+      "title": "Occupied",
+      "description": "Space occupancy. false = Unoccupied / true = Occupied.",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "occupancy"
+  ]
+}
