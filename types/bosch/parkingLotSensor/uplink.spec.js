@@ -32,7 +32,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
       utils.expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
-        assert.equal(value.lastOccupancyValue, true);
+        assert.equal(value.lastOccupiedValue, true);
       });
 
       utils.expectEmits((type, value) => {
@@ -53,7 +53,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
     it("should decode the Bosch Parking Lot Sensor payload and start the minutesSinceLastOccupied timer", () => {
       const data = {
         state: {
-          lastOccupancyValue: true
+          lastOccupiedValue: true
         },
         data: {
           port: 2,
@@ -64,7 +64,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
       utils.expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
-        assert.equal(value.lastOccupancyValue, false);
+        assert.equal(value.lastOccupiedValue, false);
         // assert.equal(value.lastOccupancyTimestamp, new Date().getTime());
       });
 
@@ -87,7 +87,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
     it("should decode the Bosch Parking Lot Sensor payload and get the minutesSinceLastOccupied time", () => {
       const data = {
         state: {
-          lastOccupancyValue: true,
+          lastOccupiedValue: true,
           lastOccupancyTimestamp: new Date().setMinutes(new Date().getMinutes() - 20)
         },
         data: {
@@ -99,7 +99,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
       utils.expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
-        assert.equal(value.lastOccupancyValue, false);
+        assert.equal(value.lastOccupiedValue, false);
         // assert.equal(value.lastOccupancyTimestamp, new Date().setMinutes(new Date().getMinutes() - 20));
       });
 
@@ -122,7 +122,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
     it("should decode the Bosch Parking Lot Sensor payload and delete the minutesSinceLastOccupied time", () => {
       const data = {
         state: {
-          lastOccupancyValue: true,
+          lastOccupiedValue: true,
           lastOccupancyTimestamp: new Date().setMinutes(new Date().getMinutes() - 20)
         },
         data: {
@@ -134,7 +134,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
       utils.expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
-        assert.equal(value.lastOccupancyValue, true);
+        assert.equal(value.lastOccupiedValue, true);
       });
 
       utils.expectEmits((type, value) => {

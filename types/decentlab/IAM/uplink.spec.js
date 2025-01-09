@@ -82,7 +82,7 @@ describe("Decentlab IAM Uplink", () => {
       utils.expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
-        assert.equal(value.lastOccupancyValue, true);
+        assert.equal(value.lastOccupiedValue, true);
       });
 
       utils.expectEmits((type, value) => {

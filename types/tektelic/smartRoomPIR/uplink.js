@@ -1186,14 +1186,14 @@ function consume(event) {
       delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
     } else if (state.lastOccupancyTimestamp !== undefined) {
       data.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
-    } else if (state.lastOccupancyValue) { //
+    } else if (state.lastOccupiedValue) { //
       state.lastOccupancyTimestamp = time; // Start with first no occupancy
     }
 
     if (Number.isNaN(data.minutesSinceLastOccupied)) {
       data.minutesSinceLastOccupied = 0;
     }
-    state.lastOccupancyValue = data.occupied;
+    state.lastOccupiedValue = data.occupied;
     emit("state", state);
     topic = "occupancy";
   }

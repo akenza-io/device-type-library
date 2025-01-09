@@ -43,7 +43,7 @@ describe("WS203 Uplink", () => {
       utils.expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
-        assert.equal(value.lastOccupancyValue, false);
+        assert.equal(value.lastOccupiedValue, false);
       });
 
       utils.expectEmits((type, value) => {

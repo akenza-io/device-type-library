@@ -42,14 +42,14 @@ function consume(event) {
         delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
       } else if (state.lastOccupancyTimestamp !== undefined) {
         decoded.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
-      } else if (state.lastOccupancyValue) { //
+      } else if (state.lastOccupiedValue) { //
         state.lastOccupancyTimestamp = time; // Start with first no occupancy
       }
 
       if (Number.isNaN(decoded.minutesSinceLastOccupied)) {
         decoded.minutesSinceLastOccupied = 0;
       }
-      state.lastOccupancyValue = decoded.occupied;
+      state.lastOccupiedValue = decoded.occupied;
       emit("state", state);
       i += 1;
     }
