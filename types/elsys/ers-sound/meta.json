@@ -19,7 +19,8 @@
     "occupancy",
     "sound",
     "lifecycle",
-    "configuration"
+    "configuration",
+    "noise"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

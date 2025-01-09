@@ -17,6 +17,16 @@ describe("Elsys Sound uplink", () => {
     });
   });
 
+  let noiseSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/noise.schema.json`)
+      .then((parsedSchema) => {
+        noiseSchema = parsedSchema;
+        done();
+      });
+  });
+
   let lifecycleSchema = null;
   before((done) => {
     utils
@@ -81,6 +91,18 @@ describe("Elsys Sound uplink", () => {
         assert.equal(value.data.soundAvg, 44);
 
         utils.validateSchema(value.data, soundSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "noise");
+        assert.equal(value.data.soundPeak, 64);
+        assert.equal(value.data.soundAvg, 44);
+
+        utils.validateSchema(value.data, noiseSchema, { throwError: true });
       });
 
       consume(data);
