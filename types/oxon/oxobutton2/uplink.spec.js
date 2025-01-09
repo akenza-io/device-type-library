@@ -56,10 +56,15 @@ describe("Oxon Oxobutton 2 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.button1, 0);
-        assert.equal(value.data.button2, 0);
-        assert.equal(value.data.button3, 0);
-        assert.equal(value.data.button4, 0);
+        assert.equal(value.data.button1Count, 0);
+        assert.equal(value.data.button2Count, 0);
+        assert.equal(value.data.button3Count, 0);
+        assert.equal(value.data.button4Count, 0);
+
+        assert.equal(value.data.button1, false);
+        assert.equal(value.data.button2, false);
+        assert.equal(value.data.button3, false);
+        assert.equal(value.data.button4, false);
 
         assert.equal(value.data.periodicUplink, 0);
         assert.equal(value.data.temperatureEvent, 1);
@@ -67,6 +72,11 @@ describe("Oxon Oxobutton 2 Uplink", () => {
         assert.equal(value.data.heartbeatEvent, 0);
         assert.equal(value.data.humidityEvent, 0);
 
+        assert.equal(value.data.periodicUplink, false);
+        assert.equal(value.data.temperatureEvent, true);
+        assert.equal(value.data.ambientLightEvent, false);
+        assert.equal(value.data.heartbeatEvent, false);
+        assert.equal(value.data.humidityEvent, false);
 
         assert.equal(value.data.light, 0);
         assert.equal(value.data.humidity, 42.72);

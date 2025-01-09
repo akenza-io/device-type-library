@@ -11,15 +11,15 @@ function consume(event) {
     const reason1 = Bits.bitsToUnsigned(bits.substr(8, 8));
     const reason2 = Bits.bitsToUnsigned(bits.substr(16, 8));
 
-    if (reason1 & 0x01) { data.button1 = 1; }
-    if (reason1 & 0x02) { data.button2 = 1; }
-    if (reason1 & 0x04) { data.button3 = 1; }
-    if (reason1 & 0x08) { data.button4 = 1; }
-    if (reason1 & 0x10) { data.heartbeatEvent = 1; }
-    if (reason2 & 0x01) { data.periodicUplink = 1; }
-    if (reason2 & 0x02) { data.temperatureEvent = 1; }
-    if (reason2 & 0x04) { data.humidityEvent = 1; }
-    if (reason2 & 0x08) { data.ambientLightEvent = 1; }
+    if (reason1 & 0x01) { data.button1Count = 1; data.button1 = true; }
+    if (reason1 & 0x02) { data.button2Count = 1; data.button2 = true; }
+    if (reason1 & 0x04) { data.button3Count = 1; data.button3 = true; }
+    if (reason1 & 0x08) { data.button4Count = 1; data.button4 = true; }
+    if (reason1 & 0x10) { data.heartbeatEventCount = 1; data.heartbeatEvent = true; }
+    if (reason2 & 0x01) { data.periodicUplinkCount = 1; data.periodicUplink = true; }
+    if (reason2 & 0x02) { data.temperatureEventCount = 1; data.temperatureEvent = true; }
+    if (reason2 & 0x04) { data.humidityEventCount = 1; data.humidityEvent = true; }
+    if (reason2 & 0x08) { data.ambientLightEventCount = 1; data.ambientLightEvent = true; }
 
     const appMode = Bits.bitsToUnsigned(bits.substr(24, 8));
     switch (appMode) {
