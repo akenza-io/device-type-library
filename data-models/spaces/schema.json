@@ -22,7 +22,7 @@
         "maximum": 2
       }
     },
-    "minutesSinceLastOccupancy": {
+    "minutesSinceLastOccupied": {
       "minutes": {
         "title": "Minutes since last occupied",
         "description": "Minutes since last occupied value was registered",

@@ -9,7 +9,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 - Implemented warm desk logic. Occupancy devices now output an additional time how long they where unoccupied
-- Standardised the occupancy value and added minutesSinceLastOccupancy for the upcoming warmdesk logic
+- Standardised the occupancy value and added minutesSinceLastOccupied for the upcoming warmdesk logic
 
 # [1.57.0] - 2024-11-28
 

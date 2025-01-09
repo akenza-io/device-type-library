@@ -59,7 +59,7 @@ describe("Elsys desk uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.data.minutesSinceLastOccupancy, 0);
+        assert.equal(value.data.minutesSinceLastOccupied, 0);
         assert.equal(value.data.motion, 1);
         assert.equal(value.data.occupancy, 1);
         assert.equal(value.data.occupied, true);
@@ -113,7 +113,7 @@ describe("Elsys desk uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.data.minutesSinceLastOccupancy, 0);
+        assert.equal(value.data.minutesSinceLastOccupied, 0);
         assert.equal(value.data.motion, 5);
         assert.equal(value.data.occupancy, 0);
         assert.equal(value.data.occupancy, false);

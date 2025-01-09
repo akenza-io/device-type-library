@@ -42,7 +42,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
         assert.equal(value.topic, "occupancy");
         assert.equal(value.data.occupancy, 1);
         assert.equal(value.data.occupied, true);
-        assert.equal(value.data.minutesSinceLastOccupancy, 0);
+        assert.equal(value.data.minutesSinceLastOccupied, 0);
 
         utils.validateSchema(value.data, occupancySchema, { throwError: true });
       });
@@ -50,7 +50,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
       consume(data);
     });
 
-    it("should decode the Bosch Parking Lot Sensor payload and start the minutesSinceLastOccupancy timer", () => {
+    it("should decode the Bosch Parking Lot Sensor payload and start the minutesSinceLastOccupied timer", () => {
       const data = {
         state: {
           lastOccupancyValue: true
@@ -76,7 +76,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
         assert.equal(value.topic, "occupancy");
         assert.equal(value.data.occupancy, 0);
         assert.equal(value.data.occupied, false);
-        assert.equal(value.data.minutesSinceLastOccupancy, 0);
+        assert.equal(value.data.minutesSinceLastOccupied, 0);
 
         utils.validateSchema(value.data, occupancySchema, { throwError: true });
       });
@@ -84,7 +84,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
       consume(data);
     });
 
-    it("should decode the Bosch Parking Lot Sensor payload and get the minutesSinceLastOccupancy time", () => {
+    it("should decode the Bosch Parking Lot Sensor payload and get the minutesSinceLastOccupied time", () => {
       const data = {
         state: {
           lastOccupancyValue: true,
@@ -111,7 +111,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
         assert.equal(value.topic, "occupancy");
         assert.equal(value.data.occupancy, 0);
         assert.equal(value.data.occupied, false);
-        assert.equal(value.data.minutesSinceLastOccupancy, 20);
+        assert.equal(value.data.minutesSinceLastOccupied, 20);
 
         utils.validateSchema(value.data, occupancySchema, { throwError: true });
       });
@@ -119,7 +119,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
       consume(data);
     });
 
-    it("should decode the Bosch Parking Lot Sensor payload and delete the minutesSinceLastOccupancy time", () => {
+    it("should decode the Bosch Parking Lot Sensor payload and delete the minutesSinceLastOccupied time", () => {
       const data = {
         state: {
           lastOccupancyValue: true,
@@ -145,7 +145,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
         assert.equal(value.topic, "occupancy");
         assert.equal(value.data.occupancy, 1);
         assert.equal(value.data.occupied, true);
-        assert.equal(value.data.minutesSinceLastOccupancy, 0);
+        assert.equal(value.data.minutesSinceLastOccupied, 0);
 
         utils.validateSchema(value.data, occupancySchema, { throwError: true });
       });

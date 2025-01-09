@@ -26,8 +26,8 @@
     "occupied": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupied/boolean"
     },
-    "minutesSinceLastOccupancy": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/minutesSinceLastOccupancy/minutes"
+    "minutesSinceLastOccupied": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/minutesSinceLastOccupied/minutes"
     }
   },
   "required": [

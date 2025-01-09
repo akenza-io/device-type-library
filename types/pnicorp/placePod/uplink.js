@@ -54,17 +54,17 @@ function consume(event) {
           // Warm desk 
           const time = new Date().getTime();
           const state = event.state || {};
-          data.minutesSinceLastOccupancy = 0; // Always give out minutesSinceLastOccupancy for consistancy
+          data.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
           if (data.occupied) {
             delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
           } else if (state.lastOccupancyTimestamp !== undefined) {
-            data.minutesSinceLastOccupancy = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
+            data.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
           } else if (state.lastOccupancyValue) { //
             state.lastOccupancyTimestamp = time; // Start with first no occupancy
           }
 
-          if (Number.isNaN(data.minutesSinceLastOccupancy)) {
-            data.minutesSinceLastOccupancy = 0;
+          if (Number.isNaN(data.minutesSinceLastOccupied)) {
+            data.minutesSinceLastOccupied = 0;
           }
           state.lastOccupancyValue = data.occupied;
           emit("state", state);
@@ -97,17 +97,17 @@ function consume(event) {
           // Warm desk 
           const time = new Date().getTime();
           const state = event.state || {};
-          data.minutesSinceLastOccupancy = 0; // Always give out minutesSinceLastOccupancy for consistancy
+          data.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
           if (data.occupied) {
             delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
           } else if (state.lastOccupancyTimestamp !== undefined) {
-            data.minutesSinceLastOccupancy = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
+            data.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
           } else if (state.lastOccupancyValue) { //
             state.lastOccupancyTimestamp = time; // Start with first no occupancy
           }
 
-          if (Number.isNaN(data.minutesSinceLastOccupancy)) {
-            data.minutesSinceLastOccupancy = 0;
+          if (Number.isNaN(data.minutesSinceLastOccupied)) {
+            data.minutesSinceLastOccupied = 0;
           }
           state.lastOccupancyValue = data.occupied;
           emit("state", state);
