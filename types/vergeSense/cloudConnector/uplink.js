@@ -3,10 +3,10 @@ function consume(event) {
   const payload = {};
 
   if (event.data.event_type === 'space_report') {
-    topic = 'space_report';
-    payload.personCount = event.data.person_count;
+    topic = 'area_count';
+    payload.peopleCount = event.data.person_count;
 
-    if (payload.personCount > 0) {
+    if (payload.peopleCount > 0) {
       emit('sample', { data: { "occupancy": 2, "occupied": true }, topic: "occupancy" });
     } else {
       emit('sample', { data: { "occupancy": 0, "occupied": false }, topic: "occupancy" });

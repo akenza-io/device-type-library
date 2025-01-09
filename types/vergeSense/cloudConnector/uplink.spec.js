@@ -29,12 +29,12 @@ describe("Verge Sense Uplink", () => {
       });
   });
 
-  let spaceReportSchema = null;
+  let areaCountReportSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/space_report.schema.json`)
+      .loadSchema(`${__dirname}/area_count.schema.json`)
       .then((parsedSchema) => {
-        spaceReportSchema = parsedSchema;
+        areaCountReportSchema = parsedSchema;
         done();
       });
   });
@@ -86,10 +86,10 @@ describe("Verge Sense Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "space_report");
-        assert.equal(value.data.personCount, 0);
+        assert.equal(value.topic, "area_count");
+        assert.equal(value.data.peopleCount, 0);
 
-        utils.validateSchema(value.data, spaceReportSchema, {
+        utils.validateSchema(value.data, areaCountReportSchema, {
           throwError: true,
         });
       });
