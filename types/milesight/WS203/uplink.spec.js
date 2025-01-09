@@ -41,6 +41,12 @@ describe("WS203 Uplink", () => {
       };
 
       utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+        assert.equal(value.lastOccupiedValue, false);
+      });
+
+      utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -48,6 +54,7 @@ describe("WS203 Uplink", () => {
         assert.equal(value.data.humidity, 50.5);
         assert.equal(value.data.occupied, false);
         assert.equal(value.data.occupancy, 0);
+        assert.equal(value.data.minutesSinceLastOccupied, 0);
         assert.equal(value.data.temperature, 30.8);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
