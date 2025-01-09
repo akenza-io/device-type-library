@@ -1,7 +1,10 @@
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
-  const data = { button1: 0, button2: 0, button3: 0, button4: 0, heartbeatEvent: 0, periodicUplink: 0, temperatureEvent: 0, humidityEvent: 0, ambientLightEvent: 0 };
+  const data = {
+    button1Count: 0, button2Count: 0, button3Count: 0, button4Count: 0, heartbeatEventCount: 0, periodicUplinkCount: 0, temperatureEventCount: 0, humidityEventCount: 0, ambientLightEventCount: 0,
+    button1: false, button2: false, button3: false, button4: false, heartbeatEvent: false, periodicUplink: false, temperatureEvent: false, humidityEvent: false, ambientLightEvent: false
+  };
   const lifecycle = {};
 
   if (Bits.bitsToUnsigned(bits.substr(0, 8)) === 57) {
