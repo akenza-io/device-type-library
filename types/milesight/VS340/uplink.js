@@ -25,21 +25,20 @@ function consume(event) {
       // Warm desk 
       const time = new Date().getTime();
       const state = event.state || {};
-      decoded.minutesSinceLastOccupied = 0; // Always give out freeSincce for consistancy
+      decoded.minutesSinceLastOccupancy = 0; // Always give out minutesSinceLastOccupancy for consistancy
       if (decoded.occupied) {
         delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
       } else if (state.lastOccupancyTimestamp !== undefined) {
-        decoded.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
+        decoded.minutesSinceLastOccupancy = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
       } else if (state.lastOccupancyValue) { //
         state.lastOccupancyTimestamp = time; // Start with first no occupancy
       }
 
-      if (Number.isNaN(decoded.minutesSinceLastOccupied)) {
-        decoded.minutesSinceLastOccupied = 0;
+      if (Number.isNaN(decoded.minutesSinceLastOccupancy)) {
+        decoded.minutesSinceLastOccupancy = 0;
       }
       state.lastOccupancyValue = decoded.occupied;
       emit("state", state);
-      //
       i += 1;
     } else {
       break;

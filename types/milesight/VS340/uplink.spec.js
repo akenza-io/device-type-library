@@ -53,7 +53,7 @@ describe("Milesight VS340 Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.occupancy, 1);
         assert.equal(value.data.occupied, true);
-        assert.equal(value.data.minutesSinceLastOccupied, 0);
+        assert.equal(value.data.minutesSinceLastOccupancy, 0);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

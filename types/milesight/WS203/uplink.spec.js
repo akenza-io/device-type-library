@@ -54,7 +54,7 @@ describe("WS203 Uplink", () => {
         assert.equal(value.data.humidity, 50.5);
         assert.equal(value.data.occupied, false);
         assert.equal(value.data.occupancy, 0);
-        assert.equal(value.data.minutesSinceLastOccupied, 0);
+        assert.equal(value.data.minutesSinceLastOccupancy, 0);
         assert.equal(value.data.temperature, 30.8);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
