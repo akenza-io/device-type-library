@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.57.2] - 2025-01-09
+
+### Changed
+
+- Added downlink encoder for the MCLimate Vicki
+
 # [1.57.1] - 2024-12-12
 
 ### Changed
