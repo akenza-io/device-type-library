@@ -7,9 +7,9 @@
   "title": "Lifecycle",
   "properties": {
     "resetEvent": {
-      "title": "Battery charge",
+      "title": "Reset event",
       "type": "boolean",
-      "description": "The battery charge in percent."
+      "description": "Reset event"
     },
     "batteryLevel": {
       "type": "integer",
@@ -20,5 +20,7 @@
       "unit": "%"
     }
   },
-  "required": ["batteryLevel"]
+  "required": [
+    "batteryLevel"
+  ]
 }

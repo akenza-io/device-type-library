@@ -514,7 +514,7 @@ function consume(event) {
       }
 
       if (!isEmpty(historicData)) {
-        emit("sample", { data: decoded, topic: "default", timestamp });
+        emit("sample", { data: historicData, topic: "default", timestamp });
       }
     }
     // DOWNLINK RESPONSE
