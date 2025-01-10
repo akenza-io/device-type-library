@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.58.1] - 2025-01-10
+
+### Added
+
+- Sensoterra - Sensoterra
+- Oxon - Oxobutton 2
+- Verge Sense - Cloud connector
+- Milesight - EM410-RDL
+- Milesight - VS351
+- Milesight - VS360
+- Milesight - WT201
+
+### Changed
+
+- Unifyed noise and sound into sound for topics and available sensors. Also referencing standard schemas
+
 # [1.57.2] - 2025-01-09
 
 ### Changed
