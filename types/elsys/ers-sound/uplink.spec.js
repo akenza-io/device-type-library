@@ -6,15 +6,25 @@ const utils = require("test-utils");
 const { assert } = chai;
 
 describe("Elsys Sound uplink", () => {
-  let noiseSchema = null;
+  let soundSchema = null;
   let consume = null;
   before((done) => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/noise.schema.json`).then((parsedSchema) => {
-      noiseSchema = parsedSchema;
+    utils.loadSchema(`${__dirname}/sound.schema.json`).then((parsedSchema) => {
+      soundSchema = parsedSchema;
       done();
     });
+  });
+
+  let noiseSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/noise.schema.json`)
+      .then((parsedSchema) => {
+        noiseSchema = parsedSchema;
+        done();
+      });
   });
 
   let lifecycleSchema = null;
@@ -69,6 +79,18 @@ describe("Elsys Sound uplink", () => {
         assert.equal(value.data.batteryLevel, 100);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "sound");
+        assert.equal(value.data.soundPeak, 64);
+        assert.equal(value.data.soundAvg, 44);
+
+        utils.validateSchema(value.data, soundSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {

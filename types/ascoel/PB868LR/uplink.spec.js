@@ -95,6 +95,7 @@ describe("Ascoel Push button Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.buttonPushed, true);
+        assert.equal(value.data.buttonPushedNumeric, 1);
         assert.equal(value.data.count, 1);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

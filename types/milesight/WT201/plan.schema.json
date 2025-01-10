@@ -1,0 +1,58 @@
+{
+  "$id": "https://akenza.io/milesight/WT201/plan.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "plan",
+  "title": "Plan",
+  "properties": {
+    "type": {
+      "title": "Type of the plan",
+      "type": "string",
+      "description": "Type of the plan",
+      "enum": [
+        "UKNOWN",
+        "WAKE",
+        "AWAY",
+        "HOME",
+        "SLEEP"
+      ],
+      "hideFromKpis": true
+    },
+    "index": {
+      "title": "Index",
+      "type": "integer",
+      "description": "Rule index",
+      "hideFromKpis": true
+    },
+    "planEnabled": {
+      "title": "Plan status",
+      "type": "string",
+      "description": "Plan status",
+      "enum": [
+        "DISABLED",
+        "ENABLED"
+      ],
+      "hideFromKpis": true
+    },
+    "weekRecycle": {
+      "title": "Week recycle",
+      "type": "array",
+      "description": "Days of the week the rule is active",
+      "hideFromKpis": true
+    },
+    "time": {
+      "title": "Time",
+      "type": "string",
+      "description": "Time the rule is active",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "type",
+    "index",
+    "planEnabled",
+    "weekRecycle",
+    "time"
+  ]
+}

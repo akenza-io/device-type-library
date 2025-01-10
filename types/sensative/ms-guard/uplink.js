@@ -250,16 +250,32 @@ function consume(event) {
   }
 
   if (decoded.presence !== undefined) {
+    const occupancy = {};
     if (decoded.presence === true) {
-      emit("sample", {
-        data: { occupancy: 1, occupied: true },
-        topic: "occupancy",
-      });
+      occupancy.occupancy = 1;
+      occupancy.occupied = true;
     } else {
-      emit("sample", {
-        data: { occupancy: 0, occupied: false },
-        topic: "occupancy",
-      });
+      occupancy.occupancy = 0;
+      occupancy.occupied = false;
     }
+
+    // Warm desk 
+    const time = new Date().getTime();
+    const state = event.state || {};
+    occupancy.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
+    if (occupancy.occupied) {
+      delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
+    } else if (state.lastOccupancyTimestamp !== undefined) {
+      occupancy.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
+    } else if (state.lastOccupiedValue) { //
+      state.lastOccupancyTimestamp = time; // Start with first no occupancy
+    }
+
+    if (Number.isNaN(occupancy.minutesSinceLastOccupied)) {
+      occupancy.minutesSinceLastOccupied = 0;
+    }
+    state.lastOccupiedValue = occupancy.occupied;
+    emit("state", state);
+    emit("sample", { data: occupancy, topic: "occupancy" });
   }
 }

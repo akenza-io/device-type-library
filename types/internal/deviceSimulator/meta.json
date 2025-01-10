@@ -10,11 +10,13 @@
     "Temperature",
     "Humidity",
     "CO2",
-    "Noise",
+    "Sound",
     "Light",
     "Occupancy"
   ],
-  "outputTopics": ["default"],
+  "outputTopics": [
+    "default"
+  ],
   "encoding": "JSON",
   "connectivity": "HTTP"
 }
