@@ -1,0 +1,51 @@
+{
+  "$id": "https://akenza.io/lansen/g2-ldp/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "totalRuntime": {
+      "title": "Total runtime",
+      "unit": "Y",
+      "type": "integer",
+      "description": "Total runtime of the device in years"
+    },
+    "runtime": {
+      "title": "Runtime",
+      "unit": "Y",
+      "type": "integer",
+      "description": "Runtime of the device in years since the last reset"
+    },
+    "batteryVoltage": {
+      "title": "Battery voltage",
+      "unit": "V",
+      "type": "number",
+      "description": "Battery voltage"
+    },
+    "lowBattery": {
+      "title": "Low battery detected",
+      "type": "integer",
+      "description": "1 if low battery detected"
+    },
+    "deviceActivated": {
+      "title": "Device activated",
+      "type": "integer",
+      "description": "1 if the device has been activated"
+    },
+    "asyncMessage": {
+      "title": "Async meassage",
+      "type": "integer",
+      "description": "1 if theres a change in alarm condition"
+    }
+  },
+  "required": [
+    "totalRuntime",
+    "runtime",
+    "batteryVoltage",
+    "lowBattery",
+    "deviceActivated",
+    "asyncMessage"
+  ]
+}

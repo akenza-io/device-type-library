@@ -1,0 +1,85 @@
+{
+  "$id": "https://akenza.io/lansen/g2-ldp/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "leakage": {
+      "title": "Leakage",
+      "unit": "AD",
+      "type": "integer",
+      "description": "Current leakage AD-value on port 1"
+    },
+    "leakage_2": {
+      "title": "Leakage 2",
+      "unit": "AD",
+      "type": "integer",
+      "description": "Current leakage AD-value on port 2"
+    },
+    "alarmTrigger": {
+      "title": "Alarm trigger",
+      "unit": "AD",
+      "type": "integer",
+      "description": "Trigger alarm if AD-values goes below 700"
+    },
+    "alarmReset": {
+      "title": "Alarm reset",
+      "unit": "AD",
+      "type": "integer",
+      "description": "Resets alarm if AD-value goes above 800"
+    },
+    "leakageDetected": {
+      "title": "Leakage detected",
+      "type": "integer",
+      "description": "1 if leakage was detected on port 1"
+    },
+    "leakageDetected_2": {
+      "title": "Leakage detected 2",
+      "type": "integer",
+      "description": "1 if leakage was detected on port 2"
+    },
+    "leakageDetectedLast24": {
+      "title": "Leakage detected last 24 hours",
+      "type": "integer",
+      "description": "1 a leakage was detected last 24 hours on port 1"
+    },
+    "leakageDetectedLast24_2": {
+      "title": "Leakage detected last 24 hours 2",
+      "type": "integer",
+      "description": "1 a leakage was detected last 24 hours on port 2"
+    },
+    "daysSinceLastLeakage": {
+      "title": "Days since last leakage",
+      "unit": "d",
+      "type": "integer",
+      "description": "Days since last leakage"
+    },
+    "durationLastAlarm": {
+      "title": "Duration last alarm",
+      "unit": "m",
+      "type": "integer",
+      "description": "Duration of the last alarm in minutes on port 1"
+    },
+    "durationLastAlarm_2": {
+      "title": "Duration last alarm 2",
+      "unit": "m",
+      "type": "integer",
+      "description": "Duration of the last alarm in minutes on port 2"
+    }
+  },
+  "required": [
+    "leakage",
+    "leakage_2",
+    "alarmTrigger",
+    "alarmReset",
+    "leakageDetected",
+    "leakageDetected_2",
+    "leakageDetectedLast24",
+    "leakageDetectedLast24_2",
+    "daysSinceLastLeakage",
+    "durationLastAlarm",
+    "durationLastAlarm_2"
+  ]
+}
