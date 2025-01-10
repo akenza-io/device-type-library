@@ -1,0 +1,9 @@
+{
+  "$id": "https://akenza.io/milesight/WT201/downlink_response.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "downlink_response",
+  "title": "Downlink response",
+  "properties": {}
+}
