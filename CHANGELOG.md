@@ -18,7 +18,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
-- Unifyed noise and sound into sound for topics and available sensors. Also referncing standard schemas
+- Unifyed noise and sound into sound for topics and available sensors. Also referencing standard schemas
 
 # [1.57.2] - 2025-01-09
 
