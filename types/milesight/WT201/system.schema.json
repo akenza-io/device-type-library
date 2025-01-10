@@ -1,0 +1,79 @@
+{
+  "$id": "https://akenza.io/milesight/WT201/system.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "system",
+  "title": "System",
+  "properties": {
+    "ipsoVersion": {
+      "title": "IPSO version",
+      "type": "string",
+      "description": "IPSO version",
+      "hideFromKpis": true
+    },
+    "hardwareVersion": {
+      "title": "Hardware version",
+      "type": "string",
+      "description": "Hardware version",
+      "hideFromKpis": true
+    },
+    "firmwareVersion": {
+      "title": "Firmware version",
+      "type": "string",
+      "description": "Firmware version",
+      "hideFromKpis": true
+    },
+    "deviceStatus": {
+      "title": "Device status",
+      "type": "integer",
+      "description": "Device status",
+      "hideFromKpis": true
+    },
+    "serialNumber": {
+      "title": "Serial number",
+      "type": "string",
+      "description": "Serial number",
+      "hideFromKpis": true
+    },
+    "tslVersion": {
+      "title": "TSL version",
+      "type": "string",
+      "description": "TSL version",
+      "hideFromKpis": true
+    },
+    "systemStatus": {
+      "title": "System status",
+      "type": "string",
+      "description": "System status",
+      "enum": [
+        "UKNOWN",
+        "ON",
+        "OFF"
+      ],
+      "hideFromKpis": true
+    },
+    "temperatureControlModeEnabled": {
+      "title": "Temperature control mode enabled",
+      "type": "array",
+      "description": "Temperature control mode enabled",
+      "hideFromKpis": true
+    },
+    "temperatureControlStatusEnabled": {
+      "title": "Temperature control status enabled",
+      "type": "array",
+      "description": "Temperature control status enabled",
+      "hideFromKpis": true
+    },
+    "controlPermissions": {
+      "title": "Control permissions",
+      "type": "string",
+      "description": "Control permissions",
+      "enum": [
+        "REMOTE_CONTROL",
+        "THERMOSTAT"
+      ],
+      "hideFromKpis": true
+    }
+  }
+}
