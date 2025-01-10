@@ -1,13 +1,39 @@
+function climateSamples(values, topic, state) {
+  let now = new Date().getTime();
+  let sampleInterval = 0;
+  if (state !== undefined) {
+    sampleInterval = Math.round((now - state) / values.length);
+  }
+
+  if (sampleInterval !== 0) {
+    // Give out samples with the right time // Different values can have different intervals :(
+    values.forEach(datapoint => {
+      const data = {};
+      data[topic] = datapoint;
+      emit("sample", { data, topic, timestamp: now });
+      now -= sampleInterval;
+    });
+  } else {
+    // If no timestamps are available. Only give out the newest sample
+    const data = {};
+    data[topic] = values[0];
+    emit("sample", { data, topic });
+  }
+
+  return new Date().getTime()
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
   const lifecycle = {};
   const settings = {};
-  const temperature = {};
-  const co2 = {};
 
-  for (let pointer = 0; pointer < bits.length; ) {
-    let measurement = "";
+  const temperature = [];
+  const humidity = [];
+  const co2 = [];
+
+  for (let pointer = 0; pointer < bits.length;) {
     let length = (Bits.bitsToUnsigned(bits.substr(pointer, 8)) - 1) * 8;
     const msgtype = Bits.bitsToUnsigned(bits.substr((pointer += 8), 8));
     pointer += 8;
@@ -16,23 +42,10 @@ function consume(event) {
     switch (msgtype) {
       case 1:
         while (pointer < length) {
-          temperature[`temperature${measurement}`] =
-            Hex.hexLittleEndianToBigEndian(
-              payload.substr(pointer / 4, 4),
-              true,
-            ) * 0.01;
+          temperature.push(Hex.hexLittleEndianToBigEndian(payload.substr(pointer / 4, 4), true) * 0.01)
           pointer += 16;
-          temperature[`humidity${measurement}`] =
-            Hex.hexLittleEndianToBigEndian(
-              payload.substr(pointer / 4, 2),
-              true,
-            ) * 0.5;
+          humidity.push(Hex.hexLittleEndianToBigEndian(payload.substr(pointer / 4, 2), true) * 0.5);
           pointer += 8;
-          if (measurement === "") {
-            measurement = 2;
-          } else {
-            measurement++;
-          }
         }
         break;
       case 2:
@@ -41,13 +54,7 @@ function consume(event) {
           pointer += 8;
           const co2lsb = bits.substr(pointer, 8);
           pointer += 8;
-          co2[`co2${measurement}`] = Bits.bitsToUnsigned(co2lsb + co2msb);
-
-          if (measurement === "") {
-            measurement = 1;
-          } else {
-            measurement++;
-          }
+          co2.push(Bits.bitsToUnsigned(co2lsb + co2msb));
         }
         break;
       case 3:
@@ -97,19 +104,23 @@ function consume(event) {
     }
   }
 
+  const state = event.state || {};
+  // Temperature & Humidity always comes in pairs
+  if (temperature.length !== 0) {
+    climateSamples(temperature, "temperature", state.lastTemperatureSample);
+    state.lastTemperatureSample = climateSamples(humidity, "humidity", state.lastTemperatureSample);
+  }
+
+  if (co2.length !== 0) {
+    state.lastCo2Sample = climateSamples(co2, "co2", state.lastCo2Sample);
+  }
+  emit("state", state);
+
   if (Object.keys(lifecycle).length > 0) {
     emit("sample", { data: lifecycle, topic: "lifecycle" });
   }
 
   if (Object.keys(settings).length > 0) {
     emit("sample", { data: settings, topic: "settings" });
-  }
-
-  if (Object.keys(temperature).length > 0) {
-    emit("sample", { data: temperature, topic: "temperature" });
-  }
-
-  if (Object.keys(co2).length > 0) {
-    emit("sample", { data: co2, topic: "co2" });
   }
 }

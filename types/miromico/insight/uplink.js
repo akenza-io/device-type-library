@@ -24,12 +24,44 @@ function deleteUnusedKeys(data) {
   return keysRetained;
 }
 
+function climateSamples(values, topic, state) {
+  let now = new Date().getTime();
+  let sampleInterval = 0;
+  if (state !== undefined) {
+    sampleInterval = Math.round((now - state) / values.length);
+  }
+
+  if (sampleInterval !== 0) {
+    // Give out samples with the right time // Different values can have different intervals :(
+    values.forEach(datapoint => {
+      const data = {};
+      data[topic] = datapoint;
+      emit("sample", { data, topic, timestamp: now });
+      now -= sampleInterval;
+    });
+  } else {
+    // If no timestamps are available. Only give out the newest sample
+    const data = {};
+    data[topic] = values[0];
+    emit("sample", { data, topic });
+  }
+
+  return new Date().getTime()
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bytes = Hex.hexToBytes(payload);
   const { port } = event.data;
 
-  const climate = {};
+  const temperature = [];
+  const humidity = [];
+  const co2 = [];
+  const iaq = [];
+  const iaqAccuracy = [];
+  const pressure = [];
+  let light;
+
   const door = {};
   const lifecycle = {};
   const settings = {};
@@ -40,36 +72,20 @@ function consume(event) {
 
     while (idx < total) {
       const length = bytes[idx];
-      let iteration = "";
-
       switch (bytes[idx + 1]) {
         case 1: {
           let start = idx + 2;
           while (start < idx + length) {
-            climate[`temperature${iteration}`] = signed(bytes[start] + bytes[start + 1] * 256, 2) / 100;
-            climate[`humidity${iteration}`] = bytes[start + 2] / 2;
+            temperature.push(signed(bytes[start] + bytes[start + 1] * 256, 2) / 100);
+            humidity.push(bytes[start + 2] / 2);
             start += 3;
-
-            if (iteration === "") {
-              iteration = 2;
-            } else {
-              iteration++;
-            }
           }
           break;
         } case 2: {
           let start = idx + 2;
-          let key = "co2";
           while (start < idx + length) {
-            climate[`${key}${iteration}`] = bytes[start] + bytes[start + 1] * 256;
+            co2.push(bytes[start] + bytes[start + 1] * 256)
             start += 2;
-
-            if (iteration === "") {
-              iteration = 2;
-              key += "_";
-            } else {
-              iteration++;
-            }
           }
           break;
         } case 5: {
@@ -137,39 +153,27 @@ function consume(event) {
         } case 15: {
           let start = idx + 2;
           while (start < idx + length) {
-            climate[`iaq${iteration}`] = bytes[start] + (bytes[start + 1] & 0x3f) * 256;
-            climate[`iaqAccuracy${iteration}`] = bytes[start + 1] >> 6;
+            iaq.push(bytes[start] + (bytes[start + 1] & 0x3f) * 256);
+            iaqAccuracy.push(bytes[start + 1] >> 6);
             start += 2;
-
-            if (iteration === "") {
-              iteration = 2;
-            } else {
-              iteration++;
-            }
           }
           break;
         } case 16: {
           let start = idx + 2;
           while (start < idx + length) {
-            climate[`pressure${iteration}`] = (
+            pressure.push(
               bytes[start] +
               bytes[start + 1] * 256 +
               bytes[start + 2] * 256 * 256
             );
             start += 3;
-
-            if (iteration === "") {
-              iteration = 2;
-            } else {
-              iteration++;
-            }
           }
           break;
         } case 17: {
           settings.reportedInterval = bytes[idx + 2] + bytes[idx + 3] * 256;
           break;
         } case 20: { // light not buffered atm
-          climate.light = bytes[idx + 2] + bytes[idx + 3] * 256;
+          light = bytes[idx + 2] + bytes[idx + 3] * 256;
           break;
         } case 21: {
           settings.condTxCo2Th = bytes[idx + 2] + bytes[idx + 3] * 256;
@@ -190,9 +194,27 @@ function consume(event) {
     }
   }
 
-  if (deleteUnusedKeys(climate)) {
-    emit("sample", { data: climate, topic: "climate" });
+  const state = event.state || {};
+  // Temperature & Humidity always comes in pairs
+  if (temperature.length !== 0) {
+    climateSamples(temperature, "temperature", state.lastTemperatureSample);
+    state.lastTemperatureSample = climateSamples(humidity, "humidity", state.lastTemperatureSample);
   }
+
+  if (co2.length !== 0) {
+    state.lastCo2Sample = climateSamples(co2, "co2", state.lastCo2Sample);
+  }
+
+  if (iaq.length !== 0) {
+    state.lastIaqSample = climateSamples(iaq, "iaq", state.lastIaqSample);
+  }
+
+  if (pressure.length !== 0) {
+    state.lastPressureSample = climateSamples(pressure, "pressure", state.lastPressureSample);
+  }
+
+  emit("state", state);
+
   if (deleteUnusedKeys(door)) {
     emit("sample", { data: door, topic: "door" });
   }
