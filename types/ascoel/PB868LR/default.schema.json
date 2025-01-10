@@ -11,11 +11,20 @@
       "type": "boolean",
       "description": "True if the button was pushed"
     },
+    "buttonPushedNumeric": {
+      "title": "Button pushed numeric",
+      "type": "integer",
+      "description": "Button pushed represented as an integer"
+    },
     "count": {
       "title": "Count",
       "type": "integer",
       "description": "Count of button presses"
     }
   },
-  "required": ["buttonPushed", "count"]
+  "required": [
+    "buttonPushed",
+    "buttonPushedNumeric",
+    "count"
+  ]
 }

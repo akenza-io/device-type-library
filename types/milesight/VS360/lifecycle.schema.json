@@ -1,0 +1,26 @@
+{
+  "$id": "https://akenza.io/milesight/VS360/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "batteryLevel": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent",
+      "hideFromKpis": true
+    },
+    "batteryNode": {
+      "title": "Battery node",
+      "type": "string",
+      "description": "Battery node",
+      "enum": [
+        "BATTERY_SUPPLY",
+        "EXTERNAL_POWER_SUPPLY",
+        "BATTERY_CHARGING",
+        "UNKNOWN"
+      ],
+      "hideFromKpis": true
+    }
+  }
+}

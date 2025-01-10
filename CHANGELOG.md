@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.57.2] - 2025-01-09
+
+### Changed
+
+- Added downlink encoder for the MCLimate Vicki
+
+# [1.57.1] - 2024-12-12
+
+### Changed
+
+- Implemented warm desk logic. Occupancy devices now output an additional time how long they where unoccupied
+- Standardised the occupancy value and added minutesSinceLastOccupied for the upcoming warmdesk logic
+
 # [1.57.0] - 2024-11-28
 
 ### Added

@@ -1,0 +1,37 @@
+{
+  "$id": "https://akenza.io/milesight/VS360/event.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "status",
+  "title": "Status",
+  "properties": {
+    "type": {
+      "title": "Event type",
+      "type": "string",
+      "description": "Event type",
+      "enum": [
+        "COUNTING_ANOMALY",
+        "NODE_DEVICE_WITHOUT_RESPONSE",
+        "DEVICES_MISALIGNED",
+        "UNKNOWN"
+      ],
+      "hideFromKpis": true
+    },
+    "status": {
+      "title": "Event status",
+      "type": "string",
+      "description": "Event status",
+      "enum": [
+        "ALARM_RELEASE",
+        "ALARM",
+        "UNKNOWN"
+      ],
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "type",
+    "status"
+  ]
+}

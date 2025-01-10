@@ -4,7 +4,7 @@ function consume(event) {
   let topic = "default";
 
   if (payload !== "") {
-    for (let pointer = 0; pointer < bits.length; ) {
+    for (let pointer = 0; pointer < bits.length;) {
       const channel = Bits.bitsToUnsigned(bits.substr(pointer, 8));
       const data = {};
       pointer += 16;
@@ -41,7 +41,7 @@ function consume(event) {
           data.hex = payload;
           topic = "contact_pni";
           break;
-        case 21:
+        case 21: {
           // Parking Status
           if (Bits.bitsToUnsigned(bits.substr(pointer, 8)) === 1) {
             data.occupancy = 1;
@@ -50,9 +50,27 @@ function consume(event) {
             data.occupancy = 0;
             data.occupied = false;
           }
+
+          // Warm desk 
+          const time = new Date().getTime();
+          const state = event.state || {};
+          data.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
+          if (data.occupied) {
+            delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
+          } else if (state.lastOccupancyTimestamp !== undefined) {
+            data.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
+          } else if (state.lastOccupiedValue) { //
+            state.lastOccupancyTimestamp = time; // Start with first no occupancy
+          }
+
+          if (Number.isNaN(data.minutesSinceLastOccupied)) {
+            data.minutesSinceLastOccupied = 0;
+          }
+          state.lastOccupiedValue = data.occupied;
+          emit("state", state);
           topic = "occupancy";
           break;
-        case 28:
+        } case 28:
           // Deactivate Response
           data.deactivate = "done";
           break;
@@ -66,7 +84,7 @@ function consume(event) {
             topic = "vehicle_count";
           }
           break;
-        case 55:
+        case 55: {
           // Keep-Alive
           if (Bits.bitsToUnsigned(bits.substr(pointer, 8)) === 1) {
             data.occupancy = 1;
@@ -75,9 +93,27 @@ function consume(event) {
             data.occupancy = 0;
             data.occupied = false;
           }
+
+          // Warm desk 
+          const time = new Date().getTime();
+          const state = event.state || {};
+          data.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
+          if (data.occupied) {
+            delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
+          } else if (state.lastOccupancyTimestamp !== undefined) {
+            data.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
+          } else if (state.lastOccupiedValue) { //
+            state.lastOccupancyTimestamp = time; // Start with first no occupancy
+          }
+
+          if (Number.isNaN(data.minutesSinceLastOccupied)) {
+            data.minutesSinceLastOccupied = 0;
+          }
+          state.lastOccupiedValue = data.occupied;
+          emit("state", state);
           topic = "occupancy";
           break;
-        case 63:
+        } case 63:
           // Reboot Response
           data.reboot = "DONE";
           topic = "reboot";
