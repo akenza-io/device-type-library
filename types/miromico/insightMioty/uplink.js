@@ -10,7 +10,7 @@ function climateSamples(values, topic, state) {
     values.forEach(datapoint => {
       const data = {};
       data[topic] = datapoint;
-      emit("sample", { data, topic, timestamp: now });
+      emit("sample", { data, topic, timestamp: new Date(now) });
       now -= sampleInterval;
     });
   } else {
