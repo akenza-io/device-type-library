@@ -4,11 +4,10 @@
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "co2",
-  "title": "CO2",
+  "title": "Co2",
   "properties": {
     "co2": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm"
     }
-  },
-  "required": ["co2"]
+  }
 }
