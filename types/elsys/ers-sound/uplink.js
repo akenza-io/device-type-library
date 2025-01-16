@@ -476,6 +476,7 @@ function consume(event) {
     }
 
     if (deleteUnusedKeys(noise)) {
+      emit("sample", { data: noise, topic: "sound" });
       emit("sample", { data: noise, topic: "noise" });
     }
   } else if (payload[0] === SETTINGS_HEADER) {

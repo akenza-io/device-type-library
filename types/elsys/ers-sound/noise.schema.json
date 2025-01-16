@@ -7,21 +7,24 @@
   "title": "Noise",
   "properties": {
     "soundPeak": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/soundLevel/dba",
       "title": "Sound Peak",
-      "unit": "dBA",
       "description": "Peak value in dBspl",
-      "type": "number",
       "minimum": 20,
-      "maximum": 120
+      "maximum": 120,
+      "hideFromKpis": true
     },
     "soundAvg": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/soundLevel/dba",
       "title": "Sound Average",
-      "unit": "dBA",
       "description": "Average value in dBspl",
-      "type": "number",
       "minimum": 20,
-      "maximum": 120
+      "maximum": 120,
+      "hideFromKpis": true
     }
   },
-  "required": ["soundPeak", "soundAvg"]
+  "required": [
+    "soundPeak",
+    "soundAvg"
+  ]
 }

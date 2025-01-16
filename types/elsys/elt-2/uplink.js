@@ -529,7 +529,7 @@ function consume(event) {
     }
 
     if (deleteUnusedKeys(noise)) {
-      emit("sample", { data: noise, topic: "noise" });
+      emit("sample", { data: noise, topic: "sound" });
     }
   } else if (payload[0] === SETTINGS_HEADER) {
     const res = DecodeElsysSettings(payload);
