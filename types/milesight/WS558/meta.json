@@ -1,18 +1,20 @@
 {
-  "name": "WS303",
+  "name": "WS558",
   "version": "1.0.0",
   "manufacturer": "Milesight",
-  "url": "https://www.milesight-iot.com/lorawan/sensor/ws303/",
-  "description": "The WS303 is a mini water leak detection sensor that detects the presence of leaks and raises alarms. With a low power consumption, it can operate up to 5 years on a single battery",
+  "url": "https://www.milesight.com/iot/product/lorawan-sensor/ws558",
+  "description": "Milesight WS558 is a LoRaWAN® Smart Light Controller that allows occupants to centrally control the lights on eight circuits. With remote and time-based ON/OFF, WS558 enables to improve the overall efficiency of electricity consumption in buildings.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": [
-    "Leak"
+    "Power",
+    "Current",
+    "Switch"
   ],
   "outputTopics": [
     "default",
-    "lifecycle"
+    "switch"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

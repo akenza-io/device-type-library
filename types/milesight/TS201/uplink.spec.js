@@ -5,10 +5,10 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("WS558 Uplink", () => {
+describe("Milesight TS201 Uplink", () => {
   let defaultSchema = null;
-  let switchSchema = null;
   let consume = null;
+
   before((done) => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
@@ -20,23 +20,22 @@ describe("WS558 Uplink", () => {
       });
   });
 
+  let lifecycleSchema = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
     utils
-      .loadSchema(`${__dirname}/switch.schema.json`)
+      .loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
-        switchSchema = parsedSchema;
+        lifecycleSchema = parsedSchema;
         done();
       });
   });
 
   describe("consume()", () => {
-    it("should decode should decode the WS558 payload", () => {
+    it("should decode should decode the Milesight TS201 payload", () => {
       const data = {
         data: {
           port: 1,
-          payloadHex: "0831000105816407C902000374B208068301000000048001000000",
+          payloadHex: "93673401640002",
         },
       };
 
@@ -45,18 +44,24 @@ describe("WS558 Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "switch");
-        assert.equal(value.data.switch1, true);
-        assert.equal(value.data.switch2, false);
-        assert.equal(value.data.switch3, false);
-        assert.equal(value.data.switch4, false);
-        assert.equal(value.data.switch5, false);
-        assert.equal(value.data.switch6, false);
-        assert.equal(value.data.switch7, false);
-        assert.equal(value.data.switch8, false);
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.temperature, 30.8);
+        assert.equal(value.data.temperatureMutation, 10);
+        assert.equal(value.data.temperatureAlarm, "MUTATION");
 
-        utils.validateSchema(value.data, switchSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
+
+      consume(data);
+    });
+
+    it("should decode should decode the Milesight TS201 history payload", () => {
+      const data = {
+        data: {
+          port: 1,
+          payloadHex: "20CEC79AFA6402BDFF",
+        },
+      };
 
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
@@ -64,11 +69,9 @@ describe("WS558 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.voltage, 222.6);
-        assert.equal(value.data.activePower, 1);
-        assert.equal(value.data.powerFactor, 100);
-        assert.equal(value.data.powerConsumption, 1);
-        assert.equal(value.data.totalCurrent, 2);
+        assert.equal(value.data.temperature, -6.7);
+        assert.equal(value.data.eventType, "ALARM");
+        assert.equal(value.data.readStatus, "SUCCESS");
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
