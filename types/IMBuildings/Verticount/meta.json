@@ -1,0 +1,20 @@
+{
+  "name": "VertiCount Pro",
+  "version": "1.0.0",
+  "manufacturer": "IMBuildings",
+  "url": "https://imbuildings.com/products/verticount-pro/",
+  "description": "The VertiCount Pro is used for accurate counting without setting up count lines or calibration. By measuring traffic in the passageways, occupancy can be clarified and the information used to determine the utilisation of a building or room.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "People Counting"
+  ],
+  "outputTopics": [
+    "default",
+    "totalCounter",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
