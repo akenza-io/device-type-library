@@ -1,0 +1,18 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-Pulse/CH5.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "CH5",
+  "title": "CH5",
+  "properties": {
+    "CH5": {
+      "title": "CH5 - Pulse Counter",
+      "type": "integer",
+      "description": "Pulse Counter CH5.",
+      "unit": "pulses",
+      "hideFromKpis": false
+    }
+  },
+  "required": ["CH5"]
+}

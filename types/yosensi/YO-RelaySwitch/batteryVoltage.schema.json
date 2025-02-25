@@ -1,0 +1,18 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-RelaySwitch/batteryVoltage.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "batteryVoltage",
+  "title": "BatteryVoltage",
+  "properties": {
+    "batteryVoltage": {
+      "title": "Battery Voltage",
+      "type": "integer",
+      "description": "Battery Voltage in mV.",
+      "unit": "mV",
+      "hideFromKpis": false
+    }
+  },
+  "required": ["batteryVoltage"]
+}

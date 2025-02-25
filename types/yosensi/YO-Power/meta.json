@@ -1,0 +1,26 @@
+{
+  "name": "YO Power",
+  "version": "1.0.0",
+  "manufacturer": "Yosensi",
+  "url": "https://www.yosensi.io/products/yo_power/",
+  "description": "YO Power measures AC current flowing through devices connected to the mains.",
+  "author": "Maciej Sacewicz",
+  "firmwareVersion": "V4.0.3",
+  "availableSensors": ["Current", "Energy"],
+  "outputTopics": [
+    "CH1",
+    "CH2",
+    "CH3",
+    "CH4",
+    "CH5",
+    "CH6",
+    "CT1Clamp",
+    "CT2Clamp",
+    "CT3Clamp",
+    "CT4Clamp",
+    "CT5Clamp",
+    "CT6Clamp"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

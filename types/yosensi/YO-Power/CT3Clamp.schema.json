@@ -1,0 +1,18 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-Power/CT3Clamp.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "CT3Clamp",
+  "title": "CT3Clamp",
+  "properties": {
+    "CT3Clamp": {
+      "title": "Energy CT3 Clamp",
+      "type": "number",
+      "description": "Energy in kW/h.",
+      "unit": "kW/h",
+      "hideFromKpis": false
+    }
+  },
+  "required": ["CT3Clamp"]
+}

@@ -1,0 +1,38 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-VibrationMonitor/peakAcceleration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "peakAcceleration",
+  "title": "PeakAcceleration",
+  "properties": {
+    "peakAcceleration_x": {
+      "title": "Peak Acceleration - X axis",
+      "type": "number",
+      "description": "Peak Acceleration - X axis.",
+      "unit": "g",
+      "minimum": 0,
+      "maximum": 16,
+      "hideFromKpis": false
+    },
+    "peakAcceleration_y": {
+      "title": "Peak Acceleration - Y axis",
+      "type": "number",
+      "description": "Peak Acceleration - Y axis.",
+      "unit": "g",
+      "minimum": 0,
+      "maximum": 16,
+      "hideFromKpis": false
+    },
+    "peakAcceleration_z": {
+      "title": "Peak Acceleration - Z axis",
+      "type": "number",
+      "description": "Peak Acceleration - Z axis.",
+      "unit": "g",
+      "minimum": 0,
+      "maximum": 16,
+      "hideFromKpis": false
+    }
+  },
+  "required": ["peakAcceleration_x", "peakAcceleration_y", "peakAcceleration_z"]
+}

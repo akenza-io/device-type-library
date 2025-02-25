@@ -1,0 +1,26 @@
+{
+  "name": "YO Airflow Pro",
+  "version": "1.0.0",
+  "manufacturer": "Yosensi",
+  "url": "https://www.yosensi.io/products/yo_airflow_pro/",
+  "description": "YO Airflow Pro provides differential pressure data for ventilation systems, making it possible to identify when air filters need replacing.",
+  "author": "Maciej Sacewicz",
+  "firmwareVersion": "V3.6.7",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "Differential Pressure",
+    "Gas Temperature",
+    "Velocity"
+  ],
+  "outputTopics": [
+    "batteryVoltage",
+    "internalTemperature",
+    "humidity",
+    "differentialPressure",
+    "gasTemperature",
+    "velocity"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

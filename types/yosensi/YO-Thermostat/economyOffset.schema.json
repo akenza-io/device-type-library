@@ -1,0 +1,17 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-Thermostat/economyOffset.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "economyOffset",
+  "title": "EconomyOffset",
+  "properties": {
+    "economyOffset": {
+      "title": "Economy Offset",
+      "type": "number",
+      "description": "Economy Offset.",
+      "hideFromKpis": false
+    }
+  },
+  "required": ["economyOffset"]
+}

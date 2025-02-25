@@ -1,0 +1,13 @@
+{
+  "name": "YO Pulse",
+  "version": "1.0.0",
+  "manufacturer": "Yosensi",
+  "url": "https://www.yosensi.io/products/yo_pulse/",
+  "description": "YO Pulse enables monitoring of logical states of devices and processes in automation and collection of pulses from measuring devices.",
+  "author": "Maciej Sacewicz",
+  "firmwareVersion": "V3.7.1",
+  "availableSensors": ["Logical States"],
+  "outputTopics": ["CH1", "CH2", "CH3", "CH4", "CH5", "CH6"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

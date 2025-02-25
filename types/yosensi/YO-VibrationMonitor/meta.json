@@ -1,0 +1,26 @@
+{
+  "name": "YO Vibration Monitor",
+  "version": "1.0.0",
+  "manufacturer": "Yosensi",
+  "url": "https://www.yosensi.io/products/yo_vibration_monitor/",
+  "description": "YO Vibration Monitor is a device for monitoring vibrations in electric motors.",
+  "author": "Maciej Sacewicz",
+  "firmwareVersion": "V1.1.1",
+  "availableSensors": ["Temperature", "Humidity", "Accelerometer"],
+  "outputTopics": [
+    "batteryVoltage",
+    "internalTemperature",
+    "humidity",
+    "externalTemperature",
+    "rmsAcceleration",
+    "peakAcceleration",
+    "rmsVelocity",
+    "displacement",
+    "crestFactor",
+    "standardDeviation",
+    "kurtosis",
+    "skewness"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

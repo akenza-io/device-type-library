@@ -1,0 +1,18 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-Analog/CH4.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "CH4",
+  "title": "CH4",
+  "properties": {
+    "CH4": {
+      "title": "Voltage 1",
+      "type": "number",
+      "description": "CH4 Voltage Measurement in V.",
+      "unit": "V",
+      "hideFromKpis": false
+    }
+  },
+  "required": ["CH4"]
+}

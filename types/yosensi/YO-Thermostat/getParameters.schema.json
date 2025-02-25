@@ -1,0 +1,17 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-Thermostat/getParameters.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "getParameters",
+  "title": "GetParameters",
+  "properties": {
+    "getParameters": {
+      "title": "Get Parameters",
+      "type": "number",
+      "description": "Get Parameters.",
+      "hideFromKpis": false
+    }
+  },
+  "required": ["getParameters"]
+}

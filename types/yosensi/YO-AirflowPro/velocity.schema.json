@@ -1,0 +1,18 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-AirflowPro/velocity.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "velocity",
+  "title": "Velocity",
+  "properties": {
+    "velocity": {
+      "title": "Velocity",
+      "type": "number",
+      "description": "Velocity in m/s.",
+      "unit": "m/s",
+      "hideFromKpis": false
+    }
+  },
+  "required": ["velocity"]
+}

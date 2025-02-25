@@ -1,0 +1,18 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-Power/CH4.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "CH4",
+  "title": "CH4",
+  "properties": {
+    "CH4": {
+      "title": "CH4 - Current",
+      "type": "number",
+      "description": "Current in A.",
+      "unit": "A",
+      "hideFromKpis": false
+    }
+  },
+  "required": ["CH4"]
+}

@@ -1,0 +1,20 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-PMxPro/partConcPm2_5.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "partConcPm2_5",
+  "title": "PartConcPm2_5",
+  "properties": {
+    "partConcPm2_5": {
+      "title": "Particle Concentration PM 2.5",
+      "type": "number",
+      "description": "Particle Concentration PM 2.5 in μg/m3.",
+      "unit": "μg/m3",
+      "minimum": 0,
+      "maximum": 1000,
+      "hideFromKpis": false
+    }
+  },
+  "required": ["partConcPm2_5"]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "YO Airflow Pro Dual",
+  "version": "1.0.0",
+  "manufacturer": "Yosensi",
+  "url": "https://www.yosensi.io/products/yo_airflow_pro_dual/",
+  "description": "The YO Airflow Pro Dual is equipped with two differential pressure sensors. It can be used to verify the dirtiness of air filters and control the pressure in air conditioning systems and air blowers.",
+  "author": "Maciej Sacewicz",
+  "firmwareVersion": "V3.6.2",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "Differential Pressure",
+    "Gas Temperature"
+  ],
+  "outputTopics": [
+    "batteryVoltage",
+    "internalTemperature",
+    "humidity",
+    "differentialPressure1",
+    "differentialPressure2",
+    "gasTemperature1",
+    "gasTemperature2"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

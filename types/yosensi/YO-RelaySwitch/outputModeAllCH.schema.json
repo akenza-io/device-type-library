@@ -1,0 +1,17 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-RelaySwitch/outputModeAllCH.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "outputModeAllCH",
+  "title": "OutputModeAllCH",
+  "properties": {
+    "outputModeAllCH": {
+      "title": "Output Mode All Channels",
+      "type": "integer",
+      "description": "Output Mode All Channels.",
+      "hideFromKpis": false
+    }
+  },
+  "required": ["outputModeAllCH"]
+}

@@ -1,0 +1,18 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-AgriBox/outputVoltageCH1.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "outputVoltageCH1",
+  "title": "OutputVoltageCH1",
+  "properties": {
+    "outputVoltageCH1": {
+      "title": "Output Voltage CH1",
+      "type": "number",
+      "description": "Output Voltage CH1 in mV.",
+      "unit": "mV",
+      "hideFromKpis": false
+    }
+  },
+  "required": ["outputVoltageCH1"]
+}

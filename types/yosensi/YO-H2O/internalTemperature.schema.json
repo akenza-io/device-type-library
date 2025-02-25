@@ -1,0 +1,20 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-H2O/internalTemperature.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "internalTemperature",
+  "title": "InternalTemperature",
+  "properties": {
+    "internalTemperature": {
+      "title": "Internal Temperature",
+      "type": "number",
+      "description": "Internal Temperature in degrees celsius.",
+      "unit": "°C",
+      "minimum": -40,
+      "maximum": 125,
+      "hideFromKpis": false
+    }
+  },
+  "required": ["internalTemperature"]
+}

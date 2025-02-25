@@ -1,0 +1,21 @@
+{
+  "name": "YO Relay Switch",
+  "version": "1.0.0",
+  "manufacturer": "Yosensi",
+  "url": "https://www.yosensi.io/products/yo_relay_switch/",
+  "description": "YO Relay Switch is a LoRaWAN device designed for versatile remote control applications.",
+  "author": "Maciej Sacewicz",
+  "firmwareVersion": "V1.1.1",
+  "availableSensors": ["Relay States", "Output Modes"],
+  "outputTopics": [
+    "batteryVoltage",
+    "relayStateCH1",
+    "relayStateCH2",
+    "relayStateAllCH",
+    "outputModeCH1",
+    "outputModeCH2",
+    "outputModeAllCH"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

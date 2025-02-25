@@ -1,0 +1,20 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-Thermostat/co2.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "co2",
+  "title": "CO2",
+  "properties": {
+    "co2": {
+      "title": "CO2 Concentration",
+      "type": "number",
+      "description": "CO2 Concentration in ppm.",
+      "unit": "ppm",
+      "minimum": 0,
+      "maximum": 40000,
+      "hideFromKpis": false
+    }
+  },
+  "required": ["co2"]
+}

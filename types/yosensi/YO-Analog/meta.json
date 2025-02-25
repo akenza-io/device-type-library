@@ -1,0 +1,13 @@
+{
+  "name": "YO Analog",
+  "version": "1.0.0",
+  "manufacturer": "Yosensi",
+  "url": "https://www.yosensi.io/products/yo_analog/",
+  "description": "YO Analog makes it possible to monitor devices and processes in automation.",
+  "author": "Maciej Sacewicz",
+  "firmwareVersion": "V3.6.2",
+  "availableSensors": ["Current", "Voltage"],
+  "outputTopics": ["CH1", "CH2", "CH3", "CH4", "CH5", "CH6"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
