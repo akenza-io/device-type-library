@@ -1,0 +1,19 @@
+{
+  "name": "G2-LDP",
+  "version": "1.0.0",
+  "manufacturer": "Lansen",
+  "url": "https://www.lansensystems.com/assortment/sensors/protection/lan-mioty-g2-ldp/",
+  "description": "G2-LDP can be used to detect water leakages in any area where a leakage may occur, such as under a dishwasher or in a basement. The device comes with a 100cm pre-mounted cable & has a typical lifespan of 14 years. A soldered battery is also included.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Leakage"
+  ],
+  "outputTopics": [
+    "lifecycle",
+    "default"
+  ],
+  "encoding": "HEX",
+  "connectivity": "MIOTY"
+}

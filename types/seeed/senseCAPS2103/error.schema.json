@@ -1,0 +1,27 @@
+{
+  "$id": "https://akenza.io/seeed/senseCAPS2103/error.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "error",
+  "title": "Error",
+  "properties": {
+    "errorCode": {
+      "title": "Error code",
+      "type": "string",
+      "description": "Error code",
+      "enum": [
+        "NO_SENSOR_RESPONSE",
+        "SENSOR_DATA_HEAD_ERROR",
+        "SENSOR_ARG_INVAILD",
+        "SENSOR_DATA_ERROR_UNKONW"
+      ]
+    },
+    "fieldName": {
+      "title": "Field name",
+      "type": "string",
+      "description": "Name which the error correlates to"
+    }
+  },
+  "required": ["errorCode", "fieldName"]
+}

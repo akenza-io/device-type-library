@@ -1,5 +1,4 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -41,7 +40,7 @@ describe("AM307 Uplink", () => {
         assert.equal(value.data.temperature, 23.8);
         assert.equal(value.data.tvoc, 37);
 
-        validate(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

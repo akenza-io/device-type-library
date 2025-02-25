@@ -81,6 +81,24 @@ describe("Xovis V5 Uplink", () => {
       });
   });
 
+  let queueSchema = null;
+  before((done) => {
+    utils.loadSchema(`${__dirname}/queue.schema.json`).then((parsedSchema) => {
+      queueSchema = parsedSchema;
+      done();
+    });
+  });
+
+  let queueTimeSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/queue_time.schema.json`)
+      .then((parsedSchema) => {
+        queueTimeSchema = parsedSchema;
+        done();
+      });
+  });
+
   describe("consume()", () => {
     it("should decode the Xovis V5 event payload", () => {
       const data = {
@@ -4073,5 +4091,149 @@ describe("Xovis V5 Uplink", () => {
 
       consume(data);
     });
+  });
+
+  it("should decode the Xovis V5 logic queue statistic payload", () => {
+    const data = {
+      data: {
+        logics_data: {
+          package_info: {
+            version: "5.0",
+            id: 71,
+            agent_id: 1001,
+          },
+          sensor_info: {
+            serial_number: "00:6E:02:00:6D:BC",
+            type: "SINGLE_SENSOR",
+          },
+          logics: [
+            {
+              id: 1000,
+              name: "Queue statistics 1",
+              info: "XLT_QUEUE_STATISTICS",
+              geometries: [
+                {
+                  id: 1000,
+                  type: "ZONE",
+                  name: "Zone 1",
+                },
+              ],
+              records: [
+                {
+                  from: 1720000500000,
+                  to: 1720000560000,
+                  samples: 1,
+                  samples_expected: 1,
+                  counts: [
+                    {
+                      id: 1000001,
+                      name: "queue-length",
+                      value: 0,
+                    },
+                    {
+                      id: 1000002,
+                      name: "outflow",
+                      value: 8,
+                    },
+                    {
+                      id: 1000003,
+                      name: "queueing-time",
+                      value: 124.426003,
+                      unit: "seconds",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      },
+    };
+
+    utils.expectEmits((type, value) => {
+      assert.equal(type, "sample");
+      assert.isNotNull(value);
+      assert.typeOf(value.data, "object");
+
+      assert.equal(value.topic, "queue");
+      assert.equal(value.data.outflow, 8);
+      assert.equal(value.data.queueingTime, 124);
+      assert.equal(value.data.queueLength, 0);
+
+      utils.validateSchema(value.data, queueSchema, { throwError: true });
+    });
+
+    consume(data);
+  });
+
+  it("should decode the Xovis V5 logic queue statistic payload", () => {
+    const data = {
+      state: {},
+      data: {
+        live_data: {
+          package_info: {
+            version: "5.0",
+            id: 6,
+            agent_id: 1002,
+          },
+          sensor_info: {
+            serial_number: "00:6E:02:01:AB:7C",
+            type: "MULTI_SENSOR",
+            multisensor_id: 1,
+            alignment_id: "ea49f0ddcafc4a97e28553debdaf0315614e4700",
+            id: "97:4A:FC:CA:DD:F0",
+          },
+          frames: [
+            {
+              framenumber: 31757307,
+              frametype: "FULL",
+              time: 1725001494320,
+              tracked_objects: [
+                {
+                  track_id: 57060,
+                  type: "PERSON",
+                  position: [-0.254185, 2.785019, 1.435505],
+                  attributes: {
+                    person_height: 1.464321,
+                    members: 0,
+                    members_with_tag: 0,
+                  },
+                },
+              ],
+              events: [
+                {
+                  category: "COUNT",
+                  type: "TIME_CHANGE",
+                  attributes: {
+                    track_id: 57060,
+                    counter_id: 1000003,
+                    unit: "seconds",
+                    amount: 4.202,
+                    counter_value: 10.922001,
+                    logic_id: 1000,
+                    logic_name: "Queue statistics 1",
+                    counter_name: "queueing-time",
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      },
+    };
+
+    utils.expectEmits((type, value) => {
+      assert.equal(type, "sample");
+      assert.isNotNull(value);
+      assert.typeOf(value.data, "object");
+
+      assert.equal(value.topic, "queue_time");
+      assert.equal(value.data.counterValue, 10.922001);
+      assert.equal(value.data.queueTime, 4.2);
+
+      utils.validateSchema(value.data, queueTimeSchema, { throwError: true });
+    });
+
+    consume(data);
   });
 });

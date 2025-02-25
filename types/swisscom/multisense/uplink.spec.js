@@ -90,6 +90,7 @@ describe("Swisscom Multisense Uplinks", () => {
   describe("consume()", () => {
     it("should decode the Swisscom Multisense timed event with all datatopics", () => {
       const data = {
+        state: {},
         data: {
           port: 3,
           payloadHex: "010080a3010945026e0300170412820503f8007cfffc",
@@ -127,6 +128,7 @@ describe("Swisscom Multisense Uplinks", () => {
 
         assert.equal(value.topic, "reed_counter");
         assert.equal(value.data.reedCounter, 23);
+        assert.equal(value.data.relativeReedCounter, 0);
 
         utils.validateSchema(value.data, reedCounterSchema, {
           throwError: true,
@@ -180,8 +182,15 @@ describe("Swisscom Multisense Uplinks", () => {
         assert.equal(value.data.payloadVersion, 1);
         assert.equal(value.data.mode, 0);
         assert.equal(value.data.batteryVoltage, 3);
-        assert.equal(value.data.batteryLevel, 64);
+        assert.equal(value.data.batteryLevel, 87);
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+
+        assert.equal(value.lastReed, 23);
       });
 
       consume(data);
@@ -191,6 +200,7 @@ describe("Swisscom Multisense Uplinks", () => {
   describe("consume()", () => {
     it("should decode the Swisscom Multisense button event payload", () => {
       const data = {
+        state: {},
         data: {
           port: 3,
           payloadHex: "020040b5",
@@ -228,8 +238,13 @@ describe("Swisscom Multisense Uplinks", () => {
         assert.equal(value.data.payloadVersion, 2);
         assert.equal(value.data.mode, 0);
         assert.equal(value.data.batteryVoltage, 3.1);
-        assert.equal(value.data.batteryLevel, 71);
+        assert.equal(value.data.batteryLevel, 100);
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
       });
 
       consume(data);
@@ -239,6 +254,9 @@ describe("Swisscom Multisense Uplinks", () => {
   describe("consume()", () => {
     it("should decode the Swisscom Multisense reed event payload", () => {
       const data = {
+        state: {
+          lastReed: 2494,
+        },
         data: {
           port: 3,
           payloadHex: "020020a9030a86",
@@ -252,6 +270,8 @@ describe("Swisscom Multisense Uplinks", () => {
 
         assert.equal(value.topic, "reed_counter");
         assert.equal(value.data.reedCounter, 2694);
+        assert.equal(value.data.relativeReedCounter, 200);
+
         utils.validateSchema(value.data, reedCounterSchema, {
           throwError: true,
         });
@@ -276,8 +296,15 @@ describe("Swisscom Multisense Uplinks", () => {
         assert.equal(value.data.payloadVersion, 2);
         assert.equal(value.data.mode, 0);
         assert.equal(value.data.batteryVoltage, 3);
-        assert.equal(value.data.batteryLevel, 67);
+        assert.equal(value.data.batteryLevel, 100);
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+
+        assert.equal(value.lastReed, 2694);
       });
 
       consume(data);

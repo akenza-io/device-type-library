@@ -2,7 +2,7 @@
   "name": "CO2, VOC luminaire",
   "version": "1.0.0",
   "manufacturer": "AstraLED",
-  "url": "https://www.hsi-astra.ch/produkte/raumluftqualitaet/",
+  "url": "https://www.astra-led.ch/produkte/smartline/",
   "description": "AstraLED Indoor LoRaWAN® device for measuring the indoor environment and signaling those through different colors",
   "author": "Akenza AG",
   "firmwareVersion": "V0.0.3",
@@ -18,7 +18,10 @@
     "Altitude",
     "Light State"
   ],
-  "outputTopics": ["default", "lifecycle"],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

@@ -7,12 +7,7 @@
   "title": "Lifecycle",
   "properties": {
     "batteryLevel": {
-      "title": "Battery level",
-      "type": "number",
-      "minimum": 0,
-      "maximum": 100,
-      "description": "The battery level in percent.",
-      "unit": "%"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
     },
     "calibration": {
       "title": "Calibration",
@@ -21,9 +16,7 @@
       "enum": ["FAILED", "SUCCESS"]
     },
     "distance": {
-      "title": "Distance",
-      "unit": "mm",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/mm",
       "description": "Distance"
     }
   }

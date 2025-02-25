@@ -1,0 +1,22 @@
+{
+  "name": "EM410-RDL",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight.com/iot/product/lorawan-sensor/em410-rdl",
+  "description": "Aside from its extensive measurement distance, radar technology is also capable of measuring through objects, including plastics, plants, and are less sensitive to snow, dirt, dust, steam and more, making it suitable for a wider range of applications.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Distance"
+  ],
+  "outputTopics": [
+    "alert",
+    "default",
+    "lifecycle",
+    "system"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

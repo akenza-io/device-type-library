@@ -7,12 +7,9 @@
   "title": "External",
   "properties": {
     "externalTemperature": {
-      "title": "External temperature",
-      "unit": "°C",
-      "type": "number",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "The external temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "title": "External temperature"
     },
     "extPinLevel": {
       "title": "External Pin Level",
@@ -26,12 +23,7 @@
       "type": "boolean"
     },
     "light": {
-      "title": "Light",
-      "type": "number",
-      "unit": "lux",
-      "description": "Light value",
-      "minimum": 0,
-      "maximum": 255
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/illuminance/lux"
     },
     "adc": {
       "title": "External analog Input",

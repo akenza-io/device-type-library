@@ -1,0 +1,16 @@
+{
+  "$id": "https://akenza.io/dragino/sw3l/datalog.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "datalog",
+  "title": "Datalog",
+  "properties": {
+    "datalog": {
+      "title": "Data log",
+      "type": "array",
+      "description": "Data log",
+      "hideFromKpis": true
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "Single Depth Sensor",
+  "version": "1.0.0",
+  "manufacturer": "Sensoterra",
+  "url": "https://www.sensoterra.com/sensors/single-depth-sensor/",
+  "description": "Sensoterra Soil Moisture Sensors measure volumetric water content of the soil.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Humditiy"
+  ],
+  "outputTopics": [
+    "calibration",
+    "channel",
+    "default",
+    "lifecycle",
+    "reset",
+    "serial",
+    "system",
+    "uplink"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

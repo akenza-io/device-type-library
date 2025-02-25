@@ -4,6 +4,197 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.58.1] - 2025-01-10
+
+### Added
+
+- Sensoterra - Sensoterra
+- Oxon - Oxobutton 2
+- Verge Sense - Cloud connector
+- Milesight - EM410-RDL
+- Milesight - VS351
+- Milesight - VS360
+- Milesight - WT201
+
+### Changed
+
+- Unifyed noise and sound into sound for topics and available sensors. Also referencing standard schemas
+
+# [1.57.2] - 2025-01-09
+
+### Changed
+
+- Added downlink encoder for the MCLimate Vicki
+
+# [1.57.1] - 2024-12-12
+
+### Changed
+
+- Implemented warm desk logic. Occupancy devices now output an additional time how long they where unoccupied
+- Standardised the occupancy value and added minutesSinceLastOccupied for the upcoming warmdesk logic
+
+# [1.57.0] - 2024-11-28
+
+### Added
+
+- Lansen - G2-LDP
+- Miromico - Insight MIOTY
+- Sentinum - FebrisCO2 MIOTY
+
+# [1.56.0] - 2024-10-17
+
+### Added
+
+- Quandify - Cubicmeter 1.1 plastic
+- Quandify - Cubicmeter 1.1 copper
+
+# [1.55.0] - 2024-10-04
+
+### Added
+
+- Dragino - SW3L
+- Netvox - R602
+- Netvox - R603
+- Watecco - Triphaso
+
+### Changed
+
+- Fixed tests for the acrios system device
+- Updated Watteco BoB to also interpret V2 Messages
+- Updated picture for Milesight AT101
+
+# [1.54.0] - 2024-09-26
+
+### Added
+
+- Decentlab - ALB
+- Decentlab - ATM22
+- Decentlab - BLG
+- Decentlab - CTD10
+- Decentlab - CWS
+- Decentlab - DLR2-002
+- Decentlab - DLR2-003
+- Decentlab - DLR2-004
+- Decentlab - DLR2-005
+- Decentlab - DLR2-006
+- Decentlab - DLR2-008
+- Decentlab - DLR2-009
+- Decentlab - DLR2-010
+- Decentlab - DLR2-011
+- Decentlab - DLR2-012
+- Decentlab - DS18
+- Decentlab - GMM
+- Decentlab - ISF
+- Decentlab - ITST
+- Decentlab - KL66
+- Decentlab - LID
+- Decentlab - LPW
+- Decentlab - LWS
+- Decentlab - NTU
+- Decentlab - OPTOD
+- Decentlab - PAR
+- Decentlab - PHEHT
+- Decentlab - PM
+- Decentlab - PR36CTD
+- Decentlab - PYR
+- Decentlab - RHC
+- Decentlab - SDD
+- Decentlab - TP
+- Decentlab - TRS11
+- Decentlab - TRS12
+- Decentlab - TRS21
+- Decentlab - WRM
+- Decentlab - ZN1
+- Decentlab - ZN2
+
+# [1.53.0] - 2024-09-24
+
+### Added
+
+- PMX Systems - PMX TCR Radar Object Counter
+
+# [1.52.0] - 2024-09-13
+
+### Added
+
+- Milesight - UC51X
+- Watteco - Flash'O
+
+### Changed
+
+- Added state to get the relative counts for: GWFCoder, TBDW100, DWS, EMS-Door, R718N3, SenlabM, Multisense & Presence Mini
+- Added new queue_time topic to Xovis
+
+# [1.52.1] - 2024-09-10
+
+### Changed
+
+- Added data flattening on port 100 for ACRIOS Systems ACR-CV-101L-M-X and updated URL
+
+# [1.52.0] - 2024-08-28
+
+### Added
+
+- ACRIOS Systems - ACR-CV-101L-M-X
+
+# [1.51.1] - 2024-07-30
+
+### Changed
+
+- Swisscom Multisense changed the batteryLevel percentage calculation to include the dropoff
+
+# [1.51.0] - 2024-07-12
+
+### Added
+
+- Decentlab - MES5
+- Decentlab - TBRG
+- smartEnds - Brigther Bins
+- mclimate - Cicki V4
+
+### Changed
+
+- Added new possible datapoints for milesight VS133 & VS121
+
+# [1.50.0] - 2024-06-12
+
+### Added
+
+- Decentlab - DWS
+
+### Changed
+
+- Updated isEmpty to react correctly to not initialized objects
+- Updated a few urls in the meta
+- Updated some images
+
+# [1.50.0] - 2024-05-24
+
+### Changed
+
+- Implemented references for commonly used datapoints
+
+# [1.49.0] - 2024-05-23
+
+### Changed
+
+- Catching illegal datapoints for the seeed senseCAPS210X series
+
+# [1.48.0] - 2024-05-22
+
+### Added
+
+- Yosensi - Temp
+- Yosensi - Pure Pro
+- Yosensi - Refrigerant Monitor
+
+### Changed
+
+- ioTracker - Removed 0 gps values in case of an illegal datapoint
+- senlabM - Changed txPeriod and logperiod as they where expressed in 2 second intervals
+- PeopleCounter - Added batteryLevel
+- LP8P - Added batteryLevel
+
 # [1.47.0] - 2024-04-26
 
 ### Added

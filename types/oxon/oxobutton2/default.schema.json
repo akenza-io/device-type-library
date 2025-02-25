@@ -1,0 +1,140 @@
+{
+  "$id": "https://akenza.io/oxon/oxobutton2/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "button1": {
+      "title": "Button 1",
+      "type": "boolean",
+      "description": "Button 1 got pressed if true",
+      "hideFromKpis": true
+    },
+    "button2": {
+      "title": "Button 2",
+      "type": "boolean",
+      "description": "Button 2 got pressed if true",
+      "hideFromKpis": true
+    },
+    "button3": {
+      "title": "Button 3",
+      "type": "boolean",
+      "description": "Button 3 got pressed if true",
+      "hideFromKpis": true
+    },
+    "button4": {
+      "title": "Button 4",
+      "type": "boolean",
+      "description": "Button 4 got pressed if true",
+      "hideFromKpis": true
+    },
+    "periodicUplink": {
+      "title": "Periodic uplink",
+      "type": "boolean",
+      "description": "It is a periodic uplink if true",
+      "hideFromKpis": true
+    },
+    "heartbeatEvent": {
+      "title": "Heartbeat event",
+      "type": "boolean",
+      "description": "It is a heartbeat event if true",
+      "hideFromKpis": true
+    },
+    "temperatureEvent": {
+      "title": "Temperature event",
+      "type": "boolean",
+      "description": "It is a temperature event if true",
+      "hideFromKpis": true
+    },
+    "humidityEvent": {
+      "title": "Humidity event",
+      "type": "boolean",
+      "description": "It is a humidity event if true",
+      "hideFromKpis": true
+    },
+    "ambientLightEvent": {
+      "title": "Light event",
+      "type": "boolean",
+      "description": "It is a light event if true",
+      "hideFromKpis": true
+    },
+    "button1Count": {
+      "title": "Button 1",
+      "type": "integer",
+      "description": "Button 1 got pressed if the number is 1",
+      "hideFromKpis": true
+    },
+    "button2Count": {
+      "title": "Button 2",
+      "type": "integer",
+      "description": "Button 2 got pressed if the number is 1",
+      "hideFromKpis": true
+    },
+    "button3Count": {
+      "title": "Button 3",
+      "type": "integer",
+      "description": "Button 3 got pressed if the number is 1",
+      "hideFromKpis": true
+    },
+    "button4Count": {
+      "title": "Button 4",
+      "type": "integer",
+      "description": "Button 4 got pressed if the number is 1",
+      "hideFromKpis": true
+    },
+    "periodicUplinkCount": {
+      "title": "Periodic uplink",
+      "type": "integer",
+      "description": "It is a periodic uplink if the number is 1",
+      "hideFromKpis": true
+    },
+    "heartbeatEventCount": {
+      "title": "Heartbeat event",
+      "type": "integer",
+      "description": "It is a heartbeat event if the number is 1",
+      "hideFromKpis": true
+    },
+    "temperatureEventCount": {
+      "title": "Temperature event",
+      "type": "integer",
+      "description": "It is a temperature event if the number is 1",
+      "hideFromKpis": true
+    },
+    "humidityEventCount": {
+      "title": "Humidity event",
+      "type": "integer",
+      "description": "It is a humidity event if the number is 1",
+      "hideFromKpis": true
+    },
+    "ambientLightEventCount": {
+      "title": "Light event",
+      "type": "integer",
+      "description": "It is a light event if the number is 1",
+      "hideFromKpis": true
+    },
+    "temperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    },
+    "humidity": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+    },
+    "light": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/illuminance/lux"
+    }
+  },
+  "required": [
+    "button1",
+    "button2",
+    "button3",
+    "button4",
+    "periodicUplink",
+    "temperatureEvent",
+    "humidityEvent",
+    "ambientLightEvent",
+    "temperature",
+    "humidity",
+    "light"
+  ]
+}

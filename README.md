@@ -82,6 +82,7 @@ An example can be found in `./types/decentlab/IAM/default.schema.json`.
 
 ## Open points
 
+- TODO: Add functionality for a type array to include null values in seeed senseCAPS210X series & Milesight TS301 - TS302
 - Schema per topic in one file, use keywords? You can add additional metadata but it is not a good practice, further validators do not use it to validate data. Better use a base schema that is extended.
 - Allow wildcard topic, to define that it is output to every topic
 - Add downlink sample

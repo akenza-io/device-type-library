@@ -1,0 +1,52 @@
+{
+  "$id": "https://akenza.io/sensoterra/sensoterra/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "batteryVoltage": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+    },
+    "estimatedSignalPower": {
+      "title": "Estimated signal power",
+      "type": "integer",
+      "description": "Estimated signal power",
+      "hideFromKpis": true
+    },
+    "saturationPointOvershotDepth": {
+      "title": "Saturation point overshot depth",
+      "type": "array",
+      "description": "Saturation point overshot depth",
+      "hideFromKpis": true
+    },
+    "firmwareVersion": {
+      "title": "Firmware version",
+      "description": "Firmware version",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "reset": {
+      "title": "Reset reason",
+      "description": "Reset reason",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "uptime": {
+      "title": "Uptime",
+      "type": "integer",
+      "unit": "s",
+      "description": "Uptime",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "batteryVoltage",
+    "estimatedSignalPower",
+    "saturationPointOvershotDepth",
+    "firmwareVersion",
+    "reset",
+    "uptime"
+  ]
+}

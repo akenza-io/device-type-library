@@ -7,16 +7,10 @@
   "title": "Default",
   "properties": {
     "distance": {
-      "title": "Distance",
-      "unit": "mm",
-      "type": "number",
-      "description": "Distance measured between the sensor and the surface"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/mm"
     },
     "fillLevel": {
-      "title": "Fill level",
-      "unit": "%",
-      "type": "number",
-      "description": "Fill percentage of the container"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/fillLevel/percent"
     },
     "distanceAlarming": {
       "title": "Distance alarm",
@@ -29,12 +23,7 @@
       "description": "True if the sensor is tilted"
     },
     "temperature": {
-      "title": "Temperature",
-      "unit": "°C",
-      "type": "number",
-      "description": "The temperature in °C.",
-      "minimum": -3276.5,
-      "maximum": 3276.5
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
     "temperatureAbnormal": {
       "title": "Temperature abnormal",

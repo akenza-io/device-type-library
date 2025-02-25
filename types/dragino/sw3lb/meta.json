@@ -1,0 +1,21 @@
+{
+  "name": "SW3L",
+  "version": "1.0.0",
+  "manufacturer": "Dragino",
+  "url": "https://www.dragino.com/products/water-meter-flow-sensor/item/222-sw3l.html",
+  "description": "The Dragino SW3L is a LoRaWAN Flow Sensor. Its able to be used indoors and outdoors.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Water Flow"
+  ],
+  "outputTopics": [
+    "datalog",
+    "default",
+    "timer",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

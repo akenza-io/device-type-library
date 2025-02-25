@@ -63,6 +63,7 @@ function consume(event) {
       break;
     case 40:
       data.buttonPushed = !!Bits.bitsToUnsigned(bits.substr(7, 1));
+      data.buttonPushedNumeric = Number(data.buttonPushed);
       data.count = Bits.bitsToUnsigned(bits.substr(8, 16));
       break;
     default:

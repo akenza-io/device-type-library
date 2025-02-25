@@ -1,0 +1,19 @@
+{
+  "name": "DL-TP",
+  "version": "1.0.0",
+  "manufacturer": "Decentlab",
+  "url": "https://www.decentlab.com/products/temperature-profile-for-lorawan",
+  "description": "TP comes with temperature profiling sensors that can be used in monitoring of glaciers, lakes, ocean, permafrost, dike, dam and soils.",
+  "author": "Decentlab",
+  "firmwareVersion": "V1.6.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

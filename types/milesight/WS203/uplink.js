@@ -13,8 +13,10 @@ function readUInt32LE(bytes) {
     (bytes[3] << 24) + (bytes[2] << 16) + (bytes[1] << 8) + bytes[0];
   return (value & 0xffffffff) >>> 0;
 }
-
 function isEmpty(obj) {
+  if (obj === undefined) {
+    return true;
+  }
   return Object.keys(obj).length === 0;
 }
 
@@ -25,7 +27,7 @@ function consume(event) {
   const decoded = {};
   const lifecycle = {};
 
-  for (let i = 0; i < bytes.length; ) {
+  for (let i = 0; i < bytes.length;) {
     const channelId = bytes[i++];
     const channelType = bytes[i++];
     // BATTERY
@@ -47,6 +49,23 @@ function consume(event) {
     else if (channelId === 0x05 && channelType === 0x00) {
       decoded.occupied = bytes[i] !== 0;
       decoded.occupancy = Number(decoded.occupied);
+      // Warm desk 
+      const time = new Date().getTime();
+      const state = event.state || {};
+      decoded.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
+      if (decoded.occupied) {
+        delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
+      } else if (state.lastOccupancyTimestamp !== undefined) {
+        decoded.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
+      } else if (state.lastOccupiedValue) { //
+        state.lastOccupancyTimestamp = time; // Start with first no occupancy
+      }
+
+      if (Number.isNaN(decoded.minutesSinceLastOccupied)) {
+        decoded.minutesSinceLastOccupied = 0;
+      }
+      state.lastOccupiedValue = decoded.occupied;
+      emit("state", state);
       i += 1;
     }
     // TEMPERATURE WITH ABNORMAL

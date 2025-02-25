@@ -7,12 +7,9 @@
   "title": "CO2",
   "properties": {
     "co2": {
-      "title": "CO2",
-      "unit": "ppm",
-      "type": "integer",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm",
       "description": "Carbon Dioxide in ppm",
-      "minimum": 0,
-      "maximum": 10000
+      "title": "CO2"
     }
   },
   "required": ["co2"]

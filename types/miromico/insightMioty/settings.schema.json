@@ -1,0 +1,49 @@
+{
+  "$id": "https://akenza.io/miromico/insightmioty/settings.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "settings",
+  "title": "Settings",
+  "properties": {
+    "measurementInterval": {
+      "title": "Measurement interval",
+      "type": "integer",
+      "unit": "s",
+      "description": "Measurement interval in seconds.",
+      "hideFromKpis": true
+    },
+    "temperatureSamples": {
+      "title": "Temperature samples",
+      "type": "integer",
+      "description": "Temperature samples",
+      "hideFromKpis": true
+    },
+    "co2Subsample": {
+      "title": "CO2 Subsample",
+      "type": "integer",
+      "description": "CO2 Subsample",
+      "hideFromKpis": true
+    },
+    "abcCalibrationPeriod": {
+      "title": "ABC calibration period",
+      "type": "integer",
+      "unit": "h",
+      "description": "ABC calibration period in hours",
+      "hideFromKpis": true
+    },
+    "firmwareHash": {
+      "title": "Firmware hash",
+      "type": "string",
+      "description": "Firmware hash",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "measurementInterval",
+    "temperatureSamples",
+    "co2Subsample",
+    "abcCalibrationPeriod",
+    "firmwareHash"
+  ]
+}

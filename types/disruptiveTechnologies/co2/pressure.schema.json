@@ -7,10 +7,7 @@
   "title": "Pressure",
   "properties": {
     "pressure": {
-      "title": "Pressure",
-      "unit": "pa",
-      "description": "Barometric Pressure in bar",
-      "type": "number"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/pa"
     }
   },
   "required": ["pressure"]

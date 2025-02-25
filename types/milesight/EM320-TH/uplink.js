@@ -23,8 +23,10 @@ function readInt16LE(bytes) {
   const ref = readUInt16LE(bytes);
   return ref > 0x7fff ? ref - 0x10000 : ref;
 }
-
 function isEmpty(obj) {
+  if (obj === undefined) {
+    return true;
+  }
   return Object.keys(obj).length === 0;
 }
 
