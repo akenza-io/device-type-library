@@ -6,25 +6,25 @@
   "topic": "default",
   "title": "Default",
   "properties": {
-    "pm1_0MassConcentration": {
+    "pm1_0": {
       "title": "PM1.0 Mass Concentration",
       "unit": "µg⋅m⁻³",
       "description": "PM1.0 Mass Concentration in µg⋅m⁻³",
       "type": "number"
     },
-    "pm2_5MassConcentration": {
+    "pm2_5": {
       "title": "PM2.5 Mass Concentration",
       "unit": "µg⋅m⁻³",
       "description": "PM2.5 Mass Concentration in µg⋅m⁻³",
       "type": "number"
     },
-    "pm4MassConcentration": {
+    "pm4": {
       "title": "PM4 Mass Concentration",
       "unit": "µg⋅m⁻³",
       "description": "PM4 Mass Concentration in µg⋅m⁻³",
       "type": "number"
     },
-    "pm10MassConcentration": {
+    "pm10": {
       "title": "PM10 Mass Concentration",
       "unit": "µg⋅m⁻³",
       "description": "PM10 Mass Concentration in µg⋅m⁻³",
@@ -36,31 +36,31 @@
       "description": "Typical Particle Size in nm",
       "type": "number"
     },
-    "pm0_5NumberConcentration": {
+    "pm0_5Number": {
       "title": "PM0.5 Number Concentration",
       "unit": "1⋅cm⁻³",
       "description": "PM0.5 Number Concentration in 1⋅cm⁻³",
       "type": "number"
     },
-    "pm1_0NumberConcentration": {
+    "pm1_0Number": {
       "title": "PM1.0 Number Concentration",
       "unit": "1⋅cm⁻³",
       "description": "PM1.0 Number Concentration in 1⋅cm⁻³",
       "type": "number"
     },
-    "pm2_5NumberConcentration": {
+    "pm2_5Number": {
       "title": "PM2.5 Number Concentration",
       "unit": "1⋅cm⁻³",
       "description": "PM2.5 Number Concentration in 1⋅cm⁻³",
       "type": "number"
     },
-    "pm4NumberConcentration": {
+    "pm4Number": {
       "title": "PM4 Number Concentration",
       "unit": "1⋅cm⁻³",
       "description": "PM4 Number Concentration in 1⋅cm⁻³",
       "type": "number"
     },
-    "pm10NumberConcentration": {
+    "pm10Number": {
       "title": "PM10 Number Concentration",
       "unit": "1⋅cm⁻³",
       "description": "PM10 Number Concentration in 1⋅cm⁻³",
@@ -77,16 +77,16 @@
     }
   },
   "required": [
-    "pm1_0MassConcentration",
-    "pm2_5MassConcentration",
-    "pm4MassConcentration",
-    "pm10MassConcentration",
+    "pm1_0",
+    "pm2_5",
+    "pm4",
+    "pm10",
     "typicalParticleSize",
-    "pm0_5NumberConcentration",
-    "pm1_0NumberConcentration",
-    "pm2_5NumberConcentration",
-    "pm4NumberConcentration",
-    "pm10NumberConcentration",
+    "pm0_5Number",
+    "pm1_0Number",
+    "pm2_5Number",
+    "pm4Number",
+    "pm10Number",
     "temperature",
     "humidity",
     "pressure"

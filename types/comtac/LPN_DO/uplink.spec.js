@@ -34,10 +34,10 @@ describe("Comtac LPN DO-2 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.do_1, 0);
-        assert.equal(value.data.do_2, 0);
-        assert.equal(value.data.do_1_lora, 0);
-        assert.equal(value.data.do_2_lora, 0);
+        assert.equal(value.data.do1, 0);
+        assert.equal(value.data.do2, 0);
+        assert.equal(value.data.do1Lora, 0);
+        assert.equal(value.data.do2Lora, 0);
         assert.equal(value.data.manually, 0);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

@@ -12,7 +12,7 @@
       "type": "integer",
       "description": "Current leakage AD-value on port 1"
     },
-    "leakage_2": {
+    "leakage2": {
       "title": "Leakage 2",
       "unit": "AD",
       "type": "integer",
@@ -35,7 +35,7 @@
       "type": "integer",
       "description": "1 if leakage was detected on port 1"
     },
-    "leakageDetected_2": {
+    "leakageDetected2": {
       "title": "Leakage detected 2",
       "type": "integer",
       "description": "1 if leakage was detected on port 2"
@@ -45,7 +45,7 @@
       "type": "integer",
       "description": "1 a leakage was detected last 24 hours on port 1"
     },
-    "leakageDetectedLast24_2": {
+    "leakageDetected2Last24": {
       "title": "Leakage detected last 24 hours 2",
       "type": "integer",
       "description": "1 a leakage was detected last 24 hours on port 2"
@@ -62,7 +62,7 @@
       "type": "integer",
       "description": "Duration of the last alarm in minutes on port 1"
     },
-    "durationLastAlarm_2": {
+    "durationLastAlarm2": {
       "title": "Duration last alarm 2",
       "unit": "m",
       "type": "integer",
@@ -71,15 +71,15 @@
   },
   "required": [
     "leakage",
-    "leakage_2",
+    "leakage2",
     "alarmTrigger",
     "alarmReset",
     "leakageDetected",
-    "leakageDetected_2",
+    "leakageDetected2",
     "leakageDetectedLast24",
-    "leakageDetectedLast24_2",
+    "leakageDetected2Last24",
     "daysSinceLastLeakage",
     "durationLastAlarm",
-    "durationLastAlarm_2"
+    "durationLastAlarm2"
   ]
 }

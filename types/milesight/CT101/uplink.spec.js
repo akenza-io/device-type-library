@@ -44,7 +44,7 @@ describe("CT101 Uplink", () => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
     utils
-      .loadSchema(`${__dirname}/totalCurrent.schema.json`)
+      .loadSchema(`${__dirname}/total_current.schema.json`)
       .then((parsedSchema) => {
         totalCurrentSchema = parsedSchema;
         done();
@@ -91,7 +91,7 @@ describe("CT101 Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "totalCurrent");
+        assert.equal(value.topic, "total_current");
         assert.equal(value.data.totalCurrent, 100);
 
         utils.validateSchema(value.data, totalCurrentSchema, {

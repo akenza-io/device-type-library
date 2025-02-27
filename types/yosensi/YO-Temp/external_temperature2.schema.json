@@ -1,10 +1,10 @@
 {
-  "$id": "https://akenza.io/yosensi/YO-Temp/externalTemperature2.schema.json",
+  "$id": "https://akenza.io/yosensi/YO-Temp/external_temperature2.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
-  "topic": "externalTemperature2",
-  "title": "ExternalTemperature2",
+  "topic": "external_temperature2",
+  "title": "External temperature 2",
   "properties": {
     "externalTemperature2": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
@@ -13,5 +13,7 @@
       "hideFromKpis": false
     }
   },
-  "required": ["externalTemperature2"]
+  "required": [
+    "externalTemperature2"
+  ]
 }

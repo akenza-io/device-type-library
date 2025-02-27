@@ -47,13 +47,13 @@ describe("G2-LDP Uplink", () => {
         assert.equal(value.data.alarmTrigger, 0);
         assert.equal(value.data.daysSinceLastLeakage, 0);
         assert.equal(value.data.durationLastAlarm, 0);
-        assert.equal(value.data.durationLastAlarm_2, 0);
+        assert.equal(value.data.durationLastAlarm2, 0);
         assert.equal(value.data.leakage, 47);
-        assert.equal(value.data.leakage_2, 203);
+        assert.equal(value.data.leakage2, 203);
         assert.equal(value.data.leakageDetected, 1);
-        assert.equal(value.data.leakageDetected_2, 0);
+        assert.equal(value.data.leakageDetected2, 0);
         assert.equal(value.data.leakageDetectedLast24, 1);
-        assert.equal(value.data.leakageDetectedLast24_2, 0);
+        assert.equal(value.data.leakageDetected2Last24, 0);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -96,13 +96,13 @@ describe("G2-LDP Uplink", () => {
         assert.equal(value.data.alarmTrigger, 0);
         assert.equal(value.data.daysSinceLastLeakage, 0);
         assert.equal(value.data.durationLastAlarm, 0);
-        assert.equal(value.data.durationLastAlarm_2, 0);
+        assert.equal(value.data.durationLastAlarm2, 0);
         assert.equal(value.data.leakage, 204);
-        assert.equal(value.data.leakage_2, 204);
+        assert.equal(value.data.leakage2, 204);
         assert.equal(value.data.leakageDetected, 0);
-        assert.equal(value.data.leakageDetected_2, 0);
+        assert.equal(value.data.leakageDetected2, 0);
         assert.equal(value.data.leakageDetectedLast24, 1);
-        assert.equal(value.data.leakageDetectedLast24_2, 0);
+        assert.equal(value.data.leakageDetected2Last24, 0);
 
         // utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

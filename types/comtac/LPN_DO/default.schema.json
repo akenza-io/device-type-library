@@ -36,42 +36,42 @@
       "description": "Received Signal Strength Indication",
       "type": "number"
     },
-    "do_1_lora": {
+    "do1Lora": {
       "title": "Channel 1",
       "description": "Channel 1, 0 = Inactive / 1 = Active .",
       "type": "integer",
       "minimum": 0,
       "maximum": 1
     },
-    "do_2_lora": {
+    "do2Lora": {
       "title": "Channel 2",
       "description": "Channel 2, 0 = Inactive / 1 = Active.",
       "type": "integer",
       "minimum": 0,
       "maximum": 1
     },
-    "do_1_error": {
+    "do1Error": {
       "title": "Channel 1 Error",
       "description": "Channel 1 Malfunction, 0 = No Error / 1 = Error.",
       "type": "integer",
       "minimum": 0,
       "maximum": 1
     },
-    "do_2_error": {
+    "do2Error": {
       "title": "Channel 2 Error",
       "description": "Channel 2 Malfunction, 0 = No Error / 1 = Error.",
       "type": "integer",
       "minimum": 0,
       "maximum": 1
     },
-    "do_1": {
+    "do1": {
       "title": "Channel 1",
       "description": "Channel 1, 0 = Inactive / 1 = Active .",
       "type": "integer",
       "minimum": 0,
       "maximum": 1
     },
-    "do_2": {
+    "do2": {
       "title": "Channel 2",
       "description": "Channel 2, 0 = Inactive / 1 = Active.",
       "type": "integer",
@@ -91,12 +91,12 @@
     "version",
     "snr",
     "rssi",
-    "do_1_lora",
-    "do_2_lora",
-    "do_1_error",
-    "do_2_error",
-    "do_1",
-    "do_2",
+    "do1Lora",
+    "do2Lora",
+    "do1Error",
+    "do2Error",
+    "do1",
+    "do2",
     "manually"
   ]
 }

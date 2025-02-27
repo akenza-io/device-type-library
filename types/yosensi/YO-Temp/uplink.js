@@ -292,8 +292,8 @@ function payloadV2Parse(bytes, date, utils) {
   ) {
     return new Date(
       Number(extractPayloadDateTimeDate) -
-        utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
-          1000,
+      utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
+      1000,
     );
   }
 
@@ -308,7 +308,7 @@ function payloadV2Parse(bytes, date, utils) {
   function extractMeasurementDateTime(byte, extractMeasurementDateTimeDate) {
     return new Date(
       Number(extractMeasurementDateTimeDate) +
-        utils.unsignedNbrFromByte(byte) * 1000,
+      utils.unsignedNbrFromByte(byte) * 1000,
     );
   }
 
@@ -697,14 +697,14 @@ function consume(event) {
   if (data.data.batteryVoltage !== undefined) {
     emit("sample", {
       data: { batteryVoltage: data.data.batteryVoltage },
-      topic: "batteryVoltage",
+      topic: "battery_voltage",
     });
     delete data.data.batteryVoltage;
   }
   if (data.data.internalTemperature !== undefined) {
     emit("sample", {
       data: { internalTemperature: data.data.internalTemperature },
-      topic: "internalTemperature",
+      topic: "internal_temperature",
     });
     delete data.data.internalTemperature;
   }
@@ -719,21 +719,21 @@ function consume(event) {
   if (data.data.externalTemperature1 !== undefined) {
     emit("sample", {
       data: { externalTemperature1: data.data.externalTemperature1 },
-      topic: "externalTemperature1",
+      topic: "external_temperature1",
     });
     delete data.data.externalTemperature1;
   }
   if (data.data.externalTemperature2 !== undefined) {
     emit("sample", {
       data: { externalTemperature2: data.data.externalTemperature2 },
-      topic: "externalTemperature2",
+      topic: "external_temperature2",
     });
     delete data.data.externalTemperature2;
   }
   if (data.data.externalTemperature3 !== undefined) {
     emit("sample", {
       data: { externalTemperature3: data.data.externalTemperature3 },
-      topic: "externalTemperature3",
+      topic: "external_temperature3",
     });
     delete data.data.externalTemperature3;
   }

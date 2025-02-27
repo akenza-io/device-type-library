@@ -51,15 +51,15 @@ describe("Decentlab PM Uplink", () => {
         assert.equal(value.data.humidity, 41.63221740722656);
         assert.equal(value.data.temperature, 24.35660461425781);
         assert.equal(value.data.pressure, 96800);
-        assert.equal(value.data.pm0_5NumberConcentration, 26.3);
-        assert.equal(value.data.pm10MassConcentration, 3.9);
-        assert.equal(value.data.pm10NumberConcentration, 30.1);
-        assert.equal(value.data.pm1_0MassConcentration, 3.7);
-        assert.equal(value.data.pm1_0NumberConcentration, 30);
-        assert.equal(value.data.pm2_5MassConcentration, 3.9);
-        assert.equal(value.data.pm2_5NumberConcentration, 30.1);
-        assert.equal(value.data.pm4MassConcentration, 3.9);
-        assert.equal(value.data.pm4NumberConcentration, 30.1);
+        assert.equal(value.data.pm0_5Number, 26.3);
+        assert.equal(value.data.pm10, 3.9);
+        assert.equal(value.data.pm10Number, 30.1);
+        assert.equal(value.data.pm1_0, 3.7);
+        assert.equal(value.data.pm1_0Number, 30);
+        assert.equal(value.data.pm2_5, 3.9);
+        assert.equal(value.data.pm2_5Number, 30.1);
+        assert.equal(value.data.pm4, 3.9);
+        assert.equal(value.data.pm4Number, 30.1);
         assert.equal(value.data.typicalParticleSize, 501);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

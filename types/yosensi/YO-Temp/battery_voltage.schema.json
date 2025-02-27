@@ -1,9 +1,9 @@
 {
-  "$id": "https://akenza.io/yosensi/YO-RefrigerantMonitor/batteryVoltage.schema.json",
+  "$id": "https://akenza.io/yosensi/YO-Temp/battery_voltage.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
-  "topic": "batteryVoltage",
+  "topic": "battery_voltage",
   "title": "BatteryVoltage",
   "properties": {
     "batteryVoltage": {
@@ -14,5 +14,7 @@
       "hideFromKpis": false
     }
   },
-  "required": ["batteryVoltage"]
+  "required": [
+    "batteryVoltage"
+  ]
 }

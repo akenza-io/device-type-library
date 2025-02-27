@@ -22,7 +22,7 @@ describe("IMBuilding Office counter occupancy", () => {
   let totalCounterSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/totalCounter.schema.json`)
+      .loadSchema(`${__dirname}/total_counter.schema.json`)
       .then((parsedSchema) => {
         totalCounterSchema = parsedSchema;
         done();
@@ -65,7 +65,7 @@ describe("IMBuilding Office counter occupancy", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "totalCounter");
+        assert.equal(value.topic, "total_counter");
         assert.equal(value.data.totalCounterA, 1539);
         assert.equal(value.data.totalCounterB, 1510);
 

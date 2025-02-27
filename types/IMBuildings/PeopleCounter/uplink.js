@@ -104,11 +104,9 @@ function consume(event) {
     case payloadTypes.PEOPLE_COUNTER: {
       switch (payloadVariant) {
         case 0x04: {
-          lifecycle.deviceID = `${bytes[bytes.length - 22]}${
-            bytes[bytes.length - 21]
-          }${bytes[bytes.length - 20]}${bytes[bytes.length - 19]}${
-            bytes[bytes.length - 18]
-          }${bytes[bytes.length - 17]}`;
+          lifecycle.deviceID = `${bytes[bytes.length - 22]}${bytes[bytes.length - 21]
+            }${bytes[bytes.length - 20]}${bytes[bytes.length - 19]}${bytes[bytes.length - 18]
+            }${bytes[bytes.length - 17]}`;
           lifecycle.deviceStatus = deviceStatus(
             Bits.bitsToUnsigned(bits.substr(64, 8)),
           );
@@ -136,13 +134,13 @@ function consume(event) {
           totalCounter.totalCounterB = readUInt16BE(bytes, bytes.length - 3);
           lifecycle.payloadCounter = bytes[bytes.length - 1];
           emit("sample", { data, topic: "default" });
-          emit("sample", { data: totalCounter, topic: "totalCounter" });
+          emit("sample", { data: totalCounter, topic: "total_counter" });
           break;
         case 0x07:
           lifecycle.sensorStatus = sensorStatus(bytes[bytes.length - 5]);
           totalCounter.totalCounterA = readUInt16BE(bytes, bytes.length - 4);
           totalCounter.totalCounterB = readUInt16BE(bytes, bytes.length - 2);
-          emit("sample", { data: totalCounter, topic: "totalCounter" });
+          emit("sample", { data: totalCounter, topic: "total_counter" });
           break;
         case 0x08:
           lifecycle.deviceStatus = deviceStatus(bytes[bytes.length - 4]);
