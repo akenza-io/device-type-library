@@ -6,62 +6,62 @@
   "topic": "io",
   "processingType": "uplink_decoder",
   "properties": {
-    "inputStatus1_8": {
+    "inputStatus1to8": {
       "title": "Input status 1-8",
       "description": "Input status 1-8",
       "type": "integer"
     },
-    "inputStatus9_16": {
+    "inputStatus9to16": {
       "title": "Input status 9-16",
       "description": "Input status 9-16",
       "type": "integer"
     },
-    "inputStatus17_24": {
+    "inputStatus17to24": {
       "title": "Input status 17-24",
       "description": "Input status 17-24",
       "type": "integer"
     },
-    "inputStatus25_32": {
+    "inputStatus25to32": {
       "title": "Input status 25-32",
       "description": "Input status 25-32",
       "type": "integer"
     },
-    "outputStatus1_8": {
+    "outputStatus1to8": {
       "title": "Output status 1-8",
       "description": "Output status 1-8",
       "type": "integer"
     },
-    "outputStatus9_16": {
+    "outputStatus9to16": {
       "title": "Output status 9-16",
       "description": "Output status 9-16",
       "type": "integer"
     },
-    "outputStatus17_24": {
+    "outputStatus17to24": {
       "title": "Output status 17-24",
       "description": "Output status 17-24",
       "type": "integer"
     },
-    "outputStatus25_32": {
+    "outputStatus25to32": {
       "title": "Output status 25-32",
       "description": "Output status 25-32",
       "type": "integer"
     },
-    "inputTrigger1_8": {
+    "inputTrigger1to8": {
       "title": "Input trigger 1-8",
       "description": "Input trigger 1-8",
       "type": "integer"
     },
-    "inputTrigger9_16": {
+    "inputTrigger9to16": {
       "title": "Input trigger 9-16",
       "description": "Input trigger 9-16",
       "type": "integer"
     },
-    "inputTrigger17_24": {
+    "inputTrigger17to24": {
       "title": "Input trigger 17-24",
       "description": "Input trigger 17-24",
       "type": "integer"
     },
-    "inputTrigger25_32": {
+    "inputTrigger25to32": {
       "title": "Input trigger 25-32",
       "description": "Input trigger 25-32",
       "type": "integer"

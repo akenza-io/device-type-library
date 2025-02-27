@@ -1,0 +1,12 @@
+{
+    "description": "Namings that break the convention but should be allowed",
+    "topics": [],
+    "dataKeys": [
+        "pm0_3",
+        "pm1_0",
+        "pm2_5",
+        "pm4_0",
+        "pm0_5Number",
+        "pm2_5Number"
+    ]
+}
