@@ -13,13 +13,13 @@
     "Gas Temperature"
   ],
   "outputTopics": [
-    "batteryVoltage",
-    "internalTemperature",
+    "battery_voltage",
+    "internal_temperature",
     "humidity",
-    "differentialPressure1",
-    "differentialPressure2",
-    "gasTemperature1",
-    "gasTemperature2"
+    "differential_pressure_1",
+    "differential_pressure_2",
+    "gas_temperature_1",
+    "gas_temperature_2"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

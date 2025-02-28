@@ -1,18 +1,19 @@
 {
-  "$id": "https://akenza.io/yosensi/YO-Analog/CH6.schema.json",
+  "$id": "https://akenza.io/yosensi/YO-Analog/ch6.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
-  "topic": "CH6",
-  "title": "CH6",
+  "topic": "ch6",
+  "title": "ch6",
   "properties": {
-    "CH6": {
-      "title": "Voltage 3",
-      "type": "number",
-      "description": "CH6 Voltage Measurement in V.",
-      "unit": "V",
+    "ch6": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/milliAmpere",
+      "title": "Current - ch6",
+      "description": "ch6 Current Measurement in mA.",
       "hideFromKpis": false
     }
   },
-  "required": ["CH6"]
+  "required": [
+    "ch6"
+  ]
 }

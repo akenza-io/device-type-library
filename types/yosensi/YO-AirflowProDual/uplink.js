@@ -296,8 +296,8 @@ function payloadV2Parse(bytes, date, utils) {
   ) {
     return new Date(
       Number(extractPayloadDateTimeDate) -
-        utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
-          1000,
+      utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
+      1000,
     );
   }
 
@@ -312,7 +312,7 @@ function payloadV2Parse(bytes, date, utils) {
   function extractMeasurementDateTime(byte, extractMeasurementDateTimeDate) {
     return new Date(
       Number(extractMeasurementDateTimeDate) +
-        utils.unsignedNbrFromByte(byte) * 1000,
+      utils.unsignedNbrFromByte(byte) * 1000,
     );
   }
 
@@ -700,14 +700,14 @@ function consume(event) {
   if (data.data.batteryVoltage !== undefined) {
     emit("sample", {
       data: { batteryVoltage: data.data.batteryVoltage },
-      topic: "batteryVoltage",
+      topic: "battery_voltage",
     });
     delete data.data.batteryVoltage;
   }
   if (data.data.internalTemperature !== undefined) {
     emit("sample", {
       data: { internalTemperature: data.data.internalTemperature },
-      topic: "internalTemperature",
+      topic: "internal_temperature",
     });
     delete data.data.internalTemperature;
   }
@@ -721,28 +721,28 @@ function consume(event) {
   if (data.data.differentialPressure1 !== undefined) {
     emit("sample", {
       data: { differentialPressure1: data.data.differentialPressure1 },
-      topic: "differentialPressure1",
+      topic: "differential_pressure_1",
     });
     delete data.data.differentialPressure1;
   }
   if (data.data.differentialPressure2 !== undefined) {
     emit("sample", {
       data: { differentialPressure2: data.data.differentialPressure2 },
-      topic: "differentialPressure2",
+      topic: "differential_pressure_2",
     });
     delete data.data.differentialPressure2;
   }
   if (data.data.gasTemperature1 !== undefined) {
     emit("sample", {
       data: { gasTemperature1: data.data.gasTemperature1 },
-      topic: "gasTemperature1",
+      topic: "gas_temperature_1",
     });
     delete data.data.gasTemperature1;
   }
   if (data.data.gasTemperature2 !== undefined) {
     emit("sample", {
       data: { gasTemperature2: data.data.gasTemperature2 },
-      topic: "gasTemperature2",
+      topic: "gas_temperature_2",
     });
     delete data.data.gasTemperature2;
   }

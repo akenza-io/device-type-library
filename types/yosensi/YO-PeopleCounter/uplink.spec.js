@@ -12,7 +12,7 @@ describe("Yosensi YO People Counter uplink", () => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
     utils
-      .loadSchema(`${__dirname}/batteryVoltage.schema.json`)
+      .loadSchema(`${__dirname}/battery_voltage.schema.json`)
       .then((parsedSchema) => {
         batteryVoltageSchema = parsedSchema;
         done();
@@ -42,7 +42,7 @@ describe("Yosensi YO People Counter uplink", () => {
   let leftToRightSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/leftToRight.schema.json`)
+      .loadSchema(`${__dirname}/left_to_right.schema.json`)
       .then((parsedSchema) => {
         leftToRightSchema = parsedSchema;
         done();
@@ -52,7 +52,7 @@ describe("Yosensi YO People Counter uplink", () => {
   let rightToLeftSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/rightToLeft.schema.json`)
+      .loadSchema(`${__dirname}/right_to_left.schema.json`)
       .then((parsedSchema) => {
         rightToLeftSchema = parsedSchema;
         done();
@@ -62,7 +62,7 @@ describe("Yosensi YO People Counter uplink", () => {
   let sumLeftToRightSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/sumLeftToRight.schema.json`)
+      .loadSchema(`${__dirname}/sum_left_to_right.schema.json`)
       .then((parsedSchema) => {
         sumLeftToRightSchema = parsedSchema;
         done();
@@ -72,7 +72,7 @@ describe("Yosensi YO People Counter uplink", () => {
   let sumRightToLeftSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/sumRightToLeft.schema.json`)
+      .loadSchema(`${__dirname}/sum_right_to_left.schema.json`)
       .then((parsedSchema) => {
         sumRightToLeftSchema = parsedSchema;
         done();
@@ -82,7 +82,7 @@ describe("Yosensi YO People Counter uplink", () => {
   let differenceCountSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/differenceCount.schema.json`)
+      .loadSchema(`${__dirname}/difference_count.schema.json`)
       .then((parsedSchema) => {
         differenceCountSchema = parsedSchema;
         done();
@@ -103,7 +103,7 @@ describe("Yosensi YO People Counter uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "batteryVoltage");
+        assert.equal(value.topic, "battery_voltage");
         assert.equal(value.data.batteryVoltage, 5274);
 
         utils.validateSchema(value.data, batteryVoltageSchema, {
@@ -152,7 +152,7 @@ describe("Yosensi YO People Counter uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "leftToRight");
+        assert.equal(value.topic, "left_to_right");
         assert.equal(value.data.leftToRight, 8);
 
         utils.validateSchema(value.data, leftToRightSchema, {
@@ -165,7 +165,7 @@ describe("Yosensi YO People Counter uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "rightToLeft");
+        assert.equal(value.topic, "right_to_left");
         assert.equal(value.data.rightToLeft, 10);
 
         utils.validateSchema(value.data, rightToLeftSchema, {
@@ -178,7 +178,7 @@ describe("Yosensi YO People Counter uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "sumLeftToRight");
+        assert.equal(value.topic, "sum_left_to_right");
         assert.equal(value.data.sumLeftToRight, 38);
 
         utils.validateSchema(value.data, sumLeftToRightSchema, {
@@ -191,7 +191,7 @@ describe("Yosensi YO People Counter uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "sumRightToLeft");
+        assert.equal(value.topic, "sum_right_to_left");
         assert.equal(value.data.sumRightToLeft, 77);
 
         utils.validateSchema(value.data, sumRightToLeftSchema, {
@@ -204,7 +204,7 @@ describe("Yosensi YO People Counter uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "differenceCount");
+        assert.equal(value.topic, "difference_count");
         assert.equal(value.data.differenceCount, -39);
 
         utils.validateSchema(value.data, differenceCountSchema, {

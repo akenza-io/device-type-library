@@ -7,9 +7,13 @@
   "title": "Sound",
   "properties": {
     "sound": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/soundLevel/dba",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/soundLevel/dbspl",
+      "minimum": 45,
+      "maximum": 110,
       "hideFromKpis": false
     }
   },
-  "required": ["sound"]
+  "required": [
+    "sound"
+  ]
 }

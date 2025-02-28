@@ -13,12 +13,12 @@
     "Utilities Consumption"
   ],
   "outputTopics": [
-    "batteryVoltage",
-    "internalTemperature",
+    "battery_voltage",
+    "internal_temperature",
     "humidity",
-    "periodicPulseCnt",
-    "persistentPulseCnt",
-    "totalUnits"
+    "periodic_pulse_cnt",
+    "persistent_pulse_cnt",
+    "total_units"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

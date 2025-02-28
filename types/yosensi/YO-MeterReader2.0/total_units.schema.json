@@ -1,0 +1,21 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-MeterReader2_0/total_units.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "total_units",
+  "title": "TotalUnits",
+  "properties": {
+    "totalUnits": {
+      "title": "Total Units",
+      "type": "number",
+      "description": "Total Units - The sensor can connect to various meters to track electricity, water and gas consumption. Total units is the total utilities consumption of a connected utility source.",
+      "minimum": 0,
+      "maximum": 214748364.7,
+      "hideFromKpis": false
+    }
+  },
+  "required": [
+    "totalUnits"
+  ]
+}

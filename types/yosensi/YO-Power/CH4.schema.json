@@ -1,18 +1,17 @@
 {
-  "$id": "https://akenza.io/yosensi/YO-Power/CH4.schema.json",
+  "$id": "https://akenza.io/yosensi/YO-Power/ch4.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
-  "topic": "CH4",
+  "topic": "ch4",
   "title": "CH4",
   "properties": {
-    "CH4": {
-      "title": "CH4 - Current",
-      "type": "number",
-      "description": "Current in A.",
-      "unit": "A",
+    "ch4": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere",
       "hideFromKpis": false
     }
   },
-  "required": ["CH4"]
+  "required": [
+    "ch4"
+  ]
 }

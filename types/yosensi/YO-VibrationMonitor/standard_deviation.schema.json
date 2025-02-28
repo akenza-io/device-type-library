@@ -1,0 +1,39 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-VibrationMonitor/standard_deviation.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "standard_deviation",
+  "title": "StandardDeviation",
+  "properties": {
+    "standardDeviation_x": {
+      "title": "standardDeviation - X axis",
+      "type": "number",
+      "description": "Standard Deviation - X axis.",
+      "minimum": 0,
+      "maximum": 10,
+      "hideFromKpis": false
+    },
+    "standardDeviation_y": {
+      "title": "Standard Deviation - Y axis",
+      "type": "number",
+      "description": "Standard Deviation - Y axis.",
+      "minimum": 0,
+      "maximum": 10,
+      "hideFromKpis": false
+    },
+    "standardDeviation_z": {
+      "title": "Standard Deviation - Z axis",
+      "type": "number",
+      "description": "Standard Deviation - Z axis.",
+      "minimum": 0,
+      "maximum": 10,
+      "hideFromKpis": false
+    }
+  },
+  "required": [
+    "standardDeviation_x",
+    "standardDeviation_y",
+    "standardDeviation_z"
+  ]
+}

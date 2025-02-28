@@ -5,14 +5,14 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Yosensi YO PMx Pro uplink", () => {
+describe("Yosensi YO Particulate Matter Sensor uplink", () => {
   let batteryVoltageSchema = null;
   let consume = null;
   before((done) => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
     utils
-      .loadSchema(`${__dirname}/batteryVoltage.schema.json`)
+      .loadSchema(`${__dirname}/battery_voltage.schema.json`)
       .then((parsedSchema) => {
         batteryVoltageSchema = parsedSchema;
         done();
@@ -22,7 +22,7 @@ describe("Yosensi YO PMx Pro uplink", () => {
   let internalTemperatureSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/internalTemperature.schema.json`)
+      .loadSchema(`${__dirname}/internal_temperature.schema.json`)
       .then((parsedSchema) => {
         internalTemperatureSchema = parsedSchema;
         done();
@@ -52,7 +52,7 @@ describe("Yosensi YO PMx Pro uplink", () => {
   let massConcPm1Schema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/massConcPm1.schema.json`)
+      .loadSchema(`${__dirname}/mass_conc_pm1.schema.json`)
       .then((parsedSchema) => {
         massConcPm1Schema = parsedSchema;
         done();
@@ -62,7 +62,7 @@ describe("Yosensi YO PMx Pro uplink", () => {
   let massConcPm25Schema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/massConcPm2_5.schema.json`)
+      .loadSchema(`${__dirname}/mass_conc_pm2_5.schema.json`)
       .then((parsedSchema) => {
         massConcPm25Schema = parsedSchema;
         done();
@@ -72,7 +72,7 @@ describe("Yosensi YO PMx Pro uplink", () => {
   let massConcPm4Schema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/massConcPm4.schema.json`)
+      .loadSchema(`${__dirname}/mass_conc_pm4.schema.json`)
       .then((parsedSchema) => {
         massConcPm4Schema = parsedSchema;
         done();
@@ -82,7 +82,7 @@ describe("Yosensi YO PMx Pro uplink", () => {
   let massConcPm10Schema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/massConcPm10.schema.json`)
+      .loadSchema(`${__dirname}/mass_conc_pm10.schema.json`)
       .then((parsedSchema) => {
         massConcPm10Schema = parsedSchema;
         done();
@@ -92,7 +92,7 @@ describe("Yosensi YO PMx Pro uplink", () => {
   let partConcPm1Schema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/partConcPm1.schema.json`)
+      .loadSchema(`${__dirname}/part_conc_pm1.schema.json`)
       .then((parsedSchema) => {
         partConcPm1Schema = parsedSchema;
         done();
@@ -102,7 +102,7 @@ describe("Yosensi YO PMx Pro uplink", () => {
   let partConcPm25Schema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/partConcPm2_5.schema.json`)
+      .loadSchema(`${__dirname}/part_conc_pm2_5.schema.json`)
       .then((parsedSchema) => {
         partConcPm25Schema = parsedSchema;
         done();
@@ -110,7 +110,7 @@ describe("Yosensi YO PMx Pro uplink", () => {
   });
 
   describe("consume()", () => {
-    it("should decode the Yosensi YO PMx Pro (batteryVoltage,internalTemperature,humidity,accelerometer) payload", () => {
+    it("should decode the Yosensi YO Particulate Matter Sensor (batteryVoltage,internalTemperature,humidity,accelerometer) payload", () => {
       const data = {
         data: {
           port: 0,
@@ -123,7 +123,7 @@ describe("Yosensi YO PMx Pro uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "batteryVoltage");
+        assert.equal(value.topic, "battery_voltage");
         assert.equal(value.data.batteryVoltage, 7097);
 
         utils.validateSchema(value.data, batteryVoltageSchema, {
@@ -136,7 +136,7 @@ describe("Yosensi YO PMx Pro uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "internalTemperature");
+        assert.equal(value.topic, "internal_temperature");
         assert.equal(value.data.internalTemperature, 20.3);
 
         utils.validateSchema(value.data, internalTemperatureSchema, {
@@ -173,7 +173,7 @@ describe("Yosensi YO PMx Pro uplink", () => {
       consume(data);
     });
 
-    it("should decode the Yosensi YO PMx Pro (Mass Concentrations: PM1, PM2.5, PM4, PM10, Particle Concentrations: PM1, PM2.5) payload", () => {
+    it("should decode the Yosensi YO Particulate Matter Sensor (Mass Concentrations: PM1, PM2.5, PM4, PM10, Particle Concentrations: PM1, PM2.5) payload", () => {
       const data = {
         data: {
           port: 0,
@@ -187,7 +187,7 @@ describe("Yosensi YO PMx Pro uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "massConcPm1");
+        assert.equal(value.topic, "mass_conc_pm1");
         assert.equal(value.data.massConcPm1, 8.2);
 
         utils.validateSchema(value.data, massConcPm1Schema, {
@@ -200,7 +200,7 @@ describe("Yosensi YO PMx Pro uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "massConcPm2_5");
+        assert.equal(value.topic, "mass_conc_pm2_5");
         assert.equal(value.data.massConcPm2_5, 8.6);
 
         utils.validateSchema(value.data, massConcPm25Schema, {
@@ -213,7 +213,7 @@ describe("Yosensi YO PMx Pro uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "massConcPm4");
+        assert.equal(value.topic, "mass_conc_pm4");
         assert.equal(value.data.massConcPm4, 8.6);
 
         utils.validateSchema(value.data, massConcPm4Schema, {
@@ -226,7 +226,7 @@ describe("Yosensi YO PMx Pro uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "massConcPm10");
+        assert.equal(value.topic, "mass_conc_pm10");
         assert.equal(value.data.massConcPm10, 8.6);
 
         utils.validateSchema(value.data, massConcPm10Schema, {
@@ -239,7 +239,7 @@ describe("Yosensi YO PMx Pro uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "partConcPm1");
+        assert.equal(value.topic, "part_conc_pm1");
         assert.equal(value.data.partConcPm1, 65);
 
         utils.validateSchema(value.data, partConcPm1Schema, {
@@ -252,7 +252,7 @@ describe("Yosensi YO PMx Pro uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "partConcPm2_5");
+        assert.equal(value.topic, "part_conc_pm2_5");
         assert.equal(value.data.partConcPm2_5, 65);
 
         utils.validateSchema(value.data, partConcPm25Schema, {

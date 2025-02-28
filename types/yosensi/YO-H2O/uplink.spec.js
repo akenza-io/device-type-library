@@ -12,7 +12,7 @@ describe("Yosensi YO H2O uplink", () => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
     utils
-      .loadSchema(`${__dirname}/batteryVoltage.schema.json`)
+      .loadSchema(`${__dirname}/battery_voltage.schema.json`)
       .then((parsedSchema) => {
         batteryVoltageSchema = parsedSchema;
         done();
@@ -22,7 +22,7 @@ describe("Yosensi YO H2O uplink", () => {
   let internalTemperatureSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/internalTemperature.schema.json`)
+      .loadSchema(`${__dirname}/internal_temperature.schema.json`)
       .then((parsedSchema) => {
         internalTemperatureSchema = parsedSchema;
         done();
@@ -52,7 +52,7 @@ describe("Yosensi YO H2O uplink", () => {
   let floodStateSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/floodState.schema.json`)
+      .loadSchema(`${__dirname}/flood_state.schema.json`)
       .then((parsedSchema) => {
         floodStateSchema = parsedSchema;
         done();
@@ -74,7 +74,7 @@ describe("Yosensi YO H2O uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "batteryVoltage");
+        assert.equal(value.topic, "battery_voltage");
         assert.equal(value.data.batteryVoltage, 3400);
 
         utils.validateSchema(value.data, batteryVoltageSchema, {
@@ -87,7 +87,7 @@ describe("Yosensi YO H2O uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "internalTemperature");
+        assert.equal(value.topic, "internal_temperature");
         assert.equal(value.data.internalTemperature, 22.6);
 
         utils.validateSchema(value.data, internalTemperatureSchema, {
@@ -111,7 +111,7 @@ describe("Yosensi YO H2O uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "floodState");
+        assert.equal(value.topic, "flood_state");
         assert.equal(value.data.floodState, 0);
 
         utils.validateSchema(value.data, floodStateSchema, {

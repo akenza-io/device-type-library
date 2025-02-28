@@ -296,8 +296,8 @@ function payloadV2Parse(bytes, date, utils) {
   ) {
     return new Date(
       Number(extractPayloadDateTimeDate) -
-        utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
-          1000,
+      utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
+      1000,
     );
   }
 
@@ -312,7 +312,7 @@ function payloadV2Parse(bytes, date, utils) {
   function extractMeasurementDateTime(byte, extractMeasurementDateTimeDate) {
     return new Date(
       Number(extractMeasurementDateTimeDate) +
-        utils.unsignedNbrFromByte(byte) * 1000,
+      utils.unsignedNbrFromByte(byte) * 1000,
     );
   }
 
@@ -710,49 +710,49 @@ function consume(event) {
   if (data.data.batteryVoltage !== undefined) {
     emit("sample", {
       data: { batteryVoltage: data.data.batteryVoltage },
-      topic: "batteryVoltage",
+      topic: "battery_voltage",
     });
     delete data.data.batteryVoltage;
   }
   if (data.data.relayStateCH1 !== undefined) {
     emit("sample", {
       data: { relayStateCH1: data.data.relayStateCH1 },
-      topic: "relayStateCH1",
+      topic: "relay_state_ch1",
     });
     delete data.data.relayStateCH1;
   }
   if (data.data.relayStateCH2 !== undefined) {
     emit("sample", {
       data: { relayStateCH2: data.data.relayStateCH2 },
-      topic: "relayStateCH2",
+      topic: "relay_state_ch2",
     });
     delete data.data.relayStateCH2;
   }
   if (data.data.relayStateAllCH !== undefined) {
     emit("sample", {
       data: { relayStateAllCH: data.data.relayStateAllCH },
-      topic: "relayStateAllCH",
+      topic: "relay_state_all_ch",
     });
     delete data.data.relayStateAllCH;
   }
   if (data.data.outputModeCH1 !== undefined) {
     emit("sample", {
       data: { outputModeCH1: data.data.outputModeCH1 },
-      topic: "outputModeCH1",
+      topic: "output_mode_ch1",
     });
     delete data.data.outputModeCH1;
   }
   if (data.data.outputModeCH2 !== undefined) {
     emit("sample", {
       data: { outputModeCH2: data.data.outputModeCH2 },
-      topic: "outputModeCH2",
+      topic: "output_mode_ch2",
     });
     delete data.data.outputModeCH2;
   }
   if (data.data.outputModeAllCH !== undefined) {
     emit("sample", {
       data: { outputModeAllCH: data.data.outputModeAllCH },
-      topic: "outputModeAllCH",
+      topic: "output_mode_all_ch",
     });
     delete data.data.outputModeAllCH;
   }

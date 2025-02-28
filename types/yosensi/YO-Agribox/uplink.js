@@ -296,8 +296,8 @@ function payloadV2Parse(bytes, date, utils) {
   ) {
     return new Date(
       Number(extractPayloadDateTimeDate) -
-        utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
-          1000,
+      utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
+      1000,
     );
   }
 
@@ -312,7 +312,7 @@ function payloadV2Parse(bytes, date, utils) {
   function extractMeasurementDateTime(byte, extractMeasurementDateTimeDate) {
     return new Date(
       Number(extractMeasurementDateTimeDate) +
-        utils.unsignedNbrFromByte(byte) * 1000,
+      utils.unsignedNbrFromByte(byte) * 1000,
     );
   }
 
@@ -672,16 +672,16 @@ function decoder(port, bytes) {
       case 17:
         switch (decoded.data.measurements[i].address) {
           case "00":
-            data.outputVoltageCH1 = decoded.data.measurements[i].value;
+            data.outputVoltageCh1 = decoded.data.measurements[i].value;
             break;
           case "01":
-            data.outputVoltageCH2 = decoded.data.measurements[i].value;
+            data.outputVoltageCh2 = decoded.data.measurements[i].value;
             break;
           case "02":
-            data.outputVoltageCH3 = decoded.data.measurements[i].value;
+            data.outputVoltageCh3 = decoded.data.measurements[i].value;
             break;
           case "03":
-            data.outputVoltageCH4 = decoded.data.measurements[i].value;
+            data.outputVoltageCh4 = decoded.data.measurements[i].value;
             break;
           default:
             data.status = "Error";
@@ -719,14 +719,14 @@ function consume(event) {
   if (data.data.batteryVoltage !== undefined) {
     emit("sample", {
       data: { batteryVoltage: data.data.batteryVoltage },
-      topic: "batteryVoltage",
+      topic: "battery_voltage",
     });
     delete data.data.batteryVoltage;
   }
   if (data.data.internalTemperature !== undefined) {
     emit("sample", {
       data: { internalTemperature: data.data.internalTemperature },
-      topic: "internalTemperature",
+      topic: "internal_temperature",
     });
     delete data.data.internalTemperature;
   }
@@ -737,52 +737,52 @@ function consume(event) {
     });
     delete data.data.humidity;
   }
-  if (data.data.outputVoltageCH1 !== undefined) {
+  if (data.data.outputVoltageCh1 !== undefined) {
     emit("sample", {
-      data: { outputVoltageCH1: data.data.outputVoltageCH1 },
-      topic: "outputVoltageCH1",
+      data: { outputVoltageCh1: data.data.outputVoltageCh1 },
+      topic: "output_voltage_ch1",
     });
-    delete data.data.outputVoltageCH1;
+    delete data.data.outputVoltageCh1;
   }
-  if (data.data.outputVoltageCH2 !== undefined) {
+  if (data.data.outputVoltageCh2 !== undefined) {
     emit("sample", {
-      data: { outputVoltageCH2: data.data.outputVoltageCH2 },
-      topic: "outputVoltageCH2",
+      data: { outputVoltageCh2: data.data.outputVoltageCh2 },
+      topic: "output_voltage_ch2",
     });
-    delete data.data.outputVoltageCH2;
+    delete data.data.outputVoltageCh2;
   }
-  if (data.data.outputVoltageCH3 !== undefined) {
+  if (data.data.outputVoltageCh3 !== undefined) {
     emit("sample", {
-      data: { outputVoltageCH3: data.data.outputVoltageCH3 },
-      topic: "outputVoltageCH3",
+      data: { outputVoltageCh3: data.data.outputVoltageCh3 },
+      topic: "output_voltage_ch3",
     });
-    delete data.data.outputVoltageCH3;
+    delete data.data.outputVoltageCh3;
   }
-  if (data.data.outputVoltageCH4 !== undefined) {
+  if (data.data.outputVoltageCh4 !== undefined) {
     emit("sample", {
-      data: { outputVoltageCH4: data.data.outputVoltageCH4 },
-      topic: "outputVoltageCH4",
+      data: { outputVoltageCh4: data.data.outputVoltageCh4 },
+      topic: "output_voltage_ch4",
     });
-    delete data.data.outputVoltageCH4;
+    delete data.data.outputVoltageCh4;
   }
   if (data.data.soilMoisture1 !== undefined) {
     emit("sample", {
       data: { soilMoisture1: data.data.soilMoisture1 },
-      topic: "soilMoisture1",
+      topic: "soil_moisture_1",
     });
     delete data.data.soilMoisture1;
   }
   if (data.data.soilMoisture2 !== undefined) {
     emit("sample", {
       data: { soilMoisture2: data.data.soilMoisture2 },
-      topic: "soilMoisture2",
+      topic: "soil_moisture_2",
     });
     delete data.data.soilMoisture2;
   }
   if (data.data.soilMoisture3 !== undefined) {
     emit("sample", {
       data: { soilMoisture3: data.data.soilMoisture3 },
-      topic: "soilMoisture3",
+      topic: "soil_moisture_3",
     });
     delete data.data.soilMoisture3;
   }

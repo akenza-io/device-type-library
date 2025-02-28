@@ -296,8 +296,8 @@ function payloadV2Parse(bytes, date, utils) {
   ) {
     return new Date(
       Number(extractPayloadDateTimeDate) -
-        utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
-          1000,
+      utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
+      1000,
     );
   }
 
@@ -312,7 +312,7 @@ function payloadV2Parse(bytes, date, utils) {
   function extractMeasurementDateTime(byte, extractMeasurementDateTimeDate) {
     return new Date(
       Number(extractMeasurementDateTimeDate) +
-        utils.unsignedNbrFromByte(byte) * 1000,
+      utils.unsignedNbrFromByte(byte) * 1000,
     );
   }
 
@@ -707,7 +707,7 @@ function consume(event) {
   if (data.data.batteryVoltage !== undefined) {
     emit("sample", {
       data: { batteryVoltage: data.data.batteryVoltage },
-      topic: "batteryVoltage",
+      topic: "battery_voltage",
     });
     delete data.data.batteryVoltage;
   }
@@ -729,35 +729,35 @@ function consume(event) {
   if (data.data.leftToRight !== undefined) {
     emit("sample", {
       data: { leftToRight: data.data.leftToRight },
-      topic: "leftToRight",
+      topic: "left_to_right",
     });
     delete data.data.leftToRight;
   }
   if (data.data.rightToLeft !== undefined) {
     emit("sample", {
       data: { rightToLeft: data.data.rightToLeft },
-      topic: "rightToLeft",
+      topic: "right_to_left",
     });
     delete data.data.rightToLeft;
   }
   if (data.data.sumLeftToRight !== undefined) {
     emit("sample", {
       data: { sumLeftToRight: data.data.sumLeftToRight },
-      topic: "sumLeftToRight",
+      topic: "sum_left_to_right",
     });
     delete data.data.sumLeftToRight;
   }
   if (data.data.sumRightToLeft !== undefined) {
     emit("sample", {
       data: { sumRightToLeft: data.data.sumRightToLeft },
-      topic: "sumRightToLeft",
+      topic: "sum_right_to_left",
     });
     delete data.data.sumRightToLeft;
   }
   if (data.data.differenceCount !== undefined) {
     emit("sample", {
       data: { differenceCount: data.data.differenceCount },
-      topic: "differenceCount",
+      topic: "difference_count",
     });
     delete data.data.differenceCount;
   }

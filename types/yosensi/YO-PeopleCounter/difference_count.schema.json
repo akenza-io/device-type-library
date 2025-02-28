@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-PeopleCounter/difference_count.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "difference_count",
+  "title": "DifferenceCount",
+  "properties": {
+    "differenceCount": {
+      "title": "Difference Between Right To Left and Left To Right Sum",
+      "type": "number",
+      "description": "Counts the difference between Sum Left To Right and Sum Right To Left.",
+      "hideFromKpis": false
+    }
+  },
+  "required": [
+    "differenceCount"
+  ]
+}

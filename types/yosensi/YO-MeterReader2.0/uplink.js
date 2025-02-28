@@ -296,8 +296,8 @@ function payloadV2Parse(bytes, date, utils) {
   ) {
     return new Date(
       Number(extractPayloadDateTimeDate) -
-        utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
-          1000,
+      utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
+      1000,
     );
   }
 
@@ -312,7 +312,7 @@ function payloadV2Parse(bytes, date, utils) {
   function extractMeasurementDateTime(byte, extractMeasurementDateTimeDate) {
     return new Date(
       Number(extractMeasurementDateTimeDate) +
-        utils.unsignedNbrFromByte(byte) * 1000,
+      utils.unsignedNbrFromByte(byte) * 1000,
     );
   }
 
@@ -702,14 +702,14 @@ function consume(event) {
   if (data.data.batteryVoltage !== undefined) {
     emit("sample", {
       data: { batteryVoltage: data.data.batteryVoltage },
-      topic: "batteryVoltage",
+      topic: "battery_voltage",
     });
     delete data.data.batteryVoltage;
   }
   if (data.data.internalTemperature !== undefined) {
     emit("sample", {
       data: { internalTemperature: data.data.internalTemperature },
-      topic: "internalTemperature",
+      topic: "internal_temperature",
     });
     delete data.data.internalTemperature;
   }
@@ -724,21 +724,21 @@ function consume(event) {
   if (data.data.periodicPulseCnt !== undefined) {
     emit("sample", {
       data: { periodicPulseCnt: data.data.periodicPulseCnt },
-      topic: "periodicPulseCnt",
+      topic: "periodic_pulse_cnt",
     });
     delete data.data.periodicPulseCnt;
   }
   if (data.data.persistentPulseCnt !== undefined) {
     emit("sample", {
       data: { persistentPulseCnt: data.data.persistentPulseCnt },
-      topic: "persistentPulseCnt",
+      topic: "persistent_pulse_cnt",
     });
     delete data.data.persistentPulseCnt;
   }
   if (data.data.totalUnits !== undefined) {
     emit("sample", {
       data: { totalUnits: data.data.totalUnits },
-      topic: "totalUnits",
+      topic: "total_units",
     });
     delete data.data.totalUnits;
   }

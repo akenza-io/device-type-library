@@ -296,8 +296,8 @@ function payloadV2Parse(bytes, date, utils) {
   ) {
     return new Date(
       Number(extractPayloadDateTimeDate) -
-        utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
-          1000,
+      utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
+      1000,
     );
   }
 
@@ -312,7 +312,7 @@ function payloadV2Parse(bytes, date, utils) {
   function extractMeasurementDateTime(byte, extractMeasurementDateTimeDate) {
     return new Date(
       Number(extractMeasurementDateTimeDate) +
-        utils.unsignedNbrFromByte(byte) * 1000,
+      utils.unsignedNbrFromByte(byte) * 1000,
     );
   }
 
@@ -705,14 +705,14 @@ function consume(event) {
   if (data.data.batteryVoltage !== undefined) {
     emit("sample", {
       data: { batteryVoltage: data.data.batteryVoltage },
-      topic: "batteryVoltage",
+      topic: "battery_voltage",
     });
     delete data.data.batteryVoltage;
   }
   if (data.data.internalTemperature !== undefined) {
     emit("sample", {
       data: { internalTemperature: data.data.internalTemperature },
-      topic: "internalTemperature",
+      topic: "internal_temperature",
     });
     delete data.data.internalTemperature;
   }
@@ -727,7 +727,7 @@ function consume(event) {
   if (data.data.floodState !== undefined) {
     emit("sample", {
       data: { floodState: data.data.floodState },
-      topic: "floodState",
+      topic: "flood_state",
     });
     delete data.data.floodState;
   }

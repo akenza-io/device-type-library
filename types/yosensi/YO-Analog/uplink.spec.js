@@ -6,53 +6,53 @@ const utils = require("test-utils");
 const { assert } = chai;
 
 describe("Yosensi YO Analog uplink", () => {
-  let CH1Schema = null;
+  let ch1Schema = null;
   let consume = null;
   before((done) => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/CH1.schema.json`).then((parsedSchema) => {
-      CH1Schema = parsedSchema;
+    utils.loadSchema(`${__dirname}/ch1.schema.json`).then((parsedSchema) => {
+      ch1Schema = parsedSchema;
       done();
     });
   });
 
-  let CH2Schema = null;
+  let ch2Schema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/CH2.schema.json`).then((parsedSchema) => {
-      CH2Schema = parsedSchema;
+    utils.loadSchema(`${__dirname}/ch2.schema.json`).then((parsedSchema) => {
+      ch2Schema = parsedSchema;
       done();
     });
   });
 
-  let CH3Schema = null;
+  let ch3Schema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/CH3.schema.json`).then((parsedSchema) => {
-      CH3Schema = parsedSchema;
+    utils.loadSchema(`${__dirname}/ch3.schema.json`).then((parsedSchema) => {
+      ch3Schema = parsedSchema;
       done();
     });
   });
 
-  let CH4Schema = null;
+  let ch4Schema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/CH4.schema.json`).then((parsedSchema) => {
-      CH4Schema = parsedSchema;
+    utils.loadSchema(`${__dirname}/ch4.schema.json`).then((parsedSchema) => {
+      ch4Schema = parsedSchema;
       done();
     });
   });
 
-  let CH5Schema = null;
+  let ch5Schema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/CH5.schema.json`).then((parsedSchema) => {
-      CH5Schema = parsedSchema;
+    utils.loadSchema(`${__dirname}/ch5.schema.json`).then((parsedSchema) => {
+      ch5Schema = parsedSchema;
       done();
     });
   });
 
-  let CH6Schema = null;
+  let ch6Schema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/CH6.schema.json`).then((parsedSchema) => {
-      CH6Schema = parsedSchema;
+    utils.loadSchema(`${__dirname}/ch6.schema.json`).then((parsedSchema) => {
+      ch6Schema = parsedSchema;
       done();
     });
   });
@@ -72,10 +72,10 @@ describe("Yosensi YO Analog uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "CH1");
-        assert.equal(value.data.CH1, 6.05);
+        assert.equal(value.topic, "ch1");
+        assert.equal(value.data.ch1, 6.05);
 
-        utils.validateSchema(value.data, CH1Schema, { throwError: true });
+        utils.validateSchema(value.data, ch1Schema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -83,10 +83,10 @@ describe("Yosensi YO Analog uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "CH2");
-        assert.equal(value.data.CH2, 6.03);
+        assert.equal(value.topic, "ch2");
+        assert.equal(value.data.ch2, 6.03);
 
-        utils.validateSchema(value.data, CH2Schema, { throwError: true });
+        utils.validateSchema(value.data, ch2Schema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -94,10 +94,10 @@ describe("Yosensi YO Analog uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "CH3");
-        assert.equal(value.data.CH3, 6.0);
+        assert.equal(value.topic, "ch3");
+        assert.equal(value.data.ch3, 6.0);
 
-        utils.validateSchema(value.data, CH3Schema, { throwError: true });
+        utils.validateSchema(value.data, ch3Schema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -105,10 +105,10 @@ describe("Yosensi YO Analog uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "CH4");
-        assert.equal(value.data.CH4, 4.81);
+        assert.equal(value.topic, "ch4");
+        assert.equal(value.data.ch4, 4.81);
 
-        utils.validateSchema(value.data, CH4Schema, { throwError: true });
+        utils.validateSchema(value.data, ch4Schema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -116,10 +116,10 @@ describe("Yosensi YO Analog uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "CH5");
-        assert.equal(value.data.CH5, 4.83);
+        assert.equal(value.topic, "ch5");
+        assert.equal(value.data.ch5, 4.83);
 
-        utils.validateSchema(value.data, CH5Schema, { throwError: true });
+        utils.validateSchema(value.data, ch5Schema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -127,10 +127,10 @@ describe("Yosensi YO Analog uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "CH6");
-        assert.equal(value.data.CH6, 4.82);
+        assert.equal(value.topic, "ch6");
+        assert.equal(value.data.ch6, 4.82);
 
-        utils.validateSchema(value.data, CH6Schema, { throwError: true });
+        utils.validateSchema(value.data, ch6Schema, { throwError: true });
       });
 
       consume(data);

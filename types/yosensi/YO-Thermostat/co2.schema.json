@@ -7,14 +7,13 @@
   "title": "CO2",
   "properties": {
     "co2": {
-      "title": "CO2 Concentration",
-      "type": "number",
-      "description": "CO2 Concentration in ppm.",
-      "unit": "ppm",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm",
       "minimum": 0,
       "maximum": 40000,
       "hideFromKpis": false
     }
   },
-  "required": ["co2"]
+  "required": [
+    "co2"
+  ]
 }

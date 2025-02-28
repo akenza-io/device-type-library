@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-PeopleCounter/sum_left_to_right.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "sum_left_to_right",
+  "title": "SumLeftToRight",
+  "properties": {
+    "sumLeftToRight": {
+      "title": "Sum of Left To Right Counts",
+      "type": "number",
+      "description": "Sum of Left To Right Counts. This can be reset at a given time. For example measure during the day and reset at night.",
+      "hideFromKpis": false
+    }
+  },
+  "required": [
+    "sumLeftToRight"
+  ]
+}

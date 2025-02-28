@@ -6,119 +6,119 @@ const utils = require("test-utils");
 const { assert } = chai;
 
 describe("Yosensi YO Power uplink", () => {
-  let CH1Schema = null;
+  let ch1Schema = null;
   let consume = null;
   before((done) => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/CH1.schema.json`).then((parsedSchema) => {
-      CH1Schema = parsedSchema;
+    utils.loadSchema(`${__dirname}/ch1.schema.json`).then((parsedSchema) => {
+      ch1Schema = parsedSchema;
       done();
     });
   });
 
-  let CH2Schema = null;
+  let ch2Schema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/CH2.schema.json`).then((parsedSchema) => {
-      CH2Schema = parsedSchema;
+    utils.loadSchema(`${__dirname}/ch2.schema.json`).then((parsedSchema) => {
+      ch2Schema = parsedSchema;
       done();
     });
   });
 
-  let CH3Schema = null;
+  let ch3Schema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/CH3.schema.json`).then((parsedSchema) => {
-      CH3Schema = parsedSchema;
+    utils.loadSchema(`${__dirname}/ch3.schema.json`).then((parsedSchema) => {
+      ch3Schema = parsedSchema;
       done();
     });
   });
 
-  let CH4Schema = null;
+  let ch4Schema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/CH4.schema.json`).then((parsedSchema) => {
-      CH4Schema = parsedSchema;
+    utils.loadSchema(`${__dirname}/ch4.schema.json`).then((parsedSchema) => {
+      ch4Schema = parsedSchema;
       done();
     });
   });
 
-  let CH5Schema = null;
+  let ch5Schema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/CH5.schema.json`).then((parsedSchema) => {
-      CH5Schema = parsedSchema;
+    utils.loadSchema(`${__dirname}/ch5.schema.json`).then((parsedSchema) => {
+      ch5Schema = parsedSchema;
       done();
     });
   });
 
-  let CH6Schema = null;
+  let ch6Schema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/CH6.schema.json`).then((parsedSchema) => {
-      CH6Schema = parsedSchema;
+    utils.loadSchema(`${__dirname}/ch6.schema.json`).then((parsedSchema) => {
+      ch6Schema = parsedSchema;
       done();
     });
   });
 
-  let CT1ClampSchema = null;
+  let ct1ClampSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/CT1Clamp.schema.json`)
+      .loadSchema(`${__dirname}/ct1_clamp.schema.json`)
       .then((parsedSchema) => {
-        CT1ClampSchema = parsedSchema;
+        ct1ClampSchema = parsedSchema;
         done();
       });
   });
 
-  let CT2ClampSchema = null;
+  let ct2ClampSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/CT2Clamp.schema.json`)
+      .loadSchema(`${__dirname}/ct2_clamp.schema.json`)
       .then((parsedSchema) => {
-        CT2ClampSchema = parsedSchema;
+        ct2ClampSchema = parsedSchema;
         done();
       });
   });
 
-  let CT3ClampSchema = null;
+  let ct3ClampSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/CT3Clamp.schema.json`)
+      .loadSchema(`${__dirname}/ct3_clamp.schema.json`)
       .then((parsedSchema) => {
-        CT3ClampSchema = parsedSchema;
+        ct3ClampSchema = parsedSchema;
         done();
       });
   });
 
-  let CT4ClampSchema = null;
+  let ct4ClampSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/CT4Clamp.schema.json`)
+      .loadSchema(`${__dirname}/ct4_clamp.schema.json`)
       .then((parsedSchema) => {
-        CT4ClampSchema = parsedSchema;
+        ct4ClampSchema = parsedSchema;
         done();
       });
   });
 
-  let CT5ClampSchema = null;
+  let ct5ClampSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/CT5Clamp.schema.json`)
+      .loadSchema(`${__dirname}/ct5_clamp.schema.json`)
       .then((parsedSchema) => {
-        CT5ClampSchema = parsedSchema;
+        ct5ClampSchema = parsedSchema;
         done();
       });
   });
 
-  let CT6ClampSchema = null;
+  let ct6ClampSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/CT6Clamp.schema.json`)
+      .loadSchema(`${__dirname}/ct6_clamp.schema.json`)
       .then((parsedSchema) => {
-        CT6ClampSchema = parsedSchema;
+        ct6ClampSchema = parsedSchema;
         done();
       });
   });
 
   describe("consume()", () => {
-    it("should decode the Yosensi YO Power (Current CH1-CH6) payload", () => {
+    it("should decode the Yosensi YO Power (Current ch1-ch6) payload", () => {
       const data = {
         data: {
           port: 0,
@@ -132,10 +132,10 @@ describe("Yosensi YO Power uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "CH1");
-        assert.equal(value.data.CH1, 6.85);
+        assert.equal(value.topic, "ch1");
+        assert.equal(value.data.ch1, 6.85);
 
-        utils.validateSchema(value.data, CH1Schema, { throwError: true });
+        utils.validateSchema(value.data, ch1Schema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -143,10 +143,10 @@ describe("Yosensi YO Power uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "CH2");
-        assert.equal(value.data.CH2, 8.45);
+        assert.equal(value.topic, "ch2");
+        assert.equal(value.data.ch2, 8.45);
 
-        utils.validateSchema(value.data, CH2Schema, { throwError: true });
+        utils.validateSchema(value.data, ch2Schema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -154,10 +154,10 @@ describe("Yosensi YO Power uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "CH3");
-        assert.equal(value.data.CH3, 8.46);
+        assert.equal(value.topic, "ch3");
+        assert.equal(value.data.ch3, 8.46);
 
-        utils.validateSchema(value.data, CH3Schema, { throwError: true });
+        utils.validateSchema(value.data, ch3Schema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -165,10 +165,10 @@ describe("Yosensi YO Power uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "CH4");
-        assert.equal(value.data.CH4, 7.81);
+        assert.equal(value.topic, "ch4");
+        assert.equal(value.data.ch4, 7.81);
 
-        utils.validateSchema(value.data, CH4Schema, { throwError: true });
+        utils.validateSchema(value.data, ch4Schema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -176,10 +176,10 @@ describe("Yosensi YO Power uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "CH5");
-        assert.equal(value.data.CH5, 8.52);
+        assert.equal(value.topic, "ch5");
+        assert.equal(value.data.ch5, 8.52);
 
-        utils.validateSchema(value.data, CH5Schema, { throwError: true });
+        utils.validateSchema(value.data, ch5Schema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -187,10 +187,10 @@ describe("Yosensi YO Power uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "CH6");
-        assert.equal(value.data.CH6, 8.42);
+        assert.equal(value.topic, "ch6");
+        assert.equal(value.data.ch6, 8.42);
 
-        utils.validateSchema(value.data, CH6Schema, { throwError: true });
+        utils.validateSchema(value.data, ch6Schema, { throwError: true });
       });
 
       consume(data);
@@ -210,10 +210,10 @@ describe("Yosensi YO Power uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "CT1Clamp");
-        assert.equal(value.data.CT1Clamp, 0);
+        assert.equal(value.topic, "ct1_clamp");
+        assert.equal(value.data.ct1Clamp, 0);
 
-        utils.validateSchema(value.data, CT1ClampSchema, { throwError: true });
+        utils.validateSchema(value.data, ct1ClampSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -221,10 +221,10 @@ describe("Yosensi YO Power uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "CT2Clamp");
-        assert.equal(value.data.CT2Clamp, 34.76);
+        assert.equal(value.topic, "ct2_clamp");
+        assert.equal(value.data.ct2Clamp, 34.76);
 
-        utils.validateSchema(value.data, CT2ClampSchema, { throwError: true });
+        utils.validateSchema(value.data, ct2ClampSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -232,10 +232,10 @@ describe("Yosensi YO Power uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "CT3Clamp");
-        assert.equal(value.data.CT3Clamp, 36.6);
+        assert.equal(value.topic, "ct3_clamp");
+        assert.equal(value.data.ct3Clamp, 36.6);
 
-        utils.validateSchema(value.data, CT3ClampSchema, { throwError: true });
+        utils.validateSchema(value.data, ct3ClampSchema, { throwError: true });
       });
 
       consume(data);
@@ -255,10 +255,10 @@ describe("Yosensi YO Power uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "CT4Clamp");
-        assert.equal(value.data.CT4Clamp, 37.12);
+        assert.equal(value.topic, "ct4_clamp");
+        assert.equal(value.data.ct4Clamp, 37.12);
 
-        utils.validateSchema(value.data, CT4ClampSchema, { throwError: true });
+        utils.validateSchema(value.data, ct4ClampSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -266,10 +266,10 @@ describe("Yosensi YO Power uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "CT5Clamp");
-        assert.equal(value.data.CT5Clamp, 35.69);
+        assert.equal(value.topic, "ct5_clamp");
+        assert.equal(value.data.ct5Clamp, 35.69);
 
-        utils.validateSchema(value.data, CT5ClampSchema, { throwError: true });
+        utils.validateSchema(value.data, ct5ClampSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -277,10 +277,10 @@ describe("Yosensi YO Power uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "CT6Clamp");
-        assert.equal(value.data.CT6Clamp, 36.1);
+        assert.equal(value.topic, "ct6_clamp");
+        assert.equal(value.data.ct6Clamp, 36.1);
 
-        utils.validateSchema(value.data, CT6ClampSchema, { throwError: true });
+        utils.validateSchema(value.data, ct6ClampSchema, { throwError: true });
       });
 
       consume(data);

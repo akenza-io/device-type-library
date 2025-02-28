@@ -14,11 +14,11 @@
     "Velocity"
   ],
   "outputTopics": [
-    "batteryVoltage",
-    "internalTemperature",
+    "battery_voltage",
+    "internal_temperature",
     "humidity",
-    "differentialPressure",
-    "gasTemperature",
+    "differential_pressure",
+    "gas_temperature",
     "velocity"
   ],
   "encoding": "HEX",

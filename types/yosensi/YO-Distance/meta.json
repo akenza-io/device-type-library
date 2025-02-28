@@ -13,8 +13,8 @@
     "Accelerometer - XYZ"
   ],
   "outputTopics": [
-    "batteryVoltage",
-    "internalTemperature",
+    "battery_voltage",
+    "internal_temperature",
     "humidity",
     "accelerometer",
     "distance"

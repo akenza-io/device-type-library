@@ -12,7 +12,7 @@ describe("Yosensi YO AgriBox uplink", () => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
     utils
-      .loadSchema(`${__dirname}/batteryVoltage.schema.json`)
+      .loadSchema(`${__dirname}/battery_voltage.schema.json`)
       .then((parsedSchema) => {
         batteryVoltageSchema = parsedSchema;
         done();
@@ -22,7 +22,7 @@ describe("Yosensi YO AgriBox uplink", () => {
   let internalTemperatureSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/internalTemperature.schema.json`)
+      .loadSchema(`${__dirname}/internal_temperature.schema.json`)
       .then((parsedSchema) => {
         internalTemperatureSchema = parsedSchema;
         done();
@@ -39,42 +39,42 @@ describe("Yosensi YO AgriBox uplink", () => {
       });
   });
 
-  let outputVoltageCH1Schema = null;
+  let outputVoltageCh1Schema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/outputVoltageCH1.schema.json`)
+      .loadSchema(`${__dirname}/output_voltage_ch1.schema.json`)
       .then((parsedSchema) => {
-        outputVoltageCH1Schema = parsedSchema;
+        outputVoltageCh1Schema = parsedSchema;
         done();
       });
   });
 
-  let outputVoltageCH2Schema = null;
+  let outputVoltageCh2Schema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/outputVoltageCH2.schema.json`)
+      .loadSchema(`${__dirname}/output_voltage_ch2.schema.json`)
       .then((parsedSchema) => {
-        outputVoltageCH2Schema = parsedSchema;
+        outputVoltageCh2Schema = parsedSchema;
         done();
       });
   });
 
-  let outputVoltageCH3Schema = null;
+  let outputVoltageCh3Schema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/outputVoltageCH3.schema.json`)
+      .loadSchema(`${__dirname}/output_voltage_ch3.schema.json`)
       .then((parsedSchema) => {
-        outputVoltageCH3Schema = parsedSchema;
+        outputVoltageCh3Schema = parsedSchema;
         done();
       });
   });
 
-  let outputVoltageCH4Schema = null;
+  let outputVoltageCh4Schema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/outputVoltageCH4.schema.json`)
+      .loadSchema(`${__dirname}/output_voltage_ch4.schema.json`)
       .then((parsedSchema) => {
-        outputVoltageCH4Schema = parsedSchema;
+        outputVoltageCh4Schema = parsedSchema;
         done();
       });
   });
@@ -82,7 +82,7 @@ describe("Yosensi YO AgriBox uplink", () => {
   let soilMoisture1Schema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/soilMoisture1.schema.json`)
+      .loadSchema(`${__dirname}/soil_moisture_1.schema.json`)
       .then((parsedSchema) => {
         soilMoisture1Schema = parsedSchema;
         done();
@@ -92,7 +92,7 @@ describe("Yosensi YO AgriBox uplink", () => {
   let soilMoisture2Schema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/soilMoisture2.schema.json`)
+      .loadSchema(`${__dirname}/soil_moisture_2.schema.json`)
       .then((parsedSchema) => {
         soilMoisture2Schema = parsedSchema;
         done();
@@ -102,7 +102,7 @@ describe("Yosensi YO AgriBox uplink", () => {
   let soilMoisture3Schema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/soilMoisture3.schema.json`)
+      .loadSchema(`${__dirname}/soil_moisture_3.schema.json`)
       .then((parsedSchema) => {
         soilMoisture3Schema = parsedSchema;
         done();
@@ -124,7 +124,7 @@ describe("Yosensi YO AgriBox uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "batteryVoltage");
+        assert.equal(value.topic, "battery_voltage");
         assert.equal(value.data.batteryVoltage, 4764);
 
         utils.validateSchema(value.data, batteryVoltageSchema, {
@@ -137,7 +137,7 @@ describe("Yosensi YO AgriBox uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "internalTemperature");
+        assert.equal(value.topic, "internal_temperature");
         assert.equal(value.data.internalTemperature, 22.8);
 
         utils.validateSchema(value.data, internalTemperatureSchema, {
@@ -161,10 +161,10 @@ describe("Yosensi YO AgriBox uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "outputVoltageCH1");
-        assert.equal(value.data.outputVoltageCH1, 8);
+        assert.equal(value.topic, "output_voltage_ch1");
+        assert.equal(value.data.outputVoltageCh1, 8);
 
-        utils.validateSchema(value.data, outputVoltageCH1Schema, {
+        utils.validateSchema(value.data, outputVoltageCh1Schema, {
           throwError: true,
         });
       });
@@ -174,10 +174,10 @@ describe("Yosensi YO AgriBox uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "outputVoltageCH2");
-        assert.equal(value.data.outputVoltageCH2, 3);
+        assert.equal(value.topic, "output_voltage_ch2");
+        assert.equal(value.data.outputVoltageCh2, 3);
 
-        utils.validateSchema(value.data, outputVoltageCH2Schema, {
+        utils.validateSchema(value.data, outputVoltageCh2Schema, {
           throwError: true,
         });
       });
@@ -187,10 +187,10 @@ describe("Yosensi YO AgriBox uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "outputVoltageCH3");
-        assert.equal(value.data.outputVoltageCH3, 2);
+        assert.equal(value.topic, "output_voltage_ch3");
+        assert.equal(value.data.outputVoltageCh3, 2);
 
-        utils.validateSchema(value.data, outputVoltageCH3Schema, {
+        utils.validateSchema(value.data, outputVoltageCh3Schema, {
           throwError: true,
         });
       });
@@ -200,10 +200,10 @@ describe("Yosensi YO AgriBox uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "outputVoltageCH4");
-        assert.equal(value.data.outputVoltageCH4, 0);
+        assert.equal(value.topic, "output_voltage_ch4");
+        assert.equal(value.data.outputVoltageCh4, 0);
 
-        utils.validateSchema(value.data, outputVoltageCH4Schema, {
+        utils.validateSchema(value.data, outputVoltageCh4Schema, {
           throwError: true,
         });
       });
@@ -213,7 +213,7 @@ describe("Yosensi YO AgriBox uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "soilMoisture1");
+        assert.equal(value.topic, "soil_moisture_1");
         assert.equal(value.data.soilMoisture1, 3.94);
 
         utils.validateSchema(value.data, soilMoisture1Schema, {
@@ -226,7 +226,7 @@ describe("Yosensi YO AgriBox uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "soilMoisture2");
+        assert.equal(value.topic, "soil_moisture_2");
         assert.equal(value.data.soilMoisture2, 3.91);
 
         utils.validateSchema(value.data, soilMoisture2Schema, {
@@ -239,7 +239,7 @@ describe("Yosensi YO AgriBox uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "soilMoisture3");
+        assert.equal(value.topic, "soil_moisture_3");
         assert.equal(value.data.soilMoisture3, 3.91);
 
         utils.validateSchema(value.data, soilMoisture3Schema, {

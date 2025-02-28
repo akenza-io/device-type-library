@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-AgriBox/output_voltage_ch3.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "output_voltage_ch3",
+  "title": "OutputVoltageCh3",
+  "properties": {
+    "outputVoltageCh3": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/milliVolt",
+      "title": "Output Voltage CH3",
+      "description": "Output Voltage CH3 in mV.",
+      "hideFromKpis": false
+    }
+  },
+  "required": [
+    "outputVoltageCh3"
+  ]
+}

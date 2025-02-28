@@ -296,8 +296,8 @@ function payloadV2Parse(bytes, date, utils) {
   ) {
     return new Date(
       Number(extractPayloadDateTimeDate) -
-        utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
-          1000,
+      utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
+      1000,
     );
   }
 
@@ -312,7 +312,7 @@ function payloadV2Parse(bytes, date, utils) {
   function extractMeasurementDateTime(byte, extractMeasurementDateTimeDate) {
     return new Date(
       Number(extractMeasurementDateTimeDate) +
-        utils.unsignedNbrFromByte(byte) * 1000,
+      utils.unsignedNbrFromByte(byte) * 1000,
     );
   }
 
@@ -725,14 +725,14 @@ function consume(event) {
   if (data.data.batteryVoltage !== undefined) {
     emit("sample", {
       data: { batteryVoltage: data.data.batteryVoltage },
-      topic: "batteryVoltage",
+      topic: "battery_voltage",
     });
     delete data.data.batteryVoltage;
   }
   if (data.data.internalTemperature !== undefined) {
     emit("sample", {
       data: { internalTemperature: data.data.internalTemperature },
-      topic: "internalTemperature",
+      topic: "internal_temperature",
     });
     delete data.data.internalTemperature;
   }
@@ -759,42 +759,42 @@ function consume(event) {
   if (data.data.massConcPm1 !== undefined) {
     emit("sample", {
       data: { massConcPm1: data.data.massConcPm1 },
-      topic: "massConcPm1",
+      topic: "mass_conc_pm1",
     });
     delete data.data.massConcPm1;
   }
   if (data.data.massConcPm2_5 !== undefined) {
     emit("sample", {
       data: { massConcPm2_5: data.data.massConcPm2_5 },
-      topic: "massConcPm2_5",
+      topic: "mass_conc_pm2_5",
     });
     delete data.data.massConcPm2_5;
   }
   if (data.data.massConcPm4 !== undefined) {
     emit("sample", {
       data: { massConcPm4: data.data.massConcPm4 },
-      topic: "massConcPm4",
+      topic: "mass_conc_pm4",
     });
     delete data.data.massConcPm4;
   }
   if (data.data.massConcPm10 !== undefined) {
     emit("sample", {
       data: { massConcPm10: data.data.massConcPm10 },
-      topic: "massConcPm10",
+      topic: "mass_conc_pm10",
     });
     delete data.data.massConcPm10;
   }
   if (data.data.partConcPm1 !== undefined) {
     emit("sample", {
       data: { partConcPm1: data.data.partConcPm1 },
-      topic: "partConcPm1",
+      topic: "part_conc_pm1",
     });
     delete data.data.partConcPm1;
   }
   if (data.data.partConcPm2_5 !== undefined) {
     emit("sample", {
       data: { partConcPm2_5: data.data.partConcPm2_5 },
-      topic: "partConcPm2_5",
+      topic: "part_conc_pm2_5",
     });
     delete data.data.partConcPm2_5;
   }

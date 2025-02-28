@@ -16,5 +16,7 @@
       "hideFromKpis": false
     }
   },
-  "required": ["tvoc"]
+  "required": [
+    "tvoc"
+  ]
 }

@@ -12,7 +12,7 @@ describe("Yosensi YO Meter Reader 2.0 uplink", () => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
     utils
-      .loadSchema(`${__dirname}/batteryVoltage.schema.json`)
+      .loadSchema(`${__dirname}/battery_voltage.schema.json`)
       .then((parsedSchema) => {
         batteryVoltageSchema = parsedSchema;
         done();
@@ -22,7 +22,7 @@ describe("Yosensi YO Meter Reader 2.0 uplink", () => {
   let internalTemperatureSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/internalTemperature.schema.json`)
+      .loadSchema(`${__dirname}/internal_temperature.schema.json`)
       .then((parsedSchema) => {
         internalTemperatureSchema = parsedSchema;
         done();
@@ -42,7 +42,7 @@ describe("Yosensi YO Meter Reader 2.0 uplink", () => {
   let periodicPulseCntSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/periodicPulseCnt.schema.json`)
+      .loadSchema(`${__dirname}/periodic_pulse_cnt.schema.json`)
       .then((parsedSchema) => {
         periodicPulseCntSchema = parsedSchema;
         done();
@@ -52,7 +52,7 @@ describe("Yosensi YO Meter Reader 2.0 uplink", () => {
   let persistentPulseCntSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/persistentPulseCnt.schema.json`)
+      .loadSchema(`${__dirname}/persistent_pulse_cnt.schema.json`)
       .then((parsedSchema) => {
         persistentPulseCntSchema = parsedSchema;
         done();
@@ -62,7 +62,7 @@ describe("Yosensi YO Meter Reader 2.0 uplink", () => {
   let totalUnitsSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/totalUnits.schema.json`)
+      .loadSchema(`${__dirname}/total_units.schema.json`)
       .then((parsedSchema) => {
         totalUnitsSchema = parsedSchema;
         done();
@@ -84,7 +84,7 @@ describe("Yosensi YO Meter Reader 2.0 uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "batteryVoltage");
+        assert.equal(value.topic, "battery_voltage");
         assert.equal(value.data.batteryVoltage, 4504);
 
         utils.validateSchema(value.data, batteryVoltageSchema, {
@@ -97,7 +97,7 @@ describe("Yosensi YO Meter Reader 2.0 uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "internalTemperature");
+        assert.equal(value.topic, "internal_temperature");
         assert.equal(value.data.internalTemperature, 24.3);
 
         utils.validateSchema(value.data, internalTemperatureSchema, {
@@ -121,7 +121,7 @@ describe("Yosensi YO Meter Reader 2.0 uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "periodicPulseCnt");
+        assert.equal(value.topic, "periodic_pulse_cnt");
         assert.equal(value.data.periodicPulseCnt, 577);
 
         utils.validateSchema(value.data, periodicPulseCntSchema, {
@@ -134,7 +134,7 @@ describe("Yosensi YO Meter Reader 2.0 uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "persistentPulseCnt");
+        assert.equal(value.topic, "persistent_pulse_cnt");
         assert.equal(value.data.persistentPulseCnt, 40557);
 
         utils.validateSchema(value.data, persistentPulseCntSchema, {
@@ -147,7 +147,7 @@ describe("Yosensi YO Meter Reader 2.0 uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "totalUnits");
+        assert.equal(value.topic, "total_units");
         assert.equal(value.data.totalUnits, 4.1);
 
         utils.validateSchema(value.data, totalUnitsSchema, {

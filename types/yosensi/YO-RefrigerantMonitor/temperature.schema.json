@@ -8,8 +8,12 @@
   "properties": {
     "temperature": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "minimum": -20,
+      "maximum": 70,
       "hideFromKpis": false
     }
   },
-  "required": ["temperature"]
+  "required": [
+    "temperature"
+  ]
 }

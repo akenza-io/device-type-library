@@ -12,7 +12,7 @@ describe("Yosensi YO Thermostat uplink", () => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
     utils
-      .loadSchema(`${__dirname}/batteryVoltage.schema.json`)
+      .loadSchema(`${__dirname}/battery_voltage.schema.json`)
       .then((parsedSchema) => {
         batteryVoltageSchema = parsedSchema;
         done();
@@ -22,7 +22,7 @@ describe("Yosensi YO Thermostat uplink", () => {
   let internalTemperatureSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/internalTemperature.schema.json`)
+      .loadSchema(`${__dirname}/internal_temperature.schema.json`)
       .then((parsedSchema) => {
         internalTemperatureSchema = parsedSchema;
         done();
@@ -60,7 +60,7 @@ describe("Yosensi YO Thermostat uplink", () => {
   let presenceCounterSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/presenceCounter.schema.json`)
+      .loadSchema(`${__dirname}/presence_counter.schema.json`)
       .then((parsedSchema) => {
         presenceCounterSchema = parsedSchema;
         done();
@@ -70,7 +70,7 @@ describe("Yosensi YO Thermostat uplink", () => {
   let comfortSetpointSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/comfortSetpoint.schema.json`)
+      .loadSchema(`${__dirname}/comfort_setpoint.schema.json`)
       .then((parsedSchema) => {
         comfortSetpointSchema = parsedSchema;
         done();
@@ -80,7 +80,7 @@ describe("Yosensi YO Thermostat uplink", () => {
   let standbyOffsetSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/standbyOffset.schema.json`)
+      .loadSchema(`${__dirname}/standby_offset.schema.json`)
       .then((parsedSchema) => {
         standbyOffsetSchema = parsedSchema;
         done();
@@ -90,7 +90,7 @@ describe("Yosensi YO Thermostat uplink", () => {
   let economyOffsetSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/economyOffset.schema.json`)
+      .loadSchema(`${__dirname}/economy_offset.schema.json`)
       .then((parsedSchema) => {
         economyOffsetSchema = parsedSchema;
         done();
@@ -100,7 +100,7 @@ describe("Yosensi YO Thermostat uplink", () => {
   let frostProtSetpointSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/frostProtSetpoint.schema.json`)
+      .loadSchema(`${__dirname}/frost_prot_setpoint.schema.json`)
       .then((parsedSchema) => {
         frostProtSetpointSchema = parsedSchema;
         done();
@@ -110,7 +110,7 @@ describe("Yosensi YO Thermostat uplink", () => {
   let operationModeSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/operationMode.schema.json`)
+      .loadSchema(`${__dirname}/operation_mode.schema.json`)
       .then((parsedSchema) => {
         operationModeSchema = parsedSchema;
         done();
@@ -120,7 +120,7 @@ describe("Yosensi YO Thermostat uplink", () => {
   let getParametersSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/getParameters.schema.json`)
+      .loadSchema(`${__dirname}/get_parameters.schema.json`)
       .then((parsedSchema) => {
         getParametersSchema = parsedSchema;
         done();
@@ -150,7 +150,7 @@ describe("Yosensi YO Thermostat uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "comfortSetpoint");
+        assert.equal(value.topic, "comfort_setpoint");
         assert.equal(value.data.comfortSetpoint, 21);
 
         utils.validateSchema(value.data, comfortSetpointSchema, {
@@ -163,7 +163,7 @@ describe("Yosensi YO Thermostat uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "standbyOffset");
+        assert.equal(value.topic, "standby_offset");
         assert.equal(value.data.standbyOffset, -2);
 
         utils.validateSchema(value.data, standbyOffsetSchema, {
@@ -176,7 +176,7 @@ describe("Yosensi YO Thermostat uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "economyOffset");
+        assert.equal(value.topic, "economy_offset");
         assert.equal(value.data.economyOffset, -4);
 
         utils.validateSchema(value.data, economyOffsetSchema, {
@@ -189,7 +189,7 @@ describe("Yosensi YO Thermostat uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "frostProtSetpoint");
+        assert.equal(value.topic, "frost_prot_setpoint");
         assert.equal(value.data.frostProtSetpoint, 7);
 
         utils.validateSchema(value.data, frostProtSetpointSchema, {
@@ -202,7 +202,7 @@ describe("Yosensi YO Thermostat uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "operationMode");
+        assert.equal(value.topic, "operation_mode");
         assert.equal(value.data.operationMode, 3);
 
         utils.validateSchema(value.data, operationModeSchema, {
@@ -215,7 +215,7 @@ describe("Yosensi YO Thermostat uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "getParameters");
+        assert.equal(value.topic, "get_parameters");
         assert.equal(value.data.getParameters, 17);
 
         utils.validateSchema(value.data, getParametersSchema, {
@@ -253,7 +253,7 @@ describe("Yosensi YO Thermostat uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "batteryVoltage");
+        assert.equal(value.topic, "battery_voltage");
         assert.equal(value.data.batteryVoltage, 4433);
 
         utils.validateSchema(value.data, batteryVoltageSchema, {
@@ -266,7 +266,7 @@ describe("Yosensi YO Thermostat uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "internalTemperature");
+        assert.equal(value.topic, "internal_temperature");
         assert.equal(value.data.internalTemperature, 16.7);
 
         utils.validateSchema(value.data, internalTemperatureSchema, {
@@ -303,7 +303,7 @@ describe("Yosensi YO Thermostat uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "presenceCounter");
+        assert.equal(value.topic, "presence_counter");
         assert.equal(value.data.presenceCounter, 50);
 
         utils.validateSchema(value.data, presenceCounterSchema, {
@@ -327,7 +327,7 @@ describe("Yosensi YO Thermostat uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "batteryVoltage");
+        assert.equal(value.topic, "battery_voltage");
         assert.equal(value.data.batteryVoltage, 4224);
 
         utils.validateSchema(value.data, batteryVoltageSchema, {
@@ -340,7 +340,7 @@ describe("Yosensi YO Thermostat uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "internalTemperature");
+        assert.equal(value.topic, "internal_temperature");
         assert.equal(value.data.internalTemperature, 26.2);
 
         utils.validateSchema(value.data, internalTemperatureSchema, {
@@ -390,7 +390,7 @@ describe("Yosensi YO Thermostat uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "presenceCounter");
+        assert.equal(value.topic, "presence_counter");
         assert.equal(value.data.presenceCounter, 18);
 
         utils.validateSchema(value.data, presenceCounterSchema, {

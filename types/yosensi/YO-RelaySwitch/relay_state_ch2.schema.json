@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-RelaySwitch/relay_state_ch2.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "relay_state_ch2",
+  "title": "RelayStateCH2",
+  "properties": {
+    "relayStateCH2": {
+      "title": "Relay State CH2",
+      "type": "integer",
+      "description": "Relay State CH2.",
+      "hideFromKpis": false
+    }
+  },
+  "required": [
+    "relayStateCH2"
+  ]
+}

@@ -296,8 +296,8 @@ function payloadV2Parse(bytes, date, utils) {
   ) {
     return new Date(
       Number(extractPayloadDateTimeDate) -
-        utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
-          1000,
+      utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
+      1000,
     );
   }
 
@@ -312,7 +312,7 @@ function payloadV2Parse(bytes, date, utils) {
   function extractMeasurementDateTime(byte, extractMeasurementDateTimeDate) {
     return new Date(
       Number(extractMeasurementDateTimeDate) +
-        utils.unsignedNbrFromByte(byte) * 1000,
+      utils.unsignedNbrFromByte(byte) * 1000,
     );
   }
 
@@ -662,22 +662,22 @@ function decoder(port, bytes) {
       case "current":
         switch (decoded.data.measurements[i].address) {
           case "01":
-            data.CH1 = decoded.data.measurements[i].value;
+            data.ch1 = decoded.data.measurements[i].value;
             break;
           case "02":
-            data.CH2 = decoded.data.measurements[i].value;
+            data.ch2 = decoded.data.measurements[i].value;
             break;
           case "03":
-            data.CH3 = decoded.data.measurements[i].value;
+            data.ch3 = decoded.data.measurements[i].value;
             break;
           case "04":
-            data.CH4 = decoded.data.measurements[i].value;
+            data.ch4 = decoded.data.measurements[i].value;
             break;
           case "05":
-            data.CH5 = decoded.data.measurements[i].value;
+            data.ch5 = decoded.data.measurements[i].value;
             break;
           case "06":
-            data.CH6 = decoded.data.measurements[i].value;
+            data.ch6 = decoded.data.measurements[i].value;
             break;
           default:
             data.status = "Error";
@@ -686,22 +686,22 @@ function decoder(port, bytes) {
       case "Total Units":
         switch (decoded.data.measurements[i].address) {
           case "01":
-            data.CT1Clamp = decoded.data.measurements[i].value;
+            data.ct1Clamp = decoded.data.measurements[i].value;
             break;
           case "02":
-            data.CT2Clamp = decoded.data.measurements[i].value;
+            data.ct2Clamp = decoded.data.measurements[i].value;
             break;
           case "03":
-            data.CT3Clamp = decoded.data.measurements[i].value;
+            data.ct3Clamp = decoded.data.measurements[i].value;
             break;
           case "04":
-            data.CT4Clamp = decoded.data.measurements[i].value;
+            data.ct4Clamp = decoded.data.measurements[i].value;
             break;
           case "05":
-            data.CT5Clamp = decoded.data.measurements[i].value;
+            data.ct5Clamp = decoded.data.measurements[i].value;
             break;
           case "06":
-            data.CT6Clamp = decoded.data.measurements[i].value;
+            data.ct6Clamp = decoded.data.measurements[i].value;
             break;
           default:
             data.status = "Error";
@@ -722,88 +722,88 @@ function consume(event) {
   const { port } = event.data;
   const data = decoder(port, Hex.hexToBytes(payloadData));
 
-  if (data.data.CH1 !== undefined) {
+  if (data.data.ch1 !== undefined) {
     emit("sample", {
-      data: { CH1: data.data.CH1 },
-      topic: "CH1",
+      data: { ch1: data.data.ch1 },
+      topic: "ch1",
     });
-    delete data.data.CH1;
+    delete data.data.ch1;
   }
-  if (data.data.CH2 !== undefined) {
+  if (data.data.ch2 !== undefined) {
     emit("sample", {
-      data: { CH2: data.data.CH2 },
-      topic: "CH2",
+      data: { ch2: data.data.ch2 },
+      topic: "ch2",
     });
-    delete data.data.CH2;
+    delete data.data.ch2;
   }
-  if (data.data.CH3 !== undefined) {
+  if (data.data.ch3 !== undefined) {
     emit("sample", {
-      data: { CH3: data.data.CH3 },
-      topic: "CH3",
+      data: { ch3: data.data.ch3 },
+      topic: "ch3",
     });
-    delete data.data.CH3;
+    delete data.data.ch3;
   }
-  if (data.data.CH4 !== undefined) {
+  if (data.data.ch4 !== undefined) {
     emit("sample", {
-      data: { CH4: data.data.CH4 },
-      topic: "CH4",
+      data: { ch4: data.data.ch4 },
+      topic: "ch4",
     });
-    delete data.data.CH4;
+    delete data.data.ch4;
   }
-  if (data.data.CH5 !== undefined) {
+  if (data.data.ch5 !== undefined) {
     emit("sample", {
-      data: { CH5: data.data.CH5 },
-      topic: "CH5",
+      data: { ch5: data.data.ch5 },
+      topic: "ch5",
     });
-    delete data.data.CH5;
+    delete data.data.ch5;
   }
-  if (data.data.CH6 !== undefined) {
+  if (data.data.ch6 !== undefined) {
     emit("sample", {
-      data: { CH6: data.data.CH6 },
-      topic: "CH6",
+      data: { ch6: data.data.ch6 },
+      topic: "ch6",
     });
-    delete data.data.CH6;
+    delete data.data.ch6;
   }
-  if (data.data.CT1Clamp !== undefined) {
+  if (data.data.ct1Clamp !== undefined) {
     emit("sample", {
-      data: { CT1Clamp: data.data.CT1Clamp },
-      topic: "CT1Clamp",
+      data: { ct1Clamp: data.data.ct1Clamp },
+      topic: "ct1_clamp",
     });
-    delete data.data.CT1Clamp;
+    delete data.data.ct1Clamp;
   }
-  if (data.data.CT2Clamp !== undefined) {
+  if (data.data.ct2Clamp !== undefined) {
     emit("sample", {
-      data: { CT2Clamp: data.data.CT2Clamp },
-      topic: "CT2Clamp",
+      data: { ct2Clamp: data.data.ct2Clamp },
+      topic: "ct2_clamp",
     });
-    delete data.data.CT2Clamp;
+    delete data.data.ct2Clamp;
   }
-  if (data.data.CT3Clamp !== undefined) {
+  if (data.data.ct3Clamp !== undefined) {
     emit("sample", {
-      data: { CT3Clamp: data.data.CT3Clamp },
-      topic: "CT3Clamp",
+      data: { ct3Clamp: data.data.ct3Clamp },
+      topic: "ct3_clamp",
     });
-    delete data.data.CT3Clamp;
+    delete data.data.ct3Clamp;
   }
-  if (data.data.CT4Clamp !== undefined) {
+  if (data.data.ct4Clamp !== undefined) {
     emit("sample", {
-      data: { CT4Clamp: data.data.CT4Clamp },
-      topic: "CT4Clamp",
+      data: { ct4Clamp: data.data.ct4Clamp },
+      topic: "ct4_clamp",
     });
-    delete data.data.CT4Clamp;
+    delete data.data.ct4Clamp;
   }
-  if (data.data.CT5Clamp !== undefined) {
+  if (data.data.ct5Clamp !== undefined) {
     emit("sample", {
-      data: { CT5Clamp: data.data.CT5Clamp },
-      topic: "CT5Clamp",
+      data: { ct5Clamp: data.data.ct5Clamp },
+      topic: "ct5_clamp",
     });
-    delete data.data.CT5Clamp;
+    delete data.data.ct5_clamp;
   }
-  if (data.data.CT6Clamp !== undefined) {
+  if (data.data.ct6Clamp !== undefined) {
     emit("sample", {
-      data: { CT6Clamp: data.data.CT6Clamp },
-      topic: "CT6Clamp",
+      data: { ct6Clamp: data.data.ct6Clamp },
+      topic: "ct6_clamp",
     });
-    delete data.data.CT6Clamp;
+    delete data.data.ct6Clamp;
   }
 }

@@ -12,7 +12,7 @@ describe("Yosensi YO Vibration uplink", () => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
     utils
-      .loadSchema(`${__dirname}/batteryVoltage.schema.json`)
+      .loadSchema(`${__dirname}/battery_voltage.schema.json`)
       .then((parsedSchema) => {
         batteryVoltageSchema = parsedSchema;
         done();
@@ -22,7 +22,7 @@ describe("Yosensi YO Vibration uplink", () => {
   let internalTemperatureSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/internalTemperature.schema.json`)
+      .loadSchema(`${__dirname}/internal_temperature.schema.json`)
       .then((parsedSchema) => {
         internalTemperatureSchema = parsedSchema;
         done();
@@ -42,7 +42,7 @@ describe("Yosensi YO Vibration uplink", () => {
   let externalTemperatureSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/externalTemperature.schema.json`)
+      .loadSchema(`${__dirname}/external_temperature.schema.json`)
       .then((parsedSchema) => {
         externalTemperatureSchema = parsedSchema;
         done();
@@ -52,7 +52,7 @@ describe("Yosensi YO Vibration uplink", () => {
   let rmsAccelerationSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/rmsAcceleration.schema.json`)
+      .loadSchema(`${__dirname}/rms_acceleration.schema.json`)
       .then((parsedSchema) => {
         rmsAccelerationSchema = parsedSchema;
         done();
@@ -62,7 +62,7 @@ describe("Yosensi YO Vibration uplink", () => {
   let peakAccelerationSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/peakAcceleration.schema.json`)
+      .loadSchema(`${__dirname}/peak_acceleration.schema.json`)
       .then((parsedSchema) => {
         peakAccelerationSchema = parsedSchema;
         done();
@@ -72,7 +72,7 @@ describe("Yosensi YO Vibration uplink", () => {
   let crestFactorSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/crestFactor.schema.json`)
+      .loadSchema(`${__dirname}/crest_factor.schema.json`)
       .then((parsedSchema) => {
         crestFactorSchema = parsedSchema;
         done();
@@ -82,7 +82,7 @@ describe("Yosensi YO Vibration uplink", () => {
   let standardDeviationSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/standardDeviation.schema.json`)
+      .loadSchema(`${__dirname}/standard_deviation.schema.json`)
       .then((parsedSchema) => {
         standardDeviationSchema = parsedSchema;
         done();
@@ -112,7 +112,7 @@ describe("Yosensi YO Vibration uplink", () => {
   let rmsVelocitySchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/rmsVelocity.schema.json`)
+      .loadSchema(`${__dirname}/rms_velocity.schema.json`)
       .then((parsedSchema) => {
         rmsVelocitySchema = parsedSchema;
         done();
@@ -144,7 +144,7 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "batteryVoltage");
+        assert.equal(value.topic, "battery_voltage");
         assert.equal(value.data.batteryVoltage, 4349);
 
         utils.validateSchema(value.data, batteryVoltageSchema, {
@@ -157,7 +157,7 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "internalTemperature");
+        assert.equal(value.topic, "internal_temperature");
         assert.equal(value.data.internalTemperature, 23.1);
 
         utils.validateSchema(value.data, internalTemperatureSchema, {
@@ -183,7 +183,7 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "externalTemperature");
+        assert.equal(value.topic, "external_temperature");
         assert.equal(value.data.externalTemperature, 22.7);
 
         utils.validateSchema(value.data, externalTemperatureSchema, {
@@ -196,7 +196,7 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "rmsAcceleration");
+        assert.equal(value.topic, "rms_acceleration");
         assert.equal(value.data.rmsAcceleration_x, 0.004);
         assert.equal(value.data.rmsAcceleration_y, 0.004);
         assert.equal(value.data.rmsAcceleration_z, 0.005);
@@ -211,7 +211,7 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "peakAcceleration");
+        assert.equal(value.topic, "peak_acceleration");
         assert.equal(value.data.peakAcceleration_x, 0.006);
         assert.equal(value.data.peakAcceleration_y, 0.005);
         assert.equal(value.data.peakAcceleration_z, 0.007);
@@ -238,7 +238,7 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "crestFactor");
+        assert.equal(value.topic, "crest_factor");
         assert.equal(value.data.crestFactor_x, 3.53);
         assert.equal(value.data.crestFactor_y, 2.71);
         assert.equal(value.data.crestFactor_z, 3.02);
@@ -253,7 +253,7 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "standardDeviation");
+        assert.equal(value.topic, "standard_deviation");
         assert.equal(value.data.standardDeviation_x, 0.26);
         assert.equal(value.data.standardDeviation_y, 0.3);
         assert.equal(value.data.standardDeviation_z, 0.5);
@@ -309,7 +309,7 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "rmsVelocity");
+        assert.equal(value.topic, "rms_velocity");
         assert.equal(value.data.rmsVelocity_x, 0.09);
         assert.equal(value.data.rmsVelocity_y, 0.08);
         assert.equal(value.data.rmsVelocity_z, 0.09);

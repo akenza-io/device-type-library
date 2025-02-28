@@ -296,8 +296,8 @@ function payloadV2Parse(bytes, date, utils) {
   ) {
     return new Date(
       Number(extractPayloadDateTimeDate) -
-        utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
-          1000,
+      utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
+      1000,
     );
   }
 
@@ -312,7 +312,7 @@ function payloadV2Parse(bytes, date, utils) {
   function extractMeasurementDateTime(byte, extractMeasurementDateTimeDate) {
     return new Date(
       Number(extractMeasurementDateTimeDate) +
-        utils.unsignedNbrFromByte(byte) * 1000,
+      utils.unsignedNbrFromByte(byte) * 1000,
     );
   }
 
@@ -722,14 +722,14 @@ function consume(event) {
   if (data.data.batteryVoltage !== undefined) {
     emit("sample", {
       data: { batteryVoltage: data.data.batteryVoltage },
-      topic: "batteryVoltage",
+      topic: "battery_voltage",
     });
     delete data.data.batteryVoltage;
   }
   if (data.data.internalTemperature !== undefined) {
     emit("sample", {
       data: { internalTemperature: data.data.internalTemperature },
-      topic: "internalTemperature",
+      topic: "internal_temperature",
     });
     delete data.data.internalTemperature;
   }
@@ -757,49 +757,49 @@ function consume(event) {
   if (data.data.presenceCounter !== undefined) {
     emit("sample", {
       data: { presenceCounter: data.data.presenceCounter },
-      topic: "presenceCounter",
+      topic: "presence_counter",
     });
     delete data.data.presenceCounter;
   }
   if (data.data.comfortSetpoint !== undefined) {
     emit("sample", {
       data: { comfortSetpoint: data.data.comfortSetpoint },
-      topic: "comfortSetpoint",
+      topic: "comfort_setpoint",
     });
     delete data.data.comfortSetpoint;
   }
   if (data.data.standbyOffset !== undefined) {
     emit("sample", {
       data: { standbyOffset: data.data.standbyOffset },
-      topic: "standbyOffset",
+      topic: "standby_offset",
     });
     delete data.data.standbyOffset;
   }
   if (data.data.economyOffset !== undefined) {
     emit("sample", {
       data: { economyOffset: data.data.economyOffset },
-      topic: "economyOffset",
+      topic: "economy_offset",
     });
     delete data.data.economyOffset;
   }
   if (data.data.frostProtSetpoint !== undefined) {
     emit("sample", {
       data: { frostProtSetpoint: data.data.frostProtSetpoint },
-      topic: "frostProtSetpoint",
+      topic: "frost_prot_setpoint",
     });
     delete data.data.frostProtSetpoint;
   }
   if (data.data.operationMode !== undefined) {
     emit("sample", {
       data: { operationMode: data.data.operationMode },
-      topic: "operationMode",
+      topic: "operation_mode",
     });
     delete data.data.operationMode;
   }
   if (data.data.getParameters !== undefined) {
     emit("sample", {
       data: { getParameters: data.data.getParameters },
-      topic: "getParameters",
+      topic: "get_parameters",
     });
     delete data.data.getParameters;
   }

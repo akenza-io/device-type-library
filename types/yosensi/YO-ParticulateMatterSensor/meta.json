@@ -13,16 +13,16 @@
     "Particulate Matter"
   ],
   "outputTopics": [
-    "batteryVoltage",
-    "internalTemperature",
+    "battery_voltage",
+    "internal_temperature",
     "humidity",
     "accelerometer",
-    "massConcPm1",
-    "massConcPm2_5",
-    "massConcPm4",
-    "massConcPm10",
-    "partConcPm1",
-    "partConcPm2_5"
+    "mass_conc_pm1",
+    "mass_conc_pm2_5",
+    "mass_conc_pm4",
+    "mass_conc_pm10",
+    "part_conc_pm1",
+    "part_conc_pm2_5"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

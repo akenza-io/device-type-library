@@ -12,11 +12,11 @@
     "Periodic-Persistent Counter"
   ],
   "outputTopics": [
-    "batteryVoltage",
+    "battery_voltage",
     "humidity",
-    "internalTemperature",
-    "periodicPulseCnt",
-    "persistentPulseCnt"
+    "internal_temperature",
+    "periodic_pulse_cnt",
+    "persistent_pulse_cnt"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-RelaySwitch/output_mode_ch2.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "output_mode_ch2",
+  "title": "OutputModeCH2",
+  "properties": {
+    "outputModeCH2": {
+      "title": "Output Mode CH2",
+      "type": "integer",
+      "description": "Output Mode CH2.",
+      "hideFromKpis": false
+    }
+  },
+  "required": [
+    "outputModeCH2"
+  ]
+}

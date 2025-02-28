@@ -1,0 +1,20 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-VibrationMonitor/external_temperature.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "external_temperature",
+  "title": "ExternalTemperature",
+  "properties": {
+    "externalTemperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "External Temperature",
+      "minimum": -55,
+      "maximum": 125,
+      "hideFromKpis": false
+    }
+  },
+  "required": [
+    "externalTemperature"
+  ]
+}

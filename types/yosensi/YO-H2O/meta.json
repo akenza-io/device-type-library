@@ -14,10 +14,10 @@
   ],
   "outputTopics": [
     "accelerometer",
-    "batteryVoltage",
-    "floodState",
+    "battery_voltage",
+    "flood_state",
     "humidity",
-    "internalTemperature"
+    "internal_temperature"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

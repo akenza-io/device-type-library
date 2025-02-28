@@ -7,14 +7,16 @@
   "title": "PM4",
   "properties": {
     "pm4": {
-      "title": "PM 4",
+      "title": "Mass Concentration PM 4",
       "type": "number",
-      "description": "PM 4 in μg/m3.",
+      "description": "Mass Concentration PM 4 in μg/m3.",
       "unit": "μg/m3",
       "minimum": 0,
       "maximum": 1000,
       "hideFromKpis": false
     }
   },
-  "required": ["pm4"]
+  "required": [
+    "pm4"
+  ]
 }

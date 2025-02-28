@@ -296,8 +296,8 @@ function payloadV2Parse(bytes, date, utils) {
   ) {
     return new Date(
       Number(extractPayloadDateTimeDate) -
-        utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
-          1000,
+      utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
+      1000,
     );
   }
 
@@ -312,7 +312,7 @@ function payloadV2Parse(bytes, date, utils) {
   function extractMeasurementDateTime(byte, extractMeasurementDateTimeDate) {
     return new Date(
       Number(extractMeasurementDateTimeDate) +
-        utils.unsignedNbrFromByte(byte) * 1000,
+      utils.unsignedNbrFromByte(byte) * 1000,
     );
   }
 
@@ -768,14 +768,14 @@ function consume(event) {
   if (data.data.batteryVoltage !== undefined) {
     emit("sample", {
       data: { batteryVoltage: data.data.batteryVoltage },
-      topic: "batteryVoltage",
+      topic: "battery_voltage",
     });
     delete data.data.batteryVoltage;
   }
   if (data.data.internalTemperature !== undefined) {
     emit("sample", {
       data: { internalTemperature: data.data.internalTemperature },
-      topic: "internalTemperature",
+      topic: "internal_temperature",
     });
     delete data.data.internalTemperature;
   }
@@ -789,7 +789,7 @@ function consume(event) {
   if (data.data.externalTemperature !== undefined) {
     emit("sample", {
       data: { externalTemperature: data.data.externalTemperature },
-      topic: "externalTemperature",
+      topic: "external_temperature",
     });
     delete data.data.externalTemperature;
   }
@@ -800,7 +800,7 @@ function consume(event) {
         rmsAcceleration_y: data.data.rmsAcceleration_y,
         rmsAcceleration_z: data.data.rmsAcceleration_z,
       },
-      topic: "rmsAcceleration",
+      topic: "rms_acceleration",
     });
     delete data.data.rmsAcceleration_x;
     delete data.data.rmsAcceleration_y;
@@ -813,7 +813,7 @@ function consume(event) {
         peakAcceleration_y: data.data.peakAcceleration_y,
         peakAcceleration_z: data.data.peakAcceleration_z,
       },
-      topic: "peakAcceleration",
+      topic: "peak_acceleration",
     });
     delete data.data.peakAcceleration_x;
     delete data.data.peakAcceleration_y;
@@ -826,7 +826,7 @@ function consume(event) {
         crestFactor_y: data.data.crestFactor_y,
         crestFactor_z: data.data.crestFactor_z,
       },
-      topic: "crestFactor",
+      topic: "crest_factor",
     });
     delete data.data.crestFactor_x;
     delete data.data.crestFactor_y;
@@ -839,7 +839,7 @@ function consume(event) {
         standardDeviation_y: data.data.standardDeviation_y,
         standardDeviation_z: data.data.standardDeviation_z,
       },
-      topic: "standardDeviation",
+      topic: "standard_deviation",
     });
     delete data.data.standardDeviation_x;
     delete data.data.standardDeviation_y;
@@ -878,7 +878,7 @@ function consume(event) {
         rmsVelocity_y: data.data.rmsVelocity_y,
         rmsVelocity_z: data.data.rmsVelocity_z,
       },
-      topic: "rmsVelocity",
+      topic: "rms_velocity",
     });
     delete data.data.rmsVelocity_x;
     delete data.data.rmsVelocity_y;

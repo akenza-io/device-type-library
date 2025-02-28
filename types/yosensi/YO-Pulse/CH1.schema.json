@@ -1,17 +1,19 @@
 {
-  "$id": "https://akenza.io/yosensi/YO-Pulse/CH1.schema.json",
+  "$id": "https://akenza.io/yosensi/YO-Pulse/ch1.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
-  "topic": "CH1",
-  "title": "CH1",
+  "topic": "ch1",
+  "title": "ch1",
   "properties": {
-    "CH1": {
-      "title": "CH1 - NO State",
+    "ch1": {
+      "title": "ch1 - NO State",
       "type": "integer",
       "description": "NO State.",
       "hideFromKpis": false
     }
   },
-  "required": ["CH1"]
+  "required": [
+    "ch1"
+  ]
 }

@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-Thermostat/comfort_setpoint.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "comfort_setpoint",
+  "title": "ComfortSetpoint",
+  "properties": {
+    "comfortSetpoint": {
+      "title": "Comfort Setpoint",
+      "type": "number",
+      "description": "Comfort Setpoint.",
+      "hideFromKpis": false
+    }
+  },
+  "required": [
+    "comfortSetpoint"
+  ]
+}

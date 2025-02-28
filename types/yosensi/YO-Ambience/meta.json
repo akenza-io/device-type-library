@@ -14,12 +14,12 @@
     "Infrared Presence Sensor"
   ],
   "outputTopics": [
-    "batteryVoltage",
+    "battery_voltage",
     "co2",
     "humidity",
     "illuminance",
-    "internalTemperature",
-    "presenceCounter"
+    "internal_temperature",
+    "presence_counter"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

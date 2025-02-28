@@ -12,7 +12,7 @@ describe("Yosensi YO Ambience uplink", () => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
     utils
-      .loadSchema(`${__dirname}/batteryVoltage.schema.json`)
+      .loadSchema(`${__dirname}/battery_voltage.schema.json`)
       .then((parsedSchema) => {
         batteryVoltageSchema = parsedSchema;
         done();
@@ -22,7 +22,7 @@ describe("Yosensi YO Ambience uplink", () => {
   let internalTemperatureSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/internalTemperature.schema.json`)
+      .loadSchema(`${__dirname}/internal_temperature.schema.json`)
       .then((parsedSchema) => {
         internalTemperatureSchema = parsedSchema;
         done();
@@ -60,7 +60,7 @@ describe("Yosensi YO Ambience uplink", () => {
   let presenceCounterSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/presenceCounter.schema.json`)
+      .loadSchema(`${__dirname}/presence_counter.schema.json`)
       .then((parsedSchema) => {
         presenceCounterSchema = parsedSchema;
         done();
@@ -82,7 +82,7 @@ describe("Yosensi YO Ambience uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "batteryVoltage");
+        assert.equal(value.topic, "battery_voltage");
         assert.equal(value.data.batteryVoltage, 4444);
 
         utils.validateSchema(value.data, batteryVoltageSchema, {
@@ -95,7 +95,7 @@ describe("Yosensi YO Ambience uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "internalTemperature");
+        assert.equal(value.topic, "internal_temperature");
         assert.equal(value.data.internalTemperature, 19.2);
 
         utils.validateSchema(value.data, internalTemperatureSchema, {
@@ -143,7 +143,7 @@ describe("Yosensi YO Ambience uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "presenceCounter");
+        assert.equal(value.topic, "presence_counter");
         assert.equal(value.data.presenceCounter, 3);
 
         utils.validateSchema(value.data, presenceCounterSchema, {
