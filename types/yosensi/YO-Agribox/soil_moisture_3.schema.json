@@ -13,7 +13,5 @@
       "hideFromKpis": false
     }
   },
-  "required": [
-    "soilMoisture3"
-  ]
+  "required": ["soilMoisture3"]
 }

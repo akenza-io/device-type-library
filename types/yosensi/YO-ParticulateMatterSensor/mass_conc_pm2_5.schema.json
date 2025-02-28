@@ -15,7 +15,5 @@
       "hideFromKpis": false
     }
   },
-  "required": [
-    "massConcPm2_5"
-  ]
+  "required": ["massConcPm2_5"]
 }

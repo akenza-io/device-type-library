@@ -15,7 +15,5 @@
       "hideFromKpis": false
     }
   },
-  "required": [
-    "externalTemperature3"
-  ]
+  "required": ["externalTemperature3"]
 }

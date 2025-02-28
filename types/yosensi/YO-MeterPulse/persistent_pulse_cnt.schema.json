@@ -15,7 +15,5 @@
       "hideFromKpis": false
     }
   },
-  "required": [
-    "persistentPulseCnt"
-  ]
+  "required": ["persistentPulseCnt"]
 }

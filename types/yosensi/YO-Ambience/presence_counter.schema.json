@@ -13,7 +13,5 @@
       "hideFromKpis": false
     }
   },
-  "required": [
-    "presenceCounter"
-  ]
+  "required": ["presenceCounter"]
 }

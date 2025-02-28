@@ -6,11 +6,7 @@
   "description": "YO AgriBox is a LoRaWAN device for measuring soil moisture at 3 points.",
   "author": "Maciej Sacewicz",
   "firmwareVersion": "V3.6.7",
-  "availableSensors": [
-    "Temperature",
-    "Humidity",
-    "Volumetric Water Content"
-  ],
+  "availableSensors": ["Temperature", "Humidity", "Volumetric Water Content"],
   "outputTopics": [
     "battery_voltage",
     "internal_temperature",

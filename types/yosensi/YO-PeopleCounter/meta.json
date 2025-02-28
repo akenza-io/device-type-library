@@ -6,11 +6,7 @@
   "description": "YO People Counter is a bi-directional device that uses a novel 24 GHz radar transceiver to detect motion from both directions simultaneously.",
   "author": "Maciej Sacewicz",
   "firmwareVersion": "V3.6.4",
-  "availableSensors": [
-    "Temperature",
-    "Humidity",
-    "Motion"
-  ],
+  "availableSensors": ["Temperature", "Humidity", "Motion"],
   "outputTopics": [
     "battery_voltage",
     "temperature",

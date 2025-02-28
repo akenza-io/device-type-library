@@ -13,7 +13,5 @@
       "hideFromKpis": false
     }
   },
-  "required": [
-    "co2"
-  ]
+  "required": ["co2"]
 }

@@ -13,7 +13,5 @@
       "hideFromKpis": false
     }
   },
-  "required": [
-    "outputVoltageCh3"
-  ]
+  "required": ["outputVoltageCh3"]
 }

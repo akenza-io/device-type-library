@@ -16,7 +16,5 @@
       "hideFromKpis": false
     }
   },
-  "required": [
-    "massConcPm4"
-  ]
+  "required": ["massConcPm4"]
 }

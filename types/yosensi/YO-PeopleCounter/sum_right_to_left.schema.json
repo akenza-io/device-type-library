@@ -13,7 +13,5 @@
       "hideFromKpis": false
     }
   },
-  "required": [
-    "sumRightToLeft"
-  ]
+  "required": ["sumRightToLeft"]
 }

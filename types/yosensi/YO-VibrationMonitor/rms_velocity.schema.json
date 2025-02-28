@@ -34,9 +34,5 @@
       "hideFromKpis": false
     }
   },
-  "required": [
-    "rmsVelocity_x",
-    "rmsVelocity_y",
-    "rmsVelocity_z"
-  ]
+  "required": ["rmsVelocity_x", "rmsVelocity_y", "rmsVelocity_z"]
 }

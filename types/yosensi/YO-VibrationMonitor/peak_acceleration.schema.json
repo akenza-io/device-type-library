@@ -34,9 +34,5 @@
       "hideFromKpis": false
     }
   },
-  "required": [
-    "peakAcceleration_x",
-    "peakAcceleration_y",
-    "peakAcceleration_z"
-  ]
+  "required": ["peakAcceleration_x", "peakAcceleration_y", "peakAcceleration_z"]
 }

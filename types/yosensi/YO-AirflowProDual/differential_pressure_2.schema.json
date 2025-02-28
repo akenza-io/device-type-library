@@ -15,7 +15,5 @@
       "hideFromKpis": false
     }
   },
-  "required": [
-    "differentialPressure2"
-  ]
+  "required": ["differentialPressure2"]
 }

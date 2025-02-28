@@ -13,7 +13,5 @@
       "hideFromKpis": false
     }
   },
-  "required": [
-    "outputModeCH1"
-  ]
+  "required": ["outputModeCH1"]
 }

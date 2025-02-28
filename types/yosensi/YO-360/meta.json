@@ -6,11 +6,7 @@
   "description": "YO 360 measures temperature and humidity, and it sends its own position on the x, y, and z axes (via a built-in accelerometer).",
   "author": "Maciej Sacewicz",
   "firmwareVersion": "V3.6.1",
-  "availableSensors": [
-    "Temperature",
-    "Humidity",
-    "Accelerometer"
-  ],
+  "availableSensors": ["Temperature", "Humidity", "Accelerometer"],
   "outputTopics": [
     "battery_voltage",
     "internal_temperature",

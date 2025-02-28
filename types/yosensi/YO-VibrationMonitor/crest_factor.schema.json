@@ -31,9 +31,5 @@
       "hideFromKpis": false
     }
   },
-  "required": [
-    "crestFactor_x",
-    "crestFactor_y",
-    "crestFactor_z"
-  ]
+  "required": ["crestFactor_x", "crestFactor_y", "crestFactor_z"]
 }

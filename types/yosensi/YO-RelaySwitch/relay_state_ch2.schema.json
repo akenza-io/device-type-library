@@ -13,7 +13,5 @@
       "hideFromKpis": false
     }
   },
-  "required": [
-    "relayStateCH2"
-  ]
+  "required": ["relayStateCH2"]
 }

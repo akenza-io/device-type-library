@@ -292,8 +292,8 @@ function payloadV2Parse(bytes, date, utils) {
   ) {
     return new Date(
       Number(extractPayloadDateTimeDate) -
-      utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
-      1000,
+        utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
+          1000,
     );
   }
 
@@ -308,7 +308,7 @@ function payloadV2Parse(bytes, date, utils) {
   function extractMeasurementDateTime(byte, extractMeasurementDateTimeDate) {
     return new Date(
       Number(extractMeasurementDateTimeDate) +
-      utils.unsignedNbrFromByte(byte) * 1000,
+        utils.unsignedNbrFromByte(byte) * 1000,
     );
   }
 

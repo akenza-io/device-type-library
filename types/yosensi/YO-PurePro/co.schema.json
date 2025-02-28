@@ -16,7 +16,5 @@
       "hideFromKpis": false
     }
   },
-  "required": [
-    "co"
-  ]
+  "required": ["co"]
 }

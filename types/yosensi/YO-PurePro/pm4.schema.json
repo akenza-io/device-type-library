@@ -16,7 +16,5 @@
       "hideFromKpis": false
     }
   },
-  "required": [
-    "pm4"
-  ]
+  "required": ["pm4"]
 }

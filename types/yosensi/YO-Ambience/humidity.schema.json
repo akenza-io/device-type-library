@@ -11,7 +11,5 @@
       "hideFromKpis": false
     }
   },
-  "required": [
-    "humidity"
-  ]
+  "required": ["humidity"]
 }

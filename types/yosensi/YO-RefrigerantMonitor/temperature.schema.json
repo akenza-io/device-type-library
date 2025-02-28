@@ -13,7 +13,5 @@
       "hideFromKpis": false
     }
   },
-  "required": [
-    "temperature"
-  ]
+  "required": ["temperature"]
 }

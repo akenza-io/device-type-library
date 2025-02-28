@@ -11,7 +11,5 @@
       "hideFromKpis": false
     }
   },
-  "required": [
-    "ch6"
-  ]
+  "required": ["ch6"]
 }

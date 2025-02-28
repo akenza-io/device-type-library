@@ -34,9 +34,5 @@
       "hideFromKpis": false
     }
   },
-  "required": [
-    "rmsAcceleration_x",
-    "rmsAcceleration_y",
-    "rmsAcceleration_z"
-  ]
+  "required": ["rmsAcceleration_x", "rmsAcceleration_y", "rmsAcceleration_z"]
 }

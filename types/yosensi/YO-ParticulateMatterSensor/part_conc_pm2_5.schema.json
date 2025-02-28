@@ -15,7 +15,5 @@
       "hideFromKpis": false
     }
   },
-  "required": [
-    "partConcPm2_5"
-  ]
+  "required": ["partConcPm2_5"]
 }

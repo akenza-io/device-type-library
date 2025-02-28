@@ -12,7 +12,5 @@
       "hideFromKpis": false
     }
   },
-  "required": [
-    "ct6Clamp"
-  ]
+  "required": ["ct6Clamp"]
 }

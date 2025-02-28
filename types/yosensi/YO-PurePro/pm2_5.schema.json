@@ -13,7 +13,5 @@
       "hideFromKpis": false
     }
   },
-  "required": [
-    "pm2_5"
-  ]
+  "required": ["pm2_5"]
 }

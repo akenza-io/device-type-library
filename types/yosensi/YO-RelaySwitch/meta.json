@@ -6,10 +6,7 @@
   "description": "YO Relay Switch is a LoRaWAN device designed for versatile remote control applications.",
   "author": "Maciej Sacewicz",
   "firmwareVersion": "V1.1.1",
-  "availableSensors": [
-    "Relay States",
-    "Output Modes"
-  ],
+  "availableSensors": ["Relay States", "Output Modes"],
   "outputTopics": [
     "battery_voltage",
     "relay_state_ch1",

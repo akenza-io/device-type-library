@@ -13,7 +13,5 @@
       "hideFromKpis": false
     }
   },
-  "required": [
-    "pm10"
-  ]
+  "required": ["pm10"]
 }

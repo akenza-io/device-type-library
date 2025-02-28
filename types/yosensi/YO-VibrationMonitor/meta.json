@@ -6,11 +6,7 @@
   "description": "YO Vibration Monitor is a device for monitoring vibrations in electric motors.",
   "author": "Maciej Sacewicz",
   "firmwareVersion": "V1.1.1",
-  "availableSensors": [
-    "Temperature",
-    "Humidity",
-    "Accelerometer"
-  ],
+  "availableSensors": ["Temperature", "Humidity", "Accelerometer"],
   "outputTopics": [
     "battery_voltage",
     "internal_temperature",
