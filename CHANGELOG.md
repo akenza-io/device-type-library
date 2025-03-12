@@ -28,6 +28,10 @@ All notable changes to this project will be documented in this file.
 - Yosensi - YO-Thermostat
 - Yosensi - YO-VibrationMonitor
 
+### Changed
+
+- Elsys - Do not decrypt LoRa secrets anymore
+
 # [1.58.1] - 2025-01-10
 
 ### Added

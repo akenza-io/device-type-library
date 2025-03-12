@@ -381,10 +381,15 @@ function DecodeElsysSettings(input) {
     }
     setting = setting[0];
     const d = Array.from(bytes).slice(i, i + setting.size);
-    if (setting.parse == null) {
-      payload[setting.name] = d;
-    } else {
-      payload[setting.name] = setting.parse(d);
+
+    // Do not emit LoRa Secrets
+    const sensitiveInfo = ["appSKey", "nwkSKey", "devEui", "appEui", "appKey", "devAddr"];
+    if (sensitiveInfo.indexOf(setting.name) === -1) {
+      if (setting.parse == null) {
+        payload[setting.name] = d;
+      } else {
+        payload[setting.name] = setting.parse(d);
+      }
     }
     i += setting.size;
   }
