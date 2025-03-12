@@ -1,0 +1,38 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-H2O/accelerometer.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "accelerometer",
+  "title": "Accelerometer",
+  "properties": {
+    "accelerometer_x": {
+      "title": "Accelerometer - X axis",
+      "type": "number",
+      "description": "Accelerometer - X axis angle in degrees.",
+      "unit": "°",
+      "minimum": -180,
+      "maximum": 180,
+      "hideFromKpis": false
+    },
+    "accelerometer_y": {
+      "title": "Accelerometer - Y axis",
+      "type": "number",
+      "description": "Accelerometer - Y axis angle in degrees.",
+      "unit": "°",
+      "minimum": -180,
+      "maximum": 180,
+      "hideFromKpis": false
+    },
+    "accelerometer_z": {
+      "title": "Accelerometer - Z axis",
+      "type": "number",
+      "description": "Accelerometer - Z axis angle in degrees.",
+      "unit": "°",
+      "minimum": -180,
+      "maximum": 180,
+      "hideFromKpis": false
+    }
+  },
+  "required": ["accelerometer_x", "accelerometer_y", "accelerometer_z"]
+}
