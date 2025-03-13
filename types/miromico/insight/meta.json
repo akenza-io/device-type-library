@@ -13,10 +13,14 @@
     "CO2"
   ],
   "outputTopics": [
+    "temperature",
+    "humidity",
     "co2",
+    "iaq",
+    "pressure",
+    "door",
     "lifecycle",
-    "settings",
-    "temperature"
+    "settings"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

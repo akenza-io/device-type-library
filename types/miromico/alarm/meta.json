@@ -1,0 +1,19 @@
+{
+  "name": "miro alarm",
+  "version": "1.0.0",
+  "manufacturer": "Miromico",
+  "url": "https://miromico.ch/en/products/details/miro-Alarm",
+  "description": "The miro Alarm is a versatile, LoRaWAN®-enabled device for remote audio-visual feedback of events.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "C",
+  "availableSensors": [
+    "Light",
+    "Buzzer"
+  ],
+  "outputTopics": [
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

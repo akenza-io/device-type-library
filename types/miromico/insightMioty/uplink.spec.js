@@ -47,6 +47,16 @@ describe("Miromico insight Uplink", () => {
       });
   });
 
+  let humiditySchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/humidity.schema.json`)
+      .then((parsedSchema) => {
+        humiditySchema = parsedSchema;
+        done();
+      });
+  });
+
   describe("consume()", () => {
     it("should decode Miromico insight payload", () => {
       const data = {
@@ -56,6 +66,51 @@ describe("Miromico insight Uplink", () => {
             "0701C40978F809770505B00404C40706100020008001050310000000020ABE050B0389A2B903020b03",
         },
       };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "temperature");
+        assert.equal(value.data.temperature, 25);
+
+        utils.validateSchema(value.data, temperatureSchema, {
+          throwError: true,
+        });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "humidity");
+        assert.equal(value.data.humidity, 60);
+
+        utils.validateSchema(value.data, humiditySchema, {
+          throwError: true,
+        });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "co2");
+        assert.equal(value.data.co2, 779);
+
+        utils.validateSchema(value.data, co2Schema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+
+        // assert.equal(value.lastTemperatureSample, new Date().timestamp);
+        // assert.equal(value.lastCo2Sample, new Date().timestamp);
+      });
 
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
@@ -82,33 +137,6 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.data.firmwareHash, "0389A2B9");
 
         utils.validateSchema(value.data, settingsSchema, { throwError: true });
-      });
-
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "temperature");
-        assert.equal(value.data.temperature, 25);
-        assert.equal(value.data.humidity, 60);
-        assert.equal(value.data.temperature2, 25.52);
-        assert.equal(value.data.humidity2, 59.5);
-
-        utils.validateSchema(value.data, temperatureSchema, {
-          throwError: true,
-        });
-      });
-
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "co2");
-        assert.equal(value.data.co2, 779);
-
-        utils.validateSchema(value.data, co2Schema, { throwError: true });
       });
 
       consume(data);
