@@ -35,92 +35,70 @@ var eventTypeArray = [
 
 function consume(event) {
     var port = event.data.port;
-    var bytes = event.data.payloadHex;
-    var dev_info = {};
+    var bytes = hexStringToBytes(event.data.payloadHex);
     var data = {};
     data.port = port;
-    data.hex_format_payload = bytesToHexString(bytes, 0, bytes.length);
-    data.payload_type = payloadTypeArray[port - 1];
-
-    if (port == 11) {
-        var tempIndex = 2;
-        var current_time = (bytes[tempIndex++] * 256 + bytes[tempIndex++]) + '/' + bytes[tempIndex++] + '/' + bytes[tempIndex++] + ' ' + bytes[tempIndex++] + ':' + bytes[tempIndex++] + ':' + bytes[tempIndex++];
-        var timezone = signedHexToInt(bytesToHexString(bytes, tempIndex, 1));
-        tempIndex += 1;
-
-        data.current_time = current_time;
-        data.timezone = timezone;
-
-        port = bytesToInt(bytes, tempIndex, 1);
-        tempIndex += 1;
-
-        bytes = bytes.slice(tempIndex);
-    }
-
-    var battery_level = '';
+    data.hexFormatPayload = bytesToHexString(bytes, 0, bytes.length);
+    data.payloadType = payloadTypeArray[port - 1];
 
     //common frame head
     if (port <= 10) {
-        var operationModeCode = bytes[0] & 0x03;
-        // data.operation_mode_code = operationModeCode;
-        data.operation_mode = operationModeArray[operationModeCode];
-
         var batteryLevelCode = bytes[0] & 0x04;
-        // data.battery_level_code = batteryLevelCode;
-        battery_level = batteryLevelCode == 0 ? "Normal" : "Low battery";
+        var batteryLevel = batteryLevelCode == 0 ? "Normal" : "Low battery";
+
+        emit('sample', { data: batteryLevel, topic: "lifecycle" });
+
+        var operationModeCode = bytes[0] & 0x03;
+        data.operationMode = operationModeArray[operationModeCode];
 
         var tamperAlarmCode = bytes[0] & 0x08;
-        // data.tamper_alarm_code = tamperAlarmCode;
-        data.tamper_alarm = tamperAlarmCode == 0 ? "Not triggered" : "Triggered";
+        data.tamperAlarm = tamperAlarmCode == 0 ? "Not triggered" : "Triggered";
 
         var manDownStatusCode = bytes[0] & 0x10;
-        // data.mandown_status_code = manDownStatusCode;
-        data.mandown_status = manDownStatusCode == 0 ? "Not in idle" : "In idle";
+        data.mandownStatus = manDownStatusCode == 0 ? "Not in idle" : "In idle";
 
         var motionStateSinceLastPaylaodCode = bytes[0] & 0x20;
-        // data.motion_state_since_last_paylaod_code = motionStateSinceLastPaylaodCode;
-        data.motion_state_since_last_paylaod = motionStateSinceLastPaylaodCode == 0 ? "No" : "Yes";
+        data.motionStateSinceLastPaylaod = motionStateSinceLastPaylaodCode == 0 ? "No" : "Yes";
 
         if (port == 2 || port == 3) {
             var positioningTypeCode = bytes[0] & 0x40;
-            // data.positioning_type_code = positioningTypeCode;
-            data.positioning_type = positioningTypeCode == 0 ? "Normal" : "Downlink for position";
+            data.positioningType = positioningTypeCode == 0 ? "Normal" : "Downlink for position";
         }
 
         var temperature = signedHexToInt(bytesToHexString(bytes, 1, 1)) + '°C';
         data.temperature = temperature;
 
         data.ack = bytes[2] & 0x0f;
-        data.battery_voltage = (22 + ((bytes[2] >> 4) & 0x0f)) / 10 + "V";
+        data.batteryVoltage = (22 + ((bytes[2] >> 4) & 0x0f)) / 10 + "V";
     }
     if (port == 1) {
         var rebootReasonCode = bytesToInt(bytes, 3, 1);
-        // data.reboot_reason_code = rebootReasonCode;
-        data.reboot_reason = rebootReasonArray[rebootReasonCode];
+        data.rebootReason = rebootReasonArray[rebootReasonCode];
 
         var majorVersion = (bytes[4] >> 6) & 0x03;
         var minorVersion = (bytes[4] >> 4) & 0x03;
         var patchVersion = bytes[4] & 0x0f;
         var firmwareVersion = 'V' + majorVersion + '.' + minorVersion + '.' + patchVersion;
-        data.firmware_version = firmwareVersion;
+        data.firmwareVersion = firmwareVersion;
 
         var activityCount = bytesToInt(bytes, 5, 4);
-        data.activity_count = activityCount;
+        data.activityCount = activityCount;
+        emit('sample', { data: data, topic: "Heartbeat" });
     } else if (port == 2) {
-        var parse_len = 3; // common head is 3 byte
+        var parseLen = 3; // common head is 3 byte
         var datas = [];
-        var positionTypeCode = bytes[parse_len++];
-        data.position_success_type = positionTypeArray[positionTypeCode];
-        data.position_success_type_code = positionTypeCode;
+        var positionTypeCode = bytes[parseLen++];
+        data.positionSuccessType = positionTypeArray[positionTypeCode];
+        data.positionSuccessTypeCode = positionTypeCode;
 
-        var year = bytes[parse_len] * 256 + bytes[parse_len + 1];
-        parse_len += 2;
-        var mon = bytes[parse_len++];
-        var days = bytes[parse_len++];
-        var hour = bytes[parse_len++];
-        var minute = bytes[parse_len++];
-        var sec = bytes[parse_len++];
-        var timezone = bytes[parse_len++];
+        var year = bytes[parseLen] * 256 + bytes[parseLen + 1];
+        parseLen += 2;
+        var mon = bytes[parseLen++];
+        var days = bytes[parseLen++];
+        var hour = bytes[parseLen++];
+        var minute = bytes[parseLen++];
+        var sec = bytes[parseLen++];
+        var timezone = bytes[parseLen++];
 
         if (timezone > 0x80) {
             data.timestamp = year + "-" + mon + "-" + days + " " + hour + ":" + minute + ":" + sec + "  TZ:" + (timezone - 0x100);
@@ -128,22 +106,22 @@ function consume(event) {
         else {
             data.timestamp = year + "-" + mon + "-" + days + " " + hour + ":" + minute + ":" + sec + "  TZ:" + timezone;
         }
-        var datalen = bytes[parse_len++];
+        var datalen = bytes[parseLen++];
 
         if (positionTypeCode == 0 || positionTypeCode == 1) {
             for (var i = 0; i < (datalen / 7); i++) {
                 var tempData = {};
-                tempData.mac = substringBytes(bytes, parse_len, 6);
-                parse_len += 6;
-                tempData.rssi = bytes[parse_len++] - 256 + "dBm";
+                tempData.mac = substringBytes(bytes, parseLen, 6);
+                parseLen += 6;
+                tempData.rssi = bytes[parseLen++] - 256 + "dBm";
                 datas.push(tempData);
             }
-            data.mac_data = datas;
+            data.macData = datas;
         } else {
-            var lat = bytesToInt(bytes, parse_len, 4);
-            parse_len += 4;
-            var lon = bytesToInt(bytes, parse_len, 4);
-            parse_len += 4;
+            var lat = bytesToInt(bytes, parseLen, 4);
+            parseLen += 4;
+            var lon = bytesToInt(bytes, parseLen, 4);
+            parseLen += 4;
 
             if (lat > 0x80000000)
                 lat = lat - 0x100000000;
@@ -152,53 +130,57 @@ function consume(event) {
 
             data.latitude = lat / 10000000;
             data.longitude = lon / 10000000;
-            data.pdop = bytes[parse_len] / 10;
+            data.pdop = bytes[parseLen] / 10;
         }
+        emit('sample', { data: data, topic: "Location" });
     } else if (port == 3) {
-        var parse_len = 3;
+        var parseLen = 3;
         var datas = [];
-        var failedTypeCode = bytesToInt(bytes, parse_len++, 1);
-        data.reasons_for_positioning_failure = posFailedReasonArray[failedTypeCode];
-        var datalen = bytes[parse_len++];
+        var failedTypeCode = bytesToInt(bytes, parseLen++, 1);
+        data.reasonsForPositioningFailure = posFailedReasonArray[failedTypeCode];
+        var datalen = bytes[parseLen++];
         if (failedTypeCode <= 5) //wifi and ble reason
         {
             if (datalen) {
                 for (var i = 0; i < (datalen / 7); i++) {
                     var item = {};
-                    item.mac = substringBytes(bytes, parse_len, 6);
-                    parse_len += 6;
-                    item.rssi = bytes[parse_len++] - 256 + "dBm";
+                    item.mac = substringBytes(bytes, parseLen, 6);
+                    parseLen += 6;
+                    item.rssi = bytes[parseLen++] - 256 + "dBm";
                     datas.push(item);
                 }
-                data.mac_data = datas;
+                data.macData = datas;
             }
         } else if (failedTypeCode <= 11) //gps reason
         {
-            var pdop = bytes[parse_len++];
+            var pdop = bytes[parseLen++];
             if (pdop != 0xff)
                 data.pdop = pdop / 10
             else
                 data.pdop = "unknow";
-            data.gps_satellite_cn = bytes[parse_len] + "-" + bytes[parse_len + 1] + "-" + bytes[parse_len + 2] + "-" + bytes[parse_len + 3];
+            data.gpsSatelliteCn = bytes[parseLen] + "-" + bytes[parseLen + 1] + "-" + bytes[parseLen + 2] + "-" + bytes[parseLen + 3];
         }
+        emit('sample', { data: data, topic: "LocationFail" });
     } else if (port == 4) {
         var shutdownTypeCode = bytesToInt(bytes, 3, 1);
-        // data.shutdown_type_code = shutdownTypeCode;
-        data.shutdown_type = shutdownTypeArray[shutdownTypeCode];
+        data.shutdownType = shutdownTypeArray[shutdownTypeCode];
+        emit('sample', { data: data, topic: "Shutdown" });
     } else if (port == 5) {
-        data.number_of_shocks = bytesToInt(bytes, 3, 2);
+        data.numberOfShocks = bytesToInt(bytes, 3, 2);
+        emit('sample', { data: data, topic: "Vibration" });
     } else if (port == 6) {
-        data.total_idle_time = bytesToInt(bytes, 3, 2);
+        data.totalIdleTime = bytesToInt(bytes, 3, 2);
+        emit('sample', { data: data, topic: "Mandown" });
     } else if (port == 7) {
-        var parse_len = 3; // common head is 3 byte
-        var year = bytesToInt(bytes, parse_len, 2);
-        parse_len += 2;
-        var mon = bytes[parse_len++];
-        var days = bytes[parse_len++];
-        var hour = bytes[parse_len++];
-        var minute = bytes[parse_len++];
-        var sec = bytes[parse_len++];
-        var timezone = bytes[parse_len++];
+        var parseLen = 3; // common head is 3 byte
+        var year = bytesToInt(bytes, parseLen, 2);
+        parseLen += 2;
+        var mon = bytes[parseLen++];
+        var days = bytes[parseLen++];
+        var hour = bytes[parseLen++];
+        var minute = bytes[parseLen++];
+        var sec = bytes[parseLen++];
+        var timezone = bytes[parseLen++];
 
         if (timezone > 0x80) {
             data.timestamp = year + "-" + mon + "-" + days + " " + hour + ":" + minute + ":" + sec + "  TZ:" + (timezone - 0x100);
@@ -206,59 +188,67 @@ function consume(event) {
         else {
             data.timestamp = year + "-" + mon + "-" + days + " " + hour + ":" + minute + ":" + sec + "  TZ:" + timezone;
         }
+        emit('sample', { data: data, topic: "Tamper" });
     } else if (port == 8) {
         var eventTypeCode = bytesToInt(bytes, 3, 1);
-        // data.event_type_code = eventTypeCode;
-        data.event_type = eventTypeArray[eventTypeCode];
+        data.eventType = eventTypeArray[eventTypeCode];
+        emit('sample', { data: data, topic: "Event" });
     } else if (port == 9) {
-        var parse_len = 3;
-        data.gps_work_time = bytesToInt(bytes, parse_len, 4);
-        parse_len += 4;
-        data.wifi_work_time = bytesToInt(bytes, parse_len, 4);
-        parse_len += 4;
-        data.ble_scan_work_time = bytesToInt(bytes, parse_len, 4);
-        parse_len += 4;
-        data.ble_adv_work_time = bytesToInt(bytes, parse_len, 4);
-        parse_len += 4;
-        data.lora_work_time = bytesToInt(bytes, parse_len, 4);
-        parse_len += 4;
-    } else if (port == 10) {
-        //
+        var parseLen = 3;
+        data.gpsWorkTime = bytesToInt(bytes, parseLen, 4);
+        parseLen += 4;
+        data.wifiWorkTime = bytesToInt(bytes, parseLen, 4);
+        parseLen += 4;
+        data.bleScanWorkTime = bytesToInt(bytes, parseLen, 4);
+        parseLen += 4;
+        data.bleAdvWorkTime = bytesToInt(bytes, parseLen, 4);
+        parseLen += 4;
+        data.loraWorkTime = bytesToInt(bytes, parseLen, 4);
+        parseLen += 4;
+        emit('sample', { data: data, topic: "Battery" });
+    } else if (port == 11) {
+        var tempIndex = 2;
+        var currentTime = (bytes[tempIndex++] * 256 + bytes[tempIndex++]) + '/' + bytes[tempIndex++] + '/' + bytes[tempIndex++] + ' ' + bytes[tempIndex++] + ':' + bytes[tempIndex++] + ':' + bytes[tempIndex++];
+        var timezone = signedHexToInt(bytesToHexString(bytes, tempIndex, 1));
+        tempIndex += 1;
+
+        data.currentTime = currentTime;
+        data.timezone = timezone;
+
+        port = bytesToInt(bytes, tempIndex, 1);
+        tempIndex += 1;
+
+        bytes = bytes.slice(tempIndex);
+        emit('sample', { data: data, topic: "Localdata" });
     } else if (port == 12) {
 
         var operationModeCode = bytes[0] & 0x03;
-        // data.operation_mode_code = operationModeCode;
-        data.operation_mode = operationModeArray[operationModeCode];
+        data.operationMode = operationModeArray[operationModeCode];
 
         var batteryLevelCode = bytes[0] & 0x04;
-        // data.battery_level_code = batteryLevelCode;
-        data.battery_level = batteryLevelCode == 0 ? "Normal" : "Low battery";
+        data.batteryLevel = batteryLevelCode == 0 ? "Normal" : "Low battery";
 
         var tamperAlarmCode = bytes[0] & 0x08;
-        // data.tamper_alarm_code = tamperAlarmCode;
-        data.tamper_alarm = tamperAlarmCode == 0 ? "Not triggered" : "Triggered";
+        data.tamperAlarm = tamperAlarmCode == 0 ? "Not triggered" : "Triggered";
 
         var manDownStatusCode = bytes[0] & 0x10;
-        // data.mandown_status_code = manDownStatusCode;
-        data.mandown_status = manDownStatusCode == 0 ? "Not in idle" : "In idle";
+        data.mandownStatus = manDownStatusCode == 0 ? "Not in idle" : "In idle";
 
         var motionStateSinceLastPaylaodCode = bytes[0] & 0x20;
-        // data.motion_state_since_last_paylaod_code = motionStateSinceLastPaylaodCode;
-        data.motion_state_since_last_paylaod = motionStateSinceLastPaylaodCode == 0 ? "No" : "Yes";
+        data.motionStateSinceLastPaylaod = motionStateSinceLastPaylaodCode == 0 ? "No" : "Yes";
 
         var positioningTypeCode = bytes[0] & 0x40;
-        // data.positioning_type_code = positioningTypeCode;
-        data.positioning_type = positioningTypeCode == 0 ? "Normal" : "Downlink for position";
+        data.positioningType = positioningTypeCode == 0 ? "Normal" : "Downlink for position";
 
 
-        data.lorawan_downlink_count = bytes[1] & 0x0f;
-        data.battery_voltage = (22 + ((bytes[1] >> 4) & 0x0f)) / 10 + "V";
+        data.lorawanDownlinkCount = bytes[1] & 0x0f;
+        data.batteryVoltage = (22 + ((bytes[1] >> 4) & 0x0f)) / 10 + "V";
 
-        var parse_len = 2;
-        var lat = bytesToInt(bytes, parse_len, 4);
-        parse_len += 4;
-        var lon = bytesToInt(bytes, parse_len, 4);
-        parse_len += 4;
+        var parseLen = 2;
+        var lat = bytesToInt(bytes, parseLen, 4);
+        parseLen += 4;
+        var lon = bytesToInt(bytes, parseLen, 4);
+        parseLen += 4;
 
         if (lat > 0x80000000)
             lat = lat - 0x100000000;
@@ -267,15 +257,8 @@ function consume(event) {
 
         data.latitude = lat / 10000000;
         data.longitude = lon / 10000000;
-        data.pdop = bytes[parse_len] / 10;
-    }
-    dev_info.data = data;
-
-
-    emit('sample', { data: dev_info.data, topic: "default" });
-
-    if (port <= 10) {
-        emit('sample', { data: battery_level, topic: "lifecycle" });
+        data.pdop = bytes[parseLen] / 10;
+        emit('sample', { data: data, topic: "ExtremeGPS" });
     }
 }
 
@@ -330,14 +313,34 @@ function signedHexToInt(hexStr) {
         return twoStr;
     }
     // 负数
-    var twoStr_unsign = "";
+    var twoStrUnsign = "";
     twoStr = parseInt(twoStr, 2) - 1; // 补码：(负数)反码+1，符号位不变；相对十进制来说也是 +1，但这里是负数，+1就是绝对值数据-1
     twoStr = twoStr.toString(2);
-    twoStr_unsign = twoStr.substring(1, bitNum); // 舍弃首位(符号位)
+    twoStrUnsign = twoStr.substring(1, bitNum); // 舍弃首位(符号位)
     // 去除首字符，将0转为1，将1转为0   反码
-    twoStr_unsign = twoStr_unsign.replace(/0/g, "z");
-    twoStr_unsign = twoStr_unsign.replace(/1/g, "0");
-    twoStr_unsign = twoStr_unsign.replace(/z/g, "1");
-    twoStr = parseInt(-twoStr_unsign, 2);
+    twoStrUnsign = twoStrUnsign.replace(/0/g, "z");
+    twoStrUnsign = twoStrUnsign.replace(/1/g, "0");
+    twoStrUnsign = twoStrUnsign.replace(/z/g, "1");
+    twoStr = parseInt(-twoStrUnsign, 2);
     return twoStr;
+}
+
+function hexStringToBytes(hexString) {
+    // 移除可能存在的空格或其他分隔符
+    hexString = hexString.replace(/\s/g, '');
+
+    // 检查字符串长度是否为偶数
+    if (hexString.length % 2 !== 0) {
+        throw new Error('Hex string must have an even length');
+    }
+
+    // 创建一个Uint8Array来存储字节
+    const bytes = new Uint8Array(hexString.length / 2);
+
+    // 将每两个字符转换为一个字节
+    for (let i = 0; i < hexString.length; i += 2) {
+        bytes[i / 2] = parseInt(hexString.substr(i, 2), 16);
+    }
+
+    return bytes;
 }
