@@ -30,7 +30,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
-- Elsys - Do not decrypt LoRa secrets anymore
+- Elsys - Omit LoRa secrets from config
 
 # [1.58.1] - 2025-01-10
 
