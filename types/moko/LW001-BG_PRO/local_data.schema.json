@@ -1,0 +1,25 @@
+{
+    "type": "object",
+    "properties": {
+        "port": {
+            "type": "number",
+            "description": "Port number of the payload"
+        },
+        "hexFormatPayload": {
+            "type": "string",
+            "description": "Payload in hexadecimal format"
+        },
+        "payloadType": {
+            "type": "string",
+            "description": "Type of payload (e.g., Local Data)"
+        },
+        "currentTime": {
+            "type": "string",
+            "description": "Current time in local format"
+        },
+        "timezone": {
+            "type": "number",
+            "description": "Timezone offset"
+        }
+    }
+}

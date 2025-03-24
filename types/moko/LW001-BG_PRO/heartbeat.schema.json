@@ -1,0 +1,45 @@
+{
+    "type": "object",
+    "properties": {
+        "port": {
+            "type": "number",
+            "description": "Port number of the payload"
+        },
+        "hexFormatPayload": {
+            "type": "string",
+            "description": "Payload in hexadecimal format"
+        },
+        "payloadType": {
+            "type": "string",
+            "description": "Type of payload (e.g., Heartbeat)"
+        },
+        "operationMode": {
+            "type": "string",
+            "description": "Current operation mode of the device"
+        },
+        "temperature": {
+            "type": "string",
+            "description": "Temperature reading from the device"
+        },
+        "ack": {
+            "type": "number",
+            "description": "Acknowledgment value"
+        },
+        "batteryVoltage": {
+            "type": "string",
+            "description": "Battery voltage level"
+        },
+        "rebootReason": {
+            "type": "string",
+            "description": "Reason for the last reboot"
+        },
+        "firmwareVersion": {
+            "type": "string",
+            "description": "Firmware version of the device"
+        },
+        "activityCount": {
+            "type": "number",
+            "description": "Count of activities since last reset"
+        }
+    }
+}

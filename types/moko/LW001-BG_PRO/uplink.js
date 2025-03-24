@@ -46,7 +46,7 @@ function consume(event) {
         var batteryLevelCode = bytes[0] & 0x04;
         var batteryLevel = batteryLevelCode == 0 ? "Normal" : "Low battery";
 
-        emit('sample', { data: batteryLevel, topic: "lifecycle" });
+        emit('sample', { data: batteryLevel, topic: "life_cycle" });
 
         var operationModeCode = bytes[0] & 0x03;
         data.operationMode = operationModeArray[operationModeCode];
@@ -83,7 +83,7 @@ function consume(event) {
 
         var activityCount = bytesToInt(bytes, 5, 4);
         data.activityCount = activityCount;
-        emit('sample', { data: data, topic: "Heartbeat" });
+        emit('sample', { data: data, topic: "heartbeat" });
     } else if (port == 2) {
         var parseLen = 3; // common head is 3 byte
         var datas = [];
@@ -132,7 +132,7 @@ function consume(event) {
             data.longitude = lon / 10000000;
             data.pdop = bytes[parseLen] / 10;
         }
-        emit('sample', { data: data, topic: "Location" });
+        emit('sample', { data: data, topic: "location" });
     } else if (port == 3) {
         var parseLen = 3;
         var datas = [];
@@ -160,17 +160,17 @@ function consume(event) {
                 data.pdop = "unknow";
             data.gpsSatelliteCn = bytes[parseLen] + "-" + bytes[parseLen + 1] + "-" + bytes[parseLen + 2] + "-" + bytes[parseLen + 3];
         }
-        emit('sample', { data: data, topic: "LocationFail" });
+        emit('sample', { data: data, topic: "location_fail" });
     } else if (port == 4) {
         var shutdownTypeCode = bytesToInt(bytes, 3, 1);
         data.shutdownType = shutdownTypeArray[shutdownTypeCode];
-        emit('sample', { data: data, topic: "Shutdown" });
+        emit('sample', { data: data, topic: "shutdown" });
     } else if (port == 5) {
         data.numberOfShocks = bytesToInt(bytes, 3, 2);
-        emit('sample', { data: data, topic: "Vibration" });
+        emit('sample', { data: data, topic: "vibration" });
     } else if (port == 6) {
         data.totalIdleTime = bytesToInt(bytes, 3, 2);
-        emit('sample', { data: data, topic: "Mandown" });
+        emit('sample', { data: data, topic: "mandown" });
     } else if (port == 7) {
         var parseLen = 3; // common head is 3 byte
         var year = bytesToInt(bytes, parseLen, 2);
@@ -188,11 +188,11 @@ function consume(event) {
         else {
             data.timestamp = year + "-" + mon + "-" + days + " " + hour + ":" + minute + ":" + sec + "  TZ:" + timezone;
         }
-        emit('sample', { data: data, topic: "Tamper" });
+        emit('sample', { data: data, topic: "tamper" });
     } else if (port == 8) {
         var eventTypeCode = bytesToInt(bytes, 3, 1);
         data.eventType = eventTypeArray[eventTypeCode];
-        emit('sample', { data: data, topic: "Event" });
+        emit('sample', { data: data, topic: "event" });
     } else if (port == 9) {
         var parseLen = 3;
         data.gpsWorkTime = bytesToInt(bytes, parseLen, 4);
@@ -205,7 +205,7 @@ function consume(event) {
         parseLen += 4;
         data.loraWorkTime = bytesToInt(bytes, parseLen, 4);
         parseLen += 4;
-        emit('sample', { data: data, topic: "Battery" });
+        emit('sample', { data: data, topic: "battery" });
     } else if (port == 11) {
         var tempIndex = 2;
         var currentTime = (bytes[tempIndex++] * 256 + bytes[tempIndex++]) + '/' + bytes[tempIndex++] + '/' + bytes[tempIndex++] + ' ' + bytes[tempIndex++] + ':' + bytes[tempIndex++] + ':' + bytes[tempIndex++];
@@ -219,7 +219,7 @@ function consume(event) {
         tempIndex += 1;
 
         bytes = bytes.slice(tempIndex);
-        emit('sample', { data: data, topic: "Localdata" });
+        emit('sample', { data: data, topic: "local_data" });
     } else if (port == 12) {
 
         var operationModeCode = bytes[0] & 0x03;
@@ -258,7 +258,7 @@ function consume(event) {
         data.latitude = lat / 10000000;
         data.longitude = lon / 10000000;
         data.pdop = bytes[parseLen] / 10;
-        emit('sample', { data: data, topic: "ExtremeGPS" });
+        emit('sample', { data: data, topic: "extreme_gps" });
     }
 }
 

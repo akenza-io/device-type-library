@@ -1,0 +1,9 @@
+{
+    "type": "object",
+    "properties": {
+        "batteryLevel": {
+            "type": "string",
+            "description": "Battery level status (Normal or Low battery)"
+        }
+    }
+}
