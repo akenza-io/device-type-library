@@ -123,19 +123,19 @@ function consume(event) {
     temperature.temperature = bytesToInt16(bytes.slice(8, 10)) / 10;
 
     if (packetIdentifier === 2) {
-      gps.inclinationDegree = bytes[10];
+      distance.inclinationDegree = bytes[10];
     } else if (packetIdentifier === 3) {
       gps.latitude = bytesToFloat(bytes.slice(10, 14));
       gps.longitude = bytesToFloat(bytes.slice(14, 18));
-      gps.inclinationDegree = bytes[18];
+      distance.inclinationDegree = bytes[18];
     } else if (packetIdentifier === 4) {
-      gps.detailState = bytesToUInt32(bytes.slice(10, 14));
-      gps.inclinationDegree = bytes[14];
+      distance.inclinationDegree = bytesToUInt32(bytes.slice(10, 14));
+      distance.inclinationDegree = bytes[14];
     } else if (packetIdentifier === 5) {
       gps.latitude = bytesToFloat(bytes.slice(10, 14));
       gps.longitude = bytesToFloat(bytes.slice(14, 18));
-      gps.detailState = bytesToUInt32(bytes.slice(18, 22));
-      gps.inclinationDegree = bytes[22];
+      distance.inclinationDegree = bytesToUInt32(bytes.slice(18, 22));
+      distance.inclinationDegree = bytes[22];
     }
   } else if (packetIdentifier === 6) {
     lifecycle.namurState = namurStatus(bytes[1]);
@@ -143,7 +143,7 @@ function consume(event) {
     gps.longitude = bytesToFloat(bytes.slice(6, 10));
   } else if (packetIdentifier === 7) {
     lifecycle.namurState = namurStatus(bytes[1]);
-    gps.detailState = bytesToUInt32(bytes.slice(2, 6));
+    distance.inclinationDegree = bytesToUInt32(bytes.slice(2, 6));
   } else if ((packetIdentifier >= 8 && packetIdentifier <= 15) || (packetIdentifier >= 18 && packetIdentifier <= 22)) {
     let position = 1; // skip identifier
     if ([10, 11, 14, 15, 19, 20, 21, 22].indexOf(packetIdentifier) !== -1) {
@@ -197,7 +197,7 @@ function consume(event) {
     }
 
     if ([10, 11, 14, 15, 20].indexOf(packetIdentifier) !== -1) {
-      gps.detailState = bytesToUInt32(bytes.slice(position, position + 4));
+      distance.inclinationDegree = bytesToUInt32(bytes.slice(position, position + 4));
       position += 4;
     }
 
@@ -209,7 +209,7 @@ function consume(event) {
     }
 
     if ([8, 9, 10, 11, 12, 13, 14, 15, 18, 19].indexOf(packetIdentifier) !== -1) {
-      gps.inclinationDegree = bytes[position];
+      distance.inclinationDegree = bytes[position];
       position++;
     }
   } else if ([16, 17, 23, 24, 25, 26].indexOf(packetIdentifier) !== -1) {

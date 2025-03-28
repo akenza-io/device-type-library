@@ -11,18 +11,6 @@
     },
     "longitude": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/longitude/degrees"
-    },
-    "inclinationDegree": {
-      "title": "Inclination degree",
-      "unit": "°",
-      "type": "number",
-      "description": "Inclination degree"
-    },
-    "detailState": {
-      "title": "Detail state",
-      "type": "integer",
-      "description": "Detail state",
-      "hideFromKpis": true
     }
   }
 }

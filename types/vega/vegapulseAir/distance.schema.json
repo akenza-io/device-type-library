@@ -20,6 +20,18 @@
       "maximum": 255,
       "hideFromKpis": true
     },
+    "inclinationDegree": {
+      "title": "Inclination degree",
+      "unit": "°",
+      "type": "number",
+      "description": "Inclination degree"
+    },
+    "detailState": {
+      "title": "Detail state",
+      "type": "integer",
+      "description": "Detail state",
+      "hideFromKpis": true
+    },
     "percentValue": {
       "title": "Percent value",
       "unit": "%",
