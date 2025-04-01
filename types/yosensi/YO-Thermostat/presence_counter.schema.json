@@ -1,0 +1,17 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-Thermostat/presenceCounter.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "presenceCounter",
+  "title": "presenceCounter",
+  "properties": {
+    "presenceCounter": {
+      "title": "IR Presence Sensor",
+      "type": "number",
+      "description": "IR Presence Sensor Counter.",
+      "hideFromKpis": false
+    }
+  },
+  "required": ["presenceCounter"]
+}

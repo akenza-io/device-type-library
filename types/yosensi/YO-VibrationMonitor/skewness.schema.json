@@ -1,0 +1,35 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-VibrationMonitor/skewness.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "skewness",
+  "title": "Skewness",
+  "properties": {
+    "skewness_x": {
+      "title": "Skewness - X axis",
+      "type": "number",
+      "description": "Skewness - X.",
+      "minimum": -3,
+      "maximum": 3,
+      "hideFromKpis": false
+    },
+    "skewness_y": {
+      "title": "Skewness - Y axis",
+      "type": "number",
+      "description": "Skewness - Y axis.",
+      "minimum": -3,
+      "maximum": 3,
+      "hideFromKpis": false
+    },
+    "skewness_z": {
+      "title": "Skewness - Z axis",
+      "type": "number",
+      "description": "Skewness - Z axis.",
+      "minimum": -3,
+      "maximum": 3,
+      "hideFromKpis": false
+    }
+  },
+  "required": ["skewness_x", "skewness_y", "skewness_z"]
+}

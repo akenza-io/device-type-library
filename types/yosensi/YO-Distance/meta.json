@@ -1,0 +1,24 @@
+{
+  "name": "YO Distance",
+  "version": "1.0.0",
+  "manufacturer": "Yosensi",
+  "url": "https://www.yosensi.io/products/yo_distance/",
+  "description": "YO Distance is a LoRaWAN device for ultrasonic distance measurement.",
+  "author": "Maciej Sacewicz",
+  "firmwareVersion": "V3.6.5",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "Distance",
+    "Accelerometer - XYZ"
+  ],
+  "outputTopics": [
+    "battery_voltage",
+    "internal_temperature",
+    "humidity",
+    "accelerometer",
+    "distance"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

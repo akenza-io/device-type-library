@@ -4,6 +4,34 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.59.0] - 2025-03-12
+
+### Added
+
+- Yosensi - YO-360
+- Yosensi - YO-Agribox
+- Yosensi - YO-AirflowPro
+- Yosensi - YO-AirflowProDual
+- Yosensi - YO-Ambience
+- Yosensi - YO-Analog
+- Yosensi - YO-Distance
+- Yosensi - YO-H20
+- Yosensi - YO-MeterPulse
+- Yosensi - YO-MeterReader2.0
+- Yosensi - YO-ParticulateMatterSensor
+- Yosensi - YO-PeopleCounter
+- Yosensi - YO-Power
+- Yosensi - YO-Pulse
+- Yosensi - YO-PurePro
+- Yosensi - YO-RefrigerantMonitor
+- Yosensi - YO-RelaySwitch
+- Yosensi - YO-Thermostat
+- Yosensi - YO-VibrationMonitor
+
+### Changed
+
+- Elsys - Omit LoRa secrets from config
+
 # [1.58.1] - 2025-01-10
 
 ### Added

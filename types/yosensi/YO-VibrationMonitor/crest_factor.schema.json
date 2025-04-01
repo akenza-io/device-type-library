@@ -1,0 +1,35 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-VibrationMonitor/crest_factor.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "crest_factor",
+  "title": "CrestFactor",
+  "properties": {
+    "crestFactor_x": {
+      "title": "Crest Factor - X axis",
+      "type": "number",
+      "description": "Crest Factor - X axis.",
+      "minimum": 0,
+      "maximum": 160,
+      "hideFromKpis": false
+    },
+    "crestFactor_y": {
+      "title": "Crest Factor - Y axis",
+      "type": "number",
+      "description": "Crest Factor - Y axis.",
+      "minimum": 0,
+      "maximum": 160,
+      "hideFromKpis": false
+    },
+    "crestFactor_z": {
+      "title": "Crest Factor - Z axis",
+      "type": "number",
+      "description": "Crest Factor - Z axis.",
+      "minimum": 0,
+      "maximum": 160,
+      "hideFromKpis": false
+    }
+  },
+  "required": ["crestFactor_x", "crestFactor_y", "crestFactor_z"]
+}
