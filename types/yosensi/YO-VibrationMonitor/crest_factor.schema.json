@@ -4,9 +4,9 @@
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "crest_factor",
-  "title": "CrestFactor",
+  "title": "Crest factor",
   "properties": {
-    "crestFactor_x": {
+    "crestFactorX": {
       "title": "Crest Factor - X axis",
       "type": "number",
       "description": "Crest Factor - X axis.",
@@ -14,7 +14,7 @@
       "maximum": 160,
       "hideFromKpis": false
     },
-    "crestFactor_y": {
+    "crestFactorY": {
       "title": "Crest Factor - Y axis",
       "type": "number",
       "description": "Crest Factor - Y axis.",
@@ -22,7 +22,7 @@
       "maximum": 160,
       "hideFromKpis": false
     },
-    "crestFactor_z": {
+    "crestFactorZ": {
       "title": "Crest Factor - Z axis",
       "type": "number",
       "description": "Crest Factor - Z axis.",
@@ -31,5 +31,9 @@
       "hideFromKpis": false
     }
   },
-  "required": ["crestFactor_x", "crestFactor_y", "crestFactor_z"]
+  "required": [
+    "crestFactorX",
+    "crestFactorY",
+    "crestFactorZ"
+  ]
 }

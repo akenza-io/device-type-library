@@ -4,7 +4,7 @@
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "flood_state",
-  "title": "FloodState",
+  "title": "Flood state",
   "properties": {
     "floodState": {
       "title": "Flood State",
@@ -15,5 +15,7 @@
       "hideFromKpis": false
     }
   },
-  "required": ["floodState"]
+  "required": [
+    "floodState"
+  ]
 }

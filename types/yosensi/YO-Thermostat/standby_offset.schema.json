@@ -1,10 +1,10 @@
 {
-  "$id": "https://akenza.io/yosensi/YO-Thermostat/standbyOffset.schema.json",
+  "$id": "https://akenza.io/yosensi/YO-Thermostat/standby_offset.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
-  "topic": "standbyOffset",
-  "title": "StandbyOffset",
+  "topic": "standby_offset",
+  "title": "Standby offset",
   "properties": {
     "standbyOffset": {
       "title": "Standby Offset",
@@ -13,5 +13,7 @@
       "hideFromKpis": false
     }
   },
-  "required": ["standbyOffset"]
+  "required": [
+    "standbyOffset"
+  ]
 }

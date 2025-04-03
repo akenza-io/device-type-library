@@ -6,7 +6,7 @@
   "topic": "accelerometer",
   "title": "Accelerometer",
   "properties": {
-    "accelerometer_x": {
+    "accelerometerX": {
       "title": "Accelerometer - X axis",
       "type": "number",
       "description": "Accelerometer - X axis angle in degrees.",
@@ -15,7 +15,7 @@
       "maximum": 180,
       "hideFromKpis": false
     },
-    "accelerometer_y": {
+    "accelerometerY": {
       "title": "Accelerometer - Y axis",
       "type": "number",
       "description": "Accelerometer - Y axis angle in degrees.",
@@ -24,7 +24,7 @@
       "maximum": 180,
       "hideFromKpis": false
     },
-    "accelerometer_z": {
+    "accelerometerZ": {
       "title": "Accelerometer - Z axis",
       "type": "number",
       "description": "Accelerometer - Z axis angle in degrees.",
@@ -34,5 +34,9 @@
       "hideFromKpis": false
     }
   },
-  "required": ["accelerometer_x", "accelerometer_y", "accelerometer_z"]
+  "required": [
+    "accelerometerX",
+    "accelerometerY",
+    "accelerometerZ"
+  ]
 }

@@ -4,9 +4,9 @@
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "rms_acceleration",
-  "title": "RmsAcceleration",
+  "title": "Rms acceleration",
   "properties": {
-    "rmsAcceleration_x": {
+    "rmsAccelerationX": {
       "title": "RMS Acceleration - X axis",
       "type": "number",
       "description": "RMS Acceleration - X axis.",
@@ -15,7 +15,7 @@
       "maximum": 16,
       "hideFromKpis": false
     },
-    "rmsAcceleration_y": {
+    "rmsAccelerationY": {
       "title": "RMS Acceleration - Y axis",
       "type": "number",
       "description": "RMS Acceleration - Y axis angle in G-force.",
@@ -24,7 +24,7 @@
       "maximum": 16,
       "hideFromKpis": false
     },
-    "rmsAcceleration_z": {
+    "rmsAccelerationZ": {
       "title": "RMS Acceleration - Z axis",
       "type": "number",
       "description": "RMS Acceleration - Z axis angle in degrees.",
@@ -34,5 +34,9 @@
       "hideFromKpis": false
     }
   },
-  "required": ["rmsAcceleration_x", "rmsAcceleration_y", "rmsAcceleration_z"]
+  "required": [
+    "rmsAccelerationX",
+    "rmsAccelerationY",
+    "rmsAccelerationZ"
+  ]
 }

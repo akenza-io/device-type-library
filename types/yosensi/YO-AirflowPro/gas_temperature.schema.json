@@ -4,7 +4,7 @@
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "gas_temperature",
-  "title": "GasTemperature",
+  "title": "Gas temperature",
   "properties": {
     "gasTemperature": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
@@ -15,5 +15,7 @@
       "hideFromKpis": false
     }
   },
-  "required": ["gasTemperature"]
+  "required": [
+    "gasTemperature"
+  ]
 }

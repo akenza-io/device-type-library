@@ -6,7 +6,7 @@
   "topic": "displacement",
   "title": "Displacement",
   "properties": {
-    "displacement_x": {
+    "displacementX": {
       "title": "Displacement - X axis",
       "type": "number",
       "description": "Displacement - X axis.",
@@ -15,7 +15,7 @@
       "maximum": 10000,
       "hideFromKpis": false
     },
-    "displacement_y": {
+    "displacementY": {
       "title": "Displacement - Y axis",
       "type": "number",
       "description": "Displacement - Y axis.",
@@ -24,7 +24,7 @@
       "maximum": 10000,
       "hideFromKpis": false
     },
-    "displacement_z": {
+    "displacementZ": {
       "title": "Displacement - Z axis",
       "type": "number",
       "description": "Displacement - Z axis.",
@@ -34,5 +34,9 @@
       "hideFromKpis": false
     }
   },
-  "required": ["displacement_x", "displacement_y", "displacement_z"]
+  "required": [
+    "displacementX",
+    "displacementY",
+    "displacementZ"
+  ]
 }
