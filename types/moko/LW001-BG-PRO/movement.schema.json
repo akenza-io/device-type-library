@@ -1,0 +1,22 @@
+{
+  "$id": "https://akenza.io/moko/lw001-bg-pro/movement.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "movement",
+  "title": "Movement",
+  "properties": {
+    "eventType": {
+      "title": "Movement event type",
+      "type": "string",
+      "description": "Movement event type",
+      "enum": [
+        "START_OF_MOVEMENT",
+        "IN_MOVEMENT",
+        "END_OF_MOVEMENT",
+        "DOWNLINK"
+      ],
+      "hideFromKpis": true
+    }
+  }
+}

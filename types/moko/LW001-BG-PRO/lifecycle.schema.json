@@ -1,0 +1,74 @@
+{
+  "$id": "https://akenza.io/moko/lw001-bg-pro/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "lowBattery": {
+      "title": "Low battery",
+      "type": "boolean",
+      "description": "Low battery flag",
+      "hideFromKpis": true
+    },
+    "operationMode": {
+      "title": "Operation mode",
+      "type": "string",
+      "description": "Operation mode",
+      "enum": [
+        "STANDBY",
+        "PERIODIC",
+        "TIMING",
+        "MOTION"
+      ],
+      "hideFromKpis": true
+    },
+    "tamperAlarm": {
+      "title": "Tamper alarm",
+      "type": "boolean",
+      "description": "Tamper alarm",
+      "hideFromKpis": true
+    },
+    "mandown": {
+      "title": "Man down",
+      "type": "boolean",
+      "description": "Man down flag",
+      "hideFromKpis": true
+    },
+    "motionSinceLastPaylaod": {
+      "title": "Motion since last payload ",
+      "type": "boolean",
+      "description": "Motion since last payload flag",
+      "hideFromKpis": true
+    },
+    "positioningType": {
+      "title": "Positioning type",
+      "type": "string",
+      "description": "Positioning type",
+      "enum": [
+        "NORMAL",
+        "DOWNLINK_FOR_POSITION"
+      ],
+      "hideFromKpis": true
+    },
+    "temperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    },
+    "acknowledgeByte": {
+      "title": "Acknowledge byte",
+      "type": "integer",
+      "description": "Acknowledge byte",
+      "hideFromKpis": true
+    },
+    "lorawanDownlinkCount": {
+      "title": "Downlink count",
+      "type": "integer",
+      "description": "Downlink count",
+      "hideFromKpis": true
+    },
+    "batteryVoltage": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+    }
+  }
+}
