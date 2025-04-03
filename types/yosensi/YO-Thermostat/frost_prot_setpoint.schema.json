@@ -1,0 +1,17 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-Thermostat/frost_prot_setpoint.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "frost_prot_setpoint",
+  "title": "FrostProtSetpoint",
+  "properties": {
+    "frostProtSetpoint": {
+      "title": "Frost Prot Setpoint",
+      "type": "number",
+      "description": "Frost Prot Setpoint.",
+      "hideFromKpis": false
+    }
+  },
+  "required": ["frostProtSetpoint"]
+}

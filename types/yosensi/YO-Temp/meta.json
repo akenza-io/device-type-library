@@ -14,9 +14,9 @@
   ],
   "outputTopics": [
     "battery_voltage",
-    "external_temperature1",
-    "external_temperature2",
-    "external_temperature3",
+    "external_temperature_1",
+    "external_temperature_2",
+    "external_temperature_3",
     "humidity",
     "internal_temperature"
   ],

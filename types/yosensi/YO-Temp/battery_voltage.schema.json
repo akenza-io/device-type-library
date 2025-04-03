@@ -7,14 +7,11 @@
   "title": "BatteryVoltage",
   "properties": {
     "batteryVoltage": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/milliVolt",
       "title": "Battery Voltage",
-      "type": "integer",
       "description": "Battery Voltage in mV.",
-      "unit": "mV",
       "hideFromKpis": false
     }
   },
-  "required": [
-    "batteryVoltage"
-  ]
+  "required": ["batteryVoltage"]
 }

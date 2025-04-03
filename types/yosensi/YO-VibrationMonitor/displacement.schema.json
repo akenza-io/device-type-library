@@ -1,0 +1,38 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-VibrationMonitor/displacement.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "displacement",
+  "title": "Displacement",
+  "properties": {
+    "displacement_x": {
+      "title": "Displacement - X axis",
+      "type": "number",
+      "description": "Displacement - X axis.",
+      "unit": "μm",
+      "minimum": 0,
+      "maximum": 10000,
+      "hideFromKpis": false
+    },
+    "displacement_y": {
+      "title": "Displacement - Y axis",
+      "type": "number",
+      "description": "Displacement - Y axis.",
+      "unit": "μm",
+      "minimum": 0,
+      "maximum": 10000,
+      "hideFromKpis": false
+    },
+    "displacement_z": {
+      "title": "Displacement - Z axis",
+      "type": "number",
+      "description": "Displacement - Z axis.",
+      "unit": "μm",
+      "minimum": 0,
+      "maximum": 10000,
+      "hideFromKpis": false
+    }
+  },
+  "required": ["displacement_x", "displacement_y", "displacement_z"]
+}

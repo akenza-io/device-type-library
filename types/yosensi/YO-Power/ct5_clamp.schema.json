@@ -1,0 +1,16 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-Power/ct5_clamp.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "ct5_clamp",
+  "title": "ct5Clamp",
+  "properties": {
+    "ct5Clamp": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours",
+      "title": "Energy CT5 Clamp",
+      "hideFromKpis": false
+    }
+  },
+  "required": ["ct5Clamp"]
+}

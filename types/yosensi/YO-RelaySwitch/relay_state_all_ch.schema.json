@@ -1,0 +1,17 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-RelaySwitch/relay_state_all_ch.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "relay_state_all_ch",
+  "title": "RelayStateAllCH",
+  "properties": {
+    "relayStateAllCH": {
+      "title": "Relay State All Channels",
+      "type": "integer",
+      "description": "Relay State All Channels.",
+      "hideFromKpis": false
+    }
+  },
+  "required": ["relayStateAllCH"]
+}

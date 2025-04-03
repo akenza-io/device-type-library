@@ -6,42 +6,6 @@
   "topic": "configuration",
   "title": "Configuration",
   "properties": {
-    "appSKey": {
-      "title": "Application session key",
-      "type": "string",
-      "description": "Application session key",
-      "hideFromKpis": true
-    },
-    "nwkSKey": {
-      "title": "Network session key",
-      "type": "string",
-      "description": "Network session key",
-      "hideFromKpis": true
-    },
-    "devEui": {
-      "title": "Device eui",
-      "type": "string",
-      "description": "Device eui",
-      "hideFromKpis": true
-    },
-    "appKey": {
-      "title": "Application key",
-      "type": "string",
-      "description": "Application key",
-      "hideFromKpis": true
-    },
-    "appEui": {
-      "title": "Application eui",
-      "type": "string",
-      "description": "Application eui",
-      "hideFromKpis": true
-    },
-    "devAddr": {
-      "title": "Device address",
-      "type": "string",
-      "description": "Device address",
-      "hideFromKpis": true
-    },
     "ota": {
       "title": "Over the air activation",
       "type": "boolean",

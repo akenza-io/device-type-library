@@ -1,0 +1,24 @@
+{
+  "name": "YO H2O",
+  "version": "1.0.0",
+  "manufacturer": "Yosensi",
+  "url": "https://www.yosensi.io/products/yo_h2o/",
+  "description": "YO H2O is used for instant flood detection.",
+  "author": "Maciej Sacewicz",
+  "firmwareVersion": "V3.6.6",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "Flood Detection",
+    "Accelerometer - XYZ"
+  ],
+  "outputTopics": [
+    "accelerometer",
+    "battery_voltage",
+    "flood_state",
+    "humidity",
+    "internal_temperature"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

@@ -719,21 +719,21 @@ function consume(event) {
   if (data.data.externalTemperature1 !== undefined) {
     emit("sample", {
       data: { externalTemperature1: data.data.externalTemperature1 },
-      topic: "external_temperature1",
+      topic: "external_temperature_1",
     });
     delete data.data.externalTemperature1;
   }
   if (data.data.externalTemperature2 !== undefined) {
     emit("sample", {
       data: { externalTemperature2: data.data.externalTemperature2 },
-      topic: "external_temperature2",
+      topic: "external_temperature_2",
     });
     delete data.data.externalTemperature2;
   }
   if (data.data.externalTemperature3 !== undefined) {
     emit("sample", {
       data: { externalTemperature3: data.data.externalTemperature3 },
-      topic: "external_temperature3",
+      topic: "external_temperature_3",
     });
     delete data.data.externalTemperature3;
   }

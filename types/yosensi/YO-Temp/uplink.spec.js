@@ -42,7 +42,7 @@ describe("Yosensi YO Temp uplink", () => {
   let externalTemperature1Schema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/external_temperature1.schema.json`)
+      .loadSchema(`${__dirname}/external_temperature_1.schema.json`)
       .then((parsedSchema) => {
         externalTemperature1Schema = parsedSchema;
         done();
@@ -52,7 +52,7 @@ describe("Yosensi YO Temp uplink", () => {
   let externalTemperature2Schema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/external_temperature2.schema.json`)
+      .loadSchema(`${__dirname}/external_temperature_2.schema.json`)
       .then((parsedSchema) => {
         externalTemperature2Schema = parsedSchema;
         done();
@@ -62,7 +62,7 @@ describe("Yosensi YO Temp uplink", () => {
   let externalTemperature3Schema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/external_temperature3.schema.json`)
+      .loadSchema(`${__dirname}/external_temperature_3.schema.json`)
       .then((parsedSchema) => {
         externalTemperature3Schema = parsedSchema;
         done();
@@ -121,7 +121,7 @@ describe("Yosensi YO Temp uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "external_temperature1");
+        assert.equal(value.topic, "external_temperature_1");
         assert.equal(value.data.externalTemperature1, 23.4);
 
         utils.validateSchema(value.data, externalTemperature1Schema, {
@@ -134,7 +134,7 @@ describe("Yosensi YO Temp uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "external_temperature2");
+        assert.equal(value.topic, "external_temperature_2");
         assert.equal(value.data.externalTemperature2, 21.9);
 
         utils.validateSchema(value.data, externalTemperature2Schema, {
@@ -147,7 +147,7 @@ describe("Yosensi YO Temp uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "external_temperature3");
+        assert.equal(value.topic, "external_temperature_3");
         assert.equal(value.data.externalTemperature3, 21.4);
 
         utils.validateSchema(value.data, externalTemperature3Schema, {
