@@ -147,7 +147,7 @@ function consume(event) {
     }
     default:
       emit("sample", {
-        data: { reason: "UNSUPORTED_PAYLOAD" },
+        data: { reason: "UNSUPORTED_PAYLOAD", payload },
         topic: "error",
       });
       break;

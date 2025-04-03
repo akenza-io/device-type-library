@@ -13,7 +13,8 @@
   "outputTopics": [
     "default",
     "totalCounter",
-    "lifecycle"
+    "lifecycle",
+    "error"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"
