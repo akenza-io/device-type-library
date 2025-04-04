@@ -1,0 +1,32 @@
+{
+  "$id": "https://akenza.io/milesight/EM300-CL/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "liquid": {
+      "title": "Liquid",
+      "description": "Liquid status",
+      "type": "string",
+      "enum": [
+        "UNCALIBRATED",
+        "FULL",
+        "EMPTY",
+        "ERROR",
+        "UNKOWN"
+      ]
+    },
+    "liquidAlarm": {
+      "title": "Liquid alarm",
+      "description": "Liquid alarm",
+      "type": "string",
+      "enum": [
+        "EMPTY_ALARM_RELEASE",
+        "EMPTY_ALARM",
+        "UNKNOWN"
+      ]
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "WS558",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight.com/iot/product/lorawan-sensor/ws558",
+  "description": "Milesight WS558 is a LoRaWAN® Smart Light Controller that allows occupants to centrally control the lights on eight circuits. With remote and time-based ON/OFF, WS558 enables to improve the overall efficiency of electricity consumption in buildings.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Power",
+    "Current",
+    "Switch"
+  ],
+  "outputTopics": [
+    "default",
+    "switch"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
