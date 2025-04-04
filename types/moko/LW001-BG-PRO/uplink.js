@@ -17,33 +17,13 @@ const posFailedReasonArray = [
   , "Interrupted positioning at start of movement(the movement ends too quickly, resulting in not enough time to complete the positioning)"
   , "Interrupted positioning at end of movement(the movement restarted too quickly, resulting in not enough time to complete the positioning)"
 ];
-const shutdownTypeArray = ["Bluetooth command to turn off the device", "LoRaWAN command to turn off the device", "Magnetic to turn off the device"];
+const shutdownTypeArray = ["BLUETOOTH_COMMAND", "LORAWAN_COMMAND", "MAGNETIC"];
 const eventTypeArray = [
   "START_OF_MOVEMENT",
   "IN_MOVEMENT",
   "END_OF_MOVEMENT",
   "DOWNLINK"
 ];
-
-function bytesToHexString(bytes, start, len) {
-  const char = [];
-  for (let i = 0; i < len; i++) {
-    const data = bytes[start + i].toString(16);
-    const dataHexStr = (`0x${data}`) < 0x10 ? (`0${data}`) : data;
-    char.push(dataHexStr);
-  }
-  return char.join("");
-}
-
-function bytesToInt(bytes, start, len) {
-  let value = 0;
-  for (let i = 0; i < len; i++) {
-    const m = ((len - 1) - i) * 8;
-    value |= bytes[start + i] << m;
-  }
-  // var value = ((bytes[start] << 24) | (bytes[start + 1] << 16) | (bytes[start + 2] << 8) | (bytes[start + 3]));
-  return value;
-}
 
 function substringBytes(bytes, start, len) {
   const char = [];
@@ -53,55 +33,12 @@ function substringBytes(bytes, start, len) {
   return char.join("");
 }
 
-function signedHexToInt(hexStr) {
-  let twoStr = parseInt(hexStr, 16).toString(2); // 将十六转十进制，再转2进制
-  const bitNum = hexStr.length * 4; // 1个字节 = 8bit ，0xff 一个 "f"就是4位
-  if (twoStr.length < bitNum) {
-    while (twoStr.length < bitNum) {
-      twoStr = `0${twoStr}`;
-    }
-  }
-  if (twoStr.substring(0, 1) === "0") {
-    // 正数
-    twoStr = parseInt(twoStr, 2); // 二进制转十进制
-    return twoStr;
-  }
-  // 负数
-  let twoStrUnsign = "";
-  twoStr = parseInt(twoStr, 2) - 1; // 补码：(负数)反码+1，符号位不变；相对十进制来说也是 +1，但这里是负数，+1就是绝对值数据-1
-  twoStr = twoStr.toString(2);
-  twoStrUnsign = twoStr.substring(1, bitNum); // 舍弃首位(符号位)
-  // 去除首字符，将0转为1，将1转为0   反码
-  twoStrUnsign = twoStrUnsign.replace(/0/g, "z");
-  twoStrUnsign = twoStrUnsign.replace(/1/g, "0");
-  twoStrUnsign = twoStrUnsign.replace(/z/g, "1");
-  twoStr = parseInt(-twoStrUnsign, 2);
-  return twoStr;
-}
-
-function hexStringToBytes(hexString) {
-  // 移除可能存在的空格或其他分隔符
-  hexString = hexString.replace(/\s/g, '');
-
-  // 检查字符串长度是否为偶数
-  if (hexString.length % 2 !== 0) {
-    throw new Error('Hex string must have an even length');
-  }
-
-  // 创建一个Uint8Array来存储字节
-  const bytes = new Uint8Array(hexString.length / 2);
-
-  // 将每两个字符转换为一个字节
-  for (let i = 0; i < hexString.length; i += 2) {
-    bytes[i / 2] = parseInt(hexString.substr(i, 2), 16);
-  }
-
-  return bytes;
-}
-
 function consume(event) {
   let { port } = event.data;
-  let bytes = hexStringToBytes(event.data.payloadHex);
+  const { payload } = event.data;
+  let bytes = Hex.hexToBytes(payload);
+  const bits = Bits.hexToBits(payload);
+
   const lifecycle = {};
   const reboot = {};
   const failure = {};
@@ -116,7 +53,7 @@ function consume(event) {
   const system = {};
   const time = {};
 
-  // common frame head
+  // Common frame head
   if (port <= 10) {
     lifecycle.lowBattery = !(bytes[0] & 0x04 === 0);
     lifecycle.operationMode = operationModeArray[bytes[0] & 0x03];
@@ -128,20 +65,20 @@ function consume(event) {
       lifecycle.positioningType = bytes[0] & 0x40 === 0 ? "NORMAL" : "DOWNLINK_FOR_POSITION";
     }
 
-    lifecycle.temperature = signedHexToInt(bytesToHexString(bytes, 1, 1));
+    lifecycle.temperature = Bits.bitsToSigned(bits.substr(8, 8));
     lifecycle.acknowledgeByte = bytes[2] & 0x0f;
     lifecycle.batteryVoltage = (22 + ((bytes[2] >> 4) & 0x0f)) / 10;
   }
 
   if (port === 1) {
-    const rebootReasonCode = bytesToInt(bytes, 3, 1);
+    const rebootReasonCode = Bits.bitsToUnsigned(bits.substr(16, 8));
     reboot.rebootReason = rebootReasonArray[rebootReasonCode];
 
     const majorVersion = (bytes[4] >> 6) & 0x03;
     const minorVersion = (bytes[4] >> 4) & 0x03;
     const patchVersion = bytes[4] & 0x0f;
     reboot.firmwareVersion = `V${majorVersion}.${minorVersion}.${patchVersion}`;
-    reboot.activityCount = bytesToInt(bytes, 5, 4);
+    reboot.activityCount = Bits.bitsToUnsigned(bits.substr(32, 16));
 
   } else if (port === 2) {
     let parseLen = 3; // common head is 3 byte
@@ -179,9 +116,9 @@ function consume(event) {
         bluetooth.timestamp = timestamp;
       }
     } else {
-      let lat = bytesToInt(bytes, parseLen, 4);
+      let lat = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 32));
       parseLen += 4;
-      let lon = bytesToInt(bytes, parseLen, 4);
+      let lon = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 32));
       parseLen += 4;
 
       if (lat > 0x80000000) {
@@ -200,7 +137,7 @@ function consume(event) {
   } else if (port === 3) {
     let parseLen = 3;
     const datas = [];
-    const failedTypeCode = bytesToInt(bytes, parseLen++, 1);
+    const failedTypeCode = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 8));
     failure.reasonsForPositioningFailure = posFailedReasonArray[failedTypeCode];
     const datalen = bytes[parseLen++];
     // wifi and ble reason
@@ -226,14 +163,14 @@ function consume(event) {
       failure.gpsSatelliteCn = `${bytes[parseLen]}-${bytes[parseLen + 1]}-${bytes[parseLen + 2]}-${bytes[parseLen + 3]}`;
     }
   } else if (port === 4) {
-    shutdown.shutdownType = shutdownTypeArray[bytesToInt(bytes, 3, 1)];
+    shutdown.shutdownType = shutdownTypeArray[Bits.bitsToUnsigned(bits.substr(16, 8))];
   } else if (port === 5) {
-    vibration.numberOfShocks = bytesToInt(bytes, 3, 2);
+    vibration.numberOfShocks = Bits.bitsToUnsigned(bits.substr(16, 16));
   } else if (port === 6) {
-    mandown.totalIdleTime = bytesToInt(bytes, 3, 2);
+    mandown.totalIdleTime = Bits.bitsToUnsigned(bits.substr(16, 16));
   } else if (port === 7) {
     let parseLen = 3; // common head is 3 byte
-    const year = bytesToInt(bytes, parseLen, 2);
+    const year = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 16));
     parseLen += 2;
     const mon = bytes[parseLen++];
     const days = bytes[parseLen++];
@@ -250,24 +187,24 @@ function consume(event) {
     }
     tamper.tamperAlarm = true;
   } else if (port === 8) {
-    const eventTypeCode = bytesToInt(bytes, 3, 1);
+    const eventTypeCode = Bits.bitsToUnsigned(bits.substr(16, 8));
     movement.eventType = eventTypeArray[eventTypeCode];
   } else if (port === 9) {
     let parseLen = 3;
-    system.gpsWorkTime = bytesToInt(bytes, parseLen, 4);
+    system.gpsWorkTime = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 32));
     parseLen += 4;
-    system.wifiWorkTime = bytesToInt(bytes, parseLen, 4);
+    system.wifiWorkTime = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 32));
     parseLen += 4;
-    system.bleScanWorkTime = bytesToInt(bytes, parseLen, 4);
+    system.bleScanWorkTime = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 32));
     parseLen += 4;
-    system.bleAdvWorkTime = bytesToInt(bytes, parseLen, 4);
+    system.bleAdvWorkTime = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 32));
     parseLen += 4;
-    system.loraWorkTime = bytesToInt(bytes, parseLen, 4);
+    system.loraWorkTime = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 32));
     parseLen += 4;
   } else if (port === 11) {
     let tempIndex = 2;
     const currentTime = `${bytes[tempIndex++] * 256 + bytes[tempIndex++]}/${bytes[tempIndex++]}/${bytes[tempIndex++]} ${bytes[tempIndex++]}:${bytes[tempIndex++]}:${bytes[tempIndex++]}`;
-    const timezone = signedHexToInt(bytesToHexString(bytes, tempIndex, 1));
+    const timezone = Bits.bitsToUnsigned(bits.substr(tempIndex * 8, 8));
     tempIndex += 1;
 
     time.currentTime = currentTime;
@@ -289,9 +226,9 @@ function consume(event) {
     lifecycle.batteryVoltage = (22 + ((bytes[1] >> 4) & 0x0f)) / 10;
 
     let parseLen = 2;
-    let lat = bytesToInt(bytes, parseLen, 4);
+    let lat = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 32));
     parseLen += 4;
-    let lon = bytesToInt(bytes, parseLen, 4);
+    let lon = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 32));
     parseLen += 4;
 
     if (lat > 0x80000000) {

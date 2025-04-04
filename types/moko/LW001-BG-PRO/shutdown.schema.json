@@ -10,6 +10,11 @@
       "title": "Reason for the shutdown",
       "type": "string",
       "description": "Reason for the shutdown",
+      "enum": [
+        "BLUETOOTH_COMMAND",
+        "LORAWAN_COMMAND",
+        "MAGNETIC"
+      ],
       "hideFromKpis": true
     }
   }

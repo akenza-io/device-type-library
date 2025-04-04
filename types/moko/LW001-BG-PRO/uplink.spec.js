@@ -133,7 +133,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
       const data = {
         data: {
           port: 12,
-          payloadHex:
+          payload:
             "020156F80B45F4293246",
         },
       };
