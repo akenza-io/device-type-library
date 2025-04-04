@@ -27,22 +27,22 @@ function consume(event) {
     data.pm10 = Math.round(Bits.bitsToUnsigned(bits.substr(56, 16)));
 
     if (bits.length > 72) {
-      particle.particleCount0_3 = Math.round(
+      particle.pm0_3 = Math.round(
         Bits.bitsToUnsigned(bits.substr(72, 16)),
       );
-      particle.particleCount0_5 = Math.round(
+      particle.pm0_5 = Math.round(
         Bits.bitsToUnsigned(bits.substr(88, 16)),
       );
-      particle.particleCount1 = Math.round(
+      particle.pm1 = Math.round(
         Bits.bitsToUnsigned(bits.substr(104, 16)),
       );
-      particle.particleCount2_5 = Math.round(
+      particle.pm2_5 = Math.round(
         Bits.bitsToUnsigned(bits.substr(120, 16)),
       );
-      particle.particleCount5 = Math.round(
+      particle.pm5 = Math.round(
         Bits.bitsToUnsigned(bits.substr(136, 16)),
       );
-      particle.particleCount5Bigger = Math.round(
+      particle.pm5Larger = Math.round(
         Bits.bitsToUnsigned(bits.substr(152, 16)),
       );
       emit("sample", { data: particle, topic: "particle" });

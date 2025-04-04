@@ -1,0 +1,23 @@
+{
+  "name": "YO Meter Pulse",
+  "version": "1.0.0",
+  "manufacturer": "Yosensi",
+  "url": "https://www.yosensi.io/products/yo_meter_pulse/",
+  "description": "YO Meter (pulse) input accepts connection to potential-free contacts.",
+  "author": "Maciej Sacewicz",
+  "firmwareVersion": "V3.6.4",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "Periodic-Persistent Counter"
+  ],
+  "outputTopics": [
+    "battery_voltage",
+    "humidity",
+    "internal_temperature",
+    "periodic_pulse_cnt",
+    "persistent_pulse_cnt"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

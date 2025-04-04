@@ -1,0 +1,26 @@
+{
+  "name": "YO Ambience",
+  "version": "1.0.0",
+  "manufacturer": "Yosensi",
+  "url": "https://www.yosensi.io/products/yo_ambience/",
+  "description": "YO Ambience is a compact indoor ambience monitoring device designed to measure temperature, humidity, illuminance, and CO2 levels.",
+  "author": "Maciej Sacewicz",
+  "firmwareVersion": "V3.6.8",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "CO2",
+    "Illuminance",
+    "Infrared Presence Sensor"
+  ],
+  "outputTopics": [
+    "battery_voltage",
+    "co2",
+    "humidity",
+    "illuminance",
+    "internal_temperature",
+    "presence_counter"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

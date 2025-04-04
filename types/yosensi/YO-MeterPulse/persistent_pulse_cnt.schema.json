@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-MeterPulse/persistent_pulse_cnt.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "persistent_pulse_cnt",
+  "title": "PersistentPulseCnt",
+  "properties": {
+    "persistentPulseCnt": {
+      "title": "Persistent Pulse Counter",
+      "type": "number",
+      "description": "Persistent Pulse Counter.",
+      "minimum": 0,
+      "maximum": 2147483647,
+      "hideFromKpis": false
+    }
+  },
+  "required": ["persistentPulseCnt"]
+}

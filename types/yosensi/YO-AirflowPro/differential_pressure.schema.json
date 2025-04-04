@@ -1,0 +1,21 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-AirflowPro/differential_pressure.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "differential_pressure",
+  "title": "Differential pressure",
+  "properties": {
+    "differentialPressure": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/pa",
+      "title": "Differential Pressure",
+      "description": "Differential Pressure in Pa.",
+      "minimum": -500,
+      "maximum": 500,
+      "hideFromKpis": false
+    }
+  },
+  "required": [
+    "differentialPressure"
+  ]
+}

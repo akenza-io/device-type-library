@@ -1,0 +1,42 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-VibrationMonitor/rms_velocity.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "rms_velocity",
+  "title": "RMS velocity",
+  "properties": {
+    "rmsVelocityX": {
+      "title": "RMS Velocity - X axis",
+      "type": "number",
+      "description": "RMS Velocity - X axis in mm/s.",
+      "unit": "mm/s",
+      "minimum": 0,
+      "maximum": 45,
+      "hideFromKpis": false
+    },
+    "rmsVelocityY": {
+      "title": "RMS Velocity - Y axis",
+      "type": "number",
+      "description": "RMS Velocity - Y axis in mm/s.",
+      "unit": "mm/s",
+      "minimum": 0,
+      "maximum": 45,
+      "hideFromKpis": false
+    },
+    "rmsVelocityZ": {
+      "title": "RMS Velocity - Z axis",
+      "type": "number",
+      "description": "RMS Velocity - Z axis in mm/s.",
+      "unit": "mm/s",
+      "minimum": 0,
+      "maximum": 45,
+      "hideFromKpis": false
+    }
+  },
+  "required": [
+    "rmsVelocityX",
+    "rmsVelocityY",
+    "rmsVelocityZ"
+  ]
+}
