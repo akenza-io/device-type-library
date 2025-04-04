@@ -22,7 +22,7 @@ describe("IMBuilding Verticount counter", () => {
   let totalCounterSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/totalCounter.schema.json`)
+      .loadSchema(`${__dirname}/total_counter.schema.json`)
       .then((parsedSchema) => {
         totalCounterSchema = parsedSchema;
         done();
@@ -65,7 +65,7 @@ describe("IMBuilding Verticount counter", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "totalCounter");
+        assert.equal(value.topic, "total_counter");
         assert.equal(value.data.totalCounterA, 0);
         assert.equal(value.data.totalCounterB, 0);
 

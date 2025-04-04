@@ -12,7 +12,7 @@
   ],
   "outputTopics": [
     "default",
-    "totalCounter",
+    "total_counter",
     "lifecycle",
     "error"
   ],
