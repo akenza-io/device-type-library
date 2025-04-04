@@ -1,0 +1,24 @@
+{
+  "$id": "https://akenza.io/imbuildings/verticount/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "counterA": {
+      "title": "Counter A",
+      "type": "integer",
+      "description": "Counter A"
+    },
+    "counterB": {
+      "title": "Counter B",
+      "type": "integer",
+      "description": "Counter B"
+    }
+  },
+  "required": [
+    "counterA",
+    "counterB"
+  ]
+}
