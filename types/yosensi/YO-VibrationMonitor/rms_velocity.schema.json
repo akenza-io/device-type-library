@@ -4,9 +4,9 @@
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "rms_velocity",
-  "title": "RmsVelocity",
+  "title": "RMS velocity",
   "properties": {
-    "rmsVelocity_x": {
+    "rmsVelocityX": {
       "title": "RMS Velocity - X axis",
       "type": "number",
       "description": "RMS Velocity - X axis in mm/s.",
@@ -15,7 +15,7 @@
       "maximum": 45,
       "hideFromKpis": false
     },
-    "rmsVelocity_y": {
+    "rmsVelocityY": {
       "title": "RMS Velocity - Y axis",
       "type": "number",
       "description": "RMS Velocity - Y axis in mm/s.",
@@ -24,7 +24,7 @@
       "maximum": 45,
       "hideFromKpis": false
     },
-    "rmsVelocity_z": {
+    "rmsVelocityZ": {
       "title": "RMS Velocity - Z axis",
       "type": "number",
       "description": "RMS Velocity - Z axis in mm/s.",
@@ -34,5 +34,9 @@
       "hideFromKpis": false
     }
   },
-  "required": ["rmsVelocity_x", "rmsVelocity_y", "rmsVelocity_z"]
+  "required": [
+    "rmsVelocityX",
+    "rmsVelocityY",
+    "rmsVelocityZ"
+  ]
 }

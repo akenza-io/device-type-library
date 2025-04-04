@@ -4,7 +4,7 @@
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "output_mode_ch2",
-  "title": "OutputModeCH2",
+  "title": "Output mode Channel 2",
   "properties": {
     "outputModeCH2": {
       "title": "Output Mode CH2",
@@ -13,5 +13,7 @@
       "hideFromKpis": false
     }
   },
-  "required": ["outputModeCH2"]
+  "required": [
+    "outputModeCH2"
+  ]
 }

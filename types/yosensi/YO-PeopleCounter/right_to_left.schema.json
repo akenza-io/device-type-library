@@ -4,7 +4,7 @@
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "right_to_left",
-  "title": "RightToLeft",
+  "title": "Right to left",
   "properties": {
     "rightToLeft": {
       "title": "Right To Left Counter",
@@ -13,5 +13,7 @@
       "hideFromKpis": false
     }
   },
-  "required": ["rightToLeft"]
+  "required": [
+    "rightToLeft"
+  ]
 }

@@ -4,9 +4,9 @@
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "peak_acceleration",
-  "title": "PeakAcceleration",
+  "title": "Peak acceleration",
   "properties": {
-    "peakAcceleration_x": {
+    "peakAccelerationX": {
       "title": "Peak Acceleration - X axis",
       "type": "number",
       "description": "Peak Acceleration - X axis.",
@@ -15,7 +15,7 @@
       "maximum": 16,
       "hideFromKpis": false
     },
-    "peakAcceleration_y": {
+    "peakAccelerationY": {
       "title": "Peak Acceleration - Y axis",
       "type": "number",
       "description": "Peak Acceleration - Y axis.",
@@ -24,7 +24,7 @@
       "maximum": 16,
       "hideFromKpis": false
     },
-    "peakAcceleration_z": {
+    "peakAccelerationZ": {
       "title": "Peak Acceleration - Z axis",
       "type": "number",
       "description": "Peak Acceleration - Z axis.",
@@ -34,5 +34,9 @@
       "hideFromKpis": false
     }
   },
-  "required": ["peakAcceleration_x", "peakAcceleration_y", "peakAcceleration_z"]
+  "required": [
+    "peakAccelerationX",
+    "peakAccelerationY",
+    "peakAccelerationZ"
+  ]
 }

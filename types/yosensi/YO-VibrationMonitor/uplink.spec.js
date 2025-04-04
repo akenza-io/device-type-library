@@ -197,9 +197,9 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "rms_acceleration");
-        assert.equal(value.data.rmsAcceleration_x, 0.004);
-        assert.equal(value.data.rmsAcceleration_y, 0.004);
-        assert.equal(value.data.rmsAcceleration_z, 0.005);
+        assert.equal(value.data.rmsAccelerationX, 0.004);
+        assert.equal(value.data.rmsAccelerationY, 0.004);
+        assert.equal(value.data.rmsAccelerationZ, 0.005);
 
         utils.validateSchema(value.data, rmsAccelerationSchema, {
           throwError: true,
@@ -212,9 +212,9 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "peak_acceleration");
-        assert.equal(value.data.peakAcceleration_x, 0.006);
-        assert.equal(value.data.peakAcceleration_y, 0.005);
-        assert.equal(value.data.peakAcceleration_z, 0.007);
+        assert.equal(value.data.peakAccelerationX, 0.006);
+        assert.equal(value.data.peakAccelerationY, 0.005);
+        assert.equal(value.data.peakAccelerationZ, 0.007);
 
         utils.validateSchema(value.data, peakAccelerationSchema, {
           throwError: true,
@@ -239,9 +239,9 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "crest_factor");
-        assert.equal(value.data.crestFactor_x, 3.53);
-        assert.equal(value.data.crestFactor_y, 2.71);
-        assert.equal(value.data.crestFactor_z, 3.02);
+        assert.equal(value.data.crestFactorX, 3.53);
+        assert.equal(value.data.crestFactorY, 2.71);
+        assert.equal(value.data.crestFactorZ, 3.02);
 
         utils.validateSchema(value.data, crestFactorSchema, {
           throwError: true,
@@ -254,9 +254,9 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "standard_deviation");
-        assert.equal(value.data.standardDeviation_x, 0.26);
-        assert.equal(value.data.standardDeviation_y, 0.3);
-        assert.equal(value.data.standardDeviation_z, 0.5);
+        assert.equal(value.data.standardDeviationX, 0.26);
+        assert.equal(value.data.standardDeviationY, 0.3);
+        assert.equal(value.data.standardDeviationZ, 0.5);
 
         utils.validateSchema(value.data, standardDeviationSchema, {
           throwError: true,
@@ -269,9 +269,9 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "skewness");
-        assert.equal(value.data.skewness_x, -0.07);
-        assert.equal(value.data.skewness_y, 0.19);
-        assert.equal(value.data.skewness_z, 0.02);
+        assert.equal(value.data.skewnessX, -0.07);
+        assert.equal(value.data.skewnessY, 0.19);
+        assert.equal(value.data.skewnessZ, 0.02);
 
         utils.validateSchema(value.data, skewnessSchema, {
           throwError: true,
@@ -284,9 +284,9 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "kurtosis");
-        assert.equal(value.data.kurtosis_x, 0.04);
-        assert.equal(value.data.kurtosis_y, -0.44);
-        assert.equal(value.data.kurtosis_z, -0.38);
+        assert.equal(value.data.kurtosisX, 0.04);
+        assert.equal(value.data.kurtosisY, -0.44);
+        assert.equal(value.data.kurtosisZ, -0.38);
 
         utils.validateSchema(value.data, kurtosisSchema, {
           throwError: true,
@@ -310,9 +310,9 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "rms_velocity");
-        assert.equal(value.data.rmsVelocity_x, 0.09);
-        assert.equal(value.data.rmsVelocity_y, 0.08);
-        assert.equal(value.data.rmsVelocity_z, 0.09);
+        assert.equal(value.data.rmsVelocityX, 0.09);
+        assert.equal(value.data.rmsVelocityY, 0.08);
+        assert.equal(value.data.rmsVelocityZ, 0.09);
 
         utils.validateSchema(value.data, rmsVelocitySchema, {
           throwError: true,
@@ -325,9 +325,9 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "displacement");
-        assert.equal(value.data.displacement_x, 1);
-        assert.equal(value.data.displacement_y, 1);
-        assert.equal(value.data.displacement_z, 1);
+        assert.equal(value.data.displacementX, 1);
+        assert.equal(value.data.displacementY, 1);
+        assert.equal(value.data.displacementZ, 1);
 
         utils.validateSchema(value.data, displacementSchema, {
           throwError: true,

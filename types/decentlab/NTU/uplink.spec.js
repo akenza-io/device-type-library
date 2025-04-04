@@ -50,7 +50,7 @@ describe("Decentlab NTU Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 21.81);
         assert.equal(value.data.turbidityInFnu, 31.8);
-        assert.equal(value.data.turbidityInMg_l, 56.3);
+        assert.equal(value.data.turbidityInMgL, 56.3);
         assert.equal(value.data.turbidityInNtu, 31.8);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
