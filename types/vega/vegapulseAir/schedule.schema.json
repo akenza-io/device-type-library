@@ -1,0 +1,58 @@
+{
+  "$id": "https://akenza.io/vega/vegapulsAir/schedule.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "schedule",
+  "title": "Schedule",
+  "properties": {
+    "days": {
+      "title": "Days",
+      "description": "Days",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "startTimeMinutes": {
+      "title": "Start time minutes",
+      "description": "Start time minutes",
+      "unit": "m",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "endTimeMinutes": {
+      "title": "End time minutes",
+      "description": "End time minutes",
+      "unit": "m",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "measureIntervalMinutes": {
+      "title": "Measure interval minutes",
+      "description": "Measure interval minutes",
+      "unit": "m",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "transmissionIntervalMinutes": {
+      "title": "Transmission interval minutes",
+      "description": "Transmission interval minutes",
+      "unit": "m",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "changeCounter": {
+      "title": "Change counter",
+      "description": "Change counter",
+      "type": "integer",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "days",
+    "startTimeMinutes",
+    "endTimeMinutes",
+    "measureIntervalMinutes",
+    "transmissionIntervalMinutes",
+    "changeCounter"
+  ]
+}
