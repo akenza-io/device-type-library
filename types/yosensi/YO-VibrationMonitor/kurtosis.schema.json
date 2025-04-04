@@ -6,7 +6,7 @@
   "topic": "kurtosis",
   "title": "Kurtosis",
   "properties": {
-    "kurtosis_x": {
+    "kurtosisX": {
       "title": "Kurtosis - X axis",
       "type": "number",
       "description": "Kurtosis - X axis.",
@@ -14,7 +14,7 @@
       "maximum": 3,
       "hideFromKpis": false
     },
-    "kurtosis_y": {
+    "kurtosisY": {
       "title": "Kurtosis - Y axis",
       "type": "number",
       "description": "Kurtosis - Y axis.",
@@ -22,7 +22,7 @@
       "maximum": 3,
       "hideFromKpis": false
     },
-    "kurtosis_z": {
+    "kurtosisZ": {
       "title": "Kurtosis - Z axis",
       "type": "number",
       "description": "Kurtosis - Z axis.",
@@ -31,5 +31,9 @@
       "hideFromKpis": false
     }
   },
-  "required": ["kurtosis_x", "kurtosis_y", "kurtosis_z"]
+  "required": [
+    "kurtosisX",
+    "kurtosisY",
+    "kurtosisZ"
+  ]
 }

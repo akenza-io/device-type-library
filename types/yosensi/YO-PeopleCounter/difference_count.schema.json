@@ -4,7 +4,7 @@
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "difference_count",
-  "title": "DifferenceCount",
+  "title": "Difference count",
   "properties": {
     "differenceCount": {
       "title": "Difference Between Right To Left and Left To Right Sum",
@@ -13,5 +13,7 @@
       "hideFromKpis": false
     }
   },
-  "required": ["differenceCount"]
+  "required": [
+    "differenceCount"
+  ]
 }

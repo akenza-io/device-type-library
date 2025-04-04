@@ -4,7 +4,7 @@
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "mass_conc_pm4",
-  "title": "MassConcPm4",
+  "title": "Mass concentration PM4",
   "properties": {
     "massConcPm4": {
       "title": "Mass Concentration PM 4",
@@ -16,5 +16,7 @@
       "hideFromKpis": false
     }
   },
-  "required": ["massConcPm4"]
+  "required": [
+    "massConcPm4"
+  ]
 }

@@ -4,7 +4,7 @@
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "economy_offset",
-  "title": "EconomyOffset",
+  "title": "Economy offset",
   "properties": {
     "economyOffset": {
       "title": "Economy Offset",
@@ -13,5 +13,7 @@
       "hideFromKpis": false
     }
   },
-  "required": ["economyOffset"]
+  "required": [
+    "economyOffset"
+  ]
 }

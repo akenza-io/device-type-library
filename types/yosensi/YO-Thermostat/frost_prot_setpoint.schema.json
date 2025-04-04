@@ -4,7 +4,7 @@
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "frost_prot_setpoint",
-  "title": "FrostProtSetpoint",
+  "title": "Frost prot setpoint",
   "properties": {
     "frostProtSetpoint": {
       "title": "Frost Prot Setpoint",
@@ -13,5 +13,7 @@
       "hideFromKpis": false
     }
   },
-  "required": ["frostProtSetpoint"]
+  "required": [
+    "frostProtSetpoint"
+  ]
 }

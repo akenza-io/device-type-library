@@ -4,7 +4,7 @@
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "internal_temperature",
-  "title": "InternalTemperature",
+  "title": "Internal temperature",
   "properties": {
     "internalTemperature": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
