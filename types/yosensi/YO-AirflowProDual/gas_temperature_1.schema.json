@@ -1,0 +1,21 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-AirflowProDual/gas_temperature_1.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "gas_temperature_1",
+  "title": "Gas temperature 1",
+  "properties": {
+    "gasTemperature1": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Gas Temperature - 1",
+      "description": "Gas Temperature in degrees celsius.",
+      "minimum": -40,
+      "maximum": 85,
+      "hideFromKpis": false
+    }
+  },
+  "required": [
+    "gasTemperature1"
+  ]
+}

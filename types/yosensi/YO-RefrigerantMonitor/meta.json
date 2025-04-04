@@ -13,8 +13,8 @@
     "Relative Humidity"
   ],
   "outputTopics": [
-    "batteryVoltage",
-    "internalTemperature",
+    "battery_voltage",
+    "internal_temperature",
     "temperature",
     "humidity",
     "pressure"

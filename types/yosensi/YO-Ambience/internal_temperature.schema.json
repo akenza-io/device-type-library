@@ -1,0 +1,21 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-Ambience/internal_temperature.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "internal_temperature",
+  "title": "Internal temperature",
+  "properties": {
+    "internalTemperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Internal Temperature",
+      "description": "Internal Temperature in degrees celsius.",
+      "minimum": -40,
+      "maximum": 125,
+      "hideFromKpis": false
+    }
+  },
+  "required": [
+    "internalTemperature"
+  ]
+}
