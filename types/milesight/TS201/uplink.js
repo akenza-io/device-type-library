@@ -172,7 +172,8 @@ function consume(event) {
     }
     // TEMPERATURE ERROR
     else if (channelId === 0xb3 && channelType === 0x67) {
-      decoded.temperatureError = readErrorType(bytes[i]);
+      const temperatureError = readErrorType(bytes[i]);
+      emit("sample", { data: { temperatureError }, topic: "error" });
       i += 1;
     }
     // HISTORY DATA

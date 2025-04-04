@@ -25,16 +25,6 @@
       "description": "Temperature mutation",
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
-    "temperatureError": {
-      "title": "Temperature error",
-      "description": "Temperature error",
-      "type": "string",
-      "enum": [
-        "READ_ERROR",
-        "OVERLOAD",
-        "UNKNOWN"
-      ]
-    },
     "readStatus": {
       "title": "Read status",
       "description": "Read status",

@@ -23,8 +23,8 @@
     },
     "currentMin": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere",
-      "description": "Minimal current recorded",
-      "title": "Minimal current"
+      "description": "Minimum current recorded",
+      "title": "Minimum current"
     },
     "currentMax": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere",

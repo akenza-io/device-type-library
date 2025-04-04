@@ -12,6 +12,7 @@
   ],
   "outputTopics": [
     "default",
+    "error",
     "lifecycle"
   ],
   "encoding": "HEX",
