@@ -167,7 +167,7 @@ function consume(event) {
       position += 2;
 
       if (!(bytes[position] === 0x80) && !(bytes[position + 1] === 0x00)) {
-        distance.linpercentValue = bytesToInt16(bytes.slice(position, position + 2)) / 100;
+        distance.linearPercentValue = bytesToInt16(bytes.slice(position, position + 2)) / 100;
       }
       position += 2;
 

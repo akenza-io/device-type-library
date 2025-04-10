@@ -39,10 +39,10 @@
       "type": "number",
       "hideFromKpis": true
     },
-    "linpercentValue": {
-      "title": "Linpercent value",
+    "linearPercentValue": {
+      "title": "Linear percent value",
       "unit": "%",
-      "description": "Linpercent value",
+      "description": "Linear percent value",
       "type": "number",
       "hideFromKpis": true
     },
