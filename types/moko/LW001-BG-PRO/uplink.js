@@ -34,7 +34,7 @@ function substringBytes(bytes, start, len) {
 }
 
 function consume(event) {
-  let { port } = event.data;
+  const { port } = event.data;
   const { payload } = event.data;
   let bytes = Hex.hexToBytes(payload);
   const bits = Bits.hexToBits(payload);
@@ -209,8 +209,6 @@ function consume(event) {
 
     time.currentTime = currentTime;
     time.timezone = timezone;
-
-    port = bytesToInt(bytes, tempIndex, 1);
     tempIndex += 1;
 
     bytes = bytes.slice(tempIndex);
