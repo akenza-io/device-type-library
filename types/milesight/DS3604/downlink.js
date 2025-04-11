@@ -12,6 +12,16 @@ function intToHex(number) {
     return hex;
 }
 
+function ascii2hex(str) {
+    const arr = [];
+    for (let i = 0, l = str.length; i < l; i++) {
+        const hex = Number(str.charCodeAt(i)).toString(16);
+        arr.push(hex);
+    }
+    return arr.join('');
+}
+
+
 function checkExpectedValues(value, defaultValue) {
     if (value !== undefined && value !== null) {
         return value;
@@ -78,20 +88,35 @@ function consume(event) {
             case "textUpdate": {
                 payloadHex = "FB01";
                 let bits = "";
-
+                // fb01
+                // 41 0720566163616e74ff3d02
                 if (payload.template === 1) {
                     bits += "00";
                 } else if (payload.template === 1) {
                     bits += "01";
                 }
-                // Module ? 6 bits
 
-                payload.template
-                if (payload.mode === "ENABLE") {
-                    payloadHex += "01";
-                } else if (payload.mode === "DISABLE") {
-                    payloadHex += "00";
+                let templateBits = "";
+                templateBits += payload.templateId.toString(2);
+
+                while (templateBits !== 6) {
+                    templateBits = 0 + templateBits;
                 }
+                bits += templateBits;
+                let tempHex = parseInt(bits, 2).toString(16)
+                while (tempHex !== 2) {
+                    tempHex = 0 + tempHex;
+                }
+                payloadHex += tempHex;
+
+                // ACII Encoded Hex
+                const contentHex = ascii2hex(payload.content);
+                // 1 Byte content size
+                payloadHex += intToHex(contentHex.length);
+                payloadHex += contentHex;
+
+                // Channel, Type, Value
+                payloadHex += "FF3D02";
                 break;
             } default:
                 emit("log", { "Something went wrong with": payload });
