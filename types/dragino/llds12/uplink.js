@@ -48,7 +48,7 @@ function consume(event) {
   lifecycle.batteryLevel = batteryLevel;
 
   data.temperature = ((((bytes[2] << 24) >> 16) | bytes[3]) / 10).toFixed(2);
-  if (data.temperature === 32767.5) {
+  if ((bytes[2] << 8) | bytes[3] === 0xffff) {
     data.temperature = null;
   }
   data.distance = ((bytes[4] << 8) | bytes[5]) / 10;

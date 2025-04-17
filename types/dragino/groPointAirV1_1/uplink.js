@@ -70,7 +70,7 @@ function consume(event) {
           ((bytes[startBytes] << 8) | bytes[startBytes + 1]) / 10.0;
       }
 
-      if (temperature[tem[i]] === 32767.5) {
+      if ((bytes[startBytes] << 8) | bytes[startBytes + 1] === 0xffff) {
         temperature[tem[i]] = null;
       }
 
