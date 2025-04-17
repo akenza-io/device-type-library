@@ -56,6 +56,10 @@ function consume(event) {
       ((((bytes[2] << 24) >> 16) | bytes[3]) / 10).toFixed(2),
     );
 
+    if (defaultData.temperature === 32767.5) {
+      defaultData.temperature = null;
+    }
+
     defaultData.c0adc = ((bytes[4] << 8) | bytes[5]) / 1000;
 
     defaultData.digitalStatus = bytes[6] & 0x02 ? "HIGH" : "LOW";
@@ -76,6 +80,10 @@ function consume(event) {
       data.extTemperature = parseFloat(
         ((((bytes[7] << 24) >> 16) | bytes[8]) / 10).toFixed(2),
       );
+
+      if (data.extTemperature === 32767.5) {
+        data.extTemperature = null;
+      }
 
       data.extHumidity = parseFloat(
         (((bytes[9] << 8) | bytes[10]) / 10).toFixed(1),
@@ -127,6 +135,10 @@ function consume(event) {
         ((((bytes[7] << 24) >> 16) | bytes[8]) / 10).toFixed(2),
       );
 
+      if (data.temperature === 32767.5) {
+        data.temperature = null;
+      }
+
       data.humidity = parseFloat(
         (((bytes[9] << 8) | bytes[10]) / 10).toFixed(1),
       );
@@ -138,9 +150,17 @@ function consume(event) {
       ((((bytes[7] << 24) >> 16) | bytes[8]) / 10).toFixed(2),
     );
 
+    if (data.c2temperature === 32767.5) {
+      data.c2temperature = null;
+    }
+
     data.c3temperature = parseFloat(
       ((((bytes[9] << 24) >> 16) | bytes[10]) / 10).toFixed(1),
     );
+
+    if (data.c3temperature === 32767.5) {
+      data.c3temperature = null;
+    }
   } else if (mode === 4) {
     topic = "weight";
 

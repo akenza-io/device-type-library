@@ -89,6 +89,9 @@ function decoder(bytes) {
         response.decoded.temperature = parseFloat(
           ((((bytes[0] << 24) >> 16) | bytes[1]) / 100).toFixed(2),
         );
+        if (response.decoded.temperature === 32767.5) {
+          response.decoded.temperature = null;
+        }
         response.lifecycle.batteryStatus = bytes[4] >> 6;
       } else {
         response.lifecycle.batteryVoltage =
@@ -130,6 +133,9 @@ function decoder(bytes) {
         response.decoded.temperature = parseFloat(
           ((((bytes[2] << 24) >> 16) | bytes[3]) / 100).toFixed(2),
         );
+        if (response.decoded.temperature === 32767.5) {
+          response.decoded.temperature = null;
+        }
         response.decoded.humidity = parseFloat(
           ((((bytes[4] << 8) | bytes[5]) & 0xfff) / 10).toFixed(1),
         );
@@ -147,6 +153,9 @@ function decoder(bytes) {
         response.external.externalTemperature = parseFloat(
           ((((bytes[7] << 24) >> 16) | bytes[8]) / 100).toFixed(2),
         );
+        if (response.external.externalTemperature === 32767.5) {
+          response.external.externalTemperature = null;
+        }
       } else if (ext === 4) {
         response.external.extPinLevel = bytes[7] ? "HIGH" : "LOW";
         response.external.extStatus = !!bytes[8];

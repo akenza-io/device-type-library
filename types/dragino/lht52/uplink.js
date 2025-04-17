@@ -24,6 +24,14 @@ function consume(event) {
         ((((bytes[4] << 24) >> 16) | bytes[5]) / 100).toFixed(2),
       );
 
+      if (data.temperature === 32767.5) {
+        data.temperature = null;
+      }
+
+      if (data.extTemperature === 32767.5) {
+        data.extTemperature = null;
+      }
+
       emit("sample", { data, topic: "default" });
     }
   } else if (port === 4) {

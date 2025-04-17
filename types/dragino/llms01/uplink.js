@@ -22,6 +22,10 @@ function consume(event) {
   }
   data.temperature = (temperature / 10).toFixed(2);
 
+  if (data.temperature === 32767.5) {
+    data.temperature = null;
+  }
+
   const leafMoisture = (bytes[4] << 8) | bytes[5];
   data.leafMoisture = (leafMoisture / 10).toFixed(2);
 
@@ -30,6 +34,10 @@ function consume(event) {
     data.leafTemperature = (leafTemperature / 10).toFixed(2);
   } else if ((leafTemperature & 0x8000) >> 15 === 1) {
     data.leafTemperature = ((leafTemperature - 0xffff) / 10).toFixed(2);
+  }
+
+  if (data.leafTemperature === 32767.5) {
+    data.leafTemperature = null;
   }
 
   emit("sample", { data, topic: "default" });

@@ -22,6 +22,10 @@ function consume(event) {
   }
   data.temperature = (temperature / 10).toFixed(2);
 
+  if (data.temperature === 32767.5) {
+    data.temperature = null;
+  }
+
   const soilMoisture = (bytes[4] << 8) | bytes[5];
   data.soilMoisture = (soilMoisture / 100).toFixed(2);
 
@@ -31,6 +35,11 @@ function consume(event) {
   } else if ((soilTemperature & 0x8000) >> 15 === 1) {
     data.soilTemperature = ((soilTemperature - 0xffff) / 10).toFixed(2);
   }
+
+  if (data.soilTemperature === 32767.5) {
+    data.soilTemperature = null;
+  }
+
   emit("sample", { data, topic: "default" });
   emit("sample", { data: lifecycle, topic: "lifecycle" });
 }
