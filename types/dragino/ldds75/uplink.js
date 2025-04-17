@@ -63,7 +63,7 @@ function consume(event) {
     }
     data.temperature = (value / 10).toFixed(2);
 
-    if ((bytes[5] << 8) | bytes[6] === 0xffff) {
+    if (((bytes[5] << 8) | bytes[6]) === 0xffff) {
       data.temperature = null;
     }
   }

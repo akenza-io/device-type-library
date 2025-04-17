@@ -56,7 +56,7 @@ function consume(event) {
       ((((bytes[2] << 24) >> 16) | bytes[3]) / 10).toFixed(2),
     );
 
-    if ((bytes[2] << 8) | bytes[3] === 0xffff) {
+    if (((bytes[2] << 8) | bytes[3]) === 0xffff) {
       defaultData.temperature = null;
     }
 
@@ -81,7 +81,7 @@ function consume(event) {
         ((((bytes[7] << 24) >> 16) | bytes[8]) / 10).toFixed(2),
       );
 
-      if ((bytes[7] << 8) | bytes[8] === 0xffff) {
+      if (((bytes[7] << 8) | bytes[8]) === 0xffff) {
         data.extTemperature = null;
       }
 
@@ -135,7 +135,7 @@ function consume(event) {
         ((((bytes[7] << 24) >> 16) | bytes[8]) / 10).toFixed(2),
       );
 
-      if ((bytes[7] << 8) | bytes[8] === 0xffff) {
+      if (((bytes[7] << 8) | bytes[8]) === 0xffff) {
         data.temperature = null;
       }
 
@@ -150,7 +150,7 @@ function consume(event) {
       ((((bytes[7] << 24) >> 16) | bytes[8]) / 10).toFixed(2),
     );
 
-    if ((bytes[7] << 8) | bytes[8] === 0xffff) {
+    if (((bytes[7] << 8) | bytes[8]) === 0xffff) {
       data.c2temperature = null;
     }
 
@@ -158,7 +158,7 @@ function consume(event) {
       ((((bytes[9] << 24) >> 16) | bytes[10]) / 10).toFixed(1),
     );
 
-    if ((bytes[9] << 8) | bytes[10] === 0xffff) {
+    if (((bytes[9] << 8) | bytes[10]) === 0xffff) {
       data.c3temperature = null;
     }
   } else if (mode === 4) {

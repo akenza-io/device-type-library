@@ -22,7 +22,7 @@ function consume(event) {
   }
   data.temperature = (temperature / 10).toFixed(2);
 
-  if ((bytes[2] << 8) | bytes[3] === 0xffff) {
+  if (((bytes[2] << 8) | bytes[3]) === 0xffff) {
     data.temperature = null;
   }
 
@@ -36,7 +36,7 @@ function consume(event) {
     data.soilTemperature = ((soilTemperature - 0xffff) / 10).toFixed(2);
   }
 
-  if ((bytes[6] << 8) | bytes[7] === 0xffff) {
+  if (((bytes[6] << 8) | bytes[7]) === 0xffff) {
     data.soilTemperature = null;
   }
 

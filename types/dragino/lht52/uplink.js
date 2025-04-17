@@ -24,11 +24,11 @@ function consume(event) {
         ((((bytes[4] << 24) >> 16) | bytes[5]) / 100).toFixed(2),
       );
 
-      if ((bytes[0] << 8) | bytes[1] === 0xffff) {
+      if (((bytes[0] << 8) | bytes[1]) === 0xffff) {
         data.temperature = null;
       }
 
-      if ((bytes[4] << 8) | bytes[5] === 0xffff) {
+      if (((bytes[4] << 8) | bytes[5]) === 0xffff) {
         data.extTemperature = null;
       }
 
