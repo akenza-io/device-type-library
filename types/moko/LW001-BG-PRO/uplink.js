@@ -35,9 +35,9 @@ function substringBytes(bytes, start, len) {
 
 function consume(event) {
   const { port } = event.data;
-  const { payload } = event.data;
-  let bytes = Hex.hexToBytes(payload);
-  const bits = Bits.hexToBits(payload);
+  const { payloadHex } = event.data;
+  let bytes = Hex.hexToBytes(payloadHex);
+  const bits = Bits.hexToBits(payloadHex);
 
   const lifecycle = {};
   const reboot = {};
