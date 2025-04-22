@@ -107,6 +107,6 @@ cd data-models
 pip3 install -U virtualenv
 virtualenv .venv
 source .venv/bin/activate
-pip install jupyterlab
+pip install jupyterlab pandas
 jupyter lab
 ```
