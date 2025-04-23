@@ -62,6 +62,10 @@ function consume(event) {
       value |= 0xffff0000;
     }
     data.temperature = (value / 10).toFixed(2);
+
+    if (((bytes[5] << 8) | bytes[6]) === 0xffff) {
+      data.temperature = null;
+    }
   }
   emit("sample", { data, topic: "default" });
   emit("sample", { data: lifecycle, topic: "lifecycle" });
