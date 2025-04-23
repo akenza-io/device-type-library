@@ -16,7 +16,7 @@ function consume(event) {
     pointer += 16;
     data.soilTemperature = Bits.bitsToSigned(bits.substr(pointer, 16)) / 100;
 
-    if (data.soilTemperature === 32767.5) {
+    if (bits.substr(pointer, 16) === "1111111111111111") {
       data.soilTemperature = null;
     }
 
