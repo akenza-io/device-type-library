@@ -50,6 +50,17 @@ describe("Dragino LHT65N Uplink", () => {
   });
 
   describe("consume()", () => {
+    it("should decode the Dragino LHT65 empty uplink", () => {
+      const data = {
+        data: {
+          port: 2,
+          payloadHex: "0d20000000000001",
+        },
+      };
+
+      consume(data);
+    });
+
     it("should decode the Dragino LHT65N report uplink", () => {
       const data = {
         data: {
