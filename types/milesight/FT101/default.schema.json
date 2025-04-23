@@ -1,0 +1,53 @@
+{
+  "$id": "https://akenza.io/milesight/FT101/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "latitude": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/latitude/degrees"
+    },
+    "longitude": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/location/schema.json#/$defs/longitude/degrees"
+    },
+    "rssi": {
+      "title": "RSSI",
+      "unit": "dBm",
+      "description": "Received Signal Strength Indication",
+      "type": "number"
+    },
+    "snr": {
+      "title": "SNR",
+      "unit": "dB",
+      "description": "Signal-to-Noise Ratio",
+      "type": "number"
+    },
+    "spreadingFactor": {
+      "title": "SF",
+      "description": "Spreading Factor",
+      "type": "number"
+    },
+    "txPower": {
+      "title": "TX Power",
+      "type": "number",
+      "description": "TX Power"
+    },
+    "frameCountUp": {
+      "title": "Frame count up",
+      "type": "number",
+      "description": "Frame count of the uplink"
+    },
+    "frameCountDown": {
+      "title": "Frame count down",
+      "type": "number",
+      "description": "Frame count of the downlinks"
+    },
+    "gatewaysInRange": {
+      "title": "Gateways in range",
+      "type": "number",
+      "description": "Gateways in range"
+    }
+  }
+}
