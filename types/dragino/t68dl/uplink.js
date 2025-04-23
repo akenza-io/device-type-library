@@ -50,9 +50,15 @@ function consume(event) {
 		case 2: // Real-Time Temperature data
 			lifecycle.batteryVoltage = (bytes[0]<<8 | bytes[1])/1000;
 			data.temperature = parseFloat(((bytes[2]<<24>>16 | bytes[3])/100).toFixed(2));
-			data.temp_h_flag = (bytes[4] &0x01)? "True" : "False";
-			data.temp_l_flag = (bytes[4] &0x02)? "True" : "False";
+			data.tempHFlag = (bytes[4] &0x01)? true : false;
+			data.tempLFlag = (bytes[4] &0x02)? true : false;
 			data.time = getMyDate((bytes[5]<<24 | bytes[6]<<16 | bytes[7]<<8 | bytes[8]).toString(10));         
+			if (Object.keys(data).length > 0) {
+				emit('sample', { data: data, topic: "default" });
+			}
+			if (Object.keys(lifecycle).length > 0) {
+				emit("sample", { data: lifecycle, topic: "lifecycle" });
+			}
 			break;
 		case 5: // Device Status
 			if(bytes[0] == 0x34) data.sensorModel = "T68DL";
@@ -76,9 +82,12 @@ function consume(event) {
 
 			data.firmwareVersion = (bytes[1] & 0x0f) + '.' + (bytes[2]>>4 & 0x0f) + '.' + (bytes[2] & 0x0f);
 			data.batteryVoltage = (bytes[5]<<8 | bytes[6]) / 1000;
+			if (Object.keys(data).length > 0) {
+				emit('sample', { data: data, topic: "status" });
+			}
 			break;
 		case 3: // Datalog
-			var pnack = ((bytes[6]>>7)&0x01) ? "True":"False";
+			var pnack = ((bytes[6]>>7)&0x01) ? true : false;
 			for(var i = 0; i<bytes.length; i = i + 11)
 			{
 			  var data1 = datalog(i,bytes);
@@ -87,24 +96,11 @@ function consume(event) {
 			  else
 				data.datalog += data1;
 			}
-			is_datalog = true;
 			data.pnackFlag = pnack;
+			emit("sample", { data: data, topic: "datalog" });
 			break;
   
 		default:
     		emit('sample', { data: { errors: ["unknown FPort"] }, topic: "default" });
-	}
-
-	if (!is_datalog) {
-		if (Object.keys(data).length > 0) {
-			emit('sample', { data: data, topic: "default" });
-		}
-		if (Object.keys(lifecycle).length > 0) {
-			emit("sample", { data: lifecycle, topic: "lifecycle" });
-		}
-
-	}
-	else {
-		emit("sample", { data: data, topic: "datalog" });
 	}
 }

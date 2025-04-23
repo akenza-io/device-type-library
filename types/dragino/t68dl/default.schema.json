@@ -8,6 +8,21 @@
   "properties": {
     "temperature": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    },
+    "tempHFlag": {
+      "title": "Temp H Flag",
+      "description": "Temp H Flag",
+      "type": "boolean"
+    },
+    "tempLFlag": {
+      "title": "Temp L Flag",
+      "description": "Temp L Flag",
+      "type": "boolean"
+    },
+    "time": {
+      "title": "Timestamp",
+      "description": "Timestamp",
+      "type": "string"
     }
   },
   "required": ["temperature"]

@@ -45,6 +45,9 @@ describe("Dragino T68DL Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 28.14);
+        assert.equal(value.data.tempHFlag, false);
+        assert.equal(value.data.tempLFlag, true);
+        assert.equal(value.data.time, "2024-10-28 04:17:30");
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -55,7 +58,7 @@ describe("Dragino T68DL Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 100);
+        assert.equal(value.data.batteryVoltage, 3.263);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
