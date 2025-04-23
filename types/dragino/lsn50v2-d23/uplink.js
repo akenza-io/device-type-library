@@ -56,6 +56,10 @@ function consume(event) {
       ((((bytes[2] << 24) >> 16) | bytes[3]) / 10).toFixed(2),
     );
 
+    if (((bytes[2] << 8) | bytes[3]) === 0xffff) {
+      defaultData.temperature = null;
+    }
+
     defaultData.c0adc = ((bytes[4] << 8) | bytes[5]) / 1000;
 
     defaultData.digitalStatus = bytes[6] & 0x02 ? "HIGH" : "LOW";
@@ -76,6 +80,10 @@ function consume(event) {
       data.extTemperature = parseFloat(
         ((((bytes[7] << 24) >> 16) | bytes[8]) / 10).toFixed(2),
       );
+
+      if (((bytes[7] << 8) | bytes[8]) === 0xffff) {
+        data.extTemperature = null;
+      }
 
       data.extHumidity = parseFloat(
         (((bytes[9] << 8) | bytes[10]) / 10).toFixed(1),
@@ -127,6 +135,10 @@ function consume(event) {
         ((((bytes[7] << 24) >> 16) | bytes[8]) / 10).toFixed(2),
       );
 
+      if (((bytes[7] << 8) | bytes[8]) === 0xffff) {
+        data.temperature = null;
+      }
+
       data.humidity = parseFloat(
         (((bytes[9] << 8) | bytes[10]) / 10).toFixed(1),
       );
@@ -138,9 +150,17 @@ function consume(event) {
       ((((bytes[7] << 24) >> 16) | bytes[8]) / 10).toFixed(2),
     );
 
+    if (((bytes[7] << 8) | bytes[8]) === 0xffff) {
+      data.c2temperature = null;
+    }
+
     data.c3temperature = parseFloat(
       ((((bytes[9] << 24) >> 16) | bytes[10]) / 10).toFixed(1),
     );
+
+    if (((bytes[9] << 8) | bytes[10]) === 0xffff) {
+      data.c3temperature = null;
+    }
   } else if (mode === 4) {
     topic = "weight";
 
@@ -168,6 +188,10 @@ function consume(event) {
     data.channel1Temperature = parseFloat(
       ((((bytes[2] << 24) >> 16) | bytes[3]) / 10).toFixed(2),
     );
+
+    if (((bytes[2] << 8) | bytes[3]) === 0xffff) {
+      data.channel1Temperature = null;
+    }
 
     data.channel1TemperatureMin = (bytes[4] << 24) >> 24;
 
