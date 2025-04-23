@@ -1,0 +1,73 @@
+{
+  "$id": "https://akenza.io/milesight/FT101/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "ipsoVersion": {
+      "title": "IPSO Version",
+      "type": "string",
+      "description": "IPSO Version",
+      "hideFromKpis": true
+    },
+    "hardwareVersion": {
+      "title": "Hardware version",
+      "type": "string",
+      "description": "Hardware version",
+      "hideFromKpis": true
+    },
+    "firmwareVersion": {
+      "title": "Firmware version",
+      "type": "string",
+      "description": "Firmware version",
+      "hideFromKpis": true
+    },
+    "deviceStatus": {
+      "title": "Firmware version",
+      "type": "string",
+      "description": "Firmware version",
+      "enum": [
+        "ON"
+      ],
+      "hideFromKpis": true
+    },
+    "lorawanClass": {
+      "title": "LoRaWAN Class",
+      "type": "string",
+      "description": "LoRaWAN Class",
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "C_TO_B"
+      ],
+      "hideFromKpis": true
+    },
+    "sn": {
+      "title": "Serial number",
+      "type": "string",
+      "description": "Serial number",
+      "hideFromKpis": true
+    },
+    "tslVersion": {
+      "title": "TSL version",
+      "type": "string",
+      "description": "TSL version",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "ipsoVersion",
+    "hardwareVersion",
+    "firmwareVersion",
+    "lorawanClass",
+    "sn",
+    "tslVersion",
+    "rssi",
+    "snr",
+    "spreadingFactor",
+    "txPower"
+  ]
+}

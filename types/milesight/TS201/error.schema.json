@@ -1,0 +1,23 @@
+{
+  "$id": "https://akenza.io/milesight/TS201/error.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "error",
+  "title": "Error",
+  "properties": {
+    "temperatureError": {
+      "title": "Temperature error",
+      "description": "Temperature error",
+      "type": "string",
+      "enum": [
+        "READ_ERROR",
+        "OVERLOAD",
+        "UNKNOWN"
+      ]
+    }
+  },
+  "required": [
+    "temperatureError"
+  ]
+}
