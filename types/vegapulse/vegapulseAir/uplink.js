@@ -172,6 +172,7 @@ function consume(event) {
       position += 2;
 
       distance.scaledValue = bytesToFloat(bytes.slice(position, position + 4));
+      // 1 Byte reserved for scaled unit value
       position += 5;
     }
 
