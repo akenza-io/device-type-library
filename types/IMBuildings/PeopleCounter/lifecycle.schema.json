@@ -29,7 +29,8 @@
       "minimum": 0,
       "maximum": 100,
       "description": "The battery charge in percent.",
-      "unit": "%"
+      "unit": "%",
+      "hideFromKpis": true
     },
     "sensorStatus": {
       "title": "Sensor status",
@@ -64,5 +65,8 @@
       "hideFromKpis": true
     }
   },
-  "required": ["deviceStatus", "sensorStatus"]
+  "required": [
+    "deviceStatus",
+    "sensorStatus"
+  ]
 }
