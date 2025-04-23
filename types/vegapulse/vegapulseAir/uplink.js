@@ -172,9 +172,7 @@ function consume(event) {
       position += 2;
 
       distance.scaledValue = bytesToFloat(bytes.slice(position, position + 4));
-      position += 4;
-      distance.scaledValueUnit = bytes[position];
-      position++;
+      position += 5;
     }
 
     if ([8, 9, 10, 11, 12, 13, 14, 15, 18, 19].indexOf(packetIdentifier) !== -1) {

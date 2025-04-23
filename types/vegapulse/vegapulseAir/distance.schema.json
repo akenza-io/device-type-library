@@ -53,14 +53,6 @@
       "minimum": 0,
       "maximum": 255,
       "hideFromKpis": true
-    },
-    "scaledValueUnit": {
-      "title": "Scaled unit value",
-      "description": "Scaled unit value",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 255,
-      "hideFromKpis": true
     }
   },
   "required": [
