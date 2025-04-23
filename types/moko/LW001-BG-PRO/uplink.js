@@ -1,5 +1,5 @@
 const operationModeArray = ["STANDBY", "PERIODIC", "TIMING", "MOTION"];
-const rebootReasonArray = ["Restart after power failure", "Bluetooth command request", "LoRaWAN command request", "Power on after normal power off"];
+const rebootReasonArray = ["RESTART_AFTER_POWER_FAILIURE", "BLUETOOTH_COMMAND", "LORAWAN_COMMAND", "POWER_ON"];
 const posFailedReasonArray = [
   "WIFI positioning time is not enough (The location payload reporting interval is set too short, please increase the report interval of the current working mode via MKLoRa app)"
   , "WIFI positioning strategies timeout (Please increase the WIFI positioning timeout via MKLoRa app)"
@@ -55,11 +55,11 @@ function consume(event) {
 
   // Common frame head
   if (port <= 10) {
-    lifecycle.lowBattery = !(bytes[0] & 0x04 === 0);
+    lifecycle.lowBattery = (bytes[0] & 0x04) !== 0;
     lifecycle.operationMode = operationModeArray[bytes[0] & 0x03];
-    lifecycle.tamperAlarm = !(bytes[0] & 0x08 === 0);
-    lifecycle.mandown = !(bytes[0] & 0x10 === 0);
-    lifecycle.motionSinceLastPaylaod = !(bytes[0] & 0x20 === 0);
+    lifecycle.tamperAlarm = (bytes[0] & 0x08) !== 0;
+    lifecycle.mandown = (bytes[0] & 0x10) !== 0;
+    lifecycle.motionSinceLastPaylaod = !(bytes[0] & 0x20) !== 0;
 
     if (port === 2 || port === 3) {
       lifecycle.positioningType = bytes[0] & 0x40 === 0 ? "NORMAL" : "DOWNLINK_FOR_POSITION";
@@ -71,14 +71,14 @@ function consume(event) {
   }
 
   if (port === 1) {
-    const rebootReasonCode = Bits.bitsToUnsigned(bits.substr(16, 8));
+    const rebootReasonCode = Bits.bitsToUnsigned(bits.substr(24, 8));
     reboot.rebootReason = rebootReasonArray[rebootReasonCode];
 
     const majorVersion = (bytes[4] >> 6) & 0x03;
     const minorVersion = (bytes[4] >> 4) & 0x03;
     const patchVersion = bytes[4] & 0x0f;
     reboot.firmwareVersion = `V${majorVersion}.${minorVersion}.${patchVersion}`;
-    reboot.activityCount = Bits.bitsToUnsigned(bits.substr(32, 16));
+    reboot.activityCount = Bits.bitsToUnsigned(bits.substr(40, 32));
 
   } else if (port === 2) {
     let parseLen = 3; // common head is 3 byte
@@ -143,7 +143,7 @@ function consume(event) {
     // wifi and ble reason
     if (failedTypeCode <= 5) {
       if (datalen) {
-        for (let i = 0; i < (datalen / 7); i++) {
+        for (let i = 1; i < (datalen / 7); i++) {
           const item = {};
           item.mac = substringBytes(bytes, parseLen, 6);
           parseLen += 6;
@@ -163,11 +163,11 @@ function consume(event) {
       failure.gpsSatelliteCn = `${bytes[parseLen]}-${bytes[parseLen + 1]}-${bytes[parseLen + 2]}-${bytes[parseLen + 3]}`;
     }
   } else if (port === 4) {
-    shutdown.shutdownType = shutdownTypeArray[Bits.bitsToUnsigned(bits.substr(16, 8))];
+    shutdown.shutdownType = shutdownTypeArray[Bits.bitsToUnsigned(bits.substr(24, 8))];
   } else if (port === 5) {
-    vibration.numberOfShocks = Bits.bitsToUnsigned(bits.substr(16, 16));
+    vibration.numberOfShocks = Bits.bitsToUnsigned(bits.substr(24, 16));
   } else if (port === 6) {
-    mandown.totalIdleTime = Bits.bitsToUnsigned(bits.substr(16, 16));
+    mandown.totalIdleTime = Bits.bitsToUnsigned(bits.substr(24, 16));
   } else if (port === 7) {
     let parseLen = 3; // common head is 3 byte
     const year = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 16));
@@ -187,7 +187,7 @@ function consume(event) {
     }
     tamper.tamperAlarm = true;
   } else if (port === 8) {
-    const eventTypeCode = Bits.bitsToUnsigned(bits.substr(16, 8));
+    const eventTypeCode = Bits.bitsToUnsigned(bits.substr(24, 8));
     movement.eventType = eventTypeArray[eventTypeCode];
   } else if (port === 9) {
     let parseLen = 3;
@@ -214,10 +214,10 @@ function consume(event) {
     bytes = bytes.slice(tempIndex);
   } else if (port === 12) {
     lifecycle.operationMode = operationModeArray[bytes[0] & 0x03];
-    lifecycle.lowBattery = !(bytes[0] & 0x04 === 0);
-    lifecycle.tamperAlarm = !(bytes[0] & 0x08 === 0);
-    lifecycle.mandown = !(bytes[0] & 0x10 === 0);
-    lifecycle.motionSinceLastPaylaod = !(bytes[0] & 0x20 === 0);
+    lifecycle.lowBattery = (bytes[0] & 0x04) !== 0;
+    lifecycle.tamperAlarm = (bytes[0] & 0x08) !== 0;
+    lifecycle.mandown = (bytes[0] & 0x10) !== 0;
+    lifecycle.motionSinceLastPaylaod = (bytes[0] & 0x20) !== 0;
     lifecycle.positioningType = bytes[0] & 0x40 === 0 ? "NORMAL" : "DOWNLINK_FOR_POSITION";
 
     lifecycle.lorawanDownlinkCount = bytes[1] & 0x0f;
