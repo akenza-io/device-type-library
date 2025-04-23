@@ -15,6 +15,7 @@
     },
     "occupancy": {
       "integer": {
+        "measurementType": "akenza/spaces/occupancy/integer",
         "title": "Occupancy",
         "description": "Space occupancy. 0 = Unoccupied / 1 = Occupied but movement detected / 2 = Occupied.",
         "type": "integer",
@@ -24,6 +25,7 @@
     },
     "minutesSinceLastOccupied": {
       "minutes": {
+        "measurementType": "akenza/spaces/minutesSinceLastOccupied/minutes",
         "title": "Minutes since last occupied",
         "description": "Minutes since last occupied value was registered",
         "type": "integer",
