@@ -9,7 +9,8 @@
     "deviceStatus": {
       "title": "Device status",
       "type": "integer",
-      "description": "Device status"
+      "description": "Device status",
+      "hideFromKpis": true
     },
     "batteryVoltage": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"

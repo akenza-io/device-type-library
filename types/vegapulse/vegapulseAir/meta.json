@@ -1,0 +1,25 @@
+{
+  "name": "VEGAPULS Air 23",
+  "version": "1.0.0",
+  "manufacturer": "Vega",
+  "url": "https://www.vega.com/en-us/products/product-catalog/level/radar/vegapuls-air-23",
+  "description": "VEGAPULS Air 23 for level measurement in IBCs and plastic vessels with high protection sensor housing (IP69).",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Distance",
+    "GPS"
+  ],
+  "outputTopics": [
+    "distance",
+    "gps",
+    "lifecycle",
+    "schedule",
+    "system",
+    "temperature"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
