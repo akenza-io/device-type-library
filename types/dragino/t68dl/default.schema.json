@@ -10,20 +10,25 @@
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
     "tempHFlag": {
-      "title": "Temp H Flag",
-      "description": "Temperature high Flag",
-      "type": "boolean"
+      "title": "Temperature high flag",
+      "description": "Temperature high flag",
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "tempLFlag": {
-      "title": "Temp L Flag",
-      "description": "Temperature low Flag",
-      "type": "boolean"
+      "title": "Temperature low flag",
+      "description": "Temperature low flag",
+      "type": "boolean",
+      "hideFromKpis": true
     },
     "time": {
       "title": "Timestamp",
       "description": "Timestamp",
-      "type": "string"
+      "type": "string",
+      "hideFromKpis": true
     }
   },
-  "required": ["temperature"]
+  "required": [
+    "temperature"
+  ]
 }

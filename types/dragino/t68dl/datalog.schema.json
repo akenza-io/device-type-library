@@ -9,7 +9,14 @@
     "datalog": {
       "title": "Datalog",
       "type": "array",
-      "description": "Datalog"
+      "description": "Datalog",
+      "hideFromKpis": true
+    },
+    "pnackFlag": {
+      "title": "Pnack flag",
+      "description": "Packet number acknowledge flag",
+      "type": "number",
+      "hideFromKpis": true
     }
   }
 }
