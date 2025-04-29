@@ -11,12 +11,12 @@
     },
     "tempHFlag": {
       "title": "Temp H Flag",
-      "description": "Temp H Flag",
+      "description": "Temperature high Flag",
       "type": "boolean"
     },
     "tempLFlag": {
       "title": "Temp L Flag",
-      "description": "Temp L Flag",
+      "description": "Temperature low Flag",
       "type": "boolean"
     },
     "time": {
