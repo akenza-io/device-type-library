@@ -7,8 +7,15 @@
   "author": "Philipp Walker",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": ["Temperature"],
-  "outputTopics": ["datalog", "default", "lifecycle", "status"],
+  "availableSensors": [
+    "Temperature"
+  ],
+  "outputTopics": [
+    "datalog",
+    "default",
+    "lifecycle",
+    "status"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }
