@@ -44,8 +44,6 @@ function consume(event) {
     const bytes = Hex.hexToBytes(payload);
     const port = event.data.port;
 
-	var is_datalog = false;
-
 	switch (port) {
 		case 2: // Real-Time Temperature data
 			lifecycle.batteryVoltage = (bytes[0]<<8 | bytes[1])/1000;
