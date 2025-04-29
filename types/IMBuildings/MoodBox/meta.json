@@ -6,8 +6,14 @@
   "description": "The moodbox is an easy to use and integratable user feedback device.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
-  "availableSensors": ["Button"],
-  "outputTopics": ["default", "lifecycle"],
+  "availableSensors": [
+    "Button"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "error"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

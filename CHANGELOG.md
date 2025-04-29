@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.61.0] - 2025-04-23
+
+### Added
+
+- Vegapulse - Vegapulse air
+- IMBuildings - VertiCount
+- Milesight - CT305
+- Milesight - CT310
+- Milesight - EM300-CL
+- Milesight - FT101
+- Milesight - TS201
+- Milesight - WS303
+
+### Changed
+
+- Removed illegal temperature values for all Dragino devices
+
 # [1.60.0] - 2025-04-03
 
 ### Changed
