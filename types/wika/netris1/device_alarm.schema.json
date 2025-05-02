@@ -1,0 +1,22 @@
+{
+  "$id": "https://akenza.io/wika/netris1/device_alarm.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "device_alarm",
+  "title": "Device alarm",
+  "properties": {
+    "alarmType": {
+      "title": "Alarm type",
+      "type": "number",
+      "description": "Alarm type",
+      "hideFromKpis": true
+    },
+    "alarmTypeNames": {
+      "title": "Alarm type",
+      "type": "array",
+      "description": "Alarm type",
+      "hideFromKpis": true
+    }
+  }
+}
