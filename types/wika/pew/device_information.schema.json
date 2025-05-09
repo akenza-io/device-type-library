@@ -1,0 +1,82 @@
+{
+  "$id": "https://akenza.io/wika/pew/device_information.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "device_information",
+  "title": "Device information",
+  "properties": {
+    "productId": {
+      "title": "Product ID",
+      "type": "number",
+      "description": "Product ID",
+      "hideFromKpis": true
+    },
+    "productSubId": {
+      "title": "Product Sub ID",
+      "type": "number",
+      "description": "Product Sub ID",
+      "hideFromKpis": true
+    },
+    "wirelessModuleFirmwareVersion": {
+      "title": "Wireless module firmware version",
+      "type": "string",
+      "description": "Wireless module firmware version",
+      "hideFromKpis": true
+    },
+    "wirelessModuleHardwareVersion": {
+      "title": "Wireless module hardware version",
+      "type": "string",
+      "description": "Wireless module hardware version",
+      "hideFromKpis": true
+    },
+    "serialNumber": {
+      "title": "Serial number",
+      "type": "string",
+      "description": "Serial number",
+      "hideFromKpis": true
+    },
+    "pressureType": {
+      "title": "Pressure type",
+      "type": "string",
+      "description": "Pressure type",
+      "hideFromKpis": true
+    },
+    "pressureRangeStart": {
+      "title": "Pressure range start",
+      "type": "number",
+      "description": "Pressure range start",
+      "hideFromKpis": true
+    },
+    "pressureRangeEnd": {
+      "title": "Pressure range end",
+      "type": "number",
+      "description": "Pressure range end",
+      "hideFromKpis": true
+    },
+    "temperatureRangeStart": {
+      "title": "Temperature range start",
+      "type": "number",
+      "description": "Temperature range start",
+      "hideFromKpis": true
+    },
+    "temperatureRangeEnd": {
+      "title": "Temperature range start",
+      "type": "number",
+      "description": "Temperature range start",
+      "hideFromKpis": true
+    },
+    "pressureUnit": {
+      "title": "Pressure unit",
+      "type": "string",
+      "description": "Pressure unit",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureUnit": {
+      "title": "Device temperature unit",
+      "type": "string",
+      "description": "Device temperature unit",
+      "hideFromKpis": true
+    }
+  }
+}
