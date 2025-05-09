@@ -1,0 +1,18 @@
+{
+  "$id": "https://akenza.io/digitalTechnologies/desk/touch.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "touch",
+  "title": "Touch",
+  "properties": {
+    "touch": {
+      "title": "Touch",
+      "description": "Touch registered",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "touch"
+  ]
+}
