@@ -1,0 +1,21 @@
+{
+  "name": "Desk Occupancy Sensor",
+  "version": "1.0.0",
+  "manufacturer": "Disruptive Technologies",
+  "url": "https://www.disruptive-technologies.com/sensors/desk-occupancy-sensor",
+  "description": "Detects the presence of a person on a desk.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": [
+    "Occupancy",
+    "Touch"
+  ],
+  "outputTopics": [
+    "occupancy",
+    "network_status",
+    "lifecycle",
+    "touch"
+  ],
+  "encoding": "JSON",
+  "connectivity": "HTTP"
+}
