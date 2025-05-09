@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/digitalTechnologies/touch/touch.schema.json",
+  "$id": "https://akenza.io/digitalTechnologies/desk/touch.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
@@ -12,5 +12,7 @@
       "type": "boolean"
     }
   },
-  "required": ["touch"]
+  "required": [
+    "touch"
+  ]
 }
