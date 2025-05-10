@@ -1,0 +1,28 @@
+{
+  "$id": "https://akenza.io/moko/lw001-bg-pro/reboot.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "reboot",
+  "title": "Reboot",
+  "properties": {
+    "rebootReason": {
+      "title": "Reboot reason",
+      "type": "string",
+      "description": "Reboot reason",
+      "hideFromKpis": true
+    },
+    "firmwareVersion": {
+      "title": "Firmware version",
+      "type": "string",
+      "description": "Firmware version",
+      "hideFromKpis": true
+    },
+    "activityCount": {
+      "title": "Activity count",
+      "type": "integer",
+      "description": "Activity count",
+      "hideFromKpis": true
+    }
+  }
+}
