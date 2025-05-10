@@ -1,0 +1,53 @@
+{
+    "type": "object",
+    "properties": {
+        "port": {
+            "type": "number",
+            "description": "Port number of the payload"
+        },
+        "hexFormatPayload": {
+            "type": "string",
+            "description": "Payload in hexadecimal format"
+        },
+        "payloadType": {
+            "type": "string",
+            "description": "Type of payload (e.g., Battery Consumption)"
+        },
+        "operationMode": {
+            "type": "string",
+            "description": "Current operation mode of the device"
+        },
+        "temperature": {
+            "type": "string",
+            "description": "Temperature reading from the device"
+        },
+        "ack": {
+            "type": "number",
+            "description": "Acknowledgment value"
+        },
+        "batteryVoltage": {
+            "type": "string",
+            "description": "Battery voltage level"
+        },
+        "gpsWorkTime": {
+            "type": "number",
+            "description": "Total GPS working time in seconds"
+        },
+        "wifiWorkTime": {
+            "type": "number",
+            "description": "Total WIFI working time in seconds"
+        },
+        "bleScanWorkTime": {
+            "type": "number",
+            "description": "Total BLE scanning working time in seconds"
+        },
+        "bleAdvWorkTime": {
+            "type": "number",
+            "description": "Total BLE advertising working time in seconds"
+        },
+        "loraWorkTime": {
+            "type": "number",
+            "description": "Total LoRa working time in seconds"
+        }
+    }
+}
