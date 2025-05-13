@@ -34,7 +34,7 @@ describe("Adeunis TEMP Uplink", () => {
       const data = {
         data: {
           port: 1,
-          payloadHex: "0CBF0AFE02671F024A",
+          payloadHex: "579201B3FF9C01F4FFFF",
         },
       };
 
