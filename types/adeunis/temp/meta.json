@@ -1,0 +1,19 @@
+{
+  "name": "TEMP",
+  "version": "1.0.0",
+  "manufacturer": "Adeunis",
+  "url": "https://www.adeunis.com/en/produit/temp-temperature/",
+  "description": "TEMP: Temperature LoRaWAN sensor",
+  "author": "Philipp Walker",
+  "firmwareVersion": "2.1.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
