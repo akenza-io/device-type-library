@@ -7,8 +7,9 @@
 	"title": "Lifecycle",
 	"properties": {
 		"lowBattery": {
-			"title":"Low Battery",
-			"type":"boolean",
+			"title": "Low Battery",
+			"description":"Low Battery"
+			"type": "boolean",
 			"hideFromKpis": true
 		}
 	},
