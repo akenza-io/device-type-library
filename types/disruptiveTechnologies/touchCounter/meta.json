@@ -1,0 +1,20 @@
+{
+  "name": "Wireless Touch Counter Sensor",
+  "version": "1.0.0",
+  "manufacturer": "Disruptive Technologies",
+  "url": "https://www.disruptive-technologies.com/products/wireless-sensors/wireless-touch-sensor",
+  "description": "The Wireless Touch Sensor sends a message to the cloud every time it is touched. In addition to messages triggered by touch, it transmits a heartbeat message every 15 minutes to notify the system that it is within range and operational.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": [
+    "Touch"
+  ],
+  "outputTopics": [
+    "touch",
+    "touch_count",
+    "network_status",
+    "lifecycle"
+  ],
+  "encoding": "JSON",
+  "connectivity": "HTTP"
+}
