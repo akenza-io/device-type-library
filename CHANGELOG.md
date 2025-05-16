@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.62.0] - 2025-05-16
+
+### Added
+
+- Disruptive - Contact
+- Disruptive - Proximity Counter
+- Disruptive - Touch Counter
+
 # [1.61.0] - 2025-04-23
 
 ### Added
