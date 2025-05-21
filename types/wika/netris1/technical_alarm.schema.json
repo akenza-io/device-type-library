@@ -1,0 +1,22 @@
+{
+  "$id": "https://akenza.io/wika/netris1/technical_alarm.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "technical_alarm",
+  "title": "Technical alarm",
+  "properties": {
+    "alarmStatus": {
+      "title": "Alarm status",
+      "type": "number",
+      "description": "Alarm status",
+      "hideFromKpis": true
+    },
+    "alarmType": {
+      "title": "Alarm type",
+      "type": "array",
+      "description": "Alarm type",
+      "hideFromKpis": true
+    }
+  }
+}
