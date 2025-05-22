@@ -10,6 +10,9 @@ function consume(event) {
         sample.fw = item.count;
       } else if (item.direction === "out") {
         sample.bw = item.count;
+      } else {
+        // Output event if unexpected message is sent
+        emit("log", { data: event });
       }
     });
 
