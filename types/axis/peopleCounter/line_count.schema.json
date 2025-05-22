@@ -1,0 +1,28 @@
+{
+  "$id": "https://akenza.io/axis/peopleCounter/line_count.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "line_count",
+  "title": "Line count",
+  "properties": {
+    "fw": {
+      "title": "Forward",
+      "description": "People moving forward",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "bw": {
+      "title": "Backward",
+      "description": "People moving backwards",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    }
+  },
+  "required": [
+    "fw",
+    "bw"
+  ]
+}

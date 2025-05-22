@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.63.0] - 2025-05-22
+
+### Added
+
+- Axis - People Counter
+
 # [1.62.0] - 2025-05-16
 
 ### Added
