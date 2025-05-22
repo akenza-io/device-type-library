@@ -1,7 +1,7 @@
 {
   "name": "People Counter",
   "version": "1.0.0",
-  "manufacturer": "Axios",
+  "manufacturer": "Axis",
   "url": "https://www.axis.com/products/axis-people-counter",
   "description": "AXIS People Counter provides actionable insights to evaluate site performance. It counts people in both directions in real-time through compatible ceiling-mounted Axis cameras, automatically disregarding things like strollers and carts. This scalable, server-free application turns your camera into an advanced sensor, and you can expand coverage by connecting two cameras or defining specific counting areas.",
   "author": "Akenza AG",
