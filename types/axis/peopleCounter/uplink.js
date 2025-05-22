@@ -12,7 +12,7 @@ function consume(event) {
         sample.bw = item.count;
       } else {
         // Output event if unexpected message is sent
-        emit("log", { data: event });
+        emit("log", { data: event, message: "Unexpected message. Creating log for further debugging" });
       }
     });
 
