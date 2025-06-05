@@ -427,7 +427,7 @@ function decodeKeepAliveMessage(input) {
   output.data.deviceStatistic.batteryLevelNewEvent = !!((input.bytes[2] & 0x80) >> 7);
 
   // battery level in percent
-  output.data.deviceStatistic.batteryLevelPercent = input.bytes[2] & 0x7f;
+  output.data.deviceStatistic.batteryLevel = input.bytes[2] & 0x7f;
 
   return output;
 }
@@ -848,7 +848,7 @@ function returnPhysicalUnitFromId(id) {
 function consume(event) {
   const payload = event.data.payloadHex;
   const { port } = event.data;
-  let data = {};
+  const data = {};
 
   // Set globals with customfields
   if (event.device !== undefined && event.device.customFields !== undefined) {
@@ -875,23 +875,37 @@ function consume(event) {
           data[channel.channelName] = channel.value;
         });
 
+        // Pass device intern data into the lifecycle 
+        if (data.deviceTemperature !== undefined && data.batteryVoltage !== undefined) {
+          const lifecycle = {};
+          if (data.deviceTemperature !== undefined) {
+            lifecycle.deviceTemperature = data.deviceTemperature;
+            delete data.deviceTemperature;
+          }
+          if (data.batteryVoltage !== undefined) {
+            lifecycle.batteryVoltage = data.batteryVoltage;
+            delete data.batteryVoltage;
+          }
+          emit("sample", { data: lifecycle, topic: "lifecycle" });
+        }
+
         emit("sample", { data, topic: "default" });
       } else if (decoded.processAlarms !== undefined) {
         decoded.processAlarms.forEach(alarm => {
-          data = {};
-          data.alarmChannel = alarm.channelName;
-          data.alarmStatus = alarm.eventName;
-          data.alarmType = alarm.alarmTypeName;
-          data.value = alarm.value;
-          emit("sample", { data, topic: "process_alarm" });
+          const packet = {};
+          packet.alarmChannel = alarm.channelName;
+          packet.alarmStatus = alarm.eventName;
+          packet.alarmType = alarm.alarmTypeName;
+          packet.value = alarm.value;
+          emit("sample", { data: packet, topic: "process_alarm" });
         });
 
       } else if (decoded.technicalAlarms !== undefined) {
         decoded.technicalAlarms.forEach(alarm => {
-          data = {};
-          data.alarmStatus = alarm.eventName;
-          data.alarmType = alarm.alarmTypeNames;
-          emit("sample", { data, topic: "technical_alarm" });
+          const packet = {};
+          packet.alarmStatus = alarm.eventName;
+          packet.alarmType = alarm.alarmTypeNames;
+          emit("sample", { data: packet, topic: "technical_alarm" });
         });
 
       } else if (decoded.deviceAlarm !== undefined) {
@@ -918,7 +932,7 @@ function consume(event) {
         emit("sample", { data, topic: "device_information" });
       } else if (decoded.deviceStatistic !== undefined) {
         data.batteryLevelNewEvent = decoded.deviceInformation.batteryLevelNewEvent;
-        data.batteryLevelPercent = decoded.deviceInformation.batteryLevel;
+        data.batteryLevel = decoded.deviceInformation.batteryLevel;
 
         emit("sample", { data, topic: "lifecycle" });
       }

@@ -9,8 +9,7 @@
     "alarmStatus": {
       "title": "Alarm status",
       "type": "number",
-      "description": "Alarm status",
-      "hideFromKpis": true
+      "description": "Alarm status"
     },
     "alarmType": {
       "title": "Alarm type",

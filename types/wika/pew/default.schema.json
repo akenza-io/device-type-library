@@ -8,14 +8,6 @@
   "properties": {
     "pressure": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/bar"
-    },
-    "deviceTemperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "hideFromKpis": true
-    },
-    "batteryVoltage": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt",
-      "hideFromKpis": true
     }
   }
 }

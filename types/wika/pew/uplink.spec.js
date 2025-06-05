@@ -125,9 +125,19 @@ describe("Wika Pew 1000 Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "default");
+        assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryVoltage, 3.5);
         assert.equal(value.data.deviceTemperature, 3.96);
+
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "default");
         assert.equal(value.data.pressure, -0.011);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

@@ -13,8 +13,7 @@
       "enum": [
         "TRIGGERED",
         "DISAPPEARED"
-      ],
-      "hideFromKpis": true
+      ]
     },
     "alarmType": {
       "title": "Alarm type",
