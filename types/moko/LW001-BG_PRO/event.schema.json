@@ -1,0 +1,37 @@
+{
+    "type": "object",
+    "properties": {
+        "port": {
+            "type": "number",
+            "description": "Port number of the payload"
+        },
+        "hexFormatPayload": {
+            "type": "string",
+            "description": "Payload in hexadecimal format"
+        },
+        "payloadType": {
+            "type": "string",
+            "description": "Type of payload (e.g., Event Message)"
+        },
+        "operationMode": {
+            "type": "string",
+            "description": "Current operation mode of the device"
+        },
+        "temperature": {
+            "type": "string",
+            "description": "Temperature reading from the device"
+        },
+        "ack": {
+            "type": "number",
+            "description": "Acknowledgment value"
+        },
+        "batteryVoltage": {
+            "type": "string",
+            "description": "Battery voltage level"
+        },
+        "eventType": {
+            "type": "string",
+            "description": "Type of event (e.g., Start of movement, End of movement)"
+        }
+    }
+}

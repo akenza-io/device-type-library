@@ -1,0 +1,61 @@
+{
+    "type": "object",
+    "properties": {
+        "port": {
+            "type": "number",
+            "description": "Port number of the payload"
+        },
+        "hexFormatPayload": {
+            "type": "string",
+            "description": "Payload in hexadecimal format"
+        },
+        "payloadType": {
+            "type": "string",
+            "description": "Type of payload (e.g., GPS Limit)"
+        },
+        "operationMode": {
+            "type": "string",
+            "description": "Current operation mode of the device"
+        },
+        "batteryLevel": {
+            "type": "string",
+            "description": "Battery level status (Normal or Low battery)"
+        },
+        "tamperAlarm": {
+            "type": "string",
+            "description": "Tamper alarm status (Triggered or Not triggered)"
+        },
+        "mandownStatus": {
+            "type": "string",
+            "description": "Man down status (In idle or Not in idle)"
+        },
+        "motionStateSinceLastPaylaod": {
+            "type": "string",
+            "description": "Motion state since last payload (Yes or No)"
+        },
+        "positioningType": {
+            "type": "string",
+            "description": "Type of positioning (Normal or Downlink for position)"
+        },
+        "lorawanDownlinkCount": {
+            "type": "number",
+            "description": "Number of LoRaWAN downlinks"
+        },
+        "batteryVoltage": {
+            "type": "string",
+            "description": "Battery voltage level"
+        },
+        "latitude": {
+            "type": "number",
+            "description": "Latitude of the device"
+        },
+        "longitude": {
+            "type": "number",
+            "description": "Longitude of the device"
+        },
+        "pdop": {
+            "type": "number",
+            "description": "Positional Dilution of Precision (PDOP)"
+        }
+    }
+}
