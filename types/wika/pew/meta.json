@@ -1,0 +1,25 @@
+{
+  "name": "PEW-1000",
+  "version": "1.0.0",
+  "manufacturer": "Wika",
+  "url": "https://www.wika.com/en-en/pew_1000.WIKA",
+  "description": "The model PEW-1000 is a radio-based pressure sensor for monitoring liquids and gases.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Pressure",
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "device_alarm",
+    "device_information",
+    "error",
+    "lifecycle",
+    "process_alarm",
+    "technical_alarm"
+  ],
+  "encoding": "HEX",
+  "connectivity": "MIOTY"
+}
