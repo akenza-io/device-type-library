@@ -5,7 +5,7 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Vegapulse Air", () => {
+describe("Vegapulse Air 42", () => {
   let distanceSchema = null;
   let consume = null;
   before((done) => {
