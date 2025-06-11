@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.64.0] - 2025-06-11
+
+### Added
+
+- Wika - Netris 1
+- Wika - Pew
+- Vegapulse - Vegapulse Air 42
+- Vegapulse - Vegapulse Air 43
+
 # [1.63.0] - 2025-05-22
 
 ### Added

@@ -55,7 +55,7 @@ describe("Vegapulse Air 42", () => {
 
         assert.equal(value.topic, "distance");
         assert.equal(value.data.distance, 1.2743860483169556);
-        assert.equal(value.data.unit, 45);
+        assert.equal(value.data.unit, "METERS");
         assert.equal(value.data.inclinationDegree, 9);
 
         utils.validateSchema(value.data, distanceSchema, { throwError: true });

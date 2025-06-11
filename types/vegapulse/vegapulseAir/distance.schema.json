@@ -15,9 +15,14 @@
     "unit": {
       "title": "Unit",
       "description": "Unit indicator",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 255,
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "FEET",
+        "METERS",
+        "INCHES",
+        "MILLIMETERS"
+      ],
       "hideFromKpis": true
     },
     "inclinationDegree": {

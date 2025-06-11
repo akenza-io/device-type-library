@@ -104,6 +104,27 @@ function getFillLevel(device, distance) {
   return undefined;
 }
 
+function measuredValueUnit(byte) {
+  let unit = "UNKNOWN";
+  switch (byte) {
+    case 0x2C:
+      unit = "FEET";
+      break;
+    case 0x2D:
+      unit = "METERS";
+      break;
+    case 0x2F:
+      unit = "INCHES";
+      break;
+    case 0x31:
+      unit = "MILLIMETERS";
+      break;
+    default:
+      break;
+  }
+  return unit;
+}
+
 function consume(event) {
   const bytes = Hex.hexToBytes(event.data.payloadHex);
   const distance = {};
@@ -118,7 +139,7 @@ function consume(event) {
   if (packetIdentifier === 2 || packetIdentifier === 3 || packetIdentifier === 4 || packetIdentifier === 5) {
     lifecycle.namurState = namurStatus(bytes[1]);
     distance.distance = bytesToFloat(bytes.slice(2, 6));
-    distance.unit = bytes[6];
+    distance.unit = measuredValueUnit(bytes[6]);
     lifecycle.batteryLevel = bytes[7];
     temperature.temperature = bytesToInt16(bytes.slice(8, 10)) / 10;
 
@@ -156,7 +177,7 @@ function consume(event) {
     if ([8, 9, 10, 11, 12, 13, 14, 15, 18, 19].indexOf(packetIdentifier) !== -1) {
       distance.distance = bytesToFloat(bytes.slice(position, position + 4));
       position += 4;
-      distance.unit = bytes[position];
+      distance.unit = measuredValueUnit(bytes[position]);
       position++;
     }
 
