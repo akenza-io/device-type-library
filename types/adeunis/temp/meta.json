@@ -1,0 +1,19 @@
+{
+  "name": "TEMP",
+  "version": "1.0.0",
+  "manufacturer": "Adeunis",
+  "url": "https://www.adeunis.com/en/produit/temp-temperature/",
+  "description": "The Adeunis TEMP Sensor is a LoRaWAN temperature sensor with an ambient temperature probe and a remote contact temperature probe.",
+  "author": "Philipp Walker",
+  "firmwareVersion": "V2.1.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
