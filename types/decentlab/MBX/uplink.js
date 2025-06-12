@@ -135,9 +135,9 @@ function consume(event) {
 
   // Default values
   data.distance = sample.distance;
-  data.distanceCM = sample.distance / 10;
+  data.distanceCm = sample.distance / 10;
 
-  const fillLevel = getFillLevel(event.device, data.distanceCM);
+  const fillLevel = getFillLevel(event.device, data.distanceCm);
   if (fillLevel !== undefined) {
     data.fillLevel = fillLevel;
   }

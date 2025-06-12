@@ -6,11 +6,11 @@
   "topic": "distance",
   "title": "Distance",
   "properties": {
-    "distanceMM": {
+    "distanceMm": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/mm",
       "title": "Distance mm"
     },
-    "distanceCM": {
+    "distanceCm": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
       "title": "Distance cm"
     },
@@ -78,8 +78,8 @@
     }
   },
   "required": [
-    "distanceMM",
-    "distanceCM",
+    "distanceMm",
+    "distanceCm",
     "distanceM",
     "distanceInch",
     "distanceFt"

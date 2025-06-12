@@ -50,7 +50,7 @@ describe("Decentlab MBX Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.distance, 1234);
-        assert.equal(value.data.distanceCM, 123.4);
+        assert.equal(value.data.distanceCm, 123.4);
         assert.equal(value.data.fillLevel, 38);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

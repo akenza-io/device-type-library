@@ -149,8 +149,8 @@ function baseDistanceCalculation(sensorMeasurementUnit, baseDistance) {
 
 function differentMeasurementUnits(baseDistance) {
   const distance = {};
-  distance.distanceMM = baseDistance * 10;
-  distance.distanceCM = baseDistance;
+  distance.distanceMm = baseDistance * 10;
+  distance.distanceCm = baseDistance;
   distance.distanceM = baseDistance / 100;
   distance.distanceInch = baseDistance / 2.54;
   distance.distanceFt = baseDistance / 30.48;
@@ -346,7 +346,7 @@ function consume(event) {
   }
 
   if (!isEmpty(distance)) {
-    const fillLevel = getFillLevel(event.device, distance.distanceCM);
+    const fillLevel = getFillLevel(event.device, distance.distanceCm);
     if (fillLevel !== undefined) {
       distance.fillLevel = fillLevel;
     }
