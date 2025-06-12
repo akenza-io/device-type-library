@@ -90,7 +90,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         assert.isNotNull(value);
 
         assert.equal(value.absoluteCount, 1);
-        assert.equal(value.lastStatus, "NOT_PRESENT");
+        assert.equal(value.lastStatus, "PRESENT");
       });
 
       utils.expectEmits((type, value) => {
