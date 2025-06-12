@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.64.1] - 2025-06-12
+
+### Changed
+
+- Data model - added feet and inches for distance
+- Vergesense Cloud-connector - handling occupancy on a different topic
+- Disruptive Proximity and Proximity Counter - now give out calculated values
+- Vegapulse Devices - give out distance in all possible units now
+
 # [1.64.0] - 2025-06-11
 
 ### Added

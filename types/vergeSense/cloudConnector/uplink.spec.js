@@ -72,20 +72,6 @@ describe("Verge Sense Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "occupancy");
-        assert.equal(value.data.occupancy, 0);
-        assert.equal(value.data.occupied, false);
-
-        utils.validateSchema(value.data, occupancySchema, {
-          throwError: true,
-        });
-      });
-
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
         assert.equal(value.topic, "area_count");
         assert.equal(value.data.peopleCount, 0);
 
@@ -118,6 +104,20 @@ describe("Verge Sense Uplink", () => {
           "timestamp": "2024-11-21T13:37:45Z"
         }
       };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "occupancy");
+        assert.equal(value.data.occupancy, 2);
+        assert.equal(value.data.occupied, true);
+
+        utils.validateSchema(value.data, occupancySchema, {
+          throwError: true,
+        });
+      });
 
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");

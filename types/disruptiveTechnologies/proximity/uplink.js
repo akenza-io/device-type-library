@@ -4,8 +4,36 @@ function consume(event) {
   let topic = eventType;
 
   if (eventType === "objectPresent") {
-    sample.objectPresent = event.data.objectPresent.state;
     topic = "object_present";
+    sample.objectPresent = event.data.objectPresent.state;
+    if (sample.objectPresent === "PRESENT") {
+      sample.proximity = true;
+      sample.relativeCount = 1;
+    } else {
+      sample.proximity = false;
+      sample.relativeCount = 0;
+    }
+
+    // State manipulation to get a count for object present changes
+    const state = event.state || {};
+
+    // Init absolute count
+    if (state.absoluteCount === undefined || state.absoluteCount === null) {
+      state.absoluteCount = 0;
+    }
+
+    if (state.lastStatus !== undefined && state.lastStatus !== null) {
+      if (sample.objectPresent !== state.lastStatus) {
+        state.absoluteCount += sample.relativeCount;
+      }
+    } else {
+      state.lastStatus = sample.objectPresent;
+      state.absoluteCount += sample.relativeCount; // Count first instance as a count
+    }
+
+    sample.absoluteCount = state.absoluteCount;
+
+    emit("state", state);
   } else if (eventType === "touch") {
     sample.touch = true;
   } else if (eventType === "networkStatus") {
