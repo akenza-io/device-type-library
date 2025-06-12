@@ -27,10 +27,10 @@ function consume(event) {
         state.absoluteCount += sample.relativeCount;
       }
     } else {
-      state.lastStatus = sample.objectPresent;
       state.absoluteCount += sample.relativeCount; // Count first instance as a count
     }
 
+    state.lastStatus = sample.objectPresent;
     sample.absoluteCount = state.absoluteCount;
 
     emit("state", state);
