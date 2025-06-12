@@ -60,8 +60,8 @@ function consume(event) {
 
     data.alarm = bytes[6] ? "ALARM" : "NO_ALARM";
     data.distance = (bytes[7] << 8) | bytes[8]; // in mm
-    data.distanceCM = (bytes[7] << 8) | (bytes[8] / 10); // in cm
-    const fillLevel = getFillLevel(event.device, data.distanceCM);
+    data.distanceCm = (bytes[7] << 8) | (bytes[8] / 10); // in cm
+    const fillLevel = getFillLevel(event.device, data.distanceCm);
     if (fillLevel !== undefined) {
       data.fillLevel = fillLevel;
     }

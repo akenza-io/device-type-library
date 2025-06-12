@@ -125,9 +125,42 @@ function measuredValueUnit(byte) {
   return unit;
 }
 
+function baseDistanceCalculation(sensorMeasurementUnit, baseDistance) {
+  // Always cast baseDistance to CM and go from there
+  switch (sensorMeasurementUnit) {
+    case "FEET":
+      baseDistance *= 30.48;
+      break;
+    case "METERS":
+      baseDistance *= 100;
+      break;
+    case "INCHES":
+      baseDistance *= 2.54;
+      break;
+    case "MILLIMETERS":
+      baseDistance /= 10;
+      break;
+    default:
+      break;
+  }
+  return baseDistance;
+}
+
+
+function differentMeasurementUnits(baseDistance) {
+  const distance = {};
+  distance.distanceMm = baseDistance * 10;
+  distance.distanceCm = baseDistance;
+  distance.distanceM = baseDistance / 100;
+  distance.distanceInch = baseDistance / 2.54;
+  distance.distanceFt = baseDistance / 30.48;
+
+  return distance;
+}
+
 function consume(event) {
   const bytes = Hex.hexToBytes(event.data.payloadHex);
-  const distance = {};
+  let distance = {};
   const temperature = {};
   const lifecycle = {};
   const gps = {};
@@ -138,8 +171,10 @@ function consume(event) {
 
   if (packetIdentifier === 2 || packetIdentifier === 3 || packetIdentifier === 4 || packetIdentifier === 5) {
     lifecycle.namurState = namurStatus(bytes[1]);
-    distance.distance = bytesToFloat(bytes.slice(2, 6));
-    distance.unit = measuredValueUnit(bytes[6]);
+    distance.sensorMeasurementUnit = measuredValueUnit(bytes[6]);
+    const baseDistance = baseDistanceCalculation(distance.sensorMeasurementUnit, bytesToFloat(bytes.slice(2, 6)));
+    distance = Object.assign(differentMeasurementUnits(baseDistance), distance);
+
     lifecycle.batteryLevel = bytes[7];
     temperature.temperature = bytesToInt16(bytes.slice(8, 10)) / 10;
 
@@ -175,9 +210,12 @@ function consume(event) {
     }
 
     if ([8, 9, 10, 11, 12, 13, 14, 15, 18, 19].indexOf(packetIdentifier) !== -1) {
-      distance.distance = bytesToFloat(bytes.slice(position, position + 4));
+      const rawDistance = bytesToFloat(bytes.slice(position, position + 4));
       position += 4;
-      distance.unit = measuredValueUnit(bytes[position]);
+      distance.sensorMeasurementUnit = measuredValueUnit(bytes[position]);
+      const baseDistance = baseDistanceCalculation(distance.sensorMeasurementUnit, rawDistance);
+      distance = Object.assign(differentMeasurementUnits(baseDistance), distance);
+
       position++;
     }
 
@@ -308,7 +346,7 @@ function consume(event) {
   }
 
   if (!isEmpty(distance)) {
-    const fillLevel = getFillLevel(event.device, distance.distance);
+    const fillLevel = getFillLevel(event.device, distance.distanceCm);
     if (fillLevel !== undefined) {
       distance.fillLevel = fillLevel;
     }
