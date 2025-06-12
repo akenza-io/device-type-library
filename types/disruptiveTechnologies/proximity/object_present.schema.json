@@ -25,7 +25,7 @@
       "description": "One door cycle counts as one relativeCount.",
       "type": "integer"
     },
-    "absoluteCount": {
+    "count": {
       "title": "Absolute event count",
       "description": "Absolute event count",
       "type": "integer"

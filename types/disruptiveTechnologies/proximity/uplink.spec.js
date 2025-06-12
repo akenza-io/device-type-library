@@ -41,7 +41,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         assert.equal(type, "state");
         assert.isNotNull(value);
 
-        assert.equal(value.absoluteCount, 0);
+        assert.equal(value.count, 0);
         assert.equal(value.lastStatus, "NOT_PRESENT");
       });
 
@@ -53,7 +53,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         assert.equal(value.topic, "object_present");
         assert.equal(value.data.objectPresent, "NOT_PRESENT");
         assert.equal(value.data.proximity, false);
-        assert.equal(value.data.absoluteCount, 0);
+        assert.equal(value.data.count, 0);
         assert.equal(value.data.relativeCount, 0);
 
         utils.validateSchema(value.data, objectPresentSchema, {
@@ -80,7 +80,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         timestamp: "2021-09-15T14:48:05.948000Z",
         labels: {},
         state: {
-          absoluteCount: 0,
+          count: 0,
           lastStatus: "NOT_PRESENT"
         }
       };
@@ -89,7 +89,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         assert.equal(type, "state");
         assert.isNotNull(value);
 
-        assert.equal(value.absoluteCount, 1);
+        assert.equal(value.count, 1);
         assert.equal(value.lastStatus, "PRESENT");
       });
 
@@ -101,7 +101,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         assert.equal(value.topic, "object_present");
         assert.equal(value.data.objectPresent, "PRESENT");
         assert.equal(value.data.proximity, true);
-        assert.equal(value.data.absoluteCount, 1);
+        assert.equal(value.data.count, 1);
         assert.equal(value.data.relativeCount, 1);
 
         utils.validateSchema(value.data, objectPresentSchema, {

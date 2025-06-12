@@ -18,20 +18,20 @@ function consume(event) {
     const state = event.state || {};
 
     // Init absolute count
-    if (state.absoluteCount === undefined || state.absoluteCount === null) {
-      state.absoluteCount = 0;
+    if (state.count === undefined || state.count === null) {
+      state.count = 0;
     }
 
     if (state.lastStatus !== undefined && state.lastStatus !== null) {
       if (sample.objectPresent !== state.lastStatus) {
-        state.absoluteCount += sample.relativeCount;
+        state.count += sample.relativeCount;
       }
     } else {
-      state.absoluteCount += sample.relativeCount; // Count first instance as a count
+      state.count += sample.relativeCount; // Count first instance as a count
     }
 
     state.lastStatus = sample.objectPresent;
-    sample.absoluteCount = state.absoluteCount;
+    sample.count = state.count;
 
     emit("state", state);
   } else if (eventType === "touch") {
