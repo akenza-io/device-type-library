@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Vega",
   "url": "https://www.vega.com/en-us/products/product-catalog/level/radar/vegapuls-air-41",
-  "description": "VEGAPULS Air 41 for level measurement in IBCs and plastic vessels with high protection sensor housing (IP69).",
+  "description": "The VEGAPULS Air 41 radar sensor is ideal for autarkic, non-contact level measurement of bulk solids and liquids. It is particularly suited for use in mobile silos containing dry mortar, concrete, or plaster, as well as in a wide range of liquid tanks. With simple and reliable mounting and no need for an external power supply, it offers a highly economical and low-maintenance solution.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
