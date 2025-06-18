@@ -40,7 +40,7 @@ describe("Verge Sense Uplink", () => {
   });
 
   describe("consume()", () => {
-    it("should decode the Verge Sense space report payload", () => {
+    it("should decode the Verge Sense space report payload && init state", () => {
       const data = {
         data: {
           "building_ref_id": "EA21",
@@ -72,6 +72,28 @@ describe("Verge Sense Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
+        assert.equal(value.topic, "occupancy");
+        assert.equal(value.data.occupancy, false);
+        assert.equal(value.data.occupied, 0);
+
+        utils.validateSchema(value.data, occupancySchema, {
+          throwError: true,
+        });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+
+        // assert.equal(value.lastEmittedAt, now);
+        assert.equal(value.lastOccupied, "UNOCCUPIED");
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
         assert.equal(value.topic, "area_count");
         assert.equal(value.data.peopleCount, 0);
 
@@ -85,6 +107,10 @@ describe("Verge Sense Uplink", () => {
 
     it("should decode the Verge Sense space availability payload", () => {
       const data = {
+        state: {
+          lastEmittedAt: new Date().getTime() - 3600001,
+          lastOccupied: "UNOCCUPIED"
+        },
         data: {
           "motion_detected": null,
           "building_ref_id": "EA21",
@@ -117,6 +143,14 @@ describe("Verge Sense Uplink", () => {
         utils.validateSchema(value.data, occupancySchema, {
           throwError: true,
         });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+
+        // assert.equal(value.lastEmittedAt, new Date().getTime());
+        assert.equal(value.lastOccupied, "OCCUPIED");
       });
 
       utils.expectEmits((type, value) => {
