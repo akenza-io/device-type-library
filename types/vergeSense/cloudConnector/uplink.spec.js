@@ -40,7 +40,7 @@ describe("Verge Sense Uplink", () => {
   });
 
   describe("consume()", () => {
-    it("should decode the Verge Sense space report payload", () => {
+    it("should decode the Verge Sense space report payload && init state", () => {
       const data = {
         data: {
           "building_ref_id": "EA21",
@@ -68,6 +68,14 @@ describe("Verge Sense Uplink", () => {
       };
 
       utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+
+        // assert.equal(value.lastHour, 13);
+        assert.equal(value.lastOccupied, "UNOCCUPIED");
+      });
+
+      utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -85,6 +93,10 @@ describe("Verge Sense Uplink", () => {
 
     it("should decode the Verge Sense space availability payload", () => {
       const data = {
+        state: {
+          lastHour: 13,
+          lastOccupied: "UNOCCUPIED"
+        },
         data: {
           "motion_detected": null,
           "building_ref_id": "EA21",
@@ -117,6 +129,14 @@ describe("Verge Sense Uplink", () => {
         utils.validateSchema(value.data, occupancySchema, {
           throwError: true,
         });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+
+        assert.equal(value.lastHour, 13);
+        assert.equal(value.lastOccupied, "OCCUPIED");
       });
 
       utils.expectEmits((type, value) => {
