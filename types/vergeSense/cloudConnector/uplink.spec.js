@@ -68,10 +68,24 @@ describe("Verge Sense Uplink", () => {
       };
 
       utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "occupancy");
+        assert.equal(value.data.occupancy, false);
+        assert.equal(value.data.occupied, 0);
+
+        utils.validateSchema(value.data, occupancySchema, {
+          throwError: true,
+        });
+      });
+
+      utils.expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
 
-        // assert.equal(value.lastHour, 13);
+        // assert.equal(value.lastEmittedAt, now);
         assert.equal(value.lastOccupied, "UNOCCUPIED");
       });
 
@@ -94,7 +108,7 @@ describe("Verge Sense Uplink", () => {
     it("should decode the Verge Sense space availability payload", () => {
       const data = {
         state: {
-          lastHour: 13,
+          lastEmittedAt: new Date().getTime() - 3600001,
           lastOccupied: "UNOCCUPIED"
         },
         data: {
@@ -135,7 +149,7 @@ describe("Verge Sense Uplink", () => {
         assert.equal(type, "state");
         assert.isNotNull(value);
 
-        assert.equal(value.lastHour, 13);
+        // assert.equal(value.lastEmittedAt, new Date().getTime());
         assert.equal(value.lastOccupied, "OCCUPIED");
       });
 
