@@ -6,10 +6,15 @@
   "description": "Measures the CO2, temperature, humidity, and barometric pressure in any space.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
-  "availableSensors": ["CO2", "Humidity", "Temperature", "Pressure"],
+  "availableSensors": [
+    "CO2",
+    "Humidity",
+    "Temperature",
+    "Pressure"
+  ],
   "outputTopics": [
     "co2",
-    "humidity",
+    "default",
     "lifecycle",
     "network_status",
     "pressure"

@@ -5,6 +5,7 @@ function consume(event) {
 
   if (eventType === "temperature") {
     sample.temperature = event.data.temperature.value;
+    topic = "default";
   } else if (eventType === "touch") {
     sample.touch = true;
   } else if (eventType === "networkStatus") {

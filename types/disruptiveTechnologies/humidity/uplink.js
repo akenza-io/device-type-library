@@ -6,6 +6,7 @@ function consume(event) {
   if (eventType === "humidity") {
     sample.temperature = event.data.humidity.temperature;
     sample.humidity = event.data.humidity.relativeHumidity;
+    topic = "default";
   } else if (eventType === "touch") {
     sample.touch = true;
   } else if (eventType === "networkStatus") {
