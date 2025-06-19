@@ -6,21 +6,21 @@ const utils = require("test-utils");
 const { assert } = chai;
 
 describe("Digital Technologies Humidity Sensor Uplink", () => {
-  let humiditySchema = null;
+  let defaultSchema = null;
   let consume = null;
   before((done) => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
     utils
-      .loadSchema(`${__dirname}/humidity.schema.json`)
+      .loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
-        humiditySchema = parsedSchema;
+        defaultSchema = parsedSchema;
         done();
       });
   });
 
   describe("consume()", () => {
-    it("should decode the Digital Technologies Humidity Sensor payload", () => {
+    it("should decode the Digital Technologies default Sensor payload", () => {
       const data = {
         eventId: "c505kmuj0aoraraqu5g0",
         targetName:
@@ -42,11 +42,11 @@ describe("Digital Technologies Humidity Sensor Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "humidity");
+        assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 22.45);
         assert.equal(value.data.humidity, 17);
 
-        utils.validateSchema(value.data, humiditySchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

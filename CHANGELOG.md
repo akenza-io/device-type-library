@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.64.2] - 2025-06-19
+
+### Added
+
+- Airthings - Cloud Connector
+
+### Changed
+
+- BRAKING CHANGE: Disruptive Technologies temperature values will now be saved on the default topic
+
+# [1.64.2] - 2025-06-18
+
+### Changed
+
+- Vergesense - Now repeats samples each hour to keep the buckets full
+
 # [1.64.1] - 2025-06-12
 
 ### Changed
