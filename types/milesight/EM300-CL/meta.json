@@ -1,0 +1,19 @@
+{
+  "name": "EM300-CL",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight.com/iot/product/lorawan-sensor/em300-cl",
+  "description": "EM300-CL, the LoRaWAN® capacitive level sensor offers to facilitate better management and enhance user experience by keeping hand wash levels at check.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Liquid"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

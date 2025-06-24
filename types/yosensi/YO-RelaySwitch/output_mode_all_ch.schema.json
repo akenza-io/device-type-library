@@ -4,7 +4,7 @@
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "output_mode_all_ch",
-  "title": "OutputModeAllCH",
+  "title": "Output mode all channels",
   "properties": {
     "outputModeAllCH": {
       "title": "Output Mode All Channels",
@@ -13,5 +13,7 @@
       "hideFromKpis": false
     }
   },
-  "required": ["outputModeAllCH"]
+  "required": [
+    "outputModeAllCH"
+  ]
 }

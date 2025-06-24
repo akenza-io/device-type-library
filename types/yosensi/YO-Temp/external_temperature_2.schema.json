@@ -4,7 +4,7 @@
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "external_temperature_2",
-  "title": "ExternalTemperature2",
+  "title": "External temperature 2",
   "properties": {
     "externalTemperature2": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
@@ -15,5 +15,7 @@
       "hideFromKpis": false
     }
   },
-  "required": ["externalTemperature2"]
+  "required": [
+    "externalTemperature2"
+  ]
 }

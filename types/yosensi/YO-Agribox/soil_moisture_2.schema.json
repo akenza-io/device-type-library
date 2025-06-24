@@ -4,7 +4,7 @@
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "soil_moisture_2",
-  "title": "SoilMoisture2",
+  "title": "Soil moisture 2",
   "properties": {
     "soilMoisture2": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
@@ -13,5 +13,7 @@
       "hideFromKpis": false
     }
   },
-  "required": ["soilMoisture2"]
+  "required": [
+    "soilMoisture2"
+  ]
 }

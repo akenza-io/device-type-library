@@ -4,7 +4,7 @@
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "comfort_setpoint",
-  "title": "ComfortSetpoint",
+  "title": "Comfort setpoint",
   "properties": {
     "comfortSetpoint": {
       "title": "Comfort Setpoint",
@@ -13,5 +13,7 @@
       "hideFromKpis": false
     }
   },
-  "required": ["comfortSetpoint"]
+  "required": [
+    "comfortSetpoint"
+  ]
 }

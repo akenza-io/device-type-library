@@ -6,20 +6,39 @@
   "topic": "default",
   "title": "Default",
   "properties": {
+    "absoluteFw": {
+      "title": "Absolute count forward",
+      "description": "Absolute count of people moving forward",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "absoluteBw": {
+      "title": "Absolute count backward",
+      "description": "Absolute count of people moving backwards",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
     "fw": {
       "title": "Forward",
-      "description": "Absolute count of people moving forward",
+      "description": "Relative count of people moving forward",
       "type": "integer",
       "minimum": 0,
       "maximum": 65535
     },
     "bw": {
       "title": "Backward",
-      "description": "Absolute count of people moving backwards",
+      "description": "Relative count of people moving backwards",
       "type": "integer",
       "minimum": 0,
       "maximum": 65535
     }
   },
-  "required": ["fw", "bw"]
+  "required": [
+    "fw",
+    "bw",
+    "absoluteFw",
+    "absoluteBw"
+  ]
 }

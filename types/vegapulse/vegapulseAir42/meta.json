@@ -1,0 +1,25 @@
+{
+  "name": "VEGAPULS Air 42",
+  "version": "1.0.0",
+  "manufacturer": "Vega",
+  "url": "https://www.vega.com/en-us/products/product-catalog/level/radar/vegapuls-air-42",
+  "description": "The VEGAPULS Air 42 radar sensor is ideal for autarkic, non-contact level measurement of bulk solids and liquids. It is particularly suited for mobile silos containing dry mortar, concrete, or plaster, as well as for various types of liquid tanks. Thanks to its simple and reliable mounting without the need for an external power supply, it provides a cost-effective and low-maintenance solution.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Distance",
+    "GPS"
+  ],
+  "outputTopics": [
+    "distance",
+    "gps",
+    "lifecycle",
+    "schedule",
+    "system",
+    "temperature"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

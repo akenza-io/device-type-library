@@ -6,7 +6,7 @@
   "topic": "skewness",
   "title": "Skewness",
   "properties": {
-    "skewness_x": {
+    "skewnessX": {
       "title": "Skewness - X axis",
       "type": "number",
       "description": "Skewness - X.",
@@ -14,7 +14,7 @@
       "maximum": 3,
       "hideFromKpis": false
     },
-    "skewness_y": {
+    "skewnessY": {
       "title": "Skewness - Y axis",
       "type": "number",
       "description": "Skewness - Y axis.",
@@ -22,7 +22,7 @@
       "maximum": 3,
       "hideFromKpis": false
     },
-    "skewness_z": {
+    "skewnessZ": {
       "title": "Skewness - Z axis",
       "type": "number",
       "description": "Skewness - Z axis.",
@@ -31,5 +31,9 @@
       "hideFromKpis": false
     }
   },
-  "required": ["skewness_x", "skewness_y", "skewness_z"]
+  "required": [
+    "skewnessX",
+    "skewnessY",
+    "skewnessZ"
+  ]
 }

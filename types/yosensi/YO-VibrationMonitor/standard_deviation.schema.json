@@ -4,9 +4,9 @@
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "standard_deviation",
-  "title": "StandardDeviation",
+  "title": "Standard deviation",
   "properties": {
-    "standardDeviation_x": {
+    "standardDeviationX": {
       "title": "standardDeviation - X axis",
       "type": "number",
       "description": "Standard Deviation - X axis.",
@@ -14,7 +14,7 @@
       "maximum": 10,
       "hideFromKpis": false
     },
-    "standardDeviation_y": {
+    "standardDeviationY": {
       "title": "Standard Deviation - Y axis",
       "type": "number",
       "description": "Standard Deviation - Y axis.",
@@ -22,7 +22,7 @@
       "maximum": 10,
       "hideFromKpis": false
     },
-    "standardDeviation_z": {
+    "standardDeviationZ": {
       "title": "Standard Deviation - Z axis",
       "type": "number",
       "description": "Standard Deviation - Z axis.",
@@ -32,8 +32,8 @@
     }
   },
   "required": [
-    "standardDeviation_x",
-    "standardDeviation_y",
-    "standardDeviation_z"
+    "standardDeviationX",
+    "standardDeviationY",
+    "standardDeviationZ"
   ]
 }

@@ -4,6 +4,115 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.65.1] - 2025-06-24
+
+### Changed
+
+- Airthings - Merging new and old samples to always emit a complete payload
+- Disruptive Technologies temperature & humidity - will now split subsamples into their own samples
+- Terabee People Counting XL - Now counts relative and absolute forward and backward
+
+# [1.65.0] - 2025-06-19
+
+### Added
+
+- Airthings - Cloud Connector
+
+### Changed
+
+- BRAKING CHANGE: Disruptive Technologies temperature values will now be saved on the default topic
+
+# [1.64.2] - 2025-06-18
+
+### Changed
+
+- Vergesense - Now repeats samples each hour to keep the buckets full
+
+# [1.64.1] - 2025-06-12
+
+### Changed
+
+- Data model - added feet and inches for distance
+- Vergesense Cloud-connector - handling occupancy on a different topic
+- Disruptive Proximity and Proximity Counter - now give out calculated values
+- Vegapulse Devices - give out distance in all possible units now
+
+# [1.64.0] - 2025-06-11
+
+### Added
+
+- Wika - Netris 1
+- Wika - Pew
+- Vegapulse - Vegapulse Air 42
+- Vegapulse - Vegapulse Air 43
+
+# [1.63.0] - 2025-05-22
+
+### Added
+
+- Axis - People Counter
+
+# [1.62.0] - 2025-05-16
+
+### Added
+
+- Disruptive - Contact
+- Disruptive - Proximity Counter
+- Disruptive - Touch Counter
+
+# [1.61.0] - 2025-04-23
+
+### Added
+
+- Vegapulse - Vegapulse air
+- IMBuildings - VertiCount
+- Milesight - CT305
+- Milesight - CT310
+- Milesight - EM300-CL
+- Milesight - FT101
+- Milesight - TS201
+- Milesight - WS303
+
+### Changed
+
+- Removed illegal temperature values for all Dragino devices
+
+# [1.60.0] - 2025-04-03
+
+### Changed
+
+- New tests for camelcasing datakeys and underscoring topics
+- Adapted all the following devices
+- IMBuildings - ComfortSensor
+- IMBuildings - MoodBox
+- IMBuildings - OfficeOccupancyCounter
+- IMBuildings - PeopleCounter
+- Comtac - LPN_DO
+- Decentlab - NTU
+- Decentlab - PM
+- Enginko - EGK-LW22PLG
+- Enginko - MCF-LW12MET
+- Lansen - G2-LDP
+- Milesight - CT101
+- Miromico - Insight
+- Talkpool - OY1700
+- Xovis - PC2S
+- Yosensi - YO-360
+- Yosensi - YO-Agribox
+- Yosensi - YO-AirflowPro
+- Yosensi - YO-AirflowProDual
+- Yosensi - YO-Ambience
+- Yosensi - YO-Distance
+- Yosensi - YO-H2O
+- Yosensi - YO-ParticulateMatterSensor
+- Yosensi - YO-PeopleCounter
+- Yosensi - YO-Power
+- Yosensi - YO-RefrigerantMonitor
+- Yosensi - YO-RelaySwitch
+- Yosensi - YO-Temp
+- Yosensi - YO-Thermostat
+- Yosensi - YO-VibrationMonitor
+
 # [1.59.0] - 2025-03-12
 
 ### Added

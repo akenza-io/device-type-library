@@ -6,6 +6,7 @@ function consume(event) {
   if (eventType === "humidity") {
     sample.humidity = event.data.humidity.relativeHumidity;
     sample.temperature = event.data.humidity.temperature;
+    topic = "default";
   } else if (eventType === "co2") {
     sample.co2 = event.data.co2.ppm;
   } else if (eventType === "pressure") {

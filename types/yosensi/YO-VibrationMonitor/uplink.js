@@ -296,8 +296,8 @@ function payloadV2Parse(bytes, date, utils) {
   ) {
     return new Date(
       Number(extractPayloadDateTimeDate) -
-        utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
-          1000,
+      utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
+      1000,
     );
   }
 
@@ -312,7 +312,7 @@ function payloadV2Parse(bytes, date, utils) {
   function extractMeasurementDateTime(byte, extractMeasurementDateTimeDate) {
     return new Date(
       Number(extractMeasurementDateTimeDate) +
-        utils.unsignedNbrFromByte(byte) * 1000,
+      utils.unsignedNbrFromByte(byte) * 1000,
     );
   }
 
@@ -675,76 +675,76 @@ function decoder(port, bytes) {
       case "three-value custom":
         switch (decoded.data.measurements[i].address) {
           case "0000":
-            data.rmsAcceleration_x = decoded.data.measurements[i].value;
+            data.rmsAccelerationX = decoded.data.measurements[i].value;
             break;
           case "0001":
-            data.rmsAcceleration_y = decoded.data.measurements[i].value;
+            data.rmsAccelerationY = decoded.data.measurements[i].value;
             break;
           case "0002":
-            data.rmsAcceleration_z = decoded.data.measurements[i].value;
+            data.rmsAccelerationZ = decoded.data.measurements[i].value;
             break;
           case "0100":
-            data.peakAcceleration_x = decoded.data.measurements[i].value;
+            data.peakAccelerationX = decoded.data.measurements[i].value;
             break;
           case "0101":
-            data.peakAcceleration_y = decoded.data.measurements[i].value;
+            data.peakAccelerationY = decoded.data.measurements[i].value;
             break;
           case "0102":
-            data.peakAcceleration_z = decoded.data.measurements[i].value;
+            data.peakAccelerationZ = decoded.data.measurements[i].value;
             break;
           case "0200":
-            data.crestFactor_x = decoded.data.measurements[i].value;
+            data.crestFactorX = decoded.data.measurements[i].value;
             break;
           case "0201":
-            data.crestFactor_y = decoded.data.measurements[i].value;
+            data.crestFactorY = decoded.data.measurements[i].value;
             break;
           case "0202":
-            data.crestFactor_z = decoded.data.measurements[i].value;
+            data.crestFactorZ = decoded.data.measurements[i].value;
             break;
           case "0300":
-            data.standardDeviation_x = decoded.data.measurements[i].value;
+            data.standardDeviationX = decoded.data.measurements[i].value;
             break;
           case "0301":
-            data.standardDeviation_y = decoded.data.measurements[i].value;
+            data.standardDeviationY = decoded.data.measurements[i].value;
             break;
           case "0302":
-            data.standardDeviation_z = decoded.data.measurements[i].value;
+            data.standardDeviationZ = decoded.data.measurements[i].value;
             break;
           case "0400":
-            data.skewness_x = decoded.data.measurements[i].value;
+            data.skewnessX = decoded.data.measurements[i].value;
             break;
           case "0401":
-            data.skewness_y = decoded.data.measurements[i].value;
+            data.skewnessY = decoded.data.measurements[i].value;
             break;
           case "0402":
-            data.skewness_z = decoded.data.measurements[i].value;
+            data.skewnessZ = decoded.data.measurements[i].value;
             break;
           case "0500":
-            data.kurtosis_x = decoded.data.measurements[i].value;
+            data.kurtosisX = decoded.data.measurements[i].value;
             break;
           case "0501":
-            data.kurtosis_y = decoded.data.measurements[i].value;
+            data.kurtosisY = decoded.data.measurements[i].value;
             break;
           case "0502":
-            data.kurtosis_z = decoded.data.measurements[i].value;
+            data.kurtosisZ = decoded.data.measurements[i].value;
             break;
           case "0600":
-            data.rmsVelocity_x = decoded.data.measurements[i].value;
+            data.rmsVelocityX = decoded.data.measurements[i].value;
             break;
           case "0601":
-            data.rmsVelocity_y = decoded.data.measurements[i].value;
+            data.rmsVelocityY = decoded.data.measurements[i].value;
             break;
           case "0602":
-            data.rmsVelocity_z = decoded.data.measurements[i].value;
+            data.rmsVelocityZ = decoded.data.measurements[i].value;
             break;
           case "0700":
-            data.displacement_x = decoded.data.measurements[i].value;
+            data.displacementX = decoded.data.measurements[i].value;
             break;
           case "0701":
-            data.displacement_y = decoded.data.measurements[i].value;
+            data.displacementY = decoded.data.measurements[i].value;
             break;
           case "0702":
-            data.displacement_z = decoded.data.measurements[i].value;
+            data.displacementZ = decoded.data.measurements[i].value;
             break;
           default:
             data.status = "Error";
@@ -793,108 +793,108 @@ function consume(event) {
     });
     delete data.data.externalTemperature;
   }
-  if (data.data.rmsAcceleration_x !== undefined) {
+  if (data.data.rmsAccelerationX !== undefined) {
     emit("sample", {
       data: {
-        rmsAcceleration_x: data.data.rmsAcceleration_x,
-        rmsAcceleration_y: data.data.rmsAcceleration_y,
-        rmsAcceleration_z: data.data.rmsAcceleration_z,
+        rmsAccelerationX: data.data.rmsAccelerationX,
+        rmsAccelerationY: data.data.rmsAccelerationY,
+        rmsAccelerationZ: data.data.rmsAccelerationZ,
       },
       topic: "rms_acceleration",
     });
-    delete data.data.rmsAcceleration_x;
-    delete data.data.rmsAcceleration_y;
-    delete data.data.rmsAcceleration_z;
+    delete data.data.rmsAccelerationX;
+    delete data.data.rmsAccelerationY;
+    delete data.data.rmsAccelerationZ;
   }
-  if (data.data.peakAcceleration_x !== undefined) {
+  if (data.data.peakAccelerationX !== undefined) {
     emit("sample", {
       data: {
-        peakAcceleration_x: data.data.peakAcceleration_x,
-        peakAcceleration_y: data.data.peakAcceleration_y,
-        peakAcceleration_z: data.data.peakAcceleration_z,
+        peakAccelerationX: data.data.peakAccelerationX,
+        peakAccelerationY: data.data.peakAccelerationY,
+        peakAccelerationZ: data.data.peakAccelerationZ,
       },
       topic: "peak_acceleration",
     });
-    delete data.data.peakAcceleration_x;
-    delete data.data.peakAcceleration_y;
-    delete data.data.peakAcceleration_z;
+    delete data.data.peakAccelerationX;
+    delete data.data.peakAccelerationY;
+    delete data.data.peakAccelerationZ;
   }
-  if (data.data.crestFactor_x !== undefined) {
+  if (data.data.crestFactorX !== undefined) {
     emit("sample", {
       data: {
-        crestFactor_x: data.data.crestFactor_x,
-        crestFactor_y: data.data.crestFactor_y,
-        crestFactor_z: data.data.crestFactor_z,
+        crestFactorX: data.data.crestFactorX,
+        crestFactorY: data.data.crestFactorY,
+        crestFactorZ: data.data.crestFactorZ,
       },
       topic: "crest_factor",
     });
-    delete data.data.crestFactor_x;
-    delete data.data.crestFactor_y;
-    delete data.data.crestFactor_z;
+    delete data.data.crestFactorX;
+    delete data.data.crestFactorY;
+    delete data.data.crestFactorZ;
   }
-  if (data.data.standardDeviation_x !== undefined) {
+  if (data.data.standardDeviationX !== undefined) {
     emit("sample", {
       data: {
-        standardDeviation_x: data.data.standardDeviation_x,
-        standardDeviation_y: data.data.standardDeviation_y,
-        standardDeviation_z: data.data.standardDeviation_z,
+        standardDeviationX: data.data.standardDeviationX,
+        standardDeviationY: data.data.standardDeviationY,
+        standardDeviationZ: data.data.standardDeviationZ,
       },
       topic: "standard_deviation",
     });
-    delete data.data.standardDeviation_x;
-    delete data.data.standardDeviation_y;
-    delete data.data.standardDeviation_z;
+    delete data.data.standardDeviationX;
+    delete data.data.standardDeviationY;
+    delete data.data.standardDeviationZ;
   }
-  if (data.data.skewness_x !== undefined) {
+  if (data.data.skewnessX !== undefined) {
     emit("sample", {
       data: {
-        skewness_x: data.data.skewness_x,
-        skewness_y: data.data.skewness_y,
-        skewness_z: data.data.skewness_z,
+        skewnessX: data.data.skewnessX,
+        skewnessY: data.data.skewnessY,
+        skewnessZ: data.data.skewnessZ,
       },
       topic: "skewness",
     });
-    delete data.data.skewness_x;
-    delete data.data.skewness_y;
-    delete data.data.skewness_z;
+    delete data.data.skewnessX;
+    delete data.data.skewnessY;
+    delete data.data.skewnessZ;
   }
-  if (data.data.kurtosis_x !== undefined) {
+  if (data.data.kurtosisX !== undefined) {
     emit("sample", {
       data: {
-        kurtosis_x: data.data.kurtosis_x,
-        kurtosis_y: data.data.kurtosis_y,
-        kurtosis_z: data.data.kurtosis_z,
+        kurtosisX: data.data.kurtosisX,
+        kurtosisY: data.data.kurtosisY,
+        kurtosisZ: data.data.kurtosisZ,
       },
       topic: "kurtosis",
     });
-    delete data.data.kurtosis_x;
-    delete data.data.kurtosis_y;
-    delete data.data.kurtosis_z;
+    delete data.data.kurtosisX;
+    delete data.data.kurtosisY;
+    delete data.data.kurtosisZ;
   }
-  if (data.data.rmsVelocity_x !== undefined) {
+  if (data.data.rmsVelocityX !== undefined) {
     emit("sample", {
       data: {
-        rmsVelocity_x: data.data.rmsVelocity_x,
-        rmsVelocity_y: data.data.rmsVelocity_y,
-        rmsVelocity_z: data.data.rmsVelocity_z,
+        rmsVelocityX: data.data.rmsVelocityX,
+        rmsVelocityY: data.data.rmsVelocityY,
+        rmsVelocityZ: data.data.rmsVelocityZ,
       },
       topic: "rms_velocity",
     });
-    delete data.data.rmsVelocity_x;
-    delete data.data.rmsVelocity_y;
-    delete data.data.rmsVelocity_z;
+    delete data.data.rmsVelocityX;
+    delete data.data.rmsVelocityY;
+    delete data.data.rmsVelocityZ;
   }
-  if (data.data.displacement_x !== undefined) {
+  if (data.data.displacementX !== undefined) {
     emit("sample", {
       data: {
-        displacement_x: data.data.displacement_x,
-        displacement_y: data.data.displacement_y,
-        displacement_z: data.data.displacement_z,
+        displacementX: data.data.displacementX,
+        displacementY: data.data.displacementY,
+        displacementZ: data.data.displacementZ,
       },
       topic: "displacement",
     });
-    delete data.data.displacement_x;
-    delete data.data.displacement_y;
-    delete data.data.displacement_z;
+    delete data.data.displacementX;
+    delete data.data.displacementY;
+    delete data.data.displacementZ;
   }
 }

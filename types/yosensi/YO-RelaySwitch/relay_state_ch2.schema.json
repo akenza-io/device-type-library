@@ -4,7 +4,7 @@
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "relay_state_ch2",
-  "title": "RelayStateCH2",
+  "title": "Relay state Channel 2",
   "properties": {
     "relayStateCH2": {
       "title": "Relay State CH2",
@@ -13,5 +13,7 @@
       "hideFromKpis": false
     }
   },
-  "required": ["relayStateCH2"]
+  "required": [
+    "relayStateCH2"
+  ]
 }

@@ -4,7 +4,7 @@
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "sum_left_to_right",
-  "title": "SumLeftToRight",
+  "title": "Sum left to right",
   "properties": {
     "sumLeftToRight": {
       "title": "Sum of Left To Right Counts",
@@ -13,5 +13,7 @@
       "hideFromKpis": false
     }
   },
-  "required": ["sumLeftToRight"]
+  "required": [
+    "sumLeftToRight"
+  ]
 }
