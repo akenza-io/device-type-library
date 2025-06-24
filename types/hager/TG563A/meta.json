@@ -1,20 +1,19 @@
 {
-  "name": "TG563A Smoke detector",
+  "name": "Hager TG563A Smoke detector",
   "version": "1.0.0",
   "manufacturer": "Hager",
-  "url": "-",
-  "description": "-",
+  "url": "https://hager.com/de-ch/katalog/",
+  "description": "The Hager TG563A is a LoRaWAN smoke alarm for buildings. It offers a battery life of up to 10 years, an audible alarm with a volume of 85 dB, visual warning and integrated self-monitoring.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": [
-    "Door"
+    "Smoke detector"
   ],
   "outputTopics": [
-    "system",
-    "door",
-    "lifecycle",
-    "default"
+    "default",
+    "config",
+    "lifecycle"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

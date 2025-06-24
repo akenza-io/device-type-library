@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/hager/TG563A/config.schema.json",
+  "$id": "https://akenza.io/hager/TG563A/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",

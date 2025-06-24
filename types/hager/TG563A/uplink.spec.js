@@ -5,34 +5,24 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Should decode the HKT Door Sensor uplinks", () => {
-  let doorSchema = null;
+describe("Should decode the TG563A uplinks", () => {
+  let configSchema = null;
   let consume = null;
   before((done) => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/door.schema.json`).then((parsedSchema) => {
-      doorSchema = parsedSchema;
-      done();
-    });
-  });
-
-  let systemSchema = null;
-  before((done) => {
-    utils.loadSchema(`${__dirname}/system.schema.json`).then((parsedSchema) => {
-      systemSchema = parsedSchema;
+    utils.loadSchema(`${__dirname}/config.schema.json`).then((parsedSchema) => {
+      configSchema = parsedSchema;
       done();
     });
   });
 
   let defaultSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    utils.loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   let lifecycleSchema = null;
@@ -49,7 +39,7 @@ describe("Should decode the HKT Door Sensor uplinks", () => {
     it("Should decode the HKT Door Sensor Version uplinks", () => {
       const data = {
         data: {
-          payloadHex: "686b740001010202036408002202230800100024001e25008400",
+          payloadHex: "0f7e1c0300ce300200009e32d732f11400003400000000160000000009000000151d05",
         },
       };
 
@@ -58,8 +48,38 @@ describe("Should decode the HKT Door Sensor uplinks", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
+        assert.equal(value.topic, "config");
+        assert.equal(value.data.longTelegramEnabled, true);
+        assert.equal(value.data.majorFaultsAlertEnabled, true);
+        assert.equal(value.data.minorFaultsAlertEnabled, true);
+        assert.equal(value.data.periodicity, 24);
+        assert.equal(value.data.smokeAlertEnabled, true);
+
+        utils.validateSchema(value.data, configSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
         assert.equal(value.topic, "default");
-        assert.equal(value.data.open, false);
+        assert.equal(value.data.batteryFault, false);
+        assert.equal(value.data.aacFault, false);
+        assert.equal(value.data.aacInactiv, false);
+        assert.equal(value.data.dayMode, true);
+        assert.equal(value.data.foulingSmokeFault, false);
+        assert.equal(value.data.frameType, "LONG_PERIODIC_TELEGRAM");
+        assert.equal(value.data.hwIrAntimaskFault, false);
+        assert.equal(value.data.hwUsAntimaskFault, false);
+        assert.equal(value.data.irAntimask, false);
+        assert.equal(value.data.mounted, true);
+        assert.equal(value.data.smokeAlarm, false);
+        assert.equal(value.data.temperature, 28);
+        assert.equal(value.data.tempOutOfRange, false);
+        assert.equal(value.data.mounted, true);
+        assert.equal(value.data.tooLongUnmounted, false);
+        assert.equal(value.data.usAntimask, false);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -70,51 +90,13 @@ describe("Should decode the HKT Door Sensor uplinks", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 100);
+        assert.equal(value.data.batteryVoltage, 3.06);
+        assert.equal(value.data.installationDate, '2053-12-50');
+        assert.equal(value.data.productionDate, '2039-08-50');
+        assert.equal(value.data.serial, "00000230");
+        assert.equal(value.data.version, 0);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
-      });
-
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "system");
-        assert.equal(value.data.countingHours, "8:0-16:0");
-        assert.equal(value.data.countingInterval, 30);
-        assert.equal(value.data.hwVersion, 2);
-        assert.equal(value.data.swVersion, 2);
-        assert.equal(value.data.installed, true);
-        assert.equal(value.data.lifecycleInterval, 24);
-        assert.equal(value.data.mode, 2);
-
-        utils.validateSchema(value.data, systemSchema, { throwError: true });
-      });
-
-      consume(data);
-    });
-
-    it("Should decode the HKT Door Sensor openings uplinks", () => {
-      const data = {
-        data: {
-          payloadHex: "686B74000726000C000C000001F4000001F4",
-        },
-      };
-
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "door");
-        assert.equal(value.data.nrClosings, 12);
-        assert.equal(value.data.nrOpenings, 12);
-
-        assert.equal(value.data.absClosings, 500);
-        assert.equal(value.data.absOpenings, 500);
-
-        utils.validateSchema(value.data, doorSchema, { throwError: true });
       });
 
       consume(data);

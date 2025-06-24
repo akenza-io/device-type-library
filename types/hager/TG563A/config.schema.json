@@ -8,14 +8,14 @@
   "properties": {
     "periodicity": {
       "title": "Periodicity",
-      "description": "Periodicity of the message interval",
+      "description": "Periodicity of the message interval.",
       "unit": "h",
       "type": "integer",
       "hideFromKpis": true
     },
     "longTelegramEnabled": {
       "title": "Long telegram enabled",
-      "description": "Long telegram enabled",
+      "description": "Long telegram enabled.",
       "type": "boolean",
       "hideFromKpis": true
     },
