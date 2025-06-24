@@ -33,7 +33,7 @@
     "mandown": {
       "title": "Man down",
       "type": "boolean",
-      "description": "Man down flag",
+      "description": "Man down flag which equals true if no movement for the configured period got detected",
       "hideFromKpis": true
     },
     "motionSinceLastPaylaod": {

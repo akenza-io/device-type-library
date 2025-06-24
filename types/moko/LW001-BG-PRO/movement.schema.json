@@ -17,6 +17,12 @@
         "DOWNLINK"
       ],
       "hideFromKpis": true
+    },
+    "movementDetected": {
+      "title": "Movement detected",
+      "type": "boolean",
+      "description": "Movement detected",
+      "hideFromKpis": true
     }
   }
 }

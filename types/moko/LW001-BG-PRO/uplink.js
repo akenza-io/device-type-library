@@ -40,18 +40,7 @@ function consume(event) {
   const bits = Bits.hexToBits(payloadHex);
 
   const lifecycle = {};
-  const reboot = {};
-  const failure = {};
-  const wifi = {};
-  const bluetooth = {};
   const gps = {};
-  const shutdown = {};
-  const vibration = {};
-  const mandown = {};
-  const tamper = {};
-  const movement = {};
-  const system = {};
-  const time = {};
 
   // Common frame head
   if (port <= 10) {
@@ -71,6 +60,7 @@ function consume(event) {
   }
 
   if (port === 1) {
+    const reboot = {};
     const rebootReasonCode = Bits.bitsToUnsigned(bits.substr(24, 8));
     reboot.rebootReason = rebootReasonArray[rebootReasonCode];
 
@@ -80,6 +70,7 @@ function consume(event) {
     reboot.firmwareVersion = `V${majorVersion}.${minorVersion}.${patchVersion}`;
     reboot.activityCount = Bits.bitsToUnsigned(bits.substr(40, 32));
 
+    emit("sample", { data: reboot, topic: "reboot" });
   } else if (port === 2) {
     let parseLen = 3; // common head is 3 byte
     const datas = [];
@@ -109,11 +100,9 @@ function consume(event) {
         datas.push(tempData);
       }
       if (positionTypeCode === 0) {
-        wifi.macData = datas;
-        wifi.timestamp = timestamp;
+        emit("sample", { data: { macData: datas }, topic: "wifi" });
       } else {
-        bluetooth.macData = datas;
-        bluetooth.timestamp = timestamp;
+        emit("sample", { data: { macData: datas }, topic: "bluetooth" });
       }
     } else {
       let lat = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 32));
@@ -137,6 +126,7 @@ function consume(event) {
   } else if (port === 3) {
     let parseLen = 3;
     const datas = [];
+    const failure = {};
     const failedTypeCode = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 8));
     failure.reasonsForPositioningFailure = posFailedReasonArray[failedTypeCode];
     const datalen = bytes[parseLen++];
@@ -162,12 +152,14 @@ function consume(event) {
       }
       failure.gpsSatelliteCn = `${bytes[parseLen]}-${bytes[parseLen + 1]}-${bytes[parseLen + 2]}-${bytes[parseLen + 3]}`;
     }
+
+    emit("sample", { data: failure, topic: "fix_failure" });
   } else if (port === 4) {
-    shutdown.shutdownType = shutdownTypeArray[Bits.bitsToUnsigned(bits.substr(24, 8))];
+    emit("sample", { data: { shutdownType: shutdownTypeArray[Bits.bitsToUnsigned(bits.substr(24, 8))] }, topic: "shutdown" });
   } else if (port === 5) {
-    vibration.numberOfShocks = Bits.bitsToUnsigned(bits.substr(24, 16));
+    emit("sample", { data: { numberOfShocks: Bits.bitsToUnsigned(bits.substr(24, 16)) }, topic: "vibration" });
   } else if (port === 6) {
-    mandown.totalIdleTime = Bits.bitsToUnsigned(bits.substr(24, 16));
+    emit("sample", { data: { totalIdleTime: Bits.bitsToUnsigned(bits.substr(24, 16)) }, topic: "mandown" });
   } else if (port === 7) {
     let parseLen = 3; // common head is 3 byte
     const year = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 16));
@@ -179,6 +171,7 @@ function consume(event) {
     const sec = bytes[parseLen++];
     const timezone = bytes[parseLen++];
 
+    const tamper = {};
     if (timezone > 0x80) {
       tamper.timestamp = `${year}-${mon}-${days} ${hour}:${minute}:${sec}  TZ:${timezone - 0x100}`;
     }
@@ -186,10 +179,20 @@ function consume(event) {
       tamper.timestamp = `${year}-${mon}-${days} ${hour}:${minute}:${sec}  TZ:${timezone}`;
     }
     tamper.tamperAlarm = true;
+
+    emit("sample", { data: tamper, topic: "tamper" });
   } else if (port === 8) {
+    const movement = {};
     const eventTypeCode = Bits.bitsToUnsigned(bits.substr(24, 8));
     movement.eventType = eventTypeArray[eventTypeCode];
+    if (movement.eventType === "START_OF_MOVEMENT" || movement.eventType === "IN_MOVEMENT") {
+      movement.movementDetected = true;
+    } else {
+      movement.movementDetected = false;
+    }
+    emit("sample", { data: movement, topic: "movement" });
   } else if (port === 9) {
+    const system = {};
     let parseLen = 3;
     system.gpsWorkTime = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 32));
     parseLen += 4;
@@ -201,7 +204,9 @@ function consume(event) {
     parseLen += 4;
     system.loraWorkTime = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 32));
     parseLen += 4;
+    emit("sample", { data: system, topic: "system" });
   } else if (port === 11) {
+    const time = {};
     let tempIndex = 2;
     const currentTime = `${bytes[tempIndex++] * 256 + bytes[tempIndex++]}/${bytes[tempIndex++]}/${bytes[tempIndex++]} ${bytes[tempIndex++]}:${bytes[tempIndex++]}:${bytes[tempIndex++]}`;
     const timezone = Bits.bitsToUnsigned(bits.substr(tempIndex * 8, 8));
@@ -212,6 +217,7 @@ function consume(event) {
     tempIndex += 1;
 
     bytes = bytes.slice(tempIndex);
+    emit("sample", { data: time, topic: "time" });
   } else if (port === 12) {
     lifecycle.operationMode = operationModeArray[bytes[0] & 0x03];
     lifecycle.lowBattery = (bytes[0] & 0x04) !== 0;
@@ -246,51 +252,7 @@ function consume(event) {
     emit("sample", { data: lifecycle, topic: "lifecycle" });
   }
 
-  if (Object.keys(reboot).length > 0) {
-    emit("sample", { data: reboot, topic: "reboot" });
-  }
-
-  if (Object.keys(failure).length > 0) {
-    emit("sample", { data: failure, topic: "fix_failure" });
-  }
-
-  if (Object.keys(wifi).length > 0) {
-    emit("sample", { data: wifi, topic: "wifi" });
-  }
-
-  if (Object.keys(bluetooth).length > 0) {
-    emit("sample", { data: bluetooth, topic: "bluetooth" });
-  }
-
   if (Object.keys(gps).length > 0) {
     emit("sample", { data: gps, topic: "gps" });
-  }
-
-  if (Object.keys(vibration).length > 0) {
-    emit("sample", { data: vibration, topic: "vibration" });
-  }
-
-  if (Object.keys(mandown).length > 0) {
-    emit("sample", { data: mandown, topic: "mandown" });
-  }
-
-  if (Object.keys(shutdown).length > 0) {
-    emit("sample", { data: shutdown, topic: "shutdown" });
-  }
-
-  if (Object.keys(tamper).length > 0) {
-    emit("sample", { data: tamper, topic: "tamper" });
-  }
-
-  if (Object.keys(movement).length > 0) {
-    emit("sample", { data: movement, topic: "movement" });
-  }
-
-  if (Object.keys(system).length > 0) {
-    emit("sample", { data: system, topic: "system" });
-  }
-
-  if (Object.keys(time).length > 0) {
-    emit("sample", { data: time, topic: "time" });
   }
 }

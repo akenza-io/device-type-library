@@ -11,12 +11,6 @@
       "type": "array",
       "description": "Wifi mac data",
       "hideFromKpis": true
-    },
-    "timestamp": {
-      "title": "Timestamp",
-      "type": "string",
-      "description": "Timestamp",
-      "hideFromKpis": true
     }
   }
 }
