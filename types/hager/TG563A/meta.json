@@ -1,0 +1,21 @@
+{
+  "name": "TG563A Smoke detector",
+  "version": "1.0.0",
+  "manufacturer": "Hager",
+  "url": "-",
+  "description": "-",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Door"
+  ],
+  "outputTopics": [
+    "system",
+    "door",
+    "lifecycle",
+    "default"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

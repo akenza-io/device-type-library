@@ -1,0 +1,48 @@
+{
+  "$id": "https://akenza.io/hager/TG563A/config.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "config",
+  "title": "Config",
+  "properties": {
+    "periodicity": {
+      "title": "Periodicity",
+      "description": "Periodicity of the message interval",
+      "unit": "h",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "longTelegramEnabled": {
+      "title": "Long telegram enabled",
+      "description": "Long telegram enabled",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "smokeAlertEnabled": {
+      "title": "Smoke alert enabled",
+      "description": "Equals true if smoke alerts are enabled.",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "minorFaultsAlertEnabled": {
+      "title": "Minor fault alert enabled",
+      "description": "Equals true if minor fault alerts are enabled.",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "majorFaultsAlertEnabled": {
+      "title": "Major fault alert enabled",
+      "description": "Equals true if major fault alerts are enabled.",
+      "type": "boolean",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "periodicity",
+    "longTelegramEnabled",
+    "smokeAlertEnabled",
+    "minorFaultsAlertEnabled",
+    "majorFaultsAlertEnabled"
+  ]
+}
