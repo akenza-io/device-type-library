@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.65.1] - 2025-06-24
+
+### Changed
+
+- Airthings - Merging new and old samples to always emit a complete payload
+- Disruptive Technologies temperature & humidity - will now split subsamples into their own samples
+- Terabee People Counting XL - Now counts relative and absolute forward and backward
+
 # [1.65.0] - 2025-06-19
 
 ### Added
