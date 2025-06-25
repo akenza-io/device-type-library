@@ -1,0 +1,29 @@
+{
+  "$id": "https://akenza.io/vega/vegapulsAir41/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "namurState": {
+      "title": "NAMUR State",
+      "type": "string",
+      "description": "NAMUR State",
+      "enum": [
+        "GOOD",
+        "FUNCTION_CHECK",
+        "MAINTENANCE_REQUEST",
+        "OUT_OF_SPECIFICATION",
+        "FAILURE"
+      ],
+      "hideFromKpis": true
+    },
+    "batteryLevel": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
+    }
+  },
+  "required": [
+    "batteryLevel"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "Airthings Cloud Connector",
+  "version": "1.0.0",
+  "manufacturer": "Airthings",
+  "url": "https://www.airthings.com/en/",
+  "description": "Airthings Cloud Connector",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "Pressure",
+    "CO2",
+    "Sound level",
+    "PM1",
+    "PM10",
+    "PM25",
+    "Occupancy",
+    "Radon",
+    "Ventilation",
+    "Virus risk",
+    "Mold risk"
+  ],
+  "outputTopics": [
+    "airly",
+    "environment",
+    "lifecycle",
+    "mold",
+    "occupancy",
+    "radon",
+    "ventilation",
+    "virus"
+  ],
+  "encoding": "JSON",
+  "connectivity": "HTTP"
+}

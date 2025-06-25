@@ -1,10 +1,10 @@
 {
-  "$id": "https://akenza.io/digitalTechnologies/co2/humidity.schema.json",
+  "$id": "https://akenza.io/digitalTechnologies/co2/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
-  "topic": "humidity",
-  "title": "Humidity",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "humidity": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
@@ -13,5 +13,8 @@
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     }
   },
-  "required": ["humidity", "temperature"]
+  "required": [
+    "humidity",
+    "temperature"
+  ]
 }

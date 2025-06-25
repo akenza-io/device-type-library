@@ -6,15 +6,15 @@ const utils = require("test-utils");
 const { assert } = chai;
 
 describe("Digital Technologies Temperature Sensor Uplink", () => {
-  let temperatureSchema = null;
+  let defaultSchema = null;
   let consume = null;
   before((done) => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
     utils
-      .loadSchema(`${__dirname}/temperature.schema.json`)
+      .loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
-        temperatureSchema = parsedSchema;
+        defaultSchema = parsedSchema;
         done();
       });
   });
@@ -42,10 +42,10 @@ describe("Digital Technologies Temperature Sensor Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "temperature");
+        assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 24);
 
-        utils.validateSchema(value.data, temperatureSchema, {
+        utils.validateSchema(value.data, defaultSchema, {
           throwError: true,
         });
       });

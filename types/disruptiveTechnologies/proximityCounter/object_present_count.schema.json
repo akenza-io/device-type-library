@@ -10,6 +10,11 @@
       "title": "Object present count",
       "description": "Object present count",
       "type": "integer"
+    },
+    "relativeCount": {
+      "title": "Relative object present count",
+      "description": "Count of objects detected between cycles",
+      "type": "integer"
     }
   },
   "required": [

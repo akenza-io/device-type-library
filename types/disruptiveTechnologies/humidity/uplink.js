@@ -1,13 +1,23 @@
 function consume(event) {
   const { eventType } = event.data;
   const sample = {};
-  let topic = eventType;
 
   if (eventType === "humidity") {
-    sample.temperature = event.data.humidity.temperature;
-    sample.humidity = event.data.humidity.relativeHumidity;
+    // New version
+    if (event.data.humidity.samples !== undefined) {
+      event.data.humidity.samples.forEach(singleSample => {
+        emit("sample", { data: { "temperature": singleSample.temperature, "humidity": singleSample.relativeHumidity }, topic: "default", timestamp: new Date(singleSample.sampleTime) });
+      });
+      // Old version
+    } else {
+      sample.temperature = event.data.humidity.temperature;
+      sample.humidity = event.data.humidity.relativeHumidity;
+      emit("sample", { data: sample, topic: "default" });
+    }
+
   } else if (eventType === "touch") {
     sample.touch = true;
+    emit("sample", { data: sample, topic: "touch" });
   } else if (eventType === "networkStatus") {
     sample.signalStrength = event.data.networkStatus.signalStrength;
     sample.rssi = event.data.networkStatus.rssi;
@@ -19,11 +29,9 @@ function consume(event) {
     } else {
       sample.sqi = 1;
     }
-    topic = "network_status";
+    emit("sample", { data: sample, topic: "network_status" });
   } else if (eventType === "batteryStatus") {
     sample.batteryLevel = event.data.batteryStatus.percentage;
-    topic = "lifecycle";
+    emit("sample", { data: sample, topic: "lifecycle" });
   }
-
-  emit("sample", { data: sample, topic });
 }

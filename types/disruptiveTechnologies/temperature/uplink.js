@@ -1,12 +1,14 @@
 function consume(event) {
   const { eventType } = event.data;
   const sample = {};
-  let topic = eventType;
 
   if (eventType === "temperature") {
-    sample.temperature = event.data.temperature.value;
+    event.data.temperature.samples.forEach(singleSample => {
+      emit("sample", { data: { "temperature": singleSample.value }, topic: "default", timestamp: new Date(singleSample.sampleTime) });
+    });
   } else if (eventType === "touch") {
     sample.touch = true;
+    emit("sample", { data: sample, topic: "touch" });
   } else if (eventType === "networkStatus") {
     sample.signalStrength = event.data.networkStatus.signalStrength;
     sample.rssi = event.data.networkStatus.rssi;
@@ -18,11 +20,9 @@ function consume(event) {
     } else {
       sample.sqi = 1;
     }
-    topic = "network_status";
+    emit("sample", { data: sample, topic: "network_status" });
   } else if (eventType === "batteryStatus") {
     sample.batteryLevel = event.data.batteryStatus.percentage;
-    topic = "lifecycle";
+    emit("sample", { data: sample, topic: "lifecycle" });
   }
-
-  emit("sample", { data: sample, topic });
 }

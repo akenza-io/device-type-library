@@ -1,0 +1,87 @@
+{
+  "$id": "https://akenza.io/vega/vegapulsAir41/distance.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "distance",
+  "title": "Distance",
+  "properties": {
+    "distanceMm": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/mm",
+      "title": "Distance mm"
+    },
+    "distanceCm": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
+      "title": "Distance cm"
+    },
+    "distanceM": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/m",
+      "title": "Distance M"
+    },
+    "distanceInch": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/in",
+      "title": "Distance inches"
+    },
+    "distanceFt": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/ft",
+      "title": "Distance feet"
+    },
+    "fillLevel": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/fillLevel/percent"
+    },
+    "sensorMeasurementUnit": {
+      "title": "Sensor measurement unit",
+      "description": "Unit in which the sensor measures",
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "FEET",
+        "METERS",
+        "INCHES",
+        "MILLIMETERS"
+      ],
+      "hideFromKpis": true
+    },
+    "inclinationDegree": {
+      "title": "Inclination degree",
+      "unit": "°",
+      "type": "number",
+      "description": "Inclination degree"
+    },
+    "detailedState": {
+      "title": "Detail state",
+      "type": "integer",
+      "description": "Detail state",
+      "hideFromKpis": true
+    },
+    "percentValue": {
+      "title": "Percent value",
+      "unit": "%",
+      "description": "Percent value",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "linearPercentValue": {
+      "title": "Linear percent value",
+      "unit": "%",
+      "description": "Linear percent value",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "scaledValue": {
+      "title": "Scaled value",
+      "description": "Scaled value",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255,
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "distanceMm",
+    "distanceCm",
+    "distanceM",
+    "distanceInch",
+    "distanceFt"
+  ]
+}

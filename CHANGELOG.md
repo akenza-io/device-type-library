@@ -4,6 +4,54 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.65.1] - 2025-06-24
+
+### Changed
+
+- Airthings - Merging new and old samples to always emit a complete payload
+- Disruptive Technologies temperature & humidity - will now split subsamples into their own samples
+- Terabee People Counting XL - Now counts relative and absolute forward and backward
+
+# [1.65.0] - 2025-06-19
+
+### Added
+
+- Airthings - Cloud Connector
+
+### Changed
+
+- BRAKING CHANGE: Disruptive Technologies temperature values will now be saved on the default topic
+
+# [1.64.2] - 2025-06-18
+
+### Changed
+
+- Vergesense - Now repeats samples each hour to keep the buckets full
+
+# [1.64.1] - 2025-06-12
+
+### Changed
+
+- Data model - added feet and inches for distance
+- Vergesense Cloud-connector - handling occupancy on a different topic
+- Disruptive Proximity and Proximity Counter - now give out calculated values
+- Vegapulse Devices - give out distance in all possible units now
+
+# [1.64.0] - 2025-06-11
+
+### Added
+
+- Wika - Netris 1
+- Wika - Pew
+- Vegapulse - Vegapulse Air 42
+- Vegapulse - Vegapulse Air 43
+
+# [1.63.0] - 2025-05-22
+
+### Added
+
+- Axis - People Counter
+
 # [1.62.0] - 2025-05-16
 
 ### Added

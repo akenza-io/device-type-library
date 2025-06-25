@@ -1,0 +1,67 @@
+{
+  "$id": "https://akenza.io/airthings/cloudConnector/airly.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "airly",
+  "title": "Airly",
+  "properties": {
+    "temperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    },
+    "pressure": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/hPa"
+    },
+    "humidity": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+    },
+    "pm1": {
+      "title": "Particulate matter count 1",
+      "unit": "mgpc",
+      "type": "integer",
+      "description": "Particles less than 1 mgpc in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "pm10": {
+      "title": "Particulate matter count 10",
+      "unit": "mgpc",
+      "type": "integer",
+      "description": "Particles less than 1 mgpc in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "pm25": {
+      "title": "Particulate matter count 25",
+      "unit": "mgpc",
+      "type": "integer",
+      "description": "Particles less than 25 mgpc in diameter",
+      "minimum": 0,
+      "maximum": 10000
+    },
+    "pm1Rating": {
+      "title": "PM1 rating",
+      "type": "string",
+      "description": "PM1 rating",
+      "hideFromKpis": true
+    },
+    "pm10Rating": {
+      "title": "PM10 rating",
+      "type": "string",
+      "description": "PM10 rating",
+      "hideFromKpis": true
+    },
+    "pm25Rating": {
+      "title": "PM25 rating",
+      "type": "string",
+      "description": "PM25 rating",
+      "hideFromKpis": true
+    },
+    "pressureRating": {
+      "title": "Pressure rating",
+      "type": "string",
+      "description": "Pressure rating",
+      "hideFromKpis": true
+    }
+  }
+}
