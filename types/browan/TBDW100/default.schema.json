@@ -12,7 +12,7 @@
     "open": {
       "title": "Open",
       "description": "Status of the tab. open = true, closed = false",
-      "type": "boolean"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/reedContact/status"
     },
     "time": {
       "title": "Time",
