@@ -21,6 +21,24 @@
         "type": "integer",
         "minimum": 0,
         "maximum": 2
+      },
+      "percentFree": {
+        "measurementType": "akenza/spaces/occupancy/percentFree",
+        "title": "Percent free",
+        "description": "Percentage of currently available free space in the area",
+        "type": "number",
+        "unit": "%",
+        "minimum": 0,
+        "maximum": 100
+      },
+      "percentOccupied": {
+        "measurementType": "akenza/spaces/occupancy/percentOccupied",
+        "title": "Percent occupied",
+        "description": "Percentage of space currently used in the area",
+        "type": "number",
+        "unit": "%",
+        "minimum": 0,
+        "maximum": 100
       }
     },
     "minutesSinceLastOccupied": {
@@ -69,28 +87,6 @@
         "type": "integer",
         "unit": "people",
         "minimum": 0
-      }
-    },
-    "percentFree": {
-      "percent": {
-        "measurementType": "akenza/spaces/free/percent",
-        "title": "Percent free",
-        "description": "Percentage of currently available free space in the area",
-        "type": "number",
-        "unit": "%",
-        "minimum": 0,
-        "maximum": 100
-      }
-    },
-    "percentOccupied": {
-      "percent": {
-        "measurementType": "akenza/spaces/occupied/percent",
-        "title": "Percent occupied",
-        "description": "Percentage of space currently used in the area",
-        "type": "number",
-        "unit": "%",
-        "minimum": 0,
-        "maximum": 100
       }
     }
   }
