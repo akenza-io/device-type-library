@@ -9,7 +9,7 @@
     "waterleak": {
       "title": "Water leak",
       "description": "Water leakage detected",
-      "type": "boolean"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/digitalInput/boolean"
     },
     "temperature": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
