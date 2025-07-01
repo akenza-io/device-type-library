@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.66.0] - 2025-07-01
+
+### Added
+
+- Akenza building edge - Energy
+- Akenza building edge - Occupancy
+- Akenza building edge - Water
+
+### Changed
+
+- Decentlab IAM - Fixed tests
+
+# [1.65.2] - 2025-06-30
+
+### Changed
+
+- Decentlab IAM - Unifyd occupancy topic so its in line with the rest
+- Environment data model - added pm4
+- IOS data model - added count for buttons
+- Spaces data model - added percentFree, percentOccupied
+
 # [1.65.1] - 2025-06-24
 
 ### Changed

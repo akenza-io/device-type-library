@@ -91,7 +91,7 @@ describe("Decentlab IAM Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "occupancy");
-        assert.equal(value.data.occupancy, true);
+        assert.equal(value.data.occupancy, 2);
         assert.equal(value.data.occupied, true);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
 

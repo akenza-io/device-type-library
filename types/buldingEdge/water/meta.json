@@ -1,0 +1,19 @@
+{
+  "name": "Akenza Building Edge Water",
+  "version": "1.0.0",
+  "manufacturer": "Tridium",
+  "url": "https://www.tridium.com/us/en/Products/niagara/jace",
+  "description": "Niagara building control system integration for water values",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Consumption"
+  ],
+  "outputTopics": [
+    "consumption",
+    "lifecycle"
+  ],
+  "encoding": "JSON",
+  "connectivity": "MQTT"
+}
