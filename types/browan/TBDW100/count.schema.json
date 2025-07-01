@@ -1,0 +1,18 @@
+{
+  "$id": "https://akenza.io/browan/tbdw100/count.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "count",
+  "title": "Count",
+  "properties": {
+    "count": {
+      "title": "Usage count",
+      "description": "Relative usage count since last reset, increment/reset with a rule to enable usage counting cases (i.e. room usage)",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/usage/count"
+    }
+  },
+  "required": [
+    "count"
+  ]
+}
