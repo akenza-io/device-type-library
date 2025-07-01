@@ -1,0 +1,22 @@
+{
+  "$id": "https://akenza.io/buildingEdge/occupancy/occupancy.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "occupancy",
+  "title": "Occupancy",
+  "properties": {
+    "occupied": {
+      "title": "Occupied",
+      "description": "Whether the space is occupied.",
+      "type": "boolean"
+    },
+    "motionCount": {
+      "title": "Motion",
+      "description": "The number of motion counts.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    }
+  }
+}

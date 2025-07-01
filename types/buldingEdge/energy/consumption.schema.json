@@ -1,0 +1,22 @@
+{
+  "$id": "https://akenza.io/buildingEdge/energy/consumption.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "consumption",
+  "title": "Consumption",
+  "properties": {
+    "consumption": {
+      "title": "Consumption",
+      "unit": "kW/h",
+      "description": "Consumption",
+      "type": "number"
+    },
+    "consumptionCumulative": {
+      "title": "Cumulative consumption",
+      "unit": "kW/h",
+      "description": "Cumulative consumption",
+      "type": "number"
+    }
+  }
+}
