@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.65.2] - 2025-07-01
+
+### Added
+
+- Usage count measurement type
+
+### Changed
+
+- Browan Tabs Door & Window Sensor, TBDW100 - Add usage count schema
+
 # [1.65.1] - 2025-06-24
 
 ### Changed
