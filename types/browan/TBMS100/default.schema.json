@@ -23,9 +23,9 @@
     },
     "count": {
       "title": "Count",
-      "type": "integer",
       "description": "Count of all events",
-      "hideFromKpis": true
+      "hideFromKpis": true,
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/count"
     }
   },
   "required": ["temperature", "motion", "time", "count"]
