@@ -93,7 +93,7 @@
       "count": {
         "measurementType": "akenza/spaces/usage/count",
         "title": "Usage count",
-        "description": "Usage count of i.e. a room",
+        "description": "Relative usage count since last reset, increment/reset with a rule to enable usage counting cases (i.e. room usage)",
         "type": "integer",
         "minimum": 0
       }
