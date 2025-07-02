@@ -7,6 +7,7 @@
   "title": "Count",
   "properties": {
     "count": {
+      "description": "Relative usage count since last reset, increment/reset with a rule to enable usage counting cases (i.e. room usage)",
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/usage/count"
     }
   },
