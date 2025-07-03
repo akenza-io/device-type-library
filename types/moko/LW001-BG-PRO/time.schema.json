@@ -1,0 +1,22 @@
+{
+  "$id": "https://akenza.io/moko/lw001-bg-pro/time.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "time",
+  "title": "Time",
+  "properties": {
+    "currentTime": {
+      "title": "Timestamp",
+      "type": "string",
+      "description": "Timestamp",
+      "hideFromKpis": true
+    },
+    "timezone": {
+      "title": "Timezone",
+      "type": "integer",
+      "description": "Timezone",
+      "hideFromKpis": true
+    }
+  }
+}
