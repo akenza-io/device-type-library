@@ -218,7 +218,6 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.data.latitude, 30.4581016);
         assert.equal(value.data.longitude, 114.4693033);
         assert.equal(value.data.pdop, 1.8);
-        assert.equal(value.data.timestamp, '2025-4-11 8:42:51 TZ:0');
 
         utils.validateSchema(value.data, gpsSchema, { throwError: true });
       });
@@ -408,7 +407,6 @@ describe("Moko LW001-BG-PRO Uplink", () => {
 
         assert.equal(value.topic, "tamper");
         assert.equal(value.data.tamperAlarm, true);
-        assert.equal(value.data.timestamp, '2025-4-11 9:7:51  TZ:0');
 
         utils.validateSchema(value.data, tamperSchema, { throwError: true });
       });

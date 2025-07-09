@@ -121,7 +121,6 @@ function consume(event) {
       gps.latitude = lat / 10000000;
       gps.longitude = lon / 10000000;
       gps.pdop = bytes[parseLen] / 10;
-      gps.timestamp = timestamp;
     }
   } else if (port === 3) {
     let parseLen = 3;
@@ -172,11 +171,9 @@ function consume(event) {
     const timezone = bytes[parseLen++];
 
     const tamper = {};
+    let timestamp = `${year}-${mon}-${days} ${hour}:${minute}:${sec} TZ:${timezone}`;
     if (timezone > 0x80) {
-      tamper.timestamp = `${year}-${mon}-${days} ${hour}:${minute}:${sec}  TZ:${timezone - 0x100}`;
-    }
-    else {
-      tamper.timestamp = `${year}-${mon}-${days} ${hour}:${minute}:${sec}  TZ:${timezone}`;
+      timestamp = `${year}-${mon}-${days} ${hour}:${minute}:${sec} TZ:${timezone - 0x100}`;
     }
     tamper.tamperAlarm = true;
 

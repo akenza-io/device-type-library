@@ -11,12 +11,6 @@
       "type": "boolean",
       "description": "Tamper alarm",
       "hideFromKpis": true
-    },
-    "timestamp": {
-      "title": "Timestamp",
-      "type": "string",
-      "description": "Timestamp",
-      "hideFromKpis": true
     }
   }
 }

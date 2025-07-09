@@ -16,12 +16,6 @@
       "title": "Dilution of Precision",
       "type": "number",
       "description": "Dilution of Precision"
-    },
-    "timestamp": {
-      "title": "Timestamp",
-      "type": "string",
-      "description": "Timestamp",
-      "hideFromKpis": true
     }
   }
 }
