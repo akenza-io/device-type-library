@@ -88,6 +88,15 @@
         "unit": "people",
         "minimum": 0
       }
+    },
+    "usage": {
+      "count": {
+        "measurementType": "akenza/spaces/usage/count",
+        "title": "Usage count",
+        "description": "Usage count of spaces",
+        "type": "integer",
+        "minimum": 0
+      }
     }
   }
 }
