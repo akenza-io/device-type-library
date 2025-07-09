@@ -41,7 +41,7 @@ describe("Niagara Energy Uplink", () => {
 
       utils.expectEmits((type, value) => {
         assert.equal(type, "state");
-        assert.equal(value.lastCount, 9453146);
+        assert.equal(value.lastConsumptionCumulative, 9453146);
       });
 
       utils.expectEmits((type, value) => {
@@ -63,7 +63,7 @@ describe("Niagara Energy Uplink", () => {
       it("should decode energy payload & generate a state & use customfields", () => {
         const data = {
           state: {
-            lastCount: 9450000,
+            lastConsumptionCumulative: 9450000,
           },
           device: {
             customFields: {
@@ -79,7 +79,7 @@ describe("Niagara Energy Uplink", () => {
 
         utils.expectEmits((type, value) => {
           assert.equal(type, "state");
-          assert.equal(value.lastCount, 9453146);
+          assert.equal(value.lastConsumptionCumulative, 9453146);
         });
 
         utils.expectEmits((type, value) => {

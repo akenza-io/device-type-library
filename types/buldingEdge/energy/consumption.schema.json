@@ -8,15 +8,13 @@
   "properties": {
     "consumption": {
       "title": "Consumption",
-      "unit": "kW/h",
       "description": "Consumption",
-      "type": "number"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours"
     },
     "consumptionCumulative": {
       "title": "Cumulative consumption",
-      "unit": "kW/h",
       "description": "Cumulative consumption",
-      "type": "number"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours"
     }
   }
 }

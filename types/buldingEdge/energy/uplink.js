@@ -31,10 +31,10 @@ function consume(event) {
 
   const state = event.state || {};
   decoded.consumption = calculateIncrement(
-    state.lastCount,
+    state.lastConsumptionCumulative,
     decoded.consumptionCumulative,
   );
-  state.lastCount = decoded.consumptionCumulative;
+  state.lastConsumptionCumulative = decoded.consumptionCumulative;
 
   // Customfields
   if (event.device !== undefined) {
