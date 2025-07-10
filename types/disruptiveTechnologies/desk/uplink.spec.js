@@ -37,11 +37,6 @@ describe("Digital Technologies Desk Sensor Uplink", () => {
       };
 
       utils.expectEmits((type, value) => {
-        assert.equal(type, "state");
-        assert.equal(value.lastOccupiedValue, false);
-      });
-
-      utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -52,6 +47,12 @@ describe("Digital Technologies Desk Sensor Uplink", () => {
         assert.equal(value.data.minutesSinceLastOccupied, 0);
 
         utils.validateSchema(value.data, occupancySchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.equal(value.lastOccupiedValue, false);
+        // assert.equal(value.lastSampleEmittedAt);
       });
 
       consume(data);
@@ -76,9 +77,50 @@ describe("Digital Technologies Desk Sensor Uplink", () => {
       };
 
       utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "occupancy");
+        assert.equal(value.data.occupied, true);
+        assert.equal(value.data.occupancy, 2);
+        assert.equal(value.data.minutesSinceLastOccupied, 0);
+
+        utils.validateSchema(value.data, occupancySchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.equal(value.lastOccupiedValue, true);
+        // assert.equal(value.lastSampleEmittedAt);
       });
+
+      consume(data);
+    });
+
+    it("should repeat the Digital Technologies Contact Sensor payload", () => {
+      const data = {
+        eventId: "c510f9ag03fligl8tvag",
+        targetName:
+          "projects/c3t7p26j4a2g00de1sng/devices/bjmgj6dp0jt000a5dcug",
+        eventType: "networkStatus",
+        data: {
+          eventType: "networkStatus",
+          "networkStatus": {
+            "signalStrength": 10,
+            "rssi": 10,
+            "transmissionMode": "HIGH_POWER_BOOST_MODE",
+            "updateTime": "2024-12-06T14:23:50.728000Z"
+          }
+        },
+        timestamp: "2021-09-15T14:48:05.948000Z",
+        labels: {},
+        state: {
+          lastOccupiedValue: true,
+          lastNetworkEmittedAt: new Date().getTime(),
+          lastSampleEmittedAt: 1752131670374
+        }
+      };
 
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
@@ -91,6 +133,14 @@ describe("Digital Technologies Desk Sensor Uplink", () => {
         assert.equal(value.data.minutesSinceLastOccupied, 0);
 
         utils.validateSchema(value.data, occupancySchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+        assert.equal(value.lastOccupiedValue, true);
+        // assert.equal(value.lastSampleEmittedAt);
+        // assert.equal(value.lastNetworkEmittedAt);
       });
 
       consume(data);

@@ -37,13 +37,6 @@ describe("Digital Technologies Proximity Counter Sensor Uplink", () => {
         labels: {},
       };
 
-
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "state");
-        assert.isNotNull(value);
-        assert.equal(value.lastCount, 4176);
-      });
-
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
@@ -56,6 +49,14 @@ describe("Digital Technologies Proximity Counter Sensor Uplink", () => {
         utils.validateSchema(value.data, objectPresentSchema, {
           throwError: true,
         });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+
+        assert.equal(value.lastCount, 4176);
+        // assert.equal(value.lastSampleEmittedAt);
       });
 
       consume(data);

@@ -1,10 +1,11 @@
 function consume(event) {
   const { eventType } = event.data;
-  const sample = {};
-  let topic = eventType;
+  let sample = {};
+  const now = new Date().getTime();
+  const state = event.state || {};
 
   if (eventType === "touch") {
-    sample.touch = true;
+    emit("sample", { data: { touch: true }, topic: "touch" });
   } else if (eventType === "deskOccupancy") {
     const motion = event.data.deskOccupancy.state;
     if (motion === "OCCUPIED") {
@@ -17,7 +18,6 @@ function consume(event) {
 
     // Warm desk 
     const time = new Date().getTime();
-    const state = event.state || {};
     sample.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
     if (sample.occupied) {
       delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
@@ -31,25 +31,60 @@ function consume(event) {
       sample.minutesSinceLastOccupied = 0;
     }
     state.lastOccupiedValue = sample.occupied;
-    emit("state", state);
+    state.lastSampleEmittedAt = now;
 
-    topic = "occupancy";
+    emit("sample", { data: sample, topic: "occupancy" });
   } else if (eventType === "networkStatus") {
-    sample.signalStrength = event.data.networkStatus.signalStrength;
-    sample.rssi = event.data.networkStatus.rssi;
-    sample.transmissionMode = event.data.networkStatus.transmissionMode;
-    if (sample.rssi >= -50) {
-      sample.sqi = 3;
-    } else if (sample.rssi < -50 && sample.rssi >= -100) {
-      sample.sqi = 2;
-    } else {
-      sample.sqi = 1;
+    // Supress networkStatus for an hour
+    if (state.lastNetworkEmittedAt === undefined || now - state.lastNetworkEmittedAt >= 3600000) {
+      sample.signalStrength = event.data.networkStatus.signalStrength;
+      sample.rssi = event.data.networkStatus.rssi;
+      sample.transmissionMode = event.data.networkStatus.transmissionMode;
+      if (sample.rssi >= -50) {
+        sample.sqi = 3;
+      } else if (sample.rssi < -50 && sample.rssi >= -100) {
+        sample.sqi = 2;
+      } else {
+        sample.sqi = 1;
+      }
+      state.lastNetworkEmittedAt = now;
+      emit("sample", { data: sample, topic: "network_status" });
     }
-    topic = "network_status";
   } else if (eventType === "batteryStatus") {
     sample.batteryLevel = event.data.batteryStatus.percentage;
-    topic = "lifecycle";
+    emit("sample", { data: sample, topic: "lifecycle" });
   }
 
-  emit("sample", { data: sample, topic });
+
+  // Give out a repeated sample each hour so our charts are keept happy
+  if (now - state.lastSampleEmittedAt >= 3600000) {
+    sample = {};
+    if (state.lastOccupiedValue) {
+      sample.occupancy = 2;
+      sample.occupied = true;
+    } else {
+      sample.occupancy = 0;
+      sample.occupied = false;
+    }
+
+    // Warm desk 
+    const time = new Date().getTime();
+    sample.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
+    if (sample.occupied) {
+      delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
+    } else if (state.lastOccupancyTimestamp !== undefined) {
+      sample.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
+    } else if (state.lastOccupiedValue) {
+      state.lastOccupancyTimestamp = time; // Start with first no occupancy
+    }
+
+    if (Number.isNaN(sample.minutesSinceLastOccupied)) {
+      sample.minutesSinceLastOccupied = 0;
+    }
+
+    emit("sample", { data: sample, topic: "occupancy" });
+    state.lastSampleEmittedAt = now;
+  }
+
+  emit("state", state);
 }
