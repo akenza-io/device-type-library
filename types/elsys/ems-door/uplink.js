@@ -506,8 +506,23 @@ function consume(event) {
     }
 
     if (deleteUnusedKeys(reed)) {
+      // Complete sample if its a reed event
+      if (reed.pulseAbs1 === undefined) {
+        if (state.lastPulse1 !== undefined) {
+          if (reed.reed) {
+            reed.relativePulse1 = 1;
+            reed.pulseAbs1 = state.lastPulse1 + 1;
+            state.lastPulse1 = reed.pulseAbs1;
+          } else {
+            reed.relativePulse1 = 0;
+            reed.pulseAbs1 = state.lastPulse1;
+          }
+        }
+      }
+
       emit("sample", { data: reed, topic: "reed" });
     }
+
     if (deleteUnusedKeys(acceleration)) {
       emit("sample", { data: acceleration, topic: "acceleration" });
     }
