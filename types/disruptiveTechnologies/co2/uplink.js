@@ -1,32 +1,35 @@
 function consume(event) {
   const { eventType } = event.data;
   const sample = {};
-  let topic = eventType;
+  const now = new Date().getTime();
+  const state = event.state || {};
 
   if (eventType === "humidity") {
     sample.humidity = event.data.humidity.relativeHumidity;
     sample.temperature = event.data.humidity.temperature;
-    topic = "default";
+    emit("sample", { data: sample, topic: "default" });
   } else if (eventType === "co2") {
-    sample.co2 = event.data.co2.ppm;
+    emit("sample", { data: { co2: event.data.co2.ppm }, topic: "co2" });
   } else if (eventType === "pressure") {
-    sample.pressure = event.data.pressure.pascal;
+    emit("sample", { data: { pressure: event.data.pressure.pascal }, topic: "pressure" });
   } else if (eventType === "networkStatus") {
-    sample.signalStrength = event.data.networkStatus.signalStrength;
-    sample.rssi = event.data.networkStatus.rssi;
-    sample.transmissionMode = event.data.networkStatus.transmissionMode;
-    if (sample.rssi >= -50) {
-      sample.sqi = 3;
-    } else if (sample.rssi < -50 && sample.rssi >= -100) {
-      sample.sqi = 2;
-    } else {
-      sample.sqi = 1;
+    // suppress network_status for one hour
+    if (state.lastNetworkEmittedAt === undefined || now - state.lastNetworkEmittedAt >= 3600000) {
+      sample.signalStrength = event.data.networkStatus.signalStrength;
+      sample.rssi = event.data.networkStatus.rssi;
+      sample.transmissionMode = event.data.networkStatus.transmissionMode;
+      if (sample.rssi >= -50) {
+        sample.sqi = 3;
+      } else if (sample.rssi < -50 && sample.rssi >= -100) {
+        sample.sqi = 2;
+      } else {
+        sample.sqi = 1;
+      }
+      state.lastNetworkEmittedAt = now;
+      emit("sample", { data: sample, topic: "network_status" });
+      emit("state", state);
     }
-    topic = "network_status";
   } else if (eventType === "batteryStatus") {
-    sample.batteryLevel = event.data.batteryStatus.percentage;
-    topic = "lifecycle";
+    emit("sample", { data: { batteryLevel: event.data.batteryStatus.percentage }, topic: "lifecycle" });
   }
-
-  emit("sample", { data: sample, topic });
 }

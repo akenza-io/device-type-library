@@ -19,6 +19,16 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
       });
   });
 
+  let touchSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/touch.schema.json`)
+      .then((parsedSchema) => {
+        touchSchema = parsedSchema;
+        done();
+      });
+  });
+
   describe("consume()", () => {
     it("should decode the Digital Technologies Proximity Sensor payload and init state", () => {
       const data = {
@@ -38,14 +48,6 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
       };
 
       utils.expectEmits((type, value) => {
-        assert.equal(type, "state");
-        assert.isNotNull(value);
-
-        assert.equal(value.count, 0);
-        assert.equal(value.lastStatus, "NOT_PRESENT");
-      });
-
-      utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -59,6 +61,15 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         utils.validateSchema(value.data, objectPresentSchema, {
           throwError: true,
         });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+
+        assert.equal(value.count, 0);
+        assert.equal(value.lastStatus, "NOT_PRESENT");
+        assert.isDefined(value.lastSampleEmittedAt);
       });
 
       consume(data);
@@ -81,17 +92,10 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         labels: {},
         state: {
           count: 0,
-          lastStatus: "NOT_PRESENT"
+          lastStatus: "NOT_PRESENT",
+          lastSampleEmittedAt: new Date().getTime()
         }
       };
-
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "state");
-        assert.isNotNull(value);
-
-        assert.equal(value.count, 1);
-        assert.equal(value.lastStatus, "PRESENT");
-      });
 
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
@@ -107,6 +111,75 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         utils.validateSchema(value.data, objectPresentSchema, {
           throwError: true,
         });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+
+        assert.equal(value.count, 1);
+        assert.equal(value.lastStatus, "PRESENT");
+        assert.isDefined(value.lastSampleEmittedAt);
+      });
+
+      consume(data);
+    });
+
+    it("Repeat sample", () => {
+      const data = {
+        eventId: "c510f9ag03fligl8tvag",
+        targetName:
+          "projects/c3t7p26j4a2g00de1sng/devices/bjmgj6dp0jt000a5dcug",
+        eventType: "touch",
+        data: {
+          eventType: "touch",
+          touch: true
+        },
+        timestamp: "2021-09-15T14:48:05.948000Z",
+        labels: {},
+        state: {
+          count: 1,
+          lastStatus: "PRESENT",
+          lastSampleEmittedAt: new Date().getTime() - 3600000
+        }
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "touch");
+        assert.equal(value.data.touch, true);
+
+        utils.validateSchema(value.data, touchSchema, {
+          throwError: true,
+        });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "object_present");
+        assert.equal(value.data.objectPresent, "PRESENT");
+        assert.equal(value.data.proximity, true);
+        assert.equal(value.data.count, 1);
+        assert.equal(value.data.relativeCount, 0); // Should stay 0 as this is not a real sample
+
+        utils.validateSchema(value.data, objectPresentSchema, {
+          throwError: true,
+        });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+
+        assert.equal(value.count, 1);
+        assert.equal(value.lastStatus, "PRESENT");
+        assert.isDefined(value.lastSampleEmittedAt);
       });
 
       consume(data);

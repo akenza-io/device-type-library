@@ -18,7 +18,7 @@ function consume(event) {
       }
     }
 
-    // Give out a repeated sample each hour so our charts are keept happy
+    // output a sample each hour to facilitate time series analysis
     if (state.lastEmittedAt === undefined || now - state.lastEmittedAt >= 3600000) {
       if (state.lastOccupied === "OCCUPIED") {
         emit('sample', { data: { "occupancy": 2, "occupied": true }, topic: "occupancy" });
