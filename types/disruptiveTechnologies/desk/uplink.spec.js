@@ -140,7 +140,7 @@ describe("Digital Technologies Desk Sensor Uplink", () => {
         assert.isNotNull(value);
         assert.equal(value.lastOccupiedValue, true);
         assert.isDefined(value.lastSampleEmittedAt);
-        // assert.equal(value.lastNetworkEmittedAt);
+        assert.isDefined(value.lastNetworkEmittedAt);
       });
 
       consume(data);
