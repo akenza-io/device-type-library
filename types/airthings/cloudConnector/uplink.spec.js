@@ -483,12 +483,12 @@ describe("Airthings Cloud Connector Uplink", () => {
         assert.equal(value.data.pressure, 1002.8);
 
         assert.equal(value.data.pm1, 13);
+        assert.equal(value.data.pm2_5, 22);
         assert.equal(value.data.pm10, 28);
-        assert.equal(value.data.pm25, 22);
 
         assert.equal(value.data.pm1Rating, "FAIR");
+        assert.equal(value.data.pm2_5Rating, "FAIR");
         assert.equal(value.data.pm10Rating, "FAIR");
-        assert.equal(value.data.pm25Rating, "FAIR");
 
         utils.validateSchema(value.data, airlySchema, {
           throwError: true,
@@ -505,12 +505,12 @@ describe("Airthings Cloud Connector Uplink", () => {
         assert.equal(value.airly.pressure, 1002.8);
 
         assert.equal(value.airly.pm1, 13);
+        assert.equal(value.airly.pm2_5, 22);
         assert.equal(value.airly.pm10, 28);
-        assert.equal(value.airly.pm25, 22);
 
         assert.equal(value.airly.pm1Rating, "FAIR");
+        assert.equal(value.airly.pm2_5Rating, "FAIR");
         assert.equal(value.airly.pm10Rating, "FAIR");
-        assert.equal(value.airly.pm25Rating, "FAIR");
       });
       consume(data);
     });
@@ -561,12 +561,12 @@ describe("Airthings Cloud Connector Uplink", () => {
         assert.equal(value.data.pressure, 1011.2);
         assert.equal(value.data.temperature, 23.5);
         assert.equal(value.data.pm1, 5);
+        assert.equal(value.data.pm2_5, 5);
         assert.equal(value.data.pm10, 5);
-        assert.equal(value.data.pm25, 5);
 
         assert.equal(value.data.pm1Rating, "GOOD");
+        assert.equal(value.data.pm2_5Rating, "GOOD");
         assert.equal(value.data.pm10Rating, "GOOD");
-        assert.equal(value.data.pm25Rating, "GOOD");
         assert.equal(value.data.tvocRating, "GOOD");
 
         utils.validateSchema(value.data, environmentSchema, {
@@ -599,12 +599,12 @@ describe("Airthings Cloud Connector Uplink", () => {
         assert.equal(value.environment.pressure, 1011.2);
         assert.equal(value.environment.temperature, 23.5);
         assert.equal(value.environment.pm1, 5);
+        assert.equal(value.environment.pm2_5, 5);
         assert.equal(value.environment.pm10, 5);
-        assert.equal(value.environment.pm25, 5);
 
         assert.equal(value.environment.pm1Rating, "GOOD");
+        assert.equal(value.environment.pm2_5Rating, "GOOD");
         assert.equal(value.environment.pm10Rating, "GOOD");
-        assert.equal(value.environment.pm25Rating, "GOOD");
         assert.equal(value.environment.tvocRating, "GOOD");
       });
       consume(data);
