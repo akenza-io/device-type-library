@@ -514,5 +514,100 @@ describe("Airthings Cloud Connector Uplink", () => {
       });
       consume(data);
     });
+
+    it("should decode Airthings Cloud Connector pm payload", () => {
+      const data = {
+        state: {
+          environment: {
+            temperature: 23.5
+          }
+        },
+        data: {
+          "tvoc": 82,
+          "rssi": -79,
+          "serialNumber": "2969002870",
+          "pm25": 5,
+          "pm1": 5,
+          "ratings": {
+            "pm25": "GOOD",
+            "pm1": "GOOD",
+            "pm10": "GOOD",
+            "voc": "GOOD"
+          },
+          "sensorUnits": {
+            "pm25": "mgpc",
+            "pm1": "mgpc",
+            "pm10": "mgpc",
+            "pressure": "hpa",
+            "voc": "ppb",
+            "soundLevelA": "dbspl"
+          },
+          "pm10": 5,
+          "batteryPercentage": 94,
+          "pressure": 1011.2,
+          "recorded": "2025-07-14T11:53:55Z",
+          "soundLevelA": 52
+        }
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "environment");
+        assert.equal(value.data.tvoc, 82);
+        assert.equal(value.data.soundLevelA, 52);
+        assert.equal(value.data.pressure, 1011.2);
+        assert.equal(value.data.temperature, 23.5);
+        assert.equal(value.data.pm1, 5);
+        assert.equal(value.data.pm10, 5);
+        assert.equal(value.data.pm25, 5);
+
+        assert.equal(value.data.pm1Rating, "GOOD");
+        assert.equal(value.data.pm10Rating, "GOOD");
+        assert.equal(value.data.pm25Rating, "GOOD");
+        assert.equal(value.data.tvocRating, "GOOD");
+
+        utils.validateSchema(value.data, environmentSchema, {
+          throwError: true,
+        });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batteryLevel, 94);
+        assert.equal(value.data.rssi, -79);
+        assert.equal(value.data.serialNumber, "2969002870");
+
+        utils.validateSchema(value.data, lifecycleSchema, {
+          throwError: true,
+        });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+        assert.typeOf(value.environment, "object");
+
+        assert.equal(value.environment.tvoc, 82);
+        assert.equal(value.environment.soundLevelA, 52);
+        assert.equal(value.environment.pressure, 1011.2);
+        assert.equal(value.environment.temperature, 23.5);
+        assert.equal(value.environment.pm1, 5);
+        assert.equal(value.environment.pm10, 5);
+        assert.equal(value.environment.pm25, 5);
+
+        assert.equal(value.environment.pm1Rating, "GOOD");
+        assert.equal(value.environment.pm10Rating, "GOOD");
+        assert.equal(value.environment.pm25Rating, "GOOD");
+        assert.equal(value.environment.tvocRating, "GOOD");
+      });
+      consume(data);
+    });
   });
 });

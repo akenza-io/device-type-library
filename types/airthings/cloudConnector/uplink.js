@@ -39,7 +39,16 @@ function consume(event) {
   environment.co2 = data.co2;
   environment.co2Rating = data.ratings.co2;
   environment.tvoc = data.tvoc;
+  environment.tvocRating = data.ratings.voc;
   environment.soundLevelA = data.soundLevelA;
+
+  environment.pm1 = data.pm1;
+  environment.pm1Rating = data.ratings.pm1;
+  environment.pm10 = data.pm1;
+  environment.pm10Rating = data.ratings.pm1;
+  environment.pm25 = data.pm1;
+  environment.pm25Rating = data.ratings.pm1;
+
 
   if (deleteUnusedKeys(environment)) {
     state.environment = completeSample(environment, state.environment || {});
