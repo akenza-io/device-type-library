@@ -16,28 +16,13 @@
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
     },
     "pm1": {
-      "title": "Particulate matter count 1",
-      "unit": "mgpc",
-      "type": "integer",
-      "description": "Particles less than 1 mgpc in diameter",
-      "minimum": 0,
-      "maximum": 10000
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pm1/mcgm3"
+    },
+    "pm2_5": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pm2_5/mcgm3"
     },
     "pm10": {
-      "title": "Particulate matter count 10",
-      "unit": "mgpc",
-      "type": "integer",
-      "description": "Particles less than 1 mgpc in diameter",
-      "minimum": 0,
-      "maximum": 10000
-    },
-    "pm25": {
-      "title": "Particulate matter count 25",
-      "unit": "mgpc",
-      "type": "integer",
-      "description": "Particles less than 25 mgpc in diameter",
-      "minimum": 0,
-      "maximum": 10000
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pm10/mcgm3"
     },
     "pm1Rating": {
       "title": "PM1 rating",
@@ -51,10 +36,10 @@
       "description": "PM10 rating",
       "hideFromKpis": true
     },
-    "pm25Rating": {
-      "title": "PM25 rating",
+    "pm2_5Rating": {
+      "title": "PM2.5 rating",
       "type": "string",
-      "description": "PM25 rating",
+      "description": "PM2.5 rating",
       "hideFromKpis": true
     },
     "pressureRating": {
