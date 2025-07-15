@@ -11,7 +11,7 @@ function consume(event) {
     sample.touch = true;
     emit("sample", { data: sample, topic: "touch" })
   } else if (eventType === "networkStatus") {
-    // Supress networkStatus for an hour
+    // suppress network_status for one hour
     if (state.lastNetworkEmittedAt === undefined || now - state.lastNetworkEmittedAt >= 3600000) {
       sample.signalStrength = event.data.networkStatus.signalStrength;
       sample.rssi = event.data.networkStatus.rssi;

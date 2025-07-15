@@ -69,7 +69,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
 
         assert.equal(value.count, 0);
         assert.equal(value.lastStatus, "NOT_PRESENT");
-        // assert.equal(value.lastSampleEmittedAt);
+        assert.isDefined(value.lastSampleEmittedAt);
       });
 
       consume(data);
@@ -119,7 +119,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
 
         assert.equal(value.count, 1);
         assert.equal(value.lastStatus, "PRESENT");
-        // assert.equal(value.lastSampleEmittedAt);
+        assert.isDefined(value.lastSampleEmittedAt);
       });
 
       consume(data);
@@ -179,7 +179,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
 
         assert.equal(value.count, 1);
         assert.equal(value.lastStatus, "PRESENT");
-        // assert.equal(value.lastSampleEmittedAt);
+        assert.isDefined(value.lastSampleEmittedAt);
       });
 
       consume(data);

@@ -49,7 +49,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         assert.isNotNull(value);
 
         assert.equal(value.lastMotion, true);
-        // assert.equal(value.lastSampleEmittedAt);
+        assert.isDefined(value.lastSampleEmittedAt);
       });
 
       consume(data);

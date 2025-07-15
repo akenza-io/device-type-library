@@ -33,7 +33,7 @@ function consume(event) {
     sample.touch = true;
     emit("sample", { data: sample, topic: "touch" });
   } else if (eventType === "networkStatus") {
-    // Supress networkStatus for an hour
+    // suppress network_status for one hour
     if (state.lastNetworkEmittedAt === undefined || now - state.lastNetworkEmittedAt >= 3600000) {
       sample.signalStrength = event.data.networkStatus.signalStrength;
       sample.rssi = event.data.networkStatus.rssi;
@@ -53,8 +53,8 @@ function consume(event) {
     emit("sample", { data: sample, topic: "lifecycle" });
   }
 
-  // Give out a repeated sample each hour so our charts are keept happy
-  if (now - state.lastSampleEmittedAt >= 3600000) {
+  // output a sample each hour to facilitate time series analysis
+  if (state.lastSampleEmittedAt !== undefined && now - state.lastSampleEmittedAt >= 3600000) {
     emit("sample", { data: { "objectPresentCount": state.lastCount, "relativeCount": 0 }, topic: "object_present_count" });
     state.lastSampleEmittedAt = now;
   }

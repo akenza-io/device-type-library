@@ -54,7 +54,7 @@ describe("Digital Technologies Water Sensor Uplink", () => {
         assert.equal(type, "state");
         assert.isNotNull(value);
         assert.equal(value.lastWaterPresent, "NOT_PRESENT");
-        // assert.equal(value.lastSampleEmittedAt);
+        assert.isDefined(value.lastSampleEmittedAt);
       });
 
       consume(data);

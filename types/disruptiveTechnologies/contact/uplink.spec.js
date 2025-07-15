@@ -64,7 +64,7 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
         assert.equal(type, "state");
         assert.isNotNull(value);
         assert.equal(value.lastContact, "OPEN");
-        // assert.equal(value.lastSampleEmittedAt);
+        assert.isDefined(value.lastSampleEmittedAt);
       });
 
       consume(data);
@@ -127,7 +127,7 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
         assert.equal(type, "state");
         assert.isNotNull(value);
         assert.equal(value.lastContact, "OPEN");
-        // assert.equal(value.lastSampleEmittedAt);
+        assert.isDefined(value.lastSampleEmittedAt);
         // assert.equal(value.lastNetworkEmittedAt);
       });
 
@@ -162,7 +162,7 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
         assert.equal(type, "state");
         assert.isNotNull(value);
         assert.equal(value.lastContact, "OPEN");
-        // assert.equal(value.lastSampleEmittedAt);
+        assert.isDefined(value.lastSampleEmittedAt);
         // assert.equal(value.lastNetworkEmittedAt);
       });
 

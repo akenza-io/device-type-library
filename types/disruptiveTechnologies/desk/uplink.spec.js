@@ -52,7 +52,7 @@ describe("Digital Technologies Desk Sensor Uplink", () => {
       utils.expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.equal(value.lastOccupiedValue, false);
-        // assert.equal(value.lastSampleEmittedAt);
+        assert.isDefined(value.lastSampleEmittedAt);
       });
 
       consume(data);
@@ -92,7 +92,7 @@ describe("Digital Technologies Desk Sensor Uplink", () => {
       utils.expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.equal(value.lastOccupiedValue, true);
-        // assert.equal(value.lastSampleEmittedAt);
+        assert.isDefined(value.lastSampleEmittedAt);
       });
 
       consume(data);
@@ -139,7 +139,7 @@ describe("Digital Technologies Desk Sensor Uplink", () => {
         assert.equal(type, "state");
         assert.isNotNull(value);
         assert.equal(value.lastOccupiedValue, true);
-        // assert.equal(value.lastSampleEmittedAt);
+        assert.isDefined(value.lastSampleEmittedAt);
         // assert.equal(value.lastNetworkEmittedAt);
       });
 

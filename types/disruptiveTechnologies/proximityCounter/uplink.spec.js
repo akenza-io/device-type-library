@@ -56,7 +56,7 @@ describe("Digital Technologies Proximity Counter Sensor Uplink", () => {
         assert.isNotNull(value);
 
         assert.equal(value.lastCount, 4176);
-        // assert.equal(value.lastSampleEmittedAt);
+        assert.isDefined(value.lastSampleEmittedAt);
       });
 
       consume(data);

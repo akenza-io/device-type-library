@@ -13,7 +13,7 @@ function consume(event) {
   } else if (eventType === "pressure") {
     emit("sample", { data: { pressure: event.data.pressure.pascal }, topic: "pressure" });
   } else if (eventType === "networkStatus") {
-    // Supress networkStatus for an hour
+    // suppress network_status for one hour
     if (state.lastNetworkEmittedAt === undefined || now - state.lastNetworkEmittedAt >= 3600000) {
       sample.signalStrength = event.data.networkStatus.signalStrength;
       sample.rssi = event.data.networkStatus.rssi;
