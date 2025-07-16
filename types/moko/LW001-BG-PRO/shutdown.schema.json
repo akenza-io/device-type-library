@@ -1,0 +1,21 @@
+{
+  "$id": "https://akenza.io/moko/lw001-bg-pro/shutdown.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "shutdown",
+  "title": "Shutdown",
+  "properties": {
+    "shutdownType": {
+      "title": "Reason for the shutdown",
+      "type": "string",
+      "description": "Reason for the shutdown",
+      "enum": [
+        "BLUETOOTH_COMMAND",
+        "LORAWAN_COMMAND",
+        "MAGNETIC"
+      ],
+      "hideFromKpis": true
+    }
+  }
+}

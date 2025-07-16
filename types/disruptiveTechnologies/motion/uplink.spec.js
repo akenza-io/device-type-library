@@ -44,6 +44,14 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         utils.validateSchema(value.data, motionSchema, { throwError: true });
       });
 
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+
+        assert.equal(value.lastMotion, true);
+        assert.isDefined(value.lastSampleEmittedAt);
+      });
+
       consume(data);
     });
   });

@@ -1,0 +1,32 @@
+{
+  "$id": "https://akenza.io/moko/lw001-bg-pro/fix_failure.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "fix_failure",
+  "title": "Fix failure",
+  "properties": {
+    "reasonsForPositioningFailure": {
+      "title": "Reason for positioning failure",
+      "type": "string",
+      "description": "Reason for positioning failure",
+      "hideFromKpis": true
+    },
+    "macData": {
+      "title": "Wifi mac data",
+      "type": "array",
+      "description": "Wifi mac data",
+      "hideFromKpis": true
+    },
+    "pdop": {
+      "title": "Dilution of Precision",
+      "type": "number",
+      "description": "Dilution of Precision"
+    },
+    "gpsSatelliteCn": {
+      "title": "GPS satellite Channel",
+      "type": "string",
+      "description": "GPS satellite Channel"
+    }
+  }
+}

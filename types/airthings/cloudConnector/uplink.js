@@ -39,7 +39,16 @@ function consume(event) {
   environment.co2 = data.co2;
   environment.co2Rating = data.ratings.co2;
   environment.tvoc = data.tvoc;
+  environment.tvocRating = data.ratings.voc;
   environment.soundLevelA = data.soundLevelA;
+
+  environment.pm1 = data.pm1;
+  environment.pm1Rating = data.ratings.pm1;
+  environment.pm2_5 = data.pm25;
+  environment.pm2_5Rating = data.ratings.pm25;
+  environment.pm10 = data.pm10;
+  environment.pm10Rating = data.ratings.pm10;
+
 
   if (deleteUnusedKeys(environment)) {
     state.environment = completeSample(environment, state.environment || {});
@@ -118,8 +127,8 @@ function consume(event) {
   airly.pm1Rating = data.ratings.outdoorPm1;
   airly.pm10 = data.outdoorPm10;
   airly.pm10Rating = data.ratings.outdoorPm10;
-  airly.pm25 = data.outdoorPm25;
-  airly.pm25Rating = data.ratings.outdoorPm25;
+  airly.pm2_5 = data.outdoorPm25;
+  airly.pm2_5Rating = data.ratings.outdoorPm25;
 
   if (deleteUnusedKeys(airly)) {
     state.airly = completeSample(airly, state.airly || {});
