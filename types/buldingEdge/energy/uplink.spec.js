@@ -67,7 +67,7 @@ describe("Niagara Energy Uplink", () => {
           },
           device: {
             customFields: {
-              divider: 1000,
+              unitConversionDivider: 1000,
             },
           },
           topic: "energy_energyConsumed",

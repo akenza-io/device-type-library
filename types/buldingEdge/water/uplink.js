@@ -40,24 +40,24 @@ function consume(event) {
   if (event.device !== undefined) {
     if (event.device.customFields !== undefined) {
       const { customFields } = event.device;
-      let multiplier = 1;
-      let divider = 1;
+      let unitConversionMultiplier = 1;
+      let unitConversionDivider = 1;
 
-      if (customFields.multiplier !== undefined) {
-        multiplier = Number(customFields.multiplier);
+      if (customFields.unitConversionMultiplier !== undefined) {
+        unitConversionMultiplier = Number(customFields.unitConversionMultiplier);
       }
 
-      if (customFields.divider !== undefined) {
-        divider = Number(customFields.divider);
+      if (customFields.unitConversionDivider !== undefined) {
+        unitConversionDivider = Number(customFields.unitConversionDivider);
       }
 
       if (decoded.consumptionCumulative !== undefined) {
         decoded.consumptionCumulative =
           Math.round(
-            ((decoded.consumptionCumulative * multiplier) / divider) * 1000,
+            ((decoded.consumptionCumulative * unitConversionMultiplier) / unitConversionDivider) * 1000,
           ) / 1000;
         decoded.consumption =
-          Math.round(((decoded.consumption * multiplier) / divider) * 1000) /
+          Math.round(((decoded.consumption * unitConversionMultiplier) / unitConversionDivider) * 1000) /
           1000;
       }
     }
