@@ -7,6 +7,7 @@ function consume(event) {
   if (event.data.event_type === 'space_report') {
     topic = 'area_count';
     payload.peopleCount = event.data.person_count;
+    payload.signsOfLife = event.data.signs_of_life;
 
     // Set the state if its not set to prevent long periods of time without messages
     if (state.lastOccupied === undefined) {
@@ -17,7 +18,7 @@ function consume(event) {
       }
     }
 
-    // Give out a repeated sample each hour so our charts are keept happy
+    // output a sample each hour to facilitate time series analysis
     if (state.lastEmittedAt === undefined || now - state.lastEmittedAt >= 3600000) {
       if (state.lastOccupied === "OCCUPIED") {
         emit('sample', { data: { "occupancy": 2, "occupied": true }, topic: "occupancy" });

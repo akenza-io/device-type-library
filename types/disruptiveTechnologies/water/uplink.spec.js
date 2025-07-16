@@ -36,6 +36,7 @@ describe("Digital Technologies Water Sensor Uplink", () => {
         timestamp: "2021-09-14T08:16:27.517331Z",
         labels: { name: "Temperature Simulator" },
       };
+
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
@@ -47,6 +48,13 @@ describe("Digital Technologies Water Sensor Uplink", () => {
         utils.validateSchema(value.data, waterPresentSchema, {
           throwError: true,
         });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+        assert.equal(value.lastWaterPresent, "NOT_PRESENT");
+        assert.isDefined(value.lastSampleEmittedAt);
       });
 
       consume(data);

@@ -49,7 +49,7 @@
       "status": {
         "measurementType": "akenza/ios/buttonStatus/status",
         "title": "Button status",
-        "description": "Butten status T/F",
+        "description": "Button status T/F",
         "type": "boolean"
       }
     },
@@ -59,6 +59,13 @@
         "title": "Button event",
         "description": "Button event T/F",
         "type": "boolean"
+      },
+      "count": {
+        "measurementType": "akenza/ios/buttonEvent/count",
+        "title": "Button count",
+        "description": "Number of button presses",
+        "type": "integer",
+        "minimum": 0
       }
     },
     "reedContact": {
@@ -67,6 +74,13 @@
         "title": "Reed contact",
         "description": "Reed contact T/F",
         "type": "boolean"
+      },
+      "count": {
+        "measurementType": "akenza/ios/reedContact/count",
+        "title": "Reed contact count",
+        "description": "Number of reed contacts",
+        "type": "integer",
+        "minimum": 0
       }
     }
   }

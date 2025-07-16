@@ -9,9 +9,9 @@
     "peopleInZone": {
       "title": "People in zone",
       "description": "People in zone",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 65535
+      "maximum": 65535,
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleCount/people"
+
     }
   },
   "required": ["peopleInZone"]

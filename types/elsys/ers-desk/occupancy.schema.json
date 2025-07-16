@@ -9,9 +9,8 @@
     "motion": {
       "title": "Motion",
       "description": "The number of motion counts.",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 255
+      "maximum": 255,
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/motion/count"
     },
     "occupancy": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupancy/integer"

@@ -96,6 +96,7 @@ describe("Verge Sense Uplink", () => {
 
         assert.equal(value.topic, "area_count");
         assert.equal(value.data.peopleCount, 0);
+        assert.equal(value.data.signsOfLife, false);
 
         utils.validateSchema(value.data, areaCountReportSchema, {
           throwError: true,
