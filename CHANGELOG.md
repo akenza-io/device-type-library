@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.67.0] - 2025-07-16
+
+### Added
+
+- Moko - LW001-BG-PRO
+
+### Changed
+
+- Elsys EMS Door now emits absolutcounts on events too
+- Added env template and option to test locally with "LOCAL" TEST_MODE
+
+# [1.66.1] - 2025-07-15
+
+### Changed
+
+- VergeSense now emits sign of live values
+- Airthings devices now emit pm values
+- Disruptive devices now repeat on change values and suppress lifecycles to once an hour
+
 # [1.66.0] - 2025-07-09
 
 ### Added

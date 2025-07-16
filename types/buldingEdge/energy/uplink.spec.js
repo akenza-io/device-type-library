@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -53,7 +53,7 @@ describe("Niagara Energy Uplink", () => {
         assert.equal(value.data.consumption, 0);
         assert.equal(value.data.consumptionCumulative, 9453146);
 
-        validate(value.data, consumptionSchema, { throwError: true });
+        utils.validateSchema(value.data, consumptionSchema, { throwError: true });
       });
 
       consume(data);
@@ -91,7 +91,7 @@ describe("Niagara Energy Uplink", () => {
           assert.equal(value.data.consumption, 3.146);
           assert.equal(value.data.consumptionCumulative, 9453.146);
 
-          validate(value.data, consumptionSchema, { throwError: true });
+          utils.validateSchema(value.data, consumptionSchema, { throwError: true });
         });
 
         consume(data);

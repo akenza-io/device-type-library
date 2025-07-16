@@ -1,5 +1,5 @@
 const chai = require("chai");
-const { validate } = require("jsonschema");
+
 const rewire = require("rewire");
 const utils = require("test-utils");
 
@@ -48,7 +48,7 @@ describe("Niagara Occupancy Uplink", () => {
         assert.equal(value.data.motionCount, 0);
         assert.equal(value.data.occupied, false);
 
-        validate(value.data, occupancySchema, { throwError: true });
+        utils.validateSchema(value.data, occupancySchema, { throwError: true });
       });
 
       consume(data);
@@ -72,7 +72,7 @@ describe("Niagara Occupancy Uplink", () => {
         assert.equal(value.data.motionCount, 1);
         assert.equal(value.data.occupied, true);
 
-        validate(value.data, occupancySchema, { throwError: true });
+        utils.validateSchema(value.data, occupancySchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -83,7 +83,7 @@ describe("Niagara Occupancy Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.status, "FAULT");
 
-        validate(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
