@@ -506,7 +506,7 @@ function consume(event) {
     }
 
     if (deleteUnusedKeys(reed)) {
-      // Complete sample if its a reed event
+      // Complete sample if it is a reed event
       if (reed.pulseAbs1 === undefined) {
         if (state.lastPulse1 !== undefined) {
           if (reed.reed) {
