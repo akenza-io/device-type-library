@@ -1,0 +1,17 @@
+{
+  "$id": "https://akenza.io/moko/lw001-bg-pro/mandown.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "mandown",
+  "title": "Mandown",
+  "properties": {
+    "totalIdleTime": {
+      "title": "Total idle time",
+      "unit": "m",
+      "type": "number",
+      "description": "Total idle time",
+      "hideFromKpis": true
+    }
+  }
+}
