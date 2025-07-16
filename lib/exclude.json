@@ -9,6 +9,7 @@
         "pm0_5Number",
         "pm2_5Number",
         "massConcPm2_5",
-        "partConcPm2_5"
+        "partConcPm2_5",
+        "pm2_5Rating"
     ]
 }

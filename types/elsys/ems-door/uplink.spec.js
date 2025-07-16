@@ -159,5 +159,73 @@ describe("Elsys EMS Door uplink", () => {
 
       consume(data);
     });
+
+    it("should decode Elsys EMS Door event payload and count up the state correctly", () => {
+      const data = {
+        state: {
+          lastPulse1: 1938,
+        },
+        data: {
+          port: 5,
+          payloadHex: "0d01",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "reed");
+        assert.equal(value.data.pulseAbs1, 1939);
+        assert.equal(value.data.relativePulse1, 1);
+        assert.equal(value.data.reed, true);
+
+        utils.validateSchema(value.data, reedSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+
+        assert.equal(value.lastPulse1, 1939);
+      });
+
+      consume(data);
+    });
+
+    it("should decode Elsys EMS Door event payload and not count up only repeat", () => {
+      const data = {
+        state: {
+          lastPulse1: 1939,
+        },
+        data: {
+          port: 5,
+          payloadHex: "0d00",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "reed");
+        assert.equal(value.data.pulseAbs1, 1939);
+        assert.equal(value.data.relativePulse1, 0);
+        assert.equal(value.data.reed, false);
+
+        utils.validateSchema(value.data, reedSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+
+        assert.equal(value.lastPulse1, 1939);
+      });
+
+      consume(data);
+    });
   });
 });
