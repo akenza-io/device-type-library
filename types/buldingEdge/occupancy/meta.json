@@ -1,0 +1,19 @@
+{
+  "name": "Akenza Building Edge Occupancy",
+  "version": "1.0.0",
+  "manufacturer": "Tridium",
+  "url": "https://www.tridium.com/us/en/Products/niagara/jace",
+  "description": "Niagara building control system integration for occupancy values",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Occupancy"
+  ],
+  "outputTopics": [
+    "occupancy",
+    "lifecycle"
+  ],
+  "encoding": "JSON",
+  "connectivity": "MQTT"
+}
