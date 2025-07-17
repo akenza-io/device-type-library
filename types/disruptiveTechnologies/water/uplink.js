@@ -7,7 +7,15 @@ function consume(event) {
   if (eventType === "waterPresent") {
     state.lastWaterPresent = event.data.waterPresent.state;
     state.lastSampleEmittedAt = now;
-    emit("sample", { data: { waterPresent: state.lastWaterPresent }, topic: "water_present" });
+    sample.waterPresent = state.lastWaterPresent;
+
+    if (state.lastWaterPresent === "PRESENT") {
+      sample.leakageDetected = true;
+    } else {
+      sample.leakageDetected = false;
+    }
+
+    emit("sample", { data: sample, topic: "water_present" });
   } else if (eventType === "touch") {
     emit("sample", { data: { touch: true }, topic: "touch" });
   } else if (eventType === "networkStatus") {
@@ -33,7 +41,15 @@ function consume(event) {
 
   // output a sample each hour to facilitate time series analysis
   if (state.lastSampleEmittedAt !== undefined && now - state.lastSampleEmittedAt >= 3600000) {
-    emit("sample", { data: { waterPresent: state.lastWaterPresent }, topic: "water_present" });
+    sample.waterPresent = state.lastWaterPresent;
+
+    if (state.lastWaterPresent === "PRESENT") {
+      sample.leakageDetected = true;
+    } else {
+      sample.leakageDetected = false;
+    }
+
+    emit("sample", { data: sample, topic: "water_present" });
     state.lastSampleEmittedAt = now;
   }
 
