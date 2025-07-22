@@ -5,10 +5,16 @@ function consume(event) {
   const state = event.state || {};
 
   if (eventType === "objectPresent") {
+    // Init usage to count washroom visits
+    if (state.usage === undefined || state.usage === null) {
+      state.usage = 0;
+    }
+
     sample.objectPresent = event.data.objectPresent.state;
     if (sample.objectPresent === "PRESENT") {
       sample.proximity = true;
       sample.relativeCount = 1;
+      state.usage++;
     } else {
       sample.proximity = false;
       sample.relativeCount = 0;
@@ -31,6 +37,35 @@ function consume(event) {
     state.lastStatus = sample.objectPresent;
     sample.count = state.count;
     state.lastSampleEmittedAt = now;
+
+    // Washroom usage
+    if (event.device !== undefined && event.device.customFields !== undefined &&
+      event.device.customFields.usecase !== undefined && event.device.customFields.usecase === "Washroom") {
+      const data = {};
+
+      // Always floor or ceil depending on the starting point
+      if (state.start === undefined) {
+        if (sample.count % 2 === 0) {
+          state.start = "EVEN";
+        } else {
+          state.start = "ODD";
+        }
+      }
+
+      if (state.start === "ODD") {
+        data.absolutVisitCount = Math.floor(sample.count / 2);
+      } else {
+        data.absolutVisitCount = Math.ceil(sample.count / 2);
+      }
+
+      if (state.usage / 2 === 1) {
+        data.relativeVisitCount = 1;
+        state.usage = 0;
+      } else {
+        data.relativeVisitCount = 0;
+      }
+      emit("sample", { data, topic: "washroom_visit" });
+    }
 
     emit("sample", { data: sample, topic: "object_present" });
   } else if (eventType === "touch") {
@@ -67,6 +102,30 @@ function consume(event) {
       sample.proximity = true;
     } else {
       sample.proximity = false;
+    }
+
+    // Washroom usage
+    if (event.device !== undefined && event.device.customFields !== undefined &&
+      event.device.customFields.usecase !== undefined && event.device.customFields.usecase === "Washroom") {
+      const data = {};
+
+      if (state.start === undefined) {
+        // Predicts the next state in this case
+        if (state.count % 2 === 0) {
+          state.start = "ODD";
+        } else {
+          state.start = "EVEN";
+        }
+      }
+
+      if (state.start === "ODD") {
+        data.absolutVisitCount = Math.floor(state.count / 2);
+      } else {
+        data.absolutVisitCount = Math.ceil(state.count / 2);
+      }
+
+      data.relativeVisitCount = 0;
+      emit("sample", { data, topic: "washroom_visit" });
     }
 
     emit("sample", { data: sample, topic: "object_present" });
