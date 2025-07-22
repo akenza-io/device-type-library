@@ -52,6 +52,7 @@ function consume(event) {
         }
       }
 
+      // This is done so the absolute visits count up as a relative visit has been registered
       if (state.start === "ODD") {
         data.absolutVisitCount = Math.floor(sample.count / 2);
       } else {
