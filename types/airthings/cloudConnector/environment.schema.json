@@ -18,11 +18,29 @@
     "co2": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm"
     },
+    "tvoc": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/tvoc/ppb"
+    },
     "soundLevelA": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/soundLevel/dbspl"
     },
+    "pm1": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pm1/mcgm3"
+    },
+    "pm2_5": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pm2_5/mcgm3"
+    },
+    "pm10": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pm10/mcgm3"
+    },
     "temperatureRating": {
       "title": "Temperature rating",
+      "type": "string",
+      "description": "Temperature rating",
+      "hideFromKpis": true
+    },
+    "tvocRating": {
+      "title": "TVOC rating",
       "type": "string",
       "description": "Temperature rating",
       "hideFromKpis": true
@@ -43,6 +61,24 @@
       "title": "CO2 rating",
       "type": "string",
       "description": "CO2 rating",
+      "hideFromKpis": true
+    },
+    "pm1Rating": {
+      "title": "PM1 rating",
+      "type": "string",
+      "description": "PM1 rating",
+      "hideFromKpis": true
+    },
+    "pm2_5Rating": {
+      "title": "PM2.5 rating",
+      "type": "string",
+      "description": "PM2.5 rating",
+      "hideFromKpis": true
+    },
+    "pm10Rating": {
+      "title": "PM10 rating",
+      "type": "string",
+      "description": "PM10 rating",
       "hideFromKpis": true
     }
   }

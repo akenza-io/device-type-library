@@ -10,9 +10,23 @@ function deleteUnusedKeys(data) {
   return keysRetained;
 }
 
+// Save merge old and new datapoints
+function completeSample(data, historicData) {
+  const merged = data;
+
+  Object.keys(historicData).forEach((key) => {
+    if (data[key] === undefined || data[key] === null) {
+      merged[key] = historicData[key];
+    }
+  });
+
+  return merged;
+}
+
 function consume(event) {
   const { data } = event;
   const timestamp = new Date(data.recorded);
+  const state = event.state || {};
   data.ratings = data.ratings || {};
 
   const environment = {};
@@ -24,10 +38,21 @@ function consume(event) {
   environment.humidityRating = data.ratings.humidity;
   environment.co2 = data.co2;
   environment.co2Rating = data.ratings.co2;
+  environment.tvoc = data.tvoc;
+  environment.tvocRating = data.ratings.voc;
   environment.soundLevelA = data.soundLevelA;
 
+  environment.pm1 = data.pm1;
+  environment.pm1Rating = data.ratings.pm1;
+  environment.pm2_5 = data.pm25;
+  environment.pm2_5Rating = data.ratings.pm25;
+  environment.pm10 = data.pm10;
+  environment.pm10Rating = data.ratings.pm10;
+
+
   if (deleteUnusedKeys(environment)) {
-    emit("sample", { data: environment, topic: "environment", timestamp });
+    state.environment = completeSample(environment, state.environment || {});
+    emit("sample", { data: state.environment, topic: "environment", timestamp });
   }
 
   const mold = {};
@@ -35,7 +60,8 @@ function consume(event) {
   mold.moldRiskRating = data.ratings.mold;
 
   if (deleteUnusedKeys(mold)) {
-    emit("sample", { data: mold, topic: "mold", timestamp });
+    state.mold = completeSample(mold, state.mold || {});
+    emit("sample", { data: state.mold, topic: "mold", timestamp });
   }
 
   const virus = {};
@@ -43,7 +69,8 @@ function consume(event) {
   virus.virusRiskRating = data.ratings.virusRisk;
 
   if (deleteUnusedKeys(virus)) {
-    emit("sample", { data: virus, topic: "virus", timestamp });
+    state.virus = completeSample(virus, state.virus || {});
+    emit("sample", { data: state.virus, topic: "virus", timestamp });
   }
 
   const radon = {};
@@ -51,7 +78,8 @@ function consume(event) {
   radon.hourlyRadonRating = data.ratings.hourlyRadon;
 
   if (deleteUnusedKeys(radon)) {
-    emit("sample", { data: radon, topic: "radon", timestamp });
+    state.radon = completeSample(radon, state.radon || {});
+    emit("sample", { data: state.radon, topic: "radon", timestamp });
   }
 
   const lifecycle = {};
@@ -87,7 +115,8 @@ function consume(event) {
   ventilation.airExchangeRate = data.airExchangeRate;
 
   if (deleteUnusedKeys(ventilation)) {
-    emit("sample", { data: ventilation, topic: "ventilation", timestamp });
+    state.ventilation = completeSample(ventilation, state.ventilation || {});
+    emit("sample", { data: state.ventilation, topic: "ventilation", timestamp });
   }
 
   const airly = {};
@@ -98,10 +127,13 @@ function consume(event) {
   airly.pm1Rating = data.ratings.outdoorPm1;
   airly.pm10 = data.outdoorPm10;
   airly.pm10Rating = data.ratings.outdoorPm10;
-  airly.pm25 = data.outdoorPm25;
-  airly.pm25Rating = data.ratings.outdoorPm25;
+  airly.pm2_5 = data.outdoorPm25;
+  airly.pm2_5Rating = data.ratings.outdoorPm25;
 
   if (deleteUnusedKeys(airly)) {
-    emit("sample", { data: airly, topic: "airly", timestamp });
+    state.airly = completeSample(airly, state.airly || {});
+    emit("sample", { data: state.airly, topic: "airly", timestamp });
   }
+
+  emit("state", state);
 }

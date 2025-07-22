@@ -12,7 +12,7 @@
     "open": {
       "title": "Open",
       "description": "Status of the tab. open = true, closed = false",
-      "type": "boolean"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/reedContact/status"
     },
     "time": {
       "title": "Time",
@@ -23,15 +23,15 @@
     },
     "count": {
       "title": "Absolute count",
-      "type": "integer",
       "description": "Absolute count of events, resets on reboot",
-      "hideFromKpis": true
+      "hideFromKpis": true,
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/count"
     },
     "relativeCount": {
       "title": "Count",
-      "type": "integer",
       "description": "Count of events between cycles",
-      "hideFromKpis": true
+      "hideFromKpis": true,
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/count"
     }
   },
   "required": [

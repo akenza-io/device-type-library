@@ -4,6 +4,64 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.67.0] - 2025-07-16
+
+### Added
+
+- Moko - LW001-BG-PRO
+
+### Changed
+
+- Elsys EMS Door now emits absolutcounts on events too
+- Added env template and option to test locally with "LOCAL" TEST_MODE
+
+# [1.66.1] - 2025-07-15
+
+### Changed
+
+- VergeSense now emits sign of live values
+- Airthings devices now emit pm values
+- Disruptive devices now repeat on change values and suppress lifecycles to once an hour
+
+# [1.66.0] - 2025-07-09
+
+### Added
+
+- Akenza building edge - Energy
+- Akenza building edge - Occupancy
+- Akenza building edge - Water
+
+### Changed
+
+- Decentlab IAM - Fixed tests
+
+# [1.65.2] - 2025-06-30
+
+### Changed
+
+- Decentlab IAM - Unifyd occupancy topic so its in line with the rest
+- Environment data model - added pm4
+- IOS data model - added count for buttons
+- Spaces data model - added percentFree, percentOccupied
+
+# [1.65.2] - 2025-07-01
+
+### Added
+
+- Usage count measurement type
+
+### Changed
+
+- Browan Tabs Door & Window Sensor, TBDW100 - Add usage count schema
+
+# [1.65.1] - 2025-06-24
+
+### Changed
+
+- Airthings - Merging new and old samples to always emit a complete payload
+- Disruptive Technologies temperature & humidity - will now split subsamples into their own samples
+- Terabee People Counting XL - Now counts relative and absolute forward and backward
+
 # [1.65.0] - 2025-06-19
 
 ### Added
