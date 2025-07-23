@@ -4,7 +4,7 @@
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "washroom_usage",
-  "title": "Washroom visit",
+  "title": "Washroom usage",
   "properties": {
     "relativeVisitCount": {
       "title": "Relative visit count",
