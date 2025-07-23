@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.68.0] - 2025-07-23
+
+### Added
+
+- Hager - TG563A
+
 # [1.67.0] - 2025-07-16
 
 ### Added
