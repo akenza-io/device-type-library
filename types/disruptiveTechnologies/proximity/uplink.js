@@ -43,10 +43,10 @@ function consume(event) {
       (event.device.tags.indexOf("washroom_usage") !== -1 || event.device.tags.indexOf("cubicle_usage") !== -1)) {
 
       // Only emit on usageIncrease
-      if (state.usage / 2 === 1) {
+      if (state.usage % 2 === 0) {
         const data = {};
-        data.absoluteVisitCount = Math.floor(sample.count / 2);
-        data.relativeVisitCount = 1;
+        data.absoluteUsageCount = Math.floor(sample.count / 2);
+        data.relativeUsageCount = 1;
         state.usage = 0;
         emit("sample", { data, topic: "washroom_usage" });
       }

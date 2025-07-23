@@ -250,6 +250,62 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
       consume(data);
     });
 
+    it("should decode the Digital Technologies Proximity Sensor payload and also not impact washroom usage", () => {
+      const data = {
+        state: {
+          count: 201,
+          usage: 1,
+          lastStatus: "PRESENT"
+        },
+        device: {
+          tags: [
+            "washroom_usage"
+          ],
+        },
+        eventId: "c510f9ag03fligl8tvag",
+        targetName:
+          "projects/c3t7p26j4a2g00de1sng/devices/bjmgj6dp0jt000a5dcug",
+        eventType: "objectPresent",
+        data: {
+          eventType: "objectPresent",
+          objectPresent: {
+            state: "NOT_PRESENT",
+            updateTime: "2021-09-15T14:48:05.948000Z",
+          },
+        },
+        timestamp: "2021-09-15T14:48:05.948000Z",
+        labels: {},
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "object_present");
+        assert.equal(value.data.objectPresent, "NOT_PRESENT");
+        assert.equal(value.data.proximity, false);
+        assert.equal(value.data.count, 201);
+        assert.equal(value.data.relativeCount, 0);
+
+        utils.validateSchema(value.data, objectPresentSchema, {
+          throwError: true,
+        });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+
+        assert.equal(value.count, 201);
+        assert.equal(value.usage, 1);
+        assert.equal(value.lastStatus, "NOT_PRESENT");
+        assert.isDefined(value.lastSampleEmittedAt);
+      });
+
+      consume(data);
+    });
+
     it("Check if the washroom visits counts up correctly", () => {
       const data = {
         eventId: "c510f9ag03fligl8tvag",
@@ -284,8 +340,8 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "washroom_usage");
-        assert.equal(value.data.absoluteVisitCount, 101);
-        assert.equal(value.data.relativeVisitCount, 1);
+        assert.equal(value.data.absoluteUsageCount, 101);
+        assert.equal(value.data.relativeUsageCount, 1);
 
         utils.validateSchema(value.data, washroomVisitSchema, {
           throwError: true,
