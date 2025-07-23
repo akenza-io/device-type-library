@@ -29,12 +29,12 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
       });
   });
 
-  let washroomVisitSchema = null;
+  let washroomUsageSchema = null;
   before((done) => {
     utils
       .loadSchema(`${__dirname}/washroom_usage.schema.json`)
       .then((parsedSchema) => {
-        washroomVisitSchema = parsedSchema;
+        washroomUsageSchema = parsedSchema;
         done();
       });
   });
@@ -306,7 +306,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
       consume(data);
     });
 
-    it("Check if the washroom visits counts up correctly", () => {
+    it("Check if the washroom usages counts up correctly", () => {
       const data = {
         eventId: "c510f9ag03fligl8tvag",
         device: {
@@ -343,7 +343,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         assert.equal(value.data.absoluteUsageCount, 101);
         assert.equal(value.data.relativeUsageCount, 1);
 
-        utils.validateSchema(value.data, washroomVisitSchema, {
+        utils.validateSchema(value.data, washroomUsageSchema, {
           throwError: true,
         });
       });

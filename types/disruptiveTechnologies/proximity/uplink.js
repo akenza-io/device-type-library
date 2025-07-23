@@ -5,7 +5,7 @@ function consume(event) {
   const state = event.state || {};
 
   if (eventType === "objectPresent") {
-    // Init usage to count washroom visits
+    // Init usage to count washroom usages
     if (state.usage === undefined || state.usage === null) {
       state.usage = 0;
     }
