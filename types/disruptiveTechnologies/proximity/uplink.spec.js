@@ -202,9 +202,9 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
           usage: 0,
         },
         device: {
-          customFields: {
-            usecase: "Washroom"
-          }
+          tags: [
+            "washroom_usage"
+          ],
         },
         eventId: "c510f9ag03fligl8tvag",
         targetName:
@@ -220,22 +220,6 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         timestamp: "2021-09-15T14:48:05.948000Z",
         labels: {},
       };
-
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "washroom_visit");
-        assert.equal(value.data.absolutVisitCount, 100);
-        assert.equal(value.data.relativeVisitCount, 0);
-
-
-        utils.validateSchema(value.data, washroomVisitSchema, {
-          throwError: true,
-        });
-
-      });
 
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
@@ -270,9 +254,9 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
       const data = {
         eventId: "c510f9ag03fligl8tvag",
         device: {
-          customFields: {
-            usecase: "Washroom"
-          }
+          tags: [
+            "cubicle_usage"
+          ],
         },
         targetName:
           "projects/c3t7p26j4a2g00de1sng/devices/bjmgj6dp0jt000a5dcug",
@@ -299,8 +283,8 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "washroom_visit");
-        assert.equal(value.data.absolutVisitCount, 101);
+        assert.equal(value.topic, "washroom_usage");
+        assert.equal(value.data.absoluteVisitCount, 101);
         assert.equal(value.data.relativeVisitCount, 1);
 
         utils.validateSchema(value.data, washroomVisitSchema, {

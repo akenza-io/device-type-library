@@ -10,6 +10,10 @@ All notable changes to this project will be documented in this file.
 
 - Hager - TG563A
 
+### Changed
+
+- Disruptive Proximity now emits washroom usage
+
 # [1.67.0] - 2025-07-16
 
 ### Added

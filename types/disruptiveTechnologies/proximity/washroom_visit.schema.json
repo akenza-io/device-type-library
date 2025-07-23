@@ -1,17 +1,17 @@
 {
-  "$id": "https://akenza.io/digitalTechnologies/proximity/washroom_visit.schema.json",
+  "$id": "https://akenza.io/digitalTechnologies/proximity/washroom_usage.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
-  "topic": "washroom_visit",
+  "topic": "washroom_usage",
   "title": "Washroom visit",
   "properties": {
     "relativeVisitCount": {
       "title": "Relative visit count",
-      "description": "One visit counts as two door cycles.",
+      "description": "One visit is counted as two door cycles.",
       "type": "integer"
     },
-    "absolutVisitCount": {
+    "absoluteVisitCount": {
       "title": "Absolute visit count",
       "description": "Absolute visit count",
       "type": "integer"
@@ -19,6 +19,6 @@
   },
   "required": [
     "relativeVisitCount",
-    "absolutVisitCount"
+    "absoluteVisitCount"
   ]
 }

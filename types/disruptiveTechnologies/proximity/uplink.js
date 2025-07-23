@@ -39,33 +39,17 @@ function consume(event) {
     state.lastSampleEmittedAt = now;
 
     // Washroom usage
-    if (event.device !== undefined && event.device.customFields !== undefined &&
-      event.device.customFields.usecase !== undefined && event.device.customFields.usecase === "Washroom") {
-      const data = {};
+    if (event.device !== undefined && event.device.tags !== undefined &&
+      (event.device.tags.indexOf("washroom_usage") !== -1 || event.device.tags.indexOf("cubicle_usage") !== -1)) {
 
-      // Always floor or ceil depending on the starting point
-      if (state.start === undefined) {
-        if (sample.count % 2 === 0) {
-          state.start = "EVEN";
-        } else {
-          state.start = "ODD";
-        }
-      }
-
-      // This is done so the absolute visits count up as a relative visit has been registered
-      if (state.start === "ODD") {
-        data.absolutVisitCount = Math.floor(sample.count / 2);
-      } else {
-        data.absolutVisitCount = Math.ceil(sample.count / 2);
-      }
-
+      // Only emit on usageIncrease
       if (state.usage / 2 === 1) {
+        const data = {};
+        data.absoluteVisitCount = Math.floor(sample.count / 2);
         data.relativeVisitCount = 1;
         state.usage = 0;
-      } else {
-        data.relativeVisitCount = 0;
+        emit("sample", { data, topic: "washroom_usage" });
       }
-      emit("sample", { data, topic: "washroom_visit" });
     }
 
     emit("sample", { data: sample, topic: "object_present" });
@@ -103,30 +87,6 @@ function consume(event) {
       sample.proximity = true;
     } else {
       sample.proximity = false;
-    }
-
-    // Washroom usage
-    if (event.device !== undefined && event.device.customFields !== undefined &&
-      event.device.customFields.usecase !== undefined && event.device.customFields.usecase === "Washroom") {
-      const data = {};
-
-      if (state.start === undefined) {
-        // Predicts the next state in this case
-        if (state.count % 2 === 0) {
-          state.start = "ODD";
-        } else {
-          state.start = "EVEN";
-        }
-      }
-
-      if (state.start === "ODD") {
-        data.absolutVisitCount = Math.floor(state.count / 2);
-      } else {
-        data.absolutVisitCount = Math.ceil(state.count / 2);
-      }
-
-      data.relativeVisitCount = 0;
-      emit("sample", { data, topic: "washroom_visit" });
     }
 
     emit("sample", { data: sample, topic: "object_present" });
