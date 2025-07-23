@@ -59,7 +59,7 @@
       "type": "boolean",
       "hideFromKpis": true
     },
-    "aacInactiv": {
+    "aacInactive": {
       "title": "AAC inactivity",
       "description": "Equals true if a prolonged antimask problem is detected.",
       "type": "boolean",
@@ -113,7 +113,7 @@
     "tempOutOfRange",
     "usAntimask",
     "irAntimask",
-    "aacInactiv",
+    "aacInactive",
     "tooLongUnmounted",
     "smokeAlarm",
     "batteryFault",

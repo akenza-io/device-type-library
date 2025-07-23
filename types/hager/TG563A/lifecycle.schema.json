@@ -15,7 +15,7 @@
     "batteryVoltage": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
     },
-    "serial": {
+    "serialNumber": {
       "title": "Serial number",
       "description": "Serial number",
       "type": "string",

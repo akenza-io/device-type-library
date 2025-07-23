@@ -66,7 +66,7 @@ describe("Should decode the TG563A uplinks", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.batteryFault, false);
         assert.equal(value.data.aacFault, false);
-        assert.equal(value.data.aacInactiv, false);
+        assert.equal(value.data.aacInactive, false);
         assert.equal(value.data.dayMode, true);
         assert.equal(value.data.foulingSmokeFault, false);
         assert.equal(value.data.frameType, "LONG_PERIODIC_TELEGRAM");
@@ -93,7 +93,7 @@ describe("Should decode the TG563A uplinks", () => {
         assert.equal(value.data.batteryVoltage, 3.06);
         assert.equal(value.data.installationDate, '2053-12-50');
         assert.equal(value.data.productionDate, '2039-08-50');
-        assert.equal(value.data.serial, "00000230");
+        assert.equal(value.data.serialNumber, "00000230");
         assert.equal(value.data.version, 0);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });

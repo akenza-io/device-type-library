@@ -16,7 +16,7 @@ function getFrameType(type) {
 }
 
 function decodeBCD(bytes) {
-  // Decode 4 bytes (LSB first) as BCD to string serial
+  // Decode 4 bytes (LSB first) as BCD to string serialNumber
   let value = 0;
   for (let i = 3; i >= 0; i--) {
     value = value * 100 + ((bytes[i] >> 4) & 0x0F) * 10 + (bytes[i] & 0x0F);
@@ -90,7 +90,7 @@ function consume(event) {
 
   data.usAntimask = (minorStatus & 0x01) !== 0;
   data.irAntimask = (minorStatus & 0x02) !== 0;
-  data.aacInactiv = (minorStatus & 0x04) !== 0;
+  data.aacInactive = (minorStatus & 0x04) !== 0;
   data.tooLongUnmounted = (minorStatus & 0x08) !== 0;
 
   data.smokeAlarm = (majorStatus & 0x01) !== 0;
@@ -109,7 +109,7 @@ function consume(event) {
 
     lifecycle.version = version;
     lifecycle.batteryVoltage = (batteryRaw / 100) + 1;
-    lifecycle.serial = decodeBCD(bytes.slice(6, 10));
+    lifecycle.serialNumber = decodeBCD(bytes.slice(6, 10));
     lifecycle.productionDate = decodeDate(bytes.slice(10, 12));
     lifecycle.installationDate = decodeDate(bytes.slice(12, 14));
     emit("sample", { data: lifecycle, topic: "lifecycle" });
