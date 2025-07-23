@@ -43,7 +43,7 @@ function consume(event) {
       (event.device.tags.indexOf("washroom_usage") !== -1 || event.device.tags.indexOf("cubicle_usage") !== -1)) {
 
       // Only emit on usageIncrease
-      if (state.usage % 2 === 0) {
+      if (state.usage > 0 && state.usage % 2 === 0) {
         const data = {};
         data.absoluteUsageCount = Math.floor(sample.count / 2);
         data.relativeUsageCount = 1;
