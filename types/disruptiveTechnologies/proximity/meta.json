@@ -12,7 +12,7 @@
   ],
   "outputTopics": [
     "object_present",
-    "washroom_visit",
+    "washroom_usage",
     "touch",
     "network_status",
     "lifecycle"

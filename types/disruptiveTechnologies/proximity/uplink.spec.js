@@ -32,7 +32,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
   let washroomVisitSchema = null;
   before((done) => {
     utils
-      .loadSchema(`${__dirname}/washroom_visit.schema.json`)
+      .loadSchema(`${__dirname}/washroom_usage.schema.json`)
       .then((parsedSchema) => {
         washroomVisitSchema = parsedSchema;
         done();
