@@ -6,8 +6,17 @@
   "description": "The Wireless Proximity Sensor can detect objects that are removed or placed in front of the sensor. In addition to periodic heartbeats every 15 minutes, the sensor transmits a message when an object is removed or placed in front of the sensor.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
-  "availableSensors": ["Presence", "Touch"],
-  "outputTopics": ["object_present", "touch", "network_status", "lifecycle"],
+  "availableSensors": [
+    "Presence",
+    "Touch"
+  ],
+  "outputTopics": [
+    "object_present",
+    "washroom_usage",
+    "touch",
+    "network_status",
+    "lifecycle"
+  ],
   "encoding": "JSON",
   "connectivity": "HTTP"
 }

@@ -5,10 +5,16 @@ function consume(event) {
   const state = event.state || {};
 
   if (eventType === "objectPresent") {
+    // Init usage to count washroom usages
+    if (state.usage === undefined || state.usage === null) {
+      state.usage = 0;
+    }
+
     sample.objectPresent = event.data.objectPresent.state;
     if (sample.objectPresent === "PRESENT") {
       sample.proximity = true;
       sample.relativeCount = 1;
+      state.usage++;
     } else {
       sample.proximity = false;
       sample.relativeCount = 0;
@@ -31,6 +37,20 @@ function consume(event) {
     state.lastStatus = sample.objectPresent;
     sample.count = state.count;
     state.lastSampleEmittedAt = now;
+
+    // Washroom usage
+    if (event.device !== undefined && event.device.tags !== undefined &&
+      (event.device.tags.indexOf("washroom_usage") !== -1 || event.device.tags.indexOf("cubicle_usage") !== -1)) {
+
+      // Only emit on usageIncrease
+      if (state.usage > 0 && state.usage % 2 === 0) {
+        const data = {};
+        data.absoluteUsageCount = Math.floor(sample.count / 2);
+        data.relativeUsageCount = 1;
+        state.usage = 0;
+        emit("sample", { data, topic: "washroom_usage" });
+      }
+    }
 
     emit("sample", { data: sample, topic: "object_present" });
   } else if (eventType === "touch") {
