@@ -1,0 +1,20 @@
+{
+  "name": "S31LB-LS",
+  "version": "1.0.0",
+  "manufacturer": "Dragino",
+  "url": "https://www.dragino.com/products/temperature-humidity-sensor/item/264-s31-lb-ls.html",
+  "description": "The Dragino S31-LB/LS is a LoRaWAN sensor that precisely measures environmental temperature and humidity using a durable, waterproof Sensirion SHT31 sensor. It transmits data over long ranges with low power consumption. Key features include temperature/humidity alarms, offline datalogging, and easy configuration via BLE. Powered by a long-life 8500mAh battery for up to 5 years of use, it's designed for simple, long-term deployment in IoT networks.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Humidity"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LoRaWAN"
+}
