@@ -1,0 +1,40 @@
+{
+    "$id": "https://akenza.io/dragino/s31lb-ls/datalog.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "datalog",
+    "title": "Datalog",
+    "properties": {
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "humidity": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+        },
+        "alarmFlag": {
+            "title": "Alarm Flag",
+            "type": "boolean",
+            "description": "Alarm Flag",
+            "hideFromKpis": true
+        },
+        "poll": {
+            "title": "Poll Message Flag",
+            "type": "number",
+            "description": "Poll Message Flag",
+            "hideFromKpis": true
+        },
+        "pa8": {
+            "title": "PA8 Status",
+            "type": "string",
+            "description": "PA8 Status",
+            "hideFromKpis": true
+        }
+    },
+    "required": [
+        "alarmFlag",
+        "poll",
+        "temperature",
+        "humidity"
+    ]
+}
