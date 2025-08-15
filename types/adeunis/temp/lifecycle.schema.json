@@ -1,0 +1,19 @@
+{
+    "$id": "https://akenza.io/adeunis/temp/lifecycle.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "lifecycle",
+    "title": "Lifecycle",
+    "properties": {
+        "lowBattery": {
+            "title": "Low Battery",
+            "description": "Low Battery",
+            "type": "boolean",
+            "hideFromKpis": true
+        }
+    },
+    "required": [
+        "lowBattery"
+    ]
+}
