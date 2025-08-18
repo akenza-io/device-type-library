@@ -1,5 +1,4 @@
-
-function decodeSensorFPort2(bytes) {
+function decodeSensorPort2(bytes) {
     let dataDefault = {
         alarmFlag: "",
         pa8: "",
@@ -34,7 +33,7 @@ function decodeSensorFPort2(bytes) {
     return { dataDefault, dataLifecycle, timestamp };
 }
 
-function decodeSensorFPort3(bytes) {
+function decodeSensorPort3(bytes) {
     let dataDefault = {
         alarmFlag: "",
         pa8: "",
@@ -49,20 +48,20 @@ function decodeSensorFPort3(bytes) {
     dataDefault.pa8 = ((bytes[6] & 0x80) >> 7) === 1 ? "Low" : "High";
 
     // Temperature: bytes 7-8 (divide by 10 to get Celsius)
-    dataDefault.temperature = parseFloat(((bytes[7] << 24 >> 16 | bytes[8]) / 10).toFixed(1));
+    dataDefault.temperature = parseFloat(((bytes[4] << 24 >> 16 | bytes[5]) / 10).toFixed(1));
     // Humidity: bytes 9-10 (divide by 10 to get percentage)
-    dataDefault.humidity = parseFloat(((bytes[9] << 8 | bytes[10]) / 10).toFixed(1));
+    dataDefault.humidity = parseFloat(((bytes[2] << 8 | bytes[3]) / 10).toFixed(1));
 
     // Timestamp: bytes 2-5 (32-bit Unix timestamp)
     const timestamp = new Date(
-        (bytes[2] << 24 | bytes[3] << 16 | bytes[4] << 8 | bytes[5]) * 1000,
+        (bytes[7] << 24 | bytes[8] << 16 | bytes[9] << 8 | bytes[10]) * 1000,
     );
 
     return { dataDefault, timestamp };
 }
 
 //lifecycle
-function decodeStatusFPort5(bytes) {
+function decodeSensorPort5(bytes) {
 
     let dataConfig = {
         sensorModel: "",
@@ -124,43 +123,42 @@ function consume(event) {
     let payloadHex = event.data.payloadHex;
     let bytes = Hex.hexToBytes(payloadHex);
 
-    // Default
+    // Default, Lifecycle
     if (port === 2 && bytes.length === 11) {
         // Standard sensor uplink
-        let { dataDefault, dataLifecycle, timestamp } = decodeSensorFPort2(bytes);
+        let { dataDefault, dataLifecycle, timestamp } = decodeSensorPort2(bytes);
         emit("sample", {
-            dataDefault,
+            data: dataDefault,
             topic: "default",
             timestamp,
         });
         emit("sample", {
-            dataLifecycle,
+            data: dataLifecycle,
             topic: "lifecycle",
-            timestamp,
         });
     }
 
     // Config, Lifecycle
     if (port === 5 && bytes.length >= 7) {
         // Device status/config
-        let { dataConfig, dataLifecycle } = decodeStatusFPort5(bytes);
+        let { dataConfig, dataLifecycle } = decodeSensorPort5(bytes);
         // Lifecycle
         emit("sample", {
-            dataLifecycle,
+            data: dataLifecycle,
             topic: "lifecycle",
         });
         emit("sample", {
-            dataConfig,
+            data: dataConfig,
             topic: "config",
         });
 
     }
 
-    // Datalog
+    // Default
     if (port === 3 && bytes.length === 11) {
-        let { dataDefault, timestamp } = decodeDatalogFPort3(bytes);
+        let { dataDefault, timestamp } = decodeSensorPort3(bytes);
         emit("sample", {
-            dataDefault,
+            data: dataDefault,
             topic: "default",
             timestamp,
         });

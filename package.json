@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha \"types/**/*.spec.js\" \"lib/**/*.spec.js\"",
-    "test:local": "mocha \"types/**/*.spec.js\" \"lib/**/*.spec.js\" --grep \"Dragino S31LB-LS\"",
     "integration-test": "TEST_MODE=INTEGRATION API_KEY=$API_KEY SCRIPT_RUN_URL=$SCRIPT_RUN_URL npm run test"
   },
   "author": "",

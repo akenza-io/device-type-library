@@ -33,6 +33,17 @@ describe("Dragino S31LB-LS Uplink", () => {  // Group of related tests
                 },
             };
 
+            // lifecycle test
+            utils.expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.isNotNull(value);
+                assert.typeOf(value.data, "object");
+
+                assert.equal(value.topic, "lifecycle");
+                assert.equal(value.data.batteryVoltage, 3.6);
+                utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+            });
+
             // config test
             utils.expectEmits((type, value) => {
                 assert.equal(type, "sample");
@@ -46,7 +57,7 @@ describe("Dragino S31LB-LS Uplink", () => {  // Group of related tests
                 assert.equal(value.data.subBand, "0");
 
 
-                utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+                utils.validateSchema(value.data, configSchema, { throwError: true });
             });
 
             consume(data);
@@ -68,9 +79,45 @@ describe("Dragino S31LB-LS Uplink", () => {  // Group of related tests
 
                 assert.equal(value.topic, "default");
                 assert.equal(value.data.alarmFlag, false);
-                assert.equal(value.data.pa8, "high");
+                assert.equal(value.data.pa8, "High");
                 assert.equal(value.data.temperature, 27.5);
                 assert.equal(value.data.humidity, 40.1);
+
+                utils.validateSchema(value.data, defaultSchema, { throwError: true });
+            });
+
+            // lifecycle test
+            utils.expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.isNotNull(value);
+                assert.typeOf(value.data, "object");
+
+                assert.equal(value.topic, "lifecycle");
+                assert.equal(value.data.batteryVoltage, 3.612);
+                utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+            });
+
+            consume(data);
+        });
+
+        it("should decode the Dragino S31LB-LS default report uplink", () => {
+            const data = {
+                data: {
+                    port: 3,
+                    payloadHex: "0000025D00E14266C1A420",
+                },
+            };
+
+            utils.expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.isNotNull(value);
+                assert.typeOf(value.data, "object");
+
+                assert.equal(value.topic, "default");
+                assert.equal(value.data.alarmFlag, false);
+                assert.equal(value.data.pa8, "High");
+                assert.equal(value.data.temperature, 22.5);
+                assert.equal(value.data.humidity, 60.5);
 
                 utils.validateSchema(value.data, defaultSchema, { throwError: true });
             });
