@@ -1,90 +1,89 @@
+
 function decodeSensorFPort2(bytes) {
-    let data = {
-        batteryVoltage: "",
+    let dataDefault = {
+        alarmFlag: "",
+        pa8: "",
         temperature: "",
         humidity: "",
-        mod: "",
-        pa8: "",
-        alarmFlag: "",
 
     };
-    // Battery voltage: bytes 0-1 (divide by 1000 to get volts)
-    data.batteryVoltage = (bytes[0] << 8 | bytes[1]) / 1000;
 
-    // not sure if needed
+    let dataLifecycle = {
+        batteryVoltage: "",
+    };
+
+    // battery voltage
+    dataLifecycle.batteryVoltage = (bytes[0] << 8 | bytes[1]) / 1000;
+
     // Bit 0: true if alarm, false if normal
-    data.alarmFlag = (bytes[6] & 0x01) === 0x01;
-    // Bit 7: "Low" if 1, "High" if 0
-    data.pa8 = ((bytes[6] & 0x80) >> 7) === 1 ? "Low" : "High";
-    // Bits 2-6: MOD value
-    data.mod = (bytes[6] & 0x7C) >> 2;
+    dataDefault.alarmFlag = (bytes[6] & 0x01) === 0x01;
+    // Bit 7: "Low" if 1, "High" if 0;
+    dataDefault.pa8 = ((bytes[6] & 0x80) >> 7) === 1 ? "Low" : "High";
 
     // Temperature: bytes 7-8 (divide by 10 to get Celsius)
-    data.temperature = parseFloat(((bytes[7] << 24 >> 16 | bytes[8]) / 10).toFixed(1));
+    dataDefault.temperature = parseFloat(((bytes[7] << 24 >> 16 | bytes[8]) / 10).toFixed(1));
     // Humidity: bytes 9-10 (divide by 10 to get percentage)
-    data.humidity = parseFloat(((bytes[9] << 8 | bytes[10]) / 10).toFixed(1));
+    dataDefault.humidity = parseFloat(((bytes[9] << 8 | bytes[10]) / 10).toFixed(1));
 
     // Timestamp: bytes 2-5 (32-bit Unix timestamp)
-    const timestamp = {
-        timestamp: luxon.DateTime.fromSeconds(bytes[2] << 24 | bytes[3] << 16 | bytes[4] << 8 | bytes[5]).toISO()
-    };
-    return { data, timestamp };
+    const timestamp = new Date(
+        (bytes[2] << 24 | bytes[3] << 16 | bytes[4] << 8 | bytes[5]) * 1000,
+    );
+
+
+    return { dataDefault, dataLifecycle, timestamp };
 }
 
-function decodeDatalogFPort3(bytes) {
-    let data = {
+function decodeSensorFPort3(bytes) {
+    let dataDefault = {
+        alarmFlag: "",
+        pa8: "",
         temperature: "",
         humidity: "",
-        alarmFlag: "",
-        poll: "",
-        pa8: ""
+
     };
 
-    // Bytes 0-1: ignore (not used)
-    // Humidity: bytes 2-3 (divide by 10 to get percentage)
-    data.humidity = parseFloat(((bytes[2] << 8 | bytes[3]) / 10).toFixed(1));
+    // Bit 0: true if alarm, false if normal
+    dataDefault.alarmFlag = (bytes[6] & 0x01) === 0x01;
+    // Bit 7: "Low" if 1, "High" if 0;
+    dataDefault.pa8 = ((bytes[6] & 0x80) >> 7) === 1 ? "Low" : "High";
 
-    // Temperature: bytes 4-5 (divide by 10 to get Celsius)
-    data.temperature = parseFloat(((bytes[4] << 8 | bytes[5]) / 10).toFixed(1));
+    // Temperature: bytes 7-8 (divide by 10 to get Celsius)
+    dataDefault.temperature = parseFloat(((bytes[7] << 24 >> 16 | bytes[8]) / 10).toFixed(1));
+    // Humidity: bytes 9-10 (divide by 10 to get percentage)
+    dataDefault.humidity = parseFloat(((bytes[9] << 8 | bytes[10]) / 10).toFixed(1));
 
-    // Extract flags from byte 6 (single byte contains multiple flags)
-    // Poll message flag (bit 1): 1 if poll message reply, 0 if normal
-    data.poll = (bytes[6] >> 1) & 0x01;
+    // Timestamp: bytes 2-5 (32-bit Unix timestamp)
+    const timestamp = new Date(
+        (bytes[2] << 24 | bytes[3] << 16 | bytes[4] << 8 | bytes[5]) * 1000,
+    );
 
-    // Alarm flag (bit 0): true if alarm, false if normal
-    data.alarmFlag = (bytes[6] & 0x01) === 0x01;
-
-    // PA8 level (bit 7): "Low" if 1, "High" if 0
-    data.pa8 = ((bytes[6] >> 7) & 0x01) === 1 ? "Low" : "High";
-
-    // Unix timestamp: bytes 7-10 (32-bit Unix timestamp)
-    const timestamp = {
-        timestamp: luxon.DateTime.fromSeconds(bytes[7] << 24 | bytes[8] << 16 | bytes[9] << 8 | bytes[10]).toISO()
-    };
-
-    return { data, timestamp };
+    return { dataDefault, timestamp };
 }
 
 //lifecycle
 function decodeStatusFPort5(bytes) {
 
-    let data = {
+    let dataConfig = {
         sensorModel: "",
         firmwareVersion: "",
         freqencyBand: "",
         subBand: "",
-        batteryVoltage: "",
-
     };
+
+    let dataLifecycle = {
+        batteryVoltage: "",
+    };
+
     //sensor model
     if (bytes[0] === 0x0A) {
-        data.sensorModel = "S31LB-LS";
+        dataConfig.sensorModel = "S31-LB/LS";
     } else {
-        data.sensorModel = "Unknown";
+        dataConfig.sensorModel = "Unknown";
     }
 
     //firmware version Firmware Version: 0x0100, Means: v1.0.0 version
-    data.firmwareVersion = (bytes[1] & 0x0f) + '.' + (bytes[2] >> 4 & 0x0f) + '.' + (bytes[2] & 0x0f);
+    dataConfig.firmwareVersion = (bytes[1] & 0x0f) + '.' + (bytes[2] >> 4 & 0x0f) + '.' + (bytes[2] & 0x0f);
 
     //frequency band
     let freqBandCode = bytes[3];
@@ -104,19 +103,20 @@ function decodeStatusFPort5(bytes) {
         0x0d: "KR920",
         0x0e: "MA869",
     };
-    data.freqencyBand = freqBands[freqBandCode] || `Unknown (${freqBandCode})`;
+    dataConfig.freqencyBand = freqBands[freqBandCode] || `Unknown (${freqBandCode})`;
 
     // sub band
     if (bytes[4] == 0xff) {
-        data.subBand = "NULL";
+        dataConfig.subBand = "NULL";
     } else {
-        data.subBand = bytes[4];
+        dataConfig.subBand = bytes[4];
     }
+    dataConfig.subBand = dataConfig.subBand.toString();
 
     //battery voltage
-    data.batteryVoltage = (bytes[5] << 8 | bytes[6]) / 1000;
+    dataLifecycle.batteryVoltage = (bytes[5] << 8 | bytes[6]) / 1000;
 
-    return data;
+    return { dataConfig, dataLifecycle };
 }
 
 function consume(event) {
@@ -127,34 +127,41 @@ function consume(event) {
     // Default
     if (port === 2 && bytes.length === 11) {
         // Standard sensor uplink
-        let { data, timestamp } = decodeSensorFPort2(bytes);
+        let { dataDefault, dataLifecycle, timestamp } = decodeSensorFPort2(bytes);
         emit("sample", {
-            data,
+            dataDefault,
             topic: "default",
             timestamp,
         });
-
-        return;
+        emit("sample", {
+            dataLifecycle,
+            topic: "lifecycle",
+            timestamp,
+        });
     }
 
-    // Lifecycle
+    // Config, Lifecycle
     if (port === 5 && bytes.length >= 7) {
         // Device status/config
-        let data = decodeStatusFPort5(bytes);
+        let { dataConfig, dataLifecycle } = decodeStatusFPort5(bytes);
         // Lifecycle
         emit("sample", {
-            data,
+            dataLifecycle,
             topic: "lifecycle",
+        });
+        emit("sample", {
+            dataConfig,
+            topic: "config",
         });
 
     }
 
     // Datalog
     if (port === 3 && bytes.length === 11) {
-        let { data, timestamp } = decodeDatalogFPort3(bytes);
+        let { dataDefault, timestamp } = decodeDatalogFPort3(bytes);
         emit("sample", {
-            data,
-            topic: "datalog",
+            dataDefault,
+            topic: "default",
             timestamp,
         });
     }

@@ -6,40 +6,12 @@
     "topic": "lifecycle",
     "title": "Lifecycle",
     "properties": {
-        "sensorModel": {
-            "title": "Sensor Model:",
-            "description": "Sensor Model",
-            "type": "string",
-            "hideFromKpis": true
-        },
-        "firmwareVersion": {
-            "title": "Version",
-            "type": "string",
-            "description": "Version",
-            "hideFromKpis": true
-        },
-        "freqencyBand": {
-            "title": "Frequency Band",
-            "type": "string",
-            "description": "Frequency Band",
-            "hideFromKpis": true
-        },
-        "subBand": {
-            "title": "Sub Band",
-            "type": "string",
-            "description": "Sub Band",
-            "hideFromKpis": true
-        },
         "batteryVoltage": {
             "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt",
             "hideFromKpis": true
         }
     },
     "required": [
-        "sensorModel",
-        "firmwareVersion",
-        "freqencyBand",
-        "subBand",
         "batteryVoltage"
     ]
 }
