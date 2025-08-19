@@ -6,6 +6,12 @@
     "topic": "default",
     "title": "Default",
     "properties": {
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "humidity": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+        },
         "alarmFlag": {
             "title": "Alarm Flag",
             "type": "boolean",
@@ -18,11 +24,23 @@
             "description": "PA8 Status",
             "hideFromKpis": true
         },
-        "temperature": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        "pollMessage": {
+            "title": "Poll Message",
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The Message is a Poll Message reply = true else false",
+            "hideFromKpis": true
         },
-        "humidity": {
-            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+        "modStatus": {
+            "title": "Mod Status",
+            "type": [
+                "number",
+                "null"
+            ],
+            "description": "Mod Status: Is sampling uplink = true or is reply for poll message = false",
+            "hideFromKpis": true
         }
     },
     "required": [
