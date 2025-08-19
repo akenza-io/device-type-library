@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.69.0] - 2025-08-19
+
+### Added
+
+- Dragino - S31LB-LS
+
+### Changed
+
+- Fixed race condition while loading schemas in Kuando busylight tests
+
 # [1.68.0] - 2025-07-23
 
 ### Added
