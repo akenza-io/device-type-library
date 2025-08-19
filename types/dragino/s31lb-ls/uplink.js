@@ -53,9 +53,8 @@ function decodeSensorPort2(bytes) {
 
     const humidity = toOneDecimal(readUInt16BE(bytes, 9) / 10);
 
-    emit("sample", { data: { alarmFlag, pa8, temperature, humidity, modStatus, pollMessage: null }, topic: "default", timestamp: timestamp });
+    emit("sample", { data: { alarmFlag, pa8, temperature, humidity, modStatus }, topic: "default", timestamp: timestamp });
     emit("sample", { data: { batteryVoltage, batteryLevel }, topic: "lifecycle" });
-
 }
 
 // decode port 3
@@ -72,8 +71,7 @@ function decodeSensorPort3(bytes) {
     const humidity = toOneDecimal(readUInt16BE(bytes, 2) / 10);
     const timestamp = new Date(readUInt32BE(bytes, 7) * 1000);
 
-    emit("sample", { data: { alarmFlag, pa8, temperature, humidity, modStatus: null, pollMessage }, topic: "default", timestamp: timestamp });
-
+    emit("sample", { data: { alarmFlag, pa8, temperature, humidity, pollMessage }, topic: "default", timestamp: timestamp });
 
 }
 

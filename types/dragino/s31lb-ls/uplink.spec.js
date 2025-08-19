@@ -41,7 +41,6 @@ describe("Dragino S31LB-LS Uplink", () => {
                 assert.equal(value.data.temperature, 27.5);
                 assert.equal(value.data.humidity, 40.1);
                 assert.equal(value.data.modStatus, 1);
-                assert.equal(value.data.pollMessage, null);
 
                 utils.validateSchema(value.data, defaultSchema, { throwError: true });
             });
@@ -60,10 +59,6 @@ describe("Dragino S31LB-LS Uplink", () => {
 
             consume(data);
         });
-
-
-
-
 
         // todo: test for port 3 and 5 
     });

@@ -26,19 +26,13 @@
         },
         "pollMessage": {
             "title": "Poll Message",
-            "type": [
-                "boolean",
-                "null"
-            ],
+            "type": "boolean",
             "description": "The Message is a poll message reply = true else false",
             "hideFromKpis": true
         },
         "modStatus": {
             "title": "Mod Status",
-            "type": [
-                "boolean",
-                "null"
-            ],
+            "type": "boolean",
             "description": "Mod Status: Is sampling uplink = true or is reply for poll message = false",
             "hideFromKpis": true
         }
