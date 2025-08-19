@@ -9,8 +9,6 @@ describe("Dragino NDDS75 Uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
-    //load script with rewire for more control 
-    // can also access non exported parts of the script
     const script = rewire("./uplink.js");
     consume = utils.init(script);
     utils
