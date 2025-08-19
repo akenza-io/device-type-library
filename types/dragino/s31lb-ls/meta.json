@@ -13,8 +13,9 @@
   ],
   "outputTopics": [
     "default",
-    "lifecycle"
+    "lifecycle",
+    "config"
   ],
   "encoding": "HEX",
-  "connectivity": "LoRaWAN"
+  "connectivity": "LORA"
 }
