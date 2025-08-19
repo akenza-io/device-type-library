@@ -13,7 +13,7 @@ function readUInt32BE(bytes, offset) {
 function toOneDecimal(value) {
     return Math.round(value * 10) / 10;
 }
-// only assumtion, based on dataSheet
+// only approximation, based on data sheet
 function getBatteryLevel(voltage) {
     if (voltage < 2.7) return 0;
     if (voltage < 3.3) return 25;
@@ -47,16 +47,15 @@ function decodeSensorPort2(bytes) {
     // Spec examples:
     // (statusByte >> 2) === 0x00 -> MOD=1 (sampling) => modStatus "true"
     // (statusByte >> 2) === 0x31 -> MOD=31 (poll reply) => modStatus "false"
-    const modStatus = (modShift === 0x00) ? 1 : (modShift === 0x31 ? 31 : undefined);
+    const modStatus = (modShift === 0x00) ? true : (modShift === 0x31 ? false : null);
 
     const temperature = toOneDecimal(readInt16BE(bytes, 7) / 10);
+
     const humidity = toOneDecimal(readUInt16BE(bytes, 9) / 10);
 
-    return {
-        dataDefault: { alarmFlag, pa8, temperature, humidity, modStatus, pollMessage: null },
-        dataLifecycle: { batteryVoltage, batteryLevel },
-        timestamp,
-    };
+    emit("sample", { data: { alarmFlag, pa8, temperature, humidity, modStatus, pollMessage: null }, topic: "default", timestamp: timestamp });
+    emit("sample", { data: { batteryVoltage, batteryLevel }, topic: "lifecycle" });
+
 }
 
 // decode port 3
@@ -67,16 +66,15 @@ function decodeSensorPort3(bytes) {
     // Port 3: bit0 alarm, bit1 PA8 level, bit6 poll flag
     const alarmFlag = (statusByte & 0x01) !== 0;
     const pa8 = ((statusByte & 0x02) >>> 1) === 1 ? "Low" : "High";
-    const pollMessage = (statusByte & 0x40) !== 0 ? "true" : "false";
+    const pollMessage = (statusByte & 0x40) !== 0;
 
     const temperature = toOneDecimal(readInt16BE(bytes, 4) / 10);
     const humidity = toOneDecimal(readUInt16BE(bytes, 2) / 10);
     const timestamp = new Date(readUInt32BE(bytes, 7) * 1000);
 
-    return {
-        dataDefault: { alarmFlag, pa8, temperature, humidity, modStatus: null, pollMessage },
-        timestamp,
-    };
+    emit("sample", { data: { alarmFlag, pa8, temperature, humidity, modStatus: null, pollMessage }, topic: "default", timestamp: timestamp });
+
+
 }
 
 // decode port 5 (status/config)
@@ -90,10 +88,9 @@ function decodeSensorPort5(bytes) {
     const batteryVoltage = readUInt16BE(bytes, 5) / 1000;
     const batteryLevel = getBatteryLevel(batteryVoltage);
 
-    return {
-        dataConfig: { sensorModel, firmwareVersion, frequencyBand, subBand },
-        dataLifecycle: { batteryVoltage, batteryLevel },
-    };
+    emit("sample", { data: { sensorModel, firmwareVersion, frequencyBand, subBand }, topic: "config" });
+    emit("sample", { data: { batteryVoltage, batteryLevel }, topic: "lifecycle" });
+
 }
 
 function consume(event) {
@@ -102,27 +99,18 @@ function consume(event) {
 
     switch (port) {
         case 2: {
-            const res = decodeSensorPort2(bytes);
-            if (!res) return;
-            emit("sample", { data: res.dataDefault, topic: "default", timestamp: res.timestamp });
-            emit("sample", { data: res.dataLifecycle, topic: "lifecycle" });
+            decodeSensorPort2(bytes);
             break;
         }
         case 3: {
-            const res = decodeSensorPort3(bytes);
-            if (!res) return;
-            emit("sample", { data: res.dataDefault, topic: "default", timestamp: res.timestamp });
+            decodeSensorPort3(bytes);
             break;
         }
         case 5: {
-            const res = decodeSensorPort5(bytes);
-            if (!res) return;
-            emit("sample", { data: res.dataLifecycle, topic: "lifecycle" });
-            emit("sample", { data: res.dataConfig, topic: "config" });
+            decodeSensorPort5(bytes);
             break;
         }
         default:
-            // ignore unknown ports
             break;
     }
 }

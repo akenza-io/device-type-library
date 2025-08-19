@@ -27,16 +27,16 @@
         "pollMessage": {
             "title": "Poll Message",
             "type": [
-                "string",
+                "boolean",
                 "null"
             ],
-            "description": "The Message is a Poll Message reply = true else false",
+            "description": "The Message is a poll message reply = true else false",
             "hideFromKpis": true
         },
         "modStatus": {
             "title": "Mod Status",
             "type": [
-                "number",
+                "boolean",
                 "null"
             ],
             "description": "Mod Status: Is sampling uplink = true or is reply for poll message = false",
