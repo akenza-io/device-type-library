@@ -9,20 +9,14 @@ describe("Kuando busylight Uplink", () => {
   let defaultSchema = null;
   let lifecycleSchema = null;
   let consume = null;
-  before((done) => {
+
+  before(async () => {
     const script = rewire("./uplink.js");
     consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-      });
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    [defaultSchema, lifecycleSchema] = await Promise.all([
+      utils.loadSchema(`${__dirname}/default.schema.json`),
+      utils.loadSchema(`${__dirname}/lifecycle.schema.json`),
+    ]);
   });
 
   describe("consume()", () => {
