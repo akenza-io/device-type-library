@@ -1,0 +1,37 @@
+{
+    "type": "object",
+    "properties": {
+        "port": {
+            "type": "number",
+            "description": "Port number of the payload"
+        },
+        "hex_format_payload": {
+            "type": "string",
+            "description": "Payload in hexadecimal format"
+        },
+        "payload_type": {
+            "type": "string",
+            "description": "Type of payload (e.g., Heartbeat)"
+        },
+        "timestamp": {
+            "type": "number",
+            "description": "The time of data uploaded"
+        },
+        "timezone": {
+            "type": "number",
+            "description": "The timezone of the current device"
+        },
+        "time": {
+            "type": "string",
+            "description": "Based on the timezone and timestamp, we can get this time"
+        },
+        "ac_output_state_after_countdown": {
+            "type": "string",
+            "description": "AC output state after countdown."
+        },
+        "remaining_time_of_countdown_process": {
+            "type": "string",
+            "description": "Remaining time of countdown process. Unit is S"
+        }
+    }
+}

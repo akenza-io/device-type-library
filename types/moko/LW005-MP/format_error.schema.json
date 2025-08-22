@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "properties": {
+        "port": {
+            "type": "number",
+            "description": "Port number of the payload"
+        },
+        "hex_format_payload": {
+            "type": "string",
+            "description": "Payload in hexadecimal format"
+        },
+        "payload_type": {
+            "type": "string",
+            "description": "Type of payload (e.g., Heartbeat)"
+        },
+        "result": {
+            "type": "string",
+            "description": "Format wrong"
+        }
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "name": "LW005-MP",
+    "version": "1.0.0",
+    "manufacturer": "MOKOSMART",
+    "url": "https://www.mokosmart.com/lorawan-meter-plug-lw005-mp/",
+    "description": "LW005-MP is a LoRaWAN smart plug with power and energy monitoring, the measuring accuracy can reach ±0.5%. The plug can connect to your server through LoRaWAN gateway and LoRaWAN network, so as to realize smart control, power and energy monitoring and other functions. ",
+    "author": "Akenza AG",
+    "firmwareVersion": "V1.0.0",
+    "loraDeviceClass": "A",
+    "availableSensors": [
+        "Power meter"
+    ],
+    "outputTopics": [
+        "default",
+        "format_error",
+        "ac_output_state",
+        "current_voltage",
+        "upload_power_factor",
+        "upload_energy",
+        "over_voltage_state",
+        "sag_voltage_state",
+        "over_current_state",
+        "over_load_state",
+        "load_change_state",
+        "ac_output_state_after_countdown"
+    ],
+    "encoding": "HEX",
+    "connectivity": "LORA"
+}
