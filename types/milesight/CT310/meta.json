@@ -1,0 +1,22 @@
+{
+  "name": "CT310",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight.com/iot/product/lorawan-sensor/ct3xx",
+  "description": "The Smart Current Transformer is a LoRaWAN®-enabled device with a quick installation. It accurately estimates energy consumption with a sampling rate up to 3.3kHz and calculates cumulative ampere-hours every second, helping identify energy usage patterns for effective savings.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Current"
+  ],
+  "outputTopics": [
+    "channel1",
+    "channel2",
+    "channel3",
+    "system",
+    "temperature"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

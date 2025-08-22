@@ -161,9 +161,9 @@ describe("Yosensi YO Particulate Matter Sensor uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "accelerometer");
-        assert.equal(value.data.accelerometer_x, -0.5);
-        assert.equal(value.data.accelerometer_y, 1.8);
-        assert.equal(value.data.accelerometer_z, 8.8);
+        assert.equal(value.data.accelerometerX, -0.5);
+        assert.equal(value.data.accelerometerY, 1.8);
+        assert.equal(value.data.accelerometerZ, 8.8);
 
         utils.validateSchema(value.data, accelerometerSchema, {
           throwError: true,

@@ -102,9 +102,9 @@ describe("Yosensi YO 360 uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "accelerometer");
-        assert.equal(value.data.accelerometer_x, -0.7);
-        assert.equal(value.data.accelerometer_y, 3);
-        assert.equal(value.data.accelerometer_z, 9.1);
+        assert.equal(value.data.accelerometerX, -0.7);
+        assert.equal(value.data.accelerometerY, 3);
+        assert.equal(value.data.accelerometerZ, 9.1);
 
         utils.validateSchema(value.data, accelerometerSchema, {
           throwError: true,

@@ -1,0 +1,41 @@
+{
+  "$id": "https://akenza.io/milesight/CT305/channel1.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "channel1",
+  "title": "Channel 1",
+  "properties": {
+    "totalCurrent": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere"
+    },
+    "exception": {
+      "title": "Exception",
+      "description": "Exception",
+      "type": "string",
+      "enum": [
+        "READ_FAILED"
+      ],
+      "hideFromKpis": true
+    },
+    "current": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere"
+    },
+    "currentMin": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere",
+      "description": "Minimum current recorded",
+      "title": "Minimum current"
+    },
+    "currentMax": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere",
+      "description": "Maximal current recorded",
+      "title": "Maximal current"
+    },
+    "alarm": {
+      "title": "Alarm",
+      "description": "Alarm",
+      "type": "array",
+      "hideFromKpis": true
+    }
+  }
+}

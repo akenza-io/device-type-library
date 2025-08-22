@@ -4,7 +4,7 @@
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "presence_counter",
-  "title": "presenceCounter",
+  "title": "Presence counter",
   "properties": {
     "presenceCounter": {
       "title": "IR Presence Sensor",
@@ -13,5 +13,7 @@
       "hideFromKpis": false
     }
   },
-  "required": ["presenceCounter"]
+  "required": [
+    "presenceCounter"
+  ]
 }

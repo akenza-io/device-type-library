@@ -45,13 +45,13 @@ function consume(event) {
           totalCounter.totalCounterB = readUInt16BE(bytes, bytes.length - 3);
           lifecycle.payloadCounter = bytes[bytes.length - 1];
           emit("sample", { data, topic: "default" });
-          emit("sample", { data: totalCounter, topic: "totalCounter" });
+          emit("sample", { data: totalCounter, topic: "total_counter" });
           break;
         case 0x07:
           lifecycle.sensorStatus = bytes[bytes.length - 5];
           totalCounter.totalCounterA = readUInt16BE(bytes, bytes.length - 4);
           totalCounter.totalCounterB = readUInt16BE(bytes, bytes.length - 2);
-          emit("sample", { data: totalCounter, topic: "totalCounter" });
+          emit("sample", { data: totalCounter, topic: "total_counter" });
           break;
         case 0x08:
           lifecycle.deviceStatus = bytes[bytes.length - 4];
@@ -98,7 +98,7 @@ function consume(event) {
     }
     default:
       emit("sample", {
-        data: { reason: "UNSUPORTED_PAYLOAD" },
+        data: { reason: "UNSUPORTED_PAYLOAD", payload },
         topic: "error",
       });
       break;

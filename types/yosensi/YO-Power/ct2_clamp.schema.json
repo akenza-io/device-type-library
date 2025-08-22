@@ -4,7 +4,7 @@
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "ct2_clamp",
-  "title": "ct2Clamp",
+  "title": "CT2 Clamp",
   "properties": {
     "ct2Clamp": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours",
@@ -12,5 +12,7 @@
       "hideFromKpis": false
     }
   },
-  "required": ["ct2Clamp"]
+  "required": [
+    "ct2Clamp"
+  ]
 }

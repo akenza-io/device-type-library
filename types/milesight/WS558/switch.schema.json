@@ -1,0 +1,60 @@
+{
+  "$id": "https://akenza.io/milesight/WS558/switch.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "switch",
+  "title": "Switch",
+  "properties": {
+    "switch1": {
+      "title": "Switch 1",
+      "type": "boolean",
+      "description": "True if the switch is active"
+    },
+    "switch2": {
+      "title": "Switch 2",
+      "type": "boolean",
+      "description": "True if the switch is active"
+    },
+    "switch3": {
+      "title": "Switch 3",
+      "type": "boolean",
+      "description": "True if the switch is active"
+    },
+    "switch4": {
+      "title": "Switch 4",
+      "type": "boolean",
+      "description": "True if the switch is active"
+    },
+    "switch5": {
+      "title": "Switch 5",
+      "type": "boolean",
+      "description": "True if the switch is active"
+    },
+    "switch6": {
+      "title": "Switch 6",
+      "type": "boolean",
+      "description": "True if the switch is active"
+    },
+    "switch7": {
+      "title": "Switch 7",
+      "type": "boolean",
+      "description": "True if the switch is active"
+    },
+    "switch8": {
+      "title": "Switch 8",
+      "type": "boolean",
+      "description": "True if the switch is active"
+    }
+  },
+  "required": [
+    "switch1",
+    "switch2",
+    "switch3",
+    "switch4",
+    "switch5",
+    "switch6",
+    "switch7",
+    "switch8"
+  ]
+}

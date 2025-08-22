@@ -296,8 +296,8 @@ function payloadV2Parse(bytes, date, utils) {
   ) {
     return new Date(
       Number(extractPayloadDateTimeDate) -
-        utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
-          1000,
+      utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
+      1000,
     );
   }
 
@@ -312,7 +312,7 @@ function payloadV2Parse(bytes, date, utils) {
   function extractMeasurementDateTime(byte, extractMeasurementDateTimeDate) {
     return new Date(
       Number(extractMeasurementDateTimeDate) +
-        utils.unsignedNbrFromByte(byte) * 1000,
+      utils.unsignedNbrFromByte(byte) * 1000,
     );
   }
 
@@ -675,13 +675,13 @@ function decoder(port, bytes) {
       case "three-value custom":
         switch (decoded.data.measurements[i].address) {
           case "00":
-            data.accelerometer_x = decoded.data.measurements[i].value;
+            data.accelerometerX = decoded.data.measurements[i].value;
             break;
           case "01":
-            data.accelerometer_y = decoded.data.measurements[i].value;
+            data.accelerometerY = decoded.data.measurements[i].value;
             break;
           case "02":
-            data.accelerometer_z = decoded.data.measurements[i].value;
+            data.accelerometerZ = decoded.data.measurements[i].value;
             break;
           default:
             data.status = "Error";
@@ -731,17 +731,17 @@ function consume(event) {
     });
     delete data.data.distance;
   }
-  if (data.data.accelerometer_x !== undefined) {
+  if (data.data.accelerometerX !== undefined) {
     emit("sample", {
       data: {
-        accelerometer_x: data.data.accelerometer_x,
-        accelerometer_y: data.data.accelerometer_y,
-        accelerometer_z: data.data.accelerometer_z,
+        accelerometerX: data.data.accelerometerX,
+        accelerometerY: data.data.accelerometerY,
+        accelerometerZ: data.data.accelerometerZ,
       },
       topic: "accelerometer",
     });
-    delete data.data.accelerometer_x;
-    delete data.data.accelerometer_y;
-    delete data.data.accelerometer_z;
+    delete data.data.accelerometerX;
+    delete data.data.accelerometerY;
+    delete data.data.accelerometerZ;
   }
 }

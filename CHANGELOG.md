@@ -4,6 +4,59 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.61.0] - 2025-04-23
+
+### Added
+
+- Vegapulse - Vegapulse air
+- IMBuildings - VertiCount
+- Milesight - CT305
+- Milesight - CT310
+- Milesight - EM300-CL
+- Milesight - FT101
+- Milesight - TS201
+- Milesight - WS303
+
+### Changed
+
+- Removed illegal temperature values for all Dragino devices
+
+# [1.60.0] - 2025-04-03
+
+### Changed
+
+- New tests for camelcasing datakeys and underscoring topics
+- Adapted all the following devices
+- IMBuildings - ComfortSensor
+- IMBuildings - MoodBox
+- IMBuildings - OfficeOccupancyCounter
+- IMBuildings - PeopleCounter
+- Comtac - LPN_DO
+- Decentlab - NTU
+- Decentlab - PM
+- Enginko - EGK-LW22PLG
+- Enginko - MCF-LW12MET
+- Lansen - G2-LDP
+- Milesight - CT101
+- Miromico - Insight
+- Talkpool - OY1700
+- Xovis - PC2S
+- Yosensi - YO-360
+- Yosensi - YO-Agribox
+- Yosensi - YO-AirflowPro
+- Yosensi - YO-AirflowProDual
+- Yosensi - YO-Ambience
+- Yosensi - YO-Distance
+- Yosensi - YO-H2O
+- Yosensi - YO-ParticulateMatterSensor
+- Yosensi - YO-PeopleCounter
+- Yosensi - YO-Power
+- Yosensi - YO-RefrigerantMonitor
+- Yosensi - YO-RelaySwitch
+- Yosensi - YO-Temp
+- Yosensi - YO-Thermostat
+- Yosensi - YO-VibrationMonitor
+
 # [1.59.0] - 2025-03-12
 
 ### Added
