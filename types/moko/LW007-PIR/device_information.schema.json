@@ -1,0 +1,93 @@
+{
+    "type": "object",
+    "properties": {
+        "port": {
+            "type": "number",
+            "description": "Port number of the payload"
+        },
+        "hex_format_payload": {
+            "type": "string",
+            "description": "Payload in hexadecimal format"
+        },
+        "payload_type": {
+            "type": "string",
+            "description": "Type of payload (e.g., Heartbeat)"
+        },
+        "timestamp": {
+            "type": "number",
+            "description": "The time of data uploaded"
+        },
+        "timezone": {
+            "type": "string",
+            "description": "The timezone of the current device"
+        },
+        "time": {
+            "type": "string",
+            "description": "Based on the timezone and timestamp, we can get this time"
+        },
+        "pir_state": {
+            "type": "string",
+            "description": "Occupancy detection function"
+        },
+        "pir_state_code": {
+            "type": "number",
+            "description": "The value of pir_state"
+        },
+        "door_state": {
+            "type": "string",
+            "description": "The state of the door"
+        },
+        "door_state_code": {
+            "type": "number",
+            "description": "The value of the door_state"
+        },
+        "temperature_state": {
+            "type": "string",
+            "description": "The state of temperature threshold"
+        },
+        "temperature_state_code": {
+            "type": "number",
+            "description": "The value of the temperature_state"
+        },
+        "humidity_state": {
+            "type": "string",
+            "description": "The state of humidity threshold"
+        },
+        "humidity_state_code": {
+            "type": "number",
+            "description": "The value of the humidity_state"
+        },
+        "temperature": {
+            "type": "string",
+            "description": "The temperature of the environment"
+        },
+        "humidity": {
+            "type": "string",
+            "description": "The humidity of the environment"
+        },
+        "temperature_change_state": {
+            "type": "string",
+            "description": "Temperature change exceeds limit"
+        },
+        "temperature_change_state_code": {
+            "type": "number",
+            "description": "The value of the temperature_change_state"
+        },
+        "humidity_change_state": {
+            "type": "string",
+            "description": "Humidity change exceeds limit"
+        },
+        "humidity_change_state_code": {
+            "type": "string",
+            "description": "The value of the humidity_change_state"
+        },
+        "low_battery_status": {
+            "type": "string",
+            "description": "Low battery status"
+        },
+        "door_trigger_times": {
+            "type": "string",
+            "description": "Door magnetic trigger times"
+        }
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "type": "object",
+    "properties": {
+        "port": {
+            "type": "number",
+            "description": "Port number of the payload"
+        },
+        "hex_format_payload": {
+            "type": "string",
+            "description": "Payload in hexadecimal format"
+        },
+        "payload_type": {
+            "type": "string",
+            "description": "Type of payload (e.g., Heartbeat)"
+        },
+        "timestamp": {
+            "type": "number",
+            "description": "The time of data uploaded"
+        },
+        "timezone": {
+            "type": "number",
+            "description": "The timezone of the current device"
+        },
+        "time": {
+            "type": "string",
+            "description": "Based on the timezone and timestamp, we can get this time"
+        },
+        "instantaneous_voltage": {
+            "type": "string",
+            "description": "Instantaneous voltage of the device. Unit is V"
+        },
+        "instantaneous_current": {
+            "type": "string",
+            "description": "Instantaneous current of the device. Unit is A"
+        },
+        "instantaneous_current_frequency": {
+            "type": "string",
+            "description": "Instantaneous current frequency of the device. Unit is Hz"
+        }
+    }
+}
