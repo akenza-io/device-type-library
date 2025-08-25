@@ -5,7 +5,7 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Dragino LHT65 Uplink", () => {
+describe("Dragino LHT52 Uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {

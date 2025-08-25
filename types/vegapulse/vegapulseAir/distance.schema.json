@@ -6,18 +6,40 @@
   "topic": "distance",
   "title": "Distance",
   "properties": {
-    "distance": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm"
+    "distanceMm": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/mm",
+      "title": "Distance mm"
+    },
+    "distanceCm": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
+      "title": "Distance cm"
+    },
+    "distanceM": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/m",
+      "title": "Distance M"
+    },
+    "distanceInch": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/in",
+      "title": "Distance inches"
+    },
+    "distanceFt": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/ft",
+      "title": "Distance feet"
     },
     "fillLevel": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/fillLevel/percent"
     },
-    "unit": {
-      "title": "Unit",
-      "description": "Unit indicator",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 255,
+    "sensorMeasurementUnit": {
+      "title": "Sensor measurement unit",
+      "description": "Unit in which the sensor measures",
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "FEET",
+        "METERS",
+        "INCHES",
+        "MILLIMETERS"
+      ],
       "hideFromKpis": true
     },
     "inclinationDegree": {
@@ -56,6 +78,10 @@
     }
   },
   "required": [
-    "distance"
+    "distanceMm",
+    "distanceCm",
+    "distanceM",
+    "distanceInch",
+    "distanceFt"
   ]
 }

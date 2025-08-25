@@ -18,6 +18,7 @@ Each device type defines a data schema per topic. The data schema definition is 
 - Install dependencies with `npm install`.
 - Create your device type
 - Test your device type step by step with the uplink.spec.js or with the command `npm test`
+- Create a .env file from the template to run your tests local
 
 ## How to structure your device type
 

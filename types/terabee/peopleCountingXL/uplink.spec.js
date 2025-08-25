@@ -48,10 +48,21 @@ describe("Terabee people counting XL Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.fw, 23);
-        assert.equal(value.data.bw, 12);
+        assert.equal(value.data.fw, 0);
+        assert.equal(value.data.bw, 0);
+        assert.equal(value.data.absoluteFw, 23);
+        assert.equal(value.data.absoluteBw, 12);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+        assert.typeOf(value, "object");
+
+        assert.equal(value.lastFw, 23);
+        assert.equal(value.lastBw, 12);
       });
 
       consume(data);
@@ -70,12 +81,48 @@ describe("Terabee people counting XL Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.wifiApEnabled, true);
+        assert.equal(value.data.multiDevIssue, true);
+        assert.equal(value.data.tpcStuck, true);
+        assert.equal(value.data.tpcStopped, true);
+
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
         assert.equal(value.topic, "default");
-        assert.equal(value.data.fw, 2);
-        assert.equal(value.data.bw, 3);
+        assert.equal(value.data.fw, 0);
+        assert.equal(value.data.bw, 0);
+        assert.equal(value.data.absoluteFw, 2);
+        assert.equal(value.data.absoluteBw, 3);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+        assert.typeOf(value, "object");
+
+        assert.equal(value.lastFw, 2);
+        assert.equal(value.lastBw, 3);
+      });
+
+      consume(data);
+    });
+
+    it("should decode Terabee people counting XL LoRa payload", () => {
+      const data = {
+        data: {
+          port: 1,
+          payloadHex: "00000002000000030f",
+        },
+      };
 
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
@@ -89,6 +136,81 @@ describe("Terabee people counting XL Uplink", () => {
         assert.equal(value.data.tpcStopped, true);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.fw, 0);
+        assert.equal(value.data.bw, 0);
+        assert.equal(value.data.absoluteFw, 2);
+        assert.equal(value.data.absoluteBw, 3);
+
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+        assert.typeOf(value, "object");
+
+        assert.equal(value.lastFw, 2);
+        assert.equal(value.lastBw, 3);
+      });
+
+      consume(data);
+    });
+
+    it("should decode Terabee people counting XL LoRa payload and give out a relative payload", () => {
+      const data = {
+        state: {
+          lastFw: 1,
+          lastBw: 0
+        },
+        data: {
+          port: 1,
+          payloadHex: "00000002000000030f",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.wifiApEnabled, true);
+        assert.equal(value.data.multiDevIssue, true);
+        assert.equal(value.data.tpcStuck, true);
+        assert.equal(value.data.tpcStopped, true);
+
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.fw, 1);
+        assert.equal(value.data.bw, 3);
+        assert.equal(value.data.absoluteFw, 2);
+        assert.equal(value.data.absoluteBw, 3);
+
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+        assert.typeOf(value, "object");
+
+        assert.equal(value.lastFw, 2);
+        assert.equal(value.lastBw, 3);
       });
 
       consume(data);

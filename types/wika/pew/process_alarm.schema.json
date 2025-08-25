@@ -1,0 +1,49 @@
+{
+  "$id": "https://akenza.io/wika/pew/process_alarm.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "process_alarm",
+  "title": "Process alarm",
+  "properties": {
+    "alarmChannel": {
+      "title": "Alarm channel",
+      "type": "string",
+      "description": "Alarm channel",
+      "enum": [
+        "PRESSURE",
+        "DEVICE_TEMPERATURE"
+      ],
+      "hideFromKpis": true
+    },
+    "alarmStatus": {
+      "title": "Alarm status",
+      "type": "string",
+      "description": "Alarm status",
+      "enum": [
+        "TRIGGERED",
+        "DISAPPEARED"
+      ]
+    },
+    "alarmType": {
+      "title": "Alarm type",
+      "type": "string",
+      "description": "Alarm type",
+      "enum": [
+        "LOW_THRESHOLD",
+        "HIGH_THRESHOLD",
+        "FALLING_SLOPE",
+        "RISING_SLOPE",
+        "LOW_THRESHOLD_WITH_DELAY",
+        "HIGH_THRESHOLD_WITH_DELAY"
+      ],
+      "hideFromKpis": true
+    },
+    "value": {
+      "title": "Alarm value",
+      "type": "number",
+      "description": "Alarm value",
+      "hideFromKpis": true
+    }
+  }
+}
