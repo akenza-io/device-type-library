@@ -304,8 +304,7 @@ describe("TWTG Neon Vibration", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.axis, "X");
+        assert.equal(value.topic, "x_axis");
         assert.equal(value.data.temperature, -12);
         assert.equal(value.data.peakAcceleration, 0.035675048828125);
         assert.equal(value.data.rmwAcceleration, 0.01322174072265625);
@@ -441,8 +440,7 @@ describe("TWTG Neon Vibration", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "spectrum");
-        assert.equal(value.data.axis, "X");
+        assert.equal(value.topic, "x_axis_spectrum");
         assert.equal(value.data.spectrumType, "ACCELERATION");
         assert.equal(value.data.temperature, 25);
         assert.equal(value.data.rmsVelocity, 0);

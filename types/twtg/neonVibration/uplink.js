@@ -336,17 +336,17 @@ function consume(event) {
       decoded.rebootReason = enums.reboot_reason_v0.values[Bits.bitsToUnsigned(bits.substr(8, 16))];
       emit("sample", { data: decoded, topic: "boot" });
       break;
-    case 0x1110:
+    case 0x1110: {
       // Reserved short timestamp 16
-      decoded.axis = enums.vb_axis_v0.values[Bits.bitsToUnsigned(bits.substr(24, 2))];
+      const axis = enums.vb_axis_v0.values[Bits.bitsToUnsigned(bits.substr(24, 2))];
       decoded.temperature = Bits.bitsToSigned(bits.substr(26, 8));
       decoded.peakAcceleration = float16ToNumber(bits.substr(34, 16));
       decoded.rmwAcceleration = float16ToNumber(bits.substr(50, 16));
       decoded.rmsVelocity = float16ToNumber(bits.substr(66, 16));
       // Reserved 6
-      emit("sample", { data: decoded, topic: "default" });
+      emit("sample", { data: decoded, topic: `${String(axis).toLowerCase()}_axis` });
       break;
-    case 0x1120:
+    } case 0x1120:
       // Reserved short timestamp 16
       decoded.sensorAlert0 = !!Bits.bitsToSigned(bits.substr(24, 1));
       decoded.sensorAlert1 = !!Bits.bitsToSigned(bits.substr(25, 1));
@@ -402,7 +402,7 @@ function consume(event) {
       break;
     case 0x1150: {
       // Reserved timestamp 32
-      decoded.axis = enums.vb_axis_v0.values[Bits.bitsToUnsigned(bits.substr(40, 2))];
+      const axis = enums.vb_axis_v0.values[Bits.bitsToUnsigned(bits.substr(40, 2))];
       decoded.spectrumType = enums.vb_spectrum_type_v0.values[Bits.bitsToUnsigned(bits.substr(42, 2))];
       decoded.temperature = Bits.bitsToSigned(bits.substr(44, 8));
       const df = float16ToNumber(bits.substr(52, 16));
@@ -426,7 +426,7 @@ function consume(event) {
         decoded.magnitudes.push(element * magnitudesScaling);
       });
 
-      emit("sample", { data: decoded, topic: "spectrum" });
+      emit("sample", { data: decoded, topic: `${String(axis).toLowerCase()}_axis_spectrum` });
       break;
     } default:
       emit("sample", { data: { "error": "UNKNOWN_MESSAGE" }, topic: "error" });
