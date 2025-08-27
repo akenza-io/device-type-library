@@ -1,0 +1,26 @@
+{
+  "$id": "https://akenza.io/universal/fire-extinguisher/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "isTestMessage": {
+      "title": "Is a test message",
+      "description": "True if a test message is detected",
+      "type": "boolean"
+    },
+    "isRemoved": {
+      "title": "Is removed",
+      "description": "True if the fire extinguisher is removed",
+      "type": "boolean"
+    },
+    "isSecurityUnlocked": {
+      "title": "Is security unlocked",
+      "description": "True if the fire extinguisher security is unlocked",
+      "type": "boolean"
+    }
+  },
+  "required": ["isTestMessage", "isRemoved", "isSecurityUnlocked"]
+}

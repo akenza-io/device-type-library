@@ -1,0 +1,19 @@
+{
+  "name": "NEON Vibration Sensor",
+  "version": "1.0.0",
+  "manufacturer": "TWTG",
+  "url": "https://twtg.io/products/neon-vibration-sensor/",
+  "description": "",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Vibration"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
