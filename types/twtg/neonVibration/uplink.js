@@ -1,3 +1,50 @@
+/**
+ * A class to calculate the CRC-32 checksum for an array of bytes.
+ * This implementation uses a pre-computed lookup table for performance.
+ */
+class Crc32Checker {
+  constructor() {
+    this.crcTable = new Uint32Array(256);
+    this.generateTable();
+  }
+
+  generateTable() {
+    // The standard CRC-32 polynomial, reversed
+    const polynomial = 0xEDB88320;
+
+    for (let i = 0; i < 256; i++) {
+      let c = i;
+      for (let j = 0; j < 8; j++) {
+        // If the last bit is 1, right-shift and XOR with the polynomial
+        if (c & 1) {
+          c = (c >>> 1) ^ polynomial;
+        } else {
+          // Otherwise, just right-shift
+          c >>>= 1;
+        }
+      }
+      this.crcTable[i] = c;
+    }
+  }
+
+  checksum(byteArray) {
+    // Start with an inverted CRC value
+    let crc = 0xFFFFFFFF;
+
+    for (let i = 0; i < byteArray.length; i++) {
+      const byte = byteArray[i];
+      // The core CRC calculation step
+      // 1. XOR the current CRC's low byte with the next data byte.
+      // 2. Use the result to look up a value in the table.
+      // 3. XOR that table value with the CRC, shifted right by 8 bits.
+      crc = (crc >>> 8) ^ this.crcTable[(crc ^ byte) & 0xFF];
+    }
+
+    // Final step: invert the result and ensure it's a 32-bit unsigned integer
+    return (crc ^ 0xFFFFFFFF) >>> 0;
+  }
+}
+
 const enums = {
   device_configuration_type_v0: {
     id: 'device_configuration_type_v0',
@@ -268,8 +315,8 @@ function consume(event) {
   const payload = event.data.payloadHex;
   const { port } = event.data;
   const bits = Bits.hexToBits(payload);
+  const state = event.state || {};
   const decoded = {};
-  const lifecycle = {};
 
   const messageId = Bits.bitsToUnsigned(bits.substr(0, 4)); // 10
   const messageVersion = Bits.bitsToUnsigned(bits.substr(4, 4));
@@ -293,18 +340,66 @@ function consume(event) {
       emit("sample", { data: decoded, topic: "configuration" });
       break;
     case 0xc00:
+      // Check if theres still an active session
+      if (state.streamingFragments !== undefined) {
+        if (state.streamingFragments && state.streamingNonRedundant) {
+          emit("sample", { data: { "error": "MULTIPLE_FRAGMENT_STREAMS" }, topic: "error" });
+        }
+      }
+      // Instate helpers here, they should be reused for each session
+      state.streamingFragments = true;
+      state.streamingNonRedundant = true;
+
       decoded.port = Bits.bitsToUnsigned(bits.substr(8, 8));
       decoded.uplinkSize = Bits.bitsToUnsigned(bits.substr(16, 16));
-      decoded.fragmentSize = Bits.bitsToUnsigned(bits.substr(32, 8));
+      decoded.fragmentSize = Bits.bitsToUnsigned(bits.substr(32, 8)); // I do not think this matters for now
       decoded.crc = Bits.bitsToUnsigned(bits.substr(40, 32));
+
+      // Pass checksum and uplink parameters so they can be used later
+      state.crc = decoded.crc;
+      state.uplinkSize = decoded.uplinkSize;
+      state.port = decoded.port;
+      state.concatedPayload = "";
+
       emit("sample", { data: decoded, topic: "fragment_start" });
       break;
     case 0xc10:
-      decoded.index = Bits.bitsToUnsigned(bits.substr(8, 16));
-      decoded.decoded = [];
-      for (let i = 24; i < bits.length; i += 8) {
-        decoded.decoded.push(Bits.bitsToUnsigned(bits.substr(i, 8)));
+      // Break if there is no active session
+      if (state.streamingFragments === undefined || !state.streamingFragments) {
+        emit("sample", { data: { "error": "NO_STARTING_FRAGMENT" }, topic: "error" });
+        break;
       }
+
+      decoded.index = Bits.bitsToUnsigned(bits.substr(8, 16));
+      decoded.fragmentType = "PLAIN";
+      for (let i = 6; i < payload.length; i += 2) {
+        // Add bytes till the payload is complete
+        if (state.concatedPayload.length < state.uplinkSize / 2) {
+          state.concatedPayload += payload.substr(i, 2);
+        } else {
+          // Do not save redundant bytes for now
+          if (state.streamingNonRedundant) {
+            state.streamingNonRedundant = false;
+
+            const checker = new Crc32Checker();
+            const byteArray = Hex.hexToBytes(state.concatedPayload);
+            const crcValue = checker.checksum(byteArray);
+
+            // Check CRC
+            if (state.crc === crcValue) {
+              // Initiate new consume for the reconstructed payload
+              const newEvent = { data: { "payloadHex": state.concatedPayload, "port": state.port }, "state": event.state, };
+              consume(newEvent);
+            } else {
+              emit("sample", { data: { "error": "CRC_DID_NOT_MATCH_ABORTING" }, topic: "error" });
+            }
+          } else {
+            decoded.fragmentType = "REDUNDANT";
+          }
+          return;
+        }
+      }
+
       emit("sample", { data: decoded, topic: "fragment" });
       break;
     case 0xe20:
@@ -341,10 +436,10 @@ function consume(event) {
       const axis = enums.vb_axis_v0.values[Bits.bitsToUnsigned(bits.substr(24, 2))];
       decoded.temperature = Bits.bitsToSigned(bits.substr(26, 8));
       decoded.peakAcceleration = float16ToNumber(bits.substr(34, 16));
-      decoded.rmwAcceleration = float16ToNumber(bits.substr(50, 16));
+      decoded.rmsAcceleration = float16ToNumber(bits.substr(50, 16));
       decoded.rmsVelocity = float16ToNumber(bits.substr(66, 16));
       // Reserved 6
-      emit("sample", { data: decoded, topic: `${String(axis).toLowerCase()}_axis` });
+      emit("sample", { data: decoded, topic: `axis_${String(axis).toLowerCase()}` });
       break;
     } case 0x1120:
       // Reserved short timestamp 16
@@ -426,9 +521,11 @@ function consume(event) {
         decoded.magnitudes.push(element * magnitudesScaling);
       });
 
-      emit("sample", { data: decoded, topic: `${String(axis).toLowerCase()}_axis_spectrum` });
+      emit("sample", { data: decoded, topic: `axis_${String(axis).toLowerCase()}_spectrum` });
       break;
-    } default:
+    } default: {
       emit("sample", { data: { "error": "UNKNOWN_MESSAGE" }, topic: "error" });
+    }
   }
+  emit("state", state);
 }
