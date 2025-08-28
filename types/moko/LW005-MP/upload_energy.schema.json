@@ -1,0 +1,37 @@
+{
+    "type": "object",
+    "properties": {
+        "port": {
+            "type": "number",
+            "description": "Port number of the payload"
+        },
+        "hex_format_payload": {
+            "type": "string",
+            "description": "Payload in hexadecimal format"
+        },
+        "payload_type": {
+            "type": "string",
+            "description": "Type of payload (e.g., Heartbeat)"
+        },
+        "timestamp": {
+            "type": "number",
+            "description": "The time of data uploaded"
+        },
+        "timezone": {
+            "type": "number",
+            "description": "The timezone of the current device"
+        },
+        "time": {
+            "type": "string",
+            "description": "Based on the timezone and timestamp, we can get this time"
+        },
+        "total_energy": {
+            "type": "string",
+            "description": "Total energy. Unit is KWH"
+        },
+        "energy_of_last_hour": {
+            "type": "string",
+            "description": "Energy of last hour. Unit is KWH"
+        }
+    }
+}

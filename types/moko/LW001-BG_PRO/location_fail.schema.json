@@ -1,0 +1,61 @@
+{
+    "type": "object",
+    "properties": {
+        "port": {
+            "type": "number",
+            "description": "Port number of the payload"
+        },
+        "hexFormatPayload": {
+            "type": "string",
+            "description": "Payload in hexadecimal format"
+        },
+        "payloadType": {
+            "type": "string",
+            "description": "Type of payload (e.g., Location Failure)"
+        },
+        "operationMode": {
+            "type": "string",
+            "description": "Current operation mode of the device"
+        },
+        "temperature": {
+            "type": "string",
+            "description": "Temperature reading from the device"
+        },
+        "ack": {
+            "type": "number",
+            "description": "Acknowledgment value"
+        },
+        "batteryVoltage": {
+            "type": "string",
+            "description": "Battery voltage level"
+        },
+        "reasonsForPositioningFailure": {
+            "type": "string",
+            "description": "Reason for positioning failure"
+        },
+        "macData": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "mac": {
+                        "type": "string",
+                        "description": "MAC address of the detected device"
+                    },
+                    "rssi": {
+                        "type": "string",
+                        "description": "Received Signal Strength Indicator (RSSI)"
+                    }
+                }
+            }
+        },
+        "pdop": {
+            "type": "number",
+            "description": "Positional Dilution of Precision (PDOP)"
+        },
+        "gpsSatelliteCn": {
+            "type": "string",
+            "description": "GPS satellite information"
+        }
+    }
+}
