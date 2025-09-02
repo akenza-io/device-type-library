@@ -14,47 +14,47 @@ function consume(event) {
       break;
     case 6:
       topic = "electrical";
-      data.instantaneousVoltage = Bits.bitsToUnsigned(bits.substr(40, 16)) / 10
-      data.instantaneousCurrent = Bits.bitsToUnsigned(bits.substr(56, 16)) / 1000;
-      data.instantaneousCurrentFrequency = Bits.bitsToUnsigned(bits.substr(72, 16)) / 1000;
+      data.voltage = Bits.bitsToUnsigned(bits.substr(40, 16)) / 10
+      data.current = Bits.bitsToUnsigned(bits.substr(56, 16)) / 1000;
+      data.frequency = Bits.bitsToUnsigned(bits.substr(72, 16)) / 1000;
       break;
     case 7:
-      topic = "electrical";
-      data.instantaneousActivePower = Bits.bitsToUnsigned(bits.substr(40, 32)) / 10;
-      data.instantaneousPowerFactor = bytes[9] & 0xFF;
+      topic = "power";
+      data.activePower = Bits.bitsToUnsigned(bits.substr(40, 32)) / 10;
+      data.powerFactor = bytes[9] & 0xFF;
       break;
     case 8:
       topic = "energy";
       data.totalEnergy = Bits.bitsToUnsigned(bits.substr(40, 32)) / 3200;
-      data.energyOfLastHour = Bits.bitsToUnsigned(bits.substr(72, 16)) / 3200;
+      data.energyLastHour = Bits.bitsToUnsigned(bits.substr(72, 16)) / 3200;
       break;
     case 9:
-      topic = "over_voltage";
-      data.overVoltageState = bytes[5];
-      data.currentInstantaneousVoltage = Bits.bitsToUnsigned(bits.substr(48, 16)) / 10;
-      data.overVoltageThreshold = Bits.bitsToUnsigned(bits.substr(64, 16)) / 10;
+      topic = "overvoltage";
+      data.overvoltage = !!bytes[5];
+      data.voltage = Bits.bitsToUnsigned(bits.substr(48, 16)) / 10;
+      data.overvoltageThreshold = Bits.bitsToUnsigned(bits.substr(64, 16)) / 10;
       break;
     case 10:
-      topic = "sag_voltage";
-      data.sagVoltageState = bytes[5];
-      data.currentInstantaneousVoltage = Bits.bitsToUnsigned(bits.substr(48, 16)) / 10;
-      data.sagVoltageThreshold = Bits.bitsToUnsigned(bits.substr(64, 16)) / 10;
+      topic = "undervoltage";
+      data.undervoltage = !!bytes[5];
+      data.voltage = Bits.bitsToUnsigned(bits.substr(48, 16)) / 10;
+      data.undervoltageThreshold = Bits.bitsToUnsigned(bits.substr(64, 16)) / 10;
       break;
     case 11:
-      topic = "over_current";
-      data.overCurrentState = bytes[5];
-      data.currentInstantaneousCurrent = Bits.bitsToUnsigned(bits.substr(48, 16)) / 1000;
-      data.overCurrentThreshold = Bits.bitsToUnsigned(bits.substr(64, 16)) / 1000;
+      topic = "overcurrent";
+      data.overcurrent = !!bytes[5];
+      data.current = Bits.bitsToUnsigned(bits.substr(48, 16)) / 1000;
+      data.overcurrentThreshold = Bits.bitsToUnsigned(bits.substr(64, 16)) / 1000;
       break;
     case 12:
       topic = "overload";
-      data.overLoadState = bytes[5];
-      data.currentInstantaneous_power = Bits.bitsToUnsigned(bits.substr(48, 24)) / 10;
-      data.overLoadThreshold = Bits.bitsToUnsigned(bits.substr(72, 16)) / 10;
+      data.overload = !!bytes[5];
+      data.power = Bits.bitsToUnsigned(bits.substr(48, 24)) / 10;
+      data.overloadThreshold = Bits.bitsToUnsigned(bits.substr(72, 16)) / 10;
       break;
     case 13:
       topic = "load_state";
-      data.loadChangeState = bytes[5] === 1 ? "LOAD_START" : "LOAD_STOP";
+      data.loadState = bytes[5] === 1 ? "LOAD_START" : "LOAD_STOP";
       break;
     case 14:
       topic = "countdown";

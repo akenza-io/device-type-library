@@ -1,0 +1,24 @@
+{
+  "$id": "https://akenza.io/moko/lw005-mp/energy.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "energy",
+  "title": "Energy",
+  "properties": {
+    "totalEnergy": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours",
+      "title": "Total Energy Usage",
+      "description": "Total Energy Usage"
+    },
+    "energyLastHour": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours",
+      "title": "Energy Usage Last Hour",
+      "description": "Energy Usage Last Hour"
+    }
+  },
+  "required": [
+    "totalEnergy",
+    "energyLastHour"
+  ]
+}

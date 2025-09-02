@@ -1,30 +1,26 @@
 {
-  "name": "LW001-BG PRO",
+  "name": "LW005-MP",
   "version": "1.0.0",
   "manufacturer": "MOKOSMART",
-  "url": "https://www.mokosmart.com/lorawan-tracker-lw001-bg-pro/",
-  "description": "LW001-BG PRO is a LoRaWAN Tracker which tracks an object both indoor and outdoor positioning. It integrates GPS and Bluetooth positioning capabilities, alongside an embedded 3-axis sensor, empowering it to support multiple working modes tailored to various needs.",
+  "url": "https://www.mokosmart.com/lorawan-meter-plug-lw005-mp/",
+  "description": "LW005-MP is a LoRaWAN smart plug with power and energy monitoring, the measuring accuracy can reach ±0.5%. The plug can connect to your server through LoRaWAN gateway and LoRaWAN network, so as to realize smart control, power and energy monitoring and other functions.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": [
-    "Temperature",
-    "GPS"
+    "Power Meter"
   ],
   "outputTopics": [
-    "bluetooth",
-    "fix_failure",
-    "gps",
-    "lifecycle",
-    "mandown",
-    "movement",
-    "reboot",
-    "shutdown",
-    "system",
-    "tamper",
-    "time",
-    "vibration",
-    "wifi"
+    "countdown",
+    "electrical",
+    "energy",
+    "load_state",
+    "overcurrent",
+    "overload",
+    "overvoltage",
+    "power",
+    "switch",
+    "undervoltage"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"
