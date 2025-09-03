@@ -344,8 +344,8 @@ describe("Moko LW005-MP Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "countdown");
-        assert.equal(value.data.acOutputStateAfterCountdown, "ON");
-        assert.equal(value.data.remainingTimeOfCountdownProcess, 9);
+        assert.equal(value.data.acAfterCountdown, "ON");
+        assert.equal(value.data.countdownTime, 9);
 
         utils.validateSchema(value.data, countdownSchema, { throwError: true });
       });

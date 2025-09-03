@@ -6,7 +6,7 @@
   "topic": "countdown",
   "title": "Countdown",
   "properties": {
-    "acOutputStateAfterCountdown": {
+    "acAfterCountdown": {
       "title": "AC ouput state after countdown",
       "description": "AC ouput state after countdown",
       "type": "string",
@@ -16,7 +16,7 @@
       ],
       "hideFromKpis": true
     },
-    "remainingTimeOfCountdownProcess": {
+    "countdownTime": {
       "title": "Remaining time of countdown process",
       "description": "Remaining time of countdown process in seconds",
       "type": "integer",

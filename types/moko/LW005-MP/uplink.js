@@ -58,8 +58,8 @@ function consume(event) {
       break;
     case 14:
       topic = "countdown";
-      data.acOutputStateAfterCountdown = bytes[5] === 1 ? "ON" : "OFF";;
-      data.remainingTimeOfCountdownProcess = Bits.bitsToUnsigned(bits.substr(48, 32));
+      data.acAfterCountdown = bytes[5] === 1 ? "ON" : "OFF";;
+      data.countdownTime = Bits.bitsToUnsigned(bits.substr(48, 32));
       break;
     default:
       break;
