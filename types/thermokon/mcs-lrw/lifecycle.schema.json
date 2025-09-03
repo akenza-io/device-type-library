@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/thermokon/mcs-lrw/lifecycle.schema.json",
+  "$id": "https://akenza.io/thermokon/multi-sensor/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
@@ -8,11 +8,6 @@
   "properties": {
     "batteryVoltage": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
-    },
-    "batteryType": {
-      "title": "Battery Type",
-      "type": "number",
-      "description": "Identifier for the type of battery installed"
     }
   },
   "required": [

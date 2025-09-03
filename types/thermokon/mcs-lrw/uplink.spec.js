@@ -1,11 +1,10 @@
-// test script for uplink.js decoder
 const chai = require("chai");
 const rewire = require("rewire");
 const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Thermokon MCS-LRW Uplink", () => {
+describe("Thermokon Multi-Sensor LRW Uplink", () => {
     let defaultSchema = null;
     let lifecycleSchema = null;
     let statusSchema = null;
@@ -21,122 +20,117 @@ describe("Thermokon MCS-LRW Uplink", () => {
         ]);
     });
 
-
     describe("consume()", () => {
-
-        it("should decode the Thermokon MCS-LRW uplink", () => {
+        it("should decode a combined sensor and lifecycle payload", () => {
             const data = {
                 data: {
-                    payloadHex: "c00040014100",
+                    payloadHex: "10010a", // Temp 
                     port: 2,
                 },
             };
 
             utils.expectEmits((type, value) => {
                 assert.equal(type, "sample");
-                assert.isNotNull(value);
-                assert.typeOf(value.data, "object");
-
                 assert.equal(value.topic, "default");
-                assert.equal(value.data.occupied, false);
-                assert.equal(value.data.motionCount, 0);
-
+                assert.deepEqual(value.data, {
+                    temperature: 26.6,
+                });
                 utils.validateSchema(value.data, defaultSchema, { throwError: true });
             });
-
-
-            // status test
-            utils.expectEmits((type, value) => {
-                assert.equal(type, "sample");
-                assert.isNotNull(value);
-                assert.typeOf(value.data, "object");
-
-
-                assert.equal(value.topic, "status");
-                assert.equal(value.data.deviceKey, 16385);
-
-                utils.validateSchema(value.data, statusSchema, { throwError: true });
-            });
-
 
             consume(data);
         });
-        it("should decode the Thermokon MCS-LRW uplink", () => {
+
+        it("should decode a combined sensor and status payload", () => {
             const data = {
                 data: {
-                    payloadHex: "54481000fc112d400000",
+                    payloadHex: "4112", // Device Key, Occupancy
                     port: 2,
                 },
             };
 
+            // Expect the 'default' topic first
             utils.expectEmits((type, value) => {
                 assert.equal(type, "sample");
-                assert.isNotNull(value);
-                assert.typeOf(value.data, "object");
-
                 assert.equal(value.topic, "default");
-                assert.equal(value.data.temperature, 25.5);
-                assert.equal(value.data.humidity, 45);
-                assert.equal(value.data.light, 0);
-
-
+                assert.deepEqual(value.data, {
+                    occupied: false,
+                    motionCount: 9,
+                });
                 utils.validateSchema(value.data, defaultSchema, { throwError: true });
             });
 
+            consume(data);
+        });
+
+        it("should decode a full payload with all topics", () => {
+            const data = {
+                data: {
+                    payloadHex: "54481000fc112d400000", // Temp, Humidity, Light, VBat
+                    port: 2,
+                },
+            };
+
+            // 1. Default
             utils.expectEmits((type, value) => {
                 assert.equal(type, "sample");
-                assert.isNotNull(value);
-                assert.typeOf(value.data, "object");
+                assert.equal(value.topic, "default");
+                assert.deepEqual(value.data, {
+                    temperature: 25.2,
+                    humidity: 45,
+                    light: 0,
+                });
+                utils.validateSchema(value.data, defaultSchema, { throwError: true });
+            });
 
+            // 2. Lifecycle
+            utils.expectEmits((type, value) => {
+                assert.equal(type, "sample");
                 assert.equal(value.topic, "lifecycle");
-                assert.equal(value.data.batteryVoltage, 1.44);
-
-                utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+                assert.deepEqual(value.data, {
+                    batteryVoltage: 1.44,
+                });
+                utils.validateSchema(value.data, lifecycleSchema, {
+                    throwError: true,
+                });
             });
 
-
+            consume(data);
         });
 
-        it("should decode the Thermokon MCS-LRW uplink", () => {
+        it("should decode various sensor types correctly", () => {
             const data = {
                 data: {
-                    payloadHex: "10010a",
+                    payloadHex: "1202585181905009", // occupancy, motionCount, deviceKey
                     port: 2,
                 },
             };
 
             utils.expectEmits((type, value) => {
                 assert.equal(type, "sample");
-                assert.isNotNull(value);
-                assert.typeOf(value.data, "object");
-
                 assert.equal(value.topic, "default");
-                assert.equal(value.data.temperature, 26.5);
-
+                assert.deepEqual(value.data, {
+                    occupied: false,
+                    motionCount: 0,
+                });
                 utils.validateSchema(value.data, defaultSchema, { throwError: true });
             });
-        });
-
-        it("should decode the Thermokon MCS-LRW uplink", () => {
-            const data = {
-                data: {
-                    payloadHex: "4112",
-                    port: 2,
-                },
-            };
 
             utils.expectEmits((type, value) => {
                 assert.equal(type, "sample");
-                assert.isNotNull(value);
-                assert.typeOf(value.data, "object");
-
-                assert.equal(value.topic, "default");
-                assert.equal(value.data.occupied, false);
-                assert.equal(value.data.motionCount, 9);
-
-                utils.validateSchema(value.data, defaultSchema, { throwError: true });
+                assert.equal(value.topic, "status");
+                assert.deepEqual(value.data, {
+                    deviceKey: 16385,
+                });
+                utils.validateSchema(value.data, statusSchema, {
+                    throwError: true,
+                });
             });
+
+            consume(data);
         });
+
 
     });
 });
+
