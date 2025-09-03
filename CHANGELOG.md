@@ -3,12 +3,17 @@
 All notable changes to this project will be documented in this file.
 
 ---
-
-# [1.71.0] - 2025-09-03
+# [1.72.0] - 2025-09-03
 
 ### Added
 
-- Thermokon - MCS-LRW
+- Termokon - MCS-LRW
+
+# [1.71.0] - 2025-09-03
+
+### Changed
+
+- Fixed tests for meta schemas to not time out when schema is not valid
 
 # [1.70.0] - 2025-08-28
 
