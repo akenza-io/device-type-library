@@ -1,0 +1,44 @@
+{
+  "$id": "https://akenza.io/milesight/am102/system.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "system",
+  "title": "System",
+  "properties": {
+    "firmware_version": {
+      "title": "Firmware Version",
+      "type": "string",
+      "description": "Firmware version of the device",
+      "hideFromKpis": true
+    },
+    "hardware_version": {
+      "title": "Hardware Version",
+      "type": "string",
+      "description": "Hardware version of the device",
+      "hideFromKpis": true
+    },
+    "device_status": {
+      "title": "Device Status",
+      "type": "string",
+      "description": "The status of the device",
+      "enum": [
+        "on",
+        "off"
+      ],
+      "hideFromKpis": true
+    },
+    "sn": {
+      "title": "Serial Number",
+      "type": "string",
+      "description": "Serial number of the device",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "firmware_version",
+    "hardware_version",
+    "device_status",
+    "sn"
+  ]
+}

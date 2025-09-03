@@ -1,0 +1,21 @@
+{
+  "name": "Milesight - AM102",
+  "version": "1.0.0",
+  "manufacturer": "Milesight",
+  "url": "https://www.milesight.com/iot/product/lorawan-sensor/am102",
+  "description": "A compact indoor ambiance monitoring sensor for measuring temperature and humidity, featuring an E-ink screen and LoRaWAN® connectivity.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.14",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "Battery Level"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "system"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
