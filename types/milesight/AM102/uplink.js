@@ -48,7 +48,9 @@ function consume(event) {
     }
     // DEVICE STATUS (POWER ON)
     else if (channelId === 0xff && channelType === 0x0b) {
-      systemData.deviceStatus = "on"; // Presence indicates 'on'
+      systemData.deviceStatus = "on";
+      // This channel has a 1-byte "reserved" data field according to the PDF example table.
+      // We must consume this byte to keep the parser aligned.
       i += 1;
     }
     // SENSOR STATUS
@@ -80,8 +82,6 @@ function consume(event) {
         temperature: readInt16LE(bytes.slice(i + 4, i + 6)) / 10,
         humidity: bytes[i + 6] / 2,
       };
-
-      // AM102 historical data is always 7 bytes long
       i += 7;
 
       emit("sample", {

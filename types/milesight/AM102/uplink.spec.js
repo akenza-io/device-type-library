@@ -25,7 +25,7 @@ describe("Milesight AM102 Uplink", () => {
             const data = {
                 data: {
                     // Payload from Section 6.1 of the User Guide
-                    payloadHex: "ff0bff166710b32620711912ff090100ff0a0101ff180013",
+                    payloadHex: "ff0bffff166710b32620711912ff090100ff0a0101ff180013",
                     port: 85,
                 },
             };
