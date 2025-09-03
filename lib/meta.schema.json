@@ -40,15 +40,15 @@
     "name": {
       "type": "string",
       "title": "The name schema",
-      "description": "An explanation about the purpose of this instance.",
+      "description": "Device type display name.",
       "examples": [
         "Elsys - ERS Desk"
       ]
     },
     "version": {
       "type": "string",
-      "title": "The version schema",
-      "description": "An explanation about the purpose of this instance.",
+      "title": "The device type version schema",
+      "description": "The version of the device type (schemas + script).",
       "pattern": "^([0-9]+)\\.([0-9]+)\\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?(?:\\+[0-9A-Za-z-]+)?$",
       "examples": [
         "1.0.0"
@@ -57,7 +57,7 @@
     "manufacturer": {
       "type": "string",
       "title": "The manufacturer schema",
-      "description": "An explanation about the purpose of this instance.",
+      "description": "Device manufacturer name.",
       "examples": [
         "Elsys"
       ]
@@ -65,7 +65,7 @@
     "url": {
       "type": "string",
       "title": "The url schema",
-      "description": "An explanation about the purpose of this instance.",
+      "description": "URL of the device.",
       "examples": [
         "https://www.elsys.se/shop/product/ers-desk/"
       ]
@@ -73,7 +73,7 @@
     "description": {
       "type": "string",
       "title": "The description schema",
-      "description": "An explanation about the purpose of this instance.",
+      "description": "Short device overview.",
       "examples": [
         "Indoor LoRaWAN® device for measuring the indoor environment and desk occupancy"
       ]
@@ -81,7 +81,7 @@
     "author": {
       "type": "string",
       "title": "The author schema",
-      "description": "An explanation about the purpose of this instance.",
+      "description": "Author of the device type.",
       "examples": [
         "Akenza AG"
       ]
@@ -89,7 +89,7 @@
     "firmwareVersion": {
       "type": "string",
       "title": "The firmwareVersion schema",
-      "description": "An explanation about the purpose of this instance.",
+      "description": "Firmware version reported by the device.",
       "pattern": "^V([0-9]+)\\.([0-9]+)\\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?(?:\\+[0-9A-Za-z-]+)?$",
       "examples": [
         "V1.0.0"
@@ -98,7 +98,7 @@
     "availableSensors": {
       "type": "array",
       "title": "The availableSensors schema",
-      "description": "An explanation about the purpose of this instance.",
+      "description": "List of sensors the device provides.",
       "examples": [
         [
           "Occupancy",
@@ -113,7 +113,7 @@
     "outputTopics": {
       "type": "array",
       "title": "The outputTopics schema",
-      "description": "An explanation about the purpose of this instance.",
+      "description": "Topics the device publishes (e.g., default, lifecycle).",
       "default": [
         "default"
       ],
@@ -131,7 +131,7 @@
     "encoding": {
       "type": "string",
       "title": "The encoding schema",
-      "description": "An explanation about the purpose of this instance.",
+      "description": "Payload encoding format.",
       "enum": [
         "HEX",
         "JSON"
@@ -143,7 +143,7 @@
     "connectivity": {
       "type": "string",
       "title": "The connectivity schema",
-      "description": "An explanation about the purpose of this instance.",
+      "description": "Network technology used by the device.",
       "enum": [
         "LORA",
         "Sigfox",

@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.70.0] - 2025-08-28
+
+### Added
+
+- Descriptions for missing meta schema properties.
+
 # [1.69.0] - 2025-08-19
 
 ### Added
