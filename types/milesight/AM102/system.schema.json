@@ -6,25 +6,24 @@
   "topic": "system",
   "title": "System",
   "properties": {
-    "firmware_version": {
+    "firmwareVersion": {
       "title": "Firmware Version",
       "type": "string",
       "description": "Firmware version of the device",
       "hideFromKpis": true
     },
-    "hardware_version": {
+    "hardwareVersion": {
       "title": "Hardware Version",
       "type": "string",
       "description": "Hardware version of the device",
       "hideFromKpis": true
     },
-    "device_status": {
+    "deviceStatus": {
       "title": "Device Status",
       "type": "string",
-      "description": "The status of the device",
+      "description": "The power-on status of the device",
       "enum": [
-        "on",
-        "off"
+        "on"
       ],
       "hideFromKpis": true
     },
@@ -33,12 +32,22 @@
       "type": "string",
       "description": "Serial number of the device",
       "hideFromKpis": true
+    },
+    "temperatureEnabled": {
+      "title": "Temperature Sensor Enabled",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "humidityEnabled": {
+      "title": "Humidity Sensor Enabled",
+      "type": "boolean",
+      "hideFromKpis": true
     }
   },
   "required": [
-    "firmware_version",
-    "hardware_version",
-    "device_status",
+    "firmwareVersion",
+    "hardwareVersion",
+    "deviceStatus",
     "sn"
   ]
 }

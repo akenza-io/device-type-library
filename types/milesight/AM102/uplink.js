@@ -33,16 +33,12 @@ function consume(event) {
 
     // HARDWARE VERSION
     if (channelId === 0xff && channelType === 0x09) {
-      const major = bytes[i];
-      const minor = bytes[i + 1] >> 4;
-      systemData.hardware_version = `v${major}.${minor}`;
+      systemData.hardwareVersion = `v${bytes[i]}.${bytes[i + 1] >> 4}`;
       i += 2;
     }
     // FIRMWARE VERSION
     else if (channelId === 0xff && channelType === 0x0a) {
-      const major = bytes[i];
-      const minor = bytes[i + 1];
-      systemData.firmware_version = `v${major}.${minor}`;
+      systemData.firmwareVersion = `v${bytes[i]}.${bytes[i + 1]}`;
       i += 2;
     }
     // SERIAL NUMBER
@@ -50,14 +46,21 @@ function consume(event) {
       systemData.sn = readSerialNumber(bytes.slice(i, i + 8));
       i += 8;
     }
-    // DEVICE STATUS
+    // DEVICE STATUS (POWER ON)
     else if (channelId === 0xff && channelType === 0x0b) {
-      systemData.device_status = "on"; // Presence of this channel indicates 'on'
+      systemData.deviceStatus = "on"; // Presence indicates 'on'
       i += 1;
+    }
+    // SENSOR STATUS
+    else if (channelId === 0xff && channelType === 0x18) {
+      const statusByte = bytes[i + 1];
+      systemData.temperatureEnabled = !!(statusByte & 0b00000001);
+      systemData.humidityEnabled = !!(statusByte & 0b00000010);
+      i += 2;
     }
     // BATTERY
     else if (channelId === 0x01 && channelType === 0x75) {
-      lifecycleData.battery = bytes[i];
+      lifecycleData.batteryLevel = bytes[i];
       i += 1;
     }
     // TEMPERATURE
@@ -70,25 +73,24 @@ function consume(event) {
       climateData.humidity = bytes[i] / 2;
       i += 1;
     }
-    // HISTORY DATA
+    // HISTORICAL DATA
     else if (channelId === 0x20 && channelType === 0xce) {
       const ts = readUInt32LE(bytes.slice(i, i + 4));
-      const temp = readInt16LE(bytes.slice(i + 4, i + 6)) / 10;
-      const hum = bytes[i + 6] / 2;
-
-      const historicalData = {
-        temperature: temp,
-        humidity: hum
+      const historicalReading = {
+        temperature: readInt16LE(bytes.slice(i + 4, i + 6)) / 10,
+        humidity: bytes[i + 6] / 2,
       };
+
+      // AM102 historical data is always 7 bytes long
+      i += 7;
+
       emit("sample", {
-        data: historicalData,
+        data: historicalReading,
         topic: "default",
         timestamp: new Date(ts * 1000),
       });
-
-      i += 7;
     } else {
-
+      // Unknown channel, stop processing to avoid errors
       break;
     }
   }
@@ -96,24 +98,20 @@ function consume(event) {
   if (Object.keys(climateData).length > 0) {
     emit("sample", {
       data: climateData,
-      topic: "default"
+      topic: "default",
     });
   }
   if (Object.keys(lifecycleData).length > 0) {
     emit("sample", {
       data: lifecycleData,
-      topic: "lifecycle"
+      topic: "lifecycle",
     });
   }
-  if (
-    systemData.firmware_version &&
-    systemData.hardware_version &&
-    systemData.device_status &&
-    systemData.sn
-  ) {
+  if (Object.keys(systemData).length > 0) {
     emit("sample", {
       data: systemData,
-      topic: "system"
+      topic: "system",
     });
   }
 }
+

@@ -6,11 +6,11 @@
   "topic": "lifecycle",
   "title": "Lifecycle",
   "properties": {
-    "battery": {
+    "batteryLevel": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
     }
   },
   "required": [
-    "battery"
+    "batteryLevel"
   ]
 }
