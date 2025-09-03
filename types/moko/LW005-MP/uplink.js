@@ -13,7 +13,7 @@ function consume(event) {
       data.plugLoadStatus = bytes[6] === 1 ? "LOAD" : "NO_LOAD";
       break;
     case 6:
-      topic = "electrical";
+      topic = "energy";
       data.voltage = Bits.bitsToUnsigned(bits.substr(40, 16)) / 10
       data.current = Bits.bitsToUnsigned(bits.substr(56, 16)) / 1000;
       data.frequency = Bits.bitsToUnsigned(bits.substr(72, 16)) / 1000;
@@ -24,9 +24,9 @@ function consume(event) {
       data.powerFactor = bytes[9] & 0xFF;
       break;
     case 8:
-      topic = "energy";
-      data.totalEnergy = Bits.bitsToUnsigned(bits.substr(40, 32)) / 3200;
-      data.energyLastHour = Bits.bitsToUnsigned(bits.substr(72, 16)) / 3200;
+      topic = "consumption";
+      data.totalConsumption = Bits.bitsToUnsigned(bits.substr(40, 32)) / 3200;
+      data.consumptionLastHour = Bits.bitsToUnsigned(bits.substr(72, 16)) / 3200;
       break;
     case 9:
       topic = "overvoltage";

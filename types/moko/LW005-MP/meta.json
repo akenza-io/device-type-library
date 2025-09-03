@@ -12,8 +12,8 @@
   ],
   "outputTopics": [
     "countdown",
-    "electrical",
     "energy",
+    "consumption",
     "load_state",
     "overcurrent",
     "overload",

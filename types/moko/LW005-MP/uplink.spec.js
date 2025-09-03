@@ -18,22 +18,22 @@ describe("Moko LW005-MP Uplink", () => {
   });
 
 
-  let electricalSchema = null;
-  before((done) => {
-    utils
-      .loadSchema(`${__dirname}/electrical.schema.json`)
-      .then((parsedSchema) => {
-        electricalSchema = parsedSchema;
-        done();
-      });
-  });
-
   let energySchema = null;
   before((done) => {
     utils
       .loadSchema(`${__dirname}/energy.schema.json`)
       .then((parsedSchema) => {
         energySchema = parsedSchema;
+        done();
+      });
+  });
+
+  let consumptionSchema = null;
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/consumption.schema.json`)
+      .then((parsedSchema) => {
+        consumptionSchema = parsedSchema;
         done();
       });
   });
@@ -133,7 +133,7 @@ describe("Moko LW005-MP Uplink", () => {
       consume(data);
     });
 
-    it("should decode the Moko LW001-BG-PRO electrical payload", () => {
+    it("should decode the Moko LW001-BG-PRO energy payload", () => {
       const data = {
         data: {
           port: 6,
@@ -147,12 +147,12 @@ describe("Moko LW005-MP Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "electrical");
+        assert.equal(value.topic, "energy");
         assert.equal(value.data.current, 0);
         assert.equal(value.data.voltage, 223.1);
         assert.equal(value.data.frequency, 49.965);
 
-        utils.validateSchema(value.data, electricalSchema, { throwError: true });
+        utils.validateSchema(value.data, energySchema, { throwError: true });
       });
 
       consume(data);
@@ -182,7 +182,7 @@ describe("Moko LW005-MP Uplink", () => {
       consume(data);
     });
 
-    it("should decode the Moko LW001-BG-PRO energy payload", () => {
+    it("should decode the Moko LW001-BG-PRO consumption payload", () => {
       const data = {
         data: {
           port: 8,
@@ -196,11 +196,11 @@ describe("Moko LW005-MP Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "energy");
-        assert.equal(value.data.energyLastHour, 0);
-        assert.equal(value.data.totalEnergy, 0.163125);
+        assert.equal(value.topic, "consumption");
+        assert.equal(value.data.consumptionLastHour, 0);
+        assert.equal(value.data.totalConsumption, 0.163125);
 
-        utils.validateSchema(value.data, energySchema, { throwError: true });
+        utils.validateSchema(value.data, consumptionSchema, { throwError: true });
       });
 
       consume(data);
