@@ -15,6 +15,42 @@
     "light": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/illuminance/lux"
     },
+    "co2": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm"
+    },
+    "voc": {
+      "title": "Volatile Organic Compounds",
+      "type": "number",
+      "description": "VOC Index or value",
+      "unit": "index"
+    },
+    "pressure": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/hpa"
+    },
+    "differentialPressure": {
+      "title": "Differential Pressure",
+      "type": "number",
+      "description": "Differential pressure reading",
+      "unit": "Pa"
+    },
+    "flow": {
+      "title": "Flow",
+      "type": "number",
+      "description": "Flow measurement"
+    },
+    "setpoint": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/hvac/schema.json#/$defs/setpoint/celsius"
+    },
+    "condensation": {
+      "title": "Condensation State",
+      "type": "boolean",
+      "description": "True if condensation is detected"
+    },
+    "condensationRaw": {
+      "title": "Condensation Raw Value",
+      "type": "number",
+      "description": "Raw sensor value for condensation detection"
+    },
     "occupied": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupied/boolean",
       "title": "Occupied State 0"

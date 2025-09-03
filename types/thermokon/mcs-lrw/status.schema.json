@@ -1,0 +1,54 @@
+{
+    "$id": "https://akenza.io/thermokon/mcs-lrw/status.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "status",
+    "title": "Status",
+    "properties": {
+        "deviceKey": {
+            "title": "Device Key",
+            "type": "number",
+            "description": "Device key identifier."
+        },
+        "command": {
+            "title": "Command",
+            "type": "number",
+            "description": "Last received command."
+        },
+        "learn": {
+            "title": "Learn",
+            "type": "number",
+            "description": "Learn status."
+        },
+        "heartbeat": {
+            "title": "Heartbeat Interval",
+            "type": "number",
+            "description": "Heartbeat message interval.",
+            "unit": "ms"
+        },
+        "measurementInterval": {
+            "title": "Measurement Interval",
+            "type": "number",
+            "description": "Interval between measurements.",
+            "unit": "ms"
+        },
+        "measurementCount": {
+            "title": "Measurement Count",
+            "type": "number",
+            "description": "Count of measurements taken."
+        },
+        "binaryInputLatency": {
+            "title": "Binary Input Latency",
+            "type": "number",
+            "description": "Latency for binary inputs.",
+            "unit": "ms"
+        },
+        "forcedUplink": {
+            "title": "Forced Uplink",
+            "type": "number",
+            "description": "Forced uplink status or value."
+        }
+    },
+    "required": []
+}

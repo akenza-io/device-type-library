@@ -8,6 +8,11 @@
   "properties": {
     "batteryVoltage": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+    },
+    "batteryType": {
+      "title": "Battery Type",
+      "type": "number",
+      "description": "Identifier for the type of battery installed"
     }
   },
   "required": [

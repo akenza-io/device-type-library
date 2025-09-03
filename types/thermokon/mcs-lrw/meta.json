@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "manufacturer": "Thermokon",
   "url": "https://www.thermokon.de/direct/en-gb/categories/mcs",
-  "description": "LoRaWAN® compact multi sensor with temperature and humidity detection, state- and movement detection with luminosity measurement optional type dependent.",
+  "description": "LoRaWAN® multi compact sensor for condition monitoring of up to 2 windows or doors and measurement of temperature, humidity, motion and brightness.",
   "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
   "availableSensors": [
     "Temperature",
     "Humidity",
@@ -16,6 +17,7 @@
   ],
   "outputTopics": [
     "default",
+    "status",
     "lifecycle"
   ],
   "encoding": "HEX",
