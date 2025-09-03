@@ -136,7 +136,7 @@ function readBlockConfig(block_id, bytes) {
   return templateConfig;
 }
 
-function handle_downlink_response(channelType, bytes, offset) {
+function handleDownlinkResponse(channelType, bytes, offset) {
   var decoded = {};
 
   switch (channelType) {
@@ -414,12 +414,20 @@ function consume(event) {
     }
     // DOWNLINK RESPONSE // TODO rewrite this
     else if (channelId === 0xfe || channelId === 0xff) {
-      const result = handle_downlink_response(channelType, bytes, i);
+      const result = handleDownlinkResponse(channelType, bytes, i);
       downlink = Object.assign(downlink, result.data);
       i = result.offset;
     } else {
       break;
     }
+  }
+
+  if (!isEmpty(lifecycle)) {
+    emit("sample", { data: lifecycle, topic: "lifecycle" });
+  }
+
+  if (!isEmpty(template)) {
+    emit("sample", { data: template, topic: "template" });
   }
 
   if (!isEmpty(system)) {
@@ -430,8 +438,12 @@ function consume(event) {
     emit("sample", { data: button, topic: "button" });
   }
 
-  if (!isEmpty(lifecycle)) {
-    emit("sample", { data: lifecycle, topic: "lifecycle" });
+  if (!isEmpty(config)) {
+    emit("sample", { data: config, topic: "config" });
+  }
+
+  if (!isEmpty(update)) {
+    emit("sample", { data: update, topic: "update" });
   }
 
   if (!isEmpty(downlink)) {

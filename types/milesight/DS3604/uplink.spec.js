@@ -45,12 +45,10 @@ describe("DS3604 Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.qrCode, "hello");
-        assert.equal(value.data.templateId, 1);
-        assert.equal(value.data.text1, "Miles");
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batteryLevel, 100);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       utils.expectEmits((type, value) => {
@@ -58,10 +56,12 @@ describe("DS3604 Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 100);
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.qrCode, "hello");
+        assert.equal(value.data.templateId, 1);
+        assert.equal(value.data.text1, "Miles");
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
