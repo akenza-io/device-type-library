@@ -1,3 +1,5 @@
+// Datasheet source: https://resource.milesight.com/milesight/iot/document/am102(l)-and-am103(l)-user-guide-en.pdf
+
 function readUInt16LE(bytes) {
   const value = (bytes[1] << 8) + bytes[0];
   return value & 0xffff;

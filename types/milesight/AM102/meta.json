@@ -1,5 +1,5 @@
 {
-  "name": "Milesight - AM102",
+  "name": "AM102",
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight.com/iot/product/lorawan-sensor/am102",
@@ -8,8 +8,7 @@
   "firmwareVersion": "V1.0.0",
   "availableSensors": [
     "Temperature",
-    "Humidity",
-    "Battery Level"
+    "Humidity"
   ],
   "outputTopics": [
     "default",

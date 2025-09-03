@@ -24,13 +24,11 @@ describe("Milesight AM102 Uplink", () => {
         it("should decode the basic information payload from the user guide", () => {
             const data = {
                 data: {
-                    // Payload from Section 6.1 of the User Guide
                     payloadHex: "ff0bffff166710b32620711912ff090100ff0a0101ff180013",
                     port: 85,
                 },
             };
 
-            // The decoder should emit a single 'system' sample
             utils.expectEmits((type, value) => {
                 assert.equal(type, "sample");
                 assert.equal(value.topic, "system");
@@ -51,13 +49,11 @@ describe("Milesight AM102 Uplink", () => {
         it("should decode the periodic sensor data payload from the user guide", () => {
             const data = {
                 data: {
-                    // Payload from Section 6.2, Example 1 of the User Guide
                     payloadHex: "0175640367ff0004684f",
                     port: 85,
                 },
             };
 
-            // Expect the 'default' topic for sensor readings
             utils.expectEmits((type, value) => {
                 assert.equal(type, "sample");
                 assert.equal(value.topic, "default");
@@ -68,7 +64,6 @@ describe("Milesight AM102 Uplink", () => {
                 utils.validateSchema(value.data, defaultSchema, { throwError: true });
             });
 
-            // Expect the 'lifecycle' topic for the battery level
             utils.expectEmits((type, value) => {
                 assert.equal(type, "sample");
                 assert.equal(value.topic, "lifecycle");
@@ -86,7 +81,6 @@ describe("Milesight AM102 Uplink", () => {
         it("should decode the historical data payload from the user guide", () => {
             const data = {
                 data: {
-                    // Payload from Section 6.4, Reply Example (AM102 part only)
                     payloadHex: "20ce5c44ec63d30059",
                     port: 85,
                 },
@@ -100,7 +94,6 @@ describe("Milesight AM102 Uplink", () => {
                     temperature: 21.1,
                     humidity: 44.5,
                 });
-                // The timestamp in the PDF (63ec445c) corresponds to 2023-02-15 10:33:00
                 assert.equal(
                     value.timestamp.toISOString(),
                     "2023-02-15T10:33:00.000Z",
