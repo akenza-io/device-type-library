@@ -5,7 +5,7 @@
   "url": "https://www.thermokon.de/direct/en-gb/categories/sab07",
   "description": "LoRaWAN wireless radiator valve actuator for room temperature control with integrated temperature and humidity sensors.",
   "author": "Akenza AG",
-  "firmwareVersion": "V1.0",
+  "firmwareVersion": "V1.0.0",
   "availableSensors": [
     "Temperature",
     "Humidity",

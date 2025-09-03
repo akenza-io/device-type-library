@@ -25,7 +25,7 @@ describe("Thermokon SAB07 Uplink", () => {
     describe("consume()", () => {
 
         // keep-alive command
-        it("should decode the Thermokon SAB07 keep-alive command", () => {
+        it("should decode the Thermokon SAB07 uplink", () => {
             const data = {
                 data: {
                     payloadHex: "811DA878FA2C01F080",
@@ -39,10 +39,23 @@ describe("Thermokon SAB07 Uplink", () => {
 
                 assert.equal(value.topic, "default");
                 assert.equal(value.data.sensorTemperature, 24.65);
-                assert.equal(value.data.relativeHumidity, 46.875);
+                assert.equal(value.data.relativeHumidity, 46.88);
                 assert.equal(value.data.targetTemperature, 29);
 
                 utils.validateSchema(value.data, defaultSchema, { throwError: true });
+            });
+
+
+            // actuator test
+            utils.expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.isNotNull(value);
+                assert.typeOf(value.data, "object");
+
+                assert.equal(value.topic, "actuator");
+                assert.equal(value.data.motorPosition, 250);
+                assert.equal(value.data.motorRange, 300);
+                utils.validateSchema(value.data, actuatorSchema, { throwError: true });
             });
 
             // lifecycle test
@@ -65,21 +78,9 @@ describe("Thermokon SAB07 Uplink", () => {
                 utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
             });
 
-            // actuator test
-            utils.expectEmits((type, value) => {
-                assert.equal(type, "sample");
-                assert.isNotNull(value);
-                assert.typeOf(value.data, "object");
-
-                assert.equal(value.topic, "actuator");
-                assert.equal(value.data.motorPosition, 250);
-                assert.equal(value.data.motorRange, 300);
-                utils.validateSchema(value.data, actuatorSchema, { throwError: true });
-            });
 
             consume(data);
         });
 
-        // todo: test for port 3 and 5 
     });
 });
