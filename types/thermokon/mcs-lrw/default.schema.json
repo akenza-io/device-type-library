@@ -1,0 +1,58 @@
+{
+  "$id": "https://akenza.io/thermokon/mcs-lrw/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "temperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    },
+    "humidity": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+    },
+    "light": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/illuminance/lux"
+    },
+    "occupied": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupied/boolean",
+      "title": "Occupied State 0"
+    },
+    "motionCount": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/motion/count",
+      "title": "Motion Count 0"
+    },
+    "occupied1": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupied/boolean",
+      "title": "Occupied State 1"
+    },
+    "motionCount1": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/motion/count",
+      "title": "Motion Count 1"
+    },
+    "open": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/reedContact/status",
+      "title": "Reed Contact State 0"
+    },
+    "contactCount": {
+      "title": "Contact Count 0",
+      "type": "number",
+      "description": "Event counter for the primary reed contact",
+      "hideFromKpis": true
+    },
+    "open1": {
+      "title": "Reed Contact State 1",
+      "type": "boolean",
+      "description": "State of the secondary reed contact",
+      "hideFromKpis": true
+    },
+    "contactCount1": {
+      "title": "Contact Count 1",
+      "type": "number",
+      "description": "Event counter for the secondary reed contact",
+      "hideFromKpis": true
+    }
+  },
+  "required": []
+}

@@ -1,0 +1,23 @@
+{
+  "name": "Thermokon - MCS-LRW",
+  "version": "1.0.0",
+  "manufacturer": "Thermokon",
+  "url": "https://www.thermokon.de/direct/en-gb/categories/mcs",
+  "description": "LoRaWAN® compact multi sensor with temperature and humidity detection, state- and movement detection with luminosity measurement optional type dependent.",
+  "author": "Akenza AG",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "Light",
+    "Occupancy",
+    "Motion",
+    "Reed Contact",
+    "Battery Voltage"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
