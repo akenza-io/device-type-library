@@ -1,3 +1,4 @@
+// Special EF CD AB -> AB CD EF Case
 function intToHex(number) {
     let base = Number(number).toString(16);
     if (base.length % 2) {
@@ -34,6 +35,7 @@ function consume(event) {
     const confirmed = checkExpectedValues(event.confirmed, true);
     let payloadHex = checkExpectedValues(event.payloadHex, "");
 
+    // Pass raw downlink
     if (payloadHex.length > 1) {
         emit("downlink", { payloadHex, port, confirmed });
     } else if (event.payload.actionType !== undefined) {
@@ -85,26 +87,30 @@ function consume(event) {
                     payloadHex += "00";
                 }
                 break;
-            case "textUpdate": {
+            case "contentUpdate": {
+                // Channel and type
                 payloadHex = "FB01";
                 let bits = "";
-                // fb01
-                // 41 0720566163616e74ff3d02
+                // IDs start at 0
                 if (payload.template === 1) {
                     bits += "00";
-                } else if (payload.template === 1) {
+                } else if (payload.template === 2) {
                     bits += "01";
                 }
 
+                // IDs start at 0
                 let templateBits = "";
-                templateBits += payload.templateId.toString(2);
+                templateBits += (payload.moduleId - 1).toString(2);
 
-                while (templateBits !== 6) {
+                // Module ID
+                while (templateBits.length !== 6) {
                     templateBits = 0 + templateBits;
                 }
                 bits += templateBits;
-                let tempHex = parseInt(bits, 2).toString(16)
-                while (tempHex !== 2) {
+
+                // tempBits to hex
+                let tempHex = parseInt(bits, 2).toString(16);
+                while (tempHex.length !== 2) {
                     tempHex = 0 + tempHex;
                 }
                 payloadHex += tempHex;
@@ -112,7 +118,7 @@ function consume(event) {
                 // ACII Encoded Hex
                 const contentHex = ascii2hex(payload.content);
                 // 1 Byte content size
-                payloadHex += intToHex(contentHex.length);
+                payloadHex += intToHex(contentHex.length / 2);
                 payloadHex += contentHex;
 
                 // Channel, Type, Value

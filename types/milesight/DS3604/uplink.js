@@ -110,7 +110,7 @@ function readBlockConfig(block_id, bytes) {
   const offset = 0;
 
   const templateConfig = {};
-  templateConfig.enable = readEnableStatus(bytes[offset]);
+  templateConfig.enable = !!(bytes[offset]);
   templateConfig.type = readBlockType(bytes[offset + 1]);
   templateConfig.startX = readUInt16LE(bytes.slice(offset + 2, offset + 4));
   templateConfig.startY = readUInt16LE(bytes.slice(offset + 4, offset + 6));
@@ -145,49 +145,49 @@ function handleDownlinkResponse(channelType, bytes, offset) {
       offset += 2;
       break;
     case 0x10:
-      decoded.reboot = readYesNoStatus(1);
+      decoded.reboot = !!(1);
       offset += 1;
       break;
     case 0x25:
-      decoded.buttonEnable = readEnableStatus(bytes[offset]);
+      decoded.buttonEnabled = !!(bytes[offset]);
       offset += 1;
       break;
     case 0x27:
       var data = readUInt8(bytes[offset]);
       decoded.clearImage = {};
-      decoded.clearImage.backgroundImage = readYesNoStatus((data >> 4) & 0x01);
-      decoded.clearImage.logo1 = readYesNoStatus((data >> 5) & 0x01);
-      decoded.clearImage.logo2 = readYesNoStatus((data >> 5) & 0x02);
+      decoded.clearImage.backgroundImage = !!((data >> 4) & 0x01);
+      decoded.clearImage.logo1 = !!((data >> 5) & 0x01);
+      decoded.clearImage.logo2 = !!((data >> 5) & 0x02);
       offset += 1;
       break;
     case 0x28:
       var data = readUInt8(bytes[offset]);
       if (data === 0x00) {
-        decoded.reportBattery = readYesNoStatus(1);
+        decoded.reportBattery = !!(1);
       } else if (data === 0x01) {
-        decoded.reportBuzzer = readYesNoStatus(1);
+        decoded.reportBuzzer = !!(1);
       } else if (data === 0x02) {
-        decoded.reportCurrentTemplate = readYesNoStatus(1);
+        decoded.reportCurrentTemplate = !!(1);
       } else if (data === 0x03) {
-        decoded.reportCurrentDisplay = readYesNoStatus(1);
+        decoded.reportCurrentDisplay = !!(1);
       }
       offset += 1;
       break;
     case 0x3e:
-      decoded.buzzerEnable = readEnableStatus(bytes[offset]);
+      decoded.buzzerEnable = !!(bytes[offset]);
       offset += 1;
       break;
     case 0x3d:
       var data = readUInt8(bytes[offset]);
       if (data === 0x01) {
-        decoded.beep = readYesNoStatus(1);
+        decoded.beep = !!(1);
       } else if (data === 0x02) {
-        decoded.refreshDisplay = readYesNoStatus(1);
+        decoded.refreshDisplay = !!(1);
       }
       offset += 1;
       break;
     case 0x66:
-      decoded.buttonVisible = readButtonVisibleStatus(bytes[offset]);
+      decoded.buttonVisible = !!(bytes[offset]);
       offset += 1;
       break;
     case 0x73:
@@ -195,16 +195,16 @@ function handleDownlinkResponse(channelType, bytes, offset) {
       offset += 1;
       break;
     case 0x82:
-      decoded.multicastConfig = readMulticastConfig(bytes[offset]);
+      decoded.multicastConfig = !!(bytes[offset]);
       offset += 1;
       break;
     case 0x89:
       // skip 1 byte
-      decoded.blockVisible = readBlockVisibleStatus(bytes.slice(offset + 1, offset + 3));
+      decoded.blockVisible = !!(bytes.slice(offset + 1, offset + 3));
       offset += 3;
       break;
     case 0x90:
-      decoded.switchTemplateButtonEnable = readEnableStatus(bytes[offset]);
+      decoded.switchTemplateButtonEnable = !!(bytes[offset]);
       offset += 1;
       break;
     default:
@@ -287,19 +287,19 @@ function consume(event) {
       switch (bytes[i]) {
         case 0:
           button.button = "SINGLE_CLICK"
-          button.buttonNumeric = 1;
+          button.numericButton = 1;
           break;
         case 1:
           button.button = "DOUBLE_CLICK"
-          button.buttonNumeric = 2;
+          button.numericButton = 2;
           break;
         case 2:
           button.button = "SHORT_PRESS"
-          button.buttonNumeric = 3;
+          button.numericButton = 3;
           break;
         case 3:
           button.button = "LONG_PRESS"
-          button.buttonNumeric = 4;
+          button.numericButton = 4;
           break;
         default:
           break;
@@ -340,11 +340,11 @@ function consume(event) {
 
       const templateId = (data >> 6) + 1;
       const blockId = data & 0x3f;
-      const templateName = `template${templateId}config`;
+      const templateName = `template${templateId}Config`;
       const blockOffset = { 0: "text1", 1: "text2", 2: "text3", 3: "text4", 4: "text5", 5: "text6", 6: "text7", 7: "text8", 8: "text9", 9: "text10", 10: "qrcode", 11: "image1", 12: "image2", 13: "batteryStatus", 14: "connectStatus" };
       const blockName = blockOffset[blockId];
 
-      config[templateName] = decoded[templateName] || {};
+      config[templateName] = config[templateName] || {};
       config[templateName][blockName] = readBlockConfig(blockId, bytes.slice(i + 2, i + 2 + dataLength));
       i += dataLength;
     }
@@ -369,7 +369,7 @@ function consume(event) {
       updateContentResult.result = readResultType(readUInt8(bytes[i + 1]));
       i += 2;
 
-      update.updateContentResult = decoded.updateContentResult || [];
+      update.updateContentResult = update.updateContentResult || [];
       update.updateContentResult.push(updateContentResult);
     }
     // UPDATE IMAGE RESULT
@@ -389,7 +389,7 @@ function consume(event) {
       receiveImageDataResult.dataFrame = dataFrame;
       i += 2;
 
-      update.receiveImageDataResult = decoded.receiveImageDataResult || [];
+      update.receiveImageDataResult = update.receiveImageDataResult || [];
       update.receiveImageDataResult.push(receiveImageDataResult);
     }
     // UPDATE TEMPLATE RESULT
@@ -409,7 +409,7 @@ function consume(event) {
       updateTemplateResult.result = readResultType(readUInt8(bytes[i + 1]));
       i += 2;
 
-      update.updateTemplateResult = decoded.updateTemplateResult || [];
+      update.updateTemplateResult = update.updateTemplateResult || [];
       update.updateTemplateResult.push(updateTemplateResult);
     }
     // DOWNLINK RESPONSE // TODO rewrite this
@@ -439,7 +439,7 @@ function consume(event) {
   }
 
   if (!isEmpty(config)) {
-    emit("sample", { data: config, topic: "config" });
+    emit("sample", { data: config, topic: "template_configuration" });
   }
 
   if (!isEmpty(update)) {
