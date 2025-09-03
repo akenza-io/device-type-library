@@ -4,7 +4,7 @@ const utils = require("test-utils");
 
 const { assert } = chai;
 
-describe("Thermokon Multi-Sensor LRW Uplink", () => {
+describe("Thermokon MCS-LRW Uplink", () => {
     let defaultSchema = null;
     let lifecycleSchema = null;
     let statusSchema = null;
@@ -101,7 +101,7 @@ describe("Thermokon Multi-Sensor LRW Uplink", () => {
         it("should decode various sensor types correctly", () => {
             const data = {
                 data: {
-                    payloadHex: "1202585181905009", // occupancy, motionCount, deviceKey
+                    payloadHex: "c00040014100", // occupancy, motionCount, deviceKey
                     port: 2,
                 },
             };
