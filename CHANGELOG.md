@@ -14,6 +14,13 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- MOKO - LW005-MP
+- MOKO - LW007-PIR
+
+# [1.69.0] - 2025-08-19
+
+### Added
+
 - Dragino - S31LB-LS
 
 ### Changed
