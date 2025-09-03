@@ -1,0 +1,72 @@
+{
+  "$id": "https://akenza.io/milesight/ct103/system.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "system",
+  "title": "System",
+  "properties": {
+    "firmware_version": {
+      "title": "Firmware Version",
+      "type": "string",
+      "description": "The firmware version of the device.",
+      "hideFromKpis": true
+    },
+    "hardware_version": {
+      "title": "Hardware Version",
+      "type": "string",
+      "description": "The hardware version of the device.",
+      "hideFromKpis": true
+    },
+    "sn": {
+      "title": "Serial Number",
+      "type": "string",
+      "description": "The serial number of the device.",
+      "hideFromKpis": true
+    },
+    "lorawan_class": {
+      "title": "LoRaWAN Class",
+      "type": "string",
+      "description": "The LoRaWAN class the device is operating in.",
+      "enum": [
+        "Class A",
+        "Class B",
+        "Class C",
+        "Class CtoB"
+      ],
+      "hideFromKpis": true
+    },
+    "device_status": {
+      "title": "Device Status",
+      "type": "string",
+      "description": "Indicates if the device is on or off.",
+      "enum": [
+        "on",
+        "off"
+      ],
+      "hideFromKpis": true
+    },
+    "reset_event": {
+      "title": "Reset Event",
+      "type": "string",
+      "description": "Indicates if the device has been reset.",
+      "enum": [
+        "normal",
+        "reset"
+      ],
+      "hideFromKpis": true
+    },
+    "ipso_version": {
+      "title": "IPSO Version",
+      "type": "string",
+      "description": "The IPSO version of the device.",
+      "hideFromKpis": true
+    },
+    "tsl_version": {
+      "title": "TSL Version",
+      "type": "string",
+      "description": "The TSL version of the device.",
+      "hideFromKpis": true
+    }
+  }
+}
