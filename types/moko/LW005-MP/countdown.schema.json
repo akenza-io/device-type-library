@@ -1,0 +1,27 @@
+{
+  "$id": "https://akenza.io/moko/lw005-mp/countdown.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "countdown",
+  "title": "Countdown",
+  "properties": {
+    "acAfterCountdown": {
+      "title": "AC ouput state after countdown",
+      "description": "AC ouput state after countdown",
+      "type": "string",
+      "enum": [
+        "ON",
+        "OFF"
+      ],
+      "hideFromKpis": true
+    },
+    "countdownTime": {
+      "title": "Remaining time of countdown process",
+      "description": "Remaining time of countdown process in seconds",
+      "type": "integer",
+      "unit": "s",
+      "hideFromKpis": true
+    }
+  }
+}
