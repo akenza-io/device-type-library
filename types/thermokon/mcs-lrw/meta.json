@@ -1,5 +1,5 @@
 {
-  "name": "Thermokon - MCS-LRW",
+  "name": "MCS-LRW",
   "version": "1.0.0",
   "manufacturer": "Thermokon",
   "url": "https://www.thermokon.de/direct/en-gb/categories/g-mcs-lorawan",
@@ -16,11 +16,7 @@
     "Differential Pressure",
     "Volume Flow",
     "Occupancy",
-    "Motion",
-    "Reed Contact",
-    "Condensation",
-    "Setpoint",
-    "Battery Voltage"
+    "Motion"
   ],
   "outputTopics": [
     "default",

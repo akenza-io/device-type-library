@@ -56,7 +56,6 @@
       "description": "Raw sensor value (0-4095) for condensation detection."
     },
     "occupied": {
-      "title": "Occupancy State",
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupied/boolean"
     },
     "motionCount": {
