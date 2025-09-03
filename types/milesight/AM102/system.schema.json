@@ -5,6 +5,7 @@
   "processingType": "uplink_decoder",
   "topic": "system",
   "title": "System",
+  "description": "System information reported by the device",
   "properties": {
     "firmwareVersion": {
       "title": "Firmware Version",
@@ -36,11 +37,13 @@
     "temperatureEnabled": {
       "title": "Temperature Sensor Enabled",
       "type": "boolean",
+      "description": "Whether the temperature sensor is enabled",
       "hideFromKpis": true
     },
     "humidityEnabled": {
       "title": "Humidity Sensor Enabled",
       "type": "boolean",
+      "description": "Whether the humidity sensor is enabled",
       "hideFromKpis": true
     }
   },

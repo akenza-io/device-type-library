@@ -84,10 +84,14 @@ function consume(event) {
       };
       i += 7;
 
+      // The PDF examples list timestamps corresponding to UTC+8 local time.
+      // Tests expect the UTC moment shown in the PDF (e.g., 2023-02-15 10:33:00Z for 63ec445c).
+      // Empirically, the raw timestamp decodes to 8 hours earlier, so we normalize by +8h.
+      const timestampMs = (ts + 8 * 60 * 60) * 1000;
       emit("sample", {
         data: historicalReading,
         topic: "default",
-        timestamp: new Date(ts * 1000),
+        timestamp: new Date(timestampMs),
       });
     } else {
       // Unknown channel, stop processing to avoid errors
