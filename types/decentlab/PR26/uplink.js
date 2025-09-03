@@ -104,6 +104,24 @@ function consume(event) {
   // water level is calculated from pressure
   data.level = (sample.pressure * 100000) / (1000 * 9.807);
 
+  if (event.device !== undefined && data.level !== undefined) {
+    if (event.device.customFields !== undefined) {
+      const { customFields } = event.device;
+      if (customFields.sensorOffset !== undefined) {
+        const sensorOffset = Number(
+          event.device.customFields.sensorOffset,
+        );
+        data.level += sensorOffset;
+      }
+    }
+  }
+
+  // Round everything after calculations
+  data.level = Math.round(data.level * 100000) / 100000;
+  data.pressure = Math.round(data.pressure * 100000) / 100000;
+  data.temperature = Math.round(data.temperature * 100000) / 100000;
+  data.levelCm = data.level * 100;
+
   // Lifecycle values
   lifecycle.batteryVoltage = sample.battery_voltage;
   lifecycle.protocolVersion = sample.protocolVersion;
