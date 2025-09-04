@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/xovis/VS132/default.schema.json",
+  "$id": "https://akenza.io/xovis/VS125/line1.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
@@ -14,6 +14,31 @@
     "totalCounterOut": {
       "title": "Total counter out",
       "description": "Total counter out",
+      "type": "integer"
+    },
+    "periodicCounterIn": {
+      "title": "Periodic counter in",
+      "description": "Periodic counter in",
+      "type": "integer"
+    },
+    "periodicCounterOut": {
+      "title": "Periodic counter out",
+      "description": "Periodic counter out",
+      "type": "integer"
+    },
+    "totalCountedIn": {
+      "title": "Total counted in",
+      "description": "Total counted in",
+      "type": "integer"
+    },
+    "totalCountedOut": {
+      "title": "Total counted out",
+      "description": "Total counted out",
+      "type": "integer"
+    },
+    "totalCountedCapacity": {
+      "title": "Total counted capacity",
+      "description": "Total counted capacity",
       "type": "integer"
     }
   }

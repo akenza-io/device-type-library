@@ -1,0 +1,43 @@
+{
+  "$id": "https://akenza.io/xovis/VS125/region1.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "region1",
+  "title": "Region 1",
+  "properties": {
+    "duration": {
+      "title": "Dwell duration",
+      "description": "Dwell duration",
+      "unit": "s",
+      "type": "integer"
+    },
+    "dwellTimeStart": {
+      "title": "Dwell time start",
+      "description": "Dwell time start",
+      "type": "string"
+    },
+    "dwellTimeEnd": {
+      "title": "Dwell time end",
+      "description": "Dwell time end",
+      "type": "string"
+    },
+    "avgDwellTime": {
+      "title": "Average dwell time",
+      "description": "Average dwell time",
+      "unit": "s",
+      "type": "integer"
+    },
+    "maxDwellTime": {
+      "title": "Max dwell time",
+      "description": "Max dwell time",
+      "unit": "s",
+      "type": "integer"
+    },
+    "totalDwellers": {
+      "title": "Total dwellers",
+      "description": "Total dwellers",
+      "type": "integer"
+    }
+  }
+}
