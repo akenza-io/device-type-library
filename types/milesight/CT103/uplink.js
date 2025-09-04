@@ -16,9 +16,9 @@ function readUInt32LE(bytes) {
 
 // Helper functions to decode specific data types
 function readProtocolVersion(byte) {
-  const major = (byte & 0xf0) >> 4;
+
   const minor = byte & 0x0f;
-  return `v${major}.${minor}`;
+  return `V${minor}`;
 }
 
 function readHardwareVersion(bytes) {
@@ -50,56 +50,48 @@ function readSerialNumber(bytes) {
 function readLoRaWANClass(type) {
   switch (type) {
     case 0:
-      return "Class A";
+      return "CLASS_A";
     case 1:
-      return "Class B";
+      return "CLASS_B";
     case 2:
-      return "Class C";
+      return "CLASS_C";
     case 3:
-      return "Class CtoB";
+      return "CLASS_C_TO_B";
     default:
       return "unknown";
   }
 }
 
-function readResetEvent(status) {
-  return status === 1 ? "reset" : "normal";
-}
 
 function readDeviceStatus(status) {
   return status === 1 ? "on" : "off";
 }
 
-function readYesNoStatus(status) {
-  return status === 1 ? "yes" : "no";
-}
-
-function readSensorStatus(status) {
-  switch (status) {
-    case 1:
-      return "over range alarm";
-    case 2:
-      return "read failed";
+function readCurrentAlarmStatus(value) {
+  switch (value) {
+    case 0x01:
+      return "CURRENT_THRESHOLD_ALARM";
+    case 0x02:
+      return "CURRENT_THRESHOLD_ALARM_DISMISS";
+    case 0x04:
+      return "CURRENT_OVER_RANGE_ALARM";
+    case 0x08:
+      return "CURRENT_OVER_RANGE_ALARM_DISMISS";
+    case 0x05:
+      return "CURRENT_THRESHOLD_ALARM_OVER_RANGE_ALARM";
+    case 0x0a:
+      return "CURRENT_THRESHOLD_ALARM_OVER_RANGE_ALARM_DISMISS";
     default:
-      return "normal";
+      return "unknown";
   }
 }
 
-function readCurrentAlarm(value) {
-  return {
-    current_threshold_alarm: readYesNoStatus((value >> 0) & 0x01),
-    current_threshold_alarm_release: readYesNoStatus((value >> 1) & 0x01),
-    current_over_range_alarm: readYesNoStatus((value >> 2) & 0x01),
-    current_over_range_alarm_release: readYesNoStatus((value >> 3) & 0x01),
-  };
-}
-
-function readTemperatureAlarm(type) {
+function readTemperatureAlarmStatus(type) {
   switch (type) {
     case 0:
-      return "temperature threshold alarm release";
+      return "TEMPERATURE_THRESHOLD_ALARM_RELEASE";
     case 1:
-      return "temperature threshold alarm";
+      return "TEMPERATURE_THRESHOLD_ALARM";
     default:
       return "unknown";
   }
@@ -124,21 +116,15 @@ function consume(event) {
       // CURRENT
       else if (channelId === 0x04 && channelType === 0x98) {
         const currentValue = readUInt16LE(bytes.slice(i, i + 2));
-        if (currentValue === 0xffff) {
-          defaultData.currentSensorStatus = readSensorStatus(2);
-        } else {
-          defaultData.current = currentValue / 1000;
+        if (currentValue !== 0xffff) {
+          defaultData.current = currentValue / 100;
         }
         i += 2;
       }
       // TEMPERATURE
       else if (channelId === 0x09 && channelType === 0x67) {
         const tempValue = readUInt16LE(bytes.slice(i, i + 2));
-        if (tempValue === 0xfffd) {
-          defaultData.temperatureSensorStatus = readSensorStatus(1);
-        } else if (tempValue === 0xffff) {
-          defaultData.temperatureSensorStatus = readSensorStatus(2);
-        } else {
+        if (tempValue !== 0xfffd && tempValue !== 0xffff) {
           defaultData.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
         }
         i += 2;
@@ -147,29 +133,35 @@ function consume(event) {
       else if (channelId === 0x84 && channelType === 0x98) {
         alarmData.currentMax = readUInt16LE(bytes.slice(i, i + 2)) / 100;
         alarmData.currentMin = readUInt16LE(bytes.slice(i + 2, i + 4)) / 100;
-        alarmData.current = readUInt16LE(bytes.slice(i + 4, i + 6)) / 100;
-        alarmData.currentAlarm = readCurrentAlarm(bytes[i + 6]);
+        // latest current (bytes i+4..i+5) is not emitted per schema
+        const statusByte = bytes[i + 6];
+        const currentAlarmStatus = readCurrentAlarmStatus(statusByte);
+        if (currentAlarmStatus !== "unknown") {
+          alarmData.currentAlarmStatus = currentAlarmStatus;
+        }
         i += 7;
       }
       // TEMPERATURE ALARM
       else if (channelId === 0x89 && channelType === 0x67) {
-        alarmData.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
-        alarmData.temperature_alarm = readTemperatureAlarm(bytes[i + 2]);
+        const tempAlarmStatus = readTemperatureAlarmStatus(bytes[i + 2]);
+        if (tempAlarmStatus !== "unknown") {
+          alarmData.temperatureAlarmStatus = tempAlarmStatus;
+        }
         i += 3;
       }
       // SYSTEM INFORMATION
       else if (channelId === 0xff) {
         switch (channelType) {
-          case 0x01: // IPSO VERSION
-            systemData.ipsoVersion = readProtocolVersion(bytes[i]);
+          case 0x01: // PROTOCOL VERSION
+            systemData.protocolVersion = readProtocolVersion(bytes[i]);
             i += 1;
             break;
           case 0x09: // HARDWARE VERSION
             systemData.hardwareVersion = readHardwareVersion(bytes.slice(i, i + 2));
             i += 2;
             break;
-          case 0x0a: // FIRMWARE VERSION
-            systemData.firmwareVersion = readFirmwareVersion(bytes.slice(i, i + 2));
+          case 0x0a: // SOFTWARE VERSION
+            systemData.softwareVersion = readFirmwareVersion(bytes.slice(i, i + 2));
             i += 2;
             break;
           case 0xff: // TSL VERSION
@@ -184,11 +176,8 @@ function consume(event) {
             systemData.lorawanClass = readLoRaWANClass(bytes[i]);
             i += 1;
             break;
-          case 0xfe: // RESET EVENT
-            systemData.resetEvent = readResetEvent(1);
-            i += 1; // Assuming 1 byte for event
-            break;
           case 0x0b: // DEVICE STATUS
+            // Follow manufacturer decoder: treat as Power On event
             systemData.deviceStatus = readDeviceStatus(1);
             i += 1;
             break;

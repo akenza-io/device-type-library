@@ -1,14 +1,13 @@
 {
-  "name": "Milesight - CT103",
+  "name": "CT103",
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight.com/iot/product/lorawan-sensor/ct10x",
   "description": "LoRaWAN® Smart Current Transformer for monitoring energy and analyzing consumption remotely, featuring RMS and accumulated current measurement, and optional cable temperature sensing.",
   "author": "Akenza AG",
-  "firmwareVersion": "v1.1",
+  "firmwareVersion": "V1.0.0",
   "availableSensors": [
     "Current",
-    "Total Current",
     "Temperature"
   ],
   "outputTopics": [

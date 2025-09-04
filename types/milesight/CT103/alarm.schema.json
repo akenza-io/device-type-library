@@ -6,66 +6,31 @@
   "topic": "alarm",
   "title": "Alarm",
   "properties": {
-    "current": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/currentMax/ampere",
-      "title": "Current",
-      "description": "Current value at the time of the alarm."
-    },
     "currentMax": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/currentMax/ampere"
+      "title": "Maximum Current",
+      "description": "Maximum current value since the last report.",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere"
     },
     "currentMin": {
       "title": "Minimum Current",
-      "type": "number",
-      "unit": "A",
       "description": "Minimum current value since the last report.",
-      "hideFromKpis": false
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere"
     },
-    "currentAlarm": {
+    "currentAlarmStatus": {
       "title": "Current Alarm Status",
-      "type": "object",
-      "description": "Detailed current alarm status.",
-      "hideFromKpis": true,
-      "properties": {
-        "currentThresholdAlarm": {
-          "title": "Current Threshold Alarm",
-          "type": "string",
-          "enum": [
-            "yes",
-            "no"
-          ]
-        },
-        "currentThresholdAlarmRelease": {
-          "title": "Current Threshold Alarm Release",
-          "type": "string",
-          "enum": [
-            "yes",
-            "no"
-          ]
-        },
-        "currentOverRangeAlarm": {
-          "title": "Current Over Range Alarm",
-          "type": "string",
-          "enum": [
-            "yes",
-            "no"
-          ]
-        },
-        "currentOverRangeAlarmRelease": {
-          "title": "Current Over Range Alarm Release",
-          "type": "string",
-          "enum": [
-            "yes",
-            "no"
-          ]
-        }
-      }
+      "type": "string",
+      "description": "The status of the current alarm.",
+      "enum": [
+        "CURRENT_THRESHOLD_ALARM",
+        "CURRENT_THRESHOLD_ALARM_DISMISS",
+        "CURRENT_OVER_RANGE_ALARM",
+        "CURRENT_OVER_RANGE_ALARM_DISMISS",
+        "CURRENT_THRESHOLD_ALARM_OVER_RANGE_ALARM",
+        "CURRENT_THRESHOLD_ALARM_OVER_RANGE_ALARM_DISMISS"
+      ],
+      "hideFromKpis": true
     },
-    "temperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "description": "Cable temperature at the time of the alarm."
-    },
-    "temperatureAlarm": {
+    "temperatureAlarmStatus": {
       "title": "Temperature Alarm",
       "type": "string",
       "description": "The status of the temperature alarm.",
@@ -75,5 +40,6 @@
       ],
       "hideFromKpis": true
     }
-  }
+  },
+  "required": []
 }

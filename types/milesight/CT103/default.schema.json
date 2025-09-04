@@ -7,41 +7,21 @@
   "title": "Default",
   "properties": {
     "current": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/currentMax/ampere",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere",
       "title": "Current"
     },
-    "total_current": {
+    "totalCurrent": {
       "title": "Total Current",
       "type": "number",
       "unit": "Ah",
-      "description": "Total accumulated current consumption.",
-      "hideFromKpis": false
+      "description": "Total accumulated current consumption."
     },
     "temperature": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "Cable temperature measured by the optional external sensor."
-    },
-    "current_sensor_status": {
-      "title": "Current Sensor Status",
-      "type": "string",
-      "description": "The status of the current sensor.",
-      "enum": [
-        "normal",
-        "over range alarm",
-        "read failed"
-      ],
-      "hideFromKpis": true
-    },
-    "temperature_sensor_status": {
-      "title": "Temperature Sensor Status",
-      "type": "string",
-      "description": "The status of the temperature sensor.",
-      "enum": [
-        "normal",
-        "over range alarm",
-        "read failed"
-      ],
-      "hideFromKpis": true
     }
-  }
+  },
+  "required": [
+    "current"
+  ]
 }
