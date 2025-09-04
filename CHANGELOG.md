@@ -4,6 +4,45 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.71.0] - 2025-09-03
+
+### Changed
+
+- Fixed tests for meta schemas to not time out when schema is not valid
+
+# [1.70.0] - 2025-08-28
+
+### Added
+
+- Descriptions for missing meta schema properties.
+
+# [1.69.0] - 2025-08-19
+
+### Added
+
+- MOKO - LW005-MP
+- MOKO - LW007-PIR
+
+# [1.69.0] - 2025-08-19
+
+### Added
+
+- Dragino - S31LB-LS
+
+### Changed
+
+- Fixed race condition while loading schemas in Kuando busylight tests
+
+# [1.68.0] - 2025-07-23
+
+### Added
+
+- Hager - TG563A
+
+### Changed
+
+- Disruptive Proximity now emits washroom usage
+
 # [1.67.0] - 2025-07-16
 
 ### Added
