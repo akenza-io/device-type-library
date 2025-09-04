@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# [1.74.0] - 2025-09-04
+
+### Added
+
+- Milesight - CT103
+
 # [1.71.0] - 2025-09-03
 
 ### Changed
