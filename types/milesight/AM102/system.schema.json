@@ -24,7 +24,7 @@
       "type": "string",
       "description": "The power-on status of the device",
       "enum": [
-        "on"
+        "ON"
       ],
       "hideFromKpis": true
     },

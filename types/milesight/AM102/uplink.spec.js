@@ -33,7 +33,7 @@ describe("Milesight AM102 Uplink", () => {
                 assert.equal(type, "sample");
                 assert.equal(value.topic, "system");
                 assert.deepEqual(value.data, {
-                    deviceStatus: "on",
+                    deviceStatus: "ON",
                     sn: "6710b32620711912",
                     hardwareVersion: "v1.0",
                     firmwareVersion: "v1.1",
@@ -96,7 +96,7 @@ describe("Milesight AM102 Uplink", () => {
                 });
                 assert.equal(
                     value.timestamp.toISOString(),
-                    "2023-02-15T10:33:00.000Z",
+                    "2023-02-15T02:33:00.000Z",
                 );
                 utils.validateSchema(value.data, defaultSchema, { throwError: true });
             });

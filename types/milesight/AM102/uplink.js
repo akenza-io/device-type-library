@@ -50,7 +50,7 @@ function consume(event) {
     }
     // DEVICE STATUS (POWER ON)
     else if (channelId === 0xff && channelType === 0x0b) {
-      systemData.deviceStatus = "on";
+      systemData.deviceStatus = "ON";
       // This channel has a 1-byte "reserved" data field according to the PDF example table.
       // We must consume this byte to keep the parser aligned.
       i += 1;
@@ -86,14 +86,11 @@ function consume(event) {
       };
       i += 7;
 
-      // The PDF examples list timestamps corresponding to UTC+8 local time.
-      // Tests expect the UTC moment shown in the PDF (e.g., 2023-02-15 10:33:00Z for 63ec445c).
-      // Empirically, the raw timestamp decodes to 8 hours earlier, so we normalize by +8h.
-      const timestampMs = (ts + 8 * 60 * 60) * 1000;
+
       emit("sample", {
         data: historicalReading,
         topic: "default",
-        timestamp: new Date(timestampMs),
+        timestamp: new Date(ts * 1000),
       });
     } else {
       // Unknown channel, stop processing to avoid errors
