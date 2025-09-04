@@ -20,13 +20,13 @@
     },
     "co2e": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm",
-      "title": "Estimated co2",
-      "description": "Estimated co2",
+      "title": "Estimated CO2",
+      "description": "Estimated CO2",
       "hideFromKpis": true
     },
     "bVoc": {
-      "title": "B voc",
-      "description": "B voc",
+      "title": "B VOC",
+      "description": "B VOC",
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/tvoc/ppm"
     },
     "iaq": {
