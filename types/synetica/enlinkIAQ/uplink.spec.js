@@ -50,7 +50,7 @@ describe("Synetica Status T Uplink", () => {
         assert.equal(value.data.co2, 625);
         assert.equal(value.data.co2e, 721.67);
         assert.equal(value.data.bVoc, 0.827);
-        assert.equal(value.data.iaq, 72);
+        assert.equal(value.data.tvoc, 72);
 
         assert.equal(value.data.pm1, 0.63);
         assert.equal(value.data.pm2_5, 0.81);

@@ -143,85 +143,82 @@ function deleteUnusedKeys(data) {
   return keysRetained;
 }
 
-function consume(event) {
-  const payload = event.data.payloadHex;
-  const data = parseHexString(payload);
-  const obj = {};
-  let msg_ok = false;
+function decodePayload(data) {
+  const decoded = {};
 
   for (let i = 0; i < data.length; i++) {
     switch (data[i]) {
       // Parse Sensor Message Parts
       case ENLINK_TEMP: // Temperature
-        obj.temperature_c = S16((data[i + 1] << 8) | data[i + 2]) / 10;
+        decoded.temperature_c = S16((data[i + 1] << 8) | data[i + 2]) / 10;
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_RH: // Humidity %rH
-        obj.humidity = data[i + 1];
+        decoded.humidity = data[i + 1];
         i += 1;
-        msg_ok = true;
+
         break;
       case ENLINK_LUX: // Light Level lux
-        obj.lux = (data[i + 1] << 8) | data[i + 2];
+        decoded.lux = (data[i + 1] << 8) | data[i + 2];
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_PRESSURE: // Barometric Pressure
-        obj.pressure_mbar = (data[i + 1] << 8) | data[i + 2];
+        decoded.pressure_mbar = (data[i + 1] << 8) | data[i + 2];
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_VOC_IAQ: // Indoor Air Quality (0-500)
-        obj.iaq = (data[i + 1] << 8) | data[i + 2];
+        decoded.iaq = (data[i + 1] << 8) | data[i + 2];
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_O2PERC: // O2 percentage
-        obj.o2perc = data[i + 1] / 10;
+        decoded.o2perc = data[i + 1] / 10;
         i += 1;
-        msg_ok = true;
+
         break;
       case ENLINK_CO: // Carbon Monoxide
-        obj.co_ppm = ((data[i + 1] << 8) | data[i + 2]) / 100;
+        decoded.co_ppm = ((data[i + 1] << 8) | data[i + 2]) / 100;
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_CO2: // Carbon Dioxide
-        obj.co2_ppm = (data[i + 1] << 8) | data[i + 2];
+        decoded.co2_ppm = (data[i + 1] << 8) | data[i + 2];
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_OZONE: // Ozone ppm and ppb
-        obj.ozone_ppm = ((data[i + 1] << 8) | data[i + 2]) / 10000;
-        obj.ozone_ppb = ((data[i + 1] << 8) | data[i + 2]) / 10;
+        decoded.ozone_ppm = ((data[i + 1] << 8) | data[i + 2]) / 10000;
+        decoded.ozone_ppb = ((data[i + 1] << 8) | data[i + 2]) / 10;
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_POLLUTANTS: // Pollutants kOhm
-        obj.pollutants_kohm = ((data[i + 1] << 8) | data[i + 2]) / 10;
+        decoded.pollutants_kohm = ((data[i + 1] << 8) | data[i + 2]) / 10;
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_PM25: // Particulates @2.5
-        obj.pm25 = (data[i + 1] << 8) | data[i + 2];
+        decoded.pm25 = (data[i + 1] << 8) | data[i + 2];
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_PM10: // Particulates @10
-        obj.pm10 = (data[i + 1] << 8) | data[i + 2];
+        decoded.pm10 = (data[i + 1] << 8) | data[i + 2];
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_H2S: // Hydrogen Sulphide
-        obj.h2s_ppm = ((data[i + 1] << 8) | data[i + 2]) / 100;
+        decoded.h2s_ppm = ((data[i + 1] << 8) | data[i + 2]) / 100;
         i += 2;
-        msg_ok = true;
+
         break;
 
       case ENLINK_COUNTER:
-        if (obj.counter) {
-          obj.counter.push([
+        if (decoded.counter) {
+          decoded.counter.push([
             data[i + 1],
             (data[i + 2] << 24) |
             (data[i + 3] << 16) |
@@ -229,7 +226,7 @@ function consume(event) {
             data[i + 5],
           ]);
         } else {
-          obj.counter = [
+          decoded.counter = [
             [
               data[i + 1],
               (data[i + 2] << 24) |
@@ -240,27 +237,27 @@ function consume(event) {
           ];
         }
         i += 5;
-        msg_ok = true;
+
         break;
       case ENLINK_MB_EXCEPTION: // Modbus Error Code
-        if (obj.mb_ex) {
-          obj.mb_ex.push([data[i + 1], data[i + 2]]);
+        if (decoded.mb_ex) {
+          decoded.mb_ex.push([data[i + 1], data[i + 2]]);
         } else {
-          obj.mb_ex = [[data[i + 1], data[i + 2]]];
+          decoded.mb_ex = [[data[i + 1], data[i + 2]]];
         }
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_MB_INTERVAL: // Modbus Interval Read
-        if (obj.mb_int_val) {
-          obj.mb_int_val.push([
+        if (decoded.mb_int_val) {
+          decoded.mb_int_val.push([
             data[i + 1],
             fromF32(data[i + 2], data[i + 3], data[i + 4], data[i + 5]).toFixed(
               2,
             ),
           ]);
         } else {
-          obj.mb_int_val = [
+          decoded.mb_int_val = [
             [
               data[i + 1],
               fromF32(
@@ -273,18 +270,18 @@ function consume(event) {
           ];
         }
         i += 5;
-        msg_ok = true;
+
         break;
       case ENLINK_MB_CUMULATIVE: // Modbus Cumulative Read
-        if (obj.mb_cum_val) {
-          obj.mb_cum_val.push([
+        if (decoded.mb_cum_val) {
+          decoded.mb_cum_val.push([
             data[i + 1],
             fromF32(data[i + 2], data[i + 3], data[i + 4], data[i + 5]).toFixed(
               2,
             ),
           ]);
         } else {
-          obj.mb_cum_val = [
+          decoded.mb_cum_val = [
             [
               data[i + 1],
               fromF32(
@@ -297,609 +294,616 @@ function consume(event) {
           ];
         }
         i += 5;
-        msg_ok = true;
+
         break;
 
       case ENLINK_BVOC: // Breath VOC Estimate equivalent
-        obj.bvoc = fromF32(
+        decoded.bvoc = fromF32(
           data[i + 1],
           data[i + 2],
           data[i + 3],
           data[i + 4],
         ).toFixed(3);
         i += 4;
-        msg_ok = true;
+
         break;
 
       case ENLINK_DETECTION_COUNT:
-        obj.det_count =
+        decoded.det_count =
           (data[i + 1] << 24) |
           (data[i + 2] << 16) |
           (data[i + 3] << 8) |
           data[i + 4];
         i += 4;
-        msg_ok = true;
+
         break;
       case ENLINK_OCC_TIME: // Occupied time in seconds
-        obj.occ_time_s =
+        decoded.occ_time_s =
           (data[i + 1] << 24) |
           (data[i + 2] << 16) |
           (data[i + 3] << 8) |
           data[i + 4];
         i += 4;
-        msg_ok = true;
+
         break;
       case ENLINK_OCC_STATUS: // 1 byte U8, 1 or 0, occupancy status
-        obj.occupied = !!data[i + 1];
+        decoded.occupied = !!data[i + 1];
         i += 1;
-        msg_ok = true;
+
         break;
 
       case ENLINK_TEMP_PROBE1:
-        obj.temp_probe_1 = S16((data[i + 1] << 8) | data[i + 2]) / 10;
+        decoded.temp_probe_1 = S16((data[i + 1] << 8) | data[i + 2]) / 10;
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_TEMP_PROBE2:
-        obj.temp_probe_2 = S16((data[i + 1] << 8) | data[i + 2]) / 10;
+        decoded.temp_probe_2 = S16((data[i + 1] << 8) | data[i + 2]) / 10;
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_TEMP_PROBE3:
-        obj.temp_probe_3 = S16((data[i + 1] << 8) | data[i + 2]) / 10;
+        decoded.temp_probe_3 = S16((data[i + 1] << 8) | data[i + 2]) / 10;
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_TEMP_PROBE_IN_BAND_DURATION_S_1:
         /* Cumulative detection time u32 */
-        obj.temp_probe_in_band_duration_s_1 =
+        decoded.temp_probe_in_band_duration_s_1 =
           (data[i + 1] << 24) |
           (data[i + 2] << 16) |
           (data[i + 3] << 8) |
           data[i + 4];
         i += 4;
-        msg_ok = true;
+
         break;
       case ENLINK_TEMP_PROBE_IN_BAND_DURATION_S_2:
         /* Cumulative detection time u32 */
-        obj.temp_probe_in_band_duration_s_2 =
+        decoded.temp_probe_in_band_duration_s_2 =
           (data[i + 1] << 24) |
           (data[i + 2] << 16) |
           (data[i + 3] << 8) |
           data[i + 4];
         i += 4;
-        msg_ok = true;
+
         break;
       case ENLINK_TEMP_PROBE_IN_BAND_DURATION_S_3:
         /* Cumulative detection time u32 */
-        obj.temp_probe_in_band_duration_s_3 =
+        decoded.temp_probe_in_band_duration_s_3 =
           (data[i + 1] << 24) |
           (data[i + 2] << 16) |
           (data[i + 3] << 8) |
           data[i + 4];
         i += 4;
-        msg_ok = true;
+
         break;
       case ENLINK_TEMP_PROBE_IN_BAND_ALARM_COUNT_1:
         /* In band alarm events u16 */
-        obj.temp_probe_in_band_alarm_count_1 = (data[i + 1] << 8) | data[i + 2];
+        decoded.temp_probe_in_band_alarm_count_1 = (data[i + 1] << 8) | data[i + 2];
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_TEMP_PROBE_IN_BAND_ALARM_COUNT_2:
         /* In band alarm events u16 */
-        obj.temp_probe_in_band_alarm_count_2 = (data[i + 1] << 8) | data[i + 2];
+        decoded.temp_probe_in_band_alarm_count_2 = (data[i + 1] << 8) | data[i + 2];
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_TEMP_PROBE_IN_BAND_ALARM_COUNT_3:
         /* In band alarm events u16 */
-        obj.temp_probe_in_band_alarm_count_3 = (data[i + 1] << 8) | data[i + 2];
+        decoded.temp_probe_in_band_alarm_count_3 = (data[i + 1] << 8) | data[i + 2];
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_TEMP_PROBE_LOW_DURATION_S_1:
         /* Cumulative detection time u32 */
-        obj.temp_probe_low_duration_s_1 =
+        decoded.temp_probe_low_duration_s_1 =
           (data[i + 1] << 24) |
           (data[i + 2] << 16) |
           (data[i + 3] << 8) |
           data[i + 4];
         i += 4;
-        msg_ok = true;
+
         break;
       case ENLINK_TEMP_PROBE_LOW_DURATION_S_2:
         /* Cumulative detection time u32 */
-        obj.temp_probe_low_duration_s_2 =
+        decoded.temp_probe_low_duration_s_2 =
           (data[i + 1] << 24) |
           (data[i + 2] << 16) |
           (data[i + 3] << 8) |
           data[i + 4];
         i += 4;
-        msg_ok = true;
+
         break;
       case ENLINK_TEMP_PROBE_LOW_DURATION_S_3:
         /* Cumulative detection time u32 */
-        obj.temp_probe_low_duration_s_3 =
+        decoded.temp_probe_low_duration_s_3 =
           (data[i + 1] << 24) |
           (data[i + 2] << 16) |
           (data[i + 3] << 8) |
           data[i + 4];
         i += 4;
-        msg_ok = true;
+
         break;
       case ENLINK_TEMP_PROBE_LOW_ALARM_COUNT_1:
         /* Low alarm events u16 */
-        obj.temp_probe_low_alarm_count_1 = (data[i + 1] << 8) | data[i + 2];
+        decoded.temp_probe_low_alarm_count_1 = (data[i + 1] << 8) | data[i + 2];
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_TEMP_PROBE_LOW_ALARM_COUNT_2:
         /* Low alarm events u16 */
-        obj.temp_probe_low_alarm_count_2 = (data[i + 1] << 8) | data[i + 2];
+        decoded.temp_probe_low_alarm_count_2 = (data[i + 1] << 8) | data[i + 2];
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_TEMP_PROBE_LOW_ALARM_COUNT_3:
         /* Low alarm events u16 */
-        obj.temp_probe_low_alarm_count_3 = (data[i + 1] << 8) | data[i + 2];
+        decoded.temp_probe_low_alarm_count_3 = (data[i + 1] << 8) | data[i + 2];
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_TEMP_PROBE_HIGH_DURATION_S_1:
         /* Cumulative detection time u32 */
-        obj.temp_probe_high_duration_s_1 =
+        decoded.temp_probe_high_duration_s_1 =
           (data[i + 1] << 24) |
           (data[i + 2] << 16) |
           (data[i + 3] << 8) |
           data[i + 4];
         i += 4;
-        msg_ok = true;
+
         break;
       case ENLINK_TEMP_PROBE_HIGH_DURATION_S_2:
         /* Cumulative detection time u32 */
-        obj.temp_probe_high_duration_s_2 =
+        decoded.temp_probe_high_duration_s_2 =
           (data[i + 1] << 24) |
           (data[i + 2] << 16) |
           (data[i + 3] << 8) |
           data[i + 4];
         i += 4;
-        msg_ok = true;
+
         break;
       case ENLINK_TEMP_PROBE_HIGH_DURATION_S_3:
         /* Cumulative detection time u32 */
-        obj.temp_probe_high_duration_s_3 =
+        decoded.temp_probe_high_duration_s_3 =
           (data[i + 1] << 24) |
           (data[i + 2] << 16) |
           (data[i + 3] << 8) |
           data[i + 4];
         i += 4;
-        msg_ok = true;
+
         break;
       case ENLINK_TEMP_PROBE_HIGH_ALARM_COUNT_1:
         /* High alarm events u16 */
-        obj.temp_probe_high_alarm_count_1 = (data[i + 1] << 8) | data[i + 2];
+        decoded.temp_probe_high_alarm_count_1 = (data[i + 1] << 8) | data[i + 2];
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_TEMP_PROBE_HIGH_ALARM_COUNT_2:
         /* High alarm events u16 */
-        obj.temp_probe_high_alarm_count_2 = (data[i + 1] << 8) | data[i + 2];
+        decoded.temp_probe_high_alarm_count_2 = (data[i + 1] << 8) | data[i + 2];
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_TEMP_PROBE_HIGH_ALARM_COUNT_3:
         /* High alarm events u16 */
-        obj.temp_probe_high_alarm_count_3 = (data[i + 1] << 8) | data[i + 2];
+        decoded.temp_probe_high_alarm_count_3 = (data[i + 1] << 8) | data[i + 2];
         i += 2;
-        msg_ok = true;
+
         break;
 
       case ENLINK_DIFF_PRESSURE: // 4 bytes F32, +/- 5000 Pa
-        obj.dp_pa = Number(
+        decoded.dp_pa = Number(
           fromF32(data[i + 1], data[i + 2], data[i + 3], data[i + 4]).toFixed(
             3,
           ),
         );
         i += 4;
-        msg_ok = true;
+
         break;
       case ENLINK_AIR_FLOW: // 4 bytes F32, 0 -> 100m/s
-        obj.af_mps = Number(
+        decoded.af_mps = Number(
           fromF32(data[i + 1], data[i + 2], data[i + 3], data[i + 4]).toFixed(
             3,
           ),
         );
         i += 4;
-        msg_ok = true;
+
         break;
       case ENLINK_VOLTAGE: // 2 bytes U16, 0 to 10.000 V
-        obj.adc_v = ((data[i + 1] << 8) | data[i + 2]) / 1000;
+        decoded.adc_v = ((data[i + 1] << 8) | data[i + 2]) / 1000;
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_CURRENT: // 2 bytes U16, 0 to 20.000 mA
-        obj.adc_ma = ((data[i + 1] << 8) | data[i + 2]) / 1000;
+        decoded.adc_ma = ((data[i + 1] << 8) | data[i + 2]) / 1000;
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_RESISTANCE: // 2 bytes U16, 0 to 10.000 kOhm
-        obj.adc_kohm = ((data[i + 1] << 8) | data[i + 2]) / 1000;
+        decoded.adc_kohm = ((data[i + 1] << 8) | data[i + 2]) / 1000;
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_LEAK_DETECT_EVT: // 1 byte U8, Leak status changed
-        obj.leak_detect_event = !!data[i + 1];
+        decoded.leak_detect_event = !!data[i + 1];
         i += 1;
-        msg_ok = true;
+
         break;
       case ENLINK_VIBRATION_EVT: // 1 byte U8, 1 or 0, vibration event detected
-        obj.vibration_event = !!data[i + 1];
+        decoded.vibration_event = !!data[i + 1];
         i += 1;
-        msg_ok = true;
+
         break;
       // Pressure Transducer
       case ENLINK_PRESSURE_TX:
         // u16
-        obj.pressure_tx_mbar = (data[i + 1] << 8) | data[i + 2];
+        decoded.pressure_tx_mbar = (data[i + 1] << 8) | data[i + 2];
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_TEMPERATURE_TX:
         // s16 in deci-celcius
-        obj.temperature_tx_degc = S16((data[i + 1] << 8) | data[i + 2]) / 10;
+        decoded.temperature_tx_degc = S16((data[i + 1] << 8) | data[i + 2]) / 10;
         i += 2;
-        msg_ok = true;
+
         break;
 
       case ENLINK_CO2E: // CO2e Estimate Equivalent
-        obj.co2e_ppm = fromF32(
+        decoded.co2e_ppm = fromF32(
           data[i + 1],
           data[i + 2],
           data[i + 3],
           data[i + 4],
         ).toFixed(2);
         i += 4;
-        msg_ok = true;
+
         break;
 
       case ENLINK_SOUND_MIN:
-        obj.sound_min_dba = fromF32(
+        decoded.sound_min_dba = fromF32(
           data[i + 1],
           data[i + 2],
           data[i + 3],
           data[i + 4],
         ).toFixed(2);
         i += 4;
-        msg_ok = true;
+
         break;
 
       case ENLINK_SOUND_AVG:
-        obj.sound_avg_dba = fromF32(
+        decoded.sound_avg_dba = fromF32(
           data[i + 1],
           data[i + 2],
           data[i + 3],
           data[i + 4],
         ).toFixed(2);
         i += 4;
-        msg_ok = true;
+
         break;
 
       case ENLINK_SOUND_MAX:
-        obj.sound_max_dba = fromF32(
+        decoded.sound_max_dba = fromF32(
           data[i + 1],
           data[i + 2],
           data[i + 3],
           data[i + 4],
         ).toFixed(2);
         i += 4;
-        msg_ok = true;
+
         break;
 
       case ENLINK_NO: // Nitric Oxide
-        obj.no_ppm = ((data[i + 1] << 8) | data[i + 2]) / 100;
+        decoded.no_ppm = ((data[i + 1] << 8) | data[i + 2]) / 100;
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_NO2: // Nitrogen Dioxide scaled at 0-5ppm
-        obj.no2_ppm = ((data[i + 1] << 8) | data[i + 2]) / 10000;
+        decoded.no2_ppm = ((data[i + 1] << 8) | data[i + 2]) / 10000;
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_NO2_20: // Nitrogen Dioxide scaled at 0-20ppm
-        obj.no2_20_ppm = ((data[i + 1] << 8) | data[i + 2]) / 1000;
+        decoded.no2_20_ppm = ((data[i + 1] << 8) | data[i + 2]) / 1000;
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_SO2: // Sulphur Dioxide 0-20ppm
-        obj.so2_ppm = ((data[i + 1] << 8) | data[i + 2]) / 1000;
+        decoded.so2_ppm = ((data[i + 1] << 8) | data[i + 2]) / 1000;
         i += 2;
-        msg_ok = true;
+
         break;
 
       case ENLINK_MC_PM1_0:
-        obj.mc_pm1_0 = fromF32(
+        decoded.mc_pm1_0 = fromF32(
           data[i + 1],
           data[i + 2],
           data[i + 3],
           data[i + 4],
         ).toFixed(2);
         i += 4;
-        msg_ok = true;
+
         break;
       case ENLINK_MC_PM2_5:
-        obj.mc_pm2_5 = fromF32(
+        decoded.mc_pm2_5 = fromF32(
           data[i + 1],
           data[i + 2],
           data[i + 3],
           data[i + 4],
         ).toFixed(2);
         i += 4;
-        msg_ok = true;
+
         break;
       case ENLINK_MC_PM4_0:
-        obj.mc_pm4_0 = fromF32(
+        decoded.mc_pm4_0 = fromF32(
           data[i + 1],
           data[i + 2],
           data[i + 3],
           data[i + 4],
         ).toFixed(2);
         i += 4;
-        msg_ok = true;
+
         break;
       case ENLINK_MC_PM10_0:
-        obj.mc_pm10_0 = fromF32(
+        decoded.mc_pm10_0 = fromF32(
           data[i + 1],
           data[i + 2],
           data[i + 3],
           data[i + 4],
         ).toFixed(2);
         i += 4;
-        msg_ok = true;
+
         break;
 
       case ENLINK_NC_PM0_5:
-        obj.nc_pm0_5 = fromF32(
+        decoded.nc_pm0_5 = fromF32(
           data[i + 1],
           data[i + 2],
           data[i + 3],
           data[i + 4],
         ).toFixed(2);
         i += 4;
-        msg_ok = true;
+
         break;
       case ENLINK_NC_PM1_0:
-        obj.nc_pm1_0 = fromF32(
+        decoded.nc_pm1_0 = fromF32(
           data[i + 1],
           data[i + 2],
           data[i + 3],
           data[i + 4],
         ).toFixed(2);
         i += 4;
-        msg_ok = true;
+
         break;
       case ENLINK_NC_PM2_5:
-        obj.nc_pm2_5 = fromF32(
+        decoded.nc_pm2_5 = fromF32(
           data[i + 1],
           data[i + 2],
           data[i + 3],
           data[i + 4],
         ).toFixed(2);
         i += 4;
-        msg_ok = true;
+
         break;
       case ENLINK_NC_PM4_0:
-        obj.nc_pm4_0 = fromF32(
+        decoded.nc_pm4_0 = fromF32(
           data[i + 1],
           data[i + 2],
           data[i + 3],
           data[i + 4],
         ).toFixed(2);
         i += 4;
-        msg_ok = true;
+
         break;
       case ENLINK_NC_PM10_0:
-        obj.nc_pm10_0 = fromF32(
+        decoded.nc_pm10_0 = fromF32(
           data[i + 1],
           data[i + 2],
           data[i + 3],
           data[i + 4],
         ).toFixed(2);
         i += 4;
-        msg_ok = true;
+
         break;
 
       case ENLINK_PM_TPS:
-        obj.pm_tps = fromF32(
+        decoded.pm_tps = fromF32(
           data[i + 1],
           data[i + 2],
           data[i + 3],
           data[i + 4],
         ).toFixed(2);
         i += 4;
-        msg_ok = true;
+
         break;
 
       // < -------------------------------------------------------------------------------->
       // Optional KPIs
       case ENLINK_CPU_TEMP_DEP: // Optional from April 2020
-        obj.cpu_temp_dep =
+        decoded.cpu_temp_dep =
           data[i + 1] + Math.round((data[i + 2] * 100) / 256) / 100;
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_CPU_TEMP: // New for April 2020 Ver: 4.9
-        obj.cpu_temp = S16((data[i + 1] << 8) | data[i + 2]) / 10;
+        decoded.cpu_temp = S16((data[i + 1] << 8) | data[i + 2]) / 10;
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_BATT_STATUS:
-        obj.batt_status = data[i + 1];
+        decoded.batt_status = data[i + 1];
         i += 1;
-        msg_ok = true;
+
         break;
       case ENLINK_BATT_VOLT:
-        obj.batt_volt = ((data[i + 1] << 8) | data[i + 2]) / 1000;
-        obj.batt_mv = (data[i + 1] << 8) | data[i + 2];
+        decoded.batt_volt = ((data[i + 1] << 8) | data[i + 2]) / 1000;
+        decoded.batt_mv = (data[i + 1] << 8) | data[i + 2];
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_RX_RSSI:
-        obj.rx_rssi = S16((data[i + 1] << 8) | data[i + 2]);
+        decoded.rx_rssi = S16((data[i + 1] << 8) | data[i + 2]);
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_RX_SNR:
-        obj.rx_snr = S8(data[i + 1]);
+        decoded.rx_snr = S8(data[i + 1]);
         i += 1;
-        msg_ok = true;
+
         break;
       case ENLINK_RX_COUNT:
-        obj.rx_count = (data[i + 1] << 8) | data[i + 2];
+        decoded.rx_count = (data[i + 1] << 8) | data[i + 2];
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_TX_TIME:
-        obj.tx_time_ms = (data[i + 1] << 8) | data[i + 2];
+        decoded.tx_time_ms = (data[i + 1] << 8) | data[i + 2];
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_TX_POWER:
-        obj.tx_power_dbm = S8(data[i + 1]);
+        decoded.tx_power_dbm = S8(data[i + 1]);
         i += 1;
-        msg_ok = true;
+
         break;
       case ENLINK_TX_COUNT:
-        obj.tx_count = (data[i + 1] << 8) | data[i + 2];
+        decoded.tx_count = (data[i + 1] << 8) | data[i + 2];
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_POWER_UP_COUNT:
-        obj.power_up_count = (data[i + 1] << 8) | data[i + 2];
+        decoded.power_up_count = (data[i + 1] << 8) | data[i + 2];
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_USB_IN_COUNT:
-        obj.usb_in_count = (data[i + 1] << 8) | data[i + 2];
+        decoded.usb_in_count = (data[i + 1] << 8) | data[i + 2];
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_LOGIN_OK_COUNT:
-        obj.login_ok_count = (data[i + 1] << 8) | data[i + 2];
+        decoded.login_ok_count = (data[i + 1] << 8) | data[i + 2];
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_LOGIN_FAIL_COUNT:
-        obj.login_fail_count = (data[i + 1] << 8) | data[i + 2];
+        decoded.login_fail_count = (data[i + 1] << 8) | data[i + 2];
         i += 2;
-        msg_ok = true;
+
         break;
       case ENLINK_FAN_RUN_TIME:
-        obj.fan_run_time_s =
+        decoded.fan_run_time_s =
           (data[i + 1] << 24) |
           (data[i + 2] << 16) |
           (data[i + 3] << 8) |
           data[i + 4];
         i += 4;
-        msg_ok = true;
+
         break;
 
       default:
         // something is wrong with data
         i = data.length;
-        msg_ok = true;
+
         break;
     }
   }
+  return decoded
+}
 
-  const def = {};
-  def.temperature = obj.temperature_c;
-  def.humidity = obj.humidity;
-  def.lux = obj.lux;
-  def.pressure = obj.pressure_mbar;
-  def.iaq = obj.iaq;
-  def.o2perc = obj.o2perc;
-  def.co = obj.co_ppm;
-  def.co2 = obj.co2_ppm;
-  def.ozone = obj.ozone_ppm;
-  def.pollutants = obj.pollutants_kohm;
-  def.pm25 = obj.pm25;
-  def.pm10 = obj.pm10;
-  def.h2s = obj.h2s_ppm;
-  def.mbEx = obj.mb_ex;
-  def.mbIntVal = obj.mb_int_val;
-  def.mbCumVal = obj.mb_cum_val;
-  def.bVoc = Number(obj.bvoc);
-  def.detCount = obj.det_count;
-  def.occTimeS = obj.occ_time_s;
-  def.occupied = obj.occupied;
-  def.tempProbe1 = obj.temp_probe_1;
-  def.tempProbe2 = obj.temp_probe_2;
-  def.tempProbe3 = obj.temp_probe_3;
-  def.tempProbeInBandDurationS1 = obj.temp_probe_in_band_duration_s_1;
-  def.tempProbeInBandDurationS2 = obj.temp_probe_in_band_duration_s_2;
-  def.tempProbeInBandDurationS3 = obj.temp_probe_in_band_duration_s_3;
-  def.tempProbeInBandAlarmCount1 = obj.temp_probe_in_band_alarm_count_1;
-  def.tempProbeInBandAlarmCount2 = obj.temp_probe_in_band_alarm_count_2;
-  def.tempProbeInBandAlarmCount3 = obj.temp_probe_in_band_alarm_count_3;
-  def.tempProbeLowDurationS1 = obj.temp_probe_low_duration_s_1;
-  def.tempProbeLowDurationS2 = obj.temp_probe_low_duration_s_2;
-  def.tempProbeLowDurationS3 = obj.temp_probe_low_duration_s_3;
-  def.tempProbeLowAlarmCount1 = obj.temp_probe_low_alarm_count_1;
-  def.tempProbeLowAlarmCount2 = obj.temp_probe_low_alarm_count_2;
-  def.tempProbeLowAlarmCount3 = obj.temp_probe_low_alarm_count_3;
-  def.tempProbeHighDurationS1 = obj.temp_probe_high_duration_s_1;
-  def.tempProbeHighDurationS2 = obj.temp_probe_high_duration_s_2;
-  def.tempProbeHighDurationS3 = obj.temp_probe_high_duration_s_3;
-  def.tempProbeHighAlarmCount1 = obj.temp_probe_high_alarm_count_1;
-  def.tempProbeHighAlarmCount2 = obj.temp_probe_high_alarm_count_2;
-  def.tempProbeHighAlarmCount3 = obj.temp_probe_high_alarm_count_3;
-  def.dp = obj.dp_pa;
-  def.af = obj.af_mps;
-  def.adcV = obj.adc_v;
-  def.adcMa = obj.adc_ma;
-  def.adcKohm = obj.adc_kohm;
-  def.leakDetectEvent = obj.leak_detect_event;
-  def.vibrationEvent = obj.vibration_event;
-  def.pressureTxMbar = obj.pressure_tx_mbar;
-  def.temperatureTxDegc = obj.temperature_tx_degc;
-  def.co2e = Number(obj.co2e_ppm);
-  def.soundMin = obj.sound_min_dba;
-  def.soundAvg = obj.sound_avg_dba;
-  def.soundMax = obj.sound_max_dba;
-  def.no = obj.no_ppm;
-  def.no2 = obj.no2_ppm;
-  def.no2_20 = obj.no2_20_ppm;
-  def.so2 = obj.so2_ppm;
-  def.pm1 = Number(obj.mc_pm1_0);
-  def.pm2_5 = Number(obj.mc_pm2_5);
-  def.pm4 = Number(obj.mc_pm4_0);
-  def.pm10 = Number(obj.mc_pm10_0);
-  def.ncPm0_5 = Number(obj.nc_pm0_5);
-  def.ncPm1 = Number(obj.nc_pm1_0);
-  def.ncPm2_5 = Number(obj.nc_pm2_5);
-  def.ncPm4 = Number(obj.nc_pm4_0);
-  def.ncPm10 = Number(obj.nc_pm10_0);
-  def.pmTps = Number(obj.pm_tps);
+function consume(event) {
+  const payload = event.data.payloadHex;
+  const data = parseHexString(payload);
+  const decoded = decodePayload(data)
+
+  const defaultPayload = {};
+  defaultPayload.temperature = decoded.temperature_c;
+  defaultPayload.humidity = decoded.humidity;
+  defaultPayload.lux = decoded.lux;
+  defaultPayload.pressure = decoded.pressure_mbar;
+  defaultPayload.tvoc = decoded.iaq;
+  defaultPayload.o2perc = decoded.o2perc;
+  defaultPayload.co = decoded.co_ppm;
+  defaultPayload.co2 = decoded.co2_ppm;
+  defaultPayload.ozone = decoded.ozone_ppm;
+  defaultPayload.pollutants = decoded.pollutants_kohm;
+  defaultPayload.pm25 = decoded.pm25;
+  defaultPayload.pm10 = decoded.pm10;
+  defaultPayload.h2s = decoded.h2s_ppm;
+  defaultPayload.mbEx = decoded.mb_ex;
+  defaultPayload.mbIntVal = decoded.mb_int_val;
+  defaultPayload.mbCumVal = decoded.mb_cum_val;
+  defaultPayload.bVoc = Number(decoded.bvoc);
+  defaultPayload.detCount = decoded.det_count;
+  defaultPayload.occTimeS = decoded.occ_time_s;
+  defaultPayload.occupied = decoded.occupied;
+  defaultPayload.tempProbe1 = decoded.temp_probe_1;
+  defaultPayload.tempProbe2 = decoded.temp_probe_2;
+  defaultPayload.tempProbe3 = decoded.temp_probe_3;
+  defaultPayload.tempProbeInBandDurationS1 = decoded.temp_probe_in_band_duration_s_1;
+  defaultPayload.tempProbeInBandDurationS2 = decoded.temp_probe_in_band_duration_s_2;
+  defaultPayload.tempProbeInBandDurationS3 = decoded.temp_probe_in_band_duration_s_3;
+  defaultPayload.tempProbeInBandAlarmCount1 = decoded.temp_probe_in_band_alarm_count_1;
+  defaultPayload.tempProbeInBandAlarmCount2 = decoded.temp_probe_in_band_alarm_count_2;
+  defaultPayload.tempProbeInBandAlarmCount3 = decoded.temp_probe_in_band_alarm_count_3;
+  defaultPayload.tempProbeLowDurationS1 = decoded.temp_probe_low_duration_s_1;
+  defaultPayload.tempProbeLowDurationS2 = decoded.temp_probe_low_duration_s_2;
+  defaultPayload.tempProbeLowDurationS3 = decoded.temp_probe_low_duration_s_3;
+  defaultPayload.tempProbeLowAlarmCount1 = decoded.temp_probe_low_alarm_count_1;
+  defaultPayload.tempProbeLowAlarmCount2 = decoded.temp_probe_low_alarm_count_2;
+  defaultPayload.tempProbeLowAlarmCount3 = decoded.temp_probe_low_alarm_count_3;
+  defaultPayload.tempProbeHighDurationS1 = decoded.temp_probe_high_duration_s_1;
+  defaultPayload.tempProbeHighDurationS2 = decoded.temp_probe_high_duration_s_2;
+  defaultPayload.tempProbeHighDurationS3 = decoded.temp_probe_high_duration_s_3;
+  defaultPayload.tempProbeHighAlarmCount1 = decoded.temp_probe_high_alarm_count_1;
+  defaultPayload.tempProbeHighAlarmCount2 = decoded.temp_probe_high_alarm_count_2;
+  defaultPayload.tempProbeHighAlarmCount3 = decoded.temp_probe_high_alarm_count_3;
+  defaultPayload.dp = decoded.dp_pa;
+  defaultPayload.af = decoded.af_mps;
+  defaultPayload.adcV = decoded.adc_v;
+  defaultPayload.adcMa = decoded.adc_ma;
+  defaultPayload.adcKohm = decoded.adc_kohm;
+  defaultPayload.leakDetectEvent = decoded.leak_detect_event;
+  defaultPayload.vibrationEvent = decoded.vibration_event;
+  defaultPayload.pressureTxMbar = decoded.pressure_tx_mbar;
+  defaultPayload.temperatureTxDegc = decoded.temperature_tx_degc;
+  defaultPayload.co2e = Number(decoded.co2e_ppm);
+  defaultPayload.soundMin = decoded.sound_min_dba;
+  defaultPayload.soundAvg = decoded.sound_avg_dba;
+  defaultPayload.soundMax = decoded.sound_max_dba;
+  defaultPayload.no = decoded.no_ppm;
+  defaultPayload.no2 = decoded.no2_ppm;
+  defaultPayload.no2_20 = decoded.no2_20_ppm;
+  defaultPayload.so2 = decoded.so2_ppm;
+  defaultPayload.pm1 = Number(decoded.mc_pm1_0);
+  defaultPayload.pm2_5 = Number(decoded.mc_pm2_5);
+  defaultPayload.pm4 = Number(decoded.mc_pm4_0);
+  defaultPayload.pm10 = Number(decoded.mc_pm10_0);
+  defaultPayload.ncPm0_5 = Number(decoded.nc_pm0_5);
+  defaultPayload.ncPm1 = Number(decoded.nc_pm1_0);
+  defaultPayload.ncPm2_5 = Number(decoded.nc_pm2_5);
+  defaultPayload.ncPm4 = Number(decoded.nc_pm4_0);
+  defaultPayload.ncPm10 = Number(decoded.nc_pm10_0);
+  defaultPayload.pmTps = Number(decoded.pm_tps);
 
   const lifecycle = {};
-  lifecycle.cpuTempDep = obj.cpu_temp_dep;
-  lifecycle.cpuTemp = obj.cpu_temp;
-  lifecycle.batteryVoltage = obj.batt_volt;
-  lifecycle.rxRssi = obj.rx_rssi;
-  lifecycle.rxSnr = obj.rx_snr;
-  lifecycle.rxCount = obj.rx_count;
-  lifecycle.txTimeMs = obj.tx_time_ms;
-  lifecycle.txPowerDbm = obj.tx_power_dbm;
-  lifecycle.txCount = obj.tx_count;
-  lifecycle.powerUpCount = obj.power_up_count;
-  lifecycle.usbInCount = obj.usb_in_count;
-  lifecycle.loginOkCount = obj.login_ok_count;
-  lifecycle.loginFailCount = obj.login_fail_count;
-  lifecycle.fanRunTimeS = obj.fan_run_time_s;
+  lifecycle.cpuTempDep = decoded.cpu_temp_dep;
+  lifecycle.cpuTemp = decoded.cpu_temp;
+  lifecycle.batteryVoltage = decoded.batt_volt;
+  lifecycle.rxRssi = decoded.rx_rssi;
+  lifecycle.rxSnr = decoded.rx_snr;
+  lifecycle.rxCount = decoded.rx_count;
+  lifecycle.txTimeMs = decoded.tx_time_ms;
+  lifecycle.txPowerDbm = decoded.tx_power_dbm;
+  lifecycle.txCount = decoded.tx_count;
+  lifecycle.powerUpCount = decoded.power_up_count;
+  lifecycle.usbInCount = decoded.usb_in_count;
+  lifecycle.loginOkCount = decoded.login_ok_count;
+  lifecycle.loginFailCount = decoded.login_fail_count;
+  lifecycle.fanRunTimeS = decoded.fan_run_time_s;
 
-  if (deleteUnusedKeys(def)) {
-    emit("sample", { data: def, topic: "default" });
+  if (deleteUnusedKeys(defaultPayload)) {
+    emit("sample", { data: defaultPayload, topic: "default" });
   }
 
   if (deleteUnusedKeys(lifecycle)) {
