@@ -11,23 +11,23 @@
       "title": "Current",
       "description": "Current value at the time of the alarm."
     },
-    "current_max": {
+    "currentMax": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/currentMax/ampere"
     },
-    "current_min": {
+    "currentMin": {
       "title": "Minimum Current",
       "type": "number",
       "unit": "A",
       "description": "Minimum current value since the last report.",
       "hideFromKpis": false
     },
-    "current_alarm": {
+    "currentAlarm": {
       "title": "Current Alarm Status",
       "type": "object",
       "description": "Detailed current alarm status.",
       "hideFromKpis": true,
       "properties": {
-        "current_threshold_alarm": {
+        "currentThresholdAlarm": {
           "title": "Current Threshold Alarm",
           "type": "string",
           "enum": [
@@ -35,7 +35,7 @@
             "no"
           ]
         },
-        "current_threshold_alarm_release": {
+        "currentThresholdAlarmRelease": {
           "title": "Current Threshold Alarm Release",
           "type": "string",
           "enum": [
@@ -43,7 +43,7 @@
             "no"
           ]
         },
-        "current_over_range_alarm": {
+        "currentOverRangeAlarm": {
           "title": "Current Over Range Alarm",
           "type": "string",
           "enum": [
@@ -51,7 +51,7 @@
             "no"
           ]
         },
-        "current_over_range_alarm_release": {
+        "currentOverRangeAlarmRelease": {
           "title": "Current Over Range Alarm Release",
           "type": "string",
           "enum": [
@@ -65,13 +65,13 @@
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
       "description": "Cable temperature at the time of the alarm."
     },
-    "temperature_alarm": {
+    "temperatureAlarm": {
       "title": "Temperature Alarm",
       "type": "string",
       "description": "The status of the temperature alarm.",
       "enum": [
-        "temperature threshold alarm release",
-        "temperature threshold alarm"
+        "TEMPERATURE_THRESHOLD_ALARM_RELEASE",
+        "TEMPERATURE_THRESHOLD_ALARM"
       ],
       "hideFromKpis": true
     }

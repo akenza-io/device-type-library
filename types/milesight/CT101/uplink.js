@@ -147,6 +147,6 @@ function consume(event) {
   }
 
   if (!isEmpty(totalCurrent)) {
-    emit("sample", { data: totalCurrent, topic: "total_current" });
+    emit("sample", { data: totalCurrent, topic: "totalCurrent" });
   }
 }

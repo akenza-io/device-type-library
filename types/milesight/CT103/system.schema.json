@@ -29,14 +29,14 @@
       "type": "string",
       "description": "The LoRaWAN class the device is operating in.",
       "enum": [
-        "Class A",
-        "Class B",
-        "Class C",
-        "Class CtoB"
+        "CLASS_A",
+        "CLASS_B",
+        "CLASS_C",
+        "CLASS_C_TO_B"
       ],
       "hideFromKpis": true
     },
-    "device_status": {
+    "deviceStatus": {
       "title": "Device Status",
       "type": "string",
       "description": "Indicates if the device is on or off.",

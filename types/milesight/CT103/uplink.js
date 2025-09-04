@@ -1,9 +1,3 @@
-/**
- * Payload Decoder for Milesight CT103
- *
- * Copyright 2024 Akenza, AG
- */
-
 // Helper functions to read little-endian values from a byte array
 function readUInt16LE(bytes) {
   const value = (bytes[1] << 8) + bytes[0];
@@ -24,31 +18,31 @@ function readUInt32LE(bytes) {
 function readProtocolVersion(byte) {
   const major = (byte & 0xf0) >> 4;
   const minor = byte & 0x0f;
-  return "v" + major + "." + minor;
+  return `v${major}.${minor}`;
 }
 
 function readHardwareVersion(bytes) {
   const major = (bytes[0] & 0xff).toString(16);
   const minor = (bytes[1] & 0xff) >> 4;
-  return "v" + major + "." + minor;
+  return `v${major}.${minor}`;
 }
 
 function readFirmwareVersion(bytes) {
   const major = (bytes[0] & 0xff).toString(16);
   const minor = (bytes[1] & 0xff).toString(16);
-  return "v" + major + "." + minor;
+  return `v${major}.${minor}`;
 }
 
 function readTslVersion(bytes) {
   const major = bytes[0] & 0xff;
   const minor = bytes[1] & 0xff;
-  return "v" + major + "." + minor;
+  return `v${major}.${minor}`;
 }
 
 function readSerialNumber(bytes) {
-  let temp = [];
+  const temp = [];
   for (let i = 0; i < bytes.length; i++) {
-    temp.push(("0" + (bytes[i] & 0xff).toString(16)).slice(-2));
+    temp.push((`0${(bytes[i] & 0xff).toString(16)}`).slice(-2));
   }
   return temp.join("");
 }
@@ -118,68 +112,68 @@ function consume(event) {
   const systemData = {};
 
   for (let i = 0; i < bytes.length;) {
-    const channel_id = bytes[i++];
-    const channel_type = bytes[i++];
+    const channelId = bytes[i++];
+    const channelType = bytes[i++];
 
     try {
       // TOTAL CURRENT
-      if (channel_id === 0x03 && channel_type === 0x97) {
-        defaultData.total_current = readUInt32LE(bytes.slice(i, i + 4)) / 100;
+      if (channelId === 0x03 && channelType === 0x97) {
+        defaultData.totalCurrent = readUInt32LE(bytes.slice(i, i + 4)) / 100;
         i += 4;
       }
       // CURRENT
-      else if (channel_id === 0x04 && channel_type === 0x98) {
+      else if (channelId === 0x04 && channelType === 0x98) {
         const currentValue = readUInt16LE(bytes.slice(i, i + 2));
         if (currentValue === 0xffff) {
-          defaultData.current_sensor_status = readSensorStatus(2);
+          defaultData.currentSensorStatus = readSensorStatus(2);
         } else {
-          defaultData.current = currentValue / 100;
+          defaultData.current = currentValue / 1000;
         }
         i += 2;
       }
       // TEMPERATURE
-      else if (channel_id === 0x09 && channel_type === 0x67) {
+      else if (channelId === 0x09 && channelType === 0x67) {
         const tempValue = readUInt16LE(bytes.slice(i, i + 2));
         if (tempValue === 0xfffd) {
-          defaultData.temperature_sensor_status = readSensorStatus(1);
+          defaultData.temperatureSensorStatus = readSensorStatus(1);
         } else if (tempValue === 0xffff) {
-          defaultData.temperature_sensor_status = readSensorStatus(2);
+          defaultData.temperatureSensorStatus = readSensorStatus(2);
         } else {
           defaultData.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
         }
         i += 2;
       }
       // CURRENT ALARM
-      else if (channel_id === 0x84 && channel_type === 0x98) {
-        alarmData.current_max = readUInt16LE(bytes.slice(i, i + 2)) / 100;
-        alarmData.current_min = readUInt16LE(bytes.slice(i + 2, i + 4)) / 100;
+      else if (channelId === 0x84 && channelType === 0x98) {
+        alarmData.currentMax = readUInt16LE(bytes.slice(i, i + 2)) / 100;
+        alarmData.currentMin = readUInt16LE(bytes.slice(i + 2, i + 4)) / 100;
         alarmData.current = readUInt16LE(bytes.slice(i + 4, i + 6)) / 100;
-        alarmData.current_alarm = readCurrentAlarm(bytes[i + 6]);
+        alarmData.currentAlarm = readCurrentAlarm(bytes[i + 6]);
         i += 7;
       }
       // TEMPERATURE ALARM
-      else if (channel_id === 0x89 && channel_type === 0x67) {
+      else if (channelId === 0x89 && channelType === 0x67) {
         alarmData.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
         alarmData.temperature_alarm = readTemperatureAlarm(bytes[i + 2]);
         i += 3;
       }
       // SYSTEM INFORMATION
-      else if (channel_id === 0xff) {
-        switch (channel_type) {
+      else if (channelId === 0xff) {
+        switch (channelType) {
           case 0x01: // IPSO VERSION
-            systemData.ipso_version = readProtocolVersion(bytes[i]);
+            systemData.ipsoVersion = readProtocolVersion(bytes[i]);
             i += 1;
             break;
           case 0x09: // HARDWARE VERSION
-            systemData.hardware_version = readHardwareVersion(bytes.slice(i, i + 2));
+            systemData.hardwareVersion = readHardwareVersion(bytes.slice(i, i + 2));
             i += 2;
             break;
           case 0x0a: // FIRMWARE VERSION
-            systemData.firmware_version = readFirmwareVersion(bytes.slice(i, i + 2));
+            systemData.firmwareVersion = readFirmwareVersion(bytes.slice(i, i + 2));
             i += 2;
             break;
           case 0xff: // TSL VERSION
-            systemData.tsl_version = readTslVersion(bytes.slice(i, i + 2));
+            systemData.tslVersion = readTslVersion(bytes.slice(i, i + 2));
             i += 2;
             break;
           case 0x16: // SERIAL NUMBER
@@ -187,15 +181,15 @@ function consume(event) {
             i += 8;
             break;
           case 0x0f: // LORAWAN CLASS TYPE
-            systemData.lorawan_class = readLoRaWANClass(bytes[i]);
+            systemData.lorawanClass = readLoRaWANClass(bytes[i]);
             i += 1;
             break;
           case 0xfe: // RESET EVENT
-            systemData.reset_event = readResetEvent(1);
+            systemData.resetEvent = readResetEvent(1);
             i += 1; // Assuming 1 byte for event
             break;
           case 0x0b: // DEVICE STATUS
-            systemData.device_status = readDeviceStatus(1);
+            systemData.deviceStatus = readDeviceStatus(1);
             i += 1;
             break;
           default: // Unknown system channel type
