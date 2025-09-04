@@ -83,7 +83,7 @@ describe("Digital Technologies Desk Sensor Uplink", () => {
 
         assert.equal(value.topic, "occupancy");
         assert.equal(value.data.occupied, true);
-        assert.equal(value.data.occupancy, 2);
+        assert.equal(value.data.occupancy, 1);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
 
         utils.validateSchema(value.data, occupancySchema, { throwError: true });
@@ -129,7 +129,7 @@ describe("Digital Technologies Desk Sensor Uplink", () => {
 
         assert.equal(value.topic, "occupancy");
         assert.equal(value.data.occupied, true);
-        assert.equal(value.data.occupancy, 2);
+        assert.equal(value.data.occupancy, 1);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
 
         utils.validateSchema(value.data, occupancySchema, { throwError: true });

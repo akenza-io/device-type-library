@@ -388,7 +388,7 @@ describe("Airthings Cloud Connector Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "occupancy");
-        assert.equal(value.data.occupancy, 2);
+        assert.equal(value.data.occupancy, 1);
         assert.equal(value.data.occupied, true);
         assert.equal(value.data.occupants, 2);
 

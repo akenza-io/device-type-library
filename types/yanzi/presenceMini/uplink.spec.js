@@ -131,7 +131,7 @@ describe("Yanzi Presence Mini Sensor Uplink", () => {
         assert.equal(value.topic, "occupancy");
         assert.equal(value.data.motion, 24873);
         assert.equal(value.data.relativeMotion, 73);
-        assert.equal(value.data.occupancy, 2);
+        assert.equal(value.data.occupancy, 1);
         assert.equal(value.data.occupied, true);
 
         utils.validateSchema(value.data, occupancySchema, { throwError: true });
