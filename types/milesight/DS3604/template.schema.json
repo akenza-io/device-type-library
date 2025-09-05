@@ -1,17 +1,17 @@
 {
-  "$id": "https://akenza.io/milesight/DS3604/default.schema.json",
+  "$id": "https://akenza.io/milesight/DS3604/template.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
+  "topic": "template",
+  "title": "Template",
   "properties": {
     "templateId": {
       "title": "Template ID",
       "type": "number",
       "description": "Template ID",
       "minimum": 0,
-      "maximum": 1
+      "maximum": 2
     },
     "text0": {
       "title": "Text 0",

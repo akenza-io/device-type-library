@@ -1,0 +1,59 @@
+{
+  "$id": "https://akenza.io/milesight/DS3604/system.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "system",
+  "title": "System",
+  "properties": {
+    "ipsoVersion": {
+      "title": "IPSO Version",
+      "type": "string",
+      "description": "IPSO Version",
+      "hideFromKpis": true
+    },
+    "hardwareVersion": {
+      "title": "Hardware version",
+      "type": "string",
+      "description": "Hardware version",
+      "hideFromKpis": true
+    },
+    "firmwareVersion": {
+      "title": "Firmware version",
+      "type": "string",
+      "description": "Firmware version",
+      "hideFromKpis": true
+    },
+    "tslVersion": {
+      "title": "TSL version",
+      "type": "string",
+      "description": "TSL version",
+      "hideFromKpis": true
+    },
+    "sn": {
+      "title": "Serial number",
+      "type": "string",
+      "description": "Serial number",
+      "hideFromKpis": true
+    },
+    "resetEvent": {
+      "title": "Reset event",
+      "type": "string",
+      "description": "Reset event",
+      "hideFromKpis": true
+    },
+    "deviceStatus": {
+      "title": "Device status",
+      "type": "string",
+      "description": "Device status",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "ipsoVersion",
+    "sn",
+    "hardwareVersion",
+    "firmwareVersion",
+    "tslVersion"
+  ]
+}

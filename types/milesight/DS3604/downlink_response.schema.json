@@ -1,0 +1,113 @@
+{
+  "$id": "https://akenza.io/milesight/DS3604/downlink_response.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "downlink_response",
+  "title": "Downlink response",
+  "properties": {
+    "reportInterval": {
+      "title": "Report interval",
+      "type": "integer",
+      "unit": "s",
+      "description": "Report interval",
+      "hideFromKpis": true
+    },
+    "reboot": {
+      "title": "Reboot",
+      "type": "boolean",
+      "description": "Reboot",
+      "hideFromKpis": true
+    },
+    "buttonEnabled": {
+      "title": "Button enabled",
+      "type": "boolean",
+      "description": "Equals true if the button is enabled",
+      "hideFromKpis": true
+    },
+    "clearImage": {
+      "title": "Clear image",
+      "type": "object",
+      "description": "Describes which images are shown",
+      "hideFromKpis": true
+    },
+    "reportBattery": {
+      "title": "Report battery",
+      "type": "boolean",
+      "description": "Equals true if the battery report is enabled",
+      "hideFromKpis": true
+    },
+    "reportBuzzer": {
+      "title": "Report buzzer",
+      "type": "boolean",
+      "description": "Equals true if the buzzer report is enabled",
+      "hideFromKpis": true
+    },
+    "reportCurrentTemplate": {
+      "title": "Report current template",
+      "type": "boolean",
+      "description": "Equals true if the current template report is enabled",
+      "hideFromKpis": true
+    },
+    "reportCurrentDisplay": {
+      "title": "Report current display",
+      "type": "boolean",
+      "description": "Equals true if the current template report is enabled",
+      "hideFromKpis": true
+    },
+    "buzzerEnable": {
+      "title": "Buzzer enabled",
+      "type": "boolean",
+      "description": "Equals true if the buzzer is enabled",
+      "hideFromKpis": true
+    },
+    "beep": {
+      "title": "Beep enabled",
+      "type": "boolean",
+      "description": "Equals true if the beep is enabled",
+      "hideFromKpis": true
+    },
+    "refreshDisplay": {
+      "title": "Refresh display enabled",
+      "type": "boolean",
+      "description": "Equals true if the Refresh display is enabled",
+      "hideFromKpis": true
+    },
+    "buttonVisible": {
+      "title": "Button visible",
+      "type": "boolean",
+      "description": "Equals true if the button is visible",
+      "hideFromKpis": true
+    },
+    "currentTemplateId": {
+      "title": "Current template id",
+      "type": "integer",
+      "description": "Current template id",
+      "hideFromKpis": true
+    },
+    "multicastConfig": {
+      "title": "Multicast config",
+      "type": "boolean",
+      "description": "Multicast config",
+      "hideFromKpis": true
+    },
+    "blockVisible": {
+      "title": "Block visible",
+      "type": "boolean",
+      "description": "Equals true if the button is visible",
+      "hideFromKpis": true
+    },
+    "switchTemplateButtonEnable": {
+      "title": "Switch template button enabled",
+      "type": "boolean",
+      "description": "Equals true if the template switch button is enabled",
+      "hideFromKpis": true
+    },
+    "error": {
+      "title": "Error",
+      "type": "string",
+      "description": "Downlink error message",
+      "hideFromKpis": true
+    }
+  }
+}

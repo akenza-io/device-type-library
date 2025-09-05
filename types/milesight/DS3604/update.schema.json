@@ -1,0 +1,28 @@
+{
+  "$id": "https://akenza.io/milesight/DS3604/update.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "update",
+  "title": "Update",
+  "properties": {
+    "updateContentResult": {
+      "title": "Update content result",
+      "type": "array",
+      "description": "Lists all updated content",
+      "hideFromKpis": true
+    },
+    "receiveImageDataResult": {
+      "title": "Update image result",
+      "type": "array",
+      "description": "Lists all updated images",
+      "hideFromKpis": true
+    },
+    "updateTemplateResult": {
+      "title": "Update template result",
+      "type": "array",
+      "description": "Lists all updated templates",
+      "hideFromKpis": true
+    }
+  }
+}
