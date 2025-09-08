@@ -3,11 +3,17 @@
 All notable changes to this project will be documented in this file.
 
 ---
-# [1.72.0] - 2025-09-03
+# [1.73.0] - 2025-09-03
 
 ### Added
 
 - Termokon - MCS-LRW
+
+# [1.72.0] - 2025-09-03
+
+### Added
+
+- Thermokon - SAB07
 
 # [1.71.0] - 2025-09-03
 
