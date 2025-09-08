@@ -1,0 +1,72 @@
+{
+  "$id": "https://akenza.io/thermokon/sab07/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "batteryVoltage": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+    },
+    "openWindow": {
+      "title": "Open Window",
+      "description": "Indicates if the open window functionality is enabled and such a condition is met.",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "highMotorConsumption": {
+      "title": "High Motor Consumption",
+      "description": "Indicates if too high motor current consumption was measured.",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "lowMotorConsumption": {
+      "title": "Low Motor Consumption",
+      "description": "Indicates if too low motor current consumption was measured.",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "brokenSensor": {
+      "title": "Broken Sensor",
+      "description": "Indicates if the device temperature sensor is broken.",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "childLock": {
+      "title": "Child Lock",
+      "description": "Indicates if manual temperature setting via the rotary encoder is disabled.",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "calibrationFailed": {
+      "title": "Calibration Failed",
+      "description": "Indicates if the device motor calibration failed.",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "attachedBackplate": {
+      "title": "Attached to Backplate",
+      "description": "Indicates if the device is attached to the backplate.",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "perceiveAsOnline": {
+      "title": "Perceived as Online",
+      "description": "Indicates if the device perceives itself as online (joined and receiving packets).",
+      "type": "boolean",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "batteryVoltage",
+    "openWindow",
+    "highMotorConsumption",
+    "lowMotorConsumption",
+    "brokenSensor",
+    "childLock",
+    "calibrationFailed",
+    "attachedBackplate",
+    "perceiveAsOnline"
+  ]
+}
