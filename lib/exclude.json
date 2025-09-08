@@ -2,6 +2,8 @@
     "description": "Namings that break the convention but should be allowed",
     "topics": [],
     "dataKeys": [
+        "ncPm0_5",
+        "ncPm2_5",
         "pm0_3",
         "pm1_0",
         "pm2_5",
