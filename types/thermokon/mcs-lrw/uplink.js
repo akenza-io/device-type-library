@@ -259,7 +259,7 @@ function consume(event) {
     data.co2 = decoded.CO2;
   }
   if (decoded.VOC !== undefined) {
-    data.voc = decoded.VOC;
+    data.volatileOrganicCompounds = decoded.VOC;
   }
   if (decoded.ATM_P !== undefined) {
     data.pressure = decoded.ATM_P;

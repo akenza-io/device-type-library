@@ -2,11 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
-# [1.72.0] - 2025-09-08
+# [1.73.0] - 2025-09-09
 
 ### Added
 
 - Termokon - MCS-LRW
+
+# [1.72.0] - 2025-09-08
+
+### Added
+
 - Milesight - CT103
 - Thermokon - SAB07
 - Milesight - AM102
