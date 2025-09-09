@@ -18,10 +18,10 @@
     "co2": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm"
     },
-    "volatileOrganicCompounds": {
-      "title": "Volatile Organic Compounds",
+    "vocPercentage": {
+      "title": "Volatile Organic Compounds Percentage",
       "type": "number",
-      "description": "VOC value.",
+      "description": "VOC percentage value.",
       "unit": "%"
     },
     "pressure": {
