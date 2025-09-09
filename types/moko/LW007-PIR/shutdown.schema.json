@@ -1,0 +1,16 @@
+{
+  "$id": "https://akenza.io/moko/lw007-pir/shutdown.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "shutdown",
+  "title": "Shutdown",
+  "properties": {
+    "lowBattery": {
+      "title": "Low battery",
+      "description": "Low battery",
+      "type": "boolean",
+      "hideFromKpis": true
+    }
+  }
+}
