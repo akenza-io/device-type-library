@@ -1,0 +1,14 @@
+{
+  "name": "TX T&H AMB 600-051",
+  "version": "1.0.0",
+  "manufacturer": "Enless Wireless",
+  "url": "https://enless-wireless.com/products/lorawan-ambient-temperature-and-humidity-sensor/",
+  "description": "The Enless LoRaWAN Temperature and Humidity Sensor is specifically designed to monitor comfort in tertiary environments. It accurately measures ambient temperature and humidity, ensuring a healthy and controlled indoor climate for occupants. ",
+  "author": "Akenza AG",
+  "firmwareVersion": "V3.03.18",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Humidity"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

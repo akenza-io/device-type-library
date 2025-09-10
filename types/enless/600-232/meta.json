@@ -1,0 +1,14 @@
+{
+  "name": "TX TEMP CONT2 600-232",
+  "version": "1.0.0",
+  "manufacturer": "Enless Wireless",
+  "url": "https://enless-wireless.com/products/temperature-sensor-2-probes-pt1000-lora/",
+  "description": "The temperature sensor is equipped with two external PT1000 contact probes, allowing temperature measurement on contact surfaces. The PT1000 probes provided with the sensor allow measurement of extreme temperatures ranging from -180°C to +250°C. This LoRa(WAN) sensor is particularly suitable for measuring the temperature of domestic hot water loops (DHW). The two PT1000 probes allow simultaneous measurement of the forward and return temperatures of the DHW circuit. Thus, the LoRa temperature sensor with double contact probes allows to prevent the risk of legionella development.  ",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.01.18",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

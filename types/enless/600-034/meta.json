@@ -1,0 +1,14 @@
+{
+  "name": "TX T&H EXT 600-034",
+  "version": "1.0.0",
+  "manufacturer": "Enless Wireless",
+  "url": "https://enless-wireless.com/products/temperature-humidity-sensor-external-probe-lora/",
+  "description": " The rugged LoRa temperature and humidity sensor can be used in industrial or challenging environments. Equipped with a remote temperature and humidity probe (1.5m cable), this LoRa sensor is suitable for many applications such as: measuring temperature and humidity in ventilation ducts and air treatment systems, monitoring temperature and humidity in cold rooms, measuring temperature and humidity in storage areas (warehouses, etc.), monitoring humidity in very humid environments (swimming pools, greenhouses, etc.)..etc  ",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.01.18",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Humidity"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
