@@ -974,7 +974,7 @@ function consume(event) {
   const raw = Decoder(Hex.hexToBytes(payload), port);
   const state = event.state || {};
 
-  // Catch if single phases send but appart from each other
+  // Catch if single phases send but apart from each other
   let type = "single";
   if (raw.zclheader.report === "batch") {
     type = "batch";
@@ -988,9 +988,11 @@ function consume(event) {
         topic: "lifecycle",
       });
     } else {
-      let phase = point.label.substr(-1);
+      let phase = 0;
       if (type === "single") {
         phase = raw.zclheader.endpoint + 1;
+      } else if (type === "batch") {
+        phase = point.label.substr(-1);
       }
 
       data.pulse = point.value;
