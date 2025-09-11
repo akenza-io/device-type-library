@@ -8,51 +8,43 @@
   "properties": {
     "soilMoisture1": {
       "title": "Soil moisture 1",
-      "unit": "%",
-      "type": "number",
-      "description": "Soil moisture as volumetric moisture Content (VMC)"
+      "description": "Soil moisture as volumetric moisture Content (VMC)",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
     },
     "soilMoisture2": {
       "title": "Soil moisture 2",
-      "unit": "%",
-      "type": "number",
-      "description": "Soil moisture as volumetric moisture Content (VMC)"
+      "description": "Soil moisture as volumetric moisture Content (VMC)",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
     },
     "soilMoisture3": {
       "title": "Soil moisture 3",
-      "unit": "%",
-      "type": "number",
-      "description": "Soil moisture as volumetric moisture Content (VMC)"
+      "description": "Soil moisture as volumetric moisture Content (VMC)",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
     },
     "soilMoisture4": {
       "title": "Soil moisture 4",
-      "unit": "%",
-      "type": "number",
-      "description": "Soil moisture as volumetric moisture Content (VMC)"
+      "description": "Soil moisture as volumetric moisture Content (VMC)",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
     },
     "soilMoisture5": {
       "title": "Soil moisture 5",
-      "unit": "%",
-      "type": "number",
-      "description": "Soil moisture as volumetric moisture Content (VMC)"
+      "description": "Soil moisture as volumetric moisture Content (VMC)",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
     },
     "soilMoisture6": {
       "title": "Soil moisture 6",
-      "unit": "%",
-      "type": "number",
-      "description": "Soil moisture as volumetric moisture Content (VMC)"
+      "description": "Soil moisture as volumetric moisture Content (VMC)",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
     },
     "soilMoisture7": {
       "title": "Soil moisture 7",
-      "unit": "%",
-      "type": "number",
-      "description": "Soil moisture as volumetric moisture Content (VMC)"
+      "description": "Soil moisture as volumetric moisture Content (VMC)",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
     },
     "soilMoisture8": {
       "title": "Soil moisture 8",
-      "unit": "%",
-      "type": "number",
-      "description": "Soil moisture as volumetric moisture Content (VMC)"
+      "description": "Soil moisture as volumetric moisture Content (VMC)",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
     }
   }
 }

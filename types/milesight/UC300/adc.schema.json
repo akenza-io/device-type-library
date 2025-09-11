@@ -8,16 +8,14 @@
   "properties": {
     "adc": {
       "title": "ADC",
-      "unit": "V",
-      "type": "number",
       "description": "ADC Voltage",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
       "hideFromKpis": true
     },
     "adv": {
       "title": "ADV",
-      "unit": "V",
-      "type": "number",
       "description": "ADV Voltage",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
       "hideFromKpis": true
     }
   }

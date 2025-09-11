@@ -8,28 +8,29 @@
   "properties": {
     "totalKWh": {
       "title": "Kilowatt hours total",
-      "unit": "kWh",
-      "type": "number",
-      "description": "Kilowatt hours total"
+      "description": "Kilowatt hours total",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours"
     },
     "l2V": {
       "title": "Phase 2 volt",
-      "unit": "V",
-      "type": "number",
-      "description": "Phase 2 volt"
+      "description": "Phase 2 volt",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt"
     },
     "l2A": {
       "title": "Phase 2 ampere",
-      "unit": "A",
-      "type": "number",
-      "description": "Phase 2 ampere"
+      "description": "Phase 2 ampere",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere"
     },
     "l2KW": {
       "title": "Phase 2 kilowatt",
-      "unit": "kW",
-      "type": "number",
-      "description": "Phase 2 kilowatt"
+      "description": "Phase 2 kilowatt",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activePower/watt"
     }
   },
-  "required": ["totalKWh", "l2V", "l2A", "l2KW"]
+  "required": [
+    "totalKWh",
+    "l2V",
+    "l2A",
+    "l2KW"
+  ]
 }

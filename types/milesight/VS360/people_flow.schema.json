@@ -9,22 +9,23 @@
     "totalCountIn": {
       "title": "Total count in",
       "description": "Total count in",
-      "type": "integer"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleIn/people"
     },
     "totalCountOut": {
       "title": "Total count out",
       "description": "Total counter out",
-      "type": "integer"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleOut/people"
     },
     "periodicCountIn": {
       "title": "Periodic count in",
       "description": "Periodic count in",
-      "type": "integer"
+      "type": "integer",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleIn/people"
     },
     "periodicCountOut": {
       "title": "Periodic count out",
       "description": "Periodic count out",
-      "type": "integer"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleOut/people"
     },
     "totalCountAlarm": {
       "title": "Periodic out",

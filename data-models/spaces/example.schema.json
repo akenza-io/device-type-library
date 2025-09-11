@@ -16,11 +16,11 @@
       "hideFromKpis": true
     },
     "peopleIn": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleIn/count",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleIn/people",
       "hideFromKpis": true
     },
     "peopleOut": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleOut/count"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleOut/people"
     },
     "peopleCount": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleCount/count"

@@ -12,12 +12,7 @@
       "description": "Reset event"
     },
     "batteryLevel": {
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 100,
-      "title": "Battery charge",
-      "description": "The battery charge in percent.",
-      "unit": "%"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
     }
   },
   "required": [
