@@ -16,7 +16,8 @@
       "type": "string",
       "title": "Message Type",
       "description": "Message type emitted by the device",
-      "enum": ["normal", "alarm"]
+      "enum": ["normal", "alarm"] 
+	  "hideFromKpis": true
     }
   },
   "required": ["temperature", "humidity", "msgType"]
