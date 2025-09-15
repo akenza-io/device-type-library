@@ -16,7 +16,11 @@
       "type": "string",
       "title": "Message Type",
       "description": "Message type emitted by the device",
+<<<<<<< HEAD
       "enum": ["normal", "alarm"], 
+=======
+      "enum": ["normal", "alarm"],
+>>>>>>> c55649b7198ed4220f59679d787c8028e8a6eaf5
 	  "hideFromKpis": true
     }
   },

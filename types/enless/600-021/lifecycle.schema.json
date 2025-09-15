@@ -9,25 +9,41 @@
     "id": {
       "type": "integer",
       "title": "Transmitter ID",
+<<<<<<< HEAD
       "description": "Unique identifier of the device", 
+=======
+      "description": "Unique identifier of the device",
+>>>>>>> c55649b7198ed4220f59679d787c8028e8a6eaf5
 	  "hideFromKpis": true
     },
     "type": {
       "type": "integer",
       "title": "Device Type",
+<<<<<<< HEAD
       "description": "4 = Ambient T&H Sensor", 
+=======
+      "description": "4 = Ambient T&H Sensor",
+>>>>>>> c55649b7198ed4220f59679d787c8028e8a6eaf5
 	  "hideFromKpis": true
     },
     "seqCounter": {
       "type": "integer",
       "title": "Sequence Counter",
+<<<<<<< HEAD
       "description": "Frame sequence counter", 
+=======
+      "description": "Frame sequence counter",
+>>>>>>> c55649b7198ed4220f59679d787c8028e8a6eaf5
 	  "hideFromKpis": true
     },
     "fwVersion": {
       "type": "integer",
       "title": "Firmware Version",
+<<<<<<< HEAD
       "description": "Firmware version encoded on 6 bits", 
+=======
+      "description": "Firmware version encoded on 6 bits",
+>>>>>>> c55649b7198ed4220f59679d787c8028e8a6eaf5
 	  "hideFromKpis": true
     },
     "batteryLevel": {
