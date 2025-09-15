@@ -2,7 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
-# [1.73.0] - 2025-09-09
+
+# [1.73.0] - 2025-09-15
+
+### Added
+
+- Dragino - SE0X_LB
+- Enlink - IAQ
+
+### Changed
+
+- DS3604 downlink and config additions
+- Added Fahrenheit emit to airthings & disruptive devices
 
 ### Added
 
