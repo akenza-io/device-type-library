@@ -1,0 +1,101 @@
+{
+  "$id": "https://akenza.io/nexelec/origin/system.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "system",
+  "title": "System",
+  "properties": {
+    "productType": {
+      "title": "Product type",
+      "type": "string",
+      "description": "The specific model of the product",
+      "enum": [
+        "ORIGIN+",
+        "ORIGIN",
+        "GUARD+",
+        "GUARD",
+        "Unknown"
+      ],
+      "hideFromKpis": true
+    },
+    "hardwareVersion": {
+      "title": "Hardware version",
+      "type": "number",
+      "description": "Hardware version of the device",
+      "hideFromKpis": true
+    },
+    "softwareVersion": {
+      "title": "Software version",
+      "type": "string",
+      "description": "Software version of the device firmware",
+      "hideFromKpis": true
+    },
+    "magneticBaseDetection": {
+      "title": "Magnetic base detection",
+      "type": "string",
+      "description": "Status of the tamper-detection magnetic base",
+      "enum": [
+        "Magnetic base not detected",
+        "Magnetic base detected",
+        "Product removed from its base immediately",
+        "Installing the product on its base at a moment's notice",
+        "Magnetic base never detected"
+      ],
+      "hideFromKpis": true
+    },
+    "reconfigurationSource": {
+      "title": "Reconfiguration source",
+      "type": "string",
+      "description": "Source that triggered the last reconfiguration",
+      "enum": [
+        "NFC",
+        "Downlink",
+        "Product startup",
+        "Local"
+      ],
+      "hideFromKpis": true
+    },
+    "reconfigurationStatus": {
+      "title": "Reconfiguration status",
+      "type": "string",
+      "description": "Status of the last reconfiguration attempt",
+      "enum": [
+        "Total success",
+        "Partial success",
+        "Total failure"
+      ],
+      "hideFromKpis": true
+    },
+    "delayedJoinRequest": {
+      "title": "Delayed Join Request",
+      "type": "boolean",
+      "description": "Indicates if a delayed network connection request is programmed",
+      "hideFromKpis": true
+    },
+    "nfcStatus": {
+      "title": "NFC status",
+      "type": "string",
+      "description": "The status of the NFC interface",
+      "enum": [
+        "Discoverable",
+        "Non-discoverable",
+        "RFU"
+      ],
+      "hideFromKpis": true
+    },
+    "d2dNetworkId": {
+      "title": "D2D network ID",
+      "type": "number",
+      "description": "Device-to-device interconnection network ID",
+      "hideFromKpis": true
+    },
+    "downlinkFcnt": {
+      "title": "Downlink Fcnt",
+      "type": "number",
+      "description": "Frame counter of the downlink that caused the reconfiguration",
+      "hideFromKpis": true
+    }
+  },
+  "required": []
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Nexelec - Origin",
+  "version": "1.0.0",
+  "manufacturer": "nexelec",
+  "url": "https://support.nexelec.fr/",
+  "description": "Connected smoke detector with indoor air quality monitoring (temperature, humidity), featuring LoRaWAN and Sigfox connectivity and a 10-year battery life.",
+  "author": "Akenza AG",
+  "availableSensors": [
+    "Smoke",
+    "Temperature",
+    "Humidity",
+    "Magnetic Base Detection",
+    "Battery"
+  ],
+  "outputTopics": [
+    "alarm",
+    "climate",
+    "lifecycle",
+    "system",
+    "datalog"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

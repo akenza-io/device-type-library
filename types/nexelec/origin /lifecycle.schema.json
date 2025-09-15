@@ -1,0 +1,77 @@
+{
+  "$id": "https://akenza.io/nexelec/origin/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "batteryLevel": {
+      "title": "Battery level",
+      "type": "string",
+      "description": "The estimated battery level category",
+      "enum": [
+        "High (> 50%)",
+        "Medium (20 - 50%)",
+        "Low (1 - 10%)",
+        "Critical (< 1%)"
+      ],
+      "hideFromKpis": true
+    },
+    "batteryVoltage": {
+      "title": "Battery voltage",
+      "unit": "mV",
+      "type": "number",
+      "description": "The measured battery voltage",
+      "hideFromKpis": true
+    },
+    "remainingProductLife": {
+      "title": "Remaining product life",
+      "unit": "months",
+      "type": [
+        "number",
+        "string"
+      ],
+      "description": "Estimated remaining product life in months. Can be 'End of life' or 'Unknown'.",
+      "hideFromKpis": true
+    },
+    "smokeSensorStatus": {
+      "title": "Smoke sensor status",
+      "type": "string",
+      "description": "The operational status of the smoke sensor",
+      "enum": [
+        "OK",
+        "Faulty smoke chamber"
+      ],
+      "hideFromKpis": true
+    },
+    "tempHumSensorStatus": {
+      "title": "Temperature/Humidity sensor status",
+      "type": "string",
+      "description": "The operational status of the temperature and humidity sensor",
+      "enum": [
+        "OK",
+        "Temperature/humidity sensor faulty"
+      ],
+      "hideFromKpis": true
+    },
+    "maintenance": {
+      "title": "Maintenance status",
+      "type": "string",
+      "description": "Indicates if maintenance has been performed",
+      "enum": [
+        "Maintenance has been carried out",
+        "Maintenance has not been performed"
+      ],
+      "hideFromKpis": true
+    },
+    "timeSinceLastMaintenance": {
+      "title": "Time since last maintenance",
+      "unit": "weeks",
+      "type": "number",
+      "description": "Time elapsed since the last maintenance",
+      "hideFromKpis": true
+    }
+  },
+  "required": []
+}

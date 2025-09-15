@@ -1,0 +1,106 @@
+{
+  "$id": "https://akenza.io/nexelec/origin/climate.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "climate",
+  "title": "Climate",
+  "properties": {
+    "temperature": {
+      "title": "Temperature",
+      "unit": "\u00b0C",
+      "type": [
+        "number",
+        "string"
+      ],
+      "description": "Instantaneous temperature measurement. Can be 'Error' or 'Sensor not present'.",
+      "hideFromKpis": false
+    },
+    "humidity": {
+      "title": "Humidity",
+      "unit": "%RH",
+      "type": [
+        "number",
+        "string"
+      ],
+      "description": "Instantaneous humidity measurement. Can be 'Error'.",
+      "hideFromKpis": false
+    },
+    "minTemperature": {
+      "title": "Minimum temperature (24h)",
+      "unit": "\u00b0C",
+      "type": [
+        "number",
+        "string"
+      ],
+      "description": "Minimum temperature over the last 24 hours. Can be 'Error'.",
+      "hideFromKpis": false
+    },
+    "maxTemperature": {
+      "title": "Maximum temperature (24h)",
+      "unit": "\u00b0C",
+      "type": [
+        "number",
+        "string"
+      ],
+      "description": "Maximum temperature over the last 24 hours. Can be 'Error'.",
+      "hideFromKpis": false
+    },
+    "averageTemperature": {
+      "title": "Average temperature (24h)",
+      "unit": "\u00b0C",
+      "type": [
+        "number",
+        "string"
+      ],
+      "description": "Average temperature over the last 24 hours. Can be 'Error'.",
+      "hideFromKpis": false
+    },
+    "minHumidity": {
+      "title": "Minimum humidity (24h)",
+      "unit": "%RH",
+      "type": [
+        "number",
+        "string"
+      ],
+      "description": "Minimum relative humidity over the last 24 hours. Can be 'Error'.",
+      "hideFromKpis": false
+    },
+    "maxHumidity": {
+      "title": "Maximum humidity (24h)",
+      "unit": "%RH",
+      "type": [
+        "number",
+        "string"
+      ],
+      "description": "Maximum relative humidity over the last 24 hours. Can be 'Error'.",
+      "hideFromKpis": false
+    },
+    "averageHumidity": {
+      "title": "Average humidity (24h)",
+      "unit": "%RH",
+      "type": [
+        "number",
+        "string"
+      ],
+      "description": "Average relative humidity over the last 24 hours. Can be 'Error'.",
+      "hideFromKpis": false
+    },
+    "temperatureHistory": {
+      "title": "Temperature history",
+      "type": "array",
+      "description": "Historical temperature data from datalog",
+      "items": {
+        "type": [
+          "number",
+          "string"
+        ],
+        "title": "Temperature",
+        "description": "Can be a number in \u00b0C or 'Error'",
+        "unit": "\u00b0C"
+      },
+      "hideFromKpis": true
+    }
+  },
+  "required": []
+}
