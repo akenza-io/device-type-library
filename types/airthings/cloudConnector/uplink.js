@@ -57,7 +57,7 @@ function consume(event) {
   if (deleteUnusedKeys(environment)) {
     state.environment = completeSample(environment, state.environment || {});
     if (state.environment.temperature !== undefined) {
-      state.environment.temperatureF = cToF(environment.temperature);
+      state.environment.temperatureF = cToF(state.environment.temperature);
     }
     emit("sample", { data: state.environment, topic: "environment", timestamp });
   }
