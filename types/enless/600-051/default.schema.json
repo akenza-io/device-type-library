@@ -18,9 +18,12 @@
     },
     "msgType": {
       "type": "string",
-      "enum": ["normal", "alarm"],
+      "enum": [
+        "NORMAL",
+        "ALARM"
+      ],
       "title": "Message Type",
-      "description": "Indicates whether the message was triggered by normal operation or an alarm"
+      "description": "Indicates whether the message was triggered by NORMAL operation or an alarm"
     },
     "rbe": {
       "type": "boolean",
@@ -28,17 +31,8 @@
       "description": "Indicates if the frame was triggered by a change in measurement (report by exception)"
     }
   },
-  "patternProperties": {
-    "^temperature_t-[0-9]+$": {
-      "title": "Historic Temperature",
-      "description": "Historic temperature sample from datalogging frame",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-    },
-    "^humidity_t-[0-9]+$": {
-      "title": "Historic Humidity",
-      "description": "Historic humidity sample from datalogging frame",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
-    }
-  },
-  "required": ["temperature", "humidity", "msgType", "rbe"]
+  "required": [
+    "msgType",
+    "rbe"
+  ]
 }

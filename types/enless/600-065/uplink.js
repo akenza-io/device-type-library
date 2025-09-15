@@ -47,23 +47,23 @@ function consume(event) {
   const lifecycle = {};
 
   // --- Identification ---
-  decoded.id = readUInt24BE(bytes.slice(0, 3));
-  decoded.type = bytes[3];
-  decoded.seq_counter = bytes[4];
-  decoded.fw_version = bytes[5] & 0x3F;
+  lifecycle.id = readUInt24BE(bytes.slice(0, 3));
+  lifecycle.type = bytes[3];
+  lifecycle.seqCounter = bytes[4];
+  lifecycle.fwVersion = bytes[5] & 0x3F;
 
   // --- Measurements ---
-  decoded.window_count = readUInt16BE(bytes.slice(16, 18));
+  decoded.windowCount = readUInt16BE(bytes.slice(16, 18));
 
   // --- Device status (octets 28–29) ---
   const status = readUInt16LE(bytes.slice(28, 30));
   const batteryBits = (status >> 2) & 0x03;
-  const batteryLevels = ["100%", "75%", "50%", "25%"];
+  const batteryLevels = [100, 75, 50, 25];
   lifecycle.batteryLevel = batteryLevels[batteryBits] || "unknown";
 
-  decoded.msg_type = (status & 0x01) ? "alarm" : "normal";
+  decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";
   decoded.rbe = Boolean((status >> 9) & 0x01);         // Bit 9
-  decoded.window_opened = Boolean((status >> 5) & 0x01); // Bit 5
+  decoded.windowOpened = Boolean((status >> 5) & 0x01); // Bit 5
 
   // --- Emit to Akenza topics ---
   emit("sample", { data: lifecycle, topic: "lifecycle" });

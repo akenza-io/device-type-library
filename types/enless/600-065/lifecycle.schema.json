@@ -9,31 +9,36 @@
     "id": {
       "type": "integer",
       "title": "Transmitter ID",
-      "description": "Unique identifier of the device", 
-	  "hideFromKpis": true
+      "description": "Unique identifier of the device",
+      "hideFromKpis": true
     },
     "type": {
       "type": "integer",
       "title": "Device Type",
-      "description": "38=TX WINDOW", 
-	  "hideFromKpis": true
+      "description": "38=TX WINDOW",
+      "hideFromKpis": true
     },
     "seqCounter": {
       "type": "integer",
       "title": "Sequence Counter",
-      "description": "Frame sequence counter", 
-	  "hideFromKpis": true
+      "description": "Frame sequence counter",
+      "hideFromKpis": true
     },
     "fwVersion": {
       "type": "integer",
       "title": "Firmware Version",
-      "description": "Firmware version encoded on 6 bits", 
-	  "hideFromKpis": true
+      "description": "Firmware version encoded on 6 bits",
+      "hideFromKpis": true
     },
     "batteryLevel": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
     }
   },
-  "required": ["id", "type", "seqCounter", "fwVersion", "batteryLevel"]
+  "required": [
+    "id",
+    "type",
+    "seqCounter",
+    "fwVersion",
+    "batteryLevel"
+  ]
 }
-

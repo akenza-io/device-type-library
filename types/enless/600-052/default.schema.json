@@ -18,9 +18,12 @@
     },
     "msgType": {
       "type": "string",
-      "enum": ["normal", "alarm"],
+      "enum": [
+        "NORMAL",
+        "ALARM"
+      ],
       "title": "Message Type",
-      "description": "Indicates whether the message was triggered by normal operation or an alarm"
+      "description": "Indicates whether the message was triggered by NORMAL operation or an alarm"
     },
     "rbe": {
       "type": "boolean",
@@ -28,5 +31,10 @@
       "description": "Indicates if the frame was triggered by a change in measurement (report by exception)"
     }
   },
-  "required": ["temperature", "humidity", "msgType", "rbe"]
+  "required": [
+    "temperature",
+    "humidity",
+    "msgType",
+    "rbe"
+  ]
 }

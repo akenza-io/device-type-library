@@ -17,5 +17,8 @@
       "description": "Indicates if the current is above the threshold"
     }
   },
-  "required": ["currentLow", "currentHigh"]
+  "required": [
+    "currentLow",
+    "currentHigh"
+  ]
 }

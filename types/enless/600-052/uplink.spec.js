@@ -68,8 +68,8 @@ describe("Transmitter 600-052", () => {
         assert.equal(value.topic, "default");
         assert.closeTo(value.data.temperature, 25.4, 0.1);
         assert.equal(value.data.humidity, 52, 0.1);
-        assert.equal(value.data.msg_type, "normal");
-        assert.equal(value.data.rbe, true);
+        assert.equal(value.data.msgType, "NORMAL");
+        assert.equal(value.data.rbe, false);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

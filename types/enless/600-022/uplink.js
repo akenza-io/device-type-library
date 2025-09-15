@@ -70,7 +70,7 @@ function consume(event) {
   const batteryLevels = [100, 75, 50, 25]; // %
   lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
-  decoded.msgType = (status & 0x01) ? "alarm" : "normal";
+  decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";
 
   // --- Emit Results ---
   emit("sample", { data: lifecycle, topic: "lifecycle" });

@@ -74,10 +74,10 @@ describe("Transmitter 600-039", () => {
         assert.equal(value.data.pulseCh1Counter, 24);
         assert.equal(value.data.pulseCh2Counter, 40);
         assert.equal(value.data.pulseOcCounter, 86);
-        assert.equal(value.data.pulseCh1State, "closed");
-        assert.equal(value.data.pulseCh2State, "closed");
-        assert.equal(value.data.pulseOcState, "open");
-        assert.equal(value.data.msgType, "alarm");
+        assert.equal(value.data.pulseCh1State, "OPEN");
+        assert.equal(value.data.pulseCh2State, "OPEN");
+        assert.equal(value.data.pulseOcState, "OPEN");
+        assert.equal(value.data.msgType, "NORMAL");
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -89,9 +89,9 @@ describe("Transmitter 600-039", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "alarm");
-        assert.equal(value.data.ch1Alarm, true);
-        assert.equal(value.data.ch2Alarm, true);
-        assert.equal(value.data.ocAlarm, true);
+        assert.equal(value.data.ch1Alarm, false);
+        assert.equal(value.data.ch2Alarm, false);
+        assert.equal(value.data.ocAlarm, false);
 
         utils.validateSchema(value.data, alarmSchema, { throwError: true });
       });

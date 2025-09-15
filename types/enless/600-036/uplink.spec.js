@@ -74,13 +74,13 @@ describe("Transmitter 600-036", () => {
         assert.equal(value.data.pulseCh1, 32);
         assert.equal(value.data.pulseCh2, 23);
         assert.equal(value.data.pulseOc, 30);
-        assert.equal(value.data.pulseCh1State, "open");
-        assert.equal(value.data.pulseCh2State, "open");
-        assert.equal(value.data.pulseOcState, "open");
+        assert.equal(value.data.pulseCh1State, "OPEN");
+        assert.equal(value.data.pulseCh2State, "OPEN");
+        assert.equal(value.data.pulseOcState, "OPEN");
         assert.equal(value.data.debounce1, false);
         assert.equal(value.data.debounce2, false);
         assert.equal(value.data.debounce3, false);
-        assert.equal(value.data.msgType, "normal");
+        assert.equal(value.data.msgType, "NORMAL");
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -92,15 +92,15 @@ describe("Transmitter 600-036", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "alarm");
-        assert.equal(value.data.pulse_ch1_flow_high, false);
-        assert.equal(value.data.pulse_ch2_flow_high, false);
-        assert.equal(value.data.pulse_oc_flow_high, false);
-        assert.equal(value.data.pulse_ch1_flow_low, false);
-        assert.equal(value.data.pulse_ch2_flow_low, false);
-        assert.equal(value.data.pulse_oc_flow_low, false);
-        assert.equal(value.data.pulse_ch1_leak, false);
-        assert.equal(value.data.pulse_ch2_leak, false);
-        assert.equal(value.data.pulse_oc_leak, false);
+        assert.equal(value.data.pulseCh1FlowHigh, false);
+        assert.equal(value.data.pulseCh2FlowHigh, false);
+        assert.equal(value.data.pulseOCFlowHigh, false);
+        assert.equal(value.data.pulseCh1FlowLow, false);
+        assert.equal(value.data.pulseCh2FlowLow, false);
+        assert.equal(value.data.pulseOCFlowLow, false);
+        assert.equal(value.data.pulseCh1Leak, false);
+        assert.equal(value.data.pulseCh2Leak, false);
+        assert.equal(value.data.pulseOCLeak, false);
 
         utils.validateSchema(value.data, alarmSchema, { throwError: true });
       });

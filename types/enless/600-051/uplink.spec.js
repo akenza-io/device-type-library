@@ -8,6 +8,7 @@ describe("Transmitter 600-051", () => {
   let defaultSchema = null;
   let lifecycleSchema = null;
   let alarmSchema = null;
+  let datalogSchema = null;
   let consume = null;
 
   before((done) => {
@@ -17,6 +18,17 @@ describe("Transmitter 600-051", () => {
       .loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
         defaultSchema = parsedSchema;
+        done();
+      });
+  });
+
+  before((done) => {
+    const script = rewire("./uplink.js");
+    consume = utils.init(script);
+    utils
+      .loadSchema(`${__dirname}/datalog.schema.json`)
+      .then((parsedSchema) => {
+        datalogSchema = parsedSchema;
         done();
       });
   });
@@ -57,7 +69,7 @@ describe("Transmitter 600-051", () => {
         assert.equal(value.data.type, 31);
         assert.equal(value.data.seqCounter, 0);
         assert.equal(value.data.fwVersion, 11);
-        assert.equal(value.data.batteryLevel, 25); // bits 3-2 → 10
+        assert.equal(value.data.batteryLevel, 100); // bits 3-2 → 10
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -68,8 +80,8 @@ describe("Transmitter 600-051", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 25.4);
         assert.equal(value.data.humidity, 52);
-        assert.equal(value.data.msg_type, "alarm");
-        assert.equal(value.data.rbe, true);
+        assert.equal(value.data.msgType, "NORMAL");
+        assert.equal(value.data.rbe, false);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -79,9 +91,9 @@ describe("Transmitter 600-051", () => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "alarm");
         assert.equal(value.data.temperatureHigh, true);
-        assert.equal(value.data.temperatureLow, true);
-        assert.equal(value.data.humidityHigh, true);
-        assert.equal(value.data.humidityLow, true);
+        assert.equal(value.data.temperatureLow, false);
+        assert.equal(value.data.humidityHigh, false);
+        assert.equal(value.data.humidityLow, false);
         assert.equal(value.data.motionGuard, true);
 
         utils.validateSchema(value.data, alarmSchema, { throwError: true });
@@ -98,6 +110,45 @@ describe("Transmitter 600-051", () => {
             "0000ea2936110102030405060708090a0b0c0d0e0f10111213141516171800000000",
         },
       };
+
+
+      // --- Default (datalogging values) ---
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.equal(value.topic, "datalog");
+
+        // Vérifie quelques points dans la séquence
+        assert.deepEqual(value.data.tempeartureDatalog, [
+          1,
+          3,
+          5,
+          7,
+          9,
+          11,
+          13,
+          15,
+          17,
+          19,
+          21,
+          23,
+        ]);
+        assert.deepEqual(value.data.humidityDatalog, [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          18,
+          20,
+          22,
+          24,
+        ]);
+
+        utils.validateSchema(value.data, datalogSchema, { throwError: true });
+      });
 
       // --- Lifecycle ---
       utils.expectEmits((type, value) => {
@@ -117,15 +168,7 @@ describe("Transmitter 600-051", () => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "default");
 
-        // Vérifie quelques points dans la séquence
-        assert.equal(value.data["temperature_t-0"], 1);
-        assert.equal(value.data["humidity_t-0"], 2);
-        assert.equal(value.data["temperature_t-5"], 3);
-        assert.equal(value.data["humidity_t-5"], 4);
-        assert.equal(value.data["temperature_t-55"], 23);
-        assert.equal(value.data["humidity_t-55"], 24);
-
-        assert.equal(value.data.msg_type, "normal");
+        assert.equal(value.data.msgType, "NORMAL");
         assert.equal(value.data.rbe, false);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

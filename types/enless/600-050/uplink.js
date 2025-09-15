@@ -34,6 +34,7 @@ function consume(event) {
   const decoded = {};
   const lifecycle = {};
   const alarm = {};
+  const datalog = {};
 
   // --- Common header ---
   lifecycle.id = readUInt24BE(bytes.slice(0, 3));
@@ -60,16 +61,17 @@ function consume(event) {
     const batteryLevels = [100, 75, 50, 25];
     lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
-    decoded.msgType = (status & 0x01) ? "alarm" : "normal";
+    decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";
     decoded.rbe = Boolean((status >> 9) & 0x01);
 
   } else if (len === 34) {
     // === Datalogging Frame ===
-
+    datalog.tempeartureDatalog = [];
+    datalog.humidityDatalog = [];
     for (let i = 0; i < 12; i++) {
       const offset = 6 + i * 2;
-      decoded[`temperature_t-${i * 5}`] = bytes[offset];
-      decoded[`humidity_t-${i * 5}`] = bytes[offset + 1];
+      datalog.tempeartureDatalog.push(bytes[offset]);
+      datalog.humidityDatalog.push(bytes[offset + 1]);
     }
 
     // --- Alarm Status ---
@@ -85,15 +87,15 @@ function consume(event) {
     const batteryLevels = [100, 75, 50, 25];
     lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
-    decoded.msgType = (status & 0x01) ? "alarm" : "normal";
+    decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";
     decoded.rbe = Boolean((status >> 9) & 0x01);
 
+    emit("sample", { data: datalog, topic: "datalog" });
   } else {
     throw new Error(`Unsupported payload length: ${len} bytes. Expected 30 or 34.`);
   }
 
-  // --- Emit ---
   emit("sample", { data: lifecycle, topic: "lifecycle" });
-  emit("sample", { data: decoded, topic: "default" });
   emit("sample", { data: alarm, topic: "alarm" });
+  emit("sample", { data: decoded, topic: "default" });
 }

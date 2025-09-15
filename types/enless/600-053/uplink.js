@@ -36,7 +36,7 @@ function consume(event) {
   const len = bytes.length;
 
   if (len === 30) {
-    
+
 
     // Lifecycle infos
     lifecycle.id = readUInt24BE(bytes.slice(0, 3));
@@ -65,7 +65,7 @@ function consume(event) {
     const batteryLevels = [100, 75, 50, 25];
     lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
-    decoded.msg_type = (status & 0x01) ? "alarm" : "normal";
+    decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";
     decoded.co2Sampled = Boolean((status >> 6) & 0x01);  // Bit 6
     decoded.ledOn = Boolean((status >> 9) & 0x01);       // Bit 9
 

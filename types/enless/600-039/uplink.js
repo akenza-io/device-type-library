@@ -27,7 +27,7 @@ function parseAlarmStatus(bytes) {
   return {
     ch1Alarm: Boolean(alarmStatus & 0x0001),
     ch2Alarm: Boolean(alarmStatus & 0x0002),
-    ocAlarm:  Boolean(alarmStatus & 0x0004),
+    ocAlarm: Boolean(alarmStatus & 0x0004),
   };
 }
 
@@ -35,9 +35,9 @@ function parseAlarmStatus(bytes) {
 function parseStates(bytes) {
   const state = readUInt16LE(bytes);
   return {
-    ch1State: (state & 0x0020) ? "closed" : "open",
-    ch2State: (state & 0x0040) ? "closed" : "open",
-    ocState:  (state & 0x0080) ? "closed" : "open"
+    pulseCh1State: (state & 0x0020) ? "CLOSED" : "OPEN",
+    pulseCh2State: (state & 0x0040) ? "CLOSED" : "OPEN",
+    pulseOcState: (state & 0x0080) ? "CLOSED" : "OPEN"
   };
 }
 
@@ -48,9 +48,8 @@ function consume(event) {
 
   if (bytes.length !== 22) {
     throw new Error(
-      "Invalid payload length: " +
-        bytes.length +
-        " bytes. Expected 22 bytes (44 hex chars)."
+      `Invalid payload length: ${bytes.length
+      } bytes. Expected 22 bytes (44 hex chars).`
     );
   }
 
@@ -70,11 +69,11 @@ function consume(event) {
   lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
   // --- Default (counters + states + msg type) ---
-  decoded.ch1StateCounter = readUInt32BE(bytes.slice(6, 10));
-  decoded.ch2StateCounter = readUInt32BE(bytes.slice(10, 14));
-  decoded.ocStateCounter  = readUInt32BE(bytes.slice(14, 18));
+  decoded.pulseCh1Counter = readUInt32BE(bytes.slice(6, 10));
+  decoded.pulseCh2Counter = readUInt32BE(bytes.slice(10, 14));
+  decoded.pulseOcCounter = readUInt32BE(bytes.slice(14, 18));
 
-  decoded.msgType = status & 0x01 ? "alarm" : "normal";
+  decoded.msgType = status & 0x01 ? "ALARM" : "NORMAL";
 
   // États des entrées
   Object.assign(decoded, parseStates(bytes.slice(20, 22)));

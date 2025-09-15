@@ -29,8 +29,8 @@ function consume(event) {
   if (bytes.length !== 12) {
     throw new Error(
       "Invalid payload length: " +
-        bytes.length +
-        " bytes, expected 12 bytes."
+      bytes.length +
+      " bytes, expected 12 bytes."
     );
   }
 
@@ -64,7 +64,7 @@ function consume(event) {
   const batteryLevels = [100, 75, 50, 25]; // %
   lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
-  decoded.msgType = (status & 0x01) ? "alarm" : "normal";
+  decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";
 
   // --- Emit Results ---
   emit("sample", { data: lifecycle, topic: "lifecycle" });

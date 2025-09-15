@@ -34,7 +34,7 @@ describe("Transmitter 600-038", () => {
       const data = {
         data: {
           port: 1,
-          payloadHex: "0000AA0A0D12000000000000000000000A00000000",
+          payloadHex: "0000AA0A0D1200000000000000000000000A00000000",
         },
       };
 
@@ -62,7 +62,7 @@ describe("Transmitter 600-038", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.pulseOc, 10);
-        assert.equal(value.data.msgType, "normal");
+        assert.equal(value.data.msgType, "NORMAL");
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

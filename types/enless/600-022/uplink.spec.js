@@ -55,7 +55,12 @@ describe("Transmitter 600-022", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, "100%");
+        assert.equal(value.data.batteryLevel, 100);
+        assert.equal(value.data.id, 119);
+        assert.equal(value.data.type, 5);
+        assert.equal(value.data.seqCounter, 17);
+        assert.equal(value.data.fwVersion, 18);
+
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -67,15 +72,10 @@ describe("Transmitter 600-022", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.id, 119);
-        assert.equal(value.data.type, 5);
-        assert.equal(value.data.seq_counter, 17);
-        assert.equal(value.data.fw_version, 18);
-
         assert.closeTo(value.data.temperature, 22.7, 0.1);
         assert.closeTo(value.data.humidity, 28.7, 0.1);
         assert.equal(value.data.voc, 20);
-        assert.equal(value.data.msg_type, "normal");
+        assert.equal(value.data.msgType, "NORMAL");
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -87,9 +87,9 @@ describe("Transmitter 600-022", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "alarm");
-        assert.equal(value.data.vocLow, true);
+        assert.equal(value.data.vocLow, false);
         assert.equal(value.data.vocHigh, false);
-        assert.equal(value.data.humidityLow, true);
+        assert.equal(value.data.humidityLow, false);
         assert.equal(value.data.humidityHigh, false);
         assert.equal(value.data.temperatureLow, false);
         assert.equal(value.data.temperatureHigh, false);

@@ -6,12 +6,12 @@
   "topic": "default",
   "title": "Default",
   "properties": {
-    "window_count": {
+    "windowCount": {
       "type": "integer",
       "title": "Window Count",
       "description": "Number of window openings detected"
     },
-    "window_opened": {
+    "windowOpened": {
       "type": "boolean",
       "title": "Window Opened",
       "description": "Indicates if the window is currently opened"
@@ -21,12 +21,21 @@
       "title": "Report by Exception",
       "description": "Indicates if RBE mode is active"
     },
-    "msg_type": {
+    "msgType": {
       "type": "string",
       "title": "Message Type",
-      "description": "Type of message (normal or alarm)",
-      "enum": ["normal", "alarm"]
+      "description": "Type of message (NORMAL or alarm)",
+      "enum": [
+        "NORMAL",
+        "ALARM"
+      ],
+      "hideFromKpis": true
     }
   },
-  "required": ["window_count", "window_opened", "rbe", "msg_type"]
+  "required": [
+    "windowCount",
+    "windowOpened",
+    "rbe",
+    "msgType"
+  ]
 }

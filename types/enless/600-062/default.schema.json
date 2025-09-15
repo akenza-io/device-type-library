@@ -22,11 +22,14 @@
       "title": "Luminosity",
       "description": "Luminosity level in raw units"
     },
-    "msg_type": {
+    "msgType": {
       "type": "string",
-      "enum": ["normal", "alarm"],
+      "enum": [
+        "NORMAL",
+        "ALARM"
+      ],
       "title": "Message Type",
-      "description": "Indicates whether the message is normal or an alarm"
+      "description": "Indicates whether the message is NORMAL or an alarm"
     },
     "rbe": {
       "type": "boolean",
@@ -44,7 +47,7 @@
     "humidity",
     "pirCount",
     "luminosity",
-    "msg_type",
+    "msgType",
     "rbe",
     "movementDetected"
   ]

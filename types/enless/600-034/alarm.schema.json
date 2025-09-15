@@ -27,5 +27,10 @@
       "description": "Indicates if the temperature is above the threshold"
     }
   },
-  "required": ["humidityLow", "humidityHigh", "temperatureLow", "temperatureHigh"]
+  "required": [
+    "humidityLow",
+    "humidityHigh",
+    "temperatureLow",
+    "temperatureHigh"
+  ]
 }

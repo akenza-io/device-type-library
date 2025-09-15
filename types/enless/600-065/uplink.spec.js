@@ -45,9 +45,9 @@ describe("Transmitter 600-065", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.id, 55);
         assert.equal(value.data.type, 38);
-        assert.equal(value.data.seq_counter, 3);
-        assert.equal(value.data.fw_version, 2);
-        assert.equal(value.data.batteryLevel, "50%"); // bits 3-2 → 10
+        assert.equal(value.data.seqCounter, 3);
+        assert.equal(value.data.fwVersion, 2);
+        assert.equal(value.data.batteryLevel, 100); // bits 3-2 → 10
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -57,10 +57,10 @@ describe("Transmitter 600-065", () => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "default");
 
-        assert.equal(value.data.window_count, 7);
-        assert.equal(value.data.window_opened, true);
+        assert.equal(value.data.windowCount, 7);
+        assert.equal(value.data.windowOpened, false);
         assert.equal(value.data.rbe, false);
-        assert.equal(value.data.msg_type, "normal");
+        assert.equal(value.data.msgType, "NORMAL");
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

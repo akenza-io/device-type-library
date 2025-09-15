@@ -61,7 +61,7 @@ function consume(event) {
   decoded.pirCount = readUInt16BE(bytes.slice(16, 18));
   decoded.luminosity = readUInt32BE(bytes.slice(22, 26));
 
-  decoded.msg_type = (status & 0x01) ? "alarm" : "normal";
+  decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";
   decoded.rbe = Boolean((status >> 9) & 0x01);               // Bit 9
   decoded.movementDetected = Boolean((status >> 5) & 0x01);  // Bit 5
 

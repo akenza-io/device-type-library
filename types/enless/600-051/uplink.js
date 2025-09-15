@@ -33,6 +33,7 @@ function consume(event) {
   const lifecycle = {};
   const decoded = {};
   const alarm = {};
+  const datalog = {};
 
   if (len === 30) {
     // === Classic Frame ===
@@ -59,7 +60,7 @@ function consume(event) {
     const batteryLevels = [100, 75, 50, 25]; // percent
     lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
-    decoded.msgType = (status & 0x01) ? "alarm" : "normal";
+    decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";
     decoded.rbe = Boolean((status >> 9) & 0x01);
 
   } else if (len === 34) {
@@ -71,13 +72,14 @@ function consume(event) {
     lifecycle.seqCounter = bytes[4];
     lifecycle.fwVersion = bytes[5] & 0x3F;
 
+    datalog.tempeartureDatalog = [];
+    datalog.humidityDatalog = [];
+
     // --- Default (history T°/H%) ---
     for (let i = 0; i < 12; i++) {
       const offset = 6 + i * 2;
-      const temp = bytes[offset];
-      const hum = bytes[offset + 1];
-      decoded[`temperature_t-${i * 5}`] = temp;
-      decoded[`humidity_t-${i * 5}`] = hum;
+      datalog.tempeartureDatalog.push(bytes[offset]);
+      datalog.humidityDatalog.push(bytes[offset + 1]);
     }
 
     const alarmStatus = readUInt16LE(bytes.slice(30, 32));
@@ -92,8 +94,10 @@ function consume(event) {
     const batteryLevels = [100, 75, 50, 25];
     lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
-    decoded.msgType = (status & 0x01) ? "alarm" : "normal";
+    decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";
     decoded.rbe = Boolean((status >> 9) & 0x01);
+
+    emit("sample", { data: datalog, topic: "datalog" });
 
   } else {
     throw new Error(`Unsupported payload length: ${len} bytes. Expected 30 or 34.`);

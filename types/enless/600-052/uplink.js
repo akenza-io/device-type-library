@@ -54,7 +54,7 @@ function consume(event) {
   decoded.temperature = readInt16BE(bytes.slice(6, 8)) / 10;
   decoded.humidity = readUInt16BE(bytes.slice(10, 12)) / 10;
 
-  decoded.msg_type = (status & 0x01) ? "alarm" : "normal";
+  decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";
   decoded.rbe = Boolean((status >> 9) & 0x01);
 
   emit("sample", { data: decoded, topic: "default" });

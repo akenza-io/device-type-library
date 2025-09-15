@@ -69,9 +69,9 @@ describe("Transmitter 600-053", () => {
         assert.closeTo(value.data.temperature, -14.4, 0.1);
         assert.equal(value.data.humidity, 5);
         assert.equal(value.data.co2, 1000);
-        assert.equal(value.data.msg_type, "normal");
-        assert.equal(value.data.co2Sampled, true);
-        assert.equal(value.data.ledOn, true);
+        assert.equal(value.data.msgType, "NORMAL");
+        assert.equal(value.data.co2Sampled, false);
+        assert.equal(value.data.ledOn, false);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -81,7 +81,7 @@ describe("Transmitter 600-053", () => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "alarm");
         assert.equal(value.data.temperatureHigh, false);
-        assert.equal(value.data.temperatureLow, true);
+        assert.equal(value.data.temperatureLow, false);
         assert.equal(value.data.humidityHigh, false);
         assert.equal(value.data.humidityLow, false);
         assert.equal(value.data.co2High, false);

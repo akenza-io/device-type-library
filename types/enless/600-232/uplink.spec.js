@@ -59,7 +59,7 @@ describe("Transmitter 600-232", () => {
         assert.equal(value.data.type, 12);
         assert.equal(value.data.seqCounter, 10);
         assert.equal(value.data.fwVersion, 18);
-        assert.equal(value.data.batteryLevel, "100%");
+        assert.equal(value.data.batteryLevel, 100);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -71,9 +71,9 @@ describe("Transmitter 600-232", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.closeTo(value.data.temperature_1, 20.6, 0.1);
-        assert.closeTo(value.data.temperature_2, 20.2, 0.1);
-        assert.equal(value.data.msg_type, "normal");
+        assert.closeTo(value.data.temperature1, 20.6, 0.1);
+        assert.closeTo(value.data.temperature2, 20.2, 0.1);
+        assert.equal(value.data.msgType, "NORMAL");
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -86,7 +86,7 @@ describe("Transmitter 600-232", () => {
 
         assert.equal(value.topic, "alarm");
         assert.equal(value.data.temperature1Low, false);
-        assert.equal(value.data.temperature1High, true);
+        assert.equal(value.data.temperature1High, false);
         assert.equal(value.data.temperature2Low, false);
         assert.equal(value.data.temperature2High, false);
 

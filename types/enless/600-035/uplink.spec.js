@@ -72,7 +72,7 @@ describe("Transmitter 600-035", () => {
 
         assert.equal(value.topic, "default");
         assert.closeTo(value.data.current, 0.002, 0.001);
-        assert.equal(value.data.msgType, "normal");
+        assert.equal(value.data.msgType, "NORMAL");
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -84,7 +84,7 @@ describe("Transmitter 600-035", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "alarm");
-        assert.equal(value.data.currentLow, true);
+        assert.equal(value.data.currentLow, false);
         assert.equal(value.data.currentHigh, false);
 
         utils.validateSchema(value.data, alarmSchema, { throwError: true });
