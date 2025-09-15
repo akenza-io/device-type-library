@@ -28,47 +28,53 @@ function readUInt24BE(bytes) {
 function consume(event) {
   const payload = event.data.payloadHex;
   const bytes = parseHexString(payload);
+
   const decoded = {};
   const lifecycle = {};
+  const alarmStatus = {};
 
   const len = bytes.length;
 
   if (len === 30) {
-    // === Classic Frame ===
+    
 
-    decoded.id = readUInt24BE(bytes.slice(0, 3));
-    decoded.type = bytes[3];
-    decoded.seq_counter = bytes[4];
-    decoded.fw_version = bytes[5] & 0x3F;
+    // Lifecycle infos
+    lifecycle.id = readUInt24BE(bytes.slice(0, 3));
+    lifecycle.type = bytes[3];
+    lifecycle.seqCounter = bytes[4];
+    lifecycle.fwVersion = bytes[5] & 0x3F;
 
+    // Default measures
     decoded.temperature = readInt16BE(bytes.slice(6, 8)) / 10;
     decoded.humidity = readUInt16BE(bytes.slice(10, 12)) / 10;
     decoded.co2 = readUInt16BE(bytes.slice(12, 14)); // ppm
 
+    // Alarm status
     const alarm = readUInt16LE(bytes.slice(26, 28));
-    decoded.alarm_status = {
-      temperature_high: Boolean(alarm & 0x0001),
-      temperature_low: Boolean(alarm & 0x0002),
-      humidity_high: Boolean(alarm & 0x0004),
-      humidity_low: Boolean(alarm & 0x0008),
-      co2_high: Boolean(alarm & 0x0010),
-      co2_low: Boolean(alarm & 0x0020),
-      motion_guard: Boolean(alarm & 0x0100),
-    };
+    alarmStatus.temperatureHigh = Boolean(alarm & 0x0001);
+    alarmStatus.temperatureLow = Boolean(alarm & 0x0002);
+    alarmStatus.humidityHigh = Boolean(alarm & 0x0004);
+    alarmStatus.humidityLow = Boolean(alarm & 0x0008);
+    alarmStatus.co2High = Boolean(alarm & 0x0010);
+    alarmStatus.co2Low = Boolean(alarm & 0x0020);
+    alarmStatus.motionGuard = Boolean(alarm & 0x0100);
 
+    // Status
     const status = readUInt16LE(bytes.slice(28, 30));
     const batteryBits = (status >> 2) & 0x03;
-    const batteryLevels = ["100%", "75%", "50%", "25%"];
-    lifecycle.batteryLevel = batteryLevels[batteryBits] || "unknown";
+    const batteryLevels = [100, 75, 50, 25];
+    lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
     decoded.msg_type = (status & 0x01) ? "alarm" : "normal";
-    decoded.co2_sampled = Boolean((status >> 6) & 0x01);  // Bit 6
-    decoded.led_on = Boolean((status >> 9) & 0x01);       // Bit 9
+    decoded.co2Sampled = Boolean((status >> 6) & 0x01);  // Bit 6
+    decoded.ledOn = Boolean((status >> 9) & 0x01);       // Bit 9
 
   } else {
     throw new Error(`Unsupported payload length: ${len} bytes. Expected 30.`);
   }
 
+  // Emit
   emit("sample", { data: lifecycle, topic: "lifecycle" });
   emit("sample", { data: decoded, topic: "default" });
+  emit("sample", { data: alarmStatus, topic: "alarm" });
 }

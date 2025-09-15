@@ -1,20 +1,32 @@
 {
-  "$id": "https://akenza.io/enless/600-062/default.schema.json",
+  "$id": "https://akenza.io/enless/600-065/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "default",
   "title": "Default",
   "properties": {
-    
-	 "digital_input": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/digitalInput"
+    "window_count": {
+      "type": "integer",
+      "title": "Window Count",
+      "description": "Number of window openings detected"
     },
-	"pulse_input": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput"
+    "window_opened": {
+      "type": "boolean",
+      "title": "Window Opened",
+      "description": "Indicates if the window is currently opened"
+    },
+    "rbe": {
+      "type": "boolean",
+      "title": "Report by Exception",
+      "description": "Indicates if RBE mode is active"
+    },
+    "msg_type": {
+      "type": "string",
+      "title": "Message Type",
+      "description": "Type of message (normal or alarm)",
+      "enum": ["normal", "alarm"]
     }
-	
-    
   },
-  "required": ["Digital Input","Pulse Input"]
+  "required": ["window_count", "window_opened", "rbe", "msg_type"]
 }

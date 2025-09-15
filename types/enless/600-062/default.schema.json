@@ -11,16 +11,41 @@
     },
     "humidity": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
-    }, 
-	"luminosity": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/digitalInput"
     },
-	"movement_detected": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/digitalInput"
+    "pirCount": {
+      "type": "integer",
+      "title": "PIR Count",
+      "description": "Number of PIR detections during the measurement period"
     },
-    "pir_count": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput"
+    "luminosity": {
+      "type": "integer",
+      "title": "Luminosity",
+      "description": "Luminosity level in raw units"
     },
+    "msg_type": {
+      "type": "string",
+      "enum": ["normal", "alarm"],
+      "title": "Message Type",
+      "description": "Indicates whether the message is normal or an alarm"
+    },
+    "rbe": {
+      "type": "boolean",
+      "title": "RBE Enabled",
+      "description": "Indicates if Report By Exception is enabled"
+    },
+    "movementDetected": {
+      "type": "boolean",
+      "title": "Movement Detected",
+      "description": "Indicates if movement was detected"
+    }
   },
-  "required": ["temperature", "humidity","luminosity","presence"]
+  "required": [
+    "temperature",
+    "humidity",
+    "pirCount",
+    "luminosity",
+    "msg_type",
+    "rbe",
+    "movementDetected"
+  ]
 }

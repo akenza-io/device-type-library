@@ -7,8 +7,8 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.01.18",
   "loraDeviceClass": "A",
-  "availableSensors": ["Temperature", "Humidity","CO2"],
-  "outputTopics": ["default", "lifecycle"],
+  "availableSensors": ["Temperature", "Humidity","VOC","CO2"],
+  "outputTopics": ["default", "lifecycle", "alarm"],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

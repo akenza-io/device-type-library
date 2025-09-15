@@ -11,27 +11,17 @@ function readUInt16BE(bytes) {
   return (bytes[0] << 8) + bytes[1];
 }
 
-function readInt16BE(bytes) {
-  const val = readUInt16BE(bytes);
-  return val > 0x7fff ? val - 0x10000 : val;
+function readUInt16LE(bytes) {
+  return bytes[0] + (bytes[1] << 8);
 }
 
 function readUInt24BE(bytes) {
   return (bytes[0] << 16) + (bytes[1] << 8) + bytes[2];
 }
 
-function readUInt32BE(bytes) {
-  return (
-    ((bytes[0] << 24) >>> 0) |
-    ((bytes[1] << 16) >>> 0) |
-    ((bytes[2] << 8) >>> 0) |
-    (bytes[3] >>> 0)
-  ) >>> 0;
-}
-
-
+// --- Main function ---
 function consume(event) {
-  const payload = event.data && event.data.payloadHex;
+  const payload = event.data?.payloadHex;
   if (!payload || typeof payload !== "string") {
     throw new Error("No payloadHex found in event.data");
   }
@@ -62,20 +52,18 @@ function consume(event) {
   decoded.seq_counter = bytes[4];
   decoded.fw_version = bytes[5] & 0x3F;
 
-  // --- Values ---
+  // --- Measurements ---
   decoded.window_count = readUInt16BE(bytes.slice(16, 18));
 
-  // --- States ---
-  const status = readUInt16BE(bytes.slice(28, 30));
-
+  // --- Device status (octets 28–29) ---
+  const status = readUInt16LE(bytes.slice(28, 30));
   const batteryBits = (status >> 2) & 0x03;
   const batteryLevels = ["100%", "75%", "50%", "25%"];
   lifecycle.batteryLevel = batteryLevels[batteryBits] || "unknown";
-  decoded.battery = lifecycle.batteryLevel;
 
   decoded.msg_type = (status & 0x01) ? "alarm" : "normal";
-  decoded.rbe = Boolean((status >> 9) & 0x01);
-  decoded.window_opened = Boolean((status >> 5) & 0x01);
+  decoded.rbe = Boolean((status >> 9) & 0x01);         // Bit 9
+  decoded.window_opened = Boolean((status >> 5) & 0x01); // Bit 5
 
   // --- Emit to Akenza topics ---
   emit("sample", { data: lifecycle, topic: "lifecycle" });

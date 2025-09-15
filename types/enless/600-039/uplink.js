@@ -13,26 +13,31 @@ function readUInt16LE(bytes) {
 }
 
 function readUInt32BE(bytes) {
-  return (bytes[0] * 0x1000000) + (bytes[1] << 16) + (bytes[2] << 8) + bytes[3];
+  return (
+    bytes[0] * 0x1000000 +
+    (bytes[1] << 16) +
+    (bytes[2] << 8) +
+    bytes[3]
+  );
 }
 
 // --- PARSE ALARM STATUS ---
 function parseAlarmStatus(bytes) {
   const alarmStatus = readUInt16LE(bytes);
   return {
-    pulse_ch1: Boolean(alarmStatus & 0x0001),
-    pulse_ch2: Boolean(alarmStatus & 0x0002),
-    pulse_oc:  Boolean(alarmStatus & 0x0004),
+    ch1Alarm: Boolean(alarmStatus & 0x0001),
+    ch2Alarm: Boolean(alarmStatus & 0x0002),
+    ocAlarm:  Boolean(alarmStatus & 0x0004),
   };
 }
 
-// --- PARSE STATES (sans debounce) ---
-function parseState(bytes) {
+// --- PARSE STATES (open/closed) ---
+function parseStates(bytes) {
   const state = readUInt16LE(bytes);
   return {
-    pulse_ch1: (state & 0x0020) ? "closed" : "open",
-    pulse_ch2: (state & 0x0040) ? "closed" : "open",
-    pulse_oc:  (state & 0x0080) ? "closed" : "open"
+    ch1State: (state & 0x0020) ? "closed" : "open",
+    ch2State: (state & 0x0040) ? "closed" : "open",
+    ocState:  (state & 0x0080) ? "closed" : "open"
   };
 }
 
@@ -42,44 +47,43 @@ function consume(event) {
   const bytes = parseHexString(payload);
 
   if (bytes.length !== 22) {
-    throw new Error("Invalid payload length: " + bytes.length + " bytes. Expected 22 bytes (44 hex chars).");
+    throw new Error(
+      "Invalid payload length: " +
+        bytes.length +
+        " bytes. Expected 22 bytes (44 hex chars)."
+    );
   }
 
-  const decoded = {};
   const lifecycle = {};
+  const decoded = {};
+  const alarm = {};
 
-  // ID (3 bytes, hex substring)
-  decoded.id = parseInt(payload.substring(0, 6), 16);
+  // --- Lifecycle ---
+  lifecycle.id = parseInt(payload.substring(0, 6), 16);
+  lifecycle.type = bytes[3];
+  lifecycle.seqCounter = bytes[4];
+  lifecycle.fwVersion = bytes[5] & 0x3f;
 
-  // Type (1 byte)
-  decoded.type = bytes[3];
-
-  // Sequence Counter (1 byte)
-  decoded.seq_counter = bytes[4];
-
-  // Firmware Version (1 byte, last 6 bits)
-  decoded.fw_version = bytes[5] & 0x3F;
-
-  // Pulse counters (4 bytes each, UInt32 BE) - avec suffixe 'counter'
-  decoded.pulse_ch1_counter = readUInt32BE(bytes.slice(6, 10));
-  decoded.pulse_ch2_counter = readUInt32BE(bytes.slice(10, 14));
-  decoded.pulse_oc_counter = readUInt32BE(bytes.slice(14, 18));
-
-  // Alarm status (2 bytes LE)
-  decoded.alarm_status = parseAlarmStatus(bytes.slice(18, 20));
-
-  // States (2 bytes LE) - sans debounce
-  decoded.states = parseState(bytes.slice(20, 22));
-
-  // Battery & Msg Type (bits 3-2 battery, bit 0 msg_type)
   const status = readUInt16LE(bytes.slice(20, 22));
   const batteryBits = (status >> 2) & 0x03;
-  const batteryLevels = ["100%", "75%", "50%", "25%"];
-  lifecycle.batteryLevel = batteryLevels[batteryBits] || "unknown";
+  const batteryLevels = [100, 75, 50, 25];
+  lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
-  decoded.msg_type = (status & 0x01) ? "alarm" : "normal";
+  // --- Default (counters + states + msg type) ---
+  decoded.ch1StateCounter = readUInt32BE(bytes.slice(6, 10));
+  decoded.ch2StateCounter = readUInt32BE(bytes.slice(10, 14));
+  decoded.ocStateCounter  = readUInt32BE(bytes.slice(14, 18));
 
-  // Emit
+  decoded.msgType = status & 0x01 ? "alarm" : "normal";
+
+  // États des entrées
+  Object.assign(decoded, parseStates(bytes.slice(20, 22)));
+
+  // --- Alarm Status ---
+  Object.assign(alarm, parseAlarmStatus(bytes.slice(18, 20)));
+
+  // --- Emit ---
   emit("sample", { data: lifecycle, topic: "lifecycle" });
   emit("sample", { data: decoded, topic: "default" });
+  emit("sample", { data: alarm, topic: "alarm" });
 }

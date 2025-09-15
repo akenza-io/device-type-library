@@ -1,0 +1,21 @@
+{
+  "$id": "https://akenza.io/enless/600-035/alarm.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "alarm",
+  "title": "Alarm Status",
+  "properties": {
+    "currentLow": {
+      "type": "boolean",
+      "title": "Current Low Alarm",
+      "description": "Indicates if the current is below the threshold"
+    },
+    "currentHigh": {
+      "type": "boolean",
+      "title": "Current High Alarm",
+      "description": "Indicates if the current is above the threshold"
+    }
+  },
+  "required": ["currentLow", "currentHigh"]
+}

@@ -7,13 +7,18 @@ function parseHexString(str) {
   return result;
 }
 
-// --- INT/UINT HELPERS ---
+// --- READ HELPERS ---
 function readUInt16LE(bytes) {
   return bytes[0] + (bytes[1] << 8);
 }
 
 function readUInt32BE(bytes) {
-  return (bytes[0] * 0x1000000) + (bytes[1] << 16) + (bytes[2] << 8) + bytes[3];
+  return (
+    (bytes[0] * 0x1000000) +
+    (bytes[1] << 16) +
+    (bytes[2] << 8) +
+    bytes[3]
+  );
 }
 
 // --- MAIN FUNCTION ---
@@ -22,40 +27,40 @@ function consume(event) {
   const bytes = parseHexString(payload);
 
   if (bytes.length !== 22) {
-    throw new Error("Invalid payload length: " + bytes.length + " bytes. Expected 22 bytes (44 hex chars).");
+    throw new Error(
+      "Invalid payload length: " +
+        bytes.length +
+        " bytes, expected 22 bytes (44 hex chars)."
+    );
   }
 
-  const decoded = {};
   const lifecycle = {};
+  const decoded = {};
 
-  // Transmitter ID (3 bytes)
-  decoded.id = parseInt(payload.substring(0, 6), 16);
+  // --- ID (3 bytes) ---
+  lifecycle.id = parseInt(payload.substring(0, 6), 16);
 
-  // Type (1 byte)
-  decoded.type = bytes[3];
+  // --- Type ---
+  lifecycle.type = bytes[3];
 
-  // Sequence counter (1 byte)
-  decoded.seq_counter = bytes[4];
+  // --- Sequence Counter ---
+  lifecycle.seqCounter = bytes[4];
 
-  // Firmware version (1 byte, last 6 bits)
-  decoded.fw_version = bytes[5] & 0x3F;
+  // --- Firmware Version ---
+  lifecycle.fwVersion = bytes[5] & 0x3F;
 
+  // --- Pulse counter OC ---
+  decoded.pulseOc = readUInt32BE(bytes.slice(14, 18));
 
-  // pulse_oc (bytes 14–17)
-  decoded.pulse_oc = readUInt32BE(bytes.slice(14, 18));
-
-  // Status (bytes 20–21)
+  // --- Status: Battery & Msg Type (bytes 20-21) ---
   const status = readUInt16LE(bytes.slice(20, 22));
-
-  // Battery Level (bits 3–2)
   const batteryBits = (status >> 2) & 0x03;
-  const batteryLevels = ["100%", "75%", "50%", "25%"];
-  lifecycle.batteryLevel = batteryLevels[batteryBits] || "unknown";
+  const batteryLevels = [100, 75, 50, 25]; // %
+  lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
-  // Msg Type (bit 0)
-  decoded.msg_type = (status & 0x01) ? "alarm" : "normal";
+  decoded.msgType = (status & 0x01) ? "alarm" : "normal";
 
-  // Emit
+  // --- Emit results ---
   emit("sample", { data: lifecycle, topic: "lifecycle" });
   emit("sample", { data: decoded, topic: "default" });
 }

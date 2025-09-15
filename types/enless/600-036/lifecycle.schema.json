@@ -6,9 +6,33 @@
   "topic": "lifecycle",
   "title": "Lifecycle",
   "properties": {
+    "id": {
+      "type": "integer",
+      "title": "Transmitter ID",
+      "description": "Unique identifier of the device", 
+	  "hideFromKpis": true
+    },
+    "type": {
+      "type": "integer",
+      "title": "Device Type",
+      "description": "8 = Tx Pulse", 
+	  "hideFromKpis": true
+    },
+    "seqCounter": {
+      "type": "integer",
+      "title": "Sequence Counter",
+      "description": "Frame sequence counter", 
+	  "hideFromKpis": true
+    },
+    "fwVersion": {
+      "type": "integer",
+      "title": "Firmware Version",
+      "description": "Firmware version encoded on 6 bits", 
+	  "hideFromKpis": true
+    },
     "batteryLevel": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
     }
   },
-  "required": ["batteryLevel"]
+  "required": ["id", "type", "seqCounter", "fwVersion", "batteryLevel"]
 }

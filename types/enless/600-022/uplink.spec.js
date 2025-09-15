@@ -1,0 +1,103 @@
+const chai = require("chai");
+const rewire = require("rewire");
+const utils = require("test-utils");
+
+const { assert } = chai;
+
+describe("Transmitter 600-022", () => {
+  let defaultSchema = null;
+  let lifecycleSchema = null;
+  let alarmSchema = null;
+  let consume = null;
+
+  before((done) => {
+    const script = rewire("./uplink.js");
+    consume = utils.init(script);
+    utils
+      .loadSchema(`${__dirname}/default.schema.json`)
+      .then((parsedSchema) => {
+        defaultSchema = parsedSchema;
+        done();
+      });
+  });
+
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+      .then((parsedSchema) => {
+        lifecycleSchema = parsedSchema;
+        done();
+      });
+  });
+
+  before((done) => {
+    utils
+      .loadSchema(`${__dirname}/alarm.schema.json`)
+      .then((parsedSchema) => {
+        alarmSchema = parsedSchema;
+        done();
+      });
+  });
+
+  describe("consume()", () => {
+    it("should decode the 600-022 standard payload", () => {
+      const data = {
+        data: {
+          port: 1,
+          payloadHex: "00007705111200E3011F0014000000280000",
+        },
+      };
+
+      // --- Lifecycle
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batteryLevel, "100%");
+
+        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      // --- Default (environmental values)
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.id, 119);
+        assert.equal(value.data.type, 5);
+        assert.equal(value.data.seq_counter, 17);
+        assert.equal(value.data.fw_version, 18);
+
+        assert.closeTo(value.data.temperature, 22.7, 0.1);
+        assert.closeTo(value.data.humidity, 28.7, 0.1);
+        assert.equal(value.data.voc, 20);
+        assert.equal(value.data.msg_type, "normal");
+
+        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+      });
+
+      // --- Alarm
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "alarm");
+        assert.equal(value.data.vocLow, true);
+        assert.equal(value.data.vocHigh, false);
+        assert.equal(value.data.humidityLow, true);
+        assert.equal(value.data.humidityHigh, false);
+        assert.equal(value.data.temperatureLow, false);
+        assert.equal(value.data.temperatureHigh, false);
+
+        utils.validateSchema(value.data, alarmSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+  });
+});

@@ -7,12 +7,26 @@
   "title": "Default",
   "properties": {
     "temperature": {
+      "title": "Temperature",
+      "description": "Current measured temperature",
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
     "humidity": {
+      "title": "Humidity",
+      "description": "Current measured relative humidity",
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+    },
+    "msgType": {
+      "type": "string",
+      "enum": ["normal", "alarm"],
+      "title": "Message Type",
+      "description": "Indicates whether the message was triggered by normal operation or an alarm"
+    },
+    "rbe": {
+      "type": "boolean",
+      "title": "RBE (Report By Exception)",
+      "description": "Indicates if the frame was triggered by a change in measurement (report by exception)"
     }
-    
   },
-  "required": ["temperature", "humidity"]
+  "required": ["temperature", "humidity", "msgType", "rbe"]
 }

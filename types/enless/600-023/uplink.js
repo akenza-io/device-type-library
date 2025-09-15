@@ -32,18 +32,19 @@ function consume(event) {
 
   const decoded = {};
   const lifecycle = {};
+  const alarm = {};
 
   // --- ID (3 bytes → décimal) ---
-  decoded.id = parseInt(payload.substring(0, 6), 16);
+  lifecycle.id = parseInt(payload.substring(0, 6), 16);
 
   // --- Type ---
-  decoded.type = bytes[3];
+  lifecycle.type = bytes[3];
 
   // --- Sequence Counter ---
-  decoded.seq_counter = bytes[4];
+  lifecycle.seqCounter = bytes[4];
 
   // --- Firmware Version (bits 5-0) ---
-  decoded.fw_version = bytes[5] & 0x3F;
+  lifecycle.fwVersion = bytes[5] & 0x3F;
 
   // --- Temperature (°C, Int16BE / 10) ---
   decoded.temperature = readInt16BE(bytes.slice(6, 8)) / 10;
@@ -57,29 +58,27 @@ function consume(event) {
   // --- CO2 (ppm, UInt16BE) ---
   decoded.co2 = readUInt16BE(bytes.slice(12, 14));
 
-  // --- Alarm Status (bits 0–7) – Little Endian ---
+  // --- Alarm Status (Little Endian) ---
   const alarmStatus = readUInt16LE(bytes.slice(14, 16));
-  decoded.alarm_status = {
-    humidity_low: Boolean(aalarmStatus & 0x0008),
-	humidity_high: Boolean(alarmStatus & 0x0004),
-	temperature_low: Boolean(alarmStatus & 0x0002),
-	temperature_high: Boolean(alarmStatus & 0x0001),
-    voc_high: Boolean(alarmStatus & 0x0010),
-    voc_low: Boolean(alarmStatus & 0x0020),
-    co2_high: Boolean(alarmStatus & 0x0040),
-    co2_low: Boolean(alarmStatus & 0x0080)
-  };
+  alarm.humidityLow = Boolean(alarmStatus & 0x0008);
+  alarm.humidityHigh = Boolean(alarmStatus & 0x0004);
+  alarm.temperatureLow = Boolean(alarmStatus & 0x0002);
+  alarm.temperatureHigh = Boolean(alarmStatus & 0x0001);
+  alarm.vocHigh = Boolean(alarmStatus & 0x0010);
+  alarm.vocLow = Boolean(alarmStatus & 0x0020);
+  alarm.co2High = Boolean(alarmStatus & 0x0040);
+  alarm.co2Low = Boolean(alarmStatus & 0x0080);
 
-  // --- Status: Battery & Msg Type – Little Endian ---
+  // --- Status: Battery & Msg Type (Little Endian) ---
   const status = readUInt16LE(bytes.slice(16, 18));
   const batteryBits = (status >> 2) & 0x03;
-  const batteryLevels = ["100%", "75%", "50%", "25%"];
-  lifecycle.batteryLevel = batteryLevels[batteryBits] || "unknown";
+  const batteryLevels = [100, 75, 50, 25]; // in percent
+  lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
-  // Message Type: bit 0
-  decoded.msg_type = (status & 0x01) ? "alarm" : "normal";
+  decoded.msgType = (status & 0x01) ? "alarm" : "normal";
 
   // --- Emit Results ---
   emit("sample", { data: lifecycle, topic: "lifecycle" });
   emit("sample", { data: decoded, topic: "default" });
+  emit("sample", { data: alarm, topic: "alarm" });
 }

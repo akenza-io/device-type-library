@@ -6,10 +6,18 @@
   "topic": "default",
   "title": "Default",
   "properties": {
-    "pulse_input": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput"
+    "pulseOc": {
+      "type": "integer",
+      "title": "Pulse Open Collector",
+      "description": "Total number of pulses counted on the open collector input",
+	  "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput"
+    },
+    "msgType": {
+      "type": "string",
+      "enum": ["normal", "alarm"],
+      "title": "Message Type",
+      "description": "Indicates whether the message is normal or alarm"
     }
-    
   },
-  "required": ["Pulse Input"]
+  "required": ["pulseOc", "msgType"]
 }

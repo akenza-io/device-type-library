@@ -33,62 +33,50 @@ function readUInt32BE(bytes) {
   ) >>> 0; // force unsigned
 }
 
-function readUInt64BE(bytes) {
-  const high = readUInt32BE(bytes.slice(0, 4));
-  const low = readUInt32BE(bytes.slice(4, 8));
-  return (BigInt(high) << 32n) + BigInt(low);
-}
-
 // --- Main function ---
 function consume(event) {
   const payload = event.data.payloadHex;
   const bytes = parseHexString(payload);
-  const decoded = {};
-  const lifecycle = {};
 
-  const len = bytes.length;
-
-  if (len !== 30) {
-    throw new Error(`Unsupported payload length: ${len} bytes. Expected 30.`);
+  if (bytes.length !== 30) {
+    throw new Error(`Unsupported payload length: ${bytes.length} bytes. Expected 30.`);
   }
 
-  // --- Identification ---
-  decoded.id = readUInt24BE(bytes.slice(0, 3));
-  decoded.type = bytes[3];
-  decoded.seq_counter = bytes[4];
-  decoded.fw_version = bytes[5] & 0x3F;
+  // --- Lifecycle ---
+  const lifecycle = {};
+  lifecycle.id = readUInt24BE(bytes.slice(0, 3));
+  lifecycle.type = bytes[3];
+  lifecycle.seqCounter = bytes[4];
+  lifecycle.fwVersion = bytes[5] & 0x3F;
 
-  // --- Measurements ---
-  decoded.temperature = readInt16BE(bytes.slice(6, 8)) / 10;
-  decoded.humidity = readUInt16BE(bytes.slice(10, 12)) / 10;
-
-  // PIR Count: octets 33–36 → index 32–35
-  decoded.pir_count = readUInt16BE(bytes.slice(16, 18));
-
-  // Luminosity: 8 octets à partir de l’index 44
-  decoded.luminosity = readUInt32BE(bytes.slice(22, 26)).toString(); 
-
-  // --- Alarm status ---
-  const alarm = readUInt16LE(bytes.slice(26, 28));
-  decoded.alarm_status = {
-    temperature_high: Boolean(alarm & 0x0001),
-    temperature_low: Boolean(alarm & 0x0002),
-    humidity_high: Boolean(alarm & 0x0004),
-    humidity_low: Boolean(alarm & 0x0008),
-    motion_guard: Boolean(alarm & 0x0100),
-  };
-
-  // --- Device status ---
   const status = readUInt16LE(bytes.slice(28, 30));
   const batteryBits = (status >> 2) & 0x03;
-  const batteryLevels = ["100%", "75%", "50%", "25%"];
-  lifecycle.batteryLevel = batteryLevels[batteryBits] || "unknown";
+  const batteryLevels = [100, 75, 50, 25];
+  lifecycle.batteryLevel = batteryLevels[batteryBits] ?? null;
+
+  // --- Default ---
+  const decoded = {};
+  decoded.temperature = readInt16BE(bytes.slice(6, 8)) / 10;
+  decoded.humidity = readUInt16BE(bytes.slice(10, 12)) / 10;
+  decoded.pirCount = readUInt16BE(bytes.slice(16, 18));
+  decoded.luminosity = readUInt32BE(bytes.slice(22, 26));
 
   decoded.msg_type = (status & 0x01) ? "alarm" : "normal";
-  decoded.rbe = Boolean((status >> 9) & 0x01);                // Bit 9
-  decoded.movement_detected = Boolean((status >> 5) & 0x01);  // Bit 5
+  decoded.rbe = Boolean((status >> 9) & 0x01);               // Bit 9
+  decoded.movementDetected = Boolean((status >> 5) & 0x01);  // Bit 5
 
-  // --- Emit to Akenza topics ---
+  // --- Alarm ---
+  const alarmWord = readUInt16LE(bytes.slice(26, 28));
+  const alarm = {
+    temperatureHigh: Boolean(alarmWord & 0x0001),
+    temperatureLow: Boolean(alarmWord & 0x0002),
+    humidityHigh: Boolean(alarmWord & 0x0004),
+    humidityLow: Boolean(alarmWord & 0x0008),
+    motionGuard: Boolean(alarmWord & 0x0100),
+  };
+
+  // --- Emit ---
   emit("sample", { data: lifecycle, topic: "lifecycle" });
   emit("sample", { data: decoded, topic: "default" });
+  emit("sample", { data: alarm, topic: "alarm" });
 }

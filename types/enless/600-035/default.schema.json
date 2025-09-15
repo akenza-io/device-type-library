@@ -9,8 +9,15 @@
 
     "current": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/milliAmpere"
+    },
+	"msgType": {
+      "type": "string",
+      "title": "Message Type",
+      "description": "Message type emitted by the device",
+      "enum": ["normal", "alarm"], 
+	  "hideFromKpis": true
     }
     
   },
-  "required": ["current"]
+  "required": ["current","msgType"]
 }
