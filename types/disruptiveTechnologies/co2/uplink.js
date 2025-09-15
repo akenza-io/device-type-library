@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return (celsius * 9 / 5) + 32;
+}
+
 function consume(event) {
   const { eventType } = event.data;
   const sample = {};
@@ -7,6 +11,7 @@ function consume(event) {
   if (eventType === "humidity") {
     sample.humidity = event.data.humidity.relativeHumidity;
     sample.temperature = event.data.humidity.temperature;
+    sample.temperatureF = cToF(sample.temperature);
     emit("sample", { data: sample, topic: "default" });
   } else if (eventType === "co2") {
     emit("sample", { data: { co2: event.data.co2.ppm }, topic: "co2" });
