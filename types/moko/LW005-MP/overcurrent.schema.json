@@ -1,0 +1,31 @@
+{
+  "$id": "https://akenza.io/moko/lw005-mp/overcurrent.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "overcurrent",
+  "title": "Overcurrent",
+  "properties": {
+    "overcurrent": {
+      "title": "Overcurrent",
+      "description": "Equals true if an overcurrent has been detected",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "current": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere",
+      "hideFromKpis": true
+    },
+    "overcurrentThreshold": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere",
+      "title": "Overcurrent Threshold",
+      "description": "Overcurrent Threshold",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "overcurrent",
+    "current",
+    "overcurrentThreshold"
+  ]
+}

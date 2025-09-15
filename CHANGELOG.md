@@ -2,13 +2,38 @@
 
 All notable changes to this project will be documented in this file.
 
----
+# [1.73.0] - 2025-09-09
+
+### Added
+
+- Termokon - MCS-LRW
+
+# [1.72.0] - 2025-09-08
+
+### Added
+
+- Milesight - CT103
+- Thermokon - SAB07
+- Milesight - AM102
+
+# [1.71.0] - 2025-09-03
+
+### Changed
+
+- Fixed tests for meta schemas to not time out when schema is not valid
 
 # [1.70.0] - 2025-08-28
 
 ### Added
 
 - Descriptions for missing meta schema properties.
+
+# [1.69.0] - 2025-08-19
+
+### Added
+
+- MOKO - LW005-MP
+- MOKO - LW007-PIR
 
 # [1.69.0] - 2025-08-19
 

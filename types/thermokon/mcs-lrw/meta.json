@@ -1,0 +1,28 @@
+{
+  "name": "MCS-LRW",
+  "version": "1.0.0",
+  "manufacturer": "Thermokon",
+  "url": "https://www.thermokon.de/direct/en-gb/categories/g-mcs-lorawan",
+  "description": "LoRaWAN® multi compact sensor for condition monitoring of up to 2 windows or doors and measurement of temperature, humidity, motion and brightness.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "Light",
+    "CO2",
+    "VOC",
+    "Pressure",
+    "Differential Pressure",
+    "Volume Flow",
+    "Occupancy",
+    "Motion"
+  ],
+  "outputTopics": [
+    "default",
+    "status",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
