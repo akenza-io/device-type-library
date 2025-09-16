@@ -62,6 +62,7 @@ describe("Digital Technologies CO2 Sensor Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 22.45);
+        assert.equal(value.data.temperatureF, 72.41);
         assert.equal(value.data.humidity, 17);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
