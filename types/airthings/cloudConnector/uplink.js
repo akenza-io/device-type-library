@@ -105,7 +105,7 @@ function consume(event) {
   if (data.occupants !== undefined) {
     if (data.occupants > 0) {
       occupancy.occupied = true;
-      occupancy.occupancy = 2;
+      occupancy.occupancy = 1;
     } else {
       occupancy.occupied = false;
       occupancy.occupancy = 0;
