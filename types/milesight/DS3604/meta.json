@@ -7,8 +7,18 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": ["Display"],
-  "outputTopics": ["default", "lifecycle"],
+  "availableSensors": [
+    "Display"
+  ],
+  "outputTopics": [
+    "template",
+    "lifecycle",
+    "system",
+    "button",
+    "template_configuration",
+    "update",
+    "downlink_response"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

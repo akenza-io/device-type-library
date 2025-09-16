@@ -1,0 +1,41 @@
+{
+  "$id": "https://akenza.io/enless/600-065/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "windowCount": {
+      "type": "integer",
+      "title": "Window Count",
+      "description": "Number of window openings detected"
+    },
+    "windowOpened": {
+      "type": "boolean",
+      "title": "Window Opened",
+      "description": "Indicates if the window is currently opened"
+    },
+    "rbe": {
+      "type": "boolean",
+      "title": "Report by Exception",
+      "description": "Indicates if RBE mode is active"
+    },
+    "msgType": {
+      "type": "string",
+      "title": "Message Type",
+      "description": "Type of message (NORMAL or alarm)",
+      "enum": [
+        "NORMAL",
+        "ALARM"
+      ],
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "windowCount",
+    "windowOpened",
+    "rbe",
+    "msgType"
+  ]
+}

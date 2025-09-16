@@ -125,6 +125,7 @@ describe("Airthings Cloud Connector Uplink", () => {
 
         assert.equal(value.topic, "environment");
         assert.equal(value.data.temperature, 20.8);
+        assert.equal(value.data.temperatureF, 69.44);
         assert.equal(value.data.pressure, 990.1);
         assert.equal(value.data.humidity, 20);
         assert.equal(value.data.co2, 612);
@@ -163,6 +164,7 @@ describe("Airthings Cloud Connector Uplink", () => {
         assert.typeOf(value.environment, "object");
 
         assert.equal(value.environment.temperature, 20.8);
+        assert.equal(value.environment.temperatureF, 69.44);
         assert.equal(value.environment.pressure, 990.1);
         assert.equal(value.environment.humidity, 20);
         assert.equal(value.environment.co2, 612);
@@ -208,6 +210,7 @@ describe("Airthings Cloud Connector Uplink", () => {
 
         assert.equal(value.topic, "environment");
         assert.equal(value.data.temperature, 10); // Testing if the new datapoint gets prioritiesed
+        assert.equal(value.data.temperatureF, 50);
         assert.equal(value.data.pressure, 990.1);
         assert.equal(value.data.humidity, 20);
         assert.equal(value.data.co2, 612);
@@ -232,6 +235,7 @@ describe("Airthings Cloud Connector Uplink", () => {
         assert.typeOf(value.environment, "object");
 
         assert.equal(value.environment.temperature, 10);
+        assert.equal(value.environment.temperatureF, 50);
         assert.equal(value.environment.pressure, 990.1);
         assert.equal(value.environment.humidity, 20);
         assert.equal(value.environment.co2, 612);
@@ -480,6 +484,7 @@ describe("Airthings Cloud Connector Uplink", () => {
         assert.equal(value.topic, "airly");
         assert.equal(value.data.humidity, 73);
         assert.equal(value.data.temperature, -2.5);
+        assert.equal(value.data.temperatureF, 27.5);
         assert.equal(value.data.pressure, 1002.8);
 
         assert.equal(value.data.pm1, 13);
@@ -502,6 +507,7 @@ describe("Airthings Cloud Connector Uplink", () => {
 
         assert.equal(value.airly.humidity, 73);
         assert.equal(value.airly.temperature, -2.5);
+        assert.equal(value.airly.temperatureF, 27.5);
         assert.equal(value.airly.pressure, 1002.8);
 
         assert.equal(value.airly.pm1, 13);
@@ -560,6 +566,7 @@ describe("Airthings Cloud Connector Uplink", () => {
         assert.equal(value.data.soundLevelA, 52);
         assert.equal(value.data.pressure, 1011.2);
         assert.equal(value.data.temperature, 23.5);
+        assert.equal(value.data.temperatureF, 74.3);
         assert.equal(value.data.pm1, 5);
         assert.equal(value.data.pm2_5, 5);
         assert.equal(value.data.pm10, 5);
@@ -598,6 +605,7 @@ describe("Airthings Cloud Connector Uplink", () => {
         assert.equal(value.environment.soundLevelA, 52);
         assert.equal(value.environment.pressure, 1011.2);
         assert.equal(value.environment.temperature, 23.5);
+        assert.equal(value.environment.temperatureF, 74.3);
         assert.equal(value.environment.pm1, 5);
         assert.equal(value.environment.pm2_5, 5);
         assert.equal(value.environment.pm10, 5);

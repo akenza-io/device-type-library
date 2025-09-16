@@ -2,7 +2,30 @@
 
 All notable changes to this project will be documented in this file.
 
----
+
+# [1.73.0] - 2025-09-15
+
+### Added
+
+- Dragino - SE0X_LB
+- Enlink - IAQ
+
+### Changed
+
+- DS3604 downlink and config additions
+- Added Fahrenheit emit to airthings & disruptive devices
+
+### Added
+
+- Termokon - MCS-LRW
+
+# [1.72.0] - 2025-09-08
+
+### Added
+
+- Milesight - CT103
+- Thermokon - SAB07
+- Milesight - AM102
 
 # [1.71.0] - 2025-09-03
 

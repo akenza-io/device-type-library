@@ -1,0 +1,28 @@
+{
+  "$id": "https://akenza.io/milesight/DS3604/button.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "button",
+  "title": "Button",
+  "properties": {
+    "button": {
+      "title": "Button",
+      "type": "string",
+      "description": "Describes how the button was pressed",
+      "enum": [
+        "SINGLE_CLICK",
+        "DOUBLE_CLICK",
+        "SHORT_PRESS",
+        "LONG_PRESS"
+      ],
+      "hideFromKpis": true
+    },
+    "numericButton": {
+      "title": "Numeric Button",
+      "type": "integer",
+      "description": "Describes the buttonpresss as a number",
+      "hideFromKpis": true
+    }
+  }
+}
