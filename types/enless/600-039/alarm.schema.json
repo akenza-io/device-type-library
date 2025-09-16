@@ -1,0 +1,30 @@
+{
+  "$id": "https://akenza.io/enless/600-039/alarm.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "alarm",
+  "title": "Alarm Status",
+  "properties": {
+    "ch1Alarm": {
+      "type": "boolean",
+      "title": "Channel 1 Alarm",
+      "description": "Indicates if an alarm following a state change is active on channel 1"
+    },
+    "ch2Alarm": {
+      "type": "boolean",
+      "title": "Channel 2 Alarm",
+      "description": "Indicates if an alarm following a state change is active on channel 2"
+    },
+    "ocAlarm": {
+      "type": "boolean",
+      "title": "Open Collector Alarm",
+      "description": "Indicates if an alarm following a state change is active on the open collector input"
+    }
+  },
+  "required": [
+    "ch1Alarm",
+    "ch2Alarm",
+    "ocAlarm"
+  ]
+}

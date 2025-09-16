@@ -1,0 +1,22 @@
+{
+  "name": "TX T&H MINI 600-050",
+  "version": "1.0.0",
+  "manufacturer": "Enless Wireless",
+  "url": "https://enless-wireless.com/products/eu868-lorawan-mini-temperature-humidity-sensor-copy/",
+  "description": "The LoRaWAN Enless temperature and humidity sensor is specially designed for commercial indoor environments. It monitors the parameters essential to occupant comfort, such as temperature and humidity, ensuring an optimal indoor climate. A versatile sensor Thanks to its design, this LoRaWAN sensor can be easily integrated into various types of building (collective housing, offices, schools, public buildings, cultural sites). This sensor provides precise management of ambient temperature and humidity, helping to improve the energy performance of buildings.Compact, streamlined designThe miniature LoRaWAN temperature and humidity sensor stands out for its ultra-compact size and unobtrusiveness. Powered by a 2/3 AA battery, it ensures reliable measurement of ambient parameters. ",
+  "author": "Akenza AG",
+  "firmwareVersion": "V3.03.18",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Humidity"
+  ],
+  "outputTopics": [
+    "default",
+    "datalog",
+    "lifecycle",
+    "alarm"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
