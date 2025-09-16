@@ -36,11 +36,11 @@
       "type": "string",
       "description": "Status of the tamper-detection magnetic base",
       "enum": [
-        "Magnetic base not detected",
-        "Magnetic base detected",
-        "Product removed from its base immediately",
-        "Installing the product on its base at a moment's notice",
-        "Magnetic base never detected"
+        "NOT_DETECTED",
+        "DETECTED",
+        "PRODUCT_REMOVED_FROM_BASE_IMMEDIATELY",
+        "INSTALLING_PRODUCT_ON_BASE_AT_MOMENT_S_NOTICE",
+        "MAGNETIC_BASE_NEVER_DETECTED"
       ],
       "hideFromKpis": true
     },
@@ -50,9 +50,9 @@
       "description": "Source that triggered the last reconfiguration",
       "enum": [
         "NFC",
-        "Downlink",
-        "Product startup",
-        "Local"
+        "DOWNLINK",
+        "PRODUCT_STARTUP",
+        "LOCAL"
       ],
       "hideFromKpis": true
     },
@@ -61,9 +61,9 @@
       "type": "string",
       "description": "Status of the last reconfiguration attempt",
       "enum": [
-        "Total success",
-        "Partial success",
-        "Total failure"
+        "TOTAL_SUCCESS",
+        "PARTIAL_SUCCESS",
+        "TOTAL_FAILURE"
       ],
       "hideFromKpis": true
     },
@@ -78,8 +78,8 @@
       "type": "string",
       "description": "The status of the NFC interface",
       "enum": [
-        "Discoverable",
-        "Non-discoverable",
+        "DISCOVERABLE",
+        "NON_DISCOVERABLE",
         "RFU"
       ],
       "hideFromKpis": true
@@ -88,6 +88,12 @@
       "title": "D2D network ID",
       "type": "number",
       "description": "Device-to-device interconnection network ID",
+      "hideFromKpis": true
+    },
+    "timeZone": {
+      "title": "Time Zone",
+      "type": "string",
+      "description": "Configured time zone offset from UTC",
       "hideFromKpis": true
     },
     "downlinkFcnt": {

@@ -167,7 +167,7 @@ function consume(event) {
 
       emitIfNotEmpty("alarm", alarm);
       emitIfNotEmpty("lifecycle", lifecycle);
-      emitIfNotEmpty("climate", climate);
+      emitIfNotEmpty("default", climate);
       break;
     }
     case 0x03: { // Daily Air Quality
@@ -216,9 +216,5 @@ function consume(event) {
       break;
     }
     default:
-      emit("log", {
-        error: `Unknown message type: 0x${messageType.toString(16)}`
-      });
-      break;
   }
 }

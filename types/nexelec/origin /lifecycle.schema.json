@@ -11,28 +11,22 @@
       "type": "string",
       "description": "The estimated battery level category",
       "enum": [
-        "High (> 50%)",
-        "Medium (20 - 50%)",
-        "Low (1 - 10%)",
-        "Critical (< 1%)"
+        "HIGH",
+        "MEDIUM",
+        "LOW",
+        "CRITICAL"
       ],
       "hideFromKpis": true
     },
     "batteryVoltage": {
-      "title": "Battery voltage",
-      "unit": "mV",
-      "type": "number",
-      "description": "The measured battery voltage",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt",
       "hideFromKpis": true
     },
     "remainingProductLife": {
       "title": "Remaining product life",
       "unit": "months",
-      "type": [
-        "number",
-        "string"
-      ],
-      "description": "Estimated remaining product life in months. Can be 'End of life' or 'Unknown'.",
+      "type": "number",
+      "description": "Estimated remaining product life in months. 0 indicates end of life",
       "hideFromKpis": true
     },
     "smokeSensorStatus": {
@@ -41,7 +35,7 @@
       "description": "The operational status of the smoke sensor",
       "enum": [
         "OK",
-        "Faulty smoke chamber"
+        "FAULTY"
       ],
       "hideFromKpis": true
     },
@@ -51,7 +45,7 @@
       "description": "The operational status of the temperature and humidity sensor",
       "enum": [
         "OK",
-        "Temperature/humidity sensor faulty"
+        "FAULTY"
       ],
       "hideFromKpis": true
     },
@@ -60,8 +54,8 @@
       "type": "string",
       "description": "Indicates if maintenance has been performed",
       "enum": [
-        "Maintenance has been carried out",
-        "Maintenance has not been performed"
+        "MAINTENANCE_CARRIED_OUT",
+        "MAINTENANCE_NOT_CARRIED_OUT"
       ],
       "hideFromKpis": true
     },

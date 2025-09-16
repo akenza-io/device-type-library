@@ -32,7 +32,7 @@
     },
     "transmissionPeriod": {
       "title": "Transmission Period",
-      "unit": "min",
+      "unit": "minutes",
       "type": "number",
       "description": "Configuration: Period for datalog message transmissions",
       "hideFromKpis": true
@@ -45,7 +45,7 @@
     },
     "samplingPeriod": {
       "title": "Sampling Period",
-      "unit": "min",
+      "unit": "minutes",
       "type": "number",
       "description": "Metadata: Time between individual measurements in the datalog",
       "hideFromKpis": true

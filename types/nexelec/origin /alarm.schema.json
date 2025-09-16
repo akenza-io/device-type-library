@@ -11,9 +11,9 @@
       "type": "string",
       "description": "The current status of the smoke alarm",
       "enum": [
-        "No smoke detected",
-        "Smoke detected",
-        "Repeated alarm"
+        "NO_SMOKE_DETECTED",
+        "SMOKE_DETECTED",
+        "REPEATED_ALARM"
       ],
       "hideFromKpis": false
     },
@@ -22,9 +22,9 @@
       "type": "string",
       "description": "Reason for the alarm being paused or stopped",
       "enum": [
-        "The alarm has stopped because there is no more smoke",
-        "Alarm stopped when main button pressed",
-        "Alarm stopped after all smoke-detecting products were switched off"
+        "NO_MORE_SMOKE",
+        "MAIN_BUTTON_PRESSED",
+        "ALL_PRODUCTS_SWITCHED_OFF"
       ],
       "hideFromKpis": true
     },
@@ -33,9 +33,9 @@
       "type": "string",
       "description": "Indicates if a product test has been performed",
       "enum": [
-        "No product test carried out",
-        "Local product test",
-        "Remote product test"
+        "NO_TESTS",
+        "LOCAL_TEST",
+        "REMOTE_TEST"
       ],
       "hideFromKpis": true
     },
