@@ -57,7 +57,7 @@ describe("Transmitter 600-051", () => {
         data: {
           port: 1,
           payloadHex:
-            "0020041f000b00fe000002080000000000000000000000000000010f020d",
+            "0020041f000b00fe00000208000000000000000000000000000000000000",
         },
       };
 
@@ -90,11 +90,11 @@ describe("Transmitter 600-051", () => {
       utils.expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "alarm");
-        assert.equal(value.data.temperatureHigh, true);
+        assert.equal(value.data.temperatureHigh, false);
         assert.equal(value.data.temperatureLow, false);
         assert.equal(value.data.humidityHigh, false);
         assert.equal(value.data.humidityLow, false);
-        assert.equal(value.data.motionGuard, true);
+        assert.equal(value.data.motionGuard, false);
 
         utils.validateSchema(value.data, alarmSchema, { throwError: true });
       });

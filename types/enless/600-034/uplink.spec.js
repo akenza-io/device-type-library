@@ -44,7 +44,7 @@ describe("Transmitter 600-034", () => {
       const data = {
         data: {
           port: 1,
-          payloadHex: "0000D10E0A1200CA018200010000",
+          payloadHex: "0000D10E0A1200CA018200000000",
         },
       };
 
