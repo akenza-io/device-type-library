@@ -1,232 +1,269 @@
+
+// --- Global Constants and Helpers ---
+
+// Safely emits data only if the object is not empty.
+function emitIfNotEmpty(topic, data, timestamp) {
+  if (data && Object.keys(data).length > 0) {
+    const sample = { data, topic };
+    if (timestamp) {
+      sample.timestamp = timestamp;
+    }
+    emit("sample", sample);
+  }
+}
+
+// Decodes raw temperature values.
+function decodeTemperature(rawValue) {
+  if (rawValue === 1023 || rawValue === 1022) return null;
+  return parseFloat(((rawValue * 0.1) - 30).toFixed(2));
+}
+
+// Decodes raw humidity values.
+function decodeHumidity(rawValue) {
+  if (rawValue === 255) return null;
+  return parseFloat((rawValue * 0.5).toFixed(2));
+}
+
+// --- Field Mappings ---
+const productModels = {
+  0xbd: "ORIGIN+",
+  0xb2: "ORIGIN",
+  0xb3: "GUARD+",
+  0xb4: "GUARD",
+  0xb1: "ORIGIN+",
+};
+const magneticBaseDetectionMap = {
+  0: "NOT_DETECTED",
+  1: "DETECTED",
+  2: "PRODUCT_REMOVED_FROM_BASE_IMMEDIATELY",
+  3: "INSTALLING_PRODUCT_ON_BASE_AT_MOMENT_S_NOTICE",
+  4: "MAGNETIC_BASE_NEVER_DETECTED",
+};
+const batteryLevelMap = {
+  0: 100,
+  1: 50,
+  2: 10,
+  3: 0
+};
+const sensorStatusMap = {
+  0: "OK",
+  1: "FAULTY"
+};
+const reconfigSourceMap = {
+  0: "NFC",
+  1: "DOWNLINK",
+  2: "PRODUCT_STARTUP",
+  5: "LOCAL"
+};
+const reconfigStatusMap = {
+  0: "TOTAL_SUCCESS",
+  1: "PARTIAL_SUCCESS",
+  2: "TOTAL_FAILURE"
+};
+const nfcStatusMap = {
+  0: "DISCOVERABLE",
+  1: "NON_DISCOVERABLE",
+  2: "RFU",
+  3: "RFU"
+};
+const alarmStatusMap = {
+  0: "NO_SMOKE_DETECTED",
+  1: "SMOKE_DETECTED",
+  2: "REPEATED_ALARM"
+};
+const pauseAlarmMap = {
+  0: "NO_MORE_SMOKE",
+  1: "MAIN_BUTTON_PRESSED",
+  2: "ALL_PRODUCTS_SWITCHED_OFF"
+};
+const productTestMap = {
+  0: "NO_TESTS",
+  1: "LOCAL_TEST",
+  2: "REMOTE_TEST"
+};
+const maintenanceMap = {
+  0: "MAINTENANCE_NOT_CARRIED_OUT",
+  1: "MAINTENANCE_CARRIED_OUT"
+};
+
+
+// Handles Product Status messages (0x00).
+function handleProductStatus(payload, productType, timestamp) {
+  if (payload.length < 7) {
+    emit("log", { error: "Invalid payload length for Product Status" });
+    return;
+  }
+  const system = { productType };
+  const lifecycle = {};
+  const statusByte5 = payload[5];
+
+  system.hardwareVersion = payload[2];
+  system.softwareVersion = (payload[3] / 10).toFixed(1);
+  if (payload[4] <= 120) lifecycle.remainingProductLife = payload[4];
+  lifecycle.smokeSensorStatus = sensorStatusMap[(statusByte5 >> 7) & 0x01];
+  lifecycle.tempHumSensorStatus = sensorStatusMap[(statusByte5 >> 6) & 0x01];
+  system.magneticBaseDetection = magneticBaseDetectionMap[(statusByte5 >> 2) & 0x07];
+  lifecycle.batteryLevel = batteryLevelMap[statusByte5 & 0x03];
+  lifecycle.batteryVoltage = (payload[6] * 5) + 2000;
+
+  emitIfNotEmpty("system", system, timestamp);
+  emitIfNotEmpty("lifecycle", lifecycle, timestamp);
+}
+
+// Handles Product Configuration messages (0x01).
+function handleProductConfig(payload, productType, timestamp) {
+  if (payload.length < 11) {
+    emit("log", { error: "Invalid payload length for Product Configuration" });
+    return;
+  }
+  const system = { productType };
+  const datalog = {};
+  const configByte2 = payload[2];
+
+  system.reconfigurationSource = reconfigSourceMap[(configByte2 >> 5) & 0x07];
+  system.reconfigurationStatus = reconfigStatusMap[(configByte2 >> 3) & 0x03];
+  datalog.datalogTemperatureEnabled = ((configByte2 >> 2) & 0x01) === 1;
+  datalog.dailyAirQualityEnabled = ((configByte2 >> 1) & 0x01) === 1;
+  system.delayedJoinRequest = !!((payload[3] >> 7) & 0x01);
+  system.nfcStatus = nfcStatusMap[(payload[3] >> 5) & 0x03];
+  datalog.newMeasurementsPerMessage = ((payload[3] & 0x01) << 5) | (payload[4] >> 3);
+  datalog.transmissionsOfSameData = ((payload[4] & 0x07) << 2) | (payload[5] >> 6);
+  const transmissionPeriodRaw = ((payload[5] & 0x3F) << 2) | (payload[6] >> 6);
+  datalog.transmissionPeriod = transmissionPeriodRaw * 10;
+  system.d2dNetworkId = ((payload[6] & 0x3F) << 11) | (payload[7] << 3) | (payload[8] >> 5);
+  system.downlinkFcnt = (payload[9] << 8) | payload[10];
+
+  emitIfNotEmpty("system", system, timestamp);
+  emitIfNotEmpty("datalog", datalog, timestamp);
+}
+
+// Handles Alarm Status messages (0x02).
+function handleAlarmStatus(payload, productType, timestamp) {
+  if (payload.length < 7) {
+    emit("log", { error: "Invalid payload length for Alarm Status" });
+    return;
+  }
+  emitIfNotEmpty("system", { productType }, timestamp);
+
+  const alarm = {};
+  const lifecycle = {};
+  const climate = {};
+  const statusByte2 = payload[2];
+
+  alarm.alarmStatus = alarmStatusMap[(statusByte2 >> 6) & 0x03];
+  alarm.pauseAlarm = pauseAlarmMap[(statusByte2 >> 4) & 0x03];
+  alarm.productTest = productTestMap[(statusByte2 >> 2) & 0x03];
+  alarm.timeSinceLastProductTest = ((statusByte2 & 0x03) << 6) | (payload[3] >> 2);
+  lifecycle.maintenance = maintenanceMap[(payload[3] >> 1) & 0x01];
+  lifecycle.timeSinceLastMaintenance = ((payload[3] & 0x01) << 7) | (payload[4] >> 1);
+  const tempRaw = ((payload[4] & 0x01) << 9) | (payload[5] << 1) | (payload[6] >> 7);
+  climate.temperature = decodeTemperature(tempRaw);
+
+  emitIfNotEmpty("alarm", alarm, timestamp);
+  emitIfNotEmpty("lifecycle", lifecycle, timestamp);
+  emitIfNotEmpty("default", climate, timestamp);
+}
+
+// Handles Daily Air Quality messages (0x03).
+function handleDailyAirQuality(payload, productType, timestamp) {
+  if (payload.length < 9) {
+    emit("log", { error: "Invalid payload length for Daily Air Quality" });
+    return;
+  }
+  emitIfNotEmpty("system", { productType }, timestamp);
+
+  const climate = {};
+  climate.minTemperature = decodeTemperature((payload[2] << 2) | (payload[3] >> 6));
+  climate.maxTemperature = decodeTemperature(((payload[3] & 0x3f) << 4) | (payload[4] >> 4));
+  climate.averageTemperature = decodeTemperature(((payload[4] & 0x0f) << 6) | (payload[5] >> 2));
+  climate.minHumidity = decodeHumidity(((payload[5] & 0x03) << 6) | (payload[6] >> 2));
+  climate.maxHumidity = decodeHumidity(((payload[6] & 0x03) << 6) | (payload[7] >> 2));
+  climate.averageHumidity = decodeHumidity(((payload[7] & 0x03) << 6) | (payload[8] >> 2));
+
+  emitIfNotEmpty("default", climate, timestamp);
+}
+
+// Handles Periodic Data messages (0x04).
+function handlePeriodicData(payload, productType, timestamp) {
+  if (payload.length < 5) {
+    emit("log", { error: "Invalid payload length for Periodic Data" });
+    return;
+  }
+  emitIfNotEmpty("system", { productType }, timestamp);
+
+  const climate = {};
+  climate.temperature = decodeTemperature((payload[2] << 2) | (payload[3] >> 6));
+  climate.humidity = decodeHumidity(((payload[3] & 0x3f) << 2) | (payload[4] >> 6));
+
+  emitIfNotEmpty("default", climate, timestamp);
+}
+
+// Handles Historical Data messages (0x05).
+function handleHistoricalData(payload, productType, timestamp) {
+  emitIfNotEmpty("system", { productType }, timestamp);
+
+  const datalog = {};
+  datalog.totalMeasurements = payload[2] >> 2;
+  datalog.samplingPeriod = ((payload[2] & 0x03) << 6) | (payload[3] >> 2);
+  datalog.repetitionsInMessage = ((payload[3] & 0x03) << 4) | (payload[4] >> 4);
+  emitIfNotEmpty("datalog", datalog, timestamp);
+
+  const baseTimeMs = new Date(timestamp).getTime();
+  const periodMs = datalog.samplingPeriod * 60 * 1000;
+
+  let bitString = "";
+  for (let i = 0; i < payload.length; i++) {
+    bitString += payload[i].toString(2).padStart(8, '0');
+  }
+
+  for (let i = 0; i < datalog.totalMeasurements; i++) {
+    const startBit = 36 + (i * 10);
+    const endBit = startBit + 10;
+    if (endBit > bitString.length) break;
+
+    const tempBits = bitString.substring(startBit, endBit);
+    const tempRaw = parseInt(tempBits, 2);
+    const temperature = decodeTemperature(tempRaw);
+
+    if (temperature !== null) {
+      const measurementTimeMs = baseTimeMs - (i * periodMs);
+      const measurementTimestamp = new Date(measurementTimeMs).toISOString();
+      emitIfNotEmpty("default", { temperature }, measurementTimestamp);
+    }
+  }
+}
+
+
+/**
+ * Decodes the payload from a nexelec origin device.
+ * @param {object} event - The event object containing the payload and other data.
+ */
 function consume(event) {
   const payload = Hex.hexToBytes(event.data.payloadHex);
   const { port } = event.data;
 
+  // Create a reliable timestamp, falling back to the current time if invalid.
+  let reliableTimestamp = event.time;
+  if (!reliableTimestamp || Number.isNaN(new Date(reliableTimestamp).getTime())) {
+    reliableTimestamp = new Date().toISOString();
+  }
+
+  // Ensure the port is correct.
   if (port !== 56) {
-    emit("log", {
-      error: `Invalid port: ${port}`
-    });
+    emit("log", { error: `Invalid port: ${port}` });
     return;
   }
 
+  const productType = productModels[payload[0]] || "Unknown";
   const messageType = payload[1];
 
-  const productModels = {
-    0xbd: "ORIGIN+",
-    0xb2: "ORIGIN",
-    0xb3: "GUARD+",
-    0xb4: "GUARD",
-  };
-
-  const productType = productModels[payload[0]] || "Unknown";
-
-  function emitIfNotEmpty(topic, data) {
-    if (Object.keys(data).length > 0) {
-      emit("sample", {
-        data,
-        topic
-      });
-    }
-  }
-
-  function decodeTemperature(rawValue) {
-    if (rawValue === 1023) return "Error";
-    if (rawValue === 1022) return "Sensor not present";
-    return parseFloat((rawValue * 0.1 - 30).toFixed(2));
-  }
-
-  function decodeHumidity(rawValue) {
-    if (rawValue === 255) return "Error";
-    return parseFloat((rawValue * 0.5).toFixed(2));
-  }
-
   switch (messageType) {
-    case 0x00: { // Product Status
-      const system = {
-        productType
-      };
-      const lifecycle = {};
-      const statusByte5 = payload[5];
-
-      system.hardwareVersion = payload[2];
-      system.softwareVersion = (payload[3] / 10).toFixed(1);
-
-      const remainingLife = payload[4];
-      if (remainingLife === 0) {
-        lifecycle.remainingProductLife = "End of life";
-      } else if (remainingLife === 255) {
-        lifecycle.remainingProductLife = "Unknown";
-      } else {
-        lifecycle.remainingProductLife = remainingLife;
-      }
-
-      lifecycle.smokeSensorStatus = (statusByte5 >> 7) & 0x01 ? "Faulty smoke chamber" : "OK";
-      lifecycle.tempHumSensorStatus = (statusByte5 >> 6) & 0x01 ? "Temperature/humidity sensor faulty" : "OK";
-
-      const magneticBaseDetectionMap = {
-        0: "Magnetic base not detected",
-        1: "Magnetic base detected",
-        2: "Product removed from its base immediately",
-        3: "Installing the product on its base at a moment's notice",
-        4: "Magnetic base never detected",
-      };
-      system.magneticBaseDetection = magneticBaseDetectionMap[(statusByte5 >> 2) & 0x07];
-
-      const batteryLevelMap = {
-        0: "High (> 50%)",
-        1: "Medium (20 - 50%)",
-        2: "Low (1 - 10%)",
-        3: "Critical (< 1%)",
-      };
-      lifecycle.batteryLevel = batteryLevelMap[statusByte5 & 0x03];
-      lifecycle.batteryVoltage = payload[6] * 5;
-
-      emitIfNotEmpty("system", system);
-      emitIfNotEmpty("lifecycle", lifecycle);
-      break;
-    }
-    case 0x01: { // Product Configuration
-      const system = {
-        productType
-      };
-      const datalog = {};
-      const configByte2 = payload[2];
-
-      const reconfigSourceMap = {
-        0: "NFC",
-        1: "Downlink",
-        2: "Product startup",
-        5: "Local",
-      };
-      system.reconfigurationSource = reconfigSourceMap[(configByte2 >> 5) & 0x07];
-
-      const reconfigStatusMap = {
-        0: "Total success",
-        1: "Partial success",
-        2: "Total failure",
-      };
-      system.reconfigurationStatus = reconfigStatusMap[(configByte2 >> 3) & 0x03];
-
-      datalog.datalogTemperatureEnabled = ((configByte2 >> 2) & 0x01) === 1;
-      datalog.dailyAirQualityEnabled = ((configByte2 >> 1) & 0x01) === 1;
-
-      system.delayedJoinRequest = !!((payload[3] >> 7) & 0x01);
-
-      const nfcStatusMap = {
-        0: "Discoverable",
-        1: "Non-discoverable",
-        2: "RFU",
-        3: "RFU"
-      };
-      system.nfcStatus = nfcStatusMap[(payload[3] >> 5) & 0x03];
-
-      datalog.newMeasurementsPerMessage = ((payload[3] & 0x01) << 5) | (payload[4] >> 3);
-      datalog.transmissionsOfSameData = ((payload[4] & 0x07) << 2) | (payload[5] >> 6);
-      datalog.transmissionPeriod = (((payload[5] & 0x3f) << 8) | payload[6]) * 30; // Value is in 30min steps
-
-      system.d2dNetworkId = ((payload[6] & 0x3f) << 11) | (payload[7] << 3) | (payload[8] >> 5);
-      system.downlinkFcnt = (payload[9] << 8) | payload[10];
-
-      emitIfNotEmpty("system", system);
-      emitIfNotEmpty("datalog", datalog);
-      break;
-    }
-    case 0x02: { // Alarm Status
-      const alarm = {};
-      const lifecycle = {};
-      const climate = {};
-      const statusByte2 = payload[2];
-
-      const alarmStatusMap = {
-        0: "No smoke detected",
-        1: "Smoke detected",
-        2: "Repeated alarm"
-      };
-      alarm.alarmStatus = alarmStatusMap[(statusByte2 >> 6) & 0x03];
-
-      const pauseAlarmMap = {
-        0: "The alarm has stopped because there is no more smoke",
-        1: "Alarm stopped when main button pressed",
-        2: "Alarm stopped after all smoke-detecting products were switched off",
-      };
-      alarm.pauseAlarm = pauseAlarmMap[(statusByte2 >> 4) & 0x03];
-
-      const productTestMap = {
-        0: "No product test carried out",
-        1: "Local product test",
-        2: "Remote product test"
-      };
-      alarm.productTest = productTestMap[(statusByte2 >> 2) & 0x03];
-
-      alarm.timeSinceLastProductTest = ((statusByte2 & 0x03) << 6) | (payload[3] >> 2);
-      lifecycle.maintenance = (payload[3] >> 1) & 0x01 ? "Maintenance has been carried out" : "Maintenance has not been performed";
-      lifecycle.timeSinceLastMaintenance = ((payload[3] & 0x01) << 7) | (payload[4] >> 1);
-
-      const tempRaw = ((payload[4] & 0x01) << 9) | (payload[5] << 1) | (payload[6] >> 7);
-      climate.temperature = decodeTemperature(tempRaw);
-
-      emitIfNotEmpty("alarm", alarm);
-      emitIfNotEmpty("lifecycle", lifecycle);
-      emitIfNotEmpty("default", climate);
-      break;
-    }
-    case 0x03: { // Daily Air Quality
-      const climate = {};
-
-      climate.minTemperature = decodeTemperature((payload[2] << 2) | (payload[3] >> 6));
-      climate.maxTemperature = decodeTemperature(((payload[3] & 0x3f) << 4) | (payload[4] >> 4));
-      climate.averageTemperature = decodeTemperature(((payload[4] & 0x0f) << 6) | (payload[5] >> 2));
-      climate.minHumidity = decodeHumidity(((payload[5] & 0x03) << 6) | (payload[6] >> 2));
-      climate.maxHumidity = decodeHumidity(((payload[6] & 0x03) << 6) | (payload[7] >> 2));
-      climate.averageHumidity = decodeHumidity(((payload[7] & 0x03) << 6) | (payload[8] >> 2));
-
-      emitIfNotEmpty("climate", climate);
-      break;
-    }
-    case 0x04: { // Periodic Data
-      const climate = {};
-
-      climate.temperature = decodeTemperature((payload[2] << 2) | (payload[3] >> 6));
-      climate.humidity = decodeHumidity(((payload[3] & 0x3f) << 2) | (payload[4] >> 6));
-
-      emitIfNotEmpty("climate", climate);
-      break;
-    }
-    case 0x05: { // Historical Temperature Data (Datalog Temperature)
-      const datalog = {};
-      const climate = {};
-      const bits = Bits.hexToBits(event.data.payloadHex);
-
-      datalog.totalMeasurements = Bits.bitsToUnsigned(bits.substring(16, 22));
-      datalog.samplingPeriod = Bits.bitsToUnsigned(bits.substring(22, 30));
-      datalog.repetitionsInMessage = Bits.bitsToUnsigned(bits.substring(30, 36));
-
-      climate.temperatureHistory = [];
-      for (let i = 0; i < datalog.totalMeasurements; i++) {
-        const start = 36 + i * 10;
-        const tempBits = bits.substring(start, start + 10);
-        if (tempBits.length === 10) {
-          const tempRaw = Bits.bitsToUnsigned(tempBits);
-          climate.temperatureHistory.push(decodeTemperature(tempRaw));
-        }
-      }
-
-      // for each entry of temparatureHistory emit a seperatt default message
-      climate.temperatureHistory.forEach((temp) => {
-
-        const defaultData = {
-          temperature: temp
-        }
-        emit("sample", {
-          data: defaultData,
-          topic: "default"
-        });
-      });
-
-      emitIfNotEmpty("datalog", datalog);
-      emitIfNotEmpty("default", climate);
-      break;
-    }
-    default:
+    case 0x00: handleProductStatus(payload, productType, reliableTimestamp); break;
+    case 0x01: handleProductConfig(payload, productType, reliableTimestamp); break;
+    case 0x02: handleAlarmStatus(payload, productType, reliableTimestamp); break;
+    case 0x03: handleDailyAirQuality(payload, productType, reliableTimestamp); break;
+    case 0x04: handlePeriodicData(payload, productType, reliableTimestamp); break;
+    case 0x05: handleHistoricalData(payload, productType, reliableTimestamp); break;
+    default: emit("log", { error: `Unknown message type: ${messageType}` });
   }
 }

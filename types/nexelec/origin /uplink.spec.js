@@ -9,7 +9,6 @@ const { assert } = chai;
 describe("Nexelec Origin uplink", () => {
     let systemSchema = null;
     let lifecycleSchema = null;
-    let alarmSchema = null;
     let defaultSchema = null;
     let datalogSchema = null;
     let consume = null;
@@ -18,10 +17,9 @@ describe("Nexelec Origin uplink", () => {
         const script = rewire("./uplink.js");
         consume = utils.init(script);
 
-        [systemSchema, lifecycleSchema, alarmSchema, defaultSchema, datalogSchema] = await Promise.all([
+        [systemSchema, lifecycleSchema, defaultSchema, datalogSchema] = await Promise.all([
             utils.loadSchema(`${__dirname}/system.schema.json`),
             utils.loadSchema(`${__dirname}/lifecycle.schema.json`),
-            utils.loadSchema(`${__dirname}/alarm.schema.json`),
             utils.loadSchema(`${__dirname}/default.schema.json`),
             utils.loadSchema(`${__dirname}/datalog.schema.json`),
         ])
@@ -30,11 +28,11 @@ describe("Nexelec Origin uplink", () => {
 
 
     describe("consume()", () => {
-        it("decodes Product Status (type 0x00)", () => {
+        it("decodes datalog event", () => {
             const data = {
                 data: {
                     port: 56,
-                    payloadHex: "B200011E7805C8",
+                    payloadHex: "b105487838521484e1384e1384e1284a1284a1284a1284a1284a12",
                 },
             };
 
@@ -43,36 +41,160 @@ describe("Nexelec Origin uplink", () => {
                 assert.equal(type, "sample");
                 assert.equal(value.topic, "system");
                 assert.isObject(value.data);
-                assert.equal(value.data.productType, "ORIGIN");
-                assert.equal(value.data.hardwareVersion, 1);
-                assert.equal(value.data.softwareVersion, "3.0");
-                assert.equal(value.data.magneticBaseDetection, "Magnetic base detected");
-
+                assert.equal(value.data.productType, "ORIGIN+");
                 utils.validateSchema(value.data, systemSchema, { throwError: true });
             });
 
-            // lifecycle
+            // datalog
             utils.expectEmits((type, value) => {
                 assert.equal(type, "sample");
-                assert.equal(value.topic, "lifecycle");
+                assert.equal(value.topic, "datalog");
                 assert.isObject(value.data);
-                assert.equal(value.data.remainingProductLife, 120);
-                assert.equal(value.data.smokeSensorStatus, "OK");
-                assert.equal(value.data.tempHumSensorStatus, "OK");
-                assert.equal(value.data.batteryLevel, "MEDIUM");
-                assert.equal(value.data.batteryVoltage, 3000);
+                assert.equal(value.data.totalMeasurements, 18);
+                assert.equal(value.data.samplingPeriod, 30);
+                assert.equal(value.data.repetitionsInMessage, 3);
 
-                utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+                utils.validateSchema(value.data, datalogSchema, { throwError: true });
+            });
+
+            // default
+            utils.expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.equal(value.topic, "default");
+                assert.isObject(value.data);
+                assert.equal(value.data.temperature, 23.2);
+                utils.validateSchema(value.data, defaultSchema, { throwError: true });
+            });
+
+            utils.expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.equal(value.topic, "default");
+                assert.isObject(value.data);
+                assert.equal(value.data.temperature, 23.2);
+                utils.validateSchema(value.data, defaultSchema, { throwError: true });
+            });
+
+            utils.expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.equal(value.topic, "default");
+                assert.isObject(value.data);
+                assert.equal(value.data.temperature, 23.1);
+                utils.validateSchema(value.data, defaultSchema, { throwError: true });
+            });
+            utils.expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.equal(value.topic, "default");
+                assert.isObject(value.data);
+                assert.equal(value.data.temperature, 23.1);
+                utils.validateSchema(value.data, defaultSchema, { throwError: true });
+            });
+            utils.expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.equal(value.topic, "default");
+                assert.isObject(value.data);
+                assert.equal(value.data.temperature, 23.1);
+                utils.validateSchema(value.data, defaultSchema, { throwError: true });
+            });
+            utils.expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.equal(value.topic, "default");
+                assert.isObject(value.data);
+                assert.equal(value.data.temperature, 23.1);
+                utils.validateSchema(value.data, defaultSchema, { throwError: true });
+            });
+            utils.expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.equal(value.topic, "default");
+                assert.isObject(value.data);
+                assert.equal(value.data.temperature, 23.1);
+                utils.validateSchema(value.data, defaultSchema, { throwError: true });
+            });
+            utils.expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.equal(value.topic, "default");
+                assert.isObject(value.data);
+                assert.equal(value.data.temperature, 23);
+                utils.validateSchema(value.data, defaultSchema, { throwError: true });
+            });
+            utils.expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.equal(value.topic, "default");
+                assert.isObject(value.data);
+                assert.equal(value.data.temperature, 23);
+                utils.validateSchema(value.data, defaultSchema, { throwError: true });
+            });
+            utils.expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.equal(value.topic, "default");
+                assert.isObject(value.data);
+                assert.equal(value.data.temperature, 23);
+                utils.validateSchema(value.data, defaultSchema, { throwError: true });
+            });
+            utils.expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.equal(value.topic, "default");
+                assert.isObject(value.data);
+                assert.equal(value.data.temperature, 23);
+                utils.validateSchema(value.data, defaultSchema, { throwError: true });
+            });
+            utils.expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.equal(value.topic, "default");
+                assert.isObject(value.data);
+                assert.equal(value.data.temperature, 23);
+                utils.validateSchema(value.data, defaultSchema, { throwError: true });
+            });
+            utils.expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.equal(value.topic, "default");
+                assert.isObject(value.data);
+                assert.equal(value.data.temperature, 23);
+                utils.validateSchema(value.data, defaultSchema, { throwError: true });
+            });
+            utils.expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.equal(value.topic, "default");
+                assert.isObject(value.data);
+                assert.equal(value.data.temperature, 23);
+                utils.validateSchema(value.data, defaultSchema, { throwError: true });
+            });
+            utils.expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.equal(value.topic, "default");
+                assert.isObject(value.data);
+                assert.equal(value.data.temperature, 23);
+                utils.validateSchema(value.data, defaultSchema, { throwError: true });
+            });
+            utils.expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.equal(value.topic, "default");
+                assert.isObject(value.data);
+                assert.equal(value.data.temperature, 23);
+                utils.validateSchema(value.data, defaultSchema, { throwError: true });
+            });
+            utils.expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.equal(value.topic, "default");
+                assert.isObject(value.data);
+                assert.equal(value.data.temperature, 23);
+                utils.validateSchema(value.data, defaultSchema, { throwError: true });
+            });
+            utils.expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.equal(value.topic, "default");
+                assert.isObject(value.data);
+                assert.equal(value.data.temperature, 23);
+                utils.validateSchema(value.data, defaultSchema, { throwError: true });
             });
 
             consume(data);
         });
 
-        it("decodes system and datalog", () => {
+        it("decodes system event", () => {
             const data = {
                 data: {
                     port: 56,
-                    payloadHex: "B201262048C33039020064",
+                    payloadHex: "b100010a7130d3",
                 }
             }
 
@@ -80,17 +202,27 @@ describe("Nexelec Origin uplink", () => {
                 assert.equal(type, "sample");
                 assert.equal(value.topic, "system");
                 assert.isObject(value.data)
-                assert.equal(value.data.productType, "ORIGIN")
-                assert.equal(value.data.reconfigurationSource, "DOWNLINK")
-                assert.equal(value.data.reconfigurationStatus, "TOTAL_SUCCESS")
-                assert.equal(value.data.delayedJoinRequest, false)
-                assert.equal(value.data.nfcStatus, "NON_DISCOVERABLE")
-                assert.equal(value.data.d2dNetworkId, 12345)
-                assert.equal(value.data.timeZone, "UTC+2")
-                assert.equal(value.data.downlinkFcnt, 100)
-
+                assert.equal(value.data.productType, "ORIGIN+")
+                assert.equal(value.data.hardwareVersion, 1)
+                assert.equal(value.data.softwareVersion, "1.0")
+                assert.equal(value.data.magneticBaseDetection, "MAGNETIC_BASE_NEVER_DETECTED")
                 utils.validateSchema(value.data, systemSchema, { throwError: true });
             })
+            // lifecycle
+            utils.expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.equal(value.topic, "lifecycle");
+                assert.isObject(value.data);
+                assert.equal(value.data.remainingProductLife, 113);
+                assert.equal(value.data.smokeSensorStatus, "OK");
+                assert.equal(value.data.tempHumSensorStatus, "OK");
+                assert.equal(value.data.batteryLevel, 100);
+                assert.equal(value.data.batteryVoltage, 3055);
+
+                utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+            });
+
+            consume(data);
         })
 
 

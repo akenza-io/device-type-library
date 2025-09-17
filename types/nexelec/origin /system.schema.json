@@ -90,12 +90,6 @@
       "description": "Device-to-device interconnection network ID",
       "hideFromKpis": true
     },
-    "timeZone": {
-      "title": "Time Zone",
-      "type": "string",
-      "description": "Configured time zone offset from UTC",
-      "hideFromKpis": true
-    },
     "downlinkFcnt": {
       "title": "Downlink Fcnt",
       "type": "number",

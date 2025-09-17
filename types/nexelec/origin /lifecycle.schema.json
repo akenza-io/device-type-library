@@ -7,15 +7,7 @@
   "title": "Lifecycle",
   "properties": {
     "batteryLevel": {
-      "title": "Battery level",
-      "type": "string",
-      "description": "The estimated battery level category",
-      "enum": [
-        "HIGH",
-        "MEDIUM",
-        "LOW",
-        "CRITICAL"
-      ],
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent",
       "hideFromKpis": true
     },
     "batteryVoltage": {
@@ -67,5 +59,7 @@
       "hideFromKpis": true
     }
   },
-  "required": []
+  "required": [
+    "batteryVoltage"
+  ]
 }
