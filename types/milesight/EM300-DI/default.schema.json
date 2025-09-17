@@ -18,10 +18,11 @@
       "description": "General purpose input/output"
     },
     "pulse": {
-      "title": "Pulse",
-      "type": "number",
-      "description": "Pulse counter"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput/count"
     }
   },
-  "required": ["temperature", "humidity"]
+  "required": [
+    "temperature",
+    "humidity"
+  ]
 }

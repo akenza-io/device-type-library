@@ -1,0 +1,14 @@
+{
+  "name": "TX WINDOW 600-065",
+  "version": "1.0.0",
+  "manufacturer": "Enless Wireless",
+  "url": "https://enless-wireless.com/products/lorawan-door-window-opening-closing-detection-sensor/",
+  "description": "The LoRaWAN Enless open/close sensor is specially designed for indoor commercial environments. It enables real-time monitoring of the open or closed status of doors and windows, helping to secure premises and optimize building energy consumption.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.01.18",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Digital Input","Pulse Input"],
+  "outputTopics": ["default", "lifecycle"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

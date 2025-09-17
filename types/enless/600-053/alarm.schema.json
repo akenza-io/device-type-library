@@ -1,0 +1,54 @@
+{
+  "$id": "https://akenza.io/enless/600-053/alarm.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "alarm",
+  "title": "Alarm Status",
+  "properties": {
+    "humidityLow": {
+      "type": "boolean",
+      "title": "Humidity Low Alarm",
+      "description": "Indicates if the humidity is below the threshold"
+    },
+    "humidityHigh": {
+      "type": "boolean",
+      "title": "Humidity High Alarm",
+      "description": "Indicates if the humidity is above the threshold"
+    },
+    "temperatureLow": {
+      "type": "boolean",
+      "title": "Temperature Low Alarm",
+      "description": "Indicates if the temperature is below the threshold"
+    },
+    "temperatureHigh": {
+      "type": "boolean",
+      "title": "Temperature High Alarm",
+      "description": "Indicates if the temperature is above the threshold"
+    },
+    "co2High": {
+      "type": "boolean",
+      "title": "CO₂ High Alarm",
+      "description": "Indicates if the CO₂ level is above the threshold"
+    },
+    "co2Low": {
+      "type": "boolean",
+      "title": "CO₂ Low Alarm",
+      "description": "Indicates if the CO₂ level is below the threshold"
+    },
+    "motionGuard": {
+      "type": "boolean",
+      "title": "Motion Guard Alarm",
+      "description": "Indicates if the motion guard has been triggered"
+    }
+  },
+  "required": [
+    "humidityLow",
+    "humidityHigh",
+    "temperatureLow",
+    "temperatureHigh",
+    "co2High",
+    "co2Low",
+    "motionGuard"
+  ]
+}

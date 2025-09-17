@@ -9,22 +9,22 @@
     "totalCounterIn": {
       "title": "Total counter in",
       "description": "Total counter in",
-      "type": "integer"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleIn/people"
     },
     "totalCounterOut": {
       "title": "Total counter out",
       "description": "Total counter out",
-      "type": "integer"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleOut/people"
     },
     "periodicCounterIn": {
       "title": "Periodic counter in",
       "description": "Periodic counter in",
-      "type": "integer"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleIn/people"
     },
     "periodicCounterOut": {
       "title": "Periodic counter out",
       "description": "Periodic counter out",
-      "type": "integer"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleOut/people"
     }
   }
 }

@@ -10,6 +10,10 @@ function deleteUnusedKeys(data) {
   return keysRetained;
 }
 
+function cToF(celsius) {
+  return (celsius * 9 / 5) + 32;
+}
+
 // Save merge old and new datapoints
 function completeSample(data, historicData) {
   const merged = data;
@@ -52,6 +56,9 @@ function consume(event) {
 
   if (deleteUnusedKeys(environment)) {
     state.environment = completeSample(environment, state.environment || {});
+    if (state.environment.temperature !== undefined) {
+      state.environment.temperatureF = cToF(state.environment.temperature);
+    }
     emit("sample", { data: state.environment, topic: "environment", timestamp });
   }
 
@@ -98,7 +105,7 @@ function consume(event) {
   if (data.occupants !== undefined) {
     if (data.occupants > 0) {
       occupancy.occupied = true;
-      occupancy.occupancy = 2;
+      occupancy.occupancy = 1;
     } else {
       occupancy.occupied = false;
       occupancy.occupancy = 0;
@@ -132,6 +139,9 @@ function consume(event) {
 
   if (deleteUnusedKeys(airly)) {
     state.airly = completeSample(airly, state.airly || {});
+    if (state.airly.temperature !== undefined) {
+      state.airly.temperatureF = cToF(state.airly.temperature);
+    }
     emit("sample", { data: state.airly, topic: "airly", timestamp });
   }
 
