@@ -31,6 +31,12 @@
         "title": "System status",
         "description": "System status message",
         "type": "string"
+      },
+      "rssi": {
+        "title": "RSSI",
+        "unit": "dBm",
+        "description": "Received Signal Strength Indication",
+        "type": "number"
       }
     }
   }

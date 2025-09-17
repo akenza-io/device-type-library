@@ -28,6 +28,15 @@
         "unit": "m/s^2"
       }
     },
+    "angle": {
+      "degrees": {
+        "measurementType": "akenza/motion/angle/degrees",
+        "title": "Angle",
+        "description": "Angle in degrees",
+        "type": "number",
+        "unit": "°"
+      }
+    },
     "speed": {
       "kmPerH": {
         "measurementType": "akenza/motion/speed/kmPerH",
