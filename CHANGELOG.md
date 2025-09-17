@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.74.1] - 2025-09-17
+
+### Changed
+
+- Added a fix for the Flash'O where multiple phases can send but would get emited as the same
+- Updated a lot of datapoints with schema references
 
 # [1.74.0] - 2025-09-16
 
@@ -36,15 +42,12 @@ All notable changes to this project will be documented in this file.
 
 - Dragino - SE0X-LB
 - Enlink - IAQ
+- Termokon - MCS-LRW
 
 ### Changed
 
 - DS3604 downlink and config additions
 - Added Fahrenheit emit to airthings & disruptive devices
-
-### Added
-
-- Termokon - MCS-LRW
 
 # [1.72.0] - 2025-09-08
 
