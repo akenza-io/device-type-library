@@ -289,5 +289,37 @@ describe("Watecco Flash'O Uplink", () => {
 
       consume(data);
     });
+
+    it("should decode the Watecco Flash'O Phase 3 uplink & state init", () => {
+      const data = {
+        state: {},
+        data: {
+          port: 125,
+          payloadHex: "510a000f04022300000000",
+        },
+      };
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "phase3");
+        assert.equal(value.data.pulse, 0);
+        assert.equal(value.data.relativePulse, 0);
+
+        utils.validateSchema(value.data, phase3Schema, { throwError: true });
+      });
+
+      utils.expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+        assert.typeOf(value, "object");
+
+        assert.equal(value.lastPulse3, 0);
+      });
+
+      consume(data);
+    });
   });
 });
