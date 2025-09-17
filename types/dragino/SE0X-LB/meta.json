@@ -1,0 +1,22 @@
+{
+  "name": "SE0X-LB",
+  "version": "1.0.0",
+  "manufacturer": "Dragino",
+  "url": "https://www.dragino.com/products/agriculture-weather-station/item/351-se0x-lb.html",
+  "description": "The Dragino SE0X-LB is a LoRaWAN Soil Moisture & EC Sensor for Agri-IoT with up to 4 sensor probes. It is designed to measure the soil moisture of saline-alkali soil and loamy soil. The soil sensor uses FDR method to calculate the soil moisture with the compensation from soil temperature and conductivity. It also has been calibrated in factory for Mineral soil type.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Soil temperature",
+    "Soil humidity",
+    "Soil conductivity"
+  ],
+  "outputTopics": [
+    "default",
+    "raw",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

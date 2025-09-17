@@ -9,7 +9,7 @@ function consume(event) {
   } else if (eventType === "deskOccupancy") {
     const motion = event.data.deskOccupancy.state;
     if (motion === "OCCUPIED") {
-      sample.occupancy = 2;
+      sample.occupancy = 1;
       sample.occupied = true;
     } else {
       sample.occupancy = 0;
@@ -60,7 +60,7 @@ function consume(event) {
   if (state.lastSampleEmittedAt !== undefined && now - state.lastSampleEmittedAt >= 3600000) {
     sample = {};
     if (state.lastOccupiedValue) {
-      sample.occupancy = 2;
+      sample.occupancy = 1;
       sample.occupied = true;
     } else {
       sample.occupancy = 0;

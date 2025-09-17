@@ -1,0 +1,54 @@
+{
+  "$id": "https://akenza.io/enless/600-062/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "temperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    },
+    "humidity": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+    },
+    "pirCount": {
+      "type": "integer",
+      "title": "PIR Count",
+      "description": "Number of PIR detections during the measurement period"
+    },
+    "luminosity": {
+      "type": "integer",
+      "title": "Luminosity",
+      "description": "Luminosity level in raw units"
+    },
+    "msgType": {
+      "type": "string",
+      "enum": [
+        "NORMAL",
+        "ALARM"
+      ],
+      "title": "Message Type",
+      "description": "Indicates whether the message is NORMAL or an alarm"
+    },
+    "rbe": {
+      "type": "boolean",
+      "title": "RBE Enabled",
+      "description": "Indicates if Report By Exception is enabled"
+    },
+    "movementDetected": {
+      "type": "boolean",
+      "title": "Movement Detected",
+      "description": "Indicates if movement was detected"
+    }
+  },
+  "required": [
+    "temperature",
+    "humidity",
+    "pirCount",
+    "luminosity",
+    "msgType",
+    "rbe",
+    "movementDetected"
+  ]
+}
