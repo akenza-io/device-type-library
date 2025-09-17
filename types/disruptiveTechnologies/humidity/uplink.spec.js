@@ -44,6 +44,7 @@ describe("Digital Technologies Humidity Sensor Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 22.45);
+        assert.equal(value.data.temperatureF, 72.41);
         assert.equal(value.data.humidity, 17);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
@@ -104,6 +105,7 @@ describe("Digital Technologies Humidity Sensor Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 0);
+        assert.equal(value.data.temperatureF, 32);
         assert.equal(value.data.humidity, 0);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
@@ -116,6 +118,7 @@ describe("Digital Technologies Humidity Sensor Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 0.5);
+        assert.equal(value.data.temperatureF, 32.9);
         assert.equal(value.data.humidity, 0.5);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
@@ -128,6 +131,7 @@ describe("Digital Technologies Humidity Sensor Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 0.8);
+        assert.equal(value.data.temperatureF, 33.44);
         assert.equal(value.data.humidity, 0.8);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
@@ -140,6 +144,7 @@ describe("Digital Technologies Humidity Sensor Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 1);
+        assert.equal(value.data.temperatureF, 33.8);
         assert.equal(value.data.humidity, 1);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
@@ -152,6 +157,7 @@ describe("Digital Technologies Humidity Sensor Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 0.9);
+        assert.equal(value.data.temperatureF, 33.62);
         assert.equal(value.data.humidity, 0.9);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

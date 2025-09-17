@@ -2,11 +2,52 @@
 
 All notable changes to this project will be documented in this file.
 
-# [1.73.0] - 2025-09-09
+# [1.74.1] - 2025-09-17
+
+### Changed
+
+- Added a fix for the Flash'O where multiple phases can send but would get emited as the same
+- Updated a lot of datapoints with schema references
+
+# [1.74.0] - 2025-09-16
 
 ### Added
 
+- Enless 600-021
+- Enless 600-022
+- Enless 600-023
+- Enless 600-031
+- Enless 600-032
+- Enless 600-034
+- Enless 600-035
+- Enless 600-036
+- Enless 600-037
+- Enless 600-038
+- Enless 600-039
+- Enless 600-050
+- Enless 600-051
+- Enless 600-052
+- Enless 600-053
+- Enless 600-062
+- Enless 600-065
+- Enless 600-232
+
+### Changed
+
+- Unifyed occupancy occupancy to send 1 or 0 if its not an elsys device
+
+# [1.73.0] - 2025-09-15
+
+### Added
+
+- Dragino - SE0X-LB
+- Enlink - IAQ
 - Termokon - MCS-LRW
+
+### Changed
+
+- DS3604 downlink and config additions
+- Added Fahrenheit emit to airthings & disruptive devices
 
 # [1.72.0] - 2025-09-08
 
