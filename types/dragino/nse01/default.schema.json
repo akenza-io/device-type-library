@@ -8,11 +8,8 @@
   "properties": {
     "soilMoisture": {
       "title": "Soil moisture",
-      "unit": "%",
-      "type": "number",
       "description": "The relative soil moisture of the soil in %",
-      "minimum": 0,
-      "maximum": 100
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
     },
     "soilTemperature": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",

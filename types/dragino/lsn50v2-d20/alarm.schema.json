@@ -32,15 +32,13 @@
     },
     "shtHumMin": {
       "title": "SHT Humidity minimum",
-      "unit": "°C",
-      "type": "number",
-      "description": "The sht humidity minimum."
+      "description": "The sht humidity minimum.",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
     },
     "shHumMax": {
       "title": "SHT Humidity maximum",
-      "unit": "°C",
-      "type": "number",
-      "description": "The sht humidity maximum."
+      "description": "The sht humidity maximum.",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
     }
   }
 }
