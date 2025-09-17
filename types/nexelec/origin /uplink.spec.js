@@ -1,3 +1,4 @@
+// IMPORTANT NOTE: The sample payloads used in this tests suite are fabricated and do not represent real device data. 
 const chai = require("chai");
 
 const rewire = require("rewire");
@@ -66,6 +67,31 @@ describe("Nexelec Origin uplink", () => {
 
             consume(data);
         });
+
+        it("decodes system and datalog", () => {
+            const data = {
+                data: {
+                    port: 56,
+                    payloadHex: "B201262048C33039020064",
+                }
+            }
+
+            utils.expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.equal(value.topic, "system");
+                assert.isObject(value.data)
+                assert.equal(value.data.productType, "ORIGIN")
+                assert.equal(value.data.reconfigurationSource, "DOWNLINK")
+                assert.equal(value.data.reconfigurationStatus, "TOTAL_SUCCESS")
+                assert.equal(value.data.delayedJoinRequest, false)
+                assert.equal(value.data.nfcStatus, "NON_DISCOVERABLE")
+                assert.equal(value.data.d2dNetworkId, 12345)
+                assert.equal(value.data.timeZone, "UTC+2")
+                assert.equal(value.data.downlinkFcnt, 100)
+
+                utils.validateSchema(value.data, systemSchema, { throwError: true });
+            })
+        })
 
 
     });

@@ -41,14 +41,6 @@
       "title": "Average Daily Humidity",
       "description": "The average relative humidity over a 24-hour period.",
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
-    },
-    "temperatureHistory": {
-      "title": "Temperature History",
-      "type": "array",
-      "description": "An array of historical temperature readings from the datalog, from newest to oldest.",
-      "items": {
-        "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-      }
     }
   },
   "required": []

@@ -211,8 +211,20 @@ function consume(event) {
         }
       }
 
+      // for each entry of temparatureHistory emit a seperatt default message
+      climate.temperatureHistory.forEach((temp) => {
+
+        const defaultData = {
+          temperature: temp
+        }
+        emit("sample", {
+          data: defaultData,
+          topic: "default"
+        });
+      });
+
       emitIfNotEmpty("datalog", datalog);
-      emitIfNotEmpty("climate", climate);
+      emitIfNotEmpty("default", climate);
       break;
     }
     default:
