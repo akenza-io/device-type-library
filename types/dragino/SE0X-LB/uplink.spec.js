@@ -1,9 +1,13 @@
-const chai = require("chai");
-const bits = require("bits");
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import bits from "bits";
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Dragino SE0X-LB Uplink", () => {
     let defaultSchema = null;
@@ -12,12 +16,12 @@ describe("Dragino SE0X-LB Uplink", () => {
     let consume = null;
 
     before(async () => {
-        const script = rewire("./uplink.js");
-        consume = utils.init(script);
+        const script = rewire(`${__dirname}/uplink.js`);
+        consume = init(script);
         [rawSchema, defaultSchema, lifecycleSchema] = await Promise.all([
-            utils.loadSchema(`${__dirname}/raw.schema.json`),
-            utils.loadSchema(`${__dirname}/default.schema.json`),
-            utils.loadSchema(`${__dirname}/lifecycle.schema.json`),
+            loadSchema(`${__dirname}/raw.schema.json`),
+            loadSchema(`${__dirname}/default.schema.json`),
+            loadSchema(`${__dirname}/lifecycle.schema.json`),
         ]);
     });
 
@@ -31,7 +35,7 @@ describe("Dragino SE0X-LB Uplink", () => {
                 },
             };
 
-            utils.expectEmits((type, value) => {
+            expectEmits((type, value) => {
                 assert.equal(type, "sample");
                 assert.isNotNull(value);
                 assert.typeOf(value.data, "object");
@@ -52,10 +56,10 @@ describe("Dragino SE0X-LB Uplink", () => {
                 assert.equal(value.data.rawSoilHumidity3, 2796);
                 assert.equal(value.data.rawSoilHumidity4, 59392);
 
-                utils.validateSchema(value.data, rawSchema, { throwError: true });
+                validateSchema(value.data, rawSchema, { throwError: true });
             });
 
-            utils.expectEmits((type, value) => {
+            expectEmits((type, value) => {
                 assert.equal(type, "sample");
                 assert.isNotNull(value);
                 assert.typeOf(value.data, "object");
@@ -63,7 +67,7 @@ describe("Dragino SE0X-LB Uplink", () => {
                 assert.equal(value.topic, "lifecycle");
                 assert.equal(value.data.batteryVoltage, 3.246);
                 assert.equal(value.data.batteryLevel, 70);
-                utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+                validateSchema(value.data, lifecycleSchema, { throwError: true });
             });
 
             consume(data);

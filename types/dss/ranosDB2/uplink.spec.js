@@ -1,9 +1,13 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("DSS Ranos dB 2 Uplink", () => {
   let defaultSchema = null;
@@ -13,10 +17,9 @@ describe("DSS Ranos dB 2 Uplink", () => {
   let consume = null;
 
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/default.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
         defaultSchema = parsedSchema;
         done();
@@ -24,15 +27,14 @@ describe("DSS Ranos dB 2 Uplink", () => {
   });
 
   before((done) => {
-    utils.loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
       gpsSchema = parsedSchema;
       done();
     });
   });
 
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -40,8 +42,7 @@ describe("DSS Ranos dB 2 Uplink", () => {
   });
 
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/settings.schema.json`)
+    loadSchema(`${__dirname}/settings.schema.json`)
       .then((parsedSchema) => {
         settingsSchema = parsedSchema;
         done();
@@ -56,7 +57,7 @@ describe("DSS Ranos dB 2 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -73,10 +74,10 @@ describe("DSS Ranos dB 2 Uplink", () => {
         assert.equal(value.data.negativePeakHoldA, 31.8);
         assert.equal(value.data.negativePeakHoldC, 31.8);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -85,10 +86,10 @@ describe("DSS Ranos dB 2 Uplink", () => {
         assert.equal(value.data.batteryVoltage, 6);
         assert.equal(value.data.batteryLevel, 70);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -97,7 +98,7 @@ describe("DSS Ranos dB 2 Uplink", () => {
         assert.equal(value.data.latitude, 47.4141534);
         assert.equal(value.data.longitude, 8.5350206);
 
-        utils.validateSchema(value.data, gpsSchema, { throwError: true });
+        validateSchema(value.data, gpsSchema, { throwError: true });
       });
 
       consume(data);
@@ -110,7 +111,7 @@ describe("DSS Ranos dB 2 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -141,7 +142,7 @@ describe("DSS Ranos dB 2 Uplink", () => {
         assert.equal(value.data.useLCs, true);
         assert.equal(value.data.useMsgInfo, true);
 
-        utils.validateSchema(value.data, settingsSchema, { throwError: true });
+        validateSchema(value.data, settingsSchema, { throwError: true });
       });
       consume(data);
     });

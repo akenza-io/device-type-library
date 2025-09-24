@@ -1,17 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Wattecco Triphaso uplink", () => {
   let energySchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/energy.schema.json`).then((parsedSchema) => {
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/energy.schema.json`).then((parsedSchema) => {
       energySchema = parsedSchema;
       done();
     });
@@ -19,8 +23,7 @@ describe("Wattecco Triphaso uplink", () => {
 
   let phaseAVariablesSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/phase_a_variables.schema.json`)
+    loadSchema(`${__dirname}/phase_a_variables.schema.json`)
       .then((parsedSchema) => {
         phaseAVariablesSchema = parsedSchema;
         done();
@@ -29,8 +32,7 @@ describe("Wattecco Triphaso uplink", () => {
 
   let phaseBVariablesSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/phase_b_variables.schema.json`)
+    loadSchema(`${__dirname}/phase_b_variables.schema.json`)
       .then((parsedSchema) => {
         phaseBVariablesSchema = parsedSchema;
         done();
@@ -39,8 +41,7 @@ describe("Wattecco Triphaso uplink", () => {
 
   let phaseASchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/phase_a.schema.json`)
+    loadSchema(`${__dirname}/phase_a.schema.json`)
       .then((parsedSchema) => {
         phaseASchema = parsedSchema;
         done();
@@ -49,8 +50,7 @@ describe("Wattecco Triphaso uplink", () => {
 
   let phaseBSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/phase_b.schema.json`)
+    loadSchema(`${__dirname}/phase_b.schema.json`)
       .then((parsedSchema) => {
         phaseBSchema = parsedSchema;
         done();
@@ -59,8 +59,7 @@ describe("Wattecco Triphaso uplink", () => {
 
   let phaseCSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/phase_c.schema.json`)
+    loadSchema(`${__dirname}/phase_c.schema.json`)
       .then((parsedSchema) => {
         phaseCSchema = parsedSchema;
         done();
@@ -69,8 +68,7 @@ describe("Wattecco Triphaso uplink", () => {
 
   let phaseABCSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/phase_abc.schema.json`)
+    loadSchema(`${__dirname}/phase_abc.schema.json`)
       .then((parsedSchema) => {
         phaseABCSchema = parsedSchema;
         done();
@@ -79,7 +77,7 @@ describe("Wattecco Triphaso uplink", () => {
 
   let powerSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/power.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/power.schema.json`).then((parsedSchema) => {
       powerSchema = parsedSchema;
       done();
     });
@@ -95,7 +93,7 @@ describe("Wattecco Triphaso uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -111,7 +109,7 @@ describe("Wattecco Triphaso uplink", () => {
         assert.equal(value.data.pReactiveEnergyABC, 1005);
         assert.equal(value.data.pReactivePowerVarABC, 2);
 
-        utils.validateSchema(value.data, phaseABCSchema, { throwError: true });
+        validateSchema(value.data, phaseABCSchema, { throwError: true });
       });
 
       consume(data);
@@ -126,7 +124,7 @@ describe("Wattecco Triphaso uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -142,7 +140,7 @@ describe("Wattecco Triphaso uplink", () => {
         assert.equal(value.data.reactiveEnergyWhPhaseB, -15899);
         assert.equal(value.data.reactiveEnergyWhPhaseC, 4);
 
-        utils.validateSchema(value.data, energySchema, { throwError: true });
+        validateSchema(value.data, energySchema, { throwError: true });
       });
 
       consume(data);
@@ -156,7 +154,7 @@ describe("Wattecco Triphaso uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -167,7 +165,7 @@ describe("Wattecco Triphaso uplink", () => {
         assert.equal(value.data.irms, 1);
         assert.equal(value.data.vrms, 2309);
 
-        utils.validateSchema(value.data, phaseBVariablesSchema, {
+        validateSchema(value.data, phaseBVariablesSchema, {
           throwError: true,
         });
       });
@@ -183,7 +181,7 @@ describe("Wattecco Triphaso uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -194,7 +192,7 @@ describe("Wattecco Triphaso uplink", () => {
         assert.equal(value.data.irms, 0);
         assert.equal(value.data.vrms, 2311);
 
-        utils.validateSchema(value.data, phaseAVariablesSchema, {
+        validateSchema(value.data, phaseAVariablesSchema, {
           throwError: true,
         });
       });
