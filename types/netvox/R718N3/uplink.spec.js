@@ -1,17 +1,20 @@
-const chai = require("chai");
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Netvox R718N3 Uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/default.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
         defaultSchema = parsedSchema;
         done();
@@ -20,8 +23,7 @@ describe("Netvox R718N3 Uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -30,8 +32,7 @@ describe("Netvox R718N3 Uplink", () => {
 
   let versionSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/version.schema.json`)
+    loadSchema(`${__dirname}/version.schema.json`)
       .then((parsedSchema) => {
         versionSchema = parsedSchema;
         done();
@@ -48,7 +49,7 @@ describe("Netvox R718N3 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
 
         assert.equal(value.current1, 16256);
@@ -57,7 +58,7 @@ describe("Netvox R718N3 Uplink", () => {
         assert.equal(value.multiplier1, 1);
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -65,7 +66,7 @@ describe("Netvox R718N3 Uplink", () => {
 
         assert.equal(value.data.batteryVoltage, 3.6);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -85,7 +86,7 @@ describe("Netvox R718N3 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -95,10 +96,10 @@ describe("Netvox R718N3 Uplink", () => {
         assert.equal(value.data.current2, 16.304);
         assert.equal(value.data.current3, 16.256);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -106,7 +107,7 @@ describe("Netvox R718N3 Uplink", () => {
 
         assert.equal(value.data.batteryVoltage, 3.6);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -120,7 +121,7 @@ describe("Netvox R718N3 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -130,7 +131,7 @@ describe("Netvox R718N3 Uplink", () => {
         assert.equal(value.data.hardwareVersion, 1);
         assert.equal(value.data.dataCode, "20170503");
 
-        utils.validateSchema(value.data, versionSchema, { throwError: true });
+        validateSchema(value.data, versionSchema, { throwError: true });
       });
 
       consume(data);
@@ -144,7 +145,7 @@ describe("Netvox R718N3 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -154,10 +155,10 @@ describe("Netvox R718N3 Uplink", () => {
         assert.equal(value.data.current2, 70);
         assert.equal(value.data.current3, 330);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -165,7 +166,7 @@ describe("Netvox R718N3 Uplink", () => {
 
         assert.equal(value.data.batteryVoltage, 3.6);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

@@ -34,7 +34,7 @@ export default defineConfig([
       "no-plusplus": "off",
       "curly": "error",
       "no-unused-vars": ["error", { "varsIgnorePattern": "consume" }],
-      "no-underscore-dangle": ["error", { "allow": ["__get__", "__set__"] }]
+      "no-underscore-dangle": ["error", { "allow": ["__get__", "__set__", "__filename", "__dirname"] }]
     }
   },
   eslintConfigPrettier

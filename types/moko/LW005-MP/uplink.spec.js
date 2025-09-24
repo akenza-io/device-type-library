@@ -1,17 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Moko LW005-MP Uplink", () => {
   let countdownSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/countdown.schema.json`).then((parsedSchema) => {
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/countdown.schema.json`).then((parsedSchema) => {
       countdownSchema = parsedSchema;
       done();
     });
@@ -20,8 +24,7 @@ describe("Moko LW005-MP Uplink", () => {
 
   let energySchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/energy.schema.json`)
+    loadSchema(`${__dirname}/energy.schema.json`)
       .then((parsedSchema) => {
         energySchema = parsedSchema;
         done();
@@ -30,8 +33,7 @@ describe("Moko LW005-MP Uplink", () => {
 
   let consumptionSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/consumption.schema.json`)
+    loadSchema(`${__dirname}/consumption.schema.json`)
       .then((parsedSchema) => {
         consumptionSchema = parsedSchema;
         done();
@@ -40,8 +42,7 @@ describe("Moko LW005-MP Uplink", () => {
 
   let loadStateSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/load_state.schema.json`)
+    loadSchema(`${__dirname}/load_state.schema.json`)
       .then((parsedSchema) => {
         loadStateSchema = parsedSchema;
         done();
@@ -50,8 +51,7 @@ describe("Moko LW005-MP Uplink", () => {
 
   let overcurrentSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/overcurrent.schema.json`)
+    loadSchema(`${__dirname}/overcurrent.schema.json`)
       .then((parsedSchema) => {
         overcurrentSchema = parsedSchema;
         done();
@@ -60,8 +60,7 @@ describe("Moko LW005-MP Uplink", () => {
 
   let overloadSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/overload.schema.json`)
+    loadSchema(`${__dirname}/overload.schema.json`)
       .then((parsedSchema) => {
         overloadSchema = parsedSchema;
         done();
@@ -70,8 +69,7 @@ describe("Moko LW005-MP Uplink", () => {
 
   let overvoltageSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/overvoltage.schema.json`)
+    loadSchema(`${__dirname}/overvoltage.schema.json`)
       .then((parsedSchema) => {
         overvoltageSchema = parsedSchema;
         done();
@@ -80,8 +78,7 @@ describe("Moko LW005-MP Uplink", () => {
 
   let powerSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/power.schema.json`)
+    loadSchema(`${__dirname}/power.schema.json`)
       .then((parsedSchema) => {
         powerSchema = parsedSchema;
         done();
@@ -90,8 +87,7 @@ describe("Moko LW005-MP Uplink", () => {
 
   let switchSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/switch.schema.json`)
+    loadSchema(`${__dirname}/switch.schema.json`)
       .then((parsedSchema) => {
         switchSchema = parsedSchema;
         done();
@@ -100,8 +96,7 @@ describe("Moko LW005-MP Uplink", () => {
 
   let undervoltageSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/undervoltage.schema.json`)
+    loadSchema(`${__dirname}/undervoltage.schema.json`)
       .then((parsedSchema) => {
         undervoltageSchema = parsedSchema;
         done();
@@ -118,7 +113,7 @@ describe("Moko LW005-MP Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -127,7 +122,7 @@ describe("Moko LW005-MP Uplink", () => {
         assert.equal(value.data.acOutputState, "OFF");
         assert.equal(value.data.plugLoadStatus, "NO_LOAD");
 
-        utils.validateSchema(value.data, switchSchema, { throwError: true });
+        validateSchema(value.data, switchSchema, { throwError: true });
       });
 
       consume(data);
@@ -142,7 +137,7 @@ describe("Moko LW005-MP Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -152,7 +147,7 @@ describe("Moko LW005-MP Uplink", () => {
         assert.equal(value.data.voltage, 223.1);
         assert.equal(value.data.frequency, 49.965);
 
-        utils.validateSchema(value.data, energySchema, { throwError: true });
+        validateSchema(value.data, energySchema, { throwError: true });
       });
 
       consume(data);
@@ -167,7 +162,7 @@ describe("Moko LW005-MP Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -176,7 +171,7 @@ describe("Moko LW005-MP Uplink", () => {
         assert.equal(value.data.activePower, 0);
         assert.equal(value.data.powerFactor, 100);
 
-        utils.validateSchema(value.data, powerSchema, { throwError: true });
+        validateSchema(value.data, powerSchema, { throwError: true });
       });
 
       consume(data);
@@ -191,7 +186,7 @@ describe("Moko LW005-MP Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -200,7 +195,7 @@ describe("Moko LW005-MP Uplink", () => {
         assert.equal(value.data.consumptionLastHour, 0);
         assert.equal(value.data.totalConsumption, 0.163125);
 
-        utils.validateSchema(value.data, consumptionSchema, { throwError: true });
+        validateSchema(value.data, consumptionSchema, { throwError: true });
       });
 
       consume(data);
@@ -215,7 +210,7 @@ describe("Moko LW005-MP Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -225,7 +220,7 @@ describe("Moko LW005-MP Uplink", () => {
         assert.equal(value.data.overvoltageThreshold, 220);
         assert.equal(value.data.voltage, 330);
 
-        utils.validateSchema(value.data, overvoltageSchema, { throwError: true });
+        validateSchema(value.data, overvoltageSchema, { throwError: true });
       });
 
       consume(data);
@@ -240,7 +235,7 @@ describe("Moko LW005-MP Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -250,7 +245,7 @@ describe("Moko LW005-MP Uplink", () => {
         assert.equal(value.data.undervoltageThreshold, 220);
         assert.equal(value.data.voltage, 210);
 
-        utils.validateSchema(value.data, undervoltageSchema, { throwError: true });
+        validateSchema(value.data, undervoltageSchema, { throwError: true });
       });
 
       consume(data);
@@ -265,7 +260,7 @@ describe("Moko LW005-MP Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -275,7 +270,7 @@ describe("Moko LW005-MP Uplink", () => {
         assert.equal(value.data.overcurrentThreshold, 0.998);
         assert.equal(value.data.current, 1);
 
-        utils.validateSchema(value.data, overcurrentSchema, { throwError: true });
+        validateSchema(value.data, overcurrentSchema, { throwError: true });
       });
 
       consume(data);
@@ -290,7 +285,7 @@ describe("Moko LW005-MP Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -300,7 +295,7 @@ describe("Moko LW005-MP Uplink", () => {
         assert.equal(value.data.overloadThreshold, 9.6);
         assert.equal(value.data.power, 2560);
 
-        utils.validateSchema(value.data, overloadSchema, { throwError: true });
+        validateSchema(value.data, overloadSchema, { throwError: true });
       });
 
       consume(data);
@@ -315,7 +310,7 @@ describe("Moko LW005-MP Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -323,7 +318,7 @@ describe("Moko LW005-MP Uplink", () => {
         assert.equal(value.topic, "load_state");
         assert.equal(value.data.loadState, "LOAD_STOP");
 
-        utils.validateSchema(value.data, loadStateSchema, { throwError: true });
+        validateSchema(value.data, loadStateSchema, { throwError: true });
       });
 
       consume(data);
@@ -338,7 +333,7 @@ describe("Moko LW005-MP Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -347,7 +342,7 @@ describe("Moko LW005-MP Uplink", () => {
         assert.equal(value.data.acAfterCountdown, "ON");
         assert.equal(value.data.countdownTime, 9);
 
-        utils.validateSchema(value.data, countdownSchema, { throwError: true });
+        validateSchema(value.data, countdownSchema, { throwError: true });
       });
 
       consume(data);

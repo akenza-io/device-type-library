@@ -1,15 +1,19 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, expectEmits } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("ACRIOS Systems ACR-CV-101L-M-X Uplink", () => {
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
     done();
   });
 
@@ -22,7 +26,7 @@ describe("ACRIOS Systems ACR-CV-101L-M-X Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
         assert.isObject(value);
@@ -31,7 +35,7 @@ describe("ACRIOS Systems ACR-CV-101L-M-X Uplink", () => {
         assert.deepEqual(value.previousPayloads, []);
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");

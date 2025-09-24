@@ -1,17 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("G2-LDP Uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
       defaultSchema = parsedSchema;
       done();
     });
@@ -19,8 +23,7 @@ describe("G2-LDP Uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -37,7 +40,7 @@ describe("G2-LDP Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -55,10 +58,10 @@ describe("G2-LDP Uplink", () => {
         assert.equal(value.data.leakageDetectedLast24, 1);
         assert.equal(value.data.leakageDetected2Last24, 0);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -71,7 +74,7 @@ describe("G2-LDP Uplink", () => {
         assert.equal(value.data.runtime, 0);
         assert.equal(value.data.totalRuntime, 0);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -86,7 +89,7 @@ describe("G2-LDP Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -107,7 +110,7 @@ describe("G2-LDP Uplink", () => {
         // utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");

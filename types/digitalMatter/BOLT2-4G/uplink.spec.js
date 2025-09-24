@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("DigitalMatter Bolt 2 Uplink", () => {
   let digitalSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/digital.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/digital.schema.json`)
       .then((parsedSchema) => {
         digitalSchema = parsedSchema;
         done();
@@ -21,7 +24,7 @@ describe("DigitalMatter Bolt 2 Uplink", () => {
 
   let gpsSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
       gpsSchema = parsedSchema;
       done();
     });
@@ -29,7 +32,7 @@ describe("DigitalMatter Bolt 2 Uplink", () => {
 
   let analogSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/analog.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/analog.schema.json`).then((parsedSchema) => {
       analogSchema = parsedSchema;
       done();
     });
@@ -121,7 +124,7 @@ describe("DigitalMatter Bolt 2 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -136,10 +139,10 @@ describe("DigitalMatter Bolt 2 Uplink", () => {
         assert.equal(value.data.speedAccuracy, 5);
         assert.equal(value.data.pdop, 19);
 
-        utils.validateSchema(value.data, gpsSchema, { throwError: true });
+        validateSchema(value.data, gpsSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -149,10 +152,10 @@ describe("DigitalMatter Bolt 2 Uplink", () => {
         assert.equal(value.data.digitalIn, 0);
         assert.equal(value.data.digitalOut, 0);
 
-        utils.validateSchema(value.data, digitalSchema, { throwError: true });
+        validateSchema(value.data, digitalSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -164,7 +167,7 @@ describe("DigitalMatter Bolt 2 Uplink", () => {
         assert.equal(value.data.analog["4"], 21);
         assert.equal(value.data.analog["5"], 0);
 
-        utils.validateSchema(value.data, analogSchema, { throwError: true });
+        validateSchema(value.data, analogSchema, { throwError: true });
       });
 
       consume(data);

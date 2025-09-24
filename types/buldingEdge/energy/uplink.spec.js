@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Niagara Energy Uplink", () => {
   let consumptionSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/consumption.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/consumption.schema.json`)
       .then((parsedSchema) => {
         consumptionSchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("Niagara Energy Uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -39,12 +41,12 @@ describe("Niagara Energy Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.equal(value.lastConsumptionCumulative, 9453146);
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -53,7 +55,7 @@ describe("Niagara Energy Uplink", () => {
         assert.equal(value.data.consumption, 0);
         assert.equal(value.data.consumptionCumulative, 9453146);
 
-        utils.validateSchema(value.data, consumptionSchema, { throwError: true });
+        validateSchema(value.data, consumptionSchema, { throwError: true });
       });
 
       consume(data);
@@ -77,12 +79,12 @@ describe("Niagara Energy Uplink", () => {
           },
         };
 
-        utils.expectEmits((type, value) => {
+        expectEmits((type, value) => {
           assert.equal(type, "state");
           assert.equal(value.lastConsumptionCumulative, 9453146);
         });
 
-        utils.expectEmits((type, value) => {
+        expectEmits((type, value) => {
           assert.equal(type, "sample");
           assert.isNotNull(value);
           assert.typeOf(value.data, "object");
@@ -91,7 +93,7 @@ describe("Niagara Energy Uplink", () => {
           assert.equal(value.data.consumption, 3.146);
           assert.equal(value.data.consumptionCumulative, 9453.146);
 
-          utils.validateSchema(value.data, consumptionSchema, { throwError: true });
+          validateSchema(value.data, consumptionSchema, { throwError: true });
         });
 
         consume(data);

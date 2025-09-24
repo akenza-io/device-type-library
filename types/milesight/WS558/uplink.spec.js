@@ -1,19 +1,22 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("WS558 Uplink", () => {
   let defaultSchema = null;
   let switchSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/default.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
         defaultSchema = parsedSchema;
         done();
@@ -21,10 +24,9 @@ describe("WS558 Uplink", () => {
   });
 
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/switch.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/switch.schema.json`)
       .then((parsedSchema) => {
         switchSchema = parsedSchema;
         done();
@@ -40,7 +42,7 @@ describe("WS558 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -55,10 +57,10 @@ describe("WS558 Uplink", () => {
         assert.equal(value.data.switch7, false);
         assert.equal(value.data.switch8, false);
 
-        utils.validateSchema(value.data, switchSchema, { throwError: true });
+        validateSchema(value.data, switchSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -70,7 +72,7 @@ describe("WS558 Uplink", () => {
         assert.equal(value.data.powerConsumption, 1);
         assert.equal(value.data.totalCurrent, 2);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

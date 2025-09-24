@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("ioTracker 3 uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/default.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
         defaultSchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("ioTracker 3 uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -31,7 +33,7 @@ describe("ioTracker 3 uplink", () => {
 
   let gpsSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
       gpsSchema = parsedSchema;
       done();
     });
@@ -46,7 +48,7 @@ describe("ioTracker 3 uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -56,10 +58,10 @@ describe("ioTracker 3 uplink", () => {
         assert.equal(value.data.crc, 0);
         assert.equal(value.data.batteryLevel, 98);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -70,7 +72,7 @@ describe("ioTracker 3 uplink", () => {
         assert.equal(value.data.maxAccelerationNew, 16.384);
         assert.equal(value.data.maxAccelerationHistory, 16.384);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
@@ -86,7 +88,7 @@ describe("ioTracker 3 uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -103,10 +105,10 @@ describe("ioTracker 3 uplink", () => {
         assert.equal(value.data.sog, 1.9);
         assert.equal(value.data.vAcc, 16);
 
-        utils.validateSchema(value.data, gpsSchema, { throwError: true });
+        validateSchema(value.data, gpsSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -116,10 +118,10 @@ describe("ioTracker 3 uplink", () => {
         assert.equal(value.data.crc, 3);
         assert.equal(value.data.batteryLevel, 98);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -130,7 +132,7 @@ describe("ioTracker 3 uplink", () => {
         assert.equal(value.data.maxAccelerationNew, 0);
         assert.equal(value.data.temperature, 28.24);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

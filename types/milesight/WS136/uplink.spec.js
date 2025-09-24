@@ -1,18 +1,21 @@
-const chai = require("chai");
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("WS136 & WS156 Uplink", () => {
   let buttonPressedSchema = null;
   let lifecycleSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/button_pressed.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/button_pressed.schema.json`)
       .then((parsedSchema) => {
         buttonPressedSchema = parsedSchema;
         done();
@@ -20,10 +23,9 @@ describe("WS136 & WS156 Uplink", () => {
   });
 
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -39,7 +41,7 @@ describe("WS136 & WS156 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -51,7 +53,7 @@ describe("WS136 & WS156 Uplink", () => {
         assert.equal(value.data.serialNumber, "6592b32851010013");
         assert.equal(value.data.softwareVersion, "1.2");
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -65,17 +67,17 @@ describe("WS136 & WS156 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
         assert.equal(value.topic, "lifecycle");
 
         assert.equal(value.data.batteryLevel, 100);
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -84,7 +86,7 @@ describe("WS136 & WS156 Uplink", () => {
         assert.equal(value.data.buttonNumber, 1);
         assert.equal(value.data.command, 24);
 
-        utils.validateSchema(value.data, buttonPressedSchema, {
+        validateSchema(value.data, buttonPressedSchema, {
           throwError: true,
         });
       });

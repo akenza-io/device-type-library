@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Axis People Counter Uplink", () => {
   let lineCountSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/line_count.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/line_count.schema.json`)
       .then((parsedSchema) => {
         lineCountSchema = parsedSchema;
         done();
@@ -65,7 +68,7 @@ describe("Axis People Counter Uplink", () => {
         }
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -74,7 +77,7 @@ describe("Axis People Counter Uplink", () => {
         assert.equal(value.data.fw, 1);
         assert.equal(value.data.bw, 2);
 
-        utils.validateSchema(value.data, lineCountSchema, { throwError: true });
+        validateSchema(value.data, lineCountSchema, { throwError: true });
       });
 
       consume(data);

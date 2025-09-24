@@ -1,17 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Digital Technologies Desk Sensor Uplink", () => {
   let occupancySchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/occupancy.schema.json`).then((parsedSchema) => {
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/occupancy.schema.json`).then((parsedSchema) => {
       occupancySchema = parsedSchema;
       done();
     });
@@ -36,7 +40,7 @@ describe("Digital Technologies Desk Sensor Uplink", () => {
         "timestamp": 1746787606
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -46,10 +50,10 @@ describe("Digital Technologies Desk Sensor Uplink", () => {
         assert.equal(value.data.occupancy, 0);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
 
-        utils.validateSchema(value.data, occupancySchema, { throwError: true });
+        validateSchema(value.data, occupancySchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.equal(value.lastOccupiedValue, false);
         assert.isDefined(value.lastSampleEmittedAt);
@@ -76,7 +80,7 @@ describe("Digital Technologies Desk Sensor Uplink", () => {
         "timestamp": 1746787606
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -86,10 +90,10 @@ describe("Digital Technologies Desk Sensor Uplink", () => {
         assert.equal(value.data.occupancy, 1);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
 
-        utils.validateSchema(value.data, occupancySchema, { throwError: true });
+        validateSchema(value.data, occupancySchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.equal(value.lastOccupiedValue, true);
         assert.isDefined(value.lastSampleEmittedAt);
@@ -122,7 +126,7 @@ describe("Digital Technologies Desk Sensor Uplink", () => {
         }
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -132,10 +136,10 @@ describe("Digital Technologies Desk Sensor Uplink", () => {
         assert.equal(value.data.occupancy, 1);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
 
-        utils.validateSchema(value.data, occupancySchema, { throwError: true });
+        validateSchema(value.data, occupancySchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
         assert.equal(value.lastOccupiedValue, true);

@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Laiier severnWLD Uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/default.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
         defaultSchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("Laiier severnWLD Uplink", () => {
 
   let startUpSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/start_up.schema.json`)
+    loadSchema(`${__dirname}/start_up.schema.json`)
       .then((parsedSchema) => {
         startUpSchema = parsedSchema;
         done();
@@ -38,7 +40,7 @@ describe("Laiier severnWLD Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -48,7 +50,7 @@ describe("Laiier severnWLD Uplink", () => {
         assert.equal(value.data.firmwareVersion, "1.0.0");
         assert.equal(value.data.serialNumber, 2529053791026676000);
 
-        utils.validateSchema(value.data, startUpSchema, {
+        validateSchema(value.data, startUpSchema, {
           throwError: true,
         });
       });
@@ -64,7 +66,7 @@ describe("Laiier severnWLD Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -89,7 +91,7 @@ describe("Laiier severnWLD Uplink", () => {
         assert.equal(value.data.temperature, 24);
         assert.equal(value.data.wetnessThreshold, 3);
 
-        utils.validateSchema(value.data, defaultSchema, {
+        validateSchema(value.data, defaultSchema, {
           throwError: true,
         });
       });

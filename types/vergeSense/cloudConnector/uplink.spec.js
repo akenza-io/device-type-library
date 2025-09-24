@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Verge Sense Uplink", () => {
   let spaceAvailabilitySchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/space_availability.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/space_availability.schema.json`)
       .then((parsedSchema) => {
         spaceAvailabilitySchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("Verge Sense Uplink", () => {
 
   let occupancySchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/occupancy.schema.json`)
+    loadSchema(`${__dirname}/occupancy.schema.json`)
       .then((parsedSchema) => {
         occupancySchema = parsedSchema;
         done();
@@ -31,8 +33,7 @@ describe("Verge Sense Uplink", () => {
 
   let areaCountReportSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/area_count.schema.json`)
+    loadSchema(`${__dirname}/area_count.schema.json`)
       .then((parsedSchema) => {
         areaCountReportSchema = parsedSchema;
         done();
@@ -67,7 +68,7 @@ describe("Verge Sense Uplink", () => {
         }
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -76,12 +77,12 @@ describe("Verge Sense Uplink", () => {
         assert.equal(value.data.occupancy, false);
         assert.equal(value.data.occupied, 0);
 
-        utils.validateSchema(value.data, occupancySchema, {
+        validateSchema(value.data, occupancySchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
 
@@ -89,7 +90,7 @@ describe("Verge Sense Uplink", () => {
         assert.equal(value.lastOccupied, "UNOCCUPIED");
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -98,7 +99,7 @@ describe("Verge Sense Uplink", () => {
         assert.equal(value.data.peopleCount, 0);
         assert.equal(value.data.signsOfLife, false);
 
-        utils.validateSchema(value.data, areaCountReportSchema, {
+        validateSchema(value.data, areaCountReportSchema, {
           throwError: true,
         });
       });
@@ -132,7 +133,7 @@ describe("Verge Sense Uplink", () => {
         }
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -141,12 +142,12 @@ describe("Verge Sense Uplink", () => {
         assert.equal(value.data.occupancy, 1);
         assert.equal(value.data.occupied, true);
 
-        utils.validateSchema(value.data, occupancySchema, {
+        validateSchema(value.data, occupancySchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
 
@@ -154,7 +155,7 @@ describe("Verge Sense Uplink", () => {
         assert.equal(value.lastOccupied, "OCCUPIED");
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -162,7 +163,7 @@ describe("Verge Sense Uplink", () => {
         assert.equal(value.topic, "space_availability");
         assert.equal(value.data.state, "OCCUPIED");
 
-        utils.validateSchema(value.data, spaceAvailabilitySchema, {
+        validateSchema(value.data, spaceAvailabilitySchema, {
           throwError: true,
         });
       });

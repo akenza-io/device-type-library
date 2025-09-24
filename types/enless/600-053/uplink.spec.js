@@ -1,8 +1,12 @@
-const chai = require("chai");
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Transmitter 600-053", () => {
   let defaultSchema = null;
@@ -11,10 +15,9 @@ describe("Transmitter 600-053", () => {
   let consume = null;
 
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/default.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
         defaultSchema = parsedSchema;
         done();
@@ -22,8 +25,7 @@ describe("Transmitter 600-053", () => {
   });
 
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -31,8 +33,7 @@ describe("Transmitter 600-053", () => {
   });
 
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/alarm.schema.json`)
+    loadSchema(`${__dirname}/alarm.schema.json`)
       .then((parsedSchema) => {
         alarmSchema = parsedSchema;
         done();
@@ -50,7 +51,7 @@ describe("Transmitter 600-053", () => {
       };
 
       // --- Lifecycle ---
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.id, 234);
@@ -59,11 +60,11 @@ describe("Transmitter 600-053", () => {
         assert.equal(value.data.fwVersion, 17);
         assert.equal(value.data.batteryLevel, 100); // bits 3-2 → 00
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       // --- Default ---
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "default");
         assert.closeTo(value.data.temperature, -14.4, 0.1);
@@ -73,11 +74,11 @@ describe("Transmitter 600-053", () => {
         assert.equal(value.data.co2Sampled, false);
         assert.equal(value.data.ledOn, false);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       // --- Alarm ---
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "alarm");
         assert.equal(value.data.temperatureHigh, false);
@@ -88,7 +89,7 @@ describe("Transmitter 600-053", () => {
         assert.equal(value.data.co2Low, false);
         assert.equal(value.data.motionGuard, false);
 
-        utils.validateSchema(value.data, alarmSchema, { throwError: true });
+        validateSchema(value.data, alarmSchema, { throwError: true });
       });
 
       consume(data);

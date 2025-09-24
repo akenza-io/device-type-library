@@ -1,17 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Watecco Flash'O Uplink", () => {
   let phase1Schema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/phase1.schema.json`).then((parsedSchema) => {
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/phase1.schema.json`).then((parsedSchema) => {
       phase1Schema = parsedSchema;
       done();
     });
@@ -19,7 +23,7 @@ describe("Watecco Flash'O Uplink", () => {
 
   let phase2Schema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/phase2.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/phase2.schema.json`).then((parsedSchema) => {
       phase2Schema = parsedSchema;
       done();
     });
@@ -27,7 +31,7 @@ describe("Watecco Flash'O Uplink", () => {
 
   let phase3Schema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/phase3.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/phase3.schema.json`).then((parsedSchema) => {
       phase3Schema = parsedSchema;
       done();
     });
@@ -35,8 +39,7 @@ describe("Watecco Flash'O Uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -53,7 +56,7 @@ describe("Watecco Flash'O Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -62,10 +65,10 @@ describe("Watecco Flash'O Uplink", () => {
         assert.equal(value.data.pulse, 23633);
         assert.equal(value.data.relativePulse, 0);
 
-        utils.validateSchema(value.data, phase1Schema, { throwError: true });
+        validateSchema(value.data, phase1Schema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -74,10 +77,10 @@ describe("Watecco Flash'O Uplink", () => {
         assert.equal(value.data.pulse, 93513);
         assert.equal(value.data.relativePulse, 0);
 
-        utils.validateSchema(value.data, phase2Schema, { throwError: true });
+        validateSchema(value.data, phase2Schema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -86,10 +89,10 @@ describe("Watecco Flash'O Uplink", () => {
         assert.equal(value.data.pulse, 84685);
         assert.equal(value.data.relativePulse, 0);
 
-        utils.validateSchema(value.data, phase3Schema, { throwError: true });
+        validateSchema(value.data, phase3Schema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
         assert.typeOf(value, "object");
@@ -128,7 +131,7 @@ describe("Watecco Flash'O Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -140,7 +143,7 @@ describe("Watecco Flash'O Uplink", () => {
         assert.equal(value.data.consumptionCumulative, 1417.98);
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -152,7 +155,7 @@ describe("Watecco Flash'O Uplink", () => {
         assert.equal(value.data.consumptionCumulative, 1496.208);
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -164,7 +167,7 @@ describe("Watecco Flash'O Uplink", () => {
         assert.equal(value.data.consumptionCumulative, 1016.22);
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
         assert.typeOf(value, "object");
@@ -186,7 +189,7 @@ describe("Watecco Flash'O Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -195,10 +198,10 @@ describe("Watecco Flash'O Uplink", () => {
         assert.equal(value.data.pulse, 4646);
         assert.equal(value.data.relativePulse, 0);
 
-        utils.validateSchema(value.data, phase1Schema, { throwError: true });
+        validateSchema(value.data, phase1Schema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
         assert.typeOf(value, "object");
@@ -227,7 +230,7 @@ describe("Watecco Flash'O Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -239,7 +242,7 @@ describe("Watecco Flash'O Uplink", () => {
         assert.equal(value.data.relativePulse, 300);
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
         assert.typeOf(value, "object");
@@ -268,7 +271,7 @@ describe("Watecco Flash'O Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -276,10 +279,10 @@ describe("Watecco Flash'O Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryVoltage, 3.668);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
         assert.typeOf(value, "object");
@@ -299,7 +302,7 @@ describe("Watecco Flash'O Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -308,10 +311,10 @@ describe("Watecco Flash'O Uplink", () => {
         assert.equal(value.data.pulse, 0);
         assert.equal(value.data.relativePulse, 0);
 
-        utils.validateSchema(value.data, phase3Schema, { throwError: true });
+        validateSchema(value.data, phase3Schema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
         assert.typeOf(value, "object");
