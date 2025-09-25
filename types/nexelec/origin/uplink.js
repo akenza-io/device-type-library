@@ -199,22 +199,26 @@ function handlePeriodicData(payload, productType, timestamp) {
 }
 
 // Handles Historical Data messages (0x05).
-function handleHistoricalData(payload, productType, timestamp) {
+function handleHistoricalData(payload, productType) {
   emitIfNotEmpty("system", { productType });
 
   const datalog = {};
   datalog.totalMeasurements = payload[2] >> 2;
-  datalog.samplingPeriod = ((payload[2] & 0x03) << 6) | (payload[3] >> 2);
+  datalog.samplingPeriod = ((payload[2] & 0x03) << 6) | (payload[3] >> 2); // minutes
   datalog.repetitionsInMessage = ((payload[3] & 0x03) << 4) | (payload[4] >> 4);
   emitIfNotEmpty("datalog", datalog);
 
+  // Bit unpack temperatures
   let bitString = "";
   for (let i = 0; i < payload.length; i++) {
-    bitString += payload[i].toString(2).padStart(8, '0');
+    bitString += payload[i].toString(2).padStart(8, "0");
   }
 
+  const periodMs = datalog.samplingPeriod * 60 * 1000;
+  const baseTimeMs = Date.now();
+
   for (let i = 0; i < datalog.totalMeasurements; i++) {
-    const startBit = 36 + (i * 10);
+    const startBit = 36 + i * 10;
     const endBit = startBit + 10;
     if (endBit > bitString.length) break;
 
@@ -223,7 +227,9 @@ function handleHistoricalData(payload, productType, timestamp) {
     const temperature = decodeTemperature(tempRaw);
 
     if (temperature !== null) {
-      emitIfNotEmpty("default", { temperature });
+      const measurementTimeMs = baseTimeMs - (i * periodMs);
+      const iso = new Date(measurementTimeMs).toISOString();
+      emitIfNotEmpty("default", { temperature }, iso);
     }
   }
 }
@@ -236,6 +242,8 @@ function handleHistoricalData(payload, productType, timestamp) {
 function consume(event) {
   const payload = Hex.hexToBytes(event.data.payloadHex);
   const { port } = event.data;
+
+
 
   // Ensure the port is correct.
   if (port !== 56) {
@@ -252,7 +260,7 @@ function consume(event) {
     case 0x02: handleAlarmStatus(payload, productType); break;
     case 0x03: handleDailyAirQuality(payload, productType); break;
     case 0x04: handlePeriodicData(payload, productType); break;
-    case 0x05: handleHistoricalData(payload, productType); break;
+    case 0x05: handleHistoricalData(payload, productType, event.timestamp); break;
     default: emit("log", { error: `Unknown message type: ${messageType}` });
   }
 }
