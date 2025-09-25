@@ -1,15 +1,19 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Vicki Downlink", () => {
   let consume = null;
   before((done) => {
-    const script = rewire("./downlink.js");
-    consume = utils.init(script);
+    const script = rewire(`${__dirname}/downlink.js`);
+    consume = init(script);
     done();
   });
 
@@ -19,7 +23,7 @@ describe("Vicki Downlink", () => {
         payload: { getOperationalMode: true },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "downlink");
         assert.isNotNull(value);
         assert.equal(value.payloadHex, "18");
@@ -35,7 +39,7 @@ describe("Vicki Downlink", () => {
         payload: { setTargetTemperature: 20 },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "downlink");
         assert.isNotNull(value);
         assert.equal(value.payloadHex, "0e14");
@@ -51,7 +55,7 @@ describe("Vicki Downlink", () => {
         payload: { setOpenWindow: { "enabled": true, "closeTime": 20, "delta": 3, "motorPosition": 540 } },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "downlink");
         assert.isNotNull(value);
         assert.equal(value.payloadHex, "0601041c23");
@@ -67,7 +71,7 @@ describe("Vicki Downlink", () => {
         payload: { "setTemperatureRange": { "min": 15, "max": 21 }, "setChildLock": true }
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "downlink");
         assert.isNotNull(value);
         assert.equal(value.payloadHex, "080f150701");

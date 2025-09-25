@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Yosensi YO Airflow Pro Dual uplink", () => {
   let batteryVoltageSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/battery_voltage.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/battery_voltage.schema.json`)
       .then((parsedSchema) => {
         batteryVoltageSchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("Yosensi YO Airflow Pro Dual uplink", () => {
 
   let internalTemperatureSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/internal_temperature.schema.json`)
+    loadSchema(`${__dirname}/internal_temperature.schema.json`)
       .then((parsedSchema) => {
         internalTemperatureSchema = parsedSchema;
         done();
@@ -31,8 +33,7 @@ describe("Yosensi YO Airflow Pro Dual uplink", () => {
 
   let humiditySchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/humidity.schema.json`)
+    loadSchema(`${__dirname}/humidity.schema.json`)
       .then((parsedSchema) => {
         humiditySchema = parsedSchema;
         done();
@@ -41,8 +42,7 @@ describe("Yosensi YO Airflow Pro Dual uplink", () => {
 
   let differentialPressure1Schema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/differential_pressure_1.schema.json`)
+    loadSchema(`${__dirname}/differential_pressure_1.schema.json`)
       .then((parsedSchema) => {
         differentialPressure1Schema = parsedSchema;
         done();
@@ -51,8 +51,7 @@ describe("Yosensi YO Airflow Pro Dual uplink", () => {
 
   let differentialPressure2Schema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/differential_pressure_2.schema.json`)
+    loadSchema(`${__dirname}/differential_pressure_2.schema.json`)
       .then((parsedSchema) => {
         differentialPressure2Schema = parsedSchema;
         done();
@@ -61,8 +60,7 @@ describe("Yosensi YO Airflow Pro Dual uplink", () => {
 
   let gasTemperature1Schema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/gas_temperature_1.schema.json`)
+    loadSchema(`${__dirname}/gas_temperature_1.schema.json`)
       .then((parsedSchema) => {
         gasTemperature1Schema = parsedSchema;
         done();
@@ -71,8 +69,7 @@ describe("Yosensi YO Airflow Pro Dual uplink", () => {
 
   let gasTemperature2Schema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/gas_temperature_2.schema.json`)
+    loadSchema(`${__dirname}/gas_temperature_2.schema.json`)
       .then((parsedSchema) => {
         gasTemperature2Schema = parsedSchema;
         done();
@@ -89,7 +86,7 @@ describe("Yosensi YO Airflow Pro Dual uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -97,12 +94,12 @@ describe("Yosensi YO Airflow Pro Dual uplink", () => {
         assert.equal(value.topic, "battery_voltage");
         assert.equal(value.data.batteryVoltage, 4812);
 
-        utils.validateSchema(value.data, batteryVoltageSchema, {
+        validateSchema(value.data, batteryVoltageSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -110,12 +107,12 @@ describe("Yosensi YO Airflow Pro Dual uplink", () => {
         assert.equal(value.topic, "internal_temperature");
         assert.equal(value.data.internalTemperature, 22.9);
 
-        utils.validateSchema(value.data, internalTemperatureSchema, {
+        validateSchema(value.data, internalTemperatureSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -123,10 +120,10 @@ describe("Yosensi YO Airflow Pro Dual uplink", () => {
         assert.equal(value.topic, "humidity");
         assert.equal(value.data.humidity, 24);
 
-        utils.validateSchema(value.data, humiditySchema, { throwError: true });
+        validateSchema(value.data, humiditySchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -134,12 +131,12 @@ describe("Yosensi YO Airflow Pro Dual uplink", () => {
         assert.equal(value.topic, "differential_pressure_1");
         assert.equal(value.data.differentialPressure1, 0);
 
-        utils.validateSchema(value.data, differentialPressure1Schema, {
+        validateSchema(value.data, differentialPressure1Schema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -147,12 +144,12 @@ describe("Yosensi YO Airflow Pro Dual uplink", () => {
         assert.equal(value.topic, "differential_pressure_2");
         assert.equal(value.data.differentialPressure2, 0);
 
-        utils.validateSchema(value.data, differentialPressure2Schema, {
+        validateSchema(value.data, differentialPressure2Schema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -160,12 +157,12 @@ describe("Yosensi YO Airflow Pro Dual uplink", () => {
         assert.equal(value.topic, "gas_temperature_1");
         assert.equal(value.data.gasTemperature1, 23);
 
-        utils.validateSchema(value.data, gasTemperature1Schema, {
+        validateSchema(value.data, gasTemperature1Schema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -173,7 +170,7 @@ describe("Yosensi YO Airflow Pro Dual uplink", () => {
         assert.equal(value.topic, "gas_temperature_2");
         assert.equal(value.data.gasTemperature2, 22.9);
 
-        utils.validateSchema(value.data, gasTemperature2Schema, {
+        validateSchema(value.data, gasTemperature2Schema, {
           throwError: true,
         });
       });

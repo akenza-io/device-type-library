@@ -1,19 +1,22 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Milesight VS350 Uplink", () => {
   let peopleFlowSchema = null;
   let consume = null;
 
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/people_flow.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/people_flow.schema.json`)
       .then((parsedSchema) => {
         peopleFlowSchema = parsedSchema;
         done();
@@ -22,8 +25,7 @@ describe("Milesight VS350 Uplink", () => {
 
   let climateSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/climate.schema.json`)
+    loadSchema(`${__dirname}/climate.schema.json`)
       .then((parsedSchema) => {
         climateSchema = parsedSchema;
         done();
@@ -32,8 +34,7 @@ describe("Milesight VS350 Uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -49,7 +50,7 @@ describe("Milesight VS350 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -62,7 +63,7 @@ describe("Milesight VS350 Uplink", () => {
         assert.equal(value.data.totalCountIn, 4353);
         assert.equal(value.data.totalCountOut, 4360);
 
-        utils.validateSchema(value.data, peopleFlowSchema, {
+        validateSchema(value.data, peopleFlowSchema, {
           throwError: true,
         });
       });
@@ -78,7 +79,7 @@ describe("Milesight VS350 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -87,7 +88,7 @@ describe("Milesight VS350 Uplink", () => {
         assert.equal(value.data.temperatureAlarm, "THRESHOLD_ALARM");
         assert.equal(value.data.temperature, 31);
 
-        utils.validateSchema(value.data, climateSchema, { throwError: true });
+        validateSchema(value.data, climateSchema, { throwError: true });
       });
 
       consume(data);

@@ -1,18 +1,22 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Milesight VS133 Uplink", () => {
   let line1Schema = null;
   let consume = null;
 
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/line_1.schema.json`).then((parsedSchema) => {
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/line_1.schema.json`).then((parsedSchema) => {
       line1Schema = parsedSchema;
       done();
     });
@@ -20,7 +24,7 @@ describe("Milesight VS133 Uplink", () => {
 
   let line2Schema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/line_2.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/line_2.schema.json`).then((parsedSchema) => {
       line2Schema = parsedSchema;
       done();
     });
@@ -28,7 +32,7 @@ describe("Milesight VS133 Uplink", () => {
 
   let line3Schema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/line_3.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/line_3.schema.json`).then((parsedSchema) => {
       line3Schema = parsedSchema;
       done();
     });
@@ -36,7 +40,7 @@ describe("Milesight VS133 Uplink", () => {
 
   let line4Schema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/line_4.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/line_4.schema.json`).then((parsedSchema) => {
       line4Schema = parsedSchema;
       done();
     });
@@ -44,8 +48,7 @@ describe("Milesight VS133 Uplink", () => {
 
   let regionCountSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/region_count.schema.json`)
+    loadSchema(`${__dirname}/region_count.schema.json`)
       .then((parsedSchema) => {
         regionCountSchema = parsedSchema;
         done();
@@ -54,8 +57,7 @@ describe("Milesight VS133 Uplink", () => {
 
   let dwellTimeSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/dwell_time.schema.json`)
+    loadSchema(`${__dirname}/dwell_time.schema.json`)
       .then((parsedSchema) => {
         dwellTimeSchema = parsedSchema;
         done();
@@ -72,7 +74,7 @@ describe("Milesight VS133 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -81,10 +83,10 @@ describe("Milesight VS133 Uplink", () => {
         assert.equal(value.data.totalCounterIn, 72);
         assert.equal(value.data.totalCounterOut, 200);
 
-        utils.validateSchema(value.data, line1Schema, { throwError: true });
+        validateSchema(value.data, line1Schema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -93,10 +95,10 @@ describe("Milesight VS133 Uplink", () => {
         assert.equal(value.data.totalCounterIn, 0);
         assert.equal(value.data.totalCounterOut, 0);
 
-        utils.validateSchema(value.data, line2Schema, { throwError: true });
+        validateSchema(value.data, line2Schema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -105,10 +107,10 @@ describe("Milesight VS133 Uplink", () => {
         assert.equal(value.data.totalCounterIn, 0);
         assert.equal(value.data.totalCounterOut, 0);
 
-        utils.validateSchema(value.data, line3Schema, { throwError: true });
+        validateSchema(value.data, line3Schema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -117,7 +119,7 @@ describe("Milesight VS133 Uplink", () => {
         assert.equal(value.data.totalCounterIn, 5300);
         assert.equal(value.data.totalCounterOut, 6797);
 
-        utils.validateSchema(value.data, line4Schema, { throwError: true });
+        validateSchema(value.data, line4Schema, { throwError: true });
       });
 
       consume(data);
@@ -131,7 +133,7 @@ describe("Milesight VS133 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -140,10 +142,10 @@ describe("Milesight VS133 Uplink", () => {
         assert.equal(value.data.periodicCounterIn, 0);
         assert.equal(value.data.periodicCounterOut, 0);
 
-        utils.validateSchema(value.data, line1Schema, { throwError: true });
+        validateSchema(value.data, line1Schema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -152,10 +154,10 @@ describe("Milesight VS133 Uplink", () => {
         assert.equal(value.data.periodicCounterIn, 0);
         assert.equal(value.data.periodicCounterOut, 0);
 
-        utils.validateSchema(value.data, line2Schema, { throwError: true });
+        validateSchema(value.data, line2Schema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -164,10 +166,10 @@ describe("Milesight VS133 Uplink", () => {
         assert.equal(value.data.periodicCounterIn, 0);
         assert.equal(value.data.periodicCounterOut, 0);
 
-        utils.validateSchema(value.data, line3Schema, { throwError: true });
+        validateSchema(value.data, line3Schema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -176,7 +178,7 @@ describe("Milesight VS133 Uplink", () => {
         assert.equal(value.data.periodicCounterIn, 5);
         assert.equal(value.data.periodicCounterOut, 7);
 
-        utils.validateSchema(value.data, line4Schema, { throwError: true });
+        validateSchema(value.data, line4Schema, { throwError: true });
       });
 
       consume(data);
@@ -190,7 +192,7 @@ describe("Milesight VS133 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -201,7 +203,7 @@ describe("Milesight VS133 Uplink", () => {
         assert.equal(value.data.totalCounterIn, 5593);
         assert.equal(value.data.totalCounterOut, 5205);
 
-        utils.validateSchema(value.data, line1Schema, { throwError: true });
+        validateSchema(value.data, line1Schema, { throwError: true });
       });
 
       consume(data);
@@ -215,14 +217,14 @@ describe("Milesight VS133 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(value.topic, "region_count");
         assert.equal(value.data.region1Count, 2);
         assert.equal(value.data.region2Count, 16);
         assert.equal(value.data.region3Count, 7);
         assert.equal(value.data.region4Count, 9);
 
-        utils.validateSchema(value.data, regionCountSchema, {
+        validateSchema(value.data, regionCountSchema, {
           throwError: true,
         });
       });
@@ -238,7 +240,7 @@ describe("Milesight VS133 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -253,7 +255,7 @@ describe("Milesight VS133 Uplink", () => {
         assert.equal(value.data.region4AvgDwell, 118);
         assert.equal(value.data.region4MaxDwell, 34579);
 
-        utils.validateSchema(value.data, dwellTimeSchema, {
+        validateSchema(value.data, dwellTimeSchema, {
           throwError: true,
         });
       });

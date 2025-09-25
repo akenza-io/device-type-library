@@ -1,17 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Digital Technologies Proximity Sensor Uplink", () => {
   let motionSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/motion.schema.json`).then((parsedSchema) => {
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/motion.schema.json`).then((parsedSchema) => {
       motionSchema = parsedSchema;
       done();
     });
@@ -33,7 +37,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         },
         timestamp: "2022-09-28T15:14:52.571000Z",
       };
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -41,10 +45,10 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         assert.equal(value.topic, "motion");
         assert.equal(value.data.motion, true);
 
-        utils.validateSchema(value.data, motionSchema, { throwError: true });
+        validateSchema(value.data, motionSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
 

@@ -1,19 +1,22 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("VS121 Uplink", () => {
   let lifecycleSchema = null;
   let consume = null;
 
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -22,7 +25,7 @@ describe("VS121 Uplink", () => {
 
   let countSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/count.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/count.schema.json`).then((parsedSchema) => {
       countSchema = parsedSchema;
       done();
     });
@@ -30,7 +33,7 @@ describe("VS121 Uplink", () => {
 
   let peopleSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/people.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/people.schema.json`).then((parsedSchema) => {
       peopleSchema = parsedSchema;
       done();
     });
@@ -38,8 +41,7 @@ describe("VS121 Uplink", () => {
 
   let peopleMaxSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/people_max.schema.json`)
+    loadSchema(`${__dirname}/people_max.schema.json`)
       .then((parsedSchema) => {
         peopleMaxSchema = parsedSchema;
         done();
@@ -48,7 +50,7 @@ describe("VS121 Uplink", () => {
 
   let aFlowSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/a_flow.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/a_flow.schema.json`).then((parsedSchema) => {
       aFlowSchema = parsedSchema;
       done();
     });
@@ -56,7 +58,7 @@ describe("VS121 Uplink", () => {
 
   let bFlowSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/b_flow.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/b_flow.schema.json`).then((parsedSchema) => {
       bFlowSchema = parsedSchema;
       done();
     });
@@ -64,7 +66,7 @@ describe("VS121 Uplink", () => {
 
   let cFlowSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/c_flow.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/c_flow.schema.json`).then((parsedSchema) => {
       cFlowSchema = parsedSchema;
       done();
     });
@@ -72,7 +74,7 @@ describe("VS121 Uplink", () => {
 
   let dFlowSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/d_flow.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/d_flow.schema.json`).then((parsedSchema) => {
       dFlowSchema = parsedSchema;
       done();
     });
@@ -80,8 +82,7 @@ describe("VS121 Uplink", () => {
 
   let dwellTimeSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/dwell_time.schema.json`)
+    loadSchema(`${__dirname}/dwell_time.schema.json`)
       .then((parsedSchema) => {
         dwellTimeSchema = parsedSchema;
         done();
@@ -90,8 +91,7 @@ describe("VS121 Uplink", () => {
 
   let regionCountSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/region_count.schema.json`)
+    loadSchema(`${__dirname}/region_count.schema.json`)
       .then((parsedSchema) => {
         regionCountSchema = parsedSchema;
         done();
@@ -100,7 +100,7 @@ describe("VS121 Uplink", () => {
 
   let totalSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/total.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/total.schema.json`).then((parsedSchema) => {
       totalSchema = parsedSchema;
       done();
     });
@@ -115,14 +115,14 @@ describe("VS121 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.sn, 660012345678);
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -136,7 +136,7 @@ describe("VS121 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -147,7 +147,7 @@ describe("VS121 Uplink", () => {
         assert.equal(value.data.region1, 1);
         assert.equal(value.data.region2, 0);
         assert.equal(value.data.regionCount, 3);
-        utils.validateSchema(value.data, countSchema, { throwError: true });
+        validateSchema(value.data, countSchema, { throwError: true });
       });
 
       consume(data);
@@ -161,7 +161,7 @@ describe("VS121 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -170,7 +170,7 @@ describe("VS121 Uplink", () => {
         assert.equal(value.data.in, 2);
         assert.equal(value.data.out, 1);
 
-        utils.validateSchema(value.data, peopleSchema, { throwError: true });
+        validateSchema(value.data, peopleSchema, { throwError: true });
       });
 
       consume(data);
@@ -184,7 +184,7 @@ describe("VS121 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -192,7 +192,7 @@ describe("VS121 Uplink", () => {
         assert.equal(value.topic, "people_max");
         assert.equal(value.data.peopleMax, 5);
 
-        utils.validateSchema(value.data, peopleMaxSchema, { throwError: true });
+        validateSchema(value.data, peopleMaxSchema, { throwError: true });
       });
 
       consume(data);
@@ -207,7 +207,7 @@ describe("VS121 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -218,10 +218,10 @@ describe("VS121 Uplink", () => {
         assert.equal(value.data.aToC, 0);
         assert.equal(value.data.aToD, 0);
 
-        utils.validateSchema(value.data, aFlowSchema, { throwError: true });
+        validateSchema(value.data, aFlowSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -232,10 +232,10 @@ describe("VS121 Uplink", () => {
         assert.equal(value.data.bToC, 0);
         assert.equal(value.data.bToD, 0);
 
-        utils.validateSchema(value.data, bFlowSchema, { throwError: true });
+        validateSchema(value.data, bFlowSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -246,10 +246,10 @@ describe("VS121 Uplink", () => {
         assert.equal(value.data.cToC, 0);
         assert.equal(value.data.cToD, 4608);
 
-        utils.validateSchema(value.data, cFlowSchema, { throwError: true });
+        validateSchema(value.data, cFlowSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -260,7 +260,7 @@ describe("VS121 Uplink", () => {
         assert.equal(value.data.dToC, 0);
         assert.equal(value.data.dToD, 0);
 
-        utils.validateSchema(value.data, dFlowSchema, { throwError: true });
+        validateSchema(value.data, dFlowSchema, { throwError: true });
       });
 
       consume(data);
@@ -274,7 +274,7 @@ describe("VS121 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -297,7 +297,7 @@ describe("VS121 Uplink", () => {
         assert.equal(value.data.region15count, 0);
         assert.equal(value.data.region16count, 0);
 
-        utils.validateSchema(value.data, regionCountSchema, {
+        validateSchema(value.data, regionCountSchema, {
           throwError: true,
         });
       });

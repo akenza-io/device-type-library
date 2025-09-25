@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Digital Technologies Contact Sensor Uplink", () => {
   let objectPresentSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/contact.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/contact.schema.json`)
       .then((parsedSchema) => {
         objectPresentSchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
 
   let networkStatusSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/network_status.schema.json`)
+    loadSchema(`${__dirname}/network_status.schema.json`)
       .then((parsedSchema) => {
         networkStatusSchema = parsedSchema;
         done();
@@ -47,7 +49,7 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
         labels: {},
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -55,12 +57,12 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
         assert.equal(value.topic, "contact");
         assert.equal(value.data.contact, "OPEN");
 
-        utils.validateSchema(value.data, objectPresentSchema, {
+        validateSchema(value.data, objectPresentSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
         assert.equal(value.lastContact, "OPEN");
@@ -94,7 +96,7 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
         }
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -105,12 +107,12 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
         assert.equal(value.data.transmissionMode, "HIGH_POWER_BOOST_MODE");
         assert.equal(value.data.sqi, 3);
 
-        utils.validateSchema(value.data, networkStatusSchema, {
+        validateSchema(value.data, networkStatusSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -118,12 +120,12 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
         assert.equal(value.topic, "contact");
         assert.equal(value.data.contact, "OPEN");
 
-        utils.validateSchema(value.data, objectPresentSchema, {
+        validateSchema(value.data, objectPresentSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
         assert.equal(value.lastContact, "OPEN");
@@ -158,7 +160,7 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
         }
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
         assert.equal(value.lastContact, "OPEN");

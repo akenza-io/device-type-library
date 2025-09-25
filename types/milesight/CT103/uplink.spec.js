@@ -1,8 +1,12 @@
-const chai = require("chai");
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Milesight CT103 Uplink", () => {
     let defaultSchema = null;
@@ -11,12 +15,12 @@ describe("Milesight CT103 Uplink", () => {
     let consume = null;
 
     before(async () => {
-        const script = rewire("./uplink.js");
-        consume = utils.init(script);
+        const script = rewire(`${__dirname}/uplink.js`);
+        consume = init(script);
         [defaultSchema, alarmSchema, systemSchema] = await Promise.all([
-            utils.loadSchema(`${__dirname}/default.schema.json`),
-            utils.loadSchema(`${__dirname}/alarm.schema.json`),
-            utils.loadSchema(`${__dirname}/system.schema.json`),
+            loadSchema(`${__dirname}/default.schema.json`),
+            loadSchema(`${__dirname}/alarm.schema.json`),
+            loadSchema(`${__dirname}/system.schema.json`),
         ]);
     });
 
@@ -30,7 +34,7 @@ describe("Milesight CT103 Uplink", () => {
                 },
             };
 
-            utils.expectEmits((type, value) => {
+            expectEmits((type, value) => {
                 assert.equal(type, "sample");
                 assert.equal(value.topic, "system");
                 assert.equal(value.data.protocolVersion, "V1");
@@ -40,7 +44,7 @@ describe("Milesight CT103 Uplink", () => {
                 assert.equal(value.data.sn, "6746d48016300014");
                 assert.equal(value.data.lorawanClass, "CLASS_A");
                 assert.equal(value.data.deviceStatus, "on");
-                utils.validateSchema(value.data, systemSchema, { throwError: true });
+                validateSchema(value.data, systemSchema, { throwError: true });
             });
 
             consume(data);
@@ -54,13 +58,13 @@ describe("Milesight CT103 Uplink", () => {
                 },
             };
 
-            utils.expectEmits((type, value) => {
+            expectEmits((type, value) => {
                 assert.equal(type, "sample");
                 assert.equal(value.topic, "default");
                 assert.equal(value.data.totalCurrent, 6.27);
                 assert.equal(value.data.current, 64);
                 assert.equal(value.data.temperature, 30.8);
-                utils.validateSchema(value.data, defaultSchema, { throwError: true });
+                validateSchema(value.data, defaultSchema, { throwError: true });
             });
 
             consume(data);
@@ -74,13 +78,13 @@ describe("Milesight CT103 Uplink", () => {
                 },
             };
 
-            utils.expectEmits((type, value) => {
+            expectEmits((type, value) => {
                 assert.equal(type, "sample");
                 assert.equal(value.topic, "alarm");
                 assert.equal(value.data.currentMax, 30);
                 assert.equal(value.data.currentMin, 20);
                 assert.equal(value.data.currentAlarmStatus, "CURRENT_THRESHOLD_ALARM");
-                utils.validateSchema(value.data, alarmSchema, { throwError: true });
+                validateSchema(value.data, alarmSchema, { throwError: true });
             });
 
             consume(data);

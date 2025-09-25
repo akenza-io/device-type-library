@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Senlab SenlabD uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/default.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
         defaultSchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("Senlab SenlabD uplink", () => {
 
   let startupSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/startup.schema.json`)
+    loadSchema(`${__dirname}/startup.schema.json`)
       .then((parsedSchema) => {
         startupSchema = parsedSchema;
         done();
@@ -38,7 +40,7 @@ describe("Senlab SenlabD uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -48,7 +50,7 @@ describe("Senlab SenlabD uplink", () => {
         assert.equal(value.data.openDuration, 0);
         assert.equal(value.data.closeDuration, 1);
 
-        utils.validateSchema(value.data, startupSchema, { throwError: true });
+        validateSchema(value.data, startupSchema, { throwError: true });
       });
 
       consume(data);
@@ -62,7 +64,7 @@ describe("Senlab SenlabD uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -71,7 +73,7 @@ describe("Senlab SenlabD uplink", () => {
         assert.equal(value.data.open, false);
         assert.equal(value.data.batteryLevel, 96);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

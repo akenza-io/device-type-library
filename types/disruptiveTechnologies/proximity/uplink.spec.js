@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Digital Technologies Proximity Sensor Uplink", () => {
   let objectPresentSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/object_present.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/object_present.schema.json`)
       .then((parsedSchema) => {
         objectPresentSchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
 
   let touchSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/touch.schema.json`)
+    loadSchema(`${__dirname}/touch.schema.json`)
       .then((parsedSchema) => {
         touchSchema = parsedSchema;
         done();
@@ -31,8 +33,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
 
   let washroomUsageSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/washroom_usage.schema.json`)
+    loadSchema(`${__dirname}/washroom_usage.schema.json`)
       .then((parsedSchema) => {
         washroomUsageSchema = parsedSchema;
         done();
@@ -57,7 +58,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         labels: {},
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -68,12 +69,12 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         assert.equal(value.data.count, 0);
         assert.equal(value.data.relativeCount, 0);
 
-        utils.validateSchema(value.data, objectPresentSchema, {
+        validateSchema(value.data, objectPresentSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
 
@@ -107,7 +108,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         }
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -118,12 +119,12 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         assert.equal(value.data.count, 1);
         assert.equal(value.data.relativeCount, 1);
 
-        utils.validateSchema(value.data, objectPresentSchema, {
+        validateSchema(value.data, objectPresentSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
 
@@ -154,7 +155,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         }
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -162,12 +163,12 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         assert.equal(value.topic, "touch");
         assert.equal(value.data.touch, true);
 
-        utils.validateSchema(value.data, touchSchema, {
+        validateSchema(value.data, touchSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -178,12 +179,12 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         assert.equal(value.data.count, 1);
         assert.equal(value.data.relativeCount, 0); // Should stay 0 as this is not a real sample
 
-        utils.validateSchema(value.data, objectPresentSchema, {
+        validateSchema(value.data, objectPresentSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
 
@@ -221,7 +222,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         labels: {},
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -232,12 +233,12 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         assert.equal(value.data.count, 201);
         assert.equal(value.data.relativeCount, 1);
 
-        utils.validateSchema(value.data, objectPresentSchema, {
+        validateSchema(value.data, objectPresentSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
 
@@ -277,7 +278,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         labels: {},
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -288,12 +289,12 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         assert.equal(value.data.count, 201);
         assert.equal(value.data.relativeCount, 0);
 
-        utils.validateSchema(value.data, objectPresentSchema, {
+        validateSchema(value.data, objectPresentSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
 
@@ -334,7 +335,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         }
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -343,12 +344,12 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         assert.equal(value.data.absoluteUsageCount, 101);
         assert.equal(value.data.relativeUsageCount, 1);
 
-        utils.validateSchema(value.data, washroomUsageSchema, {
+        validateSchema(value.data, washroomUsageSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -359,12 +360,12 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         assert.equal(value.data.count, 202);
         assert.equal(value.data.relativeCount, 1);
 
-        utils.validateSchema(value.data, objectPresentSchema, {
+        validateSchema(value.data, objectPresentSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
 
