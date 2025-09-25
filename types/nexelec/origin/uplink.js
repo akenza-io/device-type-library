@@ -215,6 +215,11 @@ function handleHistoricalData(payload, productType, timestamp) {
   }
 
   const periodMs = datalog.samplingPeriod * 60 * 1000;
+
+  // If timestamp is not provided, use current time
+  if (!timestamp) {
+    timestamp = new Date().getTime();
+  }
   const baseTimeMs = timestamp;
 
   for (let i = 0; i < datalog.totalMeasurements; i++) {
