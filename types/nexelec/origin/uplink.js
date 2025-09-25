@@ -88,7 +88,7 @@ const maintenanceMap = {
 
 
 // Handles Product Status messages (0x00).
-function handleProductStatus(payload, productType, timestamp) {
+function handleProductStatus(payload, productType) {
   if (payload.length < 7) {
     emit("log", { error: "Invalid payload length for Product Status" });
     return;
@@ -138,7 +138,7 @@ function handleProductConfig(payload, productType, timestamp) {
 }
 
 // Handles Alarm Status messages (0x02).
-function handleAlarmStatus(payload, productType, timestamp) {
+function handleAlarmStatus(payload, productType) {
   if (payload.length < 7) {
     emit("log", { error: "Invalid payload length for Alarm Status" });
     return;
@@ -165,7 +165,7 @@ function handleAlarmStatus(payload, productType, timestamp) {
 }
 
 // Handles Daily Air Quality messages (0x03).
-function handleDailyAirQuality(payload, productType, timestamp) {
+function handleDailyAirQuality(payload, productType) {
   if (payload.length < 9) {
     emit("log", { error: "Invalid payload length for Daily Air Quality" });
     return;
@@ -184,7 +184,7 @@ function handleDailyAirQuality(payload, productType, timestamp) {
 }
 
 // Handles Periodic Data messages (0x04).
-function handlePeriodicData(payload, productType, timestamp) {
+function handlePeriodicData(payload, productType) {
   if (payload.length < 5) {
     emit("log", { error: "Invalid payload length for Periodic Data" });
     return;
@@ -199,7 +199,7 @@ function handlePeriodicData(payload, productType, timestamp) {
 }
 
 // Handles Historical Data messages (0x05).
-function handleHistoricalData(payload, productType) {
+function handleHistoricalData(payload, productType, timestamp) {
   emitIfNotEmpty("system", { productType });
 
   const datalog = {};
@@ -215,7 +215,7 @@ function handleHistoricalData(payload, productType) {
   }
 
   const periodMs = datalog.samplingPeriod * 60 * 1000;
-  const baseTimeMs = Date.now();
+  const baseTimeMs = timestamp;
 
   for (let i = 0; i < datalog.totalMeasurements; i++) {
     const startBit = 36 + i * 10;

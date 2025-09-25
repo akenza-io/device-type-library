@@ -2,13 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-
-# [1.75.0] - 2025-09-17
+# [1.75.0] - 2025-09-25
 
 ### Added
 
 - Nexelec - Origin
-
 
 ### Changed
 
@@ -38,14 +36,11 @@ All notable changes to this project will be documented in this file.
 - Enless 600-065
 - Enless 600-232
 
-- Nexelec - Origin
-
 ### Changed
 
 - Unifyed occupancy occupancy to send 1 or 0 if its not an elsys device
 
 # [1.73.0] - 2025-09-15
-
 
 ### Added
 
