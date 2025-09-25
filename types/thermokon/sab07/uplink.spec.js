@@ -39,8 +39,10 @@ describe("Thermokon SAB07 Uplink", () => {
 
                 assert.equal(value.topic, "default");
                 assert.equal(value.data.sensorTemperature, 24.65);
+                assert.equal(value.data.sensorTemperatureF, 76.4);
                 assert.equal(value.data.relativeHumidity, 46.88);
                 assert.equal(value.data.targetTemperature, 29);
+                assert.equal(value.data.targetTemperatureF, 84.2);
 
                 utils.validateSchema(value.data, defaultSchema, { throwError: true });
             });

@@ -58,6 +58,7 @@ describe("Decentlab ISF Uplink", () => {
         assert.equal(value.data.minVoltage, 10.862);
         assert.equal(value.data.sapFlow, -0.192);
         assert.equal(value.data.temperatureOuter, -4.36);
+        assert.equal(value.data.temperatureOuterF, 24.2);
         assert.equal(value.data.tmaxInner, 35.634);
         assert.equal(value.data.tmaxOuter, 37.392);
         assert.equal(value.data.upstreamTmaxInner, 33.46);

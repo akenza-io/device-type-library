@@ -50,10 +50,14 @@ describe("Decentlab CWS Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.humidity, 60.1);
         assert.equal(value.data.temperature, 27.09);
+         assert.equal(value.data.temperatureF, 80.8);
         assert.equal(value.data.angle, 71);
         assert.equal(value.data.dewPoint, 18.68);
+         assert.equal(value.data.dewPointF, 65.6);
         assert.equal(value.data.sensorTemperature, 26.54);
+         assert.equal(value.data.sensorTemperatureF, 79.8);
         assert.equal(value.data.surfaceTemperature, 26.79);
+         assert.equal(value.data.surfaceTemperatureF, 80.2);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

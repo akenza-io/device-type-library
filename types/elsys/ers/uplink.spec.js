@@ -57,6 +57,7 @@ describe("Elsys ERS uplink", () => {
         assert.equal(value.data.light, 1050);
         assert.equal(value.data.humidity, 23);
         assert.equal(value.data.temperature, 24.1);
+        assert.equal(value.data.temperatureF, 75.4);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

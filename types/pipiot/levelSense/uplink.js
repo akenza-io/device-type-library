@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function getFillLevel(device, distance) {
   if (device !== undefined && distance !== undefined) {
     if (device.customFields !== undefined) {
@@ -183,6 +187,7 @@ function consume(event) {
 
     data.laserReflectance = laserReflectance(bits.substr(32, 16));
     data.temperature = temperature(bits.substr(48, 8));
+    data.temperatureF = cToF(data.temperature);
     data.tiltAngle = tiltAngle(bits.substr(56, 8), lifecycle.overTempFlag);
     lifecycle.batteryVoltage = batteryVoltage(bits.substr(64, 8));
 
@@ -225,6 +230,7 @@ function consume(event) {
 
     data.laserReflectance = laserReflectance(bits.substr(48, 16));
     data.temperature = temperature(bits.substr(64, 8));
+    data.temperatureF = cToF(data.temperature);
     data.tiltAngle = tiltAngle(bits.substr(72, 8), lifecycle.overTempFlag);
     lifecycle.batteryVoltage = batteryVoltage(bits.substr(80, 8));
     // Reserved 8

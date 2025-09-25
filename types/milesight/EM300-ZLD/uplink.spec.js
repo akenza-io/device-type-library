@@ -55,6 +55,7 @@ describe("EM300-ZLD Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.data.temperature, 30.8);
+         assert.equal(value.data.temperatureF, 87.4);
         assert.equal(value.data.humidity, 50.5);
         assert.equal(value.data.waterLeak, false);
 

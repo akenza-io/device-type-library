@@ -58,6 +58,7 @@ describe("LSN50 V2 D23 Uplink", () => {
         assert.equal(value.data.extTrigger, false);
         assert.equal(value.data.open, false);
         assert.equal(value.data.temperature, 13);
+        assert.equal(value.data.temperatureF, 55.4);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -70,7 +71,9 @@ describe("LSN50 V2 D23 Uplink", () => {
         assert.equal(value.topic, "ds");
 
         assert.equal(value.data.c2temperature, 5.2);
+        assert.equal(value.data.c2temperatureF, 41.4);
         assert.equal(value.data.c3temperature, -0.3);
+        assert.equal(value.data.c3temperatureF, 31.5);
 
         utils.validateSchema(value.data, dsSchema, { throwError: true });
       });

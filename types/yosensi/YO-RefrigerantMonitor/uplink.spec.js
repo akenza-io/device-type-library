@@ -89,6 +89,7 @@ describe("Yosensi YO Refrigerant Monitor uplink", () => {
 
         assert.equal(value.topic, "internal_temperature");
         assert.equal(value.data.internalTemperature, 26.3);
+        assert.equal(value.data.internalTemperatureF, 79.3);
 
         utils.validateSchema(value.data, internalTemperatureSchema, {
           throwError: true,
@@ -113,6 +114,7 @@ describe("Yosensi YO Refrigerant Monitor uplink", () => {
 
         assert.equal(value.topic, "temperature");
         assert.equal(value.data.temperature, 27.2);
+        assert.equal(value.data.temperatureF, 81);
 
         utils.validateSchema(value.data, temperatureSchema, {
           throwError: true,

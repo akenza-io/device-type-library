@@ -45,6 +45,7 @@ describe("Decentlab MES5 Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.status, 0);
         assert.equal(value.data.temperature, 22.78);
+         assert.equal(value.data.temperatureF, 73);
         assert.equal(value.data.turbidity, 906.1);
         assert.equal(value.data.sludgeBlanket, 84.56);
         assert.equal(value.data.suspendedSolid, 2.42);

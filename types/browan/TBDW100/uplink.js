@@ -1,3 +1,7 @@
+function cToF(celsius) { 
+ return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
+ } 
+
 function calculateIncrement(lastValue, currentValue) {
   // Check if current value exists
   if (currentValue === undefined || Number.isNaN(currentValue)) {
@@ -34,7 +38,9 @@ function consume(event) {
   lifecycle.batteryLevel = batteryLevel;
 
   data.temperature = Bits.bitsToUnsigned(bits.substr(17, 7));
+ data.temperatureF = cToF(data.temperature);
   data.temperature -= 32;
+ data.temperatureF = cToF(data.temperature);
   data.time = Hex.hexLittleEndianToBigEndian(payload.substr(6, 4), false);
   data.count = Hex.hexLittleEndianToBigEndian(payload.substr(10, 6), false);
 

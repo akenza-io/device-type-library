@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 // --- HEX TO BYTE ARRAY ---
 function parseHexString(str) {
   const result = [];
@@ -27,7 +31,7 @@ function consume(event) {
   const bytes = parseHexString(payload);
 
   if (bytes.length !== 18) {
-    throw new Error("Invalid payload length: " + bytes.length + ", expected 18 bytes.");
+    throw new Error(`Invalid payload length: ${bytes.length}, expected 18 bytes.`);
   }
 
   const decoded = {};
@@ -48,6 +52,7 @@ function consume(event) {
 
   // --- Temperature (°C, Int16BE / 10) ---
   decoded.temperature = readInt16BE(bytes.slice(6, 8)) / 10;
+  decoded.temperatureF = cToF(decoded.temperature);
 
   // --- Humidity (%RH, UInt16BE / 10) ---
   decoded.humidity = readUInt16BE(bytes.slice(8, 10)) / 10;

@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bytes = Hex.hexToBytes(payload);
@@ -16,13 +20,16 @@ function consume(event) {
     defaultData.sensorTemperature = parseFloat(
       ((keepaliveBytes[2] - 28.33333) / 5.66666).toFixed(2)
     );
+    defaultData.sensorTemperatureF = cToF(defaultData.sensorTemperature);
   } else {
     // command === 0x01
     defaultData.sensorTemperature = parseFloat(
       ((keepaliveBytes[2] * 165) / 256 - 40).toFixed(2)
     );
+    defaultData.sensorTemperatureF = cToF(defaultData.sensorTemperature);
   }
   defaultData.targetTemperature = keepaliveBytes[1];
+  defaultData.targetTemperatureF = cToF(defaultData.targetTemperature);
   defaultData.relativeHumidity = parseFloat(
     ((keepaliveBytes[3] * 100) / 256).toFixed(2)
   );

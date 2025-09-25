@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function getFrameType(type) {
   const types = {
     0x0: "SHORT_PERIODIC_TELEGRAM",
@@ -79,6 +83,7 @@ function consume(event) {
   const data = {};
   data.frameType = getFrameType(frameType);
   data.temperature = (bytes[2] > 127) ? bytes[2] - 256 : bytes[2];
+  data.temperatureF = cToF(data.temperature);
 
   const minorStatus = (bytes[3] >> 4) & 0x0F;
   const generalStatus = bytes[3] & 0x0F;

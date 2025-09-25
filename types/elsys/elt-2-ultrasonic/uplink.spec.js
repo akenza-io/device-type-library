@@ -46,6 +46,7 @@ describe("Elsys ELT-2 Ultrasonic uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.distance, 300);
         assert.equal(value.data.temperature, 22.1);
+         assert.equal(value.data.temperatureF, 71.8);
         assert.equal(value.data.humidity, 43);
         assert.equal(value.data.pressure, 964.433);
 

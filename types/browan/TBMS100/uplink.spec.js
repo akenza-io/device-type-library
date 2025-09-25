@@ -57,6 +57,7 @@ describe("TBDW100 uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.motion, true);
         assert.equal(value.data.temperature, 20);
+         assert.equal(value.data.temperatureF, 68);
         assert.equal(value.data.time, 22);
         assert.equal(value.data.count, 3153);
 

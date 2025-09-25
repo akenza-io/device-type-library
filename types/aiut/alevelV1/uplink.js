@@ -1,3 +1,7 @@
+function cToF(celsius) { 
+ return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
+ } 
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
@@ -15,6 +19,7 @@ function consume(event) {
     (Bits.bitsToUnsigned(bits.substr(16, 8)) + 150) / 100;
   lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substr(24, 8));
   data.temperature = Bits.bitsToSigned(bits.substr(32, 8));
+ data.temperatureF = cToF(data.temperature);
   lifecycle.deviceStatusFlag = Bits.bitsToUnsigned(bits.substr(40, 8));
 
   emit("sample", { data: lifecycle, topic: "lifecycle" });

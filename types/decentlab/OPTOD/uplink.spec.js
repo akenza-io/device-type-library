@@ -52,6 +52,7 @@ describe("Decentlab OPTOD Uplink", () => {
         assert.equal(value.data.oxygenConcentrationAlt, 8.69);
         assert.equal(value.data.oxygenSaturation, 97.52);
         assert.equal(value.data.temperature, 21.46);
+         assert.equal(value.data.temperatureF, 70.6);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

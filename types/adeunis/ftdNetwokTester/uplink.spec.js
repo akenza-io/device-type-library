@@ -56,6 +56,7 @@ describe("FTD Network tester", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 26);
+         assert.equal(value.data.temperatureF, 78.8);
         assert.equal(value.data.trigger, "PUSHBUTTON");
         assert.equal(value.data.uplink, 18);
         assert.equal(value.data.downlink, 16);

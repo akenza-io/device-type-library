@@ -1,3 +1,7 @@
+function cToF(celsius) { 
+ return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
+ } 
+
 // Helper functions to read little-endian values from a byte array
 function readUInt16LE(bytes) {
   const value = (bytes[1] << 8) + bytes[0];
@@ -126,6 +130,7 @@ function consume(event) {
         const tempValue = readUInt16LE(bytes.slice(i, i + 2));
         if (tempValue !== 0xfffd && tempValue !== 0xffff) {
           defaultData.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
+ defaultData.temperatureF = cToF(defaultData.temperature);
         }
         i += 2;
       }
@@ -146,6 +151,7 @@ function consume(event) {
         const tempAlarmStatus = readTemperatureAlarmStatus(bytes[i + 2]);
         if (tempAlarmStatus !== "unknown") {
           alarmData.temperatureAlarmStatus = tempAlarmStatus;
+ alarmData.temperatureF = cToF(alarmData.temperature);
         }
         i += 3;
       }

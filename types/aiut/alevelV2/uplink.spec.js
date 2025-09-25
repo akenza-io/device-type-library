@@ -58,6 +58,7 @@ describe("Alevel V2 Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, -5);
+        assert.equal(value.data.temperatureF, 23);
         assert.equal(value.data.buttonLatched, false);
         assert.equal(value.data.isButtonPressed, true);
         assert.equal(value.data.currentLevel, 90.1);

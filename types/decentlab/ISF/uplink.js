@@ -1,3 +1,7 @@
+function cToF(celsius) { 
+ return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
+ } 
+
 
 /* https://www.decentlab.com/products/sapflow-sensor-for-lorawan */
 
@@ -150,6 +154,7 @@ function consume(event) {
   data.tmaxOuter = sample.tmax_outer.value;
   data.tmaxInner = sample.tmax_inner.value;
   data.temperatureOuter = sample.temperature_outer.value;
+ data.temperatureOuterF = cToF(data.temperatureOuter);
   data.maxVoltage = sample.max_voltage.value;
   data.minVoltage = sample.min_voltage.value;
   data.upstreamTmaxOuter = sample.upstream_tmax_outer.value;

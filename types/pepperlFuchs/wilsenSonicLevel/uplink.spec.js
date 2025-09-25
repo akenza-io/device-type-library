@@ -58,6 +58,7 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
         assert.equal(value.data.proximity, 65);
         assert.equal(value.data.fillinglvlPercent, 89);
         assert.equal(value.data.temperature, 8);
+         assert.equal(value.data.temperatureF, 46.4);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -95,6 +96,7 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
         assert.equal(value.data.proximity, 65);
         assert.equal(value.data.fillinglvlPercent, 89);
         assert.equal(value.data.temperature, 8);
+         assert.equal(value.data.temperatureF, 46.4);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

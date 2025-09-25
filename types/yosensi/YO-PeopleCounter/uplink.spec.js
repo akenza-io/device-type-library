@@ -118,6 +118,7 @@ describe("Yosensi YO People Counter uplink", () => {
 
         assert.equal(value.topic, "temperature");
         assert.equal(value.data.temperature, 24.8);
+        assert.equal(value.data.temperatureF, 76.6);
 
         utils.validateSchema(value.data, temperatureSchema, {
           throwError: true,

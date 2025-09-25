@@ -49,6 +49,7 @@ describe("Decentlab ATM22 Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 26.4);
+        assert.equal(value.data.temperatureF, 79.5);
         assert.equal(value.data.eastWindSpeed, 0.04);
         assert.equal(value.data.maximumWindSpeed, 0.2);
         assert.equal(value.data.northWindSpeed, 0.08);

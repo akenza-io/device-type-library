@@ -1,3 +1,7 @@
+function cToF(celsius) {
+	return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function getzf(cNum) {
 	if (parseInt(cNum) < 10) { cNum = `0${cNum}`; }
 	return cNum;
@@ -45,6 +49,7 @@ function consume(event) {
 		case 2: // Real-Time Temperature data
 			lifecycle.batteryVoltage = (bytes[0] << 8 | bytes[1]) / 1000;
 			data.temperature = parseFloat(((bytes[2] << 24 >> 16 | bytes[3]) / 100).toFixed(2));
+			data.temperatureF = cToF(data.temperature);
 			data.tempHFlag = !!((bytes[4] & 0x01));
 			data.tempLFlag = !!((bytes[4] & 0x02));
 			data.time = getMyDate((bytes[5] << 24 | bytes[6] << 16 | bytes[7] << 8 | bytes[8]).toString(10));

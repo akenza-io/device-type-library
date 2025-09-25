@@ -56,6 +56,7 @@ describe("WS203 Uplink", () => {
         assert.equal(value.data.occupancy, 0);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
         assert.equal(value.data.temperature, 30.8);
+         assert.equal(value.data.temperatureF, 87.4);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -89,6 +90,7 @@ describe("WS203 Uplink", () => {
         assert.equal(value.data.occupied, false);
         assert.equal(value.data.occupancy, 0);
         assert.equal(value.data.temperature, 29.2);
+         assert.equal(value.data.temperatureF, 84.6);
         assert.equal(value.data.reportType, "PERIOD");
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
@@ -103,6 +105,7 @@ describe("WS203 Uplink", () => {
         assert.equal(value.data.occupied, true);
         assert.equal(value.data.occupancy, 1);
         assert.equal(value.data.temperature, 30.8);
+         assert.equal(value.data.temperatureF, 87.4);
         assert.equal(value.data.reportType, "PIR_OCCUPANCY");
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

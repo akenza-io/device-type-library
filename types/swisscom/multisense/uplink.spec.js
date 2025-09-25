@@ -104,6 +104,7 @@ describe("Swisscom Multisense Uplinks", () => {
 
         assert.equal(value.topic, "temperature");
         assert.equal(value.data.temperature, 23.73);
+         assert.equal(value.data.temperatureF, 74.7);
 
         utils.validateSchema(value.data, temperatureSchema, {
           throwError: true,

@@ -1,17 +1,1 @@
-{
-  "$id": "https://akenza.io/decentlab/pr36/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
-  "properties": {
-    "pressure": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/bar"
-    },
-    "temperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-    }
-  },
-  "required": ["pressure", "temperature"]
-}
+{"$id":"https://akenza.io/decentlab/pr36/default.schema.json","$schema":"http://json-schema.org/draft-07/schema#","type":"object","processingType":"uplink_decoder","topic":"default","title":"Default","properties":{"pressure":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/bar"},"temperature":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"},"temperatureF":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"}},"required":["pressure","temperature"]}

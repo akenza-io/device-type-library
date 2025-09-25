@@ -55,6 +55,7 @@ describe("Comtac LPN CM-4 Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 23.15);
+        assert.equal(value.data.temperatureF, 73.7);
         assert.equal(value.data.humidity, 64);
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -102,20 +103,28 @@ describe("Comtac LPN CM-4 Uplink", () => {
 
         assert.equal(value.topic, "history");
         assert.equal(value.data.temperature, 23.15);
+        assert.equal(value.data.temperatureF, 73.7);
         assert.equal(value.data.humidity, 64);
         assert.equal(value.data.tempHistory1, 23.15);
+        assert.equal(value.data.tempHistory1F, 73.7);
         assert.equal(value.data.humHistory1, 64);
         assert.equal(value.data.tempHistory2, 23.15);
+        assert.equal(value.data.tempHistory2F, 73.7);
         assert.equal(value.data.humHistory2, 64);
         assert.equal(value.data.tempHistory3, 23.15);
+        assert.equal(value.data.tempHistory3F, 73.7);
         assert.equal(value.data.humHistory3, 64);
         assert.equal(value.data.tempHistory4, 23.15);
+        assert.equal(value.data.tempHistory4F, 73.7);
         assert.equal(value.data.humHistory4, 64);
         assert.equal(value.data.tempHistory5, 23.15);
+        assert.equal(value.data.tempHistory5F, 73.7);
         assert.equal(value.data.humHistory5, 64);
         assert.equal(value.data.tempHistory6, 23.15);
+        assert.equal(value.data.tempHistory6F, 73.7);
         assert.equal(value.data.humHistory6, 64);
         assert.equal(value.data.tempHistory7, 23.15);
+        assert.equal(value.data.tempHistory7F, 73.7);
         assert.equal(value.data.humHistory7, 64);
         utils.validateSchema(value.data, historySchema, { throwError: true });
       });

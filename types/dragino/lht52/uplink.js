@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function strPad(byte) {
   const zero = "0";
   const hex = byte.toString(16);
@@ -17,19 +21,23 @@ function consume(event) {
       data.temperature = parseFloat(
         ((((bytes[0] << 24) >> 16) | bytes[1]) / 100).toFixed(2),
       );
+      data.temperatureF = cToF(data.temperature);
       data.humidity = parseFloat(
         ((((bytes[2] << 24) >> 16) | bytes[3]) / 10).toFixed(1),
       );
       data.extTemperature = parseFloat(
         ((((bytes[4] << 24) >> 16) | bytes[5]) / 100).toFixed(2),
       );
+      data.extTemperatureF = cToF(data.extTemperature);
 
       if (((bytes[0] << 8) | bytes[1]) === 0xffff) {
         data.temperature = null;
+        data.temperatureF = cToF(data.temperature);
       }
 
       if (((bytes[4] << 8) | bytes[5]) === 0xffff) {
         data.extTemperature = null;
+        data.extTemperatureF = cToF(data.extTemperature);
       }
 
       emit("sample", { data, topic: "default" });

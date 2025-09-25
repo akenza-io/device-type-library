@@ -46,6 +46,7 @@ describe("EM320-TH Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 27.2);
+         assert.equal(value.data.temperatureF, 81);
         assert.equal(value.data.humidity, 46.5);
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -67,6 +68,7 @@ describe("EM320-TH Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 30.8);
+         assert.equal(value.data.temperatureF, 87.4);
         assert.equal(value.data.humidity, 50.5);
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

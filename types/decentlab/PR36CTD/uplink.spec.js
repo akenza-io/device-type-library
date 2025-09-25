@@ -51,7 +51,9 @@ describe("Decentlab PR36CTD Uplink", () => {
         assert.equal(value.data.electricalConductivity, 0.005859375);
         assert.equal(value.data.pressure, 0.0008544921875);
         assert.equal(value.data.temperatureElectronics, 23.5234375);
+         assert.equal(value.data.temperatureElectronicsF, 74.3);
         assert.equal(value.data.temperaturePT1000, 23.50390625);
+         assert.equal(value.data.temperaturePT1000F, 74.3);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

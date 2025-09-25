@@ -95,6 +95,7 @@ describe("Adnexo ax-opto Uplink", () => {
         assert.equal(value.data.middleLeft, 17.9);
         assert.equal(value.data.middleRight, 26.9);
         assert.equal(value.data.temperature, 3);
+         assert.equal(value.data.temperatureF, 37.4);
         assert.equal(value.data.topCenter, 20);
         assert.equal(value.data.topLeft, 20);
         assert.equal(value.data.topRight, 20);

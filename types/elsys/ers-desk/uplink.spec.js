@@ -84,6 +84,7 @@ describe("Elsys desk uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.data.temperature, 24.1);
+         assert.equal(value.data.temperatureF, 75.4);
         assert.equal(value.data.humidity, 37);
         assert.equal(value.data.light, 6);
 

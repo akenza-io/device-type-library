@@ -45,6 +45,7 @@ describe("Decentlab PR21 Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.pressure, 0.24609375);
         assert.equal(value.data.temperature, 25.671875);
+         assert.equal(value.data.temperatureF, 78.2);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

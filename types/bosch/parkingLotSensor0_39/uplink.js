@@ -1,3 +1,7 @@
+function cToF(celsius) { 
+ return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
+ } 
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
@@ -29,6 +33,7 @@ function consume(event) {
 
     if (payload.length > 2) {
       data.temperature = Bits.bitsToSigned(bits.substr(8, 8));
+ data.temperatureF = cToF(data.temperature);
       emit("sample", { data, topic: "lifecycle" });
     }
     emit("sample", { data: occupancy, topic: "occupancy" });

@@ -75,6 +75,8 @@ describe("WT201 Uplink", () => {
         assert.equal(value.data.planEvent, "NOT_EXCECUTED");
         assert.equal(value.data.temperature, 25.8);
         assert.equal(value.data.temperatureTarget, 16.6);
+        assert.equal(value.data.temperatureF, 78.4);
+        assert.equal(value.data.temperatureTargetF, 61.9);
         assert.equal(value.data.temperatureControlMode, "HEAT");
         assert.equal(value.data.temperatureControlStatus, "STANDBY");
 

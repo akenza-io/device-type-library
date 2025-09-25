@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function getFillLevel(device, distance) {
   if (device !== undefined && distance !== undefined) {
     if (device.customFields !== undefined) {
@@ -55,9 +59,15 @@ function consume(event) {
     defaultData.temperature = parseFloat(
       ((((bytes[2] << 24) >> 16) | bytes[3]) / 10).toFixed(2),
     );
+    defaultData.temperatureF = cToF(defaultData.temperature);
+    defaultData.temperatureF = cToF(defaultData.temperature);
+    defaultData.temperatureF = cToF(defaultData.temperature);
 
     if (((bytes[2] << 8) | bytes[3]) === 0xffff) {
       defaultData.temperature = null;
+      defaultData.temperatureF = cToF(defaultData.temperature);
+      defaultData.temperatureF = cToF(defaultData.temperature);
+      defaultData.temperatureF = cToF(defaultData.temperature);
     }
 
     defaultData.c0adc = ((bytes[4] << 8) | bytes[5]) / 1000;
@@ -80,9 +90,11 @@ function consume(event) {
       data.extTemperature = parseFloat(
         ((((bytes[7] << 24) >> 16) | bytes[8]) / 10).toFixed(2),
       );
+      data.extTemperatureF = cToF(data.extTemperature);
 
       if (((bytes[7] << 8) | bytes[8]) === 0xffff) {
         data.extTemperature = null;
+        data.extTemperatureF = null;
       }
 
       data.extHumidity = parseFloat(
@@ -134,9 +146,11 @@ function consume(event) {
       data.temperature = parseFloat(
         ((((bytes[7] << 24) >> 16) | bytes[8]) / 10).toFixed(2),
       );
+      data.temperatureF = cToF(data.temperature);
 
       if (((bytes[7] << 8) | bytes[8]) === 0xffff) {
         data.temperature = null;
+        data.temperatureF = null;
       }
 
       data.humidity = parseFloat(
@@ -149,17 +163,21 @@ function consume(event) {
     data.c2temperature = parseFloat(
       ((((bytes[7] << 24) >> 16) | bytes[8]) / 10).toFixed(2),
     );
+    data.c2temperatureF = cToF(data.c2temperature);
 
     if (((bytes[7] << 8) | bytes[8]) === 0xffff) {
       data.c2temperature = null;
+      data.c2temperatureF = null;
     }
 
     data.c3temperature = parseFloat(
       ((((bytes[9] << 24) >> 16) | bytes[10]) / 10).toFixed(1),
     );
+    data.c3temperatureF = cToF(data.c3temperature);
 
     if (((bytes[9] << 8) | bytes[10]) === 0xffff) {
       data.c3temperature = null;
+      data.c3temperatureF = null;
     }
   } else if (mode === 4) {
     topic = "weight";

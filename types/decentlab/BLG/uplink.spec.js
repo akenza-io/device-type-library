@@ -49,6 +49,7 @@ describe("Decentlab BLG Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 22.028848392450755);
+        assert.equal(value.data.temperatureF, 71.7);
         assert.equal(value.data.thermistorResistance, 115020.68221552655);
         assert.equal(value.data.voltageRatio, 0.006409406661987305);
 

@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const { port } = event.data;
@@ -29,6 +33,7 @@ function consume(event) {
     lifecycle.internalTemperature = Math.round(
       ((bytes[5] << 8) | bytes[6]) / 10 - 100,
     );
+    lifecycle.internalTemperatureF = cToF(lifecycle.internalTemperature);
 
     let it = 7;
 
@@ -64,12 +69,15 @@ function consume(event) {
     // Taupunkt seit minor version 2 bei alle Varianten enthalten (ausnahme früher versionen subversion 2, daher byte prüfen)
     if (lifecycle.minorVersion >= 2 && bytes[it]) {
       data.dewPoint = bytes[it++] - 100;
+      data.dewPointF = cToF(data.dewPoint);
     }
 
     // Wandtemperatur und Feuchte enthalten wenn subversion bit 2 = 1
     if (lifecycle.productVersion & 0x04) {
       data.wallTemperature = bytes[it++] - 100;
+      data.wallTemperatureF = cToF(data.wallTemperature);
       data.thermTemperature = bytes[it++] - 100;
+      data.thermTemperatureF = cToF(data.thermTemperature);
       data.wallHumidity = bytes[it++];
     }
     emit("sample", { data: lifecycle, topic: "lifecycle" });

@@ -1,3 +1,7 @@
+function cToF(celsius) { 
+ return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
+ } 
+
 
 /* https://www.decentlab.com/products/soil-moisture-temperature-and-salinity-profile */
 
@@ -225,11 +229,17 @@ function consume(event) {
   data.moistureAtLevel4 = sample.moisture_at_level_4.value;
   data.moistureAtLevel5 = sample.moisture_at_level_5.value;
   data.temperatureAtLevel0 = sample.temperature_at_level_0.value;
+ data.temperatureAtLevel0F = cToF(data.temperatureAtLevel0);
   data.temperatureAtLevel1 = sample.temperature_at_level_1.value;
+ data.temperatureAtLevel1F = cToF(data.temperatureAtLevel1);
   data.temperatureAtLevel2 = sample.temperature_at_level_2.value;
+ data.temperatureAtLevel2F = cToF(data.temperatureAtLevel2);
   data.temperatureAtLevel3 = sample.temperature_at_level_3.value;
+ data.temperatureAtLevel3F = cToF(data.temperatureAtLevel3);
   data.temperatureAtLevel4 = sample.temperature_at_level_4.value;
+ data.temperatureAtLevel4F = cToF(data.temperatureAtLevel4);
   data.temperatureAtLevel5 = sample.temperature_at_level_5.value;
+ data.temperatureAtLevel5F = cToF(data.temperatureAtLevel5);
   data.salinityAtLevel0 = sample.salinity_at_level_0.value;
   data.salinityAtLevel1 = sample.salinity_at_level_1.value;
   data.salinityAtLevel2 = sample.salinity_at_level_2.value;

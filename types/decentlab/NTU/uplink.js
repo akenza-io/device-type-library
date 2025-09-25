@@ -1,3 +1,7 @@
+function cToF(celsius) { 
+ return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
+ } 
+
 
 /* https://www.decentlab.com/products/optical-turbidity-and-temperature-sensor-for-lorawan */
 
@@ -123,6 +127,7 @@ function consume(event) {
 
   const data = {};
   data.temperature = sample.temperature.value;
+ data.temperatureF = cToF(data.temperature);
   data.turbidityInNtu = sample.turbidity_in_ntu.value;
   data.turbidityInFnu = sample.turbidity_in_fnu.value;
   data.turbidityInMgL = sample.turbidity_in_mg_l.value;

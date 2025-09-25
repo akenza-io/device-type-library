@@ -36,6 +36,7 @@ describe("MClimate Button uplink", () => {
         assert.equal(value.data.batteryVoltage, 3.352);
         assert.equal(value.data.buttonPressed, "SINGLE_PRESS");
         assert.equal(value.data.temperature, 28.2);
+         assert.equal(value.data.temperatureF, 82.8);
         assert.equal(value.data.thermistorOperational, true);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

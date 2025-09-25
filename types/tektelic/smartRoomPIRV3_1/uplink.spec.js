@@ -70,6 +70,7 @@ describe("Tektelic Smart Room PIR Sensor Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 24.2);
+         assert.equal(value.data.temperatureF, 75.6);
         assert.equal(value.data.humidity, 48.5);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

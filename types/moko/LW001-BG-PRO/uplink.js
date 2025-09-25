@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 const operationModeArray = ["STANDBY", "PERIODIC", "TIMING", "MOTION"];
 const rebootReasonArray = ["RESTART_AFTER_POWER_FAILIURE", "BLUETOOTH_COMMAND", "LORAWAN_COMMAND", "POWER_ON"];
 const posFailedReasonArray = [
@@ -55,6 +59,7 @@ function consume(event) {
     }
 
     lifecycle.temperature = Bits.bitsToSigned(bits.substr(8, 8));
+    lifecycle.temperatureF = cToF(lifecycle.temperature);
     lifecycle.acknowledgeByte = bytes[2] & 0x0f;
     lifecycle.batteryVoltage = (22 + ((bytes[2] >> 4) & 0x0f)) / 10;
   }

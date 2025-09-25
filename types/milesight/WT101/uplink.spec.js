@@ -47,7 +47,9 @@ describe("WT101 Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 26.6);
+         assert.equal(value.data.temperatureF, 79.9);
         assert.equal(value.data.targetTemperature, 30);
+         assert.equal(value.data.targetTemperatureF, 86);
         assert.equal(value.data.valveOpening, 100);
         assert.equal(value.data.motorStroke, 0);
         assert.equal(value.data.motorPosition, 0);

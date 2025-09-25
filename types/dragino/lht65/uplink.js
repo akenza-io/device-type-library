@@ -1,3 +1,7 @@
+function cToF(celsius) { 
+ return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
+ } 
+
 function getzf(cNum) {
   if (parseInt(cNum) < 10) {
     cNum = `0${cNum}`;
@@ -89,8 +93,10 @@ function decoder(bytes) {
         response.decoded.temperature = parseFloat(
           ((((bytes[0] << 24) >> 16) | bytes[1]) / 100).toFixed(2),
         );
+ response.decoded.temperatureF = cToF(response.decoded.temperature);
         if (((bytes[0] << 8) | bytes[1]) === 0xffff) {
           response.decoded.temperature = null;
+ response.decoded.temperatureF = cToF(response.decoded.temperature);
         }
         response.lifecycle.batteryStatus = bytes[4] >> 6;
       } else {
@@ -133,8 +139,10 @@ function decoder(bytes) {
         response.decoded.temperature = parseFloat(
           ((((bytes[2] << 24) >> 16) | bytes[3]) / 100).toFixed(2),
         );
+ response.decoded.temperatureF = cToF(response.decoded.temperature);
         if (((bytes[2] << 8) | bytes[3]) === 0xffff) {
           response.decoded.temperature = null;
+ response.decoded.temperatureF = cToF(response.decoded.temperature);
         }
         response.decoded.humidity = parseFloat(
           ((((bytes[4] << 8) | bytes[5]) & 0xfff) / 10).toFixed(1),
@@ -153,8 +161,10 @@ function decoder(bytes) {
         response.external.externalTemperature = parseFloat(
           ((((bytes[7] << 24) >> 16) | bytes[8]) / 100).toFixed(2),
         );
+ response.external.externalTemperatureF = cToF(response.external.externalTemperature);
         if (((bytes[7] << 8) | bytes[8]) === 0xffff) {
           response.external.externalTemperature = null;
+ response.external.externalTemperatureF = cToF(response.external.externalTemperature);
         }
       } else if (ext === 4) {
         response.external.extPinLevel = bytes[7] ? "HIGH" : "LOW";

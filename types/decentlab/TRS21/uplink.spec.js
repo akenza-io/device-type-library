@@ -49,6 +49,7 @@ describe("Decentlab TRS21 Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.soilTemperature, 16.1);
+         assert.equal(value.data.soilTemperatureF, 61);
         assert.equal(value.data.waterPotential, -11.7);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

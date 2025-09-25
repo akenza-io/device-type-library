@@ -45,6 +45,7 @@ describe("Elsys ECO CO2 uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 25.7);
+         assert.equal(value.data.temperatureF, 78.3);
         assert.equal(value.data.humidity, 42);
         assert.equal(value.data.light, 337);
         assert.equal(value.data.co2, 272);

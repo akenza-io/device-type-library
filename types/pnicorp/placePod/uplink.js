@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
@@ -22,6 +26,7 @@ function consume(event) {
         case 2:
           // Temperature
           data.temperature = Bits.bitsToSigned(bits.substr(pointer, 16)) * 0.1;
+          data.temperatureF = cToF(data.temperature);
           pointer += 8;
           topic = "temperature";
           break;

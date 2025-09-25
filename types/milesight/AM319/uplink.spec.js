@@ -43,6 +43,7 @@ describe("AM319 Uplink", () => {
         assert.equal(value.data.pm2_5, 32);
         assert.equal(value.data.pressure, 1008.6);
         assert.equal(value.data.temperature, 23.8);
+         assert.equal(value.data.temperatureF, 74.8);
         assert.equal(value.data.tvoc, 37);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

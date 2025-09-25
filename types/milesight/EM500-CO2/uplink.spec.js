@@ -55,6 +55,7 @@ describe("EM500-CO2 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.data.temperature, 27.2);
+         assert.equal(value.data.temperatureF, 81);
         assert.equal(value.data.humidity, 56.5);
         assert.equal(value.data.co2, 1127);
         assert.equal(value.data.pressure, 1008.8);

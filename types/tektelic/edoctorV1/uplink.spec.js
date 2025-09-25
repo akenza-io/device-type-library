@@ -58,6 +58,7 @@ describe("Tektelic eDoctorV1 Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.skinTemperature, 37.2);
+        assert.equal(value.data.skinTemperatureF, 99);
         assert.equal(value.data.respiratoryRate, 12);
         assert.equal(value.data.uaModeActive, false);
         assert.equal(value.data.chestExpansion, 1);
@@ -65,6 +66,7 @@ describe("Tektelic eDoctorV1 Uplink", () => {
         assert.equal(value.data.position, 85);
         assert.equal(value.data.heartRate, 72);
         assert.equal(value.data.skinTemperature2, 37);
+        assert.equal(value.data.skinTemperature2F, 98.6);
         assert.equal(value.data.activityIntensity, 0.25);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

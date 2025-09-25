@@ -1,3 +1,7 @@
+function cToF(celsius) { 
+ return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
+ } 
+
 
 /* https://www.decentlab.com/products/analog-or-digital-sensor-device-for-lorawan */
 
@@ -105,6 +109,7 @@ function consume(event) {
 
   const data = {};
   data.temperature = sample.temperature.value;
+ data.temperatureF = cToF(data.temperature);
 
   const lifecycle = {};
   lifecycle.batteryVoltage = sample.battery_voltage.value;

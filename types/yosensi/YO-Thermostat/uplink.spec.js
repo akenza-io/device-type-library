@@ -268,6 +268,7 @@ describe("Yosensi YO Thermostat uplink", () => {
 
         assert.equal(value.topic, "internal_temperature");
         assert.equal(value.data.internalTemperature, 16.7);
+        assert.equal(value.data.internalTemperatureF, 62.1);
 
         utils.validateSchema(value.data, internalTemperatureSchema, {
           throwError: true,
@@ -342,6 +343,7 @@ describe("Yosensi YO Thermostat uplink", () => {
 
         assert.equal(value.topic, "internal_temperature");
         assert.equal(value.data.internalTemperature, 26.2);
+        assert.equal(value.data.internalTemperatureF, 79.2);
 
         utils.validateSchema(value.data, internalTemperatureSchema, {
           throwError: true,

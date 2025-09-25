@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function bytesToFloat(bytesToDecode) {
   // Assume LSB (least significant byte first).
   const bits = bytesToDecode[0] << 24 | bytesToDecode[1] << 16 | bytesToDecode[2] << 8 | bytesToDecode[3];
@@ -177,6 +181,7 @@ function consume(event) {
 
     lifecycle.batteryLevel = bytes[7];
     temperature.temperature = bytesToInt16(bytes.slice(8, 10)) / 10;
+    temperature.temperatureF = cToF(temperature.temperature);
 
     if (packetIdentifier === 2) {
       distance.inclinationDegree = bytes[10];
@@ -262,6 +267,7 @@ function consume(event) {
     if ([8, 9, 10, 11, 12, 13, 14, 15, 18, 20].indexOf(packetIdentifier) !== -1) {
       if (!(bytes[position] === 0x80) && !(bytes[position + 1] === 0x00)) {
         temperature.temperature = bytesToInt16(bytes.slice(position, position + 2)) / 10;
+        temperature.temperatureF = cToF(temperature.temperature);
       }
       position += 3;
     }

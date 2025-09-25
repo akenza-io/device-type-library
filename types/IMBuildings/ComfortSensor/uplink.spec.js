@@ -48,6 +48,7 @@ describe("Comfort sensor", () => {
         assert.equal(value.data.humidity, 31.88);
         assert.equal(value.data.presence, false);
         assert.equal(value.data.temperature, 25.54);
+         assert.equal(value.data.temperatureF, 78);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

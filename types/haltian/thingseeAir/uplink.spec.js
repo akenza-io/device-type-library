@@ -68,6 +68,7 @@ describe("Haltian Thingsee air Sensor Uplink", () => {
         assert.equal(value.topic, "environment");
         assert.equal(value.data.pressure, 97017.737);
         assert.equal(value.data.temperature, 26.4);
+        assert.equal(value.data.temperatureF, 79.5);
         assert.equal(value.data.humidity, 35.2);
 
         utils.validateSchema(value.data, environmentSchema, {

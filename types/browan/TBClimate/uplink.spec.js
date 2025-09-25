@@ -45,6 +45,7 @@ describe("TBClimate uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.open, false);
         assert.equal(value.data.temperature, 22);
+         assert.equal(value.data.temperatureF, 71.6);
         assert.equal(value.data.humidity, 29);
         assert.equal(value.data.co2, 565);
         assert.equal(value.data.voc, 0);

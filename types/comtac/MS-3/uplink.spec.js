@@ -47,6 +47,7 @@ describe("Comtac LPN MS-3 Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.light, 0);
         assert.equal(value.data.temperature, 25.6);
+        assert.equal(value.data.temperatureF, 78.1);
         assert.equal(value.data.humidity, 31);
         assert.equal(value.data.accX, -0.161);
         assert.equal(value.data.accY, -0.308);

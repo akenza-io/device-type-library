@@ -45,6 +45,7 @@ describe("Decentlab SHT35 Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.humidity, 47.536430914778364);
         assert.equal(value.data.temperature, 23.787670710307466);
+         assert.equal(value.data.temperatureF, 74.8);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

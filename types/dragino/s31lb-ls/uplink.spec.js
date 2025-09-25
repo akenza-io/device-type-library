@@ -2,6 +2,7 @@
 const chai = require("chai");
 const rewire = require("rewire");
 const utils = require("test-utils");
+
 const { assert } = chai;
 
 describe("Dragino S31LB-LS Uplink", () => {
@@ -39,6 +40,7 @@ describe("Dragino S31LB-LS Uplink", () => {
                 assert.equal(value.data.alarmFlag, false);
                 assert.equal(value.data.pa8, "High");
                 assert.equal(value.data.temperature, 27.5);
+                assert.equal(value.data.temperatureF, 81.5);
                 assert.equal(value.data.humidity, 40.1);
                 assert.equal(value.data.modStatus, 1);
 

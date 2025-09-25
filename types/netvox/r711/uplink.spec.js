@@ -46,6 +46,7 @@ describe("Netvox R711 uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.humidity, 26.82);
         assert.equal(value.data.temperature, 21.69);
+        assert.equal(value.data.temperatureF, 71);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

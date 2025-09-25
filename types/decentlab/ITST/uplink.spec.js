@@ -49,7 +49,9 @@ describe("Decentlab ITST Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperatureHead, 22);
+         assert.equal(value.data.temperatureHeadF, 71.6);
         assert.equal(value.data.temperatureTarget, 27.3);
+         assert.equal(value.data.temperatureTargetF, 81.1);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

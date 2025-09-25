@@ -46,6 +46,7 @@ describe("Elsys EIAQd10 uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.humidity, 29);
         assert.equal(value.data.temperature, 23.3);
+         assert.equal(value.data.temperatureF, 73.9);
         assert.equal(value.data.co2, 447);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

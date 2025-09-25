@@ -68,6 +68,7 @@ describe("Yanzi Motion Plus Sensor Uplink", () => {
 
         assert.equal(value.topic, "temperature");
         assert.equal(value.data.temperature, 29.21);
+        assert.equal(value.data.temperatureF, 84.6);
 
         utils.validateSchema(value.data, temperatureSchema, {
           throwError: true,

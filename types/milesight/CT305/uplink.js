@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 const currentTotalChns = [0x03, 0x05, 0x07];
 const currentChns = [0x04, 0x06, 0x08];
 const currentAlarmChns = [0x84, 0x86, 0x88];
@@ -150,6 +154,7 @@ function consume(event) {
         temperature.temperatureException = "READ_FAILED";
       } else {
         temperature.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
+        temperature.temperatureF = cToF(temperature.temperature);
       }
       i += 2;
     }
@@ -182,7 +187,9 @@ function consume(event) {
     // TEMPERATURE ALARM
     else if (channelId === 0x89 && channelType === 0x67) {
       temperature.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
+      temperature.temperatureF = cToF(temperature.temperature);
       temperature.temperatureAlarm = readTemperatureAlarm(bytes[i + 2]);
+      temperature.temperatureAlarmF = cToF(temperature.temperatureAlarm);
       i += 3;
     } else {
       break;

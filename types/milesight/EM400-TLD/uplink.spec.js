@@ -55,6 +55,7 @@ describe("EM400-TLD Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.data.temperature, 25.7);
+         assert.equal(value.data.temperatureF, 78.3);
         assert.equal(value.data.distance, 2116);
         assert.equal(value.data.tilt, true);
 

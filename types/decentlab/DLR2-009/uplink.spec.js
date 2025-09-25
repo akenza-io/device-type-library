@@ -49,6 +49,7 @@ describe("Decentlab DLR2-009 Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 24.908127512458456);
+         assert.equal(value.data.temperatureF, 76.8);
         assert.equal(value.data.thermistorResistance, 1097.0478279778865);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

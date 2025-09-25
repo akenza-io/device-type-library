@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
@@ -23,6 +27,7 @@ function consume(event) {
     }
 
     data.internalTemp = Bits.bitsToUnsigned(bits.substr(72, 8));
+    data.internalTempF = cToF(data.internalTemp);
 
     if (bits.length > 80) {
       // Reserved // 05 04

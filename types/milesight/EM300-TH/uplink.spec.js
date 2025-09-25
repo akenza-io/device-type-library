@@ -60,6 +60,7 @@ describe("EM300-TH Uplink", () => {
 
         if (value.topic === "default") {
           assert.equal(value.data.temperature, 27.2);
+           assert.equal(value.data.temperatureF, 81);
           assert.equal(value.data.humidity, 56.5);
 
           utils.validateSchema(value.data, defaultSchema, { throwError: true });

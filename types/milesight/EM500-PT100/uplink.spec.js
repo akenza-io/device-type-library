@@ -54,6 +54,7 @@ describe("EM500-PT100 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.data.temperature, 28.1);
+         assert.equal(value.data.temperatureF, 82.6);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

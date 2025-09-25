@@ -49,6 +49,7 @@ describe("Dragino NSE01 Uplink", () => {
         assert.equal(value.data.soilDialecticConstant, 10);
         assert.equal(value.data.soilMoisture, 0);
         assert.equal(value.data.soilTemperature, 27.92);
+        assert.equal(value.data.soilTemperatureF, 82.3);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -63,6 +64,7 @@ describe("Dragino NSE01 Uplink", () => {
         assert.equal(value.data.soilDialecticConstant, 140);
         assert.equal(value.data.soilMoisture, 0);
         assert.equal(value.data.soilTemperature, 16.7);
+        assert.equal(value.data.soilTemperatureF, 62.1);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 // Used for decoding enLink LoRa Messages
 // DN 23 Jun 2020 (Doc.Ver:4.15 AQ-P/P+ FW Ver:4.15)
 //   Add 10 types for advanced new indoor/outdoor Air Quality units
@@ -224,18 +228,18 @@ function consume(event) {
           obj.counter.push([
             data[i + 1],
             (data[i + 2] << 24) |
-              (data[i + 3] << 16) |
-              (data[i + 4] << 8) |
-              data[i + 5],
+            (data[i + 3] << 16) |
+            (data[i + 4] << 8) |
+            data[i + 5],
           ]);
         } else {
           obj.counter = [
             [
               data[i + 1],
               (data[i + 2] << 24) |
-                (data[i + 3] << 16) |
-                (data[i + 4] << 8) |
-                data[i + 5],
+              (data[i + 3] << 16) |
+              (data[i + 4] << 8) |
+              data[i + 5],
             ],
           ];
         }
@@ -899,6 +903,19 @@ function consume(event) {
   lifecycle.fanRunTimeS = obj.fan_run_time_s;
 
   if (deleteUnusedKeys(def)) {
+    if (def.temperature !== undefined) {
+      def.temperatureF = cToF(def.temperature);
+    }
+    if (def.tempProbe1 !== undefined) {
+      def.tempProbe1F = cToF(def.tempProbe1);
+    }
+    if (def.tempProbe2 !== undefined) {
+      def.tempProbe2F = cToF(def.tempProbe2);
+    }
+    if (def.tempProbe3 !== undefined) {
+      def.tempProbe3F = cToF(def.tempProbe3);
+    }
+
     emit("sample", { data: def, topic: "default" });
   }
 

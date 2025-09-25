@@ -73,6 +73,8 @@ describe("Transmitter 600-232", () => {
         assert.equal(value.topic, "default");
         assert.closeTo(value.data.temperature1, 20.6, 0.1);
         assert.closeTo(value.data.temperature2, 20.2, 0.1);
+        assert.closeTo(value.data.temperature1F, 69.1, 0.1);
+        assert.closeTo(value.data.temperature2F, 68.4, 0.1);
         assert.equal(value.data.msgType, "NORMAL");
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

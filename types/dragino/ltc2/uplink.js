@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bytes = Hex.hexToBytes(payload);
@@ -20,16 +24,20 @@ function consume(event) {
     data.channel1temp = parseFloat(
       ((((bytes[3] << 24) >> 16) | bytes[4]) / 100).toFixed(2),
     );
+    data.channel1tempF = cToF(data.channel1temp);
     data.channel2temp = parseFloat(
       ((((bytes[5] << 24) >> 16) | bytes[6]) / 100).toFixed(2),
     );
+    data.channel2tempF = cToF(data.channel2temp);
   } else if (ext === 0x02) {
     data.channel1temp = parseFloat(
       ((((bytes[3] << 24) >> 16) | bytes[4]) / 10).toFixed(1),
     );
+    data.channel1tempF = cToF(data.channel1temp);
     data.channel2temp = parseFloat(
       ((((bytes[5] << 24) >> 16) | bytes[6]) / 10).toFixed(1),
     );
+    data.channel2tempF = cToF(data.channel2temp);
   } else if (ext === 0x03) {
     data.channel1res = parseFloat(
       (((bytes[3] << 8) | bytes[4]) / 100).toFixed(2),

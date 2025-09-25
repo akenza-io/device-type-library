@@ -79,6 +79,7 @@ describe("Transmitter 600-051", () => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 25.4);
+        assert.equal(value.data.temperatureF, 77.7);
         assert.equal(value.data.humidity, 52);
         assert.equal(value.data.msgType, "NORMAL");
         assert.equal(value.data.rbe, false);

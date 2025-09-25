@@ -231,6 +231,7 @@ describe("Seeed SenseCAP T1000A Sensor Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.light, 100);
         assert.equal(value.data.temperature, 24.2);
+        assert.equal(value.data.temperatureF, 75.6);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

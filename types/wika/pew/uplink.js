@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 /**
  * ATTENTION: You must define the measurement ranges first, otherwise the script will not work.
  * The device configuration defines the measurement ranges for the supported measured variables of your used devices, e.g.

@@ -60,6 +60,7 @@ describe("Milesight CT103 Uplink", () => {
                 assert.equal(value.data.totalCurrent, 6.27);
                 assert.equal(value.data.current, 64);
                 assert.equal(value.data.temperature, 30.8);
+                 assert.equal(value.data.temperatureF, 87.4);
                 utils.validateSchema(value.data, defaultSchema, { throwError: true });
             });
 

@@ -45,6 +45,7 @@ describe("Comtac LPN CM-3 Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 5.29);
+         assert.equal(value.data.temperatureF, 41.5);
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 

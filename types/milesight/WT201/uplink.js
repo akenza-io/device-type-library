@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function readUInt8(bytes) {
   return bytes & 0xff;
 }
@@ -791,11 +795,13 @@ function consume(event) {
     // TEMPERATURE
     else if (channelId === 0x03 && channelType === 0x67) {
       decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
+      decoded.temperatureF = cToF(decoded.temperature);
       i += 2;
     }
     // TEMPERATURE TARGET
     else if (channelId === 0x04 && channelType === 0x67) {
       decoded.temperatureTarget = readInt16LE(bytes.slice(i, i + 2)) / 10;
+      decoded.temperatureTargetF = cToF(decoded.temperatureTarget);
       i += 2;
     }
     // TEMPERATURE CONTROL
@@ -851,10 +857,13 @@ function consume(event) {
       const planSetting = {};
       planSetting.type = readPlanType(bytes[i]);
       planSetting.temperatureCtlMode = readTemperatureCtlMode(bytes[i + 1]);
+      planSetting.temperatureCtlModeF = cToF(planSetting.temperatureCtlMode);
       planSetting.fanMode = readFanMode(bytes[i + 2]);
       planSetting.targetTemperature = readUInt8(bytes[i + 3] & 0x7f);
+      planSetting.targetTemperatureF = cToF(planSetting.targetTemperature);
       // planSetting.temperatureUnit = readTemperatureUnit(bytes[i + 3] >>> 7);
       planSetting.temperatureError = readUInt8(bytes[i + 4]) / 10;
+      planSetting.temperatureErrorF = cToF(planSetting.temperatureError);
       i += 5;
 
       emit("sample", { data: planSetting, topic: "plan_setting" });
@@ -879,6 +888,7 @@ function consume(event) {
     // TEMPERATURE ALARM
     else if (channelId === 0x83 && channelType === 0x67) {
       decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
+      decoded.temperatureF = cToF(decoded.temperature);
       alert.temperatureAlarm = readTemperatureAlarm(bytes[i + 2]);
       i += 2;
     }
@@ -904,11 +914,13 @@ function consume(event) {
       data.systemStatus = readSystemStatus((value1 >>> 4) & 0x01);
       const temperature = ((value1 >>> 5) & 0x7ff) / 10 - 100;
       data.temperature = Number(temperature.toFixed(1));
+      data.temperatureF = cToF(data.temperature);
 
       data.temperatureCtlMode = readTemperatureCtlMode(value2 & 0x03);
       data.temperatureCtlStatus = readTemperatureCtlStatus((value2 >>> 2) & 0x07);
       const temperatureTarget = ((value2 >>> 5) & 0x7ff) / 10 - 100;
       data.temperatureTarget = Number(temperatureTarget.toFixed(1));
+      data.temperatureTargetF = cToF(data.temperatureTarget);
       i += 8;
 
       emit("sample", { data, topic: "default", timestamp });

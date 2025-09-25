@@ -95,6 +95,7 @@ describe("Abeeway micro tracker uplink", () => {
 
         assert.equal(value.data.batteryLevel, 92);
         assert.equal(value.data.temperature, 21.8);
+         assert.equal(value.data.temperatureF, 71.2);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -136,6 +137,7 @@ describe("Abeeway micro tracker uplink", () => {
 
         assert.equal(value.data.batteryLevel, 92);
         assert.equal(value.data.temperature, 21.8);
+         assert.equal(value.data.temperatureF, 71.2);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -177,6 +179,7 @@ describe("Abeeway micro tracker uplink", () => {
 
         assert.equal(value.data.batteryLevel, 92);
         assert.equal(value.data.temperature, 21.8);
+         assert.equal(value.data.temperatureF, 71.2);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -233,6 +236,7 @@ describe("Abeeway micro tracker uplink", () => {
 
         assert.equal(value.data.batteryLevel, 54);
         assert.equal(value.data.temperature, 22.8);
+         assert.equal(value.data.temperatureF, 73);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -282,6 +286,7 @@ describe("Abeeway micro tracker uplink", () => {
 
         assert.equal(value.data.batteryLevel, 69);
         assert.equal(value.data.temperature, 23.8);
+         assert.equal(value.data.temperatureF, 74.8);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -323,6 +328,7 @@ describe("Abeeway micro tracker uplink", () => {
 
         assert.equal(value.data.batteryLevel, 83);
         assert.equal(value.data.temperature, 25.8);
+         assert.equal(value.data.temperatureF, 78.4);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -367,6 +373,7 @@ describe("Abeeway micro tracker uplink", () => {
 
         assert.equal(value.data.batteryLevel, 50);
         assert.equal(value.data.temperature, 19.2);
+         assert.equal(value.data.temperatureF, 66.6);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });

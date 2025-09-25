@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function slice(a, f, t) {
   const res = [];
   for (let i = 0; i < t - f; i++) {
@@ -1566,6 +1570,9 @@ function consume(event) {
   }
 
   if (deleteUnusedKeys(environment)) {
+    if (environment.temperature !== undefined) {
+      environment.temperatureF = cToF(environment.temperature);
+    }
     emit("sample", { data: environment, topic: "default" });
   }
 

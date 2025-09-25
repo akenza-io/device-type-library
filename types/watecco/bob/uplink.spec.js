@@ -95,6 +95,7 @@ describe("Watecco BoB Uplink", () => {
         assert.equal(value.data.peakFrequency, 6.25);
         assert.equal(value.data.peakFrequencyIndex, 2);
         assert.equal(value.data.temperature, 24);
+        assert.equal(value.data.temperatureF, 75.2);
         assert.equal(value.data.vibrationLevel, 0.026043639357760395);
 
         utils.validateSchema(value.data, learningSchema, { throwError: true });
@@ -131,6 +132,7 @@ describe("Watecco BoB Uplink", () => {
         assert.equal(value.data.anomalyLevel, 6.299);
         assert.equal(value.data.nrAlarms, 0);
         assert.equal(value.data.temperature, 23);
+        assert.equal(value.data.temperatureF, 73.4);
         assert.equal(value.data.operatingTime, 62);
         assert.equal(value.data.reportID, 9);
         assert.equal(value.data.maxAmplitude, 0.021);

@@ -50,9 +50,11 @@ describe("Decentlab GMM Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.humidity, 27.6);
         assert.equal(value.data.temperature, 23.36);
+         assert.equal(value.data.temperatureF, 74);
         assert.equal(value.data.pressure, 95.87);
         assert.equal(value.data.co2, 663);
         assert.equal(value.data.dewPoint, 3.68);
+         assert.equal(value.data.dewPointF, 38.6);
         assert.equal(value.data.photosyntheticallyActiveRadiation, 183);
         assert.equal(value.data.vaporPressureDeficit, 2.07);
 

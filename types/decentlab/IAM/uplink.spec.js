@@ -54,6 +54,7 @@ describe("Decentlab IAM Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 27.68);
+         assert.equal(value.data.temperatureF, 81.8);
         assert.equal(value.data.humidity, 36.44);
         assert.equal(value.data.pressure, 964.12);
         assert.equal(value.data.co2, 455);

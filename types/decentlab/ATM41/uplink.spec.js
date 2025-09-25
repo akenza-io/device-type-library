@@ -51,6 +51,7 @@ describe("Decentlab ATM41 Uplink", () => {
         assert.equal(value.data.windDirection, 29.9);
         assert.equal(value.data.maximumWindSpeed, 0.2);
         assert.equal(value.data.temperature, 26.4);
+        assert.equal(value.data.temperatureF, 79.5);
         assert.equal(value.data.vaporPressure, 1.8);
         assert.equal(value.data.atmosphericPressure, 95.96);
         assert.equal(value.data.northWindSpeed, 0.08);
@@ -70,6 +71,7 @@ describe("Decentlab ATM41 Uplink", () => {
         assert.equal(value.data.deviceID, 858);
 
         assert.equal(value.data.sensorTemperatureInternal, 26.5);
+        assert.equal(value.data.sensorTemperatureInternalF, 79.7);
         assert.equal(value.data.xOrientationAngle, 0.2);
         assert.equal(value.data.yOrientationAngle, -2.4);
         assert.equal(value.data.compassHeading, 86);

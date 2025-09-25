@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 // Cubicmeter 1.1 uplink decoder
 
 const appStates = {
@@ -124,6 +128,9 @@ const statusReportDecoder = function (data) {
     waterTemperatureMin: decodeTemperature(data.getUint8(25)), // min water temperature since last statusReport
     waterTemperatureMax: decodeTemperature(data.getUint8(26)), // max water temperature since last statusReport
     ambientTemperature: decodeTemperature(data.getUint8(27)), // current ambient temperature
+    ambientTemperatureF: cToF(decodeTemperature(data.getUint8(25))),
+    waterTemperatureMaxF: cToF(decodeTemperature(data.getUint8(26))),
+    waterTemperatureMinF: cToF(decodeTemperature(data.getUint8(27)))
   };
 
   // Warnings
@@ -350,6 +357,9 @@ const normalizeStatusReport = function (decoded) {
         waterTemperatureMin: decoded.waterTemperatureMin,
         waterTemperatureMax: decoded.waterTemperatureMax,
         ambientTemperature: decoded.ambientTemperature,
+        waterTemperatureMinF: decoded.waterTemperatureMinF,
+        waterTemperatureMaxF: decoded.waterTemperatureMaxF,
+        ambientTemperatureF: decoded.ambientTemperatureF,
       }
     },
     {

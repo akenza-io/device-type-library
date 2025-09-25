@@ -50,8 +50,11 @@ describe("Decentlab WRM Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.humidity, 47.536430914778364);
         assert.equal(value.data.temperature, 23.787670710307466);
+         assert.equal(value.data.temperatureF, 74.8);
         assert.equal(value.data.headTemperature, 22);
+         assert.equal(value.data.headTemperatureF, 71.6);
         assert.equal(value.data.surfaceTemperature, 27.3);
+         assert.equal(value.data.surfaceTemperatureF, 81.1);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function decode(bytes, port) {
   // Decode an uplink message from a buffer
   // (array) of bytes to an object of fields.
@@ -268,6 +272,12 @@ function consume(event) {
   }
 
   if (deleteUnusedKeys(def)) {
+    if (def.temperature !== undefined) {
+      def.temperatureF = cToF(def.temperature);
+    }
+    if (def.averageTemperature !== undefined) {
+      def.averageTemperatureF = cToF(def.averageTemperature);
+    }
     emit("sample", { data: def, topic: "default" });
   }
 

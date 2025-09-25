@@ -76,6 +76,7 @@ describe("Should decode the TG563A uplinks", () => {
         assert.equal(value.data.mounted, true);
         assert.equal(value.data.smokeAlarm, false);
         assert.equal(value.data.temperature, 28);
+        assert.equal(value.data.temperatureF, 82.4);
         assert.equal(value.data.tempOutOfRange, false);
         assert.equal(value.data.mounted, true);
         assert.equal(value.data.tooLongUnmounted, false);

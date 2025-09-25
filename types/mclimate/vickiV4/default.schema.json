@@ -1,54 +1,64 @@
 {
-  "$id": "https://akenza.io/mclimate/vicki4/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
-  "properties": {
-    "targetTemperature": {
-      "title": "Target temperature",
-      "description": "The target temperature in °C.",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    "$id": "https://akenza.io/mclimate/vicki4/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "targetTemperature": {
+            "title": "Target temperature °C",
+            "description": "The target temperature in °C.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "sensorTemperature": {
+            "title": "Sensor temperature °C",
+            "description": "The sensor temperature in °C.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "humidity": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+        },
+        "motorRange": {
+            "title": "Motor range",
+            "unit": "°",
+            "type": "integer",
+            "description": "Maximal motor range"
+        },
+        "motorPosition": {
+            "title": "Motor position",
+            "type": "integer",
+            "unit": "°",
+            "description": "Motor position"
+        },
+        "openWindow": {
+            "title": "Open window",
+            "description": "Equals true if an open window is detected",
+            "type": "boolean"
+        },
+        "childLock": {
+            "title": "Child lock",
+            "description": "Equals true if the child lock is enabled",
+            "type": "boolean"
+        },
+        "targetTemperatureF": {
+            "title": "Target temperature °F",
+            "description": "The target temperature in °F.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "sensorTemperatureF": {
+            "title": "Sensor temperature °F",
+            "description": "The sensor temperature in °F.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
     },
-    "sensorTemperature": {
-      "title": "Sensor temperature",
-      "description": "The sensor temperature in °C.",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-    },
-    "humidity": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
-    },
-    "motorRange": {
-      "title": "Motor range",
-      "unit": "°",
-      "type": "integer",
-      "description": "Maximal motor range"
-    },
-    "motorPosition": {
-      "title": "Motor position",
-      "type": "integer",
-      "unit": "°",
-      "description": "Motor position"
-    },
-    "openWindow": {
-      "title": "Open window",
-      "description": "Equals true if an open window is detected",
-      "type": "boolean"
-    },
-    "childLock": {
-      "title": "Child lock",
-      "description": "Equals true if the child lock is enabled",
-      "type": "boolean"
-    }
-  },
-  "required": [
-    "targetTemperature",
-    "sensorTemperature",
-    "humidity",
-    "motorRange",
-    "motorPosition",
-    "openWindow",
-    "childLock"
-  ]
+    "required": [
+        "targetTemperature",
+        "sensorTemperature",
+        "humidity",
+        "motorRange",
+        "motorPosition",
+        "openWindow",
+        "childLock"
+    ]
 }

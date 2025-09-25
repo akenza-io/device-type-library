@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const { port } = event.data;
@@ -62,6 +66,7 @@ function consume(event) {
         (0.001 * (bytes[13] + bytes[14] * 256)).toFixed(3),
       );
       lifecycle.internalTemperature = bytes[15];
+      lifecycle.internalTemperatureF = cToF(lifecycle.internalTemperature);
       if (lifecycle.internalTemperature >= 0x80) {
         gps.gpsAccuracy = bytes[16];
       }

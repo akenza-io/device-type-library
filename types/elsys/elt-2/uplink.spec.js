@@ -55,9 +55,11 @@ describe("Elsys ELT-2 uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 22.6);
+        assert.equal(value.data.temperatureF, 72.7);
         assert.equal(value.data.humidity, 24);
         assert.equal(value.data.pressure, 974.112);
         assert.equal(value.data.externalTemperature1, -17);
+        assert.equal(value.data.externalTemperature1F, 1.4);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

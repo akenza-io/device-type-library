@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function hexStringToByteArray(s) {
   for (var bytes = [], c = 0; c < s.length; c += 2) {
     bytes.push(parseInt(s.substr(c, 2), 16));
@@ -124,7 +128,7 @@ function parseLevel(payload) {
         variable: "adc",
         value: Number(
           ((payloadToByteArray[startData + 1] << 8) & 0xff00) |
-            (payloadToByteArray[startData] & 0xff),
+          (payloadToByteArray[startData] & 0xff),
         ).toFixed(),
         unit: "mV",
       };
@@ -135,7 +139,7 @@ function parseLevel(payload) {
       if (startData + 2 <= payloadToByteArray.length) {
         const distanceNumber = Number(
           ((payloadToByteArray[startData + 1] << 8) & 0xff00) |
-            (payloadToByteArray[startData] & 0xff),
+          (payloadToByteArray[startData] & 0xff),
         ).toFixed();
         if (distanceNumber <= 60000) {
           distance = {
@@ -177,7 +181,7 @@ function parseLevel(payload) {
         variable: "adc",
         value: Number(
           ((payloadToByteArray[startData + 1] << 8) & 0xff00) |
-            (payloadToByteArray[startData] & 0xff),
+          (payloadToByteArray[startData] & 0xff),
         ).toFixed(),
         unit: "mV",
       };
@@ -188,7 +192,7 @@ function parseLevel(payload) {
       if (startData + 2 <= payloadToByteArray.length) {
         const distanceNumber = Number(
           ((payloadToByteArray[startData + 1] << 8) & 0xff00) |
-            (payloadToByteArray[startData] & 0xff),
+          (payloadToByteArray[startData] & 0xff),
         ).toFixed();
         if (distanceNumber <= 60000) {
           distance = {
@@ -249,7 +253,7 @@ function parseLevel(payload) {
         variable: "adc",
         value: Number(
           ((payloadToByteArray[startData + 1] << 8) & 0xff00) |
-            (payloadToByteArray[startData] & 0xff),
+          (payloadToByteArray[startData] & 0xff),
         ).toFixed(),
         unit: "mV",
       };
@@ -260,7 +264,7 @@ function parseLevel(payload) {
       if (startData + 2 <= payloadToByteArray.length) {
         const distanceNumber = Number(
           ((payloadToByteArray[startData + 1] << 8) & 0xff00) |
-            (payloadToByteArray[startData] & 0xff),
+          (payloadToByteArray[startData] & 0xff),
         ).toFixed();
         if (distanceNumber <= 60000) {
           distance = {
@@ -333,7 +337,7 @@ function parseLevel(payload) {
         variable: "adc",
         value: Number(
           ((payloadToByteArray[startData + 1] << 8) & 0xff00) |
-            (payloadToByteArray[startData] & 0xff),
+          (payloadToByteArray[startData] & 0xff),
         ).toFixed(),
         unit: "mV",
       };
@@ -344,7 +348,7 @@ function parseLevel(payload) {
       if (startData + 2 <= payloadToByteArray.length) {
         const distanceNumber = Number(
           ((payloadToByteArray[startData + 1] << 8) & 0xff00) |
-            (payloadToByteArray[startData] & 0xff),
+          (payloadToByteArray[startData] & 0xff),
         ).toFixed();
         if (distanceNumber <= 60000) {
           distance = {
@@ -451,6 +455,9 @@ function consume(event) {
     }
 
     currentSample[variable] = value;
+    if (variable === "temperature") {
+      currentSample.temperatureF = cToF(value);
+    }
   }
   delete currentSample.type;
 

@@ -34,6 +34,7 @@ describe("Thermokon MCS-LRW Uplink", () => {
         assert.equal(value.topic, "default");
         assert.deepEqual(value.data, {
           temperature: 26.6,
+          temperatureF: 79.9,
         });
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -77,6 +78,7 @@ describe("Thermokon MCS-LRW Uplink", () => {
         assert.equal(value.topic, "default");
         assert.deepEqual(value.data, {
           temperature: 25.2,
+          temperatureF: 77.4,
           humidity: 45,
           light: 0,
         });

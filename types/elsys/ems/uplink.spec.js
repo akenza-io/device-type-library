@@ -45,6 +45,7 @@ describe("Elsys EMS uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 23.2);
+         assert.equal(value.data.temperatureF, 73.8);
         assert.equal(value.data.humidity, 26);
         assert.equal(value.data.accX, 0);
         assert.equal(value.data.accY, 0);

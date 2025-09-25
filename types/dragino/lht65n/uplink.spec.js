@@ -90,6 +90,7 @@ describe("Dragino LHT65N Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.humidity, 49.2);
         assert.equal(value.data.temperature, 24.96);
+         assert.equal(value.data.temperatureF, 76.9);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -101,6 +102,7 @@ describe("Dragino LHT65N Uplink", () => {
 
         assert.equal(value.topic, "external");
         assert.equal(value.data.tempDS, 24.12);
+         assert.equal(value.data.tempDSF, 75.4);
 
         utils.validateSchema(value.data, externalSchema, { throwError: true });
       });
@@ -138,6 +140,7 @@ describe("Dragino LHT65N Uplink", () => {
       assert.equal(value.topic, "default");
       assert.equal(value.data.humidity, 92.7);
       assert.equal(value.data.temperature, 6.2);
+       assert.equal(value.data.temperatureF, 43.2);
 
       utils.validateSchema(value.data, defaultSchema, { throwError: true });
     });
@@ -149,6 +152,7 @@ describe("Dragino LHT65N Uplink", () => {
 
       assert.equal(value.topic, "external");
       assert.equal(value.data.tempDS, 26.93);
+       assert.equal(value.data.tempDSF, 80.5);
 
       utils.validateSchema(value.data, externalSchema, { throwError: true });
     });

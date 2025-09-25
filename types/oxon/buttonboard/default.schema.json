@@ -1,159 +1,162 @@
 {
-  "$id": "https://akenza.io/oxon/buttonboard/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
-  "properties": {
-    "longPressed": {
-      "title": "Long pressed",
-      "type": "boolean",
-      "description": "Indicates on true if a Button got long pressed"
+    "$id": "https://akenza.io/oxon/buttonboard/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "longPressed": {
+            "title": "Long pressed",
+            "type": "boolean",
+            "description": "Indicates on true if a Button got long pressed"
+        },
+        "button1": {
+            "title": "Button 1",
+            "description": "Button 1 was pressed if true",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/event"
+        },
+        "button2": {
+            "title": "Button 2",
+            "description": "Button 2 was pressed if true",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/event"
+        },
+        "button3": {
+            "title": "Button 3",
+            "description": "Button 3 was pressed if true",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/event"
+        },
+        "button4": {
+            "title": "Button 4",
+            "description": "Button 4 was pressed if true",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/event"
+        },
+        "button5": {
+            "title": "Button 5",
+            "description": "Button 5 was pressed if true",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/event"
+        },
+        "button6": {
+            "title": "Button 6",
+            "description": "Button 6 was pressed if true",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/event"
+        },
+        "numericLongPressed": {
+            "title": "Numeric Long pressed",
+            "type": "integer",
+            "description": "Indicates with 1 if a button got long pressed",
+            "hideFromKpis": true
+        },
+        "numericButton1": {
+            "title": "Numeric Button 1",
+            "type": "integer",
+            "description": "Button 1 was pressed if its 1",
+            "hideFromKpis": true
+        },
+        "numericButton2": {
+            "title": "Numeric Button 2",
+            "type": "integer",
+            "description": "Button 2 was pressed if its 1",
+            "hideFromKpis": true
+        },
+        "numericButton3": {
+            "title": "Numeric Button 3",
+            "type": "integer",
+            "description": "Button 3 was pressed if its 1",
+            "hideFromKpis": true
+        },
+        "numericButton4": {
+            "title": "Numeric Button 4",
+            "type": "integer",
+            "description": "Button 4 was pressed if its 1",
+            "hideFromKpis": true
+        },
+        "numericButton5": {
+            "title": "Numeric Button 5",
+            "type": "integer",
+            "description": "Button 5 was pressed if its 1",
+            "hideFromKpis": true
+        },
+        "numericButton6": {
+            "title": "Numeric Button 6",
+            "type": "integer",
+            "description": "Button 6 was pressed if its 1",
+            "hideFromKpis": true
+        },
+        "button1Enabled": {
+            "title": "Button 1 Enabled",
+            "type": "boolean",
+            "description": "Button 1 enabled if true",
+            "hideFromKpis": true
+        },
+        "button2Enabled": {
+            "title": "Button 2 Enabled",
+            "type": "boolean",
+            "description": "Button 2 enabled if true",
+            "hideFromKpis": true
+        },
+        "button3Enabled": {
+            "title": "Button 3 Enabled",
+            "type": "boolean",
+            "description": "Button 3 enabled if true",
+            "hideFromKpis": true
+        },
+        "button4Enabled": {
+            "title": "Button 4 Enabled",
+            "type": "boolean",
+            "description": "Button 4 enabled if true",
+            "hideFromKpis": true
+        },
+        "button5Enabled": {
+            "title": "Button 5 Enabled",
+            "type": "boolean",
+            "description": "Button 5 enabled if true",
+            "hideFromKpis": true
+        },
+        "button6Enabled": {
+            "title": "Button 6 Enabled",
+            "type": "boolean",
+            "description": "Button 6 enabled if true"
+        },
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "accX": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G",
+            "title": "Acceleration X-Axis",
+            "description": "Acceleration on the X-Axis is g"
+        },
+        "accY": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G",
+            "title": "Acceleration Y-Axis",
+            "description": "Acceleration on the Y-Axis is g"
+        },
+        "accZ": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G",
+            "title": "Acceleration Z-Axis",
+            "description": "Acceleration on the Z-Axis is g"
+        },
+        "temperatureF": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
     },
-    "button1": {
-      "title": "Button 1",
-      "description": "Button 1 was pressed if true",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/event"
-    },
-    "button2": {
-      "title": "Button 2",
-      "description": "Button 2 was pressed if true",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/event"
-    },
-    "button3": {
-      "title": "Button 3",
-      "description": "Button 3 was pressed if true",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/event"
-    },
-    "button4": {
-      "title": "Button 4",
-      "description": "Button 4 was pressed if true",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/event"
-    },
-    "button5": {
-      "title": "Button 5",
-      "description": "Button 5 was pressed if true",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/event"
-    },
-    "button6": {
-      "title": "Button 6",
-      "description": "Button 6 was pressed if true",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/event"
-    },
-    "numericLongPressed": {
-      "title": "Numeric Long pressed",
-      "type": "integer",
-      "description": "Indicates with 1 if a button got long pressed",
-      "hideFromKpis": true
-    },
-    "numericButton1": {
-      "title": "Numeric Button 1",
-      "type": "integer",
-      "description": "Button 1 was pressed if its 1",
-      "hideFromKpis": true
-    },
-    "numericButton2": {
-      "title": "Numeric Button 2",
-      "type": "integer",
-      "description": "Button 2 was pressed if its 1",
-      "hideFromKpis": true
-    },
-    "numericButton3": {
-      "title": "Numeric Button 3",
-      "type": "integer",
-      "description": "Button 3 was pressed if its 1",
-      "hideFromKpis": true
-    },
-    "numericButton4": {
-      "title": "Numeric Button 4",
-      "type": "integer",
-      "description": "Button 4 was pressed if its 1",
-      "hideFromKpis": true
-    },
-    "numericButton5": {
-      "title": "Numeric Button 5",
-      "type": "integer",
-      "description": "Button 5 was pressed if its 1",
-      "hideFromKpis": true
-    },
-    "numericButton6": {
-      "title": "Numeric Button 6",
-      "type": "integer",
-      "description": "Button 6 was pressed if its 1",
-      "hideFromKpis": true
-    },
-    "button1Enabled": {
-      "title": "Button 1 Enabled",
-      "type": "boolean",
-      "description": "Button 1 enabled if true",
-      "hideFromKpis": true
-    },
-    "button2Enabled": {
-      "title": "Button 2 Enabled",
-      "type": "boolean",
-      "description": "Button 2 enabled if true",
-      "hideFromKpis": true
-    },
-    "button3Enabled": {
-      "title": "Button 3 Enabled",
-      "type": "boolean",
-      "description": "Button 3 enabled if true",
-      "hideFromKpis": true
-    },
-    "button4Enabled": {
-      "title": "Button 4 Enabled",
-      "type": "boolean",
-      "description": "Button 4 enabled if true",
-      "hideFromKpis": true
-    },
-    "button5Enabled": {
-      "title": "Button 5 Enabled",
-      "type": "boolean",
-      "description": "Button 5 enabled if true",
-      "hideFromKpis": true
-    },
-    "button6Enabled": {
-      "title": "Button 6 Enabled",
-      "type": "boolean",
-      "description": "Button 6 enabled if true"
-    },
-    "temperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-    },
-    "accX": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G",
-      "title": "Acceleration X-Axis",
-      "description": "Acceleration on the X-Axis is g"
-    },
-    "accY": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G",
-      "title": "Acceleration Y-Axis",
-      "description": "Acceleration on the Y-Axis is g"
-    },
-    "accZ": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G",
-      "title": "Acceleration Z-Axis",
-      "description": "Acceleration on the Z-Axis is g"
-    }
-  },
-  "required": [
-    "longPressed",
-    "button1",
-    "button2",
-    "button3",
-    "button4",
-    "button5",
-    "button6",
-    "button1Enabled",
-    "button2Enabled",
-    "button3Enabled",
-    "button4Enabled",
-    "button5Enabled",
-    "button6Enabled",
-    "temperature",
-    "accX",
-    "accY",
-    "accZ"
-  ]
+    "required": [
+        "longPressed",
+        "button1",
+        "button2",
+        "button3",
+        "button4",
+        "button5",
+        "button6",
+        "button1Enabled",
+        "button2Enabled",
+        "button3Enabled",
+        "button4Enabled",
+        "button5Enabled",
+        "button6Enabled",
+        "temperature",
+        "accX",
+        "accY",
+        "accZ"
+    ]
 }

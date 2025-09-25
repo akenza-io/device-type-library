@@ -1,3 +1,7 @@
+function cToF(celsius) { 
+ return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
+ } 
+
 
 /* https://www.decentlab.com/products/soil-moisture-temperature-and-electrical-conductivity-sensor-for-lorawan */
 
@@ -99,6 +103,7 @@ function consume(event) {
   data.dielectricPermittivity = sample.dielectric_permittivity.value;
   data.volumetricWaterContent = sample.volumetric_water_content.value;
   data.soilTemperature = sample.soil_temperature.value;
+ data.soilTemperatureF = cToF(data.soilTemperature);
 
   const lifecycle = {};
   lifecycle.batteryVoltage = sample.battery_voltage.value;

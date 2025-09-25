@@ -35,6 +35,7 @@ describe("Seeed SenseCAP 2103 CO2, Temperature and Humidity Sensor Uplink", () =
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 25.36);
+        assert.equal(value.data.temperatureF, 77.6);
         assert.equal(value.data.humidity, 49.69);
         assert.equal(value.data.co2, 872);
 

@@ -36,6 +36,7 @@ describe("Seeed SenseCAP S2101 Air Temperature and Humidity Sensor Uplink", () =
         assert.equal(value.topic, "default");
         assert.equal(value.data.humidity, 62.6);
         assert.equal(value.data.temperature, 26.8);
+        assert.equal(value.data.temperatureF, 80.2);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

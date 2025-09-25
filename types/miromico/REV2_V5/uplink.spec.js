@@ -35,6 +35,7 @@ describe("Miromico REV2_V5 uplink", () => {
         assert.equal(value.data.batteryVoltage, 3.1);
         assert.equal(value.data.batteryLevel, 100);
         assert.equal(value.data.internalTemp, 39);
+        assert.equal(value.data.internalTempF, 102.2);
 
         utils.validateSchema(value.data, statusSchema, { throwError: true });
       });

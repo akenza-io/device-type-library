@@ -57,6 +57,7 @@ describe("Avelon Carbonsense uplink", () => {
 
         assert.equal(value.data.pressure, 981.1);
         assert.equal(value.data.temperature, 22.9);
+         assert.equal(value.data.temperatureF, 73.2);
         assert.equal(value.data.humidity, 33);
         assert.equal(value.data.co2, 736);
 
@@ -70,6 +71,7 @@ describe("Avelon Carbonsense uplink", () => {
 
         assert.equal(value.data.pressure, 981);
         assert.equal(value.data.temperature, 22.9);
+         assert.equal(value.data.temperatureF, 73.2);
         assert.equal(value.data.humidity, 33);
         assert.equal(value.data.co2, 743);
 
@@ -83,6 +85,7 @@ describe("Avelon Carbonsense uplink", () => {
 
         assert.equal(value.data.pressure, 980.9);
         assert.equal(value.data.temperature, 23);
+         assert.equal(value.data.temperatureF, 73.4);
         assert.equal(value.data.humidity, 33);
         assert.equal(value.data.co2, 753);
 
@@ -96,6 +99,7 @@ describe("Avelon Carbonsense uplink", () => {
 
         assert.equal(value.data.pressure, 980.8);
         assert.equal(value.data.temperature, 23);
+         assert.equal(value.data.temperatureF, 73.4);
         assert.equal(value.data.humidity, 33);
         assert.equal(value.data.co2, 755);
 
@@ -109,6 +113,7 @@ describe("Avelon Carbonsense uplink", () => {
 
         assert.equal(value.data.pressure, 980.8);
         assert.equal(value.data.temperature, 23);
+         assert.equal(value.data.temperatureF, 73.4);
         assert.equal(value.data.humidity, 33);
         assert.equal(value.data.co2, 759);
 
@@ -122,6 +127,7 @@ describe("Avelon Carbonsense uplink", () => {
 
         assert.equal(value.data.pressure, 980.8);
         assert.equal(value.data.temperature, 23);
+         assert.equal(value.data.temperatureF, 73.4);
         assert.equal(value.data.humidity, 33);
         assert.equal(value.data.co2, 761);
 

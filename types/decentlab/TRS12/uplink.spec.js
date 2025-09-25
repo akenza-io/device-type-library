@@ -51,6 +51,7 @@ describe("Decentlab TRS12 Uplink", () => {
         assert.equal(value.data.dielectricPermittivity, 1.1831248966814998);
         assert.equal(value.data.electricalConductivity, 0);
         assert.equal(value.data.soilTemperature, 31.7);
+         assert.equal(value.data.soilTemperatureF, 89.1);
         assert.equal(value.data.volumetricWaterContent, 0.006886900000000029);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

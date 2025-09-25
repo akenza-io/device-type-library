@@ -45,6 +45,7 @@ describe("Decentlab PR26 Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.pressure, 0.04526);
         assert.equal(value.data.temperature, 25.67188);
+         assert.equal(value.data.temperatureF, 78.2);
         assert.equal(value.data.level, 0.46148);
         assert.equal(value.data.levelCm, 46.148);
 

@@ -96,6 +96,7 @@ describe("Adnexo ax-dist Uplink", () => {
         assert.equal(value.data.fillLevel, 56);
         assert.equal(value.data.measurementType, "REGULAR_MEASUREMENT");
         assert.equal(value.data.temperature, 22);
+         assert.equal(value.data.temperatureF, 71.6);
 
         utils.validateSchema(value.data, measurementSchema, {
           throwError: true,

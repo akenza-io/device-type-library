@@ -1,3 +1,7 @@
+function cToF(celsius) {
+    return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function readUInt16BE(bytes, offset) {
     return (bytes[offset] << 8) | bytes[offset + 1];
 }
@@ -50,10 +54,11 @@ function decodeSensorPort2(bytes) {
     const modStatus = (modShift === 0x00) ? true : (modShift === 0x31 ? false : null);
 
     const temperature = toOneDecimal(readInt16BE(bytes, 7) / 10);
+    const temperatureF = cToF(temperature);
 
     const humidity = toOneDecimal(readUInt16BE(bytes, 9) / 10);
 
-    emit("sample", { data: { alarmFlag, pa8, temperature, humidity, modStatus }, topic: "default", timestamp: timestamp });
+    emit("sample", { data: { alarmFlag, pa8, temperature, temperatureF, humidity, modStatus }, topic: "default", timestamp });
     emit("sample", { data: { batteryVoltage, batteryLevel }, topic: "lifecycle" });
 }
 
@@ -68,10 +73,11 @@ function decodeSensorPort3(bytes) {
     const pollMessage = (statusByte & 0x40) !== 0;
 
     const temperature = toOneDecimal(readInt16BE(bytes, 4) / 10);
+    const temperatureF = cToF(temperature);
     const humidity = toOneDecimal(readUInt16BE(bytes, 2) / 10);
     const timestamp = new Date(readUInt32BE(bytes, 7) * 1000);
 
-    emit("sample", { data: { alarmFlag, pa8, temperature, humidity, pollMessage }, topic: "default", timestamp: timestamp });
+    emit("sample", { data: { alarmFlag, pa8, temperature, temperatureF, humidity, pollMessage }, topic: "default", timestamp });
 
 }
 

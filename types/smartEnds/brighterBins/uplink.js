@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function resetReason(flag) {
   let reason = "UNKNOWN";
 
@@ -80,6 +84,7 @@ function consume(event) {
       }
 
       lifecycle.temperature = Bits.bitsToUnsigned(bits.substr(8, 7)) - 40;
+      lifecycle.temperatureF = cToF(lifecycle.temperature);
       fillLevel.fillLevel = Bits.bitsToUnsigned(bits.substr(15, 7));
       if (fillLevel.fillLevel === 127) {
         delete fillLevel.fillLevel;
@@ -93,6 +98,7 @@ function consume(event) {
         delete lifecycle.batteryLevel;
       }
       lifecycle.temperature = Bits.bitsToUnsigned(bits.substr(6, 7)) - 40;
+      lifecycle.temperatureF = cToF(lifecycle.temperature);
       distance.distance = Bits.bitsToUnsigned(bits.substr(13, 9));
       if (distance.distance === 511) {
         delete distance.distance;
@@ -198,6 +204,7 @@ function consume(event) {
             delete lifecycle.batteryLevel;
           }
           lifecycle.temperature = Bits.bitsToUnsigned(bits.substr(50, 7)) - 40;
+          lifecycle.temperatureF = cToF(lifecycle.temperature);
           data.distance = Bits.bitsToUnsigned(bits.substr(57, 9));
           if (data.distance === 511) {
             delete data.distance;
@@ -245,6 +252,7 @@ function consume(event) {
             delete lifecycle.batteryLevel;
           }
           lifecycle.temperature = Bits.bitsToUnsigned(bits.substr(74, 7)) - 40;
+          lifecycle.temperatureF = cToF(lifecycle.temperature);
           data.distance = Bits.bitsToUnsigned(bits.substr(81, 9));
           if (data.distance === 511) {
             delete data.distance;
@@ -292,6 +300,7 @@ function consume(event) {
             delete lifecycle.batteryLevel;
           }
           lifecycle.temperature = Bits.bitsToUnsigned(bits.substr(70, 7)) - 40;
+          lifecycle.temperatureF = cToF(lifecycle.temperature);
 
           break;
         }
@@ -327,6 +336,7 @@ function consume(event) {
             delete lifecycle.batteryLevel;
           }
           lifecycle.temperature = Bits.bitsToUnsigned(bits.substr(50, 7)) - 40;
+          lifecycle.temperatureF = cToF(lifecycle.temperature);
           // Reserved 2
           fillLevel.fillLevel = Bits.bitsToUnsigned(bits.substr(59, 7));
           if (fillLevel.fillLevel === 127) {
@@ -351,6 +361,7 @@ function consume(event) {
             delete lifecycle.batteryLevel;
           }
           lifecycle.temperature = Bits.bitsToUnsigned(bits.substr(70, 7)) - 40;
+          lifecycle.temperatureF = cToF(lifecycle.temperature);
           break;
         }
         // Multi Points Raw Uplink
@@ -363,6 +374,7 @@ function consume(event) {
           if (uplinkExtension === 0) {
             lifecycle.temperature =
               Bits.bitsToUnsigned(bits.substr(bitsLength - 15, 7)) - 40;
+            lifecycle.temperatureF = cToF(lifecycle.temperature);
             lifecycle.batteryLevel =
               Bits.bitsToUnsigned(bits.substr(bitsLength - 21, 6)) * 2;
             if (lifecycle.batteryLevel === 126) {
@@ -487,8 +499,8 @@ function consume(event) {
               pointer += 9;
               const timestamp = new Date(
                 secondsNow -
-                  Bits.bitsToUnsigned(bits.substr(bitsLength - pointer, 9)) *
-                    169,
+                Bits.bitsToUnsigned(bits.substr(bitsLength - pointer, 9)) *
+                169,
               );
 
               pointer += 6;
@@ -507,6 +519,7 @@ function consume(event) {
               pointer += 7;
               history.temperature =
                 Bits.bitsToUnsigned(bits.substr(bitsLength - pointer, 7)) - 40;
+              history.temperatureF = cToF(history.temperature);
 
               pointer += 9;
               history.distance = Bits.bitsToUnsigned(bits.substr(13, 9));
@@ -531,8 +544,8 @@ function consume(event) {
               pointer += 16;
               const timestamp = new Date(
                 secondsNow -
-                  Bits.bitsToUnsigned(bits.substr(bitsLength - pointer, 16)) *
-                    1.32,
+                Bits.bitsToUnsigned(bits.substr(bitsLength - pointer, 16)) *
+                1.32,
               );
 
               pointer += 6;

@@ -34,6 +34,7 @@ describe("Globalsat LS-113G uplink", () => {
 
         assert.equal(value.data.humidity, 50.13);
         assert.equal(value.data.temperature, 24.01);
+         assert.equal(value.data.temperatureF, 75.2);
         assert.equal(value.data.pm2_5, 0);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

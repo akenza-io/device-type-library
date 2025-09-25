@@ -1,3 +1,7 @@
+function cToF(celsius) { 
+ return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
+ } 
+
 function consume(event) {
   const { data } = event;
   const header = data.tsmId;
@@ -114,6 +118,7 @@ function consume(event) {
 
       if (temperature !== undefined) {
         sample.temperature = temperature;
+ sample.temperatureF = cToF(sample.temperature);
       }
 
       if (light !== undefined) {

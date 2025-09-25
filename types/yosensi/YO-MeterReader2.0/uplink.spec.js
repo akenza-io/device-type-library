@@ -99,6 +99,7 @@ describe("Yosensi YO Meter Reader 2.0 uplink", () => {
 
         assert.equal(value.topic, "internal_temperature");
         assert.equal(value.data.internalTemperature, 24.3);
+        assert.equal(value.data.internalTemperatureF, 75.7);
 
         utils.validateSchema(value.data, internalTemperatureSchema, {
           throwError: true,

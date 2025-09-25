@@ -88,6 +88,7 @@ describe("Digital matter G62 Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryVoltage, 4.04);
         assert.equal(value.data.internalTemperature, 23);
+         assert.equal(value.data.internalTemperatureF, 73.4);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });

@@ -138,6 +138,7 @@ describe("Yosensi YO Particulate Matter Sensor uplink", () => {
 
         assert.equal(value.topic, "internal_temperature");
         assert.equal(value.data.internalTemperature, 20.3);
+        assert.equal(value.data.internalTemperatureF, 68.5);
 
         utils.validateSchema(value.data, internalTemperatureSchema, {
           throwError: true,

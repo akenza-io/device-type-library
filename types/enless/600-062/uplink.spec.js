@@ -74,6 +74,7 @@ describe("Enless 600-062 Uplink Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 21.5);
+        assert.closeTo(value.data.temperatureF, 70.7, 0.1);
         assert.equal(value.data.humidity, 47.7);
         assert.equal(value.data.luminosity, 0);
         assert.equal(value.data.movementDetected, false);

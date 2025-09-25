@@ -72,6 +72,7 @@ describe("EGK-LW20W00 Uplink", () => {
         assert.equal(value.data.distance, 153);
         assert.equal(value.data.fillLevel, 100);
         assert.equal(value.data.temperature, 24.66);
+        assert.equal(value.data.temperatureF, 76.4);
 
         utils.validateSchema(value.data, distanceSchema, { throwError: true });
       });

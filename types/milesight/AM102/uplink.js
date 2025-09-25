@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 // Datasheet source: https://resource.milesight.com/milesight/iot/document/am102(l)-and-am103(l)-user-guide-en.pdf
 
 function readUInt16LE(bytes) {
@@ -70,6 +74,7 @@ function consume(event) {
     // TEMPERATURE
     else if (channelId === 0x03 && channelType === 0x67) {
       climateData.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
+      climateData.temperatureF = cToF(climateData.temperature);
       i += 2;
     }
     // HUMIDITY

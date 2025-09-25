@@ -1,3 +1,7 @@
+function cToF(celsius) { 
+ return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
+ } 
+
 
 /* https://www.decentlab.com/products/ph-orp-and-temperature-sensor-for-lorawan */
 
@@ -104,6 +108,7 @@ function consume(event) {
 
   const data = {};
   data.temperature = sample.temperature.value;
+ data.temperatureF = cToF(data.temperature);
   data.ph = sample.ph.value;
   data.redox = sample.redox.value;
   data.phMv = sample.ph_mv.value;

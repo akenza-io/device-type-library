@@ -46,6 +46,7 @@ describe("Milesight GS301 Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 28.4);
+         assert.equal(value.data.temperatureF, 83.1);
         assert.equal(value.data.humidity, 50);
         assert.equal(value.data.h2s, 0.01);
         assert.equal(value.data.nh3, 0);

@@ -1,3 +1,7 @@
+function cToF(celsius) { 
+ return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
+ } 
+
 function Str1(str2) {
   let str3 = "";
   for (let i = 0; i < str2.length; i++) {
@@ -130,6 +134,7 @@ function decoder(bytes, port) {
       array1[i] = temp;
     }
     decode.decoded.temperature = array1;
+ decode.decoded.temperatureF = cToF(decode.decoded.temperature);
     return decode;
   }
   switch (pollMessageStatus) {
@@ -138,8 +143,10 @@ function decoder(bytes, port) {
         decode.decoded.temperature = parseFloat(
           ((((bytes[0] << 24) >> 16) | bytes[1]) / 100).toFixed(2),
         );
+ decode.decoded.temperatureF = cToF(decode.decoded.temperature);
         if (((bytes[0] << 8) | bytes[1]) === 0xffff) {
           decode.decoded.temperature = null;
+ decode.decoded.temperatureF = cToF(decode.decoded.temperature);
         }
         decode.lifecycle.batteryStatus = bytes[4] >> 6;
       } else {
@@ -182,8 +189,10 @@ function decoder(bytes, port) {
         decode.decoded.temperature = parseFloat(
           ((((bytes[2] << 24) >> 16) | bytes[3]) / 100).toFixed(2),
         );
+ decode.decoded.temperatureF = cToF(decode.decoded.temperature);
         if (((bytes[2] << 8) | bytes[3]) === 0xffff) {
           decode.decoded.temperature = null;
+ decode.decoded.temperatureF = cToF(decode.decoded.temperature);
         }
         decode.decoded.humidity = parseFloat(
           ((((bytes[4] << 8) | bytes[5]) & 0xfff) / 10).toFixed(1),
@@ -200,16 +209,20 @@ function decoder(bytes, port) {
         decode.external.tempDS = parseFloat(
           ((((bytes[7] << 24) >> 16) | bytes[8]) / 100).toFixed(2),
         );
+ decode.external.tempDSF = cToF(decode.external.tempDS);
         if (((bytes[7] << 8) | bytes[8]) === 0xffff) {
           decode.external.tempDS = null;
+ decode.external.tempDSF = cToF(decode.external.tempDS);
         }
       } else if (ext === 2) {
         decode.lifecycle.extSensor = "TEMPERATURE_SENSOR";
         decode.external.tempTMP117 = parseFloat(
           ((((bytes[7] << 24) >> 16) | bytes[8]) / 100).toFixed(2),
         );
+ decode.external.tempTMP117F = cToF(decode.external.tempTMP117);
         if (((bytes[7] << 8) | bytes[8]) === 0xffff) {
           decode.external.tempTMP117 = null;
+ decode.external.tempTMP117F = cToF(decode.external.tempTMP117);
         }
       } else if (ext === 4) {
         decode.lifecycle.workMode = "INTERRUPT_SENSOR";

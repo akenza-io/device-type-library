@@ -56,6 +56,7 @@ describe("EM300-MCS Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 30.8);
+         assert.equal(value.data.temperatureF, 87.4);
         assert.equal(value.data.humidity, 50.5);
         assert.equal(value.data.open, true);
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

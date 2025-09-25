@@ -50,6 +50,7 @@ describe("Decentlab PM Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.humidity, 41.63221740722656);
         assert.equal(value.data.temperature, 24.35660461425781);
+         assert.equal(value.data.temperatureF, 75.8);
         assert.equal(value.data.pressure, 96800);
         assert.equal(value.data.pm0_5Number, 26.3);
         assert.equal(value.data.pm10, 3.9);

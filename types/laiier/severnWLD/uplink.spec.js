@@ -87,6 +87,7 @@ describe("Laiier severnWLD Uplink", () => {
         assert.equal(value.data.messageType, "SELF_TEST_MESSAGE");
         assert.equal(value.data.selfTestFailed, false);
         assert.equal(value.data.temperature, 24);
+         assert.equal(value.data.temperatureF, 75.2);
         assert.equal(value.data.wetnessThreshold, 3);
 
         utils.validateSchema(value.data, defaultSchema, {

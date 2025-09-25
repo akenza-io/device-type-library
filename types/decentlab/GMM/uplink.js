@@ -1,3 +1,7 @@
+function cToF(celsius) { 
+ return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
+ } 
+
 
 /* https://www.decentlab.com/products/greenhouse-multi-monitor-for-lorawan */
 
@@ -115,11 +119,13 @@ function consume(event) {
   const data = {};
   data.photosyntheticallyActiveRadiation = sample.photosynthetically_active_radiation.value;
   data.temperature = sample.air_temperature.value;
+ data.temperatureF = cToF(data.temperature);
   data.humidity = sample.air_humidity.value;
   data.co2 = sample.co2_concentration.value;
   data.pressure = sample.atmospheric_pressure.value;
   data.vaporPressureDeficit = sample.vapor_pressure_deficit.value;
   data.dewPoint = sample.dew_point.value;
+ data.dewPointF = cToF(data.dewPoint);
 
   const lifecycle = {};
   lifecycle.batteryVoltage = sample.battery_voltage.value;

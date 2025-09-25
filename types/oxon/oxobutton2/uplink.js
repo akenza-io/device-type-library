@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
@@ -53,6 +57,7 @@ function consume(event) {
       temperature -= 65536;
     }
     data.temperature = temperature / 100;
+    data.temperatureF = cToF(data.temperature);
     data.humidity = Bits.bitsToUnsigned(bits.substr(64, 16)) / 100;
     data.light = Bits.bitsToUnsigned(bits.substr(80, 16)) / 100;
 

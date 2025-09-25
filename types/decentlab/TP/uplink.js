@@ -1,3 +1,7 @@
+function cToF(celsius) { 
+ return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
+ } 
+
 
 /* https://www.decentlab.com/products/temperature-profile-for-lorawan */
 
@@ -150,21 +154,43 @@ function consume(event) {
 
   const data = {};
   data.temperatureAtLevel0 = sample.temperature_at_level_0.value;
+ data.temperatureAtLevel0F = cToF(data.temperatureAtLevel0);
   data.temperatureAtLevel1 = sample.temperature_at_level_1.value;
+ data.temperatureAtLevel1F = cToF(data.temperatureAtLevel1);
   data.temperatureAtLevel2 = sample.temperature_at_level_2.value;
+ data.temperatureAtLevel2F = cToF(data.temperatureAtLevel2);
   data.temperatureAtLevel3 = sample.temperature_at_level_3.value;
+ data.temperatureAtLevel3F = cToF(data.temperatureAtLevel3);
   data.temperatureAtLevel4 = sample.temperature_at_level_4.value;
+ data.temperatureAtLevel4F = cToF(data.temperatureAtLevel4);
   data.temperatureAtLevel5 = sample.temperature_at_level_5.value;
+ data.temperatureAtLevel5F = cToF(data.temperatureAtLevel5);
   data.temperatureAtLevel6 = sample.temperature_at_level_6.value;
+ data.temperatureAtLevel6F = cToF(data.temperatureAtLevel6);
   data.temperatureAtLevel7 = sample.temperature_at_level_7.value;
+ data.temperatureAtLevel7F = cToF(data.temperatureAtLevel7);
   data.temperatureAtLevel8 = sample.temperature_at_level_8.value;
+ data.temperatureAtLevel8F = cToF(data.temperatureAtLevel8);
   data.temperatureAtLevel9 = sample.temperature_at_level_9.value;
+ data.temperatureAtLevel9F = cToF(data.temperatureAtLevel9);
   data.temperatureAtLevel10 = sample.temperature_at_level_10.value;
+ data.temperatureAtLevel10F = cToF(data.temperatureAtLevel10);
+ data.temperatureAtLevel1F = cToF(data.temperatureAtLevel1);
   data.temperatureAtLevel11 = sample.temperature_at_level_11.value;
+ data.temperatureAtLevel11F = cToF(data.temperatureAtLevel11);
+ data.temperatureAtLevel1F = cToF(data.temperatureAtLevel1);
   data.temperatureAtLevel12 = sample.temperature_at_level_12.value;
+ data.temperatureAtLevel12F = cToF(data.temperatureAtLevel12);
+ data.temperatureAtLevel1F = cToF(data.temperatureAtLevel1);
   data.temperatureAtLevel13 = sample.temperature_at_level_13.value;
+ data.temperatureAtLevel13F = cToF(data.temperatureAtLevel13);
+ data.temperatureAtLevel1F = cToF(data.temperatureAtLevel1);
   data.temperatureAtLevel14 = sample.temperature_at_level_14.value;
+ data.temperatureAtLevel14F = cToF(data.temperatureAtLevel14);
+ data.temperatureAtLevel1F = cToF(data.temperatureAtLevel1);
   data.temperatureAtLevel15 = sample.temperature_at_level_15.value;
+ data.temperatureAtLevel15F = cToF(data.temperatureAtLevel15);
+ data.temperatureAtLevel1F = cToF(data.temperatureAtLevel1);
 
   const lifecycle = {};
   lifecycle.batteryVoltage = sample.battery_voltage.value;

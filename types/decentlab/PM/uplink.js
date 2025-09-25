@@ -1,3 +1,7 @@
+function cToF(celsius) { 
+ return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
+ } 
+
 
 /* https://www.decentlab.com/products/particulate-matter-temperature-humidity-and-barometric-pressure-sensor-for-lorawan */
 
@@ -186,6 +190,7 @@ function consume(event) {
   data.pm4Number = sample.pm4_number_concentration.value;
   data.pm10Number = sample.pm10_number_concentration.value;
   data.temperature = sample.air_temperature.value;
+ data.temperatureF = cToF(data.temperature);
   data.humidity = sample.air_humidity.value;
   data.pressure = sample.barometric_pressure.value;
 

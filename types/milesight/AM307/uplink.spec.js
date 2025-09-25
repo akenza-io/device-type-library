@@ -38,6 +38,7 @@ describe("AM307 Uplink", () => {
         assert.equal(value.data.pir, "TRIGGER");
         assert.equal(value.data.pressure, 0);
         assert.equal(value.data.temperature, 23.8);
+         assert.equal(value.data.temperatureF, 74.8);
         assert.equal(value.data.tvoc, 37);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

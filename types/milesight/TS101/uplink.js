@@ -1,3 +1,7 @@
+function cToF(celsius) { 
+ return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
+ } 
+
 function readUInt16LE(bytes) {
   const value = (bytes[1] << 8) + bytes[0];
   return value & 0xffff;
@@ -51,21 +55,28 @@ function consume(event) {
     // Temperature
     else if (channelId === 0x03 && channelType === 0x67) {
       decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
+ decoded.temperatureF = cToF(decoded.temperature);
       decoded.temperatureAlert = "NORMAL";
+ decoded.temperatureF = cToF(decoded.temperature);
       i += 2;
     }
     // Temperature threshold alert
     else if (channelId === 0x83 && channelType === 0x67) {
       decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
+ decoded.temperatureF = cToF(decoded.temperature);
       decoded.temperatureAlert = readAlertType(bytes[i + 2]);
+ decoded.temperatureF = cToF(decoded.temperature);
       i += 3;
     }
     // Temperature mutation alert
     else if (channelId === 0x93 && channelType === 0xd7) {
       decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
+ decoded.temperatureF = cToF(decoded.temperature);
       decoded.temperatureDegreesCelsiushange =
         readInt16LE(bytes.slice(i + 2, i + 4)) / 100;
+ decoded.temperatureF = cToF(decoded.temperature);
       decoded.temperatureAlert = readAlertType(bytes[i + 4]);
+ decoded.temperatureF = cToF(decoded.temperature);
       i += 5;
     }
     // Temperature history
@@ -73,7 +84,9 @@ function consume(event) {
       const item = {};
       const timestamp = new Date(readUInt32LE(bytes.slice(i, i + 4)));
       item.temperature = readInt16LE(bytes.slice(i + 4, i + 6)) / 10;
+ item.temperatureF = cToF(item.temperature);
       item.temperatureAlert = "NORMAL";
+ item.temperatureF = cToF(item.temperature);
       i += 6;
 
       emit("sample", { data: item, topic: "default", timestamp });

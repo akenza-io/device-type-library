@@ -35,6 +35,7 @@ describe("Seeed SenseCAP Wireless Soil Moisture and Temperature Sensor Uplink", 
 
         if (value.topic === "default") {
           assert.equal(value.data.temperature, 32);
+           assert.equal(value.data.temperatureF, 89.6);
           assert.equal(value.data.soilHumidity, 20.85);
           utils.validateSchema(value.data, defaultSchema, { throwError: true });
         }

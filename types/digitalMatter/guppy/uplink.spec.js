@@ -34,6 +34,7 @@ describe("Digital matter Guppy Uplink", () => {
         assert.equal(value.topic, "status");
         assert.equal(value.data.inTrip, true);
         assert.equal(value.data.temperature, 25);
+         assert.equal(value.data.temperatureF, 77);
         assert.equal(value.data.batteryVoltage, 3.358);
 
         utils.validateSchema(value.data, statusSchema, { throwError: true });
@@ -58,6 +59,7 @@ describe("Digital matter Guppy Uplink", () => {
         assert.equal(value.topic, "status");
         assert.equal(value.data.inTrip, true);
         assert.equal(value.data.temperature, 25);
+         assert.equal(value.data.temperatureF, 77);
         assert.equal(value.data.batteryVoltage, 3.36);
 
         assert.equal(value.data.inclinationDeg, 51);

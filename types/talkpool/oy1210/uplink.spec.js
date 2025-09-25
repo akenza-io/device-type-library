@@ -35,6 +35,7 @@ describe("Talkpool OY1210 Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 21.9);
+        assert.equal(value.data.temperatureF, 71.4);
         assert.equal(value.data.humidity, 25.3);
         assert.equal(value.data.co2, 689);
 

@@ -1,8 +1,12 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
 
-  for (let pointer = 0; pointer !== payload.length; ) {
+  for (let pointer = 0; pointer !== payload.length;) {
     let topic = "default";
     const data = {};
     data.channel = Bits.bitsToUnsigned(bits.substr(pointer, 8));
@@ -44,6 +48,7 @@ function consume(event) {
       case 0x67:
         topic = "temperature";
         data.temperature = Bits.bitsToSigned(bits.substr(pointer, 16)) / 10;
+        data.temperatureF = cToF(data.temperature);
         pointer += 16;
         break;
       case 0x68:

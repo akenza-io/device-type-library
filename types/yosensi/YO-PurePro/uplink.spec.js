@@ -122,6 +122,7 @@ describe("Yosensi YO Pure Pro uplink", () => {
 
         assert.equal(value.topic, "temperature");
         assert.equal(value.data.temperature, 26.4);
+        assert.equal(value.data.temperatureF, 79.5);
 
         utils.validateSchema(value.data, temperatureSchema, {
           throwError: true,

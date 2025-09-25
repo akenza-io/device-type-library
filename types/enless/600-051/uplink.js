@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 // --- Helpers ---
 function parseHexString(str) {
   const result = [];
@@ -46,6 +50,7 @@ function consume(event) {
 
     // --- Default ---
     decoded.temperature = readInt16BE(bytes.slice(6, 8)) / 10;
+    decoded.temperatureF = cToF(decoded.temperature);
     decoded.humidity = readUInt16BE(bytes.slice(10, 12)) / 10;
 
     const alarmStatus = readUInt16LE(bytes.slice(26, 28));

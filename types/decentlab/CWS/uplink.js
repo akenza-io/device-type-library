@@ -1,3 +1,7 @@
+function cToF(celsius) { 
+ return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
+ } 
+
 
 /* https://www.decentlab.com/products/high-precision-winter-road-maintenance-sensor-for-lorawan */
 
@@ -110,11 +114,15 @@ function consume(event) {
 
   const data = {};
   data.surfaceTemperature = sample.surface_temperature.value;
+ data.surfaceTemperatureF = cToF(data.surfaceTemperature);
   data.temperature = sample.air_temperature.value;
+ data.temperatureF = cToF(data.temperature);
   data.humidity = sample.air_humidity.value;
   data.dewPoint = sample.dew_point.value;
+ data.dewPointF = cToF(data.dewPoint);
   data.angle = sample.angle.value;
   data.sensorTemperature = sample.sensor_temperature.value;
+ data.sensorTemperatureF = cToF(data.sensorTemperature);
 
   const lifecycle = {};
   lifecycle.batteryVoltage = sample.battery_voltage.value;

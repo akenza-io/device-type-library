@@ -35,6 +35,7 @@ describe("MClimate CO2 uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.co2, 697);
         assert.equal(value.data.temperature, 27.1);
+        assert.equal(value.data.temperatureF, 80.8);
         assert.equal(value.data.humidity, 42);
         assert.equal(value.data.batteryVoltage, 3.38);
 

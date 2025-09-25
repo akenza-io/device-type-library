@@ -120,6 +120,7 @@ describe("Cayenne uplink", () => {
         assert.equal(value.topic, "temperature");
         assert.equal(value.data.channel, 3);
         assert.equal(value.data.temperature, 27.2);
+        assert.equal(value.data.temperatureF, 81);
 
         utils.validateSchema(value.data, temperatureSchema, {
           throwError: true,
@@ -134,6 +135,7 @@ describe("Cayenne uplink", () => {
         assert.equal(value.topic, "temperature");
         assert.equal(value.data.channel, 5);
         assert.equal(value.data.temperature, 25.5);
+        assert.equal(value.data.temperatureF, 77.9);
 
         utils.validateSchema(value.data, temperatureSchema, {
           throwError: true,

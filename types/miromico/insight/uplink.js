@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
@@ -6,7 +10,7 @@ function consume(event) {
   const temperature = {};
   const co2 = {};
 
-  for (let pointer = 0; pointer < bits.length; ) {
+  for (let pointer = 0; pointer < bits.length;) {
     let measurement = "";
     let length = (Bits.bitsToUnsigned(bits.substr(pointer, 8)) - 1) * 8;
     const msgtype = Bits.bitsToUnsigned(bits.substr((pointer += 8), 8));
@@ -21,6 +25,7 @@ function consume(event) {
               payload.substr(pointer / 4, 4),
               true,
             ) * 0.01;
+          temperature[`temperature${measurement}F`] = cToF(temperature[`temperature${measurement}`]);
           pointer += 16;
           temperature[`humidity${measurement}`] =
             Hex.hexLittleEndianToBigEndian(

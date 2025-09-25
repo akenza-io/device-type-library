@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function calculateIncrement(lastValue, currentValue) {
   // Check if current value exists
   if (currentValue === undefined || Number.isNaN(currentValue)) {
@@ -22,6 +26,7 @@ function consume(event) {
 
     if (resourceType === "SampleTemp") {
       sample.temperature = Math.round(value * 100) / 1000;
+      sample.temperatureF = cToF(sample.temperature);
       topic = "temperature";
     }
 

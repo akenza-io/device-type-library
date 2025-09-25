@@ -1,3 +1,7 @@
+function cToF(celsius) { 
+ return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
+ } 
+
 
 /* https://www.decentlab.com/products/pressure-/-liquid-level-temperature-and-electrical-conductivity-sensor-for-lorawan */
 
@@ -103,6 +107,7 @@ function consume(event) {
   data.electricalConductivity = sample.electrical_conductivity.value;
   data.waterDepth = sample.water_depth.value;
   data.temperature = sample.temperature.value;
+ data.temperatureF = cToF(data.temperature);
   data.freezingFlag = sample.freezing_flag.value;
 
   const lifecycle = {};

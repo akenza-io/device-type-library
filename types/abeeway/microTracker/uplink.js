@@ -1,3 +1,7 @@
+function cToF(celsius) { 
+ return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
+ } 
+
 // Make sure to adjust other abeeway decoders as well
 function valueDecode(value, lo, hi, nbits, nresv) {
   const stepSize = 1.0 / (((1 << nbits) - 1 - nresv) / (hi - lo));
@@ -198,6 +202,7 @@ function consume(event) {
 
   // prettier-ignore
   lifecycle.temperature = Math.round(valueDecode(Bits.bitsToUnsigned(bits.substr(24, 8)), -44, 85, 8, 0) *10)/10;
+ lifecycle.temperatureF = cToF(lifecycle.temperature);
   lifecycle.acknowledge = false;
   // Reserved 4-8
 
@@ -620,7 +625,9 @@ function consume(event) {
           }
           if (data.tempState !== "FEATURE_NOT_ACTIVATED") {
             data.maxTemperature = Bits.bitsToSigned(bits.substr(56, 8));
+ data.maxTemperatureF = cToF(data.maxTemperature);
             data.minTemperature = Bits.bitsToSigned(bits.substr(64, 8));
+ data.minTemperatureF = cToF(data.minTemperature);
             data.highCounter = Bits.bitsToUnsigned(bits.substr(72, 8));
             data.lowCounter = Bits.bitsToUnsigned(bits.substr(80, 8));
           }

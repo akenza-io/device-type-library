@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 // Standard Decoder
 const TYPE_TEMP = 0x01; // temp 2 bytes -3276.8°C -->3276.7°C
 const TYPE_RH = 0x02; // Humidity 1 byte  0-100%
@@ -48,6 +52,7 @@ function DecodeElsysPayload(data) {
         var temp = (data[i + 1] << 8) | data[i + 2];
         temp = bin16dec(temp);
         obj.temperature = temp / 10;
+        obj.temperatureF = cToF(obj.temperature);
         i += 2;
         break;
       case TYPE_RH: // Humidity
@@ -424,6 +429,7 @@ function consume(event) {
 
     // Default values
     data.temperature = res.temperature;
+    data.temperatureF = cToF(data.temperature);
     data.humidity = res.humidity;
     data.accX = res.accX;
     data.accY = res.accY;

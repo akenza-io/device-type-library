@@ -68,6 +68,7 @@ describe("Tektelic Smart Room Base Sensor Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 25.1);
+        assert.equal(value.data.temperatureF, 77.2);
         assert.equal(value.data.humidity, 27);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

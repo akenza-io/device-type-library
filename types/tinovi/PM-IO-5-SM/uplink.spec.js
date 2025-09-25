@@ -48,6 +48,7 @@ describe("Tinovi PM-IO-5-SM Uplink", () => {
         assert.equal(value.data.e25, 0.52);
         assert.equal(value.data.soilConductivity, 0.1);
         assert.equal(value.data.temperature, 34.55);
+        assert.equal(value.data.temperatureF, 94.2);
         assert.equal(value.data.waterContent, 0);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

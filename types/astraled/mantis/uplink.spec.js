@@ -55,6 +55,7 @@ describe("Astraled Mantis Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.lightState, 17);
         assert.equal(value.data.temperature, 23.21);
+         assert.equal(value.data.temperatureF, 73.8);
         assert.equal(value.data.humidity, 32.6);
         assert.equal(value.data.voc, 317);
         assert.equal(value.data.co2, 664);

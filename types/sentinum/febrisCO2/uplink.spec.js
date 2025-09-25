@@ -48,6 +48,7 @@ describe("Sentinum Febris Uplink", () => {
         assert.equal(value.data.batteryVoltage, 6.482);
         assert.equal(value.data.batteryLevel, 100);
         assert.equal(value.data.internalTemperature, 25);
+        assert.equal(value.data.internalTemperatureF, 77);
         assert.equal(value.data.majorVersion, 1);
         assert.equal(value.data.minorVersion, 2);
         assert.equal(value.data.productVersion, 3);
@@ -64,6 +65,7 @@ describe("Sentinum Febris Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.alarm, "YELLOW");
         assert.equal(value.data.dewPoint, 8);
+        assert.equal(value.data.dewPointF, 46.4);
         assert.equal(value.data.co2, 1694);
         assert.equal(value.data.humidity, 33);
         assert.equal(value.data.pressure, 973);

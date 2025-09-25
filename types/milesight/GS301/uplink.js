@@ -1,3 +1,7 @@
+function cToF(celsius) { 
+ return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
+ } 
+
 function readUInt16LE(bytes) {
   const value = (bytes[1] << 8) + bytes[0];
   return value & 0xffff;
@@ -32,6 +36,7 @@ function consume(event) {
     // TEMPERATURE
     else if (channelId === 0x02 && channelType === 0x67) {
       decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
+ decoded.temperatureF = cToF(decoded.temperature);
       i += 2;
     }
     // HUMIDITY

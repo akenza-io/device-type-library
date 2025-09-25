@@ -52,6 +52,7 @@ describe("Decentlab PHEHT Uplink", () => {
         assert.equal(value.data.phMv, -1);
         assert.equal(value.data.redox, -15.7);
         assert.equal(value.data.temperature, 21.14);
+         assert.equal(value.data.temperatureF, 70.1);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

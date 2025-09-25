@@ -50,6 +50,7 @@ describe("Decentlab RHC Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.humidity, 73.3);
         assert.equal(value.data.temperature, 15.23);
+         assert.equal(value.data.temperatureF, 59.4);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

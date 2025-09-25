@@ -53,6 +53,7 @@ describe("Pipiot levelSense uplink", () => {
 
         assert.equal(value.data.laserReflectance, 119296);
         assert.equal(value.data.temperature, 25);
+        assert.equal(value.data.temperatureF, 77);
         assert.equal(value.data.tiltAngle, 4);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

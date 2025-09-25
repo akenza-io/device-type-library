@@ -64,6 +64,7 @@ describe("Alevel V1 Uplink", () => {
         assert.equal(value.data.hasOutOfRangeError, true);
         assert.equal(value.data.sequenceNumber, 2);
         assert.equal(value.data.temperature, 23);
+         assert.equal(value.data.temperatureF, 73.4);
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
 

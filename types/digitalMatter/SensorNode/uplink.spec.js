@@ -97,6 +97,7 @@ describe("Digitalmatter sensor node Uplink", () => {
 
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.internalTemperature, 21.02);
+        assert.equal(value.data.internalTemperatureF, 69.8);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });

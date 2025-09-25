@@ -174,6 +174,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.data.operationMode, "PERIODIC");
         assert.equal(value.data.tamperAlarm, false);
         assert.equal(value.data.temperature, 27);
+         assert.equal(value.data.temperatureF, 80.6);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -205,6 +206,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.data.positioningType, "DOWNLINK_FOR_POSITION");
         assert.equal(value.data.tamperAlarm, false);
         assert.equal(value.data.temperature, 27);
+         assert.equal(value.data.temperatureF, 80.6);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -261,6 +263,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.data.positioningType, "DOWNLINK_FOR_POSITION");
         assert.equal(value.data.tamperAlarm, false);
         assert.equal(value.data.temperature, 26);
+         assert.equal(value.data.temperatureF, 78.8);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -302,6 +305,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.data.operationMode, "PERIODIC");
         assert.equal(value.data.tamperAlarm, false);
         assert.equal(value.data.temperature, 26);
+         assert.equal(value.data.temperatureF, 78.8);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -343,6 +347,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.data.operationMode, "PERIODIC");
         assert.equal(value.data.tamperAlarm, false);
         assert.equal(value.data.temperature, 27);
+         assert.equal(value.data.temperatureF, 80.6);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -384,6 +389,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.data.operationMode, "PERIODIC");
         assert.equal(value.data.tamperAlarm, false);
         assert.equal(value.data.temperature, 23);
+         assert.equal(value.data.temperatureF, 73.4);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -425,6 +431,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.data.operationMode, "MOTION");
         assert.equal(value.data.tamperAlarm, true);
         assert.equal(value.data.temperature, 27);
+         assert.equal(value.data.temperatureF, 80.6);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -467,6 +474,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.data.operationMode, "MOTION");
         assert.equal(value.data.tamperAlarm, false);
         assert.equal(value.data.temperature, 27);
+         assert.equal(value.data.temperatureF, 80.6);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -512,6 +520,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.data.operationMode, "PERIODIC");
         assert.equal(value.data.tamperAlarm, false);
         assert.equal(value.data.temperature, 26);
+         assert.equal(value.data.temperatureF, 78.8);
 
         utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
       });

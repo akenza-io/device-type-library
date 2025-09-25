@@ -51,6 +51,7 @@ describe("Decentlab CTD10 Uplink", () => {
         assert.equal(value.data.electricalConductivity, 100);
         assert.equal(value.data.freezingFlag, 0);
         assert.equal(value.data.temperature, 12.9);
+         assert.equal(value.data.temperatureF, 55.2);
         assert.equal(value.data.waterDepth, 4232);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

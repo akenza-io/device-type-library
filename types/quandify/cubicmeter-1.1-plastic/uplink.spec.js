@@ -80,6 +80,9 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
           waterTemperatureMin: 21.5,
           waterTemperatureMax: 22,
           ambientTemperature: 22.5,
+          "ambientTemperatureF": 70.7,
+          "waterTemperatureMaxF": 71.6,
+          "waterTemperatureMinF": 72.5
         });
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
@@ -126,6 +129,9 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
         waterTemperatureMin: 21.5,
         waterTemperatureMax: 22,
         ambientTemperature: 22.5,
+        "ambientTemperatureF": 70.7,
+        "waterTemperatureMaxF": 71.6,
+        "waterTemperatureMinF": 72.5
       });
     });
 
@@ -179,6 +185,9 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
         waterTemperatureMin: 21.5,
         waterTemperatureMax: 22,
         ambientTemperature: 22.5,
+        "ambientTemperatureF": 70.7,
+        "waterTemperatureMaxF": 71.6,
+        "waterTemperatureMinF": 72.5
       });
     });
 
@@ -243,13 +252,16 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
 
       assert.equal(value.topic, "default");
       assert.deepStrictEqual(value.data, {
-        totalVolume: 33655,
+        ambientTemperature: 9,
+        ambientTemperatureF: 51.8,
         leakIsOngoing: false,
         leakState: 0,
         leakStatus: "NO_LEAK",
-        waterTemperatureMin: 11,
+        totalVolume: 33655,
         waterTemperatureMax: 11,
-        ambientTemperature: 9,
+        waterTemperatureMaxF: 51.8,
+        waterTemperatureMin: 11,
+        waterTemperatureMinF: 48.2,
       });
 
       utils.validateSchema(value.data, defaultSchema, { throwError: true });

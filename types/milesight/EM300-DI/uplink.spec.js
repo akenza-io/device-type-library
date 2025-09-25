@@ -60,6 +60,7 @@ describe("Milesight EM300-DI Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 27.2);
+         assert.equal(value.data.temperatureF, 81);
         assert.equal(value.data.humidity, 46.5);
         assert.equal(value.data.pulse, 256);
 
@@ -73,6 +74,7 @@ describe("Milesight EM300-DI Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 30.8);
+         assert.equal(value.data.temperatureF, 87.4);
         assert.equal(value.data.humidity, 50.5);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

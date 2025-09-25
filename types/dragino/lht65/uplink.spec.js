@@ -71,6 +71,7 @@ describe("Dragino LHT65 Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.humidity, 47.6);
         assert.equal(value.data.temperature, 26.01);
+         assert.equal(value.data.temperatureF, 78.8);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -82,6 +83,7 @@ describe("Dragino LHT65 Uplink", () => {
 
         assert.equal(value.topic, "external");
         assert.equal(value.data.externalTemperature, 327.67);
+         assert.equal(value.data.externalTemperatureF, 621.8);
 
         utils.validateSchema(value.data, externalSchema, { throwError: true });
       });

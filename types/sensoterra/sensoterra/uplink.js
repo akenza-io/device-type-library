@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 const FPort = {
   CURRENT_MEASUREMENT: 11,
   HISTORICAL_MEASUREMENT: 12,
@@ -566,6 +570,7 @@ function decodePayload(fport, payload) {
       if (dataPoint.type === "temperature" && dataPoint.error_flag === false) {
         if (tempNumber === 0) {
           result.data.temperature = dataPoint.value;
+          result.data.temperatureF = cToF(result.data.temperature);
         }
         tempNumber++;
       }

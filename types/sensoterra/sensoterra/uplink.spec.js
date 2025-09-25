@@ -46,6 +46,7 @@ describe("Sensoterra Sensor Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.moisture, 85.3);
         assert.equal(value.data.temperature, 21.2);
+        assert.equal(value.data.temperatureF, 70.2);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

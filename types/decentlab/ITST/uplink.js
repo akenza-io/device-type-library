@@ -1,3 +1,7 @@
+function cToF(celsius) { 
+ return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
+ } 
+
 
 /* https://www.decentlab.com/products/infrared-thermometer-/-surface-temperature-sensor-for-lorawan */
 
@@ -94,7 +98,9 @@ function consume(event) {
 
   const data = {};
   data.temperatureTarget = sample.temperature_target.value;
+ data.temperatureTargetF = cToF(data.temperatureTarget);
   data.temperatureHead = sample.temperature_head.value;
+ data.temperatureHeadF = cToF(data.temperatureHead);
 
   const lifecycle = {};
   lifecycle.batteryVoltage = sample.battery_voltage.value;

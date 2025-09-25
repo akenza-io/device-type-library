@@ -60,6 +60,7 @@ describe("AT101 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.data.temperature, 28.3);
+         assert.equal(value.data.temperatureF, 82.9);
 
         utils.validateSchema(value.data, temperatureSchema, {
           throwError: true,
@@ -108,6 +109,7 @@ describe("AT101 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.data.temperature, 28.3);
+         assert.equal(value.data.temperatureF, 82.9);
 
         utils.validateSchema(value.data, temperatureSchema, {
           throwError: true,

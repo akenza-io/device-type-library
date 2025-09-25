@@ -47,7 +47,9 @@ describe("Landis & Gyr WZU Uplink", () => {
         assert.equal(value.data.power, 30.6);
         assert.equal(value.data.flow, 0.6);
         assert.equal(value.data.flowTemp, 111.5);
+         assert.equal(value.data.flowTempF, 232.7);
         assert.equal(value.data.backFlowTemp, 66.7);
+         assert.equal(value.data.backFlowTempF, 152.1);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

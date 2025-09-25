@@ -1,3 +1,7 @@
+function cToF(celsius) { 
+ return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
+ } 
+
 
 /* https://www.decentlab.com/products/wind-speed-wind-direction-and-temperature-sensor-for-lorawan */
 
@@ -121,6 +125,7 @@ function consume(event) {
   data.windDirection = sample.wind_direction.value;
   data.maximumWindSpeed = sample.maximum_wind_speed.value;
   data.temperature = sample.air_temperature.value;
+ data.temperatureF = cToF(data.temperature);
   data.xOrientationAngle = sample.x_orientation_angle.value;
   data.yOrientationAngle = sample.y_orientation_angle.value;
   data.northWindSpeed = sample.north_wind_speed.value;

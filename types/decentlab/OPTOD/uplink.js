@@ -1,3 +1,7 @@
+function cToF(celsius) { 
+ return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
+ } 
+
 
 /* https://www.decentlab.com/products/optical-dissolved-oxygen-and-temperature-sensor-for-lorawan */
 
@@ -105,6 +109,7 @@ function consume(event) {
 
   const data = {};
   data.temperature = sample.temperature.value;
+ data.temperatureF = cToF(data.temperature);
   data.oxygenSaturation = sample.oxygen_saturation.value;
   data.oxygenConcentration = sample.oxygen_concentration.value;
   data.oxygenConcentrationAlt = sample.oxygen_concentration_alt.value;

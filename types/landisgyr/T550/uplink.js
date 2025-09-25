@@ -1,3 +1,7 @@
+function cToF(celsius) { 
+ return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
+ } 
+
 function hexSwap(str) {
   let res = "";
   for (let i = 0; i < str.length; i++) {
@@ -123,6 +127,7 @@ function consume(event) {
     if (difVifFlowTemp === "0A5A") {
       // Value is in °C and divided by 10
       data.flowTemp = vlt / 10;
+ data.flowTempF = cToF(data.flowTemp);
     }
 
     // Back flow temperature
@@ -130,6 +135,7 @@ function consume(event) {
     if (difVifBackFlowTemp === "0A5E") {
       // Value is in °C and divided by 10
       data.backFlowTemp = rlt / 10;
+ data.backFlowTempF = cToF(data.backFlowTemp);
     }
 
     // Serial ID

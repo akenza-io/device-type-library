@@ -45,6 +45,7 @@ describe("Synetica Status DB Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 24.6);
+        assert.equal(value.data.temperatureF, 76.3);
         assert.equal(value.data.humidity, 26);
         assert.equal(value.data.dp, 4.723);
         assert.equal(value.data.af, 2.806);

@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 // --- Helpers ---
 function parseHexString(str) {
   const result = [];
@@ -57,6 +61,7 @@ function consume(event) {
   // --- Default ---
   const decoded = {};
   decoded.temperature = readInt16BE(bytes.slice(6, 8)) / 10;
+  decoded.temperatureF = cToF(decoded.temperature);
   decoded.humidity = readUInt16BE(bytes.slice(10, 12)) / 10;
   decoded.pirCount = readUInt16BE(bytes.slice(16, 18));
   decoded.luminosity = readUInt32BE(bytes.slice(22, 26));

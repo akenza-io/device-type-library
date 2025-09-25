@@ -57,6 +57,7 @@ describe("TBWater leak uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.waterleak, false);
         assert.equal(value.data.temperature, 22);
+         assert.equal(value.data.temperatureF, 71.6);
         assert.equal(value.data.humidity, 40);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

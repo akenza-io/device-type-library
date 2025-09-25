@@ -1,3 +1,7 @@
+function cToF(celsius) { 
+ return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
+ } 
+
 
 /* https://www.decentlab.com/products/high-precision-air-temperature-and-humidity-sensor-with-radiation-shield-for-lorawan */
 
@@ -97,6 +101,7 @@ function consume(event) {
 
   const data = {};
   data.temperature = sample.air_temperature.value;
+ data.temperatureF = cToF(data.temperature);
   data.humidity = sample.air_humidity.value;
 
   const lifecycle = {};

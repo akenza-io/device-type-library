@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const { port } = event.data;
@@ -34,6 +38,7 @@ function consume(event) {
           } else {
             data[`soilTemperature${i + 1}`] = ((soilTemperature - 0xFFFF) / 100);
           }
+          data[`soilTemperature${i + 1}${"F"}`] = cToF(data[`soilTemperature${i + 1}`]);
 
           data[`soilConductivity${i + 1}`] = Bits.bitsToUnsigned(bits.substr(pointer, 16)) / 10; pointer += 16;
         } else {

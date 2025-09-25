@@ -84,6 +84,7 @@ describe("Elsys eye uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.data.temperature, 22.5);
+         assert.equal(value.data.temperatureF, 72.5);
         assert.equal(value.data.humidity, 40);
         assert.equal(value.data.light, 416);
 

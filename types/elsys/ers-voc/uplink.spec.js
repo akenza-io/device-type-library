@@ -57,6 +57,7 @@ describe("Elsys TVOC uplink", () => {
         assert.equal(value.data.light, 357);
         assert.equal(value.data.humidity, 35);
         assert.equal(value.data.temperature, 24.7);
+         assert.equal(value.data.temperatureF, 76.5);
         assert.equal(value.data.tvoc, 12);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });

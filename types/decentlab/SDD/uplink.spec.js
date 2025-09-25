@@ -61,11 +61,17 @@ describe("Decentlab SDD Uplink", () => {
         assert.equal(value.data.salinityAtLevel4, -100);
         assert.equal(value.data.salinityAtLevel5, 230);
         assert.equal(value.data.temperatureAtLevel0, 18.57);
+         assert.equal(value.data.temperatureAtLevel0F, 65.4);
         assert.equal(value.data.temperatureAtLevel1, 19.15);
+         assert.equal(value.data.temperatureAtLevel1F, 66.5);
         assert.equal(value.data.temperatureAtLevel2, 18.65);
+         assert.equal(value.data.temperatureAtLevel2F, 65.6);
         assert.equal(value.data.temperatureAtLevel3, 19);
+         assert.equal(value.data.temperatureAtLevel3F, 66.2);
         assert.equal(value.data.temperatureAtLevel4, 19);
+         assert.equal(value.data.temperatureAtLevel4F, 66.2);
         assert.equal(value.data.temperatureAtLevel5, 18.94);
+         assert.equal(value.data.temperatureAtLevel5F, 66.1);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

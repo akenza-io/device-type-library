@@ -81,6 +81,7 @@ describe("Oxon Oxobutton 2 Uplink", () => {
         assert.equal(value.data.light, 0);
         assert.equal(value.data.humidity, 42.72);
         assert.equal(value.data.temperature, 22.42);
+        assert.equal(value.data.temperatureF, 72.4);
 
         utils.validateSchema(value.data, defaultSchema, { throwError: true });
       });

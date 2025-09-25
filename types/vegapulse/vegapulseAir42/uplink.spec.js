@@ -72,6 +72,7 @@ describe("Vegapulse Air 42", () => {
 
         assert.equal(value.topic, "temperature");
         assert.equal(value.data.temperature, 26);
+        assert.equal(value.data.temperatureF, 78.8);
 
         utils.validateSchema(value.data, temperatureSchema, { throwError: true });
       });

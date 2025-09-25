@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 /**
  * __  __                      _
  * \ \/ /__  ___ ___ ___  ___ (_)
@@ -292,8 +296,8 @@ function payloadV2Parse(bytes, date, utils) {
   ) {
     return new Date(
       Number(extractPayloadDateTimeDate) -
-        utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
-          1000,
+      utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
+      1000,
     );
   }
 
@@ -308,7 +312,7 @@ function payloadV2Parse(bytes, date, utils) {
   function extractMeasurementDateTime(byte, extractMeasurementDateTimeDate) {
     return new Date(
       Number(extractMeasurementDateTimeDate) +
-        utils.unsignedNbrFromByte(byte) * 1000,
+      utils.unsignedNbrFromByte(byte) * 1000,
     );
   }
 
@@ -710,11 +714,13 @@ function consume(event) {
   const data = decoder(port, Hex.hexToBytes(payloadData));
 
   if (data.data.temperature !== undefined) {
+    data.data.temperatureF = cToF(data.data.temperature);
     emit("sample", {
-      data: { temperature: data.data.temperature },
+      data: { temperature: data.data.temperature, temperatureF: data.data.temperatureF },
       topic: "temperature",
     });
     delete data.data.temperature;
+    delete data.data.temperatureF;
   }
   if (data.data.humidity !== undefined) {
     emit("sample", {

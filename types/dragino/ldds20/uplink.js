@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function getFillLevel(device, distance) {
   if (device !== undefined && distance !== undefined) {
     if (device.customFields !== undefined) {
@@ -62,9 +66,11 @@ function consume(event) {
       value |= 0xffff0000;
     }
     data.temperature = (value / 10).toFixed(2);
+    data.temperatureF = cToF(data.temperature);
 
     if (((bytes[5] << 8) | bytes[6]) === 0xffff) {
       data.temperature = null;
+      data.temperatureF = null;
     }
   }
 

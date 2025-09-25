@@ -61,6 +61,7 @@ describe("AM107 Uplink", () => {
 
         if (value.topic === "default") {
           assert.equal(value.data.temperature, 27.2);
+           assert.equal(value.data.temperatureF, 81);
           assert.equal(value.data.humidity, 56.5);
           assert.equal(value.data.pir, 73);
           assert.equal(value.data.light, 28);

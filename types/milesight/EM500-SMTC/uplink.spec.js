@@ -54,6 +54,7 @@ describe("EM500-PP Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.data.temperature, 28.1);
+         assert.equal(value.data.temperatureF, 82.6);
         assert.equal(value.data.moisture, 57.5);
         assert.equal(value.data.soilConductivity, 240);
 

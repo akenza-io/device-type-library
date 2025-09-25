@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function consume(event) {
   let topic = "default";
 
@@ -13,6 +17,7 @@ function consume(event) {
 
     if (resourceType === "SampleTemp") {
       sample.temperature = Math.round(value * 100) / 1000;
+      sample.temperatureF = cToF(sample.temperature);
       topic = "temperature";
     }
 

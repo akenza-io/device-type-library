@@ -59,6 +59,7 @@ describe("Milesight AM102 Uplink", () => {
                 assert.equal(value.topic, "default");
                 assert.deepEqual(value.data, {
                     temperature: 25.5,
+                    temperatureF: 77.9,
                     humidity: 39.5,
                 });
                 utils.validateSchema(value.data, defaultSchema, { throwError: true });
