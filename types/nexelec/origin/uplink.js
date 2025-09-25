@@ -218,7 +218,7 @@ function handleHistoricalData(payload, productType, timestamp) {
 
   // If timestamp is not provided, use current time
   if (!timestamp) {
-    timestamp = new Date().getTime();
+    timestamp = Date.now();
   }
   const baseTimeMs = timestamp;
 
