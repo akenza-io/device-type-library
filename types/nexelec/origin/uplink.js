@@ -106,8 +106,8 @@ function handleProductStatus(payload, productType, timestamp) {
   lifecycle.batteryLevel = batteryLevelMap[statusByte5 & 0x03];
   lifecycle.batteryVoltage = (payload[6] * 5) + 2000;
 
-  emitIfNotEmpty("system", system, timestamp);
-  emitIfNotEmpty("lifecycle", lifecycle, timestamp);
+  emitIfNotEmpty("system", system);
+  emitIfNotEmpty("lifecycle", lifecycle);
 }
 
 // Handles Product Configuration messages (0x01).
@@ -133,8 +133,8 @@ function handleProductConfig(payload, productType, timestamp) {
   system.d2dNetworkId = ((payload[6] & 0x3F) << 11) | (payload[7] << 3) | (payload[8] >> 5);
   system.downlinkFcnt = (payload[9] << 8) | payload[10];
 
-  emitIfNotEmpty("system", system, timestamp);
-  emitIfNotEmpty("datalog", datalog, timestamp);
+  emitIfNotEmpty("system", system);
+  emitIfNotEmpty("datalog", datalog);
 }
 
 // Handles Alarm Status messages (0x02).
@@ -143,7 +143,7 @@ function handleAlarmStatus(payload, productType, timestamp) {
     emit("log", { error: "Invalid payload length for Alarm Status" });
     return;
   }
-  emitIfNotEmpty("system", { productType }, timestamp);
+  emitIfNotEmpty("system", { productType });
 
   const alarm = {};
   const lifecycle = {};
@@ -159,9 +159,9 @@ function handleAlarmStatus(payload, productType, timestamp) {
   const tempRaw = ((payload[4] & 0x01) << 9) | (payload[5] << 1) | (payload[6] >> 7);
   climate.temperature = decodeTemperature(tempRaw);
 
-  emitIfNotEmpty("alarm", alarm, timestamp);
-  emitIfNotEmpty("lifecycle", lifecycle, timestamp);
-  emitIfNotEmpty("default", climate, timestamp);
+  emitIfNotEmpty("alarm", alarm);
+  emitIfNotEmpty("lifecycle", lifecycle);
+  emitIfNotEmpty("default", climate);
 }
 
 // Handles Daily Air Quality messages (0x03).
@@ -170,7 +170,7 @@ function handleDailyAirQuality(payload, productType, timestamp) {
     emit("log", { error: "Invalid payload length for Daily Air Quality" });
     return;
   }
-  emitIfNotEmpty("system", { productType }, timestamp);
+  emitIfNotEmpty("system", { productType });
 
   const climate = {};
   climate.minTemperature = decodeTemperature((payload[2] << 2) | (payload[3] >> 6));
@@ -180,7 +180,7 @@ function handleDailyAirQuality(payload, productType, timestamp) {
   climate.maxHumidity = decodeHumidity(((payload[6] & 0x03) << 6) | (payload[7] >> 2));
   climate.averageHumidity = decodeHumidity(((payload[7] & 0x03) << 6) | (payload[8] >> 2));
 
-  emitIfNotEmpty("default", climate, timestamp);
+  emitIfNotEmpty("default", climate);
 }
 
 // Handles Periodic Data messages (0x04).
@@ -189,27 +189,24 @@ function handlePeriodicData(payload, productType, timestamp) {
     emit("log", { error: "Invalid payload length for Periodic Data" });
     return;
   }
-  emitIfNotEmpty("system", { productType }, timestamp);
+  emitIfNotEmpty("system", { productType });
 
   const climate = {};
   climate.temperature = decodeTemperature((payload[2] << 2) | (payload[3] >> 6));
   climate.humidity = decodeHumidity(((payload[3] & 0x3f) << 2) | (payload[4] >> 6));
 
-  emitIfNotEmpty("default", climate, timestamp);
+  emitIfNotEmpty("default", climate);
 }
 
 // Handles Historical Data messages (0x05).
 function handleHistoricalData(payload, productType, timestamp) {
-  emitIfNotEmpty("system", { productType }, timestamp);
+  emitIfNotEmpty("system", { productType });
 
   const datalog = {};
   datalog.totalMeasurements = payload[2] >> 2;
   datalog.samplingPeriod = ((payload[2] & 0x03) << 6) | (payload[3] >> 2);
   datalog.repetitionsInMessage = ((payload[3] & 0x03) << 4) | (payload[4] >> 4);
-  emitIfNotEmpty("datalog", datalog, timestamp);
-
-  const baseTimeMs = new Date(timestamp).getTime();
-  const periodMs = datalog.samplingPeriod * 60 * 1000;
+  emitIfNotEmpty("datalog", datalog);
 
   let bitString = "";
   for (let i = 0; i < payload.length; i++) {
@@ -226,9 +223,7 @@ function handleHistoricalData(payload, productType, timestamp) {
     const temperature = decodeTemperature(tempRaw);
 
     if (temperature !== null) {
-      const measurementTimeMs = baseTimeMs - (i * periodMs);
-      const measurementTimestamp = new Date(measurementTimeMs).toISOString();
-      emitIfNotEmpty("default", { temperature }, measurementTimestamp);
+      emitIfNotEmpty("default", { temperature });
     }
   }
 }
@@ -242,12 +237,6 @@ function consume(event) {
   const payload = Hex.hexToBytes(event.data.payloadHex);
   const { port } = event.data;
 
-  // Create a reliable timestamp, falling back to the current time if invalid.
-  let reliableTimestamp = event.time;
-  if (!reliableTimestamp || Number.isNaN(new Date(reliableTimestamp).getTime())) {
-    reliableTimestamp = new Date().toISOString();
-  }
-
   // Ensure the port is correct.
   if (port !== 56) {
     emit("log", { error: `Invalid port: ${port}` });
@@ -258,12 +247,12 @@ function consume(event) {
   const messageType = payload[1];
 
   switch (messageType) {
-    case 0x00: handleProductStatus(payload, productType, reliableTimestamp); break;
-    case 0x01: handleProductConfig(payload, productType, reliableTimestamp); break;
-    case 0x02: handleAlarmStatus(payload, productType, reliableTimestamp); break;
-    case 0x03: handleDailyAirQuality(payload, productType, reliableTimestamp); break;
-    case 0x04: handlePeriodicData(payload, productType, reliableTimestamp); break;
-    case 0x05: handleHistoricalData(payload, productType, reliableTimestamp); break;
+    case 0x00: handleProductStatus(payload, productType); break;
+    case 0x01: handleProductConfig(payload, productType); break;
+    case 0x02: handleAlarmStatus(payload, productType); break;
+    case 0x03: handleDailyAirQuality(payload, productType); break;
+    case 0x04: handlePeriodicData(payload, productType); break;
+    case 0x05: handleHistoricalData(payload, productType); break;
     default: emit("log", { error: `Unknown message type: ${messageType}` });
   }
 }
