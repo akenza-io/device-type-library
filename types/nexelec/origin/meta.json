@@ -13,7 +13,9 @@
   ],
   "outputTopics": [
     "alarm",
-    "default",
+    "temperature",
+    "humidity",
+    "aggregation",
     "lifecycle",
     "system",
     "datalog"

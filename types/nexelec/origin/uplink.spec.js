@@ -10,7 +10,7 @@ const __dirname = dirname(__filename);
 describe("Nexelec Origin uplink", () => {
     let systemSchema = null;
     let lifecycleSchema = null;
-    let defaultSchema = null;
+    let temperatureSchema = null;
     let datalogSchema = null;
     let consume = null;
 
@@ -18,10 +18,10 @@ describe("Nexelec Origin uplink", () => {
         const script = rewire(`${__dirname}/uplink.js`);
         consume = init(script);
 
-        [systemSchema, lifecycleSchema, defaultSchema, datalogSchema] = await Promise.all([
+        [systemSchema, lifecycleSchema, temperatureSchema, datalogSchema] = await Promise.all([
             loadSchema(`${__dirname}/system.schema.json`),
             loadSchema(`${__dirname}/lifecycle.schema.json`),
-            loadSchema(`${__dirname}/default.schema.json`),
+            loadSchema(`${__dirname}/temperature.schema.json`),
             loadSchema(`${__dirname}/datalog.schema.json`),
         ])
 
@@ -58,134 +58,134 @@ describe("Nexelec Origin uplink", () => {
                 validateSchema(value.data, datalogSchema, { throwError: true });
             });
 
-            // default
+            // temperature (historical)
             expectEmits((type, value) => {
                 assert.equal(type, "sample");
-                assert.equal(value.topic, "default");
+                assert.equal(value.topic, "temperature");
                 assert.isObject(value.data);
                 assert.equal(value.data.temperature, 23.2);
-                validateSchema(value.data, defaultSchema, { throwError: true });
+                validateSchema(value.data, temperatureSchema, { throwError: true });
             });
 
             expectEmits((type, value) => {
                 assert.equal(type, "sample");
-                assert.equal(value.topic, "default");
+                assert.equal(value.topic, "temperature");
                 assert.isObject(value.data);
                 assert.equal(value.data.temperature, 23.2);
-                validateSchema(value.data, defaultSchema, { throwError: true });
+                validateSchema(value.data, temperatureSchema, { throwError: true });
             });
 
             expectEmits((type, value) => {
                 assert.equal(type, "sample");
-                assert.equal(value.topic, "default");
+                assert.equal(value.topic, "temperature");
                 assert.isObject(value.data);
                 assert.equal(value.data.temperature, 23.1);
-                validateSchema(value.data, defaultSchema, { throwError: true });
+                validateSchema(value.data, temperatureSchema, { throwError: true });
             });
             expectEmits((type, value) => {
                 assert.equal(type, "sample");
-                assert.equal(value.topic, "default");
+                assert.equal(value.topic, "temperature");
                 assert.isObject(value.data);
                 assert.equal(value.data.temperature, 23.1);
-                validateSchema(value.data, defaultSchema, { throwError: true });
+                validateSchema(value.data, temperatureSchema, { throwError: true });
             });
             expectEmits((type, value) => {
                 assert.equal(type, "sample");
-                assert.equal(value.topic, "default");
+                assert.equal(value.topic, "temperature");
                 assert.isObject(value.data);
                 assert.equal(value.data.temperature, 23.1);
-                validateSchema(value.data, defaultSchema, { throwError: true });
+                validateSchema(value.data, temperatureSchema, { throwError: true });
             });
             expectEmits((type, value) => {
                 assert.equal(type, "sample");
-                assert.equal(value.topic, "default");
+                assert.equal(value.topic, "temperature");
                 assert.isObject(value.data);
                 assert.equal(value.data.temperature, 23.1);
-                validateSchema(value.data, defaultSchema, { throwError: true });
+                validateSchema(value.data, temperatureSchema, { throwError: true });
             });
             expectEmits((type, value) => {
                 assert.equal(type, "sample");
-                assert.equal(value.topic, "default");
+                assert.equal(value.topic, "temperature");
                 assert.isObject(value.data);
                 assert.equal(value.data.temperature, 23.1);
-                validateSchema(value.data, defaultSchema, { throwError: true });
+                validateSchema(value.data, temperatureSchema, { throwError: true });
             });
             expectEmits((type, value) => {
                 assert.equal(type, "sample");
-                assert.equal(value.topic, "default");
+                assert.equal(value.topic, "temperature");
                 assert.isObject(value.data);
                 assert.equal(value.data.temperature, 23);
-                validateSchema(value.data, defaultSchema, { throwError: true });
+                validateSchema(value.data, temperatureSchema, { throwError: true });
             });
             expectEmits((type, value) => {
                 assert.equal(type, "sample");
-                assert.equal(value.topic, "default");
+                assert.equal(value.topic, "temperature");
                 assert.isObject(value.data);
                 assert.equal(value.data.temperature, 23);
-                validateSchema(value.data, defaultSchema, { throwError: true });
+                validateSchema(value.data, temperatureSchema, { throwError: true });
             });
             expectEmits((type, value) => {
                 assert.equal(type, "sample");
-                assert.equal(value.topic, "default");
+                assert.equal(value.topic, "temperature");
                 assert.isObject(value.data);
                 assert.equal(value.data.temperature, 23);
-                validateSchema(value.data, defaultSchema, { throwError: true });
+                validateSchema(value.data, temperatureSchema, { throwError: true });
             });
             expectEmits((type, value) => {
                 assert.equal(type, "sample");
-                assert.equal(value.topic, "default");
+                assert.equal(value.topic, "temperature");
                 assert.isObject(value.data);
                 assert.equal(value.data.temperature, 23);
-                validateSchema(value.data, defaultSchema, { throwError: true });
+                validateSchema(value.data, temperatureSchema, { throwError: true });
             });
             expectEmits((type, value) => {
                 assert.equal(type, "sample");
-                assert.equal(value.topic, "default");
+                assert.equal(value.topic, "temperature");
                 assert.isObject(value.data);
                 assert.equal(value.data.temperature, 23);
-                validateSchema(value.data, defaultSchema, { throwError: true });
+                validateSchema(value.data, temperatureSchema, { throwError: true });
             });
             expectEmits((type, value) => {
                 assert.equal(type, "sample");
-                assert.equal(value.topic, "default");
+                assert.equal(value.topic, "temperature");
                 assert.isObject(value.data);
                 assert.equal(value.data.temperature, 23);
-                validateSchema(value.data, defaultSchema, { throwError: true });
+                validateSchema(value.data, temperatureSchema, { throwError: true });
             });
             expectEmits((type, value) => {
                 assert.equal(type, "sample");
-                assert.equal(value.topic, "default");
+                assert.equal(value.topic, "temperature");
                 assert.isObject(value.data);
                 assert.equal(value.data.temperature, 23);
-                validateSchema(value.data, defaultSchema, { throwError: true });
+                validateSchema(value.data, temperatureSchema, { throwError: true });
             });
             expectEmits((type, value) => {
                 assert.equal(type, "sample");
-                assert.equal(value.topic, "default");
+                assert.equal(value.topic, "temperature");
                 assert.isObject(value.data);
                 assert.equal(value.data.temperature, 23);
-                validateSchema(value.data, defaultSchema, { throwError: true });
+                validateSchema(value.data, temperatureSchema, { throwError: true });
             });
             expectEmits((type, value) => {
                 assert.equal(type, "sample");
-                assert.equal(value.topic, "default");
+                assert.equal(value.topic, "temperature");
                 assert.isObject(value.data);
                 assert.equal(value.data.temperature, 23);
-                validateSchema(value.data, defaultSchema, { throwError: true });
+                validateSchema(value.data, temperatureSchema, { throwError: true });
             });
             expectEmits((type, value) => {
                 assert.equal(type, "sample");
-                assert.equal(value.topic, "default");
+                assert.equal(value.topic, "temperature");
                 assert.isObject(value.data);
                 assert.equal(value.data.temperature, 23);
-                validateSchema(value.data, defaultSchema, { throwError: true });
+                validateSchema(value.data, temperatureSchema, { throwError: true });
             });
             expectEmits((type, value) => {
                 assert.equal(type, "sample");
-                assert.equal(value.topic, "default");
+                assert.equal(value.topic, "temperature");
                 assert.isObject(value.data);
                 assert.equal(value.data.temperature, 23);
-                validateSchema(value.data, defaultSchema, { throwError: true });
+                validateSchema(value.data, temperatureSchema, { throwError: true });
             });
 
             consume(data);

@@ -111,7 +111,7 @@ function handleProductStatus(payload, productType) {
 }
 
 // Handles Product Configuration messages (0x01).
-function handleProductConfig(payload, productType, timestamp) {
+function handleProductConfig(payload, productType) {
   if (payload.length < 11) {
     emit("log", { error: "Invalid payload length for Product Configuration" });
     return;
@@ -161,7 +161,9 @@ function handleAlarmStatus(payload, productType) {
 
   emitIfNotEmpty("alarm", alarm);
   emitIfNotEmpty("lifecycle", lifecycle);
-  emitIfNotEmpty("default", climate);
+  if (climate.temperature !== null) {
+    emitIfNotEmpty("temperature", { temperature: climate.temperature });
+  }
 }
 
 // Handles Daily Air Quality messages (0x03).
@@ -179,8 +181,10 @@ function handleDailyAirQuality(payload, productType) {
   climate.minHumidity = decodeHumidity(((payload[5] & 0x03) << 6) | (payload[6] >> 2));
   climate.maxHumidity = decodeHumidity(((payload[6] & 0x03) << 6) | (payload[7] >> 2));
   climate.averageHumidity = decodeHumidity(((payload[7] & 0x03) << 6) | (payload[8] >> 2));
-
-  emitIfNotEmpty("default", climate);
+  const allPresent = Object.values(climate).every(function (v) { return v !== null; });
+  if (allPresent) {
+    emitIfNotEmpty("aggregation", climate);
+  }
 }
 
 // Handles Periodic Data messages (0x04).
@@ -194,8 +198,12 @@ function handlePeriodicData(payload, productType) {
   const climate = {};
   climate.temperature = decodeTemperature((payload[2] << 2) | (payload[3] >> 6));
   climate.humidity = decodeHumidity(((payload[3] & 0x3f) << 2) | (payload[4] >> 6));
-
-  emitIfNotEmpty("default", climate);
+  if (climate.temperature !== null) {
+    emitIfNotEmpty("temperature", { temperature: climate.temperature });
+  }
+  if (climate.humidity !== null) {
+    emitIfNotEmpty("humidity", { humidity: climate.humidity });
+  }
 }
 
 // Handles Historical Data messages (0x05).
@@ -234,7 +242,7 @@ function handleHistoricalData(payload, productType, timestamp) {
     if (temperature !== null) {
       const measurementTimeMs = baseTimeMs - (i * periodMs);
       const iso = new Date(measurementTimeMs).toISOString();
-      emitIfNotEmpty("default", { temperature }, iso);
+      emitIfNotEmpty("temperature", { temperature }, iso);
     }
   }
 }
