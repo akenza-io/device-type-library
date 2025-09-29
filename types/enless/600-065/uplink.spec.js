@@ -1,8 +1,12 @@
-const chai = require("chai");
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Transmitter 600-065", () => {
   let defaultSchema = null;
@@ -10,10 +14,9 @@ describe("Transmitter 600-065", () => {
   let consume = null;
 
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/default.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
         defaultSchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("Transmitter 600-065", () => {
   });
 
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -40,7 +42,7 @@ describe("Transmitter 600-065", () => {
       };
 
       // --- Lifecycle ---
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.id, 55);
@@ -49,11 +51,11 @@ describe("Transmitter 600-065", () => {
         assert.equal(value.data.fwVersion, 2);
         assert.equal(value.data.batteryLevel, 100); // bits 3-2 → 10
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       // --- Default ---
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "default");
 
@@ -62,7 +64,7 @@ describe("Transmitter 600-065", () => {
         assert.equal(value.data.rbe, false);
         assert.equal(value.data.msgType, "NORMAL");
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

@@ -1,17 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Moko LW001-BG-PRO Uplink", () => {
   let bluetoothSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/bluetooth.schema.json`).then((parsedSchema) => {
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/bluetooth.schema.json`).then((parsedSchema) => {
       bluetoothSchema = parsedSchema;
       done();
     });
@@ -19,8 +23,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
 
   let fixFailureSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/fix_failure.schema.json`)
+    loadSchema(`${__dirname}/fix_failure.schema.json`)
       .then((parsedSchema) => {
         fixFailureSchema = parsedSchema;
         done();
@@ -29,8 +32,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
 
   let gpsSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/gps.schema.json`)
+    loadSchema(`${__dirname}/gps.schema.json`)
       .then((parsedSchema) => {
         gpsSchema = parsedSchema;
         done();
@@ -39,8 +41,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -49,8 +50,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
 
   let mandownSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/mandown.schema.json`)
+    loadSchema(`${__dirname}/mandown.schema.json`)
       .then((parsedSchema) => {
         mandownSchema = parsedSchema;
         done();
@@ -59,8 +59,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
 
   let movementSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/movement.schema.json`)
+    loadSchema(`${__dirname}/movement.schema.json`)
       .then((parsedSchema) => {
         movementSchema = parsedSchema;
         done();
@@ -69,8 +68,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
 
   let rebootSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/reboot.schema.json`)
+    loadSchema(`${__dirname}/reboot.schema.json`)
       .then((parsedSchema) => {
         rebootSchema = parsedSchema;
         done();
@@ -79,8 +77,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
 
   let shutdownSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/shutdown.schema.json`)
+    loadSchema(`${__dirname}/shutdown.schema.json`)
       .then((parsedSchema) => {
         shutdownSchema = parsedSchema;
         done();
@@ -89,8 +86,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
 
   let systemSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/system.schema.json`)
+    loadSchema(`${__dirname}/system.schema.json`)
       .then((parsedSchema) => {
         systemSchema = parsedSchema;
         done();
@@ -99,8 +95,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
 
   let tamperSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/tamper.schema.json`)
+    loadSchema(`${__dirname}/tamper.schema.json`)
       .then((parsedSchema) => {
         tamperSchema = parsedSchema;
         done();
@@ -109,8 +104,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
 
   let timeSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/time.schema.json`)
+    loadSchema(`${__dirname}/time.schema.json`)
       .then((parsedSchema) => {
         timeSchema = parsedSchema;
         done();
@@ -119,8 +113,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
 
   let vibrationSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/vibration.schema.json`)
+    loadSchema(`${__dirname}/vibration.schema.json`)
       .then((parsedSchema) => {
         vibrationSchema = parsedSchema;
         done();
@@ -129,8 +122,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
 
   let wifiSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/wifi.schema.json`)
+    loadSchema(`${__dirname}/wifi.schema.json`)
       .then((parsedSchema) => {
         wifiSchema = parsedSchema;
         done();
@@ -147,7 +139,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -157,10 +149,10 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.data.firmwareVersion, 'V1.0.7');
         assert.equal(value.data.rebootReason, "BLUETOOTH_COMMAND");
 
-        utils.validateSchema(value.data, rebootSchema, { throwError: true });
+        validateSchema(value.data, rebootSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -176,7 +168,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.data.temperature, 27);
          assert.equal(value.data.temperatureF, 80.6);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -191,7 +183,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -208,10 +200,10 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.data.temperature, 27);
          assert.equal(value.data.temperatureF, 80.6);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -221,7 +213,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.data.longitude, 114.4693033);
         assert.equal(value.data.pdop, 1.8);
 
-        utils.validateSchema(value.data, gpsSchema, { throwError: true });
+        validateSchema(value.data, gpsSchema, { throwError: true });
       });
 
       consume(data);
@@ -236,7 +228,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -245,10 +237,10 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.data.reasonsForPositioningFailure, 'Bluetooth broadcasting in progress (Please reduce the Bluetooth broadcast timeout or avoid Bluetooth positioning when Bluetooth broadcasting in process via MKLoRa app)');
         assert.deepEqual(value.data.macData, []);
 
-        utils.validateSchema(value.data, fixFailureSchema, { throwError: true });
+        validateSchema(value.data, fixFailureSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -265,7 +257,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.data.temperature, 26);
          assert.equal(value.data.temperatureF, 78.8);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -280,7 +272,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -288,10 +280,10 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.topic, "shutdown");
         assert.equal(value.data.shutdownType, 'MAGNETIC');
 
-        utils.validateSchema(value.data, shutdownSchema, { throwError: true });
+        validateSchema(value.data, shutdownSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -307,7 +299,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.data.temperature, 26);
          assert.equal(value.data.temperatureF, 78.8);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -322,7 +314,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -330,10 +322,10 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.topic, "vibration");
         assert.equal(value.data.numberOfShocks, 1);
 
-        utils.validateSchema(value.data, vibrationSchema, { throwError: true });
+        validateSchema(value.data, vibrationSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -349,7 +341,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.data.temperature, 27);
          assert.equal(value.data.temperatureF, 80.6);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -364,7 +356,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -372,10 +364,10 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.topic, "mandown");
         assert.equal(value.data.totalIdleTime, 64);
 
-        utils.validateSchema(value.data, mandownSchema, { throwError: true });
+        validateSchema(value.data, mandownSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -391,7 +383,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.data.temperature, 23);
          assert.equal(value.data.temperatureF, 73.4);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -406,7 +398,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -414,10 +406,10 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.topic, "tamper");
         assert.equal(value.data.tamperAlarm, true);
 
-        utils.validateSchema(value.data, tamperSchema, { throwError: true });
+        validateSchema(value.data, tamperSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -433,7 +425,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.data.temperature, 27);
          assert.equal(value.data.temperatureF, 80.6);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -448,7 +440,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -457,10 +449,10 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.data.eventType, "START_OF_MOVEMENT");
         assert.equal(value.data.movementDetected, true);
 
-        utils.validateSchema(value.data, movementSchema, { throwError: true });
+        validateSchema(value.data, movementSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -476,7 +468,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.data.temperature, 27);
          assert.equal(value.data.temperatureF, 80.6);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -491,7 +483,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -503,10 +495,10 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.data.loraWorkTime, 328);
         assert.equal(value.data.wifiWorkTime, 0);
 
-        utils.validateSchema(value.data, systemSchema, { throwError: true });
+        validateSchema(value.data, systemSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -522,7 +514,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.data.temperature, 26);
          assert.equal(value.data.temperatureF, 78.8);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -537,7 +529,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -551,10 +543,10 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.data.operationMode, "PERIODIC");
         assert.equal(value.data.tamperAlarm, false);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -564,7 +556,7 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         assert.equal(value.data.longitude, 114.4693716);
         assert.equal(value.data.pdop, 1.7);
 
-        utils.validateSchema(value.data, gpsSchema, { throwError: true });
+        validateSchema(value.data, gpsSchema, { throwError: true });
       });
 
       consume(data);

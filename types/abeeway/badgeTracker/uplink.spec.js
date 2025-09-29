@@ -1,18 +1,20 @@
-const chai = require("chai");
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 
-const rewire = require("rewire");
-const utils = require("test-utils");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-const { assert } = chai;
 
 describe("Abeeway badge tracker uplink", () => {
   let lifecycleSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -21,7 +23,7 @@ describe("Abeeway badge tracker uplink", () => {
 
   let gpsFixSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
       gpsFixSchema = parsedSchema;
       done();
     });
@@ -29,8 +31,7 @@ describe("Abeeway badge tracker uplink", () => {
 
   let heartbeatSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/operation_status.schema.json`)
+    loadSchema(`${__dirname}/operation_status.schema.json`)
       .then((parsedSchema) => {
         heartbeatSchema = parsedSchema;
         done();
@@ -39,8 +40,7 @@ describe("Abeeway badge tracker uplink", () => {
 
   let angleDetectionSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/angle_detection.schema.json`)
+    loadSchema(`${__dirname}/angle_detection.schema.json`)
       .then((parsedSchema) => {
         angleDetectionSchema = parsedSchema;
         done();
@@ -49,7 +49,7 @@ describe("Abeeway badge tracker uplink", () => {
 
   let wifiBssidSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/wifi.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/wifi.schema.json`).then((parsedSchema) => {
       wifiBssidSchema = parsedSchema;
       done();
     });
@@ -57,8 +57,7 @@ describe("Abeeway badge tracker uplink", () => {
 
   let activityStatusSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/activity_status.schema.json`)
+    loadSchema(`${__dirname}/activity_status.schema.json`)
       .then((parsedSchema) => {
         activityStatusSchema = parsedSchema;
         done();
@@ -67,7 +66,7 @@ describe("Abeeway badge tracker uplink", () => {
 
   let bleGeozoningSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/ble.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/ble.schema.json`).then((parsedSchema) => {
       bleGeozoningSchema = parsedSchema;
       done();
     });
@@ -82,7 +81,7 @@ describe("Abeeway badge tracker uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -97,10 +96,10 @@ describe("Abeeway badge tracker uplink", () => {
         assert.equal(value.data.temperature, 21.8);
          assert.equal(value.data.temperatureF, 71.2);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -110,7 +109,7 @@ describe("Abeeway badge tracker uplink", () => {
         assert.equal(value.data.latitude, 47.5475712);
         assert.equal(value.data.horizontalAccuracy, 31);
         assert.equal(value.data.age, 48);
-        utils.validateSchema(value.data, gpsFixSchema, { throwError: true });
+        validateSchema(value.data, gpsFixSchema, { throwError: true });
       });
 
       consume(data);
@@ -125,7 +124,7 @@ describe("Abeeway badge tracker uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -140,10 +139,10 @@ describe("Abeeway badge tracker uplink", () => {
         assert.equal(value.data.temperature, 21.8);
          assert.equal(value.data.temperatureF, 71.2);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -153,7 +152,7 @@ describe("Abeeway badge tracker uplink", () => {
         assert.equal(value.data.firmwareVersion, "2.2.0");
         assert.equal(value.data.bleFirmwareVersion, "0.0.0");
 
-        utils.validateSchema(value.data, heartbeatSchema, { throwError: true });
+        validateSchema(value.data, heartbeatSchema, { throwError: true });
       });
 
       consume(data);
@@ -168,7 +167,7 @@ describe("Abeeway badge tracker uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -183,10 +182,10 @@ describe("Abeeway badge tracker uplink", () => {
         assert.equal(value.data.temperature, 21.8);
          assert.equal(value.data.temperatureF, 71.2);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -208,7 +207,7 @@ describe("Abeeway badge tracker uplink", () => {
 
         assert.equal(value.data.angle, 90);
 
-        utils.validateSchema(value.data, angleDetectionSchema, {
+        validateSchema(value.data, angleDetectionSchema, {
           throwError: true,
         });
       });
@@ -226,7 +225,7 @@ describe("Abeeway badge tracker uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -241,10 +240,10 @@ describe("Abeeway badge tracker uplink", () => {
         assert.equal(value.data.temperature, 22.8);
          assert.equal(value.data.temperatureF, 73);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -262,7 +261,7 @@ describe("Abeeway badge tracker uplink", () => {
         assert.equal(value.data.bssid3, "c8:67:5e:82:00:d4");
         assert.equal(value.data.rssi3, -78);
 
-        utils.validateSchema(value.data, wifiBssidSchema, { throwError: true });
+        validateSchema(value.data, wifiBssidSchema, { throwError: true });
       });
 
       consume(data);
@@ -277,7 +276,7 @@ describe("Abeeway badge tracker uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -292,10 +291,10 @@ describe("Abeeway badge tracker uplink", () => {
         assert.equal(value.data.temperature, 23.8);
          assert.equal(value.data.temperatureF, 74.8);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -303,7 +302,7 @@ describe("Abeeway badge tracker uplink", () => {
         assert.equal(value.topic, "activity_status");
         assert.equal(value.data.activityCounter, 10);
 
-        utils.validateSchema(value.data, activityStatusSchema, {
+        validateSchema(value.data, activityStatusSchema, {
           throwError: true,
         });
       });
@@ -320,7 +319,7 @@ describe("Abeeway badge tracker uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -335,10 +334,10 @@ describe("Abeeway badge tracker uplink", () => {
         assert.equal(value.data.temperature, 25.8);
          assert.equal(value.data.temperatureF, 78.4);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -349,7 +348,7 @@ describe("Abeeway badge tracker uplink", () => {
         assert.equal(value.data.notification, "ENTRY");
         assert.equal(value.data.beaconID, 11919355);
 
-        utils.validateSchema(value.data, bleGeozoningSchema, {
+        validateSchema(value.data, bleGeozoningSchema, {
           throwError: true,
         });
       });
@@ -366,7 +365,7 @@ describe("Abeeway badge tracker uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -381,10 +380,10 @@ describe("Abeeway badge tracker uplink", () => {
         assert.equal(value.data.temperature, 19.2);
          assert.equal(value.data.temperatureF, 66.6);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");

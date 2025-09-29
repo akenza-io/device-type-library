@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Yanzi Presence Mini Sensor Uplink", () => {
   let temperatureSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/temperature.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/temperature.schema.json`)
       .then((parsedSchema) => {
         temperatureSchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("Yanzi Presence Mini Sensor Uplink", () => {
 
   let occupancySchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/occupancy.schema.json`)
+    loadSchema(`${__dirname}/occupancy.schema.json`)
       .then((parsedSchema) => {
         occupancySchema = parsedSchema;
         done();
@@ -43,7 +45,7 @@ describe("Yanzi Presence Mini Sensor Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -52,7 +54,7 @@ describe("Yanzi Presence Mini Sensor Uplink", () => {
         assert.equal(value.data.temperature, 29.24);
         assert.equal(value.data.temperatureF, 84.6);
 
-        utils.validateSchema(value.data, temperatureSchema, {
+        validateSchema(value.data, temperatureSchema, {
           throwError: true,
         });
       });
@@ -75,7 +77,7 @@ describe("Yanzi Presence Mini Sensor Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
         assert.typeOf(value, "object");
@@ -83,7 +85,7 @@ describe("Yanzi Presence Mini Sensor Uplink", () => {
         assert.equal(value.lastMotion, 24873);
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -94,7 +96,7 @@ describe("Yanzi Presence Mini Sensor Uplink", () => {
         assert.equal(value.data.occupancy, 0);
         assert.equal(value.data.occupied, false);
 
-        utils.validateSchema(value.data, occupancySchema, { throwError: true });
+        validateSchema(value.data, occupancySchema, { throwError: true });
       });
 
       consume(data);
@@ -115,7 +117,7 @@ describe("Yanzi Presence Mini Sensor Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
         assert.typeOf(value, "object");
@@ -124,7 +126,7 @@ describe("Yanzi Presence Mini Sensor Uplink", () => {
         assert.equal(value.lastMotion, 24873);
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -135,7 +137,7 @@ describe("Yanzi Presence Mini Sensor Uplink", () => {
         assert.equal(value.data.occupancy, 1);
         assert.equal(value.data.occupied, true);
 
-        utils.validateSchema(value.data, occupancySchema, { throwError: true });
+        validateSchema(value.data, occupancySchema, { throwError: true });
       });
 
       consume(data);

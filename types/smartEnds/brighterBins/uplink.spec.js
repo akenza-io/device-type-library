@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Brigther Bins uplink", () => {
   let distanceSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/distance.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/distance.schema.json`)
       .then((parsedSchema) => {
         distanceSchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("Brigther Bins uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -31,8 +33,7 @@ describe("Brigther Bins uplink", () => {
 
   let fillLevelSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/fill_level.schema.json`)
+    loadSchema(`${__dirname}/fill_level.schema.json`)
       .then((parsedSchema) => {
         fillLevelSchema = parsedSchema;
         done();
@@ -41,7 +42,7 @@ describe("Brigther Bins uplink", () => {
 
   let systemSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/system.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/system.schema.json`).then((parsedSchema) => {
       systemSchema = parsedSchema;
       done();
     });
@@ -56,7 +57,7 @@ describe("Brigther Bins uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -64,10 +65,10 @@ describe("Brigther Bins uplink", () => {
         assert.equal(value.topic, "fill_level");
         assert.equal(value.data.fillLevel, 12);
 
-        utils.validateSchema(value.data, fillLevelSchema, { throwError: true });
+        validateSchema(value.data, fillLevelSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -77,7 +78,7 @@ describe("Brigther Bins uplink", () => {
         assert.equal(value.data.temperature, 31);
         assert.equal(value.data.resetReason, "CLEARED");
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -91,7 +92,7 @@ describe("Brigther Bins uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -99,10 +100,10 @@ describe("Brigther Bins uplink", () => {
         assert.equal(value.topic, "distance");
         assert.equal(value.data.distance, 396);
 
-        utils.validateSchema(value.data, distanceSchema, { throwError: true });
+        validateSchema(value.data, distanceSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -111,7 +112,7 @@ describe("Brigther Bins uplink", () => {
         assert.equal(value.data.temperature, -23);
         assert.equal(value.data.batteryLevel, 24);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -125,7 +126,7 @@ describe("Brigther Bins uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -142,10 +143,10 @@ describe("Brigther Bins uplink", () => {
         assert.equal(value.data.downlinkFreq, 2);
         assert.equal(value.data.noOfDownlinks, 2);
 
-        utils.validateSchema(value.data, systemSchema, { throwError: true });
+        validateSchema(value.data, systemSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -155,7 +156,7 @@ describe("Brigther Bins uplink", () => {
         assert.equal(value.data.batteryVoltage, 3.6);
         assert.equal(value.data.resetReason, "CLEARED");
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

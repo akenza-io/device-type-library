@@ -1,17 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Digital matter G62 Uplink", () => {
   let gpsSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
       gpsSchema = parsedSchema;
       done();
     });
@@ -19,8 +23,7 @@ describe("Digital matter G62 Uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -29,8 +32,7 @@ describe("Digital matter G62 Uplink", () => {
 
   let digitalSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/digital.schema.json`)
+    loadSchema(`${__dirname}/digital.schema.json`)
       .then((parsedSchema) => {
         digitalSchema = parsedSchema;
         done();
@@ -46,7 +48,7 @@ describe("Digital matter G62 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -59,10 +61,10 @@ describe("Digital matter G62 Uplink", () => {
         assert.equal(value.data.headingDeg, 20);
         assert.equal(value.data.speedKmph, 18);
 
-        utils.validateSchema(value.data, gpsSchema, { throwError: true });
+        validateSchema(value.data, gpsSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -77,10 +79,10 @@ describe("Digital matter G62 Uplink", () => {
         assert.equal(value.data.extVoltage, 13.257);
         assert.equal(value.data.analogInput, 0);
 
-        utils.validateSchema(value.data, digitalSchema, { throwError: true });
+        validateSchema(value.data, digitalSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -90,7 +92,7 @@ describe("Digital matter G62 Uplink", () => {
         assert.equal(value.data.internalTemperature, 23);
          assert.equal(value.data.internalTemperatureF, 73.4);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Yosensi YO H2O uplink", () => {
   let batteryVoltageSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/battery_voltage.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/battery_voltage.schema.json`)
       .then((parsedSchema) => {
         batteryVoltageSchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("Yosensi YO H2O uplink", () => {
 
   let internalTemperatureSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/internal_temperature.schema.json`)
+    loadSchema(`${__dirname}/internal_temperature.schema.json`)
       .then((parsedSchema) => {
         internalTemperatureSchema = parsedSchema;
         done();
@@ -31,8 +33,7 @@ describe("Yosensi YO H2O uplink", () => {
 
   let humiditySchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/humidity.schema.json`)
+    loadSchema(`${__dirname}/humidity.schema.json`)
       .then((parsedSchema) => {
         humiditySchema = parsedSchema;
         done();
@@ -41,8 +42,7 @@ describe("Yosensi YO H2O uplink", () => {
 
   let accelerometerSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/accelerometer.schema.json`)
+    loadSchema(`${__dirname}/accelerometer.schema.json`)
       .then((parsedSchema) => {
         accelerometerSchema = parsedSchema;
         done();
@@ -51,8 +51,7 @@ describe("Yosensi YO H2O uplink", () => {
 
   let floodStateSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/flood_state.schema.json`)
+    loadSchema(`${__dirname}/flood_state.schema.json`)
       .then((parsedSchema) => {
         floodStateSchema = parsedSchema;
         done();
@@ -69,7 +68,7 @@ describe("Yosensi YO H2O uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -77,12 +76,12 @@ describe("Yosensi YO H2O uplink", () => {
         assert.equal(value.topic, "battery_voltage");
         assert.equal(value.data.batteryVoltage, 3400);
 
-        utils.validateSchema(value.data, batteryVoltageSchema, {
+        validateSchema(value.data, batteryVoltageSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -91,12 +90,12 @@ describe("Yosensi YO H2O uplink", () => {
         assert.equal(value.data.internalTemperature, 22.6);
         assert.equal(value.data.internalTemperatureF, 72.7);
 
-        utils.validateSchema(value.data, internalTemperatureSchema, {
+        validateSchema(value.data, internalTemperatureSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -104,10 +103,10 @@ describe("Yosensi YO H2O uplink", () => {
         assert.equal(value.topic, "humidity");
         assert.equal(value.data.humidity, 31);
 
-        utils.validateSchema(value.data, humiditySchema, { throwError: true });
+        validateSchema(value.data, humiditySchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -115,12 +114,12 @@ describe("Yosensi YO H2O uplink", () => {
         assert.equal(value.topic, "flood_state");
         assert.equal(value.data.floodState, 0);
 
-        utils.validateSchema(value.data, floodStateSchema, {
+        validateSchema(value.data, floodStateSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -130,7 +129,7 @@ describe("Yosensi YO H2O uplink", () => {
         assert.equal(value.data.accelerometerY, 4.8);
         assert.equal(value.data.accelerometerZ, 11.1);
 
-        utils.validateSchema(value.data, accelerometerSchema, {
+        validateSchema(value.data, accelerometerSchema, {
           throwError: true,
         });
       });

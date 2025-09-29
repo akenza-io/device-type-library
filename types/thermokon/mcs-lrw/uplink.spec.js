@@ -1,8 +1,12 @@
-const chai = require("chai");
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Thermokon MCS-LRW Uplink", () => {
   let defaultSchema = null;
@@ -11,12 +15,12 @@ describe("Thermokon MCS-LRW Uplink", () => {
   let consume = null;
 
   before(async () => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
     [defaultSchema, lifecycleSchema, statusSchema] = await Promise.all([
-      utils.loadSchema(`${__dirname}/default.schema.json`),
-      utils.loadSchema(`${__dirname}/lifecycle.schema.json`),
-      utils.loadSchema(`${__dirname}/status.schema.json`),
+      loadSchema(`${__dirname}/default.schema.json`),
+      loadSchema(`${__dirname}/lifecycle.schema.json`),
+      loadSchema(`${__dirname}/status.schema.json`),
     ]);
   });
 
@@ -29,14 +33,14 @@ describe("Thermokon MCS-LRW Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "default");
         assert.deepEqual(value.data, {
           temperature: 26.6,
           temperatureF: 79.9,
         });
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
@@ -51,14 +55,14 @@ describe("Thermokon MCS-LRW Uplink", () => {
       };
 
       // Expect the 'default' topic first
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "default");
         assert.deepEqual(value.data, {
           occupied: false,
           motionCount: 9,
         });
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
@@ -73,7 +77,7 @@ describe("Thermokon MCS-LRW Uplink", () => {
       };
 
       // 1. Default
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "default");
         assert.deepEqual(value.data, {
@@ -82,17 +86,17 @@ describe("Thermokon MCS-LRW Uplink", () => {
           humidity: 45,
           light: 0,
         });
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       // 2. Lifecycle
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "lifecycle");
         assert.deepEqual(value.data, {
           batteryVoltage: 1.44,
         });
-        utils.validateSchema(value.data, lifecycleSchema, {
+        validateSchema(value.data, lifecycleSchema, {
           throwError: true,
         });
       });
@@ -108,23 +112,23 @@ describe("Thermokon MCS-LRW Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "default");
         assert.deepEqual(value.data, {
           occupied: false,
           motionCount: 0,
         });
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "status");
         assert.deepEqual(value.data, {
           deviceKey: 16385,
         });
-        utils.validateSchema(value.data, statusSchema, {
+        validateSchema(value.data, statusSchema, {
           throwError: true,
         });
       });

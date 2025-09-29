@@ -1,9 +1,12 @@
-// test script for uplink.js decoder
-const chai = require("chai");
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Thermokon SAB07 Uplink", () => {
     let defaultSchema = null;
@@ -12,12 +15,12 @@ describe("Thermokon SAB07 Uplink", () => {
     let consume = null;
 
     before(async () => {
-        const script = rewire("./uplink.js");
-        consume = utils.init(script);
+        const script = rewire(`${__dirname}/uplink.js`);
+        consume = init(script);
         [defaultSchema, lifecycleSchema, actuatorSchema] = await Promise.all([
-            utils.loadSchema(`${__dirname}/default.schema.json`),
-            utils.loadSchema(`${__dirname}/lifecycle.schema.json`),
-            utils.loadSchema(`${__dirname}/actuator.schema.json`),
+            loadSchema(`${__dirname}/default.schema.json`),
+            loadSchema(`${__dirname}/lifecycle.schema.json`),
+            loadSchema(`${__dirname}/actuator.schema.json`),
         ]);
     });
 
@@ -32,7 +35,7 @@ describe("Thermokon SAB07 Uplink", () => {
                 },
             };
 
-            utils.expectEmits((type, value) => {
+            expectEmits((type, value) => {
                 assert.equal(type, "sample");
                 assert.isNotNull(value);
                 assert.typeOf(value.data, "object");
@@ -44,12 +47,12 @@ describe("Thermokon SAB07 Uplink", () => {
                 assert.equal(value.data.targetTemperature, 29);
                 assert.equal(value.data.targetTemperatureF, 84.2);
 
-                utils.validateSchema(value.data, defaultSchema, { throwError: true });
+                validateSchema(value.data, defaultSchema, { throwError: true });
             });
 
 
             // actuator test
-            utils.expectEmits((type, value) => {
+            expectEmits((type, value) => {
                 assert.equal(type, "sample");
                 assert.isNotNull(value);
                 assert.typeOf(value.data, "object");
@@ -57,11 +60,11 @@ describe("Thermokon SAB07 Uplink", () => {
                 assert.equal(value.topic, "actuator");
                 assert.equal(value.data.motorPosition, 250);
                 assert.equal(value.data.motorRange, 300);
-                utils.validateSchema(value.data, actuatorSchema, { throwError: true });
+                validateSchema(value.data, actuatorSchema, { throwError: true });
             });
 
             // lifecycle test
-            utils.expectEmits((type, value) => {
+            expectEmits((type, value) => {
                 assert.equal(type, "sample");
                 assert.isNotNull(value);
                 assert.typeOf(value.data, "object");
@@ -77,7 +80,7 @@ describe("Thermokon SAB07 Uplink", () => {
                 assert.equal(value.data.calibrationFailed, false);
                 assert.equal(value.data.attachedBackplate, false);
                 assert.equal(value.data.perceiveAsOnline, false);
-                utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+                validateSchema(value.data, lifecycleSchema, { throwError: true });
             });
 
 

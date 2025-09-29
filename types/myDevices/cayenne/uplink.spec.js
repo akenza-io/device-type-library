@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Cayenne uplink", () => {
   let accelerometerSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/accelerometer.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/accelerometer.schema.json`)
       .then((parsedSchema) => {
         accelerometerSchema = parsedSchema;
         done();
@@ -21,7 +24,7 @@ describe("Cayenne uplink", () => {
 
   let analogSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/analog.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/analog.schema.json`).then((parsedSchema) => {
       analogSchema = parsedSchema;
       done();
     });
@@ -29,8 +32,7 @@ describe("Cayenne uplink", () => {
 
   let barometerSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/barometer.schema.json`)
+    loadSchema(`${__dirname}/barometer.schema.json`)
       .then((parsedSchema) => {
         barometerSchema = parsedSchema;
         done();
@@ -39,8 +41,7 @@ describe("Cayenne uplink", () => {
 
   let digitalSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/digital.schema.json`)
+    loadSchema(`${__dirname}/digital.schema.json`)
       .then((parsedSchema) => {
         digitalSchema = parsedSchema;
         done();
@@ -49,7 +50,7 @@ describe("Cayenne uplink", () => {
 
   let gpsSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
       gpsSchema = parsedSchema;
       done();
     });
@@ -57,8 +58,7 @@ describe("Cayenne uplink", () => {
 
   let gyrometerSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/gyrometer.schema.json`)
+    loadSchema(`${__dirname}/gyrometer.schema.json`)
       .then((parsedSchema) => {
         gyrometerSchema = parsedSchema;
         done();
@@ -67,8 +67,7 @@ describe("Cayenne uplink", () => {
 
   let humiditySchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/humidity.schema.json`)
+    loadSchema(`${__dirname}/humidity.schema.json`)
       .then((parsedSchema) => {
         humiditySchema = parsedSchema;
         done();
@@ -77,7 +76,7 @@ describe("Cayenne uplink", () => {
 
   let lightSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/light.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/light.schema.json`).then((parsedSchema) => {
       lightSchema = parsedSchema;
       done();
     });
@@ -85,8 +84,7 @@ describe("Cayenne uplink", () => {
 
   let temperatureSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/temperature.schema.json`)
+    loadSchema(`${__dirname}/temperature.schema.json`)
       .then((parsedSchema) => {
         temperatureSchema = parsedSchema;
         done();
@@ -95,8 +93,7 @@ describe("Cayenne uplink", () => {
 
   let presenceSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/presence.schema.json`)
+    loadSchema(`${__dirname}/presence.schema.json`)
       .then((parsedSchema) => {
         presenceSchema = parsedSchema;
         done();
@@ -112,7 +109,7 @@ describe("Cayenne uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -122,12 +119,12 @@ describe("Cayenne uplink", () => {
         assert.equal(value.data.temperature, 27.2);
         assert.equal(value.data.temperatureF, 81);
 
-        utils.validateSchema(value.data, temperatureSchema, {
+        validateSchema(value.data, temperatureSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -137,7 +134,7 @@ describe("Cayenne uplink", () => {
         assert.equal(value.data.temperature, 25.5);
         assert.equal(value.data.temperatureF, 77.9);
 
-        utils.validateSchema(value.data, temperatureSchema, {
+        validateSchema(value.data, temperatureSchema, {
           throwError: true,
         });
       });
@@ -153,7 +150,7 @@ describe("Cayenne uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -164,7 +161,7 @@ describe("Cayenne uplink", () => {
         assert.equal(value.data.accY, -1.234);
         assert.equal(value.data.accZ, 0);
 
-        utils.validateSchema(value.data, accelerometerSchema, {
+        validateSchema(value.data, accelerometerSchema, {
           throwError: true,
         });
       });
@@ -180,7 +177,7 @@ describe("Cayenne uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -191,7 +188,7 @@ describe("Cayenne uplink", () => {
         assert.equal(value.data.longitude, -87.9094);
         assert.equal(value.data.altitude, 10);
 
-        utils.validateSchema(value.data, gpsSchema, {
+        validateSchema(value.data, gpsSchema, {
           throwError: true,
         });
       });

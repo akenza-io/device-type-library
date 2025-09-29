@@ -1,17 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Miromico insight Uplink", () => {
   let co2Schema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/co2.schema.json`).then((parsedSchema) => {
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/co2.schema.json`).then((parsedSchema) => {
       co2Schema = parsedSchema;
       done();
     });
@@ -19,8 +23,7 @@ describe("Miromico insight Uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -29,8 +32,7 @@ describe("Miromico insight Uplink", () => {
 
   let settingsSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/settings.schema.json`)
+    loadSchema(`${__dirname}/settings.schema.json`)
       .then((parsedSchema) => {
         settingsSchema = parsedSchema;
         done();
@@ -39,8 +41,7 @@ describe("Miromico insight Uplink", () => {
 
   let temperatureSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/temperature.schema.json`)
+    loadSchema(`${__dirname}/temperature.schema.json`)
       .then((parsedSchema) => {
         temperatureSchema = parsedSchema;
         done();
@@ -57,7 +58,7 @@ describe("Miromico insight Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -66,10 +67,10 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.data.consumption, 16);
         assert.equal(value.data.batteryVoltage, 3.6);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -81,10 +82,10 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.data.abcCalibrationPeriod, 384);
         assert.equal(value.data.firmwareHash, "0389A2B9");
 
-        utils.validateSchema(value.data, settingsSchema, { throwError: true });
+        validateSchema(value.data, settingsSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -97,12 +98,12 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.data.temperature2F, 77.9);
         assert.equal(value.data.humidity2, 59.5);
 
-        utils.validateSchema(value.data, temperatureSchema, {
+        validateSchema(value.data, temperatureSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -110,7 +111,7 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "co2");
         assert.equal(value.data.co2, 779);
 
-        utils.validateSchema(value.data, co2Schema, { throwError: true });
+        validateSchema(value.data, co2Schema, { throwError: true });
       });
 
       consume(data);

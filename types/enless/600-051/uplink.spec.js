@@ -1,8 +1,12 @@
-const chai = require("chai");
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Transmitter 600-051", () => {
   let defaultSchema = null;
@@ -12,10 +16,9 @@ describe("Transmitter 600-051", () => {
   let consume = null;
 
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/default.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
         defaultSchema = parsedSchema;
         done();
@@ -23,10 +26,9 @@ describe("Transmitter 600-051", () => {
   });
 
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/datalog.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/datalog.schema.json`)
       .then((parsedSchema) => {
         datalogSchema = parsedSchema;
         done();
@@ -34,8 +36,7 @@ describe("Transmitter 600-051", () => {
   });
 
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -43,8 +44,7 @@ describe("Transmitter 600-051", () => {
   });
 
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/alarm.schema.json`)
+    loadSchema(`${__dirname}/alarm.schema.json`)
       .then((parsedSchema) => {
         alarmSchema = parsedSchema;
         done();
@@ -62,7 +62,7 @@ describe("Transmitter 600-051", () => {
       };
 
       // --- Lifecycle ---
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.id, 8196);
@@ -71,11 +71,11 @@ describe("Transmitter 600-051", () => {
         assert.equal(value.data.fwVersion, 11);
         assert.equal(value.data.batteryLevel, 100); // bits 3-2 → 10
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       // --- Default ---
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 25.4);
@@ -84,11 +84,11 @@ describe("Transmitter 600-051", () => {
         assert.equal(value.data.msgType, "NORMAL");
         assert.equal(value.data.rbe, false);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       // --- Alarm ---
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "alarm");
         assert.equal(value.data.temperatureHigh, false);
@@ -97,7 +97,7 @@ describe("Transmitter 600-051", () => {
         assert.equal(value.data.humidityLow, false);
         assert.equal(value.data.motionGuard, false);
 
-        utils.validateSchema(value.data, alarmSchema, { throwError: true });
+        validateSchema(value.data, alarmSchema, { throwError: true });
       });
 
       consume(data);
@@ -114,7 +114,7 @@ describe("Transmitter 600-051", () => {
 
 
       // --- Default (datalogging values) ---
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "datalog");
 
@@ -148,11 +148,11 @@ describe("Transmitter 600-051", () => {
           24,
         ]);
 
-        utils.validateSchema(value.data, datalogSchema, { throwError: true });
+        validateSchema(value.data, datalogSchema, { throwError: true });
       });
 
       // --- Lifecycle ---
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.id, 234);
@@ -161,22 +161,22 @@ describe("Transmitter 600-051", () => {
         assert.equal(value.data.fwVersion, 17);
         assert.equal(value.data.batteryLevel, 100); // bits 3-2 → 00
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       // --- Default (datalogging values) ---
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "default");
 
         assert.equal(value.data.msgType, "NORMAL");
         assert.equal(value.data.rbe, false);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       // --- Alarm (tous à false) ---
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "alarm");
         assert.equal(value.data.temperatureHigh, false);
@@ -185,7 +185,7 @@ describe("Transmitter 600-051", () => {
         assert.equal(value.data.humidityLow, false);
         assert.equal(value.data.motionGuard, false);
 
-        utils.validateSchema(value.data, alarmSchema, { throwError: true });
+        validateSchema(value.data, alarmSchema, { throwError: true });
       });
 
       consume(data);

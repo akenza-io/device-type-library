@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Yosensi YO Airflow Pro uplink", () => {
   let batteryVoltageSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/battery_voltage.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/battery_voltage.schema.json`)
       .then((parsedSchema) => {
         batteryVoltageSchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("Yosensi YO Airflow Pro uplink", () => {
 
   let internalTemperatureSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/internal_temperature.schema.json`)
+    loadSchema(`${__dirname}/internal_temperature.schema.json`)
       .then((parsedSchema) => {
         internalTemperatureSchema = parsedSchema;
         done();
@@ -31,8 +33,7 @@ describe("Yosensi YO Airflow Pro uplink", () => {
 
   let humiditySchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/humidity.schema.json`)
+    loadSchema(`${__dirname}/humidity.schema.json`)
       .then((parsedSchema) => {
         humiditySchema = parsedSchema;
         done();
@@ -41,8 +42,7 @@ describe("Yosensi YO Airflow Pro uplink", () => {
 
   let differentialPressureSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/differential_pressure.schema.json`)
+    loadSchema(`${__dirname}/differential_pressure.schema.json`)
       .then((parsedSchema) => {
         differentialPressureSchema = parsedSchema;
         done();
@@ -51,8 +51,7 @@ describe("Yosensi YO Airflow Pro uplink", () => {
 
   let velocitySchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/velocity.schema.json`)
+    loadSchema(`${__dirname}/velocity.schema.json`)
       .then((parsedSchema) => {
         velocitySchema = parsedSchema;
         done();
@@ -61,8 +60,7 @@ describe("Yosensi YO Airflow Pro uplink", () => {
 
   let gasTemperatureSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/gas_temperature.schema.json`)
+    loadSchema(`${__dirname}/gas_temperature.schema.json`)
       .then((parsedSchema) => {
         gasTemperatureSchema = parsedSchema;
         done();
@@ -79,7 +77,7 @@ describe("Yosensi YO Airflow Pro uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -87,12 +85,12 @@ describe("Yosensi YO Airflow Pro uplink", () => {
         assert.equal(value.topic, "battery_voltage");
         assert.equal(value.data.batteryVoltage, 4704);
 
-        utils.validateSchema(value.data, batteryVoltageSchema, {
+        validateSchema(value.data, batteryVoltageSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -101,12 +99,12 @@ describe("Yosensi YO Airflow Pro uplink", () => {
         assert.equal(value.data.internalTemperature, 9.4);
         assert.equal(value.data.internalTemperatureF, 48.9);
 
-        utils.validateSchema(value.data, internalTemperatureSchema, {
+        validateSchema(value.data, internalTemperatureSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -114,10 +112,10 @@ describe("Yosensi YO Airflow Pro uplink", () => {
         assert.equal(value.topic, "humidity");
         assert.equal(value.data.humidity, 44);
 
-        utils.validateSchema(value.data, humiditySchema, { throwError: true });
+        validateSchema(value.data, humiditySchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -125,12 +123,12 @@ describe("Yosensi YO Airflow Pro uplink", () => {
         assert.equal(value.topic, "differential_pressure");
         assert.equal(value.data.differentialPressure, 10.1);
 
-        utils.validateSchema(value.data, differentialPressureSchema, {
+        validateSchema(value.data, differentialPressureSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -139,12 +137,12 @@ describe("Yosensi YO Airflow Pro uplink", () => {
         assert.equal(value.data.gasTemperature, 10.6);
         assert.equal(value.data.gasTemperatureF, 51.1);
 
-        utils.validateSchema(value.data, gasTemperatureSchema, {
+        validateSchema(value.data, gasTemperatureSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -152,7 +150,7 @@ describe("Yosensi YO Airflow Pro uplink", () => {
         assert.equal(value.topic, "velocity");
         assert.equal(value.data.velocity, 3.62);
 
-        utils.validateSchema(value.data, velocitySchema, {
+        validateSchema(value.data, velocitySchema, {
           throwError: true,
         });
       });

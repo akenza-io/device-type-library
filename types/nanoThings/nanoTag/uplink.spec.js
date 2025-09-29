@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("NanoThings uplink", () => {
   let configurationAckSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/configuration_ack.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/configuration_ack.schema.json`)
       .then((parsedSchema) => {
         configurationAckSchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("NanoThings uplink", () => {
 
   let deviceStatusSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/device_status.schema.json`)
+    loadSchema(`${__dirname}/device_status.schema.json`)
       .then((parsedSchema) => {
         deviceStatusSchema = parsedSchema;
         done();
@@ -31,8 +33,7 @@ describe("NanoThings uplink", () => {
 
   let firstTimestampSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/first_timestamp.schema.json`)
+    loadSchema(`${__dirname}/first_timestamp.schema.json`)
       .then((parsedSchema) => {
         firstTimestampSchema = parsedSchema;
         done();
@@ -41,8 +42,7 @@ describe("NanoThings uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -51,8 +51,7 @@ describe("NanoThings uplink", () => {
 
   let reportFrameSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/report_frame.schema.json`)
+    loadSchema(`${__dirname}/report_frame.schema.json`)
       .then((parsedSchema) => {
         reportFrameSchema = parsedSchema;
         done();
@@ -61,8 +60,7 @@ describe("NanoThings uplink", () => {
 
   let temperatureSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/temperature.schema.json`)
+    loadSchema(`${__dirname}/temperature.schema.json`)
       .then((parsedSchema) => {
         temperatureSchema = parsedSchema;
         done();
@@ -78,7 +76,7 @@ describe("NanoThings uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -89,12 +87,12 @@ describe("NanoThings uplink", () => {
         assert.equal(value.data.internalTemperature, 25);
         assert.equal(value.data.internalTemperatureF, 77);
 
-        utils.validateSchema(value.data, lifecycleSchema, {
+        validateSchema(value.data, lifecycleSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -103,7 +101,7 @@ describe("NanoThings uplink", () => {
         assert.equal(value.data.temperature, 21);
         assert.equal(value.data.temperatureF, 69.8);
 
-        utils.validateSchema(value.data, temperatureSchema, {
+        validateSchema(value.data, temperatureSchema, {
           throwError: true,
         });
       });
@@ -119,7 +117,7 @@ describe("NanoThings uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -130,7 +128,7 @@ describe("NanoThings uplink", () => {
         assert.equal(value.data.reportPeriod, 60);
         assert.equal(value.data.unit, "MINUTES");
 
-        utils.validateSchema(value.data, configurationAckSchema, {
+        validateSchema(value.data, configurationAckSchema, {
           throwError: true,
         });
       });
@@ -146,7 +144,7 @@ describe("NanoThings uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -162,7 +160,7 @@ describe("NanoThings uplink", () => {
         assert.equal(value.data.temperature4, 22.4);
         assert.equal(value.data.temperature4F, 72.3);
 
-        utils.validateSchema(value.data, reportFrameSchema, {
+        validateSchema(value.data, reportFrameSchema, {
           throwError: true,
         });
       });
@@ -178,7 +176,7 @@ describe("NanoThings uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -187,12 +185,12 @@ describe("NanoThings uplink", () => {
         assert.equal(value.data.batteryLevel, 100);
         assert.equal(value.data.batteryVoltage, 3.264);
 
-        utils.validateSchema(value.data, lifecycleSchema, {
+        validateSchema(value.data, lifecycleSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -206,7 +204,7 @@ describe("NanoThings uplink", () => {
         );
         assert.typeOf(value.data.lastSampleTimestamp, "object");
         */
-        utils.validateSchema(value.data, deviceStatusSchema, {
+        validateSchema(value.data, deviceStatusSchema, {
           throwError: true,
         });
       });

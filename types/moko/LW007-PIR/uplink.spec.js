@@ -1,17 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Moko LW007-PIR Uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
       defaultSchema = parsedSchema;
       done();
     });
@@ -19,8 +23,7 @@ describe("Moko LW007-PIR Uplink", () => {
 
   let shutdownSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/shutdown.schema.json`)
+    loadSchema(`${__dirname}/shutdown.schema.json`)
       .then((parsedSchema) => {
         shutdownSchema = parsedSchema;
         done();
@@ -37,7 +40,7 @@ describe("Moko LW007-PIR Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -55,7 +58,7 @@ describe("Moko LW007-PIR Uplink", () => {
         assert.equal(value.data.temperature, 26.7);
         assert.equal(value.data.temperatureState, "ENABLED");
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
@@ -70,7 +73,7 @@ describe("Moko LW007-PIR Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -78,7 +81,7 @@ describe("Moko LW007-PIR Uplink", () => {
         assert.equal(value.topic, "shutdown");
         assert.equal(value.data.lowBattery, false);
 
-        utils.validateSchema(value.data, shutdownSchema, { throwError: true });
+        validateSchema(value.data, shutdownSchema, { throwError: true });
       });
 
       consume(data);

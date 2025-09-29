@@ -1,9 +1,11 @@
 // test script for uplink.js decoder
-const chai = require("chai");
-const rewire = require("rewire");
-const utils = require("test-utils");
-
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Dragino S31LB-LS Uplink", () => {
     let defaultSchema = null;
@@ -11,11 +13,11 @@ describe("Dragino S31LB-LS Uplink", () => {
     let consume = null;
 
     before(async () => {
-        const script = rewire("./uplink.js");
-        consume = utils.init(script);
+        const script = rewire(`${__dirname}/uplink.js`);
+        consume = init(script);
         [defaultSchema, lifecycleSchema] = await Promise.all([
-            utils.loadSchema(`${__dirname}/default.schema.json`),
-            utils.loadSchema(`${__dirname}/lifecycle.schema.json`),
+            loadSchema(`${__dirname}/default.schema.json`),
+            loadSchema(`${__dirname}/lifecycle.schema.json`),
         ]);
     });
 
@@ -31,7 +33,7 @@ describe("Dragino S31LB-LS Uplink", () => {
                 },
             };
 
-            utils.expectEmits((type, value) => {
+            expectEmits((type, value) => {
                 assert.equal(type, "sample");
                 assert.isNotNull(value);
                 assert.typeOf(value.data, "object");
@@ -44,11 +46,11 @@ describe("Dragino S31LB-LS Uplink", () => {
                 assert.equal(value.data.humidity, 40.1);
                 assert.equal(value.data.modStatus, 1);
 
-                utils.validateSchema(value.data, defaultSchema, { throwError: true });
+                validateSchema(value.data, defaultSchema, { throwError: true });
             });
 
             // lifecycle test
-            utils.expectEmits((type, value) => {
+            expectEmits((type, value) => {
                 assert.equal(type, "sample");
                 assert.isNotNull(value);
                 assert.typeOf(value.data, "object");
@@ -56,7 +58,7 @@ describe("Dragino S31LB-LS Uplink", () => {
                 assert.equal(value.topic, "lifecycle");
                 assert.equal(value.data.batteryVoltage, 3.612);
                 assert.equal(value.data.batteryLevel, 75);
-                utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+                validateSchema(value.data, lifecycleSchema, { throwError: true });
             });
 
             consume(data);

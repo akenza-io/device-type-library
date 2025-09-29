@@ -1,17 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Should decode the TG563A uplinks", () => {
   let configSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/config.schema.json`).then((parsedSchema) => {
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/config.schema.json`).then((parsedSchema) => {
       configSchema = parsedSchema;
       done();
     });
@@ -19,7 +23,7 @@ describe("Should decode the TG563A uplinks", () => {
 
   let defaultSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
       defaultSchema = parsedSchema;
       done();
     });
@@ -27,8 +31,7 @@ describe("Should decode the TG563A uplinks", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -43,7 +46,7 @@ describe("Should decode the TG563A uplinks", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -55,10 +58,10 @@ describe("Should decode the TG563A uplinks", () => {
         assert.equal(value.data.periodicity, 24);
         assert.equal(value.data.smokeAlertEnabled, true);
 
-        utils.validateSchema(value.data, configSchema, { throwError: true });
+        validateSchema(value.data, configSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -82,10 +85,10 @@ describe("Should decode the TG563A uplinks", () => {
         assert.equal(value.data.tooLongUnmounted, false);
         assert.equal(value.data.usAntimask, false);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -97,7 +100,7 @@ describe("Should decode the TG563A uplinks", () => {
         assert.equal(value.data.serialNumber, "00000230");
         assert.equal(value.data.version, 0);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

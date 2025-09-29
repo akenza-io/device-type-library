@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("LSN50 V2 D23 Uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/default.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
         defaultSchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("LSN50 V2 D23 Uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -31,7 +33,7 @@ describe("LSN50 V2 D23 Uplink", () => {
 
   let dsSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/ds.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/ds.schema.json`).then((parsedSchema) => {
       dsSchema = parsedSchema;
       done();
     });
@@ -46,7 +48,7 @@ describe("LSN50 V2 D23 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -60,10 +62,10 @@ describe("LSN50 V2 D23 Uplink", () => {
         assert.equal(value.data.temperature, 13);
         assert.equal(value.data.temperatureF, 55.4);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -75,10 +77,10 @@ describe("LSN50 V2 D23 Uplink", () => {
         assert.equal(value.data.c3temperature, -0.3);
         assert.equal(value.data.c3temperatureF, 31.5);
 
-        utils.validateSchema(value.data, dsSchema, { throwError: true });
+        validateSchema(value.data, dsSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -87,7 +89,7 @@ describe("LSN50 V2 D23 Uplink", () => {
         assert.equal(value.data.batteryVoltage, 3.649);
         assert.equal(value.data.batteryLevel, 100);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

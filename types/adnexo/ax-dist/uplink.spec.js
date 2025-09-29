@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Adnexo ax-dist Uplink", () => {
   let measurementSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/measurement.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/measurement.schema.json`)
       .then((parsedSchema) => {
         measurementSchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("Adnexo ax-dist Uplink", () => {
 
   let invalidMeasurementSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/invalid_measurement.schema.json`)
+    loadSchema(`${__dirname}/invalid_measurement.schema.json`)
       .then((parsedSchema) => {
         invalidMeasurementSchema = parsedSchema;
         done();
@@ -31,8 +33,7 @@ describe("Adnexo ax-dist Uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -41,7 +42,7 @@ describe("Adnexo ax-dist Uplink", () => {
 
   let statusSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/status.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/status.schema.json`).then((parsedSchema) => {
       statusSchema = parsedSchema;
       done();
     });
@@ -49,7 +50,7 @@ describe("Adnexo ax-dist Uplink", () => {
 
   let errorSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/error.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/error.schema.json`).then((parsedSchema) => {
       errorSchema = parsedSchema;
       done();
     });
@@ -70,7 +71,7 @@ describe("Adnexo ax-dist Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -80,12 +81,12 @@ describe("Adnexo ax-dist Uplink", () => {
         assert.equal(value.data.batteryVoltage, 3.21);
         assert.equal(value.data.batteryLevel, 100);
 
-        utils.validateSchema(value.data, lifecycleSchema, {
+        validateSchema(value.data, lifecycleSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -98,7 +99,7 @@ describe("Adnexo ax-dist Uplink", () => {
         assert.equal(value.data.temperature, 22);
          assert.equal(value.data.temperatureF, 71.6);
 
-        utils.validateSchema(value.data, measurementSchema, {
+        validateSchema(value.data, measurementSchema, {
           throwError: true,
         });
       });
@@ -114,7 +115,7 @@ describe("Adnexo ax-dist Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -122,7 +123,7 @@ describe("Adnexo ax-dist Uplink", () => {
         assert.equal(value.topic, "invalid_measurement");
         assert.equal(value.data.measurementVariance, 62.5);
 
-        utils.validateSchema(value.data, invalidMeasurementSchema, {
+        validateSchema(value.data, invalidMeasurementSchema, {
           throwError: true,
         });
       });
@@ -138,7 +139,7 @@ describe("Adnexo ax-dist Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -147,7 +148,7 @@ describe("Adnexo ax-dist Uplink", () => {
         assert.equal(value.data.errorOn, "PARAM_READ");
         assert.equal(value.data.errorCode, "PARAM_NOT_READABLE");
 
-        utils.validateSchema(value.data, errorSchema, { throwError: true });
+        validateSchema(value.data, errorSchema, { throwError: true });
       });
 
       consume(data);
@@ -161,7 +162,7 @@ describe("Adnexo ax-dist Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -172,7 +173,7 @@ describe("Adnexo ax-dist Uplink", () => {
         assert.equal(value.data.payloadType, "REPORT_CONFIGURATION");
         assert.equal(value.data.sendInterval, 6);
 
-        utils.validateSchema(value.data, statusSchema, { throwError: true });
+        validateSchema(value.data, statusSchema, { throwError: true });
       });
 
       consume(data);

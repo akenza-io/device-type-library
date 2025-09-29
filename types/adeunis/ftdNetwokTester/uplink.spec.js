@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("FTD Network tester", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/default.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
         defaultSchema = parsedSchema;
         done();
@@ -21,7 +24,7 @@ describe("FTD Network tester", () => {
 
   let gpsSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
       gpsSchema = parsedSchema;
       done();
     });
@@ -36,7 +39,7 @@ describe("FTD Network tester", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -46,10 +49,10 @@ describe("FTD Network tester", () => {
         assert.equal(value.data.longitude, 8.534333333333333);
         assert.equal(value.data.satellites, 5);
 
-        utils.validateSchema(value.data, gpsSchema, { throwError: true });
+        validateSchema(value.data, gpsSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -63,7 +66,7 @@ describe("FTD Network tester", () => {
         assert.equal(value.data.batteryVoltage, 3.489);
         assert.equal(value.data.batteryLevel, 29);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

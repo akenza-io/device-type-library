@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Yosensi YO Meter Reader 2.0 uplink", () => {
   let batteryVoltageSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/battery_voltage.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/battery_voltage.schema.json`)
       .then((parsedSchema) => {
         batteryVoltageSchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("Yosensi YO Meter Reader 2.0 uplink", () => {
 
   let internalTemperatureSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/internal_temperature.schema.json`)
+    loadSchema(`${__dirname}/internal_temperature.schema.json`)
       .then((parsedSchema) => {
         internalTemperatureSchema = parsedSchema;
         done();
@@ -31,8 +33,7 @@ describe("Yosensi YO Meter Reader 2.0 uplink", () => {
 
   let humiditySchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/humidity.schema.json`)
+    loadSchema(`${__dirname}/humidity.schema.json`)
       .then((parsedSchema) => {
         humiditySchema = parsedSchema;
         done();
@@ -41,8 +42,7 @@ describe("Yosensi YO Meter Reader 2.0 uplink", () => {
 
   let periodicPulseCntSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/periodic_pulse_cnt.schema.json`)
+    loadSchema(`${__dirname}/periodic_pulse_cnt.schema.json`)
       .then((parsedSchema) => {
         periodicPulseCntSchema = parsedSchema;
         done();
@@ -51,8 +51,7 @@ describe("Yosensi YO Meter Reader 2.0 uplink", () => {
 
   let persistentPulseCntSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/persistent_pulse_cnt.schema.json`)
+    loadSchema(`${__dirname}/persistent_pulse_cnt.schema.json`)
       .then((parsedSchema) => {
         persistentPulseCntSchema = parsedSchema;
         done();
@@ -61,8 +60,7 @@ describe("Yosensi YO Meter Reader 2.0 uplink", () => {
 
   let totalUnitsSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/total_units.schema.json`)
+    loadSchema(`${__dirname}/total_units.schema.json`)
       .then((parsedSchema) => {
         totalUnitsSchema = parsedSchema;
         done();
@@ -79,7 +77,7 @@ describe("Yosensi YO Meter Reader 2.0 uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -87,12 +85,12 @@ describe("Yosensi YO Meter Reader 2.0 uplink", () => {
         assert.equal(value.topic, "battery_voltage");
         assert.equal(value.data.batteryVoltage, 4504);
 
-        utils.validateSchema(value.data, batteryVoltageSchema, {
+        validateSchema(value.data, batteryVoltageSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -101,12 +99,12 @@ describe("Yosensi YO Meter Reader 2.0 uplink", () => {
         assert.equal(value.data.internalTemperature, 24.3);
         assert.equal(value.data.internalTemperatureF, 75.7);
 
-        utils.validateSchema(value.data, internalTemperatureSchema, {
+        validateSchema(value.data, internalTemperatureSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -114,10 +112,10 @@ describe("Yosensi YO Meter Reader 2.0 uplink", () => {
         assert.equal(value.topic, "humidity");
         assert.equal(value.data.humidity, 32);
 
-        utils.validateSchema(value.data, humiditySchema, { throwError: true });
+        validateSchema(value.data, humiditySchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -125,12 +123,12 @@ describe("Yosensi YO Meter Reader 2.0 uplink", () => {
         assert.equal(value.topic, "periodic_pulse_cnt");
         assert.equal(value.data.periodicPulseCnt, 577);
 
-        utils.validateSchema(value.data, periodicPulseCntSchema, {
+        validateSchema(value.data, periodicPulseCntSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -138,12 +136,12 @@ describe("Yosensi YO Meter Reader 2.0 uplink", () => {
         assert.equal(value.topic, "persistent_pulse_cnt");
         assert.equal(value.data.persistentPulseCnt, 40557);
 
-        utils.validateSchema(value.data, persistentPulseCntSchema, {
+        validateSchema(value.data, persistentPulseCntSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -151,7 +149,7 @@ describe("Yosensi YO Meter Reader 2.0 uplink", () => {
         assert.equal(value.topic, "total_units");
         assert.equal(value.data.totalUnits, 4.1);
 
-        utils.validateSchema(value.data, totalUnitsSchema, {
+        validateSchema(value.data, totalUnitsSchema, {
           throwError: true,
         });
       });
