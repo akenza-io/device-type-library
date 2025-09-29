@@ -2,7 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-# [1.74.1] - 2025-09-17
+# [1.75.0] - 2025-09-25
+
+### Added
+
+- Nexelec - Origin
 
 ### Changed
 
