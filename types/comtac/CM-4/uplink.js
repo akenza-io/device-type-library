@@ -36,8 +36,6 @@ function consume(event) {
     const payloadId = Bits.bitsToUnsigned(bits.substr(32, 8));
     data.temperature = Bits.bitsToSigned(bits.substr(40, 16)) / 100;
     data.temperatureF = cToF(data.temperature);
-    data.temperatureF = cToF(data.temperature);
-    data.temperatureF = cToF(data.temperature);
     data.humidity = Bits.bitsToUnsigned(bits.substr(56, 8));
 
     if (payloadId === 4) {

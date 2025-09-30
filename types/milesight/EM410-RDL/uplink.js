@@ -379,7 +379,7 @@ function consume(event) {
   const system = {};
   const alert = {};
 
-  for (let i = 0; i < bytes.length; ) {
+  for (let i = 0; i < bytes.length;) {
     const channelId = bytes[i++];
     const channelType = bytes[i++];
 
@@ -500,13 +500,10 @@ function consume(event) {
 
       if (temperatureRawData === 0xfffe) {
         historicAlert.temperatureException = "DISABLED";
-        historicAlert.temperatureF = cToF(historicAlert.temperature);
       } else if (temperatureRawData === 0xffff) {
         historicAlert.temperatureException = "SENSOR_EXCEPTION";
-        historicAlert.temperatureF = cToF(historicAlert.temperature);
       } else {
         historicData.temperature = temperatureValue;
-        historicData.temperatureF = cToF(historicData.temperature);
       }
 
       const historicEvent = readHistoryEvent(eventValue);

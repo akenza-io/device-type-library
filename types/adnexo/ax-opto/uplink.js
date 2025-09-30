@@ -293,7 +293,7 @@ function consume(event) {
       data.temperatureF = cToF(data.temperature);
     } else {
       data.temperature = null;
-      data.temperatureF = cToF(data.temperature);
+      data.temperatureF = null;
     }
 
     const lifecycle = {};

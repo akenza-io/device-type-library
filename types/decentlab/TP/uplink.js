@@ -250,22 +250,16 @@ function consume(event) {
   data.temperatureAtLevel9F = cToF(data.temperatureAtLevel9);
   data.temperatureAtLevel10 = sample.temperature_at_level_10.value;
   data.temperatureAtLevel10F = cToF(data.temperatureAtLevel10);
-  data.temperatureAtLevel1F = cToF(data.temperatureAtLevel1);
   data.temperatureAtLevel11 = sample.temperature_at_level_11.value;
   data.temperatureAtLevel11F = cToF(data.temperatureAtLevel11);
-  data.temperatureAtLevel1F = cToF(data.temperatureAtLevel1);
   data.temperatureAtLevel12 = sample.temperature_at_level_12.value;
   data.temperatureAtLevel12F = cToF(data.temperatureAtLevel12);
-  data.temperatureAtLevel1F = cToF(data.temperatureAtLevel1);
   data.temperatureAtLevel13 = sample.temperature_at_level_13.value;
   data.temperatureAtLevel13F = cToF(data.temperatureAtLevel13);
-  data.temperatureAtLevel1F = cToF(data.temperatureAtLevel1);
   data.temperatureAtLevel14 = sample.temperature_at_level_14.value;
   data.temperatureAtLevel14F = cToF(data.temperatureAtLevel14);
-  data.temperatureAtLevel1F = cToF(data.temperatureAtLevel1);
   data.temperatureAtLevel15 = sample.temperature_at_level_15.value;
   data.temperatureAtLevel15F = cToF(data.temperatureAtLevel15);
-  data.temperatureAtLevel1F = cToF(data.temperatureAtLevel1);
 
   const lifecycle = {};
   lifecycle.batteryVoltage = sample.battery_voltage.value;

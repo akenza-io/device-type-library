@@ -32,12 +32,12 @@ function consume(event) {
 
       if (((bytes[0] << 8) | bytes[1]) === 0xffff) {
         data.temperature = null;
-        data.temperatureF = cToF(data.temperature);
+        data.temperatureF = null;
       }
 
       if (((bytes[4] << 8) | bytes[5]) === 0xffff) {
         data.extTemperature = null;
-        data.extTemperatureF = cToF(data.extTemperature);
+        data.extTemperatureF = null;
       }
 
       emit("sample", { data, topic: "default" });

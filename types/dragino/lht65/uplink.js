@@ -96,7 +96,7 @@ function decoder(bytes) {
         response.decoded.temperatureF = cToF(response.decoded.temperature);
         if (((bytes[0] << 8) | bytes[1]) === 0xffff) {
           response.decoded.temperature = null;
-          response.decoded.temperatureF = cToF(response.decoded.temperature);
+          response.decoded.temperatureF = null;
         }
         response.lifecycle.batteryStatus = bytes[4] >> 6;
       } else {
@@ -142,7 +142,7 @@ function decoder(bytes) {
         response.decoded.temperatureF = cToF(response.decoded.temperature);
         if (((bytes[2] << 8) | bytes[3]) === 0xffff) {
           response.decoded.temperature = null;
-          response.decoded.temperatureF = cToF(response.decoded.temperature);
+          response.decoded.temperatureF = null;
         }
         response.decoded.humidity = parseFloat(
           ((((bytes[4] << 8) | bytes[5]) & 0xfff) / 10).toFixed(1),
@@ -166,9 +166,7 @@ function decoder(bytes) {
         );
         if (((bytes[7] << 8) | bytes[8]) === 0xffff) {
           response.external.externalTemperature = null;
-          response.external.externalTemperatureF = cToF(
-            response.external.externalTemperature,
-          );
+          response.external.externalTemperatureF = null;
         }
       } else if (ext === 4) {
         response.external.extPinLevel = bytes[7] ? "HIGH" : "LOW";

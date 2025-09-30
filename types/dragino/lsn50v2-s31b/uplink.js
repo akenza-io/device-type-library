@@ -60,14 +60,10 @@ function consume(event) {
       ((((bytes[2] << 24) >> 16) | bytes[3]) / 10).toFixed(2),
     );
     defaultData.temperatureF = cToF(defaultData.temperature);
-    defaultData.temperatureF = cToF(defaultData.temperature);
-    defaultData.temperatureF = cToF(defaultData.temperature);
 
     if (((bytes[2] << 8) | bytes[3]) === 0xffff) {
       defaultData.temperature = null;
-      defaultData.temperatureF = cToF(defaultData.temperature);
-      defaultData.temperatureF = cToF(defaultData.temperature);
-      defaultData.temperatureF = cToF(defaultData.temperature);
+      defaultData.temperatureF = null;
     }
 
     defaultData.c0adc = ((bytes[4] << 8) | bytes[5]) / 1000;

@@ -115,7 +115,7 @@ function consume(event) {
   const decoded = {};
   const lifecycle = {};
 
-  for (let i = 0; i < bytes.length; ) {
+  for (let i = 0; i < bytes.length;) {
     const channelId = bytes[i++];
     const channelType = bytes[i++];
 
@@ -168,7 +168,6 @@ function consume(event) {
       decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
       decoded.temperatureF = cToF(decoded.temperature);
       decoded.temperatureAlarm = readAlarmType(bytes[i + 2]);
-      decoded.temperatureF = cToF(decoded.temperature);
       i += 3;
     }
     // TEMPERATURE MUTATION ALARM
@@ -177,9 +176,7 @@ function consume(event) {
       decoded.temperatureF = cToF(decoded.temperature);
       decoded.temperatureMutation = readInt16LE(bytes.slice(i + 2, i + 4)) / 10;
       decoded.temperatureMutationF = cToF(decoded.temperatureMutation);
-      decoded.temperatureF = cToF(decoded.temperature);
       decoded.temperatureAlarm = readAlarmType(bytes[i + 4]);
-      decoded.temperatureF = cToF(decoded.temperature);
       i += 5;
     }
     // TEMPERATURE ERROR

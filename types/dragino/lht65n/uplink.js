@@ -140,7 +140,6 @@ function decoder(bytes, port) {
       array1[i] = temp;
     }
     decode.decoded.temperature = array1;
-    decode.decoded.temperatureF = cToF(decode.decoded.temperature);
     return decode;
   }
   switch (pollMessageStatus) {
@@ -152,7 +151,7 @@ function decoder(bytes, port) {
         decode.decoded.temperatureF = cToF(decode.decoded.temperature);
         if (((bytes[0] << 8) | bytes[1]) === 0xffff) {
           decode.decoded.temperature = null;
-          decode.decoded.temperatureF = cToF(decode.decoded.temperature);
+          decode.decoded.temperatureF = null;
         }
         decode.lifecycle.batteryStatus = bytes[4] >> 6;
       } else {
@@ -198,7 +197,7 @@ function decoder(bytes, port) {
         decode.decoded.temperatureF = cToF(decode.decoded.temperature);
         if (((bytes[2] << 8) | bytes[3]) === 0xffff) {
           decode.decoded.temperature = null;
-          decode.decoded.temperatureF = cToF(decode.decoded.temperature);
+          decode.decoded.temperatureF = null;
         }
         decode.decoded.humidity = parseFloat(
           ((((bytes[4] << 8) | bytes[5]) & 0xfff) / 10).toFixed(1),
@@ -218,7 +217,7 @@ function decoder(bytes, port) {
         decode.external.tempDSF = cToF(decode.external.tempDS);
         if (((bytes[7] << 8) | bytes[8]) === 0xffff) {
           decode.external.tempDS = null;
-          decode.external.tempDSF = cToF(decode.external.tempDS);
+          decode.external.tempDSF = null;
         }
       } else if (ext === 2) {
         decode.lifecycle.extSensor = "TEMPERATURE_SENSOR";
@@ -228,7 +227,7 @@ function decoder(bytes, port) {
         decode.external.tempTMP117F = cToF(decode.external.tempTMP117);
         if (((bytes[7] << 8) | bytes[8]) === 0xffff) {
           decode.external.tempTMP117 = null;
-          decode.external.tempTMP117F = cToF(decode.external.tempTMP117);
+          decode.external.tempTMP117F = null;
         }
       } else if (ext === 4) {
         decode.lifecycle.workMode = "INTERRUPT_SENSOR";

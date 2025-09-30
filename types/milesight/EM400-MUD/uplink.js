@@ -66,7 +66,7 @@ function consume(event) {
   const decoded = {};
   const lifecycle = {};
 
-  for (let i = 0; i < bytes.length; ) {
+  for (let i = 0; i < bytes.length;) {
     const channelId = bytes[i++];
     const channelType = bytes[i++];
     // BATTERY
@@ -100,7 +100,6 @@ function consume(event) {
       decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
       decoded.temperatureF = cToF(decoded.temperature);
       decoded.temperatureAbnormal = bytes[i + 2] !== 0;
-      decoded.temperatureF = cToF(decoded.temperature);
       i += 3;
     }
     // DISTANCE WITH ALARMING

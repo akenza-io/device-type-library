@@ -24,7 +24,6 @@ function consume(event) {
   lifecycle.batteryLevel = batteryLevel;
 
   data.temperature = Bits.bitsToUnsigned(bits.substr(17, 7));
-  data.temperatureF = cToF(data.temperature);
   data.temperature -= 32;
   data.temperatureF = cToF(data.temperature);
 

@@ -515,7 +515,7 @@ function consume(event) {
 
     // Default values
     data.temperature = res.temperature;
-    data.temperatureF = cToF(data.temperature);
+    data.temperatureF = res.temperatureF;
     data.humidity = res.humidity;
     data.accX = res.accX;
     data.accY = res.accY;
@@ -540,7 +540,9 @@ function consume(event) {
     data.pulseAbs1 = res.pulseAbs1;
     data.pulseAbs2 = res.pulseAbs2;
     data.externalTemperature1 = res.externalTemperature1;
+    data.externalTemperature1F = res.externalTemperature1F;
     data.externalTemperature2 = res.externalTemperature2;
+    data.externalTemperature2F = res.externalTemperature2F;
 
     // Occupancy values
     occupancy.motion = res.motion;

@@ -441,7 +441,7 @@ function consume(event) {
 
     // Default values
     data.temperature = res.temperature;
-    data.temperatureF = cToF(data.temperature);
+    data.temperatureF = res.temperatureF;
     data.humidity = res.humidity;
     data.accX = res.accX;
     data.accY = res.accY;

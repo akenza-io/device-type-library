@@ -695,7 +695,7 @@ function decode(bytes, port) {
           decodedData.position = decodeField(arg, 9, 30, 24, "unsigned");
           decodedData.heartRate = decodeField(arg, 9, 23, 16, "unsigned");
           decodedData.bodyTemperature2 = decodeField(arg, 9, 15, 8, "unsigned");
-          decodedData.bodyTemperatureF = cToF(decodedData.bodyTemperature);
+          decodedData.bodyTemperature2F = cToF(decodedData.bodyTemperature2);
           decodedData.af2 = decodeField(arg, 9, 7, 0, "unsigned");
           return 9;
         },
@@ -704,7 +704,7 @@ function decode(bytes, port) {
   }
 
   try {
-    for (let bytesLeft = bytes.length; bytesLeft > 0; ) {
+    for (let bytesLeft = bytes.length; bytesLeft > 0;) {
       let found = false;
       let header = "";
       for (let i = 0; i < decoderArray.length; i++) {

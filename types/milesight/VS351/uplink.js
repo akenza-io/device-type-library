@@ -84,7 +84,7 @@ function consume(event) {
   const lifecycle = {};
   const system = {};
 
-  for (let i = 0; i < bytes.length; ) {
+  for (let i = 0; i < bytes.length;) {
     const channelId = bytes[i++];
     const channelType = bytes[i++];
 
@@ -150,7 +150,6 @@ function consume(event) {
       climate.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
       climate.temperatureF = cToF(climate.temperature);
       climate.temperatureAlarm = readAlarmType(bytes[i + 2]);
-      climate.temperatureF = cToF(climate.temperature);
       i += 3;
     }
     // TOTAL IN / OUT ALARM

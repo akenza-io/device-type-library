@@ -43,7 +43,7 @@ function consume(event) {
   const decoded = {};
   const lifecycle = {};
 
-  for (let i = 0; i < bytes.length; ) {
+  for (let i = 0; i < bytes.length;) {
     const channelId = bytes[i++];
     const channelType = bytes[i++];
 
@@ -57,7 +57,6 @@ function consume(event) {
       decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
       decoded.temperatureF = cToF(decoded.temperature);
       decoded.temperatureAlert = "NORMAL";
-      decoded.temperatureF = cToF(decoded.temperature);
       i += 2;
     }
     // Temperature threshold alert
@@ -65,7 +64,6 @@ function consume(event) {
       decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
       decoded.temperatureF = cToF(decoded.temperature);
       decoded.temperatureAlert = readAlertType(bytes[i + 2]);
-      decoded.temperatureF = cToF(decoded.temperature);
       i += 3;
     }
     // Temperature mutation alert
@@ -74,9 +72,7 @@ function consume(event) {
       decoded.temperatureF = cToF(decoded.temperature);
       decoded.temperatureDegreesCelsiushange =
         readInt16LE(bytes.slice(i + 2, i + 4)) / 100;
-      decoded.temperatureF = cToF(decoded.temperature);
       decoded.temperatureAlert = readAlertType(bytes[i + 4]);
-      decoded.temperatureF = cToF(decoded.temperature);
       i += 5;
     }
     // Temperature history
@@ -86,7 +82,6 @@ function consume(event) {
       item.temperature = readInt16LE(bytes.slice(i + 4, i + 6)) / 10;
       item.temperatureF = cToF(item.temperature);
       item.temperatureAlert = "NORMAL";
-      item.temperatureF = cToF(item.temperature);
       i += 6;
 
       emit("sample", { data: item, topic: "default", timestamp });

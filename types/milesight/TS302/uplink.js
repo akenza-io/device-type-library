@@ -50,7 +50,7 @@ function consume(event) {
   const lifecycle = { batteryLevel: null };
   let timestamp = new Date();
 
-  for (let i = 0; i < bytes.length; ) {
+  for (let i = 0; i < bytes.length;) {
     const channelId = bytes[i++];
     const channelType = bytes[i++];
 
@@ -96,7 +96,6 @@ function consume(event) {
       climate.temperatureChannel1ChangeF = cToF(
         climate.temperatureChannel1Change,
       );
-      climate.temperatureChannel1F = cToF(climate.temperatureChannel1);
       alarm.alarmChannel1 = readAlarmType(bytes[i + 4]);
       i += 5;
     }
@@ -116,7 +115,6 @@ function consume(event) {
       climate.temperatureChannel2ChangeF = cToF(
         climate.temperatureChannel2Change,
       );
-      climate.temperatureChannel2F = cToF(climate.temperatureChannel2);
       alarm.alarmChannel2 = readAlarmType(bytes[i + 4]);
       i += 5;
     }
