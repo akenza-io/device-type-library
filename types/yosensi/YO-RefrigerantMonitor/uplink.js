@@ -296,8 +296,8 @@ function payloadV2Parse(bytes, date, utils) {
   ) {
     return new Date(
       Number(extractPayloadDateTimeDate) -
-      utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
-      1000,
+        utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
+          1000,
     );
   }
 
@@ -312,7 +312,7 @@ function payloadV2Parse(bytes, date, utils) {
   function extractMeasurementDateTime(byte, extractMeasurementDateTimeDate) {
     return new Date(
       Number(extractMeasurementDateTimeDate) +
-      utils.unsignedNbrFromByte(byte) * 1000,
+        utils.unsignedNbrFromByte(byte) * 1000,
     );
   }
 
@@ -700,7 +700,10 @@ function consume(event) {
   if (data.data.internalTemperature !== undefined) {
     data.data.internalTemperatureF = cToF(data.data.internalTemperature);
     emit("sample", {
-      data: { internalTemperature: data.data.internalTemperature, internalTemperatureF: data.data.internalTemperatureF },
+      data: {
+        internalTemperature: data.data.internalTemperature,
+        internalTemperatureF: data.data.internalTemperatureF,
+      },
       topic: "internal_temperature",
     });
     delete data.data.internalTemperature;
@@ -716,7 +719,10 @@ function consume(event) {
   if (data.data.temperature !== undefined) {
     data.data.temperatureF = cToF(data.data.temperature);
     emit("sample", {
-      data: { temperature: data.data.temperature, temperatureF: data.data.temperatureF },
+      data: {
+        temperature: data.data.temperature,
+        temperatureF: data.data.temperatureF,
+      },
       topic: "temperature",
     });
     delete data.data.temperature;

@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -16,21 +14,19 @@ describe("WT101 Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -49,9 +45,9 @@ describe("WT101 Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 26.6);
-         assert.equal(value.data.temperatureF, 79.9);
+        assert.equal(value.data.temperatureF, 79.9);
         assert.equal(value.data.targetTemperature, 30);
-         assert.equal(value.data.targetTemperatureF, 86);
+        assert.equal(value.data.targetTemperatureF, 86);
         assert.equal(value.data.valveOpening, 100);
         assert.equal(value.data.motorStroke, 0);
         assert.equal(value.data.motorPosition, 0);

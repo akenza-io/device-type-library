@@ -1,6 +1,6 @@
-function cToF(celsius) { 
- return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
- } 
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
 
 // Parse Hex Byte Array
 function parseHexString(str) {
@@ -41,7 +41,7 @@ function consume(event) {
     // TEMPERATURE
     else if (channelId === 0x03 && channelType === 0x67) {
       decoded.temperature = readInt16LE(Array.from(bytes).slice(i, i + 2)) / 10;
- decoded.temperatureF = cToF(decoded.temperature);
+      decoded.temperatureF = cToF(decoded.temperature);
       i += 2;
     }
     // HUMIDITY

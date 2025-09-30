@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -20,27 +18,24 @@ describe("Decentlab TRS11 Uplink", () => {
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
     it("should decode the Decentlab TRS11 payload", () => {
       const data = {
         data: {
-          payloadHex:
-            "0210d50003463f810b0c79",
+          payloadHex: "0210d50003463f810b0c79",
         },
       };
 
@@ -52,7 +47,7 @@ describe("Decentlab TRS11 Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.dielectricPermittivity, 1.0259018697121183);
         assert.equal(value.data.soilTemperature, 26.7);
-         assert.equal(value.data.soilTemperatureF, 80.1);
+        assert.equal(value.data.soilTemperatureF, 80.1);
         assert.equal(value.data.volumetricWaterContent, 0.0019605699999999393);
 
         validateSchema(value.data, defaultSchema, { throwError: true });

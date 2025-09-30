@@ -1,6 +1,6 @@
-function cToF(celsius) { 
- return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
- } 
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
 
 function readUInt8(bytes) {
   return bytes & 0xff;
@@ -379,7 +379,7 @@ function consume(event) {
   const system = {};
   const alert = {};
 
-  for (let i = 0; i < bytes.length;) {
+  for (let i = 0; i < bytes.length; ) {
     const channelId = bytes[i++];
     const channelType = bytes[i++];
 
@@ -430,7 +430,7 @@ function consume(event) {
     // TEMPERATURE
     else if (channelId === 0x03 && channelType === 0x67) {
       decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
- decoded.temperatureF = cToF(decoded.temperature);
+      decoded.temperatureF = cToF(decoded.temperature);
       i += 2;
     }
     // DISTANCE
@@ -500,13 +500,13 @@ function consume(event) {
 
       if (temperatureRawData === 0xfffe) {
         historicAlert.temperatureException = "DISABLED";
- historicAlert.temperatureF = cToF(historicAlert.temperature);
+        historicAlert.temperatureF = cToF(historicAlert.temperature);
       } else if (temperatureRawData === 0xffff) {
         historicAlert.temperatureException = "SENSOR_EXCEPTION";
- historicAlert.temperatureF = cToF(historicAlert.temperature);
+        historicAlert.temperatureF = cToF(historicAlert.temperature);
       } else {
         historicData.temperature = temperatureValue;
- historicData.temperatureF = cToF(historicData.temperature);
+        historicData.temperatureF = cToF(historicData.temperature);
       }
 
       const historicEvent = readHistoryEvent(eventValue);

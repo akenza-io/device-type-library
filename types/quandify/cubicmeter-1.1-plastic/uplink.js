@@ -107,7 +107,7 @@ const LSB = true;
 const statusReportDecoder = function (data) {
   if (data.byteLength !== 28) {
     throw new Error(
-      `Wrong payload length (${data.byteLength}), should be 28 bytes`
+      `Wrong payload length (${data.byteLength}), should be 28 bytes`,
     );
   }
 
@@ -130,7 +130,7 @@ const statusReportDecoder = function (data) {
     ambientTemperature: decodeTemperature(data.getUint8(27)), // current ambient temperature
     ambientTemperatureF: cToF(decodeTemperature(data.getUint8(25))),
     waterTemperatureMaxF: cToF(decodeTemperature(data.getUint8(26))),
-    waterTemperatureMinF: cToF(decodeTemperature(data.getUint8(27)))
+    waterTemperatureMinF: cToF(decodeTemperature(data.getUint8(27))),
   };
 
   // Warnings
@@ -198,7 +198,7 @@ const responseDecoder = function (data) {
 const hardwareReportDecoder = function (data) {
   if (data.byteLength != 35) {
     throw new Error(
-      `Wrong payload length (${data.byteLength}), should be 35 bytes`
+      `Wrong payload length (${data.byteLength}), should be 35 bytes`,
     );
   }
 
@@ -231,7 +231,7 @@ const hardwareReportDecoder = function (data) {
 const settingsReportDecoder = function (data) {
   if (data.byteLength != 38) {
     throw new Error(
-      `Wrong payload length (${data.byteLength}), should be 38 bytes`
+      `Wrong payload length (${data.byteLength}), should be 38 bytes`,
     );
   }
 
@@ -265,7 +265,9 @@ const parseErrorCode = function (errorCode) {
 };
 
 const decArrayToStr = function (byteArray) {
-  return Array.from(byteArray, (byte) => (`0${(byte & 0xff).toString(16)}`).slice(-2).toUpperCase()).join("");
+  return Array.from(byteArray, (byte) =>
+    `0${(byte & 0xff).toString(16)}`.slice(-2).toUpperCase(),
+  ).join("");
 };
 
 const intToSemver = function (version) {
@@ -288,7 +290,7 @@ const normalizeUplink = function (input) {
   }
 
   return [];
-}
+};
 
 const normalizeResponse = function (decoded) {
   let response = [
@@ -298,8 +300,8 @@ const normalizeResponse = function (decoded) {
         fPort: decoded.fPort,
         status: camelToSnakeCase(decoded.status),
         type: camelToSnakeCase(decoded.type),
-      }
-    }
+      },
+    },
   ];
 
   switch (decoded.type) {
@@ -317,7 +319,7 @@ const normalizeResponse = function (decoded) {
   }
 
   return response;
-}
+};
 
 const normalizeHardwareReport = function (data) {
   return [
@@ -329,8 +331,8 @@ const normalizeHardwareReport = function (data) {
         appState: camelToSnakeCase(data.appState),
         pipeId: data.pipe.id,
         pipeType: data.pipe.type,
-      }
-    }
+      },
+    },
   ];
 };
 
@@ -340,8 +342,8 @@ const normalizeSettingsReport = function (data) {
       topic: "settings",
       data: {
         lorawanReportInterval: data.lorawanReportInterval,
-      }
-    }
+      },
+    },
   ];
 };
 
@@ -360,7 +362,7 @@ const normalizeStatusReport = function (decoded) {
         waterTemperatureMinF: decoded.waterTemperatureMinF,
         waterTemperatureMaxF: decoded.waterTemperatureMaxF,
         ambientTemperatureF: decoded.ambientTemperatureF,
-      }
+      },
     },
     {
       topic: "lifecycle",
@@ -368,13 +370,15 @@ const normalizeStatusReport = function (decoded) {
         isSensing: decoded.isSensing,
         batteryVoltage: decoded.batteryRecovered / 1000,
         batteryStatus: isLowBattery(decoded.batteryRecovered) ? "LOW" : "OK",
-      }
+      },
     },
   ];
 };
 
 function camelToSnakeCase(str) {
-  return str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`).toUpperCase();
+  return str
+    .replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`)
+    .toUpperCase();
 }
 
 function hexToBytes(hex) {
@@ -387,33 +391,33 @@ function hexToBytes(hex) {
 function consume(event) {
   const input = {
     fPort: event.data.port,
-    bytes: hexToBytes(event.data.payloadHex)
-  }
+    bytes: hexToBytes(event.data.payloadHex),
+  };
 
   const decoded = decodeUplink(input);
   const topics = normalizeUplink(decoded);
 
-  decoded.warnings.forEach(warning => {
+  decoded.warnings.forEach((warning) => {
     topics.push({
       topic: "error",
       data: {
         level: "WARNING",
-        message: warning
-      }
+        message: warning,
+      },
     });
   });
 
-  decoded.errors.forEach(error => {
+  decoded.errors.forEach((error) => {
     topics.push({
       topic: "error",
       data: {
         level: "ERROR",
-        message: error
-      }
+        message: error,
+      },
     });
   });
 
-  topics.forEach(topic => {
+  topics.forEach((topic) => {
     emit("sample", { ...topic });
   });
 }

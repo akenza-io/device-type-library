@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,27 +13,26 @@ describe("Synetica Status T Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
     it("should decode the Synetica Status IAQ report uplink", () => {
       const data = {
         data: {
-          payloadHex: "0100e702330403c1050048123f5397b03f44346af9080271573f21e8a4583f4fa87c593f6db6085a3f7c90dd5b407fcbd25c409c48315d40a0dc0d5e40a1b8b25f40a1eb6f603f1e68fe420d02",
+          payloadHex:
+            "0100e702330403c1050048123f5397b03f44346af9080271573f21e8a4583f4fa87c593f6db6085a3f7c90dd5b407fcbd25c409c48315d40a0dc0d5e40a1b8b25f40a1eb6f603f1e68fe420d02",
         },
       };
 

@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,20 +13,18 @@ describe("ioTracker 3 uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   let gpsSchema = null;
@@ -68,7 +64,7 @@ describe("ioTracker 3 uplink", () => {
         assert.equal(value.topic, "default");
 
         assert.equal(value.data.temperature, 26.9);
-         assert.equal(value.data.temperatureF, 80.4);
+        assert.equal(value.data.temperatureF, 80.4);
         assert.equal(value.data.light, 172.16);
         assert.equal(value.data.maxAccelerationNew, 16.384);
         assert.equal(value.data.maxAccelerationHistory, 16.384);
@@ -132,7 +128,7 @@ describe("ioTracker 3 uplink", () => {
         assert.equal(value.data.maxAccelerationHistory, 16.384);
         assert.equal(value.data.maxAccelerationNew, 0);
         assert.equal(value.data.temperature, 28.24);
-         assert.equal(value.data.temperatureF, 82.8);
+        assert.equal(value.data.temperatureF, 82.8);
 
         validateSchema(value.data, defaultSchema, { throwError: true });
       });

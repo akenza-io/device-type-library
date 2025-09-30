@@ -1,11 +1,11 @@
-function cToF(celsius) { 
- return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
- } 
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
 
 function bytesToInt(bytes, start, len) {
   let value = 0;
   for (let i = 0; i < len; i++) {
-    const m = ((len - 1) - i) * 8;
+    const m = (len - 1 - i) * 8;
     value |= bytes[start + i] << m;
   }
   return value;
@@ -46,16 +46,16 @@ function consume(event) {
       const temperatureThreshold = (bytes[5] >> 2) & 0x03;
       if (temperatureThreshold === 0x00) {
         data.temperatureThreshold = "THRESHOLD_LOW";
- data.temperatureF = cToF(data.temperature);
+        data.temperatureF = cToF(data.temperature);
       } else if (temperatureThreshold === 0x01) {
         data.temperatureThreshold = "THRESHOLD_HIGH";
- data.temperatureF = cToF(data.temperature);
+        data.temperatureF = cToF(data.temperature);
       } else if (temperatureThreshold === 0x02) {
         data.temperatureThreshold = "THRESHOLD_NOT_REACHED";
- data.temperatureF = cToF(data.temperature);
+        data.temperatureF = cToF(data.temperature);
       } else if (temperatureThreshold === 0x11) {
         data.temperatureThreshold = "THRESHOLD_DISABLED";
- data.temperatureF = cToF(data.temperature);
+        data.temperatureF = cToF(data.temperature);
       }
 
       const humidityThreshold = bytes[5] & 0x03;
@@ -72,13 +72,13 @@ function consume(event) {
       let temperature = (bytesToInt(bytes, 6, 3) >> 14) & 0x03ff;
       if (temperature === 0x03ff) {
         data.temperatureState = "DISABLED";
- data.temperatureF = cToF(data.temperature);
+        data.temperatureF = cToF(data.temperature);
       } else {
         temperature = temperature / 10 - 30;
         data.temperature = Math.round(temperature * 10) / 10;
- data.temperatureF = cToF(data.temperature);
+        data.temperatureF = cToF(data.temperature);
         data.temperatureState = "ENABLED";
- data.temperatureF = cToF(data.temperature);
+        data.temperatureF = cToF(data.temperature);
       }
 
       let humidity = (bytesToInt(bytes, 6, 3) >> 4) & 0x03ff;
@@ -93,16 +93,16 @@ function consume(event) {
       const temperatureChange = (bytesToInt(bytes, 6, 3) >> 2) & 0x03;
       if (temperatureChange === 0x00) {
         data.temperatureChangeState = "FAST_RISE";
- data.temperatureF = cToF(data.temperature);
+        data.temperatureF = cToF(data.temperature);
       } else if (temperatureChange === 0x01) {
         data.temperatureChangeState = "FAST_DROP";
- data.temperatureF = cToF(data.temperature);
+        data.temperatureF = cToF(data.temperature);
       } else if (temperatureChange === 0x02) {
-        data.temperatureChangeState = 'NOMINAL_CHANGE';
- data.temperatureF = cToF(data.temperature);
+        data.temperatureChangeState = "NOMINAL_CHANGE";
+        data.temperatureF = cToF(data.temperature);
       } else if (temperatureChange === 0x11) {
         data.temperatureChangeState = "FAST_CHANGE_DISABLED";
- data.temperatureF = cToF(data.temperature);
+        data.temperatureF = cToF(data.temperature);
       }
 
       const humidityChange = bytesToInt(bytes, 6, 3) & 0x03;
@@ -111,14 +111,14 @@ function consume(event) {
       } else if (humidityChange === 0x01) {
         data.humidityChangeState = "FAST_DROP";
       } else if (humidityChange === 0x02) {
-        data.humidityChangeState = 'NOMINAL_CHANGE';
+        data.humidityChangeState = "NOMINAL_CHANGE";
       } else if (humidityChange === 0x11) {
         data.humidityChangeState = "FAST_CHANGE_DISABLED";
       }
-      data.lowBattery = (bytesToInt(bytes, 9, 2) >> 15) === 1;
+      data.lowBattery = bytesToInt(bytes, 9, 2) >> 15 === 1;
 
-      const count = bytesToInt(bytes, 9, 2) & 0x7FFF;
-      if (count === 0x7FFF) {
+      const count = bytesToInt(bytes, 9, 2) & 0x7fff;
+      if (count === 0x7fff) {
         data.reedStatus = "DISABLED";
       } else {
         data.count = count;
@@ -126,7 +126,8 @@ function consume(event) {
       }
 
       break;
-    } case 7: {
+    }
+    case 7: {
       topic = "shutdown";
       const battery = bytes[5];
       if (battery === 0x00 || battery === 0x02) {
@@ -135,7 +136,8 @@ function consume(event) {
         data.lowBattery = true;
       }
       break;
-    } default:
+    }
+    default:
       break;
   }
 

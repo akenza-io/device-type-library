@@ -4,7 +4,6 @@ function consume(event) {
   const lifecycle = {};
   const data = {};
 
-
   data.leakage = Bits.bitsToUnsigned(bits.substr(0, 8));
   data.leakage2 = Bits.bitsToUnsigned(bits.substr(8, 8));
   data.alarmTrigger = Bits.bitsToUnsigned(bits.substr(16, 1));

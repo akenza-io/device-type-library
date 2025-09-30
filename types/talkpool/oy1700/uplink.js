@@ -32,21 +32,11 @@ function consume(event) {
     data.pm10 = Math.round(Bits.bitsToUnsigned(bits.substr(56, 16)));
 
     if (bits.length > 72) {
-      particle.pm0_3 = Math.round(
-        Bits.bitsToUnsigned(bits.substr(72, 16)),
-      );
-      particle.pm0_5 = Math.round(
-        Bits.bitsToUnsigned(bits.substr(88, 16)),
-      );
-      particle.pm1 = Math.round(
-        Bits.bitsToUnsigned(bits.substr(104, 16)),
-      );
-      particle.pm2_5 = Math.round(
-        Bits.bitsToUnsigned(bits.substr(120, 16)),
-      );
-      particle.pm5 = Math.round(
-        Bits.bitsToUnsigned(bits.substr(136, 16)),
-      );
+      particle.pm0_3 = Math.round(Bits.bitsToUnsigned(bits.substr(72, 16)));
+      particle.pm0_5 = Math.round(Bits.bitsToUnsigned(bits.substr(88, 16)));
+      particle.pm1 = Math.round(Bits.bitsToUnsigned(bits.substr(104, 16)));
+      particle.pm2_5 = Math.round(Bits.bitsToUnsigned(bits.substr(120, 16)));
+      particle.pm5 = Math.round(Bits.bitsToUnsigned(bits.substr(136, 16)));
       particle.pm5Larger = Math.round(
         Bits.bitsToUnsigned(bits.substr(152, 16)),
       );

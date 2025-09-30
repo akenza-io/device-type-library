@@ -34,22 +34,22 @@ function ResetReasonMap() {
 ResetReasonMap.get = function (reason_id) {
   switch (reason_id) {
     case ResetReason.POWER_ON:
-      return 'POWER_ON';
+      return "POWER_ON";
     case ResetReason.PIN_RESET:
-      return 'PIN_RESET';
+      return "PIN_RESET";
     case ResetReason.BROWN_OUT:
-      return 'BROWN_OUT';
+      return "BROWN_OUT";
     case ResetReason.SOFTWARE:
-      return 'SOFTWARE';
+      return "SOFTWARE";
     case ResetReason.WATCHDOG:
-      return 'WATCHDOG';
+      return "WATCHDOG";
     default:
-      return 'UNKNOWN';
+      return "UNKNOWN";
   }
 };
 
 ResetReasonMap.has = function (reason_id) {
-  return this.get(reason_id) !== 'UNKNOWN';
+  return this.get(reason_id) !== "UNKNOWN";
 };
 
 const ResetContext = {
@@ -73,34 +73,34 @@ function ResetContextMap() {
 ResetContextMap.get = function (context_id) {
   switch (context_id) {
     case ResetContext.UNKNOWN:
-      return 'UNKNOWN';
+      return "UNKNOWN";
     case ResetContext.DEEP_SLEEP:
-      return 'DEEP_SLEEP';
+      return "DEEP_SLEEP";
     case ResetContext.SOIL_MEASUREMENT:
-      return 'SOIL_MEASUREMENT';
+      return "SOIL_MEASUREMENT";
     case ResetContext.TEMPERATURE_MEASUREMENT:
-      return 'TEMPERATURE_MEASUREMENT';
+      return "TEMPERATURE_MEASUREMENT";
     case ResetContext.VOLTAGE_MEASUREMENT:
-      return 'VOLTAGE_MEASUREMENT';
+      return "VOLTAGE_MEASUREMENT";
     case ResetContext.JOINING_NETWORK:
-      return 'JOINING_NETWORK';
+      return "JOINING_NETWORK";
     case ResetContext.SENDING_UPLINK_CONFIRMED:
-      return 'SENDING_UPLINK_CONFIRMED';
+      return "SENDING_UPLINK_CONFIRMED";
     case ResetContext.SENDING_UPLINK_UNCONFIRMED:
-      return 'SENDING_UPLINK_UNCONFIRMED';
+      return "SENDING_UPLINK_UNCONFIRMED";
     case ResetContext.RECEIVING_DOWNLINK:
-      return 'RECEIVING_DOWNLINK';
+      return "RECEIVING_DOWNLINK";
     case ResetContext.APPLYING_ADR:
-      return 'APPLYING_ADR';
+      return "APPLYING_ADR";
     case ResetContext.OTHER:
-      return 'OTHER';
+      return "OTHER";
     default:
-      return 'UNKNOWN';
+      return "UNKNOWN";
   }
 };
 
 ResetContextMap.has = function (context_id) {
-  return this.get(context_id) !== 'UNKNOWN';
+  return this.get(context_id) !== "UNKNOWN";
 };
 
 function DepthMap() {
@@ -122,7 +122,7 @@ function ProbeModeMap() {
 }
 
 ProbeModeMap.get = function (is_local_mode) {
-  return is_local_mode ? 'LOCAL' : 'CLOUD';
+  return is_local_mode ? "LOCAL" : "CLOUD";
 };
 
 function LinkCheckModeMap() {
@@ -130,28 +130,29 @@ function LinkCheckModeMap() {
 }
 
 LinkCheckModeMap.get = function (is_confirmed_uplinks) {
-  return is_confirmed_uplinks ? 'CONFIRMED_UPLINKS' : 'LINK_CHECKS';
+  return is_confirmed_uplinks ? "CONFIRMED_UPLINKS" : "LINK_CHECKS";
 };
 
 const DataType = {
-  MEASUREMENT: 'Measurement',
-  REPORT1: 'Report_1',
-  REPORT2: 'Report_2',
-  REPORT3: 'Report_3',
-  REPORT4: 'Report_4',
-  REPORT5: 'Report_5',
-  REPORT6: 'Report_6',
-  SOIL_CALIBRATION: 'Soil_Calibration',
+  MEASUREMENT: "Measurement",
+  REPORT1: "Report_1",
+  REPORT2: "Report_2",
+  REPORT3: "Report_3",
+  REPORT4: "Report_4",
+  REPORT5: "Report_5",
+  REPORT6: "Report_6",
+  SOIL_CALIBRATION: "Soil_Calibration",
 };
 
 function pad(pad_str, str, padLeft) {
-  if (typeof str === 'undefined') { return pad_str; }
+  if (typeof str === "undefined") {
+    return pad_str;
+  }
   if (padLeft) {
     return (pad_str + str).slice(-pad_str.length);
   }
 
   return (str + pad_str).substring(0, pad_str.length);
-
 }
 
 function formatString(theString, argumentArray) {
@@ -165,17 +166,19 @@ function formatString(theString, argumentArray) {
 function bytesToFloat16(byte_value) {
   let result = NaN;
   const sign = (byte_value & 0x8000) >> 15;
-  const exponent = (byte_value & 0x7C00) >> 10;
-  const precision = byte_value & 0x03FF;
+  const exponent = (byte_value & 0x7c00) >> 10;
+  const precision = byte_value & 0x03ff;
 
   if (exponent === 0) {
     result = (sign ? -1 : 1) * Math.pow(2, -14) * (precision / Math.pow(2, 10));
-  }
-  else if (exponent == 0x1F) {
-    return (precision === 0) ? NaN : ((sign ? -1 : 1) * Infinity);
-  }
-  else {
-    return (sign ? -1 : 1) * Math.pow(2, exponent - 15) * (1 + (precision / Math.pow(2, 10)));
+  } else if (exponent == 0x1f) {
+    return precision === 0 ? NaN : (sign ? -1 : 1) * Infinity;
+  } else {
+    return (
+      (sign ? -1 : 1) *
+      Math.pow(2, exponent - 15) *
+      (1 + precision / Math.pow(2, 10))
+    );
   }
 
   return result;
@@ -183,11 +186,8 @@ function bytesToFloat16(byte_value) {
 
 function toHexString(byte_array) {
   return Array.prototype.map
-    .call(
-      byte_array,
-      (byte) => (`0${(byte & 0xFF).toString(16)}`).slice(-2)
-    )
-    .join('');
+    .call(byte_array, (byte) => `0${(byte & 0xff).toString(16)}`.slice(-2))
+    .join("");
 }
 
 function decodeMeasurementPayload(payload) {
@@ -203,7 +203,7 @@ function decodeMeasurementPayload(payload) {
   };
 
   if (payload.length < 9) {
-    result.errors = ['Payload is too short'];
+    result.errors = ["Payload is too short"];
     return result;
   }
 
@@ -216,15 +216,16 @@ function decodeMeasurementPayload(payload) {
 
   for (let reading_index = 0; reading_index < nof_readings; reading_index++) {
     const reading_value =
-      ((payload[byte_index + 1] & (bit_mask >>> (8 - bit_mask_shift - 2))) << (8 - bit_mask_shift)) |
+      ((payload[byte_index + 1] & (bit_mask >>> (8 - bit_mask_shift - 2))) <<
+        (8 - bit_mask_shift)) |
       ((payload[byte_index] & (bit_mask << bit_mask_shift)) >>> bit_mask_shift);
 
     let entry = null;
     if (reading_index < 6) {
       entry = {
         value: reading_value == 1023 ? 0.0 : reading_value / 10.0,
-        type: 'volumetric_moisture',
-        unit: '%',
+        type: "volumetric_moisture",
+        unit: "%",
         error_flag: reading_value === 1023,
       };
     } else {
@@ -237,7 +238,7 @@ function decodeMeasurementPayload(payload) {
         if (!result.warnings) {
           result.warnings = [];
         }
-        result.warnings.push('Temperature is too low. Value capped at -30.0 ℃');
+        result.warnings.push("Temperature is too low. Value capped at -30.0 ℃");
       } else if (reading_value == 1021) {
         // maximum measurable temperature
         temperature_reading = 70.0;
@@ -245,15 +246,15 @@ function decodeMeasurementPayload(payload) {
         if (!result.warnings) {
           result.warnings = [];
         }
-        result.warnings.push('Temperature is too high. Value capped at 70.0 ℃');
+        result.warnings.push("Temperature is too high. Value capped at 70.0 ℃");
       } else {
         temperature_reading = (reading_value - 300) / 10.0;
       }
 
       entry = {
         value: temperature_reading,
-        type: 'temperature',
-        unit: '℃',
+        type: "temperature",
+        unit: "℃",
         error_flag: reading_value === 1023,
       };
     }
@@ -271,13 +272,16 @@ function decodeMeasurementPayload(payload) {
   }
 
   const calibration_flag_mask = 0x40;
-  result.data.saturation_point_overshot = (payload[8] & calibration_flag_mask) !== 0;
+  result.data.saturation_point_overshot =
+    (payload[8] & calibration_flag_mask) !== 0;
 
   if (result.data.saturation_point_overshot) {
     if (!result.warnings) {
       result.warnings = [];
     }
-    result.warnings.push('Saturation point overshot detected. Perhaps soil calibration needs re-evaluation');
+    result.warnings.push(
+      "Saturation point overshot detected. Perhaps soil calibration needs re-evaluation",
+    );
   }
 
   return result;
@@ -292,7 +296,7 @@ function decodeKPI1Payload(payload) {
   };
 
   if (payload.length < 9) {
-    result.errors = ['Payload is too short'];
+    result.errors = ["Payload is too short"];
     return result;
   }
 
@@ -300,21 +304,23 @@ function decodeKPI1Payload(payload) {
   const esp_reference = -220;
 
   result.data.battery_voltage = {
-    value: Math.round((((payload[0] >>> 0) / 125.0) + voltage_reference) * 100) / 100.0,
-    unit: 'V',
+    value:
+      Math.round(((payload[0] >>> 0) / 125.0 + voltage_reference) * 100) /
+      100.0,
+    unit: "V",
   };
 
   // Parsing ESP
   result.data.estimated_signal_power = {
     value: (payload[1] >>> 0) + esp_reference,
-    unit: 'dBm',
+    unit: "dBm",
   };
   if (result.data.estimated_signal_power.value < -135) {
-    result.data.estimated_signal_power.status = 'WEAK';
+    result.data.estimated_signal_power.status = "WEAK";
   } else if (result.data.estimated_signal_power.value < -125) {
-    result.data.estimated_signal_power.status = 'AVERAGE';
+    result.data.estimated_signal_power.status = "AVERAGE";
   } else {
-    result.data.estimated_signal_power.status = 'GOOD';
+    result.data.estimated_signal_power.status = "GOOD";
   }
 
   // Parsing saturation overshot
@@ -332,38 +338,43 @@ function decodeKPI1Payload(payload) {
 
   const is_single_depth = (saturation_bit_mask & 0x80) === 0;
 
-  if (is_single_depth && result.data.saturation_point_overshot_depth.length > 1) {
+  if (
+    is_single_depth &&
+    result.data.saturation_point_overshot_depth.length > 1
+  ) {
     if (!result.errors) {
       result.errors = [];
     }
-    result.errors.push('Multiple depth sensor saturation bit mask returned from a single depth sensor');
-  }
-  else if (is_single_depth) {
+    result.errors.push(
+      "Multiple depth sensor saturation bit mask returned from a single depth sensor",
+    );
+  } else if (is_single_depth) {
     result.data.saturation_point_overshot_depth = [0];
   }
 
   const is_major_minor_patch = payload[4] & (1 << 7);
   if (!is_major_minor_patch) {
-    result.data.firmware_version = formatString('%s', [((payload[4] >>> 0) << 8) | (payload[3] >>> 0)]);
-  }
-  else {
-    result.data.firmware_version = formatString('%s.%s.%s', [
-      ((payload[4] & 0x7F) >>> 2),
-      (((payload[4] & 0x03) << 3) | (payload[3] >>> 5)),
-      (payload[3] & 0x1F),
+    result.data.firmware_version = formatString("%s", [
+      ((payload[4] >>> 0) << 8) | (payload[3] >>> 0),
+    ]);
+  } else {
+    result.data.firmware_version = formatString("%s.%s.%s", [
+      (payload[4] & 0x7f) >>> 2,
+      ((payload[4] & 0x03) << 3) | (payload[3] >>> 5),
+      payload[3] & 0x1f,
     ]);
   }
 
-  const reset_context_id = (payload[5] & 0xF0) >>> 4;
-  const reset_reason_id = (payload[5] & 0x0F) >>> 0;
+  const reset_context_id = (payload[5] & 0xf0) >>> 4;
+  const reset_reason_id = (payload[5] & 0x0f) >>> 0;
   result.data.reset = {
     context: ResetContextMap.get(reset_context_id),
     reason: ResetReasonMap.get(reset_reason_id),
   };
 
   result.data.uptime = {
-    value: (payload[8] << 16) | (payload[7] << 8) | (payload[6]),
-    unit: 's',
+    value: (payload[8] << 16) | (payload[7] << 8) | payload[6],
+    unit: "s",
   };
 
   return result;
@@ -378,12 +389,12 @@ function decodeKPI2Payload(payload) {
   };
 
   if (payload.length < 6) {
-    result.errors = ['Payload is too short'];
+    result.errors = ["Payload is too short"];
     return result;
   }
 
   result.data = {
-    history_enabled: ((payload[0] & (1 << 3)) !== 0),
+    history_enabled: (payload[0] & (1 << 3)) !== 0,
     probe_mode: ProbeModeMap.get((payload[0] & (1 << 2)) !== 0),
     watchdog_enabled: (payload[0] & (1 << 1)) !== 0,
     link_check_mode: LinkCheckModeMap.get((payload[0] & 0x01) !== 0),
@@ -394,7 +405,7 @@ function decodeKPI2Payload(payload) {
 
   result.data.sleep_interval = {
     value: ((payload[2] >>> 0) << 8) | (payload[1] >>> 0),
-    unit: 'min',
+    unit: "min",
   };
 
   return result;
@@ -424,19 +435,24 @@ function decodeKPI4Payload(payload) {
   };
 
   if (payload.length < 9) {
-    result.errors = ['Payload is too short'];
+    result.errors = ["Payload is too short"];
     return result;
   }
 
   result.data = {
-    total_number_resets: (payload[4] >>> 0) << 8 | (payload[3] >>> 0),
-    total_number_successful_join_sessions: (payload[6] >>> 0) << 8 | (payload[5] >>> 0),
-    total_number_failed_join_sessions: (payload[8] >>> 0) << 8 | (payload[7] >>> 0),
+    total_number_resets: ((payload[4] >>> 0) << 8) | (payload[3] >>> 0),
+    total_number_successful_join_sessions:
+      ((payload[6] >>> 0) << 8) | (payload[5] >>> 0),
+    total_number_failed_join_sessions:
+      ((payload[8] >>> 0) << 8) | (payload[7] >>> 0),
   };
 
   result.data.total_time_on_air = {
-    value: (payload[2] >>> 0) << 16 | (payload[1] >>> 0) << 8 | (payload[0] >>> 0),
-    unit: 's'
+    value:
+      ((payload[2] >>> 0) << 16) |
+      ((payload[1] >>> 0) << 8) |
+      (payload[0] >>> 0),
+    unit: "s",
   };
 
   return result;
@@ -451,15 +467,21 @@ function decodeKPI5Payload(payload) {
   };
 
   if (payload.length < 9) {
-    result.errors = ['Payload is too short'];
+    result.errors = ["Payload is too short"];
     return result;
   }
 
   result.data = {
-    total_number_uplinks: (payload[2] >>> 0) << 16 | (payload[1] >>> 0) << 8 | (payload[0] >>> 0),
-    total_number_uplinks_sf12: ((payload[4] >>> 0) << 8 | (payload[3] >>> 0)) * 10,
-    total_number_uplinks_sf11: ((payload[6] >>> 0) << 8 | (payload[5] >>> 0)) * 10,
-    total_number_uplinks_sf10: ((payload[8] >>> 0) << 8 | (payload[7] >>> 0)) * 10,
+    total_number_uplinks:
+      ((payload[2] >>> 0) << 16) |
+      ((payload[1] >>> 0) << 8) |
+      (payload[0] >>> 0),
+    total_number_uplinks_sf12:
+      (((payload[4] >>> 0) << 8) | (payload[3] >>> 0)) * 10,
+    total_number_uplinks_sf11:
+      (((payload[6] >>> 0) << 8) | (payload[5] >>> 0)) * 10,
+    total_number_uplinks_sf10:
+      (((payload[8] >>> 0) << 8) | (payload[7] >>> 0)) * 10,
   };
 
   return result;
@@ -474,19 +496,22 @@ function decodeKPI6Payload(payload) {
   };
 
   if (payload.length < 5) {
-    result.errors = ['Payload is too short'];
+    result.errors = ["Payload is too short"];
     return result;
   }
 
   let probe_id = 0;
 
   for (let index = 0; index < 4; index++) {
-    probe_id |= ((payload[index] >>> 0) << (8 * index));
+    probe_id |= (payload[index] >>> 0) << (8 * index);
   }
 
   const product_number = payload[4] >>> 0;
 
-  result.data.serial_number = formatString('%s%s', [product_number, pad('000000000', probe_id.toString(), true)]);
+  result.data.serial_number = formatString("%s%s", [
+    product_number,
+    pad("000000000", probe_id.toString(), true),
+  ]);
 
   return result;
 }
@@ -500,21 +525,19 @@ function decodeSoilCalibrationPayload(payload) {
   };
 
   if (payload.length < 9) {
-    result.errors = ['Payload is too short'];
+    result.errors = ["Payload is too short"];
     return result;
   }
 
   const is_single_depth = (payload[0] & 0x80) === 0;
-  if (is_single_depth && (payload[0] & 0x7F) !== 1) {
+  if (is_single_depth && (payload[0] & 0x7f) !== 1) {
     if (!result.errors) {
       result.errors = [];
     }
-    result.errors.push('Invalid bit mask for single depth sensor');
-  }
-  else if (is_single_depth) {
-    result.data.depth_cm = 0;  // to indicate is single depth
-  }
-  else {
+    result.errors.push("Invalid bit mask for single depth sensor");
+  } else if (is_single_depth) {
+    result.data.depth_cm = 0; // to indicate is single depth
+  } else {
     const depth_map = new DepthMap();
     let depth_counter = 0;
     for (let index = 0; index < depth_map.list().length; index++) {
@@ -529,7 +552,9 @@ function decodeSoilCalibrationPayload(payload) {
         result.errors = [];
       }
       result.data = null;
-      result.errors.push('Multiple depth bit mask for soil calibration retrieval shall contain only one depth');
+      result.errors.push(
+        "Multiple depth bit mask for soil calibration retrieval shall contain only one depth",
+      );
     }
   }
   if (!result.errors) {
@@ -543,24 +568,27 @@ function decodeSoilCalibrationPayload(payload) {
 }
 
 /**
-*
-* @param {int} fport Uplink fport
-* @param {number[]} payload Payload to be decoded
-* @returns Decoded payload
-*/
+ *
+ * @param {int} fport Uplink fport
+ * @param {number[]} payload Payload to be decoded
+ * @returns Decoded payload
+ */
 function decodePayload(fport, payload) {
   const result = { data: {}, topic: "default" };
 
   if (!payload) {
-    result.errors = ['Payload is empty'];
+    result.errors = ["Payload is empty"];
     // Skip historical measurements // || fport === FPort.HISTORICAL_MEASUREMENT
   } else if (fport === FPort.CURRENT_MEASUREMENT) {
     const decoded = decodeMeasurementPayload(payload).data;
 
     let volNumber = 0;
     let tempNumber = 0;
-    decoded.readings.forEach(dataPoint => {
-      if (dataPoint.type === "volumetric_moisture" && dataPoint.error_flag === false) {
+    decoded.readings.forEach((dataPoint) => {
+      if (
+        dataPoint.type === "volumetric_moisture" &&
+        dataPoint.error_flag === false
+      ) {
         if (volNumber === 0) {
           result.data.moisture = dataPoint.value;
         }
@@ -581,7 +609,8 @@ function decodePayload(fport, payload) {
     const decoded = decodeKPI1Payload(payload).data;
     result.data.batteryVoltage = decoded.battery_voltage.value;
     result.data.estimatedSignalPower = decoded.estimated_signal_power;
-    result.data.saturationPointOvershotDepth = decoded.saturation_point_overshot_depth;
+    result.data.saturationPointOvershotDepth =
+      decoded.saturation_point_overshot_depth;
     result.data.firmwareVersion = decoded.firmware_version;
     result.data.reset = decoded.reset.context;
     result.data.uptime = decoded.uptime.value;
@@ -593,8 +622,10 @@ function decodePayload(fport, payload) {
     result.data.probeMode = decoded.probe_mode;
     result.data.watchdogEnabled = decoded.watchdog_enabled;
     result.data.linkCheckMode = decoded.link_check_mode;
-    result.data.networkCheckCounterInterval = decoded.network_check_counter_interval;
-    result.data.networkCheckCounterThreshold = decoded.network_check_counter_threshold;
+    result.data.networkCheckCounterInterval =
+      decoded.network_check_counter_interval;
+    result.data.networkCheckCounterThreshold =
+      decoded.network_check_counter_threshold;
     result.data.numberRetransmissions = decoded.number_retransmissions;
     result.data.sleepInterval = decoded.sleep_interval.value;
 
@@ -607,8 +638,10 @@ function decodePayload(fport, payload) {
   } else if (fport === FPort.KPI4_REPORT) {
     const decoded = decodeKPI4Payload(payload);
     result.data.totalNumberResets = decoded.total_number_resets;
-    result.data.totalNumberSuccessfulJoinSessions = decoded.total_number_successful_join_sessions;
-    result.data.totalNumberFailedJoinSessions = decoded.total_number_failed_join_sessions;
+    result.data.totalNumberSuccessfulJoinSessions =
+      decoded.total_number_successful_join_sessions;
+    result.data.totalNumberFailedJoinSessions =
+      decoded.total_number_failed_join_sessions;
     result.data.totalTimeOnAir = decoded.total_time_on_air;
 
     result.topic = "reset";
@@ -638,14 +671,12 @@ function decodePayload(fport, payload) {
   return result;
 }
 
-
 function consume(event) {
   const payload = event.data.payloadHex;
   const bytes = Hex.hexToBytes(payload);
   const { port } = event.data;
   const data = {};
   const topic = "default";
-
 
   const result = decodePayload(port, bytes);
   if (Object.keys(result.data).length > 0) {

@@ -1,6 +1,6 @@
-function cToF(celsius) { 
- return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
- } 
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
 
 // Also change other IMBuildings uplinks if changing this
 const payloadTypes = {
@@ -30,7 +30,7 @@ function consume(event) {
       lifecycle.deviceStatus = bytes[bytes.length - 10];
       lifecycle.batteryVoltage = readUInt16BE(bytes, bytes.length - 9) / 100;
       data.temperature = readUInt16BE(bytes, bytes.length - 7) / 100;
- data.temperatureF = cToF(data.temperature);
+      data.temperatureF = cToF(data.temperature);
       data.humidity = readUInt16BE(bytes, bytes.length - 5) / 100;
       data.co2 = readUInt16BE(bytes, bytes.length - 3);
       data.presence = bytes[bytes.length - 1] === 1;

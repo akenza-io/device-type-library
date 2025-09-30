@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,47 +13,50 @@ describe("Yosensi YO Meter Pulse uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/battery_voltage.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/battery_voltage.schema.json`).then(
+      (parsedSchema) => {
         batteryVoltageSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let internalTemperatureSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/internal_temperature.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/internal_temperature.schema.json`).then(
+      (parsedSchema) => {
         internalTemperatureSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let humiditySchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/humidity.schema.json`)
-      .then((parsedSchema) => {
-        humiditySchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/humidity.schema.json`).then((parsedSchema) => {
+      humiditySchema = parsedSchema;
+      done();
+    });
   });
 
   let periodicPulseCntSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/periodic_pulse_cnt.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/periodic_pulse_cnt.schema.json`).then(
+      (parsedSchema) => {
         periodicPulseCntSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let persistentPulseCntSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/persistent_pulse_cnt.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/persistent_pulse_cnt.schema.json`).then(
+      (parsedSchema) => {
         persistentPulseCntSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   describe("consume()", () => {

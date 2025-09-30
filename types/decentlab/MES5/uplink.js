@@ -1,6 +1,6 @@
-function cToF(celsius) { 
- return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
- } 
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
 
 const decentlab_decoder = {
   PROTOCOL_VERSION: 2,
@@ -133,7 +133,7 @@ function consume(event) {
   // Default values
   data.status = sample.status;
   data.temperature = sample.temperature;
- data.temperatureF = cToF(data.temperature);
+  data.temperatureF = cToF(data.temperature);
   data.sludgeBlanket = sample.sludge_blanket;
   data.suspendedSolid = sample.suspended_solid;
   data.turbidity = sample.turbidity;

@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,11 +13,10 @@ describe("Globalsat LS-113G uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -37,7 +34,7 @@ describe("Globalsat LS-113G uplink", () => {
 
         assert.equal(value.data.humidity, 50.13);
         assert.equal(value.data.temperature, 24.01);
-         assert.equal(value.data.temperatureF, 75.2);
+        assert.equal(value.data.temperatureF, 75.2);
         assert.equal(value.data.pm2_5, 0);
 
         validateSchema(value.data, defaultSchema, { throwError: true });

@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -52,7 +50,14 @@ describe("Vicki Downlink", () => {
 
     it("should encode the Vicki set target temperature payload", () => {
       const data = {
-        payload: { setOpenWindow: { "enabled": true, "closeTime": 20, "delta": 3, "motorPosition": 540 } },
+        payload: {
+          setOpenWindow: {
+            enabled: true,
+            closeTime: 20,
+            delta: 3,
+            motorPosition: 540,
+          },
+        },
       };
 
       expectEmits((type, value) => {
@@ -68,7 +73,10 @@ describe("Vicki Downlink", () => {
 
     it("should encode a combined Vicki settings payload", () => {
       const data = {
-        payload: { "setTemperatureRange": { "min": 15, "max": 21 }, "setChildLock": true }
+        payload: {
+          setTemperatureRange: { min: 15, max: 21 },
+          setChildLock: true,
+        },
       };
 
       expectEmits((type, value) => {

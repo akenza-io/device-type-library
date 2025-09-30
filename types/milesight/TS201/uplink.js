@@ -1,6 +1,6 @@
-function cToF(celsius) { 
- return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
- } 
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
 
 function readUInt16LE(bytes) {
   const value = (bytes[1] << 8) + bytes[0];
@@ -13,7 +13,8 @@ function readInt16LE(bytes) {
 }
 
 function readUInt32LE(bytes) {
-  const value = (bytes[3] << 24) + (bytes[2] << 16) + (bytes[1] << 8) + bytes[0];
+  const value =
+    (bytes[3] << 24) + (bytes[2] << 16) + (bytes[1] << 8) + bytes[0];
   return (value & 0xffffffff) >>> 0;
 }
 
@@ -44,7 +45,7 @@ function readTslVersion(bytes) {
 function readSerialNumber(bytes) {
   const temp = [];
   for (let idx = 0; idx < bytes.length; idx++) {
-    temp.push((`0${(bytes[idx] & 0xff).toString(16)}`).slice(-2));
+    temp.push(`0${(bytes[idx] & 0xff).toString(16)}`.slice(-2));
   }
   return temp.join("");
 }
@@ -114,7 +115,7 @@ function consume(event) {
   const decoded = {};
   const lifecycle = {};
 
-  for (let i = 0; i < bytes.length;) {
+  for (let i = 0; i < bytes.length; ) {
     const channelId = bytes[i++];
     const channelType = bytes[i++];
 
@@ -159,26 +160,26 @@ function consume(event) {
     // TEMPERATURE
     else if (channelId === 0x03 && channelType === 0x67) {
       decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
- decoded.temperatureF = cToF(decoded.temperature);
+      decoded.temperatureF = cToF(decoded.temperature);
       i += 2;
     }
     // TEMPERATURE THRESHOLD ALARM
     else if (channelId === 0x83 && channelType === 0x67) {
       decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
- decoded.temperatureF = cToF(decoded.temperature);
+      decoded.temperatureF = cToF(decoded.temperature);
       decoded.temperatureAlarm = readAlarmType(bytes[i + 2]);
- decoded.temperatureF = cToF(decoded.temperature);
+      decoded.temperatureF = cToF(decoded.temperature);
       i += 3;
     }
     // TEMPERATURE MUTATION ALARM
     else if (channelId === 0x93 && channelType === 0x67) {
       decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
- decoded.temperatureF = cToF(decoded.temperature);
+      decoded.temperatureF = cToF(decoded.temperature);
       decoded.temperatureMutation = readInt16LE(bytes.slice(i + 2, i + 4)) / 10;
- decoded.temperatureMutationF = cToF(decoded.temperatureMutation);
- decoded.temperatureF = cToF(decoded.temperature);
+      decoded.temperatureMutationF = cToF(decoded.temperatureMutation);
+      decoded.temperatureF = cToF(decoded.temperature);
       decoded.temperatureAlarm = readAlarmType(bytes[i + 4]);
- decoded.temperatureF = cToF(decoded.temperature);
+      decoded.temperatureF = cToF(decoded.temperature);
       i += 5;
     }
     // TEMPERATURE ERROR
@@ -194,7 +195,7 @@ function consume(event) {
       const data = {};
 
       data.temperature = readInt16LE(bytes.slice(i + 5, i + 7)) / 10;
- data.temperatureF = cToF(data.temperature);
+      data.temperatureF = cToF(data.temperature);
       data.readStatus = readStatus((eventType >>> 4) & 0x0f);
       data.eventType = readType(eventType & 0x0f);
 

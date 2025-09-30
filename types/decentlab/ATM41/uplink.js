@@ -247,7 +247,9 @@ function consume(event) {
   lifecycle.protocolVersion = sample.protocol_version;
   lifecycle.deviceID = sample.device_id;
   lifecycle.sensorTemperatureInternal = sample.sensor_temperature_internal;
-  lifecycle.sensorTemperatureInternalF = cToF(lifecycle.sensorTemperatureInternal);
+  lifecycle.sensorTemperatureInternalF = cToF(
+    lifecycle.sensorTemperatureInternal,
+  );
   lifecycle.xOrientationAngle = sample.x_orientation_angle;
   lifecycle.yOrientationAngle = sample.y_orientation_angle;
   lifecycle.compassHeading = sample.compass_heading;

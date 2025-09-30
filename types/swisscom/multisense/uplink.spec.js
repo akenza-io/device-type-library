@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,56 +13,52 @@ describe("Swisscom Multisense Uplinks", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/temperature.schema.json`)
-      .then((parsedSchema) => {
-        temperatureSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/temperature.schema.json`).then((parsedSchema) => {
+      temperatureSchema = parsedSchema;
+      done();
+    });
   });
 
   let humiditySchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/humidity.schema.json`)
-      .then((parsedSchema) => {
-        humiditySchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/humidity.schema.json`).then((parsedSchema) => {
+      humiditySchema = parsedSchema;
+      done();
+    });
   });
 
   let buttonEventSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/button_event.schema.json`)
-      .then((parsedSchema) => {
-        buttonEventSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/button_event.schema.json`).then((parsedSchema) => {
+      buttonEventSchema = parsedSchema;
+      done();
+    });
   });
 
   let reedCounterSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/reed_counter.schema.json`)
-      .then((parsedSchema) => {
-        reedCounterSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/reed_counter.schema.json`).then((parsedSchema) => {
+      reedCounterSchema = parsedSchema;
+      done();
+    });
   });
 
   let motionCounterSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/motion_counter.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/motion_counter.schema.json`).then(
+      (parsedSchema) => {
         motionCounterSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let accelerationSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/acceleration.schema.json`)
-      .then((parsedSchema) => {
-        accelerationSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/acceleration.schema.json`).then((parsedSchema) => {
+      accelerationSchema = parsedSchema;
+      done();
+    });
   });
 
   let eventSchema = null;
@@ -77,11 +71,10 @@ describe("Swisscom Multisense Uplinks", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -101,7 +94,7 @@ describe("Swisscom Multisense Uplinks", () => {
 
         assert.equal(value.topic, "temperature");
         assert.equal(value.data.temperature, 23.73);
-         assert.equal(value.data.temperatureF, 74.7);
+        assert.equal(value.data.temperatureF, 74.7);
 
         validateSchema(value.data, temperatureSchema, {
           throwError: true,

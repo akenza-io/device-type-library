@@ -278,9 +278,9 @@ function parseVOCMeasurement(payload, isNew) {
     variable: "voc",
     value: Number(
       0x00000000 |
-      (payloadToByteArray[12] & 0x000000ff) |
-      ((payloadToByteArray[13] << 8) & 0x0000ff00) |
-      ((payloadToByteArray[14] << 16) & 0x00ff0000),
+        (payloadToByteArray[12] & 0x000000ff) |
+        ((payloadToByteArray[13] << 8) & 0x0000ff00) |
+        ((payloadToByteArray[14] << 16) & 0x00ff0000),
     ).toFixed(),
     unit: "IAQ/ppb",
   };
@@ -405,9 +405,9 @@ function parseCo2Measurement(payload, isNew) {
     variable: "voc",
     value: Number(
       0x00000000 |
-      (payloadToByteArray[12] & 0x000000ff) |
-      ((payloadToByteArray[13] << 8) & 0x0000ff00) |
-      ((payloadToByteArray[14] << 16) & 0x00ff0000),
+        (payloadToByteArray[12] & 0x000000ff) |
+        ((payloadToByteArray[13] << 8) & 0x0000ff00) |
+        ((payloadToByteArray[14] << 16) & 0x00ff0000),
     ).toFixed(),
     unit: "IAQ/ppb",
   };
@@ -512,7 +512,7 @@ function parseModBus(payloads) {
               variable: "length",
               value: Number(
                 ((payloadToByteArray[2] << 8) & 0x0000ff00) |
-                (payloadToByteArray[1] & 0x000000ff),
+                  (payloadToByteArray[1] & 0x000000ff),
               ).toFixed(),
             };
 
@@ -548,7 +548,7 @@ function parsePM(payload) {
         variable: "pm1",
         value: Number(
           (payloadToByteArray[4] & 0xff) +
-          ((payloadToByteArray[5] << 8) & 0xff00),
+            ((payloadToByteArray[5] << 8) & 0xff00),
         ).toFixed(),
         unit: "micro g/m3",
       };
@@ -556,7 +556,7 @@ function parsePM(payload) {
         variable: "pm25",
         value: Number(
           (payloadToByteArray[6] & 0xff) +
-          ((payloadToByteArray[7] << 8) & 0xff00),
+            ((payloadToByteArray[7] << 8) & 0xff00),
         ).toFixed(),
         unit: "micro g/m3",
       };
@@ -564,7 +564,7 @@ function parsePM(payload) {
         variable: "pm10",
         value: Number(
           (payloadToByteArray[8] & 0xff) +
-          ((payloadToByteArray[9] << 8) & 0xff00),
+            ((payloadToByteArray[9] << 8) & 0xff00),
         ).toFixed(),
         unit: "micro g/m3",
       };
@@ -610,7 +610,7 @@ function parseTERPM(payload) {
         variable: "pm1",
         value: Number(
           (payloadToByteArray[10] & 0xff) +
-          ((payloadToByteArray[11] << 8) & 0xff00),
+            ((payloadToByteArray[11] << 8) & 0xff00),
         ).toFixed(),
         unit: "micro g/m3",
       };
@@ -618,7 +618,7 @@ function parseTERPM(payload) {
         variable: "pm25",
         value: Number(
           (payloadToByteArray[12] & 0xff) +
-          ((payloadToByteArray[13] << 8) & 0xff00),
+            ((payloadToByteArray[13] << 8) & 0xff00),
         ).toFixed(),
         unit: "micro g/m3",
       };
@@ -626,7 +626,7 @@ function parseTERPM(payload) {
         variable: "pm10",
         value: Number(
           (payloadToByteArray[14] & 0xff) +
-          ((payloadToByteArray[15] << 8) & 0xff00),
+            ((payloadToByteArray[15] << 8) & 0xff00),
         ).toFixed(),
         unit: "micro g/m3",
       };
@@ -658,7 +658,7 @@ function parseWeather(payload) {
         value: getAtmosphericPressure(
           (((payloadToByteArray[3] << 8) & 0x0000ff00) |
             (payloadToByteArray[2] & 0x000000ff)) /
-          1000.0,
+            1000.0,
         ),
         unit: "hPa",
       };
@@ -667,7 +667,7 @@ function parseWeather(payload) {
         value: getFahrenheitToCelsius(
           (((payloadToByteArray[5] << 8) & 0x0000ff00) |
             (payloadToByteArray[4] & 0x000000ff)) /
-          10.0,
+            10.0,
         ),
         unit: "°C",
       };
@@ -685,7 +685,7 @@ function parseWeather(payload) {
         variable: "windDirection",
         value: Number(
           ((payloadToByteArray[9] << 8) & 0x0000ff00) |
-          (payloadToByteArray[8] & 0x000000ff),
+            (payloadToByteArray[8] & 0x000000ff),
         ).toFixed(2),
         unit: "°",
       };
@@ -698,7 +698,7 @@ function parseWeather(payload) {
         variable: "rainRate",
         value: getRainRate(
           ((payloadToByteArray[12] << 8) & 0x0000ff00) |
-          (payloadToByteArray[11] & 0x000000ff),
+            (payloadToByteArray[11] & 0x000000ff),
         ),
         unit: "mm/h",
       };
@@ -710,7 +710,7 @@ function parseWeather(payload) {
         variable: "solarRadiation",
         value: Number(
           ((payloadToByteArray[15] << 8) & 0x0000ff00) |
-          (payloadToByteArray[14] & 0x000000ff),
+            (payloadToByteArray[14] & 0x000000ff),
         ).toFixed(2),
         unit: "W/m²",
       };
@@ -718,7 +718,7 @@ function parseWeather(payload) {
         variable: "dayRain",
         value: getRainRate(
           ((payloadToByteArray[17] << 8) & 0x0000ff00) |
-          (payloadToByteArray[16] & 0x000000ff),
+            (payloadToByteArray[16] & 0x000000ff),
         ),
         unit: "mm",
       };
@@ -726,7 +726,7 @@ function parseWeather(payload) {
         variable: "dayET",
         value: getET(
           ((payloadToByteArray[19] << 8) & 0x0000ff00) |
-          (payloadToByteArray[18] & 0x000000ff),
+            (payloadToByteArray[18] & 0x000000ff),
         ),
         unit: "mm",
       };

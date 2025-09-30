@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,20 +13,18 @@ describe("Xovis V5 Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/line_count.schema.json`)
-      .then((parsedSchema) => {
-        lineCountSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/line_count.schema.json`).then((parsedSchema) => {
+      lineCountSchema = parsedSchema;
+      done();
+    });
   });
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   let countSchema = null;
@@ -49,11 +45,10 @@ describe("Xovis V5 Uplink", () => {
 
   let faceMaskSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/face_mask.schema.json`)
-      .then((parsedSchema) => {
-        faceMaskSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/face_mask.schema.json`).then((parsedSchema) => {
+      faceMaskSchema = parsedSchema;
+      done();
+    });
   });
 
   let genderSchema = null;
@@ -74,11 +69,12 @@ describe("Xovis V5 Uplink", () => {
 
   let viewDirectionSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/view_direction.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/view_direction.schema.json`).then(
+      (parsedSchema) => {
         viewDirectionSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let queueSchema = null;
@@ -91,11 +87,10 @@ describe("Xovis V5 Uplink", () => {
 
   let queueTimeSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/queue_time.schema.json`)
-      .then((parsedSchema) => {
-        queueTimeSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/queue_time.schema.json`).then((parsedSchema) => {
+      queueTimeSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {

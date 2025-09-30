@@ -46,7 +46,7 @@ function consume(event) {
     lifecycle.id = readUInt24BE(bytes.slice(0, 3));
     lifecycle.type = bytes[3];
     lifecycle.seqCounter = bytes[4];
-    lifecycle.fwVersion = bytes[5] & 0x3F;
+    lifecycle.fwVersion = bytes[5] & 0x3f;
 
     // --- Default ---
     decoded.temperature = readInt16BE(bytes.slice(6, 8)) / 10;
@@ -65,9 +65,8 @@ function consume(event) {
     const batteryLevels = [100, 75, 50, 25]; // percent
     lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
-    decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";
+    decoded.msgType = status & 0x01 ? "ALARM" : "NORMAL";
     decoded.rbe = Boolean((status >> 9) & 0x01);
-
   } else if (len === 34) {
     // === Datalogging Frame ===
 
@@ -75,7 +74,7 @@ function consume(event) {
     lifecycle.id = readUInt24BE(bytes.slice(0, 3));
     lifecycle.type = bytes[3];
     lifecycle.seqCounter = bytes[4];
-    lifecycle.fwVersion = bytes[5] & 0x3F;
+    lifecycle.fwVersion = bytes[5] & 0x3f;
 
     datalog.tempeartureDatalog = [];
     datalog.humidityDatalog = [];
@@ -99,13 +98,14 @@ function consume(event) {
     const batteryLevels = [100, 75, 50, 25];
     lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
-    decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";
+    decoded.msgType = status & 0x01 ? "ALARM" : "NORMAL";
     decoded.rbe = Boolean((status >> 9) & 0x01);
 
     emit("sample", { data: datalog, topic: "datalog" });
-
   } else {
-    throw new Error(`Unsupported payload length: ${len} bytes. Expected 30 or 34.`);
+    throw new Error(
+      `Unsupported payload length: ${len} bytes. Expected 30 or 34.`,
+    );
   }
 
   // --- Emit ---

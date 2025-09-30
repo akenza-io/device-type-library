@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,29 +13,26 @@ describe("Vegapulse Air 42", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/distance.schema.json`)
-      .then((parsedSchema) => {
-        distanceSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/distance.schema.json`).then((parsedSchema) => {
+      distanceSchema = parsedSchema;
+      done();
+    });
   });
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   let temperatureSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/temperature.schema.json`)
-      .then((parsedSchema) => {
-        temperatureSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/temperature.schema.json`).then((parsedSchema) => {
+      temperatureSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -85,7 +80,7 @@ describe("Vegapulse Air 42", () => {
 
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryLevel, 36);
-        assert.equal(value.data.namurState, 'GOOD');
+        assert.equal(value.data.namurState, "GOOD");
 
         validateSchema(value.data, lifecycleSchema, { throwError: true });
       });

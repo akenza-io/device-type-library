@@ -6,7 +6,6 @@ const currentTotalChns = [0x03, 0x05, 0x07];
 const currentChns = [0x04, 0x06, 0x08];
 const currentAlarmChns = [0x84, 0x86, 0x88];
 
-
 function readUInt16LE(bytes) {
   const value = (bytes[1] << 8) + bytes[0];
   return value & 0xffff;
@@ -18,7 +17,8 @@ function readInt16LE(bytes) {
 }
 
 function readUInt32LE(bytes) {
-  const value = (bytes[3] << 24) + (bytes[2] << 16) + (bytes[1] << 8) + bytes[0];
+  const value =
+    (bytes[3] << 24) + (bytes[2] << 16) + (bytes[1] << 8) + bytes[0];
   return (value & 0xffffffff) >>> 0;
 }
 
@@ -59,7 +59,7 @@ function readTslVersion(bytes) {
 function readSerialNumber(bytes) {
   const temp = [];
   for (let idx = 0; idx < bytes.length; idx++) {
-    temp.push((`0${(bytes[idx] & 0xff).toString(16)}`).slice(-2));
+    temp.push(`0${(bytes[idx] & 0xff).toString(16)}`.slice(-2));
   }
   return temp.join("");
 }
@@ -107,7 +107,7 @@ function consume(event) {
   const system = {};
   const channels = { channel1: {}, channel2: {}, channel3: {} };
 
-  for (let i = 0; i < bytes.length;) {
+  for (let i = 0; i < bytes.length; ) {
     const channelId = bytes[i++];
     const channelType = bytes[i++];
 
@@ -161,7 +161,8 @@ function consume(event) {
     // TOTAL CURRENT
     else if (includes(currentTotalChns, channelId) && channelType === 0x97) {
       const currentChannel = currentTotalChns.indexOf(channelId) + 1;
-      channels[`channel${currentChannel}`].totalCurrent = readUInt32LE(bytes.slice(i, i + 4)) / 100;
+      channels[`channel${currentChannel}`].totalCurrent =
+        readUInt32LE(bytes.slice(i, i + 4)) / 100;
       i += 4;
     }
     // CURRENT
@@ -178,10 +179,15 @@ function consume(event) {
     // CURRENT ALARM
     else if (includes(currentAlarmChns, channelId) && channelType === 0x99) {
       const currentChannel = currentAlarmChns.indexOf(channelId) + 1;
-      channels[`channel${currentChannel}`].currentMax = readUInt16LE(bytes.slice(i, i + 2)) / 10;
-      channels[`channel${currentChannel}`].currentMin = readUInt16LE(bytes.slice(i + 2, i + 4)) / 10;
-      channels[`channel${currentChannel}`].current = readUInt16LE(bytes.slice(i + 4, i + 6)) / 10;
-      channels[`channel${currentChannel}`].alarm = readCurrentAlarm(bytes[i + 6]);
+      channels[`channel${currentChannel}`].currentMax =
+        readUInt16LE(bytes.slice(i, i + 2)) / 10;
+      channels[`channel${currentChannel}`].currentMin =
+        readUInt16LE(bytes.slice(i + 2, i + 4)) / 10;
+      channels[`channel${currentChannel}`].current =
+        readUInt16LE(bytes.slice(i + 4, i + 6)) / 10;
+      channels[`channel${currentChannel}`].alarm = readCurrentAlarm(
+        bytes[i + 6],
+      );
       i += 7;
     }
     // TEMPERATURE ALARM

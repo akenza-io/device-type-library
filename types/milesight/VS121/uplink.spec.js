@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -16,11 +14,10 @@ describe("VS121 Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   let countSchema = null;
@@ -41,11 +38,10 @@ describe("VS121 Uplink", () => {
 
   let peopleMaxSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/people_max.schema.json`)
-      .then((parsedSchema) => {
-        peopleMaxSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/people_max.schema.json`).then((parsedSchema) => {
+      peopleMaxSchema = parsedSchema;
+      done();
+    });
   });
 
   let aFlowSchema = null;
@@ -82,20 +78,18 @@ describe("VS121 Uplink", () => {
 
   let dwellTimeSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/dwell_time.schema.json`)
-      .then((parsedSchema) => {
-        dwellTimeSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/dwell_time.schema.json`).then((parsedSchema) => {
+      dwellTimeSchema = parsedSchema;
+      done();
+    });
   });
 
   let regionCountSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/region_count.schema.json`)
-      .then((parsedSchema) => {
-        regionCountSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/region_count.schema.json`).then((parsedSchema) => {
+      regionCountSchema = parsedSchema;
+      done();
+    });
   });
 
   let totalSchema = null;

@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -23,20 +21,18 @@ describe("Watecco BoB Uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   let learningSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/learning.schema.json`)
-      .then((parsedSchema) => {
-        learningSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/learning.schema.json`).then((parsedSchema) => {
+      learningSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {

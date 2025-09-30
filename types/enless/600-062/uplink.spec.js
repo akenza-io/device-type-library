@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 describe("Enless 600-062 Uplink Uplink", () => {
@@ -15,33 +13,30 @@ describe("Enless 600-062 Uplink Uplink", () => {
     before((done) => {
       const script = rewire(`${__dirname}/uplink.js`);
       consume = init(script);
-      loadSchema(`${__dirname}/default.schema.json`)
-        .then((parsedSchema) => {
-          defaultSchema = parsedSchema;
-          done();
-        });
+      loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+        defaultSchema = parsedSchema;
+        done();
+      });
     });
 
     let lifecycleSchema = null;
     before((done) => {
       const script = rewire(`${__dirname}/uplink.js`);
       consume = init(script);
-      loadSchema(`${__dirname}/lifecycle.schema.json`)
-        .then((parsedSchema) => {
-          lifecycleSchema = parsedSchema;
-          done();
-        });
+      loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+        lifecycleSchema = parsedSchema;
+        done();
+      });
     });
 
     let alarmSchema = null;
     before((done) => {
       const script = rewire(`${__dirname}/uplink.js`);
       consume = init(script);
-      loadSchema(`${__dirname}/alarm.schema.json`)
-        .then((parsedSchema) => {
-          alarmSchema = parsedSchema;
-          done();
-        });
+      loadSchema(`${__dirname}/alarm.schema.json`).then((parsedSchema) => {
+        alarmSchema = parsedSchema;
+        done();
+      });
     });
 
     it("should decode MCF-LW12CO2E climate payload", () => {

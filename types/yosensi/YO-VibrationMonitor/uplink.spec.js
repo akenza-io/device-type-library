@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,110 +13,110 @@ describe("Yosensi YO Vibration uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/battery_voltage.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/battery_voltage.schema.json`).then(
+      (parsedSchema) => {
         batteryVoltageSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let internalTemperatureSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/internal_temperature.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/internal_temperature.schema.json`).then(
+      (parsedSchema) => {
         internalTemperatureSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let humiditySchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/humidity.schema.json`)
-      .then((parsedSchema) => {
-        humiditySchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/humidity.schema.json`).then((parsedSchema) => {
+      humiditySchema = parsedSchema;
+      done();
+    });
   });
 
   let externalTemperatureSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/external_temperature.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/external_temperature.schema.json`).then(
+      (parsedSchema) => {
         externalTemperatureSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let rmsAccelerationSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/rms_acceleration.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/rms_acceleration.schema.json`).then(
+      (parsedSchema) => {
         rmsAccelerationSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let peakAccelerationSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/peak_acceleration.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/peak_acceleration.schema.json`).then(
+      (parsedSchema) => {
         peakAccelerationSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let crestFactorSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/crest_factor.schema.json`)
-      .then((parsedSchema) => {
-        crestFactorSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/crest_factor.schema.json`).then((parsedSchema) => {
+      crestFactorSchema = parsedSchema;
+      done();
+    });
   });
 
   let standardDeviationSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/standard_deviation.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/standard_deviation.schema.json`).then(
+      (parsedSchema) => {
         standardDeviationSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let skewnessSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/skewness.schema.json`)
-      .then((parsedSchema) => {
-        skewnessSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/skewness.schema.json`).then((parsedSchema) => {
+      skewnessSchema = parsedSchema;
+      done();
+    });
   });
 
   let kurtosisSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/kurtosis.schema.json`)
-      .then((parsedSchema) => {
-        kurtosisSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/kurtosis.schema.json`).then((parsedSchema) => {
+      kurtosisSchema = parsedSchema;
+      done();
+    });
   });
 
   let rmsVelocitySchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/rms_velocity.schema.json`)
-      .then((parsedSchema) => {
-        rmsVelocitySchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/rms_velocity.schema.json`).then((parsedSchema) => {
+      rmsVelocitySchema = parsedSchema;
+      done();
+    });
   });
 
   let displacementSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/displacement.schema.json`)
-      .then((parsedSchema) => {
-        displacementSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/displacement.schema.json`).then((parsedSchema) => {
+      displacementSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {

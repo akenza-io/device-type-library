@@ -228,18 +228,18 @@ function consume(event) {
           obj.counter.push([
             data[i + 1],
             (data[i + 2] << 24) |
-            (data[i + 3] << 16) |
-            (data[i + 4] << 8) |
-            data[i + 5],
+              (data[i + 3] << 16) |
+              (data[i + 4] << 8) |
+              data[i + 5],
           ]);
         } else {
           obj.counter = [
             [
               data[i + 1],
               (data[i + 2] << 24) |
-              (data[i + 3] << 16) |
-              (data[i + 4] << 8) |
-              data[i + 5],
+                (data[i + 3] << 16) |
+                (data[i + 4] << 8) |
+                data[i + 5],
             ],
           ];
         }

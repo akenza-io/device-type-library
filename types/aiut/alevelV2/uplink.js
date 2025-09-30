@@ -1,6 +1,6 @@
-function cToF(celsius) { 
- return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
- } 
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
 
 function consume(event) {
   const payload = event.data.payloadHex;
@@ -11,7 +11,7 @@ function consume(event) {
   // Reserved 0-8
   lifecycle.sequenceNumber = Bits.bitsToUnsigned(bits.substr(8, 8));
   data.temperature = Bits.bitsToSigned(bits.substr(16, 8));
- data.temperatureF = cToF(data.temperature);
+  data.temperatureF = cToF(data.temperature);
 
   const batteryStatus = Bits.bitsToUnsigned(bits.substr(24, 2));
   if (batteryStatus === 0) {

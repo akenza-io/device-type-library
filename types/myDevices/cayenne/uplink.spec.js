@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,11 +13,12 @@ describe("Cayenne uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/accelerometer.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/accelerometer.schema.json`).then(
+      (parsedSchema) => {
         accelerometerSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let analogSchema = null;
@@ -32,20 +31,18 @@ describe("Cayenne uplink", () => {
 
   let barometerSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/barometer.schema.json`)
-      .then((parsedSchema) => {
-        barometerSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/barometer.schema.json`).then((parsedSchema) => {
+      barometerSchema = parsedSchema;
+      done();
+    });
   });
 
   let digitalSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/digital.schema.json`)
-      .then((parsedSchema) => {
-        digitalSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/digital.schema.json`).then((parsedSchema) => {
+      digitalSchema = parsedSchema;
+      done();
+    });
   });
 
   let gpsSchema = null;
@@ -58,20 +55,18 @@ describe("Cayenne uplink", () => {
 
   let gyrometerSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/gyrometer.schema.json`)
-      .then((parsedSchema) => {
-        gyrometerSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/gyrometer.schema.json`).then((parsedSchema) => {
+      gyrometerSchema = parsedSchema;
+      done();
+    });
   });
 
   let humiditySchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/humidity.schema.json`)
-      .then((parsedSchema) => {
-        humiditySchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/humidity.schema.json`).then((parsedSchema) => {
+      humiditySchema = parsedSchema;
+      done();
+    });
   });
 
   let lightSchema = null;
@@ -84,20 +79,18 @@ describe("Cayenne uplink", () => {
 
   let temperatureSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/temperature.schema.json`)
-      .then((parsedSchema) => {
-        temperatureSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/temperature.schema.json`).then((parsedSchema) => {
+      temperatureSchema = parsedSchema;
+      done();
+    });
   });
 
   let presenceSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/presence.schema.json`)
-      .then((parsedSchema) => {
-        presenceSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/presence.schema.json`).then((parsedSchema) => {
+      presenceSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {

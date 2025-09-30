@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -20,27 +18,24 @@ describe("Decentlab WRM Uplink", () => {
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
     it("should decode the Decentlab WRM payload", () => {
       const data = {
         data: {
-          payloadHex:
-            "021a10000764a079b104f904c40c60",
+          payloadHex: "021a10000764a079b104f904c40c60",
         },
       };
 
@@ -52,11 +47,11 @@ describe("Decentlab WRM Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.humidity, 47.536430914778364);
         assert.equal(value.data.temperature, 23.787670710307466);
-         assert.equal(value.data.temperatureF, 74.8);
+        assert.equal(value.data.temperatureF, 74.8);
         assert.equal(value.data.headTemperature, 22);
-         assert.equal(value.data.headTemperatureF, 71.6);
+        assert.equal(value.data.headTemperatureF, 71.6);
         assert.equal(value.data.surfaceTemperature, 27.3);
-         assert.equal(value.data.surfaceTemperatureF, 81.1);
+        assert.equal(value.data.surfaceTemperatureF, 81.1);
 
         validateSchema(value.data, defaultSchema, { throwError: true });
       });

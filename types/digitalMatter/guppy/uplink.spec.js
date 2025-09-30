@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -38,7 +36,7 @@ describe("Digital matter Guppy Uplink", () => {
         assert.equal(value.topic, "status");
         assert.equal(value.data.inTrip, true);
         assert.equal(value.data.temperature, 25);
-         assert.equal(value.data.temperatureF, 77);
+        assert.equal(value.data.temperatureF, 77);
         assert.equal(value.data.batteryVoltage, 3.358);
 
         validateSchema(value.data, statusSchema, { throwError: true });
@@ -63,7 +61,7 @@ describe("Digital matter Guppy Uplink", () => {
         assert.equal(value.topic, "status");
         assert.equal(value.data.inTrip, true);
         assert.equal(value.data.temperature, 25);
-         assert.equal(value.data.temperatureF, 77);
+        assert.equal(value.data.temperatureF, 77);
         assert.equal(value.data.batteryVoltage, 3.36);
 
         assert.equal(value.data.inclinationDeg, 51);

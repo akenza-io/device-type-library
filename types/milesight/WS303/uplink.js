@@ -22,7 +22,7 @@ function consume(event) {
   const data = {};
   const lifecycle = {};
 
-  for (let i = 0; i < bytes.length;) {
+  for (let i = 0; i < bytes.length; ) {
     const channelId = bytes[i++];
     const channelType = bytes[i++];
     // BATTERY

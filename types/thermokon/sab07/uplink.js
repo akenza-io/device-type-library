@@ -18,20 +18,20 @@ function consume(event) {
   // Climate data
   if (command === 0x81) {
     defaultData.sensorTemperature = parseFloat(
-      ((keepaliveBytes[2] - 28.33333) / 5.66666).toFixed(2)
+      ((keepaliveBytes[2] - 28.33333) / 5.66666).toFixed(2),
     );
     defaultData.sensorTemperatureF = cToF(defaultData.sensorTemperature);
   } else {
     // command === 0x01
     defaultData.sensorTemperature = parseFloat(
-      ((keepaliveBytes[2] * 165) / 256 - 40).toFixed(2)
+      ((keepaliveBytes[2] * 165) / 256 - 40).toFixed(2),
     );
     defaultData.sensorTemperatureF = cToF(defaultData.sensorTemperature);
   }
   defaultData.targetTemperature = keepaliveBytes[1];
   defaultData.targetTemperatureF = cToF(defaultData.targetTemperature);
   defaultData.relativeHumidity = parseFloat(
-    ((keepaliveBytes[3] * 100) / 256).toFixed(2)
+    ((keepaliveBytes[3] * 100) / 256).toFixed(2),
   );
 
   // Actuator data
@@ -40,7 +40,7 @@ function consume(event) {
 
   // Lifecycle data
   lifecycle.batteryVoltage = parseFloat(
-    (2 + ((keepaliveBytes[7] >> 4) & 0x0f) * 0.1).toFixed(2)
+    (2 + ((keepaliveBytes[7] >> 4) & 0x0f) * 0.1).toFixed(2),
   );
 
   // Status flags from byte 7
@@ -59,14 +59,14 @@ function consume(event) {
 
   emit("sample", {
     topic: "default",
-    data: defaultData
+    data: defaultData,
   });
   emit("sample", {
     data: actuator,
-    topic: "actuator"
+    topic: "actuator",
   });
   emit("sample", {
     data: lifecycle,
-    topic: "lifecycle"
+    topic: "lifecycle",
   });
 }

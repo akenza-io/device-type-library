@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,11 +13,10 @@ describe("Digital Technologies Humidity Sensor Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -59,46 +56,46 @@ describe("Digital Technologies Humidity Sensor Uplink", () => {
     it("should decode the Digital Technologies new multi sample Sensor payload", () => {
       const data = {
         data: {
-          "humidity": {
-            "temperature": 0,
-            "relativeHumidity": 0,
-            "samples": [
+          humidity: {
+            temperature: 0,
+            relativeHumidity: 0,
+            samples: [
               {
-                "temperature": 0,
-                "relativeHumidity": 0,
-                "sampleTime": "2025-06-20T12:21:28.128000Z"
+                temperature: 0,
+                relativeHumidity: 0,
+                sampleTime: "2025-06-20T12:21:28.128000Z",
               },
               {
-                "temperature": 0.5,
-                "relativeHumidity": 0.5,
-                "sampleTime": "2025-06-20T12:18:28.128000Z"
+                temperature: 0.5,
+                relativeHumidity: 0.5,
+                sampleTime: "2025-06-20T12:18:28.128000Z",
               },
               {
-                "temperature": 0.8,
-                "relativeHumidity": 0.8,
-                "sampleTime": "2025-06-20T12:15:28.128000Z"
+                temperature: 0.8,
+                relativeHumidity: 0.8,
+                sampleTime: "2025-06-20T12:15:28.128000Z",
               },
               {
-                "temperature": 1,
-                "relativeHumidity": 1,
-                "sampleTime": "2025-06-20T12:12:28.128000Z"
+                temperature: 1,
+                relativeHumidity: 1,
+                sampleTime: "2025-06-20T12:12:28.128000Z",
               },
               {
-                "temperature": 0.9,
-                "relativeHumidity": 0.9,
-                "sampleTime": "2025-06-20T12:09:28.128000Z"
-              }
+                temperature: 0.9,
+                relativeHumidity: 0.9,
+                sampleTime: "2025-06-20T12:09:28.128000Z",
+              },
             ],
-            "updateTime": "2025-06-20T12:21:28.128000Z",
-            "isBackfilled": false
+            updateTime: "2025-06-20T12:21:28.128000Z",
+            isBackfilled: false,
           },
-          "eventType": "humidity",
-          "labels": {
-            "name": "Humidity Emulator"
+          eventType: "humidity",
+          labels: {
+            name: "Humidity Emulator",
           },
-          "eventId": "",
-          "targetName": ""
-        }
+          eventId: "",
+          targetName: "",
+        },
       };
 
       expectEmits((type, value) => {

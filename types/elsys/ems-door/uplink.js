@@ -378,7 +378,14 @@ function DecodeElsysSettings(input) {
     const d = Array.from(bytes).slice(i, i + setting.size);
 
     // Do not emit LoRa Secrets
-    const sensitiveInfo = ["appSKey", "nwkSKey", "devEui", "appEui", "appKey", "devAddr"];
+    const sensitiveInfo = [
+      "appSKey",
+      "nwkSKey",
+      "devEui",
+      "appEui",
+      "appKey",
+      "devAddr",
+    ];
     if (sensitiveInfo.indexOf(setting.name) === -1) {
       if (setting.parse == null) {
         payload[setting.name] = d;
@@ -532,14 +539,17 @@ function consume(event) {
     }
 
     if (deleteUnusedKeys(occupancy)) {
-      // Warm desk 
+      // Warm desk
       const time = new Date().getTime();
       occupancy.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
       if (occupancy.occupied) {
         delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
       } else if (state.lastOccupancyTimestamp !== undefined) {
-        occupancy.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
-      } else if (state.lastOccupiedValue) { //
+        occupancy.minutesSinceLastOccupied = Math.round(
+          (time - state.lastOccupancyTimestamp) / 1000 / 60,
+        ); // Get free since
+      } else if (state.lastOccupiedValue) {
+        //
         state.lastOccupancyTimestamp = time; // Start with first no occupancy
       }
 

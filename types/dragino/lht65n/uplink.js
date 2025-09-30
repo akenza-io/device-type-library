@@ -97,7 +97,13 @@ function decoder(bytes, port) {
   const pollMessageStatus = (bytes[6] >> 7) & 0x01;
   const connect = (bytes[6] & 0x80) >> 7;
   let decode = { lifecycle: {}, decoded: {}, external: {}, datalog: {} };
-  if ((port === 3) && ((bytes[2] === 0x01) || (bytes[2] === 0x02) || (bytes[2] === 0x03) || (bytes[2] === 0x04))) {
+  if (
+    port === 3 &&
+    (bytes[2] === 0x01 ||
+      bytes[2] === 0x02 ||
+      bytes[2] === 0x03 ||
+      bytes[2] === 0x04)
+  ) {
     const array1 = [];
     const bytes1 = "0x";
     const str1 = Str1(bytes);
@@ -139,7 +145,7 @@ function decoder(bytes, port) {
   }
   switch (pollMessageStatus) {
     case 0:
-      if (ext === 0x09 || ext === 0x0A) {
+      if (ext === 0x09 || ext === 0x0a) {
         decode.decoded.temperature = parseFloat(
           ((((bytes[0] << 24) >> 16) | bytes[1]) / 100).toFixed(2),
         );
@@ -260,7 +266,8 @@ function decoder(bytes, port) {
       if (bytes.length === 11) {
         return decode;
         // Illegal payload
-      } if (bytes.length === 8) {
+      }
+      if (bytes.length === 8) {
         decode = { lifecycle: {}, decoded: {}, external: {}, datalog: {} };
         return decode;
       }

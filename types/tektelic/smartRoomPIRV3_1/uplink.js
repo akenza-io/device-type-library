@@ -1479,7 +1479,7 @@ function decoder(bytes, port) {
       },
     ];
   }
-  for (let bytesLeft = bytes.length; bytesLeft > 0;) {
+  for (let bytesLeft = bytes.length; bytesLeft > 0; ) {
     let found = false;
     for (let i = 0; i < decode.length; i++) {
       const item = decode[i];
@@ -1549,15 +1549,18 @@ function consume(event) {
   }
 
   if (deleteUnusedKeys(occupancy)) {
-    // Warm desk 
+    // Warm desk
     const time = new Date().getTime();
     const state = event.state || {};
     occupancy.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
     if (occupancy.occupied) {
       delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
     } else if (state.lastOccupancyTimestamp !== undefined) {
-      occupancy.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
-    } else if (state.lastOccupiedValue) { //
+      occupancy.minutesSinceLastOccupied = Math.round(
+        (time - state.lastOccupancyTimestamp) / 1000 / 60,
+      ); // Get free since
+    } else if (state.lastOccupiedValue) {
+      //
       state.lastOccupancyTimestamp = time; // Start with first no occupancy
     }
 

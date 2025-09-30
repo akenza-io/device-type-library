@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -20,27 +18,24 @@ describe("Decentlab RHC Uplink", () => {
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
     it("should decode the Decentlab RHC payload", () => {
       const data = {
         data: {
-          payloadHex:
-            "0202e00003a9fd01341ca285f30c60",
+          payloadHex: "0202e00003a9fd01341ca285f30c60",
         },
       };
 
@@ -52,7 +47,7 @@ describe("Decentlab RHC Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.humidity, 73.3);
         assert.equal(value.data.temperature, 15.23);
-         assert.equal(value.data.temperatureF, 59.4);
+        assert.equal(value.data.temperatureF, 59.4);
 
         validateSchema(value.data, defaultSchema, { throwError: true });
       });

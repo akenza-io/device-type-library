@@ -1,6 +1,6 @@
-function cToF(celsius) { 
- return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
- } 
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
 
 function readUInt8LE(bytes) {
   return bytes & 0xff;
@@ -57,13 +57,13 @@ function consume(event) {
     // TEMPERATURE
     else if (channelId === 0x03 && channelType === 0x67) {
       decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
- decoded.temperatureF = cToF(decoded.temperature);
+      decoded.temperatureF = cToF(decoded.temperature);
       i += 2;
     }
     // TEMPERATURE TARGET
     else if (channelId === 0x04 && channelType === 0x67) {
       decoded.targetTemperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
- decoded.targetTemperatureF = cToF(decoded.targetTemperature);
+      decoded.targetTemperatureF = cToF(decoded.targetTemperature);
       i += 2;
     }
     // VALVE OPENING

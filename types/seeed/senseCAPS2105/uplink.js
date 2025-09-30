@@ -1,6 +1,6 @@
-function cToF(celsius) { 
- return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
- } 
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
 
 function checkForIllegalValue(value, fieldName) {
   let errorCode = "";
@@ -102,7 +102,7 @@ function consume(event) {
           soilTemperature,
           "soilTemperature",
         );
- data.soilTemperatureF = cToF(data.soilTemperature);
+        data.soilTemperatureF = cToF(data.soilTemperature);
         pointer += 8;
         break;
       }

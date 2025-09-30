@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -20,27 +18,24 @@ describe("Decentlab CTD10 Uplink", () => {
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
     it("should decode the Decentlab CTD10 payload", () => {
       const data = {
         data: {
-          payloadHex:
-            "0207d9000390888081006400000c60",
+          payloadHex: "0207d9000390888081006400000c60",
         },
       };
 
@@ -53,7 +48,7 @@ describe("Decentlab CTD10 Uplink", () => {
         assert.equal(value.data.electricalConductivity, 100);
         assert.equal(value.data.freezingFlag, 0);
         assert.equal(value.data.temperature, 12.9);
-         assert.equal(value.data.temperatureF, 55.2);
+        assert.equal(value.data.temperatureF, 55.2);
         assert.equal(value.data.waterDepth, 4232);
 
         validateSchema(value.data, defaultSchema, { throwError: true });

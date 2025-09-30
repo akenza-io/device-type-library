@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -23,11 +21,10 @@ describe("Digitalmatter sensor node Uplink", () => {
 
   let digitalSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/digital.schema.json`)
-      .then((parsedSchema) => {
-        digitalSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/digital.schema.json`).then((parsedSchema) => {
+      digitalSchema = parsedSchema;
+      done();
+    });
   });
 
   let gpsSchema = null;
@@ -40,11 +37,10 @@ describe("Digitalmatter sensor node Uplink", () => {
 
   let humiditySchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/humidity.schema.json`)
-      .then((parsedSchema) => {
-        humiditySchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/humidity.schema.json`).then((parsedSchema) => {
+      humiditySchema = parsedSchema;
+      done();
+    });
   });
 
   let inputSchema = null;
@@ -57,20 +53,18 @@ describe("Digitalmatter sensor node Uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   let measurementSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/measurement.schema.json`)
-      .then((parsedSchema) => {
-        measurementSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/measurement.schema.json`).then((parsedSchema) => {
+      measurementSchema = parsedSchema;
+      done();
+    });
   });
 
   let probeSchema = null;

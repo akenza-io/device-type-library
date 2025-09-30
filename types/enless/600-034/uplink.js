@@ -32,7 +32,9 @@ function consume(event) {
   const bytes = parseHexString(payload);
 
   if (bytes.length !== 14) {
-    throw new Error(`Invalid payload length: ${bytes.length}, expected 14 bytes.`);
+    throw new Error(
+      `Invalid payload length: ${bytes.length}, expected 14 bytes.`,
+    );
   }
 
   const lifecycle = {};
@@ -49,7 +51,7 @@ function consume(event) {
   lifecycle.seqCounter = bytes[4];
 
   // --- Firmware Version (bits 5-0) ---
-  lifecycle.fwVersion = bytes[5] & 0x3F;
+  lifecycle.fwVersion = bytes[5] & 0x3f;
 
   // --- Temperature (°C, Int16BE / 10) ---
   decoded.temperature = readInt16BE(bytes.slice(6, 8)) / 10;
@@ -71,7 +73,7 @@ function consume(event) {
   const batteryLevels = [100, 75, 50, 25]; // in percent
   lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
-  decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";
+  decoded.msgType = status & 0x01 ? "ALARM" : "NORMAL";
 
   // --- Emit Results ---
   emit("sample", { data: lifecycle, topic: "lifecycle" });

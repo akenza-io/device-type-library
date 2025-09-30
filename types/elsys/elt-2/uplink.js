@@ -1,6 +1,6 @@
-function cToF(celsius) { 
- return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
- } 
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
 
 // Standard Decoder
 const TYPE_TEMP = 0x01; // temp 2 bytes -3276.8°C -->3276.7°C
@@ -83,7 +83,7 @@ function DecodeElsysPayload(data) {
         var temp = (data[i + 1] << 8) | data[i + 2];
         temp = bin16dec(temp);
         obj.temperature = temp / 10;
- obj.temperatureF = cToF(obj.temperature);
+        obj.temperatureF = cToF(obj.temperature);
         i += 2;
         break;
       case TYPE_RH: // Humidity
@@ -139,7 +139,7 @@ function DecodeElsysPayload(data) {
         var temp = (data[i + 1] << 8) | data[i + 2];
         temp = bin16dec(temp);
         obj.externalTemperature1 = temp / 10;
- obj.externalTemperature1F = cToF(obj.externalTemperature1);
+        obj.externalTemperature1F = cToF(obj.externalTemperature1);
         i += 2;
         break;
       case TYPE_EXT_DIGITAL: // Digital input
@@ -161,7 +161,7 @@ function DecodeElsysPayload(data) {
         eTemp = bin16dec(eTemp);
         obj.irInternalTemperature = iTemp / 10;
         obj.irExternalTemperature = eTemp / 10;
- obj.irExternalTemperatureF = cToF(obj.irExternalTemperature);
+        obj.irExternalTemperatureF = cToF(obj.irExternalTemperature);
         i += 4;
         break;
       case TYPE_OCCUPANCY: // Body occupancy
@@ -209,7 +209,7 @@ function DecodeElsysPayload(data) {
         var temp = (data[i + 1] << 8) | data[i + 2];
         temp = bin16dec(temp);
         obj.externalTemperature2 = temp / 10;
- obj.externalTemperature2F = cToF(obj.externalTemperature2);
+        obj.externalTemperature2F = cToF(obj.externalTemperature2);
         i += 2;
         break;
       default:
@@ -417,7 +417,14 @@ function DecodeElsysSettings(input) {
     const d = Array.from(bytes).slice(i, i + setting.size);
 
     // Do not emit LoRa Secrets
-    const sensitiveInfo = ["appSKey", "nwkSKey", "devEui", "appEui", "appKey", "devAddr"];
+    const sensitiveInfo = [
+      "appSKey",
+      "nwkSKey",
+      "devEui",
+      "appEui",
+      "appKey",
+      "devAddr",
+    ];
     if (sensitiveInfo.indexOf(setting.name) === -1) {
       if (setting.parse == null) {
         payload[setting.name] = d;
@@ -463,7 +470,7 @@ function consume(event) {
 
     // Default values
     data.temperature = res.temperature;
- data.temperatureF = cToF(data.temperature);
+    data.temperatureF = cToF(data.temperature);
     data.humidity = res.humidity;
     data.accX = res.accX;
     data.accY = res.accY;
@@ -488,9 +495,9 @@ function consume(event) {
     data.pulseAbs1 = res.pulseAbs1;
     data.pulseAbs2 = res.pulseAbs2;
     data.externalTemperature1 = res.externalTemperature1;
- data.externalTemperature1F = cToF(data.externalTemperature1);
+    data.externalTemperature1F = cToF(data.externalTemperature1);
     data.externalTemperature2 = res.externalTemperature2;
- data.externalTemperature2F = cToF(data.externalTemperature2);
+    data.externalTemperature2F = cToF(data.externalTemperature2);
 
     // Occupancy values
     occupancy.motion = res.motion;
@@ -523,15 +530,18 @@ function consume(event) {
     }
 
     if (deleteUnusedKeys(occupancy)) {
-      // Warm desk 
+      // Warm desk
       const time = new Date().getTime();
       const state = event.state || {};
       occupancy.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
       if (occupancy.occupied) {
         delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
       } else if (state.lastOccupancyTimestamp !== undefined) {
-        occupancy.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
-      } else if (state.lastOccupiedValue) { //
+        occupancy.minutesSinceLastOccupied = Math.round(
+          (time - state.lastOccupancyTimestamp) / 1000 / 60,
+        ); // Get free since
+      } else if (state.lastOccupiedValue) {
+        //
         state.lastOccupancyTimestamp = time; // Start with first no occupancy
       }
 

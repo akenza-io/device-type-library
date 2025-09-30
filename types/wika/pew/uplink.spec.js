@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,65 +13,64 @@ describe("Wika Pew 1000 Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   let deviceAlarmSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/device_alarm.schema.json`)
-      .then((parsedSchema) => {
-        deviceAlarmSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/device_alarm.schema.json`).then((parsedSchema) => {
+      deviceAlarmSchema = parsedSchema;
+      done();
+    });
   });
 
   let deviceInformationSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/device_information.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/device_information.schema.json`).then(
+      (parsedSchema) => {
         deviceInformationSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let errorSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/error.schema.json`)
-      .then((parsedSchema) => {
-        errorSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/error.schema.json`).then((parsedSchema) => {
+      errorSchema = parsedSchema;
+      done();
+    });
   });
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   let processAlarmSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/process_alarm.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/process_alarm.schema.json`).then(
+      (parsedSchema) => {
         processAlarmSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let technicalAlarmSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/technical_alarm.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/technical_alarm.schema.json`).then(
+      (parsedSchema) => {
         technicalAlarmSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   describe("consume()", () => {
@@ -81,8 +78,7 @@ describe("Wika Pew 1000 Uplink", () => {
       const data = {
         data: {
           port: 1,
-          payloadHex:
-            "01002309B91AF0",
+          payloadHex: "01002309B91AF0",
         },
       };
 
@@ -92,7 +88,10 @@ describe("Wika Pew 1000 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "error");
-        assert.equal(value.data.errorMessage, "Please define the customfields: pressureRangeStart, pressureRangeEnd, temperatureRangeStart, temperatureRangeEnd");
+        assert.equal(
+          value.data.errorMessage,
+          "Please define the customfields: pressureRangeStart, pressureRangeEnd, temperatureRangeStart, temperatureRangeEnd",
+        );
 
         validateSchema(value.data, errorSchema, { throwError: true });
       });
@@ -107,13 +106,12 @@ describe("Wika Pew 1000 Uplink", () => {
             pressureRangeStart: 0,
             pressureRangeEnd: 10,
             temperatureRangeStart: -40,
-            temperatureRangeEnd: 60
-          }
+            temperatureRangeEnd: 60,
+          },
         },
         data: {
           port: 1,
-          payloadHex:
-            "01002309B91AF0",
+          payloadHex: "01002309B91AF0",
         },
       };
 
@@ -150,13 +148,12 @@ describe("Wika Pew 1000 Uplink", () => {
             pressureRangeStart: 0,
             pressureRangeEnd: 10,
             temperatureRangeStart: -40,
-            temperatureRangeEnd: 60
-          }
+            temperatureRangeEnd: 60,
+          },
         },
         data: {
           port: 1,
-          payloadHex:
-            "03000119B4",
+          payloadHex: "03000119B4",
         },
       };
 
@@ -184,13 +181,12 @@ describe("Wika Pew 1000 Uplink", () => {
             pressureRangeStart: 0,
             pressureRangeEnd: 10,
             temperatureRangeStart: -40,
-            temperatureRangeEnd: 60
-          }
+            temperatureRangeEnd: 60,
+          },
         },
         data: {
           port: 1,
-          payloadHex:
-            "040010",
+          payloadHex: "040010",
         },
       };
 
@@ -216,13 +212,12 @@ describe("Wika Pew 1000 Uplink", () => {
             pressureRangeStart: 0,
             pressureRangeEnd: 10,
             temperatureRangeStart: -40,
-            temperatureRangeEnd: 60
-          }
+            temperatureRangeEnd: 60,
+          },
         },
         data: {
           port: 1,
-          payloadHex:
-            "0500001C",
+          payloadHex: "0500001C",
         },
       };
 

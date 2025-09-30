@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -18,32 +16,28 @@ describe("DS3604 Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/template.schema.json`)
-      .then((parsedSchema) => {
-        templateSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/template.schema.json`).then((parsedSchema) => {
+      templateSchema = parsedSchema;
+      done();
+    });
   });
 
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
-
 
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/button.schema.json`)
-      .then((parsedSchema) => {
-        buttonSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/button.schema.json`).then((parsedSchema) => {
+      buttonSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -85,8 +79,8 @@ describe("DS3604 Uplink", () => {
     it("should decode should decode the DS3604 button payload", () => {
       const data = {
         data: {
-          "payloadHex": "ff2e00ff7301ff2e00ff7301ff2e00ff7301",
-          "port": 85
+          payloadHex: "ff2e00ff7301ff2e00ff7301ff2e00ff7301",
+          port: 85,
         },
       };
 

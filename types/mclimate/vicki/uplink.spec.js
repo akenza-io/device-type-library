@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,29 +13,26 @@ describe("MClimate Vicky uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   let mclimateSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/raw_payload.schema.json`)
-      .then((parsedSchema) => {
-        mclimateSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/raw_payload.schema.json`).then((parsedSchema) => {
+      mclimateSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -66,9 +61,9 @@ describe("MClimate Vicky uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.targetTemperature, 29);
-         assert.equal(value.data.targetTemperatureF, 84.2);
+        assert.equal(value.data.targetTemperatureF, 84.2);
         assert.equal(value.data.sensorTemperature, 18.01);
-         assert.equal(value.data.sensorTemperatureF, 64.4);
+        assert.equal(value.data.sensorTemperatureF, 64.4);
         assert.equal(value.data.relativeHumidity, 46.88);
         assert.equal(value.data.motorRange, 300);
         assert.equal(value.data.motorPosition, 250);

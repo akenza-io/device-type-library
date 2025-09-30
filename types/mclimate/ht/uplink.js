@@ -1,6 +1,6 @@
-function cToF(celsius) { 
- return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
- } 
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
 
 function consume(event) {
   const payload = event.data.payloadHex;
@@ -9,7 +9,7 @@ function consume(event) {
 
   // Reserved 8
   data.temperature = (Bits.bitsToUnsigned(bits.substr(8, 16)) - 400) / 10;
- data.temperatureF = cToF(data.temperature);
+  data.temperatureF = cToF(data.temperature);
   data.humidity = Math.round(
     (Bits.bitsToUnsigned(bits.substr(24, 8)) * 100) / 256,
   );
@@ -20,7 +20,7 @@ function consume(event) {
   if (data.thermistorOperational) {
     data.extTemperature =
       Bits.bitsToUnsigned(bits.substr(46, 2) + bits.substr(48, 8)) / 10;
- data.extTemperatureF = cToF(data.extTemperature);
+    data.extTemperatureF = cToF(data.extTemperature);
   }
 
   emit("sample", { data, topic: "default" });

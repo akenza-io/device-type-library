@@ -100,31 +100,31 @@ function consume(event) {
     data.badVibrationPercentage1020 = round(
       (Bits.bitsToUnsigned(bits.substr(96, 8)) *
         (data.operatingTime - data.goodVibration)) /
-      127,
+        127,
     );
     // Time [minutes] spent in the 20-40% anomaly level range
     data.badVibrationPercentage2040 = round(
       (Bits.bitsToUnsigned(bits.substr(104, 8)) *
         (data.operatingTime - data.goodVibration)) /
-      127,
+        127,
     );
     // Time [minutes] spent in the 40-60% anomaly level range
     data.badVibrationPercentage4060 = round(
       (Bits.bitsToUnsigned(bits.substr(112, 8)) *
         (data.operatingTime - data.goodVibration)) /
-      127,
+        127,
     );
     // Time [minutes] spent in the 60-80% anomaly level range
     data.badVibrationPercentage6080 = round(
       (Bits.bitsToUnsigned(bits.substr(120, 8)) *
         (data.operatingTime - data.goodVibration)) /
-      127,
+        127,
     );
     // Time [minutes] spent in the 80-100% anomaly level range
     data.badVibrationPercentage80100 = round(
       (Bits.bitsToUnsigned(bits.substr(128, 8)) *
         (data.operatingTime - data.goodVibration)) /
-      127,
+        127,
     );
 
     emit("sample", {

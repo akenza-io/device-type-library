@@ -44,7 +44,7 @@ function consume(event) {
   lifecycle.id = readUInt24BE(bytes.slice(0, 3));
   lifecycle.type = bytes[3];
   lifecycle.seqCounter = bytes[4];
-  lifecycle.fwVersion = bytes[5] & 0x3F;
+  lifecycle.fwVersion = bytes[5] & 0x3f;
 
   const status = readUInt16LE(bytes.slice(28, 30));
   const batteryBits = (status >> 2) & 0x03;
@@ -59,7 +59,7 @@ function consume(event) {
   decoded.temperatureF = cToF(decoded.temperature);
   decoded.humidity = readUInt16BE(bytes.slice(10, 12)) / 10;
 
-  decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";
+  decoded.msgType = status & 0x01 ? "ALARM" : "NORMAL";
   decoded.rbe = Boolean((status >> 9) & 0x01);
 
   emit("sample", { data: decoded, topic: "default" });

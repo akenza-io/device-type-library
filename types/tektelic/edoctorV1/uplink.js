@@ -746,7 +746,7 @@ function decode(bytes, port) {
   }
 
   try {
-    for (let bytesLeft = bytes.length; bytesLeft > 0;) {
+    for (let bytesLeft = bytes.length; bytesLeft > 0; ) {
       let found = false;
       let header = "";
       for (let i = 0; i < decoderArray.length; i++) {

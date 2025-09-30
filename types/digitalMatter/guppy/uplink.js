@@ -31,10 +31,10 @@ function decoder(bytes, port) {
       // The direction of 'down' in rectangular coordinates, unit vector.
       decoded.downUnit = [
         Math.sin((decoded.inclinationDeg * Math.PI) / 180) *
-        Math.sin((decoded.azimuthDeg * Math.PI) / 180),
+          Math.sin((decoded.azimuthDeg * Math.PI) / 180),
         Math.cos((decoded.inclinationDeg * Math.PI) / 180),
         Math.sin((decoded.inclinationDeg * Math.PI) / 180) *
-        Math.cos((decoded.azimuthDeg * Math.PI) / 180),
+          Math.cos((decoded.azimuthDeg * Math.PI) / 180),
       ];
 
       const d = decoded.downUnit;

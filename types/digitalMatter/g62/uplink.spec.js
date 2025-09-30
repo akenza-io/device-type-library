@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -23,20 +21,18 @@ describe("Digital matter G62 Uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   let digitalSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/digital.schema.json`)
-      .then((parsedSchema) => {
-        digitalSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/digital.schema.json`).then((parsedSchema) => {
+      digitalSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -90,7 +86,7 @@ describe("Digital matter G62 Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryVoltage, 4.04);
         assert.equal(value.data.internalTemperature, 23);
-         assert.equal(value.data.internalTemperatureF, 73.4);
+        assert.equal(value.data.internalTemperatureF, 73.4);
 
         validateSchema(value.data, lifecycleSchema, { throwError: true });
       });

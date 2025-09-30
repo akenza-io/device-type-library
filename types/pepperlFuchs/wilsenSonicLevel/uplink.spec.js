@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -16,29 +14,26 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   let locationSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/location.schema.json`)
-      .then((parsedSchema) => {
-        locationSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/location.schema.json`).then((parsedSchema) => {
+      locationSchema = parsedSchema;
+      done();
+    });
   });
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   // This is the test for default, copy this three times with different data hex to test it all
@@ -59,7 +54,7 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
         assert.equal(value.data.proximity, 65);
         assert.equal(value.data.fillinglvlPercent, 89);
         assert.equal(value.data.temperature, 8);
-         assert.equal(value.data.temperatureF, 46.4);
+        assert.equal(value.data.temperatureF, 46.4);
 
         validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -97,7 +92,7 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
         assert.equal(value.data.proximity, 65);
         assert.equal(value.data.fillinglvlPercent, 89);
         assert.equal(value.data.temperature, 8);
-         assert.equal(value.data.temperatureF, 46.4);
+        assert.equal(value.data.temperatureF, 46.4);
 
         validateSchema(value.data, defaultSchema, { throwError: true });
       });

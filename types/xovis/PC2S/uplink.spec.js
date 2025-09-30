@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,11 +13,10 @@ describe("Xovis Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/line_count.schema.json`)
-      .then((parsedSchema) => {
-        lineCountSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/line_count.schema.json`).then((parsedSchema) => {
+      lineCountSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {

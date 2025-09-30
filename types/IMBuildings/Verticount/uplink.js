@@ -47,9 +47,11 @@ function consume(event) {
     case payloadTypes.PEOPLE_COUNTER: {
       switch (payloadVariant) {
         case 0x04: {
-          lifecycle.deviceID = `${bytes[bytes.length - 22]}${bytes[bytes.length - 21]
-            }${bytes[bytes.length - 20]}${bytes[bytes.length - 19]}${bytes[bytes.length - 18]
-            }${bytes[bytes.length - 17]}`;
+          lifecycle.deviceID = `${bytes[bytes.length - 22]}${
+            bytes[bytes.length - 21]
+          }${bytes[bytes.length - 20]}${bytes[bytes.length - 19]}${
+            bytes[bytes.length - 18]
+          }${bytes[bytes.length - 17]}`;
           lifecycle.deviceStatus = Bits.bitsToUnsigned(bits.substr(64, 8));
 
           lifecycle.batteryVoltage =
@@ -89,7 +91,8 @@ function consume(event) {
           break;
         case 0x09:
           lifecycle.deviceStatus = bytes[bytes.length - 15];
-          lifecycle.batteryVoltage = readUInt16BE(bytes, bytes.length - 14) / 100;
+          lifecycle.batteryVoltage =
+            readUInt16BE(bytes, bytes.length - 14) / 100;
           data.counterA = readUInt16BE(bytes, bytes.length - 12);
           data.counterB = readUInt16BE(bytes, bytes.length - 10);
           lifecycle.sensorStatus = bytes[bytes.length - 8];
@@ -101,9 +104,10 @@ function consume(event) {
           emit("sample", { data, topic: "default" });
           emit("sample", { data: totalCounter, topic: "total_counter" });
           break;
-        case 0x0C:
+        case 0x0c:
           lifecycle.deviceStatus = bytes[bytes.length - 8];
-          lifecycle.batteryVoltage = readUInt16BE(bytes, bytes.length - 7) / 100;
+          lifecycle.batteryVoltage =
+            readUInt16BE(bytes, bytes.length - 7) / 100;
           lifecycle.sensorStatus = bytes[bytes.length - 5];
           lifecycle.sensorActivityON = readUInt16BE(bytes, bytes.length - 4);
           lifecycle.sensorActivityOFF = readUInt16BE(bytes, bytes.length - 2);

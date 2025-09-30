@@ -28,7 +28,7 @@ function consume(event) {
 
   if (payload.length !== 60) {
     throw new Error(
-      `Invalid payload length. Received payload length: ${payload.length}. Expected 60 hex characters (30 bytes).`
+      `Invalid payload length. Received payload length: ${payload.length}. Expected 60 hex characters (30 bytes).`,
     );
   }
 
@@ -39,7 +39,7 @@ function consume(event) {
   const bytes = parseHexString(payload);
   if (bytes.length !== 30) {
     throw new Error(
-      `Unsupported payload length: ${bytes.length} bytes. Expected 30.`
+      `Unsupported payload length: ${bytes.length} bytes. Expected 30.`,
     );
   }
 
@@ -50,7 +50,7 @@ function consume(event) {
   lifecycle.id = readUInt24BE(bytes.slice(0, 3));
   lifecycle.type = bytes[3];
   lifecycle.seqCounter = bytes[4];
-  lifecycle.fwVersion = bytes[5] & 0x3F;
+  lifecycle.fwVersion = bytes[5] & 0x3f;
 
   // --- Measurements ---
   decoded.windowCount = readUInt16BE(bytes.slice(16, 18));
@@ -61,8 +61,8 @@ function consume(event) {
   const batteryLevels = [100, 75, 50, 25];
   lifecycle.batteryLevel = batteryLevels[batteryBits] || "unknown";
 
-  decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";
-  decoded.rbe = Boolean((status >> 9) & 0x01);         // Bit 9
+  decoded.msgType = status & 0x01 ? "ALARM" : "NORMAL";
+  decoded.rbe = Boolean((status >> 9) & 0x01); // Bit 9
   decoded.windowOpened = Boolean((status >> 5) & 0x01); // Bit 5
 
   // --- Emit to Akenza topics ---

@@ -6,7 +6,7 @@ function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
 
-  for (let pointer = 0; pointer !== payload.length;) {
+  for (let pointer = 0; pointer !== payload.length; ) {
     let topic = "default";
     const data = {};
     data.channel = Bits.bitsToUnsigned(bits.substr(pointer, 8));

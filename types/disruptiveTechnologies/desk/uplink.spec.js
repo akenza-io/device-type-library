@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -24,20 +22,21 @@ describe("Digital Technologies Desk Sensor Uplink", () => {
   describe("consume()", () => {
     it("should decode the Digital Technologies Desk Sensor payload", () => {
       const data = {
-        "data": {
-          "deskOccupancy": {
-            "state": "NOT_OCCUPIED",
-            "updateTime": "2025-05-09T10:46:46.000000Z",
-            "remarks": []
+        data: {
+          deskOccupancy: {
+            state: "NOT_OCCUPIED",
+            updateTime: "2025-05-09T10:46:46.000000Z",
+            remarks: [],
           },
-          "eventType": "deskOccupancy",
-          "labels": {},
-          "eventId": "d0etq5jlo1jc73as7ur0",
-          "targetName": "projects/d0cv6cco848c73ajtmv0/devices/cj5jpe7r23r0008c1pmg"
+          eventType: "deskOccupancy",
+          labels: {},
+          eventId: "d0etq5jlo1jc73as7ur0",
+          targetName:
+            "projects/d0cv6cco848c73ajtmv0/devices/cj5jpe7r23r0008c1pmg",
         },
-        "topic": "default",
-        "state": {},
-        "timestamp": 1746787606
+        topic: "default",
+        state: {},
+        timestamp: 1746787606,
       };
 
       expectEmits((type, value) => {
@@ -64,20 +63,21 @@ describe("Digital Technologies Desk Sensor Uplink", () => {
 
     it("should decode the Digital Technologies Desk Sensor payload", () => {
       const data = {
-        "data": {
-          "deskOccupancy": {
-            "state": "OCCUPIED",
-            "updateTime": "2025-05-09T10:46:46.000000Z",
-            "remarks": []
+        data: {
+          deskOccupancy: {
+            state: "OCCUPIED",
+            updateTime: "2025-05-09T10:46:46.000000Z",
+            remarks: [],
           },
-          "eventType": "deskOccupancy",
-          "labels": {},
-          "eventId": "d0etq5jlo1jc73as7ur0",
-          "targetName": "projects/d0cv6cco848c73ajtmv0/devices/cj5jpe7r23r0008c1pmg"
+          eventType: "deskOccupancy",
+          labels: {},
+          eventId: "d0etq5jlo1jc73as7ur0",
+          targetName:
+            "projects/d0cv6cco848c73ajtmv0/devices/cj5jpe7r23r0008c1pmg",
         },
-        "topic": "default",
-        "state": {},
-        "timestamp": 1746787606
+        topic: "default",
+        state: {},
+        timestamp: 1746787606,
       };
 
       expectEmits((type, value) => {
@@ -110,20 +110,20 @@ describe("Digital Technologies Desk Sensor Uplink", () => {
         eventType: "networkStatus",
         data: {
           eventType: "networkStatus",
-          "networkStatus": {
-            "signalStrength": 10,
-            "rssi": 10,
-            "transmissionMode": "HIGH_POWER_BOOST_MODE",
-            "updateTime": "2024-12-06T14:23:50.728000Z"
-          }
+          networkStatus: {
+            signalStrength: 10,
+            rssi: 10,
+            transmissionMode: "HIGH_POWER_BOOST_MODE",
+            updateTime: "2024-12-06T14:23:50.728000Z",
+          },
         },
         timestamp: "2021-09-15T14:48:05.948000Z",
         labels: {},
         state: {
           lastOccupiedValue: true,
           lastNetworkEmittedAt: new Date().getTime(),
-          lastSampleEmittedAt: 1752131670374
-        }
+          lastSampleEmittedAt: 1752131670374,
+        },
       };
 
       expectEmits((type, value) => {

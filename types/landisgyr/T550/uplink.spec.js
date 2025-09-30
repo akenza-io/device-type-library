@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 describe("Landis & Gyr WZU Uplink", () => {
@@ -14,19 +12,17 @@ describe("Landis & Gyr WZU Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
   describe("consume()", () => {
     it("should decode Landis & Gyr WZU default payload", () => {
@@ -49,9 +45,9 @@ describe("Landis & Gyr WZU Uplink", () => {
         assert.equal(value.data.power, 30.6);
         assert.equal(value.data.flow, 0.6);
         assert.equal(value.data.flowTemp, 111.5);
-         assert.equal(value.data.flowTempF, 232.7);
+        assert.equal(value.data.flowTempF, 232.7);
         assert.equal(value.data.backFlowTemp, 66.7);
-         assert.equal(value.data.backFlowTempF, 152.1);
+        assert.equal(value.data.backFlowTempF, 152.1);
 
         validateSchema(value.data, defaultSchema, { throwError: true });
       });

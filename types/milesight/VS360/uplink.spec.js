@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -16,29 +14,26 @@ describe("Milesight VS360 Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/people_flow.schema.json`)
-      .then((parsedSchema) => {
-        peopleFlowSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/people_flow.schema.json`).then((parsedSchema) => {
+      peopleFlowSchema = parsedSchema;
+      done();
+    });
   });
 
   let eventSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/event.schema.json`)
-      .then((parsedSchema) => {
-        eventSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/event.schema.json`).then((parsedSchema) => {
+      eventSchema = parsedSchema;
+      done();
+    });
   });
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -86,7 +81,7 @@ describe("Milesight VS360 Uplink", () => {
 
         assert.equal(value.topic, "event");
         assert.equal(value.data.status, "ALARM");
-        assert.equal(value.data.type, 'COUNTING_ANOMALY');
+        assert.equal(value.data.type, "COUNTING_ANOMALY");
 
         validateSchema(value.data, eventSchema, { throwError: true });
       });
@@ -98,7 +93,7 @@ describe("Milesight VS360 Uplink", () => {
 
         assert.equal(value.topic, "event");
         assert.equal(value.data.status, "ALARM_RELEASE");
-        assert.equal(value.data.type, 'COUNTING_ANOMALY');
+        assert.equal(value.data.type, "COUNTING_ANOMALY");
 
         validateSchema(value.data, eventSchema, { throwError: true });
       });
@@ -110,7 +105,7 @@ describe("Milesight VS360 Uplink", () => {
 
         assert.equal(value.topic, "event");
         assert.equal(value.data.status, "ALARM");
-        assert.equal(value.data.type, 'NODE_DEVICE_WITHOUT_RESPONSE');
+        assert.equal(value.data.type, "NODE_DEVICE_WITHOUT_RESPONSE");
 
         validateSchema(value.data, eventSchema, { throwError: true });
       });
@@ -122,7 +117,7 @@ describe("Milesight VS360 Uplink", () => {
 
         assert.equal(value.topic, "event");
         assert.equal(value.data.status, "ALARM");
-        assert.equal(value.data.type, 'DEVICES_MISALIGNED');
+        assert.equal(value.data.type, "DEVICES_MISALIGNED");
 
         validateSchema(value.data, eventSchema, { throwError: true });
       });

@@ -500,9 +500,9 @@ function initTimestampCommonTable(
         var precedingTimestamp = timestampCommon[i - 1];
         timestampCommon.push(
           buffer.getNextSample(ST_U32, bi) +
-          precedingTimestamp +
-          Math.pow(2, bi) -
-          1,
+            precedingTimestamp +
+            Math.pow(2, bi) -
+            1,
         );
       } else {
         timestampCommon.push(precedingTimestamp);

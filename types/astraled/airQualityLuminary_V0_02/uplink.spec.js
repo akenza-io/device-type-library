@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 describe("Astraled Air Quality Luminary V0.02 Uplink", () => {
@@ -14,19 +12,17 @@ describe("Astraled Air Quality Luminary V0.02 Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
   describe("consume()", () => {
     it("should decode the Astraled Air Quality Luminary V0.02 payload", () => {
@@ -58,7 +54,7 @@ describe("Astraled Air Quality Luminary V0.02 Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.lightState, 17);
         assert.equal(value.data.temperature, 23.21);
-         assert.equal(value.data.temperatureF, 73.8);
+        assert.equal(value.data.temperatureF, 73.8);
         assert.equal(value.data.humidity, 32.6);
         assert.equal(value.data.voc, 317);
         assert.equal(value.data.co2, 664);

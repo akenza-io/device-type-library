@@ -1,6 +1,6 @@
-function cToF(celsius) { 
- return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
- } 
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
 
 function isEmpty(obj) {
   return Object.keys(obj).length === 0;
@@ -56,7 +56,7 @@ function consume(event) {
     // TEMPERATURE
     else if (channelId === 0x03 && channelType === 0x67) {
       climate.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
- climate.temperatureF = cToF(climate.temperature);
+      climate.temperatureF = cToF(climate.temperature);
       i += 2;
     }
     // TOTAL IN / OUT
@@ -74,9 +74,9 @@ function consume(event) {
     // TEMPERATURE ALARM
     else if (channelId === 0x83 && channelType === 0x67) {
       climate.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
- climate.temperatureF = cToF(climate.temperature);
+      climate.temperatureF = cToF(climate.temperature);
       climate.temperatureAlarm = readAlarmType(bytes[i + 2]);
- climate.temperatureF = cToF(climate.temperature);
+      climate.temperatureF = cToF(climate.temperature);
       i += 3;
     }
     // TOTAL IN / OUT ALARM

@@ -1,6 +1,6 @@
-function cToF(celsius) { 
- return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
- } 
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
 
 function deleteUnusedKeys(data) {
   let keysRetained = false;
@@ -196,15 +196,15 @@ function consume(event) {
   const lifecycle = {};
 
   data.temperature = sample.air_temperature;
- data.temperatureF = cToF(data.temperature);
+  data.temperatureF = cToF(data.temperature);
   data.humidity = sample.air_humidity;
   data.barometricTemperature = sample.barometer_temperature;
- data.barometricTemperatureF = cToF(data.barometricTemperature);
+  data.barometricTemperatureF = cToF(data.barometricTemperature);
   data.pressure = sample.barometric_pressure;
   data.co2 = sample.co2_concentration;
   data.co2LPF = sample.co2_concentration_lpf;
   data.co2Temperature = sample.co2_sensor_temperature;
- data.co2TemperatureF = cToF(data.co2Temperature);
+  data.co2TemperatureF = cToF(data.co2Temperature);
   data.capacitorVoltage1 = sample.capacitor_voltage_1;
   data.capacitorVoltage2 = sample.capacitor_voltage_2;
   data.rawIr = sample.raw_ir_reading;

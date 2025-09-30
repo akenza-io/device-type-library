@@ -64,7 +64,7 @@ function consume(event) {
   const wifi = [];
   const history = {};
 
-  for (let i = 0; i < bytes.length;) {
+  for (let i = 0; i < bytes.length; ) {
     const channelId = bytes[i++];
     const channelType = bytes[i++];
     // BATTERY
@@ -132,7 +132,11 @@ function consume(event) {
       const temperatureAbnormal = bytes[i + 2] !== 0;
       i += 3;
       emit("sample", {
-        data: { temperature, temperatureF: cToF(temperature), temperatureAbnormal },
+        data: {
+          temperature,
+          temperatureF: cToF(temperature),
+          temperatureAbnormal,
+        },
         topic: "temperature",
       });
     }

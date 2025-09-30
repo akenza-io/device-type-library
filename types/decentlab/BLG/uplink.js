@@ -2,7 +2,6 @@ function cToF(celsius) {
   return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
 }
 
-
 /* https://www.decentlab.com/products/black-globe-temperature-sensor-for-lorawan */
 
 const decentlab_decoder = {
@@ -10,33 +9,62 @@ const decentlab_decoder = {
   SENSORS: [
     {
       length: 2,
-      values: [{
-        name: 'voltage_ratio',
-        displayName: 'Voltage ratio',
-        convert(x) { return ((x[0] + x[1] * 65536) / 8388608 - 1) / 2; }
-      },
-      {
-        name: 'thermistor_resistance',
-        displayName: 'Thermistor resistance',
-        convert(x) { return 1000 / (((x[0] + x[1] * 65536) / 8388608 - 1) / 2) - 41000; },
-        unit: 'Ω'
-      },
-      {
-        name: 'temperature',
-        displayName: 'Temperature',
-        convert(x) { return (1 / (0.0008271111 + 0.000208802 * Math.log(1000 / (((x[0] + x[1] * 65536) / 8388608 - 1) / 2) - 41000) + 0.000000080592 * Math.pow(Math.log(1000 / (((x[0] + x[1] * 65536) / 8388608 - 1) / 2) - 41000), 3))) - 273.15; },
-        unit: '°C'
-      }]
+      values: [
+        {
+          name: "voltage_ratio",
+          displayName: "Voltage ratio",
+          convert(x) {
+            return ((x[0] + x[1] * 65536) / 8388608 - 1) / 2;
+          },
+        },
+        {
+          name: "thermistor_resistance",
+          displayName: "Thermistor resistance",
+          convert(x) {
+            return 1000 / (((x[0] + x[1] * 65536) / 8388608 - 1) / 2) - 41000;
+          },
+          unit: "Ω",
+        },
+        {
+          name: "temperature",
+          displayName: "Temperature",
+          convert(x) {
+            return (
+              1 /
+                (0.0008271111 +
+                  0.000208802 *
+                    Math.log(
+                      1000 / (((x[0] + x[1] * 65536) / 8388608 - 1) / 2) -
+                        41000,
+                    ) +
+                  0.000000080592 *
+                    Math.pow(
+                      Math.log(
+                        1000 / (((x[0] + x[1] * 65536) / 8388608 - 1) / 2) -
+                          41000,
+                      ),
+                      3,
+                    )) -
+              273.15
+            );
+          },
+          unit: "°C",
+        },
+      ],
     },
     {
       length: 1,
-      values: [{
-        name: 'battery_voltage',
-        displayName: 'Battery voltage',
-        convert(x) { return x[0] / 1000; },
-        unit: 'V'
-      }]
-    }
+      values: [
+        {
+          name: "battery_voltage",
+          displayName: "Battery voltage",
+          convert(x) {
+            return x[0] / 1000;
+          },
+          unit: "V",
+        },
+      ],
+    },
   ],
 
   read_int(bytes, pos) {
@@ -45,8 +73,9 @@ const decentlab_decoder = {
 
   decode(msg) {
     let bytes = msg;
-    let i; let j;
-    if (typeof msg === 'string') {
+    let i;
+    let j;
+    if (typeof msg === "string") {
       bytes = [];
       for (i = 0; i < msg.length; i += 2) {
         bytes.push(parseInt(msg.substring(i, i + 2), 16));
@@ -60,11 +89,13 @@ const decentlab_decoder = {
 
     const deviceId = this.read_int(bytes, 1);
     let flags = this.read_int(bytes, 3);
-    const result = { 'protocol_version': version, 'device_id': deviceId };
+    const result = { protocol_version: version, device_id: deviceId };
     // decode payload
     let pos = 5;
     for (i = 0; i < this.SENSORS.length; i++, flags >>= 1) {
-      if ((flags & 1) !== 1) { continue; }
+      if ((flags & 1) !== 1) {
+        continue;
+      }
 
       const sensor = this.SENSORS[i];
       const x = [];
@@ -77,17 +108,19 @@ const decentlab_decoder = {
       // decode sensor values
       for (j = 0; j < sensor.values.length; j++) {
         const value = sensor.values[j];
-        if ('convert' in value) {
+        if ("convert" in value) {
           result[value.name] = {
             displayName: value.displayName,
-            value: value.convert.bind(this)(x)
+            value: value.convert.bind(this)(x),
           };
-          if ('unit' in value) { result[value.name].unit = value.unit; }
+          if ("unit" in value) {
+            result[value.name].unit = value.unit;
+          }
         }
       }
     }
     return result;
-  }
+  },
 };
 
 function deleteUnusedKeys(data) {
@@ -103,7 +136,7 @@ function deleteUnusedKeys(data) {
 }
 
 function calcBatteryPercent(number, max, min) {
-  const percent = (number - min) / (max - min) * 100;
+  const percent = ((number - min) / (max - min)) * 100;
   return Math.round(Math.max(0, Math.min(100, percent)));
 }
 
@@ -119,7 +152,11 @@ function consume(event) {
 
   const lifecycle = {};
   lifecycle.batteryVoltage = sample.battery_voltage.value;
-  lifecycle.batteryLevel = calcBatteryPercent(sample.battery_voltage.value, 3, 2);
+  lifecycle.batteryLevel = calcBatteryPercent(
+    sample.battery_voltage.value,
+    3,
+    2,
+  );
   lifecycle.protocolVersion = sample.protocol_version;
   lifecycle.deviceId = sample.device_id;
 

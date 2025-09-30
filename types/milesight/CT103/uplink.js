@@ -1,6 +1,6 @@
-function cToF(celsius) { 
- return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
- } 
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
 
 // Helper functions to read little-endian values from a byte array
 function readUInt16LE(bytes) {
@@ -14,13 +14,13 @@ function readInt16LE(bytes) {
 }
 
 function readUInt32LE(bytes) {
-  const value = (bytes[3] << 24) + (bytes[2] << 16) + (bytes[1] << 8) + bytes[0];
+  const value =
+    (bytes[3] << 24) + (bytes[2] << 16) + (bytes[1] << 8) + bytes[0];
   return (value & 0xffffffff) >>> 0;
 }
 
 // Helper functions to decode specific data types
 function readProtocolVersion(byte) {
-
   const minor = byte & 0x0f;
   return `V${minor}`;
 }
@@ -46,7 +46,7 @@ function readTslVersion(bytes) {
 function readSerialNumber(bytes) {
   const temp = [];
   for (let i = 0; i < bytes.length; i++) {
-    temp.push((`0${(bytes[i] & 0xff).toString(16)}`).slice(-2));
+    temp.push(`0${(bytes[i] & 0xff).toString(16)}`.slice(-2));
   }
   return temp.join("");
 }
@@ -65,7 +65,6 @@ function readLoRaWANClass(type) {
       return "unknown";
   }
 }
-
 
 function readDeviceStatus(status) {
   return status === 1 ? "on" : "off";
@@ -107,7 +106,7 @@ function consume(event) {
   const alarmData = {};
   const systemData = {};
 
-  for (let i = 0; i < bytes.length;) {
+  for (let i = 0; i < bytes.length; ) {
     const channelId = bytes[i++];
     const channelType = bytes[i++];
 
@@ -130,7 +129,7 @@ function consume(event) {
         const tempValue = readUInt16LE(bytes.slice(i, i + 2));
         if (tempValue !== 0xfffd && tempValue !== 0xffff) {
           defaultData.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
- defaultData.temperatureF = cToF(defaultData.temperature);
+          defaultData.temperatureF = cToF(defaultData.temperature);
         }
         i += 2;
       }
@@ -151,7 +150,7 @@ function consume(event) {
         const tempAlarmStatus = readTemperatureAlarmStatus(bytes[i + 2]);
         if (tempAlarmStatus !== "unknown") {
           alarmData.temperatureAlarmStatus = tempAlarmStatus;
- alarmData.temperatureF = cToF(alarmData.temperature);
+          alarmData.temperatureF = cToF(alarmData.temperature);
         }
         i += 3;
       }
@@ -163,11 +162,15 @@ function consume(event) {
             i += 1;
             break;
           case 0x09: // HARDWARE VERSION
-            systemData.hardwareVersion = readHardwareVersion(bytes.slice(i, i + 2));
+            systemData.hardwareVersion = readHardwareVersion(
+              bytes.slice(i, i + 2),
+            );
             i += 2;
             break;
           case 0x0a: // SOFTWARE VERSION
-            systemData.softwareVersion = readFirmwareVersion(bytes.slice(i, i + 2));
+            systemData.softwareVersion = readFirmwareVersion(
+              bytes.slice(i, i + 2),
+            );
             i += 2;
             break;
           case 0xff: // TSL VERSION
@@ -206,19 +209,19 @@ function consume(event) {
   if (Object.keys(defaultData).length > 0) {
     emit("sample", {
       data: defaultData,
-      topic: "default"
+      topic: "default",
     });
   }
   if (Object.keys(alarmData).length > 0) {
     emit("sample", {
       data: alarmData,
-      topic: "alarm"
+      topic: "alarm",
     });
   }
   if (Object.keys(systemData).length > 0) {
     emit("sample", {
       data: systemData,
-      topic: "system"
+      topic: "system",
     });
   }
 }

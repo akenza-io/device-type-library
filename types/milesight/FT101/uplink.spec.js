@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -16,41 +14,39 @@ describe("Milesight FT101 Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
     it("should decode should decode the Milesight FT101 payload", () => {
       const data = {
         uplinkMetrics: {
-          "deviceId": "string",
-          "uplinkSize": 223,
-          "timestamp": "iso-8601-date-string",
-          "latitude": 46.928403,
-          "longitude": 7.628662,
-          "port": 2,
-          "frameCountUp": 14,
-          "frameCountDown": 1,
-          "rssi": -88.0,
-          "snr": 7.75,
-          "sf": 7,
-          "txPower": 8.0,
-          "numberOfGateways": 2,
-          "esp": -88.67,
-          "sqi": 3
+          deviceId: "string",
+          uplinkSize: 223,
+          timestamp: "iso-8601-date-string",
+          latitude: 46.928403,
+          longitude: 7.628662,
+          port: 2,
+          frameCountUp: 14,
+          frameCountDown: 1,
+          rssi: -88.0,
+          snr: 7.75,
+          sf: 7,
+          txPower: 8.0,
+          numberOfGateways: 2,
+          esp: -88.67,
+          sqi: 3,
         },
         data: {
           port: 1,

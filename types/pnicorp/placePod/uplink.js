@@ -8,7 +8,7 @@ function consume(event) {
   let topic = "default";
 
   if (payload !== "") {
-    for (let pointer = 0; pointer < bits.length;) {
+    for (let pointer = 0; pointer < bits.length; ) {
       const channel = Bits.bitsToUnsigned(bits.substr(pointer, 8));
       const data = {};
       pointer += 16;
@@ -56,15 +56,18 @@ function consume(event) {
             data.occupied = false;
           }
 
-          // Warm desk 
+          // Warm desk
           const time = new Date().getTime();
           const state = event.state || {};
           data.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
           if (data.occupied) {
             delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
           } else if (state.lastOccupancyTimestamp !== undefined) {
-            data.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
-          } else if (state.lastOccupiedValue) { //
+            data.minutesSinceLastOccupied = Math.round(
+              (time - state.lastOccupancyTimestamp) / 1000 / 60,
+            ); // Get free since
+          } else if (state.lastOccupiedValue) {
+            //
             state.lastOccupancyTimestamp = time; // Start with first no occupancy
           }
 
@@ -75,7 +78,8 @@ function consume(event) {
           emit("state", state);
           topic = "occupancy";
           break;
-        } case 28:
+        }
+        case 28:
           // Deactivate Response
           data.deactivate = "done";
           break;
@@ -99,15 +103,18 @@ function consume(event) {
             data.occupied = false;
           }
 
-          // Warm desk 
+          // Warm desk
           const time = new Date().getTime();
           const state = event.state || {};
           data.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
           if (data.occupied) {
             delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
           } else if (state.lastOccupancyTimestamp !== undefined) {
-            data.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
-          } else if (state.lastOccupiedValue) { //
+            data.minutesSinceLastOccupied = Math.round(
+              (time - state.lastOccupancyTimestamp) / 1000 / 60,
+            ); // Get free since
+          } else if (state.lastOccupiedValue) {
+            //
             state.lastOccupancyTimestamp = time; // Start with first no occupancy
           }
 
@@ -118,7 +125,8 @@ function consume(event) {
           emit("state", state);
           topic = "occupancy";
           break;
-        } case 63:
+        }
+        case 63:
           // Reboot Response
           data.reboot = "DONE";
           topic = "reboot";

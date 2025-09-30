@@ -1,6 +1,6 @@
-function cToF(celsius) { 
- return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
- } 
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
 
 const decentlab_decoder = {
   PROTOCOL_VERSION: 2,
@@ -105,7 +105,7 @@ function consume(event) {
   // Default values
   data.pressure = sample.pressure;
   data.temperature = sample.temperature;
- data.temperatureF = cToF(data.temperature);
+  data.temperatureF = cToF(data.temperature);
   // water level is calculated from pressure
   data.level = (sample.pressure * 100000) / (1000 * 9.807);
 
@@ -113,9 +113,7 @@ function consume(event) {
     if (event.device.customFields !== undefined) {
       const { customFields } = event.device;
       if (customFields.sensorOffset !== undefined) {
-        const sensorOffset = Number(
-          event.device.customFields.sensorOffset,
-        );
+        const sensorOffset = Number(event.device.customFields.sensorOffset);
         data.level += sensorOffset;
       }
     }
@@ -125,7 +123,7 @@ function consume(event) {
   data.level = Math.round(data.level * 100000) / 100000;
   data.pressure = Math.round(data.pressure * 100000) / 100000;
   data.temperature = Math.round(data.temperature * 100000) / 100000;
- data.temperatureF = cToF(data.temperature);
+  data.temperatureF = cToF(data.temperature);
   data.levelCm = data.level * 100;
 
   // Lifecycle values

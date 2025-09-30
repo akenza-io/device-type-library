@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -20,19 +18,17 @@ describe("Decentlab PM Uplink", () => {
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -52,7 +48,7 @@ describe("Decentlab PM Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.humidity, 41.63221740722656);
         assert.equal(value.data.temperature, 24.35660461425781);
-         assert.equal(value.data.temperatureF, 75.8);
+        assert.equal(value.data.temperatureF, 75.8);
         assert.equal(value.data.pressure, 96800);
         assert.equal(value.data.pm0_5Number, 26.3);
         assert.equal(value.data.pm10, 3.9);

@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 describe("Comtac LPN CM-1 Uplink", () => {
@@ -17,25 +15,24 @@ describe("Comtac LPN CM-1 Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
   before((done) => {
-    loadSchema(`${__dirname}/button_pressed.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/button_pressed.schema.json`).then(
+      (parsedSchema) => {
         buttonPressedSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
   describe("consume()", () => {
     it("should decode the Comtac LPN CM-1 payload", () => {

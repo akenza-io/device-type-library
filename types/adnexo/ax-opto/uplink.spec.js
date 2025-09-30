@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,20 +13,18 @@ describe("Adnexo ax-opto Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/measurement.schema.json`)
-      .then((parsedSchema) => {
-        measurementSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/measurement.schema.json`).then((parsedSchema) => {
+      measurementSchema = parsedSchema;
+      done();
+    });
   });
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   let statusSchema = null;
@@ -41,11 +37,10 @@ describe("Adnexo ax-opto Uplink", () => {
 
   let accelerationSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/acceleration.schema.json`)
-      .then((parsedSchema) => {
-        accelerationSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/acceleration.schema.json`).then((parsedSchema) => {
+      accelerationSchema = parsedSchema;
+      done();
+    });
   });
 
   let errorSchema = null;
@@ -96,7 +91,7 @@ describe("Adnexo ax-opto Uplink", () => {
         assert.equal(value.data.middleLeft, 17.9);
         assert.equal(value.data.middleRight, 26.9);
         assert.equal(value.data.temperature, 3);
-         assert.equal(value.data.temperatureF, 37.4);
+        assert.equal(value.data.temperatureF, 37.4);
         assert.equal(value.data.topCenter, 20);
         assert.equal(value.data.topLeft, 20);
         assert.equal(value.data.topRight, 20);

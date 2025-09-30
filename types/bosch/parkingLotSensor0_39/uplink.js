@@ -1,6 +1,6 @@
-function cToF(celsius) { 
- return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
- } 
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
 
 function consume(event) {
   const payload = event.data.payloadHex;
@@ -13,15 +13,18 @@ function consume(event) {
     occupancy.occupancy = Bits.bitsToUnsigned(bits.substr(0, 8));
     occupancy.occupied = !!occupancy.occupancy;
 
-    // Warm desk 
+    // Warm desk
     const time = new Date().getTime();
     const state = event.state || {};
     occupancy.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
     if (occupancy.occupied) {
       delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
     } else if (state.lastOccupancyTimestamp !== undefined) {
-      occupancy.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
-    } else if (state.lastOccupiedValue) { //
+      occupancy.minutesSinceLastOccupied = Math.round(
+        (time - state.lastOccupancyTimestamp) / 1000 / 60,
+      ); // Get free since
+    } else if (state.lastOccupiedValue) {
+      //
       state.lastOccupancyTimestamp = time; // Start with first no occupancy
     }
 
@@ -33,7 +36,7 @@ function consume(event) {
 
     if (payload.length > 2) {
       data.temperature = Bits.bitsToSigned(bits.substr(8, 8));
- data.temperatureF = cToF(data.temperature);
+      data.temperatureF = cToF(data.temperature);
       emit("sample", { data, topic: "lifecycle" });
     }
     emit("sample", { data: occupancy, topic: "occupancy" });

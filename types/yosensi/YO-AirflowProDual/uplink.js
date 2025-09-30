@@ -300,8 +300,8 @@ function payloadV2Parse(bytes, date, utils) {
   ) {
     return new Date(
       Number(extractPayloadDateTimeDate) -
-      utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
-      1000,
+        utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
+          1000,
     );
   }
 
@@ -316,7 +316,7 @@ function payloadV2Parse(bytes, date, utils) {
   function extractMeasurementDateTime(byte, extractMeasurementDateTimeDate) {
     return new Date(
       Number(extractMeasurementDateTimeDate) +
-      utils.unsignedNbrFromByte(byte) * 1000,
+        utils.unsignedNbrFromByte(byte) * 1000,
     );
   }
 
@@ -711,7 +711,10 @@ function consume(event) {
   if (data.data.internalTemperature !== undefined) {
     data.data.internalTemperatureF = cToF(data.data.internalTemperature);
     emit("sample", {
-      data: { internalTemperature: data.data.internalTemperature, internalTemperatureF: data.data.internalTemperatureF },
+      data: {
+        internalTemperature: data.data.internalTemperature,
+        internalTemperatureF: data.data.internalTemperatureF,
+      },
       topic: "internal_temperature",
     });
     delete data.data.internalTemperature;
@@ -741,7 +744,10 @@ function consume(event) {
   if (data.data.gasTemperature1 !== undefined) {
     data.data.gasTemperature1F = cToF(data.data.gasTemperature1);
     emit("sample", {
-      data: { gasTemperature1: data.data.gasTemperature1, gasTemperature1F: data.data.gasTemperature1F },
+      data: {
+        gasTemperature1: data.data.gasTemperature1,
+        gasTemperature1F: data.data.gasTemperature1F,
+      },
       topic: "gas_temperature_1",
     });
     delete data.data.gasTemperature1;
@@ -750,7 +756,10 @@ function consume(event) {
   if (data.data.gasTemperature2 !== undefined) {
     data.data.gasTemperature2F = cToF(data.data.gasTemperature2);
     emit("sample", {
-      data: { gasTemperature2: data.data.gasTemperature2, gasTemperature2F: data.data.gasTemperature2F },
+      data: {
+        gasTemperature2: data.data.gasTemperature2,
+        gasTemperature2F: data.data.gasTemperature2F,
+      },
       topic: "gas_temperature_2",
     });
     delete data.data.gasTemperature2;

@@ -1,6 +1,6 @@
-function cToF(celsius) { 
- return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
- } 
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
 
 function consume(event) {
   const payload = event.data.payloadHex;
@@ -13,7 +13,7 @@ function consume(event) {
   data.thermistorOperational = !Bits.bitsToUnsigned(bits.substr(21, 1));
   data.temperature =
     Bits.bitsToUnsigned(bits.substr(22, 2) + bits.substr(24, 8)) / 10;
- data.temperatureF = cToF(data.temperature);
+  data.temperatureF = cToF(data.temperature);
 
   const button = Bits.bitsToUnsigned(bits.substr(32, 8));
 

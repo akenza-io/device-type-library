@@ -1,6 +1,6 @@
-function cToF(celsius) { 
- return Math.round(((celsius * 9) / 5 + 32) * 10) / 10; 
- } 
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
 
 function consume(event) {
   const payload = event.data.payloadHex;
@@ -35,38 +35,38 @@ function consume(event) {
   if (port === 3) {
     const payloadId = Bits.bitsToUnsigned(bits.substr(32, 8));
     data.temperature = Bits.bitsToSigned(bits.substr(40, 16)) / 100;
- data.temperatureF = cToF(data.temperature);
- data.temperatureF = cToF(data.temperature);
- data.temperatureF = cToF(data.temperature);
+    data.temperatureF = cToF(data.temperature);
+    data.temperatureF = cToF(data.temperature);
+    data.temperatureF = cToF(data.temperature);
     data.humidity = Bits.bitsToUnsigned(bits.substr(56, 8));
 
     if (payloadId === 4) {
       data.tempHistory1 = Bits.bitsToSigned(bits.substr(64, 16)) / 100;
- data.tempHistory1F = cToF(data.tempHistory1);
+      data.tempHistory1F = cToF(data.tempHistory1);
       data.humHistory1 = Bits.bitsToSigned(bits.substr(80, 8));
 
       data.tempHistory2 = Bits.bitsToSigned(bits.substr(88, 16)) / 100;
- data.tempHistory2F = cToF(data.tempHistory2);
+      data.tempHistory2F = cToF(data.tempHistory2);
       data.humHistory2 = Bits.bitsToSigned(bits.substr(104, 8));
 
       data.tempHistory3 = Bits.bitsToSigned(bits.substr(112, 16)) / 100;
- data.tempHistory3F = cToF(data.tempHistory3);
+      data.tempHistory3F = cToF(data.tempHistory3);
       data.humHistory3 = Bits.bitsToSigned(bits.substr(128, 8));
 
       data.tempHistory4 = Bits.bitsToSigned(bits.substr(136, 16)) / 100;
- data.tempHistory4F = cToF(data.tempHistory4);
+      data.tempHistory4F = cToF(data.tempHistory4);
       data.humHistory4 = Bits.bitsToSigned(bits.substr(152, 8));
 
       data.tempHistory5 = Bits.bitsToSigned(bits.substr(160, 16)) / 100;
- data.tempHistory5F = cToF(data.tempHistory5);
+      data.tempHistory5F = cToF(data.tempHistory5);
       data.humHistory5 = Bits.bitsToSigned(bits.substr(176, 8));
 
       data.tempHistory6 = Bits.bitsToSigned(bits.substr(184, 16)) / 100;
- data.tempHistory6F = cToF(data.tempHistory6);
+      data.tempHistory6F = cToF(data.tempHistory6);
       data.humHistory6 = Bits.bitsToSigned(bits.substr(200, 8));
 
       data.tempHistory7 = Bits.bitsToSigned(bits.substr(208, 16)) / 100;
- data.tempHistory7F = cToF(data.tempHistory7);
+      data.tempHistory7F = cToF(data.tempHistory7);
       data.humHistory7 = Bits.bitsToSigned(bits.substr(224, 8));
       topic = "history";
     }
@@ -74,11 +74,11 @@ function consume(event) {
     data.measurementRate = Bits.bitsToUnsigned(bits.substr(32, 16));
     data.historyTrigger = Bits.bitsToUnsigned(bits.substr(48, 8));
     data.tempOffset = Bits.bitsToSigned(bits.substr(56, 16)) / 100;
- data.tempOffsetF = cToF(data.tempOffset);
+    data.tempOffsetF = cToF(data.tempOffset);
     data.tempMax = Bits.bitsToSigned(bits.substr(72, 8));
- data.tempMaxF = cToF(data.tempMax);
+    data.tempMaxF = cToF(data.tempMax);
     data.tempMin = Bits.bitsToSigned(bits.substr(80, 8));
- data.tempMinF = cToF(data.tempMin);
+    data.tempMinF = cToF(data.tempMin);
     data.humOffset = Bits.bitsToUnsigned(bits.substr(88, 8));
     data.humMax = Bits.bitsToUnsigned(bits.substr(96, 8));
     data.humMin = Bits.bitsToUnsigned(bits.substr(104, 8));

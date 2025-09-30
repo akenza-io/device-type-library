@@ -499,8 +499,8 @@ function consume(event) {
               pointer += 9;
               const timestamp = new Date(
                 secondsNow -
-                Bits.bitsToUnsigned(bits.substr(bitsLength - pointer, 9)) *
-                169,
+                  Bits.bitsToUnsigned(bits.substr(bitsLength - pointer, 9)) *
+                    169,
               );
 
               pointer += 6;
@@ -544,8 +544,8 @@ function consume(event) {
               pointer += 16;
               const timestamp = new Date(
                 secondsNow -
-                Bits.bitsToUnsigned(bits.substr(bitsLength - pointer, 16)) *
-                1.32,
+                  Bits.bitsToUnsigned(bits.substr(bitsLength - pointer, 16)) *
+                    1.32,
               );
 
               pointer += 6;
