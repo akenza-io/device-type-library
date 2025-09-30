@@ -1,1 +1,37 @@
-{"$id":"https://akenza.io/dragino/nse01/default.schema.json","$schema":"http://json-schema.org/draft-07/schema#","type":"object","processingType":"uplink_decoder","topic":"default","title":"Default","properties":{"soilMoisture":{"title":"Soil moisture","description":"The relative soil moisture of the soil in %","$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"},"soilTemperature":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius","description":"The soil temperature in °C.","title":"Soil temperature °C"},"soilConductivity":{"title":"Soil conductivity","unit":"uS/cm","type":"number","description":"Conductivity of the soil"},"soilDialecticConstant":{"title":"Soil dialectic constant","unit":"ε","type":"number","description":"Soil dialectic constant"},"soilTemperatureF":{"title":"Soil temperature °F","description":"The soil temperature in °F.","$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"}}}
+{
+    "$id": "https://akenza.io/dragino/nse01/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "soilMoisture": {
+            "title": "Soil moisture",
+            "description": "The relative soil moisture of the soil in %",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+        },
+        "soilTemperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "description": "The soil temperature in °C.",
+            "title": "Soil temperature °C"
+        },
+        "soilConductivity": {
+            "title": "Soil conductivity",
+            "unit": "uS/cm",
+            "type": "number",
+            "description": "Conductivity of the soil"
+        },
+        "soilDialecticConstant": {
+            "title": "Soil dialectic constant",
+            "unit": "ε",
+            "type": "number",
+            "description": "Soil dialectic constant"
+        },
+        "soilTemperatureF": {
+            "title": "Soil temperature °F",
+            "description": "The soil temperature in °F.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
+    }
+}

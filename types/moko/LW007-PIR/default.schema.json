@@ -1,1 +1,141 @@
-{"$id":"https://akenza.io/moko/lw007-pir/default.schema.json","$schema":"http://json-schema.org/draft-07/schema#","type":"object","processingType":"uplink_decoder","topic":"default","title":"Default","properties":{"pirState":{"title":"PIR State","description":"PIR State","type":"string","enum":["NO_MOTION","MOTION_DETECTED","DISABLED"],"hideFromKpis":true},"pir":{"title":"PIR","description":"Motion detected 1 / no motion detected 0","type":"integer"},"reedState":{"title":"Reed State","description":"Reed State","type":"string","enum":["OPEN","CLOSED","DISABLED"],"hideFromKpis":true},"reed":{"title":"Reed","description":"Equals true if contact is closed","type":"boolean"},"temperatureThreshold":{"title":"Temperature threshold","description":"Temperature threshold","type":"string","enum":["THRESHOLD_LOW","THRESHOLD_HIGH","THRESHOLD_NOT_REACHED","THRESHOLD_DISABLED"],"hideFromKpis":true},"humidityThreshold":{"title":"Humidity threshold","description":"Humidity threshold","type":"string","enum":["THRESHOLD_LOW","THRESHOLD_HIGH","THRESHOLD_NOT_REACHED","THRESHOLD_DISABLED"],"hideFromKpis":true},"temperatureState":{"title":"Temperature state","description":"Temperature state","type":"string","enum":["DISABLED","ENABLED"],"hideFromKpis":true},"temperature":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"},"humidityState":{"title":"Humidity state","description":"Humidity state","type":"string","enum":["DISABLED","ENABLED"],"hideFromKpis":true},"humidity":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"},"temperatureChangeState":{"title":"Temperature change state","description":"Temperature change state","type":"string","enum":["FAST_RISE","FAST_DROP","NOMINAL_CHANGE","FAST_CHANGE_DISABLED"],"hideFromKpis":true},"humidityChangeState":{"title":"Humidity change state","description":"Humidity change state","type":"string","enum":["FAST_RISE","FAST_DROP","NOMINAL_CHANGE","FAST_CHANGE_DISABLED"],"hideFromKpis":true},"reedStatus":{"title":"Reed status","description":"Reed status","type":"string","enum":["DISABLED","ENABLED"],"hideFromKpis":true},"count":{"title":"Absolute count","description":"Absolute count of events, resets on reboot","hideFromKpis":true,"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/count"},"lowBattery":{"title":"Low battery","description":"Low battery","type":"boolean","hideFromKpis":true},"temperatureF":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"}}}
+{
+    "$id": "https://akenza.io/moko/lw007-pir/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "pirState": {
+            "title": "PIR State",
+            "description": "PIR State",
+            "type": "string",
+            "enum": [
+                "NO_MOTION",
+                "MOTION_DETECTED",
+                "DISABLED"
+            ],
+            "hideFromKpis": true
+        },
+        "pir": {
+            "title": "PIR",
+            "description": "Motion detected 1 / no motion detected 0",
+            "type": "integer"
+        },
+        "reedState": {
+            "title": "Reed State",
+            "description": "Reed State",
+            "type": "string",
+            "enum": [
+                "OPEN",
+                "CLOSED",
+                "DISABLED"
+            ],
+            "hideFromKpis": true
+        },
+        "reed": {
+            "title": "Reed",
+            "description": "Equals true if contact is closed",
+            "type": "boolean"
+        },
+        "temperatureThreshold": {
+            "title": "Temperature threshold",
+            "description": "Temperature threshold",
+            "type": "string",
+            "enum": [
+                "THRESHOLD_LOW",
+                "THRESHOLD_HIGH",
+                "THRESHOLD_NOT_REACHED",
+                "THRESHOLD_DISABLED"
+            ],
+            "hideFromKpis": true
+        },
+        "humidityThreshold": {
+            "title": "Humidity threshold",
+            "description": "Humidity threshold",
+            "type": "string",
+            "enum": [
+                "THRESHOLD_LOW",
+                "THRESHOLD_HIGH",
+                "THRESHOLD_NOT_REACHED",
+                "THRESHOLD_DISABLED"
+            ],
+            "hideFromKpis": true
+        },
+        "temperatureState": {
+            "title": "Temperature state",
+            "description": "Temperature state",
+            "type": "string",
+            "enum": [
+                "DISABLED",
+                "ENABLED"
+            ],
+            "hideFromKpis": true
+        },
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "humidityState": {
+            "title": "Humidity state",
+            "description": "Humidity state",
+            "type": "string",
+            "enum": [
+                "DISABLED",
+                "ENABLED"
+            ],
+            "hideFromKpis": true
+        },
+        "humidity": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+        },
+        "temperatureChangeState": {
+            "title": "Temperature change state",
+            "description": "Temperature change state",
+            "type": "string",
+            "enum": [
+                "FAST_RISE",
+                "FAST_DROP",
+                "NOMINAL_CHANGE",
+                "FAST_CHANGE_DISABLED"
+            ],
+            "hideFromKpis": true
+        },
+        "humidityChangeState": {
+            "title": "Humidity change state",
+            "description": "Humidity change state",
+            "type": "string",
+            "enum": [
+                "FAST_RISE",
+                "FAST_DROP",
+                "NOMINAL_CHANGE",
+                "FAST_CHANGE_DISABLED"
+            ],
+            "hideFromKpis": true
+        },
+        "reedStatus": {
+            "title": "Reed status",
+            "description": "Reed status",
+            "type": "string",
+            "enum": [
+                "DISABLED",
+                "ENABLED"
+            ],
+            "hideFromKpis": true
+        },
+        "count": {
+            "title": "Absolute count",
+            "description": "Absolute count of events, resets on reboot",
+            "hideFromKpis": true,
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/count"
+        },
+        "lowBattery": {
+            "title": "Low battery",
+            "description": "Low battery",
+            "type": "boolean",
+            "hideFromKpis": true
+        },
+        "temperatureF": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
+    }
+}

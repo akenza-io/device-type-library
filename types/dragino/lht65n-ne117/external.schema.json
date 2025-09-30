@@ -1,1 +1,64 @@
-{"$id":"https://akenza.io/dragino/lht65n-ne117/external.schema.json","$schema":"http://json-schema.org/draft-07/schema#","type":"object","processingType":"uplink_decoder","topic":"external","title":"External","properties":{"tempDS":{"title":"External digital temperature sensor °C","description":"The external digital temperature in °C.","$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"},"tempTMP117":{"title":"External temperature TMP117 °C","description":"The external temperature TMP117 in °C.","$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"},"extPinLevel":{"title":"External Pin Level","description":"External Pin Level","type":"string","enum":["HIGH","LOW"]},"extStatus":{"title":"External status","description":"External status","type":"boolean"},"light":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/illuminance/lux"},"adc":{"title":"External analog Input","type":"number","unit":"V","description":"ADC value"},"count":{"title":"Count","type":"integer","description":"Count of all events"},"id":{"title":"ID","description":"ID","type":"string","hideFromKpis":true},"tempDSF":{"title":"External digital temperature sensor °F","description":"The external digital temperature in °F.","$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"},"tempTMP117F":{"title":"External temperature TMP117 °F","description":"The external temperature TMP117 in °F.","$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"}}}
+{
+    "$id": "https://akenza.io/dragino/lht65n-ne117/external.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "external",
+    "title": "External",
+    "properties": {
+        "tempDS": {
+            "title": "External digital temperature sensor °C",
+            "description": "The external digital temperature in °C.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "tempTMP117": {
+            "title": "External temperature TMP117 °C",
+            "description": "The external temperature TMP117 in °C.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "extPinLevel": {
+            "title": "External Pin Level",
+            "description": "External Pin Level",
+            "type": "string",
+            "enum": [
+                "HIGH",
+                "LOW"
+            ]
+        },
+        "extStatus": {
+            "title": "External status",
+            "description": "External status",
+            "type": "boolean"
+        },
+        "light": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/illuminance/lux"
+        },
+        "adc": {
+            "title": "External analog Input",
+            "type": "number",
+            "unit": "V",
+            "description": "ADC value"
+        },
+        "count": {
+            "title": "Count",
+            "type": "integer",
+            "description": "Count of all events"
+        },
+        "id": {
+            "title": "ID",
+            "description": "ID",
+            "type": "string",
+            "hideFromKpis": true
+        },
+        "tempDSF": {
+            "title": "External digital temperature sensor °F",
+            "description": "The external digital temperature in °F.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "tempTMP117F": {
+            "title": "External temperature TMP117 °F",
+            "description": "The external temperature TMP117 in °F.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
+    }
+}

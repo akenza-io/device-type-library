@@ -1,1 +1,62 @@
-{"$id":"https://akenza.io/milesight/TS201/default.schema.json","$schema":"http://json-schema.org/draft-07/schema#","type":"object","processingType":"uplink_decoder","topic":"default","title":"Default","properties":{"temperature":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"},"temperatureAlarm":{"title":"Temperature alert","description":"Temperature alert","type":"string","enum":["NORMAL","THRESHOLD","MUTATION","UNKNOWN"]},"temperatureMutation":{"title":"Temperature mutation °C","description":"Temperature mutation","$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"},"readStatus":{"title":"Read status","description":"Read status","type":"string","enum":["READ_ERROR","SUCCESS","OVERLOAD","UNKNOWN"]},"eventType":{"title":"Event type","description":"Event type","type":"string","enum":["ALARM","PERIODIC","ALARM_RELEASE","UNKNOWN"]},"temperatureF":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"},"temperatureMutationF":{"title":"Temperature mutation °F","description":"Temperature mutation","$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"}},"required":["temperature"]}
+{
+    "$id": "https://akenza.io/milesight/TS201/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "temperatureAlarm": {
+            "title": "Temperature alert",
+            "description": "Temperature alert",
+            "type": "string",
+            "enum": [
+                "NORMAL",
+                "THRESHOLD",
+                "MUTATION",
+                "UNKNOWN"
+            ]
+        },
+        "temperatureMutation": {
+            "title": "Temperature mutation °C",
+            "description": "Temperature mutation",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "readStatus": {
+            "title": "Read status",
+            "description": "Read status",
+            "type": "string",
+            "enum": [
+                "READ_ERROR",
+                "SUCCESS",
+                "OVERLOAD",
+                "UNKNOWN"
+            ]
+        },
+        "eventType": {
+            "title": "Event type",
+            "description": "Event type",
+            "type": "string",
+            "enum": [
+                "ALARM",
+                "PERIODIC",
+                "ALARM_RELEASE",
+                "UNKNOWN"
+            ]
+        },
+        "temperatureF": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "temperatureMutationF": {
+            "title": "Temperature mutation °F",
+            "description": "Temperature mutation",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
+    },
+    "required": [
+        "temperature"
+    ]
+}

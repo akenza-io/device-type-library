@@ -1,1 +1,67 @@
-{"$id":"https://akenza.io/sentinum/febrismioty/lifecycle.schema.json","$schema":"http://json-schema.org/draft-07/schema#","type":"object","processingType":"uplink_decoder","topic":"lifecycle","title":"Lifecycle","properties":{"baseId":{"title":"Base ID","description":"Base ID","type":"integer","hideFromKpis":true},"majorVersion":{"title":"Software version major","description":"Software version major","type":"integer","hideFromKpis":true},"minorVersion":{"title":"Software version minor","description":"Software version minor","type":"integer","hideFromKpis":true},"productVersion":{"title":"Product version","description":"Product version","type":"integer","hideFromKpis":true},"upCnt":{"title":"Uplink count","description":"Uplink count","type":"integer","hideFromKpis":true},"internalTemperature":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius","description":"Internal temperature","title":"Internal temperature °C","hideFromKpis":true},"batteryVoltage":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt","hideFromKpis":true},"batteryLevel":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"},"internalTemperatureF":{"title":"Internal temperature °F","description":"Internal temperature","$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"}},"required":["baseId","majorVersion","minorVersion","productVersion","upCnt","internalTemperature","batteryVoltage"]}
+{
+    "$id": "https://akenza.io/sentinum/febrismioty/lifecycle.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "lifecycle",
+    "title": "Lifecycle",
+    "properties": {
+        "baseId": {
+            "title": "Base ID",
+            "description": "Base ID",
+            "type": "integer",
+            "hideFromKpis": true
+        },
+        "majorVersion": {
+            "title": "Software version major",
+            "description": "Software version major",
+            "type": "integer",
+            "hideFromKpis": true
+        },
+        "minorVersion": {
+            "title": "Software version minor",
+            "description": "Software version minor",
+            "type": "integer",
+            "hideFromKpis": true
+        },
+        "productVersion": {
+            "title": "Product version",
+            "description": "Product version",
+            "type": "integer",
+            "hideFromKpis": true
+        },
+        "upCnt": {
+            "title": "Uplink count",
+            "description": "Uplink count",
+            "type": "integer",
+            "hideFromKpis": true
+        },
+        "internalTemperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "description": "Internal temperature",
+            "title": "Internal temperature °C",
+            "hideFromKpis": true
+        },
+        "batteryVoltage": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt",
+            "hideFromKpis": true
+        },
+        "batteryLevel": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
+        },
+        "internalTemperatureF": {
+            "title": "Internal temperature °F",
+            "description": "Internal temperature",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
+    },
+    "required": [
+        "baseId",
+        "majorVersion",
+        "minorVersion",
+        "productVersion",
+        "upCnt",
+        "internalTemperature",
+        "batteryVoltage"
+    ]
+}

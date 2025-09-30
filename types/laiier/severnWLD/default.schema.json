@@ -1,1 +1,144 @@
-{"$id":"https://akenza.io/laiier/severn/default.schema.json","$schema":"http://json-schema.org/draft-07/schema#","type":"object","processingType":"uplink_decoder","topic":"default","title":"Default","properties":{"messageType":{"title":"Message type","type":"string","description":"Message type","enum":["REGULAR_MESSAGE","EMERGENCY_MESSAGE","SELF_TEST_MESSAGE"]},"leakElectrode1":{"title":"Leak electrode 1","description":"Leak electrode. wet = true, dry = false","type":"boolean"},"leakElectrode2":{"title":"Leak electrode 2","description":"Leak electrode. wet = true, dry = false","type":"boolean"},"leakElectrode3":{"title":"Leak electrode 3","description":"Leak electrode. wet = true, dry = false","type":"boolean"},"leakElectrode4":{"title":"Leak electrode 4","description":"Leak electrode. wet = true, dry = false","type":"boolean"},"leakElectrode5":{"title":"Leak electrode 5","description":"Leak electrode. wet = true, dry = false","type":"boolean"},"leakElectrode6":{"title":"Leak electrode 6","description":"Leak electrode. wet = true, dry = false","type":"boolean"},"leakElectrode7":{"title":"Leak electrode 7","description":"Leak electrode. wet = true, dry = false","type":"boolean"},"leakElectrode8":{"title":"Leak electrode 8","description":"Leak electrode. wet = true, dry = false","type":"boolean"},"leakElectrode9":{"title":"Leak electrode 9","description":"Leak electrode. wet = true, dry = false","type":"boolean"},"leakElectrode10":{"title":"Leak electrode 10","description":"Leak electrode. wet = true, dry = false","type":"boolean"},"leakElectrode11":{"title":"Leak electrode 11","description":"Leak electrode. wet = true, dry = false","type":"boolean"},"leakElectrode12":{"title":"Leak electrode 12","description":"Leak electrode. wet = true, dry = false","type":"boolean"},"selfTestFailed":{"title":"Self test failed","description":"Self test failed","type":"boolean"},"criticalWetFlag":{"title":"Critical wet flag","description":"Critical wet flag","type":"boolean"},"accX":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/mG","description":"Acceleration on the X-Axis is mg","title":"Accelerometer X Axis"},"accY":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/mG","description":"Acceleration on the Y-Axis is mg","title":"Accelerometer Y Axis"},"accZ":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/mG","description":"Acceleration on the Z-Axis is mg","title":"Accelerometer Z Axis"},"temperature":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"},"wetnessThreshold":{"title":"Wetness threshold","type":"number","description":"Wetness threshold"},"interval":{"title":"Message interval","type":"number","description":"Message interval"},"temperatureF":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"}},"required":["messageType","selfTestFailed","criticalWetFlag","leakElectrode1","leakElectrode2","leakElectrode3","leakElectrode4","leakElectrode5","leakElectrode6","leakElectrode7","leakElectrode8","leakElectrode9","leakElectrode10","leakElectrode11","leakElectrode12","accX","accY","accZ","temperature","wetnessThreshold","interval"]}
+{
+    "$id": "https://akenza.io/laiier/severn/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "messageType": {
+            "title": "Message type",
+            "type": "string",
+            "description": "Message type",
+            "enum": [
+                "REGULAR_MESSAGE",
+                "EMERGENCY_MESSAGE",
+                "SELF_TEST_MESSAGE"
+            ]
+        },
+        "leakElectrode1": {
+            "title": "Leak electrode 1",
+            "description": "Leak electrode. wet = true, dry = false",
+            "type": "boolean"
+        },
+        "leakElectrode2": {
+            "title": "Leak electrode 2",
+            "description": "Leak electrode. wet = true, dry = false",
+            "type": "boolean"
+        },
+        "leakElectrode3": {
+            "title": "Leak electrode 3",
+            "description": "Leak electrode. wet = true, dry = false",
+            "type": "boolean"
+        },
+        "leakElectrode4": {
+            "title": "Leak electrode 4",
+            "description": "Leak electrode. wet = true, dry = false",
+            "type": "boolean"
+        },
+        "leakElectrode5": {
+            "title": "Leak electrode 5",
+            "description": "Leak electrode. wet = true, dry = false",
+            "type": "boolean"
+        },
+        "leakElectrode6": {
+            "title": "Leak electrode 6",
+            "description": "Leak electrode. wet = true, dry = false",
+            "type": "boolean"
+        },
+        "leakElectrode7": {
+            "title": "Leak electrode 7",
+            "description": "Leak electrode. wet = true, dry = false",
+            "type": "boolean"
+        },
+        "leakElectrode8": {
+            "title": "Leak electrode 8",
+            "description": "Leak electrode. wet = true, dry = false",
+            "type": "boolean"
+        },
+        "leakElectrode9": {
+            "title": "Leak electrode 9",
+            "description": "Leak electrode. wet = true, dry = false",
+            "type": "boolean"
+        },
+        "leakElectrode10": {
+            "title": "Leak electrode 10",
+            "description": "Leak electrode. wet = true, dry = false",
+            "type": "boolean"
+        },
+        "leakElectrode11": {
+            "title": "Leak electrode 11",
+            "description": "Leak electrode. wet = true, dry = false",
+            "type": "boolean"
+        },
+        "leakElectrode12": {
+            "title": "Leak electrode 12",
+            "description": "Leak electrode. wet = true, dry = false",
+            "type": "boolean"
+        },
+        "selfTestFailed": {
+            "title": "Self test failed",
+            "description": "Self test failed",
+            "type": "boolean"
+        },
+        "criticalWetFlag": {
+            "title": "Critical wet flag",
+            "description": "Critical wet flag",
+            "type": "boolean"
+        },
+        "accX": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/mG",
+            "description": "Acceleration on the X-Axis is mg",
+            "title": "Accelerometer X Axis"
+        },
+        "accY": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/mG",
+            "description": "Acceleration on the Y-Axis is mg",
+            "title": "Accelerometer Y Axis"
+        },
+        "accZ": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/mG",
+            "description": "Acceleration on the Z-Axis is mg",
+            "title": "Accelerometer Z Axis"
+        },
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "wetnessThreshold": {
+            "title": "Wetness threshold",
+            "type": "number",
+            "description": "Wetness threshold"
+        },
+        "interval": {
+            "title": "Message interval",
+            "type": "number",
+            "description": "Message interval"
+        },
+        "temperatureF": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
+    },
+    "required": [
+        "messageType",
+        "selfTestFailed",
+        "criticalWetFlag",
+        "leakElectrode1",
+        "leakElectrode2",
+        "leakElectrode3",
+        "leakElectrode4",
+        "leakElectrode5",
+        "leakElectrode6",
+        "leakElectrode7",
+        "leakElectrode8",
+        "leakElectrode9",
+        "leakElectrode10",
+        "leakElectrode11",
+        "leakElectrode12",
+        "accX",
+        "accY",
+        "accZ",
+        "temperature",
+        "wetnessThreshold",
+        "interval"
+    ]
+}

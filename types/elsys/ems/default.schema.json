@@ -1,1 +1,70 @@
-{"$id":"https://akenza.io/elsys/ems/default.schema.json","$schema":"http://json-schema.org/draft-07/schema#","type":"object","processingType":"uplink_decoder","topic":"default","title":"Default","properties":{"temperature":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"},"humidity":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"},"accX":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G","description":"Acceleration on the X-Axis in gravitational acceleration","title":"Acceleration X"},"accY":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G","description":"Acceleration on the Y-Axis in gravitational acceleration","title":"Acceleration Y"},"accZ":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G","description":"Acceleration on the Z-Axis in gravitational acceleration","title":"Acceleration Z"},"pulse1":{"title":"Pulse count","description":"Pulse count between events","$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput/count"},"pulseAbs1":{"title":"Pulse count absolute","description":"Pulse count absolute","$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput/count"},"waterleak":{"title":"Water leak","description":"Equals true if a waterleak is detected","type":"boolean"},"reed":{"title":"Reed","description":"Equals true if reed is detected","type":"boolean"},"accMotion":{"title":"Motion (Acceleration)","description":"Motion (Acceleration)","$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/motion/count"},"temperatureF":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"}},"required":["temperature","humidity","accX","accY","accZ","pulseAbs1","waterleak","reed","accMotion"]}
+{
+    "$id": "https://akenza.io/elsys/ems/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "humidity": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+        },
+        "accX": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G",
+            "description": "Acceleration on the X-Axis in gravitational acceleration",
+            "title": "Acceleration X"
+        },
+        "accY": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G",
+            "description": "Acceleration on the Y-Axis in gravitational acceleration",
+            "title": "Acceleration Y"
+        },
+        "accZ": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G",
+            "description": "Acceleration on the Z-Axis in gravitational acceleration",
+            "title": "Acceleration Z"
+        },
+        "pulse1": {
+            "title": "Pulse count",
+            "description": "Pulse count between events",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput/count"
+        },
+        "pulseAbs1": {
+            "title": "Pulse count absolute",
+            "description": "Pulse count absolute",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput/count"
+        },
+        "waterleak": {
+            "title": "Water leak",
+            "description": "Equals true if a waterleak is detected",
+            "type": "boolean"
+        },
+        "reed": {
+            "title": "Reed",
+            "description": "Equals true if reed is detected",
+            "type": "boolean"
+        },
+        "accMotion": {
+            "title": "Motion (Acceleration)",
+            "description": "Motion (Acceleration)",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/motion/count"
+        },
+        "temperatureF": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
+    },
+    "required": [
+        "temperature",
+        "humidity",
+        "accX",
+        "accY",
+        "accZ",
+        "pulseAbs1",
+        "waterleak",
+        "reed",
+        "accMotion"
+    ]
+}

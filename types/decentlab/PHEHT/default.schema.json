@@ -1,1 +1,36 @@
-{"$id":"https://akenza.io/decentlab/pheht/default.schema.json","$schema":"http://json-schema.org/draft-07/schema#","type":"object","processingType":"uplink_decoder","topic":"default","title":"Default","properties":{"temperature":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"},"ph":{"title":"pH","description":"pH","type":"number"},"redox":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/milliVolt","title":"Redox"},"phMv":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/milliVolt","title":"pH-mV","description":"pH in mV"},"temperatureF":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"}},"required":["temperature","ph","redox","phMv"]}
+{
+    "$id": "https://akenza.io/decentlab/pheht/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "ph": {
+            "title": "pH",
+            "description": "pH",
+            "type": "number"
+        },
+        "redox": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/milliVolt",
+            "title": "Redox"
+        },
+        "phMv": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/milliVolt",
+            "title": "pH-mV",
+            "description": "pH in mV"
+        },
+        "temperatureF": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
+    },
+    "required": [
+        "temperature",
+        "ph",
+        "redox",
+        "phMv"
+    ]
+}

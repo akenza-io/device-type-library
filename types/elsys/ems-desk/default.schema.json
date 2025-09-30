@@ -1,1 +1,41 @@
-{"$id":"https://akenza.io/elsys/ems-desk/default.schema.json","$schema":"http://json-schema.org/draft-07/schema#","type":"object","processingType":"uplink_decoder","topic":"default","title":"Default","properties":{"temperature":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"},"humidity":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"},"accX":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G","description":"Acceleration on the X-Axis in gravitational acceleration","title":"Acceleration X"},"accY":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G","description":"Acceleration on the Y-Axis in gravitational acceleration","title":"Acceleration Y"},"accZ":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G","description":"Acceleration on the Z-Axis in gravitational acceleration","title":"Acceleration Z"},"temperatureF":{"$ref":"https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"}},"required":["temperature","humidity","accX","accY","accZ"]}
+{
+    "$id": "https://akenza.io/elsys/ems-desk/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "humidity": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+        },
+        "accX": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G",
+            "description": "Acceleration on the X-Axis in gravitational acceleration",
+            "title": "Acceleration X"
+        },
+        "accY": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G",
+            "description": "Acceleration on the Y-Axis in gravitational acceleration",
+            "title": "Acceleration Y"
+        },
+        "accZ": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/G",
+            "description": "Acceleration on the Z-Axis in gravitational acceleration",
+            "title": "Acceleration Z"
+        },
+        "temperatureF": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
+    },
+    "required": [
+        "temperature",
+        "humidity",
+        "accX",
+        "accY",
+        "accZ"
+    ]
+}
