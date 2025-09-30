@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -20,27 +18,24 @@ describe("Decentlab OPTOD Uplink", () => {
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
     it("should decode the Decentlab OPTOD payload", () => {
       const data = {
         data: {
-          payloadHex:
-            "02186c000300008862a618836583650c60",
+          payloadHex: "02186c000300008862a618836583650c60",
         },
       };
 
@@ -54,6 +49,7 @@ describe("Decentlab OPTOD Uplink", () => {
         assert.equal(value.data.oxygenConcentrationAlt, 8.69);
         assert.equal(value.data.oxygenSaturation, 97.52);
         assert.equal(value.data.temperature, 21.46);
+        assert.equal(value.data.temperatureF, 70.6);
 
         validateSchema(value.data, defaultSchema, { throwError: true });
       });

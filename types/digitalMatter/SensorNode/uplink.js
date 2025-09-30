@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function parseVersionUplink(buffer, index) {
   return {
     product: buffer[index],
@@ -716,6 +720,7 @@ function consume(event) {
     }
   }
 
+  lifecycle.internalTemperatureF = cToF(lifecycle.internalTemperature);
   if (deleteUnusedKeys(lifecycle)) {
     emit("sample", { data: lifecycle, topic: "lifecycle" });
   }
@@ -736,10 +741,13 @@ function consume(event) {
     emit("sample", { data: input, topic: "input" });
   }
 
+  probe.probe1F = cToF(probe.probe1);
+  probe.probe2F = cToF(probe.probe2);
   if (deleteUnusedKeys(probe)) {
     emit("sample", { data: probe, topic: "probe" });
   }
 
+  humidity.temperatureF = cToF(humidity.temperature);
   if (deleteUnusedKeys(humidity)) {
     emit("sample", { data: humidity, topic: "humidity" });
   }

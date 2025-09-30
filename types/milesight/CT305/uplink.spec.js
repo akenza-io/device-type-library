@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,11 +13,10 @@ describe("CT305 Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/temperature.schema.json`)
-      .then((parsedSchema) => {
-        temperatureSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/temperature.schema.json`).then((parsedSchema) => {
+      temperatureSchema = parsedSchema;
+      done();
+    });
   });
 
   let systemSchema = null;
@@ -46,22 +43,20 @@ describe("CT305 Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/channel2.schema.json`)
-      .then((parsedSchema) => {
-        channel2Schema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/channel2.schema.json`).then((parsedSchema) => {
+      channel2Schema = parsedSchema;
+      done();
+    });
   });
 
   let channel3Schema = null;
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/channel3.schema.json`)
-      .then((parsedSchema) => {
-        channel3Schema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/channel3.schema.json`).then((parsedSchema) => {
+      channel3Schema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -69,7 +64,8 @@ describe("CT305 Uplink", () => {
       const data = {
         data: {
           port: 1,
-          payloadHex: "FF0BFFFF0101FF166746D38802580000FF090100FF0A0101FF0F00FFFF0101",
+          payloadHex:
+            "FF0BFFFF0101FF166746D38802580000FF090100FF0A0101FF0F00FFFF0101",
         },
       };
 
@@ -130,7 +126,10 @@ describe("CT305 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "channel1");
-        assert.deepEqual(value.data.alarm, ["THRESHOLD_ALARM", "OVER_RANGE_ALARM"]);
+        assert.deepEqual(value.data.alarm, [
+          "THRESHOLD_ALARM",
+          "OVER_RANGE_ALARM",
+        ]);
         assert.equal(value.data.current, 250);
         assert.equal(value.data.currentMax, 300);
         assert.equal(value.data.currentMin, 200);

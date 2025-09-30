@@ -14,19 +14,20 @@ function consume(event) {
       break;
     case 6:
       topic = "energy";
-      data.voltage = Bits.bitsToUnsigned(bits.substr(40, 16)) / 10
+      data.voltage = Bits.bitsToUnsigned(bits.substr(40, 16)) / 10;
       data.current = Bits.bitsToUnsigned(bits.substr(56, 16)) / 1000;
       data.frequency = Bits.bitsToUnsigned(bits.substr(72, 16)) / 1000;
       break;
     case 7:
       topic = "power";
       data.activePower = Bits.bitsToUnsigned(bits.substr(40, 32)) / 10;
-      data.powerFactor = bytes[9] & 0xFF;
+      data.powerFactor = bytes[9] & 0xff;
       break;
     case 8:
       topic = "consumption";
       data.totalConsumption = Bits.bitsToUnsigned(bits.substr(40, 32)) / 3200;
-      data.consumptionLastHour = Bits.bitsToUnsigned(bits.substr(72, 16)) / 3200;
+      data.consumptionLastHour =
+        Bits.bitsToUnsigned(bits.substr(72, 16)) / 3200;
       break;
     case 9:
       topic = "overvoltage";
@@ -38,13 +39,15 @@ function consume(event) {
       topic = "undervoltage";
       data.undervoltage = !!bytes[5];
       data.voltage = Bits.bitsToUnsigned(bits.substr(48, 16)) / 10;
-      data.undervoltageThreshold = Bits.bitsToUnsigned(bits.substr(64, 16)) / 10;
+      data.undervoltageThreshold =
+        Bits.bitsToUnsigned(bits.substr(64, 16)) / 10;
       break;
     case 11:
       topic = "overcurrent";
       data.overcurrent = !!bytes[5];
       data.current = Bits.bitsToUnsigned(bits.substr(48, 16)) / 1000;
-      data.overcurrentThreshold = Bits.bitsToUnsigned(bits.substr(64, 16)) / 1000;
+      data.overcurrentThreshold =
+        Bits.bitsToUnsigned(bits.substr(64, 16)) / 1000;
       break;
     case 12:
       topic = "overload";
@@ -58,14 +61,12 @@ function consume(event) {
       break;
     case 14:
       topic = "countdown";
-      data.acAfterCountdown = bytes[5] === 1 ? "ON" : "OFF";;
+      data.acAfterCountdown = bytes[5] === 1 ? "ON" : "OFF";
       data.countdownTime = Bits.bitsToUnsigned(bits.substr(48, 32));
       break;
     default:
       break;
   }
 
-
   emit("sample", { data, topic });
-
 }

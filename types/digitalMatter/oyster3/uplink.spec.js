@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,29 +13,26 @@ describe("Digital matter Oyster 3 Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/position.schema.json`)
-      .then((parsedSchema) => {
-        positionSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/position.schema.json`).then((parsedSchema) => {
+      positionSchema = parsedSchema;
+      done();
+    });
   });
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   let downlinkAckSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/downlink_ack.schema.json`)
-      .then((parsedSchema) => {
-        downlinkAckSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/downlink_ack.schema.json`).then((parsedSchema) => {
+      downlinkAckSchema = parsedSchema;
+      done();
+    });
   });
 
   let statsSchema = null;
@@ -50,20 +45,18 @@ describe("Digital matter Oyster 3 Uplink", () => {
 
   let watchdogSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/watchdog.schema.json`)
-      .then((parsedSchema) => {
-        watchdogSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/watchdog.schema.json`).then((parsedSchema) => {
+      watchdogSchema = parsedSchema;
+      done();
+    });
   });
 
   let statsV3Schema = null;
   before((done) => {
-    loadSchema(`${__dirname}/stats_v3.schema.json`)
-      .then((parsedSchema) => {
-        statsV3Schema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/stats_v3.schema.json`).then((parsedSchema) => {
+      statsV3Schema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {

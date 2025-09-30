@@ -1,118 +1,156 @@
 {
-  "$id": "https://akenza.io/comtac/CM-4/history.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "history",
-  "title": "History",
-  "properties": {
-    "temperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    "$id": "https://akenza.io/comtac/CM-4/history.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "history",
+    "title": "History",
+    "properties": {
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "humidity": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+        },
+        "tempHistory1": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "Temperature History 1 °C",
+            "description": "The temperature in °C. Last Measurement -1.",
+            "hideFromKpis": true
+        },
+        "tempHistory2": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "Temperature History 2 °C",
+            "description": "The temperature in °C. Last Measurement -2.",
+            "hideFromKpis": true
+        },
+        "tempHistory3": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "Temperature History 3 °C",
+            "description": "The temperature in °C. Last Measurement -3.",
+            "hideFromKpis": true
+        },
+        "tempHistory4": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "Temperature History 4 °C",
+            "description": "The temperature in °C. Last Measurement -4.",
+            "hideFromKpis": true
+        },
+        "tempHistory5": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "Temperature History 5 °C",
+            "description": "The temperature in °C. Last Measurement -5.",
+            "hideFromKpis": true
+        },
+        "tempHistory6": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "Temperature History 6 °C",
+            "description": "The temperature in °C. Last Measurement -6.",
+            "hideFromKpis": true
+        },
+        "tempHistory7": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "Temperature History 7 °C",
+            "description": "The temperature in °C. Last Measurement -7.",
+            "hideFromKpis": true
+        },
+        "humHistory1": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
+            "title": "Humidity History 1",
+            "description": "The relative humidity in %. Last Measurement -1.",
+            "hideFromKpis": true
+        },
+        "humHistory2": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
+            "title": "Humidity History 2",
+            "description": "The relative humidity in %. Last Measurement -2.",
+            "hideFromKpis": true
+        },
+        "humHistory3": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
+            "title": "Humidity History 3",
+            "description": "The relative humidity in %. Last Measurement -3.",
+            "hideFromKpis": true
+        },
+        "humHistory4": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
+            "title": "Humidity History 4",
+            "description": "The relative humidity in %. Last Measurement -4.",
+            "hideFromKpis": true
+        },
+        "humHistory5": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
+            "title": "Humidity History 5",
+            "description": "The relative humidity in %. Last Measurement -5.",
+            "hideFromKpis": true
+        },
+        "humHistory6": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
+            "title": "Humidity History 6",
+            "description": "The relative humidity in %. Last Measurement -6.",
+            "hideFromKpis": true
+        },
+        "humHistory7": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
+            "title": "Humidity History 7",
+            "description": "The relative humidity in %. Last Measurement -7.",
+            "hideFromKpis": true
+        },
+        "temperatureF": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "tempHistory1F": {
+            "title": "Temperature History 1 °F",
+            "description": "The temperature in °F. Last Measurement -1.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "tempHistory2F": {
+            "title": "Temperature History 2 °F",
+            "description": "The temperature in °F. Last Measurement -2.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "tempHistory3F": {
+            "title": "Temperature History 3 °F",
+            "description": "The temperature in °F. Last Measurement -3.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "tempHistory4F": {
+            "title": "Temperature History 4 °F",
+            "description": "The temperature in °F. Last Measurement -4.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "tempHistory5F": {
+            "title": "Temperature History 5 °F",
+            "description": "The temperature in °F. Last Measurement -5.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "tempHistory6F": {
+            "title": "Temperature History 6 °F",
+            "description": "The temperature in °F. Last Measurement -6.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "tempHistory7F": {
+            "title": "Temperature History 7 °F",
+            "description": "The temperature in °F. Last Measurement -7.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
     },
-    "humidity": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
-    },
-    "tempHistory1": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature History 1",
-      "description": "The temperature in °C. Last Measurement -1.",
-      "hideFromKpis": true
-    },
-    "tempHistory2": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature History 2",
-      "description": "The temperature in °C. Last Measurement -2.",
-      "hideFromKpis": true
-    },
-    "tempHistory3": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature History 3",
-      "description": "The temperature in °C. Last Measurement -3.",
-      "hideFromKpis": true
-    },
-    "tempHistory4": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature History 4",
-      "description": "The temperature in °C. Last Measurement -4.",
-      "hideFromKpis": true
-    },
-    "tempHistory5": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature History 5",
-      "description": "The temperature in °C. Last Measurement -5.",
-      "hideFromKpis": true
-    },
-    "tempHistory6": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature History 6",
-      "description": "The temperature in °C. Last Measurement -6.",
-      "hideFromKpis": true
-    },
-    "tempHistory7": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature History 7",
-      "description": "The temperature in °C. Last Measurement -7.",
-      "hideFromKpis": true
-    },
-    "humHistory1": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
-      "title": "Humidity History 1",
-      "description": "The relative humidity in %. Last Measurement -1.",
-      "hideFromKpis": true
-    },
-    "humHistory2": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
-      "title": "Humidity History 2",
-      "description": "The relative humidity in %. Last Measurement -2.",
-      "hideFromKpis": true
-    },
-    "humHistory3": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
-      "title": "Humidity History 3",
-      "description": "The relative humidity in %. Last Measurement -3.",
-      "hideFromKpis": true
-    },
-    "humHistory4": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
-      "title": "Humidity History 4",
-      "description": "The relative humidity in %. Last Measurement -4.",
-      "hideFromKpis": true
-    },
-    "humHistory5": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
-      "title": "Humidity History 5",
-      "description": "The relative humidity in %. Last Measurement -5.",
-      "hideFromKpis": true
-    },
-    "humHistory6": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
-      "title": "Humidity History 6",
-      "description": "The relative humidity in %. Last Measurement -6.",
-      "hideFromKpis": true
-    },
-    "humHistory7": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
-      "title": "Humidity History 7",
-      "description": "The relative humidity in %. Last Measurement -7.",
-      "hideFromKpis": true
-    }
-  },
-  "required": [
-    "temperature",
-    "humidity",
-    "tempHistory1",
-    "tempHistory2",
-    "tempHistory3",
-    "tempHistory4",
-    "tempHistory5",
-    "tempHistory6",
-    "tempHistory7",
-    "humHistory1",
-    "humHistory2",
-    "humHistory3",
-    "humHistory4",
-    "humHistory5",
-    "humHistory6",
-    "humHistory7"
-  ]
+    "required": [
+        "temperature",
+        "humidity",
+        "tempHistory1",
+        "tempHistory2",
+        "tempHistory3",
+        "tempHistory4",
+        "tempHistory5",
+        "tempHistory6",
+        "tempHistory7",
+        "humHistory1",
+        "humHistory2",
+        "humHistory3",
+        "humHistory4",
+        "humHistory5",
+        "humHistory6",
+        "humHistory7"
+    ]
 }

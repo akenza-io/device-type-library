@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,20 +13,18 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/occupancy.schema.json`)
-      .then((parsedSchema) => {
-        occupancySchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/occupancy.schema.json`).then((parsedSchema) => {
+      occupancySchema = parsedSchema;
+      done();
+    });
   });
 
   let startUpSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/start_up.schema.json`)
-      .then((parsedSchema) => {
-        startUpSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/start_up.schema.json`).then((parsedSchema) => {
+      startUpSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {

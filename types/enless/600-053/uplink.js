@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 // --- Helpers ---
 function parseHexString(str) {
   const result = [];
@@ -36,16 +40,15 @@ function consume(event) {
   const len = bytes.length;
 
   if (len === 30) {
-
-
     // Lifecycle infos
     lifecycle.id = readUInt24BE(bytes.slice(0, 3));
     lifecycle.type = bytes[3];
     lifecycle.seqCounter = bytes[4];
-    lifecycle.fwVersion = bytes[5] & 0x3F;
+    lifecycle.fwVersion = bytes[5] & 0x3f;
 
     // Default measures
     decoded.temperature = readInt16BE(bytes.slice(6, 8)) / 10;
+    decoded.temperatureF = cToF(decoded.temperature);
     decoded.humidity = readUInt16BE(bytes.slice(10, 12)) / 10;
     decoded.co2 = readUInt16BE(bytes.slice(12, 14)); // ppm
 
@@ -65,10 +68,9 @@ function consume(event) {
     const batteryLevels = [100, 75, 50, 25];
     lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
-    decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";
-    decoded.co2Sampled = Boolean((status >> 6) & 0x01);  // Bit 6
-    decoded.ledOn = Boolean((status >> 9) & 0x01);       // Bit 9
-
+    decoded.msgType = status & 0x01 ? "ALARM" : "NORMAL";
+    decoded.co2Sampled = Boolean((status >> 6) & 0x01); // Bit 6
+    decoded.ledOn = Boolean((status >> 9) & 0x01); // Bit 9
   } else {
     throw new Error(`Unsupported payload length: ${len} bytes. Expected 30.`);
   }

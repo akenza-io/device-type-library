@@ -139,12 +139,8 @@ function encodeDownlink(data) {
       }
       case "setTargetTemperatureAndMotorPosition": {
         bytes.push(0x31);
-        bytes.push(
-          data.setTargetTemperatureAndMotorPosition.motorPosition
-        );
-        bytes.push(
-          data.setTargetTemperatureAndMotorPosition.targetTemperature
-        );
+        bytes.push(data.setTargetTemperatureAndMotorPosition.motorPosition);
+        bytes.push(data.setTargetTemperatureAndMotorPosition.targetTemperature);
         break;
       }
       case "setWatchDogParams": {
@@ -269,7 +265,7 @@ function encodeDownlink(data) {
       case "setOpenWindowPrecisely": {
         const enabledValue = data.setOpenWindowPrecisely.enabled ? 1 : 0;
         const duration = parseInt(data.setOpenWindowPrecisely.duration) / 5;
-        const delta = data.setOpenWindowPrecisely.delta * 10
+        const delta = data.setOpenWindowPrecisely.delta * 10;
 
         bytes.push(0x45);
         bytes.push(enabledValue);
@@ -322,7 +318,7 @@ function consume(event) {
   } else if (event.payload !== undefined) {
     const payloadNumber = encodeDownlink(event.payload);
 
-    payloadNumber.forEach(byte => {
+    payloadNumber.forEach((byte) => {
       payloadHex += intToHex(byte);
     });
 

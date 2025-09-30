@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 // Source https://github.com/TektelicCommunications/data-converters/blob/master/TTN%20v2/edoctor/edoctor-v0.15-decoder.js
 
 function slice(a, f, t) {
@@ -681,6 +685,7 @@ function decode(bytes, port) {
             decodeField(arg, 9, 63, 56, "unsigned") * 0.05 +
             30
           ).toFixed(2);
+          decodedData.bodyTemperatureF = cToF(decodedData.bodyTemperature);
           decodedData.respiratoryRate = decodeField(arg, 9, 55, 48, "unsigned");
           decodedData.uaModeActive = decodeField(arg, 9, 47, 47, "unsigned");
           decodedData.restModeStatus = decodeField(arg, 9, 46, 46, "unsigned");
@@ -690,6 +695,7 @@ function decode(bytes, port) {
           decodedData.position = decodeField(arg, 9, 30, 24, "unsigned");
           decodedData.heartRate = decodeField(arg, 9, 23, 16, "unsigned");
           decodedData.bodyTemperature2 = decodeField(arg, 9, 15, 8, "unsigned");
+          decodedData.bodyTemperature2F = cToF(decodedData.bodyTemperature2);
           decodedData.af2 = decodeField(arg, 9, 7, 0, "unsigned");
           return 9;
         },
@@ -698,7 +704,7 @@ function decode(bytes, port) {
   }
 
   try {
-    for (let bytesLeft = bytes.length; bytesLeft > 0; ) {
+    for (let bytesLeft = bytes.length; bytesLeft > 0;) {
       let found = false;
       let header = "";
       for (let i = 0; i < decoderArray.length; i++) {

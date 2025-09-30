@@ -16,13 +16,15 @@ function consume(event) {
       sample.occupied = false;
     }
 
-    // Warm desk 
+    // Warm desk
     const time = new Date().getTime();
     sample.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
     if (sample.occupied) {
       delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
     } else if (state.lastOccupancyTimestamp !== undefined) {
-      sample.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
+      sample.minutesSinceLastOccupied = Math.round(
+        (time - state.lastOccupancyTimestamp) / 1000 / 60,
+      ); // Get free since
     } else if (state.lastOccupiedValue) {
       state.lastOccupancyTimestamp = time; // Start with first no occupancy
     }
@@ -36,7 +38,10 @@ function consume(event) {
     emit("sample", { data: sample, topic: "occupancy" });
   } else if (eventType === "networkStatus") {
     // suppress network_status for one hour
-    if (state.lastNetworkEmittedAt === undefined || now - state.lastNetworkEmittedAt >= 3600000) {
+    if (
+      state.lastNetworkEmittedAt === undefined ||
+      now - state.lastNetworkEmittedAt >= 3600000
+    ) {
       sample.signalStrength = event.data.networkStatus.signalStrength;
       sample.rssi = event.data.networkStatus.rssi;
       sample.transmissionMode = event.data.networkStatus.transmissionMode;
@@ -55,9 +60,11 @@ function consume(event) {
     emit("sample", { data: sample, topic: "lifecycle" });
   }
 
-
   // output a sample each hour to facilitate time series analysis
-  if (state.lastSampleEmittedAt !== undefined && now - state.lastSampleEmittedAt >= 3600000) {
+  if (
+    state.lastSampleEmittedAt !== undefined &&
+    now - state.lastSampleEmittedAt >= 3600000
+  ) {
     sample = {};
     if (state.lastOccupiedValue) {
       sample.occupancy = 1;
@@ -67,13 +74,15 @@ function consume(event) {
       sample.occupied = false;
     }
 
-    // Warm desk 
+    // Warm desk
     const time = new Date().getTime();
     sample.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
     if (sample.occupied) {
       delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
     } else if (state.lastOccupancyTimestamp !== undefined) {
-      sample.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
+      sample.minutesSinceLastOccupied = Math.round(
+        (time - state.lastOccupancyTimestamp) / 1000 / 60,
+      ); // Get free since
     } else if (state.lastOccupiedValue) {
       state.lastOccupancyTimestamp = time; // Start with first no occupancy
     }

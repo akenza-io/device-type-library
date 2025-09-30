@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const { port } = event.data;
@@ -43,8 +47,10 @@ function consume(event) {
 
     // Data
     data.temperature = Bits.bitsToSigned(bits.substr(40, 16)) / 100;
+    data.temperatureF = cToF(data.temperature);
     data.humidity = Bits.bitsToSigned(bits.substr(56, 16)) / 100;
     data.temperaturePT100 = Bits.bitsToSigned(bits.substr(72, 16)) / 100;
+    data.temperaturePT100F = cToF(data.temperaturePT100);
     data.adc1 = Bits.bitsToUnsigned(bits.substr(88, 16));
     data.adc2 = Bits.bitsToUnsigned(bits.substr(104, 16));
     data.lem = Bits.bitsToUnsigned(bits.substr(120, 16)) / 1000;
@@ -75,11 +81,15 @@ function consume(event) {
     topic = "system";
     data.sendInterval = Bits.bitsToUnsigned(bits.substr(0, 16));
     data.minTempThreshold = Bits.bitsToSigned(bits.substr(16, 8));
+    data.minTempThresholdF = cToF(data.minTempThreshold);
     data.maxTempThreshold = Bits.bitsToSigned(bits.substr(24, 8));
+    data.maxTempThresholdF = cToF(data.maxTempThreshold);
     data.minHumThreshold = Bits.bitsToUnsigned(bits.substr(32, 8));
     data.maxHumThreshold = Bits.bitsToUnsigned(bits.substr(40, 8));
     data.minPtThreshold = Bits.bitsToSigned(bits.substr(48, 8));
+    data.minPtThresholdF = cToF(data.minPtThreshold);
     data.maxPtThreshold = Bits.bitsToSigned(bits.substr(56, 8));
+    data.maxPtThresholdF = cToF(data.maxPtThreshold);
     data.minLemThreshold = Bits.bitsToUnsigned(bits.substr(64, 16));
     data.maxLemThreshold = Bits.bitsToUnsigned(bits.substr(80, 16));
     data.dinSettings = Bits.bitsToUnsigned(bits.substr(96, 8));

@@ -1,5 +1,5 @@
 function cToF(celsius) {
-  return (celsius * 9 / 5) + 32;
+  return (celsius * 9) / 5 + 32;
 }
 
 function consume(event) {
@@ -11,13 +11,15 @@ function consume(event) {
   if (eventType === "humidity") {
     // New version
     if (event.data.humidity.samples !== undefined) {
-      event.data.humidity.samples.forEach(singleSample => {
+      event.data.humidity.samples.forEach((singleSample) => {
         emit("sample", {
           data: {
-            "temperature": singleSample.temperature,
-            "temperatureF": cToF(singleSample.temperature),
-            "humidity": singleSample.relativeHumidity
-          }, topic: "default", timestamp: new Date(singleSample.sampleTime)
+            temperature: singleSample.temperature,
+            temperatureF: cToF(singleSample.temperature),
+            humidity: singleSample.relativeHumidity,
+          },
+          topic: "default",
+          timestamp: new Date(singleSample.sampleTime),
         });
       });
       // Old version
@@ -27,13 +29,15 @@ function consume(event) {
       sample.humidity = event.data.humidity.relativeHumidity;
       emit("sample", { data: sample, topic: "default" });
     }
-
   } else if (eventType === "touch") {
     sample.touch = true;
     emit("sample", { data: sample, topic: "touch" });
   } else if (eventType === "networkStatus") {
     // suppress network_status for one hour
-    if (state.lastNetworkEmittedAt === undefined || now - state.lastNetworkEmittedAt >= 3600000) {
+    if (
+      state.lastNetworkEmittedAt === undefined ||
+      now - state.lastNetworkEmittedAt >= 3600000
+    ) {
       sample.signalStrength = event.data.networkStatus.signalStrength;
       sample.rssi = event.data.networkStatus.rssi;
       sample.transmissionMode = event.data.networkStatus.transmissionMode;

@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 // https://github.com/TektelicCommunications/data-converters/blob/master/Tektelic%20v2/edoctor/edoctor-v1-decoder.js
 
 function slice(a, f, t) {
@@ -680,6 +684,7 @@ function decode(bytes, port) {
             Math.round(
               (decodeField(arg, 9, 63, 56, "unsigned") * 0.05 + 30) * 10,
             ) / 10;
+          decodedData.skinTemperatureF = cToF(decodedData.skinTemperature);
           decodedData.respiratoryRate = decodeField(arg, 9, 55, 48, "unsigned");
           decodedData.uaModeActive = !!decodeField(arg, 9, 47, 47, "unsigned");
 
@@ -692,6 +697,7 @@ function decode(bytes, port) {
             Math.round(
               (decodeField(arg, 9, 15, 8, "unsigned") * 0.05 + 30) * 10,
             ) / 10;
+          decodedData.skinTemperature2F = cToF(decodedData.skinTemperature2);
           decodedData.activityIntensity =
             decodeField(arg, 9, 7, 0, "unsigned") * 0.01;
 
@@ -701,6 +707,7 @@ function decode(bytes, port) {
           }
           if (decodeField(arg, 9, 15, 8, "unsigned") === 255) {
             delete decodedData.skinTemperature2;
+            delete decodedData.skinTemperature2F;
           }
           if (decodeField(arg, 9, 23, 16, "unsigned") === 255) {
             delete decodedData.heartRate;
@@ -716,6 +723,7 @@ function decode(bytes, port) {
           }
           if (decodeField(arg, 9, 63, 56, "unsigned") === 255) {
             delete decodedData.skinTemperature;
+            delete decodedData.skinTemperatureF;
           }
           if (decodeField(arg, 9, 71, 64, "unsigned") === 255) {
             delete decodedData.batteryLevel;

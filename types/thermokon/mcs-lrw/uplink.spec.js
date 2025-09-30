@@ -1,10 +1,9 @@
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -38,6 +37,7 @@ describe("Thermokon MCS-LRW Uplink", () => {
         assert.equal(value.topic, "default");
         assert.deepEqual(value.data, {
           temperature: 26.6,
+          temperatureF: 79.9,
         });
         validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -81,6 +81,7 @@ describe("Thermokon MCS-LRW Uplink", () => {
         assert.equal(value.topic, "default");
         assert.deepEqual(value.data, {
           temperature: 25.2,
+          temperatureF: 77.4,
           humidity: 45,
           light: 0,
         });

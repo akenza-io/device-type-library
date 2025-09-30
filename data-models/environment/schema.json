@@ -69,17 +69,18 @@
     "temperature": {
       "celsius": {
         "measurementType": "akenza/environment/temperature/celsius",
-        "title": "Temperature",
+        "title": "Temperature °C",
         "description": "Temperature in degrees Celcius",
         "type": "number",
         "unit": "°C"
       },
       "fahrenheit": {
         "measurementType": "akenza/environment/temperature/fahrenheit",
-        "title": "Temperature",
+        "title": "Temperature °F",
         "description": "Temperature in degrees Fahrenheit",
         "type": "number",
-        "unit": "°F"
+        "unit": "°F",
+        "hideFromKpis": true
       },
       "kelvin": {
         "measurementType": "akenza/environment/temperature/kelvin",

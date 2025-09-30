@@ -13,12 +13,7 @@ function readUInt16LE(bytes) {
 }
 
 function readUInt32BE(bytes) {
-  return (
-    (bytes[0] * 0x1000000) +
-    (bytes[1] << 16) +
-    (bytes[2] << 8) +
-    bytes[3]
-  );
+  return bytes[0] * 0x1000000 + (bytes[1] << 16) + (bytes[2] << 8) + bytes[3];
 }
 
 // --- MAIN FUNCTION ---
@@ -29,8 +24,8 @@ function consume(event) {
   if (bytes.length !== 22) {
     throw new Error(
       "Invalid payload length: " +
-      bytes.length +
-      " bytes, expected 22 bytes (44 hex chars)."
+        bytes.length +
+        " bytes, expected 22 bytes (44 hex chars).",
     );
   }
 
@@ -47,7 +42,7 @@ function consume(event) {
   lifecycle.seqCounter = bytes[4];
 
   // --- Firmware Version ---
-  lifecycle.fwVersion = bytes[5] & 0x3F;
+  lifecycle.fwVersion = bytes[5] & 0x3f;
 
   // --- Pulse counter OC ---
   decoded.pulseOc = readUInt32BE(bytes.slice(14, 18));
@@ -58,7 +53,7 @@ function consume(event) {
   const batteryLevels = [100, 75, 50, 25]; // %
   lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
-  decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";
+  decoded.msgType = status & 0x01 ? "ALARM" : "NORMAL";
 
   // --- Emit results ---
   emit("sample", { data: lifecycle, topic: "lifecycle" });

@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,11 +13,10 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/occupancy.schema.json`)
-      .then((parsedSchema) => {
-        occupancySchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/occupancy.schema.json`).then((parsedSchema) => {
+      occupancySchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -30,7 +27,6 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
           payloadHex: "01",
         },
       };
-
 
       expectEmits((type, value) => {
         assert.equal(type, "state");
@@ -56,7 +52,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
     it("should decode the Bosch Parking Lot Sensor payload and start the minutesSinceLastOccupied timer", () => {
       const data = {
         state: {
-          lastOccupiedValue: true
+          lastOccupiedValue: true,
         },
         data: {
           port: 2,
@@ -91,7 +87,9 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
       const data = {
         state: {
           lastOccupiedValue: true,
-          lastOccupancyTimestamp: new Date().setMinutes(new Date().getMinutes() - 20)
+          lastOccupancyTimestamp: new Date().setMinutes(
+            new Date().getMinutes() - 20,
+          ),
         },
         data: {
           port: 2,
@@ -126,7 +124,9 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
       const data = {
         state: {
           lastOccupiedValue: true,
-          lastOccupancyTimestamp: new Date().setMinutes(new Date().getMinutes() - 20)
+          lastOccupancyTimestamp: new Date().setMinutes(
+            new Date().getMinutes() - 20,
+          ),
         },
         data: {
           port: 2,

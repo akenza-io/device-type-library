@@ -1,5 +1,5 @@
 function cToF(celsius) {
-  return (celsius * 9 / 5) + 32;
+  return (celsius * 9) / 5 + 32;
 }
 
 function consume(event) {
@@ -9,15 +9,25 @@ function consume(event) {
   const state = event.state || {};
 
   if (eventType === "temperature") {
-    event.data.temperature.samples.forEach(singleSample => {
-      emit("sample", { data: { "temperature": singleSample.value, "temperatureF": cToF(singleSample.value) }, topic: "default", timestamp: new Date(singleSample.sampleTime) });
+    event.data.temperature.samples.forEach((singleSample) => {
+      emit("sample", {
+        data: {
+          temperature: singleSample.value,
+          temperatureF: cToF(singleSample.value),
+        },
+        topic: "default",
+        timestamp: new Date(singleSample.sampleTime),
+      });
     });
   } else if (eventType === "touch") {
     sample.touch = true;
     emit("sample", { data: sample, topic: "touch" });
   } else if (eventType === "networkStatus") {
     // suppress network_status for one hour
-    if (state.lastNetworkEmittedAt === undefined || now - state.lastNetworkEmittedAt >= 3600000) {
+    if (
+      state.lastNetworkEmittedAt === undefined ||
+      now - state.lastNetworkEmittedAt >= 3600000
+    ) {
       sample.signalStrength = event.data.networkStatus.signalStrength;
       sample.rssi = event.data.networkStatus.rssi;
       sample.transmissionMode = event.data.networkStatus.transmissionMode;

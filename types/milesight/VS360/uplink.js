@@ -70,7 +70,7 @@ function readPowerStatus(type) {
 function readString(bytes) {
   const temp = [];
   for (let idx = 0; idx < bytes.length; idx++) {
-    temp.push((`0${(bytes[idx] & 0xff).toString(16)}`).slice(-2));
+    temp.push(`0${(bytes[idx] & 0xff).toString(16)}`.slice(-2));
   }
   return temp.join("");
 }
@@ -103,10 +103,9 @@ function consume(event) {
   const lifecycle = {};
   const system = {};
 
-  for (let i = 0; i < bytes.length;) {
+  for (let i = 0; i < bytes.length; ) {
     const channelId = bytes[i++];
     const channelType = bytes[i++];
-
 
     // TSL VERSION
     if (channelId === 0xff && channelType === 0xff) {
@@ -162,33 +161,38 @@ function consume(event) {
       i += 2;
     }
     // TOTAL IN / OUT
-    else if (channelId === 0x04 && channelType === 0xcc) { //
+    else if (channelId === 0x04 && channelType === 0xcc) {
+      //
       decoded.totalCountIn = readUInt16LE(bytes.slice(i, i + 2));
       decoded.totalCountOut = readUInt16LE(bytes.slice(i + 2, i + 4));
       i += 4;
     }
     // PERIOD IN / OUT
-    else if (channelId === 0x05 && channelType === 0xcc) { //
+    else if (channelId === 0x05 && channelType === 0xcc) {
+      //
       decoded.periodicCountIn = readUInt16LE(bytes.slice(i, i + 2));
       decoded.periodicCountOut = readUInt16LE(bytes.slice(i + 2, i + 4));
       i += 4;
     }
     // TOTAL IN / OUT ALARM
-    else if (channelId === 0x84 && channelType === 0xcc) { //
+    else if (channelId === 0x84 && channelType === 0xcc) {
+      //
       decoded.totalCountIn = readUInt16LE(bytes.slice(i, i + 2));
       decoded.totalCountOut = readUInt16LE(bytes.slice(i + 2, i + 4));
       decoded.totalCountAlarm = readAlarmType(bytes[i + 4]);
       i += 5;
     }
     // PERIOD IN / OUT ALARM
-    else if (channelId === 0x85 && channelType === 0xcc) { //
+    else if (channelId === 0x85 && channelType === 0xcc) {
+      //
       decoded.periodicCountIn = readUInt16LE(bytes.slice(i, i + 2));
       decoded.periodicCountOut = readUInt16LE(bytes.slice(i + 2, i + 4));
       decoded.periodicCountAlarm = readAlarmType(bytes[i + 4]);
       i += 5;
     }
     // HISTORICAL DATA
-    else if (channelId === 0x20 && channelType === 0xce) { //
+    else if (channelId === 0x20 && channelType === 0xce) {
+      //
       const data = {};
       const timestamp = new Date(readUInt32LE(bytes.slice(i, i + 4)) * 1000);
       const type = bytes[i + 4];

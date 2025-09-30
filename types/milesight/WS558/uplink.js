@@ -4,7 +4,8 @@ function readUInt16LE(bytes) {
 }
 
 function readUInt32LE(bytes) {
-  const value = (bytes[3] << 24) + (bytes[2] << 16) + (bytes[1] << 8) + bytes[0];
+  const value =
+    (bytes[3] << 24) + (bytes[2] << 16) + (bytes[1] << 8) + bytes[0];
   return value & 0xffffffff;
 }
 
@@ -22,7 +23,7 @@ function consume(event) {
   const data = {};
   const status = {};
 
-  for (let i = 0; i < bytes.length;) {
+  for (let i = 0; i < bytes.length; ) {
     const channelId = bytes[i++];
     const channelType = bytes[i++];
     // VOLTAGE

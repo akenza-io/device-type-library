@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -20,19 +18,17 @@ describe("Decentlab ISF Uplink", () => {
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -60,6 +56,7 @@ describe("Decentlab ISF Uplink", () => {
         assert.equal(value.data.minVoltage, 10.862);
         assert.equal(value.data.sapFlow, -0.192);
         assert.equal(value.data.temperatureOuter, -4.36);
+        assert.equal(value.data.temperatureOuterF, 24.2);
         assert.equal(value.data.tmaxInner, 35.634);
         assert.equal(value.data.tmaxOuter, 37.392);
         assert.equal(value.data.upstreamTmaxInner, 33.46);

@@ -1,10 +1,9 @@
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 describe("Aplha Omega Technologoy KlaxV2 Uplink", () => {
@@ -20,53 +19,48 @@ describe("Aplha Omega Technologoy KlaxV2 Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/register_1.schema.json`)
-      .then((parsedSchema) => {
-        register1Schema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/register_1.schema.json`).then((parsedSchema) => {
+      register1Schema = parsedSchema;
+      done();
+    });
   });
   before((done) => {
-    loadSchema(`${__dirname}/register_2.schema.json`)
-      .then((parsedSchema) => {
-        register2Schema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/register_2.schema.json`).then((parsedSchema) => {
+      register2Schema = parsedSchema;
+      done();
+    });
   });
   before((done) => {
-    loadSchema(`${__dirname}/register_3.schema.json`)
-      .then((parsedSchema) => {
-        register3Schema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/register_3.schema.json`).then((parsedSchema) => {
+      register3Schema = parsedSchema;
+      done();
+    });
   });
   before((done) => {
-    loadSchema(`${__dirname}/register_4.schema.json`)
-      .then((parsedSchema) => {
-        register4Schema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/register_4.schema.json`).then((parsedSchema) => {
+      register4Schema = parsedSchema;
+      done();
+    });
   });
   before((done) => {
-    loadSchema(`${__dirname}/register_search.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/register_search.schema.json`).then(
+      (parsedSchema) => {
         registerSearchSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
   before((done) => {
-    loadSchema(`${__dirname}/register_set.schema.json`)
-      .then((parsedSchema) => {
-        registerSetSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/register_set.schema.json`).then((parsedSchema) => {
+      registerSetSchema = parsedSchema;
+      done();
+    });
   });
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
   describe("consume()", () => {
     it("should decode the Aplha Omega Technologoy KlaxV2 App payload", () => {

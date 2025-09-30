@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function readUInt8(bytes) {
   return bytes & 0xff;
 }
@@ -74,7 +78,7 @@ function consume(event) {
       i += 2;
 
       emit("sample", {
-        data: { temperature },
+        data: { temperature, temperatureF: cToF(temperature) },
         topic: "temperature",
       });
     }
@@ -128,7 +132,11 @@ function consume(event) {
       const temperatureAbnormal = bytes[i + 2] !== 0;
       i += 3;
       emit("sample", {
-        data: { temperature, temperatureAbnormal },
+        data: {
+          temperature,
+          temperatureF: cToF(temperature),
+          temperatureAbnormal,
+        },
         topic: "temperature",
       });
     }

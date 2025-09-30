@@ -44,7 +44,9 @@ function consume(event) {
       let unitConversionDivider = 1;
 
       if (customFields.unitConversionMultiplier !== undefined) {
-        unitConversionMultiplier = Number(customFields.unitConversionMultiplier);
+        unitConversionMultiplier = Number(
+          customFields.unitConversionMultiplier,
+        );
       }
 
       if (customFields.unitConversionDivider !== undefined) {
@@ -54,11 +56,16 @@ function consume(event) {
       if (decoded.consumptionCumulative !== undefined) {
         decoded.consumptionCumulative =
           Math.round(
-            ((decoded.consumptionCumulative * unitConversionMultiplier) / unitConversionDivider) * 1000,
+            ((decoded.consumptionCumulative * unitConversionMultiplier) /
+              unitConversionDivider) *
+              1000,
           ) / 1000;
         decoded.consumption =
-          Math.round(((decoded.consumption * unitConversionMultiplier) / unitConversionDivider) * 1000) /
-          1000;
+          Math.round(
+            ((decoded.consumption * unitConversionMultiplier) /
+              unitConversionDivider) *
+              1000,
+          ) / 1000;
       }
     }
   }

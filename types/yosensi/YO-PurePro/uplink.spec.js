@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,38 +13,34 @@ describe("Yosensi YO Pure Pro uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/temperature.schema.json`)
-      .then((parsedSchema) => {
-        temperatureSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/temperature.schema.json`).then((parsedSchema) => {
+      temperatureSchema = parsedSchema;
+      done();
+    });
   });
 
   let humiditySchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/humidity.schema.json`)
-      .then((parsedSchema) => {
-        humiditySchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/humidity.schema.json`).then((parsedSchema) => {
+      humiditySchema = parsedSchema;
+      done();
+    });
   });
 
   let pressureSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/pressure.schema.json`)
-      .then((parsedSchema) => {
-        pressureSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/pressure.schema.json`).then((parsedSchema) => {
+      pressureSchema = parsedSchema;
+      done();
+    });
   });
 
   let illuminanceSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/illuminance.schema.json`)
-      .then((parsedSchema) => {
-        illuminanceSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/illuminance.schema.json`).then((parsedSchema) => {
+      illuminanceSchema = parsedSchema;
+      done();
+    });
   });
 
   let tvocSchema = null;
@@ -122,6 +116,7 @@ describe("Yosensi YO Pure Pro uplink", () => {
 
         assert.equal(value.topic, "temperature");
         assert.equal(value.data.temperature, 26.4);
+        assert.equal(value.data.temperatureF, 79.5);
 
         validateSchema(value.data, temperatureSchema, {
           throwError: true,

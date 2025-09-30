@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -63,56 +61,50 @@ describe("Yosensi YO Power uplink", () => {
 
   let ct1ClampSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/ct1_clamp.schema.json`)
-      .then((parsedSchema) => {
-        ct1ClampSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/ct1_clamp.schema.json`).then((parsedSchema) => {
+      ct1ClampSchema = parsedSchema;
+      done();
+    });
   });
 
   let ct2ClampSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/ct2_clamp.schema.json`)
-      .then((parsedSchema) => {
-        ct2ClampSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/ct2_clamp.schema.json`).then((parsedSchema) => {
+      ct2ClampSchema = parsedSchema;
+      done();
+    });
   });
 
   let ct3ClampSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/ct3_clamp.schema.json`)
-      .then((parsedSchema) => {
-        ct3ClampSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/ct3_clamp.schema.json`).then((parsedSchema) => {
+      ct3ClampSchema = parsedSchema;
+      done();
+    });
   });
 
   let ct4ClampSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/ct4_clamp.schema.json`)
-      .then((parsedSchema) => {
-        ct4ClampSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/ct4_clamp.schema.json`).then((parsedSchema) => {
+      ct4ClampSchema = parsedSchema;
+      done();
+    });
   });
 
   let ct5ClampSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/ct5_clamp.schema.json`)
-      .then((parsedSchema) => {
-        ct5ClampSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/ct5_clamp.schema.json`).then((parsedSchema) => {
+      ct5ClampSchema = parsedSchema;
+      done();
+    });
   });
 
   let ct6ClampSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/ct6_clamp.schema.json`)
-      .then((parsedSchema) => {
-        ct6ClampSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/ct6_clamp.schema.json`).then((parsedSchema) => {
+      ct6ClampSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {

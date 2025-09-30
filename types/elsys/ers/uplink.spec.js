@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,29 +13,26 @@ describe("Elsys ERS uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   let occupancySchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/occupancy.schema.json`)
-      .then((parsedSchema) => {
-        occupancySchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/occupancy.schema.json`).then((parsedSchema) => {
+      occupancySchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -58,6 +53,7 @@ describe("Elsys ERS uplink", () => {
         assert.equal(value.data.light, 1050);
         assert.equal(value.data.humidity, 23);
         assert.equal(value.data.temperature, 24.1);
+        assert.equal(value.data.temperatureF, 75.4);
 
         validateSchema(value.data, defaultSchema, { throwError: true });
       });

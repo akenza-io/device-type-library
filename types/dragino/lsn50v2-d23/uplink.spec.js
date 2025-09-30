@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,20 +13,18 @@ describe("LSN50 V2 D23 Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   let dsSchema = null;
@@ -60,6 +56,7 @@ describe("LSN50 V2 D23 Uplink", () => {
         assert.equal(value.data.extTrigger, false);
         assert.equal(value.data.open, false);
         assert.equal(value.data.temperature, 13);
+        assert.equal(value.data.temperatureF, 55.4);
 
         validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -72,7 +69,9 @@ describe("LSN50 V2 D23 Uplink", () => {
         assert.equal(value.topic, "ds");
 
         assert.equal(value.data.c2temperature, 5.2);
+        assert.equal(value.data.c2temperatureF, 41.4);
         assert.equal(value.data.c3temperature, -0.3);
+        assert.equal(value.data.c3temperatureF, 31.5);
 
         validateSchema(value.data, dsSchema, { throwError: true });
       });

@@ -56,7 +56,7 @@ function ha2si(a) {
   for (i = l, f = 0; i; ) if (a[--i]) f = 1;
   if (!f) return 0;
   do {
-    (r = f = 0), (i = l);
+    ((r = f = 0), (i = l));
     while (i) {
       const n = r * 256 + a[--i];
       r = n % 10;
@@ -149,18 +149,18 @@ function ba2bcd(a, x) {
   function p(c) {
     if (m) c = -c;
     if (c < 10) s += c;
-    else (e = 1), (s += "A-C EF".charAt(c - 10));
+    else ((e = 1), (s += "A-C EF".charAt(c - 10)));
   }
   while (i) {
-    (v = a[--i]), (h = (v & 0xf0) >> 4), (l = v & 0xf);
-    if (m) (h = -h), (l = -l);
+    ((v = a[--i]), (h = (v & 0xf0) >> 4), (l = v & 0xf));
+    if (m) ((h = -h), (l = -l));
     r = r * 100 + h * 10 + l;
     p(h);
     if (ln(s) == 1) {
       e = 0;
       if (h == 13) e = 1;
       else if (h > 13) {
-        (m = 1), (l = -l), (r = l);
+        ((m = 1), (l = -l), (r = l));
         if (h == 14) r -= 10;
       }
     }
@@ -935,7 +935,7 @@ function tmbus(h) {
     v.typeE = [];
     b = 0;
     while (i < l && i < 11) {
-      (t = y[i++]), (d = t & m);
+      ((t = y[i++]), (d = t & m));
       b ? v.typeE.push(d) : ((b = d == m), deVife(v, d));
       if (!(t & 0x80)) break;
     }
@@ -1013,7 +1013,7 @@ function tmbus(h) {
 
   function pV() {
     r.manId = deManId(a, n);
-    (r.version = i()), i();
+    ((r.version = i()), i());
     sD(c, deD(c));
     r.accessN = i();
     r.status = i();
@@ -1075,7 +1075,7 @@ function unitConv(cfg, f) {
   }
 
   function c(d, f) {
-    (k = {}), (g = f);
+    ((k = {}), (g = f));
     let u;
     let c;
     let o;
@@ -1083,7 +1083,7 @@ function unitConv(cfg, f) {
     let v;
     if (d) {
       for (o in d) {
-        (c = d[o]), (u = U.indexOf(o)), (v = P.indexOf(c));
+        ((c = d[o]), (u = U.indexOf(o)), (v = P.indexOf(c)));
         if (u >= 0 && v >= 0) for (n in P) k[P[n] + o] = [(n - v) * 3, c + o];
       }
     }

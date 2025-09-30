@@ -1,5 +1,5 @@
 function cToF(celsius) {
-  return (celsius * 9 / 5) + 32;
+  return (celsius * 9) / 5 + 32;
 }
 
 function consume(event) {
@@ -16,10 +16,16 @@ function consume(event) {
   } else if (eventType === "co2") {
     emit("sample", { data: { co2: event.data.co2.ppm }, topic: "co2" });
   } else if (eventType === "pressure") {
-    emit("sample", { data: { pressure: event.data.pressure.pascal }, topic: "pressure" });
+    emit("sample", {
+      data: { pressure: event.data.pressure.pascal },
+      topic: "pressure",
+    });
   } else if (eventType === "networkStatus") {
     // suppress network_status for one hour
-    if (state.lastNetworkEmittedAt === undefined || now - state.lastNetworkEmittedAt >= 3600000) {
+    if (
+      state.lastNetworkEmittedAt === undefined ||
+      now - state.lastNetworkEmittedAt >= 3600000
+    ) {
       sample.signalStrength = event.data.networkStatus.signalStrength;
       sample.rssi = event.data.networkStatus.rssi;
       sample.transmissionMode = event.data.networkStatus.transmissionMode;
@@ -35,6 +41,9 @@ function consume(event) {
       emit("state", state);
     }
   } else if (eventType === "batteryStatus") {
-    emit("sample", { data: { batteryLevel: event.data.batteryStatus.percentage }, topic: "lifecycle" });
+    emit("sample", {
+      data: { batteryLevel: event.data.batteryStatus.percentage },
+      topic: "lifecycle",
+    });
   }
 }

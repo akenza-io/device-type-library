@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function decoder(hexData) {
   const deviceData = {};
   try {
@@ -357,6 +361,7 @@ function decoder(hexData) {
       const keepaliveData = {
         co2,
         temperature,
+        temperatureF: cToF(temperature),
         humidity,
         batteryVoltage,
       };

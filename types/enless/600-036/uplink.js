@@ -27,8 +27,7 @@ function consume(event) {
 
   if (bytes.length !== 22) {
     throw new Error(
-      `Invalid payload length: ${bytes.length
-      } bytes, expected 22 bytes.`
+      `Invalid payload length: ${bytes.length} bytes, expected 22 bytes.`,
     );
   }
 
@@ -46,7 +45,7 @@ function consume(event) {
   lifecycle.seqCounter = bytes[4];
 
   // --- Firmware Version (bits 5-0) ---
-  lifecycle.fwVersion = bytes[5] & 0x3F;
+  lifecycle.fwVersion = bytes[5] & 0x3f;
 
   // --- Pulse Counters (UInt32 BE) ---
   decoded.pulseCh1 = readUInt32BE(bytes.slice(6, 10));
@@ -67,9 +66,9 @@ function consume(event) {
 
   // --- States (Little Endian) ---
   const state = readUInt16LE(bytes.slice(20, 22));
-  decoded.pulseCh1State = (state & 0x0020) ? "CLOSED" : "OPEN";
-  decoded.pulseCh2State = (state & 0x0040) ? "CLOSED" : "OPEN";
-  decoded.pulseOcState = (state & 0x0080) ? "CLOSED" : "OPEN";
+  decoded.pulseCh1State = state & 0x0020 ? "CLOSED" : "OPEN";
+  decoded.pulseCh2State = state & 0x0040 ? "CLOSED" : "OPEN";
+  decoded.pulseOcState = state & 0x0080 ? "CLOSED" : "OPEN";
   decoded.debounce1 = Boolean(state & 0x0100);
   decoded.debounce2 = Boolean(state & 0x0200);
   decoded.debounce3 = Boolean(state & 0x0400);
@@ -79,7 +78,7 @@ function consume(event) {
   const batteryLevels = [100, 75, 50, 25]; // %
   lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
-  decoded.msgType = (state & 0x01) ? "ALARM" : "NORMAL";
+  decoded.msgType = state & 0x01 ? "ALARM" : "NORMAL";
 
   // --- Emit Results ---
   emit("sample", { data: lifecycle, topic: "lifecycle" });

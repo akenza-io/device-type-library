@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function readUInt8(bytes) {
   return bytes & 0xff;
 }
@@ -18,7 +22,8 @@ function readInt16LE(bytes) {
 }
 
 function readUInt32LE(bytes) {
-  const value = (bytes[3] << 24) + (bytes[2] << 16) + (bytes[1] << 8) + bytes[0];
+  const value =
+    (bytes[3] << 24) + (bytes[2] << 16) + (bytes[1] << 8) + bytes[0];
   return (value & 0xffffffff) >>> 0;
 }
 
@@ -43,15 +48,17 @@ function readFirmwareVersion(bytes) {
 function readSerialNumber(bytes) {
   const temp = [];
   for (let idx = 0; idx < bytes.length; idx++) {
-    temp.push((`0${(bytes[idx] & 0xff).toString(16)}`).slice(-2));
+    temp.push(`0${(bytes[idx] & 0xff).toString(16)}`.slice(-2));
   }
   return temp.join("");
 }
 
 function readD2DCommand(bytes) {
-  return (`0${(bytes[1] & 0xff).toString(16)}`).slice(-2) + (`0${(bytes[0] & 0xff).toString(16)}`).slice(-2);
+  return (
+    `0${(bytes[1] & 0xff).toString(16)}`.slice(-2) +
+    `0${(bytes[0] & 0xff).toString(16)}`.slice(-2)
+  );
 }
-
 
 function readTemperatureAlarm(type) {
   // 1: emergency heating timeout alarm, 2: auxiliary heating timeout alarm, 3: persistent low temperature alarm, 4: persistent low temperature alarm release,
@@ -366,11 +373,14 @@ function handleDownlinkResponse(channelType, bytes, offset) {
 
   switch (channelType) {
     case 0x02: // collection_interval
-      decoded.collection_interval = readUInt16LE(bytes.slice(offset, offset + 2));
+      decoded.collection_interval = readUInt16LE(
+        bytes.slice(offset, offset + 2),
+      );
       offset += 2;
       break;
     case 0x03:
-      decoded.outside_temperature = readInt16LE(bytes.slice(offset, offset + 2)) / 10;
+      decoded.outside_temperature =
+        readInt16LE(bytes.slice(offset, offset + 2)) / 10;
       offset += 2;
       break;
     case 0x06: // temperature_threshold_config
@@ -390,7 +400,8 @@ function handleDownlinkResponse(channelType, bytes, offset) {
       data.continue_time = readInt16LE(bytes.slice(offset + 7, offset + 9));
       offset += 9;
 
-      decoded.temperature_threshold_config = decoded.temperature_threshold_config || [];
+      decoded.temperature_threshold_config =
+        decoded.temperature_threshold_config || [];
       decoded.temperature_threshold_config.push(data);
       break;
     case 0x25:
@@ -475,14 +486,17 @@ function handleDownlinkResponse(channelType, bytes, offset) {
       break;
     case 0x8e: // report_interval
       // ignore the first byte
-      decoded.report_interval = readUInt16LE(bytes.slice(offset + 1, offset + 3));
+      decoded.report_interval = readUInt16LE(
+        bytes.slice(offset + 1, offset + 3),
+      );
       offset += 3;
       break;
     case 0xab:
       decoded.temperature_calibration = {};
       decoded.temperature_calibration.enable = readUInt8(bytes[offset]);
       if (decoded.temperature_calibration.enable === 1) {
-        decoded.temperature_calibration.temperature = readInt16LE(bytes.slice(offset + 1, offset + 3)) / 10;
+        decoded.temperature_calibration.temperature =
+          readInt16LE(bytes.slice(offset + 1, offset + 3)) / 10;
       }
       offset += 3;
       break;
@@ -490,7 +504,8 @@ function handleDownlinkResponse(channelType, bytes, offset) {
       decoded.freeze_protection_config = decoded.freeze_protection_config || {};
       decoded.freeze_protection_config.enable = readUInt8(bytes[offset]);
       if (decoded.freeze_protection_config.enable === 1) {
-        decoded.freeze_protection_config.temperature = readInt16LE(bytes.slice(offset + 1, offset + 3)) / 10;
+        decoded.freeze_protection_config.temperature =
+          readInt16LE(bytes.slice(offset + 1, offset + 3)) / 10;
       }
       offset += 3;
       break;
@@ -511,15 +526,20 @@ function handleDownlinkResponse(channelType, bytes, offset) {
       break;
     case 0xb8: // temperature_tolerance
       decoded.temperature_tolerance = {};
-      decoded.temperature_tolerance.temperature_error = readUInt8(bytes[offset]) / 10;
-      decoded.temperature_tolerance.auto_control_temperature_error = readUInt8(bytes[offset + 1]) / 10;
+      decoded.temperature_tolerance.temperature_error =
+        readUInt8(bytes[offset]) / 10;
+      decoded.temperature_tolerance.auto_control_temperature_error =
+        readUInt8(bytes[offset + 1]) / 10;
       offset += 2;
       break;
     case 0xb9:
       decoded.temperature_level_up_condition = {};
       decoded.temperature_level_up_condition.type = readUInt8(bytes[offset]);
-      decoded.temperature_level_up_condition.time = readUInt8(bytes[offset + 1]);
-      decoded.temperature_level_up_condition.temperature_error = readInt16LE(bytes.slice(offset + 2, offset + 4)) / 10;
+      decoded.temperature_level_up_condition.time = readUInt8(
+        bytes[offset + 1],
+      );
+      decoded.temperature_level_up_condition.temperature_error =
+        readInt16LE(bytes.slice(offset + 2, offset + 4)) / 10;
       offset += 4;
       break;
     case 0xba:
@@ -533,14 +553,14 @@ function handleDownlinkResponse(channelType, bytes, offset) {
         decoded.dst_config.start_time.week = (start_day >>> 4) & 0x0f;
         decoded.dst_config.start_time.weekday = start_day & 0x0f;
         const start_time = readUInt16LE(bytes.slice(offset + 4, offset + 6));
-        decoded.dst_config.start_time.time = `${Math.floor(start_time / 60)}:${(`0${start_time % 60}`).slice(-2)}`;
+        decoded.dst_config.start_time.time = `${Math.floor(start_time / 60)}:${`0${start_time % 60}`.slice(-2)}`;
         decoded.dst_config.end_time = {};
         decoded.dst_config.end_time.month = readUInt8(bytes[offset + 6]);
         const end_day = readUInt8(bytes[offset + 7]);
         decoded.dst_config.end_time.week = (end_day >>> 4) & 0x0f;
         decoded.dst_config.end_time.weekday = end_day & 0x0f;
         const end_time = readUInt16LE(bytes.slice(offset + 8, offset + 10));
-        decoded.dst_config.end_time.time = `${Math.floor(end_time / 60)}:${(`0${end_time % 60}`).slice(-2)}`;
+        decoded.dst_config.end_time.time = `${Math.floor(end_time / 60)}:${`0${end_time % 60}`.slice(-2)}`;
       }
       offset += 10;
       break;
@@ -567,10 +587,15 @@ function handleDownlinkResponse(channelType, bytes, offset) {
       offset += 1;
       break;
     case 0xc4:
-      decoded.outside_temperature_control_config = decoded.outside_temperature_control_config || {};
-      decoded.outside_temperature_control_config.enable = readUInt8(bytes[offset]);
+      decoded.outside_temperature_control_config =
+        decoded.outside_temperature_control_config || {};
+      decoded.outside_temperature_control_config.enable = readUInt8(
+        bytes[offset],
+      );
       if (decoded.outside_temperature_control_config.enable === 1) {
-        decoded.outside_temperature_control_config.timeout = readUInt8(bytes[offset + 1]);
+        decoded.outside_temperature_control_config.timeout = readUInt8(
+          bytes[offset + 1],
+        );
       }
       offset += 2;
       break;
@@ -595,7 +620,9 @@ function handleDownlinkResponse(channelType, bytes, offset) {
     case 0xc8:
       decoded.plan_config = decoded.plan_config || {};
       decoded.plan_config.type = readUInt8(bytes[offset]);
-      decoded.plan_config.temperature_control_mode = readUInt8(bytes[offset + 1]);
+      decoded.plan_config.temperature_control_mode = readUInt8(
+        bytes[offset + 1],
+      );
       decoded.plan_config.fan_mode = readUInt8(bytes[offset + 2]);
       var t = readInt8(bytes[offset + 3]);
       decoded.plan_config.temperature_target = t & 0x7f;
@@ -610,14 +637,18 @@ function handleDownlinkResponse(channelType, bytes, offset) {
       schedule.enable = bytes[offset + 2];
       schedule.week_recycle = readWeekRecycleSettings(bytes[offset + 3]);
       var time_mins = readUInt16LE(bytes.slice(offset + 4, offset + 6));
-      schedule.time = `${Math.floor(time_mins / 60)}:${(`0${time_mins % 60}`).slice(-2)}`;
+      schedule.time = `${Math.floor(time_mins / 60)}:${`0${time_mins % 60}`.slice(-2)}`;
       offset += 6;
 
       decoded.plan_schedule = decoded.plan_schedule || [];
       decoded.plan_schedule.push(schedule);
       break;
     case 0xca:
-      decoded.wires = readWires(bytes[offset], bytes[offset + 1], bytes[offset + 2]);
+      decoded.wires = readWires(
+        bytes[offset],
+        bytes[offset + 1],
+        bytes[offset + 2],
+      );
       decoded.ob_mode = (bytes[offset + 2] >>> 2) & 0x03;
       offset += 3;
       break;
@@ -626,7 +657,15 @@ function handleDownlinkResponse(channelType, bytes, offset) {
       offset += 1;
       break;
     case 0xf7:
-      var wire_relay_bit_offset = { y1: 0, y2_gl: 1, w1: 2, w2_aux: 3, e: 4, g: 5, ob: 6 };
+      var wire_relay_bit_offset = {
+        y1: 0,
+        y2_gl: 1,
+        w1: 2,
+        w2_aux: 3,
+        e: 4,
+        g: 5,
+        ob: 6,
+      };
       var mask = readUInt16LE(bytes.slice(offset, offset + 2));
       var status = readUInt16LE(bytes.slice(offset + 2, offset + 4));
       offset += 4;
@@ -634,7 +673,8 @@ function handleDownlinkResponse(channelType, bytes, offset) {
       decoded.wires_relay_config = {};
       for (const key in wire_relay_bit_offset) {
         if ((mask >>> wire_relay_bit_offset[key]) & 0x01) {
-          decoded.wires_relay_config[key] = (status >>> wire_relay_bit_offset[key]) & 0x01;
+          decoded.wires_relay_config[key] =
+            (status >>> wire_relay_bit_offset[key]) & 0x01;
         }
       }
       break;
@@ -645,13 +685,15 @@ function handleDownlinkResponse(channelType, bytes, offset) {
       decoded.humidity_calibration = {};
       decoded.humidity_calibration.enable = readUInt8(bytes[offset]);
       if (decoded.humidity_calibration.enable === 1) {
-        decoded.humidity_calibration.humidity = readInt16LE(bytes.slice(offset + 1, offset + 3)) / 10;
+        decoded.humidity_calibration.humidity =
+          readInt16LE(bytes.slice(offset + 1, offset + 3)) / 10;
       }
       offset += 3;
       break;
     case 0xfa:
       decoded.temperature_control_mode = readUInt8(bytes[offset]);
-      decoded.temperature_target = readInt16LE(bytes.slice(offset + 1, offset + 3)) / 10;
+      decoded.temperature_target =
+        readInt16LE(bytes.slice(offset + 1, offset + 3)) / 10;
       offset += 3;
       break;
     case 0xfb:
@@ -719,7 +761,8 @@ function handleDownlinkResponseExt(channelType, bytes, offset) {
         if (decoded.temperatureDehumidify.enable === 1) {
           const value = readUInt8(bytes[offset + 1]);
           if (value !== 0xff) {
-            decoded.temperatureDehumidify.temperatureTolerance = readUInt8(bytes[offset + 1]) / 10;
+            decoded.temperatureDehumidify.temperatureTolerance =
+              readUInt8(bytes[offset + 1]) / 10;
           }
         }
       } else {
@@ -750,7 +793,7 @@ function consume(event) {
   let wires = {};
   const alert = {};
 
-  for (let i = 0; i < bytes.length;) {
+  for (let i = 0; i < bytes.length; ) {
     const channelId = bytes[i++];
     const channelType = bytes[i++];
 
@@ -791,18 +834,24 @@ function consume(event) {
     // TEMPERATURE
     else if (channelId === 0x03 && channelType === 0x67) {
       decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
+      decoded.temperatureF = cToF(decoded.temperature);
       i += 2;
     }
     // TEMPERATURE TARGET
     else if (channelId === 0x04 && channelType === 0x67) {
       decoded.temperatureTarget = readInt16LE(bytes.slice(i, i + 2)) / 10;
+      decoded.temperatureTargetF = cToF(decoded.temperatureTarget);
       i += 2;
     }
     // TEMPERATURE CONTROL
     else if (channelId === 0x05 && channelType === 0xe7) {
       const temperatureControl = bytes[i];
-      decoded.temperatureControlMode = readTemperatureCtlMode(temperatureControl & 0x03);
-      decoded.temperatureControlStatus = readTemperatureCtlStatus((temperatureControl >>> 4) & 0x0f);
+      decoded.temperatureControlMode = readTemperatureCtlMode(
+        temperatureControl & 0x03,
+      );
+      decoded.temperatureControlStatus = readTemperatureCtlStatus(
+        (temperatureControl >>> 4) & 0x0f,
+      );
       i += 1;
     }
     // FAN CONTROL
@@ -841,7 +890,7 @@ function consume(event) {
       plan.planEnabled = ["DISABLED", "ENABLED"][bytes[i + 2]];
       plan.weekRecycle = readWeekRecycleSettings(bytes[i + 3]);
       const timeMins = readUInt16LE(bytes.slice(i + 4, i + 6));
-      plan.time = `${Math.floor(timeMins / 60)}:${(`0${timeMins % 60}`).slice(-2)}`;
+      plan.time = `${Math.floor(timeMins / 60)}:${`0${timeMins % 60}`.slice(-2)}`;
       i += 6;
 
       emit("sample", { data: plan, topic: "plan" });
@@ -851,10 +900,13 @@ function consume(event) {
       const planSetting = {};
       planSetting.type = readPlanType(bytes[i]);
       planSetting.temperatureCtlMode = readTemperatureCtlMode(bytes[i + 1]);
+      planSetting.temperatureCtlModeF = cToF(planSetting.temperatureCtlMode);
       planSetting.fanMode = readFanMode(bytes[i + 2]);
       planSetting.targetTemperature = readUInt8(bytes[i + 3] & 0x7f);
+      planSetting.targetTemperatureF = cToF(planSetting.targetTemperature);
       // planSetting.temperatureUnit = readTemperatureUnit(bytes[i + 3] >>> 7);
       planSetting.temperatureError = readUInt8(bytes[i + 4]) / 10;
+      planSetting.temperatureErrorF = cToF(planSetting.temperatureError);
       i += 5;
 
       emit("sample", { data: planSetting, topic: "plan_setting" });
@@ -867,18 +919,25 @@ function consume(event) {
     }
     // TEMPERATURE MODE SUPPORT
     else if (channelId === 0xff && channelType === 0xcb) {
-      system.temperatureControlModeEnabled = readTemperatureCtlModeEnable(bytes[i]);
-      system.temperatureControlStatusEnabled = readTemperatureCtlStatusEnable(bytes[i + 1], bytes[i + 2]);
+      system.temperatureControlModeEnabled = readTemperatureCtlModeEnable(
+        bytes[i],
+      );
+      system.temperatureControlStatusEnabled = readTemperatureCtlStatusEnable(
+        bytes[i + 1],
+        bytes[i + 2],
+      );
       i += 3;
     }
     // CONTROL PERMISSIONS
     else if (channelId === 0xff && channelType === 0xf6) {
-      system.controlPermissions = bytes[i] === 1 ? "REMOTE_CONTROL" : "THERMOSTAT";
+      system.controlPermissions =
+        bytes[i] === 1 ? "REMOTE_CONTROL" : "THERMOSTAT";
       i += 1;
     }
     // TEMPERATURE ALARM
     else if (channelId === 0x83 && channelType === 0x67) {
       decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
+      decoded.temperatureF = cToF(decoded.temperature);
       alert.temperatureAlarm = readTemperatureAlarm(bytes[i + 2]);
       i += 2;
     }
@@ -904,11 +963,15 @@ function consume(event) {
       data.systemStatus = readSystemStatus((value1 >>> 4) & 0x01);
       const temperature = ((value1 >>> 5) & 0x7ff) / 10 - 100;
       data.temperature = Number(temperature.toFixed(1));
+      data.temperatureF = cToF(data.temperature);
 
       data.temperatureCtlMode = readTemperatureCtlMode(value2 & 0x03);
-      data.temperatureCtlStatus = readTemperatureCtlStatus((value2 >>> 2) & 0x07);
+      data.temperatureCtlStatus = readTemperatureCtlStatus(
+        (value2 >>> 2) & 0x07,
+      );
       const temperatureTarget = ((value2 >>> 5) & 0x7ff) / 10 - 100;
       data.temperatureTarget = Number(temperatureTarget.toFixed(1));
+      data.temperatureTargetF = cToF(data.temperatureTarget);
       i += 8;
 
       emit("sample", { data, topic: "default", timestamp });
@@ -916,11 +979,17 @@ function consume(event) {
     // DOWNLINK RESPONSE
     else if (channelId === 0xfe) {
       const downlinkResponse = handleDownlinkResponse(channelType, bytes, i);
-      emit("sample", { data: downlinkResponse.data, topic: "downlink_response" });
+      emit("sample", {
+        data: downlinkResponse.data,
+        topic: "downlink_response",
+      });
       i = downlinkResponse.offset;
     } else if (channelId === 0xf8) {
       const downlinkResponse = handleDownlinkResponseExt(channelType, bytes, i);
-      emit("sample", { data: downlinkResponse.data, topic: "downlink_response" });
+      emit("sample", {
+        data: downlinkResponse.data,
+        topic: "downlink_response",
+      });
       i = downlinkResponse.offset;
     } else {
       break;
@@ -943,4 +1012,3 @@ function consume(event) {
     emit("sample", { data: wires, topic: "wires" });
   }
 }
-

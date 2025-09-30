@@ -1,71 +1,132 @@
 {
-  "$id": "https://akenza.io/dragino/groPointAir/temperature.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Temperature",
-  "processingType": "uplink_decoder",
-  "topic": "temperature",
-  "type": "object",
-  "properties": {
-    "temperature1": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature 1"
-    },
-    "temperature2": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature 2"
-    },
-    "temperature3": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature 3"
-    },
-    "temperature4": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature 4"
-    },
-    "temperature5": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature 5"
-    },
-    "temperature6": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature 6"
-    },
-    "temperature7": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature 7"
-    },
-    "temperature8": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature 8"
-    },
-    "temperature9": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature 9"
-    },
-    "temperature10": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "description": "Temperature 10",
-      "title": "Temperature 10"
-    },
-    "temperature11": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "description": "Temperature 11",
-      "title": "Temperature 11"
-    },
-    "temperature12": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "description": "Temperature 12",
-      "title": "Temperature 12"
-    },
-    "temperature13": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "description": "Temperature 13",
-      "title": "Temperature 13"
-    },
-    "temperature14": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "description": "Temperature 14",
-      "title": "Temperature 14"
+    "$id": "https://akenza.io/dragino/groPointAir/temperature.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Temperature",
+    "processingType": "uplink_decoder",
+    "topic": "temperature",
+    "type": "object",
+    "properties": {
+        "temperature1": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "Temperature 1 °C"
+        },
+        "temperature2": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "Temperature 2 °C"
+        },
+        "temperature3": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "Temperature 3 °C"
+        },
+        "temperature4": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "Temperature 4 °C"
+        },
+        "temperature5": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "Temperature 5 °C"
+        },
+        "temperature6": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "Temperature 6 °C"
+        },
+        "temperature7": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "Temperature 7 °C"
+        },
+        "temperature8": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "Temperature 8 °C"
+        },
+        "temperature9": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "Temperature 9 °C"
+        },
+        "temperature10": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "description": "Temperature 10",
+            "title": "Temperature 10 °C"
+        },
+        "temperature11": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "description": "Temperature 11",
+            "title": "Temperature 11 °C"
+        },
+        "temperature12": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "description": "Temperature 12",
+            "title": "Temperature 12 °C"
+        },
+        "temperature13": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "description": "Temperature 13",
+            "title": "Temperature 13 °C"
+        },
+        "temperature14": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "description": "Temperature 14",
+            "title": "Temperature 14 °C"
+        },
+        "temperature1F": {
+            "title": "Temperature 1 °F",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "temperature2F": {
+            "title": "Temperature 2 °F",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "temperature3F": {
+            "title": "Temperature 3 °F",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "temperature4F": {
+            "title": "Temperature 4 °F",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "temperature5F": {
+            "title": "Temperature 5 °F",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "temperature6F": {
+            "title": "Temperature 6 °F",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "temperature7F": {
+            "title": "Temperature 7 °F",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "temperature8F": {
+            "title": "Temperature 8 °F",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "temperature9F": {
+            "title": "Temperature 9 °F",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "temperature10F": {
+            "title": "Temperature 10 °F",
+            "description": "Temperature 10",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "temperature11F": {
+            "title": "Temperature 11 °F",
+            "description": "Temperature 11",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "temperature12F": {
+            "title": "Temperature 12 °F",
+            "description": "Temperature 12",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "temperature13F": {
+            "title": "Temperature 13 °F",
+            "description": "Temperature 13",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "temperature14F": {
+            "title": "Temperature 14 °F",
+            "description": "Temperature 14",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
     }
-  }
 }

@@ -104,9 +104,11 @@ function consume(event) {
     case payloadTypes.PEOPLE_COUNTER: {
       switch (payloadVariant) {
         case 0x04: {
-          lifecycle.deviceID = `${bytes[bytes.length - 22]}${bytes[bytes.length - 21]
-            }${bytes[bytes.length - 20]}${bytes[bytes.length - 19]}${bytes[bytes.length - 18]
-            }${bytes[bytes.length - 17]}`;
+          lifecycle.deviceID = `${bytes[bytes.length - 22]}${
+            bytes[bytes.length - 21]
+          }${bytes[bytes.length - 20]}${bytes[bytes.length - 19]}${
+            bytes[bytes.length - 18]
+          }${bytes[bytes.length - 17]}`;
           lifecycle.deviceStatus = deviceStatus(
             Bits.bitsToUnsigned(bits.substr(64, 8)),
           );

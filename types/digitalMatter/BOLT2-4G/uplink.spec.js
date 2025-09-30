@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,11 +13,10 @@ describe("DigitalMatter Bolt 2 Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/digital.schema.json`)
-      .then((parsedSchema) => {
-        digitalSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/digital.schema.json`).then((parsedSchema) => {
+      digitalSchema = parsedSchema;
+      done();
+    });
   });
 
   let gpsSchema = null;

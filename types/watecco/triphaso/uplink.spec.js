@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -23,56 +21,54 @@ describe("Wattecco Triphaso uplink", () => {
 
   let phaseAVariablesSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/phase_a_variables.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/phase_a_variables.schema.json`).then(
+      (parsedSchema) => {
         phaseAVariablesSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let phaseBVariablesSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/phase_b_variables.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/phase_b_variables.schema.json`).then(
+      (parsedSchema) => {
         phaseBVariablesSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let phaseASchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/phase_a.schema.json`)
-      .then((parsedSchema) => {
-        phaseASchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/phase_a.schema.json`).then((parsedSchema) => {
+      phaseASchema = parsedSchema;
+      done();
+    });
   });
 
   let phaseBSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/phase_b.schema.json`)
-      .then((parsedSchema) => {
-        phaseBSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/phase_b.schema.json`).then((parsedSchema) => {
+      phaseBSchema = parsedSchema;
+      done();
+    });
   });
 
   let phaseCSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/phase_c.schema.json`)
-      .then((parsedSchema) => {
-        phaseCSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/phase_c.schema.json`).then((parsedSchema) => {
+      phaseCSchema = parsedSchema;
+      done();
+    });
   });
 
   let phaseABCSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/phase_abc.schema.json`)
-      .then((parsedSchema) => {
-        phaseABCSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/phase_abc.schema.json`).then((parsedSchema) => {
+      phaseABCSchema = parsedSchema;
+      done();
+    });
   });
 
   let powerSchema = null;

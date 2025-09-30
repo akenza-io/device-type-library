@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 // LPP constants from Thermokon Datasheet Revision C (12.03.2025)
 const LPP_TEMP = 0x10;
 const LPP_RHUM = 0x11;
@@ -251,6 +255,7 @@ function consume(event) {
   // Map sensor values to 'default' topic
   if (decoded.TEMP !== undefined) {
     data.temperature = decoded.TEMP;
+    data.temperatureF = cToF(data.temperature);
   }
   if (decoded.RHUM !== undefined) {
     data.humidity = decoded.RHUM;

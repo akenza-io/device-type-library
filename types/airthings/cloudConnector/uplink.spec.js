@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,103 +13,95 @@ describe("Airthings Cloud Connector Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/airly.schema.json`)
-      .then((parsedSchema) => {
-        airlySchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/airly.schema.json`).then((parsedSchema) => {
+      airlySchema = parsedSchema;
+      done();
+    });
   });
 
   let environmentSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/environment.schema.json`)
-      .then((parsedSchema) => {
-        environmentSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/environment.schema.json`).then((parsedSchema) => {
+      environmentSchema = parsedSchema;
+      done();
+    });
   });
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   let moldSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/mold.schema.json`)
-      .then((parsedSchema) => {
-        moldSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/mold.schema.json`).then((parsedSchema) => {
+      moldSchema = parsedSchema;
+      done();
+    });
   });
 
   let occupancySchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/occupancy.schema.json`)
-      .then((parsedSchema) => {
-        occupancySchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/occupancy.schema.json`).then((parsedSchema) => {
+      occupancySchema = parsedSchema;
+      done();
+    });
   });
 
   let radonSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/radon.schema.json`)
-      .then((parsedSchema) => {
-        radonSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/radon.schema.json`).then((parsedSchema) => {
+      radonSchema = parsedSchema;
+      done();
+    });
   });
 
   let ventilationSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/ventilation.schema.json`)
-      .then((parsedSchema) => {
-        ventilationSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/ventilation.schema.json`).then((parsedSchema) => {
+      ventilationSchema = parsedSchema;
+      done();
+    });
   });
 
   let virusSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/virus.schema.json`)
-      .then((parsedSchema) => {
-        virusSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/virus.schema.json`).then((parsedSchema) => {
+      virusSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
     it("should decode the Airthings Cloud Connector environment payload", () => {
       const data = {
         data: {
-          "serialNumber": "3110000280",
-          "recorded": "2024-01-03T08:09:05Z",
-          "temp": 20.8,
-          "pressure": 990.1,
-          "humidity": 20,
-          "co2": 612,
-          "soundLevelA": 26,
-          "rssi": -52,
-          "batteryPercentage": 99,
-          "ratings": {
-            "humidity": "POOR",
-            "temp": "GOOD",
-            "pressure": "GOOD",
-            "co2": "GOOD"
+          serialNumber: "3110000280",
+          recorded: "2024-01-03T08:09:05Z",
+          temp: 20.8,
+          pressure: 990.1,
+          humidity: 20,
+          co2: 612,
+          soundLevelA: 26,
+          rssi: -52,
+          batteryPercentage: 99,
+          ratings: {
+            humidity: "POOR",
+            temp: "GOOD",
+            pressure: "GOOD",
+            co2: "GOOD",
           },
-          "sensorUnits": {
-            "humidity": "pct",
-            "temp": "c",
-            "pressure": "hpa",
-            "soundLevelA": "dbspl",
-            "co2": "ppm"
-          }
-        }
+          sensorUnits: {
+            humidity: "pct",
+            temp: "c",
+            pressure: "hpa",
+            soundLevelA: "dbspl",
+            co2: "ppm",
+          },
+        },
       };
 
       expectEmits((type, value) => {
@@ -127,10 +117,10 @@ describe("Airthings Cloud Connector Uplink", () => {
         assert.equal(value.data.co2, 612);
         assert.equal(value.data.soundLevelA, 26);
 
-        assert.equal(value.data.co2Rating, 'GOOD');
-        assert.equal(value.data.humidityRating, 'POOR');
-        assert.equal(value.data.pressureRating, 'GOOD');
-        assert.equal(value.data.temperatureRating, 'GOOD');
+        assert.equal(value.data.co2Rating, "GOOD");
+        assert.equal(value.data.humidityRating, "POOR");
+        assert.equal(value.data.pressureRating, "GOOD");
+        assert.equal(value.data.temperatureRating, "GOOD");
 
         // assert.equal(value.timestamp, new Date("2024-01-03T08:09:05Z"))
 
@@ -166,15 +156,14 @@ describe("Airthings Cloud Connector Uplink", () => {
         assert.equal(value.environment.co2, 612);
         assert.equal(value.environment.soundLevelA, 26);
 
-        assert.equal(value.environment.co2Rating, 'GOOD');
-        assert.equal(value.environment.humidityRating, 'POOR');
-        assert.equal(value.environment.pressureRating, 'GOOD');
-        assert.equal(value.environment.temperatureRating, 'GOOD');
+        assert.equal(value.environment.co2Rating, "GOOD");
+        assert.equal(value.environment.humidityRating, "POOR");
+        assert.equal(value.environment.pressureRating, "GOOD");
+        assert.equal(value.environment.temperatureRating, "GOOD");
       });
 
       consume(data);
     });
-
 
     it("should decode the Airthings Cloud Connector environment payload and merge the new and old sample", () => {
       const data = {
@@ -188,15 +177,15 @@ describe("Airthings Cloud Connector Uplink", () => {
             co2Rating: "GOOD",
             humidityRating: "POOR",
             pressureRating: "GOOD",
-            temperatureRating: "GOOD"
-          }
+            temperatureRating: "GOOD",
+          },
         },
         data: {
-          "serialNumber": "3110000280",
-          "recorded": "2024-01-03T08:09:05Z",
-          "tvoc": 16,
-          "temp": 10
-        }
+          serialNumber: "3110000280",
+          recorded: "2024-01-03T08:09:05Z",
+          tvoc: 16,
+          temp: 10,
+        },
       };
 
       expectEmits((type, value) => {
@@ -213,10 +202,10 @@ describe("Airthings Cloud Connector Uplink", () => {
         assert.equal(value.data.soundLevelA, 26);
         assert.equal(value.data.tvoc, 16);
 
-        assert.equal(value.data.co2Rating, 'GOOD');
-        assert.equal(value.data.humidityRating, 'POOR');
-        assert.equal(value.data.pressureRating, 'GOOD');
-        assert.equal(value.data.temperatureRating, 'GOOD');
+        assert.equal(value.data.co2Rating, "GOOD");
+        assert.equal(value.data.humidityRating, "POOR");
+        assert.equal(value.data.pressureRating, "GOOD");
+        assert.equal(value.data.temperatureRating, "GOOD");
 
         // assert.equal(value.timestamp, new Date("2024-01-03T08:09:05Z"))
 
@@ -238,10 +227,10 @@ describe("Airthings Cloud Connector Uplink", () => {
         assert.equal(value.environment.soundLevelA, 26);
         assert.equal(value.environment.tvoc, 16);
 
-        assert.equal(value.environment.co2Rating, 'GOOD');
-        assert.equal(value.environment.humidityRating, 'POOR');
-        assert.equal(value.environment.pressureRating, 'GOOD');
-        assert.equal(value.environment.temperatureRating, 'GOOD');
+        assert.equal(value.environment.co2Rating, "GOOD");
+        assert.equal(value.environment.humidityRating, "POOR");
+        assert.equal(value.environment.pressureRating, "GOOD");
+        assert.equal(value.environment.temperatureRating, "GOOD");
       });
 
       consume(data);
@@ -250,16 +239,16 @@ describe("Airthings Cloud Connector Uplink", () => {
     it("should decode the Airthings Cloud Connector mold payload", () => {
       const data = {
         data: {
-          "serialNumber": "0000000000",
-          "recorded": "2023-10-02T20:00:00Z",
-          "mold": 1,
-          "ratings": {
-            "mold": "GOOD"
+          serialNumber: "0000000000",
+          recorded: "2023-10-02T20:00:00Z",
+          mold: 1,
+          ratings: {
+            mold: "GOOD",
           },
-          "sensorUnits": {
-            "mold": "riskIndex"
-          }
-        }
+          sensorUnits: {
+            mold: "riskIndex",
+          },
+        },
       };
 
       expectEmits((type, value) => {
@@ -291,16 +280,16 @@ describe("Airthings Cloud Connector Uplink", () => {
     it("should decode the Airthings Cloud Connector virus payload", () => {
       const data = {
         data: {
-          "serialNumber": "2969015904",
-          "recorded": "2023-07-06T07:00:00",
-          "virusRisk": 1.0,
-          "ratings": {
-            "virusRisk": "GOOD"
+          serialNumber: "2969015904",
+          recorded: "2023-07-06T07:00:00",
+          virusRisk: 1.0,
+          ratings: {
+            virusRisk: "GOOD",
           },
-          "sensorUnits": {
-            "virusRisk": "riskIndex"
-          }
-        }
+          sensorUnits: {
+            virusRisk: "riskIndex",
+          },
+        },
       };
 
       expectEmits((type, value) => {
@@ -331,16 +320,16 @@ describe("Airthings Cloud Connector Uplink", () => {
     it("should decode the Airthings Cloud Connector radon payload", () => {
       const data = {
         data: {
-          "serialNumber": "0000000000",
-          "hourlyRadon": 0.5,
-          "ratings": {
-            "hourlyRadon": "GOOD"
+          serialNumber: "0000000000",
+          hourlyRadon: 0.5,
+          ratings: {
+            hourlyRadon: "GOOD",
           },
-          "sensorUnits": {
-            "hourlyRadon": "pci"
+          sensorUnits: {
+            hourlyRadon: "pci",
           },
-          "recorded": "2023-11-30T10:00:00Z"
-        }
+          recorded: "2023-11-30T10:00:00Z",
+        },
       };
 
       expectEmits((type, value) => {
@@ -371,15 +360,15 @@ describe("Airthings Cloud Connector Uplink", () => {
     it("should decode the Airthings Cloud Connector occupancy payload", () => {
       const data = {
         data: {
-          "serialNumber": "2969000446",
-          "recorded": "2023-07-06T07:15",
-          "occupants": 2,
-          "occupantsUpper": 4,
-          "occupantsLower": 0,
-          "sensorUnits": {
-            "occupants": "occ"
-          }
-        }
+          serialNumber: "2969000446",
+          recorded: "2023-07-06T07:15",
+          occupants: 2,
+          occupantsUpper: 4,
+          occupantsLower: 0,
+          sensorUnits: {
+            occupants: "occ",
+          },
+        },
       };
 
       expectEmits((type, value) => {
@@ -408,15 +397,15 @@ describe("Airthings Cloud Connector Uplink", () => {
     it("should decode the Airthings Cloud Connector ventilation payload", () => {
       const data = {
         data: {
-          "serialNumber": "2930047924",
-          "recorded": "2024-07-05T10:40:00Z",
-          "airflow": 98.93,
-          "airExchangeRate": 4.46,
-          "sensorUnits": {
-            "airExchangeRate": "ach",
-            "airflow": "m3h"
-          }
-        }
+          serialNumber: "2930047924",
+          recorded: "2024-07-05T10:40:00Z",
+          airflow: 98.93,
+          airExchangeRate: 4.46,
+          sensorUnits: {
+            airExchangeRate: "ach",
+            airflow: "m3h",
+          },
+        },
       };
 
       expectEmits((type, value) => {
@@ -447,29 +436,29 @@ describe("Airthings Cloud Connector Uplink", () => {
     it("should decode the Airthings Cloud Connector airly payload", () => {
       const data = {
         data: {
-          "serialNumber": "ARL0000000",
-          "recorded": "2023-11-30T10:00:00Z",
-          "outdoorHumidity": 73,
-          "outdoorPm10": 28,
-          "outdoorPm1": 13,
-          "outdoorPm25": 22,
-          "outdoorPressure": 1002.8,
-          "outdoorTemp": -2.5,
-          "ratings": {
-            "outdoorPm25": "FAIR",
-            "outdoorPm1": "FAIR",
-            "outdoorPm10": "FAIR",
-            "outdoorPressure": "GOOD"
+          serialNumber: "ARL0000000",
+          recorded: "2023-11-30T10:00:00Z",
+          outdoorHumidity: 73,
+          outdoorPm10: 28,
+          outdoorPm1: 13,
+          outdoorPm25: 22,
+          outdoorPressure: 1002.8,
+          outdoorTemp: -2.5,
+          ratings: {
+            outdoorPm25: "FAIR",
+            outdoorPm1: "FAIR",
+            outdoorPm10: "FAIR",
+            outdoorPressure: "GOOD",
           },
-          "sensorUnits": {
-            "outdoorPm25": "mgpc",
-            "outdoorPm1": "mgpc",
-            "outdoorPm10": "mgpc",
-            "outdoorHumidity": "pct",
-            "outdoorTemp": "c",
-            "outdoorPressure": "hpa"
-          }
-        }
+          sensorUnits: {
+            outdoorPm25: "mgpc",
+            outdoorPm1: "mgpc",
+            outdoorPm10: "mgpc",
+            outdoorHumidity: "pct",
+            outdoorTemp: "c",
+            outdoorPressure: "hpa",
+          },
+        },
       };
 
       expectEmits((type, value) => {
@@ -521,35 +510,35 @@ describe("Airthings Cloud Connector Uplink", () => {
       const data = {
         state: {
           environment: {
-            temperature: 23.5
-          }
+            temperature: 23.5,
+          },
         },
         data: {
-          "tvoc": 82,
-          "rssi": -79,
-          "serialNumber": "2969002870",
-          "pm25": 5,
-          "pm1": 5,
-          "ratings": {
-            "pm25": "GOOD",
-            "pm1": "GOOD",
-            "pm10": "GOOD",
-            "voc": "GOOD"
+          tvoc: 82,
+          rssi: -79,
+          serialNumber: "2969002870",
+          pm25: 5,
+          pm1: 5,
+          ratings: {
+            pm25: "GOOD",
+            pm1: "GOOD",
+            pm10: "GOOD",
+            voc: "GOOD",
           },
-          "sensorUnits": {
-            "pm25": "mgpc",
-            "pm1": "mgpc",
-            "pm10": "mgpc",
-            "pressure": "hpa",
-            "voc": "ppb",
-            "soundLevelA": "dbspl"
+          sensorUnits: {
+            pm25: "mgpc",
+            pm1: "mgpc",
+            pm10: "mgpc",
+            pressure: "hpa",
+            voc: "ppb",
+            soundLevelA: "dbspl",
           },
-          "pm10": 5,
-          "batteryPercentage": 94,
-          "pressure": 1011.2,
-          "recorded": "2025-07-14T11:53:55Z",
-          "soundLevelA": 52
-        }
+          pm10: 5,
+          batteryPercentage: 94,
+          pressure: 1011.2,
+          recorded: "2025-07-14T11:53:55Z",
+          soundLevelA: 52,
+        },
       };
 
       expectEmits((type, value) => {

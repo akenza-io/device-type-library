@@ -1,85 +1,105 @@
 {
-  "$id": "https://akenza.io/comtac/CM-2/system.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "system",
-  "title": "System",
-  "properties": {
-    "appType": {
-      "title": "Application type",
-      "description": "Application type",
-      "type": "integer",
-      "hideFromKpis": true
-    },
-    "appVersion": {
-      "title": "Application version",
-      "description": "Application version",
-      "type": "integer",
-      "hideFromKpis": true
-    },
-    "sendInterval": {
-      "title": "Send interval",
-      "description": "Send interval in minutes",
-      "unit": "m",
-      "type": "integer",
-      "hideFromKpis": true
-    },
-    "minTempThreshold": {
-      "title": "Min Temperature Threshold",
-      "description": "Minimum temperature threshold, where -15 means OFF",
-      "hideFromKpis": true,
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-    },
-    "maxTempThreshold": {
-      "title": "Max Temperature Threshold",
-      "description": "Maximum temperature threshold, where -15 means OFF",
-      "hideFromKpis": true,
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-    },
-    "minHumThreshold": {
-      "title": "Min Humidity Threshold",
-      "description": "Minimum humidity threshold, where 0 means OFF",
-      "hideFromKpis": true,
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
-    },
-    "maxHumThreshold": {
-      "title": "Max Humidity Threshold",
-      "description": "Maximum humidity threshold, where 0 means OFF",
-      "hideFromKpis": true,
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
-    },
-    "minPtThreshold": {
-      "title": "Minimum PT100 temperature threshold",
-      "description": "Minimum PT100 temperature threshold",
-      "hideFromKpis": true,
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-    },
-    "maxPtThreshold": {
-      "title": "Maximum PT100 temperature threshold",
-      "description": "Maximum PT100 temperature threshold",
-      "hideFromKpis": true,
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-    },
-    "minLemThreshold": {
-      "title": "Minimum LEM threshold",
-      "unit": "mA",
-      "description": "Minimum LEM threshold",
-      "type": "number",
-      "hideFromKpis": true
-    },
-    "maxLemThreshold": {
-      "title": "Maximum LEM threshold",
-      "unit": "mA",
-      "description": "Maximum LEM threshold",
-      "type": "number",
-      "hideFromKpis": true
-    },
-    "dinSettings": {
-      "title": "Din settings",
-      "description": "Din settings",
-      "type": "number",
-      "hideFromKpis": true
+    "$id": "https://akenza.io/comtac/CM-2/system.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "system",
+    "title": "System",
+    "properties": {
+        "appType": {
+            "title": "Application type",
+            "description": "Application type",
+            "type": "integer",
+            "hideFromKpis": true
+        },
+        "appVersion": {
+            "title": "Application version",
+            "description": "Application version",
+            "type": "integer",
+            "hideFromKpis": true
+        },
+        "sendInterval": {
+            "title": "Send interval",
+            "description": "Send interval in minutes",
+            "unit": "m",
+            "type": "integer",
+            "hideFromKpis": true
+        },
+        "minTempThreshold": {
+            "title": "Min Temperature Threshold °C",
+            "description": "Minimum temperature threshold, where -15 means OFF",
+            "hideFromKpis": true,
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "maxTempThreshold": {
+            "title": "Max Temperature Threshold °C",
+            "description": "Maximum temperature threshold, where -15 means OFF",
+            "hideFromKpis": true,
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "minHumThreshold": {
+            "title": "Min Humidity Threshold",
+            "description": "Minimum humidity threshold, where 0 means OFF",
+            "hideFromKpis": true,
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+        },
+        "maxHumThreshold": {
+            "title": "Max Humidity Threshold",
+            "description": "Maximum humidity threshold, where 0 means OFF",
+            "hideFromKpis": true,
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+        },
+        "minPtThreshold": {
+            "title": "Minimum PT100 temperature threshold °C",
+            "description": "Minimum PT100 temperature threshold",
+            "hideFromKpis": true,
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "maxPtThreshold": {
+            "title": "Maximum PT100 temperature threshold °C",
+            "description": "Maximum PT100 temperature threshold",
+            "hideFromKpis": true,
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "minLemThreshold": {
+            "title": "Minimum LEM threshold",
+            "unit": "mA",
+            "description": "Minimum LEM threshold",
+            "type": "number",
+            "hideFromKpis": true
+        },
+        "maxLemThreshold": {
+            "title": "Maximum LEM threshold",
+            "unit": "mA",
+            "description": "Maximum LEM threshold",
+            "type": "number",
+            "hideFromKpis": true
+        },
+        "dinSettings": {
+            "title": "Din settings",
+            "description": "Din settings",
+            "type": "number",
+            "hideFromKpis": true
+        },
+        "minTempThresholdF": {
+            "title": "Min Temperature Threshold °F",
+            "description": "Minimum temperature threshold, where -15 means OFF",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "maxTempThresholdF": {
+            "title": "Max Temperature Threshold °F",
+            "description": "Maximum temperature threshold, where -15 means OFF",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "minPtThresholdF": {
+            "title": "Minimum PT100 temperature threshold °F",
+            "description": "Minimum PT100 temperature threshold",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "maxPtThresholdF": {
+            "title": "Maximum PT100 temperature threshold °F",
+            "description": "Maximum PT100 temperature threshold",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
     }
-  }
 }

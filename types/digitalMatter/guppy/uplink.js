@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function decoder(bytes, port) {
   // Decode an uplink message from a buffer
   // (array) of bytes to an object of fields.
@@ -17,6 +21,7 @@ function decoder(bytes, port) {
     decoded.inTrip = (bytes[0] & 0x1) !== 0;
     decoded.batteryVoltage = 2.0 + 0.014 * (bytes[0] >> 1);
     decoded.temperature = -40.0 + 0.5 * bytes[1];
+    decoded.temperatureF = cToF(decoded.temperature);
 
     if (bytes.length >= 4) {
       decoded.manDown = (bytes[2] & 0x1) !== 0;

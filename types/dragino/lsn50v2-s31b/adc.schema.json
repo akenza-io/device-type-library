@@ -1,53 +1,59 @@
 {
-  "$id": "https://akenza.io/dragino/lsn50v2-s31b/adc.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "adc",
-  "title": "ADC",
-  "properties": {
-    "c0adc": {
-      "title": "Channel 0 ADC",
-      "type": "number",
-      "unit": "V",
-      "description": "ADC value in voltage"
-    },
-    "c1adc": {
-      "title": "Channel 1 ADC",
-      "type": "number",
-      "unit": "V",
-      "description": "ADC value in voltage"
-    },
-    "c4adc": {
-      "title": "Channel 4 ADC",
-      "type": "number",
-      "unit": "V",
-      "description": "ADC value in voltage"
-    },
-    "digitalStatus": {
-      "title": "Digital status",
-      "type": "string",
-      "description": "Digital status",
-      "enum": ["HIGH", "LOW"]
-    },
-    "extTrigger": {
-      "title": "External trigger",
-      "type": "boolean",
-      "description": "External trigger"
-    },
-    "open": {
-      "title": "Open",
-      "type": "boolean",
-      "description": "True if reed has no contact."
-    },
-    "temperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-    },
-    "humidity": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
-    },
-    "light": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/illuminance/lux"
+    "$id": "https://akenza.io/dragino/lsn50v2-s31b/adc.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "adc",
+    "title": "ADC",
+    "properties": {
+        "c0adc": {
+            "title": "Channel 0 ADC",
+            "type": "number",
+            "unit": "V",
+            "description": "ADC value in voltage"
+        },
+        "c1adc": {
+            "title": "Channel 1 ADC",
+            "type": "number",
+            "unit": "V",
+            "description": "ADC value in voltage"
+        },
+        "c4adc": {
+            "title": "Channel 4 ADC",
+            "type": "number",
+            "unit": "V",
+            "description": "ADC value in voltage"
+        },
+        "digitalStatus": {
+            "title": "Digital status",
+            "type": "string",
+            "description": "Digital status",
+            "enum": [
+                "HIGH",
+                "LOW"
+            ]
+        },
+        "extTrigger": {
+            "title": "External trigger",
+            "type": "boolean",
+            "description": "External trigger"
+        },
+        "open": {
+            "title": "Open",
+            "type": "boolean",
+            "description": "True if reed has no contact."
+        },
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "humidity": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+        },
+        "light": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/illuminance/lux"
+        },
+        "temperatureF": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
     }
-  }
 }

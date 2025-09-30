@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
@@ -15,9 +19,11 @@ function consume(event) {
     data.soilMoisture = Bits.bitsToUnsigned(bits.substr(120, 16));
     pointer += 16;
     data.soilTemperature = Bits.bitsToSigned(bits.substr(pointer, 16)) / 100;
+    data.soilTemperatureF = cToF(data.soilTemperature);
 
     if (bits.substr(pointer, 16) === "1111111111111111") {
       data.soilTemperature = null;
+      data.soilTemperatureF = null;
     }
 
     pointer += 16;

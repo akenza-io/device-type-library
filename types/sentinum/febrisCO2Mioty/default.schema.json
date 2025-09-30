@@ -1,53 +1,68 @@
 {
-  "$id": "https://akenza.io/sentinum/febrismioty/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
-  "properties": {
-    "humidity": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+    "$id": "https://akenza.io/sentinum/febrismioty/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "humidity": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+        },
+        "pressure": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/hPa"
+        },
+        "co2": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm"
+        },
+        "alarm": {
+            "title": "Alarm",
+            "description": "Alarm",
+            "type": "string",
+            "enum": [
+                "GREEN",
+                "YELLOW",
+                "RED"
+            ]
+        },
+        "dewPoint": {
+            "title": "Dew point °C",
+            "description": "Dew point  in °C.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "wallTemperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "description": "Wall temperature in °C.",
+            "title": "Wall temperature °C"
+        },
+        "thermTemperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "description": "Thermometer temperature in °C.",
+            "title": "Thermometer temperature °C"
+        },
+        "wallHumidity": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
+            "description": "The relative wall humidity in %",
+            "title": "Wall humidity"
+        },
+        "dewPointF": {
+            "title": "Dew point °F",
+            "description": "Dew point  in °F.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "wallTemperatureF": {
+            "title": "Wall temperature °F",
+            "description": "Wall temperature in °F.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "thermTemperatureF": {
+            "title": "Thermometer temperature °F",
+            "description": "Thermometer temperature in °F.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
     },
-    "pressure": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/hPa"
-    },
-    "co2": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm"
-    },
-    "alarm": {
-      "title": "Alarm",
-      "description": "Alarm",
-      "type": "string",
-      "enum": [
-        "GREEN",
-        "YELLOW",
-        "RED"
-      ]
-    },
-    "dewPoint": {
-      "title": "Dew point",
-      "description": "Dew point  in °C.",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-    },
-    "wallTemperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "description": "Wall temperature in °C.",
-      "title": "Wall temperature"
-    },
-    "thermTemperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "description": "Thermometer temperature in °C.",
-      "title": "Thermometer temperature"
-    },
-    "wallHumidity": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
-      "description": "The relative wall humidity in %",
-      "title": "Wall humidity"
-    }
-  },
-  "required": [
-    "humidity",
-    "alarm"
-  ]
+    "required": [
+        "humidity",
+        "alarm"
+    ]
 }

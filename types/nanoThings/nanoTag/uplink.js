@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function isEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
@@ -16,8 +20,10 @@ function consume(event) {
     case 13:
       // Lifecycle
       temperature.temperature = Bits.bitsToUnsigned(bits.substr(0, 8)) - 50;
+      temperature.temperatureF = cToF(temperature.temperature);
       lifecycle.internalTemperature =
         Bits.bitsToUnsigned(bits.substr(8, 8)) - 50;
+      lifecycle.internalTemperatureF = cToF(lifecycle.internalTemperature);
       lifecycle.batteryVoltage =
         Bits.bitsToUnsigned(bits.substr(16, 16)) / 1000;
 
@@ -25,6 +31,7 @@ function consume(event) {
     case 28:
       // Configuration request
       temperature.temperature = Bits.bitsToUnsigned(bits.substr(0, 8)) - 50;
+      temperature.temperatureF = cToF(temperature.temperature);
       lifecycle.batteryVoltage = Bits.bitsToUnsigned(bits.substr(8, 16)) / 1000;
       break;
     case 25: {
@@ -51,6 +58,7 @@ function consume(event) {
           Math.round(
             (Bits.bitsToUnsigned(bits.substr(bytePos, 16)) / 100 - 50) * 10,
           ) / 10;
+        data[`temperature${i}F`] = cToF(data[`temperature${i}`]);
         i++;
       }
       break;

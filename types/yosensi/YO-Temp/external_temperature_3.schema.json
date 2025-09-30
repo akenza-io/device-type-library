@@ -1,21 +1,26 @@
 {
-  "$id": "https://akenza.io/yosensi/YO-Temp/external_temperature_3.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "external_temperature_3",
-  "title": "External temperature 3",
-  "properties": {
-    "externalTemperature3": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "External Temperature - Probe 3",
-      "description": "Probe 3 Temperature in degrees celsius.",
-      "minimum": -55,
-      "maximum": 125,
-      "hideFromKpis": false
-    }
-  },
-  "required": [
-    "externalTemperature3"
-  ]
+    "$id": "https://akenza.io/yosensi/YO-Temp/external_temperature_3.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "external_temperature_3",
+    "title": "External temperature 3",
+    "properties": {
+        "externalTemperature3": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "External Temperature - Probe 3 °C",
+            "description": "Probe 3 Temperature in degrees celsius.",
+            "minimum": -55,
+            "maximum": 125,
+            "hideFromKpis": false
+        },
+        "externalTemperature3F": {
+            "title": "External Temperature - Probe 3 °F",
+            "description": "Probe 3 Temperature in degrees celsius.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
+    },
+    "required": [
+        "externalTemperature3"
+    ]
 }

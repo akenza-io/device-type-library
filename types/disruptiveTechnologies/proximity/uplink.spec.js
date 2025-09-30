@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,29 +13,30 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/object_present.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/object_present.schema.json`).then(
+      (parsedSchema) => {
         objectPresentSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let touchSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/touch.schema.json`)
-      .then((parsedSchema) => {
-        touchSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/touch.schema.json`).then((parsedSchema) => {
+      touchSchema = parsedSchema;
+      done();
+    });
   });
 
   let washroomUsageSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/washroom_usage.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/washroom_usage.schema.json`).then(
+      (parsedSchema) => {
         washroomUsageSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   describe("consume()", () => {
@@ -104,8 +103,8 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         state: {
           count: 0,
           lastStatus: "NOT_PRESENT",
-          lastSampleEmittedAt: new Date().getTime()
-        }
+          lastSampleEmittedAt: new Date().getTime(),
+        },
       };
 
       expectEmits((type, value) => {
@@ -144,15 +143,15 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         eventType: "touch",
         data: {
           eventType: "touch",
-          touch: true
+          touch: true,
         },
         timestamp: "2021-09-15T14:48:05.948000Z",
         labels: {},
         state: {
           count: 1,
           lastStatus: "PRESENT",
-          lastSampleEmittedAt: new Date().getTime() - 3600000
-        }
+          lastSampleEmittedAt: new Date().getTime() - 3600000,
+        },
       };
 
       expectEmits((type, value) => {
@@ -203,9 +202,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
           usage: 0,
         },
         device: {
-          tags: [
-            "washroom_usage"
-          ],
+          tags: ["washroom_usage"],
         },
         eventId: "c510f9ag03fligl8tvag",
         targetName:
@@ -256,12 +253,10 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         state: {
           count: 201,
           usage: 1,
-          lastStatus: "PRESENT"
+          lastStatus: "PRESENT",
         },
         device: {
-          tags: [
-            "washroom_usage"
-          ],
+          tags: ["washroom_usage"],
         },
         eventId: "c510f9ag03fligl8tvag",
         targetName:
@@ -311,9 +306,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
       const data = {
         eventId: "c510f9ag03fligl8tvag",
         device: {
-          tags: [
-            "cubicle_usage"
-          ],
+          tags: ["cubicle_usage"],
         },
         targetName:
           "projects/c3t7p26j4a2g00de1sng/devices/bjmgj6dp0jt000a5dcug",
@@ -331,8 +324,8 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
           count: 201,
           usage: 1,
           lastStatus: "NOT_PRESENT",
-          lastSampleEmittedAt: new Date().getTime()
-        }
+          lastSampleEmittedAt: new Date().getTime(),
+        },
       };
 
       expectEmits((type, value) => {
