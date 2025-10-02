@@ -32,16 +32,16 @@ function consume(event) {
     if (payloadHex.length > 1) {
         emit("downlink", { payloadHex, port, confirmed });
     } else if (event.payload.actionType !== undefined) {
-        let { payload } = event;
+        let downlinks = [];
 
         // Backwards compatibility
-        if (payload.actionType === "multiDownlink") {
-            payload = payload.multiDownlink;
+        if (event.payload.actionType === "multiDownlink") {
+            downlinks = event.payload.multiDownlink;
         } else {
-            payload = [payload];
+            downlinks.push(event.payload);
         }
 
-        payload.forEach(command => {
+        downlinks.forEach(command => {
             switch (command.actionType) {
                 case "reportInterval":
                     payloadHex += `FF${intToHex(command.reportInterval)}`;
