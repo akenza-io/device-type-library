@@ -54,14 +54,20 @@ describe("DS3604 Downlink", () => {
       consume(data);
     });
 
-    it("should encode a content update payload", () => {
+    it("should encode a content update payload and change the template", () => {
       const data = {
-        payload: {
-          "actionType": "contentUpdate",
-          "template": 1,
-          "moduleId": 1,
-          "content": "test"
-        }
+        payload: [
+          {
+            "actionType": "contentUpdate",
+            "template": 2,
+            "moduleId": 5,
+            "content": "Guest Waiting"
+          },
+          {
+            "actionType": "displayTemplate",
+            "mode": "TEMPLATE_1",
+          },
+        ]
       };
 
       expectEmits((type, value) => {
@@ -69,7 +75,7 @@ describe("DS3604 Downlink", () => {
         assert.isNotNull(value);
         assert.typeOf(value, "object");
 
-        assert.equal(value.payloadHex, "FB01000474657374FF3D02");
+        assert.equal(value.payloadHex, "FB01440d47756573742057616974696e67FF3D02FF7300");
         assert.equal(value.confirmed, true);
         assert.equal(value.port, 85);
       });
