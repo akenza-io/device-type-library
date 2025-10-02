@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.75.1] - 2025-10-02
+
+### Changed
+
+- DS3604 Downlink encoder now excpects a payload object and allows multidownlinks
+
 # [1.75.0] - 2025-09-25
 
 ### Added

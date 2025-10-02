@@ -23,17 +23,10 @@ function ascii2hex(str) {
 }
 
 
-function checkExpectedValues(value, defaultValue) {
-    if (value !== undefined && value !== null) {
-        return value;
-    }
-    return defaultValue;
-}
-
 function consume(event) {
-    const port = checkExpectedValues(event.port, 85);
-    const confirmed = checkExpectedValues(event.confirmed, true);
-    let payloadHex = checkExpectedValues(event.payloadHex, "");
+    const port = event.payload.port || 85;
+    const confirmed = event.payload.confirmed || true;
+    let payloadHex = event.payload.payloadHex || "";
 
     // Pass raw downlink
     if (payloadHex.length > 1) {

@@ -20,7 +20,9 @@ describe("DS3604 Downlink", () => {
   describe("consume()", () => {
     it("should pass the raw DS3604 downlink", () => {
       const data = {
-        payloadHex: "18",
+        "payload": {
+          "payloadHex": "18",
+        }
       };
 
       expectEmits((type, value) => {
