@@ -56,18 +56,21 @@ describe("DS3604 Downlink", () => {
 
     it("should encode a content update payload and change the template", () => {
       const data = {
-        payload: [
-          {
-            "actionType": "contentUpdate",
-            "template": 2,
-            "moduleId": 5,
-            "content": "Guest Waiting"
-          },
-          {
-            "actionType": "displayTemplate",
-            "mode": "TEMPLATE_1",
-          },
-        ]
+        payload: {
+          "actionType": "multiDownlink",
+          "multiDownlink": [
+            {
+              "actionType": "contentUpdate",
+              "template": 2,
+              "moduleId": 5,
+              "content": "Guest Waiting"
+            },
+            {
+              "actionType": "displayTemplate",
+              "mode": "TEMPLATE_1",
+            }
+          ]
+        }
       };
 
       expectEmits((type, value) => {

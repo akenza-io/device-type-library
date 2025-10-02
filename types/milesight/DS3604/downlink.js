@@ -38,11 +38,13 @@ function consume(event) {
     // Pass raw downlink
     if (payloadHex.length > 1) {
         emit("downlink", { payloadHex, port, confirmed });
-    } else if (event.payload.length !== undefined || event.payload.actionType !== undefined) {
+    } else if (event.payload.actionType !== undefined) {
         let { payload } = event;
 
         // Backwards compatibility
-        if (event.payload.actionType !== undefined) {
+        if (payload.actionType === "multiDownlink") {
+            payload = payload.multiDownlink;
+        } else {
             payload = [payload];
         }
 
