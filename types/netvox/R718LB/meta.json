@@ -6,8 +6,14 @@
   "description": "Wireless Hall Type Open/Close Detection Sensor for Netvox Class A type devices based on the LoRaWAN open protocol, detecting open/close status based on magnet proximity.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
-  "availableSensors": ["Open/Close"],
-  "outputTopics": ["default", "lifecycle", "system"],
+  "availableSensors": [
+    "Open/Close"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "system"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

@@ -1,6 +1,6 @@
 function consume(event) {
   const payload = event.data.payloadHex;
-  const port = event.data.port;
+  const { port } = event.data;
   const bytes = Hex.hexToBytes(payload);
 
   // Data reports are on FPort 6
@@ -17,7 +17,7 @@ function consume(event) {
     }
 
     switch (reportType) {
-      case 0x00: // Version Information Report
+      case 0x00: { // Version Information Report
         const systemData = {};
         systemData.softwareVersion = bytes[3];
         systemData.hardwareVersion = bytes[4];
@@ -28,8 +28,9 @@ function consume(event) {
           topic: "system",
         });
         break;
+      }
 
-      case 0x01: // Battery and Hall Sensor Status Report
+      case 0x01: { // Battery and Hall Sensor Status Report
         const defaultData = {};
         const lifecycleData = {};
 
@@ -49,6 +50,7 @@ function consume(event) {
           topic: "default",
         });
         break;
+      }
 
       default:
         emit("log", {

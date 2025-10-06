@@ -8,7 +8,7 @@ function roundToTwoDecimals(value) {
 
 function consume(event) {
   const payload = Hex.hexToBytes(event.data.payloadHex);
-  const port = event.data.port;
+  const { port } = event.data;
 
   // Helper function for signed 16-bit big-endian conversion
   function to_s16_be(byte1, byte2) {

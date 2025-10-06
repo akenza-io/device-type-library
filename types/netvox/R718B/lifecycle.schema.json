@@ -16,5 +16,8 @@
       "hideFromKpis": true
     }
   },
-  "required": ["batteryVoltage", "lowBattery"]
+  "required": [
+    "batteryVoltage",
+    "lowBattery"
+  ]
 }

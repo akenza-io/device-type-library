@@ -6,8 +6,14 @@
   "description": "Wireless Water Leak Detector for LoRaWAN Class A devices, detecting water leaks and reporting battery voltage.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
-  "availableSensors": ["Water Leak"],
-  "outputTopics": ["default", "lifecycle", "system"],
+  "availableSensors": [
+    "Water Leak"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "system"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

@@ -1,6 +1,6 @@
 function consume(event) {
   const payload = Hex.hexToBytes(event.data.payloadHex);
-  const port = event.data.port;
+  const { port } = event.data;
   const deviceType = payload[1];
 
   // R718WA Device Type is 0x32
@@ -12,7 +12,7 @@ function consume(event) {
   }
 
   switch (port) {
-    case 6: // Report Data
+    case 6: { // Report Data
       const reportType = payload[2];
       if (reportType === 0x01) {
         // Water Leak & Battery Status Report
@@ -49,9 +49,10 @@ function consume(event) {
           topic: "system",
         });
       }
+    }
       break;
 
-    case 7: // Configuration Uplink Response
+    case 7: { // Configuration Uplink Response
       const cmdId = payload[0];
       if (cmdId === 0x82) {
         // ReadConfigReportRsp
@@ -75,6 +76,7 @@ function consume(event) {
           message: `Configuration write response: ${status}`,
         });
       }
+    }
       break;
 
     default:

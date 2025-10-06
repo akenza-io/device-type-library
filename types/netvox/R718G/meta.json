@@ -6,8 +6,14 @@
   "description": "Wireless Light Sensor for LoRaWAN Class A networks, detecting ambient light intensity (illuminance) and transmitting this data along with battery voltage.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
-  "availableSensors": ["Illuminance", "Battery"],
-  "outputTopics": ["default", "lifecycle", "system"],
+  "availableSensors": [
+    "Illuminance"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "system"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

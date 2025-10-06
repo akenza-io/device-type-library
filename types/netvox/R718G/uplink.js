@@ -1,6 +1,6 @@
 function consume(event) {
   const payload = Hex.hexToBytes(event.data.payloadHex);
-  const port = event.data.port;
+  const { port } = event.data;
 
   if (port !== 6) {
     emit("log", {

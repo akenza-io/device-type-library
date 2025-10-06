@@ -17,7 +17,7 @@ describe("Netvox RB11E uplink", () => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
 
-    [defaultSchema, lifecycleSchema, systemSchema] = await Promise.all([
+    [defaultSchema, lifecycleSchema, occupancySchema] = await Promise.all([
       loadSchema(`${__dirname}/default.schema.json`),
       loadSchema(`${__dirname}/lifecycle.schema.json`),
       loadSchema(`${__dirname}/occupancy.schema.json`),

@@ -12,5 +12,7 @@
       "description": "Hall sensor status. Open: true, Closed: false."
     }
   },
-  "required": ["open"]
+  "required": [
+    "open"
+  ]
 }

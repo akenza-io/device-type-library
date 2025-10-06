@@ -8,11 +8,10 @@ function to_int16(byte1, byte2) {
 
 function consume(event) {
   const bytes = Hex.hexToBytes(event.data.payloadHex);
-  const port = event.data.port;
+  const { port } = event.data;
 
   // Uplink data is on FPort 6 and has a fixed length of 11 bytes.
   if (port === 6 && bytes.length === 11) {
-    const version = bytes[0];
     const deviceType = bytes[1];
     const reportType = bytes[2];
 

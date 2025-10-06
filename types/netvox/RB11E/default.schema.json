@@ -19,5 +19,9 @@
       "hideFromKpis": true
     }
   },
-  "required": ["temperature", "light", "alarm"]
+  "required": [
+    "temperature",
+    "light",
+    "alarm"
+  ]
 }

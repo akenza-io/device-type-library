@@ -25,5 +25,9 @@
       "hideFromKpis": true
     }
   },
-  "required": ["softwareVersion", "hardwareVersion", "dateCode"]
+  "required": [
+    "softwareVersion",
+    "hardwareVersion",
+    "dateCode"
+  ]
 }

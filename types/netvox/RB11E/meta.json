@@ -6,8 +6,17 @@
   "description": "Wireless Occupancy & Temperature & Light Sensor for Netvox ClassA type devices based on the LoRaWAN open protocol. It combines infrared detection, temperature, and illumination sensors, along with battery and disassembled alarm reporting.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
-  "availableSensors": ["Occupancy", "Temperature", "Light"],
-  "outputTopics": ["default", "occupancy", "lifecycle", "system"],
+  "availableSensors": [
+    "Occupancy",
+    "Temperature",
+    "Light"
+  ],
+  "outputTopics": [
+    "default",
+    "occupancy",
+    "lifecycle",
+    "system"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

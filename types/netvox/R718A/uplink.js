@@ -13,7 +13,7 @@ function roundToTwoDecimals(value) {
  */
 function consume(event) {
   const payload = Hex.hexToBytes(event.data.payloadHex);
-  const port = event.data.port;
+  const { port } = event.data;
 
   // Uplink data is on FPort 6
   if (port !== 6) {
@@ -31,7 +31,6 @@ function consume(event) {
     return;
   }
 
-  const version = payload[0];
   const deviceType = payload[1];
   const reportType = payload[2];
 
@@ -45,7 +44,7 @@ function consume(event) {
 
   // Route decoding based on ReportType
   switch (reportType) {
-    case 0x00: // Version Packet
+    case 0x00: { // Version Packet
       if (payload.length !== 11) {
         emit("log", {
           error: `Invalid length for Version Packet: ${payload.length} bytes. Expected 11.`,
@@ -62,8 +61,9 @@ function consume(event) {
         topic: "system",
       });
       break;
+    }
 
-    case 0x01: // Data Packet
+    case 0x01: { // Data Packet
       if (payload.length !== 11) {
         emit("log", {
           error: `Invalid length for Data Packet: ${payload.length} bytes. Expected 11.`,
@@ -75,7 +75,7 @@ function consume(event) {
       const batteryByte = payload[3];
       const lifecycleData = {
         batteryVoltage: (batteryByte & 0x7f) * 0.1,
-        lowBatteryAlarm: !!(batteryByte & 0x80),
+        lowBattery: !!(batteryByte & 0x80),
       };
       emit("sample", {
         data: lifecycleData,
@@ -99,6 +99,7 @@ function consume(event) {
         topic: "default",
       });
       break;
+    }
 
     default:
       emit("log", {

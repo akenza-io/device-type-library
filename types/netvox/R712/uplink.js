@@ -1,6 +1,6 @@
 function consume(event) {
   const payload = Hex.hexToBytes(event.data.payloadHex);
-  const port = event.data.port;
+  const { port } = event.data;
 
   if (port === 6) {
     const deviceType = payload[1];
@@ -69,7 +69,7 @@ function consume(event) {
 
     if (cmdID === 0x81) {
       // ConfigReportRsp
-      system.configStatus = payload[2] === 0x00 ? "success" : "failure";
+      system.configStatus = payload[2] === 0x00 ? "SUCCESS" : "FAILURE";
       emit("sample", {
         data: system,
         topic: "system",

@@ -22,7 +22,10 @@
       "title": "Configuration Status",
       "description": "Status of the last configuration command.",
       "type": "string",
-      "enum": ["success", "failure"],
+      "enum": [
+        "SUCCESS",
+        "FAILURE"
+      ],
       "hideFromKpis": true
     },
     "minTime": {

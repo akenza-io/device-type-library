@@ -6,8 +6,15 @@
   "description": "Wireless Outdoor Temperature and Humidity Sensor based on the LoRaWAN open protocol (Class A), providing temperature, humidity, and battery voltage data.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
-  "availableSensors": ["Temperature", "Humidity"],
-  "outputTopics": ["default", "lifecycle", "system"],
+  "availableSensors": [
+    "Temperature",
+    "Humidity"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "system"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }
