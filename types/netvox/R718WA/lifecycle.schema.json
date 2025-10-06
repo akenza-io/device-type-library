@@ -7,7 +7,7 @@
   "title": "Lifecycle",
   "properties": {
     "batteryVoltage": {
-      "$ref": "https://raw.githubusercontent.com/akenza.io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
     },
     "lowBattery": {
       "title": "Low Battery",
