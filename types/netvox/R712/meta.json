@@ -1,0 +1,13 @@
+{
+  "name": "R712",
+  "version": "1.0.0",
+  "manufacturer": "netvox",
+  "url": "http://www.netvox.com.tw/product.asp?pro=R712",
+  "description": "Wireless Outdoor Temperature and Humidity Sensor based on the LoRaWAN open protocol (Class A), providing temperature, humidity, and battery voltage data.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": ["Temperature", "Humidity"],
+  "outputTopics": ["default", "lifecycle", "system"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

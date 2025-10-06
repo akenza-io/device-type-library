@@ -1,0 +1,49 @@
+{
+  "$id": "https://akenza.io/netvox/r718wa/system.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "system",
+  "title": "System",
+  "properties": {
+    "softwareVersion": {
+      "title": "Software Version",
+      "type": "number",
+      "description": "Software version of the device",
+      "hideFromKpis": true
+    },
+    "hardwareVersion": {
+      "title": "Hardware Version",
+      "type": "number",
+      "description": "Hardware version of the device",
+      "hideFromKpis": true
+    },
+    "dateCode": {
+      "title": "Date Code",
+      "type": "string",
+      "description": "Production date code of the device (YYYYMMDD)",
+      "hideFromKpis": true
+    },
+    "minTime": {
+      "title": "Minimum Reporting Interval",
+      "type": "number",
+      "description": "Minimum reporting interval in seconds",
+      "unit": "s",
+      "hideFromKpis": true
+    },
+    "maxTime": {
+      "title": "Maximum Reporting Interval",
+      "type": "number",
+      "description": "Maximum reporting interval in seconds",
+      "unit": "s",
+      "hideFromKpis": true
+    },
+    "batteryChange": {
+      "title": "Battery Change Threshold",
+      "type": "number",
+      "description": "Battery voltage change threshold to trigger a report",
+      "unit": "V",
+      "hideFromKpis": true
+    }
+  }
+}

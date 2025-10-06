@@ -1,0 +1,29 @@
+{
+  "$id": "https://akenza.io/netvox/r718g/system.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "system",
+  "title": "System",
+  "properties": {
+    "softwareVersion": {
+      "title": "Software Version",
+      "type": "number",
+      "description": "The software version of the device.",
+      "hideFromKpis": true
+    },
+    "hardwareVersion": {
+      "title": "Hardware Version",
+      "type": "number",
+      "description": "The hardware version of the device.",
+      "hideFromKpis": true
+    },
+    "dateCode": {
+      "title": "Date Code",
+      "type": "number",
+      "description": "Date code of the device firmware.",
+      "hideFromKpis": true
+    }
+  },
+  "required": ["softwareVersion", "hardwareVersion", "dateCode"]
+}

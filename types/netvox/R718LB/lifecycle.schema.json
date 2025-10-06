@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/netvox/r718n3/lifecycle.schema.json",
+  "$id": "https://akenza.io/netvox/r718lb/lifecycle.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
@@ -7,8 +7,7 @@
   "title": "Lifecycle",
   "properties": {
     "batteryVoltage": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt",
-      "hideFromKpis": true
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
     }
   },
   "required": ["batteryVoltage"]

@@ -1,0 +1,13 @@
+{
+  "name": "R718LB",
+  "version": "1.0.0",
+  "manufacturer": "Netvox",
+  "url": "http://www.netvox.com.tw/product.asp?pro=R718LB",
+  "description": "Wireless Hall Type Open/Close Detection Sensor for Netvox Class A type devices based on the LoRaWAN open protocol, detecting open/close status based on magnet proximity.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": ["Open/Close"],
+  "outputTopics": ["default", "lifecycle", "system"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

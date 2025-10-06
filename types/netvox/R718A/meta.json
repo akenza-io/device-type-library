@@ -1,0 +1,13 @@
+{
+  "name": "R718A",
+  "version": "1.0.0",
+  "manufacturer": "netvox",
+  "url": "http://www.netvox.com.tw/product.asp?pro=R718A",
+  "description": "Wireless Temperature and Humidity Sensor for Low Temperature Environment, compatible with LoRaWAN Class A and designed for applications like freezers.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": ["Temperature", "Humidity", "Battery Voltage"],
+  "outputTopics": ["default", "lifecycle", "system"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
