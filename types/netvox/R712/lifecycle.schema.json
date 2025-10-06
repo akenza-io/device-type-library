@@ -11,7 +11,7 @@
     },
     "lowBattery": {
       "title": "Low Battery",
-      "description": "Indicates if the battery voltage is low.",
+      "description": "Indicates if the battery is low.",
       "type": "boolean",
       "hideFromKpis": true
     }

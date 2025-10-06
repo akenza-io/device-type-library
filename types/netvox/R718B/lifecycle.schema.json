@@ -11,7 +11,7 @@
     },
     "lowBattery": {
       "title": "Low Battery",
-      "description": "Flag indicating if the battery voltage is below the 3.2V threshold.",
+      "description": "Indicates if the battery is low.",
       "type": "boolean",
       "hideFromKpis": true
     }

@@ -43,7 +43,7 @@ describe("Netvox R718LB uplink", () => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "default");
         assert.isObject(value.data);
-        assert.equal(value.data.open, true);
+        assert.equal(value.data.reedContact, true);
         validateSchema(value.data, defaultSchema, { throwError: true });
       });
 

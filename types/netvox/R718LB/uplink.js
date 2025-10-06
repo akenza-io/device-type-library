@@ -44,7 +44,7 @@ function consume(event) {
         // Default data
         const status = bytes[4];
         // 0 = closed, 1 = open
-        defaultData.open = status === 1;
+        defaultData.reedContact = status === 1;
         emit("sample", {
           data: defaultData,
           topic: "default",
@@ -61,7 +61,7 @@ function consume(event) {
   } else if (port === 7) {
     const cmdId = bytes[0];
     if (cmdId === 0x81) {
-      const status = bytes[2] === 0x00 ? "Success" : "Failure";
+      const status = bytes[2] === 0x00 ? "SUCCESS" : "FAILURE";
       emit("log", {
         message: `Configuration response received: ${status}`,
       });

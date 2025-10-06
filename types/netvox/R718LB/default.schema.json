@@ -6,13 +6,11 @@
   "topic": "default",
   "title": "Default",
   "properties": {
-    "open": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/reedContact/status",
-      "title": "Hall sensor status",
-      "description": "Hall sensor status. Open: true, Closed: false."
+    "reedContact": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/reedContact/status"
     }
   },
   "required": [
-    "open"
+    "reedContact"
   ]
 }
