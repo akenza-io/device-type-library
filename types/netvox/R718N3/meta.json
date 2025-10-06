@@ -1,0 +1,20 @@
+{
+  "name": "R718N3",
+  "version": "1.0.0",
+  "manufacturer": "Netvox",
+  "url": "http://www.netvox.com.tw/product.asp?pro=R718N3",
+  "description": "R718N3 is powered by battery and obtains the load AC current value through the current transformer. The device adopts the solid core current transformer, which can be conveniently connected to the measuring device.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Current"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "version"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
