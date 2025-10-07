@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Netvox",
   "url": "http://www.netvox.com.tw/product.asp?pro=R718G",
-  "description": "Wireless Light Sensor for LoRaWAN Class A networks, detecting ambient light intensity (illuminance) and transmitting this data along with battery voltage.",
+  "description": "The R718G is a Wireless Light Sensor for Netvox ClassA type devices based on the LoRaWAN open protocol and is compatible with the LoRaWAN protocol. It can detect illuminance anywhere, ex. sunlight, outdoor area.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [

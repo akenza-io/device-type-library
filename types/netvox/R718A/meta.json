@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "netvox",
   "url": "http://www.netvox.com.tw/product.asp?pro=R718A",
-  "description": "Wireless Temperature and Humidity Sensor for Low Temperature Environment, compatible with LoRaWAN Class A and designed for applications like freezers.",
+  "description": "R718A is capable to measure temperature and humidity at low temperature environment. R718A can be used in domestic and commercial refrigerators to store and transport food, medicines, flowers and other perishable goods, on the walls or in logistics refrigerators. ",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [

@@ -1,4 +1,4 @@
-function to_int16(byte1, byte2) {
+function toInt16(byte1, byte2) {
   let value = (byte1 << 8) | byte2;
   if ((value & 0x8000) > 0) {
     value = value - 0x10000;
@@ -37,7 +37,7 @@ function consume(event) {
         });
 
         // --- Default data ---
-        const tempValue = to_int16(bytes[4], bytes[5]);
+        const tempValue = toInt16(bytes[4], bytes[5]);
         const alarmByte = bytes[6];
         const defaultData = {
           temperature: tempValue / 10.0,
