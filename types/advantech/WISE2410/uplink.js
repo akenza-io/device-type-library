@@ -18,7 +18,7 @@ function read_int32_le(bytes) {
   return value & 0x80000000 ? value - 0x100000000 : value;
 }
 
-function read_uint32_le(bytes) {
+function readUint32Le(bytes) {
   return (bytes[3] << 24) | (bytes[2] << 16) | (bytes[1] << 8) | bytes[0];
 }
 
