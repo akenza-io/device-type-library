@@ -11,7 +11,7 @@ function consume(event) {
   const { port } = event.data;
 
   // Helper function for signed 16-bit big-endian conversion
-  function to_s16_be(byte1, byte2) {
+  function toS16Be(byte1, byte2) {
     let value = (byte1 << 8) | byte2;
     if (value & 0x8000) {
       value -= 0x10000;
@@ -45,7 +45,7 @@ function consume(event) {
 
       const defaultData = {
         temperature: roundToTwoDecimals(
-          to_s16_be(payload[4], payload[5]) * 0.01
+          toS16Be(payload[4], payload[5]) * 0.01
         ),
         light: (payload[6] << 8) | payload[7],
         alarm: payload[9] === 1,
