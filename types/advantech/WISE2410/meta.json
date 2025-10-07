@@ -1,0 +1,13 @@
+{
+  "name": "WISE-2410",
+  "version": "1.0.0",
+  "manufacturer": "Advantech",
+  "url": "https://www.advantech.com/en-eu/products/b7e2306f-d561-4ca9-b0e3-33f7057e185f/wise-2410/mod_25018dc7-355c-40b4-bf9b-c93f6c73f1a0",
+  "description": "LoRaWAN Smart Condition Monitoring Sensor with built-in 3-axis vibration and temperature sensors, designed for industrial IoT applications.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": ["Temperature", "Humidity", "Accelerometer"],
+  "outputTopics": ["climate", "lifecycle", "vibration", "location"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

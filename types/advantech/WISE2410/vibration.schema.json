@@ -1,0 +1,155 @@
+{
+  "$id": "https://akenza.io/advantech/wise-2410/vibration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "vibration",
+  "title": "Vibration",
+  "properties": {
+    "velocityRmsX": {
+      "title": "Velocity RMS X",
+      "type": "number",
+      "unit": "mm/s",
+      "description": "Velocity root mean square on the X-axis"
+    },
+    "velocityRmsY": {
+      "title": "Velocity RMS Y",
+      "type": "number",
+      "unit": "mm/s",
+      "description": "Velocity root mean square on the Y-axis"
+    },
+    "velocityRmsZ": {
+      "title": "Velocity RMS Z",
+      "type": "number",
+      "unit": "mm/s",
+      "description": "Velocity root mean square on the Z-axis"
+    },
+    "accelerationPeakX": {
+      "title": "Acceleration Peak X",
+      "type": "number",
+      "description": "Peak acceleration on the X-axis (unit g or m/s²)"
+    },
+    "accelerationPeakY": {
+      "title": "Acceleration Peak Y",
+      "type": "number",
+      "description": "Peak acceleration on the Y-axis (unit g or m/s)"
+    },
+    "accelerationPeakZ": {
+      "title": "Acceleration Peak Z",
+      "type": "number",
+      "description": "Peak acceleration on the Z-axis (unit g or m/s\u00b2)"
+    },
+    "accelerationRmsX": {
+      "title": "Acceleration RMS X",
+      "type": "number",
+      "description": "RMS acceleration on the X-axis (unit g or m/s\u00b2)"
+    },
+    "accelerationRmsY": {
+      "title": "Acceleration RMS Y",
+      "type": "number",
+      "description": "RMS acceleration on the Y-axis (unit g or m/s\u00b2)"
+    },
+    "accelerationRmsZ": {
+      "title": "Acceleration RMS Z",
+      "type": "number",
+      "description": "RMS acceleration on the Z-axis (unit g or m/s\u00b2)"
+    },
+    "kurtosisX": {
+      "title": "Kurtosis X",
+      "type": "number",
+      "description": "Kurtosis of the vibration signal on the X-axis"
+    },
+    "kurtosisY": {
+      "title": "Kurtosis Y",
+      "type": "number",
+      "description": "Kurtosis of the vibration signal on the Y-axis"
+    },
+    "kurtosisZ": {
+      "title": "Kurtosis Z",
+      "type": "number",
+      "description": "Kurtosis of the vibration signal on the Z-axis"
+    },
+    "crestFactorX": {
+      "title": "Crest Factor X",
+      "type": "number",
+      "description": "Crest factor of the vibration signal on the X-axis"
+    },
+    "crestFactorY": {
+      "title": "Crest Factor Y",
+      "type": "number",
+      "description": "Crest factor of the vibration signal on the Y-axis"
+    },
+    "crestFactorZ": {
+      "title": "Crest Factor Z",
+      "type": "number",
+      "description": "Crest factor of the vibration signal on the Z-axis"
+    },
+    "skewnessX": {
+      "title": "Skewness X",
+      "type": "number",
+      "description": "Skewness of the vibration signal on the X-axis"
+    },
+    "skewnessY": {
+      "title": "Skewness Y",
+      "type": "number",
+      "description": "Skewness of the vibration signal on the Y-axis"
+    },
+    "skewnessZ": {
+      "title": "Skewness Z",
+      "type": "number",
+      "description": "Skewness of the vibration signal on the Z-axis"
+    },
+    "standardDeviationX": {
+      "title": "Standard Deviation X",
+      "type": "number",
+      "description": "Standard deviation of the vibration signal on the X-axis"
+    },
+    "standardDeviationY": {
+      "title": "Standard Deviation Y",
+      "type": "number",
+      "description": "Standard deviation of the vibration signal on the Y-axis"
+    },
+    "standardDeviationZ": {
+      "title": "Standard Deviation Z",
+      "type": "number",
+      "description": "Standard deviation of the vibration signal on the Z-axis"
+    },
+    "displacementX": {
+      "title": "Displacement X",
+      "type": "number",
+      "unit": "µm",
+      "description": "Peak-to-peak displacement on the X-axis"
+    },
+    "displacementY": {
+      "title": "Displacement Y",
+      "type": "number",
+      "unit": "µm",
+      "description": "Peak-to-peak displacement on the Y-axis"
+    },
+    "displacementZ": {
+      "title": "Displacement Z",
+      "type": "number",
+      "unit": "\u00b5m",
+      "description": "Peak-to-peak displacement on the Z-axis"
+    },
+    "sensorEventX": {
+      "title": "Sensor Event X",
+      "type": "number",
+      "description": "Event status code for X-axis",
+      "hideFromKpis": true
+    },
+    "sensorEventY": {
+      "title": "Sensor Event Y",
+      "type": "number",
+      "description": "Event status code for Y-axis",
+      "hideFromKpis": true
+    },
+    "sensorEventZ": {
+      "title": "Sensor Event Z",
+      "type": "number",
+      "description": "Event status code for Z-axis",
+      "hideFromKpis": true
+    }
+  },
+  "required": []
+}

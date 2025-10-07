@@ -1,0 +1,30 @@
+{
+  "$id": "https://akenza.io/advantech/wise-2410/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "batteryVoltage": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+    },
+    "batteryLevel": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
+    },
+    "powerSource": {
+      "title": "Power Source",
+      "description": "The current power source of the device",
+      "type": "string",
+      "enum": ["BATTERY", "POWER_LINE"],
+      "hideFromKpis": true
+    },
+    "deviceEvent": {
+      "title": "Device Event",
+      "description": "A code representing a device event (e.g., battery low, restart)",
+      "type": "number",
+      "hideFromKpis": true
+    }
+  },
+  "required": []
+}
