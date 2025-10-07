@@ -209,8 +209,8 @@ function consume(event) {
       }
       if (mask & DEVICE_MASK_POWER_SOURCE) {
         const source = bytes[i++];
-        if (source & 0b10) lifecycle.powerSource = "Battery";
-        else if (source & 0b01) lifecycle.powerSource = "Power Line";
+        if (source & 0b10) lifecycle.powerSource = "BATTERY";
+        else if (source & 0b01) lifecycle.powerSource = "POWER_LINE";
       }
       if (mask & DEVICE_MASK_BATTERY_LEVEL) {
         lifecycle.batteryLevel = bytes[i++];
@@ -256,7 +256,7 @@ function consume(event) {
   if (Object.keys(vibration).length > 0) {
     emit("sample", {
       data: vibration,
-      topic: "vibration",
+      topic: "default",
     });
   }
   if (Object.keys(location).length > 0) {

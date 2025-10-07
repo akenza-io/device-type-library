@@ -8,13 +8,12 @@
   "firmwareVersion": "V1.0.0",
   "availableSensors": [
     "Temperature",
-    "Humidity",
-    "Accelerometer"
+    "Vibration"
   ],
   "outputTopics": [
     "climate",
     "lifecycle",
-    "vibration",
+    "default",
     "location"
   ],
   "encoding": "HEX",

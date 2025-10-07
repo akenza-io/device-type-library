@@ -1,10 +1,10 @@
 {
-  "$id": "https://akenza.io/advantech/wise-2410/vibration.schema.json",
+  "$id": "https://akenza.io/advantech/wise-2410/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
-  "topic": "vibration",
-  "title": "Vibration",
+  "topic": "default",
+  "title": "Default",
   "properties": {
     "velocityRmsX": {
       "title": "Velocity RMS X",

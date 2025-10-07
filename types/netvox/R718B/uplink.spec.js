@@ -10,17 +10,15 @@ const __dirname = dirname(__filename);
 describe("Netvox R718B uplink", () => {
   let defaultSchema = null;
   let lifecycleSchema = null;
-  let systemSchema = null;
   let consume = null;
 
   before(async () => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
 
-    [defaultSchema, lifecycleSchema, systemSchema] = await Promise.all([
+    [defaultSchema, lifecycleSchema] = await Promise.all([
       loadSchema(`${__dirname}/default.schema.json`),
       loadSchema(`${__dirname}/lifecycle.schema.json`),
-      loadSchema(`${__dirname}/system.schema.json`),
     ]);
   });
 
