@@ -6,8 +6,17 @@
   "description": "LoRaWAN Smart Condition Monitoring Sensor with built-in 3-axis vibration and temperature sensors, designed for industrial IoT applications.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
-  "availableSensors": ["Temperature", "Humidity", "Accelerometer"],
-  "outputTopics": ["climate", "lifecycle", "vibration", "location"],
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "Accelerometer"
+  ],
+  "outputTopics": [
+    "climate",
+    "lifecycle",
+    "vibration",
+    "location"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

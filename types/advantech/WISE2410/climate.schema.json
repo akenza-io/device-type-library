@@ -13,9 +13,15 @@
       "title": "Temperature Unit",
       "description": "The unit of the temperature measurement",
       "type": "string",
-      "enum": ["C", "F", "K"],
+      "enum": [
+        "C",
+        "F",
+        "K"
+      ],
       "hideFromKpis": true
     }
   },
-  "required": ["temperature"]
+  "required": [
+    "temperature"
+  ]
 }

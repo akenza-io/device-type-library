@@ -1,25 +1,21 @@
 // Helper functions to read little-endian values
-function read_int16_le(bytes) {
+function readInt16Le(bytes) {
   const value = (bytes[1] << 8) | bytes[0];
   return value & 0x8000 ? value - 0x10000 : value;
 }
 
-function read_uint16_le(bytes) {
+function readUint16Le(bytes) {
   return (bytes[1] << 8) | bytes[0];
 }
 
-function read_uint24_le(bytes) {
+function readUint24Le(bytes) {
   return (bytes[2] << 16) | (bytes[1] << 8) | bytes[0];
 }
 
-function read_int32_le(bytes) {
+function readInt32Le(bytes) {
   const value =
     (bytes[3] << 24) | (bytes[2] << 16) | (bytes[1] << 8) | bytes[0];
   return value & 0x80000000 ? value - 0x100000000 : value;
-}
-
-function readUint32Le(bytes) {
-  return (bytes[3] << 24) | (bytes[2] << 16) | (bytes[1] << 8) | bytes[0];
 }
 
 // --- Constants from Advantech Documentation ---
@@ -126,7 +122,7 @@ function consume(event) {
         if (maskByte & SENSOR_MASK_STATUS) i += 1;
         if (maskByte & SENSOR_MASK_EVENT) i += 2;
         if (maskByte & SENSOR_MASK_VALUE) {
-          climate.temperature = read_int32_le(bytes.slice(i, i + 4)) / 1000;
+          climate.temperature = readInt32Le(bytes.slice(i, i + 4)) / 1000;
           if (ioRange === SENSOR_RANGE_TEMP_F) climate.temperatureUnit = "F";
           else if (ioRange === SENSOR_RANGE_TEMP_K)
             climate.temperatureUnit = "K";
@@ -150,7 +146,7 @@ function consume(event) {
           const parseAxis = (axisChar) => {
             let axisData = {};
             if (hasSensorEvent) {
-              axisData[`sensorEvent${axisChar}`] = read_uint16_le(
+              axisData[`sensorEvent${axisChar}`] = readUint16Le(
                 bytes.slice(i, i + 2)
               );
               i += 2;
@@ -158,41 +154,41 @@ function consume(event) {
             const scale = ioRange === SENSOR_RANGE_ACCELEROMETER_G ? 1000 : 100;
             if (extMask & SENSOR_EXTMASK_VELOCITY) {
               axisData[`velocityRms${axisChar}`] =
-                read_int16_le(bytes.slice(i, i + 2)) / 100;
+                readInt16Le(bytes.slice(i, i + 2)) / 100;
               i += 2;
             }
             if (extMask & SENSOR_EXTMASK_PEAK) {
               axisData[`accelerationPeak${axisChar}`] =
-                read_int16_le(bytes.slice(i, i + 2)) / scale;
+                readInt16Le(bytes.slice(i, i + 2)) / scale;
               i += 2;
             }
             if (extMask & SENSOR_EXTMASK_RMS) {
               axisData[`accelerationRms${axisChar}`] =
-                read_int16_le(bytes.slice(i, i + 2)) / scale;
+                readInt16Le(bytes.slice(i, i + 2)) / scale;
               i += 2;
             }
             if (extMask & SENSOR_EXTMASK_KURTOSIS) {
               axisData[`kurtosis${axisChar}`] =
-                read_int16_le(bytes.slice(i, i + 2)) / 100;
+                readInt16Le(bytes.slice(i, i + 2)) / 100;
               i += 2;
             }
             if (extMask & SENSOR_EXTMASK_CRESTFACTOR) {
               axisData[`crestFactor${axisChar}`] =
-                read_int16_le(bytes.slice(i, i + 2)) / 100;
+                readInt16Le(bytes.slice(i, i + 2)) / 100;
               i += 2;
             }
             if (extMask & SENSOR_EXTMASK_SKEWNESS) {
               axisData[`skewness${axisChar}`] =
-                read_int16_le(bytes.slice(i, i + 2)) / 100;
+                readInt16Le(bytes.slice(i, i + 2)) / 100;
               i += 2;
             }
             if (extMask & SENSOR_EXTMASK_STDDEVIATION) {
               axisData[`standardDeviation${axisChar}`] =
-                read_int16_le(bytes.slice(i, i + 2)) / 100;
+                readInt16Le(bytes.slice(i, i + 2)) / 100;
               i += 2;
             }
             if (extMask & SENSOR_EXTMASK_DISPLACEMENT) {
-              axisData[`displacement${axisChar}`] = read_uint16_le(
+              axisData[`displacement${axisChar}`] = readUint16Le(
                 bytes.slice(i, i + 2)
               );
               i += 2;
@@ -220,7 +216,7 @@ function consume(event) {
         lifecycle.batteryLevel = bytes[i++];
       }
       if (mask & DEVICE_MASK_BATTERY_VOLTAGE) {
-        lifecycle.batteryVoltage = read_uint16_le(bytes.slice(i, i + 2)) / 1000;
+        lifecycle.batteryVoltage = readUint16Le(bytes.slice(i, i + 2)) / 1000;
         i += 2;
       }
       if (mask & DEVICE_MASK_TIMESTAMP) {
@@ -229,9 +225,9 @@ function consume(event) {
       }
       if (mask & DEVICE_MASK_POSITION) {
         const posStatus = bytes[i++];
-        let lat = read_uint24_le(bytes.slice(i, i + 3)) / 100000;
+        let lat = readUint24Le(bytes.slice(i, i + 3)) / 100000;
         i += 3;
-        let lon = read_uint24_le(bytes.slice(i, i + 3)) / 100000;
+        let lon = readUint24Le(bytes.slice(i, i + 3)) / 100000;
         i += 3;
         if (posStatus & 0b10) lat = -lat; // South
         if (posStatus & 0b01) lon = -lon; // West

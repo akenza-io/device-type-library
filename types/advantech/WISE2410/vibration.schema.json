@@ -32,27 +32,27 @@
     "accelerationPeakY": {
       "title": "Acceleration Peak Y",
       "type": "number",
-      "description": "Peak acceleration on the Y-axis (unit g or m/s)"
+      "description": "Peak acceleration on the Y-axis (unit g or m/s²)"
     },
     "accelerationPeakZ": {
       "title": "Acceleration Peak Z",
       "type": "number",
-      "description": "Peak acceleration on the Z-axis (unit g or m/s\u00b2)"
+      "description": "Peak acceleration on the Z-axis (unit g or m/s²)"
     },
     "accelerationRmsX": {
       "title": "Acceleration RMS X",
       "type": "number",
-      "description": "RMS acceleration on the X-axis (unit g or m/s\u00b2)"
+      "description": "RMS acceleration on the X-axis (unit g or m/s²)"
     },
     "accelerationRmsY": {
       "title": "Acceleration RMS Y",
       "type": "number",
-      "description": "RMS acceleration on the Y-axis (unit g or m/s\u00b2)"
+      "description": "RMS acceleration on the Y-axis (unit g or m/s²)"
     },
     "accelerationRmsZ": {
       "title": "Acceleration RMS Z",
       "type": "number",
-      "description": "RMS acceleration on the Z-axis (unit g or m/s\u00b2)"
+      "description": "RMS acceleration on the Z-axis (unit g or m/s²)"
     },
     "kurtosisX": {
       "title": "Kurtosis X",
@@ -129,7 +129,7 @@
     "displacementZ": {
       "title": "Displacement Z",
       "type": "number",
-      "unit": "\u00b5m",
+      "unit": "µm",
       "description": "Peak-to-peak displacement on the Z-axis"
     },
     "sensorEventX": {

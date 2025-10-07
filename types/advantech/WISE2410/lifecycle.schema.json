@@ -16,7 +16,10 @@
       "title": "Power Source",
       "description": "The current power source of the device",
       "type": "string",
-      "enum": ["BATTERY", "POWER_LINE"],
+      "enum": [
+        "BATTERY",
+        "POWER_LINE"
+      ],
       "hideFromKpis": true
     },
     "deviceEvent": {
