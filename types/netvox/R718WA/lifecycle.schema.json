@@ -17,6 +17,7 @@
     }
   },
   "required": [
-    "batteryVoltage"
+    "batteryVoltage",
+    "lowBattery"
   ]
 }

@@ -44,6 +44,7 @@ describe("Netvox R718WA uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.isObject(value.data);
         assert.equal(value.data.batteryVoltage, 3.6);
+        assert.equal(value.data.lowBattery, false);
         validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
       consume(data);

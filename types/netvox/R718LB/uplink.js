@@ -36,6 +36,8 @@ function consume(event) {
 
         // Lifecycle data
         lifecycleData.batteryVoltage = bytes[3] / 10.0;
+        // If the battery voltage is less than or equal to 3.2V, it is considered low
+        lifecycleData.lowBattery = lifecycleData.batteryVoltage <= 3.2;
         emit("sample", {
           data: lifecycleData,
           topic: "lifecycle",

@@ -19,10 +19,11 @@ function consume(event) {
         const defaultData = {};
         const lifecycleData = {};
 
-        // Byte 4: Battery Voltage (unit: 0.1V)
+        // Byte 3: Battery Voltage (unit: 0.1V)
         lifecycleData.batteryVoltage = payload[3] / 10.0;
-
-        // Byte 3: Water Leak Status (0x01 = leak, 0x00 = no leak)
+        // If the battery voltage is less than or equal to 3.2V, it is considered low
+        lifecycleData.lowBattery = lifecycleData.batteryVoltage <= 3.2;
+        // Byte 4: Water Leak Status (0x01 = leak, 0x00 = no leak)
         defaultData.waterLeak = payload[4] === 0x01;
 
         emit("sample", {
@@ -71,7 +72,7 @@ function consume(event) {
         });
       } else if (cmdId === 0x81) {
         // ConfigReportRsp
-        const status = payload[2] === 0x00 ? "Success" : "Failure";
+        const status = payload[2] === 0x00 ? "SUCCESS" : "FAILURE";
         emit("log", {
           message: `Configuration write response: ${status}`,
         });
