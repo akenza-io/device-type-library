@@ -1,0 +1,48 @@
+{
+  "$id": "https://akenza.io/netvox/r718a/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "temperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    },
+    "humidity": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+    },
+    "lowTemperatureAlarm": {
+      "title": "Low Temperature Alarm",
+      "description": "Indicates if the temperature is below the configured low threshold.",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "highTemperatureAlarm": {
+      "title": "High Temperature Alarm",
+      "description": "Indicates if the temperature is above the configured high threshold.",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "lowHumidityAlarm": {
+      "title": "Low Humidity Alarm",
+      "description": "Indicates if the humidity is below the configured low threshold.",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "highHumidityAlarm": {
+      "title": "High Humidity Alarm",
+      "description": "Indicates if the humidity is above the configured high threshold.",
+      "type": "boolean",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "temperature",
+    "humidity",
+    "lowTemperatureAlarm",
+    "highTemperatureAlarm",
+    "lowHumidityAlarm",
+    "highHumidityAlarm"
+  ]
+}
