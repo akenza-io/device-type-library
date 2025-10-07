@@ -20,7 +20,8 @@
     "view_direction",
     "zone",
     "queue",
-    "queue_time"
+    "queue_time",
+    "age"
   ],
   "encoding": "JSON",
   "connectivity": "HTTP"
