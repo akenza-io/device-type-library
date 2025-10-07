@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 - Advantech - WISE2410
+- Advantech - BB-WSW2C00015
 
 # [1.76.0] - 2025-10-06
 

@@ -1,0 +1,17 @@
+{
+  "name": "Advantech - BB-WSW2C00015",
+  "version": "1.0.0",
+  "manufacturer": "Advantech",
+  "url": "https://www.advantech.com/products/",
+  "description": "Industrial LoRaWAN node equipped with an RS485 interface for Modbus RTU sensor integration.",
+  "author": "Akenza AG",
+  "availableSensors": [
+    "Modbus"
+  ],
+  "outputTopics": [
+    "modbus",
+    "system"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
