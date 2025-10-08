@@ -8,17 +8,6 @@
   "properties": {
     "temperature": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-    },
-    "temperatureUnit": {
-      "title": "Temperature Unit",
-      "description": "The unit of the temperature measurement",
-      "type": "string",
-      "enum": [
-        "C",
-        "F",
-        "K"
-      ],
-      "hideFromKpis": true
     }
   },
   "required": [

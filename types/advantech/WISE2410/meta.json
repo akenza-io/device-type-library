@@ -8,13 +8,14 @@
   "firmwareVersion": "V1.0.0",
   "availableSensors": [
     "Temperature",
-    "Vibration"
+    "Vibration",
+    "GPS"
   ],
   "outputTopics": [
     "climate",
     "lifecycle",
     "default",
-    "location"
+    "gps"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

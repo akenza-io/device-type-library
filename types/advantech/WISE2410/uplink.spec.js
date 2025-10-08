@@ -37,8 +37,7 @@ describe("Advantech WISE2410 uplink", () => {
                 assert.equal(type, "sample");
                 assert.equal(value.topic, "climate");
                 assert.isObject(value.data);
-                assert.equal(value.data.temperature, 24.5);
-                assert.equal(value.data.temperatureUnit, "C");
+                assert.equal(value.data.temperature, 24.50);
                 validateSchema(value.data, climateSchema, { throwError: true });
             });
 
