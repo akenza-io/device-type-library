@@ -21,14 +21,13 @@
     },
     "deviceEvent": {
       "title": "Device Event",
-      "description": "A code representing a device event (e.g., battery low, restart)",
+      "description": "A code representing a device event.",
       "type": "number",
       "hideFromKpis": true
     }
   },
   "required": [
     "batteryVoltage",
-    "powerSource",
-    "deviceEvent"
+    "powerSource"
   ]
 }
