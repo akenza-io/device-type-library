@@ -123,14 +123,14 @@ function consume(event) {
         if (maskByte & SENSOR_MASK_EVENT) i += 2;
         if (maskByte & SENSOR_MASK_VALUE) {
           // read temp and always covert to Celsius
-          climate.temperature = (readInt32Le(bytes.slice(i, i + 4)) / 1000).toFixed(2);
+          climate.temperature = parseFloat((readInt32Le(bytes.slice(i, i + 4)) / 1000).toFixed(2));
           if (ioRange === SENSOR_RANGE_TEMP_F) {
             // covert from Fahrenheit to Celsius
-            climate.temperature = ((climate.temperature - 32) * 5 / 9).toFixed(2);
+            climate.temperature = parseFloat(((climate.temperature - 32) * 5 / 9).toFixed(2));
           }
           else if (ioRange === SENSOR_RANGE_TEMP_K) {
             // covert from Kelvin to Celsius
-            climate.temperature = (climate.temperature - 273.15).toFixed(2);
+            climate.temperature = parseFloat((climate.temperature - 273.15).toFixed(2));
           }
           i += 4;
         }
