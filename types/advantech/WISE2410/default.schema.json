@@ -27,31 +27,37 @@
     "accelerationPeakX": {
       "title": "Acceleration Peak X",
       "type": "number",
+      "unit": "m/s²",
       "description": "Peak acceleration on the X-axis (unit g or m/s²)"
     },
     "accelerationPeakY": {
       "title": "Acceleration Peak Y",
       "type": "number",
+      "unit": "m/s²",
       "description": "Peak acceleration on the Y-axis (unit g or m/s²)"
     },
     "accelerationPeakZ": {
       "title": "Acceleration Peak Z",
       "type": "number",
+      "unit": "m/s²",
       "description": "Peak acceleration on the Z-axis (unit g or m/s²)"
     },
     "accelerationRmsX": {
       "title": "Acceleration RMS X",
       "type": "number",
+      "unit": "m/s²",
       "description": "RMS acceleration on the X-axis (unit g or m/s²)"
     },
     "accelerationRmsY": {
       "title": "Acceleration RMS Y",
       "type": "number",
+      "unit": "m/s²",
       "description": "RMS acceleration on the Y-axis (unit g or m/s²)"
     },
     "accelerationRmsZ": {
       "title": "Acceleration RMS Z",
       "type": "number",
+      "unit": "m/s²",
       "description": "RMS acceleration on the Z-axis (unit g or m/s²)"
     },
     "kurtosisX": {
