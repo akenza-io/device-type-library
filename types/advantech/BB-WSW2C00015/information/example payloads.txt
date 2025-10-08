@@ -1,8 +1,0 @@
-The Wzzard LRPv2 LoRaWAN node intelligent sensor platform enables you to quickly and easily create a complete connectivity stack between your sensors and applications via a network or the Internet. The platform uses intelligent edge nodes and a wireless LoRaWAN network to transmit analog or digital signals or Modbus RTU sensor data to a WISE-6610 LoRaWAN gateway or other LoRaWAN-compliant gateway device. The Wzzard LRPv2 LoRaWAN node can accommodate virtually any industry standard external sensors. Connections can be made via either conduit fittings or cable glands. This line of nodes provides various sensor interface options including digital I/O as well as general purpose analog inputs.
-### AV400-BRI-EU // Advantech BB-WSW2C00015-2 —>
-
-`000000000000000011440a` port 6
-
-`000000000000000011440a` port 6
-
-`11000000000000000000` port 11
