@@ -1,0 +1,27 @@
+{
+  "name": "ELT Internal antenna LoRa",
+  "version": "1.0.0",
+  "manufacturer": "Elsys",
+  "url": "https://www.elsys.se/shop/product/elt2i/",
+  "description": "ELT2 Internal antenna is a wireless LoRaWAN® multifunctional sensor. Its IP67 rating makes it ideal for outdoor or extreme environments. ELT2 Internal antenna has two generic inputs and can thus simultaneously measure up to two external sensors. It also has four internal sensors: temperature, humidity, accelerometer, and atmospheric pressure. The ELT2 Internal antenna can be configured for external temperature probes, pulse counting, analog-input 0-10V, digital input, water leak, switch, distance sensor, soil moisture sensor, and many more options. It can also have add-on modules for extra features like external PT1000 sensors, load cell input, or output control.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V2.3.5",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "Analog",
+    "Pulse",
+    "Distance",
+    "Motion",
+    "Water Leak",
+    "Pressure"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
