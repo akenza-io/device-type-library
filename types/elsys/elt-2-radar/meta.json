@@ -1,0 +1,23 @@
+{
+  "name": "ELT Distance radar LoRa",
+  "version": "1.0.0",
+  "manufacturer": "Elsys",
+  "url": "https://www.elsys.se/shop/product/elt2-radar/",
+  "description": "The Distance sensor radar integrates the ELT2 sensor with ELSYS radar module, providing advanced distance measurement capabilities. With this device, you can also measure the ambient temperature, humidity, atmospheric pressure, and acceleration.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V2.3.5",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "Distance",
+    "Pressure"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
