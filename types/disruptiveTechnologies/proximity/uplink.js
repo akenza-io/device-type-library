@@ -1,3 +1,41 @@
+function calculateIncrement(state, currentValue, usageDefinition = 2) {
+  let { lastCount } = state;
+  let { partialUsage } = state;
+  let response = { state, data: { increment: 0, usageCount: 0, doorClosings: 0 } }
+
+  // Check if current value exists
+  if (currentValue === undefined || Number.isNaN(currentValue)) {
+    return response;
+  }
+
+  // Init state for last absolute count && Check for the case the counter reseted
+  if (lastCount === undefined || lastCount > currentValue) {
+    lastCount = currentValue;
+  }
+
+  // Calculate increment
+  response.data.increment = currentValue - lastCount;
+  response.state.lastCount = currentValue;
+
+  // Init state for cycles
+  if (partialUsage === undefined || Number.isNaN(partialUsage)) {
+    partialUsage = 0;
+  }
+
+  // Add new partial usage 
+  let newPartialUsage = partialUsage + response.data.increment;
+  let remainingPartialUsage = newPartialUsage % usageDefinition;
+
+  // Needs to be done for larger partial usages
+  response.data.doorClosings = response.data.increment / (usageDefinition / 2);
+  response.data.usageCount = (newPartialUsage - remainingPartialUsage) / usageDefinition;
+
+  // Save not used partial usage for next time
+  state.partialUsage = remainingPartialUsage;
+
+  return response;
+}
+
 function consume(event) {
   const { eventType } = event.data;
   let sample = {};
@@ -5,53 +43,29 @@ function consume(event) {
   const state = event.state || {};
 
   if (eventType === "objectPresent") {
-    // Init usage to count washroom usages
-    if (state.usage === undefined || state.usage === null) {
-      state.usage = 0;
-    }
-
     sample.objectPresent = event.data.objectPresent.state;
     if (sample.objectPresent === "PRESENT") {
       sample.proximity = true;
       sample.relativeCount = 1;
-      state.usage++;
     } else {
       sample.proximity = false;
       sample.relativeCount = 0;
     }
-
-    // State manipulation to get a count for object present changes
-    // Init absolute count
-    if (state.count === undefined || state.count === null) {
-      state.count = 0;
-    }
-
-    if (state.lastStatus !== undefined && state.lastStatus !== null) {
-      if (sample.objectPresent !== state.lastStatus) {
-        state.count += sample.relativeCount;
-      }
-    } else {
-      state.count += sample.relativeCount; // Count first instance as a count
-    }
-
-    state.lastStatus = sample.objectPresent;
-    sample.count = state.count;
     state.lastSampleEmittedAt = now;
+    state.lastStatus = sample.objectPresent;
 
-    // Washroom usage
-    if (event.device !== undefined && event.device.tags !== undefined &&
-      (event.device.tags.indexOf("washroom_usage") !== -1 || event.device.tags.indexOf("cubicle_usage") !== -1)) {
-
-      // Only emit on usageIncrease
-      if (state.usage > 0 && state.usage % 2 === 0) {
-        const data = {};
-        data.absoluteUsageCount = Math.floor(sample.count / 2);
-        data.relativeUsageCount = 1;
-        state.usage = 0;
-        emit("sample", { data, topic: "washroom_usage" });
-      }
+    if (state.lastCount !== undefined) {
+      sample.count = sample.relativeCount + state.lastCount;
+    } else {
+      sample.count = 0;
     }
 
+    const calculated = calculateIncrement(state, sample.count);
+    const { doorClosings } = calculated.data;
+    const { usageCount } = calculated.data;
+
+    emit("state", calculated.state);
+    emit("sample", { data: { doorClosings, usageCount }, topic: "door_count" });
     emit("sample", { data: sample, topic: "object_present" });
   } else if (eventType === "touch") {
     sample.touch = true;
@@ -82,16 +96,15 @@ function consume(event) {
     sample = {};
     sample.objectPresent = state.lastStatus;
     sample.relativeCount = 0;
-    sample.count = state.count;
+    sample.count = state.lastCount;
     if (sample.objectPresent === "PRESENT") {
       sample.proximity = true;
     } else {
       sample.proximity = false;
     }
 
+    emit("sample", { data: { doorClosings: 0, usageCount: 0 }, topic: "door_count" });
     emit("sample", { data: sample, topic: "object_present" });
     state.lastSampleEmittedAt = now;
   }
-
-  emit("state", state);
 }

@@ -1,0 +1,24 @@
+{
+  "$id": "https://akenza.io/swisscom/multisense/door_count.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "door_count",
+  "title": "Door count",
+  "properties": {
+    "doorClosings": {
+      "title": "Door closing",
+      "description": "Each door opening and closing counts as one doorClosing",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/usage/count"
+    },
+    "usageCount": {
+      "title": "Usage count",
+      "description": "Relative usage count. Two door openings and closings count as one usage",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/usage/count"
+    }
+  },
+  "required": [
+    "doorClosings",
+    "usageCount"
+  ]
+}

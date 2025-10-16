@@ -412,22 +412,46 @@ function deleteUnusedKeys(data) {
   return keysRetained;
 }
 
-function calculateIncrement(lastValue, currentValue) {
+function calculateIncrement(state, currentValue, usageDefinition = 2) {
+  let { lastCount } = state;
+  let { partialUsage } = state;
+  let response = { state, data: { increment: 0, usageCount: 0, doorClosings: 0 } }
+
   // Check if current value exists
   if (currentValue === undefined || Number.isNaN(currentValue)) {
-    return 0;
+    return response;
   }
 
-  // Init state && Check for the case the counter reseted
-  if (lastValue === undefined || lastValue > currentValue) {
-    lastValue = currentValue;
+  // Init state for last absolute count && Check for the case the counter reseted
+  if (lastCount === undefined || lastCount > currentValue) {
+    lastCount = currentValue;
   }
+
   // Calculate increment
-  return currentValue - lastValue;
+  response.data.increment = currentValue - lastCount;
+  response.state.lastCount = currentValue;
+
+  // Init state for cycles
+  if (partialUsage === undefined || Number.isNaN(partialUsage)) {
+    partialUsage = 0;
+  }
+
+  // Add new partial usage 
+  let newPartialUsage = partialUsage + response.data.increment;
+  let remainingPartialUsage = newPartialUsage % usageDefinition;
+
+  // Needs to be done for larger partial usages
+  response.data.doorClosings = response.data.increment / (usageDefinition / 2);
+  response.data.usageCount = (newPartialUsage - remainingPartialUsage) / usageDefinition;
+
+  // Save not used partial usage for next time
+  response.state.partialUsage = remainingPartialUsage;
+
+  return response;
 }
 
 function consume(event) {
-  const state = event.state || {};
+  let state = event.state || {};
   const payload = Hex.hexToBytes(event.data.payloadHex);
 
   if (payload[0] !== SETTINGS_HEADER) {
@@ -485,41 +509,40 @@ function consume(event) {
       lifecycle.batteryLevel = batteryLevel;
     }
 
-    if (reed.pulseAbs1 !== undefined) {
-      reed.relativePulse1 = calculateIncrement(
-        state.lastPulse1,
-        reed.pulseAbs1,
-      );
-      state.lastPulse1 = reed.pulseAbs1;
-    }
-
-    if (reed.pulseAbs2 !== undefined) {
-      reed.relativePulse2 = calculateIncrement(
-        state.lastPulse2,
-        reed.pulseAbs2,
-      );
-      state.lastPulse2 = reed.pulseAbs2;
-    }
-
     if (deleteUnusedKeys(data)) {
       emit("sample", { data, topic: "default" });
     }
 
     if (deleteUnusedKeys(reed)) {
+      let calculated = "";
       // Complete sample if it is a reed event
       if (reed.pulseAbs1 === undefined) {
-        if (state.lastPulse1 !== undefined) {
-          if (reed.reed) {
-            reed.relativePulse1 = 1;
-            reed.pulseAbs1 = state.lastPulse1 + 1;
-            state.lastPulse1 = reed.pulseAbs1;
-          } else {
-            reed.relativePulse1 = 0;
-            reed.pulseAbs1 = state.lastPulse1;
-          }
+        if (reed.reed) {
+          reed.relativePulse1 = 1;
+        } else {
+          reed.relativePulse1 = 0;
         }
-      }
 
+        if (state.lastCount !== undefined) {
+          reed.pulseAbs1 = reed.relativePulse1 + state.lastCount;
+        } else {
+          reed.pulseAbs1 = 0;
+        }
+
+        calculated = calculateIncrement(state, reed.pulseAbs1);
+      } else if (reed.pulseAbs1 !== undefined) {
+        calculated = calculateIncrement(
+          state,
+          reed.pulseAbs1,
+        );
+        reed.relativePulse1 = calculated.data.increment;
+      }
+      let { doorClosings } = calculated.data;
+      let { usageCount } = calculated.data;
+      reed.pulseAbs1 = calculated.state.lastCount;
+      state = calculated.state;
+
+      emit("sample", { data: { doorClosings, usageCount }, topic: "door_count" });
       emit("sample", { data: reed, topic: "reed" });
     }
 
