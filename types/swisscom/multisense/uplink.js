@@ -7,6 +7,13 @@ function int16(hex) {
   return a;
 }
 
+function checkForCustomFields(device, target, norm) {
+  if (device !== undefined && device.customFields !== undefined && device.customFields[target] !== undefined) {
+    return device.customFields[target];
+  }
+  return norm;
+}
+
 function calculateIncrement(state, currentValue, usageDefinition = 2) {
   let { lastCount } = state;
   let { partialUsage } = state;
@@ -98,10 +105,7 @@ function consume(event) {
           pointer += 16;
           topic = "reed_counter";
 
-          const calculated = calculateIncrement(
-            state,
-            data.reedCounter,
-          );
+          const calculated = calculateIncrement(state, data.reedCounter, checkForCustomFields(event.device, "usageCountDivider", 2));
           const { doorClosings } = calculated.data;
           const { usageCount } = calculated.data;
           data.relativeReedCounter = calculated.data.increment;

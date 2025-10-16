@@ -412,6 +412,13 @@ function deleteUnusedKeys(data) {
   return keysRetained;
 }
 
+function checkForCustomFields(device, target, norm) {
+  if (device !== undefined && device.customFields !== undefined && device.customFields[target] !== undefined) {
+    return device.customFields[target];
+  }
+  return norm;
+}
+
 function calculateIncrement(state, currentValue, usageDefinition = 2) {
   let { lastCount } = state;
   let { partialUsage } = state;
@@ -528,17 +535,11 @@ function consume(event) {
         } else {
           reed.pulseAbs1 = 0;
         }
-
-        calculated = calculateIncrement(state, reed.pulseAbs1);
-      } else if (reed.pulseAbs1 !== undefined) {
-        calculated = calculateIncrement(
-          state,
-          reed.pulseAbs1,
-        );
-        reed.relativePulse1 = calculated.data.increment;
       }
+      calculated = calculateIncrement(state, reed.pulseAbs1, checkForCustomFields(event.device, "usageCountDivider", 2));
       let { doorClosings } = calculated.data;
       let { usageCount } = calculated.data;
+      reed.relativePulse1 = calculated.data.increment;
       reed.pulseAbs1 = calculated.state.lastCount;
       state = calculated.state;
 

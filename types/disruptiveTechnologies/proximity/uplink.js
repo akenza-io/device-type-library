@@ -36,6 +36,13 @@ function calculateIncrement(state, currentValue, usageDefinition = 2) {
   return response;
 }
 
+function checkForCustomFields(device, target, norm) {
+  if (device !== undefined && device.customFields !== undefined && device.customFields[target] !== undefined) {
+    return device.customFields[target];
+  }
+  return norm;
+}
+
 function consume(event) {
   const { eventType } = event.data;
   let sample = {};
@@ -60,7 +67,7 @@ function consume(event) {
       sample.count = 0;
     }
 
-    const calculated = calculateIncrement(state, sample.count);
+    const calculated = calculateIncrement(state, sample.count, checkForCustomFields(event.device, "usageCountDivider", 2));
     const { doorClosings } = calculated.data;
     const { usageCount } = calculated.data;
 

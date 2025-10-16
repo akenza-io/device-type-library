@@ -36,6 +36,13 @@ function calculateIncrement(state, currentValue, usageDefinition = 2) {
   return response;
 }
 
+function checkForCustomFields(device, target, norm) {
+  if (device !== undefined && device.customFields !== undefined && device.customFields[target] !== undefined) {
+    return device.customFields[target];
+  }
+  return norm;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
@@ -63,7 +70,7 @@ function consume(event) {
   data.count = Hex.hexLittleEndianToBigEndian(payload.substr(10, 6), false);
 
   const state = event.state || {};
-  const calculated = calculateIncrement(state, data.count, 4);
+  const calculated = calculateIncrement(state, data.count, checkForCustomFields(event.device, "usageCountDivider", 4));
   const { doorClosings } = calculated.data;
   const { usageCount } = calculated.data;
   data.relativeCount = calculated.data.increment;
