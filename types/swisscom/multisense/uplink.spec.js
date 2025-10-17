@@ -84,6 +84,15 @@ describe("Swisscom Multisense Uplinks", () => {
       });
   });
 
+  let doorCountSchema = null;
+  before((done) => {
+    loadSchema(`${__dirname}/door_count.schema.json`)
+      .then((parsedSchema) => {
+        doorCountSchema = parsedSchema;
+        done();
+      });
+  });
+
   describe("consume()", () => {
     it("should decode the Swisscom Multisense timed event with all datatopics", () => {
       const data = {
@@ -116,6 +125,26 @@ describe("Swisscom Multisense Uplinks", () => {
         assert.equal(value.data.humidity, 55);
 
         validateSchema(value.data, humiditySchema, { throwError: true });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+
+        assert.equal(value.lastCount, 23);
+        assert.equal(value.partialUsage, 0);
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "door_count");
+        assert.equal(value.data.doorClosings, 0);
+        assert.equal(value.data.usageCount, 0);
+
+        validateSchema(value.data, doorCountSchema, { throwError: true });
       });
 
       expectEmits((type, value) => {
@@ -183,18 +212,9 @@ describe("Swisscom Multisense Uplinks", () => {
         validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "state");
-        assert.isNotNull(value);
-
-        assert.equal(value.lastReed, 23);
-      });
-
       consume(data);
     });
-  });
 
-  describe("consume()", () => {
     it("should decode the Swisscom Multisense button event payload", () => {
       const data = {
         state: {},
@@ -239,26 +259,40 @@ describe("Swisscom Multisense Uplinks", () => {
         validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "state");
-        assert.isNotNull(value);
-      });
-
       consume(data);
     });
-  });
 
-  describe("consume()", () => {
     it("should decode the Swisscom Multisense reed event payload", () => {
       const data = {
         state: {
-          lastReed: 2494,
+          lastCount: 2494,
+          partialUsage: 0
         },
         data: {
           port: 3,
           payloadHex: "020020a9030a86",
         },
       };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+
+        assert.equal(value.lastCount, 2694);
+        assert.equal(value.partialUsage, 0);
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "door_count");
+        assert.equal(value.data.doorClosings, 200);
+        assert.equal(value.data.usageCount, 100);
+
+        validateSchema(value.data, doorCountSchema, { throwError: true });
+      });
 
       expectEmits((type, value) => {
         assert.equal(type, "sample");
@@ -295,13 +329,6 @@ describe("Swisscom Multisense Uplinks", () => {
         assert.equal(value.data.batteryVoltage, 3);
         assert.equal(value.data.batteryLevel, 100);
         validateSchema(value.data, lifecycleSchema, { throwError: true });
-      });
-
-      expectEmits((type, value) => {
-        assert.equal(type, "state");
-        assert.isNotNull(value);
-
-        assert.equal(value.lastReed, 2694);
       });
 
       consume(data);

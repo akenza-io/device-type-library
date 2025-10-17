@@ -96,6 +96,13 @@
         "description": "Usage count of spaces",
         "type": "integer",
         "minimum": 0
+      },
+      "doorClosings": {
+        "measurementType": "akenza/spaces/usage/doorClosings",
+        "title": "Door closing",
+        "description": "Each door opening and closing counts as one door closing",
+        "type": "integer",
+        "minimum": 0
       }
     }
   }
