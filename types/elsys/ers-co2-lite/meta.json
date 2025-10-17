@@ -1,5 +1,5 @@
 {
-  "name": "ERS CO2 Lite",
+  "name": "ERS CO2 Lite LoRa",
   "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/en/ers-co2-lite/",
@@ -7,8 +7,16 @@
   "author": "Akenza AG",
   "firmwareVersion": "V2.3.5",
   "loraDeviceClass": "A",
-  "availableSensors": ["Humidity", "Temperature", "CO2"],
-  "outputTopics": ["default", "lifecycle", "configuration"],
+  "availableSensors": [
+    "Humidity",
+    "Temperature",
+    "CO2"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }
