@@ -1,0 +1,34 @@
+{
+  "$id": "https://akenza.io/twtg/neonVibration/boot.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "boot",
+  "title": "Boot",
+  "properties": {
+    "rebootReason": {
+      "title": "Reboot reason",
+      "type": "string",
+      "description": "Reboot reason",
+      "enum": [
+        "NONE",
+        "CONFIGURATION_UPDATE",
+        "FIRMWARE_UPDATE_SUCCESS",
+        "FIRMWARE_UPDATE_REJECTED",
+        "FIRMWARE_UPDATE_ERROR",
+        "FIRMWARE_UPDATE_IN_PROGRESS",
+        "BUTTON_RESET",
+        "POWER_BLACK_OUT",
+        "POWER_BROWN_OUT",
+        "POWER_SAFE_STATE",
+        "SYSTEM_FAILURE",
+        "FACTORY_RESET",
+        "REBOOT_REQUEST"
+      ],
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "response"
+  ]
+}

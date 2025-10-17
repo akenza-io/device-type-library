@@ -1,0 +1,52 @@
+{
+  "$id": "https://akenza.io/twtg/neonVibration/statistics.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "statistics",
+  "title": "Statistics",
+  "properties": {
+    "selection": {
+      "title": "Selection",
+      "type": "string",
+      "description": "Selection",
+      "enum": [
+        "X_RMS_VELOCITY",
+        "X_RMS_ACCELERATION",
+        "X_PEAK_ACCELERATION",
+        "Y_RMS_VELOCITY",
+        "Y_RMS_ACCELERATION",
+        "Y_PEAK_ACCELERATION",
+        "Z_RMS_VELOCITY",
+        "Z_RMS_ACCELERATION",
+        "Z_PEAK_ACCELERATION",
+        "TEMPERATURE"
+      ],
+      "hideFromKpis": true
+    },
+    "min": {
+      "title": "Minimum",
+      "type": "number",
+      "description": "Minimum",
+      "hideFromKpis": true
+    },
+    "max": {
+      "title": "Maximum",
+      "type": "number",
+      "description": "Maximum",
+      "hideFromKpis": true
+    },
+    "avg": {
+      "title": "Average",
+      "type": "number",
+      "description": "Average",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "selection",
+    "min",
+    "max",
+    "avg"
+  ]
+}

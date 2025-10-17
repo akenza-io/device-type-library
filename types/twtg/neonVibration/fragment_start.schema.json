@@ -1,0 +1,39 @@
+{
+  "$id": "https://akenza.io/twtg/neonVibration/fragment_start.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "fragment_start",
+  "title": "Fragment start",
+  "properties": {
+    "port": {
+      "title": "Port",
+      "type": "number",
+      "description": "Port",
+      "hideFromKpis": true
+    },
+    "uplinkSize": {
+      "title": "Uplink size",
+      "type": "number",
+      "description": "Uplink size",
+      "hideFromKpis": true
+    },
+    "fragmentSize": {
+      "title": "Fragment size",
+      "type": "number",
+      "description": "Fragment size",
+      "hideFromKpis": true
+    },
+    "crc": {
+      "title": "Checksum",
+      "type": "number",
+      "description": "Checksum",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "tag",
+    "type",
+    "status"
+  ]
+}

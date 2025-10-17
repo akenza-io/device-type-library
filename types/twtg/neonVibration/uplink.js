@@ -318,14 +318,20 @@ function consume(event) {
   const state = event.state || {};
   const decoded = {};
 
-  const messageId = Bits.bitsToUnsigned(bits.substr(0, 4)); // 10
+  const messageId = Bits.bitsToUnsigned(bits.substr(0, 4));
   const messageVersion = Bits.bitsToUnsigned(bits.substr(4, 4));
   switch ((port << 8) | (messageId << 4) | messageVersion) {
     case 0xe10:
       decoded.transmitterChargeUsed = float16ToNumber(bits.substr(8, 15));
       decoded.sensorChargeUsed = float16ToNumber(bits.substr(23, 15));
       decoded.averageTemperature = float16ToNumber(bits.substr(38, 16));
-      decoded.batteryLevel = Bits.bitsToUnsigned(bits.substr(54, 8));
+      let batteryLevel = Bits.bitsToUnsigned(bits.substr(54, 8));
+      if (batteryLevel == 0) {
+        decoded.batteryLevel = 100;
+        // 255 means not available
+      } else if (batteryLevel < 255) {
+        decoded.batteryLevel = Math.round(batteryLevel / 2.55)
+      }
       // Reserved 2
 
       emit("sample", { data: decoded, topic: "lifecycle" });
@@ -335,8 +341,8 @@ function consume(event) {
       break;
     case 0xb00:
       decoded.tag = (payload.substr(2, 8));
-      decoded.type = enums.device_configuration_type_v0.values[(Bits.bitsToUnsigned(bits.substr(40, 12)))];
-      decoded.status = enums.configuration_update_status_v0.values[(Bits.bitsToUnsigned(bits.substr(52, 4)))];
+      decoded.deviceConfiguration = enums.device_configuration_type_v0.values[(Bits.bitsToUnsigned(bits.substr(40, 12)))];
+      decoded.updateStatus = enums.configuration_update_status_v0.values[(Bits.bitsToUnsigned(bits.substr(52, 4)))];
       emit("sample", { data: decoded, topic: "configuration" });
       break;
     case 0xc00:
@@ -374,7 +380,7 @@ function consume(event) {
       decoded.fragmentType = "PLAIN";
       for (let i = 6; i < payload.length; i += 2) {
         // Add bytes till the payload is complete
-        if (state.concatedPayload.length < state.uplinkSize / 2) {
+        if (state.concatedPayload.length / 2 < state.uplinkSize) {
           state.concatedPayload += payload.substr(i, 2);
         } else {
           // Do not save redundant bytes for now
@@ -399,6 +405,7 @@ function consume(event) {
           return;
         }
       }
+
 
       emit("sample", { data: decoded, topic: "fragment" });
       break;

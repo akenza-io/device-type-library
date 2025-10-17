@@ -1,0 +1,51 @@
+{
+  "$id": "https://akenza.io/twtg/neonVibration/configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "configuration",
+  "title": "Configuration",
+  "properties": {
+    "tag": {
+      "title": "Tag",
+      "type": "string",
+      "description": "Tag",
+      "hideFromKpis": true
+    },
+    "deviceConfiguration": {
+      "title": "Device configuration",
+      "type": "string",
+      "description": "Device configuration",
+      "enum": [
+        "TWTG_REGION",
+        "TRANSMITTER",
+        "SCHEDULE",
+        "VB_ALERT",
+        "VB_SPECTRUM_ALERT",
+        "VB_ASSET",
+        "TWTG_TRANSMITTER"
+      ],
+      "hideFromKpis": true
+    },
+    "updateStatus": {
+      "title": "Update status",
+      "type": "string",
+      "description": "Update status",
+      "enum": [
+        "SUCCESS",
+        "REJECTED_UNSUPPORTED_CONFIGURATION_TYPE",
+        "REJECTED_UNSUPPORTED_CONFIGURATION_VERSION",
+        "REJECTED_INVALID_CONFIGURATION_VALUES",
+        "REJECTED_DECODING_FAILED",
+        "REJECTED_SCHEDULE_TYPE_LIMIT",
+        "SENSOR_COMMUNICATION_FAILURE"
+      ],
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "tag",
+    "type",
+    "status"
+  ]
+}

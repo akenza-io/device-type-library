@@ -5,14 +5,31 @@
   "url": "https://twtg.io/products/neon-vibration-sensor/",
   "description": "",
   "author": "Akenza AG",
-  "firmwareVersion": "V1.0.0",
+  "firmwareVersion": "V4.0.0",
   "loraDeviceClass": "A",
   "availableSensors": [
     "Vibration"
   ],
   "outputTopics": [
-    "default",
-    "lifecycle"
+    "alert",
+    "axis_x",
+    "axis_y",
+    "axis_z",
+    "axis_x_spectrum",
+    "axis_y_spectrum",
+    "axis_z_spectrum",
+    "boot",
+    "configuration",
+    "deactivation",
+    "error",
+    "factory_reset",
+    "fragment",
+    "fragment_start",
+    "lifecycle",
+    "lifecycle_response",
+    "machine_fault",
+    "statistics",
+    "status"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"
