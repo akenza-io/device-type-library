@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.77.1] - 2025-10-17
+
+### Added
+
+- Elsys - ELT-2-Radar
+- Elsys - ELT-2-Ultrasonic-5m
+- Elsys - ELT-2-Ultrasonic-10m
+- Elsys - ELT-2-Ultrasonic-snow
+- Elsys - ELT-2-Internal antenna
+- Elsys - ERS Display
+- Elsys - ERS Display CO2
+
+### Changed
+
+- Updated Elsys names
+- Fixed downlink response handling for DS3604
+- Added possibility for Xovis to send age data
+- Merged Acceleration, Accelerometer - XYZ and Vibration into Accelerometer in the meta files
+
 # [1.77.0] - 2025-10-08
 
 ### Added
