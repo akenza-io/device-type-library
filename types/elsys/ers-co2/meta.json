@@ -1,5 +1,5 @@
 {
-  "name": "ERS CO2",
+  "name": "ERS CO2 LoRa",
   "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/en/ers-co2/",
@@ -7,8 +7,19 @@
   "author": "Akenza AG",
   "firmwareVersion": "V2.3.5",
   "loraDeviceClass": "A",
-  "availableSensors": ["Light", "Humidity", "Temperature", "CO2", "Motion"],
-  "outputTopics": ["default", "lifecycle", "occupancy", "configuration"],
+  "availableSensors": [
+    "Light",
+    "Humidity",
+    "Temperature",
+    "CO2",
+    "Motion"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "occupancy",
+    "configuration"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

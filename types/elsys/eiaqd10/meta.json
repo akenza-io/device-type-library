@@ -1,14 +1,22 @@
 {
-  "name": "Indoor Air Quality Sensor Display",
+  "name": "ERS Display CO2 Lite LoRa",
   "version": "1.0.0",
   "manufacturer": "Elsys",
-  "url": "https://www.elsys.se/en/eiaqd10/",
+  "url": "https://www.elsys.se/en/ers-display-co2-lite-lora/",
   "description": "A wireless LoRaWAN® sensor for indoor environments that measures CO2 levels, temperature, and humidity. The sensor is equipped with a display, which enables effortless access to real-time information at a glance. The 2.13″ e-paper display has configurable features via downlink, NFC, or custom order. Add your company logo, change to an inverted color scheme, or from Celsius to Fahrenheit.",
   "author": "Akenza AG",
   "firmwareVersion": "V3.3.4",
   "loraDeviceClass": "A",
-  "availableSensors": ["Humidity", "Temperature", "CO2"],
-  "outputTopics": ["default", "lifecycle", "configuration"],
+  "availableSensors": [
+    "Humidity",
+    "Temperature",
+    "CO2"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

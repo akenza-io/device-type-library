@@ -1,0 +1,23 @@
+{
+  "name": "ELT Ultrasonic 10m LoRa",
+  "version": "1.0.0",
+  "manufacturer": "Elsys",
+  "url": "https://www.elsys.se/shop/product/elt2-mb7386/",
+  "description": "ELT  Ultrasonic is enclosed in an IP67 box which makes it ideal for mounting outside or in extreme conditions. Use the distance sensor to measure water level under a bridge, trash level in a container, and much more. With this device, you can also measure the ambient temperature, humidity, atmospheric pressure, and acceleration.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V2.3.5",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "Distance",
+    "Pressure"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

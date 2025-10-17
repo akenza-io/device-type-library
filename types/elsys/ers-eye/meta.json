@@ -1,5 +1,5 @@
 {
-  "name": "ERS Eye",
+  "name": "ERS Eye LoRa",
   "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/en/ers-eye/",
@@ -14,7 +14,12 @@
     "Humidity",
     "Temperature"
   ],
-  "outputTopics": ["default", "occupancy", "lifecycle", "configuration"],
+  "outputTopics": [
+    "default",
+    "occupancy",
+    "lifecycle",
+    "configuration"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }
