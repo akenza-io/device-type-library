@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.77.0] - 2025-10-08
+
+### Added
+
+- Advantech - WISE2410
+
+# [1.76.0] - 2025-10-06
+
+### Added
+
+- Netvox - R712
+- Netvox - R718A
+- Netvox - R718B
+- Netvox - R718G
+- Netvox - R718LB
+- Netvox - R718WA
+- Netvox - RB11E
+
 # [1.75.1] - 2025-10-02
 
 ### Changed

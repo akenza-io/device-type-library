@@ -1,0 +1,65 @@
+{
+  "$id": "https://akenza.io/netvox/r712/system.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "system",
+  "title": "System",
+  "properties": {
+    "softwareVersion": {
+      "title": "Software Version",
+      "description": "The software version of the device.",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "hardwareVersion": {
+      "title": "Hardware Version",
+      "description": "The hardware version of the device.",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "configStatus": {
+      "title": "Configuration Status",
+      "description": "Status of the last configuration command.",
+      "type": "string",
+      "enum": [
+        "SUCCESS",
+        "FAILURE"
+      ],
+      "hideFromKpis": true
+    },
+    "minTime": {
+      "title": "Minimum Reporting Interval",
+      "description": "Minimum reporting interval.",
+      "unit": "s",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "maxTime": {
+      "title": "Maximum Reporting Interval",
+      "description": "Maximum reporting interval.",
+      "unit": "s",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "batteryChange": {
+      "title": "Battery Change Threshold",
+      "description": "Reporting threshold for battery voltage change.",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt",
+      "hideFromKpis": true
+    },
+    "temperatureChange": {
+      "title": "Temperature Change Threshold",
+      "description": "Reporting threshold for temperature change.",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "hideFromKpis": true
+    },
+    "humidityChange": {
+      "title": "Humidity Change Threshold",
+      "description": "Reporting threshold for humidity change.",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
+      "hideFromKpis": true
+    }
+  },
+  "required": []
+}
