@@ -1,17 +1,21 @@
-const chai = require("chai");
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
   let consume = null;
 
   let defaultSchema = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
       defaultSchema = parsedSchema;
       done();
     });
@@ -19,7 +23,7 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
       lifecycleSchema = parsedSchema;
       done();
     });
@@ -27,7 +31,7 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
 
   let responseSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/response.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/response.schema.json`).then((parsedSchema) => {
       responseSchema = parsedSchema;
       done();
     });
@@ -35,7 +39,7 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
 
   let systemSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/system.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/system.schema.json`).then((parsedSchema) => {
       systemSchema = parsedSchema;
       done();
     });
@@ -43,7 +47,7 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
 
   let settingsSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/settings.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/settings.schema.json`).then((parsedSchema) => {
       settingsSchema = parsedSchema;
       done();
     });
@@ -51,7 +55,7 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
 
   let errorSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/error.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/error.schema.json`).then((parsedSchema) => {
       errorSchema = parsedSchema;
       done();
     });
@@ -66,7 +70,7 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -82,10 +86,10 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
           ambientTemperature: 22.5,
         });
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -97,7 +101,7 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
           batteryStatus: "OK",
         });
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -112,7 +116,7 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
       },
     };
 
-    utils.expectEmits((type, value) => {
+    expectEmits((type, value) => {
       assert.equal(type, "sample");
       assert.isNotNull(value);
       assert.typeOf(value.data, "object");
@@ -129,7 +133,7 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
       });
     });
 
-    utils.expectEmits((type, value) => {
+    expectEmits((type, value) => {
       assert.equal(type, "sample");
       assert.isNotNull(value);
       assert.typeOf(value.data, "object");
@@ -142,7 +146,7 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
       });
     });
 
-    utils.expectEmits((type, value) => {
+    expectEmits((type, value) => {
       assert.equal(type, "sample");
       assert.isNotNull(value);
       assert.typeOf(value.data, "object");
@@ -165,7 +169,7 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
       },
     };
 
-    utils.expectEmits((type, value) => {
+    expectEmits((type, value) => {
       assert.equal(type, "sample");
       assert.isNotNull(value);
       assert.typeOf(value.data, "object");
@@ -182,7 +186,7 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
       });
     });
 
-    utils.expectEmits((type, value) => {
+    expectEmits((type, value) => {
       assert.equal(type, "sample");
       assert.isNotNull(value);
       assert.typeOf(value.data, "object");
@@ -195,7 +199,7 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
       });
     });
 
-    utils.expectEmits((type, value) => {
+    expectEmits((type, value) => {
       assert.equal(type, "sample");
       assert.isNotNull(value);
       assert.typeOf(value.data, "object");
@@ -206,7 +210,7 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
         message: "Contact Quandify support, error 999",
       });
 
-      utils.validateSchema(value.data, errorSchema, { throwError: true });
+      validateSchema(value.data, errorSchema, { throwError: true });
     });
 
     consume(data);
@@ -221,7 +225,7 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
       },
     };
 
-    utils.expectEmits((type, value) => {
+    expectEmits((type, value) => {
       assert.equal(type, "sample");
       assert.isNotNull(value);
       assert.typeOf(value.data, "object");
@@ -233,10 +237,10 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
         type: "STATUS_REPORT"
       });
 
-      utils.validateSchema(value.data, responseSchema, { throwError: true });
+      validateSchema(value.data, responseSchema, { throwError: true });
     });
 
-    utils.expectEmits((type, value) => {
+    expectEmits((type, value) => {
       assert.equal(type, "sample");
       assert.isNotNull(value);
       assert.typeOf(value.data, "object");
@@ -252,10 +256,10 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
         ambientTemperature: 9,
       });
 
-      utils.validateSchema(value.data, defaultSchema, { throwError: true });
+      validateSchema(value.data, defaultSchema, { throwError: true });
     });
 
-    utils.expectEmits((type, value) => {
+    expectEmits((type, value) => {
       assert.equal(type, "sample");
       assert.isNotNull(value);
       assert.typeOf(value.data, "object");
@@ -267,7 +271,7 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
         batteryStatus: "OK",
       });
 
-      utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+      validateSchema(value.data, lifecycleSchema, { throwError: true });
     });
 
     consume(data);
@@ -281,7 +285,7 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
       },
     };
 
-    utils.expectEmits((type, value) => {
+    expectEmits((type, value) => {
       assert.equal(type, "sample");
       assert.isNotNull(value);
       assert.typeOf(value.data, "object");
@@ -293,10 +297,10 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
         type: "HARDWARE_REPORT"
       });
 
-      utils.validateSchema(value.data, responseSchema, { throwError: true });
+      validateSchema(value.data, responseSchema, { throwError: true });
     });
 
-    utils.expectEmits((type, value) => {
+    expectEmits((type, value) => {
       assert.equal(type, "sample");
       assert.isNotNull(value);
       assert.typeOf(value.data, "object");
@@ -310,7 +314,7 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
         pipeType: "Copper 15 mm",
       });
 
-      utils.validateSchema(value.data, systemSchema, { throwError: true });
+      validateSchema(value.data, systemSchema, { throwError: true });
     });
 
     consume(data);
@@ -324,7 +328,7 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
       },
     };
 
-    utils.expectEmits((type, value) => {
+    expectEmits((type, value) => {
       assert.equal(type, "sample");
       assert.isNotNull(value);
       assert.typeOf(value.data, "object");
@@ -336,10 +340,10 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
         type: "HARDWARE_REPORT"
       });
 
-      utils.validateSchema(value.data, responseSchema, { throwError: true });
+      validateSchema(value.data, responseSchema, { throwError: true });
     });
 
-    utils.expectEmits((type, value) => {
+    expectEmits((type, value) => {
       assert.equal(type, "sample");
       assert.isNotNull(value);
       assert.typeOf(value.data, "object");
@@ -353,7 +357,7 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
         pipeType: "Custom",
       });
 
-      utils.validateSchema(value.data, systemSchema, { throwError: true });
+      validateSchema(value.data, systemSchema, { throwError: true });
     });
 
     consume(data);
@@ -367,7 +371,7 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
       },
     };
 
-    utils.expectEmits((type, value) => {
+    expectEmits((type, value) => {
       assert.equal(type, "sample");
       assert.isNotNull(value);
       assert.typeOf(value.data, "object");
@@ -379,10 +383,10 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
         type: "SETTINGS_REPORT"
       });
 
-      utils.validateSchema(value.data, responseSchema, { throwError: true });
+      validateSchema(value.data, responseSchema, { throwError: true });
     });
 
-    utils.expectEmits((type, value) => {
+    expectEmits((type, value) => {
       assert.equal(type, "sample");
       assert.isNotNull(value);
       assert.typeOf(value.data, "object");
@@ -392,7 +396,7 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
         lorawanReportInterval: 600,
       });
 
-      utils.validateSchema(value.data, settingsSchema, { throwError: true });
+      validateSchema(value.data, settingsSchema, { throwError: true });
     });
 
     consume(data);

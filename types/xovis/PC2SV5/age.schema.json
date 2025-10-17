@@ -1,0 +1,18 @@
+{
+  "$id": "https://akenza.io/xovis/pc2s/age.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "age",
+  "title": "Age",
+  "properties": {
+    "age": {
+      "title": "Age",
+      "description": "Indicates how old a person is.",
+      "type": "number"
+    }
+  },
+  "required": [
+    "age"
+  ]
+}

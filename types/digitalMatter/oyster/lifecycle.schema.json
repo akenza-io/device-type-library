@@ -7,12 +7,9 @@
   "title": "Lifecycle",
   "properties": {
     "initialBatV": {
-      "type": "number",
-      "minimum": 0,
-      "maximum": 24,
       "title": "Initial battery voltage",
       "description": "Initial battery voltage",
-      "unit": "V"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
     },
     "txCount": {
       "title": "Tx count",

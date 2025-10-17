@@ -9,8 +9,10 @@
     "buttonPressed": {
       "title": "Button pressed",
       "description": "Is true on button pressed uplink",
-      "type": "boolean"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/event"
     }
   },
-  "required": ["buttonPressed"]
+  "required": [
+    "buttonPressed"
+  ]
 }

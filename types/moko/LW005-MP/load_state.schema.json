@@ -1,0 +1,20 @@
+{
+  "$id": "https://akenza.io/moko/lw005-mp/load_state.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "load_state",
+  "title": "Load State",
+  "properties": {
+    "loadState": {
+      "title": "Load State",
+      "description": "Describes the load state",
+      "type": "string",
+      "enum": [
+        "LOAD_START",
+        "LOAD_STOP"
+      ],
+      "hideFromKpis": true
+    }
+  }
+}

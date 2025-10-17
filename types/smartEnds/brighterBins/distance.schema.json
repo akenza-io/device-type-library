@@ -7,18 +7,11 @@
   "title": "Distance",
   "properties": {
     "distance": {
-      "title": "Distance",
-      "unit": "cm",
-      "type": "number",
-      "description": "Distance measured between the sensor and the surface"
+      "description": "Distance measured between the sensor and the surface",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm"
     },
     "fillLevel": {
-      "title": "Fill Level",
-      "unit": "%",
-      "type": "number",
-      "description": "Total fill level in percent",
-      "minimum": 0,
-      "maximum": 100
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/fillLevel/percent"
     },
     "distanceError": {
       "title": "Distance error",

@@ -14,22 +14,22 @@
     "pulseAbs1": {
       "title": "Pulse count absolute",
       "description": "Pulse count absolute",
-      "type": "number"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput/count"
     },
     "relativePulse1": {
       "title": "Increment pulse 1 count",
       "description": "Increment pulse 1 count",
-      "type": "number"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput/count"
     },
     "pulseAbs2": {
       "title": "Pulse count absolute",
       "description": "Pulse count absolute",
-      "type": "number"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput/count"
     },
     "relativePulse2": {
       "title": "Increment pulse 2 count",
       "description": "Increment pulse 2 count",
-      "type": "number"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput/count"
     }
   },
   "required": [

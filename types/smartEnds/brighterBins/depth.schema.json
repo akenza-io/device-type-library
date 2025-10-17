@@ -8,50 +8,43 @@
   "properties": {
     "point1": {
       "title": "Point 1",
-      "type": "integer",
-      "unit": "cm",
-      "description": "Point 1"
+      "description": "Point 1",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm"
     },
     "point2": {
       "title": "Point 2",
-      "type": "integer",
-      "unit": "cm",
-      "description": "Point 2"
+      "description": "Point 2",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm"
     },
     "point3": {
       "title": "Point 3",
-      "type": "integer",
-      "unit": "cm",
-      "description": "Point 3"
+      "description": "Point 3",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm"
     },
     "point4": {
       "title": "Point 4",
-      "type": "integer",
-      "unit": "cm",
-      "description": "Point 4"
+      "description": "Point 4",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm"
     },
     "point5": {
       "title": "Point 5",
-      "type": "integer",
-      "unit": "cm",
-      "description": "Point 5"
+      "description": "Point 5",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm"
     },
     "point6": {
       "title": "Point 6",
-      "type": "integer",
-      "unit": "cm",
-      "description": "Point 6"
+      "description": "Point 6",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm"
     },
     "point7": {
       "title": "Point 7",
-      "type": "integer",
-      "description": "Point 7"
+      "description": "Point 7",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm"
     },
     "point8": {
       "title": "Point 8",
-      "type": "integer",
-      "unit": "cm",
-      "description": "Point 8"
+      "description": "Point 8",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm"
     }
   }
 }

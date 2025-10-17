@@ -1,19 +1,22 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("WS101 Uplink", () => {
   let buttonPressedSchema = null;
   let lifecycleSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/button_pressed.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/button_pressed.schema.json`)
       .then((parsedSchema) => {
         buttonPressedSchema = parsedSchema;
         done();
@@ -21,10 +24,9 @@ describe("WS101 Uplink", () => {
   });
 
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -40,23 +42,23 @@ describe("WS101 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
         assert.equal(value.data.batteryLevel, 16);
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
         assert.equal(value.data.press, "SHORT");
 
-        utils.validateSchema(value.data, buttonPressedSchema, {
+        validateSchema(value.data, buttonPressedSchema, {
           throwError: true,
         });
       });

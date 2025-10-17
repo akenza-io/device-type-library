@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Yosensi YO Relay Switch uplink", () => {
   let batteryVoltageSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/battery_voltage.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/battery_voltage.schema.json`)
       .then((parsedSchema) => {
         batteryVoltageSchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("Yosensi YO Relay Switch uplink", () => {
 
   let relayStateCH1Schema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/relay_state_ch1.schema.json`)
+    loadSchema(`${__dirname}/relay_state_ch1.schema.json`)
       .then((parsedSchema) => {
         relayStateCH1Schema = parsedSchema;
         done();
@@ -31,8 +33,7 @@ describe("Yosensi YO Relay Switch uplink", () => {
 
   let relayStateCH2Schema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/relay_state_ch2.schema.json`)
+    loadSchema(`${__dirname}/relay_state_ch2.schema.json`)
       .then((parsedSchema) => {
         relayStateCH2Schema = parsedSchema;
         done();
@@ -41,8 +42,7 @@ describe("Yosensi YO Relay Switch uplink", () => {
 
   let relayStateAllCHSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/relay_state_all_ch.schema.json`)
+    loadSchema(`${__dirname}/relay_state_all_ch.schema.json`)
       .then((parsedSchema) => {
         relayStateAllCHSchema = parsedSchema;
         done();
@@ -51,8 +51,7 @@ describe("Yosensi YO Relay Switch uplink", () => {
 
   let outputModeCH1Schema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/output_mode_ch1.schema.json`)
+    loadSchema(`${__dirname}/output_mode_ch1.schema.json`)
       .then((parsedSchema) => {
         outputModeCH1Schema = parsedSchema;
         done();
@@ -61,8 +60,7 @@ describe("Yosensi YO Relay Switch uplink", () => {
 
   let outputModeCH2Schema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/output_mode_ch2.schema.json`)
+    loadSchema(`${__dirname}/output_mode_ch2.schema.json`)
       .then((parsedSchema) => {
         outputModeCH2Schema = parsedSchema;
         done();
@@ -71,8 +69,7 @@ describe("Yosensi YO Relay Switch uplink", () => {
 
   let outputModeAllCHSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/output_mode_all_ch.schema.json`)
+    loadSchema(`${__dirname}/output_mode_all_ch.schema.json`)
       .then((parsedSchema) => {
         outputModeAllCHSchema = parsedSchema;
         done();
@@ -88,7 +85,7 @@ describe("Yosensi YO Relay Switch uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -96,12 +93,12 @@ describe("Yosensi YO Relay Switch uplink", () => {
         assert.equal(value.topic, "battery_voltage");
         assert.equal(value.data.batteryVoltage, 24144);
 
-        utils.validateSchema(value.data, batteryVoltageSchema, {
+        validateSchema(value.data, batteryVoltageSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -109,12 +106,12 @@ describe("Yosensi YO Relay Switch uplink", () => {
         assert.equal(value.topic, "relay_state_all_ch");
         assert.equal(value.data.relayStateAllCH, 2);
 
-        utils.validateSchema(value.data, relayStateAllCHSchema, {
+        validateSchema(value.data, relayStateAllCHSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -122,7 +119,7 @@ describe("Yosensi YO Relay Switch uplink", () => {
         assert.equal(value.topic, "output_mode_all_ch");
         assert.equal(value.data.outputModeAllCH, 0);
 
-        utils.validateSchema(value.data, outputModeAllCHSchema, {
+        validateSchema(value.data, outputModeAllCHSchema, {
           throwError: true,
         });
       });
@@ -138,7 +135,7 @@ describe("Yosensi YO Relay Switch uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -146,12 +143,12 @@ describe("Yosensi YO Relay Switch uplink", () => {
         assert.equal(value.topic, "relay_state_ch1");
         assert.equal(value.data.relayStateCH1, 0);
 
-        utils.validateSchema(value.data, relayStateCH1Schema, {
+        validateSchema(value.data, relayStateCH1Schema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -159,7 +156,7 @@ describe("Yosensi YO Relay Switch uplink", () => {
         assert.equal(value.topic, "relay_state_all_ch");
         assert.equal(value.data.relayStateAllCH, 2);
 
-        utils.validateSchema(value.data, relayStateAllCHSchema, {
+        validateSchema(value.data, relayStateAllCHSchema, {
           throwError: true,
         });
       });
@@ -175,7 +172,7 @@ describe("Yosensi YO Relay Switch uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -183,12 +180,12 @@ describe("Yosensi YO Relay Switch uplink", () => {
         assert.equal(value.topic, "relay_state_ch2");
         assert.equal(value.data.relayStateCH2, 1);
 
-        utils.validateSchema(value.data, relayStateCH2Schema, {
+        validateSchema(value.data, relayStateCH2Schema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -196,7 +193,7 @@ describe("Yosensi YO Relay Switch uplink", () => {
         assert.equal(value.topic, "relay_state_all_ch");
         assert.equal(value.data.relayStateAllCH, 2);
 
-        utils.validateSchema(value.data, relayStateAllCHSchema, {
+        validateSchema(value.data, relayStateAllCHSchema, {
           throwError: true,
         });
       });
@@ -212,7 +209,7 @@ describe("Yosensi YO Relay Switch uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -220,12 +217,12 @@ describe("Yosensi YO Relay Switch uplink", () => {
         assert.equal(value.topic, "output_mode_ch1");
         assert.equal(value.data.outputModeCH1, 1);
 
-        utils.validateSchema(value.data, outputModeCH1Schema, {
+        validateSchema(value.data, outputModeCH1Schema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -233,7 +230,7 @@ describe("Yosensi YO Relay Switch uplink", () => {
         assert.equal(value.topic, "output_mode_all_ch");
         assert.equal(value.data.outputModeAllCH, 4);
 
-        utils.validateSchema(value.data, outputModeAllCHSchema, {
+        validateSchema(value.data, outputModeAllCHSchema, {
           throwError: true,
         });
       });
@@ -249,7 +246,7 @@ describe("Yosensi YO Relay Switch uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -257,12 +254,12 @@ describe("Yosensi YO Relay Switch uplink", () => {
         assert.equal(value.topic, "output_mode_ch2");
         assert.equal(value.data.outputModeCH2, 0);
 
-        utils.validateSchema(value.data, outputModeCH2Schema, {
+        validateSchema(value.data, outputModeCH2Schema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -270,7 +267,7 @@ describe("Yosensi YO Relay Switch uplink", () => {
         assert.equal(value.topic, "output_mode_all_ch");
         assert.equal(value.data.outputModeAllCH, 4);
 
-        utils.validateSchema(value.data, outputModeAllCHSchema, {
+        validateSchema(value.data, outputModeAllCHSchema, {
           throwError: true,
         });
       });

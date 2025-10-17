@@ -11,8 +11,9 @@
       "description": "People in zone",
       "maximum": 65535,
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleCount/people"
-
     }
   },
-  "required": ["peopleInZone"]
+  "required": [
+    "peopleInZone"
+  ]
 }

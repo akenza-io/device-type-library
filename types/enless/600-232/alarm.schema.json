@@ -1,0 +1,36 @@
+{
+  "$id": "https://akenza.io/enless/600-232/alarm.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "alarm",
+  "title": "Alarm Status",
+  "properties": {
+    "temperature1Low": {
+      "type": "boolean",
+      "title": "Temperature 1 Low Alarm",
+      "description": "Indicates if temperature 1 is below the threshold"
+    },
+    "temperature1High": {
+      "type": "boolean",
+      "title": "Temperature 1 High Alarm",
+      "description": "Indicates if temperature 1 is above the threshold"
+    },
+    "temperature2Low": {
+      "type": "boolean",
+      "title": "Temperature 2 Low Alarm",
+      "description": "Indicates if temperature 2 is below the threshold"
+    },
+    "temperature2High": {
+      "type": "boolean",
+      "title": "Temperature 2 High Alarm",
+      "description": "Indicates if temperature 2 is above the threshold"
+    }
+  },
+  "required": [
+    "temperature1Low",
+    "temperature1High",
+    "temperature2Low",
+    "temperature2High"
+  ]
+}

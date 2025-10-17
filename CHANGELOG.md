@@ -2,7 +2,126 @@
 
 All notable changes to this project will be documented in this file.
 
----
+# [1.77.1] - 2025-10-17
+
+### Added
+
+- Elsys - ELT-2-Radar
+- Elsys - ELT-2-Ultrasonic-5m
+- Elsys - ELT-2-Ultrasonic-10m
+- Elsys - ELT-2-Ultrasonic-snow
+- Elsys - ELT-2-Internal antenna
+- Elsys - ERS Display
+- Elsys - ERS Display CO2
+
+### Changed
+
+- Updated Elsys names
+- Fixed downlink response handling for DS3604
+- Added possibility for Xovis to send age data
+- Merged Acceleration, Accelerometer - XYZ and Vibration into Accelerometer in the meta files
+
+# [1.77.0] - 2025-10-08
+
+### Added
+
+- Advantech - WISE2410
+
+# [1.76.0] - 2025-10-06
+
+### Added
+
+- Netvox - R712
+- Netvox - R718A
+- Netvox - R718B
+- Netvox - R718G
+- Netvox - R718LB
+- Netvox - R718WA
+- Netvox - RB11E
+
+# [1.75.1] - 2025-10-02
+
+### Changed
+
+- DS3604 Downlink encoder now excpects a payload object and allows multidownlinks
+
+# [1.75.0] - 2025-09-25
+
+### Added
+
+- Nexelec - Origin
+
+### Changed
+
+- Added a fix for the Flash'O where multiple phases can send but would get emited as the same
+- Updated a lot of datapoints with schema references
+
+# [1.74.0] - 2025-09-16
+
+### Added
+
+- Enless 600-021
+- Enless 600-022
+- Enless 600-023
+- Enless 600-031
+- Enless 600-032
+- Enless 600-034
+- Enless 600-035
+- Enless 600-036
+- Enless 600-037
+- Enless 600-038
+- Enless 600-039
+- Enless 600-050
+- Enless 600-051
+- Enless 600-052
+- Enless 600-053
+- Enless 600-062
+- Enless 600-065
+- Enless 600-232
+
+### Changed
+
+- Unifyed occupancy occupancy to send 1 or 0 if its not an elsys device
+
+# [1.73.0] - 2025-09-15
+
+### Added
+
+- Dragino - SE0X-LB
+- Enlink - IAQ
+- Termokon - MCS-LRW
+
+### Changed
+
+- DS3604 downlink and config additions
+- Added Fahrenheit emit to airthings & disruptive devices
+
+# [1.72.0] - 2025-09-08
+
+### Added
+
+- Milesight - CT103
+- Thermokon - SAB07
+- Milesight - AM102
+
+# [1.71.0] - 2025-09-03
+
+### Changed
+
+- Fixed tests for meta schemas to not time out when schema is not valid
+
+# [1.70.0] - 2025-08-28
+
+### Added
+
+- Descriptions for missing meta schema properties.
+
+# [1.69.0] - 2025-08-19
+
+### Added
+
+- MOKO - LW005-MP
+- MOKO - LW007-PIR
 
 # [1.69.0] - 2025-08-19
 

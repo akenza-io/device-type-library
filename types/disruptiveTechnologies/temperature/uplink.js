@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return (celsius * 9 / 5) + 32;
+}
+
 function consume(event) {
   const { eventType } = event.data;
   const sample = {};
@@ -6,7 +10,7 @@ function consume(event) {
 
   if (eventType === "temperature") {
     event.data.temperature.samples.forEach(singleSample => {
-      emit("sample", { data: { "temperature": singleSample.value }, topic: "default", timestamp: new Date(singleSample.sampleTime) });
+      emit("sample", { data: { "temperature": singleSample.value, "temperatureF": cToF(singleSample.value) }, topic: "default", timestamp: new Date(singleSample.sampleTime) });
     });
   } else if (eventType === "touch") {
     sample.touch = true;

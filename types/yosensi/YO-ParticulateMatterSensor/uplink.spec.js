@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Yosensi YO Particulate Matter Sensor uplink", () => {
   let batteryVoltageSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/battery_voltage.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/battery_voltage.schema.json`)
       .then((parsedSchema) => {
         batteryVoltageSchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("Yosensi YO Particulate Matter Sensor uplink", () => {
 
   let internalTemperatureSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/internal_temperature.schema.json`)
+    loadSchema(`${__dirname}/internal_temperature.schema.json`)
       .then((parsedSchema) => {
         internalTemperatureSchema = parsedSchema;
         done();
@@ -31,8 +33,7 @@ describe("Yosensi YO Particulate Matter Sensor uplink", () => {
 
   let humiditySchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/humidity.schema.json`)
+    loadSchema(`${__dirname}/humidity.schema.json`)
       .then((parsedSchema) => {
         humiditySchema = parsedSchema;
         done();
@@ -41,8 +42,7 @@ describe("Yosensi YO Particulate Matter Sensor uplink", () => {
 
   let accelerometerSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/accelerometer.schema.json`)
+    loadSchema(`${__dirname}/accelerometer.schema.json`)
       .then((parsedSchema) => {
         accelerometerSchema = parsedSchema;
         done();
@@ -51,8 +51,7 @@ describe("Yosensi YO Particulate Matter Sensor uplink", () => {
 
   let massConcPm1Schema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/mass_conc_pm1.schema.json`)
+    loadSchema(`${__dirname}/mass_conc_pm1.schema.json`)
       .then((parsedSchema) => {
         massConcPm1Schema = parsedSchema;
         done();
@@ -61,8 +60,7 @@ describe("Yosensi YO Particulate Matter Sensor uplink", () => {
 
   let massConcPm25Schema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/mass_conc_pm2_5.schema.json`)
+    loadSchema(`${__dirname}/mass_conc_pm2_5.schema.json`)
       .then((parsedSchema) => {
         massConcPm25Schema = parsedSchema;
         done();
@@ -71,8 +69,7 @@ describe("Yosensi YO Particulate Matter Sensor uplink", () => {
 
   let massConcPm4Schema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/mass_conc_pm4.schema.json`)
+    loadSchema(`${__dirname}/mass_conc_pm4.schema.json`)
       .then((parsedSchema) => {
         massConcPm4Schema = parsedSchema;
         done();
@@ -81,8 +78,7 @@ describe("Yosensi YO Particulate Matter Sensor uplink", () => {
 
   let massConcPm10Schema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/mass_conc_pm10.schema.json`)
+    loadSchema(`${__dirname}/mass_conc_pm10.schema.json`)
       .then((parsedSchema) => {
         massConcPm10Schema = parsedSchema;
         done();
@@ -91,8 +87,7 @@ describe("Yosensi YO Particulate Matter Sensor uplink", () => {
 
   let partConcPm1Schema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/part_conc_pm1.schema.json`)
+    loadSchema(`${__dirname}/part_conc_pm1.schema.json`)
       .then((parsedSchema) => {
         partConcPm1Schema = parsedSchema;
         done();
@@ -101,8 +96,7 @@ describe("Yosensi YO Particulate Matter Sensor uplink", () => {
 
   let partConcPm25Schema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/part_conc_pm2_5.schema.json`)
+    loadSchema(`${__dirname}/part_conc_pm2_5.schema.json`)
       .then((parsedSchema) => {
         partConcPm25Schema = parsedSchema;
         done();
@@ -118,7 +112,7 @@ describe("Yosensi YO Particulate Matter Sensor uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -126,12 +120,12 @@ describe("Yosensi YO Particulate Matter Sensor uplink", () => {
         assert.equal(value.topic, "battery_voltage");
         assert.equal(value.data.batteryVoltage, 7097);
 
-        utils.validateSchema(value.data, batteryVoltageSchema, {
+        validateSchema(value.data, batteryVoltageSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -139,12 +133,12 @@ describe("Yosensi YO Particulate Matter Sensor uplink", () => {
         assert.equal(value.topic, "internal_temperature");
         assert.equal(value.data.internalTemperature, 20.3);
 
-        utils.validateSchema(value.data, internalTemperatureSchema, {
+        validateSchema(value.data, internalTemperatureSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -152,10 +146,10 @@ describe("Yosensi YO Particulate Matter Sensor uplink", () => {
         assert.equal(value.topic, "humidity");
         assert.equal(value.data.humidity, 24);
 
-        utils.validateSchema(value.data, humiditySchema, { throwError: true });
+        validateSchema(value.data, humiditySchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -165,7 +159,7 @@ describe("Yosensi YO Particulate Matter Sensor uplink", () => {
         assert.equal(value.data.accelerometerY, 1.8);
         assert.equal(value.data.accelerometerZ, 8.8);
 
-        utils.validateSchema(value.data, accelerometerSchema, {
+        validateSchema(value.data, accelerometerSchema, {
           throwError: true,
         });
       });
@@ -182,7 +176,7 @@ describe("Yosensi YO Particulate Matter Sensor uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -190,12 +184,12 @@ describe("Yosensi YO Particulate Matter Sensor uplink", () => {
         assert.equal(value.topic, "mass_conc_pm1");
         assert.equal(value.data.massConcPm1, 8.2);
 
-        utils.validateSchema(value.data, massConcPm1Schema, {
+        validateSchema(value.data, massConcPm1Schema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -203,12 +197,12 @@ describe("Yosensi YO Particulate Matter Sensor uplink", () => {
         assert.equal(value.topic, "mass_conc_pm2_5");
         assert.equal(value.data.massConcPm2_5, 8.6);
 
-        utils.validateSchema(value.data, massConcPm25Schema, {
+        validateSchema(value.data, massConcPm25Schema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -216,12 +210,12 @@ describe("Yosensi YO Particulate Matter Sensor uplink", () => {
         assert.equal(value.topic, "mass_conc_pm4");
         assert.equal(value.data.massConcPm4, 8.6);
 
-        utils.validateSchema(value.data, massConcPm4Schema, {
+        validateSchema(value.data, massConcPm4Schema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -229,12 +223,12 @@ describe("Yosensi YO Particulate Matter Sensor uplink", () => {
         assert.equal(value.topic, "mass_conc_pm10");
         assert.equal(value.data.massConcPm10, 8.6);
 
-        utils.validateSchema(value.data, massConcPm10Schema, {
+        validateSchema(value.data, massConcPm10Schema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -242,12 +236,12 @@ describe("Yosensi YO Particulate Matter Sensor uplink", () => {
         assert.equal(value.topic, "part_conc_pm1");
         assert.equal(value.data.partConcPm1, 65);
 
-        utils.validateSchema(value.data, partConcPm1Schema, {
+        validateSchema(value.data, partConcPm1Schema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -255,7 +249,7 @@ describe("Yosensi YO Particulate Matter Sensor uplink", () => {
         assert.equal(value.topic, "part_conc_pm2_5");
         assert.equal(value.data.partConcPm2_5, 65);
 
-        utils.validateSchema(value.data, partConcPm25Schema, {
+        validateSchema(value.data, partConcPm25Schema, {
           throwError: true,
         });
       });

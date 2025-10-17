@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return (celsius * 9 / 5) + 32;
+}
+
 function consume(event) {
   const { eventType } = event.data;
   const sample = {};
@@ -8,11 +12,18 @@ function consume(event) {
     // New version
     if (event.data.humidity.samples !== undefined) {
       event.data.humidity.samples.forEach(singleSample => {
-        emit("sample", { data: { "temperature": singleSample.temperature, "humidity": singleSample.relativeHumidity }, topic: "default", timestamp: new Date(singleSample.sampleTime) });
+        emit("sample", {
+          data: {
+            "temperature": singleSample.temperature,
+            "temperatureF": cToF(singleSample.temperature),
+            "humidity": singleSample.relativeHumidity
+          }, topic: "default", timestamp: new Date(singleSample.sampleTime)
+        });
       });
       // Old version
     } else {
       sample.temperature = event.data.humidity.temperature;
+      sample.temperatureF = cToF(sample.temperature);
       sample.humidity = event.data.humidity.relativeHumidity;
       emit("sample", { data: sample, topic: "default" });
     }

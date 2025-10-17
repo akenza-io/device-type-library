@@ -39,7 +39,7 @@ function consume(event) {
 
       // Occupancy is always counted as 0 or 2. No pending 1 at the moment for yanzi
       if (sample.relativeMotion > 1) {
-        sample.occupancy = 2;
+        sample.occupancy = 1;
         sample.occupied = true;
       } else {
         sample.occupancy = 0;

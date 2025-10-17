@@ -1,9 +1,13 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Kuando busylight Uplink", () => {
   let defaultSchema = null;
@@ -11,11 +15,11 @@ describe("Kuando busylight Uplink", () => {
   let consume = null;
 
   before(async () => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
     [defaultSchema, lifecycleSchema] = await Promise.all([
-      utils.loadSchema(`${__dirname}/default.schema.json`),
-      utils.loadSchema(`${__dirname}/lifecycle.schema.json`),
+      loadSchema(`${__dirname}/default.schema.json`),
+      loadSchema(`${__dirname}/lifecycle.schema.json`),
     ]);
   });
 
@@ -27,7 +31,7 @@ describe("Kuando busylight Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -37,10 +41,10 @@ describe("Kuando busylight Uplink", () => {
         assert.equal(value.data.timeOn, 100);
         assert.equal(value.data.timeOff, 2);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -54,7 +58,7 @@ describe("Kuando busylight Uplink", () => {
         assert.equal(value.data.hwRevision, 12);
         assert.equal(value.data.adrState, 1);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

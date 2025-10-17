@@ -1,14 +1,23 @@
 {
-  "name": "ELT-2 Ultrasonic",
+  "name": "ELT Ultrasonic 5m LoRa",
   "version": "1.0.0",
   "manufacturer": "Elsys",
-  "url": "https://www.elsys.se/shop/product/elt-2-hp-maxbotix-ultrasound-sensor-mounted/?v=f003c44deab6",
+  "url": "https://www.elsys.se/shop/product/elt2-mb7389/",
   "description": "ELT  Ultrasonic is enclosed in an IP67 box which makes it ideal for mounting outside or in extreme conditions. Use the distance sensor to measure water level under a bridge, trash level in a container, and much more. With this device, you can also measure the ambient temperature, humidity, atmospheric pressure, and acceleration.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.3.5",
   "loraDeviceClass": "A",
-  "availableSensors": ["Temperature", "Humidity", "Distance", "Pressure"],
-  "outputTopics": ["default", "lifecycle", "configuration"],
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "Distance",
+    "Pressure"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

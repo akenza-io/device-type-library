@@ -1,17 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Elsys EMS Door uplink", () => {
   let reedSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/reed.schema.json`).then((parsedSchema) => {
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/reed.schema.json`).then((parsedSchema) => {
       reedSchema = parsedSchema;
       done();
     });
@@ -19,8 +23,7 @@ describe("Elsys EMS Door uplink", () => {
 
   let accelerationSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/acceleration.schema.json`)
+    loadSchema(`${__dirname}/acceleration.schema.json`)
       .then((parsedSchema) => {
         accelerationSchema = parsedSchema;
         done();
@@ -29,8 +32,7 @@ describe("Elsys EMS Door uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -47,7 +49,7 @@ describe("Elsys EMS Door uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -57,10 +59,10 @@ describe("Elsys EMS Door uplink", () => {
         assert.equal(value.data.relativePulse1, 0);
         assert.equal(value.data.reed, true);
 
-        utils.validateSchema(value.data, reedSchema, { throwError: true });
+        validateSchema(value.data, reedSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -71,12 +73,12 @@ describe("Elsys EMS Door uplink", () => {
         assert.equal(value.data.accY, 0);
         assert.equal(value.data.accZ, -0);
 
-        utils.validateSchema(value.data, accelerationSchema, {
+        validateSchema(value.data, accelerationSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -85,10 +87,10 @@ describe("Elsys EMS Door uplink", () => {
         assert.equal(value.data.batteryLevel, 100);
         assert.equal(value.data.batteryVoltage, 3.631);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
 
@@ -109,7 +111,7 @@ describe("Elsys EMS Door uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -119,10 +121,10 @@ describe("Elsys EMS Door uplink", () => {
         assert.equal(value.data.relativePulse1, 238);
         assert.equal(value.data.reed, true);
 
-        utils.validateSchema(value.data, reedSchema, { throwError: true });
+        validateSchema(value.data, reedSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -133,12 +135,12 @@ describe("Elsys EMS Door uplink", () => {
         assert.equal(value.data.accY, 0);
         assert.equal(value.data.accZ, -0);
 
-        utils.validateSchema(value.data, accelerationSchema, {
+        validateSchema(value.data, accelerationSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -147,10 +149,10 @@ describe("Elsys EMS Door uplink", () => {
         assert.equal(value.data.batteryLevel, 100);
         assert.equal(value.data.batteryVoltage, 3.631);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
 
@@ -171,7 +173,7 @@ describe("Elsys EMS Door uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -181,10 +183,10 @@ describe("Elsys EMS Door uplink", () => {
         assert.equal(value.data.relativePulse1, 1);
         assert.equal(value.data.reed, true);
 
-        utils.validateSchema(value.data, reedSchema, { throwError: true });
+        validateSchema(value.data, reedSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
 
@@ -205,7 +207,7 @@ describe("Elsys EMS Door uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -215,10 +217,10 @@ describe("Elsys EMS Door uplink", () => {
         assert.equal(value.data.relativePulse1, 0);
         assert.equal(value.data.reed, false);
 
-        utils.validateSchema(value.data, reedSchema, { throwError: true });
+        validateSchema(value.data, reedSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
 

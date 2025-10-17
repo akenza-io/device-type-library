@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Digital Technologies Humidity Sensor Uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/default.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
         defaultSchema = parsedSchema;
         done();
@@ -37,16 +40,17 @@ describe("Digital Technologies Humidity Sensor Uplink", () => {
         timestamp: "2021-09-14T08:16:27.517331Z",
         labels: { name: "Temperature Simulator" },
       };
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 22.45);
+        assert.equal(value.data.temperatureF, 72.41);
         assert.equal(value.data.humidity, 17);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
@@ -97,64 +101,69 @@ describe("Digital Technologies Humidity Sensor Uplink", () => {
         }
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 0);
+        assert.equal(value.data.temperatureF, 32);
         assert.equal(value.data.humidity, 0);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 0.5);
+        assert.equal(value.data.temperatureF, 32.9);
         assert.equal(value.data.humidity, 0.5);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 0.8);
+        assert.equal(value.data.temperatureF, 33.44);
         assert.equal(value.data.humidity, 0.8);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 1);
+        assert.equal(value.data.temperatureF, 33.8);
         assert.equal(value.data.humidity, 1);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 0.9);
+        assert.equal(value.data.temperatureF, 33.62);
         assert.equal(value.data.humidity, 0.9);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
