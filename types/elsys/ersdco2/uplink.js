@@ -454,7 +454,6 @@ function consume(event) {
 
     // Occupancy values
     occupancy.motion = res.motion;
-    occupancy.occupancy = res.occupancy;
 
     // Noise values
     noise.soundPeak = res.soundPeak;
@@ -483,24 +482,6 @@ function consume(event) {
     }
 
     if (deleteUnusedKeys(occupancy)) {
-      // Warm desk 
-      const time = new Date().getTime();
-      const state = event.state || {};
-      occupancy.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
-      if (occupancy.occupied) {
-        delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
-      } else if (state.lastOccupancyTimestamp !== undefined) {
-        occupancy.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
-      } else if (state.lastOccupiedValue) { //
-        state.lastOccupancyTimestamp = time; // Start with first no occupancy
-      }
-
-      if (Number.isNaN(occupancy.minutesSinceLastOccupied)) {
-        occupancy.minutesSinceLastOccupied = 0;
-      }
-      state.lastOccupiedValue = occupancy.occupied;
-
-      emit("state", state);
       emit("sample", { data: occupancy, topic: "occupancy" });
     }
 
