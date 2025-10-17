@@ -7,9 +7,7 @@
   "title": "Door count",
   "properties": {
     "doorClosings": {
-      "title": "Door closing",
-      "description": "Each door opening and closing counts as one doorClosing",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/usage/count"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/usage/doorClosings"
     },
     "usageCount": {
       "title": "Usage count",

@@ -68,8 +68,7 @@ function consume(event) {
     }
 
     const calculated = calculateIncrement(state, sample.count, checkForCustomFields(event.device, "usageCountDivider", 2));
-    const { doorClosings } = calculated.data;
-    const { usageCount } = calculated.data;
+    const { doorClosings, usageCount } = calculated.data;
 
     emit("state", calculated.state);
     emit("sample", { data: { doorClosings, usageCount }, topic: "door_count" });

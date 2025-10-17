@@ -537,8 +537,7 @@ function consume(event) {
         }
       }
       calculated = calculateIncrement(state, reed.pulseAbs1, checkForCustomFields(event.device, "usageCountDivider", 2));
-      let { doorClosings } = calculated.data;
-      let { usageCount } = calculated.data;
+      let { doorClosings, usageCount } = calculated.data;
       reed.relativePulse1 = calculated.data.increment;
       reed.pulseAbs1 = calculated.state.lastCount;
       state = calculated.state;

@@ -106,8 +106,7 @@ function consume(event) {
           topic = "reed_counter";
 
           const calculated = calculateIncrement(state, data.reedCounter, checkForCustomFields(event.device, "usageCountDivider", 2));
-          const { doorClosings } = calculated.data;
-          const { usageCount } = calculated.data;
+          const { doorClosings, usageCount } = calculated.data;
           data.relativeReedCounter = calculated.data.increment;
 
           emit("state", calculated.state);
