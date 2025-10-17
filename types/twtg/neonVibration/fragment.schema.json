@@ -14,7 +14,7 @@
     },
     "fragmentType": {
       "title": "Fragment type",
-      "type": "number",
+      "type": "string",
       "description": "Fragment type",
       "enum": [
         "PLAIN",
@@ -24,6 +24,7 @@
     }
   },
   "required": [
-    "index"
+    "index",
+    "fragmentType"
   ]
 }

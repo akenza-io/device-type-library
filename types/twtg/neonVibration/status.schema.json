@@ -56,7 +56,7 @@
     "internalTemperatureSensor": {
       "title": "Internal temperature sensor",
       "description": "Internal temperature sensor",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "type": "boolean",
       "hideFromKpis": true
     },
     "timeSynchronized": {

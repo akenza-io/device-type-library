@@ -29,6 +29,6 @@
     }
   },
   "required": [
-    "response"
+    "rebootReason"
   ]
 }

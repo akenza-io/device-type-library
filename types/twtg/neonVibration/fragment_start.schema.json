@@ -32,8 +32,9 @@
     }
   },
   "required": [
-    "tag",
-    "type",
-    "status"
+    "port",
+    "uplinkSize",
+    "fragmentSize",
+    "crc"
   ]
 }

@@ -45,7 +45,7 @@
   },
   "required": [
     "tag",
-    "type",
-    "status"
+    "deviceConfiguration",
+    "updateStatus"
   ]
 }

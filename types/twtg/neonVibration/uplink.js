@@ -321,7 +321,7 @@ function consume(event) {
   const messageId = Bits.bitsToUnsigned(bits.substr(0, 4));
   const messageVersion = Bits.bitsToUnsigned(bits.substr(4, 4));
   switch ((port << 8) | (messageId << 4) | messageVersion) {
-    case 0xe10:
+    case 0xe10: {
       decoded.transmitterChargeUsed = float16ToNumber(bits.substr(8, 15));
       decoded.sensorChargeUsed = float16ToNumber(bits.substr(23, 15));
       decoded.averageTemperature = float16ToNumber(bits.substr(38, 16));
@@ -336,7 +336,7 @@ function consume(event) {
 
       emit("sample", { data: decoded, topic: "lifecycle" });
       break;
-    case 0xe30:
+    } case 0xe30:
       emit("sample", { data: { "response": true }, topic: "lifecycle_response" });
       break;
     case 0xb00:

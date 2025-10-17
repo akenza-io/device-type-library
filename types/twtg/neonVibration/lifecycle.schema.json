@@ -31,7 +31,9 @@
     }
   },
   "required": [
-    "payloadVersion",
+    "averageTemperature",
+    "sensorChargeUsed",
+    "transmitterChargeUsed",
     "batteryLevel"
   ]
 }
