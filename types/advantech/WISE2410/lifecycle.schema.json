@@ -30,7 +30,6 @@
     }
   },
   "required": [
-    "batteryVoltage",
     "powerSource"
   ]
 }

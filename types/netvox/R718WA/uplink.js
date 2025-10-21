@@ -11,7 +11,7 @@ function getBatteryPercentage(voltage) {
   }
   const percentage = ((voltage - V_MIN) / (V_MAX - V_MIN)) * 100;
 
-  return percentage.toFixed(0)
+  return Number(percentage.toFixed(0))
 }
 
 function consume(event) {

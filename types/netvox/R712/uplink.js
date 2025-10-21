@@ -1,7 +1,7 @@
 const getBatteryPercentage = (voltage) => {
-  // R712 uses two 1.5V AA
-  const V_MAX = 3.2; // Voltage of fresh batteries (100%)
-  const V_MIN = 2.0; // Voltage when batteries are considered dead (0%)
+  // R712 uses two 1.5V AA Transmitting current (max)  120 mA/ 3.6v
+  const V_MAX = 3.6; // Voltage of fresh batteries (100%)
+  const V_MIN = 3.0; // Voltage when batteries are considered dead (0%)
 
   if (voltage >= V_MAX) {
     return 100;
@@ -11,7 +11,7 @@ const getBatteryPercentage = (voltage) => {
   }
   const percentage = ((voltage - V_MIN) / (V_MAX - V_MIN)) * 100;
 
-  return percentage
+  return Number(percentage.toFixed(0))
 }
 
 
