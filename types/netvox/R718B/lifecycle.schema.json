@@ -9,15 +9,12 @@
     "batteryVoltage": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
     },
-    "lowBattery": {
-      "title": "Low Battery",
-      "description": "Indicates if the battery is low.",
-      "type": "boolean",
-      "hideFromKpis": true
+    "batteryLevel": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
     }
   },
   "required": [
     "batteryVoltage",
-    "lowBattery"
+    "batteryLevel"
   ]
 }

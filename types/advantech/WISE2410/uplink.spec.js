@@ -48,6 +48,7 @@ describe("Advantech WISE2410 uplink", () => {
                 assert.isObject(value.data);
                 assert.equal(value.data.deviceEvent, 0);
                 assert.equal(value.data.batteryVoltage, 3.568);
+                assert.equal(value.data.batteryLevel, 84);
                 assert.equal(value.data.powerSource, "BATTERY");
                 validateSchema(value.data, lifecycleSchema, { throwError: true });
             });
@@ -87,6 +88,72 @@ describe("Advantech WISE2410 uplink", () => {
             });
             consume(data);
         });
-    });
-});
 
+        it("should decode the WISE2410 with powerline connection", () => {
+            const data = {
+                data: {
+                    port: 1,
+                    payloadHex: "818D4E5007060000B45F00005538E2FF000014001E001500F4FF67012E00180006000000150020001700E6FF8E0226001A00040000001B0026001B000000000000000000000060091B0001000047D7895CF0",
+                },
+            };
+
+            expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.equal(value.topic, "climate");
+                assert.isObject(value.data);
+                assert.equal(value.data.temperature, 24.50);
+                validateSchema(value.data, climateSchema, { throwError: true });
+            });
+
+
+            expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.equal(value.topic, "lifecycle");
+                assert.isObject(value.data);
+                assert.equal(value.data.deviceEvent, 0);
+                assert.equal(value.data.powerSource, "POWER_LINE");
+                validateSchema(value.data, lifecycleSchema, { throwError: true });
+            });
+
+            expectEmits((type, value) => {
+                assert.equal(type, "sample");
+                assert.equal(value.topic, "default");
+                assert.isObject(value.data);
+                assert.equal(value.data.sensorEventX, 0);
+                assert.equal(value.data.velocityRmsX, 0.2);
+                assert.equal(value.data.accelerationPeakX, 0.3);
+                assert.equal(value.data.accelerationRmsX, 0.21);
+                assert.equal(value.data.kurtosisX, -0.12);
+                assert.equal(value.data.crestFactorX, 3.59);
+                assert.equal(value.data.skewnessX, 0.46);
+                assert.equal(value.data.standardDeviationX, 0.24);
+                assert.equal(value.data.displacementX, 6);
+                assert.equal(value.data.sensorEventY, 0);
+                assert.equal(value.data.velocityRmsY, 0.21);
+                assert.equal(value.data.accelerationPeakY, 0.32);
+                assert.equal(value.data.accelerationRmsY, 0.23);
+                assert.equal(value.data.kurtosisY, -0.26);
+                assert.equal(value.data.crestFactorY, 6.54);
+                assert.equal(value.data.skewnessY, 0.38);
+                assert.equal(value.data.standardDeviationY, 0.26);
+                assert.equal(value.data.displacementY, 4);
+                assert.equal(value.data.sensorEventZ, 0);
+                assert.equal(value.data.velocityRmsZ, 0.27);
+                assert.equal(value.data.accelerationPeakZ, 0.38);
+                assert.equal(value.data.accelerationRmsZ, 0.27);
+                assert.equal(value.data.kurtosisZ, 0);
+                assert.equal(value.data.crestFactorZ, 0);
+                assert.equal(value.data.skewnessZ, 0);
+                assert.equal(value.data.standardDeviationZ, 0);
+                assert.equal(value.data.displacementZ, 0);
+                validateSchema(value.data, defaultSchema, { throwError: true });
+            });
+
+            consume(data);
+
+
+
+        });
+    });
+
+});
