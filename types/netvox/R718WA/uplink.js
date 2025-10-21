@@ -1,3 +1,19 @@
+function getBatteryPercentage(voltage) {
+  // Lithium ER14505 battery
+  const V_MAX = 3.6; // Voltage of fresh batteries (100%)
+  const V_MIN = 3.0; // Voltage when batteries are considered dead (0%)
+
+  if (voltage >= V_MAX) {
+    return 100;
+  }
+  if (voltage <= V_MIN) {
+    return 0;
+  }
+  const percentage = ((voltage - V_MIN) / (V_MAX - V_MIN)) * 100;
+
+  return Number(percentage.toFixed(0))
+}
+
 function consume(event) {
   const payload = Hex.hexToBytes(event.data.payloadHex);
   const { port } = event.data;
@@ -21,8 +37,7 @@ function consume(event) {
 
         // Byte 3: Battery Voltage (unit: 0.1V)
         lifecycleData.batteryVoltage = payload[3] / 10.0;
-        // If the battery voltage is less than or equal to 3.2V, it is considered low
-        lifecycleData.lowBattery = lifecycleData.batteryVoltage <= 3.2;
+        lifecycleData.batteryLevel = getBatteryPercentage(lifecycleData.batteryVoltage)
         // Byte 4: Water Leak Status (0x01 = leak, 0x00 = no leak)
         defaultData.waterLeak = payload[4] === 0x01;
 

@@ -38,6 +38,7 @@ describe("Netvox RB11E uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.isObject(value.data);
         assert.equal(value.data.batteryVoltage, 3.4);
+        assert.equal(value.data.batteryLevel, 67);
         validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 

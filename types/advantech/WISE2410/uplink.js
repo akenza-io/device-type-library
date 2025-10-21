@@ -18,6 +18,22 @@ function readInt32Le(bytes) {
   return value & 0x80000000 ? value - 0x100000000 : value;
 }
 
+function getBatteryPercentage(voltage) {
+  // ER14500TEKCELL battery: lithium; 14500; 3.6V; 2400mAh; non-rechargeable
+  const V_MAX = 3.6; // Voltage of fresh batteries (100%)
+  const V_MIN = 3.4; // Voltage when batteries are considered dead (0%)
+
+  if (voltage >= V_MAX) {
+    return 100;
+  }
+  if (voltage <= V_MIN) {
+    return 0;
+  }
+  const percentage = ((voltage - V_MIN) / (V_MAX - V_MIN)) * 100;
+
+  return Number(percentage.toFixed(0))
+}
+
 // --- Constants from Advantech Documentation ---
 
 // Payload Types
@@ -218,11 +234,19 @@ function consume(event) {
         else if (source & 0b01) lifecycle.powerSource = "POWER_LINE";
       }
       if (mask & DEVICE_MASK_BATTERY_LEVEL) {
-        lifecycle.batteryLevel = bytes[i++];
+        if (lifecycle.powerSource === "BATTERY") {
+          lifecycle.batteryLevel = bytes[i++];
+        }
       }
       if (mask & DEVICE_MASK_BATTERY_VOLTAGE) {
-        lifecycle.batteryVoltage = readUint16Le(bytes.slice(i, i + 2)) / 1000;
-        i += 2;
+        if (lifecycle.powerSource === "BATTERY") {
+          lifecycle.batteryVoltage = readUint16Le(bytes.slice(i, i + 2)) / 1000;
+          i += 2;
+          // if the battery level is not set, we can derive the level from the voltage
+          if (!lifecycle.batteryLevel) {
+            lifecycle.batteryLevel = getBatteryPercentage(lifecycle.batteryVoltage)
+          }
+        }
       }
       if (mask & DEVICE_MASK_TIMESTAMP) {
         //lifecycle.timestamp = read_uint32_le(bytes.slice(i, i + 4));

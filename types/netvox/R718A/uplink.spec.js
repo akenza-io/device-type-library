@@ -36,7 +36,7 @@ describe("Netvox R718A uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.isObject(value.data);
         assert.equal(value.data.batteryVoltage, 3.6);
-        assert.equal(value.data.lowBattery, false);
+        assert.equal(value.data.batteryLevel, 100);
         validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
@@ -69,7 +69,7 @@ describe("Netvox R718A uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.isObject(value.data);
         assert.equal(value.data.batteryVoltage, 3.6);
-        assert.equal(value.data.lowBattery, false);
+        assert.equal(value.data.batteryLevel, 100);
         validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
