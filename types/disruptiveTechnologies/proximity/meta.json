@@ -15,7 +15,8 @@
     "door_count",
     "touch",
     "network_status",
-    "lifecycle"
+    "lifecycle",
+    "washroom_usage"
   ],
   "encoding": "JSON",
   "connectivity": "HTTP"

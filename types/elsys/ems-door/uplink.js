@@ -532,17 +532,22 @@ function consume(event) {
 
         if (state.lastCount !== undefined) {
           reed.pulseAbs1 = reed.relativePulse1 + state.lastCount;
-        } else {
-          reed.pulseAbs1 = 0;
+          calculated = calculateIncrement(state, reed.pulseAbs1, checkForCustomFields(event.device, "usageCountDivider", 2));
         }
+      } else {
+        calculated = calculateIncrement(state, reed.pulseAbs1, checkForCustomFields(event.device, "usageCountDivider", 2));
       }
-      calculated = calculateIncrement(state, reed.pulseAbs1, checkForCustomFields(event.device, "usageCountDivider", 2));
-      let { doorClosings, usageCount } = calculated.data;
-      reed.relativePulse1 = calculated.data.increment;
-      reed.pulseAbs1 = calculated.state.lastCount;
-      state = calculated.state;
+      // Its a bit ugly, but this forces an absolute value to be present before starting with the calculations
+      // This is needed as theres no other way to get the correct starting point
+      if (calculated !== "") {
+        let { doorClosings, usageCount } = calculated.data;
+        reed.relativePulse1 = calculated.data.increment;
+        reed.pulseAbs1 = calculated.state.lastCount;
+        state = calculated.state;
 
-      emit("sample", { data: { doorClosings, usageCount }, topic: "door_count" });
+        emit("sample", { data: { doorClosings, usageCount }, topic: "door_count" });
+      }
+
       emit("sample", { data: reed, topic: "reed" });
     }
 
