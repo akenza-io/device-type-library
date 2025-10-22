@@ -311,13 +311,8 @@ function float32ToNumber(encoded) {
   return sign * Math.pow(2, exp - 127) * (1 + fraction * 1.1920928955078125e-7); // 2^-23
 }
 
-function consume(event) {
-  const payload = event.data.payloadHex;
-  const { port } = event.data;
-  const bits = Bits.hexToBits(payload);
-  const state = event.state || {};
+function decode(payload, bits, port, state) {
   const decoded = {};
-
   const messageId = Bits.bitsToUnsigned(bits.substr(0, 4));
   const messageVersion = Bits.bitsToUnsigned(bits.substr(4, 4));
   switch ((port << 8) | (messageId << 4) | messageVersion) {
@@ -334,22 +329,20 @@ function consume(event) {
       }
       // Reserved 2
 
-      emit("sample", { data: decoded, topic: "lifecycle" });
-      break;
+      return { data: decoded, topic: "lifecycle" };
     } case 0xe30:
-      emit("sample", { data: { "response": true }, topic: "lifecycle_response" });
-      break;
+      return { data: { "response": true }, topic: "lifecycle_response" };
     case 0xb00:
       decoded.tag = (payload.substr(2, 8));
       decoded.deviceConfiguration = enums.device_configuration_type_v0.values[(Bits.bitsToUnsigned(bits.substr(40, 12)))];
       decoded.updateStatus = enums.configuration_update_status_v0.values[(Bits.bitsToUnsigned(bits.substr(52, 4)))];
-      emit("sample", { data: decoded, topic: "configuration" });
-      break;
+      return { data: decoded, topic: "configuration" };
     case 0xc00:
       // Check if theres still an active session
       if (state.streamingFragments !== undefined) {
         if (state.streamingFragments && state.streamingNonRedundant) {
-          emit("sample", { data: { "error": "MULTIPLE_FRAGMENT_STREAMS" }, topic: "error" });
+          // Should notifiy but not stop the new fragment stream
+          emit("log", { data: { "error": "MULTIPLE_FRAGMENT_STREAMS" }, topic: "error" });
         }
       }
       // Instate helpers here, they should be reused for each session
@@ -367,13 +360,11 @@ function consume(event) {
       state.port = decoded.port;
       state.concatedPayload = "";
 
-      emit("sample", { data: decoded, topic: "fragment_start" });
-      break;
+      return { data: decoded, topic: "fragment_start", state };
     case 0xc10:
       // Break if there is no active session
       if (state.streamingFragments === undefined || !state.streamingFragments) {
-        emit("sample", { data: { "error": "NO_STARTING_FRAGMENT" }, topic: "error" });
-        break;
+        return { data: { "error": "NO_STARTING_FRAGMENT" }, topic: "error" };
       }
 
       decoded.index = Bits.bitsToUnsigned(bits.substr(8, 16));
@@ -383,7 +374,6 @@ function consume(event) {
         if (state.concatedPayload.length / 2 < state.uplinkSize) {
           state.concatedPayload += payload.substr(i, 2);
         } else {
-          // Do not save redundant bytes for now
           if (state.streamingNonRedundant) {
             state.streamingNonRedundant = false;
 
@@ -394,28 +384,24 @@ function consume(event) {
             // Check CRC
             if (state.crc === crcValue) {
               // Initiate new consume for the reconstructed payload
-              const newEvent = { data: { "payloadHex": state.concatedPayload, "port": state.port }, "state": event.state, };
-              consume(newEvent);
+              return { data: { "payloadHex": state.concatedPayload, "port": state.port }, "state": state, topic: "reinvoke" };
             } else {
-              emit("sample", { data: { "error": "CRC_DID_NOT_MATCH_ABORTING" }, topic: "error" });
+              return { data: { "error": "CRC_DID_NOT_MATCH_ABORTING" }, topic: "error" };
             }
           } else {
             decoded.fragmentType = "REDUNDANT";
           }
+          // Ignore redundant for now
           return;
         }
       }
 
-
-      emit("sample", { data: decoded, topic: "fragment" });
-      break;
+      return { data: decoded, topic: "fragment", state };
     case 0xe20:
-      emit("sample", { data: { "response": true }, topic: "factory_reset" });
-      break;
+      return { data: { "response": true }, topic: "factory_reset" };
     case 0x1000:
       decoded.rebootReason = enums.reboot_reason_v0.values[Bits.bitsToUnsigned(bits.substr(8, 16))];
-      emit("sample", { data: decoded, topic: "boot" });
-      break;
+      return { data: decoded, topic: "boot" };
     case 0x1010:
       decoded.temperature = Bits.bitsToSigned(bits.substr(8, 8));
       decoded.rssi = Bits.bitsToSigned(bits.substr(16, 8));
@@ -428,16 +414,13 @@ function consume(event) {
       decoded.internalTemperatureSensor = !!Bits.bitsToUnsigned(bits.substr(45, 1));
       decoded.timeSynchronized = !!Bits.bitsToUnsigned(bits.substr(46, 1));
       // Reserved 1
-      emit("sample", { data: decoded, topic: "status" });
-      break;
+      return { data: decoded, topic: "status" };
     case 0x1030:
       decoded.deactivationReason = enums.deactivation_reason_v0.values[Bits.bitsToUnsigned(bits.substr(8, 8))];
-      emit("sample", { data: decoded, topic: "deactivation" });
-      break;
+      return { data: decoded, topic: "deactivation" };
     case 0x1100:
       decoded.rebootReason = enums.reboot_reason_v0.values[Bits.bitsToUnsigned(bits.substr(8, 16))];
-      emit("sample", { data: decoded, topic: "boot" });
-      break;
+      return { data: decoded, topic: "boot" };
     case 0x1110: {
       // Reserved short timestamp 16
       const axis = enums.vb_axis_v0.values[Bits.bitsToUnsigned(bits.substr(24, 2))];
@@ -446,8 +429,7 @@ function consume(event) {
       decoded.rmsAcceleration = float16ToNumber(bits.substr(50, 16));
       decoded.rmsVelocity = float16ToNumber(bits.substr(66, 16));
       // Reserved 6
-      emit("sample", { data: decoded, topic: `axis_${String(axis).toLowerCase()}` });
-      break;
+      return { data: decoded, topic: `axis_${String(axis).toLowerCase()}` };
     } case 0x1120:
       // Reserved short timestamp 16
       decoded.sensorAlert0 = !!Bits.bitsToSigned(bits.substr(24, 1));
@@ -464,8 +446,7 @@ function consume(event) {
       decoded.spectrumAlert3 = !!Bits.bitsToSigned(bits.substr(35, 1));
       decoded.spectrumAlert4 = !!Bits.bitsToSigned(bits.substr(36, 1));
       // Reserved 3
-      emit("sample", { data: decoded, topic: "alert" });
-      break;
+      return { data: decoded, topic: "alert" };
     case 0x1130: {
       // Reserved short timestamp 16
       decoded.axis = enums.vb_axis_v0.values[Bits.bitsToUnsigned(bits.substr(24, 2))];
@@ -490,8 +471,7 @@ function consume(event) {
         decoded.harmonicAmplitudes.push((2.5 * amplitudeFirstHarmonic * element) / 255)
       });
 
-      emit("sample", { data: decoded, topic: "machine_fault" });
-      break;
+      return { data: decoded, topic: "machine_fault" };
     } case 0x1140:
       decoded.selection = enums.vb_statistics_selection_v0.values[Bits.bitsToUnsigned(bits.substr(8, 4))];
       decoded.min = float16ToNumber(bits.substr(12, 16));
@@ -500,8 +480,7 @@ function consume(event) {
       // Reserved short timestamp 16
       // Reserved 4
 
-      emit("sample", { data: decoded, topic: "statistics" });
-      break;
+      return { data: decoded, topic: "statistics" };
     case 0x1150: {
       // Reserved timestamp 32
       const axis = enums.vb_axis_v0.values[Bits.bitsToUnsigned(bits.substr(40, 2))];
@@ -528,11 +507,32 @@ function consume(event) {
         decoded.magnitudes.push(element * magnitudesScaling);
       });
 
-      emit("sample", { data: decoded, topic: `axis_${String(axis).toLowerCase()}_spectrum` });
-      break;
+      return { data: decoded, topic: `axis_${String(axis).toLowerCase()}_spectrum` };
     } default: {
-      emit("sample", { data: { "error": "UNKNOWN_MESSAGE" }, topic: "error" });
+      emit("log", { debugging: { "payload": payload, "port": port } });
+      return { data: { "error": "UNKNOWN_MESSAGE" }, topic: "error" };
     }
   }
-  emit("state", state);
+}
+
+function consume(event) {
+  let payload = event.data.payloadHex;
+  let { port } = event.data;
+  let bits = Bits.hexToBits(payload);
+  let state = event.state || {};
+
+  let decoded = decode(payload, bits, port, state);
+  if (decoded !== undefined) {
+    // Run concated payload
+    if (decoded.topic == "reinvoke") {
+      payload = decoded.data.payloadHex;
+      bits = Bits.hexToBits(payload);
+      port = decoded.data.port;
+      state = decoded.state;
+      decoded = decode(payload, bits, port, state);
+    }
+
+    emit("sample", { data: decoded.data, topic: decoded.topic });
+    emit("state", state);
+  }
 }
