@@ -521,7 +521,7 @@ function consume(event) {
     }
 
     if (deleteUnusedKeys(reed)) {
-      let calculated = "";
+      let calculated;
       // Complete sample if it is a reed event
       if (reed.pulseAbs1 === undefined) {
         if (reed.reed) {
@@ -539,7 +539,7 @@ function consume(event) {
       }
       // Its a bit ugly, but this forces an absolute value to be present before starting with the calculations
       // This is needed as theres no other way to get the correct starting point
-      if (calculated !== "") {
+      if (calculated !== undefined) {
         let { doorClosings, usageCount } = calculated.data;
         reed.relativePulse1 = calculated.data.increment;
         reed.pulseAbs1 = calculated.state.lastCount;
