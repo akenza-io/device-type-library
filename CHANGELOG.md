@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.78.0] - 2025-10-21
+
+### Changed
+
+- Netvox & Advantech - Added batteryLevel calculations
+
 # [1.77.1] - 2025-10-17
 
 ### Added
