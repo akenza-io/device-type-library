@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.79.0] - 2025-10-23
+
+### Added
+
+- TWTG - Neon Vibration
+
+### Changed
+
+- Nexelec Origin - Now correctly grabs the event.timestamp
+
 # [1.78.0] - 2025-10-21
 
 ### Changed
