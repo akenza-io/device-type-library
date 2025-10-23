@@ -1,15 +1,46 @@
-function calculateIncrement(lastValue, currentValue) {
+function calculateIncrement(state, currentValue, usageDefinition = 2) {
+  let { lastCount } = state;
+  let { partialUsage } = state;
+  let response = { state, data: { increment: 0, usageCount: 0, doorClosings: 0 } }
+
   // Check if current value exists
   if (currentValue === undefined || Number.isNaN(currentValue)) {
-    return 0;
+    return response;
   }
 
-  // Init state && Check for the case the counter reseted
-  if (lastValue === undefined || lastValue > currentValue) {
-    lastValue = currentValue;
+  // Init state for last absolute count && Check for the case the counter reseted
+  if (lastCount === undefined || lastCount > currentValue) {
+    lastCount = currentValue;
   }
+
   // Calculate increment
-  return currentValue - lastValue;
+  response.data.increment = currentValue - lastCount;
+  response.state.lastCount = currentValue;
+
+  // Init state for cycles
+  if (partialUsage === undefined || Number.isNaN(partialUsage)) {
+    partialUsage = 0;
+  }
+
+  // Add new partial usage 
+  let newPartialUsage = partialUsage + response.data.increment;
+  let remainingPartialUsage = newPartialUsage % usageDefinition;
+
+  // Needs to be done for larger partial usages
+  response.data.doorClosings = response.data.increment / (usageDefinition / 2);
+  response.data.usageCount = (newPartialUsage - remainingPartialUsage) / usageDefinition;
+
+  // Save not used partial usage for next time
+  response.state.partialUsage = remainingPartialUsage;
+
+  return response;
+}
+
+function checkForCustomFields(device, target, norm) {
+  if (device !== undefined && device.customFields !== undefined && device.customFields[target] !== undefined) {
+    return device.customFields[target];
+  }
+  return norm;
 }
 
 function consume(event) {
@@ -39,10 +70,12 @@ function consume(event) {
   data.count = Hex.hexLittleEndianToBigEndian(payload.substr(10, 6), false);
 
   const state = event.state || {};
-  data.relativeCount = calculateIncrement(state.lastCount, data.count);
-  state.lastCount = data.count;
+  const calculated = calculateIncrement(state, data.count, checkForCustomFields(event.device, "usageCountDivider", 4));
+  const { doorClosings, usageCount } = calculated.data;
+  data.relativeCount = calculated.data.increment;
 
-  emit("state", state);
+  emit("state", calculated.state);
+  emit("sample", { data: { doorClosings, usageCount }, topic: "door_count" });
   emit("sample", { data: lifecycle, topic: "lifecycle" });
   emit("sample", { data, topic: "default" });
 }
