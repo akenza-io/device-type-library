@@ -31,6 +31,7 @@ describe("Nexelec Origin uplink", () => {
     describe("consume()", () => {
         it("decodes datalog event", () => {
             const data = {
+                timestamp: new Date().getTime() / 1000,
                 data: {
                     port: 56,
                     payloadHex: "b105487838521484e1384e1384e1284a1284a1284a1284a1284a12",
@@ -193,6 +194,7 @@ describe("Nexelec Origin uplink", () => {
 
         it("decodes system event", () => {
             const data = {
+                timestamp: new Date().toISOString(),
                 data: {
                     port: 56,
                     payloadHex: "b100010a7130d3",
