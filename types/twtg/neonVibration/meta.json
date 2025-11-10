@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "TWTG",
   "url": "https://twtg.io/products/neon-vibration-sensor/",
-  "description": "",
+  "description": "The NEON Vibration Sensor sends alerts, as soon as assets, such as engines, conveyor belts, and pumps start to fail. This sets off a trigger when a change of amplitude is detected in the vibration spectrum or when deviations in the data occur. With this, in combination with an on site maintenance team, failure or long-term damage can be prevented. That way, assets that are not under constant supervision from operators, can be monitored around the clock.",
   "author": "Akenza AG",
   "firmwareVersion": "V4.0.0",
   "loraDeviceClass": "A",
