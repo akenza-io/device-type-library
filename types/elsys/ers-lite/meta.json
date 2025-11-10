@@ -2,7 +2,7 @@
   "name": "ERS Lite LoRa",
   "version": "1.0.0",
   "manufacturer": "Elsys",
-  "url": "https://www.elsys.se/en/ers-lite/",
+  "url": "https://www.elsys.se/en/eco/",
   "description": "ERS is a sensor for simple and easy environment measuring. It measures temperature and humidity.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.3.5",
