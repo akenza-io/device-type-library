@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.80.0] - 2025-11-11
+
+### Changed
+
+- TBDW100 - Browan, Disruptive technologies - Proximity, Elsys - EMS Door, Swisscom - Multisense
+- Added door count datapoints
+
 # [1.79.0] - 2025-10-23
 
 ### Added
