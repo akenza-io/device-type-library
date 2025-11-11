@@ -68,16 +68,6 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
       };
 
       expectEmits((type, value) => {
-        assert.equal(type, "state");
-        assert.isNotNull(value);
-
-        assert.equal(value.lastCount, 0);
-        assert.equal(value.partialUsage, 0);
-        assert.equal(value.lastStatus, "NOT_PRESENT");
-        assert.isDefined(value.lastSampleEmittedAt);
-      });
-
-      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -107,6 +97,16 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         });
       });
 
+      expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+
+        assert.equal(value.lastCount, 0);
+        assert.equal(value.partialUsage, 0);
+        assert.equal(value.lastStatus, "NOT_PRESENT");
+        assert.isDefined(value.lastSampleEmittedAt);
+      });
+
       consume(data);
     });
 
@@ -132,16 +132,6 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
           lastSampleEmittedAt: new Date().getTime()
         }
       };
-
-      expectEmits((type, value) => {
-        assert.equal(type, "state");
-        assert.isNotNull(value);
-
-        assert.equal(value.lastCount, 1);
-        assert.equal(value.partialUsage, 1);
-        assert.equal(value.lastStatus, "PRESENT");
-        assert.isDefined(value.lastSampleEmittedAt);
-      });
 
       expectEmits((type, value) => {
         assert.equal(type, "sample");
@@ -171,6 +161,16 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         validateSchema(value.data, objectPresentSchema, {
           throwError: true,
         });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+
+        assert.equal(value.lastCount, 1);
+        assert.equal(value.partialUsage, 1);
+        assert.equal(value.lastStatus, "PRESENT");
+        assert.isDefined(value.lastSampleEmittedAt);
       });
 
       consume(data);
@@ -240,6 +240,11 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         });
       });
 
+      expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+      });
+
       consume(data);
     });
 
@@ -273,17 +278,6 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
       };
 
       expectEmits((type, value) => {
-        assert.equal(type, "state");
-        assert.isNotNull(value);
-
-        assert.equal(value.lastCount, 201);
-        assert.equal(value.partialUsage, 0);
-        assert.equal(value.usage, 1);
-        assert.equal(value.lastStatus, "PRESENT");
-        assert.isDefined(value.lastSampleEmittedAt);
-      });
-
-      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -311,6 +305,17 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         validateSchema(value.data, objectPresentSchema, {
           throwError: true,
         });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+
+        assert.equal(value.lastCount, 201);
+        assert.equal(value.partialUsage, 0);
+        assert.equal(value.usage, 1);
+        assert.equal(value.lastStatus, "PRESENT");
+        assert.isDefined(value.lastSampleEmittedAt);
       });
 
       consume(data);
@@ -345,16 +350,6 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
       };
 
       expectEmits((type, value) => {
-        assert.equal(type, "state");
-        assert.isNotNull(value);
-
-        assert.equal(value.lastCount, 201);
-        assert.equal(value.usage, 1);
-        assert.equal(value.lastStatus, "NOT_PRESENT");
-        assert.isDefined(value.lastSampleEmittedAt);
-      });
-
-      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -382,6 +377,16 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         validateSchema(value.data, objectPresentSchema, {
           throwError: true,
         });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+
+        assert.equal(value.lastCount, 201);
+        assert.equal(value.usage, 1);
+        assert.equal(value.lastStatus, "NOT_PRESENT");
+        assert.isDefined(value.lastSampleEmittedAt);
       });
 
       consume(data);
@@ -431,17 +436,6 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
       });
 
       expectEmits((type, value) => {
-        assert.equal(type, "state");
-        assert.isNotNull(value);
-
-        assert.equal(value.lastCount, 202);
-        assert.equal(value.lastStatus, "PRESENT");
-        assert.equal(value.usage, 0);
-        assert.equal(value.partialUsage, 0);
-        assert.isDefined(value.lastSampleEmittedAt);
-      });
-
-      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -469,6 +463,17 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         validateSchema(value.data, objectPresentSchema, {
           throwError: true,
         });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+
+        assert.equal(value.lastCount, 202);
+        assert.equal(value.lastStatus, "PRESENT");
+        assert.equal(value.usage, 0);
+        assert.equal(value.partialUsage, 0);
+        assert.isDefined(value.lastSampleEmittedAt);
       });
 
       consume(data);

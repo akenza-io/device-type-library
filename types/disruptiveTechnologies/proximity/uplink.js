@@ -1,6 +1,7 @@
-function calculateIncrement(state, currentValue, usageDefinition = 2) {
+function calculateIncrement(state, currentValue, usageDefinition = 2, doorClosingDefinition = 1) {
   let { lastCount } = state;
   let { partialUsage } = state;
+  let { partialDoorClosing } = state;
   let response = { state, data: { increment: 0, usageCount: 0, doorClosings: 0 } }
 
   // Check if current value exists
@@ -21,17 +22,23 @@ function calculateIncrement(state, currentValue, usageDefinition = 2) {
   if (partialUsage === undefined || Number.isNaN(partialUsage)) {
     partialUsage = 0;
   }
+  if (partialDoorClosing === undefined || Number.isNaN(partialDoorClosing)) {
+    partialDoorClosing = 0;
+  }
 
   // Add new partial usage 
   let newPartialUsage = partialUsage + response.data.increment;
   let remainingPartialUsage = newPartialUsage % usageDefinition;
-
-  // Needs to be done for larger partial usages
-  response.data.doorClosings = response.data.increment / (usageDefinition / 2);
   response.data.usageCount = (newPartialUsage - remainingPartialUsage) / usageDefinition;
 
+  // Add new partial doorClosing
+  let newPartialDoorClosing = partialDoorClosing + response.data.increment;
+  let remainingPartialDoorClosing = newPartialDoorClosing % doorClosingDefinition;
+  response.data.doorClosings = (newPartialDoorClosing - remainingPartialDoorClosing) / doorClosingDefinition;
+
   // Save not used partial usage for next time
-  state.partialUsage = remainingPartialUsage;
+  response.state.partialUsage = remainingPartialUsage;
+  response.state.partialDoorClosing = remainingPartialDoorClosing;
 
   return response;
 }
@@ -47,7 +54,7 @@ function consume(event) {
   const { eventType } = event.data;
   let sample = {};
   const now = new Date().getTime();
-  const state = event.state || {};
+  let state = event.state || {};
 
   if (eventType === "objectPresent") {
     // Init usage to count washroom usages
@@ -75,6 +82,7 @@ function consume(event) {
 
     const calculated = calculateIncrement(state, sample.count, checkForCustomFields(event.device, "usageCountDivider", 2));
     const { doorClosings, usageCount } = calculated.data;
+    state = calculated.state;
 
     // Washroom usage
     if (event.device !== undefined && event.device.tags !== undefined &&
@@ -90,7 +98,6 @@ function consume(event) {
       }
     }
 
-    emit("state", calculated.state);
     emit("sample", { data: { doorClosings, usageCount }, topic: "door_count" });
     emit("sample", { data: sample, topic: "object_present" });
   } else if (eventType === "touch") {
@@ -133,4 +140,6 @@ function consume(event) {
     emit("sample", { data: sample, topic: "object_present" });
     state.lastSampleEmittedAt = now;
   }
+
+  emit("state", state);
 }
