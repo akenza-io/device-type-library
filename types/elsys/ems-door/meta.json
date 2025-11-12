@@ -15,6 +15,7 @@
     "acceleration",
     "lifecycle",
     "reed",
+    "door_count",
     "configuration"
   ],
   "encoding": "HEX",
