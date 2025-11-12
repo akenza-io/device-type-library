@@ -253,8 +253,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         state: {
           lastCount: 200,
           partialUsage: 1,
-          usage: 0,
-          lastStatus: "PRESENT",
+          lastStatus: "NOT_PRESENT",
           lastSampleEmittedAt: new Date().getTime()
         },
         device: {
@@ -276,6 +275,20 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         timestamp: "2021-09-15T14:48:05.948000Z",
         labels: {},
       };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "washroom_usage");
+        assert.equal(value.data.absoluteUsageCount, 100);
+        assert.equal(value.data.relativeUsageCount, 1);
+
+        validateSchema(value.data, washroomUsageSchema, {
+          throwError: true,
+        });
+      });
 
       expectEmits((type, value) => {
         assert.equal(type, "sample");
@@ -313,7 +326,6 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
 
         assert.equal(value.lastCount, 201);
         assert.equal(value.partialUsage, 0);
-        assert.equal(value.usage, 1);
         assert.equal(value.lastStatus, "PRESENT");
         assert.isDefined(value.lastSampleEmittedAt);
       });
@@ -326,7 +338,6 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         state: {
           lastCount: 201,
           partialUsage: 1,
-          usage: 1,
           lastStatus: "PRESENT",
         },
         device: {
@@ -384,7 +395,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         assert.isNotNull(value);
 
         assert.equal(value.lastCount, 201);
-        assert.equal(value.usage, 1);
+        assert.equal(value.partialUsage, 1);
         assert.equal(value.lastStatus, "NOT_PRESENT");
         assert.isDefined(value.lastSampleEmittedAt);
       });
@@ -414,7 +425,6 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         labels: {},
         state: {
           lastCount: 201,
-          usage: 1,
           partialUsage: 1,
           lastStatus: "NOT_PRESENT",
           lastSampleEmittedAt: new Date().getTime()
@@ -471,7 +481,6 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
 
         assert.equal(value.lastCount, 202);
         assert.equal(value.lastStatus, "PRESENT");
-        assert.equal(value.usage, 0);
         assert.equal(value.partialUsage, 0);
         assert.isDefined(value.lastSampleEmittedAt);
       });

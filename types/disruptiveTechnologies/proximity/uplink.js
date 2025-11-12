@@ -57,43 +57,40 @@ function consume(event) {
   let state = event.state || {};
 
   if (eventType === "objectPresent") {
-    // Init usage to count washroom usages
-    if (state.usage === undefined || state.usage === null) {
-      state.usage = 0;
-    }
-
     sample.objectPresent = event.data.objectPresent.state;
     if (sample.objectPresent === "PRESENT") {
       sample.proximity = true;
       sample.relativeCount = 1;
-      state.usage++;
     } else {
       sample.proximity = false;
       sample.relativeCount = 0;
     }
-    state.lastSampleEmittedAt = now;
-    state.lastStatus = sample.objectPresent;
 
     if (state.lastCount !== undefined) {
-      sample.count = sample.relativeCount + state.lastCount;
+      if (sample.objectPresent !== state.lastStatus) {
+        sample.count = sample.relativeCount + state.lastCount;
+      } else {
+        sample.count = state.lastCount;
+      }
     } else {
       sample.count = 0;
     }
+    state.lastSampleEmittedAt = now;
+    state.lastStatus = sample.objectPresent;
 
     const calculated = calculateIncrement(state, sample.count, checkForCustomFields(event.device, "usageCountDivider", 2));
     const { doorClosings, usageCount } = calculated.data;
     state = calculated.state;
 
-    // Washroom usage
+    // Washroom usage // Legacy
     if (event.device !== undefined && event.device.tags !== undefined &&
       (event.device.tags.indexOf("washroom_usage") !== -1 || event.device.tags.indexOf("cubicle_usage") !== -1)) {
 
       // Only emit on usageIncrease
-      if (state.usage > 0 && state.usage % 2 === 0) {
+      if (usageCount > 0) {
         const data = {};
         data.absoluteUsageCount = Math.floor(sample.count / 2);
-        data.relativeUsageCount = 1;
-        state.usage = 0;
+        data.relativeUsageCount = usageCount;
         emit("sample", { data, topic: "washroom_usage" });
       }
     }
