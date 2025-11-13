@@ -1,23 +1,25 @@
-const chai = require("chai");
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-const rewire = require("rewire");
-const utils = require("test-utils");
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-const { assert } = chai;
 
 describe("Decentlab RAD Uplink", () => {
   let defaultSchema = null;
   let lifecycleSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
     done();
   });
 
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/default.schema.json`)
+    loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
         defaultSchema = parsedSchema;
         done();
@@ -25,8 +27,7 @@ describe("Decentlab RAD Uplink", () => {
   });
 
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -42,7 +43,7 @@ describe("Decentlab RAD Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -51,10 +52,10 @@ describe("Decentlab RAD Uplink", () => {
         assert.equal(value.data.distance, 1868);
         assert.equal(value.data.temperature, 22.3);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -66,7 +67,7 @@ describe("Decentlab RAD Uplink", () => {
         assert.equal(value.data.reliability, 27);
         assert.equal(value.data.status, 0);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

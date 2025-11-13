@@ -4,27 +4,41 @@
 const decentlab_decoder = {
   PROTOCOL_VERSION: 2,
   SENSORS: [
-    {length: 4,
-     values: [{name: 'distance',
-               displayName: 'Distance',
-               convert: function (x) { return x[0]; },
-               unit: 'mm'},
-              {name: 'temperature',
-               displayName: 'Temperature',
-               convert: function (x) { return (x[1] - 32768) / 100; },
-               unit: '°C'},
-              {name: 'reliability',
-               displayName: 'Reliability',
-               convert: function (x) { return (x[2] - 32768) / 100; },
-               unit: 'dB'},
-              {name: 'status',
-               displayName: 'Status',
-               convert: function (x) { return x[3]; }}]},
-    {length: 1,
-     values: [{name: 'battery_voltage',
-               displayName: 'Battery voltage',
-               convert: function (x) { return x[0] / 1000; },
-               unit: 'V'}]}
+    {
+      length: 4,
+      values: [{
+        name: 'distance',
+        displayName: 'Distance',
+        convert: function (x) { return x[0]; },
+        unit: 'mm'
+      },
+      {
+        name: 'temperature',
+        displayName: 'Temperature',
+        convert: function (x) { return (x[1] - 32768) / 100; },
+        unit: '°C'
+      },
+      {
+        name: 'reliability',
+        displayName: 'Reliability',
+        convert: function (x) { return (x[2] - 32768) / 100; },
+        unit: 'dB'
+      },
+      {
+        name: 'status',
+        displayName: 'Status',
+        convert: function (x) { return x[3]; }
+      }]
+    },
+    {
+      length: 1,
+      values: [{
+        name: 'battery_voltage',
+        displayName: 'Battery voltage',
+        convert: function (x) { return x[0] / 1000; },
+        unit: 'V'
+      }]
+    }
   ],
 
   read_int: function (bytes, pos) {
@@ -43,12 +57,12 @@ const decentlab_decoder = {
 
     var version = bytes[0];
     if (version != this.PROTOCOL_VERSION) {
-      return {error: "protocol version " + version + " doesn't match v2"};
+      return { error: "protocol version " + version + " doesn't match v2" };
     }
 
     var deviceId = this.read_int(bytes, 1);
     var flags = this.read_int(bytes, 3);
-    var result = {'protocol_version': version, 'device_id': deviceId};
+    var result = { 'protocol_version': version, 'device_id': deviceId };
     // decode payload
     var pos = 5;
     for (i = 0; i < this.SENSORS.length; i++, flags >>= 1) {
@@ -67,8 +81,10 @@ const decentlab_decoder = {
       for (j = 0; j < sensor.values.length; j++) {
         var value = sensor.values[j];
         if ('convert' in value) {
-          result[value.name] = {displayName: value.displayName,
-                                value: value.convert.bind(this)(x)};
+          result[value.name] = {
+            displayName: value.displayName,
+            value: value.convert.bind(this)(x)
+          };
           if ('unit' in value)
             result[value.name]['unit'] = value.unit;
         }
@@ -95,6 +111,37 @@ function calcBatteryPercent(number, max, min) {
   return Math.round(Math.max(0, Math.min(100, percent)));
 }
 
+function getFillLevel(device, distance) {
+  if (device !== undefined && distance !== undefined) {
+    if (device.customFields !== undefined) {
+      const { customFields } = device;
+      let scaleLength = null;
+      let sensorDistance = 0;
+
+      if (customFields.containerHeight !== undefined) {
+        scaleLength = Number(device.customFields.containerHeight);
+      }
+
+      if (customFields.installationOffset !== undefined) {
+        sensorDistance = Number(device.customFields.installationOffset);
+      }
+
+      if (scaleLength !== null) {
+        const percentExact =
+          (100 / scaleLength) * (scaleLength - (distance - sensorDistance));
+        let fillLevel = Math.round(percentExact);
+        if (fillLevel > 100) {
+          fillLevel = 100;
+        } else if (fillLevel < 0) {
+          fillLevel = 0;
+        }
+        return fillLevel;
+      }
+    }
+  }
+  return undefined;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const sample = decentlab_decoder.decode(payload);
@@ -102,6 +149,12 @@ function consume(event) {
   const data = {};
   data.distance = sample.distance.value;
   data.temperature = sample.temperature.value;
+
+  // FillLevel calculation
+  const fillLevel = getFillLevel(event.device, data.distance);
+  if (fillLevel !== undefined) {
+    data.fillLevel = fillLevel;
+  }
 
   const lifecycle = {};
   lifecycle.batteryVoltage = sample.battery_voltage.value;
