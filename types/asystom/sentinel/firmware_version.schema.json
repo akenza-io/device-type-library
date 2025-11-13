@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/asystom/sentinel/firmware_version.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "firmware_version",
+  "title": "Firmware version",
+  "properties": {
+    "firmwareVersion": {
+      "title": "Firmware Version",
+      "type": "string",
+      "description": "Firmware version of the device",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "firmwareVersion"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "Sentinel",
+  "version": "1.0.0",
+  "manufacturer": "Asystom",
+  "url": "",
+  "description": "",
+  "author": "Akenza AG",
+  "firmwareVersion": "",
+  "availableSensors": [
+    "Humidity",
+    "Temperature",
+    "Vibration",
+    "Frequency",
+    "RPM",
+    "Shock Detection"
+  ],
+  "outputTopics": [
+    "default",
+    "device",
+    "firmware_version",
+    "scheduling_settings",
+    "advanced_settings",
+    "firmware_status"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
