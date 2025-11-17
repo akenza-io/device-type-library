@@ -138,9 +138,14 @@ describe("Asystom Sentinel Uplink", () => {
         assert.equal(value.data.zVelocityF2, 0);
         assert.equal(value.data.zVelocityF3, 0);
 
-        assert.equal(value.data.temperatureMachineSurface, 22.826027313649206);
-        assert.equal(value.data.kurtosisUltrasound, 0.029785610742351417);
-        assert.equal(value.data.soundSonicRmslog, -76.69031815060654);
+        assert.equal(value.data.yAcceleration, 0.0063477531090257115);
+        assert.equal(value.data.yAccelerationPeak, 0.023437857633325704);
+        assert.equal(value.data.yKurtosis, 3.109788662546731);
+        assert.equal(value.data.yVibrationRoot, 0);
+        assert.equal(value.data.yVelocity, 0.08392462043183031);
+        assert.equal(value.data.yVelocityF1, 0);
+        assert.equal(value.data.yVelocityF2, 0);
+        assert.equal(value.data.yVelocityF3, 0);
 
         validateSchema(value.data, defaultSchema, { throwError: true });
       });
