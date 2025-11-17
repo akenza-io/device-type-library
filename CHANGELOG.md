@@ -2,11 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
-# [1.81.0] - 2025-11-17
+# [1.82.0] - 2025-11-17
 
 ### Added
 
 - Asystom - Sentinel
+
+# [1.81.0] - 2025-11-13
+
+### Added
+
+- Decentlab - Rad
 
 # [1.80.0] - 2025-11-11
 
