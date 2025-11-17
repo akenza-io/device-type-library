@@ -351,16 +351,16 @@ class SegmentedFrame {
 // A class to represent the Sentinel device health
 
 const SentinelDeviceHealth = [
-  "LoRaWAN Ok",
-  "LoRaWAN unknown unsollicited reception",
-  "LoRaWAN invalid double data length",
-  "LoRaWAN unknown transmission error",
-  "LoRaWAN pending transmission",
-  "LoRaWAN link check failed",
-  "LoRaWAN consecutive unsollicited message missed",
-  "LoRaWAN invalid parameter received",
-  "LoRaWAN modem wakeup failed",
-  "LoRaWAN data rate too low",
+  "LORAWAN_OK",
+  "LORAWAN_UNKOWN_UNSOLLICITED_RECEPTION",
+  "LORAWAN_INVALID_DOUBLE_DATA_LENGTH",
+  "LORAWAN_UNKNOWN_TRANSMISSION_ERROR",
+  "LORAWAN_PENDING_TRANSMISSON",
+  "LORAWAN_LINK_CHECK_FAILURE",
+  "LORAWAN_CONSECUTIVE_UNSOLLICITED_MESSAGE_MISSED",
+  "LORAWAN_INVALID_PARAMETER_RECEIVED",
+  "LORAWAN_MODEM_WAKEUP_FAILED",
+  "LORAWAN_DATA_RATE_TOO_LOW",
 ];
 
 // Convert a byte array into an ArrayBuffer
@@ -384,60 +384,60 @@ function extractFirmwareStatus(
 
   // Register HW-related boot causes
   if ((lastBootCausesHardware2ndByte & 0x1) != 0) {
-    decodeResult.data.firmwareStatus.lastBootCauses.push("Low Leakage Wakeup");
+    decodeResult.data.firmwareStatus.lastBootCauses.push("LOW_LEAKAGE_WAKEUP");
   }
 
   if ((lastBootCausesHardware2ndByte & (0x1 << 1)) != 0) {
     decodeResult.data.firmwareStatus.lastBootCauses.push(
-      "Low Voltage Detect Reset"
+      "LOW_VOLTAGE_RISE_DETECTED"
     );
   }
 
   if ((lastBootCausesHardware2ndByte & (0x1 << 2)) != 0) {
-    decodeResult.data.firmwareStatus.lastBootCauses.push("Loss of Clock Reset");
+    decodeResult.data.firmwareStatus.lastBootCauses.push("LOSS_OF_CLOCK_RESET");
   }
 
   if ((lastBootCausesHardware2ndByte & (0x1 << 3)) != 0) {
-    decodeResult.data.firmwareStatus.lastBootCauses.push("Loss of Lock Reset");
+    decodeResult.data.firmwareStatus.lastBootCauses.push("LOSS_OF_LOCK_RESET");
   }
 
   if ((lastBootCausesHardware2ndByte & (0x1 << 5)) != 0) {
-    decodeResult.data.firmwareStatus.lastBootCauses.push("Watchdog");
+    decodeResult.data.firmwareStatus.lastBootCauses.push("WATCHDOG");
   }
 
   if ((lastBootCausesHardware2ndByte & (0x1 << 6)) != 0) {
-    decodeResult.data.firmwareStatus.lastBootCauses.push("External Reset Pin");
+    decodeResult.data.firmwareStatus.lastBootCauses.push("EXTERNAL_RESET_PIN");
   }
 
   if ((lastBootCausesHardware2ndByte & (0x1 << 7)) != 0) {
-    decodeResult.data.firmwareStatus.lastBootCauses.push("Power On Reset");
+    decodeResult.data.firmwareStatus.lastBootCauses.push("POWER_ON_RESET");
   }
 
   if ((lastBootCausesHardware1stByte & 0x1) != 0) {
     decodeResult.data.firmwareStatus.lastBootCauses.push(
-      "Jtag Generated Reset"
+      "JTAG_GENERATED_RESET"
     );
   }
 
   if ((lastBootCausesHardware1stByte & (0x1 << 1)) != 0) {
-    decodeResult.data.firmwareStatus.lastBootCauses.push("Core Lockup");
+    decodeResult.data.firmwareStatus.lastBootCauses.push("CORE_LOCKUP");
   }
 
   if ((lastBootCausesHardware1stByte & (0x1 << 2)) != 0) {
     decodeResult.data.firmwareStatus.lastBootCauses.push(
-      "Software - SYSRESETREQ bit"
+      "SOFTWARE_SYSRESETREQ_BIT"
     );
   }
 
   if ((lastBootCausesHardware1stByte & (0x1 << 3)) != 0) {
     decodeResult.data.firmwareStatus.lastBootCauses.push(
-      "MDM-AP System Reset Request"
+      "MDM_AP_SYSTEM_RESET_REQUEST"
     );
   }
 
   if ((lastBootCausesHardware1stByte & (0x1 << 5)) != 0) {
     decodeResult.data.firmwareStatus.lastBootCauses.push(
-      "Stop Mode Acknowledge Error Reset"
+      "STOP_MODE_ACKNOWLEDGE_ERROR_RESET"
     );
   }
 
@@ -482,37 +482,37 @@ function setSensorInformation(bitmask) {
 
   if ((sensorEnumeration & 0x3) === 0x3) {
     decodeResult.data.advancedSettings.sensorInformation.enumeration +=
-      "AnyAccelerometer\n";
+      "ANY_ACCELEROMETER";
   }
 
   if ((sensorEnumeration & 0xc) === 0xc) {
     decodeResult.data.advancedSettings.sensorInformation.enumeration +=
-      "AnyMicrophone";
+      "ANY_MICROPHONE";
   }
 
   // Only supported sensors are accelerometer and microphone
   // If the bitfield contains nothing, then it's an error
   if ((sensorEnumeration & 0xf) === 0) {
     decodeResult.data.advancedSettings.sensorInformation.enumeration =
-      "NoSensor";
+      "NO_SENSOR";
     decodeResult.warnings.push(
-      "No sensor information in frame, this is unexpected"
+      "NO_SENSOR_INFORMATION"
     );
   }
 
   let sensorOrientation = bitmask[2];
   if (sensorOrientation === 0) {
     decodeResult.data.advancedSettings.sensorInformation.orientation =
-      "NoOrientation";
+      "NO_ORIENTATION";
   } else if (sensorOrientation === 1) {
     decodeResult.data.advancedSettings.sensorInformation.orientation =
-      "XPreferred";
+      "X_PREFFERED";
   } else if (sensorOrientation === 2) {
     decodeResult.data.advancedSettings.sensorInformation.orientation =
-      "YPreferred";
+      "Y_PREFFERED";
   } else if (sensorOrientation === 4) {
     decodeResult.data.advancedSettings.sensorInformation.orientation =
-      "ZPreferred\n";
+      "Z_PREFFERED";
   }
 }
 
@@ -999,7 +999,6 @@ function decodeUplink(input) {
 }
 
 function consume(event) {
-  emit("log", event);
   const payload = event.data.payloadHex;
   const { port } = event.data;
   const bytes = Hex.hexToBytes(payload);
@@ -1015,7 +1014,7 @@ function consume(event) {
     switch (key) {
       case "scalarValues": {
         // Map device values
-        topic = "device";
+        topic = "environment";
         value.forEach((sv) => {
           data[sv.name] = sv.physicalValue;
         });

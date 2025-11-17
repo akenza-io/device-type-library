@@ -7,19 +7,21 @@
   "title": "Firmware status",
   "properties": {
     "lastBootCauses": {
-      "title": "Last Boot Causes",
+      "title": "Last boot causes",
+      "description": "Last boot causes",
       "type": "array",
       "items": {
         "type": "string"
       }
     },
     "softwareStatus": {
-      "title": "Software Status",
+      "title": "Software status",
+      "description": "Software status",
       "type": "string"
     }
   },
   "required": [
-    "firmwareVersion",
-    "firmwareStatus"
+    "lastBootCauses",
+    "softwareStatus"
   ]
 }

@@ -2,10 +2,10 @@
   "name": "Sentinel",
   "version": "1.0.0",
   "manufacturer": "Asystom",
-  "url": "",
-  "description": "",
+  "url": "https://www.asystom.com/solutions/asystomsentinel",
+  "description": "The Asystom Sentinel sensor allows with its integrated vibration and ultrasound sensors to accurately detect all kinds of equipment drifts. It also includes ambient temperature monitoring, surface temperature monitoring and optional external sensors.",
   "author": "Akenza AG",
-  "firmwareVersion": "",
+  "firmwareVersion": "V4.57.0",
   "availableSensors": [
     "Humidity",
     "Temperature",
@@ -16,7 +16,7 @@
   ],
   "outputTopics": [
     "default",
-    "device",
+    "environment",
     "firmware_version",
     "scheduling_settings",
     "advanced_settings",

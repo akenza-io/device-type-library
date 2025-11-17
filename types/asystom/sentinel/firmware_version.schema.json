@@ -7,7 +7,7 @@
   "title": "Firmware version",
   "properties": {
     "firmwareVersion": {
-      "title": "Firmware Version",
+      "title": "Firmware version",
       "type": "string",
       "description": "Firmware version of the device",
       "hideFromKpis": true
