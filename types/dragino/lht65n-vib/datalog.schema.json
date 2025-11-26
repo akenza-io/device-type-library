@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/dragino/lht65n-vib/datalog.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "datalog",
+  "title": "Datalog",
+  "properties": {
+    "logEntries": {
+      "title": "Log Entries",
+      "description": "Datalog of acceleration measurements (x, y, z) in G.",
+      "type": "array",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "logEntries"
+  ]
+}

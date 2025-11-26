@@ -1,0 +1,133 @@
+{
+  "$id": "https://akenza.io/milesight/gs601/alert.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "alert",
+  "title": "Alert",
+  "properties": {
+    "vapingAlarm": {
+      "title": "Vaping Alarm",
+      "type": "string",
+      "description": "Status of the vaping index alarm",
+      "enum": [
+        "COLLECTION_ERROR",
+        "LOWER_RANGE_ERROR",
+        "OVER_RANGE_ERROR",
+        "ALARM_DEACTIVATION",
+        "ALARM_TRIGGER",
+        "INTERFERENCE_ALARM_DEACTIVATION",
+        "INTERFERENCE_ALARM_TRIGGER"
+      ],
+      "hideFromKpis": true
+    },
+    "pm1Alarm": {
+      "title": "PM1 Alarm",
+      "type": "string",
+      "description": "Status of the PM1 alarm",
+      "enum": [
+        "COLLECTION_ERROR",
+        "LOWER_RANGE_ERROR",
+        "OVER_RANGE_ERROR",
+        "ALARM_DEACTIVATION",
+        "ALARM_TRIGGER"
+      ],
+      "hideFromKpis": true
+    },
+    "pm2_5Alarm": {
+      "title": "PM2.5 Alarm",
+      "type": "string",
+      "description": "Status of the PM2.5 alarm",
+      "enum": [
+        "COLLECTION_ERROR",
+        "LOWER_RANGE_ERROR",
+        "OVER_RANGE_ERROR",
+        "ALARM_DEACTIVATION",
+        "ALARM_TRIGGER"
+      ],
+      "hideFromKpis": true
+    },
+    "pm10Alarm": {
+      "title": "PM10 Alarm",
+      "type": "string",
+      "description": "Status of the PM10 alarm",
+      "enum": [
+        "COLLECTION_ERROR",
+        "LOWER_RANGE_ERROR",
+        "OVER_RANGE_ERROR",
+        "ALARM_DEACTIVATION",
+        "ALARM_TRIGGER"
+      ],
+      "hideFromKpis": true
+    },
+    "temperatureAlarm": {
+      "title": "Temperature Alarm",
+      "type": "string",
+      "description": "Status of the temperature alarm",
+      "enum": [
+        "COLLECTION_ERROR",
+        "LOWER_RANGE_ERROR",
+        "OVER_RANGE_ERROR",
+        "ALARM_DEACTIVATION",
+        "ALARM_TRIGGER",
+        "BURNING_ALARM_DEACTIVATION",
+        "BURNING_ALARM_TRIGGER"
+      ],
+      "hideFromKpis": true
+    },
+    "humidityAlarm": {
+      "title": "Humidity Alarm",
+      "type": "string",
+      "description": "Status of the humidity alarm",
+      "enum": [
+        "COLLECTION_ERROR",
+        "LOWER_RANGE_ERROR",
+        "OVER_RANGE_ERROR"
+      ],
+      "hideFromKpis": true
+    },
+    "tvocAlarm": {
+      "title": "TVOC Alarm",
+      "type": "string",
+      "description": "Status of the TVOC alarm",
+      "enum": [
+        "COLLECTION_ERROR",
+        "LOWER_RANGE_ERROR",
+        "OVER_RANGE_ERROR",
+        "ALARM_DEACTIVATION",
+        "ALARM_TRIGGER"
+      ],
+      "hideFromKpis": true
+    },
+    "tamperStatus": {
+      "title": "Tamper Status",
+      "type": "string",
+      "description": "Status of the tamper switch",
+      "enum": [
+        "NORMAL",
+        "TRIGGERED"
+      ],
+      "hideFromKpis": true
+    },
+    "tamperStatusAlarm": {
+      "title": "Tamper Status Alarm",
+      "type": "string",
+      "description": "Tamper alarm trigger status",
+      "enum": [
+        "ALARM_DEACTIVATION",
+        "ALARM_TRIGGER"
+      ],
+      "hideFromKpis": true
+    },
+    "buzzer": {
+      "title": "Buzzer Status",
+      "type": "string",
+      "description": "Status of the buzzer",
+      "enum": [
+        "NORMAL",
+        "TRIGGERED"
+      ],
+      "hideFromKpis": true
+    }
+  }
+}

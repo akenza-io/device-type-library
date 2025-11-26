@@ -1,0 +1,292 @@
+{
+  "$id": "https://akenza.io/milesight/gs601/config.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "config",
+  "title": "Config",
+  "properties": {
+    "reportingInterval": {
+      "title": "Reporting interval",
+      "description": "The reporting interval settings",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "temperatureUnit": {
+      "title": "Temperature unit",
+      "description": "The configured temperature unit",
+      "type": "string",
+      "enum": [
+        "CELSIUS",
+        "FAHRENHEIT"
+      ],
+      "hideFromKpis": true
+    },
+    "ledStatus": {
+      "title": "LED status",
+      "description": "LED status",
+      "type": "string",
+      "enum": [
+        "DISABLE",
+        "ENABLE"
+      ],
+      "hideFromKpis": true
+    },
+    "buzzerEnable": {
+      "title": "Buzzer enable",
+      "description": "Buzzer enable status",
+      "type": "string",
+      "enum": [
+        "DISABLE",
+        "ENABLE"
+      ],
+      "hideFromKpis": true
+    },
+    "buzzerSleep": {
+      "title": "Buzzer sleep settings",
+      "description": "Buzzer sleep time settings",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "buzzerButtonStopEnable": {
+      "title": "Buzzer button stop",
+      "description": "Buzzer button stop enable status",
+      "type": "string",
+      "enum": [
+        "DISABLE",
+        "ENABLE"
+      ],
+      "hideFromKpis": true
+    },
+    "buzzerSilentTime": {
+      "title": "Buzzer silent time",
+      "description": "Buzzer silent time in minutes",
+      "type": "number",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "tamperAlarmEnable": {
+      "title": "Tamper alarm",
+      "description": "Tamper alarm enable status",
+      "type": "string",
+      "enum": [
+        "DISABLE",
+        "ENABLE"
+      ],
+      "hideFromKpis": true
+    },
+    "tvocRawReportingEnable": {
+      "title": "TVOC raw reporting",
+      "description": "TVOC raw data reporting enable status",
+      "type": "string",
+      "enum": [
+        "DISABLE",
+        "ENABLE"
+      ],
+      "hideFromKpis": true
+    },
+    "temperatureAlarmSettings": {
+      "title": "Temperature alarm settings",
+      "description": "Temperature alarm threshold settings",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "pm1AlarmSettings": {
+      "title": "PM1 alarm settings",
+      "description": "PM1 alarm threshold settings",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "pm2_5AlarmSettings": {
+      "title": "PM2.5 alarm settings",
+      "description": "PM2.5 alarm threshold settings",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "pm10AlarmSettings": {
+      "title": "PM10 alarm settings",
+      "description": "PM10 alarm threshold settings",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "tvocAlarmSettings": {
+      "title": "TVOC alarm settings",
+      "description": "TVOC alarm threshold settings",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "vapingIndexAlarmSettings": {
+      "title": "Vaping index alarm settings",
+      "description": "Vaping index alarm threshold settings",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "alarmReportingTimes": {
+      "title": "Alarm reporting times",
+      "description": "Number of times an alarm is reported",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "alarmDeactivationEnable": {
+      "title": "Alarm deactivation",
+      "description": "Alarm deactivation enable status",
+      "type": "string",
+      "enum": [
+        "DISABLE",
+        "ENABLE"
+      ],
+      "hideFromKpis": true
+    },
+    "temperatureCalibrationSettings": {
+      "title": "Temperature calibration",
+      "description": "Temperature calibration settings",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "humidityCalibrationSettings": {
+      "title": "Humidity calibration",
+      "description": "Humidity calibration settings",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "pm1CalibrationSettings": {
+      "title": "PM1 calibration",
+      "description": "PM1 calibration settings",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "pm2_5CalibrationSettings": {
+      "title": "PM2.5 calibration",
+      "description": "PM2.5 calibration settings",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "pm10CalibrationSettings": {
+      "title": "PM10 calibration",
+      "description": "PM10 calibration settings",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "tvocCalibrationSettings": {
+      "title": "TVOC calibration",
+      "description": "TVOC calibration settings",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "vapingIndexCalibrationSettings": {
+      "title": "Vaping index calibration",
+      "description": "Vaping index calibration settings",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "daylightSavingTime": {
+      "title": "Daylight saving time",
+      "description": "Daylight saving time settings",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "timeZone": {
+      "title": "Timezone",
+      "description": "The configured timezone",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "stopBuzzerAlarm": {
+      "title": "Stop buzzer alarm command",
+      "description": "Acknowledge stop buzzer alarm command",
+      "type": "string",
+      "enum": [
+        "YES",
+        "NO"
+      ],
+      "hideFromKpis": true
+    },
+    "executeTvocSelfClean": {
+      "title": "Execute TVOC self clean command",
+      "description": "Acknowledge execute TVOC self clean command",
+      "type": "string",
+      "enum": [
+        "YES",
+        "NO"
+      ],
+      "hideFromKpis": true
+    },
+    "reconnect": {
+      "title": "Reconnect command",
+      "description": "Acknowledge reconnect command",
+      "type": "string",
+      "enum": [
+        "YES",
+        "NO"
+      ],
+      "hideFromKpis": true
+    },
+    "synchronizeTime": {
+      "title": "Synchronize time command",
+      "description": "Acknowledge synchronize time command",
+      "type": "string",
+      "enum": [
+        "YES",
+        "NO"
+      ],
+      "hideFromKpis": true
+    },
+    "queryDeviceStatus": {
+      "title": "Query device status command",
+      "description": "Acknowledge query device status command",
+      "type": "string",
+      "enum": [
+        "YES",
+        "NO"
+      ],
+      "hideFromKpis": true
+    },
+    "reboot": {
+      "title": "Reboot command",
+      "description": "Acknowledge reboot command",
+      "type": "string",
+      "enum": [
+        "YES",
+        "NO"
+      ],
+      "hideFromKpis": true
+    },
+    "result": {
+      "title": "Command result",
+      "description": "The result of the last command",
+      "type": "string",
+      "enum": [
+        "success",
+        "parsing error",
+        "order error",
+        "password error",
+        "read params error",
+        "write params error",
+        "read execution error",
+        "write execution error",
+        "read apply error",
+        "write apply error",
+        "associative error"
+      ],
+      "hideFromKpis": true
+    },
+    "cmdId": {
+      "title": "Command ID",
+      "description": "The ID of the command",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "cmdName": {
+      "title": "Command name",
+      "description": "The name of the command",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "frame": {
+      "title": "Frame counter",
+      "description": "Frame counter of the response",
+      "type": "number",
+      "hideFromKpis": true
+    }
+  }
+}
