@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.83.0] - 2025-12-4
+
+### Added
+
+- Dragino - LHT65N-VIB
+- Milesight - GS601
+
 # [1.82.0] - 2025-11-17
 
 ### Added
