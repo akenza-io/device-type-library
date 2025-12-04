@@ -1,0 +1,74 @@
+{
+  "$id": "https://akenza.io/milesight/gs601/raw.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "raw",
+  "title": "Raw",
+  "properties": {
+    "tvocRawDataRmox": {
+      "title": "TVOC raw data RMOX",
+      "description": "TVOC raw data RMOX",
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "hideFromKpis": true
+    },
+    "logRcda": {
+      "title": "Log RCDA",
+      "description": "Log RCDA raw value",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "rhtr": {
+      "title": "RHTR",
+      "description": "RHTR raw value",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "rawTemperature": {
+      "title": "Raw temperature",
+      "description": "Raw temperature value",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "rawIaq": {
+      "title": "Raw IAQ",
+      "description": "Raw indoor air quality value",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "rawTvoc": {
+      "title": "Raw TVOC",
+      "description": "Raw TVOC value",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "rawEtoh": {
+      "title": "Raw ETOH",
+      "description": "Raw ethanol value",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "rawEco2": {
+      "title": "Raw eCO2",
+      "description": "Raw equivalent CO2 value",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "rawRelIaq": {
+      "title": "Raw relative IAQ",
+      "description": "Raw relative indoor air quality value",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "pmSensorWorkingTime": {
+      "title": "PM sensor working time",
+      "description": "PM sensor working time",
+      "type": "number",
+      "unit": "s",
+      "hideFromKpis": true
+    }
+  }
+}
