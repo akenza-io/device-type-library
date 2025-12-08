@@ -19,6 +19,17 @@ describe("Dragino dds04-lb Uplink", () => {
             loadSchema(`${__dirname}/default.schema.json`),
             loadSchema(`${__dirname}/lifecycle.schema.json`),
         ]);
+
+        // Mock Date to a fixed point in time
+        const DateMock = Date;
+        global.Date = class extends DateMock {
+            constructor(...args) {
+                if (args.length === 0) {
+                    return new DateMock("2023-08-04T10:00:00.000Z");
+                }
+                return new DateMock(...args);
+            }
+        };
     });
 
     describe("consume()", () => {
@@ -71,7 +82,6 @@ describe("Dragino dds04-lb Uplink", () => {
                     port: 3,
                 },
             };
-
 
             expectEmits((type, value) => {
                 assert.equal(type, "sample");
