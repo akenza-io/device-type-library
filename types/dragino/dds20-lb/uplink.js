@@ -39,9 +39,6 @@ function getSubBand(byte) {
 
 function parseDatalog(offset, bytes) {
   const dataLog = {};
-
-  dataLog.batteryVoltage = ((bytes[offset] << 8) | bytes[offset + 1]) / 1000;
-
   const rawTemp = readInt16BE(bytes[offset + 2], bytes[offset + 3]);
   dataLog.temperature = parseFloat(rawTemp.toFixed(2));
 
@@ -55,7 +52,7 @@ function parseDatalog(offset, bytes) {
     (bytes[offset + 8] << 16) |
     (bytes[offset + 9] << 8) |
     bytes[offset + 10];
-  dataLog.date = new Date(timestamp * 1000).toISOString();
+  dataLog.date = new Date(timestamp * 1000);
 
   return dataLog;
 }
@@ -69,6 +66,8 @@ function consume(event) {
   const dataDefault = {};
   const dataConfiguration = {};
 
+  // default uplink payload
+  // Byte 0-1: Battery Voltage, Byte 2-3: Distance in mm, Byte 4: Interrupt Flag, Byte 5-6: Temperature, Byte 7: Sensor Flag
   if (port === 0x02) {
     dataLifecycle.batteryVoltage =
       (((bytes[0] << 8) | bytes[1]) & 0x3fff) / 1000;
@@ -81,38 +80,42 @@ function consume(event) {
     dataDefault.temperature = parseFloat((rawTemp / 10).toFixed(2));
 
     dataDefault.sensorFlag = (bytes[7] & 0x01) === 1;
-  } else if (port === 0x03) {
-    if (((bytes[0] >> 7) & 0x01) == true) {
-      for (let i = 1; i < bytes.length; i += 11) {
-        if (i + 11 > bytes.length) break;
 
-        const log = parseDatalog(i, bytes);
+    // datalog uplink payload
+    // decoding logic from dragino TTN decoder https://github.com/dragino/dragino-end-node-decoder/blob/main/DDS20-LB/DDS20-LB_TTN_Decoder.txt
+  } else if (port === 0x03 && ((bytes[0] >> 7) & 0x01) == true) {
 
-        const historyDefault = {
-          temperature: log.temperature,
-          distance: log.distance,
-          interruptFlag: log.interruptFlag,
-          messageType: log.messageType,
-        };
+    const now = new Date();
+    const oneDayAgo = new Date(now.getTime() - 86400000); // 1 day in ms
 
-        const historyLifecycle = {
-          batteryVoltage: log.batteryVoltage,
-        };
+    for (let i = 1; i < bytes.length; i += 11) {
+      if (i + 11 > bytes.length) break;
 
-        emit("sample", {
-          data: historyDefault,
-          topic: "default",
-          timestamp: log.date,
-        });
-        emit("sample", {
-          data: historyLifecycle,
-          topic: "lifecycle",
-          timestamp: log.date,
-        });
+      const log = parseDatalog(i, bytes);
+
+
+      if (log.date < oneDayAgo || log.date > now) {
+        continue;
       }
+
+      const historyDefault = {
+        temperature: log.temperature,
+        distance: log.distance,
+        interruptFlag: log.interruptFlag,
+        messageType: log.messageType,
+      };
+
+
+      emit("sample", {
+        data: historyDefault,
+        topic: "default",
+        timestamp: log.date.toISOString(),
+      });
+
     }
 
-    return;
+    // configuration uplink payload
+    // Byte 0: Sensor Model, Byte 1-2: Firmware Version, Byte 3: Frequency Band, Byte 4: Sub Band, Byte 5-6: Battery Voltage
   } else if (port === 0x05) {
     if (bytes[0] === 0x29) {
       dataConfiguration.sensorModel = "DDS20-LB";
