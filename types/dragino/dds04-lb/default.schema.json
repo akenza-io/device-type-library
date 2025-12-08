@@ -39,9 +39,14 @@
       "hideFromKpis": true
     },
     "messageType": {
-      "type": "integer",
       "title": "Message type",
       "description": "Uplink message type identifier",
+      "type": "string",
+      "enum": [
+        "NORMAL_UPLINK",
+        "REPLY_CONFIGURES_INFO",
+        "UNKNOWN"
+      ],
       "hideFromKpis": true
     },
     "pnackMode": {

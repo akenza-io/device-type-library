@@ -80,7 +80,13 @@ function consume(event) {
 
     // Byte 10: Message Type
     if (payload.length > 10) {
-      data.messageType = payload[10];
+      if (payload[10] === 0x01) {
+        data.messageType = "NORMAL_UPLINK";
+      } else if (payload[10] === 0x02) {
+        data.messageType = "REPLY_CONFIGURES_INFO";
+      } else {
+        data.messageType = "UNKNOWN";
+      }
     }
 
     emit("sample", {
@@ -109,7 +115,7 @@ function consume(event) {
       data.interruptLevel = ((header >> 1) & 0x01) === 1 ? "HIGH" : "LOW";
       // Bit 6: Poll Message (not in schema, ignored)
       // Bit 7: PNACK (Packet Not Acknowledged)
-      data.pnackMd = ((header >> 7) & 0x01) === 1;
+      data.pnackMode = ((header >> 7) & 0x01) === 1;
 
       // Distances (only 3 supported in datalog)
       data.distance1 = ((payload[i + 1] << 8) | payload[i + 2]) / 10;
@@ -121,6 +127,13 @@ function consume(event) {
       const ts = (payload[i + 7] << 24) | (payload[i + 8] << 16) | (payload[i + 9] << 8) | payload[i + 10];
       // Convert unix seconds to Date object (ms)
       const timestamp = new Date(((ts >>> 0) * 1000));
+
+      const now = new Date();
+      const oneDayAgo = new Date(now.getTime() - 86400000); // 1 day in ms
+
+      if (timestamp < oneDayAgo || timestamp > now) {
+        continue
+      }
 
       emit("sample", {
         data: data,

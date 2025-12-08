@@ -41,7 +41,7 @@ describe("Dragino dds04-lb Uplink", () => {
                 assert.equal(value.data.distance2, 79.2);
                 assert.equal(value.data.distance3, 79.4);
                 assert.equal(value.data.distance4, 78.9);
-                assert.equal(value.data.messageType, 1);
+                assert.equal(value.data.messageType, "NORMAL_UPLINK");
 
                 validateSchema(value.data, defaultSchema, {
                     throwError: true,
@@ -81,7 +81,7 @@ describe("Dragino dds04-lb Uplink", () => {
                 assert.equal(value.timestamp.toISOString(), "2023-08-04T09:36:36.000Z");
                 assert.equal(value.data.interruptFlag, true);
                 assert.equal(value.data.interruptLevel, "HIGH");
-                assert.equal(value.data.pnackMd, false);
+                assert.equal(value.data.pnackMode, false);
                 assert.equal(value.data.distance1, 44.3);
                 assert.equal(value.data.distance2, 305.3);
                 assert.equal(value.data.distance3, 307);
@@ -99,7 +99,7 @@ describe("Dragino dds04-lb Uplink", () => {
                 assert.equal(value.timestamp.toISOString(), "2023-08-04T09:37:04.000Z");
                 assert.equal(value.data.interruptFlag, false);
                 assert.equal(value.data.interruptLevel, "LOW");
-                assert.equal(value.data.pnackMd, false);
+                assert.equal(value.data.pnackMode, false);
                 assert.equal(value.data.distance1, 44.6);
                 assert.equal(value.data.distance2, 290.7);
                 assert.equal(value.data.distance3, 337.7);
@@ -117,7 +117,7 @@ describe("Dragino dds04-lb Uplink", () => {
                 assert.equal(value.timestamp.toISOString(), "2023-08-04T09:38:04.000Z");
                 assert.equal(value.data.interruptFlag, false);
                 assert.equal(value.data.interruptLevel, "LOW");
-                assert.equal(value.data.pnackMd, false);
+                assert.equal(value.data.pnackMode, false);
                 assert.equal(value.data.distance1, 44.6);
                 assert.equal(value.data.distance2, 290.1);
                 assert.equal(value.data.distance3, 307.4);
@@ -135,7 +135,7 @@ describe("Dragino dds04-lb Uplink", () => {
                 assert.equal(value.timestamp.toISOString(), "2023-08-04T09:38:31.000Z");
                 assert.equal(value.data.interruptFlag, true);
                 assert.equal(value.data.interruptLevel, "LOW");
-                assert.equal(value.data.pnackMd, false);
+                assert.equal(value.data.pnackMode, false);
                 assert.equal(value.data.distance1, 44.6);
                 assert.equal(value.data.distance2, 289.4);
                 assert.equal(value.data.distance3, 306.9);
@@ -153,7 +153,7 @@ describe("Dragino dds04-lb Uplink", () => {
                 assert.equal(value.timestamp.toISOString(), "2023-08-04T09:39:45.000Z");
                 assert.equal(value.data.interruptFlag, false);
                 assert.equal(value.data.interruptLevel, "LOW");
-                assert.equal(value.data.pnackMd, false);
+                assert.equal(value.data.pnackMode, false);
                 assert.equal(value.data.distance1, 44.6);
                 assert.equal(value.data.distance2, 306);
                 assert.equal(value.data.distance3, 306.3);
