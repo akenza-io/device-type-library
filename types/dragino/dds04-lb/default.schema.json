@@ -1,0 +1,55 @@
+{
+  "type": "object",
+  "$id": "https://akenza.io/dragino/dds04-lb/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Default",
+  "topic": "default",
+  "processingType": "uplink_decoder",
+  "properties": {
+    "distance1": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
+      "title": "Distance 1"
+    },
+    "distance2": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
+      "title": "Distance 2"
+    },
+    "distance3": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
+      "title": "Distance 3"
+    },
+    "distance4": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
+      "title": "Distance 4"
+    },
+    "interruptFlag": {
+      "type": "boolean",
+      "title": "Interrupt flag",
+      "description": "Indicates if the packet was triggered by an interrupt",
+      "hideFromKpis": true
+    },
+    "interruptLevel": {
+      "type": "string",
+      "title": "Interrupt level",
+      "description": "Logic level of the external interrupt pin",
+      "enum": [
+        "HIGH",
+        "LOW"
+      ],
+      "hideFromKpis": true
+    },
+    "messageType": {
+      "type": "integer",
+      "title": "Message type",
+      "description": "Uplink message type identifier",
+      "hideFromKpis": true
+    },
+    "pnackMd": {
+      "type": "boolean",
+      "title": "PNACK mode",
+      "description": "Packet Not Acknowledged Mode status",
+      "hideFromKpis": true
+    }
+  },
+  "required": []
+}

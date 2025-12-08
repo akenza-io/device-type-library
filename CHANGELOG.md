@@ -6,6 +6,12 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Dragino - DDS04-LB
+
+# [1.84.0] - 2025-12-8
+
+### Added
+
 - Dragino - DDS20-LB
 
 # [1.83.0] - 2025-12-4
