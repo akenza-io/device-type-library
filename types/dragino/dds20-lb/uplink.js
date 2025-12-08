@@ -84,7 +84,6 @@ function consume(event) {
     // datalog uplink payload
     // decoding logic from dragino TTN decoder https://github.com/dragino/dragino-end-node-decoder/blob/main/DDS20-LB/DDS20-LB_TTN_Decoder.txt
   } else if (port === 0x03 && ((bytes[0] >> 7) & 0x01) == true) {
-
     const now = new Date();
     const oneDayAgo = new Date(now.getTime() - 86400000); // 1 day in ms
 
@@ -92,7 +91,6 @@ function consume(event) {
       if (i + 11 > bytes.length) break;
 
       const log = parseDatalog(i, bytes);
-
 
       if (log.date < oneDayAgo || log.date > now) {
         continue;
@@ -105,13 +103,11 @@ function consume(event) {
         messageType: log.messageType,
       };
 
-
       emit("sample", {
         data: historyDefault,
         topic: "default",
         timestamp: log.date.toISOString(),
       });
-
     }
 
     // configuration uplink payload
