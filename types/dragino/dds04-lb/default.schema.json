@@ -44,7 +44,7 @@
       "description": "Uplink message type identifier",
       "hideFromKpis": true
     },
-    "pnackMd": {
+    "pnackMode": {
       "type": "boolean",
       "title": "PNACK mode",
       "description": "Packet Not Acknowledged Mode status",
