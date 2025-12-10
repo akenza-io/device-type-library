@@ -1,25 +1,25 @@
 // Special EF CD AB -> AB CD EF Case
 function intToHex(number) {
-  let base = Number(number).toString(16);
-  if (base.length % 2) {
-    base = `0${base}`;
-  }
+    let base = Number(number).toString(16);
+    if (base.length % 2) {
+        base = `0${base}`;
+    }
 
-  let hex = "";
-  for (let i = 0; i < base.length; i += 2) {
-    hex = base.slice(i, i + 2) + hex;
-  }
+    let hex = "";
+    for (let i = 0; i < base.length; i += 2) {
+        hex = base.slice(i, i + 2) + hex;
+    }
 
-  return hex;
+    return hex;
 }
 
 function ascii2hex(str) {
-  const arr = [];
-  for (let i = 0, l = str.length; i < l; i++) {
-    const hex = Number(str.charCodeAt(i)).toString(16);
-    arr.push(hex);
-  }
-  return arr.join("");
+    const arr = [];
+    for (let i = 0, l = str.length; i < l; i++) {
+        const hex = Number(str.charCodeAt(i)).toString(16);
+        arr.push(hex);
+    }
+    return arr.join('');
 }
 
 
@@ -138,25 +138,10 @@ function consume(event) {
             }
         });
 
-        // ACII Encoded Hex
-        const contentHex = ascii2hex(payload.content);
-        // 1 Byte content size
-        payloadHex += intToHex(contentHex.length / 2);
-        payloadHex += contentHex;
-
-        // Channel, Type, Value
-        payloadHex += "FF3D02";
-        break;
-      }
-      default:
-        emit("log", { "Something went wrong with": payload });
-        break;
+        emit("downlink", {
+            payloadHex,
+            port,
+            confirmed: true,
+        });
     }
-
-    emit("downlink", {
-      payloadHex,
-      port,
-      confirmed: true,
-    });
-  }
 }
