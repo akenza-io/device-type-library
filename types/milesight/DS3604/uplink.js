@@ -263,7 +263,7 @@ function consume(event) {
   const button = {};
   const config = {};
   const update = {};
-  const downlink = {};
+  let downlink = {};
 
   for (let i = 0; i < bytes.length; ) {
     const channelId = bytes[i++];

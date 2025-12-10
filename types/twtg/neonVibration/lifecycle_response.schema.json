@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/twtg/neonVibration/lifecycle_response.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle_response",
+  "title": "Lifecycle response",
+  "properties": {
+    "response": {
+      "title": "Lifecycle response",
+      "type": "boolean",
+      "description": "Lifecycle response",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "response"
+  ]
+}

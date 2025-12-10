@@ -27,6 +27,15 @@ describe("TBDW100 uplink", () => {
     });
   });
 
+  let doorCountSchema = null;
+  before((done) => {
+    loadSchema(`${__dirname}/door_count.schema.json`)
+      .then((parsedSchema) => {
+        doorCountSchema = parsedSchema;
+        done();
+      });
+  });
+
   describe("consume()", () => {
     it("Should decode TBDW100 payload", () => {
       const data = {
@@ -39,6 +48,19 @@ describe("TBDW100 uplink", () => {
       expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value.lastCount, 3153);
+        assert.isNotNull(value.partialUsage, 0);
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "door_count");
+        assert.equal(value.data.doorClosings, 0);
+        assert.equal(value.data.usageCount, 0);
+
+        validateSchema(value.data, doorCountSchema, { throwError: true });
       });
 
       expectEmits((type, value) => {
@@ -74,7 +96,7 @@ describe("TBDW100 uplink", () => {
 
     it("Should decode TBDW100 payload", () => {
       const data = {
-        state: { lastCount: 3053 },
+        state: { lastCount: 3053, partialUsage: 0 },
         data: {
           payloadHex: "017b345cb1510c00",
         },
@@ -82,7 +104,20 @@ describe("TBDW100 uplink", () => {
 
       expectEmits((type, value) => {
         assert.equal(type, "state");
-        assert.isNotNull(value.lastCount, 3153);
+        assert.equal(value.lastCount, 3153);
+        assert.equal(value.partialUsage, 0);
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "door_count");
+        assert.equal(value.data.doorClosings, 50);
+        assert.equal(value.data.usageCount, 25);
+
+        validateSchema(value.data, doorCountSchema, { throwError: true });
       });
 
       expectEmits((type, value) => {

@@ -1,0 +1,103 @@
+{
+  "$id": "https://akenza.io/twtg/neonVibration/alert.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "alert",
+  "title": "Alert",
+  "properties": {
+    "sensorAlert0": {
+      "title": "Sensor alert 0",
+      "type": "boolean",
+      "description": "Sensor alert 0",
+      "hideFromKpis": true
+    },
+    "sensorAlert1": {
+      "title": "Sensor alert 1",
+      "type": "boolean",
+      "description": "Sensor alert 1",
+      "hideFromKpis": true
+    },
+    "sensorAlert2": {
+      "title": "Sensor alert 2",
+      "type": "boolean",
+      "description": "Sensor alert 2",
+      "hideFromKpis": true
+    },
+    "sensorAlert3": {
+      "title": "Sensor alert 3",
+      "type": "boolean",
+      "description": "Sensor alert 3",
+      "hideFromKpis": true
+    },
+    "sensorAlert4": {
+      "title": "Sensor alert 4",
+      "type": "boolean",
+      "description": "Sensor alert 4",
+      "hideFromKpis": true
+    },
+    "sensorAlert5": {
+      "title": "Sensor alert 5",
+      "type": "boolean",
+      "description": "Sensor alert 5",
+      "hideFromKpis": true
+    },
+    "sensorAlert6": {
+      "title": "Sensor alert 6",
+      "type": "boolean",
+      "description": "Sensor alert 6",
+      "hideFromKpis": true
+    },
+    "sensorAlert7": {
+      "title": "Sensor alert 7",
+      "type": "boolean",
+      "description": "Sensor alert 7",
+      "hideFromKpis": true
+    },
+    "spectrumAlert0": {
+      "title": "Spectrum alert 0",
+      "type": "boolean",
+      "description": "Spectrum alert 0",
+      "hideFromKpis": true
+    },
+    "spectrumAlert1": {
+      "title": "Spectrum alert 1",
+      "type": "boolean",
+      "description": "Spectrum alert 1",
+      "hideFromKpis": true
+    },
+    "spectrumAlert2": {
+      "title": "Spectrum alert 2",
+      "type": "boolean",
+      "description": "Spectrum alert 2",
+      "hideFromKpis": true
+    },
+    "spectrumAlert3": {
+      "title": "Spectrum alert 3",
+      "type": "boolean",
+      "description": "Spectrum alert 3",
+      "hideFromKpis": true
+    },
+    "spectrumAlert4": {
+      "title": "Spectrum alert 4",
+      "type": "boolean",
+      "description": "Spectrum alert 4",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "sensorAlert0",
+    "sensorAlert1",
+    "sensorAlert2",
+    "sensorAlert3",
+    "sensorAlert4",
+    "sensorAlert5",
+    "sensorAlert6",
+    "sensorAlert7",
+    "spectrumAlert0",
+    "spectrumAlert1",
+    "spectrumAlert2",
+    "spectrumAlert3",
+    "spectrumAlert4"
+  ]
+}

@@ -26,6 +26,7 @@
     "lifecycle",
     "motion_counter",
     "reed_counter",
+    "door_count",
     "button_event"
   ],
   "encoding": "HEX",

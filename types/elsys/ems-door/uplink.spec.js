@@ -35,6 +35,15 @@ describe("Elsys EMS Door uplink", () => {
     });
   });
 
+  let doorCountSchema = null;
+  before((done) => {
+    loadSchema(`${__dirname}/door_count.schema.json`)
+      .then((parsedSchema) => {
+        doorCountSchema = parsedSchema;
+        done();
+      });
+  });
+
   describe("consume()", () => {
     it("should decode Elsys EMS Door payload", () => {
       const data = {
@@ -44,6 +53,18 @@ describe("Elsys EMS Door uplink", () => {
           payloadHex: "033e01ff070e2f0b000007920d010f00",
         },
       };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "door_count");
+        assert.equal(value.data.doorClosings, 0);
+        assert.equal(value.data.usageCount, 0);
+
+        validateSchema(value.data, doorCountSchema, { throwError: true });
+      });
 
       expectEmits((type, value) => {
         assert.equal(type, "sample");
@@ -90,7 +111,8 @@ describe("Elsys EMS Door uplink", () => {
         assert.equal(type, "state");
         assert.isNotNull(value);
 
-        assert.equal(value.lastPulse1, 1938);
+        assert.equal(value.lastCount, 1938);
+        assert.equal(value.partialUsage, 0);
       });
 
       consume(data);
@@ -99,13 +121,26 @@ describe("Elsys EMS Door uplink", () => {
     it("should decode Elsys EMS Door payload & give out lastpuls increment", () => {
       const data = {
         state: {
-          lastPulse1: 1700,
+          lastCount: 1700,
+          partialUsage: 0
         },
         data: {
           port: 5,
           payloadHex: "033e01ff070e2f0b000007920d010f00",
         },
       };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "door_count");
+        assert.equal(value.data.doorClosings, 238);
+        assert.equal(value.data.usageCount, 119);
+
+        validateSchema(value.data, doorCountSchema, { throwError: true });
+      });
 
       expectEmits((type, value) => {
         assert.equal(type, "sample");
@@ -152,7 +187,8 @@ describe("Elsys EMS Door uplink", () => {
         assert.equal(type, "state");
         assert.isNotNull(value);
 
-        assert.equal(value.lastPulse1, 1938);
+        assert.equal(value.lastCount, 1938);
+        assert.equal(value.partialUsage, 0);
       });
 
       consume(data);
@@ -161,13 +197,26 @@ describe("Elsys EMS Door uplink", () => {
     it("should decode Elsys EMS Door event payload and count up the state correctly", () => {
       const data = {
         state: {
-          lastPulse1: 1938,
+          lastCount: 1938,
+          partialUsage: 0
         },
         data: {
           port: 5,
           payloadHex: "0d01",
         },
       };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "door_count");
+        assert.equal(value.data.doorClosings, 1);
+        assert.equal(value.data.usageCount, 0);
+
+        validateSchema(value.data, doorCountSchema, { throwError: true });
+      });
 
       expectEmits((type, value) => {
         assert.equal(type, "sample");
@@ -186,7 +235,8 @@ describe("Elsys EMS Door uplink", () => {
         assert.equal(type, "state");
         assert.isNotNull(value);
 
-        assert.equal(value.lastPulse1, 1939);
+        assert.equal(value.lastCount, 1939);
+        assert.equal(value.partialUsage, 1);
       });
 
       consume(data);
@@ -195,13 +245,26 @@ describe("Elsys EMS Door uplink", () => {
     it("should decode Elsys EMS Door event payload and not count up only repeat", () => {
       const data = {
         state: {
-          lastPulse1: 1939,
+          lastCount: 1939,
+          partialUsage: 0
         },
         data: {
           port: 5,
           payloadHex: "0d00",
         },
       };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "door_count");
+        assert.equal(value.data.doorClosings, 0);
+        assert.equal(value.data.usageCount, 0);
+
+        validateSchema(value.data, doorCountSchema, { throwError: true });
+      });
 
       expectEmits((type, value) => {
         assert.equal(type, "sample");
@@ -220,7 +283,8 @@ describe("Elsys EMS Door uplink", () => {
         assert.equal(type, "state");
         assert.isNotNull(value);
 
-        assert.equal(value.lastPulse1, 1939);
+        assert.equal(value.lastCount, 1939);
+        assert.equal(value.partialUsage, 0);
       });
 
       consume(data);

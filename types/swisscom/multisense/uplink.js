@@ -11,18 +11,56 @@ function int16(hex) {
   return a;
 }
 
-function calculateIncrement(lastValue, currentValue) {
+function checkForCustomFields(device, target, norm) {
+  if (device !== undefined && device.customFields !== undefined && device.customFields[target] !== undefined) {
+    return device.customFields[target];
+  }
+  return norm;
+}
+
+function calculateIncrement(state, currentValue, usageDefinition = 2, doorClosingDefinition = 1) {
+  let { lastCount } = state;
+  let { partialUsage } = state;
+  let { partialDoorClosing } = state;
+  let response = { state, data: { increment: 0, usageCount: 0, doorClosings: 0 } }
+
   // Check if current value exists
   if (currentValue === undefined || Number.isNaN(currentValue)) {
-    return 0;
+    return response;
   }
 
-  // Init state && Check for the case the counter reseted
-  if (lastValue === undefined || lastValue > currentValue) {
-    lastValue = currentValue;
+  // Init state for last absolute count && Check for the case the counter reseted
+  if (lastCount === undefined || lastCount > currentValue) {
+    lastCount = currentValue;
   }
+
   // Calculate increment
-  return currentValue - lastValue;
+  response.data.increment = currentValue - lastCount;
+  response.state.lastCount = currentValue;
+
+  // Init state for cycles
+  if (partialUsage === undefined || Number.isNaN(partialUsage)) {
+    partialUsage = 0;
+  }
+  if (partialDoorClosing === undefined || Number.isNaN(partialDoorClosing)) {
+    partialDoorClosing = 0;
+  }
+
+  // Add new partial usage 
+  let newPartialUsage = partialUsage + response.data.increment;
+  let remainingPartialUsage = newPartialUsage % usageDefinition;
+  response.data.usageCount = (newPartialUsage - remainingPartialUsage) / usageDefinition;
+
+  // Add new partial doorClosing
+  let newPartialDoorClosing = partialDoorClosing + response.data.increment;
+  let remainingPartialDoorClosing = newPartialDoorClosing % doorClosingDefinition;
+  response.data.doorClosings = (newPartialDoorClosing - remainingPartialDoorClosing) / doorClosingDefinition;
+
+  // Save not used partial usage for next time
+  response.state.partialUsage = remainingPartialUsage;
+  response.state.partialDoorClosing = remainingPartialDoorClosing;
+
+  return response;
 }
 
 function consume(event) {
@@ -74,19 +112,19 @@ function consume(event) {
           pointer += 8;
           topic = "humidity";
           break;
-        case 3:
+        case 3: {
           data.reedCounter = Bits.bitsToUnsigned(bits.substr(pointer, 16));
           pointer += 16;
           topic = "reed_counter";
 
-          data.relativeReedCounter = calculateIncrement(
-            state.lastReed,
-            data.reedCounter,
-          );
-          state.lastReed = data.reedCounter;
+          const calculated = calculateIncrement(state, data.reedCounter, checkForCustomFields(event.device, "usageCountDivider", 2));
+          const { doorClosings, usageCount } = calculated.data;
+          data.relativeReedCounter = calculated.data.increment;
 
+          emit("state", calculated.state);
+          emit("sample", { data: { doorClosings, usageCount }, topic: "door_count" });
           break;
-        case 4:
+        } case 4:
           data.motionCounter = Bits.bitsToUnsigned(bits.substr(pointer, 16));
           pointer += 16;
           topic = "motion_counter";
@@ -181,5 +219,4 @@ function consume(event) {
 
   emit("sample", { data: trigger, topic: "event" });
   emit("sample", { data: lifecycle, topic: "lifecycle" });
-  emit("state", state);
 }

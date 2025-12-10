@@ -1,0 +1,51 @@
+{
+  "$id": "https://akenza.io/nexelec/origin/alarm.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "alarm",
+  "title": "Alarm",
+  "properties": {
+    "alarmStatus": {
+      "title": "Alarm status",
+      "type": "string",
+      "description": "The current status of the smoke alarm",
+      "enum": [
+        "NO_SMOKE_DETECTED",
+        "SMOKE_DETECTED",
+        "REPEATED_ALARM"
+      ],
+      "hideFromKpis": false
+    },
+    "pauseAlarm": {
+      "title": "Pause alarm reason",
+      "type": "string",
+      "description": "Reason for the alarm being paused or stopped",
+      "enum": [
+        "NO_MORE_SMOKE",
+        "MAIN_BUTTON_PRESSED",
+        "ALL_PRODUCTS_SWITCHED_OFF"
+      ],
+      "hideFromKpis": true
+    },
+    "productTest": {
+      "title": "Product test status",
+      "type": "string",
+      "description": "Indicates if a product test has been performed",
+      "enum": [
+        "NO_TESTS",
+        "LOCAL_TEST",
+        "REMOTE_TEST"
+      ],
+      "hideFromKpis": true
+    },
+    "timeSinceLastProductTest": {
+      "title": "Time since last product test",
+      "unit": "weeks",
+      "type": "number",
+      "description": "Time elapsed since the last product test",
+      "hideFromKpis": true
+    }
+  },
+  "required": []
+}

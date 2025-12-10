@@ -19,7 +19,7 @@ function getFillLevel(device, distance) {
 
       if (scaleLength !== null) {
         const percentExact =
-          (100 / scaleLength) * (scaleLength - (distance - sensorDistance));
+          (100 / scaleLength) * (distance - sensorDistance);
         let fillLevel = Math.round(percentExact);
         if (fillLevel > 100) {
           fillLevel = 100;
