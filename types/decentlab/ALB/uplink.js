@@ -1,26 +1,51 @@
-
 /* https://www.decentlab.com/products/albedometer-sensor-for-lorawan */
 
 const decentlab_decoder = {
   PROTOCOL_VERSION: 2,
   SENSORS: [
-    {length: 2,
-     values: [{name: 'incoming_radiation',
-               displayName: 'Incoming radiation',
-               convert: function (x) { return (x[0] - 32768) / 10; },
-               unit: 'W⋅m⁻²'},
-              {name: 'reflected_radiation',
-               displayName: 'Reflected radiation',
-               convert: function (x) { return (x[1] - 32768) / 10; },
-               unit: 'W⋅m⁻²'},
-              {name: 'albedo',
-               displayName: 'albedo',
-               convert: function (x) { return ((((x[0] - 32768) > 0) && ((x[1] - 32768) > 0)) ?  (x[1] - 32768) / (x[0] - 32768) :  0); }}]},
-    {length: 1,
-     values: [{name: 'battery_voltage',
-               displayName: 'Battery voltage',
-               convert: function (x) { return x[0] / 1000; },
-               unit: 'V'}]}
+    {
+      length: 2,
+      values: [
+        {
+          name: "incoming_radiation",
+          displayName: "Incoming radiation",
+          convert: function (x) {
+            return (x[0] - 32768) / 10;
+          },
+          unit: "W⋅m⁻²",
+        },
+        {
+          name: "reflected_radiation",
+          displayName: "Reflected radiation",
+          convert: function (x) {
+            return (x[1] - 32768) / 10;
+          },
+          unit: "W⋅m⁻²",
+        },
+        {
+          name: "albedo",
+          displayName: "albedo",
+          convert: function (x) {
+            return x[0] - 32768 > 0 && x[1] - 32768 > 0
+              ? (x[1] - 32768) / (x[0] - 32768)
+              : 0;
+          },
+        },
+      ],
+    },
+    {
+      length: 1,
+      values: [
+        {
+          name: "battery_voltage",
+          displayName: "Battery voltage",
+          convert: function (x) {
+            return x[0] / 1000;
+          },
+          unit: "V",
+        },
+      ],
+    },
   ],
 
   read_int: function (bytes, pos) {
@@ -30,7 +55,7 @@ const decentlab_decoder = {
   decode: function (msg) {
     var bytes = msg;
     var i, j;
-    if (typeof msg === 'string') {
+    if (typeof msg === "string") {
       bytes = [];
       for (i = 0; i < msg.length; i += 2) {
         bytes.push(parseInt(msg.substring(i, i + 2), 16));
@@ -39,17 +64,16 @@ const decentlab_decoder = {
 
     var version = bytes[0];
     if (version != this.PROTOCOL_VERSION) {
-      return {error: "protocol version " + version + " doesn't match v2"};
+      return { error: "protocol version " + version + " doesn't match v2" };
     }
 
     var deviceId = this.read_int(bytes, 1);
     var flags = this.read_int(bytes, 3);
-    var result = {'protocol_version': version, 'device_id': deviceId};
+    var result = { protocol_version: version, device_id: deviceId };
     // decode payload
     var pos = 5;
     for (i = 0; i < this.SENSORS.length; i++, flags >>= 1) {
-      if ((flags & 1) !== 1)
-        continue;
+      if ((flags & 1) !== 1) continue;
 
       var sensor = this.SENSORS[i];
       var x = [];
@@ -62,16 +86,17 @@ const decentlab_decoder = {
       // decode sensor values
       for (j = 0; j < sensor.values.length; j++) {
         var value = sensor.values[j];
-        if ('convert' in value) {
-          result[value.name] = {displayName: value.displayName,
-                                value: value.convert.bind(this)(x)};
-          if ('unit' in value)
-            result[value.name]['unit'] = value.unit;
+        if ("convert" in value) {
+          result[value.name] = {
+            displayName: value.displayName,
+            value: value.convert.bind(this)(x),
+          };
+          if ("unit" in value) result[value.name]["unit"] = value.unit;
         }
       }
     }
     return result;
-  }
+  },
 };
 
 function deleteUnusedKeys(data) {
@@ -87,7 +112,7 @@ function deleteUnusedKeys(data) {
 }
 
 function calcBatteryPercent(number, max, min) {
-  const percent = (number - min) / (max - min) * 100;
+  const percent = ((number - min) / (max - min)) * 100;
   return Math.round(Math.max(0, Math.min(100, percent)));
 }
 
@@ -102,7 +127,11 @@ function consume(event) {
 
   const lifecycle = {};
   lifecycle.batteryVoltage = sample.battery_voltage.value;
-  lifecycle.batteryLevel = calcBatteryPercent(sample.battery_voltage.value, 3, 2);
+  lifecycle.batteryLevel = calcBatteryPercent(
+    sample.battery_voltage.value,
+    3,
+    2,
+  );
   lifecycle.protocolVersion = sample.protocol_version;
   lifecycle.deviceId = sample.device_id;
 

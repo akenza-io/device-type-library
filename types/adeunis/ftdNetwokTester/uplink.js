@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function parseHexString(str) {
   let param = str;
   const result = [];
@@ -23,6 +27,7 @@ function consume(event) {
       }
 
       decoded.temperature = temperature;
+      decoded.temperatureF = cToF(decoded.temperature);
       offset += 1;
     }
     if (status & 0x40) {

@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -23,20 +21,18 @@ describe("Watecco BoB Uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   let learningSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/learning.schema.json`)
-      .then((parsedSchema) => {
-        learningSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/learning.schema.json`).then((parsedSchema) => {
+      learningSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -97,6 +93,7 @@ describe("Watecco BoB Uplink", () => {
         assert.equal(value.data.peakFrequency, 6.25);
         assert.equal(value.data.peakFrequencyIndex, 2);
         assert.equal(value.data.temperature, 24);
+        assert.equal(value.data.temperatureF, 75.2);
         assert.equal(value.data.vibrationLevel, 0.026043639357760395);
 
         validateSchema(value.data, learningSchema, { throwError: true });
@@ -133,6 +130,7 @@ describe("Watecco BoB Uplink", () => {
         assert.equal(value.data.anomalyLevel, 6.299);
         assert.equal(value.data.nrAlarms, 0);
         assert.equal(value.data.temperature, 23);
+        assert.equal(value.data.temperatureF, 73.4);
         assert.equal(value.data.operatingTime, 62);
         assert.equal(value.data.reportID, 9);
         assert.equal(value.data.maxAmplitude, 0.021);

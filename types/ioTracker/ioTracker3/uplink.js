@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function decoder(bytes) {
   const decoded = {};
 
@@ -265,6 +269,7 @@ function decoder(bytes) {
 
     if (decoded.sensorContent.containsTemperature) {
       decoded.temperature = toSignedShort(bytes[index++], bytes[index++]) / 100;
+      decoded.temperatureF = cToF(decoded.temperature);
     }
 
     if (decoded.sensorContent.containsLight) {

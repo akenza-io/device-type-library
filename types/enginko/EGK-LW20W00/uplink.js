@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function hexStringToByteArray(s) {
   for (var bytes = [], c = 0; c < s.length; c += 2) {
     bytes.push(parseInt(s.substr(c, 2), 16));
@@ -451,6 +455,9 @@ function consume(event) {
     }
 
     currentSample[variable] = value;
+    if (variable === "temperature") {
+      currentSample.temperatureF = cToF(value);
+    }
   }
   delete currentSample.type;
 

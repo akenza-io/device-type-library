@@ -1,10 +1,9 @@
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -14,11 +13,10 @@ describe("AM307 Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -41,6 +39,7 @@ describe("AM307 Uplink", () => {
         assert.equal(value.data.pir, "TRIGGER");
         assert.equal(value.data.pressure, 0);
         assert.equal(value.data.temperature, 23.8);
+        assert.equal(value.data.temperatureF, 74.8);
         assert.equal(value.data.tvoc, 37);
 
         validateSchema(value.data, defaultSchema, { throwError: true });

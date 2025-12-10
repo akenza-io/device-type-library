@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,20 +13,18 @@ describe("Laiier severnWLD Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   let startUpSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/start_up.schema.json`)
-      .then((parsedSchema) => {
-        startUpSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/start_up.schema.json`).then((parsedSchema) => {
+      startUpSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -89,6 +85,7 @@ describe("Laiier severnWLD Uplink", () => {
         assert.equal(value.data.messageType, "SELF_TEST_MESSAGE");
         assert.equal(value.data.selfTestFailed, false);
         assert.equal(value.data.temperature, 24);
+        assert.equal(value.data.temperatureF, 75.2);
         assert.equal(value.data.wetnessThreshold, 3);
 
         validateSchema(value.data, defaultSchema, {

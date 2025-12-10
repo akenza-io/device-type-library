@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -20,27 +18,24 @@ describe("Decentlab NTU Uplink", () => {
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
     it("should decode the Decentlab NTU payload", () => {
       const data = {
         data: {
-          payloadHex:
-            "022332000300008885013e013e02330b10",
+          payloadHex: "022332000300008885013e013e02330b10",
         },
       };
 
@@ -51,6 +46,7 @@ describe("Decentlab NTU Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 21.81);
+        assert.equal(value.data.temperatureF, 71.3);
         assert.equal(value.data.turbidityInFnu, 31.8);
         assert.equal(value.data.turbidityInMgL, 56.3);
         assert.equal(value.data.turbidityInNtu, 31.8);

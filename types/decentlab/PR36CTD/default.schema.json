@@ -1,34 +1,42 @@
 {
-  "$id": "https://akenza.io/decentlab/pr36ctd/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
-  "properties": {
-    "pressure": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/bar",
-      "title": "Hydrostatic Pressure"
+    "$id": "https://akenza.io/decentlab/pr36ctd/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "pressure": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/bar",
+            "title": "Hydrostatic Pressure"
+        },
+        "temperatureElectronics": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "Temperature Electronics °C"
+        },
+        "temperaturePT1000": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "Temperature PT1000 °C"
+        },
+        "electricalConductivity": {
+            "title": "Electrical Conductivity",
+            "unit": "mS⋅cm⁻¹",
+            "description": "Electrical Conductivity in mS⋅cm⁻¹",
+            "type": "number"
+        },
+        "temperatureElectronicsF": {
+            "title": "Temperature Electronics °F",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "temperaturePT1000F": {
+            "title": "Temperature PT1000 °F",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
     },
-    "temperatureElectronics": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature Electronics"
-    },
-    "temperaturePT1000": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature PT1000"
-    },
-    "electricalConductivity": {
-      "title": "Electrical Conductivity",
-      "unit": "mS⋅cm⁻¹",
-      "description": "Electrical Conductivity in mS⋅cm⁻¹",
-      "type": "number"
-    }
-  },
-  "required": [
-    "pressure",
-    "temperatureElectronics",
-    "temperaturePT1000",
-    "electricalConductivity"
-  ]
+    "required": [
+        "pressure",
+        "temperatureElectronics",
+        "temperaturePT1000",
+        "electricalConductivity"
+    ]
 }

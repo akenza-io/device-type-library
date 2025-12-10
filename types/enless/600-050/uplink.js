@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 // --- HEX TO BYTE ARRAY ---
 function parseHexString(str) {
   const result = [];
@@ -40,12 +44,13 @@ function consume(event) {
   lifecycle.id = readUInt24BE(bytes.slice(0, 3));
   lifecycle.type = bytes[3];
   lifecycle.seqCounter = bytes[4];
-  lifecycle.fwVersion = bytes[5] & 0x3F;
+  lifecycle.fwVersion = bytes[5] & 0x3f;
 
   if (len === 30) {
     // === Classic Frame ===
 
     decoded.temperature = readInt16BE(bytes.slice(6, 8)) / 10;
+    decoded.temperatureF = cToF(decoded.temperature);
     decoded.humidity = readUInt16BE(bytes.slice(10, 12)) / 10;
 
     // --- Alarm Status ---
@@ -61,9 +66,8 @@ function consume(event) {
     const batteryLevels = [100, 75, 50, 25];
     lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
-    decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";
+    decoded.msgType = status & 0x01 ? "ALARM" : "NORMAL";
     decoded.rbe = Boolean((status >> 9) & 0x01);
-
   } else if (len === 34) {
     // === Datalogging Frame ===
     datalog.tempeartureDatalog = [];
@@ -87,12 +91,14 @@ function consume(event) {
     const batteryLevels = [100, 75, 50, 25];
     lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
-    decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";
+    decoded.msgType = status & 0x01 ? "ALARM" : "NORMAL";
     decoded.rbe = Boolean((status >> 9) & 0x01);
 
     emit("sample", { data: datalog, topic: "datalog" });
   } else {
-    throw new Error(`Unsupported payload length: ${len} bytes. Expected 30 or 34.`);
+    throw new Error(
+      `Unsupported payload length: ${len} bytes. Expected 30 or 34.`,
+    );
   }
 
   emit("sample", { data: lifecycle, topic: "lifecycle" });

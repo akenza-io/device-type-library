@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
@@ -20,6 +24,7 @@ function consume(event) {
 
   data.temperature = Bits.bitsToUnsigned(bits.substr(17, 7));
   data.temperature -= 32;
+  data.temperatureF = cToF(data.temperature);
 
   data.soundAvg = Bits.bitsToUnsigned(bits.substr(24, 8));
 

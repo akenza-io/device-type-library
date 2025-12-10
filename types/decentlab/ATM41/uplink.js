@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 const decentlab_decoder = {
   PROTOCOL_VERSION: 2,
   SENSORS: [
@@ -231,6 +235,7 @@ function consume(event) {
   data.windDirection = sample.wind_direction;
   data.maximumWindSpeed = sample.maximum_wind_speed;
   data.temperature = sample.air_temperature;
+  data.temperatureF = cToF(data.temperature);
   data.vaporPressure = sample.vapor_pressure;
   data.atmosphericPressure = sample.atmospheric_pressure;
   data.humidity = sample.relative_humidity;
@@ -242,6 +247,9 @@ function consume(event) {
   lifecycle.protocolVersion = sample.protocol_version;
   lifecycle.deviceID = sample.device_id;
   lifecycle.sensorTemperatureInternal = sample.sensor_temperature_internal;
+  lifecycle.sensorTemperatureInternalF = cToF(
+    lifecycle.sensorTemperatureInternal,
+  );
   lifecycle.xOrientationAngle = sample.x_orientation_angle;
   lifecycle.yOrientationAngle = sample.y_orientation_angle;
   lifecycle.compassHeading = sample.compass_heading;

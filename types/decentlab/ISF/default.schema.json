@@ -1,100 +1,104 @@
 {
-  "$id": "https://akenza.io/decentlab/isf/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
-  "properties": {
-    "sapFlow": {
-      "title": "Sap Flow",
-      "unit": "l⋅h⁻¹",
-      "description": "Sap Flow in l⋅h⁻¹",
-      "type": "number"
+    "$id": "https://akenza.io/decentlab/isf/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "sapFlow": {
+            "title": "Sap Flow",
+            "unit": "l⋅h⁻¹",
+            "description": "Sap Flow in l⋅h⁻¹",
+            "type": "number"
+        },
+        "heatVelocityOuter": {
+            "title": "Heat Velocity (outer)",
+            "unit": "cm⋅h⁻¹",
+            "description": "Heat Velocity (outer) in cm⋅h⁻¹",
+            "type": "number"
+        },
+        "heatVelocityInner": {
+            "title": "Heat Velocity (inner)",
+            "unit": "cm⋅h⁻¹",
+            "description": "Heat Velocity (inner) in cm⋅h⁻¹",
+            "type": "number"
+        },
+        "alphaOuter": {
+            "title": "Alpha (outer)",
+            "description": "Alpha (outer)",
+            "type": "number"
+        },
+        "alphaInner": {
+            "title": "Alpha (inner)",
+            "description": "Alpha (inner)",
+            "type": "number"
+        },
+        "betaOuter": {
+            "title": "Beta (outer)",
+            "description": "Beta (outer)",
+            "type": "number"
+        },
+        "betaInner": {
+            "title": "Beta (inner)",
+            "description": "Beta (inner)",
+            "type": "number"
+        },
+        "tmaxOuter": {
+            "title": "Tmax (outer)",
+            "unit": "s",
+            "description": "Tmax (outer) in s",
+            "type": "number"
+        },
+        "tmaxInner": {
+            "title": "Tmax (inner)",
+            "unit": "s",
+            "description": "Tmax (inner) in s",
+            "type": "number"
+        },
+        "temperatureOuter": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "Temperature (outer) °C"
+        },
+        "maxVoltage": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
+            "title": "Max Voltage"
+        },
+        "minVoltage": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
+            "title": "Min Voltage"
+        },
+        "upstreamTmaxOuter": {
+            "title": "Upstream Tmax (outer)",
+            "unit": "s",
+            "description": "Upstream Tmax (outer) in s",
+            "type": "number"
+        },
+        "upstreamTmaxInner": {
+            "title": "Upstream Tmax (inner)",
+            "unit": "s",
+            "description": "Upstream Tmax (inner) in s",
+            "type": "number"
+        },
+        "temperatureOuterF": {
+            "title": "Temperature (outer) °F",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
     },
-    "heatVelocityOuter": {
-      "title": "Heat Velocity (outer)",
-      "unit": "cm⋅h⁻¹",
-      "description": "Heat Velocity (outer) in cm⋅h⁻¹",
-      "type": "number"
-    },
-    "heatVelocityInner": {
-      "title": "Heat Velocity (inner)",
-      "unit": "cm⋅h⁻¹",
-      "description": "Heat Velocity (inner) in cm⋅h⁻¹",
-      "type": "number"
-    },
-    "alphaOuter": {
-      "title": "Alpha (outer)",
-      "description": "Alpha (outer)",
-      "type": "number"
-    },
-    "alphaInner": {
-      "title": "Alpha (inner)",
-      "description": "Alpha (inner)",
-      "type": "number"
-    },
-    "betaOuter": {
-      "title": "Beta (outer)",
-      "description": "Beta (outer)",
-      "type": "number"
-    },
-    "betaInner": {
-      "title": "Beta (inner)",
-      "description": "Beta (inner)",
-      "type": "number"
-    },
-    "tmaxOuter": {
-      "title": "Tmax (outer)",
-      "unit": "s",
-      "description": "Tmax (outer) in s",
-      "type": "number"
-    },
-    "tmaxInner": {
-      "title": "Tmax (inner)",
-      "unit": "s",
-      "description": "Tmax (inner) in s",
-      "type": "number"
-    },
-    "temperatureOuter": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature (outer)"
-    },
-    "maxVoltage": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
-      "title": "Max Voltage"
-    },
-    "minVoltage": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
-      "title": "Min Voltage"
-    },
-    "upstreamTmaxOuter": {
-      "title": "Upstream Tmax (outer)",
-      "unit": "s",
-      "description": "Upstream Tmax (outer) in s",
-      "type": "number"
-    },
-    "upstreamTmaxInner": {
-      "title": "Upstream Tmax (inner)",
-      "unit": "s",
-      "description": "Upstream Tmax (inner) in s",
-      "type": "number"
-    }
-  },
-  "required": [
-    "sapFlow",
-    "heatVelocityOuter",
-    "heatVelocityInner",
-    "alphaOuter",
-    "alphaInner",
-    "betaOuter",
-    "betaInner",
-    "tmaxOuter",
-    "tmaxInner",
-    "temperatureOuter",
-    "maxVoltage",
-    "minVoltage",
-    "upstreamTmaxOuter",
-    "upstreamTmaxInner"
-  ]
+    "required": [
+        "sapFlow",
+        "heatVelocityOuter",
+        "heatVelocityInner",
+        "alphaOuter",
+        "alphaInner",
+        "betaOuter",
+        "betaInner",
+        "tmaxOuter",
+        "tmaxInner",
+        "temperatureOuter",
+        "maxVoltage",
+        "minVoltage",
+        "upstreamTmaxOuter",
+        "upstreamTmaxInner"
+    ]
 }

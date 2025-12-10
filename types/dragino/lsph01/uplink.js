@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bytes = Hex.hexToBytes(payload);
@@ -21,9 +25,11 @@ function consume(event) {
     temperature |= 0xffff0000;
   }
   data.temperature = (temperature / 10).toFixed(2);
+  data.temperatureF = cToF(data.temperature);
 
   if (((bytes[2] << 8) | bytes[3]) === 0xffff) {
     data.temperature = null;
+    data.temperatureF = null;
   }
 
   const soilMoisture = (bytes[4] << 8) | bytes[5];
@@ -32,12 +38,15 @@ function consume(event) {
   const soilTemperature = (bytes[6] << 8) | bytes[7];
   if ((soilTemperature & 0x8000) >> 15 === 0) {
     data.soilTemperature = (soilTemperature / 10).toFixed(2);
+    data.soilTemperatureF = cToF(data.soilTemperature);
   } else if ((soilTemperature & 0x8000) >> 15 === 1) {
     data.soilTemperature = ((soilTemperature - 0xffff) / 10).toFixed(2);
+    data.soilTemperatureF = cToF(data.soilTemperature);
   }
 
   if (((bytes[6] << 8) | bytes[7]) === 0xffff) {
     data.soilTemperature = null;
+    data.soilTemperatureF = null;
   }
 
   emit("sample", { data, topic: "default" });

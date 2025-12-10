@@ -13,7 +13,8 @@ function readInt16LE(bytes) {
 }
 
 function readUInt32LE(bytes) {
-  const value = (bytes[3] << 24) + (bytes[2] << 16) + (bytes[1] << 8) + bytes[0];
+  const value =
+    (bytes[3] << 24) + (bytes[2] << 16) + (bytes[1] << 8) + bytes[0];
   return (value & 0xffffffff) >>> 0;
 }
 
@@ -55,7 +56,7 @@ function readTslVersion(bytes) {
 function readSerialNumber(bytes) {
   const temp = [];
   for (let idx = 0; idx < bytes.length; idx++) {
-    temp.push((`0${(bytes[idx] & 0xff).toString(16)}`).slice(-2));
+    temp.push(`0${(bytes[idx] & 0xff).toString(16)}`.slice(-2));
   }
   return temp.join("");
 }
@@ -84,7 +85,7 @@ function consume(event) {
   const data = {};
 
   if (bytes.length > 4) {
-    for (let i = 0; i < bytes.length;) {
+    for (let i = 0; i < bytes.length; ) {
       const channelId = bytes[i++];
       const channelType = bytes[i++];
 

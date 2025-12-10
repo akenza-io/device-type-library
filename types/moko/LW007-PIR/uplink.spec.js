@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -23,11 +21,10 @@ describe("Moko LW007-PIR Uplink", () => {
 
   let shutdownSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/shutdown.schema.json`)
-      .then((parsedSchema) => {
-        shutdownSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/shutdown.schema.json`).then((parsedSchema) => {
+      shutdownSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -35,8 +32,7 @@ describe("Moko LW007-PIR Uplink", () => {
       const data = {
         data: {
           port: 5,
-          payloadHex:
-            "68A8359A101F8DE55F0000",
+          payloadHex: "68A8359A101F8DE55F0000",
         },
       };
 
@@ -68,8 +64,7 @@ describe("Moko LW007-PIR Uplink", () => {
       const data = {
         data: {
           port: 7,
-          payloadHex:
-            "68A838E81002",
+          payloadHex: "68A838E81002",
         },
       };
 

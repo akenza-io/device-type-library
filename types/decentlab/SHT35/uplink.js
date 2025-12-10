@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 const decentlab_decoder = {
   PROTOCOL_VERSION: 2,
   SENSORS: [
@@ -105,6 +109,7 @@ function consume(event) {
 
   // Default values
   data.temperature = sample.air_temperature;
+  data.temperatureF = cToF(data.temperature);
   data.humidity = sample.air_humidity;
 
   // Lifecycle values

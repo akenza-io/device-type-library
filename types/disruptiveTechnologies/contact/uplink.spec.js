@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,20 +13,20 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/contact.schema.json`)
-      .then((parsedSchema) => {
-        objectPresentSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/contact.schema.json`).then((parsedSchema) => {
+      objectPresentSchema = parsedSchema;
+      done();
+    });
   });
 
   let networkStatusSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/network_status.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/network_status.schema.json`).then(
+      (parsedSchema) => {
         networkStatusSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   describe("consume()", () => {
@@ -40,10 +38,10 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
         eventType: "contact",
         data: {
           eventType: "contact",
-          "contact": {
-            "state": "OPEN",
-            "updateTime": "2024-12-06T14:23:50.728000Z"
-          }
+          contact: {
+            state: "OPEN",
+            updateTime: "2024-12-06T14:23:50.728000Z",
+          },
         },
         timestamp: "2021-09-15T14:48:05.948000Z",
         labels: {},
@@ -72,7 +70,6 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
       consume(data);
     });
 
-
     it("should repeat the Digital Technologies Contact Sensor payload", () => {
       const data = {
         eventId: "c510f9ag03fligl8tvag",
@@ -81,19 +78,19 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
         eventType: "networkStatus",
         data: {
           eventType: "networkStatus",
-          "networkStatus": {
-            "signalStrength": 10,
-            "rssi": 10,
-            "transmissionMode": "HIGH_POWER_BOOST_MODE",
-            "updateTime": "2024-12-06T14:23:50.728000Z"
-          }
+          networkStatus: {
+            signalStrength: 10,
+            rssi: 10,
+            transmissionMode: "HIGH_POWER_BOOST_MODE",
+            updateTime: "2024-12-06T14:23:50.728000Z",
+          },
         },
         timestamp: "2021-09-15T14:48:05.948000Z",
         labels: {},
         state: {
           lastContact: "OPEN",
-          lastSampleEmittedAt: 1752131670374
-        }
+          lastSampleEmittedAt: 1752131670374,
+        },
       };
 
       expectEmits((type, value) => {
@@ -144,20 +141,20 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
         eventType: "networkStatus",
         data: {
           eventType: "networkStatus",
-          "networkStatus": {
-            "signalStrength": 10,
-            "rssi": 10,
-            "transmissionMode": "HIGH_POWER_BOOST_MODE",
-            "updateTime": "2024-12-06T14:23:50.728000Z"
-          }
+          networkStatus: {
+            signalStrength: 10,
+            rssi: 10,
+            transmissionMode: "HIGH_POWER_BOOST_MODE",
+            updateTime: "2024-12-06T14:23:50.728000Z",
+          },
         },
         timestamp: "2021-09-15T14:48:05.948000Z",
         labels: {},
         state: {
           lastContact: "OPEN",
           lastSampleEmittedAt: new Date().getTime(),
-          lastNetworkEmittedAt: new Date().getTime()
-        }
+          lastNetworkEmittedAt: new Date().getTime(),
+        },
       };
 
       expectEmits((type, value) => {

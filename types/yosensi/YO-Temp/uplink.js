@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 /**
  * __  __                      _
  * \ \/ /__  ___ ___ ___  ___ (_)
@@ -292,8 +296,8 @@ function payloadV2Parse(bytes, date, utils) {
   ) {
     return new Date(
       Number(extractPayloadDateTimeDate) -
-      utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
-      1000,
+        utils.unsignedNbrFromBytes(extractPayloadDateTimeBytes.slice(2, 4)) *
+          1000,
     );
   }
 
@@ -308,7 +312,7 @@ function payloadV2Parse(bytes, date, utils) {
   function extractMeasurementDateTime(byte, extractMeasurementDateTimeDate) {
     return new Date(
       Number(extractMeasurementDateTimeDate) +
-      utils.unsignedNbrFromByte(byte) * 1000,
+        utils.unsignedNbrFromByte(byte) * 1000,
     );
   }
 
@@ -702,11 +706,16 @@ function consume(event) {
     delete data.data.batteryVoltage;
   }
   if (data.data.internalTemperature !== undefined) {
+    data.data.internalTemperatureF = cToF(data.data.internalTemperature);
     emit("sample", {
-      data: { internalTemperature: data.data.internalTemperature },
+      data: {
+        internalTemperature: data.data.internalTemperature,
+        internalTemperatureF: data.data.internalTemperatureF,
+      },
       topic: "internal_temperature",
     });
     delete data.data.internalTemperature;
+    delete data.data.internalTemperatureF;
   }
   if (data.data.humidity !== undefined) {
     emit("sample", {
@@ -715,26 +724,40 @@ function consume(event) {
     });
     delete data.data.humidity;
   }
-
   if (data.data.externalTemperature1 !== undefined) {
+    data.data.externalTemperature1F = cToF(data.data.externalTemperature1);
     emit("sample", {
-      data: { externalTemperature1: data.data.externalTemperature1 },
+      data: {
+        externalTemperature1: data.data.externalTemperature1,
+        externalTemperature1F: data.data.externalTemperature1F,
+      },
       topic: "external_temperature_1",
     });
     delete data.data.externalTemperature1;
+    delete data.data.externalTemperature1F;
   }
   if (data.data.externalTemperature2 !== undefined) {
+    data.data.externalTemperature2F = cToF(data.data.externalTemperature2);
     emit("sample", {
-      data: { externalTemperature2: data.data.externalTemperature2 },
+      data: {
+        externalTemperature2: data.data.externalTemperature2,
+        externalTemperature2F: data.data.externalTemperature2F,
+      },
       topic: "external_temperature_2",
     });
     delete data.data.externalTemperature2;
+    delete data.data.externalTemperature2F;
   }
   if (data.data.externalTemperature3 !== undefined) {
+    data.data.externalTemperature3F = cToF(data.data.externalTemperature3);
     emit("sample", {
-      data: { externalTemperature3: data.data.externalTemperature3 },
+      data: {
+        externalTemperature3: data.data.externalTemperature3,
+        externalTemperature3F: data.data.externalTemperature3F,
+      },
       topic: "external_temperature_3",
     });
     delete data.data.externalTemperature3;
+    delete data.data.externalTemperature3F;
   }
 }

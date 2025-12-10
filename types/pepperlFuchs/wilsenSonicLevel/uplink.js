@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function binaryToFloat(binaryString) {
   const sign = binaryString[0] === 1 ? -1 : 1;
 
@@ -33,6 +37,7 @@ function emitDefaultPayload(bitString) {
         proximity,
         fillinglvlPercent,
         temperature,
+        temperatureF: cToF(temperature),
       },
     });
   }

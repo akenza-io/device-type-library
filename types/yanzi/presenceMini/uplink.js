@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function calculateIncrement(lastValue, currentValue) {
   // Check if current value exists
   if (currentValue === undefined || Number.isNaN(currentValue)) {
@@ -22,6 +26,7 @@ function consume(event) {
 
     if (resourceType === "SampleTemp") {
       sample.temperature = Math.round(value * 100) / 1000;
+      sample.temperatureF = cToF(sample.temperature);
       topic = "temperature";
     }
 
@@ -46,14 +51,17 @@ function consume(event) {
         sample.occupied = false;
       }
 
-      // Warm desk 
+      // Warm desk
       const time = new Date().getTime();
       sample.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
       if (sample.occupied) {
         delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
       } else if (state.lastOccupancyTimestamp !== undefined) {
-        sample.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
-      } else if (state.lastOccupiedValue) { //
+        sample.minutesSinceLastOccupied = Math.round(
+          (time - state.lastOccupancyTimestamp) / 1000 / 60,
+        ); // Get free since
+      } else if (state.lastOccupiedValue) {
+        //
         state.lastOccupancyTimestamp = time; // Start with first no occupancy
       }
 

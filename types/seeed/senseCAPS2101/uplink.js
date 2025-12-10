@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function checkForIllegalValue(value, fieldName) {
   let errorCode = "";
   switch (value) {
@@ -55,6 +59,7 @@ function consume(event) {
             true,
           ) / 1000;
         data.temperature = checkForIllegalValue(temperature, "temperature");
+        data.temperatureF = cToF(data.temperature);
         pointer += 8;
         break;
       }

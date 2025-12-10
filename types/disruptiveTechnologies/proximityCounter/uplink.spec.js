@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,11 +13,12 @@ describe("Digital Technologies Proximity Counter Sensor Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/object_present_count.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/object_present_count.schema.json`).then(
+      (parsedSchema) => {
         objectPresentSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   describe("consume()", () => {
@@ -31,10 +30,10 @@ describe("Digital Technologies Proximity Counter Sensor Uplink", () => {
         eventType: "objectPresentCount",
         data: {
           eventType: "objectPresentCount",
-          "objectPresentCount": {
-            "total": 4176,
-            "updateTime": "2024-12-06T08:23:43.209000Z"
-          }
+          objectPresentCount: {
+            total: 4176,
+            updateTime: "2024-12-06T08:23:43.209000Z",
+          },
         },
         timestamp: "2021-09-15T14:48:05.948000Z",
         labels: {},

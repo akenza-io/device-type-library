@@ -1,50 +1,53 @@
 {
-  "$id": "https://akenza.io/decentlab/iam/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
-  "properties": {
-    "valve": {
-      "title": "Valve",
-      "type": "boolean",
-      "description": "Valve on = true, Valve off = false"
+    "$id": "https://akenza.io/decentlab/iam/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "valve": {
+            "title": "Valve",
+            "type": "boolean",
+            "description": "Valve on = true, Valve off = false"
+        },
+        "leakDetected": {
+            "title": "Leak detected",
+            "type": "boolean",
+            "description": "Leak detected, either true or false"
+        },
+        "soilConductivity": {
+            "title": "Soil conductivity",
+            "unit": "uS/cm",
+            "type": "number",
+            "description": "Conductivity of the soil"
+        },
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "e25": {
+            "title": "E25",
+            "type": "number",
+            "description": "E25"
+        },
+        "waterContent": {
+            "title": "Water content",
+            "unit": "VWC",
+            "type": "number",
+            "description": "Water content in the soil",
+            "minimum": 0,
+            "maximum": 100
+        },
+        "temperatureF": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
     },
-    "leakDetected": {
-      "title": "Leak detected",
-      "type": "boolean",
-      "description": "Leak detected, either true or false"
-    },
-    "soilConductivity": {
-      "title": "Soil conductivity",
-      "unit": "uS/cm",
-      "type": "number",
-      "description": "Conductivity of the soil"
-    },
-    "temperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-    },
-    "e25": {
-      "title": "E25",
-      "type": "number",
-      "description": "E25"
-    },
-    "waterContent": {
-      "title": "Water content",
-      "unit": "VWC",
-      "type": "number",
-      "description": "Water content in the soil",
-      "minimum": 0,
-      "maximum": 100
-    }
-  },
-  "required": [
-    "valve",
-    "leakDetected",
-    "soilConductivity",
-    "temperature",
-    "e25",
-    "waterContent"
-  ]
+    "required": [
+        "valve",
+        "leakDetected",
+        "soilConductivity",
+        "temperature",
+        "e25",
+        "waterContent"
+    ]
 }

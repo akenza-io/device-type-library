@@ -1,24 +1,34 @@
 {
-  "$id": "https://akenza.io/digitalMatter/sensorNode/probe.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "probe",
-  "title": "Probe",
-  "properties": {
-    "probe1": {
-      "title": "Probe 1",
-      "description": "Probe 1 temperature in °C.",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    "$id": "https://akenza.io/digitalMatter/sensorNode/probe.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "probe",
+    "title": "Probe",
+    "properties": {
+        "probe1": {
+            "title": "Probe 1 °C",
+            "description": "Probe 1 temperature in °C.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "probe2": {
+            "title": "Probe 2 °C",
+            "description": "Probe 2 temperature in °C.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "probe1F": {
+            "title": "Probe 1 °F",
+            "description": "Probe 1 temperature in °F.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "probe2F": {
+            "title": "Probe 2 °F",
+            "description": "Probe 2 temperature in °F.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
     },
-    "probe2": {
-      "title": "Probe 2",
-      "description": "Probe 2 temperature in °C.",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-    }
-  },
-  "required": [
-    "probe1",
-    "probe2"
-  ]
+    "required": [
+        "probe1",
+        "probe2"
+    ]
 }

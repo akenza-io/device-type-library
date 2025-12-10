@@ -2449,7 +2449,7 @@ var codec;
       // register 321: value between 0 and 65535, 0: no scanning, X2s
       // register 323: value between 1 and 255 : Number of additional (redundant) samples per frame
       const appContent = { type: "0x10 Breath configuration" };
-      (appContent.dailyFrameActivated = Boolean(payload.readUInt8(2) !== 0)),
+      ((appContent.dailyFrameActivated = Boolean(payload.readUInt8(2) !== 0)),
         (appContent.numberOfHistorizationBeforeSending =
           payload.readUInt16BE(3)),
         (appContent.historyPeriod = {
@@ -2461,7 +2461,7 @@ var codec;
           unit: "s",
           value: payload.readUInt16BE(8),
         }),
-        (appContent.redundantSamples = payload.readUInt8(10));
+        (appContent.redundantSamples = payload.readUInt8(10)));
       return appContent;
     };
     return Breath0x10Parser;
@@ -2663,7 +2663,7 @@ var codec;
       // reading_frequency = S321 * S320
       // sending_frequency = S321 * S320 * S301
       const appContent = { type: "0x10 Comfort configuration" };
-      (appContent.transmissionPeriodKeepAlive = {
+      ((appContent.transmissionPeriodKeepAlive = {
         unit: "s",
         value: payload.readUInt16BE(2) * 10,
       }),
@@ -2686,7 +2686,7 @@ var codec;
             payload.readUInt16BE(6) *
             payload.readUInt16BE(4) *
             2,
-        });
+        }));
       return appContent;
     };
     return Comfort0x10Parser;
@@ -2784,7 +2784,9 @@ var codec;
       // reading_frequency = S321 * S320
       // sending_frequency = S321 * S320 * S301
       const appContent = { type: "0x10 Comfort CO2 configuration" };
-      (appContent.dailyFrameActivated = Boolean(payload.readUInt16BE(2) !== 0)),
+      ((appContent.dailyFrameActivated = Boolean(
+        payload.readUInt16BE(2) !== 0,
+      )),
         (appContent.numberOfHistorizationBeforeSending =
           payload.readUInt16BE(4)),
         (appContent.numberOfSamplingBeforeHistorization =
@@ -2805,7 +2807,7 @@ var codec;
             payload.readUInt16BE(6) *
             payload.readUInt16BE(4) *
             2,
-        });
+        }));
       // Content depends on network
       if (payload.byteLength >= 12) {
         appContent.blackOutDuration = {
@@ -3038,7 +3040,7 @@ var codec;
       // reading_frequency = S321 * S320
       // sending_frequency = S321 * S320 * S301
       const appContent = { type: "0x10 Comfort 2 configuration" };
-      (appContent.transmissionPeriodKeepAlive = {
+      ((appContent.transmissionPeriodKeepAlive = {
         unit: "s",
         value: payload.readUInt16BE(2) * 10,
       }),
@@ -3062,7 +3064,7 @@ var codec;
             payload.readUInt16BE(6) *
             payload.readUInt16BE(4) *
             2,
-        });
+        }));
       return appContent;
     };
     return Comfort20x10Parser;
@@ -3202,7 +3204,7 @@ var codec;
       // reading_frequency = S321 * S320
       // sending_frequency = S321 * S320 * S301
       const appContent = { type: "0x10 Delta P configuration" };
-      (appContent.transmissionPeriodKeepAlive = {
+      ((appContent.transmissionPeriodKeepAlive = {
         unit: "s",
         value: payload.readUInt16BE(2) * 10,
       }),
@@ -3225,7 +3227,7 @@ var codec;
             payload.readUInt16BE(6) *
             payload.readUInt16BE(4) *
             2,
-        });
+        }));
       return appContent;
     };
     return Deltap0x10Parser;
@@ -4493,7 +4495,7 @@ var codec;
       // reading_frequency = S321 * S320
       // sending_frequency = S321 * S320 * S301
       const appContent = { type: "0x10 Motion configuration" };
-      (appContent.transmissionPeriodKeepAlive = {
+      ((appContent.transmissionPeriodKeepAlive = {
         unit: "s",
         value: payload.readUInt16BE(2) * 10,
       }),
@@ -4520,7 +4522,7 @@ var codec;
             payload.readUInt16BE(6) *
             payload.readUInt16BE(4) *
             2,
-        });
+        }));
       return appContent;
     };
     return Motion0x10Parser;
@@ -7220,7 +7222,7 @@ var codec;
       network,
     ) {
       const appContent = { type: "0x10 Temp 3 configuration" };
-      (appContent.transmissionPeriodKeepAlive = {
+      ((appContent.transmissionPeriodKeepAlive = {
         unit: "s",
         value: payload.readUInt16BE(2) * 10,
       }),
@@ -7244,7 +7246,7 @@ var codec;
             payload.readUInt16BE(6) *
             payload.readUInt16BE(4) *
             2,
-        });
+        }));
       return appContent;
     };
     return TempV30x10Parser;
@@ -7447,7 +7449,7 @@ var codec;
       network,
     ) {
       const appContent = { type: "0x10 Temp 4 configuration" };
-      (appContent.transmissionPeriodKeepAlive = {
+      ((appContent.transmissionPeriodKeepAlive = {
         unit: "s",
         value: payload.readUInt16BE(2) * 10,
       }),
@@ -7471,7 +7473,7 @@ var codec;
             payload.readUInt16BE(6) *
             payload.readUInt16BE(4) *
             2,
-        });
+        }));
       return appContent;
     };
     return TempV40x10Parser;

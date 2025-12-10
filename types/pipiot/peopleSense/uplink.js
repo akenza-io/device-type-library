@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function peopleCountAccumulator(bits) {
   const pca = Bits.bitsToUnsigned(bits);
   return pca;
@@ -101,6 +105,7 @@ function consume(event) {
       lifecycle.binsReadyFlag,
     );
     data.temperature = temperature(bits.substr(88, 8));
+    data.temperatureF = cToF(data.temperature);
   } else if (subType === 3 && cd === 0) {
     lifecycle.forcedDownlinkFlag = !!Number(bits.substr(50, 1));
     lifecycle.countAlertFlag = !!Number(bits.substr(51, 1));
@@ -113,6 +118,7 @@ function consume(event) {
     data.peopleCount = peopleCountAccumulator(bits.substr(16, 16));
     data.alertCount = Bits.bitsToUnsigned(bits.substr(32, 16));
     data.temperature = temperature(bits.substr(56, 8));
+    data.temperatureF = cToF(data.temperature);
     topic = "default";
   } else if (subType === 2 && cd === 0) {
     data.testFrames = bits.substr(8, 8);

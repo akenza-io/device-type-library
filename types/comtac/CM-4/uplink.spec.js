@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,29 +13,26 @@ describe("Comtac LPN CM-4 Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   let historySchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/history.schema.json`)
-      .then((parsedSchema) => {
-        historySchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/history.schema.json`).then((parsedSchema) => {
+      historySchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -56,6 +51,7 @@ describe("Comtac LPN CM-4 Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 23.15);
+        assert.equal(value.data.temperatureF, 73.7);
         assert.equal(value.data.humidity, 64);
         validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -103,20 +99,28 @@ describe("Comtac LPN CM-4 Uplink", () => {
 
         assert.equal(value.topic, "history");
         assert.equal(value.data.temperature, 23.15);
+        assert.equal(value.data.temperatureF, 73.7);
         assert.equal(value.data.humidity, 64);
         assert.equal(value.data.tempHistory1, 23.15);
+        assert.equal(value.data.tempHistory1F, 73.7);
         assert.equal(value.data.humHistory1, 64);
         assert.equal(value.data.tempHistory2, 23.15);
+        assert.equal(value.data.tempHistory2F, 73.7);
         assert.equal(value.data.humHistory2, 64);
         assert.equal(value.data.tempHistory3, 23.15);
+        assert.equal(value.data.tempHistory3F, 73.7);
         assert.equal(value.data.humHistory3, 64);
         assert.equal(value.data.tempHistory4, 23.15);
+        assert.equal(value.data.tempHistory4F, 73.7);
         assert.equal(value.data.humHistory4, 64);
         assert.equal(value.data.tempHistory5, 23.15);
+        assert.equal(value.data.tempHistory5F, 73.7);
         assert.equal(value.data.humHistory5, 64);
         assert.equal(value.data.tempHistory6, 23.15);
+        assert.equal(value.data.tempHistory6F, 73.7);
         assert.equal(value.data.humHistory6, 64);
         assert.equal(value.data.tempHistory7, 23.15);
+        assert.equal(value.data.tempHistory7F, 73.7);
         assert.equal(value.data.humHistory7, 64);
         validateSchema(value.data, historySchema, { throwError: true });
       });

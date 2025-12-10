@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 // Used for decoding enLink LoRa Messages
 // DN 23 Jun 2020 (Doc.Ver:4.15 AQ-P/P+ FW Ver:4.15)
 //   Add 10 types for advanced new indoor/outdoor Air Quality units
@@ -899,6 +903,9 @@ function consume(event) {
   lifecycle.fanRunTimeS = obj.fan_run_time_s;
 
   if (deleteUnusedKeys(def)) {
+    if (def.temperature !== undefined) {
+      def.temperatureF = cToF(def.temperature);
+    }
     emit("sample", { data: def, topic: "default" });
   }
 

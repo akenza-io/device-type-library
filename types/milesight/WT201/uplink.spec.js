@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -18,41 +16,37 @@ describe("WT201 Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/wires.schema.json`)
-      .then((parsedSchema) => {
-        wiresSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/wires.schema.json`).then((parsedSchema) => {
+      wiresSchema = parsedSchema;
+      done();
+    });
   });
 
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/system.schema.json`)
-      .then((parsedSchema) => {
-        systemSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/system.schema.json`).then((parsedSchema) => {
+      systemSchema = parsedSchema;
+      done();
+    });
   });
 
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/plan.schema.json`)
-      .then((parsedSchema) => {
-        planSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/plan.schema.json`).then((parsedSchema) => {
+      planSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -75,6 +69,8 @@ describe("WT201 Uplink", () => {
         assert.equal(value.data.planEvent, "NOT_EXCECUTED");
         assert.equal(value.data.temperature, 25.8);
         assert.equal(value.data.temperatureTarget, 16.6);
+        assert.equal(value.data.temperatureF, 78.4);
+        assert.equal(value.data.temperatureTargetF, 61.9);
         assert.equal(value.data.temperatureControlMode, "HEAT");
         assert.equal(value.data.temperatureControlStatus, "STANDBY");
 
@@ -119,7 +115,7 @@ describe("WT201 Uplink", () => {
 
         assert.equal(value.topic, "wires");
         assert.equal(value.data.obMode, "HEAT");
-        assert.deepEqual(value.data.wires, ['Y1', 'GH', 'OB', 'AUX']);
+        assert.deepEqual(value.data.wires, ["Y1", "GH", "OB", "AUX"]);
 
         validateSchema(value.data, wiresSchema, { throwError: true });
       });

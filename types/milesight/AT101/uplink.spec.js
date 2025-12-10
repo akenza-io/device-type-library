@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -23,20 +21,18 @@ describe("AT101 Uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   let temperatureSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/temperature.schema.json`)
-      .then((parsedSchema) => {
-        temperatureSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/temperature.schema.json`).then((parsedSchema) => {
+      temperatureSchema = parsedSchema;
+      done();
+    });
   });
 
   let wifiSchema = null;
@@ -62,6 +58,7 @@ describe("AT101 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.data.temperature, 28.3);
+        assert.equal(value.data.temperatureF, 82.9);
 
         validateSchema(value.data, temperatureSchema, {
           throwError: true,
@@ -110,6 +107,7 @@ describe("AT101 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.data.temperature, 28.3);
+        assert.equal(value.data.temperatureF, 82.9);
 
         validateSchema(value.data, temperatureSchema, {
           throwError: true,

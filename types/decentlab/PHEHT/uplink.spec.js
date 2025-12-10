@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -20,27 +18,24 @@ describe("Decentlab PHEHT Uplink", () => {
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
     it("should decode the Decentlab PHEHT payload", () => {
       const data = {
         data: {
-          payloadHex:
-            "0252b800030000884282c77f637ff60c5c",
+          payloadHex: "0252b800030000884282c77f637ff60c5c",
         },
       };
 
@@ -54,6 +49,7 @@ describe("Decentlab PHEHT Uplink", () => {
         assert.equal(value.data.phMv, -1);
         assert.equal(value.data.redox, -15.7);
         assert.equal(value.data.temperature, 21.14);
+        assert.equal(value.data.temperatureF, 70.1);
 
         validateSchema(value.data, defaultSchema, { throwError: true });
       });

@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -40,7 +38,7 @@ describe("DS3604 Downlink", () => {
 
     it("should encode a report interval payload", () => {
       const data = {
-        payload: { "actionType": "reportInterval", "reportInterval": 1600 }
+        payload: { actionType: "reportInterval", reportInterval: 1600 },
       };
 
       expectEmits((type, value) => {

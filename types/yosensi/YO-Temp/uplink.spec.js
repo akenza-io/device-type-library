@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,56 +13,60 @@ describe("Yosensi YO Temp uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/battery_voltage.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/battery_voltage.schema.json`).then(
+      (parsedSchema) => {
         batteryVoltageSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let internalTemperatureSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/internal_temperature.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/internal_temperature.schema.json`).then(
+      (parsedSchema) => {
         internalTemperatureSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let humiditySchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/humidity.schema.json`)
-      .then((parsedSchema) => {
-        humiditySchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/humidity.schema.json`).then((parsedSchema) => {
+      humiditySchema = parsedSchema;
+      done();
+    });
   });
 
   let externalTemperature1Schema = null;
   before((done) => {
-    loadSchema(`${__dirname}/external_temperature_1.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/external_temperature_1.schema.json`).then(
+      (parsedSchema) => {
         externalTemperature1Schema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let externalTemperature2Schema = null;
   before((done) => {
-    loadSchema(`${__dirname}/external_temperature_2.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/external_temperature_2.schema.json`).then(
+      (parsedSchema) => {
         externalTemperature2Schema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let externalTemperature3Schema = null;
   before((done) => {
-    loadSchema(`${__dirname}/external_temperature_3.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/external_temperature_3.schema.json`).then(
+      (parsedSchema) => {
         externalTemperature3Schema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   describe("consume()", () => {
@@ -97,6 +99,7 @@ describe("Yosensi YO Temp uplink", () => {
 
         assert.equal(value.topic, "internal_temperature");
         assert.equal(value.data.internalTemperature, 24.7);
+        assert.equal(value.data.internalTemperatureF, 76.5);
 
         validateSchema(value.data, internalTemperatureSchema, {
           throwError: true,
@@ -121,6 +124,7 @@ describe("Yosensi YO Temp uplink", () => {
 
         assert.equal(value.topic, "external_temperature_1");
         assert.equal(value.data.externalTemperature1, 23.4);
+        assert.equal(value.data.externalTemperature1F, 74.1);
 
         validateSchema(value.data, externalTemperature1Schema, {
           throwError: true,
@@ -134,6 +138,7 @@ describe("Yosensi YO Temp uplink", () => {
 
         assert.equal(value.topic, "external_temperature_2");
         assert.equal(value.data.externalTemperature2, 21.9);
+        assert.equal(value.data.externalTemperature2F, 71.4);
 
         validateSchema(value.data, externalTemperature2Schema, {
           throwError: true,
@@ -147,6 +152,7 @@ describe("Yosensi YO Temp uplink", () => {
 
         assert.equal(value.topic, "external_temperature_3");
         assert.equal(value.data.externalTemperature3, 21.4);
+        assert.equal(value.data.externalTemperature3F, 70.5);
 
         validateSchema(value.data, externalTemperature3Schema, {
           throwError: true,

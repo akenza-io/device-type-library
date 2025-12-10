@@ -35,6 +35,9 @@
             "type": "boolean",
             "description": "Mod Status: Is sampling uplink = true or is reply for poll message = false",
             "hideFromKpis": true
+        },
+        "temperatureF": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
         }
     },
     "required": [

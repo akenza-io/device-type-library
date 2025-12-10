@@ -1,34 +1,39 @@
 {
-  "$id": "https://akenza.io/decentlab/pr26/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
-  "properties": {
-    "pressure": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/bar"
+    "$id": "https://akenza.io/decentlab/pr26/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "pressure": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/bar"
+        },
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "description": "The water temperature in °C.",
+            "title": "Water Temperature °C"
+        },
+        "level": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/fillLevel/absolute",
+            "description": "The water level above the sensor in m.",
+            "title": "Water Level"
+        },
+        "levelCm": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
+            "description": "The water level above the sensor in cm.",
+            "title": "Water Level"
+        },
+        "temperatureF": {
+            "title": "Water Temperature °F",
+            "description": "The water temperature in °F.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
     },
-    "temperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "description": "The water temperature in °C.",
-      "title": "Water Temperature"
-    },
-    "level": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/fillLevel/absolute",
-      "description": "The water level above the sensor in m.",
-      "title": "Water Level"
-    },
-    "levelCm": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
-      "description": "The water level above the sensor in cm.",
-      "title": "Water Level"
-    }
-  },
-  "required": [
-    "pressure",
-    "temperature",
-    "level",
-    "levelCm"
-  ]
+    "required": [
+        "pressure",
+        "temperature",
+        "level",
+        "levelCm"
+    ]
 }

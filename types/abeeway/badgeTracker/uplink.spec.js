@@ -1,12 +1,11 @@
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
 
 describe("Abeeway badge tracker uplink", () => {
   let lifecycleSchema = null;
@@ -14,11 +13,10 @@ describe("Abeeway badge tracker uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   let gpsFixSchema = null;
@@ -31,20 +29,22 @@ describe("Abeeway badge tracker uplink", () => {
 
   let heartbeatSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/operation_status.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/operation_status.schema.json`).then(
+      (parsedSchema) => {
         heartbeatSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let angleDetectionSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/angle_detection.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/angle_detection.schema.json`).then(
+      (parsedSchema) => {
         angleDetectionSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let wifiBssidSchema = null;
@@ -57,11 +57,12 @@ describe("Abeeway badge tracker uplink", () => {
 
   let activityStatusSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/activity_status.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/activity_status.schema.json`).then(
+      (parsedSchema) => {
         activityStatusSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let bleGeozoningSchema = null;
@@ -94,6 +95,7 @@ describe("Abeeway badge tracker uplink", () => {
 
         assert.equal(value.data.batteryLevel, 92);
         assert.equal(value.data.temperature, 21.8);
+        assert.equal(value.data.temperatureF, 71.2);
 
         validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -136,6 +138,7 @@ describe("Abeeway badge tracker uplink", () => {
 
         assert.equal(value.data.batteryLevel, 92);
         assert.equal(value.data.temperature, 21.8);
+        assert.equal(value.data.temperatureF, 71.2);
 
         validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -178,6 +181,7 @@ describe("Abeeway badge tracker uplink", () => {
 
         assert.equal(value.data.batteryLevel, 92);
         assert.equal(value.data.temperature, 21.8);
+        assert.equal(value.data.temperatureF, 71.2);
 
         validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -235,6 +239,7 @@ describe("Abeeway badge tracker uplink", () => {
 
         assert.equal(value.data.batteryLevel, 54);
         assert.equal(value.data.temperature, 22.8);
+        assert.equal(value.data.temperatureF, 73);
 
         validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -285,6 +290,7 @@ describe("Abeeway badge tracker uplink", () => {
 
         assert.equal(value.data.batteryLevel, 69);
         assert.equal(value.data.temperature, 23.8);
+        assert.equal(value.data.temperatureF, 74.8);
 
         validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -327,6 +333,7 @@ describe("Abeeway badge tracker uplink", () => {
 
         assert.equal(value.data.batteryLevel, 83);
         assert.equal(value.data.temperature, 25.8);
+        assert.equal(value.data.temperatureF, 78.4);
 
         validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -372,6 +379,7 @@ describe("Abeeway badge tracker uplink", () => {
 
         assert.equal(value.data.batteryLevel, 50);
         assert.equal(value.data.temperature, 19.2);
+        assert.equal(value.data.temperatureF, 66.6);
 
         validateSchema(value.data, lifecycleSchema, { throwError: true });
       });

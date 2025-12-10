@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const { port } = event.data;
@@ -19,6 +23,7 @@ function consume(event) {
   } else if (port === 2) {
     data.temperature =
       (Bits.bitsToUnsigned(bits.substr(0, 8) + bits.substr(16, 4)) - 800) / 10;
+    data.temperatureF = cToF(data.temperature);
     data.humidity =
       (Bits.bitsToUnsigned(bits.substr(8, 8) + bits.substr(20, 4)) - 250) / 10;
 
@@ -27,21 +32,11 @@ function consume(event) {
     data.pm10 = Math.round(Bits.bitsToUnsigned(bits.substr(56, 16)));
 
     if (bits.length > 72) {
-      particle.pm0_3 = Math.round(
-        Bits.bitsToUnsigned(bits.substr(72, 16)),
-      );
-      particle.pm0_5 = Math.round(
-        Bits.bitsToUnsigned(bits.substr(88, 16)),
-      );
-      particle.pm1 = Math.round(
-        Bits.bitsToUnsigned(bits.substr(104, 16)),
-      );
-      particle.pm2_5 = Math.round(
-        Bits.bitsToUnsigned(bits.substr(120, 16)),
-      );
-      particle.pm5 = Math.round(
-        Bits.bitsToUnsigned(bits.substr(136, 16)),
-      );
+      particle.pm0_3 = Math.round(Bits.bitsToUnsigned(bits.substr(72, 16)));
+      particle.pm0_5 = Math.round(Bits.bitsToUnsigned(bits.substr(88, 16)));
+      particle.pm1 = Math.round(Bits.bitsToUnsigned(bits.substr(104, 16)));
+      particle.pm2_5 = Math.round(Bits.bitsToUnsigned(bits.substr(120, 16)));
+      particle.pm5 = Math.round(Bits.bitsToUnsigned(bits.substr(136, 16)));
       particle.pm5Larger = Math.round(
         Bits.bitsToUnsigned(bits.substr(152, 16)),
       );

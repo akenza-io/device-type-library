@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const { port } = event.data;
@@ -32,25 +36,35 @@ function consume(event) {
     const payloadId = Bits.bitsToUnsigned(bits.substr(32, 8));
     if (payloadId === 1) {
       data.temperature = Bits.bitsToSigned(bits.substr(40, 16)) / 100;
+      data.temperatureF = cToF(data.temperature);
     } else if (payloadId === 2) {
       emit("sample", {
         data: { temperature: Bits.bitsToSigned(bits.substr(40, 16)) / 100 },
         topic: "default",
       });
       data.tempHistory1 = Bits.bitsToSigned(bits.substr(56, 16)) / 100;
+      data.tempHistory1F = cToF(data.tempHistory1);
       data.tempHistory2 = Bits.bitsToSigned(bits.substr(72, 16)) / 100;
+      data.tempHistory2F = cToF(data.tempHistory2);
       data.tempHistory3 = Bits.bitsToSigned(bits.substr(88, 16)) / 100;
+      data.tempHistory3F = cToF(data.tempHistory3);
       data.tempHistory4 = Bits.bitsToSigned(bits.substr(104, 16)) / 100;
+      data.tempHistory4F = cToF(data.tempHistory4);
       data.tempHistory5 = Bits.bitsToSigned(bits.substr(120, 16)) / 100;
+      data.tempHistory5F = cToF(data.tempHistory5);
       data.tempHistory6 = Bits.bitsToSigned(bits.substr(136, 16)) / 100;
+      data.tempHistory6F = cToF(data.tempHistory6);
       data.tempHistory7 = Bits.bitsToSigned(bits.substr(152, 16)) / 100;
+      data.tempHistory7F = cToF(data.tempHistory7);
       topic = "history";
     }
   } else if (port === 100) {
     data.tempMeasurementRate = Bits.bitsToUnsigned(bits.substr(40, 16));
     data.historyTrigger = Bits.bitsToUnsigned(bits.substr(56, 8));
     data.tempThreshold = Bits.bitsToUnsigned(bits.substr(64, 8));
+    data.tempThresholdF = cToF(data.tempThreshold);
     data.tempOffset = Bits.bitsToSigned(bits.substr(72, 16)) / 100;
+    data.tempOffsetF = cToF(data.tempOffset);
     topic = "config";
   } else if (port === 101) {
     data.appMainVersion = Bits.bitsToUnsigned(bits.substr(40, 8));

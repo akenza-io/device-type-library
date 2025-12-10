@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 /**
  * ATTENTION: You must define the measurement ranges first, otherwise the script will not work.
  * The device configuration defines the measurement ranges for the supported measured variables of your used devices, e.g.
@@ -56,13 +60,31 @@ const GENERIC_DATA_CHANNEL_RANGE_START = 2500;
 const GENERIC_DATA_CHANNEL_RANGE_END = 12500;
 const ERROR_VALUE = 0xffff;
 
-const ALARM_EVENT_NAMES_DICTIONARY = ['TRIGGERED', 'DISAPPEREAD'];
-const PROCESS_ALARM_TYPE_NAMES_DICTIONARY = ['LOW_THRESHOLD', 'HIGH_THRESHOLD', 'FALLING_SLOPE', 'RISING_SLOPE', 'LOW_THRESHOLD_WITH_DELAY', 'HIGH_THRESHOLD_WITH_DELAY'];
-const TECHNICAL_ALARM_TYPE_NAMES_DICTIONARY = { 1: "SSM_COMMUNICATION_ERROR", 128: "SSM_IDENTITY_ERROR" };
-const DEVICE_ALARM_TYPE_NAMES_DICTIONARY = { 1: "LOW_BATTERY_ERROR", 4: "DUTY_CYCLE_ALARM", 8: "CONFIGURATION_ERROR" };
-const MEASUREMENT_ALARM_TYPE_NAMES_DICTIONARY = { 1: "MV_STAT_ERROR", 2: "MV_STAT_WARNING", 4: "MV_STAT_LIM_HI", 8: "MV_STAT_LIM_LO", 16: "MV_STAT_WARNING_2" };
-
-
+const ALARM_EVENT_NAMES_DICTIONARY = ["TRIGGERED", "DISAPPEREAD"];
+const PROCESS_ALARM_TYPE_NAMES_DICTIONARY = [
+  "LOW_THRESHOLD",
+  "HIGH_THRESHOLD",
+  "FALLING_SLOPE",
+  "RISING_SLOPE",
+  "LOW_THRESHOLD_WITH_DELAY",
+  "HIGH_THRESHOLD_WITH_DELAY",
+];
+const TECHNICAL_ALARM_TYPE_NAMES_DICTIONARY = {
+  1: "SSM_COMMUNICATION_ERROR",
+  128: "SSM_IDENTITY_ERROR",
+};
+const DEVICE_ALARM_TYPE_NAMES_DICTIONARY = {
+  1: "LOW_BATTERY_ERROR",
+  4: "DUTY_CYCLE_ALARM",
+  8: "CONFIGURATION_ERROR",
+};
+const MEASUREMENT_ALARM_TYPE_NAMES_DICTIONARY = {
+  1: "MV_STAT_ERROR",
+  2: "MV_STAT_WARNING",
+  4: "MV_STAT_LIM_HI",
+  8: "MV_STAT_LIM_LO",
+  16: "MV_STAT_WARNING_2",
+};
 
 /**
  * The padStart() method of String values pads this string with another string (multiple times, if needed) until the resulting string reaches the given length.
@@ -103,8 +125,11 @@ function decode(input) {
     default:
     case 0x00:
     case 0x06: // configuration status message is not supported
-      // Error, not enough bytes            
-      output = addErrorMessage(output, `Data message type ${input.bytes[0].toString(16).padStart(2, "0")} not supported`);
+      // Error, not enough bytes
+      output = addErrorMessage(
+        output,
+        `Data message type ${input.bytes[0].toString(16).padStart(2, "0")} not supported`,
+      );
       break;
 
     /* Data message */
@@ -115,10 +140,12 @@ function decode(input) {
       if (input.bytes.length >= 5 && input.bytes.length <= 8) {
         // decode
         output = decodeDataMessage(input);
-      }
-      else {
-        // Error, not enough bytes                
-        output = addErrorMessage(output, `Data message 01/02 needs at least 4 and maximum 11 bytes but got ${input.bytes.length}`);
+      } else {
+        // Error, not enough bytes
+        output = addErrorMessage(
+          output,
+          `Data message 01/02 needs at least 4 and maximum 11 bytes but got ${input.bytes.length}`,
+        );
       }
       break;
 
@@ -128,10 +155,12 @@ function decode(input) {
       if (input.bytes.length >= 6 && !((input.bytes.length - 3) % 3)) {
         // decode
         output = decodeProcessAlarm(input);
-      }
-      else {
-        // Error, not enough bytes                
-        output = addErrorMessage(output, `Process alarm 03 needs at least 6 bytes and got ${input.bytes.length}. Also all bytes for each alarm needed`);
+      } else {
+        // Error, not enough bytes
+        output = addErrorMessage(
+          output,
+          `Process alarm 03 needs at least 6 bytes and got ${input.bytes.length}. Also all bytes for each alarm needed`,
+        );
       }
       break;
 
@@ -141,10 +170,12 @@ function decode(input) {
       if (input.bytes.length === 5) {
         // decode
         output = decodeTechnicalAlarm(input);
-      }
-      else {
-        // Error, not enough bytes                
-        output = addErrorMessage(output, `Technical alarm 04 needs 5 bytes but got ${input.bytes.length}`);
+      } else {
+        // Error, not enough bytes
+        output = addErrorMessage(
+          output,
+          `Technical alarm 04 needs 5 bytes but got ${input.bytes.length}`,
+        );
       }
       break;
 
@@ -154,10 +185,12 @@ function decode(input) {
       if (input.bytes.length === 4) {
         // decode
         output = decodeDeviceAlarm(input);
-      }
-      else {
-        // Error, not enough bytes                
-        output = addErrorMessage(output, `Device alarm 05 needs at least 4 bytes got ${input.bytes.length}`);
+      } else {
+        // Error, not enough bytes
+        output = addErrorMessage(
+          output,
+          `Device alarm 05 needs at least 4 bytes got ${input.bytes.length}`,
+        );
       }
       break;
 
@@ -167,10 +200,12 @@ function decode(input) {
       if (input.bytes.length >= 8 && input.bytes.length <= 39) {
         // decode
         output = decodeDeviceIdentification(input);
-      }
-      else {
-        // Error, not enough bytes                
-        output = addErrorMessage(output, `Identification message 07 needs at least 16 and maximum 56 bytes, but got ${input.bytes.length}`);
+      } else {
+        // Error, not enough bytes
+        output = addErrorMessage(
+          output,
+          `Identification message 07 needs at least 16 and maximum 56 bytes, but got ${input.bytes.length}`,
+        );
       }
       break;
 
@@ -180,10 +215,12 @@ function decode(input) {
       if (input.bytes.length === 3) {
         // Decode
         output = decodeKeepAliveMessage(input);
-      }
-      else {
-        // Error, not enough bytes                
-        output = addErrorMessage(output, `Keep alive message 08 needs 3 bytes but got ${input.bytes.length}`);
+      } else {
+        // Error, not enough bytes
+        output = addErrorMessage(
+          output,
+          `Keep alive message 08 needs 3 bytes but got ${input.bytes.length}`,
+        );
       }
       break;
 
@@ -193,10 +230,12 @@ function decode(input) {
       if (input.bytes.length === 5) {
         // decode
         output = decodeChannelFailureAlarm(input); // Todo use last netris1 specification
-      }
-      else {
-        // Error, not enough bytes                
-        output = addErrorMessage(output, `Channel failure alarm 09 needs 5 bytes but got ${input.bytes.length}`);
+      } else {
+        // Error, not enough bytes
+        output = addErrorMessage(
+          output,
+          `Channel failure alarm 09 needs 5 bytes but got ${input.bytes.length}`,
+        );
       }
       break;
   }
@@ -228,26 +267,29 @@ function decodeDataMessage(input) {
 
   // channel
   if (input.bytes.length <= 5) {
-    const channelData = input.bytes[3] << 8 | input.bytes[4];
+    const channelData = (input.bytes[3] << 8) | input.bytes[4];
 
     // If channel has an error
     if (channelData == ERROR_VALUE) {
-      output = addErrorMessage(output, `Invalid data for channel - ${CHANNEL_MEASURAND_CONFIGURATION} : 0xffff, 65535`);
-    }
-    else {
+      output = addErrorMessage(
+        output,
+        `Invalid data for channel - ${CHANNEL_MEASURAND_CONFIGURATION} : 0xffff, 65535`,
+      );
+    } else {
       const channelValue = {};
       channelValue.value = getRealValue(channelData);
       channelValue.channelId = 0; // netris 1 only has 1 channel
-      channelValue.channelName = CHANNEL_MEASURAND_CONFIGURATION
+      channelValue.channelName = CHANNEL_MEASURAND_CONFIGURATION;
       output.data.measurement.channels.push(channelValue);
     }
-  }
-  else {
-    output = addErrorMessage(output, `Invalid data for channel - ${CHANNEL_MEASURAND_CONFIGURATION} : 0xffff, 65535`);
+  } else {
+    output = addErrorMessage(
+      output,
+      `Invalid data for channel - ${CHANNEL_MEASURAND_CONFIGURATION} : 0xffff, 65535`,
+    );
   }
   return output;
 }
-
 
 /**
  * Decodes a process alarm 03 into an object
@@ -259,7 +301,6 @@ function decodeDataMessage(input) {
  * @returns {output}                        - The decoded object
  */
 function decodeProcessAlarm(input) {
-
   const output = createOutputObject();
   output.data.processAlarms = [];
 
@@ -269,30 +310,50 @@ function decodeProcessAlarm(input) {
   // current configuration id
   output.data.configurationId = input.bytes[1];
 
-  for (let byteIndex = 3, alarmCounter = 0; byteIndex < input.bytes.length; byteIndex += 3, alarmCounter++) {
+  for (
+    let byteIndex = 3, alarmCounter = 0;
+    byteIndex < input.bytes.length;
+    byteIndex += 3, alarmCounter++
+  ) {
     output.data.processAlarms[alarmCounter] = {};
 
     // Sensor Id is always 0
-    output.data.processAlarms[alarmCounter].sensorId = (input.bytes[2] & 0xf0) >> 4;
+    output.data.processAlarms[alarmCounter].sensorId =
+      (input.bytes[2] & 0xf0) >> 4;
 
     // Alarm channel 0
-    output.data.processAlarms[alarmCounter].channelId = (input.bytes[2] & 0x0f);
-    output.data.processAlarms[alarmCounter].channelName = CHANNEL_MEASURAND_CONFIGURATION;
+    output.data.processAlarms[alarmCounter].channelId = input.bytes[2] & 0x0f;
+    output.data.processAlarms[alarmCounter].channelName =
+      CHANNEL_MEASURAND_CONFIGURATION;
 
     // Alarm event 0 = triggered, 1 = disappeared
-    output.data.processAlarms[alarmCounter].event = (input.bytes[byteIndex] & 0x80) >> 7;
-    output.data.processAlarms[alarmCounter].eventName = ALARM_EVENT_NAMES_DICTIONARY[output.data.processAlarms[alarmCounter].event];
+    output.data.processAlarms[alarmCounter].event =
+      (input.bytes[byteIndex] & 0x80) >> 7;
+    output.data.processAlarms[alarmCounter].eventName =
+      ALARM_EVENT_NAMES_DICTIONARY[
+        output.data.processAlarms[alarmCounter].event
+      ];
 
     // Alarm channel 0 = falling thresh, 1 = rising thresh, 2 = fal slope, 3 = rising slope, 4 = fall thresh delay, 5 = rise thresh delay
-    output.data.processAlarms[alarmCounter].alarmType = (input.bytes[byteIndex] & 0x07);
-    output.data.processAlarms[alarmCounter].alarmTypeName = PROCESS_ALARM_TYPE_NAMES_DICTIONARY[output.data.processAlarms[alarmCounter].alarmType];
+    output.data.processAlarms[alarmCounter].alarmType =
+      input.bytes[byteIndex] & 0x07;
+    output.data.processAlarms[alarmCounter].alarmTypeName =
+      PROCESS_ALARM_TYPE_NAMES_DICTIONARY[
+        output.data.processAlarms[alarmCounter].alarmType
+      ];
 
     // Alarm value
-    if (output.data.processAlarms[alarmCounter].alarmType == 3 || output.data.processAlarms[alarmCounter].alarmType == 4) {
-      output.data.processAlarms[alarmCounter].value = getSlopeValue(input.bytes[byteIndex + 1] << 8 | input.bytes[byteIndex + 2]);
-    }
-    else {
-      output.data.processAlarms[alarmCounter].value = getThresholdValue(input.bytes[byteIndex + 1] << 8 | input.bytes[byteIndex + 2]);
+    if (
+      output.data.processAlarms[alarmCounter].alarmType == 3 ||
+      output.data.processAlarms[alarmCounter].alarmType == 4
+    ) {
+      output.data.processAlarms[alarmCounter].value = getSlopeValue(
+        (input.bytes[byteIndex + 1] << 8) | input.bytes[byteIndex + 2],
+      );
+    } else {
+      output.data.processAlarms[alarmCounter].value = getThresholdValue(
+        (input.bytes[byteIndex + 1] << 8) | input.bytes[byteIndex + 2],
+      );
     }
   }
 
@@ -300,14 +361,14 @@ function decodeProcessAlarm(input) {
 }
 
 /**
-* Decodes a technical alarm 04 into an object
-* @access private
-* @param {Object}          input           - An object provided by the IoT Flow framework
-* @param {number[]}        input.bytes     - Array of bytes represented as numbers as it has been sent from the device
-* @param {number}          input.fPort     - The Port Field on which the uplink has been sent
-* @param {Date}            input.recvTime  - The uplink message time recorded by the LoRaWAN network server
-* @returns {output}                 - The decoded object
-*/
+ * Decodes a technical alarm 04 into an object
+ * @access private
+ * @param {Object}          input           - An object provided by the IoT Flow framework
+ * @param {number[]}        input.bytes     - Array of bytes represented as numbers as it has been sent from the device
+ * @param {number}          input.fPort     - The Port Field on which the uplink has been sent
+ * @param {Date}            input.recvTime  - The uplink message time recorded by the LoRaWAN network server
+ * @returns {output}                 - The decoded object
+ */
 function decodeTechnicalAlarm(input) {
   // Output
   const output = createOutputObject();
@@ -319,21 +380,23 @@ function decodeTechnicalAlarm(input) {
   output.data.configurationId = input.bytes[1];
 
   // Create object entry
-  output.data.technicalAlarms = []
+  output.data.technicalAlarms = [];
 
   output.data.technicalAlarms[0] = {};
   // Sensor id is always 0
   output.data.technicalAlarms[0].sensorId = input.bytes[2];
 
   // alarmType
-  output.data.technicalAlarms[0].alarmType = ((input.bytes[3] << 8) | input.bytes[4]);
+  output.data.technicalAlarms[0].alarmType =
+    (input.bytes[3] << 8) | input.bytes[4];
 
   // Go through each bit and check if set
   output.data.technicalAlarms[0].alarmTypeNames = [];
   for (let j = 0, i = 0; j < 15; j++) {
     // Check if bit is set
     if (output.data.technicalAlarms[0].alarmType & (1 << j)) {
-      output.data.technicalAlarms[0].alarmTypeNames[i] = TECHNICAL_ALARM_TYPE_NAMES_DICTIONARY[1 << j];
+      output.data.technicalAlarms[0].alarmTypeNames[i] =
+        TECHNICAL_ALARM_TYPE_NAMES_DICTIONARY[1 << j];
       i++;
     }
   }
@@ -342,13 +405,13 @@ function decodeTechnicalAlarm(input) {
 }
 
 /**
-* Decodes a device alarm 05 into an object
-* @param {Object} input - An object provided by the IoT Flow framework
-* @param {number[]} input.bytes - Array of bytes represented as numbers as it has been sent from the device
-* @param {number} input.fPort - The Port Field on which the uplink has been sent
-* @param {Date} input.recvTime - The uplink message time recorded by the LoRaWAN network server
-* @returns {output} The decoded object
-*/
+ * Decodes a device alarm 05 into an object
+ * @param {Object} input - An object provided by the IoT Flow framework
+ * @param {number[]} input.bytes - Array of bytes represented as numbers as it has been sent from the device
+ * @param {number} input.fPort - The Port Field on which the uplink has been sent
+ * @param {Date} input.recvTime - The uplink message time recorded by the LoRaWAN network server
+ * @returns {output} The decoded object
+ */
 function decodeDeviceAlarm(input) {
   // Output
   const output = createOutputObject();
@@ -368,7 +431,8 @@ function decodeDeviceAlarm(input) {
   for (let j = 0, i = 0; j < 15; j++) {
     // Check if bit is set
     if (output.data.deviceAlarm.alarmType & (1 << j)) {
-      output.data.deviceAlarm.alarmTypeNames[i] = DEVICE_ALARM_TYPE_NAMES_DICTIONARY[1 << j];
+      output.data.deviceAlarm.alarmTypeNames[i] =
+        DEVICE_ALARM_TYPE_NAMES_DICTIONARY[1 << j];
       i++;
     }
   }
@@ -377,14 +441,14 @@ function decodeDeviceAlarm(input) {
 }
 
 /**
-* Decodes a channel failure alarm 09 into an object
-* @access private
-* @param {Object}              input           - An object provided by the IoT Flow framework
-* @param {number[]}            input.bytes     - Array of bytes represented as numbers as it has been sent from the device
-* @param {number}              input.fPort     - The Port Field on which the uplink has been sent
-* @param {Date}                input.recvTime  - The uplink message time recorded by the LoRaWAN network server
-* @returns {output}                     - The decoded object
-*/
+ * Decodes a channel failure alarm 09 into an object
+ * @access private
+ * @param {Object}              input           - An object provided by the IoT Flow framework
+ * @param {number[]}            input.bytes     - Array of bytes represented as numbers as it has been sent from the device
+ * @param {number}              input.fPort     - The Port Field on which the uplink has been sent
+ * @param {Date}                input.recvTime  - The uplink message time recorded by the LoRaWAN network server
+ * @returns {output}                     - The decoded object
+ */
 function decodeChannelFailureAlarm(input) {
   // Output
   const output = createOutputObject();
@@ -402,18 +466,20 @@ function decodeChannelFailureAlarm(input) {
   output.data.channelFailureAlarm.sensorId = (input.bytes[2] & 0xf0) >> 4;
 
   // Alarm channel 0
-  output.data.channelFailureAlarm.channelId = (input.bytes[2] & 0x0f);
+  output.data.channelFailureAlarm.channelId = input.bytes[2] & 0x0f;
   output.data.channelFailureAlarm.channelName = CHANNEL_MEASURAND_CONFIGURATION;
 
   // Alarm type
-  output.data.channelFailureAlarm.alarmType = (input.bytes[3] << 8) | input.bytes[4];
+  output.data.channelFailureAlarm.alarmType =
+    (input.bytes[3] << 8) | input.bytes[4];
 
   // Go through each bit and check if set
   output.data.channelFailureAlarm.alarmTypeNames = [];
   for (let j = 0, i = 0; j < 15; j++) {
     // Check if bit is set
     if (output.data.channelFailureAlarm.alarmType & (1 << j)) {
-      output.data.channelFailureAlarm.alarmTypeNames[i] = MEASUREMENT_ALARM_TYPE_NAMES_DICTIONARY[1 << j];
+      output.data.channelFailureAlarm.alarmTypeNames[i] =
+        MEASUREMENT_ALARM_TYPE_NAMES_DICTIONARY[1 << j];
       i++;
     }
   }
@@ -422,14 +488,14 @@ function decodeChannelFailureAlarm(input) {
 }
 
 /**
-* Decodes a keep alive message 08 into an object
-* @access private
-* @param {Object}              input           - An object provided by the IoT Flow framework
-* @param {number[]}            input.bytes     - Array of bytes represented as numbers as it has been sent from the device
-* @param {number}              input.fPort     - The Port Field on which the uplink has been sent
-* @param {Date}                input.recvTime  - The uplink message time recorded by the LoRaWAN network server
-* @returns {output}                     - The decoded object
-*/
+ * Decodes a keep alive message 08 into an object
+ * @access private
+ * @param {Object}              input           - An object provided by the IoT Flow framework
+ * @param {number[]}            input.bytes     - Array of bytes represented as numbers as it has been sent from the device
+ * @param {number}              input.fPort     - The Port Field on which the uplink has been sent
+ * @param {Date}                input.recvTime  - The uplink message time recorded by the LoRaWAN network server
+ * @returns {output}                     - The decoded object
+ */
 function decodeKeepAliveMessage(input) {
   // Output
   const output = createOutputObject();
@@ -443,7 +509,10 @@ function decodeKeepAliveMessage(input) {
   output.data.deviceStatistic = {};
 
   // Battery level event indicator
-  output.data.deviceStatistic.batteryLevelNewEvent = !!((input.bytes[2] & 0x80) >> 7);
+  output.data.deviceStatistic.batteryLevelNewEvent = !!(
+    (input.bytes[2] & 0x80) >>
+    7
+  );
 
   // battery level in percent
   output.data.deviceStatistic.batteryLevel = input.bytes[2] & 0x7f;
@@ -452,19 +521,19 @@ function decodeKeepAliveMessage(input) {
 }
 
 /**
-* Decodes a device identification message 07 into an object
-* @access private
-* @param {Object}              input           - An object provided by the IoT Flow framework
-* @param {number[]}            input.bytes     - Array of bytes represented as numbers as it has been sent from the device
-* @param {number}              input.fPort     - The Port Field on which the uplink has been sent
-* @param {Date}                input.recvTime  - The uplink message time recorded by the LoRaWAN network server
-* @returns {output}                            - The decoded object
-*/
+ * Decodes a device identification message 07 into an object
+ * @access private
+ * @param {Object}              input           - An object provided by the IoT Flow framework
+ * @param {number[]}            input.bytes     - Array of bytes represented as numbers as it has been sent from the device
+ * @param {number}              input.fPort     - The Port Field on which the uplink has been sent
+ * @param {Date}                input.recvTime  - The uplink message time recorded by the LoRaWAN network server
+ * @returns {output}                            - The decoded object
+ */
 function decodeDeviceIdentification(input) {
   // Output
   let output = createOutputObject();
 
-  // Data message type    
+  // Data message type
   output.data.messageType = input.bytes[0];
 
   // Configuration id
@@ -493,8 +562,10 @@ function decodeDeviceIdentification(input) {
   output.data.deviceInformation.productSubId = input.bytes[3];
 
   /* Wirless product sub id contains to identifier, one in each nibble */
-  switch (0x07 & (input.bytes[3] >> 5))             // Only want the 3 bit 7-5
-  {
+  switch (
+    0x07 &
+    (input.bytes[3] >> 5) // Only want the 3 bit 7-5
+  ) {
     case 0x00:
       output.data.deviceInformation.productSubIdName = "No LPWAN";
       break;
@@ -511,8 +582,9 @@ function decodeDeviceIdentification(input) {
       output.data.deviceInformation.productSubIdName = "Unknown";
       break;
   }
-  switch (0x1f & input.bytes[3])                // Only want the 5 bit 4-0
-  {
+  switch (
+    0x1f & input.bytes[3] // Only want the 5 bit 4-0
+  ) {
     case 0x00:
       output.data.deviceInformation.productSubIdName += " RTD";
       break;
@@ -531,14 +603,17 @@ function decodeDeviceIdentification(input) {
   }
 
   // Wireless module firmware version
-  output.data.deviceInformation.wirelessModuleFirmwareVersion = `${((input.bytes[4] >> 4) & 0x0f).toString()}.${(input.bytes[4] & 0x0f).toString()}.${(input.bytes[5]).toString()}`;
+  output.data.deviceInformation.wirelessModuleFirmwareVersion = `${((input.bytes[4] >> 4) & 0x0f).toString()}.${(input.bytes[4] & 0x0f).toString()}.${input.bytes[5].toString()}`;
 
   // Wireless module hardware version
-  output.data.deviceInformation.wirelessModuleHardwareVersion = `${((input.bytes[6] >> 4) & 0x0f).toString()}.${(input.bytes[6] & 0x0f).toString()}.${(input.bytes[7]).toString()}`;
+  output.data.deviceInformation.wirelessModuleHardwareVersion = `${((input.bytes[6] >> 4) & 0x0f).toString()}.${(input.bytes[6] & 0x0f).toString()}.${input.bytes[7].toString()}`;
 
   /* No Sensor has been detected, break here */
   if (input.bytes.length < 29) {
-    output = addErrorMessage(output, `Device identification frame 07 has not all bytes included, received ${input.bytes.length} and need at least 29 bytes`);
+    output = addErrorMessage(
+      output,
+      `Device identification frame 07 has not all bytes included, received ${input.bytes.length} and need at least 29 bytes`,
+    );
     return output;
   }
 
@@ -546,77 +621,106 @@ function decodeDeviceIdentification(input) {
   output.data.deviceInformation.serialNumber = "";
   for (let i = 8; i < 19; i++) {
     if (input.bytes[i] == 0) break;
-    output.data.deviceInformation.serialNumber += String.fromCharCode(input.bytes[i]);
+    output.data.deviceInformation.serialNumber += String.fromCharCode(
+      input.bytes[i],
+    );
   }
 
   /* If at least channelA is present */
   if (input.bytes.length >= 29) {
-    output.data.deviceInformation.measurementRangeStart = convertHexToFloatIEEE754(input.bytes[19].toString(16).padStart(2, "0") + input.bytes[20].toString(16).padStart(2, "0") + input.bytes[21].toString(16).padStart(2, "0") + input.bytes[22].toString(16).padStart(2, "0"));
-    output.data.deviceInformation.measurementRangeStart = Number(output.data.deviceInformation.measurementRangeStart.toFixed(6));
-    output.data.deviceInformation.measurementRangeEnd = convertHexToFloatIEEE754(input.bytes[23].toString(16).padStart(2, "0") + input.bytes[24].toString(16).padStart(2, "0") + input.bytes[25].toString(16).padStart(2, "0") + input.bytes[26].toString(16).padStart(2, "0"));
-    output.data.deviceInformation.measurementRangeEnd = Number(output.data.deviceInformation.measurementRangeEnd.toFixed(6));
+    output.data.deviceInformation.measurementRangeStart =
+      convertHexToFloatIEEE754(
+        input.bytes[19].toString(16).padStart(2, "0") +
+          input.bytes[20].toString(16).padStart(2, "0") +
+          input.bytes[21].toString(16).padStart(2, "0") +
+          input.bytes[22].toString(16).padStart(2, "0"),
+      );
+    output.data.deviceInformation.measurementRangeStart = Number(
+      output.data.deviceInformation.measurementRangeStart.toFixed(6),
+    );
+    output.data.deviceInformation.measurementRangeEnd =
+      convertHexToFloatIEEE754(
+        input.bytes[23].toString(16).padStart(2, "0") +
+          input.bytes[24].toString(16).padStart(2, "0") +
+          input.bytes[25].toString(16).padStart(2, "0") +
+          input.bytes[26].toString(16).padStart(2, "0"),
+      );
+    output.data.deviceInformation.measurementRangeEnd = Number(
+      output.data.deviceInformation.measurementRangeEnd.toFixed(6),
+    );
     output.data.deviceInformation.measurand = input.bytes[27];
-    output.data.deviceInformation.measurandName = lppReturnMeasurandFromId(input.bytes[27]);
+    output.data.deviceInformation.measurandName = lppReturnMeasurandFromId(
+      input.bytes[27],
+    );
     output.data.deviceInformation.unit = input.bytes[28];
-    output.data.deviceInformation.unitName = lppReturnUnitFromId(input.bytes[28]);
+    output.data.deviceInformation.unitName = lppReturnUnitFromId(
+      input.bytes[28],
+    );
   }
 
   return output;
 }
-
 
 // ***********************************************************************************
 //          Additional Functions Section
 // ***********************************************************************************
 /**
-* Converts a hex string number to float number follows the IEEE 754 standard and it's ES5 compatible
-* @access private
-* @param  {string} hexString   - Float as string "3.141"
-* @return {number}             - returns a float
-* @see https://gist.github.com/Jozo132/2c0fae763f5dc6635a6714bb741d152f 2022 by Jozo132 
-*/
+ * Converts a hex string number to float number follows the IEEE 754 standard and it's ES5 compatible
+ * @access private
+ * @param  {string} hexString   - Float as string "3.141"
+ * @return {number}             - returns a float
+ * @see https://gist.github.com/Jozo132/2c0fae763f5dc6635a6714bb741d152f 2022 by Jozo132
+ */
 function convertHexToFloatIEEE754(hexString) {
   const int = parseInt(hexString, 16);
   if (int > 0 || int < 0) {
-    const sign = (int >>> 31) ? -1 : 1;
-    let exp = (int >>> 23 & 0xff) - 127;
+    const sign = int >>> 31 ? -1 : 1;
+    let exp = ((int >>> 23) & 0xff) - 127;
     const mantissa = ((int & 0x7fffff) + 0x800000).toString(2);
-    let float32 = 0
-    for (let i = 0; i < mantissa.length; i += 1) { float32 += parseInt(mantissa[i]) ? Math.pow(2, exp) : 0; exp-- }
+    let float32 = 0;
+    for (let i = 0; i < mantissa.length; i += 1) {
+      float32 += parseInt(mantissa[i]) ? Math.pow(2, exp) : 0;
+      exp--;
+    }
     return float32 * sign;
-  } return 0
+  }
+  return 0;
 }
 
 /**
-* Checks the user defined measurement ranges
-* @access private
-* @param  {output} output - Output object
-* @return {output}        - Returns if the ranges are correct defined
-*/
+ * Checks the user defined measurement ranges
+ * @access private
+ * @param  {output} output - Output object
+ * @return {output}        - Returns if the ranges are correct defined
+ */
 function checkMeasurementRanges(output) {
-  if (typeof VALUE_RANGE_START === 'undefined') {
+  if (typeof VALUE_RANGE_START === "undefined") {
     output = addErrorMessage(output, "The VALUE_RANGE_START was not set.");
   }
 
-  if (typeof VALUE_RANGE_END === 'undefined') {
+  if (typeof VALUE_RANGE_END === "undefined") {
     output = addErrorMessage(output, "The VALUE_RANGE_END was not set.");
   }
 
   if (VALUE_RANGE_START >= VALUE_RANGE_END) {
-    output = addErrorMessage(output, `The VALUE_RANGE_START must not be greater or equal to VALUE_RANGE_END, ${VALUE_RANGE_START} >= ${VALUE_RANGE_END}. `);
+    output = addErrorMessage(
+      output,
+      `The VALUE_RANGE_START must not be greater or equal to VALUE_RANGE_END, ${VALUE_RANGE_START} >= ${VALUE_RANGE_END}. `,
+    );
   }
 
   return output;
 }
 
 /**
-* Add warning to output object
-* @param {output} output
-* @param {string} warningMessage
-* @access private 
-*/
+ * Add warning to output object
+ * @param {output} output
+ * @param {string} warningMessage
+ * @access private
+ */
 
-function addWarningMessage(output, warningMessage) { // eslint-disable-line
+function addWarningMessage(output, warningMessage) {
+  // eslint-disable-line
   // use only functional supported by ECMA-262 5th edition. The nullish assign and .at are not supported. output.warnings ??= [];
   output.warnings = output.warnings || [];
   output.warnings.push(`${DEVICE_NAME} (JS): ${warningMessage}`);
@@ -624,11 +728,11 @@ function addWarningMessage(output, warningMessage) { // eslint-disable-line
 }
 
 /**
-* Add private to output object
-* @param {output} output
-* @param {string} errorMessage
-* @access private 
-*/
+ * Add private to output object
+ * @param {output} output
+ * @param {string} errorMessage
+ * @access private
+ */
 function addErrorMessage(output, errorMessage) {
   output.errors = output.errors || [];
   output.errors.push(`${DEVICE_NAME} (JS): ${errorMessage}`);
@@ -636,86 +740,116 @@ function addErrorMessage(output, errorMessage) {
 }
 
 /**
-* Create an empty output object
-* @returns {output}        - Returns an output object
-* @access private
-*/
+ * Create an empty output object
+ * @returns {output}        - Returns an output object
+ * @access private
+ */
 function createOutputObject() {
   return {
     data: {},
-  }
+  };
 }
 
-
 /**
-* Set measurement ranges only for test purposes
-* @access protected
-* @param  {Number} valueRangeStart   range start
-* @param  {Number} valueRangeEnd     range end
-* @param  {string} channelMeasurandConfig     channel measurand config
-*/
-function setMeasurementRanges(valueRangeStart, valueRangeEnd, channelMeasurandConfig) {
+ * Set measurement ranges only for test purposes
+ * @access protected
+ * @param  {Number} valueRangeStart   range start
+ * @param  {Number} valueRangeEnd     range end
+ * @param  {string} channelMeasurandConfig     channel measurand config
+ */
+function setMeasurementRanges(
+  valueRangeStart,
+  valueRangeEnd,
+  channelMeasurandConfig,
+) {
   VALUE_RANGE_START = valueRangeStart;
   VALUE_RANGE_END = valueRangeEnd;
   CHANNEL_MEASURAND_CONFIGURATION = channelMeasurandConfig;
 }
 
-
 /**
-* Returns the real physical value of the channel value based on measurement range
-* @access private
-* @param  {Number} channelValue    channel value as integer 
-* @param  {Number} measurementRangeStart   range start
-* @param  {Number} measurementRangeEnd     range end
-* @param  {Number} measuringRangeStart   range start (MRS)
-* @param  {Number} measuringRangeEnd     range end (MRE)
-* @return {Number} Returns real physical value e.g. 10 °C
-*/
-function getCalculatedValue(channelValue, measurementRangeStart, measurementRangeEnd, measuringRangeStart, measuringRangeEnd) {
-  const calculatedValue = (channelValue - measuringRangeStart) * ((measurementRangeEnd - measurementRangeStart) / (measuringRangeEnd - measuringRangeStart)) + measurementRangeStart;
+ * Returns the real physical value of the channel value based on measurement range
+ * @access private
+ * @param  {Number} channelValue    channel value as integer
+ * @param  {Number} measurementRangeStart   range start
+ * @param  {Number} measurementRangeEnd     range end
+ * @param  {Number} measuringRangeStart   range start (MRS)
+ * @param  {Number} measuringRangeEnd     range end (MRE)
+ * @return {Number} Returns real physical value e.g. 10 °C
+ */
+function getCalculatedValue(
+  channelValue,
+  measurementRangeStart,
+  measurementRangeEnd,
+  measuringRangeStart,
+  measuringRangeEnd,
+) {
+  const calculatedValue =
+    (channelValue - measuringRangeStart) *
+      ((measurementRangeEnd - measurementRangeStart) /
+        (measuringRangeEnd - measuringRangeStart)) +
+    measurementRangeStart;
   // round to the third number after the comma
   return Math.round(calculatedValue * 1000) / 1000;
 }
 
 /**
-* Returns the real physical value of defined measurand based on measurement range
-* @param {Number} channelValue  
-* @access private
-*/
+ * Returns the real physical value of defined measurand based on measurement range
+ * @param {Number} channelValue
+ * @access private
+ */
 function getRealValue(channelValue) {
-  return getCalculatedValue(channelValue, VALUE_RANGE_START, VALUE_RANGE_END, GENERIC_DATA_CHANNEL_RANGE_START, GENERIC_DATA_CHANNEL_RANGE_END);
+  return getCalculatedValue(
+    channelValue,
+    VALUE_RANGE_START,
+    VALUE_RANGE_END,
+    GENERIC_DATA_CHANNEL_RANGE_START,
+    GENERIC_DATA_CHANNEL_RANGE_END,
+  );
 }
 
 /**
-* Returns the calculated threshold value of defined measurand based on measurement range
-* @param {Number} channelValue  
-* @access private
-*/
+ * Returns the calculated threshold value of defined measurand based on measurement range
+ * @param {Number} channelValue
+ * @access private
+ */
 function getThresholdValue(channelValue) {
-  return getCalculatedValue(channelValue, VALUE_RANGE_START, VALUE_RANGE_END, 2500, 12500);
+  return getCalculatedValue(
+    channelValue,
+    VALUE_RANGE_START,
+    VALUE_RANGE_END,
+    2500,
+    12500,
+  );
 }
 
 /**
-* Returns the slope physical value of defined measurand based on measurement range
-* @param {Number} channelValue  
-* @access private
-*/
+ * Returns the slope physical value of defined measurand based on measurement range
+ * @param {Number} channelValue
+ * @access private
+ */
 function getSlopeValue(channelValue) {
-  return getCalculatedValue(channelValue, VALUE_RANGE_START, VALUE_RANGE_END, 0, 10000);
+  return getCalculatedValue(
+    channelValue,
+    VALUE_RANGE_START,
+    VALUE_RANGE_END,
+    0,
+    10000,
+  );
 }
 
 /**
-* To convert a hex encoded string to a integer array
-* @param {string} hexEncodedString
-* @access private
-*/
+ * To convert a hex encoded string to a integer array
+ * @param {string} hexEncodedString
+ * @access private
+ */
 function convertHexStringToBytes(hexEncodedString) {
   if (hexEncodedString.startsWith("0x")) {
     hexEncodedString = hexEncodedString.slice(2);
   }
 
   // remove spaces
-  hexEncodedString = hexEncodedString.replace(/\s/g, '');
+  hexEncodedString = hexEncodedString.replace(/\s/g, "");
 
   const bytes = [];
 
@@ -734,15 +868,15 @@ function convertHexStringToBytes(hexEncodedString) {
 }
 
 /**
-* To convert a base64 encoded string to a integer array
-* @param {string} base64EncodedString
-* @access private
-*/
+ * To convert a base64 encoded string to a integer array
+ * @param {string} base64EncodedString
+ * @access private
+ */
 function convertBase64StringToBytes(base64EncodedString) {
   const bytes = [];
 
   // convert base64 to string
-  const decodedBytes = Buffer.from(base64EncodedString, 'base64')
+  const decodedBytes = Buffer.from(base64EncodedString, "base64");
 
   // convert byte to byte (2 characters are 1 byte)
   for (let i = 0; i < decodedBytes.length; i++) {
@@ -756,11 +890,11 @@ function convertBase64StringToBytes(base64EncodedString) {
 }
 
 /**
-* Returns the printable name of a measurand for a LPP supporting devices e.g.: 1 = "Temperature"
-* @access private
-* @param  {Number} id    Identifier as integer 
-* @return {string}       Returns a string e.g.: "Temperature"
-*/
+ * Returns the printable name of a measurand for a LPP supporting devices e.g.: 1 = "Temperature"
+ * @access private
+ * @param  {Number} id    Identifier as integer
+ * @return {string}       Returns a string e.g.: "Temperature"
+ */
 function lppReturnMeasurandFromId(id) {
   switch (id) {
     case 1:
@@ -829,11 +963,11 @@ function lppReturnMeasurandFromId(id) {
 }
 
 /**
-* Returns the printable name of a physical unit for LPP supporting devices e.g.: 1 = "°C"
-* @access private
-* @param  {Number} id    Identifier as integer 
-* @return {string}       Returns a string e.g.: "°C"
-*/
+ * Returns the printable name of a physical unit for LPP supporting devices e.g.: 1 = "°C"
+ * @access private
+ * @param  {Number} id    Identifier as integer
+ * @return {string}       Returns a string e.g.: "°C"
+ */
 function lppReturnUnitFromId(id) {
   switch (id) {
     case 1:
@@ -1043,9 +1177,13 @@ function consume(event) {
     const { customFields } = event.device;
 
     // Only decode the messages if the customfields are set, otherwiese you can not decode correctly
-    if (!isNaN(customFields.rangeStart) && customFields.rangeStart !== null &&
-      !isNaN(customFields.rangeEnd) && customFields.rangeEnd !== null &&
-      customFields.channelMeasurand !== undefined && customFields.channelMeasurand !== null
+    if (
+      !isNaN(customFields.rangeStart) &&
+      customFields.rangeStart !== null &&
+      !isNaN(customFields.rangeEnd) &&
+      customFields.rangeEnd !== null &&
+      customFields.channelMeasurand !== undefined &&
+      customFields.channelMeasurand !== null
     ) {
       VALUE_RANGE_START = customFields.rangeStart;
       VALUE_RANGE_END = customFields.rangeEnd;
@@ -1057,13 +1195,13 @@ function consume(event) {
       if (decoded.errors !== undefined) {
         emit("sample", { data: decoded.errors, topic: "error" });
       } else if (decoded.measurement !== undefined) {
-        decoded.measurement.channels.forEach(channel => {
+        decoded.measurement.channels.forEach((channel) => {
           data[channel.channelName] = channel.value;
         });
 
         emit("sample", { data, topic: "default" });
       } else if (decoded.processAlarms !== undefined) {
-        decoded.processAlarms.forEach(alarm => {
+        decoded.processAlarms.forEach((alarm) => {
           const packet = {};
           packet.alarmChannel = alarm.channelName;
           packet.alarmStatus = alarm.eventName;
@@ -1071,15 +1209,13 @@ function consume(event) {
           packet.value = alarm.value;
           emit("sample", { data: packet, topic: "process_alarm" });
         });
-
       } else if (decoded.technicalAlarms !== undefined) {
-        decoded.technicalAlarms.forEach(alarm => {
+        decoded.technicalAlarms.forEach((alarm) => {
           const packet = {};
           packet.alarmStatus = alarm.alarmType;
           packet.alarmType = alarm.alarmTypeNames;
           emit("sample", { data: packet, topic: "technical_alarm" });
         });
-
       } else if (decoded.deviceAlarm !== undefined) {
         data.alarmType = decoded.deviceAlarm.alarmType;
         data.alarmTypeNames = decoded.deviceAlarm.alarmTypeNames;
@@ -1087,28 +1223,39 @@ function consume(event) {
         emit("sample", { data, topic: "device_alarm" });
       } else if (decoded.deviceInformation !== undefined) {
         data.productId = decoded.deviceInformation.productId;
-        data.wirelessModuleFirmwareVersion = decoded.deviceInformation.wirelessModuleFirmwareVersion;
-        data.wirelessModuleHardwareVersion = decoded.deviceInformation.wirelessModuleHardwareVersion;
+        data.wirelessModuleFirmwareVersion =
+          decoded.deviceInformation.wirelessModuleFirmwareVersion;
+        data.wirelessModuleHardwareVersion =
+          decoded.deviceInformation.wirelessModuleHardwareVersion;
         data.serialNumber = decoded.deviceInformation.serialNumber;
         data.productSubId = decoded.deviceInformation.productSubId;
-        data.measurementRangeStart = decoded.deviceInformation.measurementRangeStart;
-        data.measurementRangeEnd = decoded.deviceInformation.measurementRangeEnd;
+        data.measurementRangeStart =
+          decoded.deviceInformation.measurementRangeStart;
+        data.measurementRangeEnd =
+          decoded.deviceInformation.measurementRangeEnd;
         data.measurandName = decoded.deviceInformation.measurandName;
         data.unitName = decoded.deviceInformation.unitName;
 
         emit("sample", { data, topic: "device_information" });
       } else if (decoded.deviceStatistic !== undefined) {
-        data.batteryLevelNewEvent = decoded.deviceInformation.batteryLevelNewEvent;
+        data.batteryLevelNewEvent =
+          decoded.deviceInformation.batteryLevelNewEvent;
         data.batteryLevel = decoded.deviceInformation.batteryLevel;
 
         emit("sample", { data, topic: "lifecycle" });
       }
     } else {
-      const error = { "errorMessage": "Please define the customfields: rangeStart, rangeEnd, channelMeasurand" };
+      const error = {
+        errorMessage:
+          "Please define the customfields: rangeStart, rangeEnd, channelMeasurand",
+      };
       emit("sample", { data: error, topic: "error" });
     }
   } else {
-    const error = { "errorMessage": "Please define the customfields: rangeStart, rangeEnd, channelMeasurand" };
+    const error = {
+      errorMessage:
+        "Please define the customfields: rangeStart, rangeEnd, channelMeasurand",
+    };
     emit("sample", { data: error, topic: "error" });
   }
 }

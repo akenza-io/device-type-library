@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function round(value) {
   return Math.round(value * 1000) / 1000;
 }
@@ -28,6 +32,7 @@ function consume(event) {
     data.vibrationLevel = (vl1 * 128 + vl2 + vl3 / 100) / 10 / 121.45; // float
     // Frequency_index
     data.temperature = Bits.bitsToUnsigned(bits.substr(48, 8)) - 30;
+    data.temperatureF = cToF(data.temperature);
     const learningFrom = Bits.bitsToUnsigned(bits.substr(56, 8));
 
     if (learningFrom) {
@@ -60,6 +65,7 @@ function consume(event) {
 
     data.nrAlarms = Bits.bitsToUnsigned(bits.substr(32, 8));
     data.temperature = Bits.bitsToUnsigned(bits.substr(40, 8)) - 30;
+    data.temperatureF = cToF(data.temperature);
 
     let reportLength = Bits.bitsToUnsigned(bits.substr(48, 8));
     data.operatingTime =
@@ -167,6 +173,7 @@ function consume(event) {
       (Bits.bitsToUnsigned(bits.substr(8, 8)) * 100) / 127,
     );
     data.temperature = Bits.bitsToUnsigned(bits.substr(16, 8)) - 30;
+    data.temperatureF = cToF(data.temperature);
     // NA
     const vl1 = Bits.bitsToUnsigned(bits.substr(32, 8));
     const vl2 = Bits.bitsToUnsigned(bits.substr(40, 8));

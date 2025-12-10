@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 const decentlabDecoder = {
   PROTOCOL_VERSION: 2,
   SENSORS: [
@@ -75,8 +79,8 @@ const decentlabDecoder = {
                   Math.max(1.0 * x[0] - 1.64 * x[1], 0.59 * x[0] - 0.86 * x[1]),
                   0,
                 ) *
-                1.5504 *
-                100,
+                  1.5504 *
+                  100,
               ) / 100
             );
           },
@@ -208,6 +212,7 @@ function consume(event) {
   const occupancy = {};
 
   data.temperature = sample.air_temperature;
+  data.temperatureF = cToF(data.temperature);
   data.humidity = sample.air_humidity;
   data.pressure = sample.barometric_pressure * 0.01;
   data.co2 = sample.co2_concentration;
@@ -251,15 +256,18 @@ function consume(event) {
     occupancy.occupied = false;
   }
 
-  // Warm desk 
+  // Warm desk
   const time = new Date().getTime();
   const state = event.state || {};
   occupancy.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
   if (occupancy.occupied) {
     delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
   } else if (state.lastOccupancyTimestamp !== undefined) {
-    occupancy.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
-  } else if (state.lastOccupiedValue) { //
+    occupancy.minutesSinceLastOccupied = Math.round(
+      (time - state.lastOccupancyTimestamp) / 1000 / 60,
+    ); // Get free since
+  } else if (state.lastOccupiedValue) {
+    //
     state.lastOccupancyTimestamp = time; // Start with first no occupancy
   }
 

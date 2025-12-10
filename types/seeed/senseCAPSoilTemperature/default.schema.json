@@ -1,23 +1,27 @@
 {
-  "$id": "https://akenza.io/seeed/senseCAPSoilTemperature/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
-  "properties": {
-    "soilHumidity": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
-      "description": "The relative humidity of the soil in %",
-      "title": "Soil humidity"
+    "$id": "https://akenza.io/seeed/senseCAPSoilTemperature/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "soilHumidity": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
+            "description": "The relative humidity of the soil in %",
+            "title": "Soil humidity"
+        },
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "description": "Soil temperature at depth 7"
+        },
+        "temperatureF": {
+            "description": "Soil temperature at depth 7",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
     },
-    "temperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "description": "Soil temperature at depth 7"
-    }
-  },
-  "required": [
-    "soilHumidity",
-    "temperature"
-  ]
+    "required": [
+        "soilHumidity",
+        "temperature"
+    ]
 }

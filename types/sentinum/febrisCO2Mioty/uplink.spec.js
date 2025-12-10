@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,20 +13,18 @@ describe("Sentinum Febris Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -50,6 +46,7 @@ describe("Sentinum Febris Uplink", () => {
         assert.equal(value.data.batteryVoltage, 6.482);
         assert.equal(value.data.batteryLevel, 100);
         assert.equal(value.data.internalTemperature, 25);
+        assert.equal(value.data.internalTemperatureF, 77);
         assert.equal(value.data.majorVersion, 1);
         assert.equal(value.data.minorVersion, 2);
         assert.equal(value.data.productVersion, 3);
@@ -66,6 +63,7 @@ describe("Sentinum Febris Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.alarm, "YELLOW");
         assert.equal(value.data.dewPoint, 8);
+        assert.equal(value.data.dewPointF, 46.4);
         assert.equal(value.data.co2, 1694);
         assert.equal(value.data.humidity, 33);
         assert.equal(value.data.pressure, 973);

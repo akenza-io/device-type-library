@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function checkForIllegalValue(value, fieldName) {
   let errorCode = "";
   switch (value) {
@@ -33,6 +37,7 @@ function consume(event) {
   const temperature =
     Hex.hexLittleEndianToBigEndian(payload.substr(6, 8), true) / 1000;
   data.temperature = checkForIllegalValue(temperature, "temperature");
+  data.temperatureF = cToF(data.temperature);
 
   // 14-16 Channel Number
   // 16-20 Measurement ID

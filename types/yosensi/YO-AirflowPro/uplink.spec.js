@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,56 +13,58 @@ describe("Yosensi YO Airflow Pro uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/battery_voltage.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/battery_voltage.schema.json`).then(
+      (parsedSchema) => {
         batteryVoltageSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let internalTemperatureSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/internal_temperature.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/internal_temperature.schema.json`).then(
+      (parsedSchema) => {
         internalTemperatureSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let humiditySchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/humidity.schema.json`)
-      .then((parsedSchema) => {
-        humiditySchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/humidity.schema.json`).then((parsedSchema) => {
+      humiditySchema = parsedSchema;
+      done();
+    });
   });
 
   let differentialPressureSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/differential_pressure.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/differential_pressure.schema.json`).then(
+      (parsedSchema) => {
         differentialPressureSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let velocitySchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/velocity.schema.json`)
-      .then((parsedSchema) => {
-        velocitySchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/velocity.schema.json`).then((parsedSchema) => {
+      velocitySchema = parsedSchema;
+      done();
+    });
   });
 
   let gasTemperatureSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/gas_temperature.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/gas_temperature.schema.json`).then(
+      (parsedSchema) => {
         gasTemperatureSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   describe("consume()", () => {
@@ -97,6 +97,7 @@ describe("Yosensi YO Airflow Pro uplink", () => {
 
         assert.equal(value.topic, "internal_temperature");
         assert.equal(value.data.internalTemperature, 9.4);
+        assert.equal(value.data.internalTemperatureF, 48.9);
 
         validateSchema(value.data, internalTemperatureSchema, {
           throwError: true,
@@ -134,6 +135,7 @@ describe("Yosensi YO Airflow Pro uplink", () => {
 
         assert.equal(value.topic, "gas_temperature");
         assert.equal(value.data.gasTemperature, 10.6);
+        assert.equal(value.data.gasTemperatureF, 51.1);
 
         validateSchema(value.data, gasTemperatureSchema, {
           throwError: true,

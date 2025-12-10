@@ -102,7 +102,10 @@ function consume(event) {
     emit("sample", { data: sample, topic: "touch" });
   } else if (eventType === "networkStatus") {
     // suppress network_status for one hour
-    if (state.lastNetworkEmittedAt === undefined || now - state.lastNetworkEmittedAt >= 3600000) {
+    if (
+      state.lastNetworkEmittedAt === undefined ||
+      now - state.lastNetworkEmittedAt >= 3600000
+    ) {
       sample.signalStrength = event.data.networkStatus.signalStrength;
       sample.rssi = event.data.networkStatus.rssi;
       sample.transmissionMode = event.data.networkStatus.transmissionMode;
@@ -122,7 +125,10 @@ function consume(event) {
   }
 
   // output a sample each hour to facilitate time series analysis
-  if (state.lastSampleEmittedAt !== undefined && now - state.lastSampleEmittedAt >= 3600000) {
+  if (
+    state.lastSampleEmittedAt !== undefined &&
+    now - state.lastSampleEmittedAt >= 3600000
+  ) {
     sample = {};
     sample.objectPresent = state.lastStatus;
     sample.relativeCount = 0;

@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 // Datasheet source: https://resource.milesight.com/milesight/iot/document/am102(l)-and-am103(l)-user-guide-en.pdf
 
 function readUInt16LE(bytes) {
@@ -11,14 +15,15 @@ function readInt16LE(bytes) {
 }
 
 function readUInt32LE(bytes) {
-  const value = (bytes[3] << 24) + (bytes[2] << 16) + (bytes[1] << 8) + bytes[0];
+  const value =
+    (bytes[3] << 24) + (bytes[2] << 16) + (bytes[1] << 8) + bytes[0];
   return (value & 0xffffffff) >>> 0;
 }
 
 function readSerialNumber(bytes) {
   const temp = [];
   for (let idx = 0; idx < bytes.length; idx++) {
-    temp.push((`0${(bytes[idx] & 0xff).toString(16)}`).slice(-2));
+    temp.push(`0${(bytes[idx] & 0xff).toString(16)}`.slice(-2));
   }
   return temp.join("");
 }
@@ -29,7 +34,7 @@ function consume(event) {
   const lifecycleData = {};
   const systemData = {};
 
-  for (let i = 0; i < bytes.length;) {
+  for (let i = 0; i < bytes.length; ) {
     const channelId = bytes[i++];
     const channelType = bytes[i++];
 
@@ -70,6 +75,7 @@ function consume(event) {
     // TEMPERATURE
     else if (channelId === 0x03 && channelType === 0x67) {
       climateData.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
+      climateData.temperatureF = cToF(climateData.temperature);
       i += 2;
     }
     // HUMIDITY
@@ -85,7 +91,6 @@ function consume(event) {
         humidity: bytes[i + 6] / 2,
       };
       i += 7;
-
 
       emit("sample", {
         data: historicalReading,
@@ -117,4 +122,3 @@ function consume(event) {
     });
   }
 }
-

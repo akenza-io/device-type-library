@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,20 +13,18 @@ describe("Dragino NSE01 Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -51,6 +47,7 @@ describe("Dragino NSE01 Uplink", () => {
         assert.equal(value.data.soilDialecticConstant, 10);
         assert.equal(value.data.soilMoisture, 0);
         assert.equal(value.data.soilTemperature, 27.92);
+        assert.equal(value.data.soilTemperatureF, 82.3);
 
         validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -65,6 +62,7 @@ describe("Dragino NSE01 Uplink", () => {
         assert.equal(value.data.soilDialecticConstant, 140);
         assert.equal(value.data.soilMoisture, 0);
         assert.equal(value.data.soilTemperature, 16.7);
+        assert.equal(value.data.soilTemperatureF, 62.1);
 
         validateSchema(value.data, defaultSchema, { throwError: true });
       });

@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,56 +13,56 @@ describe("NanoThings uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/configuration_ack.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/configuration_ack.schema.json`).then(
+      (parsedSchema) => {
         configurationAckSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let deviceStatusSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/device_status.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/device_status.schema.json`).then(
+      (parsedSchema) => {
         deviceStatusSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let firstTimestampSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/first_timestamp.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/first_timestamp.schema.json`).then(
+      (parsedSchema) => {
         firstTimestampSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   let reportFrameSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/report_frame.schema.json`)
-      .then((parsedSchema) => {
-        reportFrameSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/report_frame.schema.json`).then((parsedSchema) => {
+      reportFrameSchema = parsedSchema;
+      done();
+    });
   });
 
   let temperatureSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/temperature.schema.json`)
-      .then((parsedSchema) => {
-        temperatureSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/temperature.schema.json`).then((parsedSchema) => {
+      temperatureSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -85,6 +83,7 @@ describe("NanoThings uplink", () => {
         assert.equal(value.data.batteryLevel, 100);
         assert.equal(value.data.batteryVoltage, 3.25);
         assert.equal(value.data.internalTemperature, 25);
+        assert.equal(value.data.internalTemperatureF, 77);
 
         validateSchema(value.data, lifecycleSchema, {
           throwError: true,
@@ -98,6 +97,7 @@ describe("NanoThings uplink", () => {
 
         assert.equal(value.topic, "temperature");
         assert.equal(value.data.temperature, 21);
+        assert.equal(value.data.temperatureF, 69.8);
 
         validateSchema(value.data, temperatureSchema, {
           throwError: true,
@@ -150,9 +150,13 @@ describe("NanoThings uplink", () => {
         assert.equal(value.topic, "report_frame");
         assert.equal(value.data.fid, 1);
         assert.equal(value.data.temperature1, 22.8);
+        assert.equal(value.data.temperature1F, 73);
         assert.equal(value.data.temperature2, 22.6);
+        assert.equal(value.data.temperature2F, 72.7);
         assert.equal(value.data.temperature3, 22.5);
+        assert.equal(value.data.temperature3F, 72.5);
         assert.equal(value.data.temperature4, 22.4);
+        assert.equal(value.data.temperature4F, 72.3);
 
         validateSchema(value.data, reportFrameSchema, {
           throwError: true,

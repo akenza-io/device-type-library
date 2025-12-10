@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -20,27 +18,24 @@ describe("Decentlab CWS Uplink", () => {
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
     it("should decode the Decentlab CWS payload", () => {
       const data = {
         data: {
-          payloadHex:
-            "02463900038a778a95977a874c80478a5e0b74",
+          payloadHex: "02463900038a778a95977a874c80478a5e0b74",
         },
       };
 
@@ -52,10 +47,14 @@ describe("Decentlab CWS Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.humidity, 60.1);
         assert.equal(value.data.temperature, 27.09);
+        assert.equal(value.data.temperatureF, 80.8);
         assert.equal(value.data.angle, 71);
         assert.equal(value.data.dewPoint, 18.68);
+        assert.equal(value.data.dewPointF, 65.6);
         assert.equal(value.data.sensorTemperature, 26.54);
+        assert.equal(value.data.sensorTemperatureF, 79.8);
         assert.equal(value.data.surfaceTemperature, 26.79);
+        assert.equal(value.data.surfaceTemperatureF, 80.2);
 
         validateSchema(value.data, defaultSchema, { throwError: true });
       });

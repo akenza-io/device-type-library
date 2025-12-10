@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 // Decoder Protocol Version 0.03
 
 function bytesToFloat(bytes) {
@@ -116,6 +120,7 @@ function consume(event) {
         break;
       case 9:
         data.temperature = getWord(buff, rdPos) / 100;
+        data.temperatureF = cToF(data.temperature);
         break;
       case 10:
         data.humidity = getWord(buff, rdPos) / 10;
@@ -221,6 +226,7 @@ function consume(event) {
         break;
       case 40:
         lifecycle.deviceTemperature = getByte(buff, rdPos);
+        lifecycle.deviceTemperatureF = cToF(lifecycle.deviceTemperature);
         break;
       case 41:
         lifecycle.error = getLong(buff, rdPos);

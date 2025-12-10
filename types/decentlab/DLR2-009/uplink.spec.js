@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -20,27 +18,24 @@ describe("Decentlab DLR2-009 Uplink", () => {
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
     it("should decode the Decentlab DLR2-009 payload", () => {
       const data = {
         data: {
-          payloadHex:
-            "024c620003573400ad0ae1",
+          payloadHex: "024c620003573400ad0ae1",
         },
       };
 
@@ -51,6 +46,7 @@ describe("Decentlab DLR2-009 Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 24.908127512458456);
+        assert.equal(value.data.temperatureF, 76.8);
         assert.equal(value.data.thermistorResistance, 1097.0478279778865);
 
         validateSchema(value.data, defaultSchema, { throwError: true });

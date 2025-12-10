@@ -1,10 +1,9 @@
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -66,7 +65,8 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
       const data = {
         data: {
           port: 1,
-          payloadHex: "49FBDF010000DE1400000000000046EDDF0106FC8B0702E2E6535455",
+          payloadHex:
+            "49FBDF010000DE1400000000000046EDDF0106FC8B0702E2E6535455",
         },
       };
 
@@ -84,6 +84,9 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
           waterTemperatureMin: 21.5,
           waterTemperatureMax: 22,
           ambientTemperature: 22.5,
+          ambientTemperatureF: 70.7,
+          waterTemperatureMaxF: 71.6,
+          waterTemperatureMinF: 72.5,
         });
 
         validateSchema(value.data, defaultSchema, { throwError: true });
@@ -97,7 +100,7 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.deepStrictEqual(value.data, {
           isSensing: true,
-          batteryVoltage: 3.640,
+          batteryVoltage: 3.64,
           batteryStatus: "OK",
         });
 
@@ -130,6 +133,9 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
         waterTemperatureMin: 21.5,
         waterTemperatureMax: 22,
         ambientTemperature: 22.5,
+        ambientTemperatureF: 70.7,
+        waterTemperatureMaxF: 71.6,
+        waterTemperatureMinF: 72.5,
       });
     });
 
@@ -142,7 +148,7 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
       assert.deepStrictEqual(value.data, {
         isSensing: true,
         batteryVoltage: 1.816,
-        batteryStatus: "LOW"
+        batteryStatus: "LOW",
       });
     });
 
@@ -183,6 +189,9 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
         waterTemperatureMin: 21.5,
         waterTemperatureMax: 22,
         ambientTemperature: 22.5,
+        ambientTemperatureF: 70.7,
+        waterTemperatureMaxF: 71.6,
+        waterTemperatureMinF: 72.5,
       });
     });
 
@@ -194,8 +203,8 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
       assert.equal(value.topic, "lifecycle");
       assert.deepStrictEqual(value.data, {
         isSensing: true,
-        batteryVoltage: 3.640,
-        batteryStatus: "OK"
+        batteryVoltage: 3.64,
+        batteryStatus: "OK",
       });
     });
 
@@ -216,12 +225,12 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
     consume(data);
   });
 
-
   it("should decode the response to get status report as a status report on port 6", () => {
     const data = {
       data: {
         port: 6,
-        payloadHex: "3700019F42D701000077830000F3000000000000000000000000E1E43E3E3A",
+        payloadHex:
+          "3700019F42D701000077830000F3000000000000000000000000E1E43E3E3A",
       },
     };
 
@@ -234,7 +243,7 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
       assert.deepStrictEqual(value.data, {
         fPort: 55,
         status: "OK",
-        type: "STATUS_REPORT"
+        type: "STATUS_REPORT",
       });
 
       validateSchema(value.data, responseSchema, { throwError: true });
@@ -247,13 +256,16 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
 
       assert.equal(value.topic, "default");
       assert.deepStrictEqual(value.data, {
-        totalVolume: 33655,
+        ambientTemperature: 9,
+        ambientTemperatureF: 51.8,
         leakIsOngoing: false,
         leakState: 0,
         leakStatus: "NO_LEAK",
-        waterTemperatureMin: 11,
+        totalVolume: 33655,
         waterTemperatureMax: 11,
-        ambientTemperature: 9,
+        waterTemperatureMaxF: 51.8,
+        waterTemperatureMin: 11,
+        waterTemperatureMinF: 48.2,
       });
 
       validateSchema(value.data, defaultSchema, { throwError: true });
@@ -281,7 +293,8 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
     const data = {
       data: {
         port: 6,
-        payloadHex: "3200021300001602053F0000000000ED5A413DFC449C2B000001000000000001010000000000",
+        payloadHex:
+          "3200021300001602053F0000000000ED5A413DFC449C2B000001000000000001010000000000",
       },
     };
 
@@ -294,7 +307,7 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
       assert.deepStrictEqual(value.data, {
         fPort: 50,
         status: "OK",
-        type: "HARDWARE_REPORT"
+        type: "HARDWARE_REPORT",
       });
 
       validateSchema(value.data, responseSchema, { throwError: true });
@@ -324,7 +337,8 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
     const data = {
       data: {
         port: 6,
-        payloadHex: "0400021000001602053f0100000300e3ddcbb1bd758732000001000000000000010000000000",
+        payloadHex:
+          "0400021000001602053f0100000300e3ddcbb1bd758732000001000000000000010000000000",
       },
     };
 
@@ -337,7 +351,7 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
       assert.deepStrictEqual(value.data, {
         fPort: 4,
         status: "OK",
-        type: "HARDWARE_REPORT"
+        type: "HARDWARE_REPORT",
       });
 
       validateSchema(value.data, responseSchema, { throwError: true });
@@ -367,7 +381,8 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
     const data = {
       data: {
         port: 6,
-        payloadHex: "13000401C0A80000580200000000001E00008D27000000000000000000000000000000000000000000",
+        payloadHex:
+          "13000401C0A80000580200000000001E00008D27000000000000000000000000000000000000000000",
       },
     };
 
@@ -380,7 +395,7 @@ describe("Quandify CubicMeter 1.1 Plastic Uplink", () => {
       assert.deepStrictEqual(value.data, {
         fPort: 19,
         status: "OK",
-        type: "SETTINGS_REPORT"
+        type: "SETTINGS_REPORT",
       });
 
       validateSchema(value.data, responseSchema, { throwError: true });

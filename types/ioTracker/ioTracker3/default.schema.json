@@ -1,32 +1,35 @@
 {
-  "$id": "https://akenza.io/ioTracker/ioTracker3/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
-  "properties": {
-    "temperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    "$id": "https://akenza.io/ioTracker/ioTracker3/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "light": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/illuminance/lux"
+        },
+        "maxAccelerationNew": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/mG",
+            "description": "Max acceleration of the sensor since the last event.",
+            "title": "Max acceleration"
+        },
+        "maxAccelerationHistory": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/mG",
+            "description": "Max acceleration over all events.",
+            "title": "Max acceleration history"
+        },
+        "temperatureF": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
     },
-    "light": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/illuminance/lux"
-    },
-    "maxAccelerationNew": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/mG",
-      "description": "Max acceleration of the sensor since the last event.",
-      "title": "Max acceleration"
-    },
-    "maxAccelerationHistory": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/mG",
-      "description": "Max acceleration over all events.",
-      "title": "Max acceleration history"
-    }
-  },
-  "required": [
-    "temperature",
-    "light",
-    "maxAccelerationNew",
-    "maxAccelerationHistory"
-  ]
+    "required": [
+        "temperature",
+        "light",
+        "maxAccelerationNew",
+        "maxAccelerationHistory"
+    ]
 }

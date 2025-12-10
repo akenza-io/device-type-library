@@ -1,57 +1,60 @@
 {
-  "$id": "https://akenza.io/decentlab/atm22/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
-  "properties": {
-    "windSpeed": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/speed/mPerS",
-      "title": "Wind Speed"
+    "$id": "https://akenza.io/decentlab/atm22/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "windSpeed": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/speed/mPerS",
+            "title": "Wind Speed"
+        },
+        "windDirection": {
+            "title": "Wind Direction",
+            "unit": "°",
+            "description": "Wind Direction in °",
+            "type": "number"
+        },
+        "maximumWindSpeed": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/speed/mPerS",
+            "title": "Maximum Wind Speed"
+        },
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "xOrientationAngle": {
+            "title": "X Orientation Angle",
+            "unit": "°",
+            "description": "X Orientation Angle in °",
+            "type": "number"
+        },
+        "yOrientationAngle": {
+            "title": "Y Orientation Angle",
+            "unit": "°",
+            "description": "Y Orientation Angle in °",
+            "type": "number"
+        },
+        "northWindSpeed": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/speed/mPerS",
+            "title": "North Wind Speed"
+        },
+        "eastWindSpeed": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/speed/mPerS",
+            "title": "North Wind Speed"
+        },
+        "temperatureF": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
     },
-    "windDirection": {
-      "title": "Wind Direction",
-      "unit": "°",
-      "description": "Wind Direction in °",
-      "type": "number"
-    },
-    "maximumWindSpeed": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/speed/mPerS",
-      "title": "Maximum Wind Speed"
-    },
-    "temperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-    },
-    "xOrientationAngle": {
-      "title": "X Orientation Angle",
-      "unit": "°",
-      "description": "X Orientation Angle in °",
-      "type": "number"
-    },
-    "yOrientationAngle": {
-      "title": "Y Orientation Angle",
-      "unit": "°",
-      "description": "Y Orientation Angle in °",
-      "type": "number"
-    },
-    "northWindSpeed": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/speed/mPerS",
-      "title": "North Wind Speed"
-    },
-    "eastWindSpeed": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/speed/mPerS",
-      "title": "North Wind Speed"
-    }
-  },
-  "required": [
-    "windSpeed",
-    "windDirection",
-    "maximumWindSpeed",
-    "temperature",
-    "xOrientationAngle",
-    "yOrientationAngle",
-    "northWindSpeed",
-    "eastWindSpeed"
-  ]
+    "required": [
+        "windSpeed",
+        "windDirection",
+        "maximumWindSpeed",
+        "temperature",
+        "xOrientationAngle",
+        "yOrientationAngle",
+        "northWindSpeed",
+        "eastWindSpeed"
+    ]
 }

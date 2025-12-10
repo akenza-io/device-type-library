@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,29 +13,28 @@ describe("Adnexo ax-dist Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/measurement.schema.json`)
-      .then((parsedSchema) => {
-        measurementSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/measurement.schema.json`).then((parsedSchema) => {
+      measurementSchema = parsedSchema;
+      done();
+    });
   });
 
   let invalidMeasurementSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/invalid_measurement.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/invalid_measurement.schema.json`).then(
+      (parsedSchema) => {
         invalidMeasurementSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   let statusSchema = null;
@@ -97,6 +94,7 @@ describe("Adnexo ax-dist Uplink", () => {
         assert.equal(value.data.fillLevel, 56);
         assert.equal(value.data.measurementType, "REGULAR_MEASUREMENT");
         assert.equal(value.data.temperature, 22);
+        assert.equal(value.data.temperatureF, 71.6);
 
         validateSchema(value.data, measurementSchema, {
           throwError: true,

@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 // Standard Decoder
 const TYPE_TEMP = 0x01; // temp 2 bytes -3276.8°C -->3276.7°C
 const TYPE_RH = 0x02; // Humidity 1 byte  0-100%
@@ -48,6 +52,7 @@ function DecodeElsysPayload(data) {
         var temp = (data[i + 1] << 8) | data[i + 2];
         temp = bin16dec(temp);
         obj.temperature = temp / 10;
+        obj.temperatureF = cToF(obj.temperature);
         i += 2;
         break;
       case TYPE_RH: // Humidity
@@ -378,7 +383,14 @@ function DecodeElsysSettings(input) {
     const d = Array.from(bytes).slice(i, i + setting.size);
 
     // Do not emit LoRa Secrets
-    const sensitiveInfo = ["appSKey", "nwkSKey", "devEui", "appEui", "appKey", "devAddr"];
+    const sensitiveInfo = [
+      "appSKey",
+      "nwkSKey",
+      "devEui",
+      "appEui",
+      "appKey",
+      "devAddr",
+    ];
     if (sensitiveInfo.indexOf(setting.name) === -1) {
       if (setting.parse == null) {
         payload[setting.name] = d;
@@ -424,6 +436,7 @@ function consume(event) {
 
     // Default values
     data.temperature = res.temperature;
+    data.temperatureF = res.temperatureF;
     data.humidity = res.humidity;
     data.accX = res.accX;
     data.accY = res.accY;
@@ -444,7 +457,9 @@ function consume(event) {
     data.pulseAbs1 = res.pulseAbs1;
     data.pulseAbs2 = res.pulseAbs2;
     data.externalTemperature1 = res.externalTemperature1;
+    data.externalTemperature1F = res.externalTemperature1F;
     data.externalTemperature2 = res.externalTemperature2;
+    data.externalTemperature2F = res.externalTemperature2F;
 
     // Occupancy values
     occupancy.motion = res.motion;

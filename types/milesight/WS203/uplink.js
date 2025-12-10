@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function readUInt16LE(bytes) {
   const value = (bytes[1] << 8) + bytes[0];
   return value & 0xffff;
@@ -38,6 +42,7 @@ function consume(event) {
     // TEMPERATURE
     else if (channelId === 0x03 && channelType === 0x67) {
       decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
+      decoded.temperatureF = cToF(decoded.temperature);
       i += 2;
     }
     // HUMIDITY
@@ -49,15 +54,18 @@ function consume(event) {
     else if (channelId === 0x05 && channelType === 0x00) {
       decoded.occupied = bytes[i] !== 0;
       decoded.occupancy = Number(decoded.occupied);
-      // Warm desk 
+      // Warm desk
       const time = new Date().getTime();
       const state = event.state || {};
       decoded.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
       if (decoded.occupied) {
         delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
       } else if (state.lastOccupancyTimestamp !== undefined) {
-        decoded.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
-      } else if (state.lastOccupiedValue) { //
+        decoded.minutesSinceLastOccupied = Math.round(
+          (time - state.lastOccupancyTimestamp) / 1000 / 60,
+        ); // Get free since
+      } else if (state.lastOccupiedValue) {
+        //
         state.lastOccupancyTimestamp = time; // Start with first no occupancy
       }
 
@@ -71,6 +79,7 @@ function consume(event) {
     // TEMPERATURE WITH ABNORMAL
     else if (channelId === 0x83 && channelType === 0x67) {
       decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
+      decoded.temperatureF = cToF(decoded.temperature);
       decoded.temperatureAbnormal = bytes[i + 2] !== 0;
       i += 3;
     }
@@ -104,6 +113,7 @@ function consume(event) {
       data.occupied = bytes[i + 5] !== 0;
       data.occupancy = Number(data.occupied);
       data.temperature = readInt16LE(bytes.slice(i + 6, i + 8)) / 10;
+      data.temperatureF = cToF(data.temperature);
       data.humidity = bytes[i + 8] / 2;
       i += 9;
 

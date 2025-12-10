@@ -60,7 +60,7 @@ function consume(event) {
   const alarm = {};
   const totalCurrent = {};
 
-  for (let i = 0; i < bytes.length;) {
+  for (let i = 0; i < bytes.length; ) {
     const channelId = bytes[i++];
     const channelType = bytes[i++];
 

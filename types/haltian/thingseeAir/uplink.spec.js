@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,20 +13,18 @@ describe("Haltian Thingsee air Sensor Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/environment.schema.json`)
-      .then((parsedSchema) => {
-        environmentSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/environment.schema.json`).then((parsedSchema) => {
+      environmentSchema = parsedSchema;
+      done();
+    });
   });
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   let co2Schema = null;
@@ -70,6 +66,7 @@ describe("Haltian Thingsee air Sensor Uplink", () => {
         assert.equal(value.topic, "environment");
         assert.equal(value.data.pressure, 97017.737);
         assert.equal(value.data.temperature, 26.4);
+        assert.equal(value.data.temperatureF, 79.5);
         assert.equal(value.data.humidity, 35.2);
 
         validateSchema(value.data, environmentSchema, {

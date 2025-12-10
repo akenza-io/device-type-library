@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function slice(a, f, t) {
   const res = [];
   for (let i = 0; i < t - f; i++) {
@@ -147,6 +151,7 @@ function decoder(bytes, port) {
         key: [0x03, 0x67],
         fn(arg) {
           decodedData.temperature = decodeField(arg, 0, 15, "signed") * 0.1;
+          decodedData.temperatureF = cToF(decodedData.temperature);
           return 2;
         },
       },
@@ -1123,7 +1128,7 @@ function decoder(bytes, port) {
 
   bytes = convertToUint8Array(bytes);
 
-  for (let bytesLeft = bytes.length; bytesLeft > 0;) {
+  for (let bytesLeft = bytes.length; bytesLeft > 0; ) {
     let found = false;
     for (let i = 0; i < decode.length; i++) {
       const item = decode[i];

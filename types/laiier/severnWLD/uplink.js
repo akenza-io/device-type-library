@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
@@ -45,7 +49,8 @@ function consume(event) {
       data.accY = Bits.bitsToUnsigned(bits.substr(24, 8)); //  1/63 g
       data.accZ = Bits.bitsToUnsigned(bits.substr(32, 8)); //  1/63 g
 
-      data.temperature = Bits.bitsToSigned(bits.substr(40, 8)); // 18
+      data.temperature = Bits.bitsToSigned(bits.substr(40, 8));
+      data.temperatureF = cToF(data.temperature); // 18
       data.wetnessThreshold = Bits.bitsToUnsigned(bits.substr(48, 8)); // 03
       data.interval = Bits.bitsToUnsigned(bits.substr(56, 16)); // 0168
 

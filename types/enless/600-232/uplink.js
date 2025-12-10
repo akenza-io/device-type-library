@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 // --- HEX TO BYTE ARRAY ---
 function parseHexString(str) {
   const result = [];
@@ -28,7 +32,9 @@ function consume(event) {
   const bytes = parseHexString(payload);
 
   if (bytes.length !== 14) {
-    throw new Error("Invalid payload length: " + bytes.length + ", expected 14 bytes.");
+    throw new Error(
+      `Invalid payload length: ${bytes.length}, expected 14 bytes.`,
+    );
   }
 
   const lifecycle = {};
@@ -45,13 +51,15 @@ function consume(event) {
   lifecycle.seqCounter = bytes[4];
 
   // --- Firmware Version (bits 5-0) ---
-  lifecycle.fwVersion = bytes[5] & 0x3F;
+  lifecycle.fwVersion = bytes[5] & 0x3f;
 
   // --- Temperature 1 (°C, Int16BE / 10) ---
   decoded.temperature1 = readInt16BE(bytes.slice(6, 8)) / 10;
+  decoded.temperature1F = cToF(decoded.temperature1);
 
   // --- Temperature 2 (°C, Int16BE / 10) ---
   decoded.temperature2 = readInt16BE(bytes.slice(8, 10)) / 10;
+  decoded.temperature2F = cToF(decoded.temperature2);
 
   // --- Alarm Status (Little Endian) ---
   const alarmStatus = readUInt16LE(bytes.slice(10, 12));
@@ -66,7 +74,7 @@ function consume(event) {
   const batteryLevels = [100, 75, 50, 25]; // in percent
   lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
-  decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";
+  decoded.msgType = status & 0x01 ? "ALARM" : "NORMAL";
 
   // --- Emit Results ---
   emit("sample", { data: lifecycle, topic: "lifecycle" });

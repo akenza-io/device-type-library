@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const { port } = event.data;
@@ -29,6 +33,7 @@ function consume(event) {
           ((dataBytes[index * 3 + 2] & 0xf0) >> 4)) -
           800) /
         10.0;
+      data.temperatureF = cToF(data.temperature);
       data.humidity =
         (((dataBytes[index * 3 + 1] << 4) | (dataBytes[index * 3 + 2] & 0x0f)) -
           250) /

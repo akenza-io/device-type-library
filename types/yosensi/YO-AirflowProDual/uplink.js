@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 /**
  * __  __                      _
  * \ \/ /__  ___ ___ ___  ___ (_)
@@ -705,11 +709,16 @@ function consume(event) {
     delete data.data.batteryVoltage;
   }
   if (data.data.internalTemperature !== undefined) {
+    data.data.internalTemperatureF = cToF(data.data.internalTemperature);
     emit("sample", {
-      data: { internalTemperature: data.data.internalTemperature },
+      data: {
+        internalTemperature: data.data.internalTemperature,
+        internalTemperatureF: data.data.internalTemperatureF,
+      },
       topic: "internal_temperature",
     });
     delete data.data.internalTemperature;
+    delete data.data.internalTemperatureF;
   }
   if (data.data.humidity !== undefined) {
     emit("sample", {
@@ -733,17 +742,27 @@ function consume(event) {
     delete data.data.differentialPressure2;
   }
   if (data.data.gasTemperature1 !== undefined) {
+    data.data.gasTemperature1F = cToF(data.data.gasTemperature1);
     emit("sample", {
-      data: { gasTemperature1: data.data.gasTemperature1 },
+      data: {
+        gasTemperature1: data.data.gasTemperature1,
+        gasTemperature1F: data.data.gasTemperature1F,
+      },
       topic: "gas_temperature_1",
     });
     delete data.data.gasTemperature1;
+    delete data.data.gasTemperature1F;
   }
   if (data.data.gasTemperature2 !== undefined) {
+    data.data.gasTemperature2F = cToF(data.data.gasTemperature2);
     emit("sample", {
-      data: { gasTemperature2: data.data.gasTemperature2 },
+      data: {
+        gasTemperature2: data.data.gasTemperature2,
+        gasTemperature2F: data.data.gasTemperature2F,
+      },
       topic: "gas_temperature_2",
     });
     delete data.data.gasTemperature2;
+    delete data.data.gasTemperature2F;
   }
 }

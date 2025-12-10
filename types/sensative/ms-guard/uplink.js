@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function parseHexString(str) {
   const result = [];
   while (str.length >= 2) {
@@ -246,6 +250,12 @@ function consume(event) {
   }
 
   if (deleteUnusedKeys(def)) {
+    if (def.temperature !== undefined) {
+      def.temperatureF = cToF(def.temperature);
+    }
+    if (def.averageTemperature !== undefined) {
+      def.averageTemperatureF = cToF(def.averageTemperature);
+    }
     emit("sample", { data: def, topic: "default" });
   }
 
@@ -259,15 +269,18 @@ function consume(event) {
       occupancy.occupied = false;
     }
 
-    // Warm desk 
+    // Warm desk
     const time = new Date().getTime();
     const state = event.state || {};
     occupancy.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
     if (occupancy.occupied) {
       delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
     } else if (state.lastOccupancyTimestamp !== undefined) {
-      occupancy.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
-    } else if (state.lastOccupiedValue) { //
+      occupancy.minutesSinceLastOccupied = Math.round(
+        (time - state.lastOccupancyTimestamp) / 1000 / 60,
+      ); // Get free since
+    } else if (state.lastOccupiedValue) {
+      //
       state.lastOccupancyTimestamp = time; // Start with first no occupancy
     }
 

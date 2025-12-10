@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 describe("Comtac LPN CM-1 Uplink", () => {
@@ -17,25 +15,24 @@ describe("Comtac LPN CM-1 Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
   before((done) => {
-    loadSchema(`${__dirname}/button_pressed.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/button_pressed.schema.json`).then(
+      (parsedSchema) => {
         buttonPressedSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
   describe("consume()", () => {
     it("should decode the Comtac LPN CM-1 payload", () => {
@@ -59,7 +56,9 @@ describe("Comtac LPN CM-1 Uplink", () => {
         assert.equal(value.data.minTempOn, false);
         assert.equal(value.data.maxTempOn, false);
         assert.equal(value.data.minTempThreshold, -15);
+        assert.equal(value.data.minTempThresholdF, 5);
         assert.equal(value.data.maxTempThreshold, -15);
+        assert.equal(value.data.maxTempThresholdF, 5);
         assert.equal(value.data.minHumThreshold, 0);
         assert.equal(value.data.maxHumThreshold, 0);
         assert.equal(value.data.sendInterval, 15);
@@ -76,6 +75,7 @@ describe("Comtac LPN CM-1 Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 25.7);
+        assert.equal(value.data.temperatureF, 78.3);
         assert.equal(value.data.humidity, 50);
         validateSchema(value.data, defaultSchema, { throwError: true });
       });

@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -23,29 +21,26 @@ describe("Elsys Sound uplink", () => {
 
   let noiseSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/noise.schema.json`)
-      .then((parsedSchema) => {
-        noiseSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/noise.schema.json`).then((parsedSchema) => {
+      noiseSchema = parsedSchema;
+      done();
+    });
   });
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   let defaultSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -66,6 +61,7 @@ describe("Elsys Sound uplink", () => {
         assert.equal(value.data.light, 189);
         assert.equal(value.data.humidity, 35);
         assert.equal(value.data.temperature, 23.8);
+        assert.equal(value.data.temperatureF, 74.8);
 
         validateSchema(value.data, defaultSchema, { throwError: true });
       });

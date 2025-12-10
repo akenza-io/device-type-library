@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 /**
  * __  __                      _
  * \ \/ /__  ___ ___ ___  ___ (_)
@@ -712,11 +716,16 @@ function consume(event) {
     delete data.data.batteryVoltage;
   }
   if (data.data.temperature !== undefined) {
+    data.data.temperatureF = cToF(data.data.temperature);
     emit("sample", {
-      data: { temperature: data.data.temperature },
+      data: {
+        temperature: data.data.temperature,
+        temperatureF: data.data.temperatureF,
+      },
       topic: "temperature",
     });
     delete data.data.temperature;
+    delete data.data.temperatureF;
   }
   if (data.data.humidity !== undefined) {
     emit("sample", {

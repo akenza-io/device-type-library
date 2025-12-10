@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 const decentlab_decoder = {
   PROTOCOL_VERSION: 2,
   /* device-specific parameters */
@@ -112,6 +116,7 @@ function consume(event) {
   // Default values
   data.pressure = sample.pressure;
   data.temperature = sample.temperature;
+  data.temperatureF = cToF(data.temperature);
 
   // Lifecycle values
   lifecycle.batteryVoltage = sample.battery_voltage;
