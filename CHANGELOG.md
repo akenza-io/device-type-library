@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.85.0] - 2026-01-6
+
+### Added
+
+- AirThings - Rel. Light
+
 # [1.84.0] - 2025-12-8
 
 ### Added

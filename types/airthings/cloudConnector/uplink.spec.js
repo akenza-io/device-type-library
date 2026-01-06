@@ -1,5 +1,3 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
@@ -97,19 +95,22 @@ describe("Airthings Cloud Connector Uplink", () => {
           "co2": 612,
           "soundLevelA": 26,
           "rssi": -52,
+          "light": 13,
           "batteryPercentage": 99,
           "ratings": {
             "humidity": "POOR",
             "temp": "GOOD",
             "pressure": "GOOD",
-            "co2": "GOOD"
+            "co2": "GOOD",
+            "light": "GOOD"
           },
           "sensorUnits": {
             "humidity": "pct",
             "temp": "c",
             "pressure": "hpa",
             "soundLevelA": "dbspl",
-            "co2": "ppm"
+            "co2": "ppm",
+            "light": "pct"
           }
         }
       };
@@ -126,11 +127,13 @@ describe("Airthings Cloud Connector Uplink", () => {
         assert.equal(value.data.humidity, 20);
         assert.equal(value.data.co2, 612);
         assert.equal(value.data.soundLevelA, 26);
+        assert.equal(value.data.light, 13);
 
         assert.equal(value.data.co2Rating, 'GOOD');
         assert.equal(value.data.humidityRating, 'POOR');
         assert.equal(value.data.pressureRating, 'GOOD');
         assert.equal(value.data.temperatureRating, 'GOOD');
+        assert.equal(value.data.lightRating, 'GOOD');
 
         // assert.equal(value.timestamp, new Date("2024-01-03T08:09:05Z"))
 
@@ -165,11 +168,13 @@ describe("Airthings Cloud Connector Uplink", () => {
         assert.equal(value.environment.humidity, 20);
         assert.equal(value.environment.co2, 612);
         assert.equal(value.environment.soundLevelA, 26);
+        assert.equal(value.environment.light, 13);
 
         assert.equal(value.environment.co2Rating, 'GOOD');
         assert.equal(value.environment.humidityRating, 'POOR');
         assert.equal(value.environment.pressureRating, 'GOOD');
         assert.equal(value.environment.temperatureRating, 'GOOD');
+        assert.equal(value.environment.lightRating, 'GOOD');
       });
 
       consume(data);
@@ -185,17 +190,20 @@ describe("Airthings Cloud Connector Uplink", () => {
             humidity: 20,
             co2: 612,
             soundLevelA: 26,
+            light: 13,
             co2Rating: "GOOD",
             humidityRating: "POOR",
             pressureRating: "GOOD",
-            temperatureRating: "GOOD"
+            temperatureRating: "GOOD",
+            lightRating: "GOOD"
           }
         },
         data: {
           "serialNumber": "3110000280",
           "recorded": "2024-01-03T08:09:05Z",
           "tvoc": 16,
-          "temp": 10
+          "temp": 10,
+          "light": 14
         }
       };
 
@@ -205,18 +213,20 @@ describe("Airthings Cloud Connector Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "environment");
-        assert.equal(value.data.temperature, 10); // Testing if the new datapoint gets prioritiesed
+        assert.equal(value.data.temperature, 10); // Testing if the new datapoint gets prioritised
         assert.equal(value.data.temperatureF, 50);
         assert.equal(value.data.pressure, 990.1);
         assert.equal(value.data.humidity, 20);
         assert.equal(value.data.co2, 612);
         assert.equal(value.data.soundLevelA, 26);
         assert.equal(value.data.tvoc, 16);
+        assert.equal(value.data.light, 14);
 
         assert.equal(value.data.co2Rating, 'GOOD');
         assert.equal(value.data.humidityRating, 'POOR');
         assert.equal(value.data.pressureRating, 'GOOD');
         assert.equal(value.data.temperatureRating, 'GOOD');
+        assert.equal(value.data.lighRating, 'GOOD');
 
         // assert.equal(value.timestamp, new Date("2024-01-03T08:09:05Z"))
 
@@ -237,11 +247,13 @@ describe("Airthings Cloud Connector Uplink", () => {
         assert.equal(value.environment.co2, 612);
         assert.equal(value.environment.soundLevelA, 26);
         assert.equal(value.environment.tvoc, 16);
+        assert.equal(value.environment.light, 14);
 
         assert.equal(value.environment.co2Rating, 'GOOD');
         assert.equal(value.environment.humidityRating, 'POOR');
         assert.equal(value.environment.pressureRating, 'GOOD');
         assert.equal(value.environment.temperatureRating, 'GOOD');
+        assert.equal(value.environment.lightRating, 'GOOD');
       });
 
       consume(data);
