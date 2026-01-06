@@ -226,7 +226,7 @@ describe("Airthings Cloud Connector Uplink", () => {
         assert.equal(value.data.humidityRating, 'POOR');
         assert.equal(value.data.pressureRating, 'GOOD');
         assert.equal(value.data.temperatureRating, 'GOOD');
-        assert.equal(value.data.lighRating, 'GOOD');
+        assert.equal(value.data.lightRating, 'GOOD');
 
         // assert.equal(value.timestamp, new Date("2024-01-03T08:09:05Z"))
 
