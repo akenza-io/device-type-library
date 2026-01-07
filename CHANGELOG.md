@@ -2,11 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
-# [1.85.0] - 2026-01-05
+# [1.86.0] - 2026-01-05
 
 ### Added
 
 - Dragino - DDS04-LB
+
+# [1.85.0] - 2026-01-6
+
+### Added
+
+- AirThings - Rel. Light
 
 # [1.84.0] - 2025-12-8
 
