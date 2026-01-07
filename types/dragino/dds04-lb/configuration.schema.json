@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "$id": "https://akenza.io/dragino/dds04-lb/configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Configuration",
+  "topic": "configuration",
+  "processingType": "uplink_decoder",
+  "properties": {
+    "sensorModel": {
+      "type": "string",
+      "title": "Sensor model",
+      "description": "Model identifier of the sensor",
+      "hideFromKpis": true
+    },
+    "firmwareVersion": {
+      "type": "string",
+      "title": "Firmware version",
+      "description": "Current firmware version of the device",
+      "hideFromKpis": true
+    },
+    "frequencyBand": {
+      "type": "string",
+      "title": "Frequency band",
+      "description": "LoRaWAN frequency band region",
+      "hideFromKpis": true
+    },
+    "subBand": {
+      "type": "string",
+      "title": "Sub band",
+      "description": "Frequency sub-band configuration",
+      "hideFromKpis": true
+    }
+  },
+  "required": []
+}
