@@ -3,16 +3,8 @@
   "version": "1.0.0",
   "manufacturer": "Hilscher",
   "url": "https://www.hilscher.com/de/produkte/edge-gateways-mit-container-management/nfs-m8-qm-d2-n16-nfld",
-  "description": "Hilschers sensorEDGE IO-Link Master.",
+  "description": "sensorEDGE FIELD - Edge IO-Link master with remote management option.",
   "author": "Akenza AG",
-  "comment": "Firmware Version, Loraddevice, Available Sensors, would all be empty",
-  "firmwareVersion_notused": "V0.0.1",
-  "loraDeviceClass_notused": "A",
-  "availableSensors_notused": [
-    "Humidity",
-    "Temperature",
-    "Button"
-  ],
   "outputTopics": [
     "system_monitoring"
   ],
