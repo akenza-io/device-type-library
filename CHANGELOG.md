@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.87.0] - 2026-01-28
+Added Hilscher IO-Link Master
+
 # [1.86.0] - 2026-01-07
 
 ### Added
