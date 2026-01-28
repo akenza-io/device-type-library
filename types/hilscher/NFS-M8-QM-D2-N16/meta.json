@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Hilscher",
   "url": "https://www.hilscher.com/de/produkte/edge-gateways-mit-container-management/nfs-m8-qm-d2-n16-nfld",
-  "description": "sensorEDGE FIELD - Edge IO-Link master with remote management option.",
+  "description": "sensorEDGE FIELD - Edge IO-Link master with remote management option. Supports up to 8 IO-Link Sensors, an App Market Place and Docker support.",
   "author": "Akenza AG",
   "outputTopics": [
     "system_monitoring"
