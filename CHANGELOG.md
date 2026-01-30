@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.87.1] - 2026-01-30
+Changed image size and added IO-Link to the sensor field.
+
 # [1.87.0] - 2026-01-28
 Added Hilscher IO-Link Master
 

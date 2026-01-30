@@ -8,6 +8,9 @@
   "outputTopics": [
     "system_monitoring"
   ],
+  "availableSensors": [
+    "IO-Link"
+  ],
   "encoding": "JSON",
   "connectivity": "MQTT"
 }
