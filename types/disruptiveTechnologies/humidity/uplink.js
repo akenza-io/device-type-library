@@ -1,5 +1,5 @@
 function cToF(celsius) {
-  return (celsius * 9 / 5) + 32;
+  return Math.round(((celsius * 9 / 5) + 32) * 100) / 100;
 }
 
 function consume(event) {

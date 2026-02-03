@@ -1,0 +1,40 @@
+{
+  "$id": "https://akenza.io/episensor/episensor/error.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "error",
+  "title": "Error",
+  "properties": {
+    "error": {
+      "title": "Error message",
+      "description": "Error message",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "value": {
+      "title": "Value",
+      "description": "Value of error sample",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "period": {
+      "title": "Period",
+      "description": "Period of error message",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "newId": {
+      "title": "New id",
+      "description": "Id which does not reflect the device at the beginning of the initialisation",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "initialId": {
+      "title": "Initial id",
+      "description": "Id which the sensor was initialised with",
+      "type": "string",
+      "hideFromKpis": true
+    }
+  }
+}
