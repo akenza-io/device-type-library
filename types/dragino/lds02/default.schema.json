@@ -30,7 +30,7 @@
       "title": "Open duration",
       "description": "Open duration in minutes",
       "type": "integer",
-      "unit": "m"
+      "unit": "min"
     }
   }
 }

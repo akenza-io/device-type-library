@@ -10,11 +10,15 @@
       "title": "Send interval",
       "type": "integer",
       "description": "Send every x minutes",
+      "unit": "min",
       "hideFromKpis": true
     },
     "batteryLevel": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
     }
   },
-  "required": ["sendInterval", "batteryLevel"]
+  "required": [
+    "sendInterval",
+    "batteryLevel"
+  ]
 }
