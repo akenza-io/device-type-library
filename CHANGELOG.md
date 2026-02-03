@@ -2,11 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
-# [1.87.1] - 2026-01-30
-Changed image size and added IO-Link to the sensor field.
+# [1.88.0] - 2026-02-03
+
+### Added
+
+- Episensor - Episensor
+
+### Changed
+
+- Changed cTof function so it rounds the farenheit values up to 2 decimals
 
 # [1.87.0] - 2026-01-28
-Added Hilscher IO-Link Master
+
+### Added
+
+- Hilscher - IO-Link Master
+
+# [1.87.1] - 2026-01-30
+
+### Changed
+
+- Changed image size and added IO-Link to the sensor field.
+
+# [1.87.0] - 2026-01-28
+
+### Added
+
+- Hilscher - IO-Link Master
 
 # [1.86.0] - 2026-01-07
 
