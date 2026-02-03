@@ -58,13 +58,13 @@
     },
     "durationLastAlarm": {
       "title": "Duration last alarm",
-      "unit": "m",
+      "unit": "min",
       "type": "integer",
       "description": "Duration of the last alarm in minutes on port 1"
     },
     "durationLastAlarm2": {
       "title": "Duration last alarm 2",
-      "unit": "m",
+      "unit": "min",
       "type": "integer",
       "description": "Duration of the last alarm in minutes on port 2"
     }

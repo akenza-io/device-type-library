@@ -16,7 +16,7 @@
     },
     "time": {
       "title": "Time",
-      "unit": "m",
+      "unit": "min",
       "type": "integer",
       "description": "Time in minutes between samples",
       "hideFromKpis": true

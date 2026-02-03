@@ -21,7 +21,7 @@
     "sendInterval": {
       "title": "Send interval",
       "description": "Send interval in minutes",
-      "unit": "m",
+      "unit": "min",
       "type": "integer",
       "hideFromKpis": true
     },
