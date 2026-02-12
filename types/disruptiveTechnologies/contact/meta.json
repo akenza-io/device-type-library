@@ -12,6 +12,7 @@
   ],
   "outputTopics": [
     "contact",
+    "door_count",
     "touch",
     "network_status",
     "lifecycle"

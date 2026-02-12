@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.88.1] - 2026-02-12
+
+### Changed
+
+- Enhanced the Disruptive Technologies Wireless Contact Sensor to also output door counts
+
 # [1.88.0] - 2026-02-03
 
 ### Added
