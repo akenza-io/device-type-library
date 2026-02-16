@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.89.0] - 2026-02-17
+
+### Added
+
+- Updated Miromico - Insight
+
 # [1.88.1] - 2026-02-12
 
 ### Changed

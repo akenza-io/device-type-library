@@ -1,0 +1,30 @@
+{
+  "name": "insight",
+  "version": "1.0.0",
+  "manufacturer": "miromico",
+  "url": "https://miromico.ch/miro-insight",
+  "description": "Versatile LoRaWAN indoor air quality sensor to monitor environmental conditions such as temperature, humidity, CO2, air quality, and pressure.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "CO2",
+    "Pressure",
+    "Light Intensity",
+    "IAQ Index",
+    "IAQ Accuracy",
+    "Door Status",
+    "Door Open Counter",
+    "Alarm Counter",
+    "Alarm Time"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "door",
+    "configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
