@@ -11,11 +11,8 @@
     "Temperature",
     "Humidity",
     "CO2",
-    "VOC (IAQ)",
-    "Light",
-    "PM2.5",
-    "PM1",
-    "PM10"
+    "VOC",
+    "Light"
   ],
   "outputTopics": [
     "default",

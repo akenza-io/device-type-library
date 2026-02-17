@@ -7,6 +7,7 @@
  * Created at : 2026-02-16
  */
 
+// Type identifiers used in the TLV (length, type, value) payload.
 const DSTYPES = {
   DS_TEMP_HUM: 0x01,
   DS_CO2: 0x02,
@@ -59,6 +60,44 @@ function readUInt32LE(bytes, offset) {
   );
 }
 
+/**
+ * LiSOCl2 3.6V battery level estimation from voltage.
+ *
+ * LiSOCl2 batteries have an extremely flat discharge curve, holding
+ * ~3.6V for roughly 90% of their usable capacity before dropping
+ * steeply at end of life.
+ */
+const BATTERY_LEVEL_TABLE = [
+  { voltage: 3.6, level: 100 },
+  { voltage: 3.55, level: 80 },
+  { voltage: 3.5, level: 55 },
+  { voltage: 3.45, level: 30 },
+  { voltage: 3.4, level: 15 },
+  { voltage: 3.3, level: 5 },
+  { voltage: 3.0, level: 1 },
+  { voltage: 2.5, level: 0 },
+];
+
+function getBatteryLevel(voltage) {
+  if (voltage >= BATTERY_LEVEL_TABLE[0].voltage) {
+    return 100;
+  }
+  if (voltage <= BATTERY_LEVEL_TABLE[BATTERY_LEVEL_TABLE.length - 1].voltage) {
+    return 0;
+  }
+  for (let i = 0; i < BATTERY_LEVEL_TABLE.length - 1; i++) {
+    const upper = BATTERY_LEVEL_TABLE[i];
+    const lower = BATTERY_LEVEL_TABLE[i + 1];
+    if (voltage <= upper.voltage && voltage > lower.voltage) {
+      const fraction =
+        (voltage - lower.voltage) / (upper.voltage - lower.voltage);
+      return Math.round(lower.level + fraction * (upper.level - lower.level));
+    }
+  }
+  return 0;
+}
+
+// Main entry point: decode one uplink payload into structured samples.
 function consume(event) {
   const bytes = Hex.hexToBytes(event.data.payloadHex);
   const { port } = event.data;
@@ -67,6 +106,7 @@ function consume(event) {
     return;
   }
 
+  // Collect all decoded fields first; we later merge them into per‑timestamp samples.
   const rawData = {
     tempHum: [],
     co2: [],
@@ -79,12 +119,13 @@ function consume(event) {
     lifecycle: {},
   };
 
-  let i = 0;
-  let measurementInterval = -1;
+  let i = 0; // Current read position within `bytes`.
+  let measurementInterval = -1; // Seconds between historical measurements (if provided).
 
+  // Iterate over all TLV records in the payload.
   while (i < bytes.length) {
-    const length = bytes[i++];
-    const type = bytes[i++];
+    const length = bytes[i++]; // total bytes of this record including `type`
+    const type = bytes[i++]; // one of the `DSTYPES.*` constants
 
     if (i + length - 1 > bytes.length) {
       break;
@@ -94,6 +135,7 @@ function consume(event) {
 
     switch (type) {
       case DSTYPES.DS_TEMP_HUM: {
+        // Each measurement = 2 bytes temperature (int16, 0.01 °C) + 1 byte humidity (0.5 %).
         const nMeas = (length - 1) / 3;
         for (let j = 0; j < nMeas; j++) {
           const tRaw = readInt16LE(chunk, j * 3);
@@ -104,12 +146,14 @@ function consume(event) {
             entry.humidity = hRaw / 2;
             rawData.tempHum.push(entry);
           } else {
+            // Sensor failure for this sample is encoded as 0xFFFF_FF.
             rawData.tempHum.push(null);
           }
         }
         break;
       }
       case DSTYPES.DS_CO2: {
+        // Each CO₂ measurement is a uint16 in ppm.
         const nMeas = (length - 1) / 2;
         for (let j = 0; j < nMeas; j++) {
           const cRaw = readUInt16LE(chunk, j * 2);
@@ -118,6 +162,7 @@ function consume(event) {
         break;
       }
       case DSTYPES.DS_COMMON_SETTINGS: {
+        // interval (uint16 seconds), sendCycle (uint8), flags (bitfield), optional retransmissions.
         const interval = readUInt16LE(chunk, 0);
         const flags = chunk[3];
         rawData.configs.measurementInterval = interval;
@@ -143,7 +188,9 @@ function consume(event) {
         break;
       }
       case DSTYPES.DS_BATTERY_VOLTAGE: {
-        rawData.lifecycle.batteryVoltage = readUInt16LE(chunk, 0) / 100;
+        const voltage = readUInt16LE(chunk, 0) / 100;
+        rawData.lifecycle.batteryVoltage = voltage;
+        rawData.lifecycle.batteryLevel = getBatteryLevel(voltage);
         break;
       }
       case DSTYPES.DS_FW_HASH: {
@@ -182,6 +229,7 @@ function consume(event) {
         break;
       }
       case DSTYPES.DS_IAQ_DATA: {
+        // IAQ: each uint16 packs index (bits 0‑13) and accuracy (bits 14‑15).
         const nMeas = (length - 1) / 2;
         for (let j = 0; j < nMeas; j++) {
           const iaqRaw = readUInt16LE(chunk, j * 2);
@@ -197,9 +245,13 @@ function consume(event) {
         break;
       }
       case DSTYPES.DS_PRESSURE_DATA: {
+        // Pressure: 24‑bit little‑endian value; docs state unit hPa, here converted to 0.1 hPa.
         const nMeas = (length - 1) / 3;
         for (let j = 0; j < nMeas; j++) {
-          rawData.pressure.push({ pressure: readUInt24LE(chunk, j * 3) });
+          const pressurePa = readUInt24LE(chunk, j * 3);
+          rawData.pressure.push({
+            pressure: Math.round(pressurePa / 10) / 10,
+          });
         }
         break;
       }
@@ -226,6 +278,7 @@ function consume(event) {
         break;
       }
       case DSTYPES.DS_PARTICULATE_MATTER: {
+        // Each PM sample: PM2.5, PM1, PM10 (all uint16, 0.1 µg/m³) + 1 byte obstruction flag.
         const nMeas = (length - 1) / 7;
         for (let j = 0; j < nMeas; j++) {
           const offset = j * 7;

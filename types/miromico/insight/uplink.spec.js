@@ -54,7 +54,7 @@ describe("Miromico insight enhanced Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.isObject(value.data);
         assert.equal(value.data.batteryVoltage, 3.54);
-        assert.equal(value.data.batteryLevel, 85);
+        assert.equal(value.data.batteryLevel, 75);
         validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
@@ -89,7 +89,7 @@ describe("Miromico insight enhanced Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.isObject(value.data);
         assert.equal(value.data.batteryVoltage, 3.54);
-        assert.equal(value.data.batteryLevel, 85);
+        assert.equal(value.data.batteryLevel, 75);
         validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
@@ -124,7 +124,7 @@ describe("Miromico insight enhanced Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.isObject(value.data);
         assert.equal(value.data.batteryVoltage, 3.53);
-        assert.equal(value.data.batteryLevel, 82);
+        assert.equal(value.data.batteryLevel, 70);
         validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
@@ -159,7 +159,7 @@ describe("Miromico insight enhanced Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.isObject(value.data);
         assert.equal(value.data.batteryVoltage, 3.52);
-        assert.equal(value.data.batteryLevel, 80);
+        assert.equal(value.data.batteryLevel, 65);
         validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
@@ -194,7 +194,7 @@ describe("Miromico insight enhanced Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.isObject(value.data);
         assert.equal(value.data.batteryVoltage, 3.5);
-        assert.equal(value.data.batteryLevel, 75);
+        assert.equal(value.data.batteryLevel, 55);
         validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
@@ -232,7 +232,7 @@ describe("Miromico insight enhanced Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.isObject(value.data);
         assert.equal(value.data.batteryVoltage, 3.54);
-        assert.equal(value.data.batteryLevel, 85);
+        assert.equal(value.data.batteryLevel, 75);
         validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
