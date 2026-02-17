@@ -1,0 +1,25 @@
+{
+  "name": "insight-enhanced",
+  "version": "1.0.0",
+  "manufacturer": "Miromico",
+  "url": "https://miromico.ch/en/products/details/miro-Insight",
+  "description": "Advanced indoor air quality sensor featuring temperature, relative humidity, CO2, VOC (IAQ), light intensity and particulate matter (PM2.5, PM1, PM10) monitoring.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.6.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "CO2",
+    "VOC",
+    "Light"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration",
+    "door"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
