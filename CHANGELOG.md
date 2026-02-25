@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.88.2] - 2026-02-25
+
+### Changed
+
+- Enhanced the Disruptive Technologies Wireless Contact Sensor to allow washroom usage output
+
 # [1.88.1] - 2026-02-12
 
 ### Changed

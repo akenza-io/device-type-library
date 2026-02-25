@@ -40,11 +40,24 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
       });
   });
 
+  let washroomUsageSchema = null;
+  before((done) => {
+    loadSchema(`${__dirname}/washroom_usage.schema.json`)
+      .then((parsedSchema) => {
+        washroomUsageSchema = parsedSchema;
+        done();
+      });
+  });
+
 
   describe("consume()", () => {
     it("should decode the Digital Technologies Contact Sensor payload", () => {
       const data = {
+        state: {},
         eventId: "c510f9ag03fligl8tvag",
+        device: {
+          tags: ["washroom_usage"]
+        },
         targetName:
           "projects/c3t7p26j4a2g00de1sng/devices/bjmgj6dp0jt000a5dcug",
         eventType: "contact",
@@ -177,6 +190,9 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
     it("should repeat the Digital Technologies Contact Sensor payload with existing state having usage counts", () => {
       const data = {
         eventId: "c510f9ag03fligl8tvag",
+        device: {
+          tags: ["washroom_usage"]
+        },
         targetName:
           "projects/c3t7p26j4a2g00de1sng/devices/bjmgj6dp0jt000a5dcug",
         eventType: "contact",
@@ -196,6 +212,20 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
           partialUsage: 1
         }
       };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "washroom_usage");
+        assert.equal(value.data.absoluteUsageCount, 6);
+        assert.equal(value.data.relativeUsageCount, 1);
+
+        validateSchema(value.data, washroomUsageSchema, {
+          throwError: true,
+        });
+      });
 
       expectEmits((type, value) => {
         assert.equal(type, "sample");
