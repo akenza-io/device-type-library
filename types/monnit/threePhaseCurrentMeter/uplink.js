@@ -11,7 +11,7 @@ function consume(event) {
     lifecycle.signalStrength = Number(values.signalStrength);
     lifecycle.pendingChange = values.pendingChange.toUpperCase() === "TRUE" ? true : false;
 
-    // Split first for | first
+    // Split first for |
     const plotLabels = values.plotLabels.split("|");
     const plotValues = values.plotValues.split("|");
     let i = 0;
