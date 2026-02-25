@@ -1,0 +1,18 @@
+{
+  "name": "Monnit",
+  "version": "1.0.0",
+  "manufacturer": "Wireless Three-Phase Current Meters",
+  "url": "https://www.monnit.com/products/sensors/wireless-three-phase-current-meters/",
+  "description": "Wireless current monitoring meter. Available as 20, 150, and 500-amp industrial-grade devices.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": [
+    "Current"
+  ],
+  "outputTopics": [
+    "lifecycle",
+    "default"
+  ],
+  "encoding": "JSON",
+  "connectivity": "HTTP"
+}
