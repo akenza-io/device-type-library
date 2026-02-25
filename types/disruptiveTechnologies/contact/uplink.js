@@ -87,6 +87,19 @@ function consume(event) {
     const { doorClosings, usageCount } = calculated.data;
     state = calculated.state;
 
+    // Washroom usage // Legacy
+    if (event.device !== undefined && event.device.tags !== undefined &&
+      (event.device.tags.indexOf("washroom_usage") !== -1 || event.device.tags.indexOf("cubicle_usage") !== -1)) {
+
+      // Only emit on usageIncrease
+      if (usageCount > 0) {
+        const data = {};
+        data.absoluteUsageCount = Math.floor(sample.count / 2);
+        data.relativeUsageCount = usageCount;
+        emit("sample", { data, topic: "washroom_usage" });
+      }
+    }
+
     emit("sample", { data: { doorClosings, usageCount }, topic: "door_count" });
     emit("sample", { data: sample, topic: "contact" });
   } else if (eventType === "touch") {
