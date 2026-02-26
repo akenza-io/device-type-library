@@ -6,64 +6,64 @@
   "topic": "default",
   "title": "Default",
   "properties": {
-    "phase1Average": {
+    "currentL1Avg": {
       "title": "Phase 1 average",
       "description": "Phase 1 average",
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere"
     },
-    "phase1Max": {
+    "currentL1Max": {
       "title": "Phase 1 max",
       "description": "Phase 1 max",
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere"
     },
-    "phase1Min": {
+    "currentL1Min": {
       "title": "Phase 1 min",
       "description": "Phase 1 min",
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere"
     },
-    "phase1Duty": {
+    "dutyL1": {
       "title": "Phase 1 duty",
       "description": "Phase 1 duty",
       "type": "number",
       "unit": "%"
     },
-    "phase2Average": {
+    "currentL2Avg": {
       "title": "Phase 2 average",
       "description": "Phase 2 average",
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere"
     },
-    "phase2Max": {
+    "currentL2Max": {
       "title": "Phase 2 max",
       "description": "Phase 2 max",
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere"
     },
-    "phase2Min": {
+    "currentL2Min": {
       "title": "Phase 2 min",
       "description": "Phase 2 min",
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere"
     },
-    "phase2Duty": {
+    "dutyL2": {
       "title": "Phase 2 duty",
       "description": "Phase 2 duty",
       "type": "number",
       "unit": "%"
     },
-    "phase3Average": {
+    "currentL3Avg": {
       "title": "Phase 3 average",
       "description": "Phase 3 average",
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere"
     },
-    "phase3Max": {
+    "currentL3Max": {
       "title": "Phase 3 max",
       "description": "Phase 3 max",
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere"
     },
-    "phase3Min": {
+    "currentL3Min": {
       "title": "Phase 3 min",
       "description": "Phase 3 min",
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere"
     },
-    "phase3Duty": {
+    "dutyL3": {
       "title": "Phase 3 duty",
       "description": "Phase 3 duty",
       "type": "number",

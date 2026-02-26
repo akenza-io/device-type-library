@@ -29,6 +29,15 @@ describe("Monnit Sensor Uplink", () => {
       });
   });
 
+  let gatewaySchema = null;
+  before((done) => {
+    loadSchema(`${__dirname}/gateway.schema.json`)
+      .then((parsedSchema) => {
+        gatewaySchema = parsedSchema;
+        done();
+      });
+  });
+
   describe("consume()", () => {
     it("should decode the Monnit Sensor payload", () => {
       const data = {
@@ -65,7 +74,7 @@ describe("Monnit Sensor Uplink", () => {
             "networkID": "140036",
             "power": "0",
             "gatewayID": "1101081",
-            "batteryLevel": "101"
+            "batteryLevel": "100"
           }
         },
       };
@@ -75,20 +84,20 @@ describe("Monnit Sensor Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.data.phase1Average, 1);
-        assert.equal(value.data.phase1Max, 2);
-        assert.equal(value.data.phase1Min, 3);
-        assert.equal(value.data.phase1Duty, 4);
+        assert.equal(value.data.currentL1Avg, 1);
+        assert.equal(value.data.currentL1Max, 2);
+        assert.equal(value.data.currentL1Min, 3);
+        assert.equal(value.data.dutyL1, 4);
 
-        assert.equal(value.data.phase2Average, 5);
-        assert.equal(value.data.phase2Max, 6);
-        assert.equal(value.data.phase2Min, 7);
-        assert.equal(value.data.phase2Duty, 8);
+        assert.equal(value.data.currentL2Avg, 5);
+        assert.equal(value.data.currentL2Max, 6);
+        assert.equal(value.data.currentL2Min, 7);
+        assert.equal(value.data.dutyL2, 8);
 
-        assert.equal(value.data.phase3Average, 9);
-        assert.equal(value.data.phase3Max, 10);
-        assert.equal(value.data.phase3Min, 11);
-        assert.equal(value.data.phase3Duty, 12);
+        assert.equal(value.data.currentL3Avg, 9);
+        assert.equal(value.data.currentL3Max, 10);
+        assert.equal(value.data.currentL3Min, 11);
+        assert.equal(value.data.dutyL3, 12);
 
         assert.equal(value.data.totalCurrentAccumulation, 13);
         assert.equal(value.data.wattHours, 14);
@@ -113,6 +122,26 @@ describe("Monnit Sensor Uplink", () => {
         assert.equal(value.topic, "lifecycle");
 
         validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.data.accountId, "78815");
+        assert.equal(value.data.batteryLevel, 100);
+        assert.equal(value.data.count, 4);
+        assert.equal(value.data.gatewayId, "1101081");
+        assert.equal(value.data.gatewayName, "IoT Gateway - 1101081");
+        assert.equal(value.data.networkId, "140036");
+        assert.equal(value.data.pendingChange, false);
+        assert.equal(value.data.power, 0);
+        assert.equal(value.data.signalStrength, 16);
+
+        assert.equal(value.topic, "gateway");
+
+        validateSchema(value.data, gatewaySchema, { throwError: true });
       });
 
       consume(data);

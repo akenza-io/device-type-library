@@ -11,7 +11,8 @@
   ],
   "outputTopics": [
     "lifecycle",
-    "default"
+    "default",
+    "gateway"
   ],
   "encoding": "JSON",
   "connectivity": "HTTP"

@@ -1,0 +1,84 @@
+{
+  "$id": "https://akenza.io/monnit/threePhaseCurrentMeter/gateway.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "gateway",
+  "title": "Gateway",
+  "properties": {
+    "accountId": {
+      "title": "Account Id",
+      "description": "Account Id",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "messageType": {
+      "title": "Message type",
+      "description": "Message type",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "gatewayName": {
+      "title": "Gateway name",
+      "description": "Gateway name",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "signalStrength": {
+      "title": "Signal strength",
+      "description": "Signal strength",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "count": {
+      "title": "Count",
+      "description": "Count",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "pendingChange": {
+      "title": "Pending change",
+      "description": "Indicates if theres a pending change",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "networkId": {
+      "title": "Network id",
+      "description": "Network id",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "power": {
+      "title": "Power",
+      "description": "Power",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "gatewayId": {
+      "title": "Gateway id",
+      "description": "Gateway id",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "batteryLevel": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
+    },
+    "state": {
+      "title": "State",
+      "description": "Internal device state",
+      "type": "number",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "accountId",
+    "batteryLevel",
+    "count",
+    "gatewayId",
+    "gatewayName",
+    "networkId",
+    "pendingChange",
+    "power",
+    "signalStrength"
+  ]
+}
