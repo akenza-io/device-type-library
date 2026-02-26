@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.89.0] - 2026-02-26
+
+### Added
+
+- Monnit - Wireless current monitoring meter. Available as 20, 150, and 500-amp industrial-grade devices.
+
 # [1.88.2] - 2026-02-25
 
 ### Changed
