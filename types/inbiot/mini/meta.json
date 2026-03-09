@@ -1,0 +1,23 @@
+{
+  "name": "MICA MINI - Indoor Air Quality Sensor",
+  "version": "1.8.0",
+  "manufacturer": "inBiot",
+  "url": "https://www.inbiot.es",
+  "description": "MICA Mini is a compact indoor air quality sensor with LoRaWAN, Wi-Fi, NB-IoT/LTE-M and Sigfox connectivity, measuring temperature, relative humidity and CO₂, and providing thermohygrometric comfort, ventilation efficiency and resistance to mold growth indicators, with optional noise monitoring and integration with building management systems via Modbus and BACnet.",
+  "author": "inBiot",
+  "firmwareVersion": "2.X",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "CO2",
+    "Sound"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

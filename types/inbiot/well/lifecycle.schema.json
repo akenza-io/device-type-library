@@ -1,0 +1,47 @@
+{
+  "$id": "https://akenza.io/inbiot/well/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "fwVersion": {
+      "type": "string",
+      "title": "Firmware Version"
+    },
+    "model": {
+      "type": "string",
+      "title": "Device Model"
+    },
+    "micaType": {
+      "type": "string",
+      "title": "MICA Type"
+    },
+    "mac": {
+      "type": "string",
+      "title": "MAC Address"
+    },
+    "resetReason": {
+      "type": "string",
+      "title": "Reset Reason"
+    },
+    "modbusAddress": {
+      "type": "number",
+      "title": "Modbus Address"
+    },
+    "modbusParity": {
+      "type": "number",
+      "title": "Modbus Parity"
+    },
+    "modbusBaudRate": {
+      "type": "number",
+      "title": "Modbus Baud Rate"
+    }
+  },
+  "required": [
+    "fwVersion",
+    "mac",
+    "resetReason"
+  ]
+}

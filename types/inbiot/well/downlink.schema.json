@@ -1,0 +1,66 @@
+{
+  "$id": "https://akenza.io/inbiot/mica/downlink.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "downlink_encoder",
+  "topic": "downlink",
+  "title": "Downlink Configuration",
+  "properties": {
+    "ledStatus": {
+      "type": "boolean",
+      "title": "LED Status Enable/Disable"
+    },
+    "timeToSend": {
+      "type": "number",
+      "title": "Time To Send (Periodicity in minutes)",
+      "minimum": 0,
+      "maximum": 60
+    },
+    "ventilation": {
+      "type": "number",
+      "title": "CO2 Calibration (Ventilation)",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "ledConfiguration": {
+      "type": "number",
+      "title": "LED Configuration Indicator",
+      "minimum": 0,
+      "maximum": 16
+    },
+    "touchEnable": {
+      "type": "boolean",
+      "title": "Touch Enable"
+    },
+    "ADREnable": {
+      "type": "boolean",
+      "title": "ADR Enable"
+    },
+    "DR": {
+      "type": "number",
+      "title": "Data Rate (0-7)",
+      "minimum": 0,
+      "maximum": 7
+    },
+    "sendRetransmissions": {
+      "type": "number",
+      "title": "Send Retransmissions (0-15)",
+      "minimum": 0,
+      "maximum": 15
+    },
+    "TXPower": {
+      "type": "number",
+      "title": "TX Power (0-15)",
+      "minimum": 0,
+      "maximum": 15
+    },
+    "confirmationEnable": {
+      "type": "boolean",
+      "title": "Confirmation Enable"
+    },
+    "resetDevice": {
+      "type": "boolean",
+      "title": "Reset Device"
+    }
+  }
+}

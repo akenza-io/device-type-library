@@ -1,0 +1,26 @@
+{
+  "name": "MICA - Indoor Air Quality Sensor",
+  "version": "1.8.0",
+  "manufacturer": "inBiot",
+  "url": "https://www.inbiot.es/products/mica-devices/mica",
+  "description": "MICA is a smart indoor air quality monitor supporting LoRaWAN, Wi-Fi, NB-IoT/LTE-M and Sigfox connectivity that measures temperature, relative humidity, CO₂, TVOC, PM2.5 and PM10, and delivers advanced virtual indicators including thermohygrometric comfort, ventilation efficiency, resistance to mold growth, virus spread resistance and overall indoor air quality, with optional noise monitoring and native BMS integration via Modbus and BACnet.",
+  "author": "inBiot",
+  "firmwareVersion": "2.X",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "CO2",
+    "TVOC",
+    "PM2.5",
+    "PM10",
+    "Sound"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

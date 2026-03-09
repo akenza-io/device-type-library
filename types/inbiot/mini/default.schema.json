@@ -1,0 +1,58 @@
+{
+  "$id": "https://akenza.io/inbiot/mini/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "temperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    },
+    "humidity": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+    },
+    "co2": {
+      "type": "number",
+      "title": "CO2",
+      "description": "CO2 concentration in ppm"
+    },
+    "vIndex": {
+      "type": "number",
+      "title": "Ventilation Index"
+    },
+    "tIndex": {
+      "type": "number",
+      "title": "Thermal Index"
+    },
+    "virusIndex": {
+      "type": "number",
+      "title": "Virus Index"
+    },
+    "iaqIndex": {
+      "type": "number",
+      "title": "IAQ Index"
+    },
+    "moldIndex": {
+      "type": ["number", "string"],
+      "title": "Mold Index"
+    },
+    "dB": {
+      "type": ["number", "string"],
+      "title": "Noise Level dB"
+    },
+    "counter": {
+      "type": "number",
+      "title": "Message Counter"
+    },
+    "type": {
+      "type": "string",
+      "title": "Device Type"
+    }
+  },
+  "required": [
+    "temperature",
+    "humidity",
+    "co2"
+  ]
+}
