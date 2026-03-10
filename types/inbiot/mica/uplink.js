@@ -103,13 +103,19 @@ function InbiotDeviceDecode(bytes) {
         // IAQ INDEX
         decoded.iaqIndex = bytes[35];
         // MOLD PERSISTENCE INDEX
-        decoded.moldIndex = bytes[36];
-        if (decoded.moldIndex === 0xff) {
-          decoded.moldIndex = "Calculating";
+        var tempMoldIndex = bytes[36];
+        if (tempMoldIndex === 0xff) {
+          decoded.moldIndexStatus = "Calculating";
+        } else {
+          decoded.moldIndex = tempMoldIndex;
         }
         // NOISE
         if (bytes[37] !== undefined) {
-          decoded.dB = bytes[37] === 0xff ? "Preheating" : bytes[37];
+          if (bytes[37] === 0xff) {
+            decoded.dBStatus = "Preheating";
+          } else {
+            decoded.dB = bytes[37];
+          }
         }
         // MESSAGE COUNTER
         decoded.counter = getUint16(bytes, 25, 26);

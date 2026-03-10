@@ -8,35 +8,43 @@
   "properties": {
     "fwVersion": {
       "type": "string",
-      "title": "Firmware Version"
+      "title": "Firmware Version",
+      "description": "Device firmware version"
     },
     "model": {
       "type": "string",
-      "title": "Device Model"
+      "title": "Device Model",
+      "description": "Model identification string"
     },
     "micaType": {
       "type": "string",
-      "title": "MICA Type"
+      "title": "MICA Type",
+      "description": "Internal model type nomenclature"
     },
     "mac": {
       "type": "string",
-      "title": "MAC Address"
+      "title": "MAC Address",
+      "description": "Device MAC address"
     },
     "resetReason": {
       "type": "string",
-      "title": "Reset Reason"
+      "title": "Reset Reason",
+      "description": "Cause of the last module reset"
     },
     "modbusAddress": {
       "type": "number",
-      "title": "Modbus Address"
+      "title": "Modbus Address",
+      "description": "Current Modbus bus address"
     },
     "modbusParity": {
       "type": "number",
-      "title": "Modbus Parity"
+      "title": "Modbus Parity",
+      "description": "Modbus parity configuration"
     },
     "modbusBaudRate": {
       "type": "number",
-      "title": "Modbus Baud Rate"
+      "title": "Modbus Baud Rate",
+      "description": "Configured baud rate for Modbus"
     }
   },
   "required": [

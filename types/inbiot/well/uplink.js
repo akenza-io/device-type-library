@@ -53,39 +53,51 @@ function InbiotDeviceDecode(bytes) {
           decoded.pm10 = getUint16(bytes, 17, 18);
         }
         if (["PLUS", "WELL", "NULL"].indexOf(decoded.type) > -1) {
-          decoded.ch2o = getUint16(bytes, 7, 8);
-          if (decoded.ch2o === 0xffff) {
-            decoded.ch2o = "Preheating";
+          var tempCh2o = getUint16(bytes, 7, 8);
+          if (tempCh2o === 0xffff) {
+            decoded.ch2oStatus = "Preheating";
+          } else {
+            decoded.ch2o = tempCh2o;
           }
           decoded.pm1_0 = getUint16(bytes, 11, 12);
           decoded.pm4 = getUint16(bytes, 15, 16);
         }
         if (["WELL", "NULL"].indexOf(decoded.type) > -1) {
-          decoded.o3 = getUint16(bytes, 19, 20);
-          if (decoded.o3 === 0xffff) {
-            decoded.o3 = "Preheating";
-          }
-          decoded.no2 = getUint16(bytes, 21, 22);
-          if (decoded.no2 === 0xffff) {
-            decoded.no2 = "Preheating";
-          }
-          decoded.co = getUint16(bytes, 23, 24);
-          if (decoded.co !== 0xffff) {
-            decoded.co /= 10.0;
+          var tempO3 = getUint16(bytes, 19, 20);
+          if (tempO3 === 0xffff) {
+            decoded.o3Status = "Preheating";
           } else {
-            decoded.co = "Preheating";
+            decoded.o3 = tempO3;
+          }
+          var tempNo2 = getUint16(bytes, 21, 22);
+          if (tempNo2 === 0xffff) {
+            decoded.no2Status = "Preheating";
+          } else {
+            decoded.no2 = tempNo2;
+          }
+          var tempCo = getUint16(bytes, 23, 24);
+          if (tempCo !== 0xffff) {
+            decoded.co = tempCo / 10.0;
+          } else {
+            decoded.coStatus = "Preheating";
           }
         }
         decoded.vIndex = bytes[32];
         decoded.tIndex = bytes[33];
         decoded.virusIndex = bytes[34];
         decoded.iaqIndex = bytes[35];
-        decoded.moldIndex = bytes[36];
-        if (decoded.moldIndex === 0xff) {
-          decoded.moldIndex = "Calculating";
+        var tempMoldIndex = bytes[36];
+        if (tempMoldIndex === 0xff) {
+          decoded.moldIndexStatus = "Calculating";
+        } else {
+          decoded.moldIndex = tempMoldIndex;
         }
         if (bytes[37] !== undefined) {
-          decoded.dB = bytes[37] === 0xff ? "Preheating" : bytes[37];
+          if (bytes[37] === 0xff) {
+            decoded.dBStatus = "Preheating";
+          } else {
+            decoded.dB = bytes[37];
+          }
         }
         decoded.counter = getUint16(bytes, 25, 26);
       }

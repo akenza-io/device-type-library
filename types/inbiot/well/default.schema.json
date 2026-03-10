@@ -33,63 +33,104 @@
       "description": "Particulate Matter 10"
     },
     "ch2o": {
-      "type": ["number", "string"],
-      "title": "Formaldehyde CH2O"
+      "type": "number",
+      "title": "Formaldehyde CH2O",
+      "description": "Formaldehyde concentration in ppb"
+    },
+    "ch2oStatus": {
+      "type": "string",
+      "title": "Formaldehyde CH2O Status",
+      "description": "Status text for formaldehyde (e.g. Preheating)"
     },
     "pm1_0": {
       "type": "number",
-      "title": "PM1.0"
+      "title": "PM1.0",
+      "description": "Particulate Matter 1.0"
     },
     "pm4": {
       "type": "number",
-      "title": "PM4"
+      "title": "PM4",
+      "description": "Particulate Matter 4.0"
     },
     "o3": {
-      "type": ["number", "string"],
+      "type": "number",
       "title": "Ozone O3",
       "description": "Ozone concentration in ppb"
     },
+    "o3Status": {
+      "type": "string",
+      "title": "Ozone O3 Status",
+      "description": "Status text for ozone (e.g. Preheating)"
+    },
     "no2": {
-      "type": ["number", "string"],
+      "type": "number",
       "title": "Nitrogen Dioxide NO2",
       "description": "NO2 concentration in ppb"
     },
+    "no2Status": {
+      "type": "string",
+      "title": "Nitrogen Dioxide NO2 Status",
+      "description": "Status text for NO2 (e.g. Preheating)"
+    },
     "co": {
-      "type": ["number", "string"],
+      "type": "number",
       "title": "Carbon Monoxide CO",
       "description": "CO concentration in ppm"
     },
+    "coStatus": {
+      "type": "string",
+      "title": "Carbon Monoxide CO Status",
+      "description": "Status text for CO (e.g. Preheating)"
+    },
     "vIndex": {
       "type": "number",
-      "title": "Ventilation Index"
+      "title": "Ventilation Index",
+      "description": "Calculated ventilation index"
     },
     "tIndex": {
       "type": "number",
-      "title": "Thermal Index"
+      "title": "Thermal Index",
+      "description": "Calculated thermal comfort index"
     },
     "virusIndex": {
       "type": "number",
-      "title": "Virus Index"
+      "title": "Virus Index",
+      "description": "Calculated virus survival index"
     },
     "iaqIndex": {
       "type": "number",
-      "title": "IAQ Index"
+      "title": "IAQ Index",
+      "description": "Overall Indoor Air Quality Index"
     },
     "moldIndex": {
-      "type": ["number", "string"],
-      "title": "Mold Index"
+      "type": "number",
+      "title": "Mold Index",
+      "description": "Calculated mold growth risk index"
+    },
+    "moldIndexStatus": {
+      "type": "string",
+      "title": "Mold Index Status",
+      "description": "Status text for mold index (e.g. Calculating)"
     },
     "dB": {
-      "type": ["number", "string"],
-      "title": "Noise Level dB"
+      "type": "number",
+      "title": "Noise Level dB",
+      "description": "Ambient noise level in decibels"
+    },
+    "dBStatus": {
+      "type": "string",
+      "title": "Noise Level dB Status",
+      "description": "Status text for noise level (e.g. Preheating)"
     },
     "counter": {
       "type": "number",
-      "title": "Message Counter"
+      "title": "Message Counter",
+      "description": "Incrementing message counter value"
     },
     "type": {
       "type": "string",
-      "title": "Device Type"
+      "title": "Device Type",
+      "description": "Device model identifier"
     }
   },
   "required": [
@@ -99,11 +140,7 @@
     "tvoc",
     "pm2_5",
     "pm10",
-    "ch2o",
     "pm1_0",
-    "pm4",
-    "o3",
-    "no2",
-    "co"
+    "pm4"
   ]
 }

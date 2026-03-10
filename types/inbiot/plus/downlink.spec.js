@@ -30,7 +30,7 @@ describe("inBiot PLUS Downlink", () => {
           resetDevice: true
         },
       };
-      
+
       const expectedHexPayload = "01010102010a0f0101";
 
       expectEmits((type, value) => {

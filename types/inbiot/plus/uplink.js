@@ -53,9 +53,11 @@ function InbiotDeviceDecode(bytes) {
           decoded.pm10 = getUint16(bytes, 17, 18);
         }
         if (["PLUS", "WELL", "NULL"].indexOf(decoded.type) > -1) {
-          decoded.ch2o = getUint16(bytes, 7, 8);
-          if (decoded.ch2o === 0xffff) {
-            decoded.ch2o = "Preheating";
+          var tempCh2o = getUint16(bytes, 7, 8);
+          if (tempCh2o === 0xffff) {
+            decoded.ch2oStatus = "Preheating";
+          } else {
+            decoded.ch2o = tempCh2o;
           }
           decoded.pm1_0 = getUint16(bytes, 11, 12);
           decoded.pm4 = getUint16(bytes, 15, 16);
@@ -80,12 +82,18 @@ function InbiotDeviceDecode(bytes) {
         decoded.tIndex = bytes[33];
         decoded.virusIndex = bytes[34];
         decoded.iaqIndex = bytes[35];
-        decoded.moldIndex = bytes[36];
-        if (decoded.moldIndex === 0xff) {
-          decoded.moldIndex = "Calculating";
+        var tempMoldIndex = bytes[36];
+        if (tempMoldIndex === 0xff) {
+          decoded.moldIndexStatus = "Calculating";
+        } else {
+          decoded.moldIndex = tempMoldIndex;
         }
         if (bytes[37] !== undefined) {
-          decoded.dB = bytes[37] === 0xff ? "Preheating" : bytes[37];
+          if (bytes[37] === 0xff) {
+            decoded.dBStatus = "Preheating";
+          } else {
+            decoded.dB = bytes[37];
+          }
         }
         decoded.counter = getUint16(bytes, 25, 26);
       }

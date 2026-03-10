@@ -17,37 +17,60 @@
       "title": "CO2",
       "description": "CO2 concentration in ppm"
     },
+    "tvoc": {
+      "type": "number",
+      "title": "TVOC",
+      "description": "Total Volatile Organic Compounds in ppb"
+    },
     "vIndex": {
       "type": "number",
-      "title": "Ventilation Index"
+      "title": "Ventilation Index",
+      "description": "Calculated ventilation index"
     },
     "tIndex": {
       "type": "number",
-      "title": "Thermal Index"
+      "title": "Thermal Index",
+      "description": "Calculated thermal comfort index"
     },
     "virusIndex": {
       "type": "number",
-      "title": "Virus Index"
+      "title": "Virus Index",
+      "description": "Calculated virus survival index"
     },
     "iaqIndex": {
       "type": "number",
-      "title": "IAQ Index"
+      "title": "IAQ Index",
+      "description": "Overall Indoor Air Quality Index"
     },
     "moldIndex": {
-      "type": ["number", "string"],
-      "title": "Mold Index"
+      "type": "number",
+      "title": "Mold Index",
+      "description": "Calculated mold growth risk index"
+    },
+    "moldIndexStatus": {
+      "type": "string",
+      "title": "Mold Index Status",
+      "description": "Status text for mold index (e.g. Calculating)"
     },
     "dB": {
-      "type": ["number", "string"],
-      "title": "Noise Level dB"
+      "type": "number",
+      "title": "Noise Level dB",
+      "description": "Ambient noise level in decibels"
+    },
+    "dBStatus": {
+      "type": "string",
+      "title": "Noise Level dB Status",
+      "description": "Status text for noise level (e.g. Preheating)"
     },
     "counter": {
       "type": "number",
-      "title": "Message Counter"
+      "title": "Message Counter",
+      "description": "Incrementing message counter value"
     },
     "type": {
       "type": "string",
-      "title": "Device Type"
+      "title": "Device Type",
+      "description": "Device model identifier"
     }
   },
   "required": [

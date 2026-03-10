@@ -8,35 +8,43 @@
   "properties": {
     "timeToSend": {
       "type": "number",
-      "title": "Time between metrics in minutes"
+      "title": "Time between metrics in minutes",
+      "description": "Periodicity for data transmission"
     },
     "ventilation": {
       "type": "number",
-      "title": "Ventilation Type"
+      "title": "Ventilation Type",
+      "description": "CO2 algorithm calibration type"
     },
     "ledStatus": {
       "type": "boolean",
-      "title": "LED Status"
+      "title": "LED Status",
+      "description": "Indicator if LEDs are active"
     },
     "useWifi": {
       "type": "boolean",
-      "title": "Use Wifi Instead"
+      "title": "Use Wifi Instead",
+      "description": "Toggle to prioritize Wi-Fi"
     },
     "lorawanRegion": {
       "type": "string",
-      "title": "LoRaWAN Region"
+      "title": "LoRaWAN Region",
+      "description": "Operating region identifier"
     },
     "lorawanChannelMask": {
       "type": "number",
-      "title": "LoRaWAN Channel Mask"
+      "title": "LoRaWAN Channel Mask",
+      "description": "Channel mask configuration"
     },
     "ledConfiguration": {
       "type": "number",
-      "title": "LED Configuration"
+      "title": "LED Configuration",
+      "description": "Indicator of LED configuration behavior"
     },
     "touchEnable": {
       "type": "boolean",
-      "title": "Touch Enable"
+      "title": "Touch Enable",
+      "description": "Toggle touch button functionality"
     }
   },
   "required": [
