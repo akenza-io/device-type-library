@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Yosensi YO Vibration uplink", () => {
   let batteryVoltageSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/battery_voltage.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/battery_voltage.schema.json`)
       .then((parsedSchema) => {
         batteryVoltageSchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("Yosensi YO Vibration uplink", () => {
 
   let internalTemperatureSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/internal_temperature.schema.json`)
+    loadSchema(`${__dirname}/internal_temperature.schema.json`)
       .then((parsedSchema) => {
         internalTemperatureSchema = parsedSchema;
         done();
@@ -31,8 +33,7 @@ describe("Yosensi YO Vibration uplink", () => {
 
   let humiditySchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/humidity.schema.json`)
+    loadSchema(`${__dirname}/humidity.schema.json`)
       .then((parsedSchema) => {
         humiditySchema = parsedSchema;
         done();
@@ -41,8 +42,7 @@ describe("Yosensi YO Vibration uplink", () => {
 
   let externalTemperatureSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/external_temperature.schema.json`)
+    loadSchema(`${__dirname}/external_temperature.schema.json`)
       .then((parsedSchema) => {
         externalTemperatureSchema = parsedSchema;
         done();
@@ -51,8 +51,7 @@ describe("Yosensi YO Vibration uplink", () => {
 
   let rmsAccelerationSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/rms_acceleration.schema.json`)
+    loadSchema(`${__dirname}/rms_acceleration.schema.json`)
       .then((parsedSchema) => {
         rmsAccelerationSchema = parsedSchema;
         done();
@@ -61,8 +60,7 @@ describe("Yosensi YO Vibration uplink", () => {
 
   let peakAccelerationSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/peak_acceleration.schema.json`)
+    loadSchema(`${__dirname}/peak_acceleration.schema.json`)
       .then((parsedSchema) => {
         peakAccelerationSchema = parsedSchema;
         done();
@@ -71,8 +69,7 @@ describe("Yosensi YO Vibration uplink", () => {
 
   let crestFactorSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/crest_factor.schema.json`)
+    loadSchema(`${__dirname}/crest_factor.schema.json`)
       .then((parsedSchema) => {
         crestFactorSchema = parsedSchema;
         done();
@@ -81,8 +78,7 @@ describe("Yosensi YO Vibration uplink", () => {
 
   let standardDeviationSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/standard_deviation.schema.json`)
+    loadSchema(`${__dirname}/standard_deviation.schema.json`)
       .then((parsedSchema) => {
         standardDeviationSchema = parsedSchema;
         done();
@@ -91,8 +87,7 @@ describe("Yosensi YO Vibration uplink", () => {
 
   let skewnessSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/skewness.schema.json`)
+    loadSchema(`${__dirname}/skewness.schema.json`)
       .then((parsedSchema) => {
         skewnessSchema = parsedSchema;
         done();
@@ -101,8 +96,7 @@ describe("Yosensi YO Vibration uplink", () => {
 
   let kurtosisSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/kurtosis.schema.json`)
+    loadSchema(`${__dirname}/kurtosis.schema.json`)
       .then((parsedSchema) => {
         kurtosisSchema = parsedSchema;
         done();
@@ -111,8 +105,7 @@ describe("Yosensi YO Vibration uplink", () => {
 
   let rmsVelocitySchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/rms_velocity.schema.json`)
+    loadSchema(`${__dirname}/rms_velocity.schema.json`)
       .then((parsedSchema) => {
         rmsVelocitySchema = parsedSchema;
         done();
@@ -121,8 +114,7 @@ describe("Yosensi YO Vibration uplink", () => {
 
   let displacementSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/displacement.schema.json`)
+    loadSchema(`${__dirname}/displacement.schema.json`)
       .then((parsedSchema) => {
         displacementSchema = parsedSchema;
         done();
@@ -139,7 +131,7 @@ describe("Yosensi YO Vibration uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -147,12 +139,12 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.equal(value.topic, "battery_voltage");
         assert.equal(value.data.batteryVoltage, 4349);
 
-        utils.validateSchema(value.data, batteryVoltageSchema, {
+        validateSchema(value.data, batteryVoltageSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -160,12 +152,12 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.equal(value.topic, "internal_temperature");
         assert.equal(value.data.internalTemperature, 23.1);
 
-        utils.validateSchema(value.data, internalTemperatureSchema, {
+        validateSchema(value.data, internalTemperatureSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -173,12 +165,12 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.equal(value.topic, "humidity");
         assert.equal(value.data.humidity, 25);
 
-        utils.validateSchema(value.data, humiditySchema, {
+        validateSchema(value.data, humiditySchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -186,12 +178,12 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.equal(value.topic, "external_temperature");
         assert.equal(value.data.externalTemperature, 22.7);
 
-        utils.validateSchema(value.data, externalTemperatureSchema, {
+        validateSchema(value.data, externalTemperatureSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -201,12 +193,12 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.equal(value.data.rmsAccelerationY, 0.004);
         assert.equal(value.data.rmsAccelerationZ, 0.005);
 
-        utils.validateSchema(value.data, rmsAccelerationSchema, {
+        validateSchema(value.data, rmsAccelerationSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -216,7 +208,7 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.equal(value.data.peakAccelerationY, 0.005);
         assert.equal(value.data.peakAccelerationZ, 0.007);
 
-        utils.validateSchema(value.data, peakAccelerationSchema, {
+        validateSchema(value.data, peakAccelerationSchema, {
           throwError: true,
         });
       });
@@ -233,7 +225,7 @@ describe("Yosensi YO Vibration uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -243,12 +235,12 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.equal(value.data.crestFactorY, 2.71);
         assert.equal(value.data.crestFactorZ, 3.02);
 
-        utils.validateSchema(value.data, crestFactorSchema, {
+        validateSchema(value.data, crestFactorSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -258,12 +250,12 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.equal(value.data.standardDeviationY, 0.3);
         assert.equal(value.data.standardDeviationZ, 0.5);
 
-        utils.validateSchema(value.data, standardDeviationSchema, {
+        validateSchema(value.data, standardDeviationSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -273,12 +265,12 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.equal(value.data.skewnessY, 0.19);
         assert.equal(value.data.skewnessZ, 0.02);
 
-        utils.validateSchema(value.data, skewnessSchema, {
+        validateSchema(value.data, skewnessSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -288,7 +280,7 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.equal(value.data.kurtosisY, -0.44);
         assert.equal(value.data.kurtosisZ, -0.38);
 
-        utils.validateSchema(value.data, kurtosisSchema, {
+        validateSchema(value.data, kurtosisSchema, {
           throwError: true,
         });
       });
@@ -304,7 +296,7 @@ describe("Yosensi YO Vibration uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -314,12 +306,12 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.equal(value.data.rmsVelocityY, 0.08);
         assert.equal(value.data.rmsVelocityZ, 0.09);
 
-        utils.validateSchema(value.data, rmsVelocitySchema, {
+        validateSchema(value.data, rmsVelocitySchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -329,7 +321,7 @@ describe("Yosensi YO Vibration uplink", () => {
         assert.equal(value.data.displacementY, 1);
         assert.equal(value.data.displacementZ, 1);
 
-        utils.validateSchema(value.data, displacementSchema, {
+        validateSchema(value.data, displacementSchema, {
           throwError: true,
         });
       });

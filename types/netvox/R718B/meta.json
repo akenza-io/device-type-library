@@ -1,0 +1,19 @@
+{
+  "name": "R718B",
+  "version": "1.0.0",
+  "manufacturer": "netvox",
+  "url": "http://www.netvox.com.tw/product.asp?pro=R718B",
+  "description": "The R718B series is a wireless resistance temperature detector for Netvox Class A type devices based on the LoRaWAN open protocol and is compatible with the LoRaWAN protocol. It connects an external resistance temperature detector (PT1000) to measure the temperature.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": [
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "system"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

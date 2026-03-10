@@ -8,13 +8,13 @@
   "properties": {
     "totalCounterA": {
       "title": "Total Counter A",
-      "type": "integer",
-      "description": "Summation of all A counts"
+      "description": "Summation of all A counts",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleCount/people"
     },
     "totalCounterB": {
       "title": "Total Counter B",
-      "type": "integer",
-      "description": "Summation of all B counts"
+      "description": "Summation of all B counts",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleCount/people"
     }
   },
   "required": [

@@ -1,0 +1,63 @@
+{
+  "$id": "https://akenza.io/inbiot/mica/configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "configuration",
+  "title": "Configuration",
+  "properties": {
+    "timeToSend": {
+      "type": "number",
+      "title": "Time between metrics in minutes",
+      "description": "Periodicity for data transmission",
+      "hideFromKpis": true
+    },
+    "ventilation": {
+      "type": "number",
+      "title": "Ventilation Type",
+      "description": "CO2 algorithm calibration type",
+      "hideFromKpis": true
+    },
+    "ledStatus": {
+      "type": "boolean",
+      "title": "LED Status",
+      "description": "Indicator if LEDs are active",
+      "hideFromKpis": true
+    },
+    "useWifi": {
+      "type": "boolean",
+      "title": "Use Wifi Instead",
+      "description": "Toggle to prioritize Wi-Fi",
+      "hideFromKpis": true
+    },
+    "lorawanRegion": {
+      "type": "string",
+      "title": "LoRaWAN Region",
+      "description": "Operating region identifier",
+      "hideFromKpis": true
+    },
+    "lorawanChannelMask": {
+      "type": "number",
+      "title": "LoRaWAN Channel Mask",
+      "description": "Channel mask configuration",
+      "hideFromKpis": true
+    },
+    "ledConfiguration": {
+      "type": "number",
+      "title": "LED Configuration",
+      "description": "Indicator of LED configuration behavior",
+      "hideFromKpis": true
+    },
+    "touchEnable": {
+      "type": "boolean",
+      "title": "Touch Enable",
+      "description": "Toggle touch button functionality",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "timeToSend",
+    "ledStatus",
+    "lorawanRegion"
+  ]
+}

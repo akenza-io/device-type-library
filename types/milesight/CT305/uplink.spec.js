@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("CT305 Uplink", () => {
   let temperatureSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/temperature.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/temperature.schema.json`)
       .then((parsedSchema) => {
         temperatureSchema = parsedSchema;
         done();
@@ -21,9 +24,9 @@ describe("CT305 Uplink", () => {
 
   let systemSchema = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/system.schema.json`).then((parsedSchema) => {
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/system.schema.json`).then((parsedSchema) => {
       systemSchema = parsedSchema;
       done();
     });
@@ -31,9 +34,9 @@ describe("CT305 Uplink", () => {
 
   let channel1Schema = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/channel1.schema.json`).then((parsedSchema) => {
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/channel1.schema.json`).then((parsedSchema) => {
       channel1Schema = parsedSchema;
       done();
     });
@@ -41,10 +44,9 @@ describe("CT305 Uplink", () => {
 
   let channel2Schema = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/channel2.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/channel2.schema.json`)
       .then((parsedSchema) => {
         channel2Schema = parsedSchema;
         done();
@@ -53,10 +55,9 @@ describe("CT305 Uplink", () => {
 
   let channel3Schema = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/channel3.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/channel3.schema.json`)
       .then((parsedSchema) => {
         channel3Schema = parsedSchema;
         done();
@@ -72,7 +73,7 @@ describe("CT305 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -85,7 +86,7 @@ describe("CT305 Uplink", () => {
         assert.equal(value.data.sn, "6746d38802580000");
         assert.equal(value.data.tslVersion, "1.1");
 
-        utils.validateSchema(value.data, systemSchema, { throwError: true });
+        validateSchema(value.data, systemSchema, { throwError: true });
       });
 
       consume(data);
@@ -99,7 +100,7 @@ describe("CT305 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -107,7 +108,7 @@ describe("CT305 Uplink", () => {
         assert.equal(value.topic, "channel1");
         assert.equal(value.data.totalCurrent, 100);
 
-        utils.validateSchema(value.data, channel1Schema, {
+        validateSchema(value.data, channel1Schema, {
           throwError: true,
         });
       });
@@ -123,7 +124,7 @@ describe("CT305 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -134,7 +135,7 @@ describe("CT305 Uplink", () => {
         assert.equal(value.data.currentMax, 300);
         assert.equal(value.data.currentMin, 200);
 
-        utils.validateSchema(value.data, channel1Schema, {
+        validateSchema(value.data, channel1Schema, {
           throwError: true,
         });
       });

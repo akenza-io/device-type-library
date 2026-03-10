@@ -10,9 +10,15 @@
       "title": "People count",
       "description": "People in Area",
       "type": "integer"
+    },
+    "signsOfLife": {
+      "title": "Signs of live",
+      "description": "Equals true if there were objects like laptops, backpacks, coats, etc. detected",
+      "type": "boolean"
     }
   },
   "required": [
-    "peopleCount"
+    "peopleCount",
+    "signsOfLife"
   ]
 }

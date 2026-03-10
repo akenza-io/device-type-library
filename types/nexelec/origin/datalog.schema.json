@@ -1,0 +1,61 @@
+{
+  "$id": "https://akenza.io/nexelec/origin/datalog.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "datalog",
+  "title": "Datalog",
+  "properties": {
+    "datalogTemperatureEnabled": {
+      "title": "Temperature Datalog Enabled",
+      "type": "boolean",
+      "description": "Indicates if temperature datalogging is active",
+      "hideFromKpis": true
+    },
+    "dailyAirQualityEnabled": {
+      "title": "Daily Air Quality Enabled",
+      "type": "boolean",
+      "description": "Indicates if daily air quality data transmission is active",
+      "hideFromKpis": true
+    },
+    "newMeasurementsPerMessage": {
+      "title": "New Measurements per Message",
+      "type": "number",
+      "description": "Configuration: Number of new measurements to include in each datalog message",
+      "hideFromKpis": true
+    },
+    "transmissionsOfSameData": {
+      "title": "Transmissions of Same Data",
+      "type": "number",
+      "description": "Configuration: Number of times the same data is repeated for redundancy",
+      "hideFromKpis": true
+    },
+    "transmissionPeriod": {
+      "title": "Transmission Period",
+      "unit": "minutes",
+      "type": "number",
+      "description": "Configuration: Period for datalog message transmissions",
+      "hideFromKpis": true
+    },
+    "totalMeasurements": {
+      "title": "Total Measurements in Message",
+      "type": "number",
+      "description": "Metadata: Total number of data points in the received datalog message",
+      "hideFromKpis": true
+    },
+    "samplingPeriod": {
+      "title": "Sampling Period",
+      "unit": "minutes",
+      "type": "number",
+      "description": "Metadata: Time between individual measurements in the datalog",
+      "hideFromKpis": true
+    },
+    "repetitionsInMessage": {
+      "title": "Repetitions in Message",
+      "type": "number",
+      "description": "Metadata: Number of repetitions of the same data in the received datalog message",
+      "hideFromKpis": true
+    }
+  },
+  "required": []
+}

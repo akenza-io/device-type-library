@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("IMBuilding Verticount counter", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/default.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
         defaultSchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("IMBuilding Verticount counter", () => {
 
   let totalCounterSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/total_counter.schema.json`)
+    loadSchema(`${__dirname}/total_counter.schema.json`)
       .then((parsedSchema) => {
         totalCounterSchema = parsedSchema;
         done();
@@ -31,8 +33,7 @@ describe("IMBuilding Verticount counter", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -48,7 +49,7 @@ describe("IMBuilding Verticount counter", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -57,10 +58,10 @@ describe("IMBuilding Verticount counter", () => {
         assert.equal(value.data.counterA, 0);
         assert.equal(value.data.counterB, 0);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -69,12 +70,12 @@ describe("IMBuilding Verticount counter", () => {
         assert.equal(value.data.totalCounterA, 0);
         assert.equal(value.data.totalCounterB, 0);
 
-        utils.validateSchema(value.data, totalCounterSchema, {
+        validateSchema(value.data, totalCounterSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -86,7 +87,7 @@ describe("IMBuilding Verticount counter", () => {
         assert.equal(value.data.batteryVoltage, 3.67);
         assert.equal(value.data.batteryLevel, 100);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

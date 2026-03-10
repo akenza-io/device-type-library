@@ -1,0 +1,62 @@
+{
+  "$id": "https://akenza.io/twtg/neonVibration/axis_y_spectrum.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "axis_y_spectrum",
+  "title": "Axis Y spectrum",
+  "properties": {
+    "spectrumType": {
+      "title": "Spectrum type",
+      "type": "string",
+      "description": "Spectrum type",
+      "enum": [
+        "ACCELERATION",
+        "VELOCITY",
+        "ENVELOPE"
+      ]
+    },
+    "temperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    },
+    "peakAcceleration": {
+      "title": "Peak acceleration",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/mPerSsquared"
+    },
+    "rmsAcceleration": {
+      "title": "RMS acceleration",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/acceleration/mPerSsquared"
+    },
+    "rmsVelocity": {
+      "title": "RMS velocity",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/motion/schema.json#/$defs/speed/mPerS"
+    },
+    "rpm": {
+      "title": "RPM",
+      "type": "number",
+      "description": "RPM"
+    },
+    "frequencies": {
+      "title": "Frequencies",
+      "type": "array",
+      "description": "Frequencies",
+      "hideFromKpis": true
+    },
+    "magnitudes": {
+      "title": "Magnitudes",
+      "type": "array",
+      "description": "Magnitudes",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "spectrumType",
+    "temperature",
+    "peakAcceleration",
+    "rmsAcceleration",
+    "rmsVelocity",
+    "rpm",
+    "frequencies",
+    "magnitudes"
+  ]
+}

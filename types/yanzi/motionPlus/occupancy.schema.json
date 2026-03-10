@@ -7,12 +7,10 @@
   "title": "Occupancy",
   "properties": {
     "motion": {
-      "title": "Motion",
-      "description": "Motion sensor measuring activity level",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 65535
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/motion/count"
     }
   },
-  "required": ["motion"]
+  "required": [
+    "motion"
+  ]
 }

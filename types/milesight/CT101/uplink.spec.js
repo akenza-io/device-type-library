@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("CT101 Uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/default.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
         defaultSchema = parsedSchema;
         done();
@@ -21,9 +24,9 @@ describe("CT101 Uplink", () => {
 
   let systemSchema = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/system.schema.json`).then((parsedSchema) => {
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/system.schema.json`).then((parsedSchema) => {
       systemSchema = parsedSchema;
       done();
     });
@@ -31,9 +34,9 @@ describe("CT101 Uplink", () => {
 
   let alarmSchema = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/alarm.schema.json`).then((parsedSchema) => {
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/alarm.schema.json`).then((parsedSchema) => {
       alarmSchema = parsedSchema;
       done();
     });
@@ -41,10 +44,9 @@ describe("CT101 Uplink", () => {
 
   let totalCurrentSchema = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/total_current.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/total_current.schema.json`)
       .then((parsedSchema) => {
         totalCurrentSchema = parsedSchema;
         done();
@@ -60,7 +62,7 @@ describe("CT101 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -72,7 +74,7 @@ describe("CT101 Uplink", () => {
         assert.equal(value.data.powerOn, true);
         assert.equal(value.data.sn, "6746d38802580000");
 
-        utils.validateSchema(value.data, systemSchema, { throwError: true });
+        validateSchema(value.data, systemSchema, { throwError: true });
       });
 
       consume(data);
@@ -86,7 +88,7 @@ describe("CT101 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -94,7 +96,7 @@ describe("CT101 Uplink", () => {
         assert.equal(value.topic, "total_current");
         assert.equal(value.data.totalCurrent, 100);
 
-        utils.validateSchema(value.data, totalCurrentSchema, {
+        validateSchema(value.data, totalCurrentSchema, {
           throwError: true,
         });
       });
@@ -110,7 +112,7 @@ describe("CT101 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -120,12 +122,12 @@ describe("CT101 Uplink", () => {
         assert.equal(value.data.currentMin, 20);
         assert.equal(value.data.currentMax, 30);
 
-        utils.validateSchema(value.data, defaultSchema, {
+        validateSchema(value.data, defaultSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -136,7 +138,7 @@ describe("CT101 Uplink", () => {
         assert.equal(value.data.thresholdAlarm, true);
         assert.equal(value.data.thresholdAlarmRelease, false);
 
-        utils.validateSchema(value.data, alarmSchema, {
+        validateSchema(value.data, alarmSchema, {
           throwError: true,
         });
       });

@@ -1,0 +1,20 @@
+{
+  "$id": "https://akenza.io/buildingEdge/energy/consumption.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "consumption",
+  "title": "Consumption",
+  "properties": {
+    "consumption": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours",
+      "title": "Consumption",
+      "description": "Consumption"
+    },
+    "consumptionCumulative": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours",
+      "title": "Cumulative consumption",
+      "description": "Cumulative consumption"
+    }
+  }
+}

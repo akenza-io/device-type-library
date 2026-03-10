@@ -1,0 +1,27 @@
+{
+  "$id": "https://akenza.io/asystom/sentinel/firmware_status.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "firmware_status",
+  "title": "Firmware status",
+  "properties": {
+    "lastBootCauses": {
+      "title": "Last boot causes",
+      "description": "Last boot causes",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "softwareStatus": {
+      "title": "Software status",
+      "description": "Software status",
+      "type": "string"
+    }
+  },
+  "required": [
+    "lastBootCauses",
+    "softwareStatus"
+  ]
+}

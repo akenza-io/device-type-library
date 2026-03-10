@@ -48,6 +48,15 @@
         "unit": "μg/m3"
       }
     },
+    "pm4": {
+      "mcgm3": {
+        "measurementType": "akenza/environment/pm4/mcgm3",
+        "title": "PM4",
+        "description": "Particles with a diameter of less than 4 micrometers",
+        "type": "number",
+        "unit": "μg/m3"
+      }
+    },
     "pm10": {
       "mcgm3": {
         "measurementType": "akenza/environment/pm10/mcgm3",

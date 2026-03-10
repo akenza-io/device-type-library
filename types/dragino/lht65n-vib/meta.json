@@ -1,0 +1,20 @@
+{
+  "name": "LHT65N-VIB - Vibration Sensor",
+  "version": "1.0.0",
+  "manufacturer": "Dragino",
+  "url": "https://dragino.com/products/lora-lorawan-end-node/item/350-lht65n-vib.html",
+  "description": "The Dragino LHT65N-VIB LoRaWAN Vibration Sensor is designed to detect and measure vibrations and shocks of an object. It also includes built-in temperature and humidity sensors.",
+  "author": "Akenza AG",
+  "availableSensors": [
+    "Vibration",
+    "Temperature",
+    "Humidity"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "datalog"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

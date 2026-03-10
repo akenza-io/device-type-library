@@ -27,6 +27,12 @@
         "HIGH_POWER_BOOST_MODE"
       ],
       "hideFromKpis": true
+    },
+    "sqi": {
+      "title": "Signal quality index",
+      "description": "Signal quality index",
+      "type": "integer",
+      "hideFromKpis": true
     }
   },
   "required": [

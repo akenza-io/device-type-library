@@ -1,0 +1,22 @@
+{
+  "$id": "https://akenza.io/milesight/DS3604/template_configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "template_configuration",
+  "title": "Template configuration",
+  "properties": {
+    "template1Config": {
+      "title": "Template 1 configuration",
+      "type": "object",
+      "description": "Template 1 configuration",
+      "hideFromKpis": true
+    },
+    "template2Config": {
+      "title": "Template 2 configuration",
+      "type": "object",
+      "description": "Template 2 configuration",
+      "hideFromKpis": true
+    }
+  }
+}

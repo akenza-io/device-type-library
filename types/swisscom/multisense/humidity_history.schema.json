@@ -8,65 +8,44 @@
   "properties": {
     "humHistory0": {
       "title": "Humidity History 0",
-      "unit": "%",
-      "type": "number",
       "description": "The relative humidity in %. Last Sample",
-      "minimum": 0,
-      "maximum": 100,
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
       "hideFromKpis": true
     },
     "humHistory1": {
       "title": "Humidity History 1",
-      "unit": "%",
-      "type": "number",
       "description": "The relative humidity in %. Last Sample -1",
-      "minimum": 0,
-      "maximum": 100,
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
       "hideFromKpis": true
     },
     "humHistory2": {
       "title": "Humidity History 2",
-      "unit": "%",
-      "type": "number",
       "description": "The relative humidity in %. Last Sample -2",
-      "minimum": 0,
-      "maximum": 100,
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
       "hideFromKpis": true
     },
     "humHistory3": {
       "title": "Humidity History 3",
-      "unit": "%",
-      "type": "number",
       "description": "The relative humidity in %. Last Sample -3",
-      "minimum": 0,
-      "maximum": 100,
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
       "hideFromKpis": true
     },
     "humHistory4": {
       "title": "Humidity History 4",
-      "unit": "%",
-      "type": "number",
       "description": "The relative humidity in %. Last Sample -4",
-      "minimum": 0,
-      "maximum": 100,
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
       "hideFromKpis": true
     },
     "humHistory5": {
       "title": "Humidity History 5",
-      "unit": "%",
-      "type": "number",
       "description": "The relative humidity in %. Last Sample -5",
-      "minimum": 0,
-      "maximum": 100,
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
       "hideFromKpis": true
     },
     "humHistory6": {
       "title": "Humidity History 6",
-      "unit": "%",
-      "type": "number",
       "description": "The relative humidity in %. Last Sample -6",
-      "minimum": 0,
-      "maximum": 100,
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
       "hideFromKpis": true
     }
   },

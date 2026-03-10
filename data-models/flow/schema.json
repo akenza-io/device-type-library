@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/flow/schema.json",
+  "title": "Flow",
+  "description": "Flow measurements",
+  "type": "object",
+  "$defs": {
+    "flow": {
+      "m3h": {
+        "measurementType": "akenza/flow/flow/m3h",
+        "title": "Flow",
+        "description": "Liquid flow in m3/h",
+        "type": "number",
+        "unit": "m3/h"
+      }
+    },
+    "consumption": {
+      "l": {
+        "measurementType": "akenza/flow/consumption/l",
+        "title": "Consumption",
+        "description": "Liquid consumption in liters",
+        "type": "number",
+        "unit": "l"
+      }
+    },
+    "volume": {
+      "l": {
+        "measurementType": "akenza/flow/volume/l",
+        "title": "Volume",
+        "description": "Liquid volume in liters",
+        "type": "number",
+        "unit": "l"
+      },
+      "m3": {
+        "measurementType": "akenza/flow/volume/m3",
+        "title": "Volume",
+        "description": "Liquid volume in cubic meter",
+        "type": "number",
+        "unit": "m3"
+      }
+    }
+  }
+}

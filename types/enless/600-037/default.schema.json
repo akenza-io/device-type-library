@@ -1,0 +1,94 @@
+{
+  "$id": "https://akenza.io/enless/600-037/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "pulseCh1": {
+      "type": "integer",
+      "title": "Pulse Channel 1",
+      "description": "Total number of pulses counted on channel 1",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput"
+    },
+    "pulseCh2": {
+      "type": "integer",
+      "title": "Pulse Channel 2",
+      "description": "Total number of pulses counted on channel 2",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput"
+    },
+    "pulseOc": {
+      "type": "integer",
+      "title": "Pulse Open Collector",
+      "description": "Total number of pulses counted on the open collector input",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput"
+    },
+    "pulseCh1State": {
+      "type": "string",
+      "enum": [
+        "OPEN",
+        "CLOSED"
+      ],
+      "title": "Pulse Channel 1 State",
+      "description": "Digital state of input channel 1",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/digitalInput"
+    },
+    "pulseCh2State": {
+      "type": "string",
+      "enum": [
+        "OPEN",
+        "CLOSED"
+      ],
+      "title": "Pulse Channel 2 State",
+      "description": "Digital state of input channel 2",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/digitalInput"
+    },
+    "pulseOcState": {
+      "type": "string",
+      "enum": [
+        "OPEN",
+        "CLOSED"
+      ],
+      "title": "Pulse Open Collector State",
+      "description": "Digital state of the open collector input",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/digitalInput"
+    },
+    "debounce1": {
+      "type": "boolean",
+      "title": "Debounce 1",
+      "description": "Indicates if debounce filter is active on channel 1"
+    },
+    "debounce2": {
+      "type": "boolean",
+      "title": "Debounce 2",
+      "description": "Indicates if debounce filter is active on channel 2"
+    },
+    "debounce3": {
+      "type": "boolean",
+      "title": "Debounce 3",
+      "description": "Indicates if debounce filter is active on open collector input"
+    },
+    "msgType": {
+      "type": "string",
+      "title": "Message Type",
+      "enum": [
+        "NORMAL",
+        "ALARM"
+      ],
+      "description": "Indicates whether the message was triggered by NORMAL operation or an alarm"
+    }
+  },
+  "required": [
+    "pulseCh1",
+    "pulseCh2",
+    "pulseOc",
+    "pulseCh1State",
+    "pulseCh2State",
+    "pulseOcState",
+    "debounce1",
+    "debounce2",
+    "debounce3",
+    "msgType"
+  ]
+}

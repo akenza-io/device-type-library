@@ -8,26 +8,26 @@
   "properties": {
     "button1": {
       "title": "Button 1",
-      "type": "boolean",
       "description": "Button 1 got pressed if true",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/event",
       "hideFromKpis": true
     },
     "button2": {
       "title": "Button 2",
-      "type": "boolean",
       "description": "Button 2 got pressed if true",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/event",
       "hideFromKpis": true
     },
     "button3": {
       "title": "Button 3",
-      "type": "boolean",
       "description": "Button 3 got pressed if true",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/event",
       "hideFromKpis": true
     },
     "button4": {
       "title": "Button 4",
-      "type": "boolean",
       "description": "Button 4 got pressed if true",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/event",
       "hideFromKpis": true
     },
     "periodicUplink": {

@@ -1,0 +1,28 @@
+{
+  "$id": "https://akenza.io/thermokon/sab07/actuator.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "actuator",
+  "title": "Actuator",
+  "properties": {
+    "motorPosition": {
+      "title": "Motor Position",
+      "description": "Current position of the valve motor in steps.",
+      "type": "number",
+      "unit": "steps",
+      "hideFromKpis": true
+    },
+    "motorRange": {
+      "title": "Motor Range",
+      "description": "The maximum range of the valve motor in steps.",
+      "type": "number",
+      "unit": "steps",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "motorPosition",
+    "motorRange"
+  ]
+}

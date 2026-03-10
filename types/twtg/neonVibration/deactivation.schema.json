@@ -1,0 +1,23 @@
+{
+  "$id": "https://akenza.io/twtg/neonVibration/deactivation.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "deactivation",
+  "title": "Deactivation",
+  "properties": {
+    "deactivationReason": {
+      "title": "Deactivation reason",
+      "type": "string",
+      "description": "Deactivation reason",
+      "enum": [
+        "USER_TRIGGERED",
+        "ACTIVIATION_SENSOR_COMM_FAIL"
+      ],
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "deactivationReason"
+  ]
+}

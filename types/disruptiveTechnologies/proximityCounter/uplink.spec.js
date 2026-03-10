@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Digital Technologies Proximity Counter Sensor Uplink", () => {
   let objectPresentSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/object_present_count.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/object_present_count.schema.json`)
       .then((parsedSchema) => {
         objectPresentSchema = parsedSchema;
         done();
@@ -37,14 +40,7 @@ describe("Digital Technologies Proximity Counter Sensor Uplink", () => {
         labels: {},
       };
 
-
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "state");
-        assert.isNotNull(value);
-        assert.equal(value.lastCount, 4176);
-      });
-
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -53,9 +49,17 @@ describe("Digital Technologies Proximity Counter Sensor Uplink", () => {
         assert.equal(value.data.objectPresentCount, 4176);
         assert.equal(value.data.relativeCount, 0);
 
-        utils.validateSchema(value.data, objectPresentSchema, {
+        validateSchema(value.data, objectPresentSchema, {
           throwError: true,
         });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+
+        assert.equal(value.lastCount, 4176);
+        assert.isDefined(value.lastSampleEmittedAt);
       });
 
       consume(data);

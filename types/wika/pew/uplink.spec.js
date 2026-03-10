@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Wika Pew 1000 Uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/default.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
         defaultSchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("Wika Pew 1000 Uplink", () => {
 
   let deviceAlarmSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/device_alarm.schema.json`)
+    loadSchema(`${__dirname}/device_alarm.schema.json`)
       .then((parsedSchema) => {
         deviceAlarmSchema = parsedSchema;
         done();
@@ -31,8 +33,7 @@ describe("Wika Pew 1000 Uplink", () => {
 
   let deviceInformationSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/device_information.schema.json`)
+    loadSchema(`${__dirname}/device_information.schema.json`)
       .then((parsedSchema) => {
         deviceInformationSchema = parsedSchema;
         done();
@@ -41,8 +42,7 @@ describe("Wika Pew 1000 Uplink", () => {
 
   let errorSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/error.schema.json`)
+    loadSchema(`${__dirname}/error.schema.json`)
       .then((parsedSchema) => {
         errorSchema = parsedSchema;
         done();
@@ -51,8 +51,7 @@ describe("Wika Pew 1000 Uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -61,8 +60,7 @@ describe("Wika Pew 1000 Uplink", () => {
 
   let processAlarmSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/process_alarm.schema.json`)
+    loadSchema(`${__dirname}/process_alarm.schema.json`)
       .then((parsedSchema) => {
         processAlarmSchema = parsedSchema;
         done();
@@ -71,8 +69,7 @@ describe("Wika Pew 1000 Uplink", () => {
 
   let technicalAlarmSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/technical_alarm.schema.json`)
+    loadSchema(`${__dirname}/technical_alarm.schema.json`)
       .then((parsedSchema) => {
         technicalAlarmSchema = parsedSchema;
         done();
@@ -89,7 +86,7 @@ describe("Wika Pew 1000 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -97,7 +94,7 @@ describe("Wika Pew 1000 Uplink", () => {
         assert.equal(value.topic, "error");
         assert.equal(value.data.errorMessage, "Please define the customfields: pressureRangeStart, pressureRangeEnd, temperatureRangeStart, temperatureRangeEnd");
 
-        utils.validateSchema(value.data, errorSchema, { throwError: true });
+        validateSchema(value.data, errorSchema, { throwError: true });
       });
 
       consume(data);
@@ -120,7 +117,7 @@ describe("Wika Pew 1000 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -129,10 +126,10 @@ describe("Wika Pew 1000 Uplink", () => {
         assert.equal(value.data.batteryVoltage, 3.5);
         assert.equal(value.data.deviceTemperature, 3.96);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -140,7 +137,7 @@ describe("Wika Pew 1000 Uplink", () => {
         assert.equal(value.topic, "default");
         assert.equal(value.data.pressure, -0.011);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
@@ -163,7 +160,7 @@ describe("Wika Pew 1000 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -174,7 +171,7 @@ describe("Wika Pew 1000 Uplink", () => {
         assert.equal(value.data.alarmType, "HIGH_THRESHOLD");
         assert.equal(value.data.value, 4.08);
 
-        utils.validateSchema(value.data, processAlarmSchema, { throwError: true });
+        validateSchema(value.data, processAlarmSchema, { throwError: true });
       });
 
       consume(data);
@@ -197,7 +194,7 @@ describe("Wika Pew 1000 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -206,7 +203,7 @@ describe("Wika Pew 1000 Uplink", () => {
         assert.equal(value.data.alarmStatus, "TRIGGERED");
         assert.deepEqual(value.data.alarmType, ["SENSOR_COMMUNICATION_ERROR"]);
 
-        utils.validateSchema(value.data, technicalAlarmSchema, { throwError: true });
+        validateSchema(value.data, technicalAlarmSchema, { throwError: true });
       });
 
       consume(data);
@@ -229,7 +226,7 @@ describe("Wika Pew 1000 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -240,7 +237,7 @@ describe("Wika Pew 1000 Uplink", () => {
         assert.deepEqual(value.data.causeOfFailure, "GENERIC");
         assert.deepEqual(value.data.value, 2.8);
 
-        utils.validateSchema(value.data, deviceAlarmSchema, { throwError: true });
+        validateSchema(value.data, deviceAlarmSchema, { throwError: true });
       });
 
       consume(data);

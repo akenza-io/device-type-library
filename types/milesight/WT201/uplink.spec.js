@@ -1,9 +1,13 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("WT201 Uplink", () => {
   let defaultSchema = null;
@@ -12,10 +16,9 @@ describe("WT201 Uplink", () => {
   let planSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/default.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
         defaultSchema = parsedSchema;
         done();
@@ -23,10 +26,9 @@ describe("WT201 Uplink", () => {
   });
 
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/wires.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/wires.schema.json`)
       .then((parsedSchema) => {
         wiresSchema = parsedSchema;
         done();
@@ -34,10 +36,9 @@ describe("WT201 Uplink", () => {
   });
 
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/system.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/system.schema.json`)
       .then((parsedSchema) => {
         systemSchema = parsedSchema;
         done();
@@ -45,10 +46,9 @@ describe("WT201 Uplink", () => {
   });
 
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/plan.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/plan.schema.json`)
       .then((parsedSchema) => {
         planSchema = parsedSchema;
         done();
@@ -64,7 +64,7 @@ describe("WT201 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -78,7 +78,7 @@ describe("WT201 Uplink", () => {
         assert.equal(value.data.temperatureControlMode, "HEAT");
         assert.equal(value.data.temperatureControlStatus, "STANDBY");
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
@@ -92,7 +92,7 @@ describe("WT201 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -109,10 +109,10 @@ describe("WT201 Uplink", () => {
           "STAGE_1_COOL",
         ]);
 
-        utils.validateSchema(value.data, systemSchema, { throwError: true });
+        validateSchema(value.data, systemSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -121,7 +121,7 @@ describe("WT201 Uplink", () => {
         assert.equal(value.data.obMode, "HEAT");
         assert.deepEqual(value.data.wires, ['Y1', 'GH', 'OB', 'AUX']);
 
-        utils.validateSchema(value.data, wiresSchema, { throwError: true });
+        validateSchema(value.data, wiresSchema, { throwError: true });
       });
 
       consume(data);
@@ -135,7 +135,7 @@ describe("WT201 Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -148,10 +148,10 @@ describe("WT201 Uplink", () => {
         assert.equal(value.data.type, "WAKE");
         assert.deepEqual(value.data.weekRecycle, []);
 
-        utils.validateSchema(value.data, planSchema, { throwError: true });
+        validateSchema(value.data, planSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -164,7 +164,7 @@ describe("WT201 Uplink", () => {
         assert.equal(value.data.type, "HOME");
         assert.deepEqual(value.data.weekRecycle, ["WED", "FRI"]);
 
-        utils.validateSchema(value.data, planSchema, { throwError: true });
+        validateSchema(value.data, planSchema, { throwError: true });
       });
 
       consume(data);

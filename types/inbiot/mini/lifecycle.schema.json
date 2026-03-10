@@ -1,0 +1,63 @@
+{
+  "$id": "https://akenza.io/inbiot/mini/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "fwVersion": {
+      "type": "string",
+      "title": "Firmware Version",
+      "description": "Device firmware version",
+      "hideFromKpis": true
+    },
+    "model": {
+      "type": "string",
+      "title": "Device Model",
+      "description": "Model identification string",
+      "hideFromKpis": true
+    },
+    "micaType": {
+      "type": "string",
+      "title": "MICA Type",
+      "description": "Internal model type nomenclature",
+      "hideFromKpis": true
+    },
+    "mac": {
+      "type": "string",
+      "title": "MAC Address",
+      "description": "Device MAC address",
+      "hideFromKpis": true
+    },
+    "resetReason": {
+      "type": "string",
+      "title": "Reset Reason",
+      "description": "Cause of the last module reset",
+      "hideFromKpis": true
+    },
+    "modbusAddress": {
+      "type": "number",
+      "title": "Modbus Address",
+      "description": "Current Modbus bus address",
+      "hideFromKpis": true
+    },
+    "modbusParity": {
+      "type": "number",
+      "title": "Modbus Parity",
+      "description": "Modbus parity configuration",
+      "hideFromKpis": true
+    },
+    "modbusBaudRate": {
+      "type": "number",
+      "title": "Modbus Baud Rate",
+      "description": "Configured baud rate for Modbus",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "fwVersion",
+    "mac",
+    "resetReason"
+  ]
+}

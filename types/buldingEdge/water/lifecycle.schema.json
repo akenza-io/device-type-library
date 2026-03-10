@@ -1,0 +1,26 @@
+{
+  "$id": "https://akenza.io/buildingEdge/water/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "status": {
+      "title": "Status",
+      "type": "string",
+      "description": "Status message",
+      "enum": [
+        "OK",
+        "DISABLED",
+        "FAULT",
+        "DOWN",
+        "ALARM",
+        "STALE",
+        "NULL",
+        "UNACKED_ALARM"
+      ],
+      "hideFromKpis": true
+    }
+  }
+}

@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Digital matter Oyster Uplink", () => {
   let positionSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/position.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/position.schema.json`)
       .then((parsedSchema) => {
         positionSchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("Digital matter Oyster Uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -38,7 +40,7 @@ describe("Digital matter Oyster Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -52,7 +54,7 @@ describe("Digital matter Oyster Uplink", () => {
         assert.equal(value.data.speedKmph, 0);
         assert.equal(value.data.batteryVoltage, 5.55);
 
-        utils.validateSchema(value.data, positionSchema, { throwError: true });
+        validateSchema(value.data, positionSchema, { throwError: true });
       });
 
       consume(data);
@@ -66,7 +68,7 @@ describe("Digital matter Oyster Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -83,7 +85,7 @@ describe("Digital matter Oyster Uplink", () => {
         assert.equal(value.data.wakeupsPerTrip, 56);
         assert.equal(value.data.uptimeWeeks, 189);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

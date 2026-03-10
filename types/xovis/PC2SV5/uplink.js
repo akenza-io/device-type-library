@@ -9,7 +9,7 @@ function consume(event) {
 
       // Ignore GROUP for now (redundant message)
       if (object === "PERSON") {
-        if (payload.events !== undefined) {
+        if (payload.events !== undefined && payload.events.length !== 0) {
           payload.events.forEach((ev) => {
             const { type } = ev;
             let topic = "default";
@@ -72,6 +72,7 @@ function consume(event) {
           if (Object.keys(attributes).length > 0) {
             const { gender } = attributes;
             let { tag } = attributes;
+            let { age } = attributes;
             let faceMask = attributes.face_mask;
             const viewDirection = attributes.view_direction;
 
@@ -79,6 +80,12 @@ function consume(event) {
               emit("sample", {
                 data: { gender },
                 topic: "gender",
+              });
+            }
+            if (age !== undefined) {
+              emit("sample", {
+                data: { age },
+                topic: "age",
               });
             }
             if (tag !== undefined) {

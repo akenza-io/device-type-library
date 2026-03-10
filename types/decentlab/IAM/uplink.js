@@ -244,10 +244,10 @@ function consume(event) {
   }
 
   if (data.pir !== 0) {
-    occupancy.occupancy = true;
+    occupancy.occupancy = 1;
     occupancy.occupied = true;
   } else {
-    occupancy.occupancy = false;
+    occupancy.occupancy = 0;
     occupancy.occupied = false;
   }
 

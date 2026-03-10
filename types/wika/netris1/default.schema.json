@@ -17,8 +17,8 @@
     },
     "pulseCount": {
       "title": "Pulse count",
-      "type": "number",
-      "description": "Pulse count"
+      "description": "Pulse count",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput/count"
     }
   }
 }

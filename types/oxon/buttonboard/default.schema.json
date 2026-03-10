@@ -13,33 +13,33 @@
     },
     "button1": {
       "title": "Button 1",
-      "type": "boolean",
-      "description": "Button 1 was pressed if true"
+      "description": "Button 1 was pressed if true",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/event"
     },
     "button2": {
       "title": "Button 2",
-      "type": "boolean",
-      "description": "Button 2 was pressed if true"
+      "description": "Button 2 was pressed if true",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/event"
     },
     "button3": {
       "title": "Button 3",
-      "type": "boolean",
-      "description": "Button 3 was pressed if true"
+      "description": "Button 3 was pressed if true",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/event"
     },
     "button4": {
       "title": "Button 4",
-      "type": "boolean",
-      "description": "Button 4 was pressed if true"
+      "description": "Button 4 was pressed if true",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/event"
     },
     "button5": {
       "title": "Button 5",
-      "type": "boolean",
-      "description": "Button 5 was pressed if true"
+      "description": "Button 5 was pressed if true",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/event"
     },
     "button6": {
       "title": "Button 6",
-      "type": "boolean",
-      "description": "Button 6 was pressed if true"
+      "description": "Button 6 was pressed if true",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/event"
     },
     "numericLongPressed": {
       "title": "Numeric Long pressed",

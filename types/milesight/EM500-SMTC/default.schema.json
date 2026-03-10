@@ -11,9 +11,8 @@
     },
     "moisture": {
       "title": "Soil moisture",
-      "unit": "%",
-      "type": "number",
-      "description": "Soil moisture"
+      "description": "Soil moisture",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
     },
     "soilConductivity": {
       "title": "Soil conductivity",
@@ -22,5 +21,9 @@
       "description": "Conductivity of the soil"
     }
   },
-  "required": ["temperature", "moisture", "soilConductivity"]
+  "required": [
+    "temperature",
+    "moisture",
+    "soilConductivity"
+  ]
 }

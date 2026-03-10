@@ -1,0 +1,42 @@
+{
+  "$id": "https://akenza.io/enless/600-062/alarm.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "alarm",
+  "title": "Alarm Status",
+  "properties": {
+    "temperatureHigh": {
+      "type": "boolean",
+      "title": "Temperature High Alarm",
+      "description": "Indicates if the temperature exceeded the high threshold"
+    },
+    "temperatureLow": {
+      "type": "boolean",
+      "title": "Temperature Low Alarm",
+      "description": "Indicates if the temperature dropped below the low threshold"
+    },
+    "humidityHigh": {
+      "type": "boolean",
+      "title": "Humidity High Alarm",
+      "description": "Indicates if the humidity exceeded the high threshold"
+    },
+    "humidityLow": {
+      "type": "boolean",
+      "title": "Humidity Low Alarm",
+      "description": "Indicates if the humidity dropped below the low threshold"
+    },
+    "motionGuard": {
+      "type": "boolean",
+      "title": "Motion Guard Alarm",
+      "description": "Indicates if motion guard was triggered"
+    }
+  },
+  "required": [
+    "temperatureHigh",
+    "temperatureLow",
+    "humidityHigh",
+    "humidityLow",
+    "motionGuard"
+  ]
+}

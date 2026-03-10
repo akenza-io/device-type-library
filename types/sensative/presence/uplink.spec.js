@@ -1,24 +1,27 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Sensative presence Uplink", () => {
   let lifecycleSchema = null;
   let alarmSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
       });
-    utils.loadSchema(`${__dirname}/alarm.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/alarm.schema.json`).then((parsedSchema) => {
       alarmSchema = parsedSchema;
     });
   });
@@ -32,7 +35,7 @@ describe("Sensative presence Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -44,7 +47,7 @@ describe("Sensative presence Uplink", () => {
         assert.equal(value.data.softwareVersion, "2378c84");
         assert.equal(value.data.watchdogCount, 0);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -60,7 +63,7 @@ describe("Sensative presence Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -68,10 +71,10 @@ describe("Sensative presence Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryLevel, 91);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -79,7 +82,7 @@ describe("Sensative presence Uplink", () => {
         assert.equal(value.topic, "alarm");
         assert.equal(value.data.doorAlarm, false);
 
-        utils.validateSchema(value.data, alarmSchema, { throwError: true });
+        validateSchema(value.data, alarmSchema, { throwError: true });
       });
 
       consume(data);
@@ -95,7 +98,7 @@ describe("Sensative presence Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -103,10 +106,10 @@ describe("Sensative presence Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryLevel, 91);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -114,7 +117,7 @@ describe("Sensative presence Uplink", () => {
         assert.equal(value.topic, "alarm");
         assert.equal(value.data.doorAlarm, true);
 
-        utils.validateSchema(value.data, alarmSchema, { throwError: true });
+        validateSchema(value.data, alarmSchema, { throwError: true });
       });
 
       consume(data);

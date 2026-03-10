@@ -1,0 +1,30 @@
+{
+  "name": "MICA PLUS - Indoor Air Quality Sensor",
+  "version": "1.8.0",
+  "manufacturer": "inBiot",
+  "url": "https://www.inbiot.es/products/mica-devices/mica-plus",
+  "description": " MICA Plus is an advanced indoor air quality monitor with LoRaWAN, Wi-Fi, NB-IoT/LTE-M and Sigfox connectivity, measuring temperature, relative humidity, CO₂, TVOC, PM1.0, PM2.5, PM4.0, PM10 and formaldehyde, and providing thermohygrometric comfort, ventilation efficiency, resistance to mold growth, virus spread resistance and indoor air quality indicators, with optional noise monitoring and seamless integration with BMS systems through Modbus and BACnet.",
+  "author": "inBiot",
+  "firmwareVersion": "V2.1.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "CO2",
+    "TVOC",
+    "PM1.0",
+    "PM2.5",
+    "PM4.0",
+    "PM10",
+    "CH2O",
+    "Sound"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration",
+    "downlink"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

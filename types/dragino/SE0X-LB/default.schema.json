@@ -1,0 +1,70 @@
+{
+  "$id": "https://akenza.io/dragino/SE0X-LB/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "soilTemperature1": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Soil temperature 1"
+    },
+    "soilTemperature2": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Soil temperature 2"
+    },
+    "soilTemperature3": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Soil temperature 3"
+    },
+    "soilTemperature4": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Soil temperature 4"
+    },
+    "soilHumidity1": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
+      "description": "The relative humidity in % of the soil",
+      "title": "Soil humidity 1"
+    },
+    "soilHumidity2": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
+      "description": "The relative humidity in % of the soil",
+      "title": "Soil humidity 2"
+    },
+    "soilHumidity3": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
+      "description": "The relative humidity in % of the soil",
+      "title": "Soil humidity 3"
+    },
+    "soilHumidity4": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
+      "description": "The relative humidity in % of the soil",
+      "title": "Soil humidity 4"
+    },
+    "soilConductivity1": {
+      "title": "Soil conductivity 1",
+      "unit": "uS/cm",
+      "type": "number",
+      "description": "Conductivity of the soil"
+    },
+    "soilConductivity2": {
+      "title": "Soil conductivity 2",
+      "unit": "uS/cm",
+      "type": "number",
+      "description": "Conductivity of the soil"
+    },
+    "soilConductivity3": {
+      "title": "Soil conductivity 3",
+      "unit": "uS/cm",
+      "type": "number",
+      "description": "Conductivity of the soil"
+    },
+    "soilConductivity4": {
+      "title": "Soil conductivity 4",
+      "unit": "uS/cm",
+      "type": "number",
+      "description": "Conductivity of the soil"
+    }
+  }
+}

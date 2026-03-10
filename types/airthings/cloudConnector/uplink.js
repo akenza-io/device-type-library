@@ -10,7 +10,11 @@ function deleteUnusedKeys(data) {
   return keysRetained;
 }
 
-// Save merge old and new datapoints
+function cToF(celsius) {
+  return Math.round(((celsius * 9 / 5) + 32) * 100) / 100;
+}
+
+// merge old and new data points
 function completeSample(data, historicData) {
   const merged = data;
 
@@ -39,10 +43,24 @@ function consume(event) {
   environment.co2 = data.co2;
   environment.co2Rating = data.ratings.co2;
   environment.tvoc = data.tvoc;
+  environment.tvocRating = data.ratings.voc;
   environment.soundLevelA = data.soundLevelA;
+  environment.light = data.light;
+  environment.lightRating = data.ratings.light;
+
+  environment.pm1 = data.pm1;
+  environment.pm1Rating = data.ratings.pm1;
+  environment.pm2_5 = data.pm25;
+  environment.pm2_5Rating = data.ratings.pm25;
+  environment.pm10 = data.pm10;
+  environment.pm10Rating = data.ratings.pm10;
+
 
   if (deleteUnusedKeys(environment)) {
     state.environment = completeSample(environment, state.environment || {});
+    if (state.environment.temperature !== undefined) {
+      state.environment.temperatureF = cToF(state.environment.temperature);
+    }
     emit("sample", { data: state.environment, topic: "environment", timestamp });
   }
 
@@ -89,7 +107,7 @@ function consume(event) {
   if (data.occupants !== undefined) {
     if (data.occupants > 0) {
       occupancy.occupied = true;
-      occupancy.occupancy = 2;
+      occupancy.occupancy = 1;
     } else {
       occupancy.occupied = false;
       occupancy.occupancy = 0;
@@ -118,11 +136,14 @@ function consume(event) {
   airly.pm1Rating = data.ratings.outdoorPm1;
   airly.pm10 = data.outdoorPm10;
   airly.pm10Rating = data.ratings.outdoorPm10;
-  airly.pm25 = data.outdoorPm25;
-  airly.pm25Rating = data.ratings.outdoorPm25;
+  airly.pm2_5 = data.outdoorPm25;
+  airly.pm2_5Rating = data.ratings.outdoorPm25;
 
   if (deleteUnusedKeys(airly)) {
     state.airly = completeSample(airly, state.airly || {});
+    if (state.airly.temperature !== undefined) {
+      state.airly.temperatureF = cToF(state.airly.temperature);
+    }
     emit("sample", { data: state.airly, topic: "airly", timestamp });
   }
 

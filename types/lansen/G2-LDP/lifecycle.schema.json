@@ -19,10 +19,7 @@
       "description": "Runtime of the device in years since the last reset"
     },
     "batteryVoltage": {
-      "title": "Battery voltage",
-      "unit": "V",
-      "type": "number",
-      "description": "Battery voltage"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
     },
     "lowBattery": {
       "title": "Low battery detected",

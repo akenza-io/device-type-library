@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/netvox/r718wa/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "waterLeak": {
+      "title": "Water leak",
+      "description": "Indicates if a water leak is detected",
+      "type": "boolean",
+      "hideFromKpis": false
+    }
+  },
+  "required": [
+    "waterLeak"
+  ]
+}

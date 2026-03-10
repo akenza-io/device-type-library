@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Yosensi YO People Counter uplink", () => {
   let batteryVoltageSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/battery_voltage.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/battery_voltage.schema.json`)
       .then((parsedSchema) => {
         batteryVoltageSchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("Yosensi YO People Counter uplink", () => {
 
   let temperatureSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/temperature.schema.json`)
+    loadSchema(`${__dirname}/temperature.schema.json`)
       .then((parsedSchema) => {
         temperatureSchema = parsedSchema;
         done();
@@ -31,8 +33,7 @@ describe("Yosensi YO People Counter uplink", () => {
 
   let humiditySchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/humidity.schema.json`)
+    loadSchema(`${__dirname}/humidity.schema.json`)
       .then((parsedSchema) => {
         humiditySchema = parsedSchema;
         done();
@@ -41,8 +42,7 @@ describe("Yosensi YO People Counter uplink", () => {
 
   let leftToRightSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/left_to_right.schema.json`)
+    loadSchema(`${__dirname}/left_to_right.schema.json`)
       .then((parsedSchema) => {
         leftToRightSchema = parsedSchema;
         done();
@@ -51,8 +51,7 @@ describe("Yosensi YO People Counter uplink", () => {
 
   let rightToLeftSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/right_to_left.schema.json`)
+    loadSchema(`${__dirname}/right_to_left.schema.json`)
       .then((parsedSchema) => {
         rightToLeftSchema = parsedSchema;
         done();
@@ -61,8 +60,7 @@ describe("Yosensi YO People Counter uplink", () => {
 
   let sumLeftToRightSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/sum_left_to_right.schema.json`)
+    loadSchema(`${__dirname}/sum_left_to_right.schema.json`)
       .then((parsedSchema) => {
         sumLeftToRightSchema = parsedSchema;
         done();
@@ -71,8 +69,7 @@ describe("Yosensi YO People Counter uplink", () => {
 
   let sumRightToLeftSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/sum_right_to_left.schema.json`)
+    loadSchema(`${__dirname}/sum_right_to_left.schema.json`)
       .then((parsedSchema) => {
         sumRightToLeftSchema = parsedSchema;
         done();
@@ -81,8 +78,7 @@ describe("Yosensi YO People Counter uplink", () => {
 
   let differenceCountSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/difference_count.schema.json`)
+    loadSchema(`${__dirname}/difference_count.schema.json`)
       .then((parsedSchema) => {
         differenceCountSchema = parsedSchema;
         done();
@@ -98,7 +94,7 @@ describe("Yosensi YO People Counter uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -106,12 +102,12 @@ describe("Yosensi YO People Counter uplink", () => {
         assert.equal(value.topic, "battery_voltage");
         assert.equal(value.data.batteryVoltage, 5274);
 
-        utils.validateSchema(value.data, batteryVoltageSchema, {
+        validateSchema(value.data, batteryVoltageSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -119,12 +115,12 @@ describe("Yosensi YO People Counter uplink", () => {
         assert.equal(value.topic, "temperature");
         assert.equal(value.data.temperature, 24.8);
 
-        utils.validateSchema(value.data, temperatureSchema, {
+        validateSchema(value.data, temperatureSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -132,7 +128,7 @@ describe("Yosensi YO People Counter uplink", () => {
         assert.equal(value.topic, "humidity");
         assert.equal(value.data.humidity, 22);
 
-        utils.validateSchema(value.data, humiditySchema, { throwError: true });
+        validateSchema(value.data, humiditySchema, { throwError: true });
       });
 
       consume(data);
@@ -147,7 +143,7 @@ describe("Yosensi YO People Counter uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -155,12 +151,12 @@ describe("Yosensi YO People Counter uplink", () => {
         assert.equal(value.topic, "left_to_right");
         assert.equal(value.data.leftToRight, 8);
 
-        utils.validateSchema(value.data, leftToRightSchema, {
+        validateSchema(value.data, leftToRightSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -168,12 +164,12 @@ describe("Yosensi YO People Counter uplink", () => {
         assert.equal(value.topic, "right_to_left");
         assert.equal(value.data.rightToLeft, 10);
 
-        utils.validateSchema(value.data, rightToLeftSchema, {
+        validateSchema(value.data, rightToLeftSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -181,12 +177,12 @@ describe("Yosensi YO People Counter uplink", () => {
         assert.equal(value.topic, "sum_left_to_right");
         assert.equal(value.data.sumLeftToRight, 38);
 
-        utils.validateSchema(value.data, sumLeftToRightSchema, {
+        validateSchema(value.data, sumLeftToRightSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -194,12 +190,12 @@ describe("Yosensi YO People Counter uplink", () => {
         assert.equal(value.topic, "sum_right_to_left");
         assert.equal(value.data.sumRightToLeft, 77);
 
-        utils.validateSchema(value.data, sumRightToLeftSchema, {
+        validateSchema(value.data, sumRightToLeftSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -207,7 +203,7 @@ describe("Yosensi YO People Counter uplink", () => {
         assert.equal(value.topic, "difference_count");
         assert.equal(value.data.differenceCount, -39);
 
-        utils.validateSchema(value.data, differenceCountSchema, {
+        validateSchema(value.data, differenceCountSchema, {
           throwError: true,
         });
       });

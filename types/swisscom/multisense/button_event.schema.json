@@ -9,8 +9,9 @@
     "buttonEvent": {
       "title": "Button event",
       "description": "Button got pressed",
-      "type": "number",
-      "hideFromKpis": true
+      "hideFromKpis": true,
+      "maximum": 1,
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/count"
     }
   },
   "required": ["buttonEvent"]

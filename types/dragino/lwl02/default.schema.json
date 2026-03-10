@@ -25,7 +25,7 @@
       "title": "Leak duration",
       "description": "Leak duration in minutes",
       "type": "integer",
-      "unit": "m"
+      "unit": "min"
     }
   }
 }

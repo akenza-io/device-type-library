@@ -21,6 +21,24 @@
         "type": "integer",
         "minimum": 0,
         "maximum": 2
+      },
+      "percentFree": {
+        "measurementType": "akenza/spaces/occupancy/percentFree",
+        "title": "Percent free",
+        "description": "Percentage of currently available free space in the area",
+        "type": "number",
+        "unit": "%",
+        "minimum": 0,
+        "maximum": 100
+      },
+      "percentOccupied": {
+        "measurementType": "akenza/spaces/occupancy/percentOccupied",
+        "title": "Percent occupied",
+        "description": "Percentage of space currently used in the area",
+        "type": "number",
+        "unit": "%",
+        "minimum": 0,
+        "maximum": 100
       }
     },
     "minutesSinceLastOccupied": {
@@ -29,7 +47,7 @@
         "title": "Minutes since last occupied",
         "description": "Minutes since last occupied value was registered",
         "type": "integer",
-        "unit": "m"
+        "unit": "min"
       }
     },
     "motion": {
@@ -68,6 +86,22 @@
         "description": "People in the area",
         "type": "integer",
         "unit": "people",
+        "minimum": 0
+      }
+    },
+    "usage": {
+      "count": {
+        "measurementType": "akenza/spaces/usage/count",
+        "title": "Usage count",
+        "description": "Usage count of spaces",
+        "type": "integer",
+        "minimum": 0
+      },
+      "doorClosings": {
+        "measurementType": "akenza/spaces/usage/doorClosings",
+        "title": "Door closing",
+        "description": "Each door opening and closing counts as one door closing",
+        "type": "integer",
         "minimum": 0
       }
     }

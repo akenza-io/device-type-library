@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Haltian Thingsee Environment Sensor Uplink", () => {
   let environmentSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/environment.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/environment.schema.json`)
       .then((parsedSchema) => {
         environmentSchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("Haltian Thingsee Environment Sensor Uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -31,8 +33,7 @@ describe("Haltian Thingsee Environment Sensor Uplink", () => {
 
   let orientationSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/orientation.schema.json`)
+    loadSchema(`${__dirname}/orientation.schema.json`)
       .then((parsedSchema) => {
         orientationSchema = parsedSchema;
         done();
@@ -52,7 +53,7 @@ describe("Haltian Thingsee Environment Sensor Uplink", () => {
           airp: 97021.277,
         },
       };
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -60,12 +61,12 @@ describe("Haltian Thingsee Environment Sensor Uplink", () => {
         assert.equal(value.topic, "environment");
         assert.equal(value.data.pressure, 97021.277);
 
-        utils.validateSchema(value.data, environmentSchema, {
+        validateSchema(value.data, environmentSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -73,7 +74,7 @@ describe("Haltian Thingsee Environment Sensor Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.reason, "CHANGE");
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -93,7 +94,7 @@ describe("Haltian Thingsee Environment Sensor Uplink", () => {
           accx: 307,
         },
       };
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -103,12 +104,12 @@ describe("Haltian Thingsee Environment Sensor Uplink", () => {
         assert.equal(value.data.accY, 37);
         assert.equal(value.data.accZ, 950);
 
-        utils.validateSchema(value.data, orientationSchema, {
+        validateSchema(value.data, orientationSchema, {
           throwError: true,
         });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -116,7 +117,7 @@ describe("Haltian Thingsee Environment Sensor Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.reason, "TIME");
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
