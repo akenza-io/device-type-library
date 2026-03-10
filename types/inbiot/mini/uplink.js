@@ -1,5 +1,5 @@
 function consume(event) {
-  var payloadHex = event.data.payloadHex;
+  var { payloadHex } = event.data;
   var bytes = [];
   for (var i = 0; i < payloadHex.length; i += 2) {
     bytes.push(parseInt(payloadHex.substr(i, 2), 16));
@@ -71,7 +71,7 @@ function InbiotDeviceDecode(bytes) {
           // CH2O
           decoded.ch2o = getUint16(bytes, 7, 8);
           // PM1.0
-          decoded.pm1_0 = getUint16(bytes, 11, 12);
+          decoded.pm1 = getUint16(bytes, 11, 12);
           // PM4
           decoded.pm4 = getUint16(bytes, 15, 16);
         }
@@ -112,9 +112,9 @@ function InbiotDeviceDecode(bytes) {
         // NOISE
         if (bytes[37] !== undefined) {
           if (bytes[37] === 0xff) {
-            decoded.dBStatus = "Preheating";
+            decoded.noiseStatus = "Preheating";
           } else {
-            decoded.dB = bytes[37];
+            decoded.noise = bytes[37];
           }
         }
         // MESSAGE COUNTER

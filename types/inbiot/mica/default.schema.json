@@ -13,24 +13,16 @@
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
     },
     "co2": {
-      "type": "number",
-      "title": "CO2",
-      "description": "CO2 concentration in ppm"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm"
     },
     "tvoc": {
-      "type": "number",
-      "title": "TVOC",
-      "description": "Total Volatile Organic Compounds in ppb"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/tvoc/ppb"
     },
     "pm2_5": {
-      "type": "number",
-      "title": "PM2.5",
-      "description": "Particulate Matter 2.5 in ug/m3"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pm2_5/mcgm3"
     },
     "pm10": {
-      "type": "number",
-      "title": "PM10",
-      "description": "Particulate Matter 10 in ug/m3"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pm10/mcgm3"
     },
     "vIndex": {
       "type": "number",
@@ -62,12 +54,10 @@
       "title": "Mold Index Status",
       "description": "Status text for mold index (e.g. Calculating)"
     },
-    "dB": {
-      "type": "number",
-      "title": "Noise Level dB",
-      "description": "Ambient noise level in decibels"
+    "noise": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/soundLevel/dbspl"
     },
-    "dBStatus": {
+    "noiseStatus": {
       "type": "string",
       "title": "Noise Level dB Status",
       "description": "Status text for noise level (e.g. Preheating)"

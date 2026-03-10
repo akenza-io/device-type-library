@@ -15,8 +15,9 @@
       "type": "number",
       "title": "Time To Send (Periodicity in minutes)",
       "description": "Configure transmission periodicity",
-      "minimum": 0,
-      "maximum": 60
+      "minimum": 5,
+      "maximum": 60,
+      "unit": "min"
     },
     "ventilation": {
       "type": "number",
@@ -47,7 +48,8 @@
       "title": "Data Rate (0-7)",
       "description": "Set base Data Rate",
       "minimum": 0,
-      "maximum": 7
+      "maximum": 7,
+      "unit": "SF"
     },
     "sendRetransmissions": {
       "type": "number",
@@ -61,7 +63,8 @@
       "title": "TX Power (0-15)",
       "description": "Configure transmission power index",
       "minimum": 0,
-      "maximum": 15
+      "maximum": 15,
+      "unit": "dBm"
     },
     "confirmationEnable": {
       "type": "boolean",

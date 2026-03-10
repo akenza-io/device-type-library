@@ -9,42 +9,50 @@
     "fwVersion": {
       "type": "string",
       "title": "Firmware Version",
-      "description": "Device firmware version"
+      "description": "Device firmware version",
+      "hideFromKpis": true
     },
     "model": {
       "type": "string",
       "title": "Device Model",
-      "description": "Model identification string"
+      "description": "Model identification string",
+      "hideFromKpis": true
     },
     "micaType": {
       "type": "string",
       "title": "MICA Type",
-      "description": "Internal model type nomenclature"
+      "description": "Internal model type nomenclature",
+      "hideFromKpis": true
     },
     "mac": {
       "type": "string",
       "title": "MAC Address",
-      "description": "Device MAC address"
+      "description": "Device MAC address",
+      "hideFromKpis": true
     },
     "resetReason": {
       "type": "string",
       "title": "Reset Reason",
-      "description": "Cause of the last module reset"
+      "description": "Cause of the last module reset",
+      "hideFromKpis": true
     },
     "modbusAddress": {
       "type": "number",
       "title": "Modbus Address",
-      "description": "Current Modbus bus address"
+      "description": "Current Modbus bus address",
+      "hideFromKpis": true
     },
     "modbusParity": {
       "type": "number",
       "title": "Modbus Parity",
-      "description": "Modbus parity configuration"
+      "description": "Modbus parity configuration",
+      "hideFromKpis": true
     },
     "modbusBaudRate": {
       "type": "number",
       "title": "Modbus Baud Rate",
-      "description": "Configured baud rate for Modbus"
+      "description": "Configured baud rate for Modbus",
+      "hideFromKpis": true
     }
   },
   "required": [

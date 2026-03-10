@@ -44,7 +44,7 @@ describe("inBiot PLUS Uplink", () => {
         assert.equal(value.data.pm2_5, 1);
         assert.equal(value.data.pm10, 1);
         assert.equal(value.data.ch2o, 2);
-        assert.equal(value.data.pm1_0, 1);
+        assert.equal(value.data.pm1, 1);
         assert.equal(value.data.pm4, 1);
         assert.isUndefined(value.data.o3);
         assert.isUndefined(value.data.no2);
