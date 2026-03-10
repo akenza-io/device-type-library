@@ -2,6 +2,73 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.90.0] - 2026-03-10
+
+### Added
+
+- inBiot - MICA
+- inBiot - MICA MINI
+- inBiot - MICA PLUS
+- inBiot - MICA WELL
+
+# [1.89.0] - 2026-02-26
+
+### Added
+
+- Monnit - Wireless current monitoring meter. Available as 20, 150, and 500-amp industrial-grade devices.
+
+# [1.88.2] - 2026-02-25
+
+### Changed
+
+- Enhanced the Disruptive Technologies Wireless Contact Sensor to allow washroom usage output
+
+# [1.88.1] - 2026-02-12
+
+### Changed
+
+- Enhanced the Disruptive Technologies Wireless Contact Sensor to also output door counts
+
+# [1.88.0] - 2026-02-03
+
+### Added
+
+- Episensor - Episensor
+
+### Changed
+
+- Changed cTof function so it rounds the farenheit values up to 2 decimals
+
+# [1.87.0] - 2026-01-28
+
+### Added
+
+- Hilscher - IO-Link Master
+
+# [1.87.1] - 2026-01-30
+
+### Changed
+
+- Changed image size and added IO-Link to the sensor field.
+
+# [1.87.0] - 2026-01-28
+
+### Added
+
+- Hilscher - IO-Link Master
+
+# [1.86.0] - 2026-01-07
+
+### Added
+
+- Dragino - DDS04-LB
+
+# [1.85.0] - 2026-01-6
+
+### Added
+
+- AirThings - Rel. Light
+
 # [1.84.0] - 2025-12-8
 
 ### Added

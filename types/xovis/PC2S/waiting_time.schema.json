@@ -10,6 +10,7 @@
       "title": "Average waiting time",
       "description": "Average waiting time in Minutes",
       "type": "integer",
+      "unit": "min",
       "minimum": 0,
       "maximum": 65535
     }

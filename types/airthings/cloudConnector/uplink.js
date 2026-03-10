@@ -11,10 +11,10 @@ function deleteUnusedKeys(data) {
 }
 
 function cToF(celsius) {
-  return (celsius * 9) / 5 + 32;
+  return Math.round(((celsius * 9 / 5) + 32) * 100) / 100;
 }
 
-// Save merge old and new datapoints
+// merge old and new data points
 function completeSample(data, historicData) {
   const merged = data;
 
@@ -45,6 +45,8 @@ function consume(event) {
   environment.tvoc = data.tvoc;
   environment.tvocRating = data.ratings.voc;
   environment.soundLevelA = data.soundLevelA;
+  environment.light = data.light;
+  environment.lightRating = data.ratings.light;
 
   environment.pm1 = data.pm1;
   environment.pm1Rating = data.ratings.pm1;

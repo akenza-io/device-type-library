@@ -9,11 +9,13 @@
     "dwelltime": {
       "title": "Dwelltime",
       "description": "Dwelltime of people in zone in minutes",
-      "unit": "m",
+      "unit": "min",
       "type": "integer",
       "minimum": 0,
       "maximum": 65535
     }
   },
-  "required": ["dwelltime"]
+  "required": [
+    "dwelltime"
+  ]
 }

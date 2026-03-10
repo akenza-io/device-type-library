@@ -26,6 +26,9 @@
     "tvoc": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/tvoc/ppb"
     },
+    "light": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/brightness/percent"
+    },
     "soundLevelA": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/soundLevel/dbspl"
     },
@@ -47,7 +50,13 @@
     "tvocRating": {
       "title": "TVOC rating",
       "type": "string",
-      "description": "Temperature rating",
+      "description": "TVOC rating",
+      "hideFromKpis": true
+    },
+    "lightRating": {
+      "title": "Light rating",
+      "type": "string",
+      "description": "Rel. Light rating",
       "hideFromKpis": true
     },
     "pressureRating": {

@@ -1,0 +1,202 @@
+function consume(event) {
+  var { payloadHex } = event.data;
+  var bytes = [];
+  for (var i = 0; i < payloadHex.length; i += 2) {
+    bytes.push(parseInt(payloadHex.substr(i, 2), 16));
+  }
+
+  var decoded = InbiotDeviceDecode(bytes);
+
+  // Emit to the corresponding topic based on the packet type (first byte)
+  if (bytes[0] === 0) {
+    emit("sample", { data: decoded, topic: "configuration" });
+  } else if (bytes[0] === 1) {
+    emit("sample", { data: decoded, topic: "default" });
+  } else if (bytes[0] === 2) {
+    emit("sample", { data: decoded, topic: "lifecycle" });
+  }
+}
+
+function InbiotDeviceDecode(bytes) {
+  var decoded = {};
+  switch (bytes[0]) {
+    case 0:
+      decoded.timeToSend = bytes[1];
+      decoded.ventilation = bytes[2];
+      decoded.ledStatus = !!bytes[3];
+      decoded.useWifi = !!bytes[4];
+      decoded.lorawanRegion = getLoRaWANRegion(bytes[5]);
+      decoded.lorawanChannelMask = bytes[6];
+      decoded.ledConfiguration = bytes[7];
+      decoded.touchEnable = !!bytes[8];
+      break;
+    case 1:
+      decoded.type = customTextDecoder(bytes, 27, 31);
+      if (decoded.type === "\u0000\u0000\u0000\u0000") {
+        decoded.type = "NULL";
+      }
+      var typeProperties = {
+        MINI: true,
+        MICA: true,
+        PLUS: true,
+        WELL: true,
+        NULL: true
+      };
+      if (typeProperties[decoded.type]) {
+        decoded.temperature = getUint16(bytes, 1, 2) / 10.0;
+        decoded.humidity = getUint16(bytes, 3, 4) / 10.0;
+        decoded.co2 = getUint16(bytes, 5, 6);
+
+        if (decoded.type !== "MINI") {
+          decoded.tvoc = getUint16(bytes, 9, 10);
+          decoded.pm2_5 = getUint16(bytes, 13, 14);
+          decoded.pm10 = getUint16(bytes, 17, 18);
+        }
+        if (["PLUS", "WELL", "NULL"].indexOf(decoded.type) > -1) {
+          var tempCh2o = getUint16(bytes, 7, 8);
+          if (tempCh2o === 0xffff) {
+            decoded.ch2oStatus = "Preheating";
+          } else {
+            decoded.ch2o = tempCh2o;
+          }
+          decoded.pm1 = getUint16(bytes, 11, 12);
+          decoded.pm4 = getUint16(bytes, 15, 16);
+        }
+        if (["WELL", "NULL"].indexOf(decoded.type) > -1) {
+          decoded.o3 = getUint16(bytes, 19, 20);
+          if (decoded.o3 === 0xffff) {
+            decoded.o3 = "Preheating";
+          }
+          decoded.no2 = getUint16(bytes, 21, 22);
+          if (decoded.no2 === 0xffff) {
+            decoded.no2 = "Preheating";
+          }
+          decoded.co = getUint16(bytes, 23, 24);
+          if (decoded.co !== 0xffff) {
+            decoded.co /= 10.0;
+          } else {
+            decoded.co = "Preheating";
+          }
+        }
+        decoded.vIndex = bytes[32];
+        decoded.tIndex = bytes[33];
+        decoded.virusIndex = bytes[34];
+        decoded.iaqIndex = bytes[35];
+        var tempMoldIndex = bytes[36];
+        if (tempMoldIndex === 0xff) {
+          decoded.moldIndexStatus = "Calculating";
+        } else {
+          decoded.moldIndex = tempMoldIndex;
+        }
+        if (bytes[37] !== undefined) {
+          if (bytes[37] === 0xff) {
+            decoded.noiseStatus = "Preheating";
+          } else {
+            decoded.noise = bytes[37];
+          }
+        }
+        decoded.counter = getUint16(bytes, 25, 26);
+      }
+      break;
+    case 2:
+      decoded.fwVersion = getVersion(bytes, 1);
+      decoded.model = customTextDecoder(bytes, 4, 21);
+      decoded.micaType = customTextDecoder(bytes, 21, 30);
+      decoded.mac = getMac(bytes, 30);
+      decoded.resetReason = getResetReason(bytes[42]);
+      decoded.modbusAddress = bytes[36];
+      decoded.modbusParity = bytes[37];
+      decoded.modbusBaudRate = getUint32(bytes, 38);
+      break;
+    default:
+  }
+  return decoded;
+}
+
+function customTextDecoder(bytes, start, end) {
+  var result = "";
+  for (var i = start; i < end; i++) {
+    if (bytes[i] === 0x00) {
+      break;
+    }
+    result += String.fromCharCode(bytes[i]);
+  }
+  return result;
+}
+
+function getUint16(bytes, first, second) {
+  return (bytes[first] << 8) | bytes[second];
+}
+
+function getUint32(bytes, start) {
+  return (
+    (bytes[start] << 24) |
+    (bytes[start + 1] << 16) |
+    (bytes[start + 2] << 8) |
+    bytes[start + 3]
+  );
+}
+
+function padStartCustom(text, targetLength, padChar) {
+  text = String(text);
+  while (text.length < targetLength) {
+    text = padChar + text;
+  }
+  return text;
+}
+
+function getMac(bytes, start) {
+  var macBytes = bytes.slice(start, start + 6);
+  var macString = "";
+  for (var i = 0; i < macBytes.length; i++) {
+    var hex = padStartCustom(macBytes[i].toString(16), 2, "0");
+    macString += hex;
+    if (i < macBytes.length - 1) {
+      macString += ":";
+    }
+  }
+  return macString.toUpperCase();
+}
+
+function getVersion(bytes, start) {
+  if (bytes[start + 1] !== 0x2e) {
+    var minor = bytes[start + 2];
+    return bytes[start] + "." + minor;
+  } else {
+    return customTextDecoder(bytes, start, 4);
+  }
+}
+
+function getLoRaWANRegion(region) {
+  var regions = {
+    0: "AS923",
+    10: "AS923-JP",
+    1: "AU915",
+    2: "CN470",
+    3: "CN779",
+    4: "EU433",
+    5: "EU868",
+    6: "KR920",
+    7: "IN865",
+    8: "US915",
+    9: "RU864"
+  };
+  return regions[region] || "UNKNOWN";
+}
+
+function getResetReason(reason) {
+  var reasons = {
+    0: "0 Reset reason cannot be determined",
+    1: "1 Reset due to power-on event",
+    2: "2 Reset by external pin",
+    3: "3 Software reset via esp_restart",
+    4: "4 Software reset due to exception/panic",
+    5: "5 Reset due to interrupt watchdog",
+    6: "6 Reset due to task watchdog",
+    7: "7 Reset due to other watchdogs",
+    8: "8 Reset after exiting deep sleep mode",
+    9: "9 Brownout reset",
+    10: "10 Reset over SDIO"
+  };
+  return reasons[reason] || "UNKNOWN (" + reason + ")";
+}

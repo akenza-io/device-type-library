@@ -14,6 +14,21 @@
         "OPEN",
         "CLOSED"
       ]
+    },
+    "hasContact": {
+      "title": "Has Contact",
+      "description": "Equals true if the door is CLOSED.",
+      "type": "boolean"
+    },
+    "relativeCount": {
+      "title": "Relative count",
+      "description": "One door cycle counts as one relativeCount.",
+      "type": "integer"
+    },
+    "count": {
+      "title": "Absolute event count",
+      "description": "Absolute event count",
+      "type": "integer"
     }
   },
   "required": [

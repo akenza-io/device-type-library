@@ -15,7 +15,7 @@
     "startTimeMinutes": {
       "title": "Start time minutes",
       "description": "Start time minutes",
-      "unit": "m",
+      "unit": "min",
       "type": "number",
       "hideFromKpis": true
     },
@@ -29,14 +29,14 @@
     "measureIntervalMinutes": {
       "title": "Measure interval minutes",
       "description": "Measure interval minutes",
-      "unit": "m",
+      "unit": "min",
       "type": "number",
       "hideFromKpis": true
     },
     "transmissionIntervalMinutes": {
       "title": "Transmission interval minutes",
       "description": "Transmission interval minutes",
-      "unit": "m",
+      "unit": "min",
       "type": "number",
       "hideFromKpis": true
     },
