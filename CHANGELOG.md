@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.90.0] - 2026-03-10
+
+### Added
+
+- inBiot - MICA
+- inBiot - MICA MINI
+- inBiot - MICA PLUS
+- inBiot - MICA WELL
+
 # [1.89.0] - 2026-02-26
 
 ### Added

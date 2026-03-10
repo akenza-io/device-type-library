@@ -9,42 +9,50 @@
     "timeToSend": {
       "type": "number",
       "title": "Time between metrics in minutes",
-      "description": "Periodicity for data transmission"
+      "description": "Periodicity for data transmission",
+      "hideFromKpis": true
     },
     "ventilation": {
       "type": "number",
       "title": "Ventilation Type",
-      "description": "CO2 algorithm calibration type"
+      "description": "CO2 algorithm calibration type",
+      "hideFromKpis": true
     },
     "ledStatus": {
       "type": "boolean",
       "title": "LED Status",
-      "description": "Indicator if LEDs are active"
+      "description": "Indicator if LEDs are active",
+      "hideFromKpis": true
     },
     "useWifi": {
       "type": "boolean",
       "title": "Use Wifi Instead",
-      "description": "Toggle to prioritize Wi-Fi"
+      "description": "Toggle to prioritize Wi-Fi",
+      "hideFromKpis": true
     },
     "lorawanRegion": {
       "type": "string",
       "title": "LoRaWAN Region",
-      "description": "Operating region identifier"
+      "description": "Operating region identifier",
+      "hideFromKpis": true
     },
     "lorawanChannelMask": {
       "type": "number",
       "title": "LoRaWAN Channel Mask",
-      "description": "Channel mask configuration"
+      "description": "Channel mask configuration",
+      "hideFromKpis": true
     },
     "ledConfiguration": {
       "type": "number",
       "title": "LED Configuration",
-      "description": "Indicator of LED configuration behavior"
+      "description": "Indicator of LED configuration behavior",
+      "hideFromKpis": true
     },
     "touchEnable": {
       "type": "boolean",
       "title": "Touch Enable",
-      "description": "Toggle touch button functionality"
+      "description": "Toggle touch button functionality",
+      "hideFromKpis": true
     }
   },
   "required": [
