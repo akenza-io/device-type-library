@@ -48,7 +48,7 @@ describe("inBiot MICA Uplink", () => {
         assert.equal(value.data.virusIndex, 49);
         assert.equal(value.data.iaqIndex, 79);
         assert.equal(value.data.moldIndexStatus, "Calculating");
-        assert.equal(value.data.dBStatus, "Preheating");
+        assert.equal(value.data.noiseStatus, "Preheating");
         assert.equal(value.data.counter, 2);
 
         validateSchema(value.data, defaultSchema, { throwError: true });
