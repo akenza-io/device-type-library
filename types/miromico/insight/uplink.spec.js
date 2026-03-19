@@ -1,5 +1,3 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
@@ -15,16 +13,15 @@ describe("Miromico insight Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/co2.schema.json`).then((parsedSchema) => {
-      co2Schema = parsedSchema;
+    loadSchema(`${__dirname}/temperature.schema.json`).then((parsedSchema) => {
+      temperatureSchema = parsedSchema;
       done();
     });
   });
 
   let humiditySchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/humidity.schema.json`)
+    loadSchema(`${__dirname}/humidity.schema.json`)
       .then((parsedSchema) => {
         humiditySchema = parsedSchema;
         done();
@@ -33,8 +30,7 @@ describe("Miromico insight Uplink", () => {
 
   let co2Schema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/co2.schema.json`)
+    loadSchema(`${__dirname}/co2.schema.json`)
       .then((parsedSchema) => {
         co2Schema = parsedSchema;
         done();
@@ -43,8 +39,7 @@ describe("Miromico insight Uplink", () => {
 
   let iaqSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/iaq.schema.json`)
+    loadSchema(`${__dirname}/iaq.schema.json`)
       .then((parsedSchema) => {
         iaqSchema = parsedSchema;
         done();
@@ -53,8 +48,7 @@ describe("Miromico insight Uplink", () => {
 
   let pressureSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/pressure.schema.json`)
+    loadSchema(`${__dirname}/pressure.schema.json`)
       .then((parsedSchema) => {
         pressureSchema = parsedSchema;
         done();
@@ -81,7 +75,7 @@ describe("Miromico insight Uplink", () => {
 
   let doorSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/temperature.schema.json`)
+    loadSchema(`${__dirname}/door.schema.json`)
       .then((parsedSchema) => {
         doorSchema = parsedSchema;
         done();
@@ -106,10 +100,10 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "temperature");
         assert.equal(value.data.temperature, 24.53);
 
-        utils.validateSchema(value.data, temperatureSchema, { throwError: true });
+        validateSchema(value.data, temperatureSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -117,10 +111,10 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "humidity");
         assert.equal(value.data.humidity, 40.5);
 
-        utils.validateSchema(value.data, humiditySchema, { throwError: true });
+        validateSchema(value.data, humiditySchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -128,10 +122,10 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "co2");
         assert.equal(value.data.co2, 643);
 
-        utils.validateSchema(value.data, co2Schema, { throwError: true });
+        validateSchema(value.data, co2Schema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -139,10 +133,10 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "iaq");
         assert.equal(value.data.iaq, 201);
 
-        utils.validateSchema(value.data, iaqSchema, { throwError: true });
+        validateSchema(value.data, iaqSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -150,10 +144,10 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "pressure");
         assert.equal(value.data.pressure, 96234);
 
-        utils.validateSchema(value.data, pressureSchema, { throwError: true });
+        validateSchema(value.data, pressureSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
 
@@ -163,7 +157,7 @@ describe("Miromico insight Uplink", () => {
         // assert.equal(value.lastPressureSample, new Date().timestamp);
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -171,7 +165,7 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryVoltage, 3.57);
 
-        utils.validateSchema(value.data, lifecycleSchema, {
+        validateSchema(value.data, lifecycleSchema, {
           throwError: true,
         });
       });
@@ -194,7 +188,7 @@ describe("Miromico insight Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -202,7 +196,18 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "temperature");
         assert.equal(value.data.temperature, 24.53);
 
-        utils.validateSchema(value.data, settingsSchema, { throwError: true });
+        validateSchema(value.data, temperatureSchema, { throwError: true });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "temperature");
+        assert.equal(value.data.temperature, 25.34);
+
+        validateSchema(value.data, temperatureSchema, { throwError: true }); // Now -40 min
       });
 
       expectEmits((type, value) => {
@@ -213,10 +218,10 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "temperature");
         assert.equal(value.data.temperature, 25.05);
 
-        utils.validateSchema(value.data, temperatureSchema, { throwError: true }); // Now -40 min
+        validateSchema(value.data, temperatureSchema, { throwError: true }); // Now -40 min
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -224,10 +229,10 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "humidity");
         assert.equal(value.data.humidity, 40.5);
 
-        utils.validateSchema(value.data, humiditySchema, { throwError: true }); // Now
+        validateSchema(value.data, humiditySchema, { throwError: true }); // Now
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -235,10 +240,10 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "humidity");
         assert.equal(value.data.humidity, 50.5);
 
-        utils.validateSchema(value.data, humiditySchema, { throwError: true }); // Now -20 min
+        validateSchema(value.data, humiditySchema, { throwError: true }); // Now -20 min
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -246,10 +251,10 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "humidity");
         assert.equal(value.data.humidity, 45);
 
-        utils.validateSchema(value.data, humiditySchema, { throwError: true }); // Now -40 min
+        validateSchema(value.data, humiditySchema, { throwError: true }); // Now -40 min
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -257,10 +262,10 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "co2");
         assert.equal(value.data.co2, 643);
 
-        utils.validateSchema(value.data, co2Schema, { throwError: true }); // Now
+        validateSchema(value.data, co2Schema, { throwError: true }); // Now
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -268,10 +273,10 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "co2");
         assert.equal(value.data.co2, 667);
 
-        utils.validateSchema(value.data, co2Schema, { throwError: true }); // Now -20 min
+        validateSchema(value.data, co2Schema, { throwError: true }); // Now -20 min
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -279,10 +284,10 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "co2");
         assert.equal(value.data.co2, 705);
 
-        utils.validateSchema(value.data, co2Schema, { throwError: true }); // Now -40 min
+        validateSchema(value.data, co2Schema, { throwError: true }); // Now -40 min
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -290,10 +295,10 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "iaq");
         assert.equal(value.data.iaq, 201);
 
-        utils.validateSchema(value.data, iaqSchema, { throwError: true }); // Now
+        validateSchema(value.data, iaqSchema, { throwError: true }); // Now
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -301,10 +306,10 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "iaq");
         assert.equal(value.data.iaq, 245);
 
-        utils.validateSchema(value.data, iaqSchema, { throwError: true }); // Now -20 min
+        validateSchema(value.data, iaqSchema, { throwError: true }); // Now -20 min
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -312,10 +317,10 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "iaq");
         assert.equal(value.data.iaq, 150);
 
-        utils.validateSchema(value.data, iaqSchema, { throwError: true }); // Now -40 min
+        validateSchema(value.data, iaqSchema, { throwError: true }); // Now -40 min
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -323,10 +328,10 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "pressure");
         assert.equal(value.data.pressure, 96234);
 
-        utils.validateSchema(value.data, pressureSchema, { throwError: true }); // Now 
+        validateSchema(value.data, pressureSchema, { throwError: true }); // Now 
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -334,10 +339,10 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "pressure");
         assert.equal(value.data.pressure, 96115);
 
-        utils.validateSchema(value.data, pressureSchema, { throwError: true }); // Now -20 min
+        validateSchema(value.data, pressureSchema, { throwError: true }); // Now -20 min
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -345,10 +350,10 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "pressure");
         assert.equal(value.data.pressure, 95623);
 
-        utils.validateSchema(value.data, pressureSchema, { throwError: true }); // Now -40 min
+        validateSchema(value.data, pressureSchema, { throwError: true }); // Now -40 min
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
 
@@ -358,7 +363,7 @@ describe("Miromico insight Uplink", () => {
         // assert.equal(value.lastPressureSample, new Date().timestamp);
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -366,7 +371,7 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryVoltage, 3.57);
 
-        utils.validateSchema(value.data, lifecycleSchema, {
+        validateSchema(value.data, lifecycleSchema, {
           throwError: true,
         });
       });
@@ -383,12 +388,12 @@ describe("Miromico insight Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -409,7 +414,7 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.data.sendCycle, 1200);
         assert.equal(value.data.transmissionInterval, 4);
 
-        utils.validateSchema(value.data, settingsSchema, { throwError: true });
+        validateSchema(value.data, settingsSchema, { throwError: true });
       });
 
       consume(data);
@@ -424,12 +429,12 @@ describe("Miromico insight Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -439,10 +444,10 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.data.openCounter, 156233);
         assert.equal(value.data.alarmCounter, 142);
 
-        utils.validateSchema(value.data, doorSchema, { throwError: true });
+        validateSchema(value.data, doorSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -450,7 +455,7 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "settings");
         assert.equal(value.data.alarmTime, 60);
 
-        utils.validateSchema(value.data, settingsSchema, { throwError: true });
+        validateSchema(value.data, settingsSchema, { throwError: true });
       });
 
       consume(data);

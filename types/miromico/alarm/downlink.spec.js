@@ -1,15 +1,17 @@
-const chai = require("chai");
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-const rewire = require("rewire");
-const utils = require("test-utils");
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-const { assert } = chai;
-
-describe("UC51X Downlink", () => {
+describe("Miromic alarm Downlink", () => {
   let consume = null;
   before((done) => {
-    const script = rewire("./downlink.js");
-    consume = utils.init(script);
+    const script = rewire(`${__dirname}/downlink.js`);
+    consume = init(script);
     done();
   });
 
@@ -28,7 +30,7 @@ describe("UC51X Downlink", () => {
         }
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "downlink");
         assert.isNotNull(value);
 
@@ -48,7 +50,7 @@ describe("UC51X Downlink", () => {
         }
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "downlink");
         assert.isNotNull(value);
 
@@ -68,7 +70,7 @@ describe("UC51X Downlink", () => {
         }
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "downlink");
         assert.isNotNull(value);
 
@@ -88,7 +90,7 @@ describe("UC51X Downlink", () => {
         }
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "downlink");
         assert.isNotNull(value);
 
@@ -112,7 +114,7 @@ describe("UC51X Downlink", () => {
         }
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "downlink");
         assert.isNotNull(value);
 
@@ -138,7 +140,7 @@ describe("UC51X Downlink", () => {
         }
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "downlink");
         assert.isNotNull(value);
 

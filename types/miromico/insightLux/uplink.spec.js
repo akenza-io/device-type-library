@@ -1,17 +1,19 @@
-const chai = require("chai");
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-const rewire = require("rewire");
-const utils = require("test-utils");
-
-const { assert } = chai;
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Miromico insight lux Uplink", () => {
   let climateSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/climate.schema.json`).then((parsedSchema) => {
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/climate.schema.json`).then((parsedSchema) => {
       climateSchema = parsedSchema;
       done();
     });
@@ -19,8 +21,7 @@ describe("Miromico insight lux Uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -29,8 +30,7 @@ describe("Miromico insight lux Uplink", () => {
 
   let settingsSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/settings.schema.json`)
+    loadSchema(`${__dirname}/settings.schema.json`)
       .then((parsedSchema) => {
         settingsSchema = parsedSchema;
         done();
@@ -39,8 +39,7 @@ describe("Miromico insight lux Uplink", () => {
 
   let doorSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/door.schema.json`)
+    loadSchema(`${__dirname}/door.schema.json`)
       .then((parsedSchema) => {
         doorSchema = parsedSchema;
         done();
@@ -57,7 +56,7 @@ describe("Miromico insight lux Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -87,10 +86,10 @@ describe("Miromico insight lux Uplink", () => {
         assert.equal(value.data.temperature2, 25.34);
         assert.equal(value.data.temperature3, 25.05);
 
-        utils.validateSchema(value.data, climateSchema, { throwError: true });
+        validateSchema(value.data, climateSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -98,7 +97,7 @@ describe("Miromico insight lux Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryVoltage, 3.57);
 
-        utils.validateSchema(value.data, lifecycleSchema, {
+        validateSchema(value.data, lifecycleSchema, {
           throwError: true,
         });
       });
@@ -115,7 +114,7 @@ describe("Miromico insight lux Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -136,7 +135,7 @@ describe("Miromico insight lux Uplink", () => {
         assert.equal(value.data.sendCycle, 1200);
         assert.equal(value.data.transmissionInterval, 4);
 
-        utils.validateSchema(value.data, settingsSchema, { throwError: true });
+        validateSchema(value.data, settingsSchema, { throwError: true });
       });
 
       consume(data);
@@ -151,7 +150,7 @@ describe("Miromico insight lux Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -161,10 +160,10 @@ describe("Miromico insight lux Uplink", () => {
         assert.equal(value.data.openCounter, 156233);
         assert.equal(value.data.alarmCounter, 142);
 
-        utils.validateSchema(value.data, doorSchema, { throwError: true });
+        validateSchema(value.data, doorSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -172,7 +171,7 @@ describe("Miromico insight lux Uplink", () => {
         assert.equal(value.topic, "settings");
         assert.equal(value.data.alarmTime, 60);
 
-        utils.validateSchema(value.data, settingsSchema, { throwError: true });
+        validateSchema(value.data, settingsSchema, { throwError: true });
       });
 
       consume(data);

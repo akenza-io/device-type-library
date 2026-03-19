@@ -1,3 +1,11 @@
+/**
+ * Dev commentary:
+ * All values can be adjusted for themselfs.
+ * So we do not have a guarante for all of them to always send.
+ * Thats why i've splitted all values in their respective topics.
+ * (Interval is also definable per key)
+ */
+
 function signed(value, size) {
   const mask = 1 << (size * 8 - 1);
   const buf = -(value & mask) + (value & ~mask);
@@ -60,7 +68,6 @@ function consume(event) {
   const iaq = [];
   const iaqAccuracy = [];
   const pressure = [];
-  let light;
 
   const door = {};
   const lifecycle = {};
@@ -173,7 +180,6 @@ function consume(event) {
           settings.reportedInterval = bytes[idx + 2] + bytes[idx + 3] * 256;
           break;
         } case 20: { // light not buffered atm
-          light = bytes[idx + 2] + bytes[idx + 3] * 256;
           break;
         } case 21: {
           settings.condTxCo2Th = bytes[idx + 2] + bytes[idx + 3] * 256;
