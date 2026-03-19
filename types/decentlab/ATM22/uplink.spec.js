@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -20,27 +18,24 @@ describe("Decentlab ATM22 Uplink", () => {
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
     it("should decode the Decentlab ATM22 payload", () => {
       const data = {
         data: {
-          payloadHex:
-            "0208c900038009812b8014810880027fe8800880040bf5",
+          payloadHex: "0208c900038009812b8014810880027fe8800880040bf5",
         },
       };
 
@@ -51,6 +46,7 @@ describe("Decentlab ATM22 Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 26.4);
+        assert.equal(value.data.temperatureF, 79.5);
         assert.equal(value.data.eastWindSpeed, 0.04);
         assert.equal(value.data.maximumWindSpeed, 0.2);
         assert.equal(value.data.northWindSpeed, 0.08);

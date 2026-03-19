@@ -15,7 +15,7 @@ function consume(event) {
   const decoded = {};
   const lifecycle = {};
 
-  for (let i = 0; i < bytes.length;) {
+  for (let i = 0; i < bytes.length; ) {
     const channelId = bytes[i++];
     const channelType = bytes[i++];
 
@@ -34,15 +34,18 @@ function consume(event) {
       decoded.occupied = bytes[i] !== 0;
       decoded.occupancy = Number(decoded.occupied);
 
-      // Warm desk 
+      // Warm desk
       const time = new Date().getTime();
       const state = event.state || {};
       decoded.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
       if (decoded.occupied) {
         delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
       } else if (state.lastOccupancyTimestamp !== undefined) {
-        decoded.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
-      } else if (state.lastOccupiedValue) { //
+        decoded.minutesSinceLastOccupied = Math.round(
+          (time - state.lastOccupancyTimestamp) / 1000 / 60,
+        ); // Get free since
+      } else if (state.lastOccupiedValue) {
+        //
         state.lastOccupancyTimestamp = time; // Start with first no occupancy
       }
 

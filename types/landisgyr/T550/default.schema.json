@@ -1,62 +1,72 @@
 {
-  "$id": "https://akenza.io/landisgyr/t550/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
-  "properties": {
-    "volume": {
-      "title": "Volume",
-      "unit": "m3",
-      "type": "number",
-      "description": "Volume in m3"
+    "$id": "https://akenza.io/landisgyr/t550/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "volume": {
+            "title": "Volume",
+            "unit": "m3",
+            "type": "number",
+            "description": "Volume in m3"
+        },
+        "flowTemp": {
+            "title": "Flow temperature °C",
+            "description": "Flow temperature in °C.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "backFlowTemp": {
+            "title": "Back flow temperature °C",
+            "description": "Back flow temperature in °C.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "power": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours",
+            "title": "Power",
+            "description": "Power in kWh"
+        },
+        "energy": {
+            "title": "Energy",
+            "type": "number",
+            "description": "Energy consumption"
+        },
+        "energyUnit": {
+            "title": "Energy unit",
+            "type": "string",
+            "description": "Message header",
+            "enum": [
+                "MWH",
+                "KWH",
+                "GJ",
+                "MJ"
+            ]
+        },
+        "flow": {
+            "title": "flow",
+            "unit": "m3/h",
+            "type": "number",
+            "description": "Flow in m3/h"
+        },
+        "flowTempF": {
+            "title": "Flow temperature °F",
+            "description": "Flow temperature in °F.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "backFlowTempF": {
+            "title": "Back flow temperature °F",
+            "description": "Back flow temperature in °F.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
     },
-    "flowTemp": {
-      "title": "Flow temperature",
-      "description": "Flow temperature in °C.",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-    },
-    "backFlowTemp": {
-      "title": "Back flow temperature",
-      "description": "Back flow temperature in °C.",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-    },
-    "power": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours",
-      "title": "Power",
-      "description": "Power in kWh"
-    },
-    "energy": {
-      "title": "Energy",
-      "type": "number",
-      "description": "Energy consumption"
-    },
-    "energyUnit": {
-      "title": "Energy unit",
-      "type": "string",
-      "description": "Message header",
-      "enum": [
-        "MWH",
-        "KWH",
-        "GJ",
-        "MJ"
-      ]
-    },
-    "flow": {
-      "title": "flow",
-      "unit": "m3/h",
-      "type": "number",
-      "description": "Flow in m3/h"
-    }
-  },
-  "required": [
-    "volume",
-    "flowTemp",
-    "backFlowTemp",
-    "power",
-    "energy",
-    "energyUnit",
-    "flow"
-  ]
+    "required": [
+        "volume",
+        "flowTemp",
+        "backFlowTemp",
+        "power",
+        "energy",
+        "energyUnit",
+        "flow"
+    ]
 }

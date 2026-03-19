@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,29 +13,30 @@ describe("Yosensi YO Ambience uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/battery_voltage.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/battery_voltage.schema.json`).then(
+      (parsedSchema) => {
         batteryVoltageSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let internalTemperatureSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/internal_temperature.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/internal_temperature.schema.json`).then(
+      (parsedSchema) => {
         internalTemperatureSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let humiditySchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/humidity.schema.json`)
-      .then((parsedSchema) => {
-        humiditySchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/humidity.schema.json`).then((parsedSchema) => {
+      humiditySchema = parsedSchema;
+      done();
+    });
   });
 
   let co2Schema = null;
@@ -50,20 +49,20 @@ describe("Yosensi YO Ambience uplink", () => {
 
   let illuminanceSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/illuminance.schema.json`)
-      .then((parsedSchema) => {
-        illuminanceSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/illuminance.schema.json`).then((parsedSchema) => {
+      illuminanceSchema = parsedSchema;
+      done();
+    });
   });
 
   let presenceCounterSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/presence_counter.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/presence_counter.schema.json`).then(
+      (parsedSchema) => {
         presenceCounterSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   describe("consume()", () => {
@@ -96,6 +95,7 @@ describe("Yosensi YO Ambience uplink", () => {
 
         assert.equal(value.topic, "internal_temperature");
         assert.equal(value.data.internalTemperature, 19.2);
+        assert.equal(value.data.internalTemperatureF, 66.6);
 
         validateSchema(value.data, internalTemperatureSchema, {
           throwError: true,

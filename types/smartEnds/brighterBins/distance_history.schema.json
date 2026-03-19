@@ -1,55 +1,60 @@
 {
-  "$id": "https://akenza.io/smartEnds/brigtherBins/distance_history.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "distance_history",
-  "title": "Distance History",
-  "properties": {
-    "distance": {
-      "title": "Distance",
-      "unit": "cm",
-      "type": "number",
-      "description": "Distance measured between the sensor and the surface",
-      "hideFromKpis": true
-    },
-    "distanceError": {
-      "title": "Distance error",
-      "unit": "string",
-      "type": "number",
-      "description": "Distance error",
-      "enum": [
-        "SENSOR_MODULE_NOT_RESPONDING",
-        "LASER_SENSOR_INVALID_CONFIGURATIONS"
-      ],
-      "hideFromKpis": true
-    },
-    "xOrientation": {
-      "title": "X Orientation",
-      "unit": "°",
-      "type": "number",
-      "description": "X Orientation",
-      "hideFromKpis": true
-    },
-    "yOrientation": {
-      "title": "Y Orientation",
-      "unit": "°",
-      "type": "number",
-      "description": "Y Orientation",
-      "hideFromKpis": true
-    },
-    "zOrientation": {
-      "title": "Z Orientation",
-      "unit": "°",
-      "type": "number",
-      "description": "Z Orientation",
-      "hideFromKpis": true
-    },
-    "temperature": {
-      "title": "Temperature",
-      "description": "The temperature in °C.",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "hideFromKpis": true
+    "$id": "https://akenza.io/smartEnds/brigtherBins/distance_history.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "distance_history",
+    "title": "Distance History",
+    "properties": {
+        "distance": {
+            "title": "Distance",
+            "unit": "cm",
+            "type": "number",
+            "description": "Distance measured between the sensor and the surface",
+            "hideFromKpis": true
+        },
+        "distanceError": {
+            "title": "Distance error",
+            "unit": "string",
+            "type": "number",
+            "description": "Distance error",
+            "enum": [
+                "SENSOR_MODULE_NOT_RESPONDING",
+                "LASER_SENSOR_INVALID_CONFIGURATIONS"
+            ],
+            "hideFromKpis": true
+        },
+        "xOrientation": {
+            "title": "X Orientation",
+            "unit": "°",
+            "type": "number",
+            "description": "X Orientation",
+            "hideFromKpis": true
+        },
+        "yOrientation": {
+            "title": "Y Orientation",
+            "unit": "°",
+            "type": "number",
+            "description": "Y Orientation",
+            "hideFromKpis": true
+        },
+        "zOrientation": {
+            "title": "Z Orientation",
+            "unit": "°",
+            "type": "number",
+            "description": "Z Orientation",
+            "hideFromKpis": true
+        },
+        "temperature": {
+            "title": "Temperature °C",
+            "description": "The temperature in °C.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "hideFromKpis": true
+        },
+        "temperatureF": {
+            "title": "Temperature °F",
+            "description": "The temperature in °F.",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
     }
-  }
 }

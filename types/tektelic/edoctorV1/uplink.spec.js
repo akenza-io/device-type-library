@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,22 +13,20 @@ describe("Tektelic eDoctorV1 Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   let defaultSchema = null;
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -60,6 +56,7 @@ describe("Tektelic eDoctorV1 Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.skinTemperature, 37.2);
+        assert.equal(value.data.skinTemperatureF, 99);
         assert.equal(value.data.respiratoryRate, 12);
         assert.equal(value.data.uaModeActive, false);
         assert.equal(value.data.chestExpansion, 1);
@@ -67,6 +64,7 @@ describe("Tektelic eDoctorV1 Uplink", () => {
         assert.equal(value.data.position, 85);
         assert.equal(value.data.heartRate, 72);
         assert.equal(value.data.skinTemperature2, 37);
+        assert.equal(value.data.skinTemperature2F, 98.6);
         assert.equal(value.data.activityIntensity, 0.25);
 
         validateSchema(value.data, defaultSchema, { throwError: true });

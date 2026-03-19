@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function toBool(value) {
   return value === 1;
 }
@@ -55,7 +59,9 @@ function handleKeepalive(bytes, data) {
     sensorTemp = (bytes[2] - 28.33333) / 5.66666;
   }
   data.targetTemperature = Number(bytes[1]);
+  data.targetTemperatureF = cToF(data.targetTemperature);
   data.sensorTemperature = Number(sensorTemp.toFixed(2));
+  data.sensorTemperatureF = cToF(data.sensorTemperature);
   data.humidity = Number(((bytes[3] * 100) / 256).toFixed(2));
   data.motorRange = motorRange;
   data.motorPosition = motorPosition;
@@ -72,6 +78,7 @@ function handleKeepalive(bytes, data) {
   data.antiFreezeProtection = toBool(antiFreezeProtection);
   if (!data.hasOwnProperty("targetTemperatureFloat")) {
     data.targetTemperatureFloat = bytes[1].toFixed(2);
+    data.targetTemperatureF = cToF(data.targetTemperature);
   }
   return data;
 }

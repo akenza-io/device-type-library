@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function getFillLevel(device, distance) {
   if (device !== undefined && distance !== undefined) {
     if (device.customFields !== undefined) {
@@ -48,8 +52,10 @@ function consume(event) {
   lifecycle.batteryLevel = batteryLevel;
 
   data.temperature = ((((bytes[2] << 24) >> 16) | bytes[3]) / 10).toFixed(2);
+  data.temperatureF = cToF(data.temperature);
   if (((bytes[2] << 8) | bytes[3]) === 0xffff) {
     data.temperature = null;
+    data.temperatureF = null;
   }
   data.distance = ((bytes[4] << 8) | bytes[5]) / 10;
   const fillLevel = getFillLevel(event.device, data.distance);
@@ -58,6 +64,7 @@ function consume(event) {
   }
   data.distanceSignalStrength = (bytes[6] << 8) | bytes[7];
   data.lidarTemperature = (bytes[9] << 24) >> 24;
+  data.lidarTemperatureF = cToF(data.lidarTemperature);
 
   emit("sample", { data, topic: "default" });
   emit("sample", { data: lifecycle, topic: "lifecycle" });

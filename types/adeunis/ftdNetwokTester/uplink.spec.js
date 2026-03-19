@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,11 +13,10 @@ describe("FTD Network tester", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   let gpsSchema = null;
@@ -59,6 +56,7 @@ describe("FTD Network tester", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 26);
+        assert.equal(value.data.temperatureF, 78.8);
         assert.equal(value.data.trigger, "PUSHBUTTON");
         assert.equal(value.data.uplink, 18);
         assert.equal(value.data.downlink, 16);

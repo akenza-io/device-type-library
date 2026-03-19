@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 // --- Helpers ---
 function parseHexString(str) {
   const result = [];
@@ -40,7 +44,7 @@ function consume(event) {
   lifecycle.id = readUInt24BE(bytes.slice(0, 3));
   lifecycle.type = bytes[3];
   lifecycle.seqCounter = bytes[4];
-  lifecycle.fwVersion = bytes[5] & 0x3F;
+  lifecycle.fwVersion = bytes[5] & 0x3f;
 
   const status = readUInt16LE(bytes.slice(28, 30));
   const batteryBits = (status >> 2) & 0x03;
@@ -52,9 +56,10 @@ function consume(event) {
   // --- Default ---
   const decoded = {};
   decoded.temperature = readInt16BE(bytes.slice(6, 8)) / 10;
+  decoded.temperatureF = cToF(decoded.temperature);
   decoded.humidity = readUInt16BE(bytes.slice(10, 12)) / 10;
 
-  decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";
+  decoded.msgType = status & 0x01 ? "ALARM" : "NORMAL";
   decoded.rbe = Boolean((status >> 9) & 0x01);
 
   emit("sample", { data: decoded, topic: "default" });

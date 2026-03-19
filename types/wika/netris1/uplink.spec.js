@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,65 +13,64 @@ describe("Wika Netris1 Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   let deviceAlarmSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/device_alarm.schema.json`)
-      .then((parsedSchema) => {
-        deviceAlarmSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/device_alarm.schema.json`).then((parsedSchema) => {
+      deviceAlarmSchema = parsedSchema;
+      done();
+    });
   });
 
   let deviceInformationSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/device_information.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/device_information.schema.json`).then(
+      (parsedSchema) => {
         deviceInformationSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let errorSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/error.schema.json`)
-      .then((parsedSchema) => {
-        errorSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/error.schema.json`).then((parsedSchema) => {
+      errorSchema = parsedSchema;
+      done();
+    });
   });
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   let processAlarmSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/process_alarm.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/process_alarm.schema.json`).then(
+      (parsedSchema) => {
         processAlarmSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let technicalAlarmSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/technical_alarm.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/technical_alarm.schema.json`).then(
+      (parsedSchema) => {
         technicalAlarmSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   describe("consume()", () => {
@@ -81,8 +78,7 @@ describe("Wika Netris1 Uplink", () => {
       const data = {
         data: {
           port: 1,
-          payloadHex:
-            "0100000CB3",
+          payloadHex: "0100000CB3",
         },
       };
 
@@ -92,7 +88,10 @@ describe("Wika Netris1 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "error");
-        assert.equal(value.data.errorMessage, "Please define the customfields: rangeStart, rangeEnd, channelMeasurand");
+        assert.equal(
+          value.data.errorMessage,
+          "Please define the customfields: rangeStart, rangeEnd, channelMeasurand",
+        );
 
         validateSchema(value.data, errorSchema, { throwError: true });
       });
@@ -106,13 +105,12 @@ describe("Wika Netris1 Uplink", () => {
           customFields: {
             rangeStart: 0,
             rangeEnd: 10,
-            channelMeasurand: "voltage"
-          }
+            channelMeasurand: "voltage",
+          },
         },
         data: {
           port: 1,
-          payloadHex:
-            "0100000CB3",
+          payloadHex: "0100000CB3",
         },
       };
 
@@ -136,13 +134,12 @@ describe("Wika Netris1 Uplink", () => {
           customFields: {
             rangeStart: 0,
             rangeEnd: 10,
-            channelMeasurand: "voltage"
-          }
+            channelMeasurand: "voltage",
+          },
         },
         data: {
           port: 1,
-          payloadHex:
-            "031100000D73",
+          payloadHex: "031100000D73",
         },
       };
 
@@ -169,13 +166,12 @@ describe("Wika Netris1 Uplink", () => {
           customFields: {
             rangeStart: 0,
             rangeEnd: 10,
-            channelMeasurand: "voltage"
-          }
+            channelMeasurand: "voltage",
+          },
         },
         data: {
           port: 1,
-          payloadHex:
-            "0401000081",
+          payloadHex: "0401000081",
         },
       };
 
@@ -186,7 +182,10 @@ describe("Wika Netris1 Uplink", () => {
 
         assert.equal(value.topic, "technical_alarm");
         assert.equal(value.data.alarmStatus, 129);
-        assert.deepEqual(value.data.alarmType, ["SSM_COMMUNICATION_ERROR", "SSM_IDENTITY_ERROR"]);
+        assert.deepEqual(value.data.alarmType, [
+          "SSM_COMMUNICATION_ERROR",
+          "SSM_IDENTITY_ERROR",
+        ]);
 
         validateSchema(value.data, technicalAlarmSchema, { throwError: true });
       });
@@ -200,13 +199,12 @@ describe("Wika Netris1 Uplink", () => {
           customFields: {
             rangeStart: 0,
             rangeEnd: 10,
-            channelMeasurand: "voltage"
-          }
+            channelMeasurand: "voltage",
+          },
         },
         data: {
           port: 1,
-          payloadHex:
-            "05000001",
+          payloadHex: "05000001",
         },
       };
 

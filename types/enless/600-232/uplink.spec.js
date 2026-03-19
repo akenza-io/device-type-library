@@ -1,10 +1,9 @@
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -17,27 +16,24 @@ describe("Transmitter 600-232", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/alarm.schema.json`)
-      .then((parsedSchema) => {
-        alarmSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/alarm.schema.json`).then((parsedSchema) => {
+      alarmSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -74,6 +70,8 @@ describe("Transmitter 600-232", () => {
         assert.equal(value.topic, "default");
         assert.closeTo(value.data.temperature1, 20.6, 0.1);
         assert.closeTo(value.data.temperature2, 20.2, 0.1);
+        assert.closeTo(value.data.temperature1F, 69.1, 0.1);
+        assert.closeTo(value.data.temperature2F, 68.4, 0.1);
         assert.equal(value.data.msgType, "NORMAL");
 
         validateSchema(value.data, defaultSchema, { throwError: true });

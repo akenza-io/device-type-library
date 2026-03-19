@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -48,20 +46,18 @@ describe("Milesight VS133 Uplink", () => {
 
   let regionCountSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/region_count.schema.json`)
-      .then((parsedSchema) => {
-        regionCountSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/region_count.schema.json`).then((parsedSchema) => {
+      regionCountSchema = parsedSchema;
+      done();
+    });
   });
 
   let dwellTimeSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/dwell_time.schema.json`)
-      .then((parsedSchema) => {
-        dwellTimeSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/dwell_time.schema.json`).then((parsedSchema) => {
+      dwellTimeSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {

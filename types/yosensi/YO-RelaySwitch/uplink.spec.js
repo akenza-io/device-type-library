@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,65 +13,72 @@ describe("Yosensi YO Relay Switch uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/battery_voltage.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/battery_voltage.schema.json`).then(
+      (parsedSchema) => {
         batteryVoltageSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let relayStateCH1Schema = null;
   before((done) => {
-    loadSchema(`${__dirname}/relay_state_ch1.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/relay_state_ch1.schema.json`).then(
+      (parsedSchema) => {
         relayStateCH1Schema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let relayStateCH2Schema = null;
   before((done) => {
-    loadSchema(`${__dirname}/relay_state_ch2.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/relay_state_ch2.schema.json`).then(
+      (parsedSchema) => {
         relayStateCH2Schema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let relayStateAllCHSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/relay_state_all_ch.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/relay_state_all_ch.schema.json`).then(
+      (parsedSchema) => {
         relayStateAllCHSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let outputModeCH1Schema = null;
   before((done) => {
-    loadSchema(`${__dirname}/output_mode_ch1.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/output_mode_ch1.schema.json`).then(
+      (parsedSchema) => {
         outputModeCH1Schema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let outputModeCH2Schema = null;
   before((done) => {
-    loadSchema(`${__dirname}/output_mode_ch2.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/output_mode_ch2.schema.json`).then(
+      (parsedSchema) => {
         outputModeCH2Schema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let outputModeAllCHSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/output_mode_all_ch.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/output_mode_all_ch.schema.json`).then(
+      (parsedSchema) => {
         outputModeAllCHSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   describe("consume()", () => {

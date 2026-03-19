@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -30,10 +28,10 @@ describe("Digital Technologies Touch Count Sensor Uplink", () => {
         eventType: "touchCount",
         data: {
           eventType: "touchCount",
-          "touchCount": {
-            "total": 469,
-            "updateTime": "2024-12-06T08:25:21.604000Z"
-          }
+          touchCount: {
+            total: 469,
+            updateTime: "2024-12-06T08:25:21.604000Z",
+          },
         },
         timestamp: "2021-09-14T08:16:27.517331Z",
         labels: { name: "Temperature Simulator" },

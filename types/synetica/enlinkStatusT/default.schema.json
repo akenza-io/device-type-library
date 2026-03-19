@@ -1,29 +1,48 @@
 {
-  "$id": "https://akenza.io/synetica/enlinkStausT/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
-  "properties": {
-    "temperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    "$id": "https://akenza.io/synetica/enlinkStausT/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "humidity": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+        },
+        "tempProbe1": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "Temperature Probe 1 °C"
+        },
+        "tempProbe2": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "Temperature Probe 2 °C"
+        },
+        "tempProbe3": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "Temperature Probe 3 °C"
+        },
+        "temperatureF": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "tempProbe1F": {
+            "title": "Temperature Probe 1 °F",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "tempProbe2F": {
+            "title": "Temperature Probe 2 °F",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "tempProbe3F": {
+            "title": "Temperature Probe 3 °F",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
     },
-    "humidity": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
-    },
-    "tempProbe1": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature Probe 1"
-    },
-    "tempProbe2": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature Probe 2"
-    },
-    "tempProbe3": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature Probe 3"
-    }
-  },
-  "required": ["temperature", "humidity", "tempProbe1"]
+    "required": [
+        "temperature",
+        "humidity",
+        "tempProbe1"
+    ]
 }

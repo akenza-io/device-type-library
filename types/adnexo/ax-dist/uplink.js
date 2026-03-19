@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function toLittleEndian(hex, signed) {
   // Creating little endian hex DCBA
   const hexArray = [];
@@ -142,8 +146,10 @@ function consume(event) {
     const temperature = toLittleEndian(payload.substr(4, 4), true) / 10;
     if (temperature !== -3276.8) {
       data.temperature = temperature;
+      data.temperatureF = cToF(data.temperature);
     } else {
       data.temperature = null;
+      data.temperatureF = null;
     }
 
     const lifecycle = {};

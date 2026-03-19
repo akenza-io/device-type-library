@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function readUInt16LE(bytes) {
   const value = (bytes[1] << 8) + bytes[0];
   return value & 0xffff;
@@ -46,7 +50,7 @@ function consume(event) {
   const lifecycle = { batteryLevel: null };
   let timestamp = new Date();
 
-  for (let i = 0; i < bytes.length; ) {
+  for (let i = 0; i < bytes.length;) {
     const channelId = bytes[i++];
     const channelType = bytes[i++];
 
@@ -57,6 +61,7 @@ function consume(event) {
     // TEMPERATURE(CHANNEL 1 SENSOR)
     else if (channelId === 0x03 && channelType === 0x67) {
       climate.temperatureChannel1 = readInt16LE(bytes.slice(i, i + 2)) / 10;
+      climate.temperatureChannel1F = cToF(climate.temperatureChannel1);
       i += 2;
     }
     // MAGNET STATUS(CHANNEL 1 SENSOR)
@@ -67,6 +72,7 @@ function consume(event) {
     // TEMPERATURE(CHANNEL 2 SENSOR)
     else if (channelId === 0x04 && channelType === 0x67) {
       climate.temperatureChannel2 = readInt16LE(bytes.slice(i, i + 2)) / 10;
+      climate.temperatureChannel2F = cToF(climate.temperatureChannel2);
       i += 2;
     }
     // MAGNET STATUS(CHANNEL 2 SENSOR)
@@ -77,28 +83,38 @@ function consume(event) {
     // TEMPERATURE(CHANNEL 1 SENSOR) ALARM
     else if (channelId === 0x83 && channelType === 0x67) {
       climate.temperatureChannel1 = readInt16LE(bytes.slice(i, i + 2)) / 10;
+      climate.temperatureChannel1F = cToF(climate.temperatureChannel1);
       alarm.alarmChannel1 = readAlarmType(bytes[i + 2]);
       i += 3;
     }
     // TEMPERATURE(CHANNEL 1 SENSOR) ALARM
     else if (channelId === 0x93 && channelType === 0xd7) {
       climate.temperatureChannel1 = readInt16LE(bytes.slice(i, i + 2)) / 10;
+      climate.temperatureChannel1F = cToF(climate.temperatureChannel1);
       climate.temperatureChannel1Change =
         readInt16LE(bytes.slice(i + 2, i + 4)) / 100;
+      climate.temperatureChannel1ChangeF = cToF(
+        climate.temperatureChannel1Change,
+      );
       alarm.alarmChannel1 = readAlarmType(bytes[i + 4]);
       i += 5;
     }
     // TEMPERATURE(CHANNEL 2 SENSOR) ALARM
     else if (channelId === 0x84 && channelType === 0x67) {
       climate.temperatureChannel2 = readInt16LE(bytes.slice(i, i + 2)) / 10;
+      climate.temperatureChannel2F = cToF(climate.temperatureChannel2);
       alarm.alarmChannel2 = readAlarmType(bytes[i + 2]);
       i += 3;
     }
     // TEMPERATURE(CHANNEL 2 SENSOR) ALARM
     else if (channelId === 0x94 && channelType === 0xd7) {
       climate.temperatureChannel2 = readInt16LE(bytes.slice(i, i + 2)) / 10;
+      climate.temperatureChannel2F = cToF(climate.temperatureChannel2);
       climate.temperatureChannel2Change =
         readInt16LE(bytes.slice(i + 2, i + 4)) / 100;
+      climate.temperatureChannel2ChangeF = cToF(
+        climate.temperatureChannel2Change,
+      );
       alarm.alarmChannel2 = readAlarmType(bytes[i + 4]);
       i += 5;
     }
@@ -113,18 +129,22 @@ function consume(event) {
       switch (chn1Mask) {
         case 0x01:
           climate.temperatureChannel1 = readInt16LE(bytes.slice(i, i + 2)) / 10;
+          climate.temperatureChannel1F = cToF(climate.temperatureChannel1);
           alarm.alarmChannel1 = "THRESHOLD";
           break;
         case 0x02:
           climate.temperatureChannel1 = readInt16LE(bytes.slice(i, i + 2)) / 10;
+          climate.temperatureChannel1F = cToF(climate.temperatureChannel1);
           alarm.alarmChannel1 = "THRESHOLD_RELEASE";
           break;
         case 0x03:
           climate.temperatureChannel1 = readInt16LE(bytes.slice(i, i + 2)) / 10;
+          climate.temperatureChannel1F = cToF(climate.temperatureChannel1);
           alarm.alarmChannel1 = "MUTATION";
           break;
         case 0x04:
           climate.temperatureChannel1 = readInt16LE(bytes.slice(i, i + 2)) / 10;
+          climate.temperatureChannel1F = cToF(climate.temperatureChannel1);
           break;
         case 0x05:
           magnet.magnetChannel1 = readInt16LE(bytes.slice(i, i + 2)) === 0;
@@ -141,18 +161,22 @@ function consume(event) {
       switch (chn2Mask) {
         case 0x01:
           climate.temperatureChannel2 = readInt16LE(bytes.slice(i, i + 2)) / 10;
+          climate.temperatureChannel2F = cToF(climate.temperatureChannel2);
           alarm.alarmChannel2 = "THRESHOLD";
           break;
         case 0x02:
           climate.temperatureChannel2 = readInt16LE(bytes.slice(i, i + 2)) / 10;
+          climate.temperatureChannel2F = cToF(climate.temperatureChannel2);
           alarm.alarmChannel2 = "THRESHOLD_RELEASE";
           break;
         case 0x03:
           climate.temperatureChannel2 = readInt16LE(bytes.slice(i, i + 2)) / 10;
+          climate.temperatureChannel2F = cToF(climate.temperatureChannel2);
           alarm.alarmChannel2 = "MUTATION";
           break;
         case 0x04:
           climate.temperatureChannel2 = readInt16LE(bytes.slice(i, i + 2)) / 10;
+          climate.temperatureChannel2F = cToF(climate.temperatureChannel2);
           break;
         case 0x05:
           magnet.magnetChannel2 = readInt16LE(bytes.slice(i, i + 2)) === 0;

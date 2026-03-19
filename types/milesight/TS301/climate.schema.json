@@ -1,30 +1,50 @@
 {
-  "$id": "https://akenza.io/milesight/TS301/climate.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "climate",
-  "title": "Climate",
-  "properties": {
-    "temperatureChannel1": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature channel 1",
-      "description": "Temperature channel 1"
-    },
-    "temperatureChannel1Change": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature change channel 1",
-      "description": "Temperature change channel 1"
-    },
-    "temperatureChannel2": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature channel 2",
-      "description": "Temperature channel 2"
-    },
-    "temperatureChannel2Change": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "title": "Temperature change channel 2",
-      "description": "Temperature change channel 2"
+    "$id": "https://akenza.io/milesight/TS301/climate.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "climate",
+    "title": "Climate",
+    "properties": {
+        "temperatureChannel1": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "Temperature channel 1 °C",
+            "description": "Temperature channel 1"
+        },
+        "temperatureChannel1Change": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "Temperature change channel 1 °C",
+            "description": "Temperature change channel 1"
+        },
+        "temperatureChannel2": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "Temperature channel 2 °C",
+            "description": "Temperature channel 2"
+        },
+        "temperatureChannel2Change": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+            "title": "Temperature change channel 2 °C",
+            "description": "Temperature change channel 2"
+        },
+        "temperatureChannel1F": {
+            "title": "Temperature channel 1 °F",
+            "description": "Temperature channel 1",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "temperatureChannel1ChangeF": {
+            "title": "Temperature change channel 1 °F",
+            "description": "Temperature change channel 1",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "temperatureChannel2F": {
+            "title": "Temperature channel 2 °F",
+            "description": "Temperature channel 2",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        },
+        "temperatureChannel2ChangeF": {
+            "title": "Temperature change channel 2 °F",
+            "description": "Temperature change channel 2",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
     }
-  }
 }

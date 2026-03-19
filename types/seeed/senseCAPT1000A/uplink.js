@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function bigEndianTransform(data) {
   const dataArray = [];
   for (let i = 0; i < data.length; i += 2) {
@@ -829,6 +833,7 @@ function consume(event) {
   }
 
   if (deleteUnusedKeys(data)) {
+    data.temperatureF = cToF(data.temperature);
     emit("sample", { data, topic: "default" });
   }
 

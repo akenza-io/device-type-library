@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bytes = Hex.hexToBytes(payload);
@@ -21,9 +25,11 @@ function consume(event) {
     temperature |= 0xffff0000;
   }
   data.temperature = (temperature / 10).toFixed(2);
+  data.temperatureF = cToF(data.temperature);
 
   if (((bytes[2] << 8) | bytes[3]) === 0xffff) {
     data.temperature = null;
+    data.temperatureF = null;
   }
 
   const leafMoisture = (bytes[4] << 8) | bytes[5];
@@ -32,12 +38,15 @@ function consume(event) {
   const leafTemperature = (bytes[6] << 8) | bytes[7];
   if ((leafTemperature & 0x8000) >> 15 === 0) {
     data.leafTemperature = (leafTemperature / 10).toFixed(2);
+    data.leafTemperatureF = cToF(data.leafTemperature);
   } else if ((leafTemperature & 0x8000) >> 15 === 1) {
     data.leafTemperature = ((leafTemperature - 0xffff) / 10).toFixed(2);
+    data.leafTemperatureF = cToF(data.leafTemperature);
   }
 
   if (((bytes[6] << 8) | bytes[7]) === 0xffff) {
     data.leafTemperature = null;
+    data.leafTemperatureF = null;
   }
 
   emit("sample", { data, topic: "default" });

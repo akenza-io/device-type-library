@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function getFrameType(type) {
   const types = {
     0x0: "SHORT_PERIODIC_TELEGRAM",
@@ -10,7 +14,7 @@ function getFrameType(type) {
     0x7: "AAC_FAULT_EVENT",
     0x8: "US_ANTIMASK_FAULT_EVENT",
     0x9: "IR_ANTIMASK_FAULT_EVENT",
-    0xF: "LONG_PERIODIC_TELEGRAM"
+    0xf: "LONG_PERIODIC_TELEGRAM",
   };
   return types[type] || "UNKNOWN";
 }
@@ -19,23 +23,23 @@ function decodeBCD(bytes) {
   // Decode 4 bytes (LSB first) as BCD to string serialNumber
   let value = 0;
   for (let i = 3; i >= 0; i--) {
-    value = value * 100 + ((bytes[i] >> 4) & 0x0F) * 10 + (bytes[i] & 0x0F);
+    value = value * 100 + ((bytes[i] >> 4) & 0x0f) * 10 + (bytes[i] & 0x0f);
   }
-  return value.toString().padStart(8, '0');
+  return value.toString().padStart(8, "0");
 }
 
 function decodeDate(bytes) {
   const raw = (bytes[0] << 8) | bytes[1];
-  const year = 2000 + ((raw >> 10) & 0x7F);
-  const month = (raw >> 6) & 0x0F;
-  const day = raw & 0x3F;
-  return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+  const year = 2000 + ((raw >> 10) & 0x7f);
+  const month = (raw >> 6) & 0x0f;
+  const day = raw & 0x3f;
+  return `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 }
 
 function consume(event) {
   const bytes = Hex.hexToBytes(event.data.payloadHex);
-  const frameType = bytes[0] & 0x0F;
-  const version = (bytes[0] >> 4) & 0x0F;
+  const frameType = bytes[0] & 0x0f;
+  const version = (bytes[0] >> 4) & 0x0f;
 
   const config = {};
   const configByte = bytes[1];
@@ -78,10 +82,11 @@ function consume(event) {
 
   const data = {};
   data.frameType = getFrameType(frameType);
-  data.temperature = (bytes[2] > 127) ? bytes[2] - 256 : bytes[2];
+  data.temperature = bytes[2] > 127 ? bytes[2] - 256 : bytes[2];
+  data.temperatureF = cToF(data.temperature);
 
-  const minorStatus = (bytes[3] >> 4) & 0x0F;
-  const generalStatus = bytes[3] & 0x0F;
+  const minorStatus = (bytes[3] >> 4) & 0x0f;
+  const generalStatus = bytes[3] & 0x0f;
   const majorStatus = bytes[4];
 
   data.mounted = (generalStatus & 0x01) !== 0;
@@ -103,12 +108,12 @@ function consume(event) {
   emit("sample", { data, topic: "default" });
 
   // If long telegram (35 bytes), parse additional data
-  if (frameType === 0xF && bytes.length >= 35) {
+  if (frameType === 0xf && bytes.length >= 35) {
     const lifecycle = {};
     const batteryRaw = bytes[5];
 
     lifecycle.version = version;
-    lifecycle.batteryVoltage = (batteryRaw / 100) + 1;
+    lifecycle.batteryVoltage = batteryRaw / 100 + 1;
     lifecycle.serialNumber = decodeBCD(bytes.slice(6, 10));
     lifecycle.productionDate = decodeDate(bytes.slice(10, 12));
     lifecycle.installationDate = decodeDate(bytes.slice(12, 14));

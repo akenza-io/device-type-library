@@ -6,13 +6,16 @@ function consume(event) {
 
   if (eventType === "touchCount") {
     sample.touchCount = event.data.touchCount.total;
-    emit("sample", { data: sample, topic: "touch_count" })
+    emit("sample", { data: sample, topic: "touch_count" });
   } else if (eventType === "touch") {
     sample.touch = true;
-    emit("sample", { data: sample, topic: "touch" })
+    emit("sample", { data: sample, topic: "touch" });
   } else if (eventType === "networkStatus") {
     // suppress network_status for one hour
-    if (state.lastNetworkEmittedAt === undefined || now - state.lastNetworkEmittedAt >= 3600000) {
+    if (
+      state.lastNetworkEmittedAt === undefined ||
+      now - state.lastNetworkEmittedAt >= 3600000
+    ) {
       sample.signalStrength = event.data.networkStatus.signalStrength;
       sample.rssi = event.data.networkStatus.rssi;
       sample.transmissionMode = event.data.networkStatus.transmissionMode;
@@ -29,6 +32,6 @@ function consume(event) {
     }
   } else if (eventType === "batteryStatus") {
     sample.batteryLevel = event.data.batteryStatus.percentage;
-    emit("sample", { data: sample, topic: "lifecycle" })
+    emit("sample", { data: sample, topic: "lifecycle" });
   }
 }

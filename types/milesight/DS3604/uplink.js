@@ -41,13 +41,19 @@ function readTslVersion(bytes) {
 function readSerialNumber(bytes) {
   const temp = [];
   for (let idx = 0; idx < bytes.length; idx++) {
-    temp.push((`0${(bytes[idx] & 0xff).toString(16)}`).slice(-2));
+    temp.push(`0${(bytes[idx] & 0xff).toString(16)}`.slice(-2));
   }
   return temp.join("");
 }
 
 function readBlockType(type) {
-  const blockType = { 0: "TEXT", 1: "QRCODE", 2: "IMAGE", 3: "BATTERY_STATUS", 4: "CONNECTION_STATUS" };
+  const blockType = {
+    0: "TEXT",
+    1: "QRCODE",
+    2: "IMAGE",
+    3: "BATTERY_STATUS",
+    4: "CONNECTION_STATUS",
+  };
   return getValue(blockType, type);
 }
 
@@ -72,7 +78,32 @@ function readColor(type) {
 }
 
 function readFontType(type) {
-  const fontTypeMap = { 1: "SONG", 2: "FANG", 3: "BLACK", 4: "KAI", 5: "FT_ASCII", 6: "DZ_ASCII", 7: "CH_ASCII", 8: "BX_ASCII", 9: "BZ_ASCII", 10: "FX_ASCII", 11: "GD_ASCII", 12: "HZ_ASCII", 13: "MS_ASCII", 14: "SX_ASCII", 15: "ZY_ASCII", 16: "TM_ASCII", 17: "YJ_LATIN", 18: "CYRILLIC", 19: "KSC5601", 20: "JIS0208_HT", 21: "ARABIC", 22: "THAI", 23: "GREEK", 24: "HEBREW" };
+  const fontTypeMap = {
+    1: "SONG",
+    2: "FANG",
+    3: "BLACK",
+    4: "KAI",
+    5: "FT_ASCII",
+    6: "DZ_ASCII",
+    7: "CH_ASCII",
+    8: "BX_ASCII",
+    9: "BZ_ASCII",
+    10: "FX_ASCII",
+    11: "GD_ASCII",
+    12: "HZ_ASCII",
+    13: "MS_ASCII",
+    14: "SX_ASCII",
+    15: "ZY_ASCII",
+    16: "TM_ASCII",
+    17: "YJ_LATIN",
+    18: "CYRILLIC",
+    19: "KSC5601",
+    20: "JIS0208_HT",
+    21: "ARABIC",
+    22: "THAI",
+    23: "GREEK",
+    24: "HEBREW",
+  };
   return getValue(fontTypeMap, type);
 }
 
@@ -110,7 +141,7 @@ function readBlockConfig(block_id, bytes) {
   const offset = 0;
 
   const templateConfig = {};
-  templateConfig.enable = !!(bytes[offset]);
+  templateConfig.enable = !!bytes[offset];
   templateConfig.type = readBlockType(bytes[offset + 1]);
   templateConfig.startX = readUInt16LE(bytes.slice(offset + 2, offset + 4));
   templateConfig.startY = readUInt16LE(bytes.slice(offset + 4, offset + 6));
@@ -145,11 +176,11 @@ function handleDownlinkResponse(channelType, bytes, offset) {
       offset += 2;
       break;
     case 0x10:
-      decoded.reboot = !!(1);
+      decoded.reboot = !!1;
       offset += 1;
       break;
     case 0x25:
-      decoded.buttonEnabled = !!(bytes[offset]);
+      decoded.buttonEnabled = !!bytes[offset];
       offset += 1;
       break;
     case 0x27:
@@ -163,31 +194,31 @@ function handleDownlinkResponse(channelType, bytes, offset) {
     case 0x28:
       var data = readUInt8(bytes[offset]);
       if (data === 0x00) {
-        decoded.reportBattery = !!(1);
+        decoded.reportBattery = !!1;
       } else if (data === 0x01) {
-        decoded.reportBuzzer = !!(1);
+        decoded.reportBuzzer = !!1;
       } else if (data === 0x02) {
-        decoded.reportCurrentTemplate = !!(1);
+        decoded.reportCurrentTemplate = !!1;
       } else if (data === 0x03) {
-        decoded.reportCurrentDisplay = !!(1);
+        decoded.reportCurrentDisplay = !!1;
       }
       offset += 1;
       break;
     case 0x3e:
-      decoded.buzzerEnable = !!(bytes[offset]);
+      decoded.buzzerEnable = !!bytes[offset];
       offset += 1;
       break;
     case 0x3d:
       var data = readUInt8(bytes[offset]);
       if (data === 0x01) {
-        decoded.beep = !!(1);
+        decoded.beep = !!1;
       } else if (data === 0x02) {
-        decoded.refreshDisplay = !!(1);
+        decoded.refreshDisplay = !!1;
       }
       offset += 1;
       break;
     case 0x66:
-      decoded.buttonVisible = !!(bytes[offset]);
+      decoded.buttonVisible = !!bytes[offset];
       offset += 1;
       break;
     case 0x73:
@@ -195,16 +226,16 @@ function handleDownlinkResponse(channelType, bytes, offset) {
       offset += 1;
       break;
     case 0x82:
-      decoded.multicastConfig = !!(bytes[offset]);
+      decoded.multicastConfig = !!bytes[offset];
       offset += 1;
       break;
     case 0x89:
       // skip 1 byte
-      decoded.blockVisible = !!(bytes.slice(offset + 1, offset + 3));
+      decoded.blockVisible = !!bytes.slice(offset + 1, offset + 3);
       offset += 3;
       break;
     case 0x90:
-      decoded.switchTemplateButtonEnable = !!(bytes[offset]);
+      decoded.switchTemplateButtonEnable = !!bytes[offset];
       offset += 1;
       break;
     default:
@@ -234,7 +265,7 @@ function consume(event) {
   const update = {};
   let downlink = {};
 
-  for (let i = 0; i < bytes.length;) {
+  for (let i = 0; i < bytes.length; ) {
     const channelId = bytes[i++];
     const channelType = bytes[i++];
 
@@ -286,19 +317,19 @@ function consume(event) {
     else if (channelId === 0xff && channelType === 0x2e) {
       switch (bytes[i]) {
         case 0:
-          button.button = "SINGLE_CLICK"
+          button.button = "SINGLE_CLICK";
           button.numericButton = 1;
           break;
         case 1:
-          button.button = "DOUBLE_CLICK"
+          button.button = "DOUBLE_CLICK";
           button.numericButton = 2;
           break;
         case 2:
-          button.button = "SHORT_PRESS"
+          button.button = "SHORT_PRESS";
           button.numericButton = 3;
           break;
         case 3:
-          button.button = "LONG_PRESS"
+          button.button = "LONG_PRESS";
           button.numericButton = 4;
           break;
         default:
@@ -341,11 +372,30 @@ function consume(event) {
       const templateId = (data >> 6) + 1;
       const blockId = data & 0x3f;
       const templateName = `template${templateId}Config`;
-      const blockOffset = { 0: "text1", 1: "text2", 2: "text3", 3: "text4", 4: "text5", 5: "text6", 6: "text7", 7: "text8", 8: "text9", 9: "text10", 10: "qrcode", 11: "image1", 12: "image2", 13: "batteryStatus", 14: "connectStatus" };
+      const blockOffset = {
+        0: "text1",
+        1: "text2",
+        2: "text3",
+        3: "text4",
+        4: "text5",
+        5: "text6",
+        6: "text7",
+        7: "text8",
+        8: "text9",
+        9: "text10",
+        10: "qrcode",
+        11: "image1",
+        12: "image2",
+        13: "batteryStatus",
+        14: "connectStatus",
+      };
       const blockName = blockOffset[blockId];
 
       config[templateName] = config[templateName] || {};
-      config[templateName][blockName] = readBlockConfig(blockId, bytes.slice(i + 2, i + 2 + dataLength));
+      config[templateName][blockName] = readBlockConfig(
+        blockId,
+        bytes.slice(i + 2, i + 2 + dataLength),
+      );
       i += dataLength;
     }
     // UPDATE CONTENT RESULT
@@ -399,7 +449,23 @@ function consume(event) {
       var blockId = data & 0x3f;
 
       var templateName = `template${templateId}`;
-      const blockNameOffset = { 0: "text1", 1: "text2", 2: "text3", 3: "text4", 4: "text5", 5: "text6", 6: "text7", 7: "text8", 8: "text9", 9: "text10", 10: "qrcode", 11: "image1", 12: "image2", 13: "batteryStatus", 14: "connectStatus" };
+      const blockNameOffset = {
+        0: "text1",
+        1: "text2",
+        2: "text3",
+        3: "text4",
+        4: "text5",
+        5: "text6",
+        6: "text7",
+        7: "text8",
+        8: "text9",
+        9: "text10",
+        10: "qrcode",
+        11: "image1",
+        12: "image2",
+        13: "batteryStatus",
+        14: "connectStatus",
+      };
       var blockName = blockNameOffset[blockId];
 
       const updateTemplateResult = {};

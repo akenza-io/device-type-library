@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,92 +13,100 @@ describe("Yosensi YO AgriBox uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/battery_voltage.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/battery_voltage.schema.json`).then(
+      (parsedSchema) => {
         batteryVoltageSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let internalTemperatureSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/internal_temperature.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/internal_temperature.schema.json`).then(
+      (parsedSchema) => {
         internalTemperatureSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let humiditySchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/humidity.schema.json`)
-      .then((parsedSchema) => {
-        humiditySchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/humidity.schema.json`).then((parsedSchema) => {
+      humiditySchema = parsedSchema;
+      done();
+    });
   });
 
   let outputVoltageCh1Schema = null;
   before((done) => {
-    loadSchema(`${__dirname}/output_voltage_ch1.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/output_voltage_ch1.schema.json`).then(
+      (parsedSchema) => {
         outputVoltageCh1Schema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let outputVoltageCh2Schema = null;
   before((done) => {
-    loadSchema(`${__dirname}/output_voltage_ch2.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/output_voltage_ch2.schema.json`).then(
+      (parsedSchema) => {
         outputVoltageCh2Schema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let outputVoltageCh3Schema = null;
   before((done) => {
-    loadSchema(`${__dirname}/output_voltage_ch3.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/output_voltage_ch3.schema.json`).then(
+      (parsedSchema) => {
         outputVoltageCh3Schema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let outputVoltageCh4Schema = null;
   before((done) => {
-    loadSchema(`${__dirname}/output_voltage_ch4.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/output_voltage_ch4.schema.json`).then(
+      (parsedSchema) => {
         outputVoltageCh4Schema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let soilMoisture1Schema = null;
   before((done) => {
-    loadSchema(`${__dirname}/soil_moisture_1.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/soil_moisture_1.schema.json`).then(
+      (parsedSchema) => {
         soilMoisture1Schema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let soilMoisture2Schema = null;
   before((done) => {
-    loadSchema(`${__dirname}/soil_moisture_2.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/soil_moisture_2.schema.json`).then(
+      (parsedSchema) => {
         soilMoisture2Schema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let soilMoisture3Schema = null;
   before((done) => {
-    loadSchema(`${__dirname}/soil_moisture_3.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/soil_moisture_3.schema.json`).then(
+      (parsedSchema) => {
         soilMoisture3Schema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   describe("consume()", () => {
@@ -133,6 +139,7 @@ describe("Yosensi YO AgriBox uplink", () => {
 
         assert.equal(value.topic, "internal_temperature");
         assert.equal(value.data.internalTemperature, 22.8);
+        assert.equal(value.data.internalTemperatureF, 73);
 
         validateSchema(value.data, internalTemperatureSchema, {
           throwError: true,

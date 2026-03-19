@@ -1,96 +1,99 @@
 {
-  "$id": "https://akenza.io/adnexo/ax-opto/measurement.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "measurement",
-  "title": "Measurement",
-  "properties": {
-    "distance": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm"
+    "$id": "https://akenza.io/adnexo/ax-opto/measurement.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "measurement",
+    "title": "Measurement",
+    "properties": {
+        "distance": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm"
+        },
+        "fillLevel": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/fillLevel/percent"
+        },
+        "topLeft": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
+            "title": "Distance top left",
+            "description": "Distance measured top left",
+            "hideFromKpis": true
+        },
+        "topCenter": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
+            "title": "Distance top center",
+            "description": "Distance measured top center",
+            "hideFromKpis": true
+        },
+        "topRight": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
+            "title": "Distance top right",
+            "description": "Distance measured top right",
+            "hideFromKpis": true
+        },
+        "middleLeft": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
+            "title": "Distance middle left",
+            "description": "Distance measured middle left",
+            "hideFromKpis": true
+        },
+        "middleCenter": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
+            "title": "Distance middle center",
+            "description": "Distance measured middle center",
+            "hideFromKpis": true
+        },
+        "middleRight": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
+            "title": "Distance middle right",
+            "description": "Distance measured middle right",
+            "hideFromKpis": true
+        },
+        "bottomLeft": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
+            "title": "Distance bottom left",
+            "description": "Distance measured bottom left",
+            "hideFromKpis": true
+        },
+        "bottomCenter": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
+            "title": "Distance bottom center",
+            "description": "Distance measured bottom center",
+            "hideFromKpis": true
+        },
+        "bottomRight": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
+            "title": "Distance bottom right",
+            "description": "Distance measured bottom right",
+            "hideFromKpis": true
+        },
+        "errorFlags": {
+            "title": "Error flags",
+            "type": "array",
+            "description": "Array of error flags",
+            "hideFromKpis": true
+        },
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "measurementType": {
+            "title": "Measurement type",
+            "description": "Measurement type",
+            "type": "string",
+            "enum": [
+                "REGULAR_MEASUREMENT",
+                "MEASUREMENT_EVENT",
+                "MANUAL_MEASUREMENT"
+            ],
+            "hideFromKpis": true
+        },
+        "temperatureF": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
     },
-    "fillLevel": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/fillLevel/percent"
-    },
-    "topLeft": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
-      "title": "Distance top left",
-      "description": "Distance measured top left",
-      "hideFromKpis": true
-    },
-    "topCenter": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
-      "title": "Distance top center",
-      "description": "Distance measured top center",
-      "hideFromKpis": true
-    },
-    "topRight": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
-      "title": "Distance top right",
-      "description": "Distance measured top right",
-      "hideFromKpis": true
-    },
-    "middleLeft": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
-      "title": "Distance middle left",
-      "description": "Distance measured middle left",
-      "hideFromKpis": true
-    },
-    "middleCenter": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
-      "title": "Distance middle center",
-      "description": "Distance measured middle center",
-      "hideFromKpis": true
-    },
-    "middleRight": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
-      "title": "Distance middle right",
-      "description": "Distance measured middle right",
-      "hideFromKpis": true
-    },
-    "bottomLeft": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
-      "title": "Distance bottom left",
-      "description": "Distance measured bottom left",
-      "hideFromKpis": true
-    },
-    "bottomCenter": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
-      "title": "Distance bottom center",
-      "description": "Distance measured bottom center",
-      "hideFromKpis": true
-    },
-    "bottomRight": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
-      "title": "Distance bottom right",
-      "description": "Distance measured bottom right",
-      "hideFromKpis": true
-    },
-    "errorFlags": {
-      "title": "Error flags",
-      "type": "array",
-      "description": "Array of error flags",
-      "hideFromKpis": true
-    },
-    "temperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
-    },
-    "measurementType": {
-      "title": "Measurement type",
-      "description": "Measurement type",
-      "type": "string",
-      "enum": [
-        "REGULAR_MEASUREMENT",
-        "MEASUREMENT_EVENT",
-        "MANUAL_MEASUREMENT"
-      ],
-      "hideFromKpis": true
-    }
-  },
-  "required": [
-    "distance",
-    "errorFlags",
-    "temperature",
-    "measurementType"
-  ]
+    "required": [
+        "distance",
+        "errorFlags",
+        "temperature",
+        "measurementType"
+    ]
 }

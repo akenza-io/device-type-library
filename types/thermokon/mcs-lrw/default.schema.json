@@ -1,82 +1,85 @@
 {
-  "$id": "https://akenza.io/thermokon/multi-sensor/default.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "processingType": "uplink_decoder",
-  "topic": "default",
-  "title": "Default",
-  "properties": {
-    "temperature": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    "$id": "https://akenza.io/thermokon/multi-sensor/default.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "processingType": "uplink_decoder",
+    "topic": "default",
+    "title": "Default",
+    "properties": {
+        "temperature": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+        },
+        "humidity": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+        },
+        "light": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/illuminance/lux"
+        },
+        "co2": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm"
+        },
+        "vocPercentage": {
+            "title": "Volatile Organic Compounds Percentage",
+            "type": "number",
+            "description": "VOC percentage value.",
+            "unit": "%"
+        },
+        "pressure": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/hPa"
+        },
+        "differentialPressure": {
+            "title": "Differential Pressure",
+            "type": "number",
+            "description": "Differential pressure reading.",
+            "unit": "Pa"
+        },
+        "flow": {
+            "title": "Volume Flow",
+            "type": "number",
+            "description": "Volume flow. Unit depends on device configuration."
+        },
+        "setpoint": {
+            "title": "Setpoint",
+            "type": "number",
+            "description": "Setpoint value from potentiometer.",
+            "unit": "%"
+        },
+        "condensation": {
+            "title": "Condensation State",
+            "type": "boolean",
+            "description": "True if condensation is detected (relay state)."
+        },
+        "condensationRaw": {
+            "title": "Condensation Raw Value",
+            "type": "number",
+            "description": "Raw sensor value (0-4095) for condensation detection."
+        },
+        "occupied": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupied/boolean"
+        },
+        "motionCount": {
+            "title": "Motion Count",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/motion/count"
+        },
+        "open": {
+            "title": "Reed Contact 1 State",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/reedContact/status"
+        },
+        "contactCount": {
+            "title": "Contact Count 1",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/reedContact/count"
+        },
+        "open1": {
+            "title": "Reed Contact 2 State",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/reedContact/status"
+        },
+        "contactCount1": {
+            "title": "Contact Count 2",
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/reedContact/count"
+        },
+        "temperatureF": {
+            "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit"
+        }
     },
-    "humidity": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
-    },
-    "light": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/illuminance/lux"
-    },
-    "co2": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/co2/ppm"
-    },
-    "vocPercentage": {
-      "title": "Volatile Organic Compounds Percentage",
-      "type": "number",
-      "description": "VOC percentage value.",
-      "unit": "%"
-    },
-    "pressure": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/hPa"
-    },
-    "differentialPressure": {
-      "title": "Differential Pressure",
-      "type": "number",
-      "description": "Differential pressure reading.",
-      "unit": "Pa"
-    },
-    "flow": {
-      "title": "Volume Flow",
-      "type": "number",
-      "description": "Volume flow. Unit depends on device configuration."
-    },
-    "setpoint": {
-      "title": "Setpoint",
-      "type": "number",
-      "description": "Setpoint value from potentiometer.",
-      "unit": "%"
-    },
-    "condensation": {
-      "title": "Condensation State",
-      "type": "boolean",
-      "description": "True if condensation is detected (relay state)."
-    },
-    "condensationRaw": {
-      "title": "Condensation Raw Value",
-      "type": "number",
-      "description": "Raw sensor value (0-4095) for condensation detection."
-    },
-    "occupied": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupied/boolean"
-    },
-    "motionCount": {
-      "title": "Motion Count",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/motion/count"
-    },
-    "open": {
-      "title": "Reed Contact 1 State",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/reedContact/status"
-    },
-    "contactCount": {
-      "title": "Contact Count 1",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/reedContact/count"
-    },
-    "open1": {
-      "title": "Reed Contact 2 State",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/reedContact/status"
-    },
-    "contactCount1": {
-      "title": "Contact Count 2",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/reedContact/count"
-    }
-  },
-  "required": []
+    "required": []
 }

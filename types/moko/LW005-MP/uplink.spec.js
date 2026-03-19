@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -21,86 +19,76 @@ describe("Moko LW005-MP Uplink", () => {
     });
   });
 
-
   let energySchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/energy.schema.json`)
-      .then((parsedSchema) => {
-        energySchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/energy.schema.json`).then((parsedSchema) => {
+      energySchema = parsedSchema;
+      done();
+    });
   });
 
   let consumptionSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/consumption.schema.json`)
-      .then((parsedSchema) => {
-        consumptionSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/consumption.schema.json`).then((parsedSchema) => {
+      consumptionSchema = parsedSchema;
+      done();
+    });
   });
 
   let loadStateSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/load_state.schema.json`)
-      .then((parsedSchema) => {
-        loadStateSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/load_state.schema.json`).then((parsedSchema) => {
+      loadStateSchema = parsedSchema;
+      done();
+    });
   });
 
   let overcurrentSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/overcurrent.schema.json`)
-      .then((parsedSchema) => {
-        overcurrentSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/overcurrent.schema.json`).then((parsedSchema) => {
+      overcurrentSchema = parsedSchema;
+      done();
+    });
   });
 
   let overloadSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/overload.schema.json`)
-      .then((parsedSchema) => {
-        overloadSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/overload.schema.json`).then((parsedSchema) => {
+      overloadSchema = parsedSchema;
+      done();
+    });
   });
 
   let overvoltageSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/overvoltage.schema.json`)
-      .then((parsedSchema) => {
-        overvoltageSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/overvoltage.schema.json`).then((parsedSchema) => {
+      overvoltageSchema = parsedSchema;
+      done();
+    });
   });
 
   let powerSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/power.schema.json`)
-      .then((parsedSchema) => {
-        powerSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/power.schema.json`).then((parsedSchema) => {
+      powerSchema = parsedSchema;
+      done();
+    });
   });
 
   let switchSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/switch.schema.json`)
-      .then((parsedSchema) => {
-        switchSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/switch.schema.json`).then((parsedSchema) => {
+      switchSchema = parsedSchema;
+      done();
+    });
   });
 
   let undervoltageSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/undervoltage.schema.json`)
-      .then((parsedSchema) => {
-        undervoltageSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/undervoltage.schema.json`).then((parsedSchema) => {
+      undervoltageSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -108,8 +96,7 @@ describe("Moko LW005-MP Uplink", () => {
       const data = {
         data: {
           port: 5,
-          payloadHex:
-            "68a7ec46100000",
+          payloadHex: "68a7ec46100000",
         },
       };
 
@@ -132,8 +119,7 @@ describe("Moko LW005-MP Uplink", () => {
       const data = {
         data: {
           port: 6,
-          payloadHex:
-            "68a7ecfa1008b70000c32d",
+          payloadHex: "68a7ecfa1008b70000c32d",
         },
       };
 
@@ -157,8 +143,7 @@ describe("Moko LW005-MP Uplink", () => {
       const data = {
         data: {
           port: 7,
-          payloadHex:
-            "68a7fe3e100000000064",
+          payloadHex: "68a7fe3e100000000064",
         },
       };
 
@@ -181,8 +166,7 @@ describe("Moko LW005-MP Uplink", () => {
       const data = {
         data: {
           port: 8,
-          payloadHex:
-            "68a81dd6100000020a0000",
+          payloadHex: "68a81dd6100000020a0000",
         },
       };
 
@@ -205,8 +189,7 @@ describe("Moko LW005-MP Uplink", () => {
       const data = {
         data: {
           port: 9,
-          payloadHex:
-            "68a81dd610010ce40898",
+          payloadHex: "68a81dd610010ce40898",
         },
       };
 
@@ -230,8 +213,7 @@ describe("Moko LW005-MP Uplink", () => {
       const data = {
         data: {
           port: 10,
-          payloadHex:
-            "68a81dd6100108340898",
+          payloadHex: "68a81dd6100108340898",
         },
       };
 
@@ -255,8 +237,7 @@ describe("Moko LW005-MP Uplink", () => {
       const data = {
         data: {
           port: 11,
-          payloadHex:
-            "68a81dd6100103e803e6",
+          payloadHex: "68a81dd6100103e803e6",
         },
       };
 
@@ -280,8 +261,7 @@ describe("Moko LW005-MP Uplink", () => {
       const data = {
         data: {
           port: 12,
-          payloadHex:
-            "68a81dd6100100640060",
+          payloadHex: "68a81dd6100100640060",
         },
       };
 
@@ -305,8 +285,7 @@ describe("Moko LW005-MP Uplink", () => {
       const data = {
         data: {
           port: 13,
-          payloadHex:
-            "0198d0c01b77020066310814aaedaf65",
+          payloadHex: "0198d0c01b77020066310814aaedaf65",
         },
       };
 
@@ -328,8 +307,7 @@ describe("Moko LW005-MP Uplink", () => {
       const data = {
         data: {
           port: 14,
-          payloadHex:
-            "68a81dd6100100000009",
+          payloadHex: "68a81dd6100100000009",
         },
       };
 

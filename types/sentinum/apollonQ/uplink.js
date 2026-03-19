@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function getFillLevel(device, distance) {
   if (device !== undefined && distance !== undefined) {
     if (device.customFields !== undefined) {
@@ -57,6 +61,7 @@ function consume(event) {
     }
     lifecycle.batteryLevel = batteryLevel;
     lifecycle.internalTemperature = Math.round(bytes[5] - 128);
+    lifecycle.internalTemperatureF = cToF(lifecycle.internalTemperature);
 
     data.alarm = bytes[6] ? "ALARM" : "NO_ALARM";
     data.distance = (bytes[7] << 8) | bytes[8]; // in mm

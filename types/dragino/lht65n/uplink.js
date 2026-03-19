@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function Str1(str2) {
   let str3 = "";
   for (let i = 0; i < str2.length; i++) {
@@ -93,7 +97,13 @@ function decoder(bytes, port) {
   const pollMessageStatus = (bytes[6] >> 7) & 0x01;
   const connect = (bytes[6] & 0x80) >> 7;
   let decode = { lifecycle: {}, decoded: {}, external: {}, datalog: {} };
-  if ((port === 3) && ((bytes[2] === 0x01) || (bytes[2] === 0x02) || (bytes[2] === 0x03) || (bytes[2] === 0x04))) {
+  if (
+    port === 3 &&
+    (bytes[2] === 0x01 ||
+      bytes[2] === 0x02 ||
+      bytes[2] === 0x03 ||
+      bytes[2] === 0x04)
+  ) {
     const array1 = [];
     const bytes1 = "0x";
     const str1 = Str1(bytes);
@@ -134,12 +144,14 @@ function decoder(bytes, port) {
   }
   switch (pollMessageStatus) {
     case 0:
-      if (ext === 0x09 || ext === 0x0A) {
+      if (ext === 0x09 || ext === 0x0a) {
         decode.decoded.temperature = parseFloat(
           ((((bytes[0] << 24) >> 16) | bytes[1]) / 100).toFixed(2),
         );
+        decode.decoded.temperatureF = cToF(decode.decoded.temperature);
         if (((bytes[0] << 8) | bytes[1]) === 0xffff) {
           decode.decoded.temperature = null;
+          decode.decoded.temperatureF = null;
         }
         decode.lifecycle.batteryStatus = bytes[4] >> 6;
       } else {
@@ -182,8 +194,10 @@ function decoder(bytes, port) {
         decode.decoded.temperature = parseFloat(
           ((((bytes[2] << 24) >> 16) | bytes[3]) / 100).toFixed(2),
         );
+        decode.decoded.temperatureF = cToF(decode.decoded.temperature);
         if (((bytes[2] << 8) | bytes[3]) === 0xffff) {
           decode.decoded.temperature = null;
+          decode.decoded.temperatureF = null;
         }
         decode.decoded.humidity = parseFloat(
           ((((bytes[4] << 8) | bytes[5]) & 0xfff) / 10).toFixed(1),
@@ -200,16 +214,20 @@ function decoder(bytes, port) {
         decode.external.tempDS = parseFloat(
           ((((bytes[7] << 24) >> 16) | bytes[8]) / 100).toFixed(2),
         );
+        decode.external.tempDSF = cToF(decode.external.tempDS);
         if (((bytes[7] << 8) | bytes[8]) === 0xffff) {
           decode.external.tempDS = null;
+          decode.external.tempDSF = null;
         }
       } else if (ext === 2) {
         decode.lifecycle.extSensor = "TEMPERATURE_SENSOR";
         decode.external.tempTMP117 = parseFloat(
           ((((bytes[7] << 24) >> 16) | bytes[8]) / 100).toFixed(2),
         );
+        decode.external.tempTMP117F = cToF(decode.external.tempTMP117);
         if (((bytes[7] << 8) | bytes[8]) === 0xffff) {
           decode.external.tempTMP117 = null;
+          decode.external.tempTMP117F = null;
         }
       } else if (ext === 4) {
         decode.lifecycle.workMode = "INTERRUPT_SENSOR";
@@ -247,7 +265,8 @@ function decoder(bytes, port) {
       if (bytes.length === 11) {
         return decode;
         // Illegal payload
-      } if (bytes.length === 8) {
+      }
+      if (bytes.length === 8) {
         decode = { lifecycle: {}, decoded: {}, external: {}, datalog: {} };
         return decode;
       }

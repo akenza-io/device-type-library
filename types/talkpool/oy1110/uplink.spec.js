@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,20 +13,18 @@ describe("Talkpool OY1110 Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   let startupSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/startup.schema.json`)
-      .then((parsedSchema) => {
-        startupSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/startup.schema.json`).then((parsedSchema) => {
+      startupSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -47,6 +43,7 @@ describe("Talkpool OY1110 Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, -5.2);
+        assert.equal(value.data.temperatureF, 22.6);
         assert.equal(value.data.humidity, 72.3);
 
         validateSchema(value.data, defaultSchema, { throwError: true });
@@ -59,6 +56,7 @@ describe("Talkpool OY1110 Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 2.9);
+        assert.equal(value.data.temperatureF, 37.2);
         assert.equal(value.data.humidity, 64.8);
 
         validateSchema(value.data, defaultSchema, { throwError: true });
@@ -71,6 +69,7 @@ describe("Talkpool OY1110 Uplink", () => {
 
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, 12.7);
+        assert.equal(value.data.temperatureF, 54.9);
         assert.equal(value.data.humidity, 53.9);
 
         validateSchema(value.data, defaultSchema, { throwError: true });
@@ -95,6 +94,7 @@ describe("Talkpool OY1110 Uplink", () => {
 
           assert.equal(value.topic, "default");
           assert.equal(value.data.temperature, 30.2);
+          assert.equal(value.data.temperatureF, 86.4);
           assert.equal(value.data.humidity, 34);
 
           validateSchema(value.data, defaultSchema, { throwError: true });

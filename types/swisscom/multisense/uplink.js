@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function int16(hex) {
   let a = `0x${hex}`;
   a = parseInt(a, 16);
@@ -99,6 +103,7 @@ function consume(event) {
             Math.round(
               Bits.bitsToUnsigned(bits.substr(pointer, 16)) * 0.01 * 100,
             ) / 100;
+          data.temperatureF = cToF(data.temperature);
           pointer += 16;
           topic = "temperature";
           break;
@@ -140,12 +145,14 @@ function consume(event) {
             Math.round(
               Bits.bitsToUnsigned(bits.substr(pointer, 16)) * 0.01 * 100,
             ) / 100;
+          data.temperatureF = cToF(data.temperature);
           pointer += 16;
           for (let a = 0; a < 7; a++) {
             data[`tempHistory${a}`] =
               Math.round(
                 Bits.bitsToUnsigned(bits.substr(pointer, 16)) * 0.01 * 100,
               ) / 100;
+            data[`tempHistory${a}F`] = cToF(data[`tempHistory${a}`]);
             pointer += 16;
           }
           topic = "temperature_history";

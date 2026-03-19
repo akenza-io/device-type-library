@@ -1,10 +1,9 @@
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -18,35 +17,31 @@ describe("Transmitter 600-050", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/alarm.schema.json`)
-      .then((parsedSchema) => {
-        alarmSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/alarm.schema.json`).then((parsedSchema) => {
+      alarmSchema = parsedSchema;
+      done();
+    });
   });
 
   before((done) => {
-    loadSchema(`${__dirname}/datalog.schema.json`)
-      .then((parsedSchema) => {
-        datalogSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/datalog.schema.json`).then((parsedSchema) => {
+      datalogSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -89,6 +84,7 @@ describe("Transmitter 600-050", () => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "default");
         assert.equal(value.data.temperature, -14.4);
+        assert.equal(value.data.temperatureF, 6.1);
         assert.equal(value.data.humidity, 5);
         assert.equal(value.data.msgType, "NORMAL");
         assert.equal(value.data.rbe, false);
@@ -114,34 +110,14 @@ describe("Transmitter 600-050", () => {
         assert.equal(value.topic, "datalog");
 
         // Vérifie quelques points dans la séquence
-        assert.deepEqual(value.data.tempeartureDatalog, [
-          1,
-          3,
-          5,
-          7,
-          9,
-          11,
-          13,
-          15,
-          17,
-          19,
-          21,
-          23,
-        ]);
-        assert.deepEqual(value.data.humidityDatalog, [
-          2,
-          4,
-          6,
-          8,
-          10,
-          12,
-          14,
-          16,
-          18,
-          20,
-          22,
-          24,
-        ]);
+        assert.deepEqual(
+          value.data.tempeartureDatalog,
+          [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23],
+        );
+        assert.deepEqual(
+          value.data.humidityDatalog,
+          [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24],
+        );
 
         validateSchema(value.data, datalogSchema, { throwError: true });
       });

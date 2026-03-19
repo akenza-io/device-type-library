@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 // Used for decoding enLink LoRa Messages
 // DN 23 Jun 2020 (Doc.Ver:4.15 AQ-P/P+ FW Ver:4.15)
 //   Add 10 types for advanced new indoor/outdoor Air Quality units
@@ -221,18 +225,18 @@ function decodePayload(data) {
           decoded.counter.push([
             data[i + 1],
             (data[i + 2] << 24) |
-            (data[i + 3] << 16) |
-            (data[i + 4] << 8) |
-            data[i + 5],
+              (data[i + 3] << 16) |
+              (data[i + 4] << 8) |
+              data[i + 5],
           ]);
         } else {
           decoded.counter = [
             [
               data[i + 1],
               (data[i + 2] << 24) |
-              (data[i + 3] << 16) |
-              (data[i + 4] << 8) |
-              data[i + 5],
+                (data[i + 3] << 16) |
+                (data[i + 4] << 8) |
+                data[i + 5],
             ],
           ];
         }
@@ -379,19 +383,22 @@ function decodePayload(data) {
         break;
       case ENLINK_TEMP_PROBE_IN_BAND_ALARM_COUNT_1:
         /* In band alarm events u16 */
-        decoded.temp_probe_in_band_alarm_count_1 = (data[i + 1] << 8) | data[i + 2];
+        decoded.temp_probe_in_band_alarm_count_1 =
+          (data[i + 1] << 8) | data[i + 2];
         i += 2;
 
         break;
       case ENLINK_TEMP_PROBE_IN_BAND_ALARM_COUNT_2:
         /* In band alarm events u16 */
-        decoded.temp_probe_in_band_alarm_count_2 = (data[i + 1] << 8) | data[i + 2];
+        decoded.temp_probe_in_band_alarm_count_2 =
+          (data[i + 1] << 8) | data[i + 2];
         i += 2;
 
         break;
       case ENLINK_TEMP_PROBE_IN_BAND_ALARM_COUNT_3:
         /* In band alarm events u16 */
-        decoded.temp_probe_in_band_alarm_count_3 = (data[i + 1] << 8) | data[i + 2];
+        decoded.temp_probe_in_band_alarm_count_3 =
+          (data[i + 1] << 8) | data[i + 2];
         i += 2;
 
         break;
@@ -475,19 +482,22 @@ function decodePayload(data) {
         break;
       case ENLINK_TEMP_PROBE_HIGH_ALARM_COUNT_1:
         /* High alarm events u16 */
-        decoded.temp_probe_high_alarm_count_1 = (data[i + 1] << 8) | data[i + 2];
+        decoded.temp_probe_high_alarm_count_1 =
+          (data[i + 1] << 8) | data[i + 2];
         i += 2;
 
         break;
       case ENLINK_TEMP_PROBE_HIGH_ALARM_COUNT_2:
         /* High alarm events u16 */
-        decoded.temp_probe_high_alarm_count_2 = (data[i + 1] << 8) | data[i + 2];
+        decoded.temp_probe_high_alarm_count_2 =
+          (data[i + 1] << 8) | data[i + 2];
         i += 2;
 
         break;
       case ENLINK_TEMP_PROBE_HIGH_ALARM_COUNT_3:
         /* High alarm events u16 */
-        decoded.temp_probe_high_alarm_count_3 = (data[i + 1] << 8) | data[i + 2];
+        decoded.temp_probe_high_alarm_count_3 =
+          (data[i + 1] << 8) | data[i + 2];
         i += 2;
 
         break;
@@ -544,7 +554,8 @@ function decodePayload(data) {
         break;
       case ENLINK_TEMPERATURE_TX:
         // s16 in deci-celcius
-        decoded.temperature_tx_degc = S16((data[i + 1] << 8) | data[i + 2]) / 10;
+        decoded.temperature_tx_degc =
+          S16((data[i + 1] << 8) | data[i + 2]) / 10;
         i += 2;
 
         break;
@@ -808,13 +819,13 @@ function decodePayload(data) {
         break;
     }
   }
-  return decoded
+  return decoded;
 }
 
 function consume(event) {
   const payload = event.data.payloadHex;
   const data = parseHexString(payload);
-  const decoded = decodePayload(data)
+  const decoded = decodePayload(data);
 
   const defaultPayload = {};
   defaultPayload.temperature = decoded.temperature_c;
@@ -840,12 +851,18 @@ function consume(event) {
   defaultPayload.tempProbe1 = decoded.temp_probe_1;
   defaultPayload.tempProbe2 = decoded.temp_probe_2;
   defaultPayload.tempProbe3 = decoded.temp_probe_3;
-  defaultPayload.tempProbeInBandDurationS1 = decoded.temp_probe_in_band_duration_s_1;
-  defaultPayload.tempProbeInBandDurationS2 = decoded.temp_probe_in_band_duration_s_2;
-  defaultPayload.tempProbeInBandDurationS3 = decoded.temp_probe_in_band_duration_s_3;
-  defaultPayload.tempProbeInBandAlarmCount1 = decoded.temp_probe_in_band_alarm_count_1;
-  defaultPayload.tempProbeInBandAlarmCount2 = decoded.temp_probe_in_band_alarm_count_2;
-  defaultPayload.tempProbeInBandAlarmCount3 = decoded.temp_probe_in_band_alarm_count_3;
+  defaultPayload.tempProbeInBandDurationS1 =
+    decoded.temp_probe_in_band_duration_s_1;
+  defaultPayload.tempProbeInBandDurationS2 =
+    decoded.temp_probe_in_band_duration_s_2;
+  defaultPayload.tempProbeInBandDurationS3 =
+    decoded.temp_probe_in_band_duration_s_3;
+  defaultPayload.tempProbeInBandAlarmCount1 =
+    decoded.temp_probe_in_band_alarm_count_1;
+  defaultPayload.tempProbeInBandAlarmCount2 =
+    decoded.temp_probe_in_band_alarm_count_2;
+  defaultPayload.tempProbeInBandAlarmCount3 =
+    decoded.temp_probe_in_band_alarm_count_3;
   defaultPayload.tempProbeLowDurationS1 = decoded.temp_probe_low_duration_s_1;
   defaultPayload.tempProbeLowDurationS2 = decoded.temp_probe_low_duration_s_2;
   defaultPayload.tempProbeLowDurationS3 = decoded.temp_probe_low_duration_s_3;
@@ -855,9 +872,12 @@ function consume(event) {
   defaultPayload.tempProbeHighDurationS1 = decoded.temp_probe_high_duration_s_1;
   defaultPayload.tempProbeHighDurationS2 = decoded.temp_probe_high_duration_s_2;
   defaultPayload.tempProbeHighDurationS3 = decoded.temp_probe_high_duration_s_3;
-  defaultPayload.tempProbeHighAlarmCount1 = decoded.temp_probe_high_alarm_count_1;
-  defaultPayload.tempProbeHighAlarmCount2 = decoded.temp_probe_high_alarm_count_2;
-  defaultPayload.tempProbeHighAlarmCount3 = decoded.temp_probe_high_alarm_count_3;
+  defaultPayload.tempProbeHighAlarmCount1 =
+    decoded.temp_probe_high_alarm_count_1;
+  defaultPayload.tempProbeHighAlarmCount2 =
+    decoded.temp_probe_high_alarm_count_2;
+  defaultPayload.tempProbeHighAlarmCount3 =
+    decoded.temp_probe_high_alarm_count_3;
   defaultPayload.dp = decoded.dp_pa;
   defaultPayload.af = decoded.af_mps;
   defaultPayload.adcV = decoded.adc_v;
@@ -903,6 +923,9 @@ function consume(event) {
   lifecycle.fanRunTimeS = decoded.fan_run_time_s;
 
   if (deleteUnusedKeys(defaultPayload)) {
+    if (defaultPayload.temperature !== undefined) {
+      defaultPayload.temperatureF = cToF(defaultPayload.temperature);
+    }
     emit("sample", { data: defaultPayload, topic: "default" });
   }
 

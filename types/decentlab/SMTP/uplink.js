@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 const decentlab_decoder = {
   PROTOCOL_VERSION: 2,
   SENSORS: [
@@ -210,20 +214,28 @@ function consume(event) {
   // Default values
   data.soilMoistureAtDepth0 = sample.soil_moisture_at_depth_0;
   data.soilTemperatureAtDepth0 = sample.soil_temperature_at_depth_0;
+  data.soilTemperatureAtDepth0F = cToF(data.soilTemperatureAtDepth0);
   data.soilMoistureAtDepth1 = sample.soil_moisture_at_depth_1;
   data.soilTemperatureAtDepth1 = sample.soil_temperature_at_depth_1;
+  data.soilTemperatureAtDepth1F = cToF(data.soilTemperatureAtDepth1);
   data.soilMoistureAtDepth2 = sample.soil_moisture_at_depth_2;
   data.soilTemperatureAtDepth2 = sample.soil_temperature_at_depth_2;
+  data.soilTemperatureAtDepth2F = cToF(data.soilTemperatureAtDepth2);
   data.soilMoistureAtDepth3 = sample.soil_moisture_at_depth_3;
   data.soilTemperatureAtDepth3 = sample.soil_temperature_at_depth_3;
+  data.soilTemperatureAtDepth3F = cToF(data.soilTemperatureAtDepth3);
   data.soilMoistureAtDepth4 = sample.soil_moisture_at_depth_4;
   data.soilTemperatureAtDepth4 = sample.soil_temperature_at_depth_4;
+  data.soilTemperatureAtDepth4F = cToF(data.soilTemperatureAtDepth4);
   data.soilMoistureAtDepth5 = sample.soil_moisture_at_depth_5;
   data.soilTemperatureAtDepth5 = sample.soil_temperature_at_depth_5;
+  data.soilTemperatureAtDepth5F = cToF(data.soilTemperatureAtDepth5);
   data.soilMoistureAtDepth6 = sample.soil_moisture_at_depth_6;
   data.soilTemperatureAtDepth6 = sample.soil_temperature_at_depth_6;
+  data.soilTemperatureAtDepth6F = cToF(data.soilTemperatureAtDepth6);
   data.soilMoistureAtDepth7 = sample.soil_moisture_at_depth_7;
   data.soilTemperatureAtDepth7 = sample.soil_temperature_at_depth_7;
+  data.soilTemperatureAtDepth7F = cToF(data.soilTemperatureAtDepth7);
 
   // Lifecycle values
   lifecycle.batteryVoltage = sample.battery_voltage;

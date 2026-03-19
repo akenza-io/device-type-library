@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,38 +13,38 @@ describe("Yosensi YO Thermostat uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/battery_voltage.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/battery_voltage.schema.json`).then(
+      (parsedSchema) => {
         batteryVoltageSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let internalTemperatureSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/internal_temperature.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/internal_temperature.schema.json`).then(
+      (parsedSchema) => {
         internalTemperatureSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let humiditySchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/humidity.schema.json`)
-      .then((parsedSchema) => {
-        humiditySchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/humidity.schema.json`).then((parsedSchema) => {
+      humiditySchema = parsedSchema;
+      done();
+    });
   });
 
   let illuminanceSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/illuminance.schema.json`)
-      .then((parsedSchema) => {
-        illuminanceSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/illuminance.schema.json`).then((parsedSchema) => {
+      illuminanceSchema = parsedSchema;
+      done();
+    });
   });
 
   let co2Schema = null;
@@ -59,65 +57,72 @@ describe("Yosensi YO Thermostat uplink", () => {
 
   let presenceCounterSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/presence_counter.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/presence_counter.schema.json`).then(
+      (parsedSchema) => {
         presenceCounterSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let comfortSetpointSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/comfort_setpoint.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/comfort_setpoint.schema.json`).then(
+      (parsedSchema) => {
         comfortSetpointSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let standbyOffsetSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/standby_offset.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/standby_offset.schema.json`).then(
+      (parsedSchema) => {
         standbyOffsetSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let economyOffsetSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/economy_offset.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/economy_offset.schema.json`).then(
+      (parsedSchema) => {
         economyOffsetSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let frostProtSetpointSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/frost_prot_setpoint.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/frost_prot_setpoint.schema.json`).then(
+      (parsedSchema) => {
         frostProtSetpointSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let operationModeSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/operation_mode.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/operation_mode.schema.json`).then(
+      (parsedSchema) => {
         operationModeSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let getParametersSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/get_parameters.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/get_parameters.schema.json`).then(
+      (parsedSchema) => {
         getParametersSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let outputSchema = null;
@@ -261,6 +266,7 @@ describe("Yosensi YO Thermostat uplink", () => {
 
         assert.equal(value.topic, "internal_temperature");
         assert.equal(value.data.internalTemperature, 16.7);
+        assert.equal(value.data.internalTemperatureF, 62.1);
 
         validateSchema(value.data, internalTemperatureSchema, {
           throwError: true,
@@ -335,6 +341,7 @@ describe("Yosensi YO Thermostat uplink", () => {
 
         assert.equal(value.topic, "internal_temperature");
         assert.equal(value.data.internalTemperature, 26.2);
+        assert.equal(value.data.internalTemperatureF, 79.2);
 
         validateSchema(value.data, internalTemperatureSchema, {
           throwError: true,

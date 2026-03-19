@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 // Source https://github.com/dragino/dragino-end-node-decoder/blob/main/GroPoint%20Air/gropoint_Decoder_V1.0.0.js
 
 function consume(event) {
@@ -62,9 +66,11 @@ function consume(event) {
         temperature[tem[i]] =
           ((bytes[startBytes] << 8) | bytes[startBytes + 1]) / 10.0;
       }
+      temperature[`${tem[i]}F`] = cToF(temperature[tem[i]]);
 
       if (((bytes[startBytes] << 8) | bytes[startBytes + 1]) === 0xffff) {
         temperature[tem[i]] = null;
+        temperature[`${tem[i]}F`] = null;
       }
 
       startBytes += 2;

@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,20 +13,18 @@ describe("Decentlab ATM41 Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -53,6 +49,7 @@ describe("Decentlab ATM41 Uplink", () => {
         assert.equal(value.data.windDirection, 29.9);
         assert.equal(value.data.maximumWindSpeed, 0.2);
         assert.equal(value.data.temperature, 26.4);
+        assert.equal(value.data.temperatureF, 79.5);
         assert.equal(value.data.vaporPressure, 1.8);
         assert.equal(value.data.atmosphericPressure, 95.96);
         assert.equal(value.data.northWindSpeed, 0.08);
@@ -72,6 +69,7 @@ describe("Decentlab ATM41 Uplink", () => {
         assert.equal(value.data.deviceID, 858);
 
         assert.equal(value.data.sensorTemperatureInternal, 26.5);
+        assert.equal(value.data.sensorTemperatureInternalF, 79.7);
         assert.equal(value.data.xOrientationAngle, 0.2);
         assert.equal(value.data.yOrientationAngle, -2.4);
         assert.equal(value.data.compassHeading, 86);

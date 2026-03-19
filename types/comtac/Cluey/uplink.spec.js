@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,11 +13,12 @@ describe("Comtac Cluey Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/digital_inputs.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/digital_inputs.schema.json`).then(
+      (parsedSchema) => {
         digitalInputsSchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let eventSchema = null;
@@ -32,56 +31,58 @@ describe("Comtac Cluey Uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   let pointInfoSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/point_info.schema.json`)
-      .then((parsedSchema) => {
-        pointInfoSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/point_info.schema.json`).then((parsedSchema) => {
+      pointInfoSchema = parsedSchema;
+      done();
+    });
   });
 
   let analogInput5Schema = null;
   before((done) => {
-    loadSchema(`${__dirname}/analog_input_5.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/analog_input_5.schema.json`).then(
+      (parsedSchema) => {
         analogInput5Schema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let analogInput6Schema = null;
   before((done) => {
-    loadSchema(`${__dirname}/analog_input_6.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/analog_input_6.schema.json`).then(
+      (parsedSchema) => {
         analogInput6Schema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let analogInput7Schema = null;
   before((done) => {
-    loadSchema(`${__dirname}/analog_input_7.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/analog_input_7.schema.json`).then(
+      (parsedSchema) => {
         analogInput7Schema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let analogInput8Schema = null;
   before((done) => {
-    loadSchema(`${__dirname}/analog_input_8.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/analog_input_8.schema.json`).then(
+      (parsedSchema) => {
         analogInput8Schema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   describe("consume()", () => {

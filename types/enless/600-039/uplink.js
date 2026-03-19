@@ -13,12 +13,7 @@ function readUInt16LE(bytes) {
 }
 
 function readUInt32BE(bytes) {
-  return (
-    bytes[0] * 0x1000000 +
-    (bytes[1] << 16) +
-    (bytes[2] << 8) +
-    bytes[3]
-  );
+  return bytes[0] * 0x1000000 + (bytes[1] << 16) + (bytes[2] << 8) + bytes[3];
 }
 
 // --- PARSE ALARM STATUS ---
@@ -35,9 +30,9 @@ function parseAlarmStatus(bytes) {
 function parseStates(bytes) {
   const state = readUInt16LE(bytes);
   return {
-    pulseCh1State: (state & 0x0020) ? "CLOSED" : "OPEN",
-    pulseCh2State: (state & 0x0040) ? "CLOSED" : "OPEN",
-    pulseOcState: (state & 0x0080) ? "CLOSED" : "OPEN"
+    pulseCh1State: state & 0x0020 ? "CLOSED" : "OPEN",
+    pulseCh2State: state & 0x0040 ? "CLOSED" : "OPEN",
+    pulseOcState: state & 0x0080 ? "CLOSED" : "OPEN",
   };
 }
 
@@ -48,8 +43,9 @@ function consume(event) {
 
   if (bytes.length !== 22) {
     throw new Error(
-      `Invalid payload length: ${bytes.length
-      } bytes. Expected 22 bytes (44 hex chars).`
+      `Invalid payload length: ${
+        bytes.length
+      } bytes. Expected 22 bytes (44 hex chars).`,
     );
   }
 

@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
@@ -14,7 +18,9 @@ function consume(event) {
   lifecycle.booster = !!Bits.bitsToUnsigned(bits.substr(7, 1));
 
   lifecycle.minTempThreshold = Bits.bitsToSigned(bits.substr(8, 8));
+  lifecycle.minTempThresholdF = cToF(lifecycle.minTempThreshold);
   lifecycle.maxTempThreshold = Bits.bitsToSigned(bits.substr(16, 8));
+  lifecycle.maxTempThresholdF = cToF(lifecycle.maxTempThreshold);
   lifecycle.minHumThreshold = Bits.bitsToSigned(bits.substr(24, 8));
   lifecycle.maxHumThreshold = Bits.bitsToSigned(bits.substr(32, 8));
   lifecycle.sendInterval = Bits.bitsToUnsigned(bits.substr(40, 16));
@@ -36,6 +42,7 @@ function consume(event) {
   data.temperature = Number(
     (Bits.bitsToSigned(bits.substr(72, 16)) / 100).toFixed(1),
   );
+  data.temperatureF = cToF(data.temperature);
   data.humidity = Number(
     (Bits.bitsToSigned(bits.substr(88, 16)) / 100).toFixed(0),
   );

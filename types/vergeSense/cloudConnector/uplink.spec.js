@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,57 +13,53 @@ describe("Verge Sense Uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/space_availability.schema.json`)
-      .then((parsedSchema) => {
+    loadSchema(`${__dirname}/space_availability.schema.json`).then(
+      (parsedSchema) => {
         spaceAvailabilitySchema = parsedSchema;
         done();
-      });
+      },
+    );
   });
 
   let occupancySchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/occupancy.schema.json`)
-      .then((parsedSchema) => {
-        occupancySchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/occupancy.schema.json`).then((parsedSchema) => {
+      occupancySchema = parsedSchema;
+      done();
+    });
   });
 
   let areaCountReportSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/area_count.schema.json`)
-      .then((parsedSchema) => {
-        areaCountReportSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/area_count.schema.json`).then((parsedSchema) => {
+      areaCountReportSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
     it("should decode the Verge Sense space report payload && init state", () => {
       const data = {
         data: {
-          "building_ref_id": "EA21",
-          "floor_ref_id": "0070",
-          "space_ref_id": "EG7859.43",
-          "space_id": 602439,
-          "sensor_ids": [
-            "30Z-R9E",
-            "30Z-SNE"
-          ],
-          "person_count": 0,
-          "signs_of_life": false,
-          "motion_detected": false,
-          "event_type": "space_report",
-          "timestamp": "2024-11-21T13:31:45.000Z",
-          "people": {
-            "count": 0,
-            "distances": {
-              "values": [],
-              "units": "meters"
+          building_ref_id: "EA21",
+          floor_ref_id: "0070",
+          space_ref_id: "EG7859.43",
+          space_id: 602439,
+          sensor_ids: ["30Z-R9E", "30Z-SNE"],
+          person_count: 0,
+          signs_of_life: false,
+          motion_detected: false,
+          event_type: "space_report",
+          timestamp: "2024-11-21T13:31:45.000Z",
+          people: {
+            count: 0,
+            distances: {
+              values: [],
+              units: "meters",
             },
-            "coordinates": []
-          }
-        }
+            coordinates: [],
+          },
+        },
       };
 
       expectEmits((type, value) => {
@@ -111,26 +105,23 @@ describe("Verge Sense Uplink", () => {
       const data = {
         state: {
           lastEmittedAt: new Date().getTime() - 3600001,
-          lastOccupied: "UNOCCUPIED"
+          lastOccupied: "UNOCCUPIED",
         },
         data: {
-          "motion_detected": null,
-          "building_ref_id": "EA21",
-          "people": null,
-          "environment": null,
-          "signs_of_life": null,
-          "event_type": "space_availability",
-          "space_ref_id": "EG7859.43",
-          "state": "occupied",
-          "sensor_ids": [
-            "30Z-R9E",
-            "30Z-SNE"
-          ],
-          "space_id": 602439,
-          "person_count": null,
-          "floor_ref_id": "0070",
-          "timestamp": "2024-11-21T13:37:45Z"
-        }
+          motion_detected: null,
+          building_ref_id: "EA21",
+          people: null,
+          environment: null,
+          signs_of_life: null,
+          event_type: "space_availability",
+          space_ref_id: "EG7859.43",
+          state: "occupied",
+          sensor_ids: ["30Z-R9E", "30Z-SNE"],
+          space_id: 602439,
+          person_count: null,
+          floor_ref_id: "0070",
+          timestamp: "2024-11-21T13:37:45Z",
+        },
       };
 
       expectEmits((type, value) => {

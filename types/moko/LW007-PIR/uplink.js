@@ -1,7 +1,11 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function bytesToInt(bytes, start, len) {
   let value = 0;
   for (let i = 0; i < len; i++) {
-    const m = ((len - 1) - i) * 8;
+    const m = (len - 1 - i) * 8;
     value |= bytes[start + i] << m;
   }
   return value;
@@ -67,6 +71,7 @@ function consume(event) {
       } else {
         temperature = temperature / 10 - 30;
         data.temperature = Math.round(temperature * 10) / 10;
+        data.temperatureF = cToF(data.temperature);
         data.temperatureState = "ENABLED";
       }
 
@@ -85,7 +90,7 @@ function consume(event) {
       } else if (temperatureChange === 0x01) {
         data.temperatureChangeState = "FAST_DROP";
       } else if (temperatureChange === 0x02) {
-        data.temperatureChangeState = 'NOMINAL_CHANGE';
+        data.temperatureChangeState = "NOMINAL_CHANGE";
       } else if (temperatureChange === 0x11) {
         data.temperatureChangeState = "FAST_CHANGE_DISABLED";
       }
@@ -96,14 +101,14 @@ function consume(event) {
       } else if (humidityChange === 0x01) {
         data.humidityChangeState = "FAST_DROP";
       } else if (humidityChange === 0x02) {
-        data.humidityChangeState = 'NOMINAL_CHANGE';
+        data.humidityChangeState = "NOMINAL_CHANGE";
       } else if (humidityChange === 0x11) {
         data.humidityChangeState = "FAST_CHANGE_DISABLED";
       }
-      data.lowBattery = (bytesToInt(bytes, 9, 2) >> 15) === 1;
+      data.lowBattery = bytesToInt(bytes, 9, 2) >> 15 === 1;
 
-      const count = bytesToInt(bytes, 9, 2) & 0x7FFF;
-      if (count === 0x7FFF) {
+      const count = bytesToInt(bytes, 9, 2) & 0x7fff;
+      if (count === 0x7fff) {
         data.reedStatus = "DISABLED";
       } else {
         data.count = count;
@@ -111,7 +116,8 @@ function consume(event) {
       }
 
       break;
-    } case 7: {
+    }
+    case 7: {
       topic = "shutdown";
       const battery = bytes[5];
       if (battery === 0x00 || battery === 0x02) {
@@ -120,7 +126,8 @@ function consume(event) {
         data.lowBattery = true;
       }
       break;
-    } default:
+    }
+    default:
       break;
   }
 

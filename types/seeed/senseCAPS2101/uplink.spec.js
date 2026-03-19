@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,11 +13,10 @@ describe("Seeed SenseCAP S2101 Air Temperature and Humidity Sensor Uplink", () =
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -39,6 +36,7 @@ describe("Seeed SenseCAP S2101 Air Temperature and Humidity Sensor Uplink", () =
         assert.equal(value.topic, "default");
         assert.equal(value.data.humidity, 62.6);
         assert.equal(value.data.temperature, 26.8);
+        assert.equal(value.data.temperatureF, 80.2);
 
         validateSchema(value.data, defaultSchema, { throwError: true });
       });

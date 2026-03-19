@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 function calculateIncrement(state, currentValue, usageDefinition = 2, doorClosingDefinition = 1) {
   let { lastCount } = state;
   let { partialUsage } = state;
@@ -73,6 +77,7 @@ function consume(event) {
 
   data.temperature = Bits.bitsToUnsigned(bits.substr(17, 7));
   data.temperature -= 32;
+  data.temperatureF = cToF(data.temperature);
   data.time = Hex.hexLittleEndianToBigEndian(payload.substr(6, 4), false);
   data.count = Hex.hexLittleEndianToBigEndian(payload.substr(10, 6), false);
 

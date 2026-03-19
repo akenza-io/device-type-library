@@ -1,3 +1,7 @@
+function cToF(celsius) {
+  return Math.round(((celsius * 9) / 5 + 32) * 10) / 10;
+}
+
 const bytesToInt = function (byteArray, dev) {
   let value = 0;
   for (let i = 0; i < byteArray.length; i++) {
@@ -47,6 +51,7 @@ function consume(event) {
       Array.from(bytes).slice(pos, pos + 2),
       100,
     );
+    decoded.temperatureF = cToF(decoded.temperature);
     pos += 2;
     decoded.waterContent = bytesToInt(Array.from(bytes).slice(pos, pos + 2), 1);
     pos += 2;
@@ -90,6 +95,7 @@ function consume(event) {
       Array.from(bytes).slice(pos, pos + 2),
       100,
     );
+    decoded.temperature1F = cToF(decoded.temperature1);
     pos += 2;
     decoded.waterContent1 = bytesToInt(
       Array.from(bytes).slice(pos, pos + 2),

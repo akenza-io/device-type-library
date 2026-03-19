@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -23,29 +21,26 @@ describe("Miromico insight Uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
+    });
   });
 
   let settingsSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/settings.schema.json`)
-      .then((parsedSchema) => {
-        settingsSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/settings.schema.json`).then((parsedSchema) => {
+      settingsSchema = parsedSchema;
+      done();
+    });
   });
 
   let temperatureSchema = null;
   before((done) => {
-    loadSchema(`${__dirname}/temperature.schema.json`)
-      .then((parsedSchema) => {
-        temperatureSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/temperature.schema.json`).then((parsedSchema) => {
+      temperatureSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -92,8 +87,10 @@ describe("Miromico insight Uplink", () => {
 
         assert.equal(value.topic, "temperature");
         assert.equal(value.data.temperature, 25);
+        assert.equal(value.data.temperatureF, 77);
         assert.equal(value.data.humidity, 60);
         assert.equal(value.data.temperature2, 25.52);
+        assert.equal(value.data.temperature2F, 77.9);
         assert.equal(value.data.humidity2, 59.5);
 
         validateSchema(value.data, temperatureSchema, {

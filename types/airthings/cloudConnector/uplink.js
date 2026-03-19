@@ -55,13 +55,16 @@ function consume(event) {
   environment.pm10 = data.pm10;
   environment.pm10Rating = data.ratings.pm10;
 
-
   if (deleteUnusedKeys(environment)) {
     state.environment = completeSample(environment, state.environment || {});
     if (state.environment.temperature !== undefined) {
       state.environment.temperatureF = cToF(state.environment.temperature);
     }
-    emit("sample", { data: state.environment, topic: "environment", timestamp });
+    emit("sample", {
+      data: state.environment,
+      topic: "environment",
+      timestamp,
+    });
   }
 
   const mold = {};
@@ -125,7 +128,11 @@ function consume(event) {
 
   if (deleteUnusedKeys(ventilation)) {
     state.ventilation = completeSample(ventilation, state.ventilation || {});
-    emit("sample", { data: state.ventilation, topic: "ventilation", timestamp });
+    emit("sample", {
+      data: state.ventilation,
+      topic: "ventilation",
+      timestamp,
+    });
   }
 
   const airly = {};

@@ -1,11 +1,9 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -15,11 +13,10 @@ describe("MClimate Button uplink", () => {
   before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
   describe("consume()", () => {
@@ -39,6 +36,7 @@ describe("MClimate Button uplink", () => {
         assert.equal(value.data.batteryVoltage, 3.352);
         assert.equal(value.data.buttonPressed, "SINGLE_PRESS");
         assert.equal(value.data.temperature, 28.2);
+        assert.equal(value.data.temperatureF, 82.8);
         assert.equal(value.data.thermistorOperational, true);
 
         validateSchema(value.data, defaultSchema, { throwError: true });
