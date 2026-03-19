@@ -1,0 +1,22 @@
+{
+  "$id": "https://akenza.io/airthings/cloudConnector/ventilation.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "ventilation",
+  "title": "Ventilation",
+  "properties": {
+    "airflow": {
+      "title": "Air flow",
+      "type": "number",
+      "unit": "m3/h",
+      "description": "Air flow"
+    },
+    "airExchangeRate": {
+      "title": "Air exchange rate",
+      "type": "number",
+      "unit": "ac/h",
+      "description": "Air exchange rate"
+    }
+  }
+}

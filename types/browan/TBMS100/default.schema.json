@@ -16,17 +16,22 @@
     },
     "time": {
       "title": "Time between events",
-      "unit": "m",
+      "unit": "min",
       "type": "integer",
       "description": "Time between events in minutes.",
       "hideFromKpis": true
     },
     "count": {
       "title": "Count",
-      "type": "integer",
       "description": "Count of all events",
-      "hideFromKpis": true
+      "hideFromKpis": true,
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/buttonEvent/count"
     }
   },
-  "required": ["temperature", "motion", "time", "count"]
+  "required": [
+    "temperature",
+    "motion",
+    "time",
+    "count"
+  ]
 }

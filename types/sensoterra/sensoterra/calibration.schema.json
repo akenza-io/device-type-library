@@ -8,9 +8,8 @@
   "properties": {
     "depthCM": {
       "title": "Depth",
-      "type": "number",
-      "unit": "cm",
       "description": "Depth",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
       "hideFromKpis": true
     },
     "channelA": {

@@ -1,5 +1,5 @@
 {
-  "name": "ELT Lite",
+  "name": "ELT Lite LoRa",
   "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/en/lora-elt-lite/",
@@ -17,7 +17,11 @@
     "Water Leak",
     "Pressure"
   ],
-  "outputTopics": ["default", "lifecycle", "configuration"],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

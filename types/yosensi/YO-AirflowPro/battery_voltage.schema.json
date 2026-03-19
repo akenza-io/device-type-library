@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-AirflowPro/battery_voltage.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "battery_voltage",
+  "title": "Battery voltage",
+  "properties": {
+    "batteryVoltage": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/milliVolt",
+      "title": "Battery Voltage",
+      "description": "Battery Voltage in mV.",
+      "hideFromKpis": false
+    }
+  },
+  "required": [
+    "batteryVoltage"
+  ]
+}

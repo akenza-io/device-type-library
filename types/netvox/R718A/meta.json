@@ -1,0 +1,20 @@
+{
+  "name": "R718A",
+  "version": "1.0.0",
+  "manufacturer": "netvox",
+  "url": "http://www.netvox.com.tw/product.asp?pro=R718A",
+  "description": "R718A is capable to measure temperature and humidity at low temperature environment. R718A can be used in domestic and commercial refrigerators to store and transport food, medicines, flowers and other perishable goods, on the walls or in logistics refrigerators. ",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": [
+    "Temperature",
+    "Humidity"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "system"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

@@ -1,0 +1,56 @@
+{
+  "$id": "https://akenza.io/milesight/am102/system.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "system",
+  "title": "System",
+  "description": "System information reported by the device",
+  "properties": {
+    "firmwareVersion": {
+      "title": "Firmware Version",
+      "type": "string",
+      "description": "Firmware version of the device",
+      "hideFromKpis": true
+    },
+    "hardwareVersion": {
+      "title": "Hardware Version",
+      "type": "string",
+      "description": "Hardware version of the device",
+      "hideFromKpis": true
+    },
+    "deviceStatus": {
+      "title": "Device Status",
+      "type": "string",
+      "description": "The power-on status of the device",
+      "enum": [
+        "ON"
+      ],
+      "hideFromKpis": true
+    },
+    "sn": {
+      "title": "Serial Number",
+      "type": "string",
+      "description": "Serial number of the device",
+      "hideFromKpis": true
+    },
+    "temperatureEnabled": {
+      "title": "Temperature Sensor Enabled",
+      "type": "boolean",
+      "description": "Whether the temperature sensor is enabled",
+      "hideFromKpis": true
+    },
+    "humidityEnabled": {
+      "title": "Humidity Sensor Enabled",
+      "type": "boolean",
+      "description": "Whether the humidity sensor is enabled",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "firmwareVersion",
+    "hardwareVersion",
+    "deviceStatus",
+    "sn"
+  ]
+}

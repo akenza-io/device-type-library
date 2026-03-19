@@ -10,6 +10,7 @@
       "title": "Send interval",
       "type": "integer",
       "description": "Send every x minutes",
+      "unit": "min",
       "hideFromKpis": true
     },
     "batteryLevel": {

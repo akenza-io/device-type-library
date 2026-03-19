@@ -1,0 +1,33 @@
+{
+  "$id": "https://akenza.io/netvox/rb11e/system.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "system",
+  "title": "System",
+  "properties": {
+    "softwareVersion": {
+      "title": "Software Version",
+      "description": "Software version of the device",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "hardwareVersion": {
+      "title": "Hardware Version",
+      "description": "Hardware version of the device",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "datecode": {
+      "title": "Date Code",
+      "description": "Production date code",
+      "type": "number",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "softwareVersion",
+    "hardwareVersion",
+    "datecode"
+  ]
+}

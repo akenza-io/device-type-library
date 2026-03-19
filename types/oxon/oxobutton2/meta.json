@@ -2,7 +2,7 @@
   "name": "Oxobutton 2",
   "version": "1.0.0",
   "manufacturer": "Oxon",
-  "url": "https://www.oxobutton.ch/products/oxobutton-lorawan",
+  "url": "https://www.oxobutton.ch/",
   "description": "The Oxobutton 2 has four tactile buttons in the corners which leads to a total of nine different recognizable tilt or click operations. Besides the clicks in the corners, you can also tilt it up/down & left/right or press all four buttons together. The images on the e-ink display are customizable by BLE with a seperate mobile app.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",

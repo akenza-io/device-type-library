@@ -1,0 +1,25 @@
+{
+  "name": "YO Meter Reader 2.0",
+  "version": "1.0.0",
+  "manufacturer": "Yosensi",
+  "url": "https://www.yosensi.io/products/yo_meter_reader_2.0/",
+  "description": "YO Meter Reader 2.0 is a battery-powered LoRaWAN device enabling data reading from LED pulse detector.",
+  "author": "Maciej Sacewicz",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "Periodic/Persistent Counter",
+    "Utilities Consumption"
+  ],
+  "outputTopics": [
+    "battery_voltage",
+    "internal_temperature",
+    "humidity",
+    "periodic_pulse_cnt",
+    "persistent_pulse_cnt",
+    "total_units"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

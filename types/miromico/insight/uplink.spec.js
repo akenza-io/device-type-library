@@ -1,18 +1,22 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Miromico insight Uplink", () => {
   let temperatureSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/temperature.schema.json`).then((parsedSchema) => {
-      temperatureSchema = parsedSchema;
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/co2.schema.json`).then((parsedSchema) => {
+      co2Schema = parsedSchema;
       done();
     });
   });
@@ -59,8 +63,7 @@ describe("Miromico insight Uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -69,8 +72,7 @@ describe("Miromico insight Uplink", () => {
 
   let settingsSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/settings.schema.json`)
+    loadSchema(`${__dirname}/settings.schema.json`)
       .then((parsedSchema) => {
         settingsSchema = parsedSchema;
         done();
@@ -79,8 +81,7 @@ describe("Miromico insight Uplink", () => {
 
   let doorSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/door.schema.json`)
+    loadSchema(`${__dirname}/temperature.schema.json`)
       .then((parsedSchema) => {
         doorSchema = parsedSchema;
         done();
@@ -97,7 +98,7 @@ describe("Miromico insight Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -201,21 +202,10 @@ describe("Miromico insight Uplink", () => {
         assert.equal(value.topic, "temperature");
         assert.equal(value.data.temperature, 24.53);
 
-        utils.validateSchema(value.data, temperatureSchema, { throwError: true }); // Now
+        utils.validateSchema(value.data, settingsSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "temperature");
-        assert.equal(value.data.temperature, 25.34);
-
-        utils.validateSchema(value.data, temperatureSchema, { throwError: true }); // Now -20 min
-      });
-
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");

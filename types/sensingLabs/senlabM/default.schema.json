@@ -18,28 +18,28 @@
     },
     "pulse1": {
       "title": "Pulse 1",
-      "type": "integer",
-      "description": "Total raw pulses with first node received"
+      "description": "Total raw pulses with first node received",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput/count"
     },
     "pulse2": {
       "title": "Pulse 2",
-      "type": "integer",
-      "description": "Total raw pulses with second node received"
+      "description": "Total raw pulses with second node received",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput/count"
     },
     "relativePulse": {
       "title": "Relative pulse",
-      "type": "integer",
-      "description": "Relative pulses received"
+      "description": "Relative pulses received",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput/count"
     },
     "relativePulse1": {
       "title": "Relative pulse 1",
-      "type": "integer",
-      "description": "Relative pulses with first node received"
+      "description": "Relative pulses with first node received",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput/count"
     },
     "relativePulse2": {
       "title": "Relative pulse 2",
-      "type": "integer",
-      "description": "Relative pulses with second node received"
+      "description": "Relative pulses with second node received",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput/count"
     }
   },
   "required": [

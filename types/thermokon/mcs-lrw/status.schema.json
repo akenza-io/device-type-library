@@ -1,0 +1,97 @@
+{
+  "$id": "https://akenza.io/thermokon/mcs-lrw/status.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "status",
+  "title": "Status",
+  "properties": {
+    "deviceKey": {
+      "title": "Device Key",
+      "type": "number",
+      "description": "Device key identifier (e.g., 0x4001 for MCS LRW)."
+    },
+    "controlCommand": {
+      "title": "Control Command",
+      "type": "number",
+      "description": "Control command status. 1: Reset Config, 2: Save Config, 3: Reboot."
+    },
+    "heartbeatInterval": {
+      "title": "Heartbeat Interval",
+      "type": "number",
+      "description": "Interval for heartbeat transmissions.",
+      "unit": "min"
+    },
+    "hysteresis": {
+      "title": "Hysteresis",
+      "type": "number",
+      "description": "Hysteresis for transmission. 0: none, 1: big, 2: medium, 3: small."
+    },
+    "measurementInterval": {
+      "title": "Measurement/Uplink Interval",
+      "type": "number",
+      "description": "Interval for measurements and uplinks. Unit depends on device type.",
+      "unit": "s/min"
+    },
+    "digitalInputLatency": {
+      "title": "Digital Input Latency",
+      "type": "number",
+      "description": "Latency time for digital inputs.",
+      "unit": "s"
+    },
+    "occupancyDisablingTime": {
+      "title": "Occupancy Disabling Time",
+      "type": "number",
+      "description": "Disabling time for the occupancy sensor.",
+      "unit": "s"
+    },
+    "occupancyFollowUpTime": {
+      "title": "Occupancy Follow-Up Time",
+      "type": "number",
+      "description": "Follow-up time for the occupancy sensor.",
+      "unit": "s"
+    },
+    "lorawanPort": {
+      "title": "LoRaWAN Port",
+      "type": "number",
+      "description": "Uplink/Downlink Port (1-223)."
+    },
+    "lorawanAdr": {
+      "title": "LoRaWAN ADR",
+      "type": "number",
+      "description": "Adaptive Data Rate status. 0: disabled, 1: enabled."
+    },
+    "lorawanDataRate": {
+      "title": "LoRaWAN Data Rate",
+      "type": "number",
+      "description": "LoRaWAN Data Rate (0=DR0/SF12, ..., 5=DR5/SF7)."
+    },
+    "lorawanTxPower": {
+      "title": "LoRaWAN TX Power",
+      "type": "number",
+      "description": "LoRaWAN TX Power Index (0=MaxEIRP, ..., 7=MaxEIRP-14dB)."
+    },
+    "lorawanChannelMask": {
+      "title": "LoRaWAN Channel Mask",
+      "type": "number",
+      "description": "Bit-coded channel mask for sub-channels 1-8."
+    },
+    "lorawanNbTrans": {
+      "title": "LoRaWAN Retransmissions",
+      "type": "number",
+      "description": "Number of retransmissions (nbtrans, range 1-15)."
+    },
+    "lorawanRejoinInterval": {
+      "title": "LoRaWAN Re-Join Interval",
+      "type": "number",
+      "description": "Interval for re-join procedure. 0=disabled.",
+      "unit": "min"
+    },
+    "lorawanConfirmation": {
+      "title": "LoRaWAN Confirmation",
+      "type": "number",
+      "description": "Confirmation activation for Heartbeat. 0: disabled, 1: enabled."
+    }
+  },
+  "required": []
+}

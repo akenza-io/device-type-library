@@ -138,6 +138,9 @@ function decoder(bytes, port) {
         decode.decoded.temperature = parseFloat(
           ((((bytes[0] << 24) >> 16) | bytes[1]) / 100).toFixed(2),
         );
+        if (((bytes[0] << 8) | bytes[1]) === 0xffff) {
+          decode.decoded.temperature = null;
+        }
         decode.lifecycle.batteryStatus = bytes[4] >> 6;
       } else {
         decode.lifecycle.batteryVoltage =
@@ -179,6 +182,9 @@ function decoder(bytes, port) {
         decode.decoded.temperature = parseFloat(
           ((((bytes[2] << 24) >> 16) | bytes[3]) / 100).toFixed(2),
         );
+        if (((bytes[2] << 8) | bytes[3]) === 0xffff) {
+          decode.decoded.temperature = null;
+        }
         decode.decoded.humidity = parseFloat(
           ((((bytes[4] << 8) | bytes[5]) & 0xfff) / 10).toFixed(1),
         );
@@ -194,11 +200,17 @@ function decoder(bytes, port) {
         decode.external.tempDS = parseFloat(
           ((((bytes[7] << 24) >> 16) | bytes[8]) / 100).toFixed(2),
         );
+        if (((bytes[7] << 8) | bytes[8]) === 0xffff) {
+          decode.external.tempDS = null;
+        }
       } else if (ext === 2) {
         decode.lifecycle.extSensor = "TEMPERATURE_SENSOR";
         decode.external.tempTMP117 = parseFloat(
           ((((bytes[7] << 24) >> 16) | bytes[8]) / 100).toFixed(2),
         );
+        if (((bytes[7] << 8) | bytes[8]) === 0xffff) {
+          decode.external.tempTMP117 = null;
+        }
       } else if (ext === 4) {
         decode.lifecycle.workMode = "INTERRUPT_SENSOR";
         decode.external.extPinLevel = bytes[7] ? "HIGH" : "LOW";

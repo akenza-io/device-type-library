@@ -1,5 +1,5 @@
 {
-  "name": "EMS Door",
+  "name": "EMS Door LoRa",
   "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/en/ems-door/",
@@ -7,8 +7,17 @@
   "author": "Akenza AG",
   "firmwareVersion": "V2.3.5",
   "loraDeviceClass": "A",
-  "availableSensors": ["Accelerometer", "Reed"],
-  "outputTopics": ["acceleration", "lifecycle", "reed", "configuration"],
+  "availableSensors": [
+    "Accelerometer",
+    "Reed"
+  ],
+  "outputTopics": [
+    "acceleration",
+    "lifecycle",
+    "reed",
+    "door_count",
+    "configuration"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

@@ -19,5 +19,10 @@
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/tvoc/ppb"
     }
   },
-  "required": ["humidity", "temperature", "light", "tvoc"]
+  "required": [
+    "humidity",
+    "temperature",
+    "light",
+    "tvoc"
+  ]
 }

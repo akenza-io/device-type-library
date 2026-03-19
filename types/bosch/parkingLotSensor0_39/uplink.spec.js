@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Bosch Parking Lot Sensor Uplink", () => {
   let occupancySchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/occupancy.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/occupancy.schema.json`)
       .then((parsedSchema) => {
         occupancySchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
 
   let startUpSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/start_up.schema.json`)
+    loadSchema(`${__dirname}/start_up.schema.json`)
       .then((parsedSchema) => {
         startUpSchema = parsedSchema;
         done();
@@ -38,13 +40,13 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
         assert.equal(value.lastOccupiedValue, false);
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -52,7 +54,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
         assert.equal(value.data.occupancy, 0);
         assert.equal(value.data.occupied, false);
 
-        utils.validateSchema(value.data, occupancySchema, { throwError: true });
+        validateSchema(value.data, occupancySchema, { throwError: true });
       });
 
       consume(data);
@@ -66,13 +68,13 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
         assert.equal(value.lastOccupiedValue, true);
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -80,7 +82,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
         assert.equal(value.data.occupancy, 1);
         assert.equal(value.data.occupied, true);
 
-        utils.validateSchema(value.data, occupancySchema, { throwError: true });
+        validateSchema(value.data, occupancySchema, { throwError: true });
       });
 
       consume(data);
@@ -94,7 +96,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -104,7 +106,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
         assert.equal(value.data.fwVersion, "0.39.2");
         assert.equal(value.data.resetCause, "SYSTEM_REQUEST_RESET");
 
-        utils.validateSchema(value.data, startUpSchema, { throwError: true });
+        validateSchema(value.data, startUpSchema, { throwError: true });
       });
 
       consume(data);

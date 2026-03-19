@@ -1,0 +1,31 @@
+{
+  "name": "LW001-BG PRO",
+  "version": "1.0.0",
+  "manufacturer": "MOKOSMART",
+  "url": "https://www.mokosmart.com/lorawan-tracker-lw001-bg-pro/",
+  "description": "LW001-BG PRO is a LoRaWAN Tracker which tracks an object both indoor and outdoor positioning. It integrates GPS and Bluetooth positioning capabilities, alongside an embedded 3-axis sensor, empowering it to support multiple working modes tailored to various needs.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "GPS"
+  ],
+  "outputTopics": [
+    "bluetooth",
+    "fix_failure",
+    "gps",
+    "lifecycle",
+    "mandown",
+    "movement",
+    "reboot",
+    "shutdown",
+    "system",
+    "tamper",
+    "time",
+    "vibration",
+    "wifi"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

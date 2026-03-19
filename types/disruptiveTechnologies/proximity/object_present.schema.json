@@ -10,8 +10,28 @@
       "title": "Object present",
       "description": "Object present",
       "type": "string",
-      "enum": ["PRESENT", "NOT_PRESENT"]
+      "enum": [
+        "PRESENT",
+        "NOT_PRESENT"
+      ]
+    },
+    "proximity": {
+      "title": "Proximity",
+      "description": "Equals true if an object is detected.",
+      "type": "boolean"
+    },
+    "relativeCount": {
+      "title": "Relative count",
+      "description": "One door cycle counts as one relativeCount.",
+      "type": "integer"
+    },
+    "count": {
+      "title": "Absolute event count",
+      "description": "Absolute event count",
+      "type": "integer"
     }
   },
-  "required": ["objectPresent"]
+  "required": [
+    "objectPresent"
+  ]
 }

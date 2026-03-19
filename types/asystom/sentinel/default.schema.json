@@ -1,0 +1,287 @@
+{
+  "$id": "https://akenza.io/asystom/sentinel/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "vibrationFrequencyBandS0": {
+      "title": "Vibration Frequency Band S0",
+      "unit": "dB",
+      "type": "number",
+      "description": "Vibration frequency band S0"
+    },
+    "vibrationFrequencyBandS1": {
+      "title": "Vibration Frequency Band S1",
+      "unit": "dB",
+      "type": "number",
+      "description": "Vibration frequency band S1"
+    },
+    "vibrationFrequencyBandS2": {
+      "title": "Vibration Frequency Band S2",
+      "unit": "dB",
+      "type": "number",
+      "description": "Vibration frequency band S2"
+    },
+    "vibrationFrequencyBandS3": {
+      "title": "Vibration Frequency Band S3",
+      "unit": "dB",
+      "type": "number",
+      "description": "Vibration frequency band S3"
+    },
+    "vibrationFrequencyBandS4": {
+      "title": "Vibration Frequency Band S4",
+      "unit": "dB",
+      "type": "number",
+      "description": "Vibration frequency band S4"
+    },
+    "vibrationFrequencyBandS5": {
+      "title": "Vibration Frequency Band S5",
+      "unit": "dB",
+      "type": "number",
+      "description": "Vibration frequency band S5"
+    },
+    "vibrationFrequencyBandS6": {
+      "title": "Vibration Frequency Band S6",
+      "unit": "dB",
+      "type": "number",
+      "description": "Vibration frequency band S6"
+    },
+    "vibrationFrequencyBandS7": {
+      "title": "Vibration Frequency Band S7",
+      "unit": "dB",
+      "type": "number",
+      "description": "Vibration frequency band S7"
+    },
+    "vibrationFrequencyBandS8": {
+      "title": "Vibration Frequency Band S8",
+      "unit": "dB",
+      "type": "number",
+      "description": "Vibration frequency band S8"
+    },
+    "vibrationFrequencyBandS9": {
+      "title": "Vibration Frequency Band S9",
+      "unit": "dB",
+      "type": "number",
+      "description": "Vibration frequency band S9"
+    },
+    "soundFrequencyBandS10": {
+      "title": "Sound Frequency Band S10",
+      "unit": "dB",
+      "type": "number",
+      "description": "Sound frequency band S10"
+    },
+    "soundFrequencyBandS11": {
+      "title": "Sound Frequency Band S11",
+      "unit": "dB",
+      "type": "number",
+      "description": "Sound frequency band S11"
+    },
+    "soundFrequencyBandS12": {
+      "title": "Sound Frequency Band S12",
+      "unit": "dB",
+      "type": "number",
+      "description": "Sound frequency band S12"
+    },
+    "soundFrequencyBandS13": {
+      "title": "Sound Frequency Band S13",
+      "unit": "dB",
+      "type": "number",
+      "description": "Sound frequency band S13"
+    },
+    "soundFrequencyBandS14": {
+      "title": "Sound Frequency Band S14",
+      "unit": "dB",
+      "type": "number",
+      "description": "Sound frequency band S14"
+    },
+    "soundFrequencyBandS15": {
+      "title": "Sound Frequency Band S15",
+      "unit": "dB",
+      "type": "number",
+      "description": "Sound frequency band S15"
+    },
+    "soundFrequencyBandS16": {
+      "title": "Sound Frequency Band S16",
+      "unit": "dB",
+      "type": "number",
+      "description": "Sound frequency band S16"
+    },
+    "soundFrequencyBandS17": {
+      "title": "Sound Frequency Band S17",
+      "unit": "dB",
+      "type": "number",
+      "description": "Sound frequency band S17"
+    },
+    "soundFrequencyBandS18": {
+      "title": "Sound Frequency Band S18",
+      "unit": "dB",
+      "type": "number",
+      "description": "Sound frequency band S18"
+    },
+    "soundFrequencyBandS19": {
+      "title": "Sound Frequency Band S19",
+      "unit": "dB",
+      "type": "number",
+      "description": "Sound frequency band S19"
+    },
+    "xAcceleration": {
+      "title": "X-axis Acceleration",
+      "unit": "g",
+      "type": "number",
+      "description": "RMS acceleration on X-axis"
+    },
+    "xVelocity": {
+      "title": "X-axis Velocity",
+      "unit": "mm/s",
+      "type": "number",
+      "description": "RMS velocity on X-axis"
+    },
+    "xAccelerationPeak": {
+      "title": "X-axis Acceleration Peak",
+      "unit": "g",
+      "type": "number",
+      "description": "Peak acceleration on X-axis"
+    },
+    "xKurtosis": {
+      "title": "X-axis Kurtosis",
+      "type": "number",
+      "description": "Kurtosis on X-axis"
+    },
+    "xVibrationRoot": {
+      "title": "X-axis Vibration Root",
+      "unit": "rpm",
+      "type": "number",
+      "description": "Vibration root on X-axis"
+    },
+    "xVelocityF1": {
+      "title": "X-axis Velocity F1",
+      "unit": "mm/s",
+      "type": "number",
+      "description": "Velocity on X-axis at frequency F1"
+    },
+    "xVelocityF2": {
+      "title": "X-axis Velocity F2",
+      "unit": "mm/s",
+      "type": "number",
+      "description": "Velocity on X-axis at frequency F2"
+    },
+    "xVelocityF3": {
+      "title": "X-axis Velocity F3",
+      "unit": "mm/s",
+      "type": "number",
+      "description": "Velocity on X-axis at frequency F3"
+    },
+    "yAcceleration": {
+      "title": "Y-axis Acceleration",
+      "unit": "g",
+      "type": "number",
+      "description": "RMS acceleration on Y-axis"
+    },
+    "yVelocity": {
+      "title": "Y-axis Velocity",
+      "unit": "mm/s",
+      "type": "number",
+      "description": "RMS velocity on Y-axis"
+    },
+    "yAccelerationPeak": {
+      "title": "Y-axis Acceleration Peak",
+      "unit": "g",
+      "type": "number",
+      "description": "Peak acceleration on Y-axis"
+    },
+    "yKurtosis": {
+      "title": "Y-axis Kurtosis",
+      "type": "number",
+      "description": "Kurtosis on Y-axis"
+    },
+    "yVibrationRoot": {
+      "title": "Y-axis Vibration Root",
+      "unit": "rpm",
+      "type": "number",
+      "description": "Vibration root on Y-axis"
+    },
+    "yVelocityF1": {
+      "title": "Y-axis Velocity F1",
+      "unit": "mm/s",
+      "type": "number",
+      "description": "Velocity on Y-axis at frequency F1"
+    },
+    "yVelocityF2": {
+      "title": "Y-axis Velocity F2",
+      "unit": "mm/s",
+      "type": "number",
+      "description": "Velocity on Y-axis at frequency F2"
+    },
+    "yVelocityF3": {
+      "title": "Y-axis Velocity F3",
+      "unit": "mm/s",
+      "type": "number",
+      "description": "Velocity on Y-axis at frequency F3"
+    },
+    "zAcceleration": {
+      "title": "Z-axis Acceleration",
+      "unit": "g",
+      "type": "number",
+      "description": "RMS acceleration on Z-axis"
+    },
+    "zVelocity": {
+      "title": "Z-axis Velocity",
+      "unit": "mm/s",
+      "type": "number",
+      "description": "RMS velocity on Z-axis"
+    },
+    "zAccelerationPeak": {
+      "title": "Z-axis Acceleration Peak",
+      "unit": "g",
+      "type": "number",
+      "description": "Peak acceleration on Z-axis"
+    },
+    "zKurtosis": {
+      "title": "Z-axis Kurtosis",
+      "type": "number",
+      "description": "Kurtosis on Z-axis"
+    },
+    "zVibrationRoot": {
+      "title": "Z-axis Vibration Root",
+      "unit": "rpm",
+      "type": "number",
+      "description": "Vibration root on Z-axis"
+    },
+    "zVelocityF1": {
+      "title": "Z-axis Velocity F1",
+      "unit": "mm/s",
+      "type": "number",
+      "description": "Velocity on Z-axis at frequency F1"
+    },
+    "zVelocityF2": {
+      "title": "Z-axis Velocity F2",
+      "unit": "mm/s",
+      "type": "number",
+      "description": "Velocity on Z-axis at frequency F2"
+    },
+    "zVelocityF3": {
+      "title": "Z-axis Velocity F3",
+      "unit": "mm/s",
+      "type": "number",
+      "description": "Velocity on Z-axis at frequency F3"
+    },
+    "temperatureMachineSurface": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Machine Surface Temperature"
+    },
+    "kurtosisUltrasound": {
+      "title": "Kurtosis Ultrasound",
+      "type": "number",
+      "description": "Kurtosis of the ultrasound"
+    },
+    "soundSonicRmslog": {
+      "title": "Sound Sonic RMS Log",
+      "unit": "dB",
+      "type": "number",
+      "description": "Logarithmic RMS of sonic sound"
+    }
+  },
+  "required": []
+}

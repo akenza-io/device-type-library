@@ -21,7 +21,7 @@
       "unit": "FNU",
       "type": "number"
     },
-    "turbidityInMg_l": {
+    "turbidityInMgL": {
       "title": "Turbidity in mg/L",
       "description": "Turbidity in mg/L",
       "unit": "mg⋅L⁻¹",
@@ -32,6 +32,6 @@
     "temperature",
     "turbidityInNtu",
     "turbidityInFnu",
-    "turbidityInMg_l"
+    "turbidityInMgL"
   ]
 }

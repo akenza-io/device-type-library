@@ -1,0 +1,39 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-VibrationMonitor/kurtosis.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "kurtosis",
+  "title": "Kurtosis",
+  "properties": {
+    "kurtosisX": {
+      "title": "Kurtosis - X axis",
+      "type": "number",
+      "description": "Kurtosis - X axis.",
+      "minimum": -3,
+      "maximum": 3,
+      "hideFromKpis": false
+    },
+    "kurtosisY": {
+      "title": "Kurtosis - Y axis",
+      "type": "number",
+      "description": "Kurtosis - Y axis.",
+      "minimum": -3,
+      "maximum": 3,
+      "hideFromKpis": false
+    },
+    "kurtosisZ": {
+      "title": "Kurtosis - Z axis",
+      "type": "number",
+      "description": "Kurtosis - Z axis.",
+      "minimum": -3,
+      "maximum": 3,
+      "hideFromKpis": false
+    }
+  },
+  "required": [
+    "kurtosisX",
+    "kurtosisY",
+    "kurtosisZ"
+  ]
+}

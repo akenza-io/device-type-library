@@ -1,0 +1,21 @@
+{
+  "$id": "https://akenza.io/airthings/cloudConnector/radon.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "radon",
+  "title": "Radon",
+  "properties": {
+    "hourlyRadon": {
+      "title": "Hourly radon",
+      "type": "number",
+      "unit": "pci",
+      "description": "Hourly radon in pci"
+    },
+    "hourlyRadonRating": {
+      "title": "Hourly radon rating",
+      "type": "string",
+      "description": "Hourly radon rating"
+    }
+  }
+}

@@ -10,8 +10,19 @@
       "title": "Water present",
       "description": "Water present",
       "type": "string",
-      "enum": ["PRESENT", "NOT_PRESENT"]
+      "enum": [
+        "PRESENT",
+        "NOT_PRESENT"
+      ]
+    },
+    "leakageDetected": {
+      "title": "Leakage detected",
+      "description": "Equals true if a leakage has been detected",
+      "type": "boolean"
     }
   },
-  "required": ["waterPresent"]
+  "required": [
+    "waterPresent",
+    "leakageDetected"
+  ]
 }

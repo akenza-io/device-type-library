@@ -6,8 +6,16 @@
   "description": "Measures the temperature in any space or on any surface. The temperature sensor is versatile and can enable dozens of applications, from desk occupancy and cold storage to energy efficiency and sustainability.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
-  "availableSensors": ["Temperature", "Touch"],
-  "outputTopics": ["temperature", "touch", "network_status", "lifecycle"],
+  "availableSensors": [
+    "Temperature",
+    "Touch"
+  ],
+  "outputTopics": [
+    "default",
+    "touch",
+    "network_status",
+    "lifecycle"
+  ],
   "encoding": "JSON",
   "connectivity": "HTTP"
 }

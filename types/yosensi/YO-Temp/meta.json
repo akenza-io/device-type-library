@@ -13,12 +13,12 @@
     "Relative Humidity"
   ],
   "outputTopics": [
-    "batteryVoltage",
-    "externalTemperature1",
-    "externalTemperature2",
-    "externalTemperature3",
+    "battery_voltage",
+    "external_temperature_1",
+    "external_temperature_2",
+    "external_temperature_3",
     "humidity",
-    "internalTemperature"
+    "internal_temperature"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

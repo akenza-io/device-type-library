@@ -1,0 +1,44 @@
+{
+  "$id": "https://akenza.io/digitalTechnologies/contact/network_status.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "network_status",
+  "title": "Network status",
+  "properties": {
+    "signalStrength": {
+      "title": "Signal strength",
+      "description": "Signal strength",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "rssi": {
+      "title": "RSSI",
+      "description": "RSSI",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "transmissionMode": {
+      "title": "Transmission mode",
+      "description": "Transmission mode",
+      "type": "string",
+      "enum": [
+        "LOW_POWER_STANDARD_MODE",
+        "HIGH_POWER_BOOST_MODE"
+      ],
+      "hideFromKpis": true
+    },
+    "sqi": {
+      "title": "Signal quality index",
+      "description": "Signal quality index",
+      "type": "integer",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "signalStrength",
+    "rssi",
+    "transmissionMode",
+    "sqi"
+  ]
+}

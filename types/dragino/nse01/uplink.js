@@ -15,6 +15,11 @@ function consume(event) {
     data.soilMoisture = Bits.bitsToUnsigned(bits.substr(120, 16));
     pointer += 16;
     data.soilTemperature = Bits.bitsToSigned(bits.substr(pointer, 16)) / 100;
+
+    if (bits.substr(pointer, 16) === "1111111111111111") {
+      data.soilTemperature = null;
+    }
+
     pointer += 16;
     data.soilConductivity = Bits.bitsToUnsigned(bits.substr(pointer, 16));
     pointer += 16;

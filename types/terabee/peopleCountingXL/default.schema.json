@@ -6,20 +6,31 @@
   "topic": "default",
   "title": "Default",
   "properties": {
+    "absoluteFw": {
+      "title": "Absolute count forward",
+      "description": "Absolute count of people moving forward",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleIn/people"
+    },
+    "absoluteBw": {
+      "title": "Absolute count backward",
+      "description": "Absolute count of people moving backwards",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleOut/people"
+    },
     "fw": {
       "title": "Forward",
-      "description": "Absolute count of people moving forward",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 65535
+      "description": "Relative count of people moving forward",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleIn/people"
     },
     "bw": {
       "title": "Backward",
-      "description": "Absolute count of people moving backwards",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 65535
+      "description": "Relative count of people moving backwards",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleOut/people"
     }
   },
-  "required": ["fw", "bw"]
+  "required": [
+    "fw",
+    "bw",
+    "absoluteFw",
+    "absoluteBw"
+  ]
 }

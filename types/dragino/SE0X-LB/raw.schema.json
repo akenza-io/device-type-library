@@ -1,0 +1,86 @@
+{
+  "$id": "https://akenza.io/dragino/SE0X-LB/raw.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "raw",
+  "title": "Raw",
+  "properties": {
+    "rawSoilConductivity1": {
+      "title": "Raw soil conductivity",
+      "unit": "uS/cm",
+      "type": "number",
+      "description": "Raw conductivity of the soil",
+      "hideFromKpis": true
+    },
+    "soilDielectricConstant1": {
+      "title": "Soil dielectric constant",
+      "description": "Soil dielectric constant",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "rawSoilHumidity1": {
+      "title": "Raw soil humidity",
+      "description": "The raw humidity in % of the soil",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "rawSoilConductivity2": {
+      "title": "Raw soil conductivity",
+      "unit": "uS/cm",
+      "type": "number",
+      "description": "Raw conductivity of the soil",
+      "hideFromKpis": true
+    },
+    "soilDielectricConstant2": {
+      "title": "Soil dielectric constant",
+      "description": "Soil dielectric constant",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "rawSoilHumidity2": {
+      "title": "Raw soil humidity",
+      "description": "The raw humidity in % of the soil",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "rawSoilConductivity3": {
+      "title": "Raw soil conductivity",
+      "unit": "uS/cm",
+      "type": "number",
+      "description": "Raw conductivity of the soil",
+      "hideFromKpis": true
+    },
+    "soilDielectricConstant3": {
+      "title": "Soil dielectric constant",
+      "description": "Soil dielectric constant",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "rawSoilHumidity3": {
+      "title": "Raw soil humidity",
+      "description": "The raw humidity in % of the soil",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "rawSoilConductivity4": {
+      "title": "Raw soil conductivity",
+      "unit": "uS/cm",
+      "type": "number",
+      "description": "Raw conductivity of the soil",
+      "hideFromKpis": true
+    },
+    "soilDielectricConstant4": {
+      "title": "Soil dielectric constant",
+      "description": "Soil dielectric constant",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "rawSoilHumidity4": {
+      "title": "Raw soil humidity",
+      "description": "The raw humidity in % of the soil",
+      "type": "number",
+      "hideFromKpis": true
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+    "$id": "https://akenza.io/hilscher/NFS-M8-QM-D2-N16/system_monitoring.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "System monitoring",
+    "type": "object",
+    "properties": {
+        "memoryFreeMegaByte": {
+            "title": "Memory Free",
+            "type": "number",
+            "description": "The amount of megabyte in the system which is not used.",
+            "unit": "MB",
+            "hideFromKpis": false
+        },
+        "cpuLoadPercent": {
+            "title": "Cpu Load",
+            "type": "number",
+            "description": "The average CPU load of all cores",
+            "unit": "%",
+            "hideFromKpis": false
+        }
+    },
+    "topic": "system_monitoring",
+    "processingType": "uplink_decoder",
+    "description": ""
+}

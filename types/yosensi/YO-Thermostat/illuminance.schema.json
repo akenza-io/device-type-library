@@ -1,0 +1,20 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-Thermostat/illuminance.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "illuminance",
+  "title": "Illuminance",
+  "properties": {
+    "illuminance": {
+      "title": "Illuminance",
+      "type": "number",
+      "description": "Illuminance in klx.",
+      "unit": "klx",
+      "minimum": 0,
+      "maximum": 120,
+      "hideFromKpis": false
+    }
+  },
+  "required": ["illuminance"]
+}

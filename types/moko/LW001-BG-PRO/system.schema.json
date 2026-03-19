@@ -1,0 +1,45 @@
+{
+  "$id": "https://akenza.io/moko/lw001-bg-pro/system.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "system",
+  "title": "System",
+  "properties": {
+    "gpsWorkTime": {
+      "title": "GPS work time",
+      "unit": "m",
+      "type": "integer",
+      "description": "GPS work time",
+      "hideFromKpis": true
+    },
+    "wifiWorkTime": {
+      "title": "WIFI work time",
+      "unit": "m",
+      "type": "integer",
+      "description": "WIFI work time",
+      "hideFromKpis": true
+    },
+    "bleScanWorkTime": {
+      "title": "BLE scan work time",
+      "unit": "m",
+      "type": "integer",
+      "description": "BLE scan work time",
+      "hideFromKpis": true
+    },
+    "bleAdvWorkTime": {
+      "title": "BLE advanced work time",
+      "unit": "m",
+      "type": "integer",
+      "description": "BLE advanced work time",
+      "hideFromKpis": true
+    },
+    "loraWorkTime": {
+      "title": "LoRa work time",
+      "unit": "m",
+      "type": "integer",
+      "description": "LoRa work time",
+      "hideFromKpis": true
+    }
+  }
+}

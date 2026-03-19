@@ -1,0 +1,58 @@
+{
+  "$id": "https://akenza.io/vega/vegapulsAir42/system.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "system",
+  "title": "System",
+  "properties": {
+    "information": {
+      "title": "Information",
+      "description": "Additional information",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "manufacturerId": {
+      "title": "Manufacturer Id",
+      "description": "Manufacturer Id",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "deviceType": {
+      "title": "Internal device type",
+      "description": "Internal device type",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "softwareVersionAscii": {
+      "title": "Software version ASCII",
+      "description": "Software version ASCII",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "scaledMin": {
+      "title": "Scaled min",
+      "description": "Scaled min",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "scaledMax": {
+      "title": "Scaled max",
+      "description": "Scaled max",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "deviceName": {
+      "title": "Device name",
+      "description": "Device name",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "deviceTag": {
+      "title": "Device tag",
+      "description": "Device tag",
+      "type": "string",
+      "hideFromKpis": true
+    }
+  }
+}

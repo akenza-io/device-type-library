@@ -1,0 +1,37 @@
+{
+  "$id": "https://akenza.io/digitalTechnologies/contact/contact.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "contact",
+  "title": "Contact",
+  "properties": {
+    "contact": {
+      "title": "Contact",
+      "description": "Contact",
+      "type": "string",
+      "enum": [
+        "OPEN",
+        "CLOSED"
+      ]
+    },
+    "hasContact": {
+      "title": "Has Contact",
+      "description": "Equals true if the door is CLOSED.",
+      "type": "boolean"
+    },
+    "relativeCount": {
+      "title": "Relative count",
+      "description": "One door cycle counts as one relativeCount.",
+      "type": "integer"
+    },
+    "count": {
+      "title": "Absolute event count",
+      "description": "Absolute event count",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "contact"
+  ]
+}

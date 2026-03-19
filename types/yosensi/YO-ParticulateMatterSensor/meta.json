@@ -1,0 +1,29 @@
+{
+  "name": "YO Particulate Matter Sensor",
+  "version": "1.0.0",
+  "manufacturer": "Yosensi",
+  "url": "https://www.yosensi.io/products/yo_pmx_pro/",
+  "description": "YO Particulate Matter Sensor is a LoRaWAN device designed for high-precision air quality monitoring.",
+  "author": "Maciej Sacewicz",
+  "firmwareVersion": "V3.6.4",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "Accelerometer",
+    "Particulate Matter"
+  ],
+  "outputTopics": [
+    "battery_voltage",
+    "internal_temperature",
+    "humidity",
+    "accelerometer",
+    "mass_conc_pm1",
+    "mass_conc_pm2_5",
+    "mass_conc_pm4",
+    "mass_conc_pm10",
+    "part_conc_pm1",
+    "part_conc_pm2_5"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

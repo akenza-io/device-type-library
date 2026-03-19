@@ -1,0 +1,20 @@
+{
+  "name": "TX TEMP INS 600-031",
+  "version": "1.0.0",
+  "manufacturer": "Enless Wireless",
+  "url": "https://enless-wireless.com/products/temperature-sensor-embedded-sensor-lora/",
+  "description": "The IP65 LoRa(WAN) Enless temperature sensor has been designed for temperature measurement in industrial or difficult environments (warehouses, factories, heating plants, greenhouses…). The IP65 protection rating of its enclosure and its D-type battery makes the rugged LoRa temperature sensor an ideal product for any application requiring a robust and reliable solution. ",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.01.18",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "alarm"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

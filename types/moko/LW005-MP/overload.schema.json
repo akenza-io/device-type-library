@@ -1,0 +1,31 @@
+{
+  "$id": "https://akenza.io/moko/lw005-mp/overload.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "overload",
+  "title": "Overload",
+  "properties": {
+    "overload": {
+      "title": "Overload",
+      "description": "Equals true if an overload has been detected",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "power": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activePower/watt",
+      "hideFromKpis": true
+    },
+    "overloadThreshold": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activePower/watt",
+      "title": "Overload Threshold",
+      "description": "Overload Threshold",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "overload",
+    "power",
+    "overloadThreshold"
+  ]
+}

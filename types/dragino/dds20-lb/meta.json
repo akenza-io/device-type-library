@@ -1,0 +1,19 @@
+{
+  "name": "DDS20-LB",
+  "version": "1.0.0",
+  "manufacturer": "Dragino",
+  "url": "https://www.dragino.com/products/distance-level-sensor/item/273-dds20-lb-ls.html",
+  "description": "The Dragino DDS20-LB is a LoRaWAN Ultrasonic liquid level sensor. It uses none-contact method to measure the height of liquid in a container without opening the container.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": [
+    "Distance"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

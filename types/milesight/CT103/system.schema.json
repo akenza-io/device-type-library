@@ -1,0 +1,77 @@
+{
+  "$id": "https://akenza.io/milesight/ct103/system.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "system",
+  "title": "System",
+  "properties": {
+    "firmwareVersion": {
+      "title": "Firmware version",
+      "type": "string",
+      "description": "The firmware version of the device.",
+      "hideFromKpis": true
+    },
+    "hardwareVersion": {
+      "title": "Hardware version",
+      "type": "string",
+      "description": "The hardware version of the device.",
+      "hideFromKpis": true
+    },
+    "sn": {
+      "title": "Serial number",
+      "type": "string",
+      "description": "The serial number of the device.",
+      "hideFromKpis": true
+    },
+    "lorawanClass": {
+      "title": "LoRaWAN class",
+      "type": "string",
+      "description": "The LoRaWAN class the device is operating in.",
+      "enum": [
+        "CLASS_A",
+        "CLASS_B",
+        "CLASS_C",
+        "CLASS_C_TO_B"
+      ],
+      "hideFromKpis": true
+    },
+    "deviceStatus": {
+      "title": "Device status",
+      "type": "string",
+      "description": "Indicates if the device is on or off.",
+      "enum": [
+        "on",
+        "off"
+      ],
+      "hideFromKpis": true
+    },
+    "softwareVersion": {
+      "title": "Software version",
+      "type": "string",
+      "description": "The software version of the device.",
+      "hideFromKpis": true
+    },
+    "protocolVersion": {
+      "title": "Protocol version",
+      "type": "string",
+      "description": "The protocol version of the device.",
+      "hideFromKpis": true
+    },
+    "tslVersion": {
+      "title": "TSL version",
+      "type": "string",
+      "description": "The TSL version of the device.",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "protocolVersion",
+    "hardwareVersion",
+    "softwareVersion",
+    "tslVersion",
+    "sn",
+    "lorawanClass",
+    "deviceStatus"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "$id": "https://akenza.io/dragino/dds20-lb/configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "configuration",
+  "title": "Configuration",
+  "properties": {
+    "sensorModel": {
+      "title": "Sensor Model",
+      "description": "Sensor Model",
+      "type": "string",
+      "enum": [
+        "DDS20-LB",
+        "UNKNOWN"
+      ]
+    },
+    "frequencyBand": {
+      "title": "Frequency Band",
+      "description": "Frequency Band",
+      "type": "string",
+      "enum": [
+        "EU868",
+        "US915",
+        "IN865",
+        "AU915",
+        "KZ865",
+        "RU864",
+        "AS923",
+        "AS923_1",
+        "AS923_2",
+        "AS923_3",
+        "CN470",
+        "EU433",
+        "KR920",
+        "MA869",
+        "UNKNOWN"
+      ]
+    },
+    "subBand": {
+      "title": "Sub Band",
+      "description": "Sub Band",
+      "type": "string",
+      "enum": [
+        "AU915_US915",
+        "CN470",
+        "UNKNOWN"
+      ]
+    },
+    "firmwareVersion": {
+      "title": "Firmware Version",
+      "description": "Firmware Version",
+      "type": "string"
+    }
+  },
+  "required": []
+}

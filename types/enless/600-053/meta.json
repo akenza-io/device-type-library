@@ -1,0 +1,22 @@
+{
+  "name": "TX CO2 T&H AMB 600-053",
+  "version": "1.0.0",
+  "manufacturer": "Enless Wireless",
+  "url": "https://enless-wireless.com/products/co2-temperature-humidity-ambiance-lora-sensor/",
+  "description": "The Enless LoRaWAN CO₂, temperature, and humidity sensor is specifically designed for indoor commercial environments. It enables monitoring of key parameters essential to occupant comfort, such as CO₂ levels, temperature, and humidity, thereby ensuring an optimal indoor climate. ",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.01.18",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "CO2"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "alarm"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

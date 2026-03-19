@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-Thermostat/operation_mode.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "operation_mode",
+  "title": "Operation mode",
+  "properties": {
+    "operationMode": {
+      "title": "Operation Mode",
+      "type": "number",
+      "description": "Operation Mode.",
+      "hideFromKpis": false
+    }
+  },
+  "required": [
+    "operationMode"
+  ]
+}

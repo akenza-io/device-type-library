@@ -30,12 +30,7 @@
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pm2_5/mcgm3"
     },
     "pm4_0": {
-      "title": "Particles 4.0",
-      "unit": "μm",
-      "type": "integer",
-      "description": "Particles less than 4.0 μm in diameter",
-      "minimum": 0,
-      "maximum": 10000
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pm4/mcgm3"
     },
     "pm10": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pm10/mcgm3"

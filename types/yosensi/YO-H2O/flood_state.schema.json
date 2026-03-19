@@ -1,0 +1,21 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-H2O/flood_state.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "flood_state",
+  "title": "Flood state",
+  "properties": {
+    "floodState": {
+      "title": "Flood State",
+      "type": "integer",
+      "description": "Flood State - 1 if flooded, 0 otherwhise",
+      "minimum": 0,
+      "maximum": 1,
+      "hideFromKpis": false
+    }
+  },
+  "required": [
+    "floodState"
+  ]
+}

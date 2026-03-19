@@ -8,11 +8,12 @@
   "properties": {
     "measurementVariance": {
       "title": "Measurement variance",
-      "unit": "cm",
-      "type": "number",
       "description": "Possible measurement variance",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/distance/schema.json#/$defs/distance/cm",
       "hideFromKpis": true
     }
   },
-  "required": ["measurementVariance"]
+  "required": [
+    "measurementVariance"
+  ]
 }

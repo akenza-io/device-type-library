@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/yosensi/YO-PeopleCounter/right_to_left.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "right_to_left",
+  "title": "Right to left",
+  "properties": {
+    "rightToLeft": {
+      "title": "Right To Left Counter",
+      "type": "number",
+      "description": "Right To Left Counter. This can be configured to be reset after an inactivity period.",
+      "hideFromKpis": false
+    }
+  },
+  "required": [
+    "rightToLeft"
+  ]
+}

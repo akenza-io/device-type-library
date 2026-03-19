@@ -1,8 +1,12 @@
-const chai = require("chai");
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 describe("Ascoel Push button Uplink", () => {
   let debugSchema = null;
   let defaultSchema = null;
@@ -10,24 +14,22 @@ describe("Ascoel Push button Uplink", () => {
   let consume = null;
 
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/debug.schema.json`).then((parsedSchema) => {
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/debug.schema.json`).then((parsedSchema) => {
       debugSchema = parsedSchema;
       done();
     });
   });
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/default.schema.json`)
+    loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
         defaultSchema = parsedSchema;
         done();
       });
   });
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -42,7 +44,7 @@ describe("Ascoel Push button Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -52,7 +54,7 @@ describe("Ascoel Push button Uplink", () => {
         assert.equal(value.data.hardwareRevision, "B");
         assert.equal(value.data.loraVersion, "4.3.15");
 
-        utils.validateSchema(value.data, debugSchema, { throwError: true });
+        validateSchema(value.data, debugSchema, { throwError: true });
       });
 
       consume(data);
@@ -66,7 +68,7 @@ describe("Ascoel Push button Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -74,7 +76,7 @@ describe("Ascoel Push button Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryLevel, 94);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -88,7 +90,7 @@ describe("Ascoel Push button Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -98,7 +100,7 @@ describe("Ascoel Push button Uplink", () => {
         assert.equal(value.data.buttonPushedNumeric, 1);
         assert.equal(value.data.count, 1);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);

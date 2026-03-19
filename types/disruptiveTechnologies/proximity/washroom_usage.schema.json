@@ -1,0 +1,24 @@
+{
+  "$id": "https://akenza.io/digitalTechnologies/proximity/washroom_usage.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "washroom_usage",
+  "title": "Washroom usage",
+  "properties": {
+    "relativeUsageCount": {
+      "title": "Relative usage count",
+      "description": "One usage is counted as two door cycles.",
+      "type": "integer"
+    },
+    "absoluteUsageCount": {
+      "title": "Absolute usage count",
+      "description": "Absolute usage count",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "relativeUsageCount",
+    "absoluteUsageCount"
+  ]
+}

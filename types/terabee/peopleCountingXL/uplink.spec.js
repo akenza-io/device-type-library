@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Terabee people counting XL Uplink", () => {
   let defaultSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/default.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
         defaultSchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("Terabee people counting XL Uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -42,16 +44,27 @@ describe("Terabee people counting XL Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.fw, 23);
-        assert.equal(value.data.bw, 12);
+        assert.equal(value.data.fw, 0);
+        assert.equal(value.data.bw, 0);
+        assert.equal(value.data.absoluteFw, 23);
+        assert.equal(value.data.absoluteBw, 12);
 
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
+        validateSchema(value.data, defaultSchema, { throwError: true });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+        assert.typeOf(value, "object");
+
+        assert.equal(value.lastFw, 23);
+        assert.equal(value.lastBw, 12);
       });
 
       consume(data);
@@ -65,19 +78,7 @@ describe("Terabee people counting XL Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.fw, 2);
-        assert.equal(value.data.bw, 3);
-
-        utils.validateSchema(value.data, defaultSchema, { throwError: true });
-      });
-
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -88,7 +89,130 @@ describe("Terabee people counting XL Uplink", () => {
         assert.equal(value.data.tpcStuck, true);
         assert.equal(value.data.tpcStopped, true);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.fw, 0);
+        assert.equal(value.data.bw, 0);
+        assert.equal(value.data.absoluteFw, 2);
+        assert.equal(value.data.absoluteBw, 3);
+
+        validateSchema(value.data, defaultSchema, { throwError: true });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+        assert.typeOf(value, "object");
+
+        assert.equal(value.lastFw, 2);
+        assert.equal(value.lastBw, 3);
+      });
+
+      consume(data);
+    });
+
+    it("should decode Terabee people counting XL LoRa payload", () => {
+      const data = {
+        data: {
+          port: 1,
+          payloadHex: "00000002000000030f",
+        },
+      };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.wifiApEnabled, true);
+        assert.equal(value.data.multiDevIssue, true);
+        assert.equal(value.data.tpcStuck, true);
+        assert.equal(value.data.tpcStopped, true);
+
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.fw, 0);
+        assert.equal(value.data.bw, 0);
+        assert.equal(value.data.absoluteFw, 2);
+        assert.equal(value.data.absoluteBw, 3);
+
+        validateSchema(value.data, defaultSchema, { throwError: true });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+        assert.typeOf(value, "object");
+
+        assert.equal(value.lastFw, 2);
+        assert.equal(value.lastBw, 3);
+      });
+
+      consume(data);
+    });
+
+    it("should decode Terabee people counting XL LoRa payload and give out a relative payload", () => {
+      const data = {
+        state: {
+          lastFw: 1,
+          lastBw: 0
+        },
+        data: {
+          port: 1,
+          payloadHex: "00000002000000030f",
+        },
+      };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.wifiApEnabled, true);
+        assert.equal(value.data.multiDevIssue, true);
+        assert.equal(value.data.tpcStuck, true);
+        assert.equal(value.data.tpcStopped, true);
+
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.fw, 1);
+        assert.equal(value.data.bw, 3);
+        assert.equal(value.data.absoluteFw, 2);
+        assert.equal(value.data.absoluteBw, 3);
+
+        validateSchema(value.data, defaultSchema, { throwError: true });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+        assert.typeOf(value, "object");
+
+        assert.equal(value.lastFw, 2);
+        assert.equal(value.lastBw, 3);
       });
 
       consume(data);

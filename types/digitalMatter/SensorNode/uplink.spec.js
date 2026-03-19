@@ -1,17 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Digitalmatter sensor node Uplink", () => {
   let analogSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils.loadSchema(`${__dirname}/analog.schema.json`).then((parsedSchema) => {
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/analog.schema.json`).then((parsedSchema) => {
       analogSchema = parsedSchema;
       done();
     });
@@ -19,8 +23,7 @@ describe("Digitalmatter sensor node Uplink", () => {
 
   let digitalSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/digital.schema.json`)
+    loadSchema(`${__dirname}/digital.schema.json`)
       .then((parsedSchema) => {
         digitalSchema = parsedSchema;
         done();
@@ -29,7 +32,7 @@ describe("Digitalmatter sensor node Uplink", () => {
 
   let gpsSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
       gpsSchema = parsedSchema;
       done();
     });
@@ -37,8 +40,7 @@ describe("Digitalmatter sensor node Uplink", () => {
 
   let humiditySchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/humidity.schema.json`)
+    loadSchema(`${__dirname}/humidity.schema.json`)
       .then((parsedSchema) => {
         humiditySchema = parsedSchema;
         done();
@@ -47,7 +49,7 @@ describe("Digitalmatter sensor node Uplink", () => {
 
   let inputSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/input.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/input.schema.json`).then((parsedSchema) => {
       inputSchema = parsedSchema;
       done();
     });
@@ -55,8 +57,7 @@ describe("Digitalmatter sensor node Uplink", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -65,8 +66,7 @@ describe("Digitalmatter sensor node Uplink", () => {
 
   let measurementSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/measurement.schema.json`)
+    loadSchema(`${__dirname}/measurement.schema.json`)
       .then((parsedSchema) => {
         measurementSchema = parsedSchema;
         done();
@@ -75,7 +75,7 @@ describe("Digitalmatter sensor node Uplink", () => {
 
   let probeSchema = null;
   before((done) => {
-    utils.loadSchema(`${__dirname}/probe.schema.json`).then((parsedSchema) => {
+    loadSchema(`${__dirname}/probe.schema.json`).then((parsedSchema) => {
       probeSchema = parsedSchema;
       done();
     });
@@ -90,7 +90,7 @@ describe("Digitalmatter sensor node Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -98,10 +98,10 @@ describe("Digitalmatter sensor node Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.internalTemperature, 21.02);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -114,7 +114,7 @@ describe("Digitalmatter sensor node Uplink", () => {
         assert.equal(value.data.measurement3[4], 16);
         assert.equal(value.data.measurement3[5], 16.5);
 
-        utils.validateSchema(value.data, measurementSchema, {
+        validateSchema(value.data, measurementSchema, {
           throwError: true,
         });
       });
@@ -130,7 +130,7 @@ describe("Digitalmatter sensor node Uplink", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -141,7 +141,7 @@ describe("Digitalmatter sensor node Uplink", () => {
         assert.equal(value.data.hardwareRev, 1);
         assert.equal(value.data.product, 64);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

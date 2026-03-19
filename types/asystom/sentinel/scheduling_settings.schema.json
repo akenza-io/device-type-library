@@ -1,0 +1,43 @@
+{
+  "$id": "https://akenza.io/asystom/sentinel/scheduling_settings.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "scheduling_settings",
+  "title": "Scheduling settings",
+  "properties": {
+    "activationBitmask": {
+      "title": "Activation bitmask",
+      "description": "Activation bitmask",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "ambientPeriodicity": {
+      "title": "Ambient periodicity",
+      "description": "Activation periodicity",
+      "unit": "s",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "predictionPeriodicity": {
+      "title": "Prediction periodicity",
+      "description": "Prediction periodicity",
+      "unit": "s",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "introspectionPeriodicity": {
+      "title": "Introspection periodicity",
+      "description": "Introspection periodicity",
+      "unit": "s",
+      "type": "number",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "activationBitmask",
+    "ambientPeriodicity",
+    "predictionPeriodicity",
+    "introspectionPeriodicity"
+  ]
+}

@@ -21,6 +21,10 @@ function consume(event) {
   }
   data.temperature = Number((temperature / 10).toFixed(2));
 
+  if (((bytes[2] << 8) | bytes[3]) === 0xffff) {
+    data.temperature = null;
+  }
+
   const soilHumidity = (bytes[4] << 8) | bytes[5];
   data.soilHumidity = Number((soilHumidity / 100).toFixed(2));
 
@@ -31,6 +35,10 @@ function consume(event) {
     soilTemperature = ((soilTemperature - 0xffff) / 100).toFixed(2);
   }
   data.soilTemperature = Number(soilTemperature);
+
+  if (((bytes[6] << 8) | bytes[8]) === 0xffff) {
+    data.soilTemperature = null;
+  }
 
   data.soilConductivity = (bytes[8] << 8) | bytes[9];
 

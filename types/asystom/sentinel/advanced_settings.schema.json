@@ -1,0 +1,241 @@
+{
+  "$id": "https://akenza.io/asystom/sentinel/advanced_settings.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "advanced_settings",
+  "title": "Advanced settings",
+  "properties": {
+    "sensorInformationBitmask": {
+      "title": "Sensor information bitmask",
+      "description": "Sensor information bitmask",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "sensorInformation": {
+      "title": "Sensor information",
+      "description": "Sensor information",
+      "type": "object",
+      "properties": {
+        "enumeration": {
+          "title": "Sensor information",
+          "description": "Sensor information",
+          "type": "string",
+          "enum": [
+            "ANY_ACCELEROMETER",
+            "ANY_MICROPHONE",
+            "NO_SENSOR",
+            "NO_SENSOR_INFORMATION"
+          ]
+        },
+        "orientation": {
+          "title": "Sensor orientation",
+          "description": "Sensor orientation",
+          "type": "string",
+          "enum": [
+            "NO_ORIENTATION",
+            "X_PREFFERED",
+            "Y_PREFFERED",
+            "Z_PREFFERED"
+          ]
+        }
+      },
+      "hideFromKpis": true
+    },
+    "frequencies": {
+      "title": "Frequencies",
+      "description": "Frequencies",
+      "type": "object",
+      "properties": {
+        "sonicFrequencyHigh": {
+          "title": "Sonic frequency high",
+          "description": "Sonic frequency high",
+          "unit": "Hz",
+          "type": "number"
+        },
+        "sonicFrequencyLow": {
+          "title": "Sonic frequency low",
+          "description": "Sonic frequency low",
+          "unit": "Hz",
+          "type": "number"
+        },
+        "vibrationFrequencyHigh": {
+          "title": "Vibration frequency high",
+          "description": "Vibration frequency high",
+          "unit": "Hz",
+          "type": "number"
+        },
+        "vibrationFrequencyLow": {
+          "title": "Vibration frequency low",
+          "description": "Vibration frequency low",
+          "unit": "Hz",
+          "type": "number"
+        }
+      },
+      "required": [
+        "sonicFrequencyHigh",
+        "sonicFrequencyLow",
+        "vibrationFrequencyHigh",
+        "vibrationFrequencyLow"
+      ],
+      "hideFromKpis": true
+    },
+    "rotationSpeedBoundaries": {
+      "title": "Rotation speed boundaries",
+      "description": "Rotation speed boundaries",
+      "type": "object",
+      "properties": {
+        "rpmUpperBoundary": {
+          "title": "RPM upper boundary",
+          "description": "RPM upper boundary",
+          "unit": "rpm",
+          "type": "number"
+        },
+        "rpmLowerBoundary": {
+          "title": "RPM lower boundary",
+          "description": "RPM lower boundary",
+          "unit": "rpm",
+          "type": "number"
+        }
+      },
+      "hideFromKpis": true
+    },
+    "mileageThreshold": {
+      "title": "Mileage threshold",
+      "description": "Mileage threshold",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "referenceCustomParam": {
+      "title": "Reference custom parameter",
+      "description": "Reference custom parameter",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "customSpectrumType": {
+      "title": "Custom spectrum type",
+      "description": "Custom spectrum type",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "customSpectrumParam": {
+      "title": "Custom spectrum parameter",
+      "description": "Custom spectrum parameter",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "woeBitmask": {
+      "title": "WOE bitmask",
+      "description": "WOE bitmask",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "wakeOnEventInformation": {
+      "title": "Wake on event information",
+      "description": "Wake on event information",
+      "type": "object",
+      "properties": {
+        "woeModeString": {
+          "title": "WoE mode",
+          "description": "WoE mode",
+          "type": "string"
+        },
+        "woeFlag": {
+          "title": "WoE flag",
+          "description": "WoE flag",
+          "type": "boolean"
+        },
+        "woeParam": {
+          "title": "WoE parameter",
+          "description": "WoE parameter",
+          "type": "number"
+        },
+        "woeProfile": {
+          "title": "WoE profile",
+          "description": "WoE profile",
+          "type": "number"
+        },
+        "woeThreshold": {
+          "title": "WoE threshold",
+          "description": "WoE threshold",
+          "type": "number"
+        },
+        "woePretrigThreshold": {
+          "title": "WoE pre-trigger threshold",
+          "description": "WoE pre-trigger threshold",
+          "type": "number"
+        },
+        "woePostrigThreshold": {
+          "title": "WoE post-trigger threshold",
+          "description": "WoE post-trigger threshold",
+          "type": "number"
+        }
+      },
+      "hideFromKpis": true
+    },
+    "lorawanConfig": {
+      "title": "LoRaWAN config",
+      "description": "LoRaWAN config",
+      "type": "object",
+      "properties": {
+        "adrIsEnabled": {
+          "title": "ADR enabled",
+          "description": "ADR enabled",
+          "type": "boolean"
+        },
+        "transmissionIsAcked": {
+          "title": "Transmission acknowledged",
+          "description": "Transmission acknowledged",
+          "type": "boolean"
+        },
+        "networkIsPrivate": {
+          "title": "Private network",
+          "description": "Private network",
+          "type": "boolean"
+        },
+        "lorawanCodingRateIsBase": {
+          "title": "LoRaWAN coding rate is base",
+          "description": "LoRaWAN coding rate is base",
+          "type": "boolean"
+        },
+        "dwellTimeIsOn": {
+          "title": "Dwell time on",
+          "description": "Dwell time on",
+          "type": "boolean"
+        },
+        "retransmitAckTwice": {
+          "title": "Retransmit ack twice",
+          "description": "Retransmit ack twice",
+          "type": "boolean"
+        },
+        "packetSplitIsEnabled": {
+          "title": "Packet split enabled",
+          "description": "Packet split enabled",
+          "type": "boolean"
+        },
+        "specialFrequencySettings": {
+          "title": "Special frequency settings",
+          "description": "Special frequency settings",
+          "type": "number"
+        },
+        "linkCheckPeriod": {
+          "title": "Link check period",
+          "description": "Link check period",
+          "type": "number"
+        }
+      },
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "sensorInformation",
+    "frequencies",
+    "rotationSpeedBoundaries",
+    "mileageThreshold",
+    "referenceCustomParam",
+    "customSpectrumType",
+    "customSpectrumParam",
+    "wakeOnEventInformation",
+    "lorawanConfig"
+  ]
+}

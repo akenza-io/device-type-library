@@ -271,42 +271,42 @@ function decoder(bytes, port) {
       {
         key: [0x00],
         fn(arg) {
-          decodedData.deviceEui = decodeField(arg, 0, 63, "hexstring");
+          // decodedData.deviceEui = decodeField(arg, 0, 63, "hexstring");
           return 8;
         },
       },
       {
         key: [0x01],
         fn(arg) {
-          decodedData.appEui = decodeField(arg, 0, 63, "hexstring");
+          // decodedData.appEui = decodeField(arg, 0, 63, "hexstring");
           return 8;
         },
       },
       {
         key: [0x02],
         fn(arg) {
-          decodedData.appKey = decodeField(arg, 0, 127, "hexstring");
+          // decodedData.appKey = decodeField(arg, 0, 127, "hexstring");
           return 16;
         },
       },
       {
         key: [0x03],
         fn(arg) {
-          decodedData.deviceAddress = decodeField(arg, 0, 31, "hexstring");
+          // decodedData.deviceAddress = decodeField(arg, 0, 31, "hexstring");
           return 4;
         },
       },
       {
         key: [0x04],
         fn(arg) {
-          decodedData.networkSessionKey = decodeField(arg, 0, 127, "hexstring");
+          // decodedData.networkSessionKey = decodeField(arg, 0, 127, "hexstring");
           return 16;
         },
       },
       {
         key: [0x05],
         fn(arg) {
-          decodedData.appSessionKey = decodeField(arg, 0, 127, "hexstring");
+          // decodedData.appSessionKey = decodeField(arg, 0, 127, "hexstring");
           return 16;
         },
       },

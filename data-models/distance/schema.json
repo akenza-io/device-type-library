@@ -33,6 +33,20 @@
         "description": "Distance in mm",
         "type": "number",
         "unit": "mm"
+      },
+      "in": {
+        "measurementType": "akenza/distance/distance/in",
+        "title": "Distance",
+        "description": "Distance in inches",
+        "type": "number",
+        "unit": "in"
+      },
+      "ft": {
+        "measurementType": "akenza/distance/distance/ft",
+        "title": "Distance",
+        "description": "Distance in feet",
+        "type": "number",
+        "unit": "ft"
       }
     },
     "fillLevel": {

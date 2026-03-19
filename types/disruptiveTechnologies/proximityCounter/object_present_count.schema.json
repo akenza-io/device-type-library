@@ -1,0 +1,23 @@
+{
+  "$id": "https://akenza.io/digitalTechnologies/proximity/object_present_count.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "object_present_count",
+  "title": "Object present count",
+  "properties": {
+    "objectPresentCount": {
+      "title": "Object present count",
+      "description": "Object present count",
+      "type": "integer"
+    },
+    "relativeCount": {
+      "title": "Relative object present count",
+      "description": "Count of objects detected between cycles",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "objectPresentCount"
+  ]
+}

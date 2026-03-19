@@ -1,0 +1,19 @@
+{
+  "$id": "https://akenza.io/twtg/neonVibration/factory_reset.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "factory_reset",
+  "title": "Factory reset",
+  "properties": {
+    "response": {
+      "title": "Factory reset",
+      "type": "boolean",
+      "description": "Factory reset",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "response"
+  ]
+}

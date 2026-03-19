@@ -1,0 +1,22 @@
+{
+  "name": "TX T&H AMB 600-051",
+  "version": "1.0.0",
+  "manufacturer": "Enless Wireless",
+  "url": "https://enless-wireless.com/products/lorawan-ambient-temperature-and-humidity-sensor/",
+  "description": "The Enless LoRaWAN Temperature and Humidity Sensor is specifically designed to monitor comfort in tertiary environments. It accurately measures ambient temperature and humidity, ensuring a healthy and controlled indoor climate for occupants.A Sensor Dedicated to Indoor Comfort: Thanks to its compact and discreet design, this sensor integrates easily into all types of buildings (offices, schools, social housing, public facilities, etc.). It provides precise control of environmental parameters, contributing to improved energy performance and enhanced occupant well-being. Temperature and humidity are measured with high accuracy: Temperature: range -40 to +125°C, accuracy ±0.2°C, resolution 0.1°C,Humidity: range 0 to 100% rH, accuracy ±2% rH, resolution 0.1% rH. Simple and Flexible Installation: The sensor can be wall-mounted using screws or double-sided 3M adhesive, with no need to open the device for commissioning. A switch located on the back allows for easy selection of the desired operating mode (LoRaWAN or Enless proprietary LoRa). Configuration is done quickly using the My Enless mobile app. It is powered by a replaceable 3.6V C-type lithium battery, with optional USB-C power available for installations requiring continuous supply.Exceptional Longevity: Thanks to its high-capacity C type battery, the sensor offers up to 15 years of battery life (5 years for data transmission every 5 minutes in SF9), significantly reducing maintenance interventions and associated costs.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V3.03.18",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Humidity"
+  ],
+  "outputTopics": [
+    "default",
+    "datalog",
+    "lifecycle",
+    "alarm"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

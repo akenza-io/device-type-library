@@ -1,0 +1,19 @@
+{
+  "name": "DDS04-LB",
+  "version": "1.0.0",
+  "manufacturer": "Dragino",
+  "url": "https://www.dragino.com/products/distance-level-sensor/item/280-dds04-lb-ls.html",
+  "description": "A LoRaWAN sensor capable of measuring distance from up to four ultrasonic sensors simultaneously.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": [
+    "Distance"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

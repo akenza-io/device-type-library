@@ -8,13 +8,14 @@
   "properties": {
     "counterA": {
       "title": "Counter A",
-      "type": "integer",
-      "description": "Counter A"
+      "description": "Counter A",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleCount/people"
+
     },
     "counterB": {
       "title": "Counter B",
-      "type": "integer",
-      "description": "Counter B"
+      "description": "Counter B",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/peopleCount/people"
     }
   },
   "required": ["counterA", "counterB"]

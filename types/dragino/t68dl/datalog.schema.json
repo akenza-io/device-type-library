@@ -1,0 +1,22 @@
+{
+  "$id": "https://akenza.io/dragino/t65dl/datalog.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "datalog",
+  "title": "Datalog",
+  "properties": {
+    "datalog": {
+      "title": "Datalog",
+      "type": "array",
+      "description": "Datalog",
+      "hideFromKpis": true
+    },
+    "pnackFlag": {
+      "title": "Pnack flag",
+      "description": "Packet number acknowledge flag",
+      "type": "number",
+      "hideFromKpis": true
+    }
+  }
+}

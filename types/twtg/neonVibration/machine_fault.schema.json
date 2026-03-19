@@ -1,0 +1,63 @@
+{
+  "$id": "https://akenza.io/twtg/neonVibration/machine_fault.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "machine_fault",
+  "title": "Machine fault",
+  "properties": {
+    "axis": {
+      "title": "Axis",
+      "type": "string",
+      "description": "Axis",
+      "enum": [
+        "X",
+        "Y",
+        "Z"
+      ],
+      "hideFromKpis": true
+    },
+    "faultType": {
+      "title": "Fault type",
+      "type": "string",
+      "description": "Fault type",
+      "enum": [
+        "COMMON_FAULT",
+        "BEARING_FAULT"
+      ],
+      "hideFromKpis": true
+    },
+    "faultCategory": {
+      "title": "Fault category",
+      "type": "string",
+      "description": "Fault category",
+      "enum": [
+        "NONE",
+        "ONE_X",
+        "TWO_X",
+        "N_X",
+        "BEARING"
+      ],
+      "hideFromKpis": true
+    },
+    "harmonicFrequencies": {
+      "title": "Harmonic frequencies",
+      "type": "array",
+      "description": "Harmonic frequencies",
+      "hideFromKpis": true
+    },
+    "harmonicAmplitudes": {
+      "title": "Harmonic amplitudes",
+      "type": "array",
+      "description": "Harmonic amplitudes",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "axis",
+    "faultType",
+    "faultCategory",
+    "harmonicFrequencies",
+    "harmonicAmplitudes"
+  ]
+}

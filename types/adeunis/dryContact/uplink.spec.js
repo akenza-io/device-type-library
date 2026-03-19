@@ -1,18 +1,21 @@
-const chai = require("chai");
 
-const rewire = require("rewire");
-const utils = require("test-utils");
 
-const { assert } = chai;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe("Adeunis dry contact", () => {
   let channelSchema = null;
   let consume = null;
   before((done) => {
-    const script = rewire("./uplink.js");
-    consume = utils.init(script);
-    utils
-      .loadSchema(`${__dirname}/channel.schema.json`)
+    const script = rewire(`${__dirname}/uplink.js`);
+    consume = init(script);
+    loadSchema(`${__dirname}/channel.schema.json`)
       .then((parsedSchema) => {
         channelSchema = parsedSchema;
         done();
@@ -21,8 +24,7 @@ describe("Adeunis dry contact", () => {
 
   let lifecycleSchema = null;
   before((done) => {
-    utils
-      .loadSchema(`${__dirname}/lifecycle.schema.json`)
+    loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
         done();
@@ -38,7 +40,7 @@ describe("Adeunis dry contact", () => {
         },
       };
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -49,10 +51,10 @@ describe("Adeunis dry contact", () => {
         assert.equal(value.data.lowBattery, false);
         assert.equal(value.data.configurationDone, false);
 
-        utils.validateSchema(value.data, lifecycleSchema, { throwError: true });
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -63,10 +65,10 @@ describe("Adeunis dry contact", () => {
         assert.equal(value.data.state, true);
         assert.equal(value.data.value, 1);
 
-        utils.validateSchema(value.data, channelSchema, { throwError: true });
+        validateSchema(value.data, channelSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -77,10 +79,10 @@ describe("Adeunis dry contact", () => {
         assert.equal(value.data.state, false);
         assert.equal(value.data.value, 0);
 
-        utils.validateSchema(value.data, channelSchema, { throwError: true });
+        validateSchema(value.data, channelSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -91,10 +93,10 @@ describe("Adeunis dry contact", () => {
         assert.equal(value.data.state, false);
         assert.equal(value.data.value, 5);
 
-        utils.validateSchema(value.data, channelSchema, { throwError: true });
+        validateSchema(value.data, channelSchema, { throwError: true });
       });
 
-      utils.expectEmits((type, value) => {
+      expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
@@ -105,7 +107,7 @@ describe("Adeunis dry contact", () => {
         assert.equal(value.data.state, false);
         assert.equal(value.data.value, 2);
 
-        utils.validateSchema(value.data, channelSchema, { throwError: true });
+        validateSchema(value.data, channelSchema, { throwError: true });
       });
       consume(data);
     });
