@@ -1,0 +1,54 @@
+{
+  "$id": "https://akenza.io/adeunis/temp/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "numSensors": {
+      "title": "Number of sensors",
+      "type": "integer",
+      "description": "Number of sensors",
+      "hideFromKpis": true
+    },
+    "frameCounter": {
+      "title": "Frame counter",
+      "type": "integer",
+      "description": "Frame counter",
+      "hideFromKpis": true
+    },
+    "hasTimestamp": {
+      "title": "Has timestamp",
+      "type": "boolean",
+      "description": "Has timestamp",
+      "hideFromKpis": true
+    },
+    "lowBattery": {
+      "title": "Low battery",
+      "type": "boolean",
+      "description": "Low battery",
+      "hideFromKpis": true
+    },
+    "configurationDone": {
+      "title": "Configuration done",
+      "type": "boolean",
+      "description": "Configuration done",
+      "hideFromKpis": true
+    },
+    "configurationInconsistency": {
+      "title": "Configuration inconsistency",
+      "type": "boolean",
+      "description": "Configuration inconsistency",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "numSensors",
+    "frameCounter",
+    "hasTimestamp",
+    "lowBattery",
+    "configurationDone",
+    "configurationInconsistency"
+  ]
+}
