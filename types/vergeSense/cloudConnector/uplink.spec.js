@@ -1,5 +1,3 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
@@ -39,6 +37,7 @@ describe("Verge Sense Uplink", () => {
         done();
       });
   });
+
 
   describe("consume()", () => {
     it("should decode the Verge Sense space report payload && init state", () => {
@@ -164,6 +163,52 @@ describe("Verge Sense Uplink", () => {
         assert.equal(value.data.state, "OCCUPIED");
 
         validateSchema(value.data, spaceAvailabilitySchema, {
+          throwError: true,
+        });
+      });
+
+      consume(data);
+    });
+
+    it("should decode the Verge Sense floor report", () => {
+      const data = {
+        data: {
+          "motion_detected": null,
+          "signs_of_life": null,
+          "event_type": "space_report",
+          "space_ref_id": null,
+          "building_ref_id": "MM4",
+          "sensor_ids": [
+            "00:6E:02:01:F0:9C",
+            "00:6E:02:05:E6:10",
+            "00:6E:02:07:27:2C"
+          ],
+          "space_id": 820755,
+          "person_count": 150,
+          "people": {
+            "count": 150,
+            "coordinates": []
+          },
+          "floor_ref_id": "03",
+          "timestamp": "2026-03-25T10:27:34.942Z"
+        }
+      };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+      });
+
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "area_count");
+        assert.equal(value.data.peopleCount, 150);
+
+        validateSchema(value.data, areaCountReportSchema, {
           throwError: true,
         });
       });
