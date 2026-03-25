@@ -5,27 +5,33 @@ function consume(event) {
   const state = event.state || {};
 
   if (event.data.event_type === 'space_report') {
-    topic = 'area_count';
-    payload.peopleCount = event.data.person_count;
-    payload.signsOfLife = event.data.signs_of_life;
+    if (event.data.space_ref_id !== null) {
+      topic = 'area_count';
+      payload.peopleCount = event.data.person_count;
+      payload.signsOfLife = event.data.signs_of_life;
 
-    // Set the state if its not set to prevent long periods of time without messages
-    if (state.lastOccupied === undefined) {
-      if (payload.peopleCount > 0) {
-        state.lastOccupied = "OCCUPIED";
-      } else {
-        state.lastOccupied = "UNOCCUPIED";
+      // Set the state if its not set to prevent long periods of time without messages
+      if (state.lastOccupied === undefined) {
+        if (payload.peopleCount > 0) {
+          state.lastOccupied = "OCCUPIED";
+        } else {
+          state.lastOccupied = "UNOCCUPIED";
+        }
       }
-    }
 
-    // output a sample each hour to facilitate time series analysis
-    if (state.lastEmittedAt === undefined || now - state.lastEmittedAt >= 3600000) {
-      if (state.lastOccupied === "OCCUPIED") {
-        emit('sample', { data: { "occupancy": 1, "occupied": true }, topic: "occupancy" });
-      } else {
-        emit('sample', { data: { "occupancy": 0, "occupied": false }, topic: "occupancy" });
+      // output a sample each hour to facilitate time series analysis
+      if (state.lastEmittedAt === undefined || now - state.lastEmittedAt >= 3600000) {
+        if (state.lastOccupied === "OCCUPIED") {
+          emit('sample', { data: { "occupancy": 1, "occupied": true }, topic: "occupancy" });
+        } else {
+          emit('sample', { data: { "occupancy": 0, "occupied": false }, topic: "occupancy" });
+        }
+        state.lastEmittedAt = now;
       }
-      state.lastEmittedAt = now;
+      // No space id suggests this is a floor sending data
+    } else {
+      topic = 'floor_count';
+      payload.peopleOnFloor = event.data.person_count;
     }
   } else if (event.data.event_type === 'space_availability') {
     topic = 'space_availability';

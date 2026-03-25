@@ -1,0 +1,18 @@
+{
+  "$id": "https://akenza.io/vergeSense/cloudConnector/floor_count.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "floor_count",
+  "title": "Floor count",
+  "properties": {
+    "peopleOnFloor": {
+      "title": "People on floor",
+      "description": "People on floor",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "peopleOnFloor"
+  ]
+}
