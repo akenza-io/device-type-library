@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.91.1] - 2026-03-25
+
+### Changed
+
+- VergeSense - Cloud connector - Now also emits floor data
+
 # [1.91.0] - 2026-03-19
 
 ### Added
