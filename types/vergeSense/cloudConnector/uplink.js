@@ -30,8 +30,8 @@ function consume(event) {
       }
       // No space id suggests this is a floor sending data
     } else {
-      topic = 'floor_count';
-      payload.peopleOnFloor = event.data.person_count;
+      topic = 'area_count';
+      payload.peopleCount = event.data.person_count;
     }
   } else if (event.data.event_type === 'space_availability') {
     topic = 'space_availability';

@@ -38,15 +38,6 @@ describe("Verge Sense Uplink", () => {
       });
   });
 
-  let floorCountReportSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/floor_count.schema.json`)
-      .then((parsedSchema) => {
-        floorCountReportSchema = parsedSchema;
-        done();
-      });
-  });
-
 
   describe("consume()", () => {
     it("should decode the Verge Sense space report payload && init state", () => {
@@ -214,10 +205,10 @@ describe("Verge Sense Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
-        assert.equal(value.topic, "floor_count");
-        assert.equal(value.data.peopleOnFloor, 150);
+        assert.equal(value.topic, "area_count");
+        assert.equal(value.data.peopleCount, 150);
 
-        validateSchema(value.data, floorCountReportSchema, {
+        validateSchema(value.data, areaCountReportSchema, {
           throwError: true,
         });
       });
