@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.91.2] - 2026-04-02
+
+### Changed
+
+- added support for the new sensry.io Kallisto Device
+
 # [1.91.1] - 2026-03-25
 
 ### Changed

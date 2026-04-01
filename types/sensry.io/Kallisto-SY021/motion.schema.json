@@ -1,0 +1,85 @@
+{
+  "$id": "https://akenza.io/sensry.io/Kallisto-SY021/motion.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "topic": "motion",
+  "title": "Motion Sensors",
+  "description": "",
+  "processingType": "uplink_decoder",
+  "required": [
+    "gyroY",
+    "accelX",
+    "gyroX",
+    "gyroZ",
+    "accelY",
+    "accelZ",
+    "magX",
+    "magY",
+    "magZ"
+  ],
+  "properties": {
+    "gyroY": {
+      "title": "Gyrometer Y",
+      "description": "Angle in degrees",
+      "hideFromKpis": false,
+      "type": "number",
+      "unit": "°/s"
+    },
+    "gyroX": {
+      "title": "Gyrometer X",
+      "description": "Angle in degrees",
+      "hideFromKpis": false,
+      "type": "number",
+      "unit": "°/s"
+    },
+    "gyroZ": {
+      "title": "Gyrometer Z",
+      "description": "Angle in degrees",
+      "hideFromKpis": false,
+      "type": "number",
+      "unit": "°/s"
+    },
+    "accelY": {
+      "title": "Accelerometer Y",
+      "description": "Acceleration in m/s^2",
+      "hideFromKpis": false,
+      "type": "number",
+      "unit": "m/s^2"
+    },
+    "accelZ": {
+      "title": "Accelerometer Z",
+      "description": "Acceleration in m/s^2",
+      "hideFromKpis": false,
+      "type": "number",
+      "unit": "m/s^2"
+    },
+    "accelX": {
+      "title": "Accelerometer X",
+      "description": "Acceleration in m/s^2",
+      "hideFromKpis": false,
+      "type": "number",
+      "unit": "m/s^2"
+    },
+    "magX": {
+      "title": "Magnetometer X",
+      "description": "Magnetometer in mT",
+      "hideFromKpis": false,
+      "type": "number",
+      "unit": "mT"
+    },
+    "magY": {
+      "title": "Magnetometer Y",
+      "description": "Magnetometer in mT",
+      "hideFromKpis": false,
+      "type": "number",
+      "unit": "mT"
+    },
+    "magZ": {
+      "title": "Magnetometer Z",
+      "description": "Magnetometer in mT",
+      "hideFromKpis": false,
+      "type": "number",
+      "unit": "mT"
+    }
+  }
+}
