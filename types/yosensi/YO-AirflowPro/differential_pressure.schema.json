@@ -12,7 +12,8 @@
       "description": "Differential Pressure in Pa.",
       "minimum": -500,
       "maximum": 500,
-      "hideFromKpis": false
+      "hideFromKpis": false,
+      "type": "number"
     }
   },
   "required": [

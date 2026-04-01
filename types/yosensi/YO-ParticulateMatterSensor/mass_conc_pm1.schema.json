@@ -12,7 +12,8 @@
       "description": "Mass Concentration PM 1 in μg/m3.",
       "minimum": 0,
       "maximum": 1000,
-      "hideFromKpis": false
+      "hideFromKpis": false,
+      "type": "number"
     }
   },
   "required": [

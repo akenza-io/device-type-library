@@ -11,7 +11,8 @@
       "title": "Sound pressure",
       "description": "Sound pressure in dBA.",
       "minimum": 38,
-      "maximum": 90
+      "maximum": 90,
+      "type": "number"
     }
   },
   "required": [

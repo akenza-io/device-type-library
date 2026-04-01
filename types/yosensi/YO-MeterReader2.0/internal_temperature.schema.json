@@ -12,7 +12,8 @@
       "description": "Internal Temperature in degrees celsius.",
       "minimum": -40,
       "maximum": 125,
-      "hideFromKpis": false
+      "hideFromKpis": false,
+      "type": "number"
     }
   },
   "required": ["internalTemperature"]

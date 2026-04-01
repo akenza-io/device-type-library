@@ -20,7 +20,8 @@
       "title": "Noise",
       "description": "Average value of the sound pressure level in decibel",
       "minimum": 20,
-      "maximum": 120
+      "maximum": 120,
+      "type": "number"
     },
     "illuminance": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/illuminance/lux",

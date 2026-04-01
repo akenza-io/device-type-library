@@ -11,7 +11,8 @@
       "title": "External Temperature",
       "minimum": -55,
       "maximum": 125,
-      "hideFromKpis": false
+      "hideFromKpis": false,
+      "type": "number"
     }
   },
   "required": [

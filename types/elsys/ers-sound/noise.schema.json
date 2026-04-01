@@ -12,7 +12,8 @@
       "description": "Peak value in dBspl",
       "minimum": 20,
       "maximum": 120,
-      "hideFromKpis": true
+      "hideFromKpis": true,
+      "type": "number"
     },
     "soundAvg": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/soundLevel/dba",
@@ -20,7 +21,8 @@
       "description": "Average value in dBspl",
       "minimum": 20,
       "maximum": 120,
-      "hideFromKpis": true
+      "hideFromKpis": true,
+      "type": "number"
     }
   },
   "required": [

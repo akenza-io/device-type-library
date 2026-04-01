@@ -12,7 +12,8 @@
       "description": "Probe 2 Temperature in degrees celsius.",
       "minimum": -55,
       "maximum": 125,
-      "hideFromKpis": false
+      "hideFromKpis": false,
+      "type": "number"
     }
   },
   "required": [
