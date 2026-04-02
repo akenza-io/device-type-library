@@ -412,6 +412,13 @@ function deleteUnusedKeys(data) {
   return keysRetained;
 }
 
+function checkForCustomFields(device, target, norm) {
+  if (device !== undefined && device.customFields !== undefined && device.customFields[target] !== undefined) {
+    return device.customFields[target];
+  }
+  return norm;
+}
+
 function consume(event) {
   const payload = Hex.hexToBytes(event.data.payloadHex);
 
@@ -477,11 +484,13 @@ function consume(event) {
     }
 
     if (deleteUnusedKeys(occupancy)) {
+      occupancy.occupancyStatus = "UNOCCUPIED";
       // Warm desk 
       const time = new Date().getTime();
       const state = event.state || {};
       occupancy.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
       if (occupancy.occupied) {
+        occupancy.occupancyStatus = "OCCUPIED";
         delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
       } else if (state.lastOccupancyTimestamp !== undefined) {
         occupancy.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
@@ -492,6 +501,16 @@ function consume(event) {
       if (Number.isNaN(occupancy.minutesSinceLastOccupied)) {
         occupancy.minutesSinceLastOccupied = 0;
       }
+
+      if (occupancy.minutesSinceLastOccupied < checkForCustomFields(event.device, "recentUsageDuration", 90)) {
+        occupancy.recentlyUsed = true;
+        if (!occupancy.occupied) {
+          occupancy.occupancyStatus = "WARM";
+        }
+      } else {
+        occupancy.recentlyUsed = false;
+      }
+
       state.lastOccupiedValue = occupancy.occupied;
 
       emit("state", state);

@@ -29,23 +29,28 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
           port: 2,
           payloadHex: "01",
         },
+        state: {}
       };
 
 
       expectEmits((type, value) => {
         assert.equal(type, "state");
-        assert.isNotNull(value);
-        assert.equal(value.lastOccupiedValue, true);
+        assert.exists(value.firstOccupancyTimestamp);
       });
 
       expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
+
         assert.equal(value.topic, "occupancy");
         assert.equal(value.data.occupancy, 1);
         assert.equal(value.data.occupied, true);
+        assert.equal(value.data.occupiedOrRecentlyUsed, true);
+        assert.equal(value.data.recentlyUsed, false);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
+        assert.equal(value.data.minutesOccupiedSinceStart, 0);
+        assert.equal(value.data.occupancyStatus, "OCCUPIED");
 
         validateSchema(value.data, occupancySchema, { throwError: true });
       });
@@ -56,7 +61,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
     it("should decode the Bosch Parking Lot Sensor payload and start the minutesSinceLastOccupied timer", () => {
       const data = {
         state: {
-          lastOccupiedValue: true
+          firstOccupancyTimestamp: new Date().getTime() - 10 * 60 * 1000
         },
         data: {
           port: 2,
@@ -66,20 +71,23 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
 
       expectEmits((type, value) => {
         assert.equal(type, "state");
-        assert.isNotNull(value);
-        assert.equal(value.lastOccupiedValue, false);
-        // assert.equal(value.lastOccupancyTimestamp, new Date().getTime());
+        assert.exists(value.lastOccupancyTimestamp);
+        assert.equal(value.minutesOccupiedSinceStart, 10);
       });
 
       expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
-
         assert.equal(value.topic, "occupancy");
+
         assert.equal(value.data.occupancy, 0);
         assert.equal(value.data.occupied, false);
+        assert.equal(value.data.recentlyUsed, true);
+        assert.equal(value.data.occupiedOrRecentlyUsed, true);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
+        assert.equal(value.data.minutesOccupiedSinceStart, 0);
+        assert.equal(value.data.occupancyStatus, "WARM");
 
         validateSchema(value.data, occupancySchema, { throwError: true });
       });
@@ -87,46 +95,12 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
       consume(data);
     });
 
-    it("should decode the Bosch Parking Lot Sensor payload and get the minutesSinceLastOccupied time", () => {
-      const data = {
-        state: {
-          lastOccupiedValue: true,
-          lastOccupancyTimestamp: new Date().setMinutes(new Date().getMinutes() - 20)
-        },
-        data: {
-          port: 2,
-          payloadHex: "00",
-        },
-      };
-
-      expectEmits((type, value) => {
-        assert.equal(type, "state");
-        assert.isNotNull(value);
-        assert.equal(value.lastOccupiedValue, false);
-        // assert.equal(value.lastOccupancyTimestamp, new Date().setMinutes(new Date().getMinutes() - 20));
-      });
-
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "occupancy");
-        assert.equal(value.data.occupancy, 0);
-        assert.equal(value.data.occupied, false);
-        assert.equal(value.data.minutesSinceLastOccupied, 20);
-
-        validateSchema(value.data, occupancySchema, { throwError: true });
-      });
-
-      consume(data);
-    });
 
     it("should decode the Bosch Parking Lot Sensor payload and delete the minutesSinceLastOccupied time", () => {
       const data = {
         state: {
-          lastOccupiedValue: true,
-          lastOccupancyTimestamp: new Date().setMinutes(new Date().getMinutes() - 20)
+          lastOccupancyTimestamp: new Date().setMinutes(new Date().getMinutes() - 20),
+          minutesOccupiedSinceStart: 10
         },
         data: {
           port: 2,
@@ -137,23 +111,65 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
       expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
-        assert.equal(value.lastOccupiedValue, true);
+        assert.exists(value.firstOccupancyTimestamp);
       });
 
       expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
-
         assert.equal(value.topic, "occupancy");
+
         assert.equal(value.data.occupancy, 1);
         assert.equal(value.data.occupied, true);
+        assert.equal(value.data.minutesOccupiedSinceStart, 0);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
+        assert.equal(value.data.recentlyUsed, false);
+        assert.equal(value.data.occupiedOrRecentlyUsed, true);
+        assert.equal(value.data.occupancyStatus, "OCCUPIED");
 
         validateSchema(value.data, occupancySchema, { throwError: true });
       });
 
       consume(data);
     });
+
+    it("should decode the Bosch Parking Lot Sensor payload and get occupancy time", () => {
+      const data = {
+        state: {
+          firstOccupancyTimestamp: new Date().setMinutes(new Date().getMinutes() - 20)
+        },
+        data: {
+          port: 2,
+          payloadHex: "01",
+        },
+      };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+        assert.exists(value.firstOccupancyTimestamp);
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+        assert.equal(value.topic, "occupancy");
+
+        assert.equal(value.data.occupancy, 1);
+        assert.equal(value.data.occupied, true);
+        assert.equal(value.data.minutesOccupiedSinceStart, 20);
+        assert.equal(value.data.minutesSinceLastOccupied, 0);
+        assert.equal(value.data.recentlyUsed, false);
+        assert.equal(value.data.occupiedOrRecentlyUsed, true);
+        assert.equal(value.data.occupancyStatus, "OCCUPIED");
+
+        validateSchema(value.data, occupancySchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
   });
 });

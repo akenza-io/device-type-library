@@ -24,90 +24,42 @@ const TYPE_PULSE2 = 0x16; // 2bytes 0-->0xFFFF
 const TYPE_PULSE2_ABS = 0x17; // 4bytes no 0->0xFFFFFFFF
 const TYPE_ANALOG2 = 0x18; // 2bytes voltage in mV
 const TYPE_EXT_TEMP2 = 0x19; // 2bytes -3276.5C-->3276.5C
-const TYPE_EXT_DIGITAL2 = 0x1a; // 1bytes value 1 or 0
-const TYPE_EXT_ANALOG_UV = 0x1b; // 4 bytes signed int (uV)
 const TYPE_TVOC = 0x1c; // 2 bytes (ppb)
-const TYPE_DEBUG = 0x3d; // 4bytes debug
 
 // Settings Decoder
 const SETTINGS_HEADER = 0x3e;
 
-function getFillLevel(device, distance) {
-  if (device !== undefined && distance !== undefined) {
-    if (device.customFields !== undefined) {
-      const { customFields } = device;
-      let scaleLength = null;
-      let sensorDistance = 0;
-
-      if (customFields.containerHeight !== undefined) {
-        scaleLength = Number(device.customFields.containerHeight);
-      }
-
-      if (customFields.installationOffset !== undefined) {
-        sensorDistance = Number(device.customFields.installationOffset);
-      }
-
-      if (scaleLength !== null) {
-        const percentExact =
-          (100 / scaleLength) * (scaleLength - (distance - sensorDistance));
-        let fillLevel = Math.round(percentExact);
-        if (fillLevel > 100) {
-          fillLevel = 100;
-        } else if (fillLevel < 0) {
-          fillLevel = 0;
-        }
-        return fillLevel;
-      }
-    }
-  }
-  return undefined;
-}
-
 function bin16dec(bin) {
   let num = bin & 0xffff;
-  if (0x8000 & num) {
-    num = -(0x010000 - num);
-  }
+  if (0x8000 & num) num = -(0x010000 - num);
   return num;
 }
 
 function bin8dec(bin) {
   let num = bin & 0xff;
-  if (0x80 & num) {
-    num = -(0x0100 - num);
-  }
+  if (0x80 & num) num = -(0x0100 - num);
   return num;
-}
-
-function hexToBytes(hex) {
-  for (var bytes = [], c = 0; c < hex.length; c += 2) {
-    bytes.push(parseInt(hex.substr(c, 2), 16));
-  }
-  return bytes;
 }
 
 function DecodeElsysPayload(data) {
   const obj = {};
-  let temp;
-  let rh;
   for (let i = 0; i < data.length; i++) {
-    // console.log(data[i]);
     switch (data[i]) {
       case TYPE_TEMP: // Temperature
-        temp = (data[i + 1] << 8) | data[i + 2];
+        var temp = (data[i + 1] << 8) | data[i + 2];
         temp = bin16dec(temp);
         obj.temperature = temp / 10;
         i += 2;
         break;
       case TYPE_RH: // Humidity
-        rh = data[i + 1];
+        var rh = data[i + 1];
         obj.humidity = rh;
         i += 1;
         break;
-      case TYPE_ACC: // Acceleration
-        obj.x = bin8dec(data[i + 1]);
-        obj.y = bin8dec(data[i + 2]);
-        obj.z = bin8dec(data[i + 3]);
+      case TYPE_ACC: // Acceleration 63 = 1G
+        obj.accX = Math.round(bin8dec(data[i + 1]) / 63);
+        obj.accY = Math.round(bin8dec(data[i + 2]) / 63);
+        obj.accZ = Math.round(bin8dec(data[i + 3]) / 63);
         i += 3;
         break;
       case TYPE_LIGHT: // Light
@@ -139,25 +91,23 @@ function DecodeElsysPayload(data) {
         obj.pulse1 = (data[i + 1] << 8) | data[i + 2];
         i += 2;
         break;
-      case TYPE_PULSE1_ABS: {
-        // Pulse input 1 absolute value
-        const pulseAbs =
+      case TYPE_PULSE1_ABS: // Pulse input 1 absolute value
+        var pulseAbs =
           (data[i + 1] << 24) |
           (data[i + 2] << 16) |
           (data[i + 3] << 8) |
           data[i + 4];
-        obj.pulseAbs = pulseAbs;
+        obj.pulseAbs1 = pulseAbs;
         i += 4;
         break;
-      }
       case TYPE_EXT_TEMP1: // External temp
-        temp = (data[i + 1] << 8) | data[i + 2];
+        var temp = (data[i + 1] << 8) | data[i + 2];
         temp = bin16dec(temp);
-        obj.externalTemperature = temp / 10;
+        obj.externalTemperature1 = temp / 10;
         i += 2;
         break;
       case TYPE_EXT_DIGITAL: // Digital input
-        obj.digital = data[i + 1];
+        obj.digital = !!data[i + 1];
         i += 1;
         break;
       case TYPE_EXT_DISTANCE: // Distance sensor input
@@ -182,20 +132,14 @@ function DecodeElsysPayload(data) {
         i += 1;
         break;
       case TYPE_WATERLEAK: // Water leak
-        obj.waterleak = data[i + 1];
+        obj.waterleak = !!data[i + 1];
         i += 1;
         break;
       case TYPE_GRIDEYE: // Grideye data
-        var ref = data[i + 1];
-        i++;
-        obj.grideye = [];
-        for (let j = 0; j < 64; j++) {
-          obj.grideye[j] = ref + data[1 + i + j] / 10.0;
-        }
-        i += 64;
+        i += 65;
         break;
       case TYPE_PRESSURE: // External Pressure
-        temp =
+        var temp =
           (data[i + 1] << 24) |
           (data[i + 2] << 16) |
           (data[i + 3] << 8) |
@@ -225,35 +169,17 @@ function DecodeElsysPayload(data) {
         i += 2;
         break;
       case TYPE_EXT_TEMP2: // External temp 2
-        temp = (data[i + 1] << 8) | data[i + 2];
+        var temp = (data[i + 1] << 8) | data[i + 2];
         temp = bin16dec(temp);
-        if (typeof obj.externalTemperature2 === "number") {
-          obj.externalTemperature2 = [obj.externalTemperature2];
-        }
-        if (typeof obj.externalTemperature2 === "object") {
-          obj.externalTemperature2.push(temp / 10);
-        } else {
-          obj.externalTemperature2 = temp / 10;
-        }
+        obj.externalTemperature2 = temp / 10;
         i += 2;
-        break;
-      case TYPE_EXT_DIGITAL2: // Digital input 2
-        obj.digital2 = data[i + 1];
-        i += 1;
-        break;
-      case TYPE_EXT_ANALOG_UV: // Load cell analog uV
-        obj.analogUv =
-          (data[i + 1] << 24) |
-          (data[i + 2] << 16) |
-          (data[i + 3] << 8) |
-          data[i + 4];
-        i += 4;
         break;
       case TYPE_TVOC:
         obj.tvoc = (data[i + 1] << 8) | data[i + 2];
         i += 2;
         break;
-      default: // somthing is wrong with data
+      default:
+        // somthing is wrong with data
         i = data.length;
         break;
     }
@@ -491,6 +417,65 @@ function deleteUnusedKeys(data) {
   return keysRetained;
 }
 
+function checkForCustomFields(device, target, norm) {
+  if (device !== undefined && device.customFields !== undefined && device.customFields[target] !== undefined) {
+    return device.customFields[target];
+  }
+  return norm;
+}
+
+function calculateRecentOccupancy(device, state, occupancy) {
+  state = state || {};
+  // Occupancy status
+  if (occupancy.occupied) {
+    occupancy.occupancyStatus = "OCCUPIED";
+    occupancy.occupiedOrRecentlyUsed = true;
+  } else {
+    occupancy.occupancyStatus = "UNOCCUPIED";
+    occupancy.occupiedOrRecentlyUsed = false;
+  }
+
+  const time = new Date().getTime();
+  occupancy.minutesSinceLastOccupied = 0;
+  occupancy.minutesOccupiedSinceStart = 0;
+
+  if (occupancy.occupied) {
+    // Set state to first occupancy occurence so occupied time can be calulcated
+    if (state.firstOccupancyTimestamp == undefined) {
+      state.firstOccupancyTimestamp = time;
+    }
+    // Give out how long there has been occupancy
+    occupancy.minutesOccupiedSinceStart = Math.round((time - state.firstOccupancyTimestamp) / 1000 / 60);
+    delete state.lastOccupancyTimestamp; // Reset cycle
+    delete state.minutesOccupiedSinceStart;
+  } else {
+    // Give out how long there has been no occupancy
+    if (state.lastOccupancyTimestamp !== undefined) {
+      occupancy.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60);
+    } else {
+      state.lastOccupancyTimestamp = time;
+
+      // Only save the timestamp on first leave and save how long the occupancy has gone on for
+      state.minutesOccupiedSinceStart = Math.round((time - state.firstOccupancyTimestamp) / 1000 / 60);
+      delete state.firstOccupancyTimestamp; // Reset cycle
+    }
+  }
+
+  // Allow customFields to change this
+  const minimalOccupiedTime = checkForCustomFields(device, "minimalOccupiedTime", 2.5);
+  const recentUsageDuration = checkForCustomFields(device, "recentUsageDuration", 90)
+
+  if (occupancy.minutesSinceLastOccupied < recentUsageDuration && !occupancy.occupied && state.minutesOccupiedSinceStart >= minimalOccupiedTime) {
+    occupancy.recentlyUsed = true;
+    occupancy.occupiedOrRecentlyUsed = true;
+    occupancy.occupancyStatus = "WARM";
+  } else {
+    occupancy.recentlyUsed = false;
+    occupancy.occupiedOrRecentlyUsed = occupancy.occupied;
+  }
+  return { state, occupancy }
+}
+
 function consume(event) {
   const payload = Hex.hexToBytes(event.data.payloadHex);
 
@@ -498,7 +483,7 @@ function consume(event) {
     const res = DecodeElsysPayload(payload);
     const data = {};
     const lifecycle = {};
-    const occupancy = {};
+    let occupancy = {};
     const noise = {};
 
     // Default values
@@ -509,12 +494,9 @@ function consume(event) {
     data.accZ = res.accZ;
     data.light = res.light;
     data.co2 = res.co2;
+    data.tvoc = res.tvoc;
     data.reed = res.digital;
     data.distance = res.distance;
-    const fillLevel = getFillLevel(event.device, data.distance);
-    if (fillLevel !== undefined) {
-      data.fillLevel = fillLevel;
-    }
     data.accMotion = res.accMotion;
     data.waterleak = res.waterleak;
     data.pressure = res.pressure;
@@ -560,24 +542,10 @@ function consume(event) {
     }
 
     if (deleteUnusedKeys(occupancy)) {
-      // Warm desk 
-      const time = new Date().getTime();
-      const state = event.state || {};
-      occupancy.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
-      if (occupancy.occupied) {
-        delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
-      } else if (state.lastOccupancyTimestamp !== undefined) {
-        occupancy.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
-      } else if (state.lastOccupiedValue) { //
-        state.lastOccupancyTimestamp = time; // Start with first no occupancy
-      }
+      let recentOccupancyResult = calculateRecentOccupancy(event.device, event.state, occupancy);
+      occupancy = recentOccupancyResult.occupancy;
 
-      if (Number.isNaN(occupancy.minutesSinceLastOccupied)) {
-        occupancy.minutesSinceLastOccupied = 0;
-      }
-      state.lastOccupiedValue = occupancy.occupied;
-
-      emit("state", state);
+      emit("state", recentOccupancyResult.state);
       emit("sample", { data: occupancy, topic: "occupancy" });
     }
 

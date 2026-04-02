@@ -1,5 +1,3 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
@@ -43,7 +41,8 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
       expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
-        assert.equal(value.lastOccupiedValue, false);
+        assert.exists(value.lastOccupancyTimestamp);
+        assert.exists(value.minutesOccupiedSinceStart);
       });
 
       expectEmits((type, value) => {
@@ -51,8 +50,14 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
         assert.equal(value.topic, "occupancy");
+
+        assert.equal(value.data.minutesOccupiedSinceStart, 0);
+        assert.equal(value.data.minutesSinceLastOccupied, 0);
         assert.equal(value.data.occupancy, 0);
+        assert.equal(value.data.occupancyStatus, "UNOCCUPIED");
         assert.equal(value.data.occupied, false);
+        assert.equal(value.data.occupiedOrRecentlyUsed, false);
+        assert.equal(value.data.recentlyUsed, false);
 
         validateSchema(value.data, occupancySchema, { throwError: true });
       });
@@ -71,7 +76,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
       expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
-        assert.equal(value.lastOccupiedValue, true);
+        assert.exists(value.firstOccupancyTimestamp);
       });
 
       expectEmits((type, value) => {
@@ -79,8 +84,14 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
         assert.equal(value.topic, "occupancy");
+
+        assert.equal(value.data.minutesOccupiedSinceStart, 0);
+        assert.equal(value.data.minutesSinceLastOccupied, 0);
         assert.equal(value.data.occupancy, 1);
+        assert.equal(value.data.occupancyStatus, "OCCUPIED");
         assert.equal(value.data.occupied, true);
+        assert.equal(value.data.occupiedOrRecentlyUsed, true);
+        assert.equal(value.data.recentlyUsed, false);
 
         validateSchema(value.data, occupancySchema, { throwError: true });
       });

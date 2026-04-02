@@ -56,7 +56,7 @@ describe("Elsys EMS Desk uplink", () => {
       expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
-        assert.equal(value.lastOccupiedValue, true);
+        assert.exists(value.firstOccupancyTimestamp);
       });
 
       expectEmits((type, value) => {
@@ -65,9 +65,13 @@ describe("Elsys EMS Desk uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "occupancy");
-        assert.equal(value.data.occupancy, 2);
-        assert.equal(value.data.occupied, true);
+        assert.equal(value.data.minutesOccupiedSinceStart, 0);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
+        assert.equal(value.data.occupancy, 2);
+        assert.equal(value.data.occupancyStatus, "OCCUPIED");
+        assert.equal(value.data.occupied, true);
+        assert.equal(value.data.occupiedOrRecentlyUsed, true);
+        assert.equal(value.data.recentlyUsed, false);
 
         validateSchema(value.data, occupancySchema, { throwError: true });
       });

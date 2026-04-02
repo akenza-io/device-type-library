@@ -1,8 +1,67 @@
+function checkForCustomFields(device, target, norm) {
+  if (device !== undefined && device.customFields !== undefined && device.customFields[target] !== undefined) {
+    return device.customFields[target];
+  }
+  return norm;
+}
+
+function calculateRecentOccupancy(device, state, occupancy) {
+  state = state || {};
+  // Occupancy status
+  if (occupancy.occupied) {
+    occupancy.occupancyStatus = "OCCUPIED";
+    occupancy.occupiedOrRecentlyUsed = true;
+  } else {
+    occupancy.occupancyStatus = "UNOCCUPIED";
+    occupancy.occupiedOrRecentlyUsed = false;
+  }
+
+  const time = new Date().getTime();
+  occupancy.minutesSinceLastOccupied = 0;
+  occupancy.minutesOccupiedSinceStart = 0;
+
+  if (occupancy.occupied) {
+    // Set state to first occupancy occurence so occupied time can be calulcated
+    if (state.firstOccupancyTimestamp == undefined) {
+      state.firstOccupancyTimestamp = time;
+    }
+    // Give out how long there has been occupancy
+    occupancy.minutesOccupiedSinceStart = Math.round((time - state.firstOccupancyTimestamp) / 1000 / 60);
+    delete state.lastOccupancyTimestamp; // Reset cycle
+    delete state.minutesOccupiedSinceStart;
+  } else {
+    // Give out how long there has been no occupancy
+    if (state.lastOccupancyTimestamp !== undefined) {
+      occupancy.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60);
+    } else {
+      state.lastOccupancyTimestamp = time;
+
+      // Only save the timestamp on first leave and save how long the occupancy has gone on for
+      state.minutesOccupiedSinceStart = Math.round((time - state.firstOccupancyTimestamp) / 1000 / 60);
+      delete state.firstOccupancyTimestamp; // Reset cycle
+    }
+  }
+
+  // Allow customFields to change this
+  const minimalOccupiedTime = checkForCustomFields(device, "minimalOccupiedTime", 2.5);
+  const recentUsageDuration = checkForCustomFields(device, "recentUsageDuration", 90)
+
+  if (occupancy.minutesSinceLastOccupied < recentUsageDuration && !occupancy.occupied && state.minutesOccupiedSinceStart >= minimalOccupiedTime) {
+    occupancy.recentlyUsed = true;
+    occupancy.occupiedOrRecentlyUsed = true;
+    occupancy.occupancyStatus = "WARM";
+  } else {
+    occupancy.recentlyUsed = false;
+    occupancy.occupiedOrRecentlyUsed = occupancy.occupied;
+  }
+  return { state, occupancy }
+}
+
 function consume(event) {
   const { eventType } = event.data;
   let sample = {};
   const now = new Date().getTime();
-  const state = event.state || {};
+  let state = event.state || {};
 
   if (eventType === "touch") {
     emit("sample", { data: { touch: true }, topic: "touch" });
@@ -16,20 +75,10 @@ function consume(event) {
       sample.occupied = false;
     }
 
-    // Warm desk 
-    const time = new Date().getTime();
-    sample.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
-    if (sample.occupied) {
-      delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
-    } else if (state.lastOccupancyTimestamp !== undefined) {
-      sample.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
-    } else if (state.lastOccupiedValue) {
-      state.lastOccupancyTimestamp = time; // Start with first no occupancy
-    }
+    let recentOccupancyResult = calculateRecentOccupancy(event.device, event.state, sample);
+    sample = recentOccupancyResult.occupancy;
+    state = recentOccupancyResult.state;
 
-    if (Number.isNaN(sample.minutesSinceLastOccupied)) {
-      sample.minutesSinceLastOccupied = 0;
-    }
     state.lastOccupiedValue = sample.occupied;
     state.lastSampleEmittedAt = now;
 
@@ -67,23 +116,12 @@ function consume(event) {
       sample.occupied = false;
     }
 
-    // Warm desk 
-    const time = new Date().getTime();
-    sample.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
-    if (sample.occupied) {
-      delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
-    } else if (state.lastOccupancyTimestamp !== undefined) {
-      sample.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
-    } else if (state.lastOccupiedValue) {
-      state.lastOccupancyTimestamp = time; // Start with first no occupancy
-    }
+    let recentOccupancyResult = calculateRecentOccupancy(event.device, event.state, sample);
+    sample = recentOccupancyResult.occupancy;
+    state = recentOccupancyResult.state;
 
-    if (Number.isNaN(sample.minutesSinceLastOccupied)) {
-      sample.minutesSinceLastOccupied = 0;
-    }
-
-    emit("sample", { data: sample, topic: "occupancy" });
     state.lastSampleEmittedAt = now;
+    emit("sample", { data: sample, topic: "occupancy" });
   }
 
   emit("state", state);

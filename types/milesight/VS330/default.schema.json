@@ -14,6 +14,24 @@
     },
     "minutesSinceLastOccupied": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/minutesSinceLastOccupied/minutes"
+    },
+    "minutesOccupiedSinceStart": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/minutesOccupiedSinceStart/minutes"
+    },
+    "recentlyUsed": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/recentlyUsed/boolean"
+    },
+    "occupancyStatus": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupancy/occupancyStatus"
+    },
+    "occupiedOrRecentlyUsed": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupiedOrRecentlyUsed/boolean"
     }
-  }
+  },
+  "required": [
+    "occupancy",
+    "occupied",
+    "minutesSinceLastOccupied",
+    "recentlyUsed"
+  ]
 }
