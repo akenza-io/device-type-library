@@ -207,5 +207,7 @@ dist
 .history
 .ionide
 
+# JetBrains IDE
+.idea/
 
 # End of https://www.toptal.com/developers/gitignore/api/node,macos,visualstudiocode,jupyternotebooks
