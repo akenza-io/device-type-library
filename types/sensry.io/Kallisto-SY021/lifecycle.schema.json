@@ -1,0 +1,17 @@
+{
+  "$id": "https://akenza.io/sensry.io/Kallisto-SY021/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "topic": "lifecycle",
+  "title": "Lifescycle",
+  "description": "",
+  "processingType": "uplink_decoder",
+  "required": [
+    "batteryLevel"
+  ],
+  "properties": {
+    "batteryLevel": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent"
+    }
+  }
+}
