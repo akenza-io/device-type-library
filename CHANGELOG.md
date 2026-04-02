@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.91.3] - 2026-04-07
+
+### Changed
+
+- fixed bug #451 - strict mode: missing type "number"
+
 # [1.91.2] - 2026-04-02
 
 ### Changed
