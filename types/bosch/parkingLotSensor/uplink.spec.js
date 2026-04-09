@@ -47,9 +47,9 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
         assert.equal(value.data.occupancy, 1);
         assert.equal(value.data.occupied, true);
         assert.equal(value.data.occupiedOrRecentlyUsed, true);
-        assert.equal(value.data.recentlyUsed, false);
+        assert.equal(value.data.warm, false);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
-        assert.equal(value.data.minutesOccupiedSinceStart, 0);
+        assert.equal(value.data.occupiedMinutes, 0);
         assert.equal(value.data.occupancyStatus, "OCCUPIED");
 
         validateSchema(value.data, occupancySchema, { throwError: true });
@@ -72,7 +72,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
       expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.exists(value.lastOccupancyTimestamp);
-        assert.equal(value.minutesOccupiedSinceStart, 10);
+        assert.equal(value.occupiedMinutes, 10);
       });
 
       expectEmits((type, value) => {
@@ -83,10 +83,10 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
 
         assert.equal(value.data.occupancy, 0);
         assert.equal(value.data.occupied, false);
-        assert.equal(value.data.recentlyUsed, true);
+        assert.equal(value.data.warm, true);
         assert.equal(value.data.occupiedOrRecentlyUsed, true);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
-        assert.equal(value.data.minutesOccupiedSinceStart, 0);
+        assert.equal(value.data.occupiedMinutes, 0);
         assert.equal(value.data.occupancyStatus, "WARM");
 
         validateSchema(value.data, occupancySchema, { throwError: true });
@@ -100,7 +100,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
       const data = {
         state: {
           lastOccupancyTimestamp: new Date().setMinutes(new Date().getMinutes() - 20),
-          minutesOccupiedSinceStart: 10
+          occupiedMinutes: 10
         },
         data: {
           port: 2,
@@ -122,9 +122,9 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
 
         assert.equal(value.data.occupancy, 1);
         assert.equal(value.data.occupied, true);
-        assert.equal(value.data.minutesOccupiedSinceStart, 0);
+        assert.equal(value.data.occupiedMinutes, 0);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
-        assert.equal(value.data.recentlyUsed, false);
+        assert.equal(value.data.warm, false);
         assert.equal(value.data.occupiedOrRecentlyUsed, true);
         assert.equal(value.data.occupancyStatus, "OCCUPIED");
 
@@ -159,9 +159,9 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
 
         assert.equal(value.data.occupancy, 1);
         assert.equal(value.data.occupied, true);
-        assert.equal(value.data.minutesOccupiedSinceStart, 20);
+        assert.equal(value.data.occupiedMinutes, 20);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
-        assert.equal(value.data.recentlyUsed, false);
+        assert.equal(value.data.warm, false);
         assert.equal(value.data.occupiedOrRecentlyUsed, true);
         assert.equal(value.data.occupancyStatus, "OCCUPIED");
 

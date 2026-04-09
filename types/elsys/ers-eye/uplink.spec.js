@@ -59,14 +59,14 @@ describe("Elsys eye uplink", () => {
         assert.typeOf(value.data, "object");
         assert.equal(value.topic, "occupancy");
 
-        assert.equal(value.data.minutesOccupiedSinceStart, 0);
+        assert.equal(value.data.occupiedMinutes, 0);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
         assert.equal(value.data.occupancy, 1);
         assert.equal(value.data.motion, 1);
         assert.equal(value.data.occupancyStatus, "OCCUPIED");
         assert.equal(value.data.occupied, true);
         assert.equal(value.data.occupiedOrRecentlyUsed, true);
-        assert.equal(value.data.recentlyUsed, false);
+        assert.equal(value.data.warm, false);
 
         validateSchema(value.data, occupancySchema, { throwError: true });
       });
@@ -118,14 +118,14 @@ describe("Elsys eye uplink", () => {
         assert.typeOf(value.data, "object");
         assert.equal(value.topic, "occupancy");
 
-        assert.equal(value.data.minutesOccupiedSinceStart, 0);
+        assert.equal(value.data.occupiedMinutes, 0);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
         assert.equal(value.data.occupancy, 2);
         assert.equal(value.data.motion, 0);
         assert.equal(value.data.occupancyStatus, "OCCUPIED");
         assert.equal(value.data.occupied, true);
         assert.equal(value.data.occupiedOrRecentlyUsed, true);
-        assert.equal(value.data.recentlyUsed, false);
+        assert.equal(value.data.warm, false);
 
         validateSchema(value.data, occupancySchema, { throwError: true });
       });

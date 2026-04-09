@@ -200,11 +200,11 @@ function deleteUnusedKeys(data) {
   return keysRetained;
 }
 
-function checkForCustomFields(device, target, norm) {
+function checkForCustomFields(device, target, fallbackValue) {
   if (device !== undefined && device.customFields !== undefined && device.customFields[target] !== undefined) {
     return device.customFields[target];
   }
-  return norm;
+  return fallbackValue;
 }
 
 function calculateRecentOccupancy(device, state, occupancy) {
@@ -214,13 +214,13 @@ function calculateRecentOccupancy(device, state, occupancy) {
     occupancy.occupancyStatus = "OCCUPIED";
     occupancy.occupiedOrRecentlyUsed = true;
   } else {
-    occupancy.occupancyStatus = "UNOCCUPIED";
+    occupancy.occupancyStatus = "FREE";
     occupancy.occupiedOrRecentlyUsed = false;
   }
 
   const time = new Date().getTime();
   occupancy.minutesSinceLastOccupied = 0;
-  occupancy.minutesOccupiedSinceStart = 0;
+  occupancy.occupiedMinutes = 0;
 
   if (occupancy.occupied) {
     // Set state to first occupancy occurence so occupied time can be calulcated
@@ -228,9 +228,9 @@ function calculateRecentOccupancy(device, state, occupancy) {
       state.firstOccupancyTimestamp = time;
     }
     // Give out how long there has been occupancy
-    occupancy.minutesOccupiedSinceStart = Math.round((time - state.firstOccupancyTimestamp) / 1000 / 60);
+    occupancy.occupiedMinutes = Math.round((time - state.firstOccupancyTimestamp) / 1000 / 60);
     delete state.lastOccupancyTimestamp; // Reset cycle
-    delete state.minutesOccupiedSinceStart;
+    delete state.occupiedMinutes;
   } else {
     // Give out how long there has been no occupancy
     if (state.lastOccupancyTimestamp !== undefined) {
@@ -239,21 +239,21 @@ function calculateRecentOccupancy(device, state, occupancy) {
       state.lastOccupancyTimestamp = time;
 
       // Only save the timestamp on first leave and save how long the occupancy has gone on for
-      state.minutesOccupiedSinceStart = Math.round((time - state.firstOccupancyTimestamp) / 1000 / 60);
+      state.occupiedMinutes = Math.round((time - state.firstOccupancyTimestamp) / 1000 / 60);
       delete state.firstOccupancyTimestamp; // Reset cycle
     }
   }
 
   // Allow customFields to change this
-  const minimalOccupiedTime = checkForCustomFields(device, "minimalOccupiedTime", 2.5);
-  const recentUsageDuration = checkForCustomFields(device, "recentUsageDuration", 90)
+  const minOccupancyThreshold = checkForCustomFields(device, "minOccupancyThreshold", 2.5);
+  const occupancyWarmThreshold = checkForCustomFields(device, "occupancyWarmThreshold", 90)
 
-  if (occupancy.minutesSinceLastOccupied < recentUsageDuration && !occupancy.occupied && state.minutesOccupiedSinceStart >= minimalOccupiedTime) {
-    occupancy.recentlyUsed = true;
+  if (occupancy.minutesSinceLastOccupied < occupancyWarmThreshold && !occupancy.occupied && state.occupiedMinutes >= minOccupancyThreshold) {
+    occupancy.warm = true;
     occupancy.occupiedOrRecentlyUsed = true;
     occupancy.occupancyStatus = "WARM";
   } else {
-    occupancy.recentlyUsed = false;
+    occupancy.warm = false;
     occupancy.occupiedOrRecentlyUsed = occupancy.occupied;
   }
   return { state, occupancy }

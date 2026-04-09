@@ -46,7 +46,7 @@ describe("WS203 Uplink", () => {
         assert.equal(type, "state");
         assert.isNotNull(value);
         assert.exists(value.lastOccupancyTimestamp);
-        assert.exists(value.minutesOccupiedSinceStart);
+        assert.exists(value.occupiedMinutes);
       });
 
       expectEmits((type, value) => {
@@ -56,13 +56,13 @@ describe("WS203 Uplink", () => {
 
         assert.equal(value.data.humidity, 50.5);
         assert.equal(value.data.temperature, 30.8);
-        assert.equal(value.data.minutesOccupiedSinceStart, 0);
+        assert.equal(value.data.occupiedMinutes, 0);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
         assert.equal(value.data.occupancy, 0);
-        assert.equal(value.data.occupancyStatus, "UNOCCUPIED");
+        assert.equal(value.data.occupancyStatus, "FREE");
         assert.equal(value.data.occupied, false);
         assert.equal(value.data.occupiedOrRecentlyUsed, false);
-        assert.equal(value.data.recentlyUsed, false);
+        assert.equal(value.data.warm, false);
 
 
         validateSchema(value.data, defaultSchema, { throwError: true });

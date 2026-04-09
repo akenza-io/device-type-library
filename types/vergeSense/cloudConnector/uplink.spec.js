@@ -86,7 +86,7 @@ describe("Verge Sense Uplink", () => {
         assert.isNotNull(value);
 
         // assert.equal(value.lastEmittedAt, now);
-        assert.equal(value.lastOccupied, "UNOCCUPIED");
+        assert.equal(value.lastOccupied, "FREE");
       });
 
       expectEmits((type, value) => {
@@ -110,7 +110,7 @@ describe("Verge Sense Uplink", () => {
       const data = {
         state: {
           lastEmittedAt: new Date().getTime() - 3600001,
-          lastOccupied: "UNOCCUPIED"
+          lastOccupied: "FREE"
         },
         data: {
           "motion_detected": null,

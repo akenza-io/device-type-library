@@ -47,7 +47,7 @@
         "type": "string",
         "enum": [
           "OCCUPIED",
-          "UNOCCUPIED",
+          "FREE",
           "WARM"
         ]
       }
@@ -61,18 +61,18 @@
         "unit": "min"
       }
     },
-    "minutesOccupiedSinceStart": {
+    "occupiedMinutes": {
       "minutes": {
-        "measurementType": "akenza/spaces/minutesOccupiedSinceStart/minutes",
+        "measurementType": "akenza/spaces/occupiedMinutes/minutes",
         "title": "Minutes occupied since",
         "description": "Minutes since occupancy start",
         "type": "integer",
         "unit": "min"
       }
     },
-    "recentlyUsed": {
+    "warm": {
       "boolean": {
-        "measurementType": "akenza/spaces/recentlyUsed/boolean",
+        "measurementType": "akenza/spaces/warm/boolean",
         "title": "Recently used",
         "description": "Whether the space has been used recently",
         "type": "boolean"

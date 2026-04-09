@@ -412,11 +412,11 @@ function deleteUnusedKeys(data) {
   return keysRetained;
 }
 
-function checkForCustomFields(device, target, norm) {
+function checkForCustomFields(device, target, fallbackValue) {
   if (device !== undefined && device.customFields !== undefined && device.customFields[target] !== undefined) {
     return device.customFields[target];
   }
-  return norm;
+  return fallbackValue;
 }
 
 function consume(event) {
@@ -484,7 +484,7 @@ function consume(event) {
     }
 
     if (deleteUnusedKeys(occupancy)) {
-      occupancy.occupancyStatus = "UNOCCUPIED";
+      occupancy.occupancyStatus = "FREE";
       // Warm desk 
       const time = new Date().getTime();
       const state = event.state || {};
@@ -502,13 +502,13 @@ function consume(event) {
         occupancy.minutesSinceLastOccupied = 0;
       }
 
-      if (occupancy.minutesSinceLastOccupied < checkForCustomFields(event.device, "recentUsageDuration", 90)) {
-        occupancy.recentlyUsed = true;
+      if (occupancy.minutesSinceLastOccupied < checkForCustomFields(event.device, "occupancyWarmThreshold", 90)) {
+        occupancy.warm = true;
         if (!occupancy.occupied) {
           occupancy.occupancyStatus = "WARM";
         }
       } else {
-        occupancy.recentlyUsed = false;
+        occupancy.warm = false;
       }
 
       state.lastOccupiedValue = occupancy.occupied;

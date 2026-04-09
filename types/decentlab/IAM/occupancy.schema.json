@@ -15,11 +15,11 @@
     "minutesSinceLastOccupied": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/minutesSinceLastOccupied/minutes"
     },
-    "minutesOccupiedSinceStart": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/minutesOccupiedSinceStart/minutes"
+    "occupiedMinutes": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupiedMinutes/minutes"
     },
-    "recentlyUsed": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/recentlyUsed/boolean"
+    "warm": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/warm/boolean"
     },
     "occupancyStatus": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupancy/occupancyStatus"
@@ -32,6 +32,6 @@
     "occupancy",
     "occupied",
     "minutesSinceLastOccupied",
-    "recentlyUsed"
+    "warm"
   ]
 }

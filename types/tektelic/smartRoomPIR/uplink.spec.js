@@ -91,7 +91,7 @@ describe("Tektelic Smart Room PIR Sensor Uplink", () => {
         assert.equal(type, "state");
         assert.isNotNull(value);
         assert.exists(value.lastOccupancyTimestamp);
-        assert.exists(value.minutesOccupiedSinceStart);
+        assert.exists(value.occupiedMinutes);
       });
 
       expectEmits((type, value) => {
@@ -100,13 +100,13 @@ describe("Tektelic Smart Room PIR Sensor Uplink", () => {
         assert.typeOf(value.data, "object");
         assert.equal(value.topic, "occupancy");
 
-        assert.equal(value.data.minutesOccupiedSinceStart, 0);
+        assert.equal(value.data.occupiedMinutes, 0);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
         assert.equal(value.data.occupancy, 0);
-        assert.equal(value.data.occupancyStatus, "UNOCCUPIED");
+        assert.equal(value.data.occupancyStatus, "FREE");
         assert.equal(value.data.occupied, false);
         assert.equal(value.data.occupiedOrRecentlyUsed, false);
-        assert.equal(value.data.recentlyUsed, false);
+        assert.equal(value.data.warm, false);
 
         validateSchema(value.data, occupancySchema, { throwError: true });
       });
@@ -134,13 +134,13 @@ describe("Tektelic Smart Room PIR Sensor Uplink", () => {
         assert.typeOf(value.data, "object");
         assert.equal(value.topic, "occupancy");
 
-        assert.equal(value.data.minutesOccupiedSinceStart, 0);
+        assert.equal(value.data.occupiedMinutes, 0);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
         assert.equal(value.data.occupancy, 1);
         assert.equal(value.data.occupancyStatus, "OCCUPIED");
         assert.equal(value.data.occupied, true);
         assert.equal(value.data.occupiedOrRecentlyUsed, true);
-        assert.equal(value.data.recentlyUsed, false);
+        assert.equal(value.data.warm, false);
 
         validateSchema(value.data, occupancySchema, { throwError: true });
       });

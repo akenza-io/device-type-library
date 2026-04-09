@@ -15,7 +15,7 @@ function consume(event) {
         if (payload.peopleCount > 0) {
           state.lastOccupied = "OCCUPIED";
         } else {
-          state.lastOccupied = "UNOCCUPIED";
+          state.lastOccupied = "FREE";
         }
       }
 
