@@ -44,6 +44,9 @@ function consume(event) {
     } else {
       emit('sample', { data: { "occupancy": 0, "occupied": false }, topic: "occupancy" });
     }
+  } else if (event.data.event_type === 'sensor_report') {
+    topic = "sensor_report";
+    payload.signsOfLife = event.data.signs_of_life
   } else {
     topic = 'unknown';
     payload.message = 'unknown message type';
