@@ -73,15 +73,15 @@
     "warm": {
       "boolean": {
         "measurementType": "akenza/spaces/warm/boolean",
-        "title": "Recently used",
+        "title": "Warm",
         "description": "Whether the space has been used recently",
         "type": "boolean"
       }
     },
-    "occupiedOrRecentlyUsed": {
+    "occupiedOrWarm": {
       "boolean": {
-        "measurementType": "akenza/spaces/occupiedOrRecentlyUsed/boolean",
-        "title": "Occupied or recently used",
+        "measurementType": "akenza/spaces/occupiedOrWarm/boolean",
+        "title": "Occupied or warm",
         "description": "Whether the space has been used recently or is occupied at the moment.",
         "type": "boolean"
       }

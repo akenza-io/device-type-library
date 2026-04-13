@@ -63,7 +63,7 @@ describe("Haltian Thingsee Presence Sensor Uplink", () => {
         assert.equal(value.data.occupancy, 0);
         assert.equal(value.data.occupancyStatus, "FREE");
         assert.equal(value.data.occupied, false);
-        assert.equal(value.data.occupiedOrRecentlyUsed, false);
+        assert.equal(value.data.occupiedOrWarm, false);
         assert.equal(value.data.warm, false);
 
         validateSchema(value.data, occupancySchema, { throwError: true });

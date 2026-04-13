@@ -97,7 +97,7 @@ describe("Decentlab IAM Uplink", () => {
         assert.equal(value.data.occupancy, 1);
         assert.equal(value.data.occupancyStatus, "OCCUPIED");
         assert.equal(value.data.occupied, true);
-        assert.equal(value.data.occupiedOrRecentlyUsed, true);
+        assert.equal(value.data.occupiedOrWarm, true);
         assert.equal(value.data.warm, false);
 
         validateSchema(value.data, occupancySchema, { throwError: true });

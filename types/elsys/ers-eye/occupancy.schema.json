@@ -27,8 +27,8 @@
     "occupancyStatus": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupancy/occupancyStatus"
     },
-    "occupiedOrRecentlyUsed": {
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupiedOrRecentlyUsed/boolean"
+    "occupiedOrWarm": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupiedOrWarm/boolean"
     }
   },
   "required": [

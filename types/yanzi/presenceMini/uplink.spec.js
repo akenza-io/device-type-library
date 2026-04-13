@@ -95,7 +95,7 @@ describe("Yanzi Presence Mini Sensor Uplink", () => {
         assert.equal(value.data.occupancy, 0);
         assert.equal(value.data.occupancyStatus, "FREE");
         assert.equal(value.data.occupied, false);
-        assert.equal(value.data.occupiedOrRecentlyUsed, false);
+        assert.equal(value.data.occupiedOrWarm, false);
         assert.equal(value.data.warm, false);
 
         validateSchema(value.data, occupancySchema, { throwError: true });
@@ -140,7 +140,7 @@ describe("Yanzi Presence Mini Sensor Uplink", () => {
         assert.equal(value.data.motion, 24873);
         assert.equal(value.data.occupancyStatus, "OCCUPIED");
         assert.equal(value.data.occupied, true);
-        assert.equal(value.data.occupiedOrRecentlyUsed, true);
+        assert.equal(value.data.occupiedOrWarm, true);
         assert.equal(value.data.warm, false);
 
         validateSchema(value.data, occupancySchema, { throwError: true });

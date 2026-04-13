@@ -32,10 +32,10 @@ function calculateRecentOccupancy(device, state, occupancy) {
   // Occupancy status
   if (occupancy.occupied) {
     occupancy.occupancyStatus = "OCCUPIED";
-    occupancy.occupiedOrRecentlyUsed = true;
+    occupancy.occupiedOrWarm = true;
   } else {
     occupancy.occupancyStatus = "FREE";
-    occupancy.occupiedOrRecentlyUsed = false;
+    occupancy.occupiedOrWarm = false;
   }
 
   const time = new Date().getTime();
@@ -70,11 +70,11 @@ function calculateRecentOccupancy(device, state, occupancy) {
 
   if (occupancy.minutesSinceLastOccupied < occupancyWarmThreshold && !occupancy.occupied && state.occupiedMinutes >= minOccupancyThreshold) {
     occupancy.warm = true;
-    occupancy.occupiedOrRecentlyUsed = true;
+    occupancy.occupiedOrWarm = true;
     occupancy.occupancyStatus = "WARM";
   } else {
     occupancy.warm = false;
-    occupancy.occupiedOrRecentlyUsed = occupancy.occupied;
+    occupancy.occupiedOrWarm = occupancy.occupied;
   }
   return { state, occupancy }
 }

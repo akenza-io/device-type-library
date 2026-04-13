@@ -65,7 +65,7 @@ describe("Elsys eye uplink", () => {
         assert.equal(value.data.motion, 1);
         assert.equal(value.data.occupancyStatus, "OCCUPIED");
         assert.equal(value.data.occupied, true);
-        assert.equal(value.data.occupiedOrRecentlyUsed, true);
+        assert.equal(value.data.occupiedOrWarm, true);
         assert.equal(value.data.warm, false);
 
         validateSchema(value.data, occupancySchema, { throwError: true });
@@ -124,7 +124,7 @@ describe("Elsys eye uplink", () => {
         assert.equal(value.data.motion, 0);
         assert.equal(value.data.occupancyStatus, "OCCUPIED");
         assert.equal(value.data.occupied, true);
-        assert.equal(value.data.occupiedOrRecentlyUsed, true);
+        assert.equal(value.data.occupiedOrWarm, true);
         assert.equal(value.data.warm, false);
 
         validateSchema(value.data, occupancySchema, { throwError: true });

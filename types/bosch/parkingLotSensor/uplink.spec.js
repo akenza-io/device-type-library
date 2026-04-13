@@ -46,7 +46,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
         assert.equal(value.topic, "occupancy");
         assert.equal(value.data.occupancy, 1);
         assert.equal(value.data.occupied, true);
-        assert.equal(value.data.occupiedOrRecentlyUsed, true);
+        assert.equal(value.data.occupiedOrWarm, true);
         assert.equal(value.data.warm, false);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
         assert.equal(value.data.occupiedMinutes, 0);
@@ -84,7 +84,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
         assert.equal(value.data.occupancy, 0);
         assert.equal(value.data.occupied, false);
         assert.equal(value.data.warm, true);
-        assert.equal(value.data.occupiedOrRecentlyUsed, true);
+        assert.equal(value.data.occupiedOrWarm, true);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
         assert.equal(value.data.occupiedMinutes, 0);
         assert.equal(value.data.occupancyStatus, "WARM");
@@ -125,7 +125,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
         assert.equal(value.data.occupiedMinutes, 0);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
         assert.equal(value.data.warm, false);
-        assert.equal(value.data.occupiedOrRecentlyUsed, true);
+        assert.equal(value.data.occupiedOrWarm, true);
         assert.equal(value.data.occupancyStatus, "OCCUPIED");
 
         validateSchema(value.data, occupancySchema, { throwError: true });
@@ -162,7 +162,7 @@ describe("Bosch Parking Lot Sensor Uplink", () => {
         assert.equal(value.data.occupiedMinutes, 20);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
         assert.equal(value.data.warm, false);
-        assert.equal(value.data.occupiedOrRecentlyUsed, true);
+        assert.equal(value.data.occupiedOrWarm, true);
         assert.equal(value.data.occupancyStatus, "OCCUPIED");
 
         validateSchema(value.data, occupancySchema, { throwError: true });
