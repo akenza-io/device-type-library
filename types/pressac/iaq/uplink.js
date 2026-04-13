@@ -1,5 +1,3 @@
-const notConnectedStr = "NOT_CONNECTED";
-
 const vocUnits = {
   0: "TVOC μg/m3",
   1: "TVOC ppb",
@@ -37,7 +35,7 @@ function convertRange(num, inMin, inMax, outMin, outMax) {
 
 function convertTemp(num) {
   if (num === 0xFF) {
-    return notConnectedStr;
+    return null;
   } else {
     return convertRange(num, 0, 240, -10, 50);
   }
@@ -45,7 +43,7 @@ function convertTemp(num) {
 
 function convertHum(num) {
   if (num === 0xFF) {
-    return notConnectedStr;
+    return null;
   } else {
     return convertRange(num, 0, 200, 0, 100);
   }
@@ -53,7 +51,7 @@ function convertHum(num) {
 
 function convertPm(num) {
   if (num === 0x1FF) {
-    return notConnectedStr;
+    return null;
   } else {
     return num;
   }
@@ -61,7 +59,7 @@ function convertPm(num) {
 
 function convertSound(num) {
   if (num === 0xFF) {
-    return notConnectedStr;
+    return null;
   } else {
     return convertRange(num, 0, 250, 0, 125);
   }
@@ -69,7 +67,7 @@ function convertSound(num) {
 
 function convertLux(num) {
   if (num === 0xFFFF) {
-    return notConnectedStr;
+    return null;
   } else {
     return convertRange(num, 0, 20000, 0, 20000);
   }
@@ -77,7 +75,7 @@ function convertLux(num) {
 
 function convertco2(num) {
   if (num === 0xFFFF) {
-    return notConnectedStr;
+    return null;
   } else {
     return convertRange(num, 0, 5000, 0, 5000);
   }
@@ -85,18 +83,10 @@ function convertco2(num) {
 
 function convertVoc(num) {
   if (num === 0x3FFF) {
-    return notConnectedStr;
+    return null;
   } else {
     return convertRange(num, 0, 5000, 0, 5000);
   }
-}
-
-function removeStringEntriesDeep(obj) {
-  return Object.fromEntries(
-    Object.entries(obj)
-      .filter(([key, value]) => typeof value !== 'string') // Filter strings out
-      .map(([key, value]) => [key, removeStringEntriesDeep(value)]) // Recursively check children
-  );
 }
 
 function consume(event) {
@@ -250,14 +240,11 @@ function consume(event) {
       let vocRaw = bytes[byte++] << 8 | bytes[byte++];
       let voc = convertVoc(vocRaw & 0x3FFF);
 
-      if (voc !== notConnectedStr) {
+      if (voc !== null) {
         data.tvoc = voc;
         data.vocUnit = vocUnits[(vocRaw & 0xC000) >> 14];
       }
     }
-
-    // Remove illegal/string values
-    data = removeStringEntriesDeep(data);
   } else {
     topic = "occupancy";
     lifecycle.dataAge = bytes[byte++];
