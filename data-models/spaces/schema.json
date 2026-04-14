@@ -39,6 +39,17 @@
         "unit": "%",
         "minimum": 0,
         "maximum": 100
+      },
+      "occupancyStatus": {
+        "measurementType": "akenza/spaces/occupancy/occupancyStatus",
+        "title": "Occupancy status",
+        "description": "Occupancy status described as string",
+        "type": "string",
+        "enum": [
+          "OCCUPIED",
+          "FREE",
+          "WARM"
+        ]
       }
     },
     "minutesSinceLastOccupied": {
@@ -48,6 +59,31 @@
         "description": "Minutes since last occupied value was registered",
         "type": "integer",
         "unit": "min"
+      }
+    },
+    "occupiedMinutes": {
+      "minutes": {
+        "measurementType": "akenza/spaces/occupiedMinutes/minutes",
+        "title": "Minutes occupied since",
+        "description": "Minutes since occupancy start",
+        "type": "integer",
+        "unit": "min"
+      }
+    },
+    "warm": {
+      "boolean": {
+        "measurementType": "akenza/spaces/warm/boolean",
+        "title": "Warm",
+        "description": "Whether the space has been used recently",
+        "type": "boolean"
+      }
+    },
+    "occupiedOrWarm": {
+      "boolean": {
+        "measurementType": "akenza/spaces/occupiedOrWarm/boolean",
+        "title": "Occupied or warm",
+        "description": "Whether the space has been used recently or is occupied at the moment.",
+        "type": "boolean"
       }
     },
     "motion": {
