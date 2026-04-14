@@ -24,42 +24,90 @@ const TYPE_PULSE2 = 0x16; // 2bytes 0-->0xFFFF
 const TYPE_PULSE2_ABS = 0x17; // 4bytes no 0->0xFFFFFFFF
 const TYPE_ANALOG2 = 0x18; // 2bytes voltage in mV
 const TYPE_EXT_TEMP2 = 0x19; // 2bytes -3276.5C-->3276.5C
+const TYPE_EXT_DIGITAL2 = 0x1a; // 1bytes value 1 or 0
+const TYPE_EXT_ANALOG_UV = 0x1b; // 4 bytes signed int (uV)
 const TYPE_TVOC = 0x1c; // 2 bytes (ppb)
+const TYPE_DEBUG = 0x3d; // 4bytes debug
 
 // Settings Decoder
 const SETTINGS_HEADER = 0x3e;
 
+function getFillLevel(device, distance) {
+  if (device !== undefined && distance !== undefined) {
+    if (device.customFields !== undefined) {
+      const { customFields } = device;
+      let scaleLength = null;
+      let sensorDistance = 0;
+
+      if (customFields.containerHeight !== undefined) {
+        scaleLength = Number(device.customFields.containerHeight);
+      }
+
+      if (customFields.installationOffset !== undefined) {
+        sensorDistance = Number(device.customFields.installationOffset);
+      }
+
+      if (scaleLength !== null) {
+        const percentExact =
+          (100 / scaleLength) * (scaleLength - (distance - sensorDistance));
+        let fillLevel = Math.round(percentExact);
+        if (fillLevel > 100) {
+          fillLevel = 100;
+        } else if (fillLevel < 0) {
+          fillLevel = 0;
+        }
+        return fillLevel;
+      }
+    }
+  }
+  return undefined;
+}
+
 function bin16dec(bin) {
   let num = bin & 0xffff;
-  if (0x8000 & num) num = -(0x010000 - num);
+  if (0x8000 & num) {
+    num = -(0x010000 - num);
+  }
   return num;
 }
 
 function bin8dec(bin) {
   let num = bin & 0xff;
-  if (0x80 & num) num = -(0x0100 - num);
+  if (0x80 & num) {
+    num = -(0x0100 - num);
+  }
   return num;
+}
+
+function hexToBytes(hex) {
+  for (var bytes = [], c = 0; c < hex.length; c += 2) {
+    bytes.push(parseInt(hex.substr(c, 2), 16));
+  }
+  return bytes;
 }
 
 function DecodeElsysPayload(data) {
   const obj = {};
+  let temp;
+  let rh;
   for (let i = 0; i < data.length; i++) {
+    // console.log(data[i]);
     switch (data[i]) {
       case TYPE_TEMP: // Temperature
-        var temp = (data[i + 1] << 8) | data[i + 2];
+        temp = (data[i + 1] << 8) | data[i + 2];
         temp = bin16dec(temp);
         obj.temperature = temp / 10;
         i += 2;
         break;
       case TYPE_RH: // Humidity
-        var rh = data[i + 1];
+        rh = data[i + 1];
         obj.humidity = rh;
         i += 1;
         break;
-      case TYPE_ACC: // Acceleration 63 = 1G
-        obj.accX = Math.round(bin8dec(data[i + 1]) / 63);
-        obj.accY = Math.round(bin8dec(data[i + 2]) / 63);
-        obj.accZ = Math.round(bin8dec(data[i + 3]) / 63);
+      case TYPE_ACC: // Acceleration
+        obj.x = bin8dec(data[i + 1]);
+        obj.y = bin8dec(data[i + 2]);
+        obj.z = bin8dec(data[i + 3]);
         i += 3;
         break;
       case TYPE_LIGHT: // Light
@@ -91,23 +139,25 @@ function DecodeElsysPayload(data) {
         obj.pulse1 = (data[i + 1] << 8) | data[i + 2];
         i += 2;
         break;
-      case TYPE_PULSE1_ABS: // Pulse input 1 absolute value
-        var pulseAbs =
+      case TYPE_PULSE1_ABS: {
+        // Pulse input 1 absolute value
+        const pulseAbs =
           (data[i + 1] << 24) |
           (data[i + 2] << 16) |
           (data[i + 3] << 8) |
           data[i + 4];
-        obj.pulseAbs1 = pulseAbs;
+        obj.pulseAbs = pulseAbs;
         i += 4;
         break;
+      }
       case TYPE_EXT_TEMP1: // External temp
-        var temp = (data[i + 1] << 8) | data[i + 2];
+        temp = (data[i + 1] << 8) | data[i + 2];
         temp = bin16dec(temp);
-        obj.externalTemperature1 = temp / 10;
+        obj.externalTemperature = temp / 10;
         i += 2;
         break;
       case TYPE_EXT_DIGITAL: // Digital input
-        obj.digital = !!data[i + 1];
+        obj.digital = data[i + 1];
         i += 1;
         break;
       case TYPE_EXT_DISTANCE: // Distance sensor input
@@ -132,14 +182,20 @@ function DecodeElsysPayload(data) {
         i += 1;
         break;
       case TYPE_WATERLEAK: // Water leak
-        obj.waterleak = !!data[i + 1];
+        obj.waterleak = data[i + 1];
         i += 1;
         break;
       case TYPE_GRIDEYE: // Grideye data
-        i += 65;
+        var ref = data[i + 1];
+        i++;
+        obj.grideye = [];
+        for (let j = 0; j < 64; j++) {
+          obj.grideye[j] = ref + data[1 + i + j] / 10.0;
+        }
+        i += 64;
         break;
       case TYPE_PRESSURE: // External Pressure
-        var temp =
+        temp =
           (data[i + 1] << 24) |
           (data[i + 2] << 16) |
           (data[i + 3] << 8) |
@@ -169,17 +225,35 @@ function DecodeElsysPayload(data) {
         i += 2;
         break;
       case TYPE_EXT_TEMP2: // External temp 2
-        var temp = (data[i + 1] << 8) | data[i + 2];
+        temp = (data[i + 1] << 8) | data[i + 2];
         temp = bin16dec(temp);
-        obj.externalTemperature2 = temp / 10;
+        if (typeof obj.externalTemperature2 === "number") {
+          obj.externalTemperature2 = [obj.externalTemperature2];
+        }
+        if (typeof obj.externalTemperature2 === "object") {
+          obj.externalTemperature2.push(temp / 10);
+        } else {
+          obj.externalTemperature2 = temp / 10;
+        }
         i += 2;
+        break;
+      case TYPE_EXT_DIGITAL2: // Digital input 2
+        obj.digital2 = data[i + 1];
+        i += 1;
+        break;
+      case TYPE_EXT_ANALOG_UV: // Load cell analog uV
+        obj.analogUv =
+          (data[i + 1] << 24) |
+          (data[i + 2] << 16) |
+          (data[i + 3] << 8) |
+          data[i + 4];
+        i += 4;
         break;
       case TYPE_TVOC:
         obj.tvoc = (data[i + 1] << 8) | data[i + 2];
         i += 2;
         break;
-      default:
-        // somthing is wrong with data
+      default: // somthing is wrong with data
         i = data.length;
         break;
     }
@@ -417,13 +491,6 @@ function deleteUnusedKeys(data) {
   return keysRetained;
 }
 
-function checkForCustomFields(device, target, fallbackValue) {
-  if (device !== undefined && device.customFields !== undefined && device.customFields[target] !== undefined) {
-    return device.customFields[target];
-  }
-  return fallbackValue;
-}
-
 function calculateRecentOccupancy(device, state, occupancy) {
   state = state || {};
   // Occupancy status
@@ -494,9 +561,12 @@ function consume(event) {
     data.accZ = res.accZ;
     data.light = res.light;
     data.co2 = res.co2;
-    data.tvoc = res.tvoc;
     data.reed = res.digital;
     data.distance = res.distance;
+    const fillLevel = getFillLevel(event.device, data.distance);
+    if (fillLevel !== undefined) {
+      data.fillLevel = fillLevel;
+    }
     data.accMotion = res.accMotion;
     data.waterleak = res.waterleak;
     data.pressure = res.pressure;
