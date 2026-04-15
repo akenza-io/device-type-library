@@ -62,7 +62,7 @@ function consume(event) {
   const bits = Bits.hexToBits(payload);
   const { port } = event.data;
   const data = {};
-  const occupancy = {};
+  let occupancy = {};
 
   if (port === 1 || port === 2) {
     occupancy.occupancy = Bits.bitsToUnsigned(bits.substr(0, 8));

@@ -426,7 +426,7 @@ function consume(event) {
     const res = DecodeElsysPayload(payload);
     const data = {};
     const lifecycle = {};
-    const occupancy = {};
+    let occupancy = {};
     const noise = {};
 
     // Default values
