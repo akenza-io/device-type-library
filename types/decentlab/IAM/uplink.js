@@ -264,7 +264,7 @@ function consume(event) {
   const sample = decentlabDecoder.decode(payload);
   const data = {};
   const lifecycle = {};
-  const occupancy = {};
+  let occupancy = {};
 
   data.temperature = sample.air_temperature;
   data.humidity = sample.air_humidity;

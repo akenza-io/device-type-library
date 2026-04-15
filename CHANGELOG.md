@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.92.1] - 2026-04-13
+
+### Changed
+
+- VergeSense - Cloud connector - Now also emits sensor report data
+
+# [1.92.0] - 2026-04-02
+
+### Added
+
+- Sensry.io - Kallisto
+
 # [1.91.1] - 2026-03-25
 
 ### Changed
