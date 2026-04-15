@@ -1,5 +1,3 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
@@ -52,18 +50,23 @@ describe("Elsys eye uplink", () => {
       expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
-        assert.equal(value.lastOccupiedValue, true);
+        assert.exists(value.firstOccupancyTimestamp);
       });
 
       expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
+        assert.equal(value.topic, "occupancy");
 
-        assert.equal(value.data.motion, 1);
-        assert.equal(value.data.occupancy, 1);
-        assert.equal(value.data.occupied, true);
+        assert.equal(value.data.occupiedMinutes, 0);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
+        assert.equal(value.data.occupancy, 1);
+        assert.equal(value.data.motion, 1);
+        assert.equal(value.data.occupancyStatus, "OCCUPIED");
+        assert.equal(value.data.occupied, true);
+        assert.equal(value.data.occupiedOrWarm, true);
+        assert.equal(value.data.warm, false);
 
         validateSchema(value.data, occupancySchema, { throwError: true });
       });
@@ -106,18 +109,23 @@ describe("Elsys eye uplink", () => {
       expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
-        assert.equal(value.lastOccupiedValue, true);
+        assert.exists(value.firstOccupancyTimestamp);
       });
 
       expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
+        assert.equal(value.topic, "occupancy");
 
-        assert.equal(value.data.motion, 0);
-        assert.equal(value.data.occupancy, 2);
-        assert.equal(value.data.occupied, true);
+        assert.equal(value.data.occupiedMinutes, 0);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
+        assert.equal(value.data.occupancy, 2);
+        assert.equal(value.data.motion, 0);
+        assert.equal(value.data.occupancyStatus, "OCCUPIED");
+        assert.equal(value.data.occupied, true);
+        assert.equal(value.data.occupiedOrWarm, true);
+        assert.equal(value.data.warm, false);
 
         validateSchema(value.data, occupancySchema, { throwError: true });
       });
