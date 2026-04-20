@@ -33,6 +33,12 @@
       "type": "boolean",
       "hideFromKpis": true
     },
+    "tvocActive": {
+      "title": "TVOC Active",
+      "description": "Flag if tvoc sensor is active",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
     "luxActive": {
       "title": "LUX Active",
       "description": "Flag if lux sensor is active",

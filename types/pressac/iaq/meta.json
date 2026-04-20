@@ -1,22 +1,28 @@
 {
-  "name": "DL-IAM",
+  "name": "IAQ Sensor",
   "version": "1.0.0",
   "manufacturer": "Decentlab",
-  "url": "https://www.decentlab.com/products/indoor-ambiance-monitor-including-co2-tvoc-and-motion-sensor-for-lorawan",
-  "description": "Measures carbon dioxide (CO2) concentration, volatile organic compounds (VOC), temperature, humidity, barometric pressure, ambient light and motion / presence.",
+  "url": "https://www.pressac.com/environment-sensors/lorawan-indoor-air-quality-sensors/",
+  "description": "Pressac's LoRaWAN® Indoor air quality sensor accurately measures the environmental conditions providing essential data for IoT platforms for healthier, more efficient buildings.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": [
-    "Light",
-    "CO2",
-    "Temperature",
+    "TVOC",
     "PIR",
-    "Humidity",
-    "VOC",
-    "Barometric Pressure"
+    "Sound",
+    "CO2",
+    "PM",
+    "Lux",
+    "Temperature",
+    "Humidity"
   ],
-  "outputTopics": ["default", "occupancy", "lifecycle"],
+  "outputTopics": [
+    "default",
+    "occupancy",
+    "lifecycle",
+    "configuration"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

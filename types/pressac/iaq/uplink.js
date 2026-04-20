@@ -89,6 +89,65 @@ function convertVoc(num) {
   }
 }
 
+function checkForCustomFields(device, target, fallbackValue) {
+  if (device !== undefined && device.customFields !== undefined && device.customFields[target] !== undefined) {
+    return device.customFields[target];
+  }
+  return fallbackValue;
+}
+
+function calculateRecentOccupancy(device, state, occupancy) {
+  state = state || {};
+  // Occupancy status
+  if (occupancy.occupied) {
+    occupancy.occupancyStatus = "OCCUPIED";
+    occupancy.occupiedOrWarm = true;
+  } else {
+    occupancy.occupancyStatus = "FREE";
+    occupancy.occupiedOrWarm = false;
+  }
+
+  const time = new Date().getTime();
+  occupancy.minutesSinceLastOccupied = 0;
+  occupancy.occupiedMinutes = 0;
+
+  if (occupancy.occupied) {
+    // Set state to first occupancy occurence so occupied time can be calulcated
+    if (state.firstOccupancyTimestamp == undefined) {
+      state.firstOccupancyTimestamp = time;
+    }
+    // Give out how long there has been occupancy
+    occupancy.occupiedMinutes = Math.round((time - state.firstOccupancyTimestamp) / 1000 / 60);
+    delete state.lastOccupancyTimestamp; // Reset cycle
+    delete state.occupiedMinutes;
+  } else {
+    // Give out how long there has been no occupancy
+    if (state.lastOccupancyTimestamp !== undefined) {
+      occupancy.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60);
+    } else {
+      state.lastOccupancyTimestamp = time;
+
+      // Only save the timestamp on first leave and save how long the occupancy has gone on for
+      state.occupiedMinutes = Math.round((time - state.firstOccupancyTimestamp) / 1000 / 60);
+      delete state.firstOccupancyTimestamp; // Reset cycle
+    }
+  }
+
+  // Allow customFields to change this
+  const minOccupancyThreshold = checkForCustomFields(device, "minOccupancyThreshold", 2.5);
+  const occupancyWarmThreshold = checkForCustomFields(device, "occupancyWarmThreshold", 90)
+
+  if (occupancy.minutesSinceLastOccupied < occupancyWarmThreshold && !occupancy.occupied && state.occupiedMinutes >= minOccupancyThreshold) {
+    occupancy.warm = true;
+    occupancy.occupiedOrWarm = true;
+    occupancy.occupancyStatus = "WARM";
+  } else {
+    occupancy.warm = false;
+    occupancy.occupiedOrWarm = occupancy.occupied;
+  }
+  return { state, occupancy }
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
   const bytes = Hex.hexToBytes(payload);
@@ -97,6 +156,7 @@ function consume(event) {
   const lifecycle = {};
 
   let byte = 0;
+  const productId = bytes[byte++];
   const messageTypeRev = bytes[byte++];
   const messageTypeValue = (messageTypeRev >> 4) & 0x0f;
   lifecycle.revision = (messageTypeRev & 0x0f);
@@ -183,7 +243,7 @@ function consume(event) {
     }
 
     // VOC
-    if (lifecycle.isSensorsAvailable.tvoc == true) {
+    if (lifecycle.tvocActive == true) {
       let vocMaskValue = bytes[byte++];
       data.vocUnit = vocUnits[(vocMaskValue) >> 4];
       data.vocEquivalent = tvocEquivalent[(vocMaskValue & 0x0F)];
@@ -221,7 +281,7 @@ function consume(event) {
       data.pm2_5 = convertPm((pmRaw & 0x3FE0) >> 5);
       // Convert PM1.0
       pmRaw = bytes[byte++] << 8 | bytes[byte++];
-      data.pm1_0 = convertPm((pmRaw & 0x1FF0) >> 4); // µg/m³
+      data.pm1 = convertPm((pmRaw & 0x1FF0) >> 4); // µg/m³
     }
 
     if (lifecycle.soundLevelActive == true) {
@@ -253,23 +313,10 @@ function consume(event) {
     data.occupied = ((occupancyValue & 0x01) == 0) ? false : true;
     data.occupancy = Number(data.occupied);
 
-    // Warm desk 
-    const time = new Date().getTime();
-    const state = event.state || {};
-    data.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
-    if (data.occupied) {
-      delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
-    } else if (state.lastOccupancyTimestamp !== undefined) {
-      data.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
-    } else if (state.lastOccupiedValue) { //
-      state.lastOccupancyTimestamp = time; // Start with first no occupancy
-    }
+    let recentOccupancyResult = calculateRecentOccupancy(event.device, event.state, data.occupied);
+    data = recentOccupancyResult.occupancy;
 
-    if (Number.isNaN(data.minutesSinceLastOccupied)) {
-      data.minutesSinceLastOccupied = 0;
-    }
-    state.lastOccupiedValue = data.occupied;
-    emit("state", state);
+    emit("state", recentOccupancyResult.state);
   }
 
   emit("sample", { data: data, topic });

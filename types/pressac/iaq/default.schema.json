@@ -1,5 +1,5 @@
 {
-  "$id": "https://akenza.io/decentlab/iam/default.schema.json",
+  "$id": "https://akenza.io/pressac/iaq/default.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
@@ -48,15 +48,5 @@
       ],
       "hideFromKpis": true
     }
-  },
-  "required": [
-    "temperature",
-    "humidity",
-    "voc",
-    "co2",
-    "light",
-    "pressure",
-    "pir",
-    "rawPir"
-  ]
+  }
 }

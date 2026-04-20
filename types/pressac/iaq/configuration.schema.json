@@ -68,6 +68,19 @@
       "unit": "d",
       "hideFromKpis": true
     },
+    "co2IsAutoCalibrationEnabled": {
+      "title": "CO2 auto calibration enabled",
+      "description": "Flag if CO2 auto calibration is enabled",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "co2IndoorAirBackgroundLevel": {
+      "title": "CO2 indoor air background level",
+      "description": "CO2 indoor air background level in ppm",
+      "unit": "ppm",
+      "type": "number",
+      "hideFromKpis": true
+    },
     "co2HasManualCalibrationPerformed": {
       "title": "CO2 manual calibration",
       "description": "Flag if CO2 manual calibration has been performed",
