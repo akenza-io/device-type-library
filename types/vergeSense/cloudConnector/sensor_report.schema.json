@@ -1,0 +1,18 @@
+{
+  "$id": "https://akenza.io/vergeSense/cloudConnector/sensor_report.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "sensor_report",
+  "title": "Sensor report",
+  "properties": {
+    "signsOfLife": {
+      "title": "Signs of live",
+      "description": "Equals true if there were objects like laptops, backpacks, coats, etc. detected",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "signsOfLife"
+  ]
+}

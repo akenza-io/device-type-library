@@ -47,11 +47,11 @@ function calculateIncrement(state, currentValue, usageDefinition = 2, doorClosin
   return response;
 }
 
-function checkForCustomFields(device, target, norm) {
+function checkForCustomFields(device, target, fallbackValue) {
   if (device !== undefined && device.customFields !== undefined && device.customFields[target] !== undefined) {
     return device.customFields[target];
   }
-  return norm;
+  return fallbackValue;
 }
 
 function consume(event) {
