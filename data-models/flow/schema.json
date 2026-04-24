@@ -20,7 +20,8 @@
         "title": "Consumption",
         "description": "Liquid consumption in liters",
         "type": "number",
-        "unit": "l"
+        "unit": "l",
+        "cumulative": true
       }
     },
     "volume": {
@@ -29,14 +30,16 @@
         "title": "Volume",
         "description": "Liquid volume in liters",
         "type": "number",
-        "unit": "l"
+        "unit": "l",
+        "cumulative": true
       },
       "m3": {
         "measurementType": "akenza/flow/volume/m3",
         "title": "Volume",
         "description": "Liquid volume in cubic meter",
         "type": "number",
-        "unit": "m3"
+        "unit": "m3",
+        "cumulative": true
       }
     }
   }

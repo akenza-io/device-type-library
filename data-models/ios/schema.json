@@ -42,7 +42,8 @@
         "measurementType": "akenza/ios/pulseInput/count",
         "title": "Pulse input",
         "description": "Pulse count",
-        "type": "integer"
+        "type": "integer",
+        "cumulative": true
       }
     },
     "buttonStatus": {
@@ -65,7 +66,8 @@
         "title": "Button count",
         "description": "Number of button presses",
         "type": "integer",
-        "minimum": 0
+        "minimum": 0,
+        "cumulative": true
       }
     },
     "reedContact": {
@@ -80,7 +82,8 @@
         "title": "Reed contact count",
         "description": "Number of reed contacts",
         "type": "integer",
-        "minimum": 0
+        "minimum": 0,
+        "cumulative": true
       }
     }
   }

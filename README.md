@@ -81,6 +81,20 @@ Common data types can be reused by combining schemas.
 
 An example can be found in `./types/decentlab/IAM/default.schema.json`.
 
+## Cumulative measurements
+
+Some measurement types represent ever-increasing hardware counters (e.g. energy meters, pulse counters, volume totals) rather than instantaneous readings. These are marked with `"cumulative": true` in the data model definition and inherited automatically by any device schema that references them via `$ref`.
+
+Measurements currently marked as cumulative:
+
+| Data model | Measurement types |
+|------------|------------------|
+| `electricity` | `activeEnergy`, `apparentEnergy`, `reactiveEnergy` (all units) |
+| `flow` | `consumption/l`, `volume/l`, `volume/m3` |
+| `ios` | `pulseInput/count`, `buttonEvent/count`, `reedContact/count` |
+
+When adding a new data model entry that is an ever-increasing counter, include `"cumulative": true` alongside `type`, `unit`, and `measurementType`.
+
 ## Open points
 
 - TODO: Add functionality for a type array to include null values in seeed senseCAPS210X series & Milesight TS301 - TS302
