@@ -87,6 +87,22 @@
         "type": "number",
         "unit": "kWh",
         "counterType": "monotonic"
+      },
+      "wattHoursDelta": {
+        "measurementType": "akenza/electricity/activeEnergy/wattHoursDelta",
+        "title": "Active Energy Delta",
+        "description": "Active Energy consumed since last transmission in Wh",
+        "type": "number",
+        "unit": "Wh",
+        "counterType": "delta"
+      },
+      "kiloWattHoursDelta": {
+        "measurementType": "akenza/electricity/activeEnergy/kiloWattHoursDelta",
+        "title": "Active Energy Delta",
+        "description": "Active Energy consumed since last transmission in kWh",
+        "type": "number",
+        "unit": "kWh",
+        "counterType": "delta"
       }
     },
     "apparentEnergy": {
@@ -105,6 +121,22 @@
         "type": "number",
         "unit": "kVAh",
         "counterType": "monotonic"
+      },
+      "voltAmpereHoursDelta": {
+        "measurementType": "akenza/electricity/apparentEnergy/voltAmpereHoursDelta",
+        "title": "Apparent Energy Delta",
+        "description": "Apparent Energy consumed since last transmission in VAh",
+        "type": "number",
+        "unit": "VAh",
+        "counterType": "delta"
+      },
+      "kiloVoltAmpereHoursDelta": {
+        "measurementType": "akenza/electricity/apparentEnergy/kiloVoltAmpereHoursDelta",
+        "title": "Apparent Energy Delta",
+        "description": "Apparent Energy consumed since last transmission in kVAh",
+        "type": "number",
+        "unit": "kVAh",
+        "counterType": "delta"
       }
     },
     "reactiveEnergy": {
@@ -123,6 +155,22 @@
         "type": "number",
         "unit": "kVARh",
         "counterType": "monotonic"
+      },
+      "voltAmpereReactiveHoursDelta": {
+        "measurementType": "akenza/electricity/reactiveEnergy/voltAmpereReactiveHoursDelta",
+        "title": "Reactive Energy Delta",
+        "description": "Reactive Energy consumed since last transmission in VARh",
+        "type": "number",
+        "unit": "VARh",
+        "counterType": "delta"
+      },
+      "kiloVoltAmpereReactiveHoursDelta": {
+        "measurementType": "akenza/electricity/reactiveEnergy/kiloVoltAmpereReactiveHoursDelta",
+        "title": "Reactive Energy Delta",
+        "description": "Reactive Energy consumed since last transmission in kVARh",
+        "type": "number",
+        "unit": "kVARh",
+        "counterType": "delta"
       }
     },
     "frequency": {

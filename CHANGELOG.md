@@ -8,8 +8,10 @@ All notable changes to this project will be documented in this file.
 
 - Adds new `counterType` to identify counter measurements:
   - `"counterType": "monotonic"` to identify an ever-increasing counter and never resets under normal operation
-  - Add `"counterType": "delta"` to identify where the device reports the increment since its last transmission rather than the absolute total
+  - `"counterType": "delta"` to identify where the device reports the increment since its last transmission rather than the absolute total
   - `"counterType": "gauge"` is the default when the field is absent; set it explicitly only when you want to make the intent unambiguous
+  - `"counterType": "categorical"` to identify any measurement whose value is a string enum or boolean — the platform will not attempt arithmetic aggregation on it
+- Adds new `*Delta` measurement types for energy and flow
 
 # [1.92.1] - 2026-04-13
 

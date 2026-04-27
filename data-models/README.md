@@ -91,15 +91,16 @@ akenza/light/illuminance/lux
 - spaces
 - speed
 
-## Counter Measurements
+## Counter Types
 
 The optional `"counterType"` field describes how a measurement value accumulates over time:
 
-| Value         | Meaning                                                                                                                                                                  | Examples                                                 |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------- |
-| `"monotonic"` | Strictly increasing; e.g. values that only reset on device power-cycle or replacement. The platform computes deltas and treats a value drop as a device reset.           | Energy (kWh), volume (m³), pulse counters, door counters |
-| `"delta"`     | Increment since its last transmission, not the absolute total. Values represent a quantity over the reporting interval and can be summed to reconstruct a running total. | Consumption per interval, events since last uplink       |
-| `"gauge"`     | Instantaneous reading that can increase or decrease freely. This is the default when `counterType` is absent.                                                            | Temperature, power, occupancy, battery level             |
+| Value           | Meaning                                                                                                                                                                  | Examples                                                 |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------- |
+| `"monotonic"`   | Strictly increasing; e.g. values that only reset on device power-cycle or replacement. The platform computes deltas and treats a value drop as a device reset.           | Energy (kWh), volume (m³), pulse counters, door counters |
+| `"delta"`       | Increment since its last transmission, not the absolute total. Values represent a quantity over the reporting interval and can be summed to reconstruct a running total. | Consumption per interval, events since last uplink       |
+| `"gauge"`       | Instantaneous numeric reading that can increase or decrease freely. This is the default when `counterType` is absent.                                                    | Temperature, power, occupancy, battery level             |
+| `"categorical"` | Discrete state from a fixed set of values (integer, string enum or boolean). No arithmetic aggregation applies.                                                          | Occupancy status, alarm state, door open/closed          |
 
 ```json
 "kiloWattHours": {
@@ -123,13 +124,15 @@ The optional `"counterType"` field describes how a measurement value accumulates
 }
 ```
 
-Monotonic counter measurements currently defined across the data models:
+Counter measurements currently defined across the data models:
 
-| Schema        | Measurement types                                              |
-| ------------- | -------------------------------------------------------------- |
-| `electricity` | `activeEnergy`, `apparentEnergy`, `reactiveEnergy` (all units) |
-| `flow`        | `consumption/l`, `volume/l`, `volume/m3`                       |
-| `ios`         | `pulseInput/count`, `buttonEvent/count`, `reedContact/count`   |
+| Schema        | counterType | Measurement types                                                       |
+| ------------- | ----------- | ----------------------------------------------------------------------- |
+| `electricity` | `monotonic` | `activeEnergy`, `apparentEnergy`, `reactiveEnergy` (all units)          |
+| `electricity` | `delta`     | `activeEnergy`, `apparentEnergy`, `reactiveEnergy` (`*Delta` unit keys) |
+| `flow`        | `monotonic` | `consumption/l`, `volume/l`, `volume/m3`                                |
+| `flow`        | `delta`     | `consumption/lDelta`, `volume/lDelta`, `volume/m3Delta`                 |
+| `ios`         | `monotonic` | `pulseInput/count`, `buttonEvent/count`, `reedContact/count`            |
 
 ## Guidelines
 
@@ -138,6 +141,7 @@ Monotonic counter measurements currently defined across the data models:
 - Add `"counterType": "monotonic"` to any measurement that is an ever-increasing counter and never resets under normal operation
 - Add `"counterType": "delta"` to any measurement where the device reports the increment since its last transmission rather than the absolute total
 - `"counterType": "gauge"` is the default when the field is absent; set it explicitly only when you want to make the intent unambiguous
+- Add `"counterType": "categorical"` to any measurement whose value is a string enum or boolean — the platform will not attempt arithmetic aggregation on it
 
 ## Generating Schemas from CSV
 

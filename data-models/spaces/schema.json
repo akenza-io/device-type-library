@@ -20,7 +20,8 @@
         "description": "Space occupancy. 0 = Unoccupied / 1 = Occupied but movement detected / 2 = Occupied.",
         "type": "integer",
         "minimum": 0,
-        "maximum": 2
+        "maximum": 2,
+        "counterType": "categorical"
       },
       "percentFree": {
         "measurementType": "akenza/spaces/occupancy/percentFree",
@@ -102,7 +103,8 @@
         "description": "People moving into the area",
         "type": "integer",
         "unit": "people",
-        "minimum": 0
+        "minimum": 0,
+        "counterType": "delta"
       }
     },
     "peopleOut": {
@@ -112,7 +114,8 @@
         "description": "People moving out of the area",
         "type": "integer",
         "unit": "people",
-        "minimum": 0
+        "minimum": 0,
+        "counterType": "delta"
       }
     },
     "peopleCount": {

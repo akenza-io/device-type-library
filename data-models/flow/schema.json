@@ -12,6 +12,22 @@
         "description": "Liquid flow in m3/h",
         "type": "number",
         "unit": "m3/h"
+      },
+      "m3": {
+        "measurementType": "akenza/flow/flow/m3",
+        "title": "Flow",
+        "description": "Liquid flow in m3",
+        "type": "number",
+        "unit": "m3",
+        "counterType": "monotonic"
+      },
+      "m3Delta": {
+        "measurementType": "akenza/flow/flow/m3Delta",
+        "title": "Flow",
+        "description": "Liquid flow in m3 since last transmission in",
+        "type": "number",
+        "unit": "m3",
+        "counterType": "delta"
       }
     },
     "consumption": {
@@ -22,6 +38,14 @@
         "type": "number",
         "unit": "l",
         "counterType": "monotonic"
+      },
+      "lDelta": {
+        "measurementType": "akenza/flow/consumption/lDelta",
+        "title": "Consumption Delta",
+        "description": "Liquid consumption since last transmission in liters",
+        "type": "number",
+        "unit": "l",
+        "counterType": "delta"
       }
     },
     "volume": {
@@ -40,6 +64,22 @@
         "type": "number",
         "unit": "m3",
         "counterType": "monotonic"
+      },
+      "lDelta": {
+        "measurementType": "akenza/flow/volume/lDelta",
+        "title": "Volume Delta",
+        "description": "Liquid volume since last transmission in liters",
+        "type": "number",
+        "unit": "l",
+        "counterType": "delta"
+      },
+      "m3Delta": {
+        "measurementType": "akenza/flow/volume/m3Delta",
+        "title": "Volume Delta",
+        "description": "Liquid volume since last transmission in cubic meters",
+        "type": "number",
+        "unit": "m3",
+        "counterType": "delta"
       }
     }
   }

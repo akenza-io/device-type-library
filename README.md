@@ -81,23 +81,26 @@ Common data types can be reused by combining schemas.
 
 An example can be found in `./types/decentlab/IAM/default.schema.json`.
 
-## Counter measurements
+## Counter types
 
 The optional `"counterType"` field on a data model entry describes how its value accumulates over time. It is inherited automatically by any device schema that references the entry via `$ref`.
 
-| Value | Meaning |
-|-------|---------|
-| `"monotonic"` | Strictly increasing; only resets on device power-cycle or replacement. The platform computes deltas and treats a value drop as a device reset. |
-| `"delta"` | The device reports the increment since its last transmission, not the absolute total. |
-| `"gauge"` | Instantaneous reading that can increase or decrease freely. Default when `counterType` is absent. |
+| Value           | Meaning                                                                                                                                        |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `"monotonic"`   | Strictly increasing; only resets on device power-cycle or replacement. The platform computes deltas and treats a value drop as a device reset. |
+| `"delta"`       | The device reports the increment since its last transmission, not the absolute total.                                                          |
+| `"gauge"`       | Instantaneous numeric reading that can increase or decrease freely. Default when `counterType` is absent.                                      |
+| `"categorical"` | Discrete state from a fixed set of values (numeric, string enum or boolean). No arithmetic aggregation applies.                                |
 
-Monotonic counter measurements currently defined across the data models:
+Counter measurements currently defined across the data models:
 
-| Data model | Measurement types |
-|------------|------------------|
-| `electricity` | `activeEnergy`, `apparentEnergy`, `reactiveEnergy` (all units) |
-| `flow` | `consumption/l`, `volume/l`, `volume/m3` |
-| `ios` | `pulseInput/count`, `buttonEvent/count`, `reedContact/count` |
+| Data model    | counterType | Measurement types                                                       |
+| ------------- | ----------- | ----------------------------------------------------------------------- |
+| `electricity` | `monotonic` | `activeEnergy`, `apparentEnergy`, `reactiveEnergy` (all units)          |
+| `electricity` | `delta`     | `activeEnergy`, `apparentEnergy`, `reactiveEnergy` (`*Delta` unit keys) |
+| `flow`        | `monotonic` | `consumption/l`, `volume/l`, `volume/m3`                                |
+| `flow`        | `delta`     | `consumption/lDelta`, `volume/lDelta`, `volume/m3Delta`                 |
+| `ios`         | `monotonic` | `pulseInput/count`, `buttonEvent/count`, `reedContact/count`            |
 
 When adding a new data model entry that is an ever-increasing counter, include `"counterType": "monotonic"` alongside `type`, `unit`, and `measurementType`.
 
