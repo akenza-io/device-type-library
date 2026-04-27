@@ -1,0 +1,28 @@
+{
+  "name": "IAQ Sensor",
+  "version": "1.0.0",
+  "manufacturer": "Decentlab",
+  "url": "https://www.pressac.com/environment-sensors/lorawan-indoor-air-quality-sensors/",
+  "description": "Pressac's LoRaWAN® Indoor air quality sensor accurately measures the environmental conditions providing essential data for IoT platforms for healthier, more efficient buildings.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "TVOC",
+    "PIR",
+    "Sound",
+    "CO2",
+    "PM",
+    "Lux",
+    "Temperature",
+    "Humidity"
+  ],
+  "outputTopics": [
+    "default",
+    "occupancy",
+    "lifecycle",
+    "configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
