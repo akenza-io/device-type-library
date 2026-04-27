@@ -77,14 +77,16 @@
         "title": "Active Energy",
         "description": "Active Energy in Wh",
         "type": "number",
-        "unit": "Wh"
+        "unit": "Wh",
+        "cumulative": true
       },
       "kiloWattHours": {
         "measurementType": "akenza/electricity/activeEnergy/kiloWattHours",
         "title": "Active Energy",
         "description": "Active Energy in kWh",
         "type": "number",
-        "unit": "kWh"
+        "unit": "kWh",
+        "cumulative": true
       }
     },
     "apparentEnergy": {
@@ -93,14 +95,16 @@
         "title": "Apparent Energy",
         "description": "Apparent Energy in VAh",
         "type": "number",
-        "unit": "VAh"
+        "unit": "VAh",
+        "cumulative": true
       },
       "kiloVoltAmpereHours": {
         "measurementType": "akenza/electricity/apparentEnergy/kiloVoltAmpereHours",
         "title": "Apparent Energy",
         "description": "Apparent Energy in kVAh",
         "type": "number",
-        "unit": "kVAh"
+        "unit": "kVAh",
+        "cumulative": true
       }
     },
     "reactiveEnergy": {
@@ -109,14 +113,16 @@
         "title": "Reactive Energy",
         "description": "Reactive Energy VARh",
         "type": "number",
-        "unit": "VARh"
+        "unit": "VARh",
+        "cumulative": true
       },
       "kiloVoltAmpereReactiveHours": {
         "measurementType": "akenza/electricity/reactiveEnergy/kiloVoltAmpereReactiveHours",
         "title": "Reactive Energy",
         "description": "Reactive Energy kVARh",
         "type": "number",
-        "unit": "kVARh"
+        "unit": "kVARh",
+        "cumulative": true
       }
     },
     "frequency": {
