@@ -91,10 +91,36 @@ akenza/light/illuminance/lux
 - spaces
 - speed
 
+## Cumulative Measurements
+
+Some measurement types represent ever-increasing hardware counters (e.g. energy meters, pulse counters, volume totals). These are marked with `"cumulative": true` in the schema definition:
+
+```json
+"kiloWattHours": {
+  "measurementType": "akenza/electricity/activeEnergy/kiloWattHours",
+  "title": "Active Energy",
+  "description": "Active Energy in kWh",
+  "type": "number",
+  "unit": "kWh",
+  "cumulative": true
+}
+```
+
+Cumulative measurements currently defined across the data models:
+
+| Schema | Measurement types |
+|--------|------------------|
+| `electricity` | `activeEnergy`, `apparentEnergy`, `reactiveEnergy` (all units) |
+| `flow` | `consumption/l`, `volume/l`, `volume/m3` |
+| `ios` | `pulseInput/count`, `buttonEvent/count`, `reedContact/count` |
+
+Measurements without this flag are instantaneous readings (e.g. temperature, power, flow rate).
+
 ## Guidelines
 
 - The unit should not be repeated in the name
 - The name should be concise and the description should be used to add more information
+- Add `"cumulative": true` to any measurement that is an ever-increasing counter and never resets under normal operation
 
 ## Generating Schemas from CSV
 
