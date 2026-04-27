@@ -43,7 +43,7 @@
         "title": "Pulse input",
         "description": "Pulse count",
         "type": "integer",
-        "cumulative": true
+        "counterType": "monotonic"
       }
     },
     "buttonStatus": {
@@ -67,7 +67,7 @@
         "description": "Number of button presses",
         "type": "integer",
         "minimum": 0,
-        "cumulative": true
+        "counterType": "monotonic"
       }
     },
     "reedContact": {
@@ -83,7 +83,7 @@
         "description": "Number of reed contacts",
         "type": "integer",
         "minimum": 0,
-        "cumulative": true
+        "counterType": "monotonic"
       }
     }
   }
