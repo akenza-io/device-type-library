@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.93.0] - 2026-04-27
+
+### Changed
+
+- Adds new `counterType` to identify counter measurements:
+  - `"counterType": "monotonic"` to identify an ever-increasing counter and never resets under normal operation
+  - Add `"counterType": "delta"` to identify where the device reports the increment since its last transmission rather than the absolute total
+  - `"counterType": "gauge"` is the default when the field is absent; set it explicitly only when you want to make the intent unambiguous
+
 # [1.92.1] - 2026-04-13
 
 ### Changed

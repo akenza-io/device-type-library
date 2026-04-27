@@ -122,7 +122,8 @@
         "description": "People in the area",
         "type": "integer",
         "unit": "people",
-        "minimum": 0
+        "minimum": 0,
+        "counterType": "gauge"
       }
     },
     "usage": {

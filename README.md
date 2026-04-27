@@ -81,11 +81,17 @@ Common data types can be reused by combining schemas.
 
 An example can be found in `./types/decentlab/IAM/default.schema.json`.
 
-## Cumulative measurements
+## Counter measurements
 
-Some measurement types represent ever-increasing hardware counters (e.g. energy meters, pulse counters, volume totals) rather than instantaneous readings. These are marked with `"cumulative": true` in the data model definition and inherited automatically by any device schema that references them via `$ref`.
+The optional `"counterType"` field on a data model entry describes how its value accumulates over time. It is inherited automatically by any device schema that references the entry via `$ref`.
 
-Measurements currently marked as cumulative:
+| Value | Meaning |
+|-------|---------|
+| `"monotonic"` | Strictly increasing; only resets on device power-cycle or replacement. The platform computes deltas and treats a value drop as a device reset. |
+| `"delta"` | The device reports the increment since its last transmission, not the absolute total. |
+| `"gauge"` | Instantaneous reading that can increase or decrease freely. Default when `counterType` is absent. |
+
+Monotonic counter measurements currently defined across the data models:
 
 | Data model | Measurement types |
 |------------|------------------|
@@ -93,7 +99,7 @@ Measurements currently marked as cumulative:
 | `flow` | `consumption/l`, `volume/l`, `volume/m3` |
 | `ios` | `pulseInput/count`, `buttonEvent/count`, `reedContact/count` |
 
-When adding a new data model entry that is an ever-increasing counter, include `"cumulative": true` alongside `type`, `unit`, and `measurementType`.
+When adding a new data model entry that is an ever-increasing counter, include `"counterType": "monotonic"` alongside `type`, `unit`, and `measurementType`.
 
 ## Open points
 
