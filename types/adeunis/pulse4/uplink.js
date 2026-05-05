@@ -116,7 +116,7 @@ const global = {};
         if (orig) {
           try {
             return orig(o, prop, desc);
-          } catch (_) {}
+          } catch (_) { }
         }
         if (o !== Object(o)) {
           throw TypeError("Object.defineProperty called on non-object");
@@ -1170,7 +1170,7 @@ const global = {};
 
       TypedArray.BYTES_PER_ELEMENT = elementSize;
 
-      const TypedArrayPrototype = function () {};
+      const TypedArrayPrototype = function () { };
       TypedArrayPrototype.prototype = $TypedArrayPrototype$;
 
       TypedArray.prototype = new TypedArrayPrototype();
@@ -1675,9 +1675,6 @@ var codec;
       if (options && options.codecStorage) {
         // External storage: Node-RED...
         this.codecStorage = options.codecStorage;
-      } else if (typeof localStorage !== "undefined") {
-        // Local storage: browser
-        this.codecStorage = localStorage;
       } else {
         // Default (JS object)
         this.codecStorage = new codec.InternalCodecStorage();
@@ -5059,9 +5056,8 @@ var codec;
       }
       if (deltasA.length > 0) {
         appContent.baseTime = base;
-        appContent.decodingInfo = `deltaValues: [t=${base} to t=${
-          base + 1
-        }, t=${base + 1} to t=${base + 2}, ...]`;
+        appContent.decodingInfo = `deltaValues: [t=${base} to t=${base + 1
+          }, t=${base + 1} to t=${base + 2}, ...]`;
         chA.deltaValues = deltasA;
         chB.deltaValues = deltasB;
       }
@@ -6842,7 +6838,7 @@ var codec;
 var codec;
 (function (codec) {
   const Repeater0x05InputData = /** @class */ (function () {
-    function Repeater0x05InputData() {}
+    function Repeater0x05InputData() { }
     return Repeater0x05InputData;
   })();
   codec.Repeater0x05InputData = Repeater0x05InputData;
@@ -6904,7 +6900,7 @@ var codec;
     0x04: "0x04 Modify Repeater configuration",
   };
   const RepeaterHelper = /** @class */ (function () {
-    function RepeaterHelper() {}
+    function RepeaterHelper() { }
     RepeaterHelper.hex2bin = function (hex) {
       return parseInt(hex, 16).toString(2).padStart(8, "0");
     };
@@ -8113,7 +8109,7 @@ var codec;
 var codec;
 (function (codec) {
   const PlateformCommonUtils = /** @class */ (function () {
-    function PlateformCommonUtils() {}
+    function PlateformCommonUtils() { }
     /**
      * Get Product Mode text
      * @param value value
