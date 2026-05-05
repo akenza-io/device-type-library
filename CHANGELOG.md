@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.94.0] - 2026-05-05
+
+### Added
+
+- Wika - Netris 2
+
 # [1.93.0] - 2026-04-27
 
 ### Changed
