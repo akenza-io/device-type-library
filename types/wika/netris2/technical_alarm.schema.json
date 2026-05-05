@@ -1,20 +1,38 @@
 {
-  "$id": "https://akenza.io/wika/netris1/technical_alarm.schema.json",
+  "$id": "https://akenza.io/wika/netris2/technical_alarm.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "technical_alarm",
   "title": "Technical alarm",
   "properties": {
+    "channelId": {
+      "title": "Channel Id",
+      "type": "number",
+      "description": "Channel Id",
+      "hideFromKpis": true
+    },
     "alarmStatus": {
       "title": "Alarm status",
-      "type": "number",
-      "description": "Alarm status"
+      "type": "string",
+      "description": "Alarm status",
+      "enum": [
+        "STARTED",
+        "STOPPED"
+      ]
     },
     "alarmType": {
       "title": "Alarm type",
       "type": "array",
       "description": "Alarm type",
+      "enum": [
+        "NO_ALARM",
+        "OPEN_CONDITION",
+        "SHORT_CONDITION",
+        "SATURATED_LOW",
+        "SATURATED_HIGH",
+        "ADC_COMMUNICATION_ERROR"
+      ],
       "hideFromKpis": true
     }
   }

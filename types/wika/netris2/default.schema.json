@@ -7,24 +7,30 @@
   "title": "Default",
   "properties": {
     "channel1": {
-      "titel": "Channel 1 Pressure",
+      "title": "Channel 1 Pressure",
       "description": "Channel 1 Pressure in bar",
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/bar"
     },
     "channel2": {
-      "titel": "Channel 2 Pressure",
+      "title": "Channel 2 Pressure",
       "description": "Channel 2 Pressure in bar",
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/bar"
     },
     "delta": {
-      "titel": "Delta",
+      "title": "Delta",
       "description": "Delta from channel 1 and channel 2",
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/bar"
     },
     "deltaReverse": {
-      "titel": "Delta reverse",
+      "title": "Delta reverse",
       "description": "Delta from channel 2 and channel 1",
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/bar"
+    },
+    "ongoingAlarm": {
+      "title": "Ongoing alarm",
+      "type": "boolean",
+      "description": "Equals true if theres an ongoing alarm",
+      "hideFromKpis": true
     }
   }
 }

@@ -1,15 +1,15 @@
 {
-  "$id": "https://akenza.io/wika/netris1/process_alarm.schema.json",
+  "$id": "https://akenza.io/wika/netris2/process_alarm.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "processingType": "uplink_decoder",
   "topic": "process_alarm",
   "title": "Process alarm",
   "properties": {
-    "alarmChannel": {
-      "title": "Alarm channel",
-      "type": "string",
-      "description": "Alarm channel",
+    "channelId": {
+      "title": "Channel Id",
+      "type": "number",
+      "description": "Channel Id",
       "hideFromKpis": true
     },
     "alarmStatus": {
@@ -17,8 +17,8 @@
       "type": "string",
       "description": "Alarm status",
       "enum": [
-        "TRIGGERED",
-        "DISAPPEARED"
+        "STARTED",
+        "STOPPED"
       ]
     },
     "alarmType": {
