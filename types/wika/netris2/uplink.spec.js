@@ -25,8 +25,8 @@ describe("Wika Netris2 Uplink", () => {
       const data = {
         device: {
           customFields: {
-            pressureMin: 0,
-            pressureMax: 25,
+            rangeStart: 0,
+            rangeEnd: 25,
           }
         },
         data: {

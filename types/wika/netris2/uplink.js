@@ -3,14 +3,14 @@ const RAW_MIN = 2500;
 const RAW_MAX = 12500;
 
 // Depends on the sensor attached
-let PRESSURE_MIN_BAR = 0;
-let PRESSURE_MAX_BAR = 25;
+let VALUE_RANGE_START = 0;
+let VALUE_RANGE_END = 25;
 
 const PROCESS_ALARM_TYPE = ['LOW_THRESHOLD', 'HIGH_THRESHOLD', 'FALLING_SLOPE', 'RISING_SLOPE', 'LOW_THRESHOLD_WITH_DELAY', 'HIGH_THRESHOLD_WITH_DELAY'];
 const TECHNICAL_ALARM_TYPE = ['NO_ALARM', 'OPEN_CONDITION', 'SHORT_CONDITION', 'SATURATED_LOW', 'SATURATED_HIGH', 'ADC_COMMUNICATION_ERROR'];
 
 function getValue(rawNumber) {
-  return (rawNumber - RAW_MIN) * ((PRESSURE_MAX_BAR - PRESSURE_MIN_BAR) / (RAW_MAX - RAW_MIN)) + PRESSURE_MIN_BAR;
+  return (rawNumber - RAW_MIN) * ((VALUE_RANGE_END - VALUE_RANGE_START) / (RAW_MAX - RAW_MIN)) + VALUE_RANGE_START;
 }
 
 function getTechnicalAlert(rawAlert, channel) {
@@ -38,8 +38,8 @@ function consume(event) {
   const bits = Bits.hexToBits(payload);
   let data = {};
 
-  PRESSURE_MIN_BAR = checkForCustomFields(event.device, "pressureMin", 0);
-  PRESSURE_MAX_BAR = checkForCustomFields(event.device, "pressureMax", 25)
+  VALUE_RANGE_START = checkForCustomFields(event.device, "rangeStart", 0);
+  VALUE_RANGE_END = checkForCustomFields(event.device, "rangeEnd", 25)
 
   let messageType = Bits.bitsToUnsigned(bits.substr(0, 8));
   // Reserved 8
