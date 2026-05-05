@@ -1,0 +1,22 @@
+{
+  "name": "Netris 2",
+  "version": "1.0.0",
+  "manufacturer": "Wika",
+  "url": "https://www.wika.com/en-en/netris_2.WIKA",
+  "description": "The model NETRIS®2 IoT-capable WIKA radio unit is used wherever centralised, web-based, remote monitoring of measuring instrument data is required. The EX radio unit receives the data via the two analogue 4 ... 20 mA input signals. The fully encapsulated instrument with IP55 ingress protection transmits the received data continuously to a cloud via configurable data packets with LoRaWAN®.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Variable"
+  ],
+  "outputTopics": [
+    "configuration",
+    "default",
+    "lifecycle",
+    "process_alarm",
+    "technical_alarm"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
