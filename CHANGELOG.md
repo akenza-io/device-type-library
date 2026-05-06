@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.95.0] - 2026-05-06
+
+### Added
+
+- Pressac - IAQ
+
 # [1.94.0] - 2026-05-05
 
 ### Added

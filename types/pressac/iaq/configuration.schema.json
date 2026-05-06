@@ -1,0 +1,160 @@
+{
+  "$id": "https://akenza.io/pressac/iaq/configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "configuration",
+  "title": "Configuration",
+  "properties": {
+    "firmwareVersion": {
+      "title": "Firmware version",
+      "description": "Firmware version",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "resetReason": {
+      "title": "Reset reason",
+      "description": "Reset reason",
+      "enum": [
+        "POWER_ON",
+        "HARD_RESET",
+        "SOFT_RESET",
+        "WATCHDOG",
+        "BROWN_OUT",
+        "OTHER"
+      ],
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "hardwareRegionSelection": {
+      "title": "Hardware region selection",
+      "description": "Hardware region selection",
+      "enum": [
+        "EU868",
+        "US915",
+        "AS923",
+        "AU915"
+      ],
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "readConfiguration": {
+      "title": "Read configuration",
+      "description": "Read configuration",
+      "enum": [
+        "NETWORK",
+        "DIP_SWITCH"
+      ],
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "readInterval": {
+      "title": "Read interval",
+      "description": "Read interval",
+      "type": "integer",
+      "unit": "m",
+      "hideFromKpis": true
+    },
+    "pmIsAutoCleanIntervalSet": {
+      "title": "PM auto clean interval set",
+      "description": "Flag if pm auto clean interval is set",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "pmAutoCleanInterval": {
+      "title": "PM auto clean interval",
+      "description": "PM auto clean interval in days",
+      "type": "integer",
+      "unit": "d",
+      "hideFromKpis": true
+    },
+    "co2IsAutoCalibrationEnabled": {
+      "title": "CO2 auto calibration enabled",
+      "description": "Flag if CO2 auto calibration is enabled",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "co2IndoorAirBackgroundLevel": {
+      "title": "CO2 indoor air background level",
+      "description": "CO2 indoor air background level in ppm",
+      "unit": "ppm",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "co2HasManualCalibrationPerformed": {
+      "title": "CO2 manual calibration",
+      "description": "Flag if CO2 manual calibration has been performed",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "co2FreshAirBackgroundLevel": {
+      "title": "Co2 fresh air background level",
+      "description": "Measures the co2 fresh air background levels",
+      "type": "integer",
+      "unit": "ppm",
+      "hideFromKpis": true
+    },
+    "pirAbsenceTimeout": {
+      "title": "Pir absence timeout",
+      "description": "Pir absence timeout in minutes",
+      "type": "integer",
+      "unit": "m",
+      "hideFromKpis": true
+    },
+    "pirRepeatedTimeOut": {
+      "title": "Pir repeat timeout",
+      "description": "Pir repeat timeout in minutes",
+      "type": "integer",
+      "unit": "m",
+      "hideFromKpis": true
+    },
+    "temperatureOffset": {
+      "title": "Temperature offset",
+      "description": "Temperature offset",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "hideFromKpis": true
+    },
+    "temperatureOffsetScaled": {
+      "title": "Temperature offset scaled",
+      "description": "Temperature offset scaled",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "hideFromKpis": true
+    },
+    "humidityOffset": {
+      "title": "Humidity offset",
+      "description": "Humidity offset",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
+      "hideFromKpis": true
+    },
+    "humidityOffsetScaled": {
+      "title": "Humidity offset scaled",
+      "description": "Humidity offset scaled",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
+      "hideFromKpis": true
+    },
+    "vocUnit": {
+      "title": "VOC unit",
+      "description": "VOC unit used",
+      "type": "string",
+      "enum": [
+        "TVOC μg/m3",
+        "TVOC ppb",
+        "VOC Index",
+        "Reserved"
+      ],
+      "hideFromKpis": true
+    },
+    "vocEquivalent": {
+      "title": "VOC equivalent",
+      "description": "VOC equivalent",
+      "type": "string",
+      "enum": [
+        "Isobutylene",
+        "Mølhave",
+        "Ethanol",
+        "Reserved"
+      ],
+      "hideFromKpis": true
+    }
+  }
+}
