@@ -226,7 +226,7 @@ function consume(event) {
 
     // PIR
     if (lifecycle.pirActive == true) {
-      data.pirAbsenceTimeOut = bytes[byte++]; // Minutes
+      data.pirAbsenceTimeout = bytes[byte++]; // Minutes
       data.pirRepeatedTimeOut = bytes[byte++]; // Minutes
     }
 

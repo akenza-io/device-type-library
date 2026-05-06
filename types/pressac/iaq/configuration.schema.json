@@ -94,7 +94,7 @@
       "unit": "ppm",
       "hideFromKpis": true
     },
-    "pirAbsenceTimeOut": {
+    "pirAbsenceTimeout": {
       "title": "Pir absence timeout",
       "description": "Pir absence timeout in minutes",
       "type": "integer",
