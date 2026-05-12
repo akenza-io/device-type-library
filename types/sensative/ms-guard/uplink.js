@@ -162,7 +162,10 @@ function checkForCustomFields(device, target, fallbackValue) {
 }
 
 function calculateRecentOccupancy(device, state, occupancy) {
+  const minOccupancyThreshold = checkForCustomFields(device, "minOccupancyThreshold", 2.5);
+  const occupancyWarmThreshold = checkForCustomFields(device, "occupancyWarmThreshold", 90);
   state = state || {};
+
   // Occupancy status
   if (occupancy.occupied) {
     occupancy.occupancyStatus = "OCCUPIED";
@@ -183,7 +186,11 @@ function calculateRecentOccupancy(device, state, occupancy) {
     }
     // Give out how long there has been occupancy
     occupancy.occupiedMinutes = Math.round((time - state.firstOccupancyTimestamp) / 1000 / 60);
-    delete state.lastOccupancyTimestamp; // Reset cycle
+
+    // Only reset if a real occupancy has been tracked
+    if (occupancy.occupiedMinutes >= minOccupancyThreshold) {
+      delete state.lastOccupancyTimestamp; // Reset cycle
+    }
     delete state.occupiedMinutes;
   } else {
     // Give out how long there has been no occupancy
@@ -197,10 +204,6 @@ function calculateRecentOccupancy(device, state, occupancy) {
       delete state.firstOccupancyTimestamp; // Reset cycle
     }
   }
-
-  // Allow customFields to change this
-  const minOccupancyThreshold = checkForCustomFields(device, "minOccupancyThreshold", 2.5);
-  const occupancyWarmThreshold = checkForCustomFields(device, "occupancyWarmThreshold", 90)
 
   if (occupancy.minutesSinceLastOccupied < occupancyWarmThreshold && !occupancy.occupied && state.occupiedMinutes >= minOccupancyThreshold) {
     occupancy.warm = true;
