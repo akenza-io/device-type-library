@@ -104,6 +104,57 @@ Counter measurements currently defined across the data models:
 
 When adding a new data model entry that is an ever-increasing counter, include `"counterType": "monotonic"` alongside `type`, `unit`, and `measurementType`.
 
+## CustomFields
+
+Its possible to add custom fields to devices on the akenza plattform. These fields can add functionality to the decoding scripts and let them emit more data.
+Note that all of them work without customFields and this only adds more functionality.
+As an example: If the height of a container and the position of the depth sensor are known, its possible to calulculate the fillLevel percentage.
+
+Following are all the widely used customFields:
+
+| customField              | type     | Description                                                                            | Used in                                     |
+| ------------------------ | -------- | -------------------------------------------------------------------------------------- | ------------------------------------------- |
+| `containerHeight`        | `Number` | Height of the tank                                                                     | Distance measurement devices for containers |
+| `installationOffset`     | `Number` | Distance between sensor and surface to be measured.                                    | Distance measurement devices for containers |
+| `minOccupancyThreshold`  | `Number` | Minimal time for occupancy duration to register as usage for further warm desk samples | Occupancy devices                           |
+| `occupancyWarmThreshold` | `Number` | Warm desk threshold in minutes                                                         | Occupancy devices                           |
+| `usageCountDivider`      | `Number` | Number of usages to equal one door cycle                                               | Door sensors                                |
+
+CustomFields that are more specific to single devices:
+
+| customField                            | type     | Description                                         |
+| -------------------------------------- | -------- | --------------------------------------------------- |
+| `tankHeightCm`                         | `Number` | Height of the tank                                  |
+| `distanceSensorSurfaceCM`              | `Number` | Distance between sensor and surface to be measured. |
+| `unitConversionMultiplier`             | `Number` | Used for multiplying measurement                    |
+| `unitConversionDivider`                | `Number` | Used for dividing measurement                       |
+| `R_shuntResistor`                      | `Number` | Current resistor value                              |
+| `R_referenceResistor`                  | `Number` | Thermal resistor value                              |
+| `force`                                | `Number` | F = m · 9.8067 [N]                                  |
+| `underLoad`                            | `Number` | l = F · 1.5 [μm]                                    |
+| `strain`                               | `Number` | s = l / 0.066 [μm/m]                                |
+| `f0_frequencyUnderZeroLoad`            | `Number` | Frequency under load                                |
+| `k_scalingFactor`                      | `Number` | Scaling Factor                                      |
+| `sensorOffset`                         | `Number` | Distance between sensor and surface to be measured  |
+| `kp_pressureMultiplier`                | `Number` | Pressure multiplier                                 |
+| `kec_electricalConductivityMultiplier` | `Number` | Electrical conductivity multiplier                  |
+| `pulseType`                            | `String` | Name of datakey for pulse                           |
+| `multiplier`                           | `Number` | Used for multiplying measurement                    |
+| `divider`                              | `Number` | Used for dividing measurement                       |
+| `pulseType1`                           | `String` | Name of datakey for pulse                           |
+| `multiplier1`                          | `Number` | Used for multiplying measurement                    |
+| `divider1`                             | `Number` | Used for dividing measurement                       |
+| `pulseType2`                           | `String` | Name of datakey for pulse                           |
+| `multiplier2`                          | `Number` | Used for multiplying measurement                    |
+| `divider2`                             | `Number` | Used for dividing measurement                       |
+| `rangeStart`                           | `Number` | Range start                                         |
+| `rangeEnd`                             | `Number` | Range end                                           |
+| `channelMeasurand`                     | `String` | Type of value being measured                        |
+| `pressureRangeStart`                   | `Number` | Pressure range start                                |
+| `pressureRangeEnd`                     | `Number` | Pressure range end                                  |
+| `temperatureRangeStart`                | `Number` | Temperature range start                             |
+| `temperatureRangeEnd`                  | `Number` | Temperature range end                               |
+
 ## Open points
 
 - TODO: Add functionality for a type array to include null values in seeed senseCAPS210X series & Milesight TS301 - TS302
