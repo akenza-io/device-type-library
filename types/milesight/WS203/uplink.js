@@ -28,7 +28,7 @@ function checkForCustomFields(device, target, fallbackValue) {
 }
 
 function calculateRecentOccupancy(device, state, occupancy) {
-  const minOccupancyThreshold = checkForCustomFields(device, "minOccupancyThreshold", 2.5);
+  const minOccupancyThreshold = checkForCustomFields(device, "minOccupancyThreshold", 3);
   const occupancyWarmThreshold = checkForCustomFields(device, "occupancyWarmThreshold", 90);
   state = state || {};
 
