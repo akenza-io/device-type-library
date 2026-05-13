@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.95.1] - 2026-05-13
+
+### Changed
+
+- Warmdesk values are now taken over if space was not used for the defined mimimum usage time
+- Added explanation of customFields to the readme
+
 # [1.95.0] - 2026-05-06
 
 ### Added
