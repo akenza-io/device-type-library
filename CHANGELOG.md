@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.90.1] - 2026-05-15
+
+### Changed
+
+- inBiot MICA / MINI / PLUS / WELL decoders updated to work with the new firmware version. CH2O, O3, NO2 and CO now expose the "Preheating" status directly on the measurement field (the dedicated `*Status` fields have been removed).
+
 # [1.90.0] - 2026-03-10
 
 ### Added
