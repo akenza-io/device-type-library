@@ -1,0 +1,21 @@
+{
+  "name": "TEMP 4",
+  "version": "1.0.0",
+  "manufacturer": "Adeunis",
+  "url": "https://www.adeunis.com/en/produit/temp-temperature/",
+  "description": "The Adeunis TEMP 4 Sensor is a LoRaWAN temperature sensor with an ambient temperature probe and a remote contact temperature probe.",
+  "author": "Akenza",
+  "firmwareVersion": "V4.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature"
+  ],
+  "outputTopics": [
+    "alert",
+    "configuration",
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

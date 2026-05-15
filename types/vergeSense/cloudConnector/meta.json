@@ -13,7 +13,8 @@
   "outputTopics": [
     "occupancy",
     "space_availability",
-    "area_count"
+    "area_count",
+    "sensor_report"
   ],
   "encoding": "JSON",
   "connectivity": "HTTP"

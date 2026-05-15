@@ -7,16 +7,10 @@
   "title": "Consumption",
   "properties": {
     "consumption": {
-      "title": "Consumption",
-      "unit": "m3",
-      "description": "Consumption",
-      "type": "number"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/flow/schema.json#/$defs/flow/m3Delta"
     },
     "consumptionCumulative": {
-      "title": "Cumulative consumption",
-      "unit": "m3",
-      "description": "Cumulative consumption",
-      "type": "number"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/flow/schema.json#/$defs/flow/m3"
     }
   }
 }

@@ -1,0 +1,23 @@
+{
+  "name": "Kallisto SY021",
+  "version": "1.0.0",
+  "manufacturer": "sensry.io",
+  "url": "https://docs.sensry.net/datasheets/sy021-pcb/",
+  "description": "The Kallisto® SY021-PCB is a compact sensor module which can be used for application integration as standalone module or assembled on a mezzanine using the Bottom LGA pads. The platform module is delivered with a Zephyr based firmware which makes the system functions accessible over Bluetooth LE.",
+  "author": "sensry.io",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": [
+    "Motion",
+    "Light",
+    "Temperature",
+    "Humidity",
+    "CO2",
+    "VOC",
+    "Barometric Pressure",
+    "Noise",
+    "Battery"
+  ],
+  "outputTopics": ["motion", "environment", "lifecycle"],
+  "encoding": "JSON",
+  "connectivity": "MQTT"
+}

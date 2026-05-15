@@ -412,11 +412,11 @@ function deleteUnusedKeys(data) {
   return keysRetained;
 }
 
-function checkForCustomFields(device, target, norm) {
+function checkForCustomFields(device, target, fallbackValue) {
   if (device !== undefined && device.customFields !== undefined && device.customFields[target] !== undefined) {
     return device.customFields[target];
   }
-  return norm;
+  return fallbackValue;
 }
 
 function calculateIncrement(state, currentValue, usageDefinition = 2, doorClosingDefinition = 1) {
@@ -464,6 +464,61 @@ function calculateIncrement(state, currentValue, usageDefinition = 2, doorClosin
   return response;
 }
 
+function calculateRecentOccupancy(device, state, occupancy) {
+  const minOccupancyThreshold = checkForCustomFields(device, "minOccupancyThreshold", 3);
+  const occupancyWarmThreshold = checkForCustomFields(device, "occupancyWarmThreshold", 90);
+  state = state || {};
+
+  // Occupancy status
+  if (occupancy.occupied) {
+    occupancy.occupancyStatus = "OCCUPIED";
+    occupancy.occupiedOrWarm = true;
+  } else {
+    occupancy.occupancyStatus = "FREE";
+    occupancy.occupiedOrWarm = false;
+  }
+
+  const time = new Date().getTime();
+  occupancy.minutesSinceLastOccupied = 0;
+  occupancy.occupiedMinutes = 0;
+
+  if (occupancy.occupied) {
+    // Set state to first occupancy occurence so occupied time can be calulcated
+    if (state.firstOccupancyTimestamp == undefined) {
+      state.firstOccupancyTimestamp = time;
+    }
+    // Give out how long there has been occupancy
+    occupancy.occupiedMinutes = Math.round((time - state.firstOccupancyTimestamp) / 1000 / 60);
+
+    // Only reset if a real occupancy has been tracked
+    if (occupancy.occupiedMinutes >= minOccupancyThreshold) {
+      delete state.lastOccupancyTimestamp; // Reset cycle
+    }
+    delete state.occupiedMinutes;
+  } else {
+    // Give out how long there has been no occupancy
+    if (state.lastOccupancyTimestamp !== undefined) {
+      occupancy.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60);
+    } else {
+      state.lastOccupancyTimestamp = time;
+
+      // Only save the timestamp on first leave and save how long the occupancy has gone on for
+      state.occupiedMinutes = Math.round((time - state.firstOccupancyTimestamp) / 1000 / 60);
+      delete state.firstOccupancyTimestamp; // Reset cycle
+    }
+  }
+
+  if (occupancy.minutesSinceLastOccupied < occupancyWarmThreshold && !occupancy.occupied && state.occupiedMinutes >= minOccupancyThreshold) {
+    occupancy.warm = true;
+    occupancy.occupiedOrWarm = true;
+    occupancy.occupancyStatus = "WARM";
+  } else {
+    occupancy.warm = false;
+    occupancy.occupiedOrWarm = occupancy.occupied;
+  }
+  return { state, occupancy }
+}
+
 function consume(event) {
   let state = event.state || {};
   const payload = Hex.hexToBytes(event.data.payloadHex);
@@ -472,7 +527,7 @@ function consume(event) {
     const res = DecodeElsysPayload(payload);
     const data = {};
     const lifecycle = {};
-    const occupancy = {};
+    let occupancy = {};
     const noise = {};
     const reed = {};
     const acceleration = {};
@@ -567,21 +622,10 @@ function consume(event) {
     }
 
     if (deleteUnusedKeys(occupancy)) {
-      // Warm desk 
-      const time = new Date().getTime();
-      occupancy.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
-      if (occupancy.occupied) {
-        delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
-      } else if (state.lastOccupancyTimestamp !== undefined) {
-        occupancy.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
-      } else if (state.lastOccupiedValue) { //
-        state.lastOccupancyTimestamp = time; // Start with first no occupancy
-      }
+      let recentOccupancyResult = calculateRecentOccupancy(event.device, event.state, occupancy);
+      occupancy = recentOccupancyResult.occupancy;
 
-      if (Number.isNaN(occupancy.minutesSinceLastOccupied)) {
-        occupancy.minutesSinceLastOccupied = 0;
-      }
-      state.lastOccupiedValue = occupancy.occupied;
+      emit("state", recentOccupancyResult.state);
       emit("sample", { data: occupancy, topic: "occupancy" });
     }
 

@@ -12,7 +12,7 @@
       "type": "string",
       "enum": [
         "OCCUPIED",
-        "UNOCCUPIED"
+        "FREE"
       ]
     }
   },

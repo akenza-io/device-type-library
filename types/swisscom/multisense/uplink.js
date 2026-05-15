@@ -7,11 +7,11 @@ function int16(hex) {
   return a;
 }
 
-function checkForCustomFields(device, target, norm) {
+function checkForCustomFields(device, target, fallbackValue) {
   if (device !== undefined && device.customFields !== undefined && device.customFields[target] !== undefined) {
     return device.customFields[target];
   }
-  return norm;
+  return fallbackValue;
 }
 
 function calculateIncrement(state, currentValue, usageDefinition = 2, doorClosingDefinition = 1) {

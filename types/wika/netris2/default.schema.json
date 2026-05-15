@@ -1,0 +1,36 @@
+{
+  "$id": "https://akenza.io/wika/netris2/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "channel1": {
+      "title": "Channel 1",
+      "type": "number",
+      "description": "Channel 1"
+    },
+    "channel2": {
+      "title": "Channel 2",
+      "type": "number",
+      "description": "Channel 2"
+    },
+    "delta": {
+      "title": "Delta",
+      "type": "number",
+      "description": "Delta from channel 1 and channel 2"
+    },
+    "deltaReverse": {
+      "title": "Delta reverse",
+      "type": "number",
+      "description": "Delta from channel 2 and channel 1"
+    },
+    "ongoingAlarm": {
+      "title": "Ongoing alarm",
+      "type": "boolean",
+      "description": "Equals true if theres an ongoing alarm",
+      "hideFromKpis": true
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "$id": "https://akenza.io/adeunis/temp4/configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "configuration",
+  "title": "Configuration",
+  "properties": {
+    "transmissionPeriodKeepAlive": {
+      "title": "Transmission periode keep alive",
+      "type": "number",
+      "unit": "m",
+      "description": "Transmission periode keep alive",
+      "hideFromKpis": true
+    },
+    "samplingPeriod": {
+      "title": "Sampling periode",
+      "type": "number",
+      "unit": "m",
+      "description": "Sampling periode",
+      "hideFromKpis": true
+    },
+    "redundantSamples": {
+      "title": "Number of redundancy samples",
+      "type": "number",
+      "description": "Number of redundancy samples",
+      "hideFromKpis": true
+    },
+    "calculatedPeriodRecording": {
+      "title": "Calculated period recording",
+      "type": "number",
+      "description": "Calculated period recording",
+      "unit": "m",
+      "hideFromKpis": true
+    },
+    "calculatedSendingPeriod": {
+      "title": "Calculated sending period",
+      "type": "number",
+      "description": "Calculated sending period",
+      "unit": "m",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "transmissionPeriodKeepAlive",
+    "samplingPeriod",
+    "redundantSamples",
+    "calculatedPeriodRecording",
+    "calculatedSendingPeriod"
+  ]
+}

@@ -412,6 +412,13 @@ function deleteUnusedKeys(data) {
   return keysRetained;
 }
 
+function checkForCustomFields(device, target, fallbackValue) {
+  if (device !== undefined && device.customFields !== undefined && device.customFields[target] !== undefined) {
+    return device.customFields[target];
+  }
+  return fallbackValue;
+}
+
 function consume(event) {
   const payload = Hex.hexToBytes(event.data.payloadHex);
 
@@ -419,7 +426,7 @@ function consume(event) {
     const res = DecodeElsysPayload(payload);
     const data = {};
     const lifecycle = {};
-    const occupancy = {};
+    let occupancy = {};
     const noise = {};
 
     // Default values
@@ -477,11 +484,13 @@ function consume(event) {
     }
 
     if (deleteUnusedKeys(occupancy)) {
+      occupancy.occupancyStatus = "FREE";
       // Warm desk 
       const time = new Date().getTime();
       const state = event.state || {};
       occupancy.minutesSinceLastOccupied = 0; // Always give out minutesSinceLastOccupied for consistancy
       if (occupancy.occupied) {
+        occupancy.occupancyStatus = "OCCUPIED";
         delete state.lastOccupancyTimestamp; // Delete last occupancy timestamp
       } else if (state.lastOccupancyTimestamp !== undefined) {
         occupancy.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60); // Get free since
@@ -492,6 +501,16 @@ function consume(event) {
       if (Number.isNaN(occupancy.minutesSinceLastOccupied)) {
         occupancy.minutesSinceLastOccupied = 0;
       }
+
+      if (occupancy.minutesSinceLastOccupied < checkForCustomFields(event.device, "occupancyWarmThreshold", 90)) {
+        occupancy.warm = true;
+        if (!occupancy.occupied) {
+          occupancy.occupancyStatus = "WARM";
+        }
+      } else {
+        occupancy.warm = false;
+      }
+
       state.lastOccupiedValue = occupancy.occupied;
 
       emit("state", state);

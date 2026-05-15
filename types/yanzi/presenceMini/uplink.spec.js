@@ -79,8 +79,8 @@ describe("Yanzi Presence Mini Sensor Uplink", () => {
       expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
-        assert.typeOf(value, "object");
-
+        assert.exists(value.lastOccupancyTimestamp);
+        assert.exists(value.occupiedMinutes);
         assert.equal(value.lastMotion, 24873);
       });
 
@@ -88,12 +88,15 @@ describe("Yanzi Presence Mini Sensor Uplink", () => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
-
         assert.equal(value.topic, "occupancy");
-        assert.equal(value.data.motion, 24873);
-        assert.equal(value.data.relativeMotion, 0);
+
+        assert.equal(value.data.occupiedMinutes, 0);
+        assert.equal(value.data.minutesSinceLastOccupied, 0);
         assert.equal(value.data.occupancy, 0);
+        assert.equal(value.data.occupancyStatus, "FREE");
         assert.equal(value.data.occupied, false);
+        assert.equal(value.data.occupiedOrWarm, false);
+        assert.equal(value.data.warm, false);
 
         validateSchema(value.data, occupancySchema, { throwError: true });
       });
@@ -121,7 +124,7 @@ describe("Yanzi Presence Mini Sensor Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value, "object");
 
-        assert.equal(value.lastOccupiedValue, true);
+        assert.exists(value.firstOccupancyTimestamp);
         assert.equal(value.lastMotion, 24873);
       });
 
@@ -129,15 +132,20 @@ describe("Yanzi Presence Mini Sensor Uplink", () => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
-
         assert.equal(value.topic, "occupancy");
-        assert.equal(value.data.motion, 24873);
-        assert.equal(value.data.relativeMotion, 73);
+
+        assert.equal(value.data.occupiedMinutes, 0);
+        assert.equal(value.data.minutesSinceLastOccupied, 0);
         assert.equal(value.data.occupancy, 1);
+        assert.equal(value.data.motion, 24873);
+        assert.equal(value.data.occupancyStatus, "OCCUPIED");
         assert.equal(value.data.occupied, true);
+        assert.equal(value.data.occupiedOrWarm, true);
+        assert.equal(value.data.warm, false);
 
         validateSchema(value.data, occupancySchema, { throwError: true });
       });
+
 
       consume(data);
     });

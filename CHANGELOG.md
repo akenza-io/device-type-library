@@ -2,11 +2,64 @@
 
 All notable changes to this project will be documented in this file.
 
-# [1.90.1] - 2026-05-15
+# [1.95.2] - 2026-05-15
 
 ### Changed
 
 - inBiot MICA / MINI / PLUS / WELL decoders updated to work with the new firmware version. CH2O, O3, NO2 and CO now expose the "Preheating" status directly on the measurement field (the dedicated `*Status` fields have been removed).
+# [1.95.1] - 2026-05-13
+
+### Changed
+
+- Warmdesk values are now taken over if space was not used for the defined mimimum usage time
+- Added explanation of customFields to the readme
+
+# [1.95.0] - 2026-05-06
+
+### Added
+
+- Pressac - IAQ
+
+# [1.94.0] - 2026-05-05
+
+### Added
+
+- Wika - Netris 2
+
+# [1.93.0] - 2026-04-27
+
+### Changed
+
+- Adds new `counterType` to identify counter measurements:
+  - `"counterType": "monotonic"` to identify an ever-increasing counter and never resets under normal operation
+  - `"counterType": "delta"` to identify where the device reports the increment since its last transmission rather than the absolute total
+  - `"counterType": "gauge"` is the default when the field is absent; set it explicitly only when you want to make the intent unambiguous
+  - `"counterType": "categorical"` to identify any measurement whose value is a string enum or boolean — the platform will not attempt arithmetic aggregation on it
+- Adds new `*Delta` measurement types for energy and flow
+
+# [1.92.1] - 2026-04-13
+
+### Changed
+
+- VergeSense - Cloud connector - Now also emits sensor report data
+
+# [1.92.0] - 2026-04-02
+
+### Added
+
+- Sensry.io - Kallisto
+
+# [1.91.1] - 2026-03-25
+
+### Changed
+
+- VergeSense - Cloud connector - Now also emits floor data
+
+# [1.91.0] - 2026-03-19
+
+### Added
+
+- Adeunis - Temp 4
 
 # [1.90.0] - 2026-03-10
 

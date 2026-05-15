@@ -1,0 +1,26 @@
+{
+  "$id": "https://akenza.io/adeunis/temp4/alert.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "alert",
+  "title": "Alert",
+  "properties": {
+    "prope1Alert": {
+      "title": "Probe 1 alert",
+      "type": "boolean",
+      "description": "Probe 1 alert",
+      "hideFromKpis": true
+    },
+    "prope2Alert": {
+      "title": "Probe 2 alert",
+      "type": "boolean",
+      "description": "Probe 2 alert",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "probe1Alert",
+    "probe2Alert"
+  ]
+}

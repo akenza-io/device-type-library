@@ -34,18 +34,23 @@ describe("PNIcorp place pod Uplink", () => {
       expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.isNotNull(value);
-        assert.equal(value.lastOccupiedValue, false);
+        assert.exists(value.lastOccupancyTimestamp);
+        assert.exists(value.occupiedMinutes);
       });
 
       expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
-
         assert.equal(value.topic, "occupancy");
-        assert.equal(value.data.occupancy, 0);
-        assert.equal(value.data.occupied, false);
+
+        assert.equal(value.data.occupiedMinutes, 0);
         assert.equal(value.data.minutesSinceLastOccupied, 0);
+        assert.equal(value.data.occupancy, 0);
+        assert.equal(value.data.occupancyStatus, "FREE");
+        assert.equal(value.data.occupied, false);
+        assert.equal(value.data.occupiedOrWarm, false);
+        assert.equal(value.data.warm, false);
 
         validateSchema(value.data, occupancySchema, { throwError: true });
       });

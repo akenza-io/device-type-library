@@ -1,5 +1,3 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
@@ -36,6 +34,15 @@ describe("Verge Sense Uplink", () => {
     loadSchema(`${__dirname}/area_count.schema.json`)
       .then((parsedSchema) => {
         areaCountReportSchema = parsedSchema;
+        done();
+      });
+  });
+
+  let sensorReportSchema = null;
+  before((done) => {
+    loadSchema(`${__dirname}/sensor_report.schema.json`)
+      .then((parsedSchema) => {
+        sensorReportSchema = parsedSchema;
         done();
       });
   });
@@ -87,7 +94,7 @@ describe("Verge Sense Uplink", () => {
         assert.isNotNull(value);
 
         // assert.equal(value.lastEmittedAt, now);
-        assert.equal(value.lastOccupied, "UNOCCUPIED");
+        assert.equal(value.lastOccupied, "FREE");
       });
 
       expectEmits((type, value) => {
@@ -111,7 +118,7 @@ describe("Verge Sense Uplink", () => {
       const data = {
         state: {
           lastEmittedAt: new Date().getTime() - 3600001,
-          lastOccupied: "UNOCCUPIED"
+          lastOccupied: "FREE"
         },
         data: {
           "motion_detected": null,
@@ -164,6 +171,88 @@ describe("Verge Sense Uplink", () => {
         assert.equal(value.data.state, "OCCUPIED");
 
         validateSchema(value.data, spaceAvailabilitySchema, {
+          throwError: true,
+        });
+      });
+
+      consume(data);
+    });
+
+    it("should decode the Verge Sense floor report", () => {
+      const data = {
+        data: {
+          "motion_detected": null,
+          "signs_of_life": null,
+          "event_type": "space_report",
+          "space_ref_id": null,
+          "building_ref_id": "MM4",
+          "sensor_ids": [
+            "00:6E:02:01:F0:9C",
+            "00:6E:02:05:E6:10",
+            "00:6E:02:07:27:2C"
+          ],
+          "space_id": 820755,
+          "person_count": 150,
+          "people": {
+            "count": 150,
+            "coordinates": []
+          },
+          "floor_ref_id": "03",
+          "timestamp": "2026-03-25T10:27:34.942Z"
+        }
+      };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+      });
+
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "area_count");
+        assert.equal(value.data.peopleCount, 150);
+
+        validateSchema(value.data, areaCountReportSchema, {
+          throwError: true,
+        });
+      });
+
+      consume(data);
+    });
+
+    it("should decode the Verge Sense sensor report", () => {
+      const data = {
+        data: {
+          "building_ref_id": "SYLE",
+          "event_type": "sensor_report",
+          "floor_ref_id": "23",
+          "person_count": 0,
+          "sensor_id": "3BE-4NZ",
+          "signs_of_life": false,
+          "space_ref_id": "23. C0.010",
+          "timestamp": "2026-04-08T16:44:13.000Z"
+        }
+      };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+      });
+
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "sensor_report");
+        assert.equal(value.data.signsOfLife, false);
+
+        validateSchema(value.data, sensorReportSchema, {
           throwError: true,
         });
       });
