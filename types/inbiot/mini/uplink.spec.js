@@ -44,6 +44,8 @@ describe("inBiot MINI Uplink", () => {
         assert.isUndefined(value.data.pm2_5);
         assert.equal(value.data.vIndex, 52);
         assert.equal(value.data.tIndex, 64);
+        assert.equal(value.data.virusIndex, 49);
+        assert.equal(value.data.iaqIndex, 79);
         assert.equal(value.data.moldIndexStatus, "Calculating");
         assert.equal(value.data.noiseStatus, "Preheating");
         assert.equal(value.data.counter, 2);

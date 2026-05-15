@@ -42,7 +42,7 @@ function inbiotDeviceDecode(payload) {
   }
   if ("sendRetransmissions" in payload) {
     encoded = encoded.concat(
-      setSendRetransmissions(payload.sendRetransmissions)
+      setSendRetransmissions(payload.sendRetransmissions),
     );
   }
   if ("TXPower" in payload) {
@@ -70,6 +70,8 @@ function setSendPeriodicity(timeToSend) {
   }
   if (timeToSend === 0) {
     return [0x02, 0x01, 0xf];
+  } else if (timeToSend < 5) {
+    return [0x02, 0x01, 0x05];
   } else {
     return [0x02, 0x01, timeToSend];
   }

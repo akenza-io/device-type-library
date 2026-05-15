@@ -49,7 +49,7 @@ function InbiotDeviceDecode(bytes) {
         MICA: true,
         PLUS: true,
         WELL: true,
-        NULL: true
+        NULL: true,
       };
       if (typeProperties[decoded.type]) {
         // TEMPERATURE
@@ -70,6 +70,9 @@ function InbiotDeviceDecode(bytes) {
         if (["PLUS", "WELL", "NULL"].indexOf(decoded.type) > -1) {
           // CH2O
           decoded.ch2o = getUint16(bytes, 7, 8);
+          if (decoded.ch2o === 0xffff) {
+            decoded.ch2o = "Preheating";
+          }
           // PM1.0
           decoded.pm1 = getUint16(bytes, 11, 12);
           // PM4
@@ -213,7 +216,7 @@ function getLoRaWANRegion(region) {
     6: "KR920",
     7: "IN865",
     8: "US915",
-    9: "RU864"
+    9: "RU864",
   };
   return regions[region] || "UNKNOWN";
 }
@@ -230,7 +233,7 @@ function getResetReason(reason) {
     7: "7 Reset due to other watchdogs",
     8: "8 Reset after exiting deep sleep mode",
     9: "9 Brownout reset",
-    10: "10 Reset over SDIO"
+    10: "10 Reset over SDIO",
   };
   return reasons[reason] || "UNKNOWN (" + reason + ")";
 }
