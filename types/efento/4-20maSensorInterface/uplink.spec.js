@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-describe("Verge Sense Uplink", () => {
+describe("Efento Uplink", () => {
   let consume = null;
   let configurationSchema = null;
   before((done) => {
@@ -452,6 +452,7 @@ describe("Verge Sense Uplink", () => {
         assert.equal(value.topic, "measurements");
         assert.equal(value.data.currentPrecise1, 11.796);
         assert.equal(value.data.currentPrecise2, -0.001);
+        assert.equal(value.data.measurementInterval, 50);
 
         validateSchema(value.data, measurementsSchema, {
           throwError: true,

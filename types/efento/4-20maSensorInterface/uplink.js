@@ -26,9 +26,8 @@ function consume(event) {
 
     data.signalStrength = data.signal + -110;
     delete data.signal;
-  } else if (topic == "measurements") {
-    delete data.measurementInterval;
   }
+  // Topic measurements
 
 
   emit('sample', { data, topic });
