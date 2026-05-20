@@ -1,0 +1,33 @@
+{
+  "$id": "https://akenza.io/efento/4-20maSensorInterface/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "batteryStatus": {
+      "title": "Battery status",
+      "type": "string",
+      "description": "Battery status",
+      "enum": [
+        "OK",
+        "DISCHARGED"
+      ],
+      "hideFromKpis": true
+    },
+    "signalStrength": {
+      "title": "Signal strength",
+      "type": "number",
+      "description": "Signal strength",
+      "unit": "dBm",
+      "hideFromKpis": true
+    },
+    "nextTransmissionAt": {
+      "title": "Next transmission at",
+      "type": "string",
+      "description": "Next transmission at",
+      "hideFromKpis": true
+    }
+  }
+}
