@@ -71,6 +71,10 @@ function consume(event) {
     })
 
     if (Object.values(sample).length > 0) {
+      if (sample.wattHours !== undefined) {
+        sample.kiloWattHours = sample.wattHours / 1000;
+      }
+
       emit("sample", { data: sample, topic: "default", timestamp });
     }
 
