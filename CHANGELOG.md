@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.96.0] - 2026-05-20
+
+### Added
+
+- Efento - 4-20 mA Analog Sensor Interface
+
 # [1.95.1] - 2026-05-13
 
 ### Changed

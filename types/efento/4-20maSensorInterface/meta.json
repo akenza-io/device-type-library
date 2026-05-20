@@ -1,0 +1,19 @@
+{
+  "name": "4-20 mA Analog Sensor Interface",
+  "version": "1.0.0",
+  "manufacturer": "Efento",
+  "url": "https://getefento.com/product/wireless-4-20-ma-sensor-interface-nb-iot/",
+  "description": "Efento 4-20 mA sensor interface allows users to connect analog sensors to the cloud. Device can be equipped with analog interfaces (2 x 4-20 mA). Sensors can be powered either from the device's battery or by an external power source. Data from the analog sensors can be presented as current (4-20 mA) or converted to other measurement types.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "availableSensors": [
+    "Current"
+  ],
+  "outputTopics": [
+    "configuration",
+    "lifecycle",
+    "measurements"
+  ],
+  "encoding": "JSON",
+  "connectivity": "NB-IOT"
+}

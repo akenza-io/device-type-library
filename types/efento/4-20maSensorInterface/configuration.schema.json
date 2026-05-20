@@ -1,0 +1,288 @@
+{
+  "$id": "https://akenza.io/efento/4-20maSensorInterface/configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "configuration",
+  "title": "Configuration",
+  "properties": {
+    "configurationErrorTimestamp": {
+      "title": "Unix configuration error timestamp",
+      "type": "integer",
+      "unit": "s",
+      "description": "Unix configuration error timestamp",
+      "hideFromKpis": true
+    },
+    "configurationErrors": {
+      "title": "Configuration errors",
+      "type": "array",
+      "description": "Configuration errors",
+      "hideFromKpis": true
+    },
+    "modemBandsMask": {
+      "title": "Modem bands mask",
+      "type": "integer",
+      "description": "Modem bands mask",
+      "hideFromKpis": true
+    },
+    "measurementPeriodFactor": {
+      "title": "Measurement period factor",
+      "type": "integer",
+      "description": "Measurement period factor",
+      "hideFromKpis": true
+    },
+    "networkSearchDisablePeriodBase": {
+      "title": "Network search disable period base",
+      "type": "integer",
+      "unit": "s",
+      "description": "Network search disable period base",
+      "hideFromKpis": true
+    },
+    "networkSearchTimeSchemaLastRegistrationNotOk": {
+      "title": "Network search disable time schema last registration not ok",
+      "type": "array",
+      "description": "Network search disable time schema last registration not ok",
+      "hideFromKpis": true
+    },
+    "networkSearchCounterMax": {
+      "title": "Network search counter max",
+      "type": "integer",
+      "description": "Network search counter max",
+      "hideFromKpis": true
+    },
+    "networkSearchTimeSchemaLastRegistrationOk": {
+      "title": "Network search time schema last registration ok",
+      "type": "array",
+      "description": "Network search time schema last registration ok",
+      "hideFromKpis": true
+    },
+    "dataServerPort": {
+      "title": "Data server port",
+      "type": "integer",
+      "description": "Data server port",
+      "hideFromKpis": true
+    },
+    "configurationEndpoint": {
+      "title": "Configuration endpoint",
+      "type": "string",
+      "description": "Configuration endpoint",
+      "hideFromKpis": true
+    },
+    "rules": {
+      "title": "Active rules",
+      "type": "array",
+      "description": "Active rules",
+      "hideFromKpis": true
+    },
+    "measurementPeriodBase": {
+      "title": "Measurement period base",
+      "type": "integer",
+      "unit": "s",
+      "description": "Measurement period base",
+      "hideFromKpis": true
+    },
+    "dnsTtlConfig": {
+      "title": "DNS TTL config",
+      "type": "integer",
+      "description": "DNS TTL config",
+      "hideFromKpis": true
+    },
+    "configurationHashTimestamp": {
+      "title": "Configuration hash unix timestamp",
+      "type": "integer",
+      "unit": "s",
+      "description": "Configuration hash unix timestamp",
+      "hideFromKpis": true
+    },
+    "payloadSplitInfo": {
+      "title": "Payload split info",
+      "type": "integer",
+      "description": "Payload split info",
+      "hideFromKpis": true
+    },
+    "transferLimitTimer": {
+      "title": "Transfer limit timer",
+      "type": "integer",
+      "description": "Transfer limit timer",
+      "hideFromKpis": true
+    },
+    "bleTxPowerLevel": {
+      "title": "BLE TX power level",
+      "type": "integer",
+      "description": "BLE TX power level",
+      "hideFromKpis": true
+    },
+    "cellularConfigParams": {
+      "title": "Cellular config params",
+      "type": "array",
+      "description": "Cellular config params",
+      "hideFromKpis": true
+    },
+    "dataServerIp": {
+      "title": "Data server IP",
+      "type": "string",
+      "description": "Data server IP",
+      "hideFromKpis": true
+    },
+    "updateServerPortCoap": {
+      "title": "Update server port CoAp",
+      "type": "number",
+      "description": "Update server port CoAp",
+      "hideFromKpis": true
+    },
+    "payloadSignatureCoapOption": {
+      "title": "Payload signature CoAp option",
+      "type": "number",
+      "description": "Payload signature CoAp option",
+      "hideFromKpis": true
+    },
+    "updateServerIp": {
+      "title": "Update server IP",
+      "type": "string",
+      "description": "Update server IP",
+      "hideFromKpis": true
+    },
+    "configurationHash": {
+      "title": "Configuration hash",
+      "type": "number",
+      "description": "Configuration hash",
+      "hideFromKpis": true
+    },
+    "serialNumber": {
+      "title": "Serial number",
+      "type": "string",
+      "description": "Serial number",
+      "hideFromKpis": true
+    },
+    "dnsServerIp": {
+      "title": "DNS server IP",
+      "type": "array",
+      "description": "DNS server IP",
+      "hideFromKpis": true
+    },
+    "ledConfig": {
+      "title": "LED config",
+      "type": "array",
+      "description": "LED config",
+      "hideFromKpis": true
+    },
+    "bleTurnoffTime": {
+      "title": "BLE turn off time",
+      "type": "number",
+      "unit": "s",
+      "description": "BLE turn off time",
+      "hideFromKpis": true
+    },
+    "channelTypes": {
+      "title": "Channel types",
+      "type": "array",
+      "description": "Channel types",
+      "hideFromKpis": true
+    },
+    "networkTroubleshooting": {
+      "title": "Network troubleshooting",
+      "type": "number",
+      "description": "Network troubleshooting",
+      "hideFromKpis": true
+    },
+    "cloudTokenCoapOption": {
+      "title": "Cloud token CoAp option",
+      "type": "number",
+      "description": "Cloud token CoAp option",
+      "hideFromKpis": true
+    },
+    "bleAdvertisingPeriodMode": {
+      "title": "BLE advertising periode mode",
+      "type": "string",
+      "description": "BLE advertising periode mode",
+      "hideFromKpis": true
+    },
+    "bleAdvertisingPeriodNormal": {
+      "title": "BLE advertising periode normal",
+      "type": "number",
+      "description": "BLE advertising periode normal",
+      "hideFromKpis": true
+    },
+    "bleAdvertisingPeriodFast": {
+      "title": "BLE advertising periode fast",
+      "type": "number",
+      "description": "BLE advertising periode fast",
+      "hideFromKpis": true
+    },
+    "updateServerPortUdp": {
+      "title": "Update server port UDP",
+      "type": "number",
+      "description": "Update server port UDP",
+      "hideFromKpis": true
+    },
+    "supervisionPeriod": {
+      "title": "Supervision period",
+      "type": "number",
+      "unit": "s",
+      "description": "Supervision period",
+      "hideFromKpis": true
+    },
+    "ackInterval": {
+      "title": "Acknowledge interval",
+      "type": "number",
+      "unit": "s",
+      "description": "Acknowledge interval",
+      "hideFromKpis": true
+    },
+    "timeEndpoint": {
+      "title": "Time endpoint",
+      "type": "string",
+      "description": "Time endpoint",
+      "hideFromKpis": true
+    },
+    "plmnSelection": {
+      "title": "PLMN selection",
+      "type": "number",
+      "description": "PLMN selection",
+      "hideFromKpis": true
+    },
+    "transmitLimit": {
+      "title": "Transmit limit",
+      "type": "number",
+      "description": "Transmit limit",
+      "hideFromKpis": true
+    },
+    "transferLimit": {
+      "title": "Transfer limit",
+      "type": "number",
+      "description": "Transfer limits",
+      "hideFromKpis": true
+    },
+    "calendars": {
+      "title": "Calendars",
+      "type": "array",
+      "description": "Calendars",
+      "hideFromKpis": true
+    },
+    "cloudTokenConfig": {
+      "title": "Cloud token config",
+      "type": "number",
+      "description": "Cloud token config",
+      "hideFromKpis": true
+    },
+    "deviceInfoEndpoint": {
+      "title": "Device info endpoint",
+      "type": "string",
+      "description": "Device info endpoint",
+      "hideFromKpis": true
+    },
+    "transmissionInterval": {
+      "title": "Transmission interval",
+      "type": "number",
+      "unit": "s",
+      "description": "Transmission interval",
+      "hideFromKpis": true
+    },
+    "dataEndpoint": {
+      "title": "Data endpoint",
+      "type": "string",
+      "description": "Data endpoint",
+      "hideFromKpis": true
+    }
+  }
+}
