@@ -79,6 +79,11 @@
       "title": "Watt hours",
       "description": "Watt hours",
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/wattHours"
+    },
+    "kiloWattHours": {
+      "title": "Kilowatt hours",
+      "description": "Kilowatt hours",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours"
     }
   }
 }

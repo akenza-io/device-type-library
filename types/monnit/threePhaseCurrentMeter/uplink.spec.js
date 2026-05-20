@@ -101,6 +101,7 @@ describe("Monnit Sensor Uplink", () => {
 
         assert.equal(value.data.totalCurrentAccumulation, 13);
         assert.equal(value.data.wattHours, 14);
+        assert.equal(value.data.kiloWattHours, 0.014);
 
         assert.equal(value.topic, "default");
 
