@@ -46,9 +46,9 @@ describe("inBiot WELL Uplink", () => {
         assert.equal(value.data.ch2o, 2);
         assert.equal(value.data.pm1, 1);
         assert.equal(value.data.pm4, 1);
-        assert.equal(value.data.o3Status, "Preheating");
-        assert.equal(value.data.no2Status, "Preheating");
-        assert.equal(value.data.coStatus, "Preheating");
+        assert.equal(value.data.o3, "Preheating");
+        assert.equal(value.data.no2, "Preheating");
+        assert.equal(value.data.co, "Preheating");
         assert.equal(value.data.vIndex, 52);
         assert.equal(value.data.tIndex, 64);
         assert.equal(value.data.virusIndex, 49);
