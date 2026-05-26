@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.96.1] - 2026-05-26
+
+### Changed
+
+- inBiot - MICA / Mini / Plus / WELL - Aligned decoders with the new device firmware version.
+- inBiot - MICA / Mini / Plus / WELL - Unified preheating sensor reporting: `ch2o`, `o3`, `no2` and `co` now emit the numeric reading or the string `"Preheating"` in the same field. Removed the separate `ch2oStatus`, `o3Status`, `no2Status` and `coStatus` properties from schemas and tests.
+- inBiot - MICA / Mini / Plus / WELL - Downlink `setSendPeriodicity` now enforces a minimum send period of 5 minutes (values below 5 are clamped to `0x05`).
+
 # [1.96.0] - 2026-05-20
 
 ### Added

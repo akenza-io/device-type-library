@@ -40,7 +40,7 @@ function InbiotDeviceDecode(bytes) {
         MICA: true,
         PLUS: true,
         WELL: true,
-        NULL: true
+        NULL: true,
       };
       if (typeProperties[decoded.type]) {
         decoded.temperature = getUint16(bytes, 1, 2) / 10.0;
@@ -53,33 +53,27 @@ function InbiotDeviceDecode(bytes) {
           decoded.pm10 = getUint16(bytes, 17, 18);
         }
         if (["PLUS", "WELL", "NULL"].indexOf(decoded.type) > -1) {
-          var tempCh2o = getUint16(bytes, 7, 8);
-          if (tempCh2o === 0xffff) {
-            decoded.ch2oStatus = "Preheating";
-          } else {
-            decoded.ch2o = tempCh2o;
+          decoded.ch2o = getUint16(bytes, 7, 8);
+          if (decoded.ch2o === 0xffff) {
+            decoded.ch2o = "Preheating";
           }
           decoded.pm1 = getUint16(bytes, 11, 12);
           decoded.pm4 = getUint16(bytes, 15, 16);
         }
         if (["WELL", "NULL"].indexOf(decoded.type) > -1) {
-          var tempO3 = getUint16(bytes, 19, 20);
-          if (tempO3 === 0xffff) {
-            decoded.o3Status = "Preheating";
-          } else {
-            decoded.o3 = tempO3;
+          decoded.o3 = getUint16(bytes, 19, 20);
+          if (decoded.o3 === 0xffff) {
+            decoded.o3 = "Preheating";
           }
-          var tempNo2 = getUint16(bytes, 21, 22);
-          if (tempNo2 === 0xffff) {
-            decoded.no2Status = "Preheating";
-          } else {
-            decoded.no2 = tempNo2;
+          decoded.no2 = getUint16(bytes, 21, 22);
+          if (decoded.no2 === 0xffff) {
+            decoded.no2 = "Preheating";
           }
-          var tempCo = getUint16(bytes, 23, 24);
-          if (tempCo !== 0xffff) {
-            decoded.co = tempCo / 10.0;
+          decoded.co = getUint16(bytes, 23, 24);
+          if (decoded.co !== 0xffff) {
+            decoded.co /= 10.0;
           } else {
-            decoded.coStatus = "Preheating";
+            decoded.co = "Preheating";
           }
         }
         decoded.vIndex = bytes[32];
@@ -105,6 +99,7 @@ function InbiotDeviceDecode(bytes) {
     case 2:
       decoded.fwVersion = getVersion(bytes, 1);
       decoded.model = customTextDecoder(bytes, 4, 21);
+      // MICA TYPE
       decoded.micaType = customTextDecoder(bytes, 21, 30);
       decoded.mac = getMac(bytes, 30);
       decoded.resetReason = getResetReason(bytes[42]);
@@ -183,7 +178,7 @@ function getLoRaWANRegion(region) {
     6: "KR920",
     7: "IN865",
     8: "US915",
-    9: "RU864"
+    9: "RU864",
   };
   return regions[region] || "UNKNOWN";
 }
@@ -200,7 +195,7 @@ function getResetReason(reason) {
     7: "7 Reset due to other watchdogs",
     8: "8 Reset after exiting deep sleep mode",
     9: "9 Brownout reset",
-    10: "10 Reset over SDIO"
+    10: "10 Reset over SDIO",
   };
   return reasons[reason] || "UNKNOWN (" + reason + ")";
 }
