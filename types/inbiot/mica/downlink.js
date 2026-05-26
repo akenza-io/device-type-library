@@ -1,7 +1,7 @@
 function consume(event) {
   var payload = event.data;
   var encoded = inbiotDeviceDecode(payload);
-  
+
   // Akenza requires emit('downlink', { payloadHex: '...', port: 1 })
   var hexPayload = "";
   for (var i = 0; i < encoded.length; i++) {
@@ -11,7 +11,7 @@ function consume(event) {
     }
     hexPayload += hex;
   }
-  
+
   emit("downlink", { payloadHex: hexPayload, port: 1 });
 }
 
@@ -70,6 +70,8 @@ function setSendPeriodicity(timeToSend) {
   }
   if (timeToSend === 0) {
     return [0x02, 0x01, 0xf];
+  } else if (timeToSend < 5) {
+    return [0x02, 0x01, 0x05];
   } else {
     return [0x02, 0x01, timeToSend];
   }

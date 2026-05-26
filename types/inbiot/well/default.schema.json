@@ -25,14 +25,9 @@
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pm10/mcgm3"
     },
     "ch2o": {
-      "type": "number",
+      "type": ["number", "string"],
       "title": "Formaldehyde CH2O",
-      "description": "Formaldehyde concentration in ppb"
-    },
-    "ch2oStatus": {
-      "type": "string",
-      "title": "Formaldehyde CH2O Status",
-      "description": "Status text for formaldehyde (e.g. Preheating)"
+      "description": "Formaldehyde concentration in ppb, or status text (e.g. Preheating)"
     },
     "pm1": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pm1/mcgm3"
@@ -41,34 +36,19 @@
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pm4/mcgm3"
     },
     "o3": {
-      "type": "number",
+      "type": ["number", "string"],
       "title": "Ozone O3",
-      "description": "Ozone concentration in ppb"
-    },
-    "o3Status": {
-      "type": "string",
-      "title": "Ozone O3 Status",
-      "description": "Status text for ozone (e.g. Preheating)"
+      "description": "Ozone concentration in ppb, or status text (e.g. Preheating)"
     },
     "no2": {
-      "type": "number",
+      "type": ["number", "string"],
       "title": "Nitrogen Dioxide NO2",
-      "description": "NO2 concentration in ppb"
-    },
-    "no2Status": {
-      "type": "string",
-      "title": "Nitrogen Dioxide NO2 Status",
-      "description": "Status text for NO2 (e.g. Preheating)"
+      "description": "NO2 concentration in ppb, or status text (e.g. Preheating)"
     },
     "co": {
-      "type": "number",
+      "type": ["number", "string"],
       "title": "Carbon Monoxide CO",
-      "description": "CO concentration in ppm"
-    },
-    "coStatus": {
-      "type": "string",
-      "title": "Carbon Monoxide CO Status",
-      "description": "Status text for CO (e.g. Preheating)"
+      "description": "CO concentration in ppm, or status text (e.g. Preheating)"
     },
     "vIndex": {
       "type": "number",
