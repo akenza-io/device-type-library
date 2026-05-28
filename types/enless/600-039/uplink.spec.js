@@ -45,7 +45,7 @@ describe("Transmitter 600-039", () => {
       const data = {
         data: {
           port: 1,
-          payloadHex: "0000B40B0E1200000018000000280000005600000000",
+          payloadHex: "015f390b6f1200000003000000000000000a00010021",
         },
       };
 
@@ -56,9 +56,9 @@ describe("Transmitter 600-039", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.id, 180);
+        assert.equal(value.data.id, 89913);
         assert.equal(value.data.type, 11);
-        assert.equal(value.data.seqCounter, 14);
+        assert.equal(value.data.seqCounter, 111);
         assert.equal(value.data.fwVersion, 18);
         assert.equal(value.data.batteryLevel, 100);
 
@@ -72,13 +72,13 @@ describe("Transmitter 600-039", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.pulseCh1Counter, 24);
-        assert.equal(value.data.pulseCh2Counter, 40);
-        assert.equal(value.data.pulseOcCounter, 86);
-        assert.equal(value.data.pulseCh1State, "OPEN");
+        assert.equal(value.data.pulseCh1Counter, 3);
+        assert.equal(value.data.pulseCh2Counter, 0);
+        assert.equal(value.data.pulseOcCounter, 10);
+        assert.equal(value.data.pulseCh1State, "CLOSED");
         assert.equal(value.data.pulseCh2State, "OPEN");
         assert.equal(value.data.pulseOcState, "OPEN");
-        assert.equal(value.data.msgType, "NORMAL");
+        assert.equal(value.data.msgType, "ALARM");
 
         validateSchema(value.data, defaultSchema, { throwError: true });
       });
@@ -90,7 +90,7 @@ describe("Transmitter 600-039", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "alarm");
-        assert.equal(value.data.ch1Alarm, false);
+        assert.equal(value.data.ch1Alarm, true);
         assert.equal(value.data.ch2Alarm, false);
         assert.equal(value.data.ocAlarm, false);
 
