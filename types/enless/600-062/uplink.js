@@ -16,10 +16,6 @@ function readInt16BE(bytes) {
   return val > 0x7fff ? val - 0x10000 : val;
 }
 
-function readUInt16LE(bytes) {
-  return bytes[0] + (bytes[1] << 8);
-}
-
 function readUInt24BE(bytes) {
   return (bytes[0] << 16) + (bytes[1] << 8) + bytes[2];
 }
@@ -30,7 +26,7 @@ function readUInt32BE(bytes) {
     (bytes[1] << 16) |
     (bytes[2] << 8) |
     bytes[3]
-  ) >>> 0; // force unsigned
+  ) >>> 0;
 }
 
 // --- Main function ---
@@ -49,7 +45,8 @@ function consume(event) {
   lifecycle.seqCounter = bytes[4];
   lifecycle.fwVersion = bytes[5] & 0x3F;
 
-  const status = readUInt16LE(bytes.slice(28, 30));
+  const status = readUInt16BE(bytes.slice(28, 30));
+
   const batteryBits = (status >> 2) & 0x03;
   const batteryLevels = [100, 75, 50, 25];
   lifecycle.batteryLevel = batteryLevels[batteryBits] ?? null;
@@ -62,11 +59,12 @@ function consume(event) {
   decoded.luminosity = readUInt32BE(bytes.slice(22, 26));
 
   decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";
-  decoded.rbe = Boolean((status >> 9) & 0x01);               // Bit 9
-  decoded.movementDetected = Boolean((status >> 5) & 0x01);  // Bit 5
+  decoded.rbe = Boolean((status >> 9) & 0x01);
+  decoded.movementDetected = Boolean((status >> 5) & 0x01);
 
   // --- Alarm ---
-  const alarmWord = readUInt16LE(bytes.slice(26, 28));
+  const alarmWord = readUInt16BE(bytes.slice(26, 28));
+
   const alarm = {
     temperatureHigh: Boolean(alarmWord & 0x0001),
     temperatureLow: Boolean(alarmWord & 0x0002),

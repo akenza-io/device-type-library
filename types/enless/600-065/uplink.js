@@ -11,10 +11,6 @@ function readUInt16BE(bytes) {
   return (bytes[0] << 8) + bytes[1];
 }
 
-function readUInt16LE(bytes) {
-  return bytes[0] + (bytes[1] << 8);
-}
-
 function readUInt24BE(bytes) {
   return (bytes[0] << 16) + (bytes[1] << 8) + bytes[2];
 }
@@ -46,26 +42,24 @@ function consume(event) {
   const decoded = {};
   const lifecycle = {};
 
-  // --- Identification ---
   lifecycle.id = readUInt24BE(bytes.slice(0, 3));
   lifecycle.type = bytes[3];
   lifecycle.seqCounter = bytes[4];
   lifecycle.fwVersion = bytes[5] & 0x3F;
 
-  // --- Measurements ---
   decoded.windowCount = readUInt16BE(bytes.slice(16, 18));
 
-  // --- Device status (octets 28–29) ---
-  const status = readUInt16LE(bytes.slice(28, 30));
+  // --- Device status (Big Endian, octets 28–29) ---
+  const status = readUInt16BE(bytes.slice(28, 30));
+
   const batteryBits = (status >> 2) & 0x03;
   const batteryLevels = [100, 75, 50, 25];
   lifecycle.batteryLevel = batteryLevels[batteryBits] || "unknown";
 
   decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";
-  decoded.rbe = Boolean((status >> 9) & 0x01);         // Bit 9
-  decoded.windowOpened = Boolean((status >> 5) & 0x01); // Bit 5
+  decoded.rbe = Boolean((status >> 9) & 0x01);
+  decoded.windowOpened = Boolean((status >> 5) & 0x01);
 
-  // --- Emit to Akenza topics ---
   emit("sample", { data: lifecycle, topic: "lifecycle" });
   emit("sample", { data: decoded, topic: "default" });
 }

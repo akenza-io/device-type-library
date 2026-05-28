@@ -13,11 +13,7 @@ function readUInt16BE(bytes) {
 }
 
 function readUInt32BE(bytes) {
-  return (bytes[0] << 24) + (bytes[1] << 16) + (bytes[2] << 8) + bytes[3];
-}
-
-function readUInt16LE(bytes) {
-  return bytes[0] + (bytes[1] << 8);
+  return bytes[0] * 0x1000000 + (bytes[1] << 16) + (bytes[2] << 8) + bytes[3];
 }
 
 // --- MAIN FUNCTION ---
@@ -27,8 +23,7 @@ function consume(event) {
 
   if (bytes.length !== 22) {
     throw new Error(
-      `Invalid payload length: ${bytes.length
-      } bytes, expected 22 bytes.`
+      `Invalid payload length: ${bytes.length} bytes, expected 22 bytes.`
     );
   }
 
@@ -53,8 +48,9 @@ function consume(event) {
   decoded.pulseCh2 = readUInt32BE(bytes.slice(10, 14));
   decoded.pulseOc = readUInt32BE(bytes.slice(14, 18));
 
-  // --- Alarm Status (Little Endian) ---
-  const alarmStatus = readUInt16LE(bytes.slice(18, 20));
+  // --- Alarm Status (Big Endian) ---
+  const alarmStatus = readUInt16BE(bytes.slice(18, 20));
+
   alarm.pulseCh1FlowHigh = Boolean(alarmStatus & 0x0001);
   alarm.pulseCh2FlowHigh = Boolean(alarmStatus & 0x0002);
   alarm.pulseOCFlowHigh = Boolean(alarmStatus & 0x0004);
@@ -65,18 +61,21 @@ function consume(event) {
   alarm.pulseCh2Leak = Boolean(alarmStatus & 0x0200);
   alarm.pulseOCLeak = Boolean(alarmStatus & 0x0400);
 
-  // --- States (Little Endian) ---
-  const state = readUInt16LE(bytes.slice(20, 22));
+  // --- State / Status (Big Endian) ---
+  const state = readUInt16BE(bytes.slice(20, 22));
+
   decoded.pulseCh1State = (state & 0x0020) ? "CLOSED" : "OPEN";
   decoded.pulseCh2State = (state & 0x0040) ? "CLOSED" : "OPEN";
   decoded.pulseOcState = (state & 0x0080) ? "CLOSED" : "OPEN";
+
   decoded.debounce1 = Boolean(state & 0x0100);
   decoded.debounce2 = Boolean(state & 0x0200);
   decoded.debounce3 = Boolean(state & 0x0400);
 
-  // --- Status: Battery & Msg Type ---
+  // --- Battery & Msg Type ---
   const batteryBits = (state >> 2) & 0x03;
-  const batteryLevels = [100, 75, 50, 25]; // %
+  const batteryLevels = [100, 75, 50, 25];
+
   lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
   decoded.msgType = (state & 0x01) ? "ALARM" : "NORMAL";

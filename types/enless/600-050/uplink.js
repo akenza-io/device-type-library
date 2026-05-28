@@ -17,10 +17,6 @@ function readInt16BE(bytes) {
   return val > 0x7fff ? val - 0x10000 : val;
 }
 
-function readUInt16LE(bytes) {
-  return bytes[0] + (bytes[1] << 8);
-}
-
 function readUInt24BE(bytes) {
   return (bytes[0] << 16) + (bytes[1] << 8) + bytes[2];
 }
@@ -48,17 +44,20 @@ function consume(event) {
     decoded.temperature = readInt16BE(bytes.slice(6, 8)) / 10;
     decoded.humidity = readUInt16BE(bytes.slice(10, 12)) / 10;
 
-    // --- Alarm Status ---
-    const alarmStatus = readUInt16LE(bytes.slice(26, 28));
+    // --- Alarm Status (Big Endian) ---
+    const alarmStatus = readUInt16BE(bytes.slice(26, 28));
+
     alarm.temperatureHigh = Boolean(alarmStatus & 0x0001);
     alarm.temperatureLow = Boolean(alarmStatus & 0x0002);
     alarm.humidityHigh = Boolean(alarmStatus & 0x0004);
     alarm.humidityLow = Boolean(alarmStatus & 0x0008);
 
-    // --- Status (battery + msg type) ---
-    const status = readUInt16LE(bytes.slice(28, 30));
+    // --- Status: Battery & Msg Type (Big Endian) ---
+    const status = readUInt16BE(bytes.slice(28, 30));
+
     const batteryBits = (status >> 2) & 0x03;
     const batteryLevels = [100, 75, 50, 25];
+
     lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
     decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";
@@ -68,23 +67,27 @@ function consume(event) {
     // === Datalogging Frame ===
     datalog.tempeartureDatalog = [];
     datalog.humidityDatalog = [];
+
     for (let i = 0; i < 12; i++) {
       const offset = 6 + i * 2;
       datalog.tempeartureDatalog.push(bytes[offset]);
       datalog.humidityDatalog.push(bytes[offset + 1]);
     }
 
-    // --- Alarm Status ---
-    const alarmStatus = readUInt16LE(bytes.slice(30, 32));
+    // --- Alarm Status (Big Endian) ---
+    const alarmStatus = readUInt16BE(bytes.slice(30, 32));
+
     alarm.temperatureHigh = Boolean(alarmStatus & 0x0001);
     alarm.temperatureLow = Boolean(alarmStatus & 0x0002);
     alarm.humidityHigh = Boolean(alarmStatus & 0x0004);
     alarm.humidityLow = Boolean(alarmStatus & 0x0008);
 
-    // --- Status (battery + msg type) ---
-    const status = readUInt16LE(bytes.slice(32, 34));
+    // --- Status: Battery & Msg Type (Big Endian) ---
+    const status = readUInt16BE(bytes.slice(32, 34));
+
     const batteryBits = (status >> 2) & 0x03;
     const batteryLevels = [100, 75, 50, 25];
+
     lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
     decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";

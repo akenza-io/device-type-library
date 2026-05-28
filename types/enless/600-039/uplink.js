@@ -8,8 +8,8 @@ function parseHexString(str) {
 }
 
 // --- INT/UINT HELPERS ---
-function readUInt16(bytes) {
-  return (bytes[0] << 8) + (bytes[1]);
+function readUInt16BE(bytes) {
+  return (bytes[0] << 8) + bytes[1];
 }
 
 function readUInt32BE(bytes) {
@@ -23,7 +23,8 @@ function readUInt32BE(bytes) {
 
 // --- PARSE ALARM STATUS ---
 function parseAlarmStatus(bytes) {
-  const alarmStatus = readUInt16(bytes);
+  const alarmStatus = readUInt16BE(bytes);
+
   return {
     ch1Alarm: Boolean(alarmStatus & 0x0001),
     ch2Alarm: Boolean(alarmStatus & 0x0002),
@@ -33,7 +34,8 @@ function parseAlarmStatus(bytes) {
 
 // --- PARSE STATES (open/closed) ---
 function parseStates(bytes) {
-  const state = readUInt16(bytes);
+  const state = readUInt16BE(bytes);
+
   return {
     pulseCh1State: (state & 0x0020) ? "CLOSED" : "OPEN",
     pulseCh2State: (state & 0x0040) ? "CLOSED" : "OPEN",
@@ -48,8 +50,7 @@ function consume(event) {
 
   if (bytes.length !== 22) {
     throw new Error(
-      `Invalid payload length: ${bytes.length
-      } bytes. Expected 22 bytes (44 hex chars).`
+      `Invalid payload length: ${bytes.length} bytes. Expected 22 bytes (44 hex chars).`
     );
   }
 
@@ -63,9 +64,12 @@ function consume(event) {
   lifecycle.seqCounter = bytes[4];
   lifecycle.fwVersion = bytes[5] & 0x3f;
 
-  const status = readUInt16(bytes.slice(20, 22));
+  // --- Status (Big Endian) ---
+  const status = readUInt16BE(bytes.slice(20, 22));
+
   const batteryBits = (status >> 2) & 0x03;
   const batteryLevels = [100, 75, 50, 25];
+
   lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
   // --- Default (counters + states + msg type) ---
@@ -75,7 +79,7 @@ function consume(event) {
 
   decoded.msgType = status & 0x01 ? "ALARM" : "NORMAL";
 
-  // États des entrées
+  // --- Input states ---
   Object.assign(decoded, parseStates(bytes.slice(20, 22)));
 
   // --- Alarm Status ---
