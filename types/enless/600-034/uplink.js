@@ -17,11 +17,6 @@ function readInt16BE(bytes) {
   return val > 0x7fff ? val - 0x10000 : val;
 }
 
-// --- READ UINT16 LITTLE ENDIAN (for alarm & status) ---
-function readUInt16LE(bytes) {
-  return bytes[0] + (bytes[1] << 8);
-}
-
 // --- MAIN FUNCTION ---
 function consume(event) {
   const payload = event.data.payloadHex;
@@ -53,17 +48,20 @@ function consume(event) {
   // --- Humidity (%RH, UInt16BE / 10) ---
   decoded.humidity = readUInt16BE(bytes.slice(8, 10)) / 10;
 
-  // --- Alarm Status (Little Endian) ---
-  const alarmStatus = readUInt16LE(bytes.slice(10, 12));
+  // --- Alarm Status (Big Endian) ---
+  const alarmStatus = readUInt16BE(bytes.slice(10, 12));
+
   alarm.temperatureHigh = Boolean(alarmStatus & 0x0001);
   alarm.temperatureLow = Boolean(alarmStatus & 0x0002);
   alarm.humidityHigh = Boolean(alarmStatus & 0x0004);
   alarm.humidityLow = Boolean(alarmStatus & 0x0008);
 
-  // --- Status: Battery & Msg Type (Little Endian) ---
-  const status = readUInt16LE(bytes.slice(12, 14));
+  // --- Status: Battery & Msg Type (Big Endian) ---
+  const status = readUInt16BE(bytes.slice(12, 14));
+
   const batteryBits = (status >> 2) & 0x03;
-  const batteryLevels = [100, 75, 50, 25]; // in percent
+  const batteryLevels = [100, 75, 50, 25];
+
   lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
   decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";

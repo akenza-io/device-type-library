@@ -8,8 +8,8 @@ function parseHexString(str) {
 }
 
 // --- READ HELPERS ---
-function readUInt16LE(bytes) {
-  return bytes[0] + (bytes[1] << 8);
+function readUInt16BE(bytes) {
+  return (bytes[0] << 8) + bytes[1];
 }
 
 function readUInt32BE(bytes) {
@@ -37,30 +37,22 @@ function consume(event) {
   const lifecycle = {};
   const decoded = {};
 
-  // --- ID (3 bytes) ---
   lifecycle.id = parseInt(payload.substring(0, 6), 16);
-
-  // --- Type ---
   lifecycle.type = bytes[3];
-
-  // --- Sequence Counter ---
   lifecycle.seqCounter = bytes[4];
-
-  // --- Firmware Version ---
   lifecycle.fwVersion = bytes[5] & 0x3F;
 
-  // --- Pulse counter OC ---
   decoded.pulseOc = readUInt32BE(bytes.slice(14, 18));
 
-  // --- Status: Battery & Msg Type (bytes 20-21) ---
-  const status = readUInt16LE(bytes.slice(20, 22));
+  // --- Status: Battery & Msg Type (Big Endian) ---
+  const status = readUInt16BE(bytes.slice(20, 22));
+
   const batteryBits = (status >> 2) & 0x03;
-  const batteryLevels = [100, 75, 50, 25]; // %
+  const batteryLevels = [100, 75, 50, 25];
   lifecycle.batteryLevel = batteryLevels[batteryBits] || null;
 
   decoded.msgType = (status & 0x01) ? "ALARM" : "NORMAL";
 
-  // --- Emit results ---
   emit("sample", { data: lifecycle, topic: "lifecycle" });
   emit("sample", { data: decoded, topic: "default" });
 }
