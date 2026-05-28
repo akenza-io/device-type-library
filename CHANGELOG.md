@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.96.1] - 2026-05-28
+
+### Changed
+
+- Enless - fixed conversion issue for status and alarms
+
 # [1.96.0] - 2026-05-20
 
 ### Added
