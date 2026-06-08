@@ -82,7 +82,7 @@ describe("Elsys ELT-2 uplink", () => {
       const data = {
         data: {
           payloadHex:
-            "3e570701080509010a000b050d000c0511021300000000140000012c15000000011600000001170000000118000000011d000000001e000000011f00000001200000000022000000002400000001250326002700f519fb00eb",
+            "3e560701080509010a000b050c050d000e00110214000002581500000001170000000118000000011a000493e01e000000011f000000012000000000220004006425032600270028002e012f00300134003b00f53ffb0d56",
           port: 6,
         },
       };
@@ -98,26 +98,30 @@ describe("Elsys ELT-2 uplink", () => {
         assert.equal(value.data.mode, 1);
         assert.equal(value.data.ack, false);
         assert.equal(value.data.drDef, 5);
-        assert.equal(value.data.drMin, 0);
         assert.equal(value.data.drMax, 5);
+        assert.equal(value.data.drMin, 0);
+        assert.equal(value.data.class, 0);
         assert.equal(value.data.pirCfg, 2);
-        assert.deepEqual(value.data.accCfg, [0, 0, 0, 0]);
-        assert.equal(value.data.splPer, 300);
+        assert.equal(value.data.splPer, 600);
         assert.equal(value.data.tempPer, 1);
-        assert.equal(value.data.rhPer, 1);
         assert.equal(value.data.lightPer, 1);
         assert.equal(value.data.pirPer, 1);
-        assert.equal(value.data.accPer, 0);
+        assert.equal(value.data.extPer, 300000);
         assert.equal(value.data.vddPer, 1);
         assert.equal(value.data.sendPer, 1);
         assert.equal(value.data.lock, 0);
-        assert.deepEqual(value.data.link, [0, 0, 0, 0]);
-        assert.equal(value.data.soundPer, 1);
+        assert.equal(value.data.link, "00040064");
         assert.equal(value.data.plan, 3);
         assert.equal(value.data.subBand, 0);
         assert.equal(value.data.lbt, false);
-        assert.equal(value.data.sensor, "ERS_SOUND");
-        assert.equal(value.data.version, 235);
+        assert.equal(value.data.ledConfig, 0);
+        assert.equal(value.data.qSize, 1);
+        assert.equal(value.data.qOffset, false);
+        assert.equal(value.data.qPurge, true);
+        assert.equal(value.data.pirSensivity, 0);
+        assert.equal(value.data.asr, false);
+        assert.equal(value.data.sensor, "ERS2_EYE");
+        assert.equal(value.data.version, 3414);
 
         validateSchema(value.data, configurationSchema, {
           throwError: true,

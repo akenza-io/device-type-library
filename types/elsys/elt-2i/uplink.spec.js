@@ -101,7 +101,7 @@ describe("Elsys ELT-2I uplink", () => {
         assert.equal(value.data.drMin, 0);
         assert.equal(value.data.drMax, 5);
         assert.equal(value.data.pirCfg, 2);
-        assert.deepEqual(value.data.accCfg, [0, 0, 0, 0]);
+        assert.equal(value.data.accCfg, "00000000");
         assert.equal(value.data.splPer, 300);
         assert.equal(value.data.tempPer, 1);
         assert.equal(value.data.rhPer, 1);
@@ -111,7 +111,7 @@ describe("Elsys ELT-2I uplink", () => {
         assert.equal(value.data.vddPer, 1);
         assert.equal(value.data.sendPer, 1);
         assert.equal(value.data.lock, 0);
-        assert.deepEqual(value.data.link, [0, 0, 0, 0]);
+        assert.equal(value.data.link, "00000000");
         assert.equal(value.data.soundPer, 1);
         assert.equal(value.data.plan, 3);
         assert.equal(value.data.subBand, 0);

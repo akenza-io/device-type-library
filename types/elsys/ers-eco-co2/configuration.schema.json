@@ -48,6 +48,12 @@
       "description": "Datarate maximum",
       "hideFromKpis": true
     },
+    "class": {
+      "title": "LoRA Class",
+      "type": "number",
+      "description": "LoRA Class",
+      "hideFromKpis": true
+    },
     "payload": {
       "title": "Payload",
       "type": "number",
@@ -99,7 +105,7 @@
     },
     "accCfg": {
       "title": "Accelerometer configuration",
-      "type": "array",
+      "type": "string",
       "description": "Accelerometer configuration",
       "hideFromKpis": true
     },
@@ -189,7 +195,7 @@
     },
     "link": {
       "title": "Link check configuration",
-      "type": "array",
+      "type": "string",
       "description": "Link check configuration (hex)",
       "hideFromKpis": true
     },
@@ -277,6 +283,120 @@
       "description": "Queue purge",
       "hideFromKpis": true
     },
+    "co2Ref": {
+      "title": "CO2 reference",
+      "type": "integer",
+      "description": "CO2 reference",
+      "hideFromKpis": true
+    },
+    "co2Cal": {
+      "title": "CO2 calculation",
+      "type": "integer",
+      "description": "CO2 calculation",
+      "hideFromKpis": true
+    },
+    "co2Abc": {
+      "title": "CO2 ABC",
+      "type": "integer",
+      "description": "CO2 automatic background calculation",
+      "hideFromKpis": true
+    },
+    "pirSensivity": {
+      "title": "PIR Sensitivity",
+      "type": "integer",
+      "description": "PIR Sensitivity",
+      "hideFromKpis": true
+    },
+    "occSens": {
+      "title": "Occupancy sensitivity",
+      "type": "integer",
+      "description": "Occupancy sensitivity",
+      "hideFromKpis": true
+    },
+    "soundPwr": {
+      "title": "Sound power",
+      "type": "integer",
+      "description": "Sound power",
+      "hideFromKpis": true
+    },
+    "dispPer": {
+      "title": "Display periode",
+      "type": "integer",
+      "description": "Display periode",
+      "hideFromKpis": true
+    },
+    "dispAction": {
+      "title": "Display action",
+      "type": "integer",
+      "description": "Display action",
+      "hideFromKpis": true
+    },
+    "dispUnit": {
+      "title": "Display unit",
+      "type": "integer",
+      "description": "Display unit",
+      "hideFromKpis": true
+    },
+    "dispInv": {
+      "title": "Display inversion",
+      "type": "integer",
+      "description": "Display inversion",
+      "hideFromKpis": true
+    },
+    "asr": {
+      "title": "ASR",
+      "type": "boolean",
+      "description": "ASR",
+      "hideFromKpis": true
+    },
+    "dispLogo": {
+      "title": "Display logo",
+      "type": "integer",
+      "description": "Display logo",
+      "hideFromKpis": true
+    },
+    "dispLang": {
+      "title": "Display language",
+      "type": "integer",
+      "description": "Display language",
+      "hideFromKpis": true
+    },
+    "lightComp": {
+      "title": "Light composition",
+      "type": "integer",
+      "description": "Light composition",
+      "hideFromKpis": true
+    },
+    "vocPer": {
+      "title": "VOC period",
+      "type": "integer",
+      "description": "VOC period",
+      "hideFromKpis": true
+    },
+    "dispCustom": {
+      "title": "Custom display",
+      "type": "string",
+      "description": "Custom display",
+      "hideFromKpis": true
+    },
+    "buttonPer": {
+      "title": "Button period",
+      "type": "integer",
+      "description": "Button period",
+      "hideFromKpis": true
+    },
+    "buttonCfg": {
+      "title": "Button config",
+      "type": "string",
+      "description": "Button config",
+      "hideFromKpis": true
+    },
+    "rxStatus": {
+      "title": "RX status",
+      "type": "string",
+      "description": "RX status",
+      "hideFromKpis": true
+    },
     "c1": {
       "title": "C1",
       "type": "number",
@@ -312,11 +432,11 @@
       "type": "string",
       "description": "Sensor",
       "enum": [
-        "UNKNOWN",
+        "Unknown",
         "ESM5K",
-        "ELT1",
-        "ELT1HP",
-        "ELT2HP",
+        "ELT_1",
+        "ELT_1_HP",
+        "ELT_2_HP",
         "ELT_LITE",
         "ERS",
         "ERS_CO2",
@@ -324,7 +444,33 @@
         "ERS_EYE",
         "ERS_DESK",
         "ERS_SOUND",
-        "EMS"
+        "ERS_TVOC",
+        "ERS_CO2_LITE",
+        "EMS",
+        "EMS_DOOR",
+        "EMS_DESK",
+        "EMS_LITE",
+        "TAG",
+        "ERS15",
+        "ERS15_CO2",
+        "ERS15_LITE",
+        "ERS15_EYE",
+        "ERS15_SOUND",
+        "ERS15_TVOC",
+        "ERS15_CO2_LITE",
+        "ERS2",
+        "ERS2_CO2",
+        "ERS2_LITE",
+        "ERS2_EYE",
+        "ERS2_SOUND",
+        "ERS2_TVOC",
+        "ERS2_CO2_LITE",
+        "ECO",
+        "ECO_CO2",
+        "EMS2",
+        "ETHD10",
+        "EIAQD10",
+        "EIAQDP10"
       ],
       "hideFromKpis": true
     },
