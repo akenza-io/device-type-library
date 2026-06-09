@@ -90,9 +90,9 @@ describe("Elsys EMS Door uplink", () => {
 
         assert.equal(value.topic, "acceleration");
         assert.equal(value.data.accMotion, 0);
-        assert.equal(value.data.accX, 1);
-        assert.equal(value.data.accY, 0);
-        assert.equal(value.data.accZ, -0);
+        assert.equal(value.data.accX, 62);
+        assert.equal(value.data.accY, 1);
+        assert.equal(value.data.accZ, -1);
 
         validateSchema(value.data, accelerationSchema, {
           throwError: true,
@@ -166,9 +166,9 @@ describe("Elsys EMS Door uplink", () => {
 
         assert.equal(value.topic, "acceleration");
         assert.equal(value.data.accMotion, 0);
-        assert.equal(value.data.accX, 1);
-        assert.equal(value.data.accY, 0);
-        assert.equal(value.data.accZ, -0);
+        assert.equal(value.data.accX, 62);
+        assert.equal(value.data.accY, 1);
+        assert.equal(value.data.accZ, -1);
 
         validateSchema(value.data, accelerationSchema, {
           throwError: true,

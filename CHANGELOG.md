@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.96.2] - 2026-06-09
+
+### Changed
+
+- Elsys - Unified uplink where possible and extended sensor settings for newer device versions
+
 # [1.96.1] - 2026-05-28
 
 ### Changed
