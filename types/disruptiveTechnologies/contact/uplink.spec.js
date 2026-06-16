@@ -93,6 +93,8 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
 
         assert.equal(value.topic, "contact");
         assert.equal(value.data.contact, "OPEN");
+        assert.equal(value.data.closedSince, 0);
+        assert.equal(value.data.openSince, 0);
 
         validateSchema(value.data, objectPresentSchema, {
           throwError: true,
@@ -104,6 +106,7 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
         assert.isNotNull(value);
         assert.equal(value.lastContact, "OPEN");
         assert.isDefined(value.lastSampleEmittedAt);
+        assert.isDefined(value.firstOpening);
       });
 
       consume(data);
@@ -129,7 +132,8 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
         labels: {},
         state: {
           lastContact: "OPEN",
-          lastSampleEmittedAt: 1752131670374
+          lastSampleEmittedAt: new Date().setMinutes(new Date().getMinutes() - 90),
+          firstOpening: new Date().setMinutes(new Date().getMinutes() - 90)
         }
       };
 
@@ -170,6 +174,8 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
 
         assert.equal(value.topic, "contact");
         assert.equal(value.data.contact, "OPEN");
+        assert.equal(value.data.closedSince, 0);
+        assert.equal(value.data.openSince, 90);
 
         validateSchema(value.data, objectPresentSchema, {
           throwError: true,

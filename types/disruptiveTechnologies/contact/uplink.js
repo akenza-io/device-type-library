@@ -47,6 +47,28 @@ function calculateIncrement(state, currentValue, usageDefinition = 2, doorClosin
   return response;
 }
 
+function calculateTimedUsage(state, contact) {
+  const now = new Date().getTime();
+  const sample = { "closedSince": 0, "openSince": 0 };
+  state = state || {};
+
+  if (contact) {
+    if (state.firstClosing == undefined) {
+      state.firstClosing = now;
+      delete state.firstOpening; // Reset cycle
+    }
+    sample.closedSince = Math.round((now - state.firstClosing) / 1000 / 60);
+  } else {
+    if (state.firstOpening == undefined) {
+      state.firstOpening = now;
+      delete state.firstClosing; // Reset cycle
+    }
+    sample.openSince = Math.round((now - state.firstOpening) / 1000 / 60);
+  }
+
+  return { state, sample };
+}
+
 function checkForCustomFields(device, target, fallbackValue) {
   if (device !== undefined && device.customFields !== undefined && device.customFields[target] !== undefined) {
     return device.customFields[target];
@@ -61,7 +83,8 @@ function consume(event) {
 
   if (eventType === "contact") {
     const sample = {};
-    sample.contact = event.data.contact.state;;
+    sample.contact = event.data.contact.state;
+
     if (sample.contact === "OPEN") {
       sample.hasContact = false;
       sample.relativeCount = 1;
@@ -69,6 +92,11 @@ function consume(event) {
       sample.hasContact = true;
       sample.relativeCount = 0;
     }
+
+    let timedUsageResult = calculateTimedUsage(state, sample.hasContact);
+    sample.closedSince = timedUsageResult.sample.closedSince;
+    sample.openSince = timedUsageResult.sample.openSince;
+    state = timedUsageResult.state;
 
     if (state.lastCount !== undefined) {
       if (sample.contact !== state.lastContact) {
@@ -138,6 +166,11 @@ function consume(event) {
     } else {
       sample.hasContact = true;
     }
+
+    let timedUsageResult = calculateTimedUsage(state, sample.hasContact);
+    sample.closedSince = timedUsageResult.sample.closedSince;
+    sample.openSince = timedUsageResult.sample.openSince;
+    state = timedUsageResult.state;
 
     emit("sample", { data: { doorClosings: 0, usageCount: 0 }, topic: "door_count" });
     emit("sample", { data: sample, topic: "contact" });

@@ -29,6 +29,18 @@
       "title": "Absolute event count",
       "description": "Absolute event count",
       "type": "integer"
+    },
+    "closedSince": {
+      "title": "Closed since",
+      "description": "Minutes since door closing",
+      "type": "integer",
+      "unit": "min"
+    },
+    "openSince": {
+      "title": "Open since",
+      "description": "Minutes since door opening",
+      "type": "integer",
+      "unit": "min"
     }
   },
   "required": [
