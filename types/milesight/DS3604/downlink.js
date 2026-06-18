@@ -22,6 +22,31 @@ function ascii2hex(str) {
     return arr.join('');
 }
 
+function replaceUmlauts(str) {
+    return str
+        .replace(/Ä|Æ/g, 'Ae')
+        .replace(/ä|æ/g, 'ae')
+        .replace(/Ö|Œ/g, 'Oe')
+        .replace(/ö|œ/g, 'oe')
+        .replace(/Ü/g, 'Ue')
+        .replace(/ü/g, 'ue')
+        .replace(/À|Â/g, 'A')
+        .replace(/à|â/g, 'a')
+        .replace(/Ç/g, 'C')
+        .replace(/ç/g, 'c')
+        .replace(/É|È|Ê|Ë/g, 'E')
+        .replace(/é|è|ê|ë/g, 'e')
+        .replace(/Î|Ï/g, 'I')
+        .replace(/î|ï/g, 'i')
+        .replace(/Ô/g, 'O')
+        .replace(/ô/g, 'o')
+        .replace(/Ù|Û/g, 'U')
+        .replace(/ù|û/g, 'u')
+        .replace(/Ÿ/g, 'Y')
+        .replace(/ÿ/g, 'y')
+        .replace(/ß/g, 'ss');
+}
+
 
 function consume(event) {
     const port = event.payload.port || 85;
@@ -123,7 +148,7 @@ function consume(event) {
                     payloadHex += tempHex;
 
                     // ACII Encoded Hex
-                    const contentHex = ascii2hex(command.content);
+                    const contentHex = ascii2hex(replaceUmlauts(command.content));
                     // 1 Byte content size
                     payloadHex += intToHex(contentHex.length / 2);
                     payloadHex += contentHex;
