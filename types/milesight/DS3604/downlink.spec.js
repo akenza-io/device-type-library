@@ -96,7 +96,7 @@ describe("DS3604 Downlink", () => {
               "actionType": "contentUpdate",
               "template": 2,
               "moduleId": 5,
-              "content": "Änderung der berühmten römischen Ziffer."
+              "content": "Das Übergrößengeschäft hat geöffnet."
             },
           ]
         }
@@ -107,7 +107,7 @@ describe("DS3604 Downlink", () => {
         assert.isNotNull(value);
         assert.typeOf(value, "object");
 
-        assert.equal(value.payloadHex, "FB01442b41656e646572756e6720646572206265727565686d74656e20726f656d69736368656e205a69666665722eFF3D02");
+        assert.equal(value.payloadHex, "FB01442944617320556562657267726f657373656e676573636861656674206861742067656f6566666e65742eFF3D02");
         assert.equal(value.confirmed, true);
         assert.equal(value.port, 85);
       });
