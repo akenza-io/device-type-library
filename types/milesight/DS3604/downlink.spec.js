@@ -1,8 +1,6 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+import { init, expectEmits } from "test-utils";
 
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -81,6 +79,35 @@ describe("DS3604 Downlink", () => {
         assert.typeOf(value, "object");
 
         assert.equal(value.payloadHex, "FB01440d47756573742057616974696e67FF3D02FF7300");
+        assert.equal(value.confirmed, true);
+        assert.equal(value.port, 85);
+      });
+
+      consume(data);
+    });
+
+
+    it("should content update and translate the Umlaute correctly", () => {
+      const data = {
+        payload: {
+          "actionType": "multiDownlink",
+          "multiDownlink": [
+            {
+              "actionType": "contentUpdate",
+              "template": 2,
+              "moduleId": 5,
+              "content": "Änderung der berühmten römischen Ziffer."
+            },
+          ]
+        }
+      };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "downlink");
+        assert.isNotNull(value);
+        assert.typeOf(value, "object");
+
+        assert.equal(value.payloadHex, "FB01442b41656e646572756e6720646572206265727565686d74656e20726f656d69736368656e205a69666665722eFF3D02");
         assert.equal(value.confirmed, true);
         assert.equal(value.port, 85);
       });
