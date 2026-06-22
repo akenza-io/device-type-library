@@ -48,6 +48,16 @@ describe("Dragino LDS03A Uplink", () => {
       });
   });
 
+
+  let doorCountSchema = null;
+  before((done) => {
+    loadSchema(`${__dirname}/door_count.schema.json`)
+      .then((parsedSchema) => {
+        doorCountSchema = parsedSchema;
+        done();
+      });
+  });
+
   describe("consume()", () => {
     it("should decode the Dragino LDS03A open uplink", () => {
       const data = {
@@ -56,6 +66,13 @@ describe("Dragino LDS03A Uplink", () => {
           payloadHex: "0100000500000063bfe921",
         },
       };
+
+
+      expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value.lastCount, 0);
+        assert.isNotNull(value.partialUsage, 5);
+      });
 
       expectEmits((type, value) => {
         assert.equal(type, "sample");
@@ -69,6 +86,18 @@ describe("Dragino LDS03A Uplink", () => {
         assert.equal(value.data.openCounts, 5);
 
         validateSchema(value.data, defaultSchema, { throwError: true });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "door_count");
+        assert.equal(value.data.doorClosings, 0);
+        assert.equal(value.data.usageCount, 0);
+
+        validateSchema(value.data, doorCountSchema, { throwError: true });
       });
 
       consume(data);
