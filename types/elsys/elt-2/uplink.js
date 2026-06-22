@@ -530,7 +530,7 @@ function DecodeElsysSettings(input) {
     const sensitiveInfo = ["appSKey", "nwkSKey", "devEui", "appEui", "appKey", "devAddr"];
     if (sensitiveInfo.indexOf(setting.name) === -1) {
       if (setting.parse == null) {
-        payload[setting.name] = Bits.bytesToHex(d); // Make them a hexstring again
+        payload[setting.name] = Hex.bytesToHex(d); // Make them a hexstring again
       } else {
         payload[setting.name] = setting.parse(d);
       }
