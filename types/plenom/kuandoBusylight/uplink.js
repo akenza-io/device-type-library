@@ -1,6 +1,6 @@
 function consume(event) {
   const payload = event.data.payloadHex;
-  if (payload !== undefined && payload !== null && payload.length !== 0) {
+  if (payload != undefined && payload != null && payload.length !== 0) {
     const bits = Bits.hexToBits(payload);
     const data = {};
     const lifecycle = {};
