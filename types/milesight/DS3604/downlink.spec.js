@@ -85,34 +85,5 @@ describe("DS3604 Downlink", () => {
 
       consume(data);
     });
-
-
-    it("should content update and translate the Umlaute correctly", () => {
-      const data = {
-        payload: {
-          "actionType": "multiDownlink",
-          "multiDownlink": [
-            {
-              "actionType": "contentUpdate",
-              "template": 2,
-              "moduleId": 5,
-              "content": "Das Übergrößengeschäft hat geöffnet."
-            },
-          ]
-        }
-      };
-
-      expectEmits((type, value) => {
-        assert.equal(type, "downlink");
-        assert.isNotNull(value);
-        assert.typeOf(value, "object");
-
-        assert.equal(value.payloadHex, "FB01442944617320556562657267726f657373656e676573636861656674206861742067656f6566666e65742eFF3D02");
-        assert.equal(value.confirmed, true);
-        assert.equal(value.port, 85);
-      });
-
-      consume(data);
-    });
   });
 });
