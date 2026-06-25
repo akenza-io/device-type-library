@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.97.0] - 2026-06-25
+
+### Added
+
+- Pressac - CT Clamp
+- Pressac - Room Conditions Sensor
+
+### Changed
+
+- Pressac - Updated IAQ Sensor image
+
 # [1.96.4] - 2026-06-18
 
 ### Changed
