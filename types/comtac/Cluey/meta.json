@@ -7,7 +7,13 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "C",
-  "availableSensors": ["Analog", "Counter", "Digital", "GPS", "Temperature"],
+  "availableSensors": [
+    "Analog",
+    "Counter",
+    "Digital Input",
+    "GPS",
+    "Temperature"
+  ],
   "outputTopics": [
     "analog_input_1",
     "analog_input_2",

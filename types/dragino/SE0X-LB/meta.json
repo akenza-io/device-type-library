@@ -8,9 +8,9 @@
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": [
-    "Soil temperature",
-    "Soil humidity",
-    "Soil conductivity"
+    "Soil Temperature",
+    "Soil Humidity",
+    "Soil Conductivity"
   ],
   "outputTopics": [
     "default",

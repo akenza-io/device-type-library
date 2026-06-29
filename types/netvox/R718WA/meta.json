@@ -7,7 +7,7 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [
-    "Water Leak"
+    "Leak"
   ],
   "outputTopics": [
     "default",

@@ -6,7 +6,10 @@
   "description": "YO Power measures AC current flowing through devices connected to the mains.",
   "author": "Maciej Sacewicz",
   "firmwareVersion": "V4.0.3",
-  "availableSensors": ["Current", "Energy"],
+  "availableSensors": [
+    "Current",
+    "Energy Metering"
+  ],
   "outputTopics": [
     "ch1",
     "ch2",

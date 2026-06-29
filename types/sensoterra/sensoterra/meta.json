@@ -9,7 +9,7 @@
   "loraDeviceClass": "A",
   "availableSensors": [
     "Temperature",
-    "Humditiy"
+    "Humidity"
   ],
   "outputTopics": [
     "calibration",

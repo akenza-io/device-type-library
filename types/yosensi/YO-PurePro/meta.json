@@ -7,16 +7,16 @@
   "author": "Maciej Sacewicz",
   "firmwareVersion": "V3.6.3",
   "availableSensors": [
-    "Internal Temperature",
-    "Relative Humidity",
+    "Temperature",
+    "Humidity",
     "Atmospheric Pressure",
     "Illuminance",
     "TVOC",
     "CO",
     "CO2",
-    "Sound Pressure Level",
+    "Sound",
     "PM2.5",
-    "PM4",
+    "PM4.0",
     "PM10"
   ],
   "outputTopics": [

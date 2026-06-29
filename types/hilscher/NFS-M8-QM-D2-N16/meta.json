@@ -9,7 +9,7 @@
     "system_monitoring"
   ],
   "availableSensors": [
-    "IO-Link"
+    "IO"
   ],
   "encoding": "JSON",
   "connectivity": "MQTT"
