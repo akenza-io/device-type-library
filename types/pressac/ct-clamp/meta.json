@@ -1,0 +1,18 @@
+{
+  "name": "CT Clamp",
+  "version": "1.0.0",
+  "manufacturer": "Pressac",
+  "url": "https://www.pressac.com/sensors/lorawan-ct-clamp-sensors/",
+  "description": "Pressac's LoRaWAN® CT Clamp sensor monitors electrical current on up to three channels, providing energy usage data for IoT platforms to help reduce consumption and improve efficiency.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Current"
+  ],
+  "outputTopics": [
+    "default"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
