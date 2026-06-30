@@ -2,12 +2,6 @@
 
 All notable changes to this project will be documented in this file.
 
-# [1.96.4] - 2026-06-18
-
-### Changed
-
-- DS3604 - translating Umlaute which where not supported by the device
-
 # [1.96.3] - 2026-06-17
 
 ### Changed
