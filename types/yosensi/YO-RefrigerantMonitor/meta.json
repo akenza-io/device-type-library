@@ -9,8 +9,8 @@
   "availableSensors": [
     "Battery Voltage",
     "Pressure",
-    "Internal Temperature",
-    "Relative Humidity"
+    "Temperature",
+    "Humidity"
   ],
   "outputTopics": [
     "battery_voltage",

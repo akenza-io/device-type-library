@@ -7,8 +7,20 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": ["Temperature", "Humidity", "Pulse", "GPIO", "Modbus"],
-  "outputTopics": ["adc", "error", "gpio", "modbus", "temperature"],
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "Pulse Input",
+    "GPIO",
+    "Modbus"
+  ],
+  "outputTopics": [
+    "adc",
+    "error",
+    "gpio",
+    "modbus",
+    "temperature"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

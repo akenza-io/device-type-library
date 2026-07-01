@@ -14,7 +14,7 @@
     "Photosynthetically Active Radiation",
     "Pressure",
     "Temperature",
-    "Vapor Pressure Deficit"
+    "Vapor Pressure"
   ],
   "outputTopics": [
     "default",

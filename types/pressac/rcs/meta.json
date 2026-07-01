@@ -10,7 +10,7 @@
   "availableSensors": [
     "PIR",
     "Sound",
-    "Lux",
+    "Light",
     "Temperature",
     "Humidity"
   ],

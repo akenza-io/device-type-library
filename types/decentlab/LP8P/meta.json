@@ -10,11 +10,14 @@
   "availableSensors": [
     "CO2",
     "Temperature",
-    "IR",
+    "Infrared",
     "Humidity",
     "Barometric Pressure"
   ],
-  "outputTopics": ["default", "lifecycle"],
+  "outputTopics": [
+    "default",
+    "lifecycle"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

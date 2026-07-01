@@ -9,7 +9,7 @@
   "availableSensors": [
     "Temperature",
     "Humidity",
-    "Periodic/Persistent Counter",
+    "Counter",
     "Utilities Consumption"
   ],
   "outputTopics": [

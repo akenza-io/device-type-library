@@ -10,7 +10,7 @@
   "availableSensors": [
     "Electrical Conductivity",
     "Hydrostatic Pressure",
-    "Temperature PT1000"
+    "Temperature"
   ],
   "outputTopics": [
     "default",

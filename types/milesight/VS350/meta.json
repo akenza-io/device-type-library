@@ -7,8 +7,14 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": ["People Counter"],
-  "outputTopics": ["climate", "people_flow", "lifecycle"],
+  "availableSensors": [
+    "People Counting"
+  ],
+  "outputTopics": [
+    "climate",
+    "people_flow",
+    "lifecycle"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

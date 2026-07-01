@@ -14,7 +14,8 @@
     "VOC",
     "Pressure",
     "Differential Pressure",
-    "Volume Flow",
+    "Volume",
+    "Flow",
     "Occupancy",
     "Motion"
   ],

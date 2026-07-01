@@ -11,7 +11,7 @@
     "Temperature",
     "Humidity",
     "Accelerometer",
-    "Water Leak",
+    "Leak",
     "Reed"
   ],
   "outputTopics": [
