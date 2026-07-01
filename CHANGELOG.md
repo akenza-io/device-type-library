@@ -2,11 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
-# [1.96.5] - 2026-06-30
+
+# [1.97.1] - 2026-06-30
 
 ### Changed
 
 - DS3604 - Removed aforementioned change again
+
+# [1.97.0] - 2026-06-25
+
+### Added
+
+- Pressac - CT Clamp
+- Pressac - Room Conditions Sensor
 
 # [1.96.4] - 2026-06-18
 
