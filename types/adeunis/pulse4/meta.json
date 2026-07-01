@@ -6,8 +6,14 @@
   "description": "Meter flow rate monitoring from water, gas and electricity meters. Up to 2 connectable meters. Detection of tampers and leaks.",
   "author": "Akenza AG",
   "firmwareVersion": "V4.0.0",
-  "availableSensors": ["Flow"],
-  "outputTopics": ["default", "lifecycle", "extra"],
+  "availableSensors": [
+    "Flow"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "extra"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }

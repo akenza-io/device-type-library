@@ -10,7 +10,7 @@
   "availableSensors": [
     "Temperature",
     "Humidity",
-    "Water Leak"
+    "Leak"
   ],
   "outputTopics": [
     "default",

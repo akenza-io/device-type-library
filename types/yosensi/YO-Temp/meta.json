@@ -8,9 +8,8 @@
   "firmwareVersion": "V3.6.5",
   "availableSensors": [
     "Battery Voltage",
-    "Internal Temperature",
-    "3x External Temperature",
-    "Relative Humidity"
+    "Temperature",
+    "Humidity"
   ],
   "outputTopics": [
     "battery_voltage",

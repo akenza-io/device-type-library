@@ -2,12 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
-
 # [1.97.1] - 2026-06-30
 
 ### Changed
 
 - DS3604 - Removed aforementioned change again
+- Merged available sensors
 
 # [1.97.0] - 2026-06-25
 

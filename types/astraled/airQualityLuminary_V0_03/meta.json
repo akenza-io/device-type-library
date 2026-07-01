@@ -16,7 +16,7 @@
     "Particulate Matter",
     "GPS",
     "Altitude",
-    "Light State"
+    "Light"
   ],
   "outputTopics": [
     "default",

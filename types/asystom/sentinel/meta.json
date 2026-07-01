@@ -12,7 +12,7 @@
     "Vibration",
     "Frequency",
     "RPM",
-    "Shock Detection"
+    "Shock"
   ],
   "outputTopics": [
     "default",

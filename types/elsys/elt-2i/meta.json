@@ -11,10 +11,10 @@
     "Temperature",
     "Humidity",
     "Analog",
-    "Pulse",
+    "Pulse Input",
     "Distance",
     "Motion",
-    "Water Leak",
+    "Leak",
     "Pressure"
   ],
   "outputTopics": [

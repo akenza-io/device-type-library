@@ -11,7 +11,7 @@
     "Humidity",
     "CO2",
     "Illuminance",
-    "Infrared Presence Sensor"
+    "Presence"
   ],
   "outputTopics": [
     "battery_voltage",
