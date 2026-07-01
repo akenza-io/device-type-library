@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+- DS3604 - Removed aforementioned change again
 - Merged available sensors
 
 # [1.97.0] - 2026-06-25
@@ -14,10 +15,6 @@ All notable changes to this project will be documented in this file.
 
 - Pressac - CT Clamp
 - Pressac - Room Conditions Sensor
-
-### Changed
-
-- Pressac - Updated IAQ Sensor image
 
 # [1.96.4] - 2026-06-18
 
