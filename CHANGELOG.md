@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.97.2] - 2026-07-06
+
+### Changed
+
+- VS350 - Added support for new version
+
 # [1.97.1] - 2026-06-30
 
 ### Changed

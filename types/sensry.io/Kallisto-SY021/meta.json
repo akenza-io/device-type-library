@@ -14,10 +14,13 @@
     "CO2",
     "VOC",
     "Barometric Pressure",
-    "Noise",
-    "Battery"
+    "Noise"
   ],
-  "outputTopics": ["motion", "environment", "lifecycle"],
+  "outputTopics": [
+    "motion",
+    "environment",
+    "lifecycle"
+  ],
   "encoding": "JSON",
   "connectivity": "MQTT"
 }

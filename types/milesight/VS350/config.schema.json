@@ -1,0 +1,56 @@
+{
+  "$id": "https://akenza.io/milesight/VS350/config.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "config",
+  "title": "Config",
+  "properties": {
+    "installMethod": {
+      "title": "Install method",
+      "type": "string",
+      "description": "Install method",
+      "enum": [
+        "SIDE",
+        "TOP"
+      ],
+      "hideFromKpis": true
+    },
+    "installHeight": {
+      "title": "Install height",
+      "unit": "m",
+      "type": "number",
+      "description": "Install height",
+      "hideFromKpis": true
+    },
+    "compensation": {
+      "title": "Compensation",
+      "type": "number",
+      "description": "Compensation",
+      "hideFromKpis": true
+    },
+    "sensitivityReportEnabled": {
+      "title": "Sensitivity report enabled",
+      "type": "boolean",
+      "description": "Sensitivity report enabled",
+      "hideFromKpis": true
+    },
+    "manualGain": {
+      "title": "Manual gain",
+      "type": "number",
+      "unit": "db",
+      "description": "Manual gain",
+      "hideFromKpis": true
+    },
+    "peopleThresholdTriggerMode": {
+      "title": "People threshold trigger mode",
+      "type": "string",
+      "description": "People threshold trigger mode",
+      "enum": [
+        "THRESHOLD",
+        "MULTIPLE"
+      ],
+      "hideFromKpis": true
+    }
+  }
+}
