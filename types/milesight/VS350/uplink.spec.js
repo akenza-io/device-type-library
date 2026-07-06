@@ -103,7 +103,7 @@ describe("Milesight VS350 Uplink", () => {
       consume(data);
     });
 
-    it("should decode should decode the Milesight VS350 new verion payload", () => {
+    it("should decode the Milesight VS350 new version payload", () => {
       const data = {
         data: {
           port: 85,
