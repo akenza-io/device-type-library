@@ -13,7 +13,9 @@
   "outputTopics": [
     "climate",
     "people_flow",
-    "lifecycle"
+    "lifecycle",
+    "system",
+    "config"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

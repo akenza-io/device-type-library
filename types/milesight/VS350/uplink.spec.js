@@ -1,5 +1,3 @@
-
-
 import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
@@ -37,6 +35,15 @@ describe("Milesight VS350 Uplink", () => {
     loadSchema(`${__dirname}/lifecycle.schema.json`)
       .then((parsedSchema) => {
         lifecycleSchema = parsedSchema;
+        done();
+      });
+  });
+
+  let systemSchema = null;
+  before((done) => {
+    loadSchema(`${__dirname}/system.schema.json`)
+      .then((parsedSchema) => {
+        systemSchema = parsedSchema;
         done();
       });
   });
@@ -89,6 +96,52 @@ describe("Milesight VS350 Uplink", () => {
         assert.equal(value.data.temperature, 31);
 
         validateSchema(value.data, climateSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("should decode the Milesight VS350 new version payload", () => {
+      const data = {
+        data: {
+          port: 85,
+          payloadHex: "0aefccae476a81ee4305cc01000100017564",
+        },
+      };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "people_flow");
+        assert.equal(value.data.periodicCountIn, 1);
+        assert.equal(value.data.periodicCountOut, 1);
+        assert.exists(value.timestamp)
+
+        validateSchema(value.data, peopleFlowSchema, { throwError: true });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batteryLevel, 100);
+
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "system");
+        assert.equal(value.data.currentSensitivity, 67);
+
+        validateSchema(value.data, systemSchema, { throwError: true });
       });
 
       consume(data);

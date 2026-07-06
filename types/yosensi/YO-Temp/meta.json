@@ -7,7 +7,6 @@
   "author": "Maciej Sacewicz",
   "firmwareVersion": "V3.6.5",
   "availableSensors": [
-    "Battery Voltage",
     "Temperature",
     "Humidity"
   ],
