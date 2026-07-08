@@ -21,7 +21,8 @@
     "zone",
     "queue",
     "queue_time",
-    "age"
+    "age",
+    "age_buckets"
   ],
   "encoding": "JSON",
   "connectivity": "HTTP"

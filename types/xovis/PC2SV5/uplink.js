@@ -164,6 +164,10 @@ function consume(event) {
     let queueingTime = 0;
     let queueFlag = false;
 
+    // Age buckets addon
+    let fwAge = [];
+    let bwAge = [];
+
     let peopleInZone = 0;
     let timestamp = new Date();
 
@@ -174,64 +178,79 @@ function consume(event) {
         record.counts.forEach((count) => {
           const { value } = count;
 
-          // Dont send empty samples
-          if (value > 0) {
-            if (lineRegex.test(logic.info)) {
-              // Line
-              switch (count.name) {
-                case "fw":
-                  fw += value;
-                  break;
-                case "bw":
-                  bw += value;
-                  break;
-                case "fw-male":
-                  fwMen += value;
-                  break;
-                case "bw-male":
-                  bwMen += value;
-                  break;
-                case "fw-female":
-                  fwWoman += value;
-                  break;
-                case "bw-female":
-                  bwWomen += value;
-                  break;
-                case "fw-mask":
-                  fwMask += value;
-                  break;
-                case "bw-mask":
-                  bwMask += value;
-                  break;
-                case "fw-no_mask":
-                  fwNoMask += value;
-                  break;
-                case "bw-no_mask":
-                  bwNoMask += value;
-                  break;
-                default:
-                  break;
-              }
-            } else if (queueRegex.test(logic.info)) {
-              const { name } = count;
-              switch (name) {
-                case "queue-length":
-                  queueLength = value;
-                  break;
-                case "outflow":
-                  outflow = value;
-                  break;
-                case "queueing-time":
-                  queueingTime = Math.round(value);
-                  break;
-                default:
-                  break;
-              }
-              queueFlag = true;
-            } else {
-              // Zone
-              peopleInZone += value;
+          if (lineRegex.test(logic.info)) {
+            // Line
+            switch (count.name) {
+              case "fw":
+                fw += value;
+                break;
+              case "bw":
+                bw += value;
+                break;
+              case "fw-male":
+                fwMen += value;
+                break;
+              case "bw-male":
+                bwMen += value;
+                break;
+              case "fw-female":
+                fwWoman += value;
+                break;
+              case "bw-female":
+                bwWomen += value;
+                break;
+              case "fw-mask":
+                fwMask += value;
+                break;
+              case "bw-mask":
+                bwMask += value;
+                break;
+              case "fw-no_mask":
+                fwNoMask += value;
+                break;
+              case "bw-no_mask":
+                bwNoMask += value;
+                break;
+              case "fw-age":
+                if (fwAge.length) {
+                  for (let i = 0; i < count.bins.length; i++) {
+                    fwAge[i] += count.bins[i];
+                  }
+                } else {
+                  fwAge = count.bins;
+                }
+                break;
+              case "bw-age":
+                if (bwAge.length) {
+                  for (let i = 0; i < count.bins.length; i++) {
+                    bwAge[i] += count.bins[i];
+                  }
+                } else {
+                  bwAge = count.bins;
+                }
+                break;
+              default:
+                break;
             }
+          } else if (queueRegex.test(logic.info)) {
+            const { name } = count;
+            switch (name) {
+              case "queue-length":
+                queueLength = value;
+                break;
+              case "outflow":
+                outflow = value;
+                break;
+              case "queueing-time":
+                queueingTime = Math.round(value);
+                break;
+              default:
+                break;
+            }
+            queueFlag = true;
+          } else {
+            // Zone
+            peopleInZone += value;
           }
         });
       });
@@ -241,6 +260,24 @@ function consume(event) {
       emit("sample", {
         data: { fw, bw },
         topic: "line_count",
+        timestamp,
+      });
+    }
+
+    if (fwAge.reduce((accumulator, currentValue) => accumulator + currentValue, 0) > 0 ||
+      bwAge.reduce((accumulator, currentValue) => accumulator + currentValue, 0) > 0) {
+      let ageBucketSample = {};
+      for (let i = 0; i < fwAge.length; i++) {
+        ageBucketSample["bucketFw" + (i + 1)] = fwAge[i];
+      }
+
+      for (let i = 0; i < bwAge.length; i++) {
+        ageBucketSample["bucketBw" + (i + 1)] = bwAge[i];
+      }
+
+      emit("sample", {
+        data: ageBucketSample,
+        topic: "age_buckets",
         timestamp,
       });
     }
