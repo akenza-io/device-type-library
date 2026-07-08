@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.97.3] - 2026-07-08
+
+### Changed
+
+- Xovis PC2SV5 - Added support age bucket addon
+
 # [1.97.2] - 2026-07-06
 
 ### Changed

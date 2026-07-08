@@ -4362,5 +4362,150 @@ describe("Xovis V5 Uplink", () => {
 
       consume(data);
     });
+
+    it("should decode the Xovis V5 line + gender bucket payload", () => {
+      const data = {
+        data: {
+          "logics_data": {
+            "logics": [
+              {
+                "id": 4,
+                "name": "Line-based logic 2",
+                "info": "XLT_LINE_IN_OUT_COUNT",
+                "geometries": [
+                  {
+                    "id": 2,
+                    "type": "LINE",
+                    "name": "Line 0"
+                  }
+                ],
+                "records": [
+                  {
+                    "from": 1783497240000,
+                    "to": 1783497300000,
+                    "samples": 1,
+                    "samples_expected": 1,
+                    "counts": [
+                      {
+                        "id": 6,
+                        "name": "fw",
+                        "value": 0
+                      },
+                      {
+                        "id": 7,
+                        "name": "bw",
+                        "value": 1
+                      },
+                      {
+                        "id": 4003,
+                        "name": "fw-male",
+                        "value": 0
+                      },
+                      {
+                        "id": 4004,
+                        "name": "bw-male",
+                        "value": 0
+                      },
+                      {
+                        "id": 4005,
+                        "name": "fw-female",
+                        "value": 0
+                      },
+                      {
+                        "id": 4006,
+                        "name": "bw-female",
+                        "value": 1
+                      },
+                      {
+                        "id": 4011,
+                        "name": "fw-age",
+                        "value": 0,
+                        "bins": [
+                          0,
+                          0,
+                          0,
+                          0,
+                          0
+                        ]
+                      },
+                      {
+                        "id": 4012,
+                        "name": "bw-age",
+                        "value": 1,
+                        "bins": [
+                          0,
+                          0,
+                          0,
+                          1,
+                          0
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "package_info": {
+              "agent_id": 1030,
+              "id": 1003,
+              "version": "5.0"
+            },
+            "sensor_info": {
+              "serial_number": "80:1F:12:D5:30:DC",
+              "type": "SINGLE_SENSOR"
+            }
+          }
+        },
+      };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "line_count");
+        assert.equal(value.data.bw, 1);
+        assert.equal(value.data.fw, 0);
+
+        validateSchema(value.data, lineCountSchema, { throwError: true });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "age_buckets");
+        assert.equal(value.data.bucketBw1, 0);
+        assert.equal(value.data.bucketBw2, 0);
+        assert.equal(value.data.bucketBw3, 0);
+        assert.equal(value.data.bucketBw4, 1);
+        assert.equal(value.data.bucketBw5, 0);
+
+        assert.equal(value.data.bucketFw1, 0);
+        assert.equal(value.data.bucketFw2, 0);
+        assert.equal(value.data.bucketFw3, 0);
+        assert.equal(value.data.bucketFw4, 0);
+        assert.equal(value.data.bucketFw5, 0);
+
+        // No schema as this can be a lot of different keys
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "gender");
+        assert.equal(value.data.fwMen, 0);
+        assert.equal(value.data.fwWoman, 0);
+        assert.equal(value.data.bwMen, 0);
+        assert.equal(value.data.bwWomen, 1);
+
+        validateSchema(value.data, genderSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
   });
 });
