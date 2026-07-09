@@ -156,5 +156,102 @@ describe("Watecco BoB Uplink", () => {
 
       consume(data);
     });
+
+    it("should decode the Watecco BoB sensor state uplink and set state", () => {
+      const data = {
+        data: {
+          port: 1,
+          payloadHex: "537E60",
+        },
+      };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.equal(value.lastMachineStatus, "MACHINE_START");
+        assert.exists(value.lastSampleTime);
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batteryLevel, 75.591);
+        assert.equal(value.data.machineRunning, true);
+        assert.equal(value.data.machineRunTime, 0);
+        assert.equal(value.data.sensorState, "MACHINE_START");
+
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("should decode the Watecco BoB report uplink and interpret state", () => {
+      const data = {
+        state: {
+          lastMachineStatus: "MACHINE_START",
+          lastSampleTime: new Date().getTime() - 180 * 1000 * 60
+        },
+        data: {
+          port: 1,
+          payloadHex: "52087f5a00353e090019260c552a0000007c77ffffffffffffffff",
+        },
+      };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.equal(value.lastMachineStatus, "MACHINE_START");
+        assert.exists(value.lastSampleTime);
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batteryLevel, 97.638);
+        assert.equal(value.data.machineRunning, true);
+        assert.equal(value.data.machineRunTime, 180);
+
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "report");
+        assert.equal(value.data.anomalyLevel, 6.299);
+        assert.equal(value.data.nrAlarms, 0);
+        assert.equal(value.data.temperature, 23);
+        assert.equal(value.data.operatingTime, 62);
+        assert.equal(value.data.reportID, 9);
+        assert.equal(value.data.maxAmplitude, 0.021);
+        assert.equal(value.data.peakFrequencyIndex, 13);
+        assert.equal(value.data.peakFrequency, 50.78125);
+        assert.equal(value.data.goodVibration, 43.937);
+        assert.equal(value.data.badVibrationPercentage1020, 12.089);
+        assert.equal(value.data.badVibrationPercentage2040, 5.974);
+        assert.equal(value.data.badVibrationPercentage4060, 0);
+        assert.equal(value.data.badVibrationPercentage6080, 0);
+        assert.equal(value.data.badVibrationPercentage80100, 0);
+        assert.equal(value.data.anomalyLevelTo20Last24h, 119);
+        assert.equal(value.data.anomalyLevelTo50Last24h, 255);
+        assert.equal(value.data.anomalyLevelTo80Last24h, 255);
+        assert.equal(value.data.anomalyLevelTo20Last30d, 255);
+        assert.equal(value.data.anomalyLevelTo50Last30d, 255);
+        assert.equal(value.data.anomalyLevelTo80Last30d, 255);
+        assert.equal(value.data.anomalyLevelTo20Last6m, 255);
+        assert.equal(value.data.anomalyLevelTo50Last6m, 255);
+        assert.equal(value.data.anomalyLevelTo80Last6m, 255);
+        validateSchema(value.data, reportSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
   });
 });
