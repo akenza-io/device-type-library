@@ -5,6 +5,8 @@ function round(value) {
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
+  const now = new Date().getTime();
+  const state = event.state || {};
   const data = {};
   let topic = "default";
 
@@ -120,21 +122,16 @@ function consume(event) {
         (data.operatingTime - data.goodVibration)) /
       127,
     );
-    const lifecycle = {};
+
+    let lifecycle = {};
     lifecycle.batteryLevel = round((Bits.bitsToUnsigned(bits.substr(136, 8)) * 100) / 127);
-
-    const now = new Date().getTime();
-    const state = event.state || {};
-
-    if (state.lastSampleTime !== undefined) {
-      lifecycle.machineRunTime = 0;
-      lifecycle.machineRunning = false;
-      if (state.lastMachineStatus === "MACHINE_START") {
-        lifecycle.machineRunning = true;
-        lifecycle.machineRunTime = Math.round((now - state.lastSampleTime) / 1000 / 60);
-        state.lastSampleTime = now;
-        emit("state", state);
-      }
+    lifecycle.machineRunning = false;
+    lifecycle.sensorRunning = false;
+    if (state.lastMachineStatus === "MACHINE_START") {
+      lifecycle.machineRunning = true;
+    }
+    if (state.lastSensorStatus === "SENSOR_START") {
+      lifecycle.sensorRunning = true;
     }
 
     emit("sample", {
@@ -191,46 +188,82 @@ function consume(event) {
         127;
     }
   } else if (header === 83) {
-    // State
-    const now = new Date().getTime();
-    const state = event.state || {};
-    if (state.lastSampleTime == undefined) {
-      state.lastSampleTime = now;
+    topic = "status";
+    // State init
+    if (state.lastSensorStart == undefined) {
+      state.lastSensorStart = now;
+      state.lastMachineStart = now;
       state.lastMachineStatus = "MACHINE_STOP";
+      state.lastSensorStatus = "SENSOR_STOP";
     }
-    data.machineRunTime = 0;
+    //
+    data.sensorStart = false;
+    data.sensorStop = false;
+    data.sensorNoVibration = false;
+    data.sensorStopNoVibration = false;
+    data.sensorLearnKeepalive = false;
+    data.machineStopWithErase = false;
+    data.machineStop = false;
+    data.machineStart = false;
 
-    topic = "lifecycle";
     let sensorState = Bits.bitsToUnsigned(bits.substr(8, 8));
     if (sensorState === 100) {
       sensorState = "SENSOR_START";
+      data.sensorStart = true;
+
+      state.lastSensorStatus = sensorState;
+      state.lastSensorStart = now;
     } else if (sensorState === 101) {
       sensorState = "SENSOR_STOP";
+      state.lastSensorStatus = sensorState;
+      data.sensorStop = true;
+
+      let sensorRuntime = Math.round((now - state.lastSensorStart) / 1000 / 60);
+      emit("sample", { data: { sensorRuntime }, topic: "sensor_runtime" });
     } else if (sensorState === 104) {
-      sensorState = "SENSOR_START_NO_VIBRATION";
+      sensorState = "SENSOR_NO_VIBRATION";
+      data.sensorNoVibration = true;
     } else if (sensorState === 105) {
       sensorState = "SENSOR_STOP_NO_VIBRATION";
+      data.sensorStopNoVibration = true;
     } else if (sensorState === 106) {
       sensorState = "SENSOR_LEARN_KEEPALIVE";
+      data.sensorLearnKeepalive = true;
     } else if (sensorState === 110) {
-      sensorState = "SENSOR_STOP_WITH_ERASE";
+      sensorState = "MACHINE_STOP_WITH_ERASE";
+      data.machineStopWithErase = true;
     } else if (sensorState === 125) {
       sensorState = "MACHINE_STOP";
-      data.machineRunTime = Math.round((now - state.lastSampleTime) / 1000 / 60);
       state.lastMachineStatus = sensorState;
+      data.machineStop = true;
+
+      // Machine runtime
+      let machineRuntime = Math.round((now - state.lastMachineStart) / 1000 / 60);
+      emit("sample", { data: { machineRuntime }, topic: "machine_runtime" });
     } else if (sensorState === 126) {
       sensorState = "MACHINE_START";
-      state.lastSampleTime = now;
+      state.lastMachineStart = now;
       state.lastMachineStatus = sensorState;
+      data.machineStart = true;
     }
     data.sensorState = sensorState;
 
-    data.machineRunning = false;
+    const lifecycle = {};
+    lifecycle.batteryLevel = round((Bits.bitsToUnsigned(bits.substr(16, 8)) * 100) / 127);
+    lifecycle.machineRunning = false;
+    lifecycle.sensorRunning = false;
     if (state.lastMachineStatus === "MACHINE_START") {
-      data.machineRunning = true;
+      lifecycle.machineRunning = true;
     }
-    data.batteryLevel = round((Bits.bitsToUnsigned(bits.substr(16, 8)) * 100) / 127);
+    if (state.lastSensorStatus === "SENSOR_START") {
+      lifecycle.sensorRunning = true;
+    }
     emit("state", state);
+
+    emit("sample", {
+      data: lifecycle,
+      topic: "lifecycle",
+    });
   }
   emit("sample", { data, topic });
 }

@@ -37,6 +37,25 @@ describe("Watecco BoB Uplink", () => {
       });
   });
 
+  let statusSchema = null;
+  before((done) => {
+    loadSchema(`${__dirname}/status.schema.json`)
+      .then((parsedSchema) => {
+        statusSchema = parsedSchema;
+        done();
+      });
+  });
+
+  let machineRuntime = null;
+  before((done) => {
+    loadSchema(`${__dirname}/machine_runtime.schema.json`)
+      .then((parsedSchema) => {
+        machineRuntime = parsedSchema;
+        done();
+      });
+  });
+
+
   describe("consume()", () => {
     it("should decode the Watecco BoB learning uplink", () => {
       const data = {
@@ -157,7 +176,7 @@ describe("Watecco BoB Uplink", () => {
       consume(data);
     });
 
-    it("should decode the Watecco BoB sensor state uplink and set state", () => {
+    it("should decode the Watecco BoB sensor status uplink and set state", () => {
       const data = {
         data: {
           port: 1,
@@ -168,7 +187,9 @@ describe("Watecco BoB Uplink", () => {
       expectEmits((type, value) => {
         assert.equal(type, "state");
         assert.equal(value.lastMachineStatus, "MACHINE_START");
-        assert.exists(value.lastSampleTime);
+        assert.exists(value.lastMachineStart);
+        assert.equal(value.lastSensorStatus, "SENSOR_STOP");
+        assert.exists(value.lastSensorStart);
       });
 
       expectEmits((type, value) => {
@@ -179,32 +200,46 @@ describe("Watecco BoB Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryLevel, 75.591);
         assert.equal(value.data.machineRunning, true);
-        assert.equal(value.data.machineRunTime, 0);
-        assert.equal(value.data.sensorState, "MACHINE_START");
+        assert.equal(value.data.sensorRunning, false);
 
         validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "status");
+        assert.equal(value.data.machineStart, true);
+        assert.equal(value.data.machineStop, false);
+        assert.equal(value.data.sensorStart, false);
+        assert.equal(value.data.sensorStop, false);
+        assert.equal(value.data.sensorNoVibration, false);
+        assert.equal(value.data.sensorStopNoVibration, false);
+        assert.equal(value.data.sensorLearnKeepalive, false);
+        assert.equal(value.data.machineStopWithErase, false);
+        assert.equal(value.data.sensorState, "MACHINE_START");
+
+        validateSchema(value.data, statusSchema, { throwError: true });
       });
 
       consume(data);
     });
 
-    it("should decode the Watecco BoB report uplink and interpret state", () => {
+    it("should decode the Watecco BoB report uplink and repeat state", () => {
       const data = {
         state: {
           lastMachineStatus: "MACHINE_START",
-          lastSampleTime: new Date().getTime() - 180 * 1000 * 60
+          lastSensorStatus: "SENSOR_STOP",
+          lastMachineStart: new Date().getTime() - 180 * 1000 * 60,
+          lastSensorStart: new Date().getTime() - 180 * 1000 * 60
         },
         data: {
           port: 1,
           payloadHex: "52087f5a00353e090019260c552a0000007c77ffffffffffffffff",
         },
       };
-
-      expectEmits((type, value) => {
-        assert.equal(type, "state");
-        assert.equal(value.lastMachineStatus, "MACHINE_START");
-        assert.exists(value.lastSampleTime);
-      });
 
       expectEmits((type, value) => {
         assert.equal(type, "sample");
@@ -214,7 +249,7 @@ describe("Watecco BoB Uplink", () => {
         assert.equal(value.topic, "lifecycle");
         assert.equal(value.data.batteryLevel, 97.638);
         assert.equal(value.data.machineRunning, true);
-        assert.equal(value.data.machineRunTime, 180);
+        assert.equal(value.data.sensorRunning, false);
 
         validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
@@ -249,6 +284,74 @@ describe("Watecco BoB Uplink", () => {
         assert.equal(value.data.anomalyLevelTo50Last6m, 255);
         assert.equal(value.data.anomalyLevelTo80Last6m, 255);
         validateSchema(value.data, reportSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("should decode the Watecco BoB sensor status uplink and emit runtime", () => {
+      const data = {
+        state: {
+          lastMachineStatus: "MACHINE_STOP",
+          lastSensorStatus: "SENSOR_STOP",
+          lastMachineStart: new Date().getTime() - 180 * 1000 * 60,
+          lastSensorStart: new Date().getTime() - 180 * 1000 * 60
+        },
+        data: {
+          port: 1,
+          payloadHex: "537D60",
+        },
+      };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "machine_runtime");
+        assert.equal(value.data.machineRuntime, 180)
+
+        validateSchema(value.data, machineRuntime, { throwError: true });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.equal(value.lastMachineStatus, "MACHINE_STOP");
+        assert.exists(value.lastMachineStart);
+        assert.equal(value.lastSensorStatus, "SENSOR_STOP");
+        assert.exists(value.lastSensorStart);
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batteryLevel, 75.591);
+        assert.equal(value.data.machineRunning, false);
+        assert.equal(value.data.sensorRunning, false);
+
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "status");
+        assert.equal(value.data.machineStart, false);
+        assert.equal(value.data.machineStop, true);
+        assert.equal(value.data.sensorStart, false);
+        assert.equal(value.data.sensorStop, false);
+        assert.equal(value.data.sensorNoVibration, false);
+        assert.equal(value.data.sensorStopNoVibration, false);
+        assert.equal(value.data.sensorLearnKeepalive, false);
+        assert.equal(value.data.machineStopWithErase, false);
+        assert.equal(value.data.sensorState, "MACHINE_STOP");
+
+        validateSchema(value.data, statusSchema, { throwError: true });
       });
 
       consume(data);

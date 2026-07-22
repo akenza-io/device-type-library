@@ -1,0 +1,20 @@
+{
+  "$id": "https://akenza.io/watecco/bob/sensor_runtime.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "sensor_runtime",
+  "title": "Sensor runtime",
+  "properties": {
+    "sensorRuntime": {
+      "title": "Sensor runtime",
+      "description": "Sensor runtime in minutes",
+      "unit": "m",
+      "type": "integer",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "sensorRuntime"
+  ]
+}

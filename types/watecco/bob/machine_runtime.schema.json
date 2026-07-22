@@ -1,0 +1,20 @@
+{
+  "$id": "https://akenza.io/watecco/bob/machine_runtime.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "machine_runtime",
+  "title": "Machine runtime",
+  "properties": {
+    "machineRuntime": {
+      "title": "Machine runtime",
+      "description": "Machine runtime in minutes",
+      "unit": "m",
+      "type": "integer",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "machineRuntime"
+  ]
+}

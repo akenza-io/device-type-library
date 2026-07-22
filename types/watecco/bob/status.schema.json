@@ -1,0 +1,85 @@
+{
+  "$id": "https://akenza.io/watecco/bob/status.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "status",
+  "title": "Status",
+  "properties": {
+    "sensorState": {
+      "title": "Sensor state",
+      "type": "string",
+      "description": "Sensor messages which indicate the state.",
+      "enum": [
+        "SENSOR_START",
+        "SENSOR_STOP",
+        "SENSOR_NO_VIBRATION",
+        "SENSOR_STOP_NO_VIBRATION",
+        "SENSOR_LEARN_KEEPALIVE",
+        "MACHINE_STOP_WITH_ERASE",
+        "MACHINE_START",
+        "MACHINE_STOP"
+      ],
+      "hideFromKpis": true
+    },
+    "sensorStart": {
+      "title": "Sensor start",
+      "description": "Sensor start",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "sensorStop": {
+      "title": "Sensor stop",
+      "description": "Sensor stop",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "sensorNoVibration": {
+      "title": "Sensor no vibration",
+      "description": "Keep alive sent during the vibration testing cycle, there is not enough vibration to start learning.",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "sensorStopNoVibration": {
+      "title": "Sensor stop no vibration",
+      "description": "Vibration testing cycle timeout, device goes to power off.",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "sensorLearnKeepalive": {
+      "title": "Sensor learning keepalive",
+      "description": "Learning mode keep alive message, sent when the maching foes off for a long time during a learning session.",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "machineStopWithErase": {
+      "title": "Machine stop with erase",
+      "description": "Machine stop with flash erase.",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "machineStart": {
+      "title": "Machine start",
+      "description": "Machine start",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "machineStop": {
+      "title": "Machine stop",
+      "description": "Machine stop",
+      "type": "boolean",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "machineStart",
+    "machineStop",
+    "sensorStart",
+    "sensorStop",
+    "sensorNoVibration",
+    "sensorStopNoVibration",
+    "sensorLearnKeepalive",
+    "machineStopWithErase",
+    "sensorState"
+  ]
+}
