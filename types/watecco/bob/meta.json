@@ -15,7 +15,10 @@
     "alarm",
     "learning",
     "lifecycle",
-    "report"
+    "machine_runtime",
+    "report",
+    "sensor_runtime",
+    "status"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

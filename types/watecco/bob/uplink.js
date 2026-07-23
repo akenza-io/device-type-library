@@ -5,6 +5,8 @@ function round(value) {
 function consume(event) {
   const payload = event.data.payloadHex;
   const bits = Bits.hexToBits(payload);
+  const now = new Date().getTime();
+  const state = event.state || {};
   const data = {};
   let topic = "default";
 
@@ -28,11 +30,11 @@ function consume(event) {
     data.vibrationLevel = (vl1 * 128 + vl2 + vl3 / 100) / 10 / 121.45; // float
     // Frequency_index
     data.temperature = Bits.bitsToUnsigned(bits.substr(48, 8)) - 30;
-    const learningFrom = Bits.bitsToUnsigned(bits.substr(56, 8));
+    const learningFrom = !!Bits.bitsToUnsigned(bits.substr(56, 8));
 
     if (learningFrom) {
       data.learningFrom = "ZERO";
-    } else if (learningFrom) {
+    } else {
       data.learningFrom = "ADDITIONAL_LEARNING";
     }
     data.peakFrequencyIndex = Bits.bitsToUnsigned(bits.substr(40, 8)) + 1;
@@ -94,39 +96,46 @@ function consume(event) {
     data.badVibrationPercentage1020 = round(
       (Bits.bitsToUnsigned(bits.substr(96, 8)) *
         (data.operatingTime - data.goodVibration)) /
-        127,
+      127,
     );
     // Time [minutes] spent in the 20-40% anomaly level range
     data.badVibrationPercentage2040 = round(
       (Bits.bitsToUnsigned(bits.substr(104, 8)) *
         (data.operatingTime - data.goodVibration)) /
-        127,
+      127,
     );
     // Time [minutes] spent in the 40-60% anomaly level range
     data.badVibrationPercentage4060 = round(
       (Bits.bitsToUnsigned(bits.substr(112, 8)) *
         (data.operatingTime - data.goodVibration)) /
-        127,
+      127,
     );
     // Time [minutes] spent in the 60-80% anomaly level range
     data.badVibrationPercentage6080 = round(
       (Bits.bitsToUnsigned(bits.substr(120, 8)) *
         (data.operatingTime - data.goodVibration)) /
-        127,
+      127,
     );
     // Time [minutes] spent in the 80-100% anomaly level range
     data.badVibrationPercentage80100 = round(
       (Bits.bitsToUnsigned(bits.substr(128, 8)) *
         (data.operatingTime - data.goodVibration)) /
-        127,
+      127,
     );
 
+    let lifecycle = {};
+    lifecycle.batteryLevel = round((Bits.bitsToUnsigned(bits.substr(136, 8)) * 100) / 127);
+    lifecycle.machineRunning = false;
+    lifecycle.sensorRunning = false;
+    if (state.lastMachineStatus === "MACHINE_START") {
+      lifecycle.machineRunning = true;
+    }
+    if (state.lastSensorStatus === "SENSOR_START") {
+      lifecycle.sensorRunning = true;
+    }
+
     emit("sample", {
-      data: {
-        batteryLevel: round(
-          (Bits.bitsToUnsigned(bits.substr(136, 8)) * 100) / 127,
-        ),
-      },
+      data: lifecycle,
       topic: "lifecycle",
     });
 
@@ -179,31 +188,82 @@ function consume(event) {
         127;
     }
   } else if (header === 83) {
-    // State
-    topic = "lifecycle";
+    topic = "status";
+    // State init
+    if (state.lastSensorStart == undefined) {
+      state.lastSensorStart = now;
+      state.lastMachineStart = now;
+      state.lastMachineStatus = "MACHINE_STOP";
+      state.lastSensorStatus = "SENSOR_STOP";
+    }
+    //
+    data.sensorStart = false;
+    data.sensorStop = false;
+    data.sensorNoVibration = false;
+    data.sensorStopNoVibration = false;
+    data.sensorLearnKeepalive = false;
+    data.machineStopWithErase = false;
+    data.machineStop = false;
+    data.machineStart = false;
+
     let sensorState = Bits.bitsToUnsigned(bits.substr(8, 8));
     if (sensorState === 100) {
       sensorState = "SENSOR_START";
+      data.sensorStart = true;
+
+      state.lastSensorStatus = sensorState;
+      state.lastSensorStart = now;
     } else if (sensorState === 101) {
       sensorState = "SENSOR_STOP";
+      state.lastSensorStatus = sensorState;
+      data.sensorStop = true;
+
+      let sensorRuntime = Math.round((now - state.lastSensorStart) / 1000 / 60);
+      emit("sample", { data: { sensorRuntime }, topic: "sensor_runtime" });
     } else if (sensorState === 104) {
-      sensorState = "SENSOR_START_NO_VIBRATION";
+      sensorState = "SENSOR_NO_VIBRATION";
+      data.sensorNoVibration = true;
     } else if (sensorState === 105) {
       sensorState = "SENSOR_STOP_NO_VIBRATION";
+      data.sensorStopNoVibration = true;
     } else if (sensorState === 106) {
       sensorState = "SENSOR_LEARN_KEEPALIVE";
+      data.sensorLearnKeepalive = true;
     } else if (sensorState === 110) {
-      sensorState = "SENSOR_STOP_WITH_ERASE";
+      sensorState = "MACHINE_STOP_WITH_ERASE";
+      data.machineStopWithErase = true;
     } else if (sensorState === 125) {
       sensorState = "MACHINE_STOP";
+      state.lastMachineStatus = sensorState;
+      data.machineStop = true;
+
+      // Machine runtime
+      let machineRuntime = Math.round((now - state.lastMachineStart) / 1000 / 60);
+      emit("sample", { data: { machineRuntime }, topic: "machine_runtime" });
     } else if (sensorState === 126) {
       sensorState = "MACHINE_START";
+      state.lastMachineStart = now;
+      state.lastMachineStatus = sensorState;
+      data.machineStart = true;
     }
     data.sensorState = sensorState;
-    data.batteryLevel = round(
-      (Bits.bitsToUnsigned(bits.substr(16, 8)) * 100) / 127,
-    );
-  }
 
+    const lifecycle = {};
+    lifecycle.batteryLevel = round((Bits.bitsToUnsigned(bits.substr(16, 8)) * 100) / 127);
+    lifecycle.machineRunning = false;
+    lifecycle.sensorRunning = false;
+    if (state.lastMachineStatus === "MACHINE_START") {
+      lifecycle.machineRunning = true;
+    }
+    if (state.lastSensorStatus === "SENSOR_START") {
+      lifecycle.sensorRunning = true;
+    }
+    emit("state", state);
+
+    emit("sample", {
+      data: lifecycle,
+      topic: "lifecycle",
+    });
+  }
   emit("sample", { data, topic });
 }

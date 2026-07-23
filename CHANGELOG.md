@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.97.4] - 2026-07-23
+
+### Changed
+
+- Xovis PC2SV5 - Split occupancy and queue message
+- Watteco Bob - Introduced new topic for runtime & status messages and extrapolated description and outputs of already existing datapoints
+
 # [1.97.3] - 2026-07-08
 
 ### Changed
