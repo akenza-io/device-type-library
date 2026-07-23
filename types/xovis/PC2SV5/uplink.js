@@ -1,4 +1,5 @@
 function consume(event) {
+  const state = event.state || {};
   let data = {};
 
   if (event.data.live_data !== undefined) {
@@ -58,9 +59,14 @@ function consume(event) {
               data.direction = ev.attributes.counter_name;
               topic = "count";
             } else if (type === "TIME_CHANGE") {
-              data.queueTime = Math.round(ev.attributes.amount * 10) / 10;
-              data.counterValue = ev.attributes.counter_value;
-              topic = "queue_time";
+              let time = Math.round(ev.attributes.amount)
+              if (ev.attributes.counter_name === "queueing-time") {
+                data.queueTime = time;
+                topic = "queue_time";
+              } else if (ev.attributes.counter_name === "dwell_time") {
+                data.dwellTime = time;
+                topic = "dwell_time";
+              }
             }
             emit("sample", { data, topic, timestamp: time });
           });
@@ -140,6 +146,7 @@ function consume(event) {
     // Logic data
     const lineRegex = new RegExp("LINE");
     const queueRegex = new RegExp("QUEUE_STATISTICS");
+    const occupancyRegex = new RegExp("ZONE_OCCUPANCY");
     const payload = event.data.logics_data.logics;
 
     // Standart Forwards & Backwards
@@ -164,11 +171,17 @@ function consume(event) {
     let queueingTime = 0;
     let queueFlag = false;
 
+    // Zone occupancy
+    let balance = 0;
+    let visits = 0;
+    let dwellTime = 0;
+    let zoneOccupancyFlag = false;
+
+
     // Age buckets addon
     let fwAge = [];
     let bwAge = [];
 
-    let peopleInZone = 0;
     let timestamp = new Date();
 
     payload.forEach((logic) => {
@@ -248,9 +261,22 @@ function consume(event) {
                 break;
             }
             queueFlag = true;
-          } else {
-            // Zone
-            peopleInZone += value;
+          } else if (occupancyRegex.test(logic.info)) {
+            const { name } = count;
+            switch (name) {
+              case "balance":
+                balance = value;
+                break;
+              case "visits":
+                visits = value;
+                break;
+              case "dwell_time":
+                dwellTime = Math.round(value);
+                break;
+              default:
+                break;
+            }
+            zoneOccupancyFlag = true;
           }
         });
       });
@@ -298,8 +324,22 @@ function consume(event) {
       });
     }
 
-    if (peopleInZone > 0) {
-      emit("sample", { data: { peopleInZone }, topic: "zone", timestamp });
+    if (zoneOccupancyFlag) {
+      if (state.lastVisits == undefined) {
+        state.lastVisits = 1;
+      }
+
+      // Should give out zero once
+      if (visits > 0 || visits != state.lastVisits) {
+        emit("sample", {
+          data: { peopleInZone: balance, visits, dwellTime },
+          topic: "zone",
+          timestamp,
+        });
+      }
+
+      state.lastVisits = visits;
+      emit("state", state);
     }
 
     if (queueFlag) {

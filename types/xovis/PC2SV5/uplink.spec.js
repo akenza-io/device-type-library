@@ -105,6 +105,25 @@ describe("Xovis V5 Uplink", () => {
       });
   });
 
+  let zoneSchema = null;
+  before((done) => {
+    loadSchema(`${__dirname}/zone.schema.json`)
+      .then((parsedSchema) => {
+        zoneSchema = parsedSchema;
+        done();
+      });
+  });
+
+  let dwellTimeSchema = null;
+  before((done) => {
+    loadSchema(`${__dirname}/dwell_time.schema.json`)
+      .then((parsedSchema) => {
+        dwellTimeSchema = parsedSchema;
+        done();
+      });
+  });
+
+
   describe("consume()", () => {
     it("should decode the Xovis V5 event payload", () => {
       const data = {
@@ -4233,8 +4252,7 @@ describe("Xovis V5 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "queue_time");
-        assert.equal(value.data.counterValue, 10.922001);
-        assert.equal(value.data.queueTime, 4.2);
+        assert.equal(value.data.queueTime, 4);
 
         validateSchema(value.data, queueTimeSchema, { throwError: true });
       });
@@ -4503,6 +4521,87 @@ describe("Xovis V5 Uplink", () => {
         assert.equal(value.data.bwWomen, 1);
 
         validateSchema(value.data, genderSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("should decode the Xovis V5 line + gender bucket payload", () => {
+      const data = {
+        data: {
+          "logics_data": {
+            "logics": [
+              {
+                "id": 1001,
+                "name": "POI5",
+                "info": "XLT_ZONE_OCCUPANCY_COUNT",
+                "geometries": [
+                  {
+                    "id": 1002,
+                    "type": "ZONE",
+                    "name": "POI5"
+                  }
+                ],
+                "records": [
+                  {
+                    "from": 1783674240000,
+                    "to": 1783674300000,
+                    "samples": 1,
+                    "samples_expected": 1,
+                    "counts": [
+                      {
+                        "id": 1001001,
+                        "name": "balance",
+                        "value": 1
+                      },
+                      {
+                        "id": 1001002,
+                        "name": "visits",
+                        "value": 1
+                      },
+                      {
+                        "id": 1001003,
+                        "name": "dwell_time",
+                        "value": 83.646004,
+                        "unit": "seconds"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "package_info": {
+              "agent_id": 1002,
+              "id": 1,
+              "version": "5.0"
+            },
+            "sensor_info": {
+              "serial_number": "00:6E:02:06:9B:48",
+              "type": "SINGLE_SENSOR"
+            }
+          }
+        },
+      };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "zone");
+        assert.equal(value.data.peopleInZone, 1);
+        assert.equal(value.data.visits, 1);
+        assert.equal(value.data.dwellTime, 84);
+
+        validateSchema(value.data, zoneSchema, { throwError: true });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+        assert.typeOf(value, "object");
+
+        assert.equal(value.lastVisits, 1);
       });
 
       consume(data);
