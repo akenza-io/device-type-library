@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.98.0] - 2026-07-27
+
+### Added
+
+- Elsys - ERS Interact Lite
+
 # [1.97.4] - 2026-07-23
 
 ### Changed

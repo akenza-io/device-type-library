@@ -1,0 +1,22 @@
+{
+  "name": "ERS Interact Lite Comfort LoRa",
+  "version": "1.0.0",
+  "manufacturer": "Elsys",
+  "url": "https://www.elsys.se/en/ers-interact-lite-comfort-lora/",
+  "description": "The ERS Interact Lite Comfort LoRa LoRaWAN® indoor sensor measures temperature and humidity while providing simple thermostat interaction through two capacitive touch buttons.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V2.3.5",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Target Temperature",
+    "Humidity"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
