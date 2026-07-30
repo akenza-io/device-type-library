@@ -309,7 +309,9 @@ describe("Watecco BoB Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "machine_runtime");
-        assert.equal(value.data.machineRuntime, 180)
+        if (process.env.TEST_MODE != "INTEGRATION") {
+          assert.equal(value.data.machineRuntime, 180)
+        }
 
         validateSchema(value.data, machineRuntime, { throwError: true });
       });

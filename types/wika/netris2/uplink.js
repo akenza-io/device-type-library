@@ -15,14 +15,14 @@ function getValue(rawNumber) {
 
 function getTechnicalAlert(rawAlert, channel) {
   let data = {};
-  let trigger = Bits.bitsToUnsigned(rawAlert.substr(0, 1));
+  let trigger = Bits.bitsToUnsigned(rawAlert.substring(0, 1));
   data.channelId = channel++;
   data.alarmStatus = "STOPPED";
   if (!trigger) {
     data.alarmStatus = "STARTED";
   }
   // Reserved 4
-  data.alarmType = TECHNICAL_ALARM_TYPE[Bits.bitsToUnsigned(rawAlert.substr(5, 3))];
+  data.alarmType = TECHNICAL_ALARM_TYPE[Bits.bitsToUnsigned(rawAlert.substring(5, 8))];
   return data;
 }
 
@@ -41,7 +41,7 @@ function consume(event) {
   VALUE_RANGE_START = checkForCustomFields(event.device, "rangeStart", 0);
   VALUE_RANGE_END = checkForCustomFields(event.device, "rangeEnd", 25)
 
-  let messageType = Bits.bitsToUnsigned(bits.substr(0, 8));
+  let messageType = Bits.bitsToUnsigned(bits.substring(0, 8));
   // Reserved 8
 
   switch (messageType) {
@@ -51,14 +51,14 @@ function consume(event) {
       if (messageType === 2) {
         data.ongoingAlarm = true;
       }
-      let channels = Bits.bitsToUnsigned(bits.substr(16, 8));
+      let channels = Bits.bitsToUnsigned(bits.substring(16, 24));
       if (channels === 1) {
-        data.channel1 = getValue(Bits.bitsToUnsigned(bits.substr(24, 16)));
+        data.channel1 = getValue(Bits.bitsToUnsigned(bits.substring(24, 40)));
       } else if (channels === 2) {
-        data.channel2 = getValue(Bits.bitsToUnsigned(bits.substr(24, 16)));
+        data.channel2 = getValue(Bits.bitsToUnsigned(bits.substring(24, 40)));
       } else if (channels === 3) {
-        data.channel1 = getValue(Bits.bitsToUnsigned(bits.substr(24, 16)));
-        data.channel2 = getValue(Bits.bitsToUnsigned(bits.substr(40, 16)));
+        data.channel1 = getValue(Bits.bitsToUnsigned(bits.substring(24, 40)));
+        data.channel2 = getValue(Bits.bitsToUnsigned(bits.substring(40, 56)));
         data.delta = data.channel1 - data.channel2;
         data.deltaReverse = data.channel2 - data.channel1;
       }
@@ -69,36 +69,36 @@ function consume(event) {
       let pointer = 24;
       while (pointer < bits.length) {
         data = {};
-        let status = Bits.bitsToUnsigned(bits.substr(pointer, 1)); pointer += 1;
+        let status = Bits.bitsToUnsigned(bits.substring(pointer, pointer + 1)); pointer += 1;
         data.alarmStatus = "STOPPED";
         if (!status) {
           data.alarmStatus = "STARTED";
         }
-        data.channelId = Bits.bitsToUnsigned(bits.substr(pointer, 4)) + 1; pointer += 4;
-        data.alarmType = PROCESS_ALARM_TYPE[Bits.bitsToUnsigned(bits.substr(pointer, 3))]; pointer += 3;
-        data.value = getValue(Bits.bitsToUnsigned(bits.substr(pointer, 16))); pointer += 16;
+        data.channelId = Bits.bitsToUnsigned(bits.substring(pointer, pointer + 4)) + 1; pointer += 4;
+        data.alarmType = PROCESS_ALARM_TYPE[Bits.bitsToUnsigned(bits.substring(pointer, pointer + 3))]; pointer += 3;
+        data.value = getValue(Bits.bitsToUnsigned(bits.substring(pointer, pointer + 16))); pointer += 16;
 
         emit("sample", { data: data, topic: "process_alarm" });
       }
       break;
     } case 4: {
-      let channels = Bits.bitsToUnsigned(bits.substr(16, 8));
+      let channels = Bits.bitsToUnsigned(bits.substring(16, 24));
       if (channels === 1) {
-        let alert = getTechnicalAlert(bits.substr(24, 8), 1);
+        let alert = getTechnicalAlert(bits.substring(24, 32), 1);
         emit("sample", { data: alert, topic: "technical_alarm" });
       } else if (channels === 2) {
-        let alert = getTechnicalAlert(bits.substr(24, 8), 2);
+        let alert = getTechnicalAlert(bits.substring(24, 32), 2);
         emit("sample", { data: alert, topic: "technical_alarm" });
       } else if (channels === 3) {
-        let alert = getTechnicalAlert(bits.substr(24, 8), 1);
+        let alert = getTechnicalAlert(bits.substring(24, 32), 1);
         emit("sample", { data: alert, topic: "technical_alarm" });
-        alert = getTechnicalAlert(bits.substr(32, 8), 2);
+        alert = getTechnicalAlert(bits.substring(32, 40), 2);
         emit("sample", { data: alert, topic: "technical_alarm" });
       }
       break;
     } case 6: {
       data.status = "UNKNNOWN";
-      switch (Bits.bitsToUnsigned(bits.substr(16, 8))) {
+      switch (Bits.bitsToUnsigned(bits.substring(16, 24))) {
         case 0x20:
           data.status = "CONFIGURATION_SUCCESS";
           break;
@@ -118,10 +118,10 @@ function consume(event) {
       break;
     }
     case 8:
-      data.nrOfSamples = Bits.bitsToUnsigned(bits.substr(16, 32));
-      data.nrOfTransmissions = Bits.bitsToUnsigned(bits.substr(48, 32));
-      data.batteryLevel = Bits.bitsToUnsigned(bits.substr(81, 7));
-      data.internalTemperature = Bits.bitsToSigned(bits.substr(88, 8));
+      data.nrOfSamples = Bits.bitsToUnsigned(bits.substring(16, 48));
+      data.nrOfTransmissions = Bits.bitsToUnsigned(bits.substring(48, 80));
+      data.batteryLevel = Bits.bitsToUnsigned(bits.substring(81, 88));
+      data.internalTemperature = Bits.bitsToSigned(bits.substring(88, 96));
 
       emit("sample", { data: data, topic: "lifecycle" });
       break;

@@ -30,15 +30,15 @@ function consume(event) {
   let pointer = 0;
 
   while (pointer < payload.length) {
-    let measurementID = payload.substr((pointer += 2), 4);
+    let measurementID = payload.substring((pointer += 2), pointer + 4);
     measurementID = Hex.hexLittleEndianToBigEndian(measurementID, false);
 
     switch (measurementID) {
       case 7: {
-        let batteryLevel = payload.substr((pointer += 4), 4);
+        let batteryLevel = payload.substring((pointer += 4), pointer + 4);
         batteryLevel = Hex.hexLittleEndianToBigEndian(batteryLevel, false);
 
-        let sendInterval = payload.substr((pointer += 4), 4);
+        let sendInterval = payload.substring((pointer += 4), pointer + 4);
         sendInterval = Hex.hexLittleEndianToBigEndian(sendInterval, false);
         pointer += 4;
 
@@ -51,7 +51,7 @@ function consume(event) {
       case 4097: {
         const temperature =
           Hex.hexLittleEndianToBigEndian(
-            payload.substr((pointer += 4), 8),
+            payload.substring((pointer += 4), pointer + 8),
             true,
           ) / 1000;
         data.temperature = checkForIllegalValue(temperature, "temperature");
@@ -61,7 +61,7 @@ function consume(event) {
       case 4098: {
         const humidity =
           Hex.hexLittleEndianToBigEndian(
-            payload.substr((pointer += 4), 8),
+            payload.substring((pointer += 4), pointer + 8),
             false,
           ) / 1000;
         data.humidity = checkForIllegalValue(humidity, "humidity");
@@ -71,7 +71,7 @@ function consume(event) {
       case 4099: {
         const light =
           Hex.hexLittleEndianToBigEndian(
-            payload.substr((pointer += 4), 8),
+            payload.substring((pointer += 4), pointer + 8),
             false,
           ) / 1000;
         data.light = checkForIllegalValue(light, "light");
@@ -81,7 +81,7 @@ function consume(event) {
       case 4100: {
         const co2 =
           Hex.hexLittleEndianToBigEndian(
-            payload.substr((pointer += 4), 8),
+            payload.substring((pointer += 4), pointer + 8),
             false,
           ) / 1000;
         data.co2 = checkForIllegalValue(co2, "co2");
@@ -91,7 +91,7 @@ function consume(event) {
       case 4102: {
         const soilTemperature =
           Hex.hexLittleEndianToBigEndian(
-            payload.substr((pointer += 4), 8),
+            payload.substring((pointer += 4), pointer + 8),
             true,
           ) / 1000;
         data.soilTemperature = checkForIllegalValue(
@@ -104,7 +104,7 @@ function consume(event) {
       case 4103: {
         const soilHumidity =
           Hex.hexLittleEndianToBigEndian(
-            payload.substr((pointer += 4), 8),
+            payload.substring((pointer += 4), pointer + 8),
             false,
           ) / 1000;
         data.soilHumidity = checkForIllegalValue(soilHumidity, "soilHumidity");
@@ -114,7 +114,7 @@ function consume(event) {
       case 4108: {
         const soilConductivity =
           Hex.hexLittleEndianToBigEndian(
-            payload.substr((pointer += 4), 8),
+            payload.substring((pointer += 4), pointer + 8),
             false,
           ) / 1000;
         data.soilConductivity = checkForIllegalValue(

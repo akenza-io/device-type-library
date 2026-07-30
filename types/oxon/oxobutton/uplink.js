@@ -4,24 +4,24 @@ function consume(event) {
   const data = {};
   const lifecycle = {};
 
-  if (Bits.bitsToUnsigned(bits.substr(0, 8)) === 48) {
-    data.buttonId = Bits.bitsToUnsigned(bits.substr(8, 8));
-    lifecycle.hbIRQ = !!Bits.bitsToUnsigned(bits.substr(16, 8));
-    lifecycle.accIRQ = !!Bits.bitsToUnsigned(bits.substr(24, 8));
+  if (Bits.bitsToUnsigned(bits.substring(0, 8)) === 48) {
+    data.buttonId = Bits.bitsToUnsigned(bits.substring(8, 16));
+    lifecycle.hbIRQ = !!Bits.bitsToUnsigned(bits.substring(16, 24));
+    lifecycle.accIRQ = !!Bits.bitsToUnsigned(bits.substring(24, 32));
     data.imageID =
-      Bits.bitsToUnsigned(bits.substr(32, 8)) * 256 +
-      Bits.bitsToUnsigned(bits.substr(40, 8));
-    lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substr(48, 8));
-    data.temperature = Bits.bitsToUnsigned(bits.substr(56, 8));
+      Bits.bitsToUnsigned(bits.substring(32, 40)) * 256 +
+      Bits.bitsToUnsigned(bits.substring(40, 48));
+    lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substring(48, 56));
+    data.temperature = Bits.bitsToUnsigned(bits.substring(56, 64));
     let accX =
-      Bits.bitsToUnsigned(bits.substr(64, 8)) * 256 +
-      Bits.bitsToUnsigned(bits.substr(72, 8));
+      Bits.bitsToUnsigned(bits.substring(64, 72)) * 256 +
+      Bits.bitsToUnsigned(bits.substring(72, 80));
     let accY =
-      Bits.bitsToUnsigned(bits.substr(80, 8)) * 256 +
-      Bits.bitsToUnsigned(bits.substr(88, 8));
+      Bits.bitsToUnsigned(bits.substring(80, 88)) * 256 +
+      Bits.bitsToUnsigned(bits.substring(88, 96));
     let accZ =
-      Bits.bitsToUnsigned(bits.substr(96, 8)) * 256 +
-      Bits.bitsToUnsigned(bits.substr(104, 8));
+      Bits.bitsToUnsigned(bits.substring(96, 104)) * 256 +
+      Bits.bitsToUnsigned(bits.substring(104, 112));
     accX = accX < 32767 ? (2 / 8191) * accX : (-2 / 8192) * (65536 - accX);
     accY = accY < 32767 ? (2 / 8191) * accY : (-2 / 8192) * (65536 - accY);
     accZ = accZ < 32767 ? (2 / 8191) * accZ : (-2 / 8192) * (65536 - accZ);

@@ -3,13 +3,13 @@ function consume(event) {
   const bits = Bits.hexToBits(payload);
   const data = {};
 
-  data.version = Bits.bitsToUnsigned(bits.substr(0, 8));
-  data.devType = Bits.bitsToUnsigned(bits.substr(8, 8));
-  const repType = Bits.bitsToUnsigned(bits.substr(16, 8));
+  data.version = Bits.bitsToUnsigned(bits.substring(0, 8));
+  data.devType = Bits.bitsToUnsigned(bits.substring(8, 16));
+  const repType = Bits.bitsToUnsigned(bits.substring(16, 24));
 
   if (repType === 1) {
-    data.batteryVoltage = Bits.bitsToUnsigned(bits.substr(24, 8)) / 10;
-    const click = Bits.bitsToUnsigned(bits.substr(32, 8));
+    data.batteryVoltage = Bits.bitsToUnsigned(bits.substring(24, 32)) / 10;
+    const click = Bits.bitsToUnsigned(bits.substring(32, 40));
     // 6 Bytes reserved
     if (click === 1) {
       emit("sample", {

@@ -46,11 +46,11 @@ function consume(event) {
       lifecycle.configuration2ChannelsActivated = Boolean(bytes[1] & 0x10);
       break;
     case 0x10: {
-      decoded.transmissionPeriodKeepAlive = Bits.bitsToUnsigned(bits.substr(0, 16)) * 10 / 60;
-      const numberOfHistorization = Bits.bitsToUnsigned(bits.substr(16, 16));
-      const numberOfSampling = Bits.bitsToUnsigned(bits.substr(32, 16));
-      decoded.samplingPeriod = Bits.bitsToUnsigned(bits.substr(48, 16)) * 2 / 60;
-      decoded.redundantSamples = Bits.bitsToUnsigned(bits.substr(64, 8));
+      decoded.transmissionPeriodKeepAlive = Bits.bitsToUnsigned(bits.substring(0, 16)) * 10 / 60;
+      const numberOfHistorization = Bits.bitsToUnsigned(bits.substring(16, 32));
+      const numberOfSampling = Bits.bitsToUnsigned(bits.substring(32, 48));
+      decoded.samplingPeriod = Bits.bitsToUnsigned(bits.substring(48, 64)) * 2 / 60;
+      decoded.redundantSamples = Bits.bitsToUnsigned(bits.substring(64, 72));
       decoded.calculatedPeriodRecording = decoded.samplingPeriod * numberOfSampling * 2; // s
       decoded.calculatedSendingPeriod = decoded.samplingPeriod * numberOfSampling * numberOfHistorization * 2;
       topic = "configuration";
@@ -58,16 +58,16 @@ function consume(event) {
     }
     case 0x30:
     case 0x57: {
-      decoded.temperature1 = Bits.bitsToSigned(bits.substr(16, 16)) / 10;
-      decoded.temperature2 = Bits.bitsToSigned(bits.substr(32, 16)) / 10;
+      decoded.temperature1 = Bits.bitsToSigned(bits.substring(16, 32)) / 10;
+      decoded.temperature2 = Bits.bitsToSigned(bits.substring(32, 48)) / 10;
       topic = "default";
       break;
     }
     case 0x58:
       alert.prope1Alert = alarmStatus(payload[2]);
-      decoded.temperature1 = Bits.bitsToSigned(bits.substr(24, 16)) / 10;
+      decoded.temperature1 = Bits.bitsToSigned(bits.substring(24, 40)) / 10;
       alert.prope2Alert = alarmStatus(payload[5]);
-      decoded.temperature2 = Bits.bitsToSigned(bits.substr(48, 16)) / 10;
+      decoded.temperature2 = Bits.bitsToSigned(bits.substring(48, 64)) / 10;
       topic = "alert";
       break;
     default:

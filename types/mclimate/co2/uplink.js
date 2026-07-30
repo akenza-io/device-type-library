@@ -51,8 +51,10 @@ function decoder(hexData) {
               commandLen = 2;
               const enabled = !!parseInt(commands[i + 1], 16);
               const duration = parseInt(commands[i + 2], 16) * 5;
-              const tmp = `0${commands[i + 4].toString(16)}`.substr(-2);
-              const motorPos2 = `0${commands[i + 3].toString(16)}`.substr(-2);
+              let tmp = `0${commands[i + 4].toString(16)}`;
+              tmp = tmp.substring(tmp.length, -2)
+              let motorPos2 = `0${commands[i + 3].toString(16)}`;
+              motorPos2 = motorPos2.substring(motorPos2.length, -2)
               const motorPos1 = tmp[0];
               const motorPosition = parseInt(`0x${motorPos1}${motorPos2}`, 16);
               const delta = Number(tmp[1]);
@@ -345,13 +347,13 @@ function decoder(hexData) {
       return resultToPass;
     };
     const handleKeepAliveData = (hexData) => {
-      const co2 = parseInt(hexData.substr(2, 4), 16);
-      const temperature = (parseInt(hexData.substr(6, 4), 16) - 400) / 10;
+      const co2 = parseInt(hexData.substring(2, 6), 16);
+      const temperature = (parseInt(hexData.substring(6, 10), 16) - 400) / 10;
       const humidity = Math.round(
-        Number(((parseInt(hexData.substr(10, 2), 16) * 100) / 256).toFixed(2)),
+        Number(((parseInt(hexData.substring(10, 12), 16) * 100) / 256).toFixed(2)),
       );
       const batteryVoltage = Number(
-        ((parseInt(hexData.substr(12, 2), 16) * 8 + 1600) / 1000).toFixed(2),
+        ((parseInt(hexData.substring(12, 14), 16) * 8 + 1600) / 1000).toFixed(2),
       );
 
       const keepaliveData = {

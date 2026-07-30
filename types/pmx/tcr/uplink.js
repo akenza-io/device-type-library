@@ -196,7 +196,7 @@ function bin16dec(bin) {
 function hexToBytes(hex) {
   hex = hex.replace(/\s/g, "");
   for (var bytes = [], c = 0; c < hex.length; c += 2)
-    bytes.push(parseInt(hex.substr(c, 2), 16));
+    bytes.push(parseInt(hex.substring(c, c + 2), 16));
   return bytes;
 }
 

@@ -68,7 +68,7 @@ function consume(event) {
   let occupancy = {};
 
   if (port === 1 || port === 2) {
-    occupancy.occupancy = Bits.bitsToUnsigned(bits.substr(0, 8));
+    occupancy.occupancy = Bits.bitsToUnsigned(bits.substring(0, 8));
     occupancy.occupied = !!occupancy.occupancy;
 
     let recentOccupancyResult = calculateRecentOccupancy(event.device, event.state, occupancy);
@@ -78,7 +78,7 @@ function consume(event) {
     emit("sample", { data: occupancy, topic: "occupancy" });
 
     if (payload.length > 2) {
-      data.temperature = Bits.bitsToSigned(bits.substr(8, 8));
+      data.temperature = Bits.bitsToSigned(bits.substring(8, 16));
       emit("sample", { data, topic: "lifecycle" });
     }
   }
@@ -96,11 +96,11 @@ function consume(event) {
     data.debug = payload.substring(0, 20).toUpperCase();
     // Reserved 4
     data.fwVersion = `${Bits.bitsToUnsigned(
-      bits.substr(96, 8),
-    )}.${Bits.bitsToUnsigned(bits.substr(104, 8))}.${Bits.bitsToUnsigned(
-      bits.substr(112, 8),
+      bits.substring(96, 104),
+    )}.${Bits.bitsToUnsigned(bits.substring(104, 112))}.${Bits.bitsToUnsigned(
+      bits.substring(112, 120),
     )}`;
-    const resetCause = Bits.bitsToUnsigned(bits.substr(120, 8));
+    const resetCause = Bits.bitsToUnsigned(bits.substring(120, 128));
     data.resetCause = resetDict[resetCause];
 
     emit("sample", { data, topic: "start_up" });
@@ -108,9 +108,9 @@ function consume(event) {
 
   if (port === 4) {
     data.devEUI = `${payload.substring(0, 6)}${payload.substring(6, 10)}`;
-    data.hwRevision = Bits.bitsToUnsigned(bits.substr(24, 3));
-    data.productCode = Bits.bitsToUnsigned(bits.substr(27, 13));
-    const prdClassExt = !!Bits.bitsToUnsigned(bits.substr(40, 8));
+    data.hwRevision = Bits.bitsToUnsigned(bits.substring(24, 27));
+    data.productCode = Bits.bitsToUnsigned(bits.substring(27, 40));
+    const prdClassExt = !!Bits.bitsToUnsigned(bits.substring(40, 48));
     if (prdClassExt) {
       data.productClassExt = "EU868";
     } else {
@@ -122,45 +122,45 @@ function consume(event) {
 
   // Device usage
   if (port === 5) {
-    const requestID = Bits.bitsToUnsigned(bits.substr(0, 8));
+    const requestID = Bits.bitsToUnsigned(bits.substring(0, 8));
     switch (requestID) {
       case 0:
         data.usageType = "NR_OF_STATE_CHANGES";
-        data.value = Bits.bitsToUnsigned(bits.substr(8, 32));
+        data.value = Bits.bitsToUnsigned(bits.substring(8, 40));
         break;
       case 1:
         data.usageType = "TIME_IN_OCCUPIED_STATE";
-        data.value = Bits.bitsToUnsigned(bits.substr(8, 32));
+        data.value = Bits.bitsToUnsigned(bits.substring(8, 40));
         break;
       case 2:
         data.usageType = "NR_OF_UPLINKS_SENT";
-        data.dr0 = Bits.bitsToUnsigned(bits.substr(8, 24));
-        data.dr1 = Bits.bitsToUnsigned(bits.substr(32, 24));
-        data.dr2 = Bits.bitsToUnsigned(bits.substr(56, 24));
-        data.dr3 = Bits.bitsToUnsigned(bits.substr(80, 24));
-        data.dr4 = Bits.bitsToUnsigned(bits.substr(104, 24));
-        data.dr5 = Bits.bitsToUnsigned(bits.substr(128, 24));
+        data.dr0 = Bits.bitsToUnsigned(bits.substring(8, 32));
+        data.dr1 = Bits.bitsToUnsigned(bits.substring(32, 56));
+        data.dr2 = Bits.bitsToUnsigned(bits.substring(56, 80));
+        data.dr3 = Bits.bitsToUnsigned(bits.substring(80, 104));
+        data.dr4 = Bits.bitsToUnsigned(bits.substring(104, 128));
+        data.dr5 = Bits.bitsToUnsigned(bits.substring(128, 152));
         break;
       case 3:
         data.usageType = "NR_OF_RADAR_TRIGGERS";
-        data.value = Bits.bitsToUnsigned(bits.substr(8, 32));
+        data.value = Bits.bitsToUnsigned(bits.substring(8, 40));
         break;
       case 4:
         data.usageType = "TIME_RUNNING_SINCE_RESTART";
-        data.value = Bits.bitsToUnsigned(bits.substr(8, 32));
+        data.value = Bits.bitsToUnsigned(bits.substring(8, 40));
         break;
       case 5:
         data.usageType = "NR_OF_RESETS_SINCE_INSTALL";
-        data.brownOut = Bits.bitsToUnsigned(bits.substr(8, 8));
-        data.lockup = Bits.bitsToUnsigned(bits.substr(16, 8));
-        data.extPin = Bits.bitsToUnsigned(bits.substr(24, 8));
-        data.powerOn = Bits.bitsToUnsigned(bits.substr(32, 8));
-        data.watchdog = Bits.bitsToUnsigned(bits.substr(40, 8));
-        data.softwareRequested = Bits.bitsToUnsigned(bits.substr(48, 16));
+        data.brownOut = Bits.bitsToUnsigned(bits.substring(8, 16));
+        data.lockup = Bits.bitsToUnsigned(bits.substring(16, 24));
+        data.extPin = Bits.bitsToUnsigned(bits.substring(24, 32));
+        data.powerOn = Bits.bitsToUnsigned(bits.substring(32, 40));
+        data.watchdog = Bits.bitsToUnsigned(bits.substring(40, 48));
+        data.softwareRequested = Bits.bitsToUnsigned(bits.substring(48, 64));
         break;
       case 6:
         data.usageType = "TIME_RUNNING_SINCE_INSTALL";
-        data.value = Bits.bitsToUnsigned(bits.substr(8, 32));
+        data.value = Bits.bitsToUnsigned(bits.substring(8, 40));
         break;
       default:
         break;

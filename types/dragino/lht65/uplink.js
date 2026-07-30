@@ -31,7 +31,7 @@ function strPad(byte) {
   const zero = "00";
   const hex = byte.toString(16);
   const tmp = 2 - hex.length;
-  return `${zero.substr(0, tmp) + hex} `;
+  return `${zero.substring(0, tmp) + hex} `;
 }
 
 function datalog(i, bytes) {
@@ -209,7 +209,7 @@ function decoder(bytes) {
 
 function hexToBytes(hex) {
   for (var bytes = [], c = 0; c < hex.length; c += 2) {
-    bytes.push(parseInt(hex.substr(c, 2), 16));
+    bytes.push(parseInt(hex.substring(c, c + 2), 16));
   }
   return bytes;
 }

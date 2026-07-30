@@ -21,25 +21,30 @@ function decbin(number) {
 }
 
 function handleKeepalive(bytes, data) {
-  const tmp = `0${bytes[6].toString(16)}`.substr(-2);
+  let tmp = `0${bytes[6].toString(16)}`;
+  tmp = tmp.substring(tmp.length - 2);
   const motorRange1 = tmp[1];
-  const motorRange2 = `0${bytes[5].toString(16)}`.substr(-2);
+  let motorRange2 = `0${bytes[5].toString(16)}`;
+  motorRange2 = motorRange2.substring(motorRange2.length - 2);
   const motorRange = parseInt(`0x${motorRange1}${motorRange2}`, 16);
 
-  const motorPos2 = `0${bytes[4].toString(16)}`.substr(-2);
+  let motorPos2 = `0${bytes[4].toString(16)}`;
+  motorPos2 = motorPos2.substring(motorPos2.length - 2);
   const motorPos1 = tmp[0];
   const motorPosition = parseInt(`0x${motorPos1}${motorPos2}`, 16);
 
-  const batteryTmp = `0${bytes[7].toString(16)}`.substr(-2)[0];
+  let batteryTmp = `0${bytes[7].toString(16)}`;
+  batteryTmp = batteryTmp.substring(batteryTmp.length - 2)[0];
+
   const batteryVoltageCalculated = 2 + parseInt(`0x${batteryTmp}`, 16) * 0.1;
 
   const byteBin = decbin(bytes[7].toString(16));
-  const openWindow = byteBin.substr(4, 1);
+  const openWindow = byteBin.substring(4, 5);
   const childLockBin = decbin(bytes[8].toString(16));
   const childLock = childLockBin.charAt(0);
-  const highMotorConsumption = byteBin.substr(-2, 1);
-  const lowMotorConsumption = byteBin.substr(-3, 1);
-  const brokenSensor = byteBin.substr(-4, 1);
+  const highMotorConsumption = byteBin.substring(byteBin.length - 2, byteBin.length - 1);
+  const lowMotorConsumption = byteBin.substring(byteBin.length - 3, byteBin.length - 2);
+  const brokenSensor = byteBin.substring(byteBin.length - 4, byteBin.length - 3);
   let sensorTemp = 0;
   if (Number(bytes[0].toString(16)) === 1) {
     sensorTemp = (bytes[2] * 165) / 256 - 40;
@@ -64,7 +69,7 @@ function handleKeepalive(bytes, data) {
 }
 
 function handleResponse(bytes, data) {
-  let commands = bytes.map((byte, i) => `0${byte.toString(16)}`.substr(-2));
+  let commands = bytes.map((byte, i) => `0${byte.toString(16)}`.susbtring(`0${byte.toString(16)}`.length - 2));
   commands = commands.slice(0, -9);
   let commandLen = 0;
   let resultToPass;
@@ -97,8 +102,10 @@ function handleResponse(bytes, data) {
           commandLen = 4;
           const enabled = toBool(parseInt(commands[i + 1], 16));
           const duration = parseInt(commands[i + 2], 16) * 5;
-          const tmp = `0${commands[i + 4].toString(16)}`.substr(-2);
-          const motorPos2 = `0${commands[i + 3].toString(16)}`.substr(-2);
+          let tmp = `0${commands[i + 4].toString(16)}`;
+          tmp = tmp.substring(tmp.length, -2)
+          let motorPos2 = `0${commands[i + 3].toString(16)}`;
+          motorPos2 = motorPos2.substring(motorPos2.length, -2)
           const motorPos1 = tmp[0];
           const motorPosition = parseInt(`0x${motorPos1}${motorPos2}`, 16);
           const delta = Number(tmp[1]);

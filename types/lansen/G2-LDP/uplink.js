@@ -5,24 +5,24 @@ function consume(event) {
   const data = {};
 
 
-  data.leakage = Bits.bitsToUnsigned(bits.substr(0, 8));
-  data.leakage2 = Bits.bitsToUnsigned(bits.substr(8, 8));
-  data.alarmTrigger = Bits.bitsToUnsigned(bits.substr(16, 1));
-  data.alarmReset = Bits.bitsToUnsigned(bits.substr(17, 1));
-  data.leakageDetected = Bits.bitsToUnsigned(bits.substr(18, 1));
-  data.leakageDetected2 = Bits.bitsToUnsigned(bits.substr(19, 1));
-  data.leakageDetectedLast24 = Bits.bitsToUnsigned(bits.substr(20, 1));
-  data.leakageDetected2Last24 = Bits.bitsToUnsigned(bits.substr(21, 1));
-  data.daysSinceLastLeakage = Bits.bitsToUnsigned(bits.substr(22, 13));
-  data.durationLastAlarm = Bits.bitsToUnsigned(bits.substr(35, 14));
-  data.durationLastAlarm2 = Bits.bitsToUnsigned(bits.substr(49, 14));
+  data.leakage = Bits.bitsToUnsigned(bits.substring(0, 8));
+  data.leakage2 = Bits.bitsToUnsigned(bits.substring(8, 16));
+  data.alarmTrigger = Bits.bitsToUnsigned(bits.substring(16, 17));
+  data.alarmReset = Bits.bitsToUnsigned(bits.substring(17, 18));
+  data.leakageDetected = Bits.bitsToUnsigned(bits.substring(18, 19));
+  data.leakageDetected2 = Bits.bitsToUnsigned(bits.substring(19, 20));
+  data.leakageDetectedLast24 = Bits.bitsToUnsigned(bits.substring(20, 21));
+  data.leakageDetected2Last24 = Bits.bitsToUnsigned(bits.substring(21, 22));
+  data.daysSinceLastLeakage = Bits.bitsToUnsigned(bits.substring(22, 35));
+  data.durationLastAlarm = Bits.bitsToUnsigned(bits.substring(35, 49));
+  data.durationLastAlarm2 = Bits.bitsToUnsigned(bits.substring(49, 63));
 
-  lifecycle.totalRuntime = Bits.bitsToUnsigned(bits.substr(63, 5));
-  lifecycle.runtime = Bits.bitsToUnsigned(bits.substr(68, 5));
-  lifecycle.batteryVoltage = Bits.bitsToUnsigned(bits.substr(73, 4)) / 10;
-  lifecycle.lowBattery = Bits.bitsToUnsigned(bits.substr(77, 1));
-  lifecycle.deviceActivated = Bits.bitsToUnsigned(bits.substr(78, 1));
-  lifecycle.asyncMessage = Bits.bitsToUnsigned(bits.substr(79, 1));
+  lifecycle.totalRuntime = Bits.bitsToUnsigned(bits.substring(63, 68));
+  lifecycle.runtime = Bits.bitsToUnsigned(bits.substring(68, 73));
+  lifecycle.batteryVoltage = Bits.bitsToUnsigned(bits.substring(73, 77)) / 10;
+  lifecycle.lowBattery = Bits.bitsToUnsigned(bits.substring(77, 78));
+  lifecycle.deviceActivated = Bits.bitsToUnsigned(bits.substring(78, 79));
+  lifecycle.asyncMessage = Bits.bitsToUnsigned(bits.substring(79, 80));
   // Unused
 
   emit("sample", { data, topic: "default" });

@@ -32,30 +32,32 @@ This is a library of **IoT device type definitions** for the Akenza platform. Ea
 
 Each device folder contains:
 
-| File | Required | Purpose |
-|------|----------|---------|
-| `meta.json` | Yes | Metadata: name, manufacturer, sensors, topics, connectivity |
-| `uplink.js` | Yes | Decoder: `function consume(event)` that calls `emit()` |
-| `uplink.spec.js` | Yes | Mocha tests using `expectEmits()` |
-| `*.schema.json` | Yes (one per topic) | JSON Schema (Draft-7) for each output topic |
-| `downlink.js` | No | Encoder for device commands |
-| `downlink.schema.json` | No | Schema for downlink payloads |
-| `<MODEL>.png` | No | Device image |
+| File                   | Required            | Purpose                                                     |
+| ---------------------- | ------------------- | ----------------------------------------------------------- |
+| `meta.json`            | Yes                 | Metadata: name, manufacturer, sensors, topics, connectivity |
+| `uplink.js`            | Yes                 | Decoder: `function consume(event)` that calls `emit()`      |
+| `uplink.spec.js`       | Yes                 | Mocha tests using `expectEmits()`                           |
+| `*.schema.json`        | Yes (one per topic) | JSON Schema (Draft-7) for each output topic                 |
+| `downlink.js`          | No                  | Encoder for device commands                                 |
+| `downlink.schema.json` | No                  | Schema for downlink payloads                                |
+| `<MODEL>.png`          | No                  | Device image                                                |
 
 ### Decoder Pattern (`uplink.js`)
 
 ```javascript
 function consume(event) {
-  const payload = event.data.payloadHex;  // or event.data.payload for JSON devices
+  const payload = event.data.payloadHex; // or event.data.payload for JSON devices
   const bits = Bits.hexToBits(payload);
 
   emit("sample", {
-    data: { temperature: Bits.bitsToSigned(bits.substr(72, 16)) / 100 },
+    data: { temperature: Bits.bitsToSigned(bits.substring(72, 88)) / 100 },
     topic: "default",
   });
 
   emit("sample", {
-    data: { batteryVoltage: Bits.bitsToUnsigned(bits.substr(56, 16)) / 1000 },
+    data: {
+      batteryVoltage: Bits.bitsToUnsigned(bits.substring(56, 72)) / 1000,
+    },
     topic: "lifecycle",
   });
 }
@@ -68,7 +70,12 @@ function consume(event) {
 ### Test Pattern (`uplink.spec.js`)
 
 ```javascript
-const { init, loadSchema, expectEmits, validateSchema } = require("../../lib/test/utils.js");
+const {
+  init,
+  loadSchema,
+  expectEmits,
+  validateSchema,
+} = require("../../lib/test/utils.js");
 const rewire = require("rewire");
 
 const script = rewire("./uplink.js");

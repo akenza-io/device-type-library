@@ -5,12 +5,12 @@ function consume(event) {
 
   // Reserved 8
   data.batteryVoltage =
-    (Bits.bitsToUnsigned(bits.substr(8, 8)) * 8 + 1600) / 1000;
-  data.thermistorOperational = !Bits.bitsToUnsigned(bits.substr(21, 1));
+    (Bits.bitsToUnsigned(bits.substring(8, 16)) * 8 + 1600) / 1000;
+  data.thermistorOperational = !Bits.bitsToUnsigned(bits.substring(21, 22));
   data.temperature =
-    Bits.bitsToUnsigned(bits.substr(22, 2) + bits.substr(24, 8)) / 10;
+    Bits.bitsToUnsigned(bits.substring(22, 24) + bits.substring(24, 32)) / 10;
 
-  const button = Bits.bitsToUnsigned(bits.substr(32, 8));
+  const button = Bits.bitsToUnsigned(bits.substring(32, 40));
 
   if (button === 0) {
     data.buttonPressed = "NO_PRESS";

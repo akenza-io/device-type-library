@@ -823,14 +823,14 @@ function decodeCot(data) {
 
 function decode8BitAsBinaryString(data) {
   let string = data.toString(2);
-  string = "00000000".substr(string.length) + string;
+  string = "00000000".substring(string.length) + string;
 
   return string;
 }
 
 function decode16BitAsBinaryString(data) {
   let string = (data[1] + (data[0] << 8)).toString(2);
-  string = "0000000000000000".substr(string.length) + string;
+  string = "0000000000000000".substring(string.length) + string;
 
   return string;
 }

@@ -22,14 +22,14 @@ function consume(event) {
     const bits = Bits.hexToBits(payload);
     const lifecycle = {};
 
-    sample.absoluteFw = Bits.bitsToUnsigned(bits.substr(0, 32));
-    sample.absoluteBw = Bits.bitsToUnsigned(bits.substr(32, 32));
+    sample.absoluteFw = Bits.bitsToUnsigned(bits.substring(0, 32));
+    sample.absoluteBw = Bits.bitsToUnsigned(bits.substring(32, 64));
 
     // 4 Reserved
-    lifecycle.wifiApEnabled = !!Number(bits.substr(68, 1));
-    lifecycle.multiDevIssue = !!Number(bits.substr(69, 1));
-    lifecycle.tpcStuck = !!Number(bits.substr(70, 1));
-    lifecycle.tpcStopped = !!Number(bits.substr(71, 1));
+    lifecycle.wifiApEnabled = !!Number(bits.substring(68, 69));
+    lifecycle.multiDevIssue = !!Number(bits.substring(69, 70));
+    lifecycle.tpcStuck = !!Number(bits.substring(70, 71));
+    lifecycle.tpcStopped = !!Number(bits.substring(71, 72));
 
     emit("sample", { data: lifecycle, topic: "lifecycle" });
 

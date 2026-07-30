@@ -21,13 +21,13 @@ function swap32(val) {
   );
 }
 function getByte(buff, nr) {
-  return Bits.bitsToUnsigned(buff.substr(nr * 8, 8));
+  return Bits.bitsToUnsigned(buff.substring(nr * 8, nr * 8 + 8));
 }
 function getWord(buff, nr) {
-  return swap16(Bits.bitsToUnsigned(buff.substr(nr * 8, 16)));
+  return swap16(Bits.bitsToUnsigned(buff.substring(nr * 8, nr * 8 + 16)));
 }
 function getLong(buff, nr) {
-  return swap32(Bits.bitsToUnsigned(buff.substr(nr * 8, 32)));
+  return swap32(Bits.bitsToUnsigned(buff.substring(nr * 8, nr * 8 + 32)));
 }
 function getFloat(buff, nr) {
   return bytesToFloat(getLong(buff, nr));

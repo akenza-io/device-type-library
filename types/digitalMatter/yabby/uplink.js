@@ -46,7 +46,7 @@ function decoder(bytes, port) {
 
 function hexToBytes(hex) {
   for (var bytes = [], c = 0; c < hex.length; c += 2) {
-    bytes.push(parseInt(hex.substr(c, 2), 16));
+    bytes.push(parseInt(hex.substring(c, c + 2), 16));
   }
   return bytes;
 }

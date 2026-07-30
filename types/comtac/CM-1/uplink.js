@@ -4,22 +4,22 @@ function consume(event) {
   const data = {};
   const lifecycle = {};
 
-  lifecycle.maxTempOn = !!Bits.bitsToUnsigned(bits.substr(0, 1));
-  lifecycle.minTempOn = !!Bits.bitsToUnsigned(bits.substr(1, 1));
+  lifecycle.maxTempOn = !!Bits.bitsToUnsigned(bits.substring(0, 1));
+  lifecycle.minTempOn = !!Bits.bitsToUnsigned(bits.substring(1, 2));
   // reserved
-  lifecycle.txOnEvent = !!Bits.bitsToUnsigned(bits.substr(3, 1));
-  lifecycle.maxHumOn = !!Bits.bitsToUnsigned(bits.substr(4, 1));
-  lifecycle.minHumOn = !!Bits.bitsToUnsigned(bits.substr(5, 1));
+  lifecycle.txOnEvent = !!Bits.bitsToUnsigned(bits.substring(3, 4));
+  lifecycle.maxHumOn = !!Bits.bitsToUnsigned(bits.substring(4, 5));
+  lifecycle.minHumOn = !!Bits.bitsToUnsigned(bits.substring(5, 6));
   // reserved
-  lifecycle.booster = !!Bits.bitsToUnsigned(bits.substr(7, 1));
+  lifecycle.booster = !!Bits.bitsToUnsigned(bits.substring(7, 8));
 
-  lifecycle.minTempThreshold = Bits.bitsToSigned(bits.substr(8, 8));
-  lifecycle.maxTempThreshold = Bits.bitsToSigned(bits.substr(16, 8));
-  lifecycle.minHumThreshold = Bits.bitsToSigned(bits.substr(24, 8));
-  lifecycle.maxHumThreshold = Bits.bitsToSigned(bits.substr(32, 8));
-  lifecycle.sendInterval = Bits.bitsToUnsigned(bits.substr(40, 16));
+  lifecycle.minTempThreshold = Bits.bitsToSigned(bits.substring(8, 16));
+  lifecycle.maxTempThreshold = Bits.bitsToSigned(bits.substring(16, 24));
+  lifecycle.minHumThreshold = Bits.bitsToSigned(bits.substring(24, 32));
+  lifecycle.maxHumThreshold = Bits.bitsToSigned(bits.substring(32, 40));
+  lifecycle.sendInterval = Bits.bitsToUnsigned(bits.substring(40, 56));
   lifecycle.batteryVoltage = parseFloat(
-    (Bits.bitsToUnsigned(bits.substr(56, 16)) / 1000).toFixed(2),
+    (Bits.bitsToUnsigned(bits.substring(56, 72)) / 1000).toFixed(2),
   );
 
   let batteryLevel =
@@ -34,10 +34,10 @@ function consume(event) {
   emit("sample", { data: lifecycle, topic: "lifecycle" });
 
   data.temperature = Number(
-    (Bits.bitsToSigned(bits.substr(72, 16)) / 100).toFixed(1),
+    (Bits.bitsToSigned(bits.substring(72, 88)) / 100).toFixed(1),
   );
   data.humidity = Number(
-    (Bits.bitsToSigned(bits.substr(88, 16)) / 100).toFixed(0),
+    (Bits.bitsToSigned(bits.substring(88, 104)) / 100).toFixed(0),
   );
   emit("sample", { data, topic: "default" });
 

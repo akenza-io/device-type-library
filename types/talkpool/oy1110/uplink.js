@@ -45,7 +45,7 @@ function hexToBytes(hex) {
   const bytes = [];
   let c = 0;
   while (c < hex.length) {
-    bytes.push(parseInt(hex.substr(c, 2), 16));
+    bytes.push(parseInt(hex.substring(c, c + 2), 16));
     c += 2;
   }
   return bytes;
