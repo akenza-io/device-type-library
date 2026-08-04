@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.98.1] - 2026-08-04
+
+### Changed
+
+- Asystom Sentinel - Added posibility for to decode fragmented payloads
+
 # [1.98.0] - 2026-07-27
 
 ### Added
