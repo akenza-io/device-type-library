@@ -66,5 +66,15 @@ describe("TBClimate uplink", () => {
 
       consume(data);
     });
+
+    it("should skip empty payload", () => {
+      const data = {
+        data: {
+          payloadHex: "",
+        },
+      };
+
+      consume(data);
+    });
   });
 });

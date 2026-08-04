@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 - Asystom Sentinel - Added posibility for to decode fragmented payloads
+- Browan - Catching empty browan payloads
 
 # [1.98.0] - 2026-07-27
 
