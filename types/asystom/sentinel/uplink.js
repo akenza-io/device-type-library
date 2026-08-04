@@ -58,7 +58,7 @@ let decodeResult;
 let globalFrame;
 let globalView;
 let elementCount;
-let _segmentedFrame;
+let segmentedFrame;
 
 // Determine host endianness
 const littleEndian = (() => {
@@ -289,62 +289,35 @@ const CRC_CCITT_TABLE = [
 // A representation of a segmented frame
 class SegmentedFrame {
   constructor(frameChunk) {
-    this._currentPayload = frameChunk;
-    this._expectedLength = frameChunk[0];
-    this._nbOfElements = frameChunk[1];
+    this.currentPayload = frameChunk;
+    this.expectedLength = frameChunk[0];
+    this.nbOfElements = frameChunk[1];
   }
 
   getCurrentPayload() {
-    return this._currentPayload;
+    return this.currentPayload;
   }
 
   addPayloadChunk(frameChunk) {
     if (frameChunk.length > 0) {
-      const temporary = this._currentPayload;
-      this._currentPayload = new Uint8Array(
-        temporary.length + frameChunk.length
-      );
-      this._currentPayload.set(temporary);
-      this._currentPayload.set(frameChunk, temporary.length);
+      const temporary = this.currentPayload;
+      this.currentPayload = this.currentPayload.concat(frameChunk);
     }
   }
 
-  // Checks whether all segments of a frame have been received
-  isComplete() {
-    return this._currentPayload.byteLength === this._expectedLength;
-  }
-
   getLength() {
-    return this._currentPayload.length - 4;
+    return this.currentPayload.length - 4;
   }
 
   getNbElements() {
-    return this._nbOfElements;
+    return this.nbOfElements;
   }
 
   // The useful part of a reconstructed frame start 2 bytes after the frame start
   // (as these bytes contain the whole size and the number of elements) and stops
   // 2 bytes before the frame end (these 2 last bytes contain the CRC)
   getUsefulPayload() {
-    return this._currentPayload.slice(2, this._currentPayload.length - 2);
-  }
-
-  // Check that the reconstructed frame is valid, i.e. there was no transmission problem
-  checkCrc() {
-    let inputArray = this._currentPayload;
-    let crc = 0xffff; // initial value for ccitt_false
-    let u16mask = 0xffff;
-    let u8mask = 0xff;
-
-    for (let i = 0; i < inputArray.byteLength; i++) {
-      let currentByte = inputArray[i] & u8mask;
-      crc = (crc ^ (currentByte << 8)) & u16mask;
-      let tableIndex = (crc >> 8) & u8mask;
-      crc = (crc << 8) & u16mask;
-      crc = (crc ^ CRC_CCITT_TABLE[tableIndex]) & u16mask;
-    }
-
-    return crc === 0;
+    return this.currentPayload.slice(2, this.currentPayload.length - 2);
   }
 }
 
@@ -873,12 +846,13 @@ function extractScalarValues(nbScalars) {
  * @param {number} input.fPort - The Port Field on which the uplink has been sent
  * @returns {DecodedUplink} The decoded object
  */
-function decodeUplink(input) {
+function decodeUplink(input, state) {
   // Prepare function output
   decodeResult = {
     data: {},
     errors: [],
     warnings: [],
+    state
   };
 
   // Case where data seem corrupted
@@ -906,42 +880,32 @@ function decodeUplink(input) {
 
   // Case of the first chunk of a segmented frame
   if (input.fPort === 100) {
-    _segmentedFrame = new SegmentedFrame(input.bytes);
-    decodeResult.warnings.push(
-      "First frame of a segmented data frame; additional data frames are needed"
-    );
+    segmentedFrame = new SegmentedFrame(input.bytes);
+    decodeResult.state.segmentedFrame = segmentedFrame;
     return decodeResult;
   }
 
   // Case of an intermediary or final segmented frame chunk
   if (input.fPort > 100 && input.fPort < 105) {
-    if (_segmentedFrame === null) {
-      decodeResult.warnings.push(
-        "This is a following chunk of a segmented frame, but the first one has been lost"
-      );
+    segmentedFrame = new SegmentedFrame(decodeResult.state.segmentedFrame.currentPayload);
+    if (segmentedFrame === null) {
+      decodeResult.errors.push("First segment lost, no data will be processed")
+      decodeResult.state = {};
       return decodeResult;
     }
 
-    _segmentedFrame.addPayloadChunk(input.bytes);
+    segmentedFrame.addPayloadChunk(input.bytes);
+    decodeResult.state.segmentedFrame = segmentedFrame;
 
-    // Not the final chunk --> current frame chunk fully processed
-    if (!_segmentedFrame.isComplete()) {
-      decodeResult.warnings.push(
-        "Complementary frame of a segmented data frame; additional data frames are needed"
-      );
+    if (segmentedFrame.currentPayload.length === segmentedFrame.expectedLength) {
+      input.bytes = segmentedFrame.getUsefulPayload();
+      input.fPort = segmentedFrame.getNbElements();
+      decodeResult.state = {};
+    } else if (segmentedFrame.currentPayload.length < segmentedFrame.expectedLength) {
       return decodeResult;
-    }
-
-    // Final chunk received --> prepare further processing
-    if (_segmentedFrame.checkCrc()) {
-      input.bytes = _segmentedFrame.getUsefulPayload();
-      input.fPort = _segmentedFrame.getNbElements();
-      _segmentedFrame = null;
-    }
-
-    // Case where there was a problem during transmission
-    else {
-      decodeResult.errors.push("Frame segmentation problem (CRC check failed)");
+    } else {
+      decodeResult.errors.push("Segments got saved incorrectly");
+      decodeResult.state = {};
       return decodeResult;
     }
   }
@@ -1005,9 +969,11 @@ function consume(event) {
   const decoded = decodeUplink({
     fPort: port,
     bytes,
-  }).data;
+  }, event.state || {});
+  const decodedObjects = decoded.data;
+  const decodedErrors = decoded.errors;
 
-  for (const [key, value] of Object.entries(decoded)) {
+  for (const [key, value] of Object.entries(decodedObjects)) {
     let data = {};
     let topic = "default";
 
@@ -1050,4 +1016,10 @@ function consume(event) {
 
     emit("sample", { data: data, topic: topic });
   }
+
+  decodedErrors.forEach(message => {
+    emit("sample", { data: { "errorMessage": message }, topic: "error" });
+  });
+
+  emit("state", decoded.state);
 }
