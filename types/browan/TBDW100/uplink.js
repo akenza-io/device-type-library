@@ -56,33 +56,35 @@ function consume(event) {
   const data = {};
   const lifecycle = {};
 
-  data.open = !!Bits.bitsToUnsigned(bits.substring(7, 8));
+  if (payload.length !== 0) {
+    data.open = !!Bits.bitsToUnsigned(bits.substring(7, 8));
 
-  let batteryVoltage = Bits.bitsToUnsigned(bits.substring(12, 16));
-  batteryVoltage = (25 + batteryVoltage) / 10;
-  lifecycle.batteryVoltage = Math.round(batteryVoltage * 10) / 10;
+    let batteryVoltage = Bits.bitsToUnsigned(bits.substring(12, 16));
+    batteryVoltage = (25 + batteryVoltage) / 10;
+    lifecycle.batteryVoltage = Math.round(batteryVoltage * 10) / 10;
 
-  let batteryLevel =
-    Math.round((lifecycle.batteryVoltage - 3.1) / 0.005 / 10) * 10; // 3.1V - 3.6V
-  if (batteryLevel > 100) {
-    batteryLevel = 100;
-  } else if (batteryLevel < 0) {
-    batteryLevel = 0;
+    let batteryLevel =
+      Math.round((lifecycle.batteryVoltage - 3.1) / 0.005 / 10) * 10; // 3.1V - 3.6V
+    if (batteryLevel > 100) {
+      batteryLevel = 100;
+    } else if (batteryLevel < 0) {
+      batteryLevel = 0;
+    }
+    lifecycle.batteryLevel = batteryLevel;
+
+    data.temperature = Bits.bitsToUnsigned(bits.substring(17, 24));
+    data.temperature -= 32;
+    data.time = Hex.hexLittleEndianToBigEndian(payload.substring(6, 10), false);
+    data.count = Hex.hexLittleEndianToBigEndian(payload.substring(10, 16), false);
+
+    const state = event.state || {};
+    const calculated = calculateIncrement(state, data.count, checkForCustomFields(event.device, "usageCountDivider", 4), 2);
+    const { doorClosings, usageCount } = calculated.data;
+    data.relativeCount = calculated.data.increment;
+
+    emit("state", calculated.state);
+    emit("sample", { data: { doorClosings, usageCount }, topic: "door_count" });
+    emit("sample", { data: lifecycle, topic: "lifecycle" });
+    emit("sample", { data, topic: "default" });
   }
-  lifecycle.batteryLevel = batteryLevel;
-
-  data.temperature = Bits.bitsToUnsigned(bits.substring(17, 24));
-  data.temperature -= 32;
-  data.time = Hex.hexLittleEndianToBigEndian(payload.substring(6, 10), false);
-  data.count = Hex.hexLittleEndianToBigEndian(payload.substring(10, 16), false);
-
-  const state = event.state || {};
-  const calculated = calculateIncrement(state, data.count, checkForCustomFields(event.device, "usageCountDivider", 4), 2);
-  const { doorClosings, usageCount } = calculated.data;
-  data.relativeCount = calculated.data.increment;
-
-  emit("state", calculated.state);
-  emit("sample", { data: { doorClosings, usageCount }, topic: "door_count" });
-  emit("sample", { data: lifecycle, topic: "lifecycle" });
-  emit("sample", { data, topic: "default" });
 }

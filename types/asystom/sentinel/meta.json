@@ -20,7 +20,8 @@
     "firmware_version",
     "scheduling_settings",
     "advanced_settings",
-    "firmware_status"
+    "firmware_status",
+    "error"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"
