@@ -33,6 +33,7 @@ describe("TBDW100 uplink", () => {
     it("Should decode TBDMS100 payload", () => {
       const data = {
         data: {
+          port: 102,
           payloadHex: "017b341600510c00",
         },
       };

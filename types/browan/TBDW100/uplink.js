@@ -52,11 +52,12 @@ function checkForCustomFields(device, target, fallbackValue) {
 
 function consume(event) {
   const payload = event.data.payloadHex;
+  const { port } = event.data;
   const bits = Bits.hexToBits(payload);
   const data = {};
   const lifecycle = {};
 
-  if (payload.length !== 0) {
+  if (port == 100) {
     data.open = !!Bits.bitsToUnsigned(bits.substr(7, 1));
 
     let batteryVoltage = Bits.bitsToUnsigned(bits.substr(12, 4));

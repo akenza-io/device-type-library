@@ -43,6 +43,7 @@ describe("TBDW100 uplink", () => {
       const data = {
         state: {},
         data: {
+          port: 100,
           payloadHex: "017b345cb1510c00",
         },
       };
@@ -99,6 +100,7 @@ describe("TBDW100 uplink", () => {
       const data = {
         state: { lastCount: 3053, partialUsage: 0 },
         data: {
+          port: 100,
           payloadHex: "017b345cb1510c00",
         },
       };
