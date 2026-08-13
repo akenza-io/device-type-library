@@ -33,6 +33,7 @@ describe("TBWater leak uplink", () => {
     it("should decode TBWater leak payload", () => {
       const data = {
         data: {
+          port: 106,
           payloadHex: "000b3628",
         },
       };
