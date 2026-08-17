@@ -1,0 +1,43 @@
+{
+  "$id": "https://akenza.io/terabee/poc/occupancy.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "occupancy",
+  "title": "Occupancy",
+  "properties": {
+    "occupancy": {
+      "title": "Overall occupancy",
+      "description": "Each count equals one zone occupied",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 8
+    },
+    "occupied": {
+      "title": "Overall occupied",
+      "description": "If one zone is occupied this is as well",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupied/boolean"
+    },
+    "minutesSinceLastOccupied": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/minutesSinceLastOccupied/minutes"
+    },
+    "occupiedMinutes": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupiedMinutes/minutes"
+    },
+    "warm": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/warm/boolean"
+    },
+    "occupancyStatus": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupancy/occupancyStatus"
+    },
+    "occupiedOrWarm": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupiedOrWarm/boolean"
+    }
+  },
+  "required": [
+    "occupancy",
+    "occupied",
+    "minutesSinceLastOccupied",
+    "warm"
+  ]
+}

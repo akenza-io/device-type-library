@@ -1,0 +1,128 @@
+{
+  "$id": "https://akenza.io/terabee/poc/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "wifiApEnabled": {
+      "title": "Wifi access point enabled",
+      "type": "boolean",
+      "description": "The wifi access point is enabled.",
+      "hideFromKpis": true
+    },
+    "warmup": {
+      "title": "Warmup",
+      "type": "boolean",
+      "description": "Equals true if the device is in its warmup phase.",
+      "hideFromKpis": true
+    },
+    "tpcStuck": {
+      "title": "TPC stuck",
+      "type": "boolean",
+      "description": "The counting software is started but nor responding.",
+      "hideFromKpis": true
+    },
+    "tpcStopped": {
+      "title": "TPC stopped",
+      "type": "boolean",
+      "description": "The counting software is currently not running.",
+      "hideFromKpis": true
+    },
+    "zone0Active": {
+      "title": "Zone 0 active",
+      "type": "string",
+      "description": "Setup state of zone 0",
+      "enum": [
+        "ACTIVE",
+        "NOT_SET"
+      ],
+      "hideFromKpis": true
+    },
+    "zone1Active": {
+      "title": "Zone 1 active",
+      "type": "string",
+      "description": "Setup state of zone 1",
+      "enum": [
+        "ACTIVE",
+        "NOT_SET"
+      ],
+      "hideFromKpis": true
+    },
+    "zone2Active": {
+      "title": "Zone 2 active",
+      "type": "string",
+      "description": "Setup state of zone 2",
+      "enum": [
+        "ACTIVE",
+        "NOT_SET"
+      ],
+      "hideFromKpis": true
+    },
+    "zone3Active": {
+      "title": "Zone 3 active",
+      "type": "string",
+      "description": "Setup state of zone 3",
+      "enum": [
+        "ACTIVE",
+        "NOT_SET"
+      ],
+      "hideFromKpis": true
+    },
+    "zone4Active": {
+      "title": "Zone 4 active",
+      "type": "string",
+      "description": "Setup state of zone 4",
+      "enum": [
+        "ACTIVE",
+        "NOT_SET"
+      ],
+      "hideFromKpis": true
+    },
+    "zone5Active": {
+      "title": "Zone 5 active",
+      "type": "string",
+      "description": "Setup state of zone 5",
+      "enum": [
+        "ACTIVE",
+        "NOT_SET"
+      ],
+      "hideFromKpis": true
+    },
+    "zone6Active": {
+      "title": "Zone 6 active",
+      "type": "string",
+      "description": "Setup state of zone 6",
+      "enum": [
+        "ACTIVE",
+        "NOT_SET"
+      ],
+      "hideFromKpis": true
+    },
+    "zone7Active": {
+      "title": "Zone 7 active",
+      "type": "string",
+      "description": "Setup state of zone 7",
+      "enum": [
+        "ACTIVE",
+        "NOT_SET"
+      ],
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "wifiApEnabled",
+    "warmup",
+    "tpcStuck",
+    "tpcStopped",
+    "zone0Active",
+    "zone1Active",
+    "zone2Active",
+    "zone3Active",
+    "zone4Active",
+    "zone5Active",
+    "zone6Active",
+    "zone7Active"
+  ]
+}
