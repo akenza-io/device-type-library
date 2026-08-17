@@ -33,6 +33,7 @@ describe("TBSound uplink", () => {
     it("should decode TBSound payload", () => {
       const data = {
         data: {
+          port: 105,
           payloadHex: "000b3628",
         },
       };

@@ -33,6 +33,7 @@ describe("TBClimate uplink", () => {
     it("should decode TBClimate payload", () => {
       const data = {
         data: {
+          port: 103,
           payloadHex: "000b361d350200003c0035",
         },
       };
