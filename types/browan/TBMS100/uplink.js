@@ -5,7 +5,7 @@ function consume(event) {
   const data = {};
   const lifecycle = {};
 
-  if (port == 102) {
+  if (port == 102 && payload.length === 16) {
     data.motion = !!Number(bits.substr(7, 1));
 
     let batteryVoltage = Bits.bitsToUnsigned(bits.substr(12, 4));

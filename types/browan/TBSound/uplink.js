@@ -6,7 +6,7 @@ function consume(event) {
   const lifecycle = {};
   const topic = "default";
 
-  if (port == 105) {
+  if (port == 105 && payload.length === 8) {
     let batteryVoltage = Bits.bitsToUnsigned(bits.substr(12, 4));
     batteryVoltage = (25 + batteryVoltage) / 10;
     lifecycle.batteryVoltage = Math.round(batteryVoltage * 10) / 10;
