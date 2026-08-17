@@ -5,7 +5,7 @@ function consume(event) {
   const data = {};
   const lifecycle = {};
 
-  if (port == 106) {
+  if (port == 106 && payload.length === 8) {
     data.waterleak = !!Bits.bitsToUnsigned(bits.substr(7, 1));
 
     let batteryVoltage = Bits.bitsToUnsigned(bits.substr(12, 4));
