@@ -1,11 +1,12 @@
 function consume(event) {
   const payload = event.data.payloadHex;
+  const { port } = event.data;
   const bits = Bits.hexToBits(payload);
   const data = {};
   const lifecycle = {};
   const topic = "default";
-
-  if (payload.length !== 0) {
+  
+  if (port == 105 && payload.length === 8) {
     let batteryVoltage = Bits.bitsToUnsigned(bits.substring(12, 16));
     batteryVoltage = (25 + batteryVoltage) / 10;
     lifecycle.batteryVoltage = Math.round(batteryVoltage * 10) / 10;
