@@ -67,14 +67,14 @@ function consume(event) {
 
   if (payload !== "") {
     for (let pointer = 0; pointer < bits.length;) {
-      const channel = Bits.bitsToUnsigned(bits.substr(pointer, 8));
+      const channel = Bits.bitsToUnsigned(bits.substring(pointer, pointer + 8));
       let data = {};
       pointer += 16;
 
       switch (channel) {
         case 1:
           // Recalibrate Response
-          if (Bits.bitsToUnsigned(bits.substr(pointer, 8)) === 1) {
+          if (Bits.bitsToUnsigned(bits.substring(pointer, pointer + 8)) === 1) {
             data.recalibrateResponse = "SUCCESSFUL";
           } else {
             data.recalibrateResponse = "FAILED";
@@ -83,14 +83,14 @@ function consume(event) {
           break;
         case 2:
           // Temperature
-          data.temperature = Bits.bitsToSigned(bits.substr(pointer, 16)) * 0.1;
+          data.temperature = Bits.bitsToSigned(bits.substring(pointer, pointer + 16)) * 0.1;
           pointer += 8;
           topic = "temperature";
           break;
         case 3:
           // Battery
           data.batteryVoltage =
-            Bits.bitsToUnsigned(bits.substr(pointer, 16)) * 0.01;
+            Bits.bitsToUnsigned(bits.substring(pointer, pointer + 16)) * 0.01;
           pointer += 8;
           topic = "battery";
           break;
@@ -105,7 +105,7 @@ function consume(event) {
           break;
         case 21: {
           // Parking Status
-          if (Bits.bitsToUnsigned(bits.substr(pointer, 8)) === 1) {
+          if (Bits.bitsToUnsigned(bits.substring(pointer, pointer + 8)) === 1) {
             data.occupancy = 1;
             data.occupied = true;
           } else {
@@ -125,17 +125,17 @@ function consume(event) {
           break;
         case 33:
           // Vehicle Count
-          if (Bits.bitsToUnsigned(bits.substr(pointer, 8)) === 128) {
+          if (Bits.bitsToUnsigned(bits.substring(pointer, pointer + 8)) === 128) {
             data.reboot = "RECALIBRATION";
             topic = "reboot";
           } else {
-            data.vehicleCount = Bits.bitsToUnsigned(bits.substr(pointer, 8));
+            data.vehicleCount = Bits.bitsToUnsigned(bits.substring(pointer, pointer + 8));
             topic = "vehicle_count";
           }
           break;
         case 55: {
           // Keep-Alive
-          if (Bits.bitsToUnsigned(bits.substr(pointer, 8)) === 1) {
+          if (Bits.bitsToUnsigned(bits.substring(pointer, pointer + 8)) === 1) {
             data.occupancy = 1;
             data.occupied = true;
           } else {

@@ -4,7 +4,7 @@ function consume(event) {
   const data = {};
   let topic = "default";
 
-  const frameType = Bits.bitsToUnsigned(bits.substr(0, 8));
+  const frameType = Bits.bitsToUnsigned(bits.substring(0, 8));
   // 16 Reserved
 
   if (frameType === 1) {
@@ -18,7 +18,7 @@ function consume(event) {
   if (topic === "default") {
     while (pointer < payload.length) {
       data[`channel${i}`] =
-        Hex.hexLittleEndianToBigEndian(payload.substr(pointer, 6), false) /
+        Hex.hexLittleEndianToBigEndian(payload.substring(pointer, pointer + 6), false) /
         100000;
       pointer += 6;
       i++;
@@ -26,9 +26,9 @@ function consume(event) {
   } else if (topic === "status") {
     // 16 Reserved
     data.firmware = `${Bits.bitsToUnsigned(
-      bits.substr(48, 8),
-    )}.${Bits.bitsToUnsigned(bits.substr(40, 8))}`;
-    let battery = Bits.bitsToUnsigned(bits.substr(64, 8));
+      bits.substring(48, 56),
+    )}.${Bits.bitsToUnsigned(bits.substring(40, 48))}`;
+    let battery = Bits.bitsToUnsigned(bits.substring(64, 72));
 
     switch (battery) {
       case 0:
@@ -44,7 +44,7 @@ function consume(event) {
     data.batteryStatus = battery;
     // Reserved 8
     data.periodicity = Hex.hexLittleEndianToBigEndian(
-      payload.substr(20, 4),
+      payload.substring(20, 24),
       false,
     );
   }

@@ -7,9 +7,9 @@ function consume(event) {
   };
   const lifecycle = {};
 
-  if (Bits.bitsToUnsigned(bits.substr(0, 8)) === 57) {
-    const reason1 = Bits.bitsToUnsigned(bits.substr(8, 8));
-    const reason2 = Bits.bitsToUnsigned(bits.substr(16, 8));
+  if (Bits.bitsToUnsigned(bits.substring(0, 8)) === 57) {
+    const reason1 = Bits.bitsToUnsigned(bits.substring(8, 16));
+    const reason2 = Bits.bitsToUnsigned(bits.substring(16, 24));
 
     if (reason1 & 0x01) { data.button1Count = 1; data.button1 = true; }
     if (reason1 & 0x02) { data.button2Count = 1; data.button2 = true; }
@@ -21,7 +21,7 @@ function consume(event) {
     if (reason2 & 0x04) { data.humidityEventCount = 1; data.humidityEvent = true; }
     if (reason2 & 0x08) { data.ambientLightEventCount = 1; data.ambientLightEvent = true; }
 
-    const appMode = Bits.bitsToUnsigned(bits.substr(24, 8));
+    const appMode = Bits.bitsToUnsigned(bits.substring(24, 32));
     switch (appMode) {
       case 0x00:
         lifecycle.appMode = "SENSOR_DISPLAY";
@@ -46,15 +46,15 @@ function consume(event) {
         break;
     }
 
-    lifecycle.acceptsDownlinks = !!Bits.bitsToUnsigned(bits.substr(32, 8));
-    lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substr(40, 8));
-    let temperature = Bits.bitsToUnsigned(bits.substr(48, 16));
+    lifecycle.acceptsDownlinks = !!Bits.bitsToUnsigned(bits.substring(32, 40));
+    lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substring(40, 48));
+    let temperature = Bits.bitsToUnsigned(bits.substring(48, 64));
     if (temperature >= 32768) {
       temperature -= 65536;
     }
     data.temperature = temperature / 100;
-    data.humidity = Bits.bitsToUnsigned(bits.substr(64, 16)) / 100;
-    data.light = Bits.bitsToUnsigned(bits.substr(80, 16)) / 100;
+    data.humidity = Bits.bitsToUnsigned(bits.substring(64, 80)) / 100;
+    data.light = Bits.bitsToUnsigned(bits.substring(80, 96)) / 100;
 
     emit("sample", { data: lifecycle, topic: "lifecycle" });
     emit("sample", { data, topic: "default" });

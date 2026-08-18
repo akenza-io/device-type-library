@@ -313,14 +313,14 @@ function float32ToNumber(encoded) {
 
 function decode(payload, bits, port, state) {
   const decoded = {};
-  const messageId = Bits.bitsToUnsigned(bits.substr(0, 4));
-  const messageVersion = Bits.bitsToUnsigned(bits.substr(4, 4));
+  const messageId = Bits.bitsToUnsigned(bits.substring(0, 4));
+  const messageVersion = Bits.bitsToUnsigned(bits.substring(4, 8));
   switch ((port << 8) | (messageId << 4) | messageVersion) {
     case 0xe10: {
-      decoded.transmitterChargeUsed = float16ToNumber(bits.substr(8, 15));
-      decoded.sensorChargeUsed = float16ToNumber(bits.substr(23, 15));
-      decoded.averageTemperature = float16ToNumber(bits.substr(38, 16));
-      let batteryLevel = Bits.bitsToUnsigned(bits.substr(54, 8));
+      decoded.transmitterChargeUsed = float16ToNumber(bits.substring(8, 23));
+      decoded.sensorChargeUsed = float16ToNumber(bits.substring(23, 38));
+      decoded.averageTemperature = float16ToNumber(bits.substring(38, 54));
+      let batteryLevel = Bits.bitsToUnsigned(bits.substring(54, 62));
       if (batteryLevel == 0) {
         decoded.batteryLevel = 100;
         // 255 means not available
@@ -333,9 +333,9 @@ function decode(payload, bits, port, state) {
     } case 0xe30:
       return { data: { "response": true }, topic: "lifecycle_response" };
     case 0xb00:
-      decoded.tag = (payload.substr(2, 8));
-      decoded.deviceConfiguration = enums.device_configuration_type_v0.values[(Bits.bitsToUnsigned(bits.substr(40, 12)))];
-      decoded.updateStatus = enums.configuration_update_status_v0.values[(Bits.bitsToUnsigned(bits.substr(52, 4)))];
+      decoded.tag = (payload.substring(2, 10));
+      decoded.deviceConfiguration = enums.device_configuration_type_v0.values[(Bits.bitsToUnsigned(bits.substring(40, 52)))];
+      decoded.updateStatus = enums.configuration_update_status_v0.values[(Bits.bitsToUnsigned(bits.substring(52, 56)))];
       return { data: decoded, topic: "configuration" };
     case 0xc00:
       // Check if theres still an active session
@@ -349,10 +349,10 @@ function decode(payload, bits, port, state) {
       state.streamingFragments = true;
       state.streamingNonRedundant = true;
 
-      decoded.port = Bits.bitsToUnsigned(bits.substr(8, 8));
-      decoded.uplinkSize = Bits.bitsToUnsigned(bits.substr(16, 16));
-      decoded.fragmentSize = Bits.bitsToUnsigned(bits.substr(32, 8)); // I do not think this matters for now
-      decoded.crc = Bits.bitsToUnsigned(bits.substr(40, 32));
+      decoded.port = Bits.bitsToUnsigned(bits.substring(8, 16));
+      decoded.uplinkSize = Bits.bitsToUnsigned(bits.substring(16, 32));
+      decoded.fragmentSize = Bits.bitsToUnsigned(bits.substring(32, 40)); // I do not think this matters for now
+      decoded.crc = Bits.bitsToUnsigned(bits.substring(40, 72));
 
       // Pass checksum and uplink parameters so they can be used later
       state.crc = decoded.crc;
@@ -367,12 +367,12 @@ function decode(payload, bits, port, state) {
         return { data: { "error": "NO_STARTING_FRAGMENT" }, topic: "error" };
       }
 
-      decoded.index = Bits.bitsToUnsigned(bits.substr(8, 16));
+      decoded.index = Bits.bitsToUnsigned(bits.substring(8, 24));
       decoded.fragmentType = "PLAIN";
       for (let i = 6; i < payload.length; i += 2) {
         // Add bytes till the payload is complete
         if (state.concatedPayload.length / 2 < state.uplinkSize) {
-          state.concatedPayload += payload.substr(i, 2);
+          state.concatedPayload += payload.substring(i, i + 2);
         } else {
           if (state.streamingNonRedundant) {
             state.streamingNonRedundant = false;
@@ -400,64 +400,64 @@ function decode(payload, bits, port, state) {
     case 0xe20:
       return { data: { "response": true }, topic: "factory_reset" };
     case 0x1000:
-      decoded.rebootReason = enums.reboot_reason_v0.values[Bits.bitsToUnsigned(bits.substr(8, 16))];
+      decoded.rebootReason = enums.reboot_reason_v0.values[Bits.bitsToUnsigned(bits.substring(8, 24))];
       return { data: decoded, topic: "boot" };
     case 0x1010:
-      decoded.temperature = Bits.bitsToSigned(bits.substr(8, 8));
-      decoded.rssi = Bits.bitsToSigned(bits.substr(16, 8));
-      decoded.loraTxCounter = Bits.bitsToUnsigned(bits.substr(24, 16));
-      decoded.powerSupply = !!Bits.bitsToUnsigned(bits.substr(40, 1));
-      decoded.configuration = !!Bits.bitsToUnsigned(bits.substr(41, 1));
-      decoded.sensorConnection = !!Bits.bitsToUnsigned(bits.substr(42, 1));
-      decoded.sensorPaired = !!Bits.bitsToUnsigned(bits.substr(43, 1));
-      decoded.flashMemory = !!Bits.bitsToUnsigned(bits.substr(44, 1));
-      decoded.internalTemperatureSensor = !!Bits.bitsToUnsigned(bits.substr(45, 1));
-      decoded.timeSynchronized = !!Bits.bitsToUnsigned(bits.substr(46, 1));
+      decoded.temperature = Bits.bitsToSigned(bits.substring(8, 16));
+      decoded.rssi = Bits.bitsToSigned(bits.substring(16, 24));
+      decoded.loraTxCounter = Bits.bitsToUnsigned(bits.substring(24, 40));
+      decoded.powerSupply = !!Bits.bitsToUnsigned(bits.substring(40, 41));
+      decoded.configuration = !!Bits.bitsToUnsigned(bits.substring(41, 42));
+      decoded.sensorConnection = !!Bits.bitsToUnsigned(bits.substring(42, 43));
+      decoded.sensorPaired = !!Bits.bitsToUnsigned(bits.substring(43, 44));
+      decoded.flashMemory = !!Bits.bitsToUnsigned(bits.substring(44, 45));
+      decoded.internalTemperatureSensor = !!Bits.bitsToUnsigned(bits.substring(45, 46));
+      decoded.timeSynchronized = !!Bits.bitsToUnsigned(bits.substring(46, 47));
       // Reserved 1
       return { data: decoded, topic: "status" };
     case 0x1030:
-      decoded.deactivationReason = enums.deactivation_reason_v0.values[Bits.bitsToUnsigned(bits.substr(8, 8))];
+      decoded.deactivationReason = enums.deactivation_reason_v0.values[Bits.bitsToUnsigned(bits.substring(8, 16))];
       return { data: decoded, topic: "deactivation" };
     case 0x1100:
-      decoded.rebootReason = enums.reboot_reason_v0.values[Bits.bitsToUnsigned(bits.substr(8, 16))];
+      decoded.rebootReason = enums.reboot_reason_v0.values[Bits.bitsToUnsigned(bits.substring(8, 24))];
       return { data: decoded, topic: "boot" };
     case 0x1110: {
       // Reserved short timestamp 16
-      const axis = enums.vb_axis_v0.values[Bits.bitsToUnsigned(bits.substr(24, 2))];
-      decoded.temperature = Bits.bitsToSigned(bits.substr(26, 8));
-      decoded.peakAcceleration = float16ToNumber(bits.substr(34, 16));
-      decoded.rmsAcceleration = float16ToNumber(bits.substr(50, 16));
-      decoded.rmsVelocity = float16ToNumber(bits.substr(66, 16));
+      const axis = enums.vb_axis_v0.values[Bits.bitsToUnsigned(bits.substring(24, 26))];
+      decoded.temperature = Bits.bitsToSigned(bits.substring(26, 34));
+      decoded.peakAcceleration = float16ToNumber(bits.substring(34, 50));
+      decoded.rmsAcceleration = float16ToNumber(bits.substring(50, 66));
+      decoded.rmsVelocity = float16ToNumber(bits.substring(66, 82));
       // Reserved 6
       return { data: decoded, topic: `axis_${String(axis).toLowerCase()}` };
     } case 0x1120:
       // Reserved short timestamp 16
-      decoded.sensorAlert0 = !!Bits.bitsToSigned(bits.substr(24, 1));
-      decoded.sensorAlert1 = !!Bits.bitsToSigned(bits.substr(25, 1));
-      decoded.sensorAlert2 = !!Bits.bitsToSigned(bits.substr(26, 1));
-      decoded.sensorAlert3 = !!Bits.bitsToSigned(bits.substr(27, 1));
-      decoded.sensorAlert4 = !!Bits.bitsToSigned(bits.substr(28, 1));
-      decoded.sensorAlert5 = !!Bits.bitsToSigned(bits.substr(29, 1));
-      decoded.sensorAlert6 = !!Bits.bitsToSigned(bits.substr(30, 1));
-      decoded.sensorAlert7 = !!Bits.bitsToSigned(bits.substr(31, 1));
-      decoded.spectrumAlert0 = !!Bits.bitsToSigned(bits.substr(32, 1));
-      decoded.spectrumAlert1 = !!Bits.bitsToSigned(bits.substr(33, 1));
-      decoded.spectrumAlert2 = !!Bits.bitsToSigned(bits.substr(34, 1));
-      decoded.spectrumAlert3 = !!Bits.bitsToSigned(bits.substr(35, 1));
-      decoded.spectrumAlert4 = !!Bits.bitsToSigned(bits.substr(36, 1));
+      decoded.sensorAlert0 = !!Bits.bitsToSigned(bits.substring(24, 25));
+      decoded.sensorAlert1 = !!Bits.bitsToSigned(bits.substring(25, 26));
+      decoded.sensorAlert2 = !!Bits.bitsToSigned(bits.substring(26, 27));
+      decoded.sensorAlert3 = !!Bits.bitsToSigned(bits.substring(27, 28));
+      decoded.sensorAlert4 = !!Bits.bitsToSigned(bits.substring(28, 29));
+      decoded.sensorAlert5 = !!Bits.bitsToSigned(bits.substring(29, 30));
+      decoded.sensorAlert6 = !!Bits.bitsToSigned(bits.substring(30, 31));
+      decoded.sensorAlert7 = !!Bits.bitsToSigned(bits.substring(31, 32));
+      decoded.spectrumAlert0 = !!Bits.bitsToSigned(bits.substring(32, 33));
+      decoded.spectrumAlert1 = !!Bits.bitsToSigned(bits.substring(33, 34));
+      decoded.spectrumAlert2 = !!Bits.bitsToSigned(bits.substring(34, 35));
+      decoded.spectrumAlert3 = !!Bits.bitsToSigned(bits.substring(35, 36));
+      decoded.spectrumAlert4 = !!Bits.bitsToSigned(bits.substring(36, 37));
       // Reserved 3
       return { data: decoded, topic: "alert" };
     case 0x1130: {
       // Reserved short timestamp 16
-      decoded.axis = enums.vb_axis_v0.values[Bits.bitsToUnsigned(bits.substr(24, 2))];
-      decoded.faultType = enums.vb_fault_type_v0.values[Bits.bitsToUnsigned(bits.substr(26, 2))];
-      decoded.faultCategory = enums.vb_fault_category_v0.values[Bits.bitsToUnsigned(bits.substr(28, 6))];
-      const frequencyFirstHarmonic = float16ToNumber(bits.substr(34, 15));
-      const amplitudeFirstHarmonic = float16ToNumber(bits.substr(49, 15));
+      decoded.axis = enums.vb_axis_v0.values[Bits.bitsToUnsigned(bits.substring(24, 26))];
+      decoded.faultType = enums.vb_fault_type_v0.values[Bits.bitsToUnsigned(bits.substring(26, 28))];
+      decoded.faultCategory = enums.vb_fault_category_v0.values[Bits.bitsToUnsigned(bits.substring(28, 34))];
+      const frequencyFirstHarmonic = float16ToNumber(bits.substring(34, 49));
+      const amplitudeFirstHarmonic = float16ToNumber(bits.substring(49, 64));
 
       const relativeNthHarmonicAmplitudes = [];
       for (let i = 64; i < bits.length; i += 8) {
-        relativeNthHarmonicAmplitudes.push(Bits.bitsToUnsigned(bits.substr(i, 8)));
+        relativeNthHarmonicAmplitudes.push(Bits.bitsToUnsigned(bits.substring(i, i + 8)));
       }
 
       decoded.harmonicFrequencies = [];
@@ -473,30 +473,30 @@ function decode(payload, bits, port, state) {
 
       return { data: decoded, topic: "machine_fault" };
     } case 0x1140:
-      decoded.selection = enums.vb_statistics_selection_v0.values[Bits.bitsToUnsigned(bits.substr(8, 4))];
-      decoded.min = float16ToNumber(bits.substr(12, 16));
-      decoded.max = float16ToNumber(bits.substr(28, 16));
-      decoded.avg = float16ToNumber(bits.substr(44, 16));
+      decoded.selection = enums.vb_statistics_selection_v0.values[Bits.bitsToUnsigned(bits.substring(8, 12))];
+      decoded.min = float16ToNumber(bits.substring(12, 28));
+      decoded.max = float16ToNumber(bits.substring(28, 44));
+      decoded.avg = float16ToNumber(bits.substring(44, 60));
       // Reserved short timestamp 16
       // Reserved 4
 
       return { data: decoded, topic: "statistics" };
     case 0x1150: {
       // Reserved timestamp 32
-      const axis = enums.vb_axis_v0.values[Bits.bitsToUnsigned(bits.substr(40, 2))];
-      decoded.spectrumType = enums.vb_spectrum_type_v0.values[Bits.bitsToUnsigned(bits.substr(42, 2))];
-      decoded.temperature = Bits.bitsToSigned(bits.substr(44, 8));
-      const df = float16ToNumber(bits.substr(52, 16));
-      const fMin = float16ToNumber(bits.substr(68, 16));
-      decoded.peakAcceleration = float16ToNumber(bits.substr(84, 16));
-      decoded.rmsAcceleration = float16ToNumber(bits.substr(100, 16));
-      decoded.rmsVelocity = float16ToNumber(bits.substr(116, 16));
-      decoded.rpm = float32ToNumber(bits.substr(132, 32));
-      const magnitudesScaling = float16ToNumber(bits.substr(164, 15));
+      const axis = enums.vb_axis_v0.values[Bits.bitsToUnsigned(bits.substring(40, 42))];
+      decoded.spectrumType = enums.vb_spectrum_type_v0.values[Bits.bitsToUnsigned(bits.substring(42, 44))];
+      decoded.temperature = Bits.bitsToSigned(bits.substring(44, 52));
+      const df = float16ToNumber(bits.substring(52, 68));
+      const fMin = float16ToNumber(bits.substring(68, 84));
+      decoded.peakAcceleration = float16ToNumber(bits.substring(84, 100));
+      decoded.rmsAcceleration = float16ToNumber(bits.substring(100, 116));
+      decoded.rmsVelocity = float16ToNumber(bits.substring(116, 132));
+      decoded.rpm = float32ToNumber(bits.substring(132, 164));
+      const magnitudesScaling = float16ToNumber(bits.substring(164, 179));
       // Reserved 5
       const magnitudeValues = [];
       for (let i = 184; i < bits.length; i += 10) {
-        magnitudeValues.push(Bits.bitsToUnsigned(bits.substr(i, 10)));
+        magnitudeValues.push(Bits.bitsToUnsigned(bits.substring(i, i + 10)));
       }
       decoded.frequencies = [];
       for (let i = 0; i < magnitudeValues.length; i++) {

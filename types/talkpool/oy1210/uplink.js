@@ -16,17 +16,17 @@ function consume(event) {
     // Taking the temperature from different positions in the payload and converting it through the defined offsets (same for humidity)
     data.temperature =
       Math.round(
-        (Bits.bitsToUnsigned(bits.substr(0, 8) + bits.substr(16, 4)) / 10 -
+        (Bits.bitsToUnsigned(bits.substring(0, 8) + bits.substring(16, 20)) / 10 -
           80) *
           10,
       ) / 10;
     data.humidity =
       Math.round(
-        (Bits.bitsToUnsigned(bits.substr(8, 8) + bits.substr(20, 4)) / 10 -
+        (Bits.bitsToUnsigned(bits.substring(8, 16) + bits.substring(20, 24)) / 10 -
           25) *
           10,
       ) / 10;
-    data.co2 = Bits.bitsToUnsigned(bits.substr(24, 16));
+    data.co2 = Bits.bitsToUnsigned(bits.substring(24, 40));
   }
   emit("sample", { data, topic });
 }

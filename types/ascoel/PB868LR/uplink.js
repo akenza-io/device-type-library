@@ -2,7 +2,7 @@ function hex2ascii(hexx) {
   const hex = hexx.toString(); // force conversion
   let str = "";
   for (let i = 0; i < hex.length; i += 2) {
-    str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+    str += String.fromCharCode(parseInt(hex.substring(i, i + 2), 16));
   }
   return str;
 }
@@ -16,7 +16,7 @@ function consume(event) {
 
   switch (port) {
     case 2:
-      data.downlinkNr = Bits.bitsToUnsigned(bits.substr(0, 32));
+      data.downlinkNr = Bits.bitsToUnsigned(bits.substring(0, 32));
       topic = "debug";
       break;
     case 5:
@@ -32,25 +32,25 @@ function consume(event) {
       topic = "debug";
       break;
     case 7: {
-      const majorVersion = Bits.bitsToUnsigned(bits.substr(0, 8));
-      const minorVersion = Bits.bitsToUnsigned(bits.substr(8, 8));
-      const buildVersion = Bits.bitsToUnsigned(bits.substr(16, 16));
+      const majorVersion = Bits.bitsToUnsigned(bits.substring(0, 8));
+      const minorVersion = Bits.bitsToUnsigned(bits.substring(8, 16));
+      const buildVersion = Bits.bitsToUnsigned(bits.substring(16, 32));
       data.firmwareVersion = `${majorVersion}.${minorVersion}.${buildVersion}`;
 
-      const majorLora = Bits.bitsToUnsigned(bits.substr(32, 8));
-      const minorLora = Bits.bitsToUnsigned(bits.substr(40, 8));
-      const buildLora = Bits.bitsToUnsigned(bits.substr(48, 8));
+      const majorLora = Bits.bitsToUnsigned(bits.substring(32, 40));
+      const minorLora = Bits.bitsToUnsigned(bits.substring(40, 48));
+      const buildLora = Bits.bitsToUnsigned(bits.substring(48, 56));
       data.loraVersion = `${majorLora}.${minorLora}.${buildLora}`;
-      data.hardwareRevision = hex2ascii(payload.substr(14, 2));
+      data.hardwareRevision = hex2ascii(payload.substring(14, 16));
       topic = "debug";
       break;
     }
     case 8:
-      data.batteryLevel = Bits.bitsToUnsigned(bits.substr(0, 8));
+      data.batteryLevel = Bits.bitsToUnsigned(bits.substring(0, 8));
       topic = "lifecycle";
       break;
     case 9:
-      data.batteryLevel = Bits.bitsToUnsigned(bits.substr(0, 8));
+      data.batteryLevel = Bits.bitsToUnsigned(bits.substring(0, 8));
       topic = "lifecycle";
       break;
     case 10:
@@ -62,9 +62,9 @@ function consume(event) {
       topic = "debug";
       break;
     case 40:
-      data.buttonPushed = !!Bits.bitsToUnsigned(bits.substr(7, 1));
+      data.buttonPushed = !!Bits.bitsToUnsigned(bits.substring(7, 8));
       data.buttonPushedNumeric = Number(data.buttonPushed);
-      data.count = Bits.bitsToUnsigned(bits.substr(8, 16));
+      data.count = Bits.bitsToUnsigned(bits.substring(8, 24));
       break;
     default:
       break;

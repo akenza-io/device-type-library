@@ -15,24 +15,24 @@ function consume(event) {
     case 1:
     case 13:
       // Lifecycle
-      temperature.temperature = Bits.bitsToUnsigned(bits.substr(0, 8)) - 50;
+      temperature.temperature = Bits.bitsToUnsigned(bits.substring(0, 8)) - 50;
       lifecycle.internalTemperature =
-        Bits.bitsToUnsigned(bits.substr(8, 8)) - 50;
+        Bits.bitsToUnsigned(bits.substring(8, 16)) - 50;
       lifecycle.batteryVoltage =
-        Bits.bitsToUnsigned(bits.substr(16, 16)) / 1000;
+        Bits.bitsToUnsigned(bits.substring(16, 32)) / 1000;
 
       break;
     case 28:
       // Configuration request
-      temperature.temperature = Bits.bitsToUnsigned(bits.substr(0, 8)) - 50;
-      lifecycle.batteryVoltage = Bits.bitsToUnsigned(bits.substr(8, 16)) / 1000;
+      temperature.temperature = Bits.bitsToUnsigned(bits.substring(0, 8)) - 50;
+      lifecycle.batteryVoltage = Bits.bitsToUnsigned(bits.substring(8, 24)) / 1000;
       break;
     case 25: {
       topic = "configuration_ack";
-      data.ackId = Bits.bitsToUnsigned(bits.substr(0, 8));
-      data.recordPeriod = Bits.bitsToUnsigned(bits.substr(8, 16));
-      data.reportPeriod = Bits.bitsToUnsigned(bits.substr(24, 16));
-      const unit = Bits.bitsToUnsigned(bits.substr(40, 8));
+      data.ackId = Bits.bitsToUnsigned(bits.substring(0, 8));
+      data.recordPeriod = Bits.bitsToUnsigned(bits.substring(8, 24));
+      data.reportPeriod = Bits.bitsToUnsigned(bits.substring(24, 40));
+      const unit = Bits.bitsToUnsigned(bits.substring(40, 48));
       if (unit === 0) {
         data.unit = "MINUTES";
       } else {
@@ -43,13 +43,13 @@ function consume(event) {
     case 26:
     case 27: {
       topic = "report_frame";
-      data.fid = Bits.bitsToUnsigned(bits.substr(0, 16));
+      data.fid = Bits.bitsToUnsigned(bits.substring(0, 16));
 
       let i = 1;
       for (let bytePos = 16; bytePos < bits.length; bytePos += 16) {
         data[`temperature${i}`] =
           Math.round(
-            (Bits.bitsToUnsigned(bits.substr(bytePos, 16)) / 100 - 50) * 10,
+            (Bits.bitsToUnsigned(bits.substring(bytePos, bytePos + 16)) / 100 - 50) * 10,
           ) / 10;
         i++;
       }
@@ -58,20 +58,20 @@ function consume(event) {
     case 22:
       topic = "first_timestamp";
       data.firstSampleTimestamp =
-        Bits.bitsToUnsigned(bits.substr(0, 32)) * 1000;
+        Bits.bitsToUnsigned(bits.substring(0, 32)) * 1000;
       lifecycle.batteryVoltage =
-        Bits.bitsToUnsigned(bits.substr(32, 16)) / 1000;
+        Bits.bitsToUnsigned(bits.substring(32, 48)) / 1000;
       break;
     case 21:
       topic = "device_status";
-      lifecycle.batteryVoltage = Bits.bitsToUnsigned(bits.substr(0, 16)) / 1000;
-      data.lastSampleNumber = Bits.bitsToUnsigned(bits.substr(16, 32));
+      lifecycle.batteryVoltage = Bits.bitsToUnsigned(bits.substring(0, 16)) / 1000;
+      data.lastSampleNumber = Bits.bitsToUnsigned(bits.substring(16, 48));
       data.lastSampleTimestamp =
-        Bits.bitsToUnsigned(bits.substr(48, 32)) * 1000;
+        Bits.bitsToUnsigned(bits.substring(48, 80)) * 1000;
 
       break;
     case 31:
-      lifecycle.batteryVoltage = Bits.bitsToUnsigned(bits.substr(0, 16)) / 1000;
+      lifecycle.batteryVoltage = Bits.bitsToUnsigned(bits.substring(0, 16)) / 1000;
       break;
     default:
       topic = "unknown";

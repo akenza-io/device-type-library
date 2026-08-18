@@ -6,10 +6,10 @@ function consume(event) {
   const temperature = {};
   const co2 = {};
 
-  for (let pointer = 0; pointer < bits.length; ) {
+  for (let pointer = 0; pointer < bits.length;) {
     let measurement = "";
-    let length = (Bits.bitsToUnsigned(bits.substr(pointer, 8)) - 1) * 8;
-    const msgtype = Bits.bitsToUnsigned(bits.substr((pointer += 8), 8));
+    let length = (Bits.bitsToUnsigned(bits.substring(pointer, pointer + 8)) - 1) * 8;
+    const msgtype = Bits.bitsToUnsigned(bits.substring((pointer += 8), pointer + 8));
     pointer += 8;
     length += pointer;
 
@@ -18,13 +18,13 @@ function consume(event) {
         while (pointer < length) {
           temperature[`temperature${measurement}`] =
             Hex.hexLittleEndianToBigEndian(
-              payload.substr(pointer / 4, 4),
+              payload.substring(pointer / 4, pointer / 4 + 4),
               true,
             ) * 0.01;
           pointer += 16;
           temperature[`humidity${measurement}`] =
             Hex.hexLittleEndianToBigEndian(
-              payload.substr(pointer / 4, 2),
+              payload.substring(pointer / 4, pointer / 4 + 2),
               true,
             ) * 0.5;
           pointer += 8;
@@ -37,9 +37,9 @@ function consume(event) {
         break;
       case 2:
         while (pointer < length) {
-          const co2msb = bits.substr(pointer, 8);
+          const co2msb = bits.substring(pointer, pointer + 8);
           pointer += 8;
-          const co2lsb = bits.substr(pointer, 8);
+          const co2lsb = bits.substring(pointer, pointer + 8);
           pointer += 8;
           co2[`co2${measurement}`] = Bits.bitsToUnsigned(co2lsb + co2msb);
 
@@ -52,19 +52,19 @@ function consume(event) {
         break;
       case 3:
         lifecycle.consumption = Hex.hexLittleEndianToBigEndian(
-          payload.substr(pointer / 4, 6),
+          payload.substring(pointer / 4, pointer / 4 + 6),
           false,
         );
         pointer += 32;
         break;
       case 5:
         settings.measurementInterval = Hex.hexLittleEndianToBigEndian(
-          payload.substr(pointer / 4, 4),
+          payload.substring(pointer / 4, pointer / 4 + 4),
           false,
         );
         pointer += 16;
         settings.temperatureSamples = Hex.hexLittleEndianToBigEndian(
-          payload.substr(pointer / 4, 2),
+          payload.substring(pointer / 4, pointer / 4 + 2),
           false,
         );
         pointer += 16;
@@ -72,23 +72,23 @@ function consume(event) {
       case 6:
         pointer += 16;
         settings.co2Subsample = Hex.hexLittleEndianToBigEndian(
-          payload.substr(pointer / 4, 4),
+          payload.substring(pointer / 4, pointer / 4 + 4),
           false,
         );
         pointer += 16;
         settings.abcCalibrationPeriod = Hex.hexLittleEndianToBigEndian(
-          payload.substr(pointer / 4, 4),
+          payload.substring(pointer / 4, pointer / 4 + 4),
           false,
         );
         pointer += 16;
         break;
       case 10:
         lifecycle.batteryVoltage =
-          (Bits.bitsToUnsigned(bits.substr(pointer, 8)) + 170) / 100;
+          (Bits.bitsToUnsigned(bits.substring(pointer, pointer + 8)) + 170) / 100;
         pointer += 8;
         break;
       case 11:
-        settings.firmwareHash = payload.substr(pointer / 4, 8);
+        settings.firmwareHash = payload.substring(pointer / 4, pointer / 4 + 8);
         pointer += 32;
         break;
       default:

@@ -8,7 +8,7 @@ function consume(event) {
 
   // Boot
   if (port === 1) {
-    if (Bits.bitsToUnsigned(bits.substr(16, 8)) !== 0) {
+    if (Bits.bitsToUnsigned(bits.substring(16, 24)) !== 0) {
       data.message = "STARTUP_FAIL";
     } else {
       data.message = "STARTUP_OK";
@@ -18,32 +18,32 @@ function consume(event) {
     //  Measurement
   } else if (port === 2) {
     data.temperature =
-      (Bits.bitsToUnsigned(bits.substr(0, 8) + bits.substr(16, 4)) - 800) / 10;
+      (Bits.bitsToUnsigned(bits.substring(0, 8) + bits.substring(16, 20)) - 800) / 10;
     data.humidity =
-      (Bits.bitsToUnsigned(bits.substr(8, 8) + bits.substr(20, 4)) - 250) / 10;
+      (Bits.bitsToUnsigned(bits.substring(8, 16) + bits.substring(20, 24)) - 250) / 10;
 
-    data.pm1 = Math.round(Bits.bitsToUnsigned(bits.substr(24, 16)));
-    data.pm2_5 = Math.round(Bits.bitsToUnsigned(bits.substr(40, 16)));
-    data.pm10 = Math.round(Bits.bitsToUnsigned(bits.substr(56, 16)));
+    data.pm1 = Math.round(Bits.bitsToUnsigned(bits.substring(24, 40)));
+    data.pm2_5 = Math.round(Bits.bitsToUnsigned(bits.substring(40, 56)));
+    data.pm10 = Math.round(Bits.bitsToUnsigned(bits.substring(56, 72)));
 
     if (bits.length > 72) {
       particle.pm0_3 = Math.round(
-        Bits.bitsToUnsigned(bits.substr(72, 16)),
+        Bits.bitsToUnsigned(bits.substring(72, 88)),
       );
       particle.pm0_5 = Math.round(
-        Bits.bitsToUnsigned(bits.substr(88, 16)),
+        Bits.bitsToUnsigned(bits.substring(88, 104)),
       );
       particle.pm1 = Math.round(
-        Bits.bitsToUnsigned(bits.substr(104, 16)),
+        Bits.bitsToUnsigned(bits.substring(104, 120)),
       );
       particle.pm2_5 = Math.round(
-        Bits.bitsToUnsigned(bits.substr(120, 16)),
+        Bits.bitsToUnsigned(bits.substring(120, 136)),
       );
       particle.pm5 = Math.round(
-        Bits.bitsToUnsigned(bits.substr(136, 16)),
+        Bits.bitsToUnsigned(bits.substring(136, 152)),
       );
       particle.pm5Larger = Math.round(
-        Bits.bitsToUnsigned(bits.substr(152, 16)),
+        Bits.bitsToUnsigned(bits.substring(152, 168)),
       );
       emit("sample", { data: particle, topic: "particle" });
     }

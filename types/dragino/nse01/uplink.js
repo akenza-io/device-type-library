@@ -4,29 +4,29 @@ function consume(event) {
   const lifecycle = {};
   let data = {};
 
-  lifecycle.deviceId = payload.substr(0, 16);
-  lifecycle.version = Bits.bitsToUnsigned(bits.substr(64, 16));
-  lifecycle.batteryVoltage = Bits.bitsToUnsigned(bits.substr(80, 16)) / 1000;
-  lifecycle.signalStrength = Bits.bitsToUnsigned(bits.substr(96, 8));
-  lifecycle.mod = Bits.bitsToUnsigned(bits.substr(104, 8));
-  lifecycle.interrupt = Bits.bitsToUnsigned(bits.substr(112, 8));
+  lifecycle.deviceId = payload.substring(0, 16);
+  lifecycle.version = Bits.bitsToUnsigned(bits.substring(64, 80));
+  lifecycle.batteryVoltage = Bits.bitsToUnsigned(bits.substring(80, 96)) / 1000;
+  lifecycle.signalStrength = Bits.bitsToUnsigned(bits.substring(96, 104));
+  lifecycle.mod = Bits.bitsToUnsigned(bits.substring(104, 112));
+  lifecycle.interrupt = Bits.bitsToUnsigned(bits.substring(112, 120));
 
   for (let pointer = 120; pointer < bits.length; pointer++) {
-    data.soilMoisture = Bits.bitsToUnsigned(bits.substr(120, 16));
+    data.soilMoisture = Bits.bitsToUnsigned(bits.substring(120, 136));
     pointer += 16;
-    data.soilTemperature = Bits.bitsToSigned(bits.substr(pointer, 16)) / 100;
+    data.soilTemperature = Bits.bitsToSigned(bits.substring(pointer, pointer + 16)) / 100;
 
-    if (bits.substr(pointer, 16) === "1111111111111111") {
+    if (bits.substring(pointer, pointer + 16) === "1111111111111111") {
       data.soilTemperature = null;
     }
 
     pointer += 16;
-    data.soilConductivity = Bits.bitsToUnsigned(bits.substr(pointer, 16));
+    data.soilConductivity = Bits.bitsToUnsigned(bits.substring(pointer, pointer + 16));
     pointer += 16;
-    data.soilDialecticConstant = Bits.bitsToUnsigned(bits.substr(pointer, 16));
+    data.soilDialecticConstant = Bits.bitsToUnsigned(bits.substring(pointer, pointer + 16));
     pointer += 16;
     const timestamp = new Date(
-      Bits.bitsToUnsigned(bits.substr(pointer, 32)) * 1000,
+      Bits.bitsToUnsigned(bits.substring(pointer, pointer + 32)) * 1000,
     );
     pointer += 32;
     emit("sample", { data, topic: "default", timestamp });

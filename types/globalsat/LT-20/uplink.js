@@ -4,14 +4,14 @@ function consume(event) {
   const data = {};
 
   data.longitude =
-    ((Hex.hexLittleEndianToBigEndian(payload.substr(4, 6), true) * 215) / 10) *
+    ((Hex.hexLittleEndianToBigEndian(payload.substring(4, 10), true) * 215) / 10) *
     0.000001;
   data.latitude =
-    ((Hex.hexLittleEndianToBigEndian(payload.substr(10, 6), true) * 108) / 10) *
+    ((Hex.hexLittleEndianToBigEndian(payload.substring(10, 16), true) * 108) / 10) *
     0.000001;
 
-  const reportType = Math.round(Bits.bitsToUnsigned(bits.substr(64, 8)) % 32);
-  const gpsFix = Math.round(Bits.bitsToUnsigned(bits.substr(64, 8)) / 32);
+  const reportType = Math.round(Bits.bitsToUnsigned(bits.substring(64, 72)) % 32);
+  const gpsFix = Math.round(Bits.bitsToUnsigned(bits.substring(64, 72)) / 32);
 
   if (gpsFix === 0) {
     data.gpsFix = "Not fix";
@@ -34,7 +34,7 @@ function consume(event) {
   } else if (reportType === 15) {
     data.reportType = "Low battery alarm report";
   }
-  const batteryLevel = Bits.bitsToUnsigned(bits.substr(72, 8));
+  const batteryLevel = Bits.bitsToUnsigned(bits.substring(72, 80));
 
   emit("sample", {
     data: { batteryLevel },

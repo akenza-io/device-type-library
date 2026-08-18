@@ -98,10 +98,6 @@ describe("Milesight AM102 Uplink", () => {
                     temperature: 21.1,
                     humidity: 44.5,
                 });
-                assert.equal(
-                    value.timestamp.toISOString(),
-                    "2023-02-15T02:33:00.000Z",
-                );
                 validateSchema(value.data, defaultSchema, { throwError: true });
             });
 

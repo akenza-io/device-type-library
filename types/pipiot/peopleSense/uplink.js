@@ -33,89 +33,89 @@ function consume(event) {
   const data = {};
   const lifecycle = {};
 
-  const cd = Bits.bitsToUnsigned(bits.substr(0, 1));
-  const subType = Bits.bitsToUnsigned(bits.substr(1, 3));
+  const cd = Bits.bitsToUnsigned(bits.substring(0, 1));
+  const subType = Bits.bitsToUnsigned(bits.substring(1, 4));
   // Reserved 4 bits
 
   // Standart Meassurement
   if (subType === 0 && cd === 0) {
-    lifecycle.heartbeatFlag = !!Number(bits.substr(92, 1));
-    lifecycle.magSwitchFlag = !!Number(bits.substr(93, 1));
-    lifecycle.proxHWError = !!Number(bits.substr(94, 1));
-    lifecycle.binsReadyFlag = !!Number(bits.substr(95, 1));
+    lifecycle.heartbeatFlag = !!Number(bits.substring(92, 93));
+    lifecycle.magSwitchFlag = !!Number(bits.substring(93, 94));
+    lifecycle.proxHWError = !!Number(bits.substring(94, 95));
+    lifecycle.binsReadyFlag = !!Number(bits.substring(95, 96));
 
-    lifecycle.batteryVoltage = batteryVoltage(bits.substr(8, 8));
-    data.peopleCount = peopleCountAccumulator(bits.substr(16, 16));
+    lifecycle.batteryVoltage = batteryVoltage(bits.substring(8, 16));
+    data.peopleCount = peopleCountAccumulator(bits.substring(16, 32));
     data.peopleCountBin1 = peopleCountBin(
-      bits.substr(32, 10),
+      bits.substring(32, 42),
       lifecycle.binsReadyFlag,
     );
     data.peopleCountBin2 = peopleCountBin(
-      bits.substr(42, 10),
+      bits.substring(42, 52),
       lifecycle.binsReadyFlag,
     );
     data.peopleCountBin3 = peopleCountBin(
-      bits.substr(52, 10),
+      bits.substring(52, 62),
       lifecycle.binsReadyFlag,
     );
     data.peopleCountBin4 = peopleCountBin(
-      bits.substr(62, 10),
+      bits.substring(62, 72),
       lifecycle.binsReadyFlag,
     );
     data.peopleCountBin5 = peopleCountBin(
-      bits.substr(72, 10),
+      bits.substring(72, 82),
       lifecycle.binsReadyFlag,
     );
     data.peopleCountBin6 = peopleCountBin(
-      bits.substr(82, 10),
+      bits.substring(82, 92),
       lifecycle.binsReadyFlag,
     );
   } else if (subType === 1 && cd === 0) {
-    lifecycle.forcedDownlinkFlag = !!Number(bits.substr(82, 1));
-    lifecycle.countAlertFlag = !!Number(bits.substr(83, 1));
-    lifecycle.heartbeatFlag = !!Number(bits.substr(84, 1));
-    lifecycle.magSwitchFlag = !!Number(bits.substr(85, 1));
-    lifecycle.proxHWError = !!Number(bits.substr(86, 1));
-    lifecycle.binsReadyFlag = !!Number(bits.substr(87, 1));
+    lifecycle.forcedDownlinkFlag = !!Number(bits.substring(82, 83));
+    lifecycle.countAlertFlag = !!Number(bits.substring(83, 84));
+    lifecycle.heartbeatFlag = !!Number(bits.substring(84, 85));
+    lifecycle.magSwitchFlag = !!Number(bits.substring(85, 86));
+    lifecycle.proxHWError = !!Number(bits.substring(86, 87));
+    lifecycle.binsReadyFlag = !!Number(bits.substring(87, 88));
 
-    lifecycle.batteryVoltage = batteryVoltage(bits.substr(8, 8));
-    data.peopleCount = peopleCountAccumulator(bits.substr(16, 16));
+    lifecycle.batteryVoltage = batteryVoltage(bits.substring(8, 16));
+    data.peopleCount = peopleCountAccumulator(bits.substring(16, 32));
     data.peopleCountBin1 = peopleCountBin(
-      bits.substr(32, 10),
+      bits.substring(32, 42),
       lifecycle.binsReadyFlag,
     );
     data.peopleCountBin2 = peopleCountBin(
-      bits.substr(42, 10),
+      bits.substring(42, 52),
       lifecycle.binsReadyFlag,
     );
     data.peopleCountBin3 = peopleCountBin(
-      bits.substr(52, 10),
+      bits.substring(52, 62),
       lifecycle.binsReadyFlag,
     );
     data.peopleCountBin4 = peopleCountBin(
-      bits.substr(62, 10),
+      bits.substring(62, 72),
       lifecycle.binsReadyFlag,
     );
     data.peopleCountBin5 = peopleCountBin(
-      bits.substr(72, 10),
+      bits.substring(72, 82),
       lifecycle.binsReadyFlag,
     );
-    data.temperature = temperature(bits.substr(88, 8));
+    data.temperature = temperature(bits.substring(88, 96));
   } else if (subType === 3 && cd === 0) {
-    lifecycle.forcedDownlinkFlag = !!Number(bits.substr(50, 1));
-    lifecycle.countAlertFlag = !!Number(bits.substr(51, 1));
-    lifecycle.heartbeatFlag = !!Number(bits.substr(52, 1));
-    lifecycle.magSwitchFlag = !!Number(bits.substr(53, 1));
-    lifecycle.proxHWError = !!Number(bits.substr(54, 1));
-    lifecycle.binsReadyFlag = !!Number(bits.substr(55, 1));
+    lifecycle.forcedDownlinkFlag = !!Number(bits.substring(50, 51));
+    lifecycle.countAlertFlag = !!Number(bits.substring(51, 52));
+    lifecycle.heartbeatFlag = !!Number(bits.substring(52, 53));
+    lifecycle.magSwitchFlag = !!Number(bits.substring(53, 54));
+    lifecycle.proxHWError = !!Number(bits.substring(54, 55));
+    lifecycle.binsReadyFlag = !!Number(bits.substring(55, 56));
 
-    lifecycle.batteryVoltage = batteryVoltage(bits.substr(8, 8));
-    data.peopleCount = peopleCountAccumulator(bits.substr(16, 16));
-    data.alertCount = Bits.bitsToUnsigned(bits.substr(32, 16));
-    data.temperature = temperature(bits.substr(56, 8));
+    lifecycle.batteryVoltage = batteryVoltage(bits.substring(8, 16));
+    data.peopleCount = peopleCountAccumulator(bits.substring(16, 32));
+    data.alertCount = Bits.bitsToUnsigned(bits.substring(32, 48));
+    data.temperature = temperature(bits.substring(56, 64));
     topic = "default";
   } else if (subType === 2 && cd === 0) {
-    data.testFrames = bits.substr(8, 8);
+    data.testFrames = bits.substring(8, 16);
     topic = "rssi_test";
   }
 

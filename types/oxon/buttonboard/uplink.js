@@ -4,16 +4,16 @@ function consume(event) {
   const data = {};
   const lifecycle = {};
 
-  if (Bits.bitsToUnsigned(bits.substr(0, 8)) === 49) {
+  if (Bits.bitsToUnsigned(bits.substring(0, 8)) === 49) {
     // Buttons Pressed
-    data.longPressed = !!Bits.bitsToUnsigned(bits.substr(8, 1));
+    data.longPressed = !!Bits.bitsToUnsigned(bits.substring(8, 9));
     // Reserved 1
-    data.button6 = !!Bits.bitsToUnsigned(bits.substr(10, 1));
-    data.button5 = !!Bits.bitsToUnsigned(bits.substr(11, 1));
-    data.button4 = !!Bits.bitsToUnsigned(bits.substr(12, 1));
-    data.button3 = !!Bits.bitsToUnsigned(bits.substr(13, 1));
-    data.button2 = !!Bits.bitsToUnsigned(bits.substr(14, 1));
-    data.button1 = !!Bits.bitsToUnsigned(bits.substr(15, 1));
+    data.button6 = !!Bits.bitsToUnsigned(bits.substring(10, 11));
+    data.button5 = !!Bits.bitsToUnsigned(bits.substring(11, 12));
+    data.button4 = !!Bits.bitsToUnsigned(bits.substring(12, 13));
+    data.button3 = !!Bits.bitsToUnsigned(bits.substring(13, 14));
+    data.button2 = !!Bits.bitsToUnsigned(bits.substring(14, 15));
+    data.button1 = !!Bits.bitsToUnsigned(bits.substring(15, 16));
     //
 
     // Numeric Buttons Pressed
@@ -26,31 +26,31 @@ function consume(event) {
     data.numericButton2 = Number(data.button2);
     data.numericButton1 = Number(data.button1);
 
-    lifecycle.hbIRQ = !!Bits.bitsToUnsigned(bits.substr(16, 8));
-    lifecycle.accIRQ = !!Bits.bitsToUnsigned(bits.substr(24, 8));
-    lifecycle.appMode = Bits.bitsToUnsigned(bits.substr(32, 8));
+    lifecycle.hbIRQ = !!Bits.bitsToUnsigned(bits.substring(16, 24));
+    lifecycle.accIRQ = !!Bits.bitsToUnsigned(bits.substring(24, 32));
+    lifecycle.appMode = Bits.bitsToUnsigned(bits.substring(32, 40));
 
     // Enabled buttons
     // Reserved 2
-    data.button6Enabled = !!Bits.bitsToUnsigned(bits.substr(42, 1));
-    data.button5Enabled = !!Bits.bitsToUnsigned(bits.substr(43, 1));
-    data.button4Enabled = !!Bits.bitsToUnsigned(bits.substr(44, 1));
-    data.button3Enabled = !!Bits.bitsToUnsigned(bits.substr(45, 1));
-    data.button2Enabled = !!Bits.bitsToUnsigned(bits.substr(46, 1));
-    data.button1Enabled = !!Bits.bitsToUnsigned(bits.substr(47, 1));
+    data.button6Enabled = !!Bits.bitsToUnsigned(bits.substring(42, 43));
+    data.button5Enabled = !!Bits.bitsToUnsigned(bits.substring(43, 44));
+    data.button4Enabled = !!Bits.bitsToUnsigned(bits.substring(44, 45));
+    data.button3Enabled = !!Bits.bitsToUnsigned(bits.substring(45, 46));
+    data.button2Enabled = !!Bits.bitsToUnsigned(bits.substring(46, 47));
+    data.button1Enabled = !!Bits.bitsToUnsigned(bits.substring(47, 48));
     //
 
-    lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substr(48, 8));
-    data.temperature = Bits.bitsToUnsigned(bits.substr(56, 8));
+    lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substring(48, 56));
+    data.temperature = Bits.bitsToUnsigned(bits.substring(56, 64));
     let accX =
-      Bits.bitsToUnsigned(bits.substr(64, 8)) * 256 +
-      Bits.bitsToUnsigned(bits.substr(72, 8));
+      Bits.bitsToUnsigned(bits.substring(64, 72)) * 256 +
+      Bits.bitsToUnsigned(bits.substring(72, 80));
     let accY =
-      Bits.bitsToUnsigned(bits.substr(80, 8)) * 256 +
-      Bits.bitsToUnsigned(bits.substr(88, 8));
+      Bits.bitsToUnsigned(bits.substring(80, 88)) * 256 +
+      Bits.bitsToUnsigned(bits.substring(88, 96));
     let accZ =
-      Bits.bitsToUnsigned(bits.substr(96, 8)) * 256 +
-      Bits.bitsToUnsigned(bits.substr(104, 8));
+      Bits.bitsToUnsigned(bits.substring(96, 104)) * 256 +
+      Bits.bitsToUnsigned(bits.substring(104, 112));
     accX = accX < 32767 ? (2 / 8191) * accX : (-2 / 8192) * (65536 - accX);
     accY = accY < 32767 ? (2 / 8191) * accY : (-2 / 8192) * (65536 - accY);
     accZ = accZ < 32767 ? (2 / 8191) * accZ : (-2 / 8192) * (65536 - accZ);

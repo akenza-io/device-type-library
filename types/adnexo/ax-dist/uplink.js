@@ -35,32 +35,32 @@ function consume(event) {
     let pointer = 0;
 
     while (pointer < payload.length) {
-      const header = Bits.bitsToUnsigned(bits.substr(pointer * 4, 8));
+      const header = Bits.bitsToUnsigned(bits.substring(pointer * 4, pointer * 4 + 8));
       pointer += 2;
 
       switch (header) {
         case 0x04:
           data.measurementInterval = toLittleEndian(
-            payload.substr(pointer, 8),
+            payload.substring(pointer, pointer + 8),
             false,
           );
           pointer += 8;
           break;
         case 0x05:
-          data.sendInterval = toLittleEndian(payload.substr(pointer, 2), false);
+          data.sendInterval = toLittleEndian(payload.substring(pointer, pointer + 2), false);
           pointer += 2;
           break;
         case 0x06:
-          data.joinInterval = toLittleEndian(payload.substr(pointer, 8), false);
+          data.joinInterval = toLittleEndian(payload.substring(pointer, pointer + 8), false);
           pointer += 8;
           break;
         case 0x07:
-          data.reedActive = !!toLittleEndian(payload.substr(pointer, 2), false);
+          data.reedActive = !!toLittleEndian(payload.substring(pointer, pointer + 2), false);
           pointer += 2;
           break;
         case 0x52:
           data.thresholdDistance = toLittleEndian(
-            payload.substr(pointer, 4),
+            payload.substring(pointer, pointer + 4),
             true,
           );
           pointer += 4;
@@ -75,8 +75,8 @@ function consume(event) {
     data.payloadType = "REPORT_CONFIGURATION";
     topic = "status";
   } else if (port === 5) {
-    const errorPort = Bits.bitsToUnsigned(bits.substr(0, 8));
-    const errorCode = Bits.bitsToUnsigned(bits.substr(0, 8));
+    const errorPort = Bits.bitsToUnsigned(bits.substring(0, 8));
+    const errorCode = Bits.bitsToUnsigned(bits.substring(0, 8));
 
     if (errorPort === 2) {
       data.errorOn = "RESTART";
@@ -97,7 +97,7 @@ function consume(event) {
     }
     topic = "error";
   } else if (port === 100 || port === 101 || port === 102) {
-    const distance = toLittleEndian(payload.substr(0, 4), false) / 10;
+    const distance = toLittleEndian(payload.substring(0, 4), false) / 10;
     if (distance !== 6553.5) {
       data.distance = distance;
     } else {
@@ -139,7 +139,7 @@ function consume(event) {
       }
     }
 
-    const temperature = toLittleEndian(payload.substr(4, 4), true) / 10;
+    const temperature = toLittleEndian(payload.substring(4, 8), true) / 10;
     if (temperature !== -3276.8) {
       data.temperature = temperature;
     } else {
@@ -148,7 +148,7 @@ function consume(event) {
 
     const lifecycle = {};
     lifecycle.batteryVoltage =
-      toLittleEndian(payload.substr(8, 4), false) / 1000;
+      toLittleEndian(payload.substring(8, 12), false) / 1000;
     let batteryLevel =
       Math.round((lifecycle.batteryVoltage - 2.1) / 0.01 / 10) * 10;
 
@@ -171,7 +171,7 @@ function consume(event) {
     topic = "measurement";
   } else if (port === 104) {
     const measurementVariance =
-      toLittleEndian(payload.substr(4, 4), false) / 10;
+      toLittleEndian(payload.substring(4, 8), false) / 10;
     if (measurementVariance !== 6553.5) {
       data.measurementVariance = measurementVariance;
     } else {

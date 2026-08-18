@@ -6,9 +6,9 @@ function consume(event) {
   const lifecycle = {};
 
   if (port == 102 && payload.length === 16) {
-    data.motion = !!Number(bits.substr(7, 1));
+    data.motion = !!Number(bits.substring(7, 8));
 
-    let batteryVoltage = Bits.bitsToUnsigned(bits.substr(12, 4));
+    let batteryVoltage = Bits.bitsToUnsigned(bits.substring(12, 16));
     batteryVoltage = (25 + batteryVoltage) / 10;
     lifecycle.batteryVoltage = Math.round(batteryVoltage * 10) / 10;
 
@@ -21,11 +21,11 @@ function consume(event) {
     }
     lifecycle.batteryLevel = batteryLevel;
 
-    data.temperature = Bits.bitsToUnsigned(bits.substr(17, 7));
+    data.temperature = Bits.bitsToUnsigned(bits.substring(17, 24));
     data.temperature -= 32;
 
-    data.time = Hex.hexLittleEndianToBigEndian(payload.substr(6, 4), false);
-    data.count = Hex.hexLittleEndianToBigEndian(payload.substr(10, 6), false);
+    data.time = Hex.hexLittleEndianToBigEndian(payload.substring(6, 10), false);
+    data.count = Hex.hexLittleEndianToBigEndian(payload.substring(10, 16), false);
 
     emit("sample", { data: lifecycle, topic: "lifecycle" });
     emit("sample", { data, topic: "default" });

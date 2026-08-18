@@ -18,18 +18,18 @@ function consume(event) {
   const data = {};
   const lifecycle = {};
   const topic = "default";
-  lifecycle.protocolType = Bits.bitsToUnsigned(bits.substr(0, 8));
+  lifecycle.protocolType = Bits.bitsToUnsigned(bits.substring(0, 8));
   lifecycle.manufacturerID = Hex.hexLittleEndianToBigEndian(
-    payload.substr(2, 4),
+    payload.substring(2, 6),
     false,
   );
   lifecycle.meterID = Number(
-    `${payload.substr(12, 2)}${payload.substr(10, 2)}${payload.substr(
+    `${payload.substring(12, 14)}${payload.substring(10, 12)}${payload.substring(
       8,
-      2,
-    )}${payload.substr(6, 2)}`,
+      10
+    )}${payload.substring(6, 8)}`,
   );
-  const meterMedium = Bits.bitsToUnsigned(bits.substr(56, 8));
+  const meterMedium = Bits.bitsToUnsigned(bits.substring(56, 64));
   if (meterMedium === 3) {
     data.meterMedium = "GAS";
   } else if (meterMedium === 6) {
@@ -38,7 +38,7 @@ function consume(event) {
     data.meterMedium = "WATER";
   }
   // State M-Bus
-  const appError = Bits.bitsToUnsigned(bits.substr(64, 2));
+  const appError = Bits.bitsToUnsigned(bits.substring(64, 66));
   if (appError === 0) {
     lifecycle.appError = "NO_ERROR";
   } else if (appError === 1) {
@@ -48,18 +48,18 @@ function consume(event) {
   } else if (appError === 3) {
     lifecycle.appError = "RESERVED";
   }
-  lifecycle.batteryPowerLow = !!Bits.bitsToUnsigned(bits.substr(66, 1));
-  lifecycle.permantError = !!Bits.bitsToUnsigned(bits.substr(67, 1));
-  lifecycle.temporaryError = !!Bits.bitsToUnsigned(bits.substr(68, 1));
-  lifecycle.commandError1 = !!Bits.bitsToUnsigned(bits.substr(69, 1));
-  lifecycle.commandError2 = !!Bits.bitsToUnsigned(bits.substr(70, 1));
-  lifecycle.commandError3 = !!Bits.bitsToUnsigned(bits.substr(71, 1));
+  lifecycle.batteryPowerLow = !!Bits.bitsToUnsigned(bits.substring(66, 67));
+  lifecycle.permantError = !!Bits.bitsToUnsigned(bits.substring(67, 68));
+  lifecycle.temporaryError = !!Bits.bitsToUnsigned(bits.substring(68, 69));
+  lifecycle.commandError1 = !!Bits.bitsToUnsigned(bits.substring(69, 70));
+  lifecycle.commandError2 = !!Bits.bitsToUnsigned(bits.substring(70, 71));
+  lifecycle.commandError3 = !!Bits.bitsToUnsigned(bits.substring(71, 72));
   data.actualityDuration = Hex.hexLittleEndianToBigEndian(
-    payload.substr(18, 4),
+    payload.substring(18, 22),
     false,
   );
-  const volumeVIF = Bits.bitsToUnsigned(bits.substr(88, 8));
-  data.volume = Hex.hexLittleEndianToBigEndian(payload.substr(24, 8), false);
+  const volumeVIF = Bits.bitsToUnsigned(bits.substring(88, 96));
+  data.volume = Hex.hexLittleEndianToBigEndian(payload.substring(24, 32), false);
   if (volumeVIF === 16) {
     data.volume /= 1000000;
   } else if (volumeVIF === 17) {
@@ -80,22 +80,22 @@ function consume(event) {
 
   // Additional functions
   // reserved
-  lifecycle.continuousFlow = !!Bits.bitsToUnsigned(bits.substr(129, 1));
+  lifecycle.continuousFlow = !!Bits.bitsToUnsigned(bits.substring(129, 130));
   // reserved
-  lifecycle.brokenPipe = !!Bits.bitsToUnsigned(bits.substr(131, 1));
+  lifecycle.brokenPipe = !!Bits.bitsToUnsigned(bits.substring(131, 132));
   // reserved
-  lifecycle.batteryLow = !!Bits.bitsToUnsigned(bits.substr(133, 1));
-  lifecycle.backflow = !!Bits.bitsToUnsigned(bits.substr(134, 1));
-  lifecycle.noUsage = !!Bits.bitsToUnsigned(bits.substr(135, 1));
+  lifecycle.batteryLow = !!Bits.bitsToUnsigned(bits.substring(133, 134));
+  lifecycle.backflow = !!Bits.bitsToUnsigned(bits.substring(134, 135));
+  lifecycle.noUsage = !!Bits.bitsToUnsigned(bits.substring(135, 136));
   lifecycle.batteryLifetime = Bits.bitsToUnsigned(
-    bits.substr(140, 1) +
-      bits.substr(139, 1) +
-      bits.substr(138, 1) +
-      bits.substr(137, 1) +
-      bits.substr(136, 1),
+    bits.substring(140, 141) +
+    bits.substring(139, 140) +
+    bits.substring(138, 139) +
+    bits.substring(137, 138) +
+    bits.substring(136, 137),
   );
   lifecycle.batteryLifetime *= 6; // semester to months
-  lifecycle.loraLinkError = !!Bits.bitsToUnsigned(bits.substr(135, 1));
+  lifecycle.loraLinkError = !!Bits.bitsToUnsigned(bits.substring(135, 136));
   // reserved
   // reserved
   emit("sample", { data, topic });

@@ -10,51 +10,51 @@ function consume(event) {
 
   // Status
   // reserved x2
-  lifecycle.batLow = !!Bits.bitsToUnsigned(bits.substr(10, 1));
-  lifecycle.lastTempValid = !!Bits.bitsToUnsigned(bits.substr(11, 1));
-  lifecycle.extMEM = !!Bits.bitsToUnsigned(bits.substr(12, 1));
-  lifecycle.acc = !!Bits.bitsToUnsigned(bits.substr(13, 1));
-  lifecycle.tempI2C = !!Bits.bitsToUnsigned(bits.substr(14, 1));
-  lifecycle.tempPt100 = !!Bits.bitsToUnsigned(bits.substr(15, 1));
+  lifecycle.batLow = !!Bits.bitsToUnsigned(bits.substring(10, 11));
+  lifecycle.lastTempValid = !!Bits.bitsToUnsigned(bits.substring(11, 12));
+  lifecycle.extMEM = !!Bits.bitsToUnsigned(bits.substring(12, 13));
+  lifecycle.acc = !!Bits.bitsToUnsigned(bits.substring(13, 14));
+  lifecycle.tempI2C = !!Bits.bitsToUnsigned(bits.substring(14, 15));
+  lifecycle.tempPt100 = !!Bits.bitsToUnsigned(bits.substring(15, 16));
 
   // Event
   // reserved x2
-  lifecycle.infoReq = !!Bits.bitsToUnsigned(bits.substr(18, 1));
-  lifecycle.configRX = !!Bits.bitsToUnsigned(bits.substr(19, 1));
-  lifecycle.button = !!Bits.bitsToUnsigned(bits.substr(20, 1));
-  lifecycle.alarming = !!Bits.bitsToUnsigned(bits.substr(21, 1));
-  lifecycle.history = !!Bits.bitsToUnsigned(bits.substr(22, 1));
-  lifecycle.async = !!Bits.bitsToUnsigned(bits.substr(23, 1));
+  lifecycle.infoReq = !!Bits.bitsToUnsigned(bits.substring(18, 19));
+  lifecycle.configRX = !!Bits.bitsToUnsigned(bits.substring(19, 20));
+  lifecycle.button = !!Bits.bitsToUnsigned(bits.substring(20, 21));
+  lifecycle.alarming = !!Bits.bitsToUnsigned(bits.substring(21, 22));
+  lifecycle.history = !!Bits.bitsToUnsigned(bits.substring(22, 23));
+  lifecycle.async = !!Bits.bitsToUnsigned(bits.substring(23, 24));
 
-  lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substr(24, 8)) / 2;
+  lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substring(24, 32)) / 2;
 
   if (port === 3) {
-    const payloadId = Bits.bitsToUnsigned(bits.substr(32, 8));
+    const payloadId = Bits.bitsToUnsigned(bits.substring(32, 40));
     if (payloadId === 1) {
-      data.temperature = Bits.bitsToSigned(bits.substr(40, 16)) / 100;
+      data.temperature = Bits.bitsToSigned(bits.substring(40, 56)) / 100;
     } else if (payloadId === 2) {
       emit("sample", {
-        data: { temperature: Bits.bitsToSigned(bits.substr(40, 16)) / 100 },
+        data: { temperature: Bits.bitsToSigned(bits.substring(40, 56)) / 100 },
         topic: "default",
       });
-      data.tempHistory1 = Bits.bitsToSigned(bits.substr(56, 16)) / 100;
-      data.tempHistory2 = Bits.bitsToSigned(bits.substr(72, 16)) / 100;
-      data.tempHistory3 = Bits.bitsToSigned(bits.substr(88, 16)) / 100;
-      data.tempHistory4 = Bits.bitsToSigned(bits.substr(104, 16)) / 100;
-      data.tempHistory5 = Bits.bitsToSigned(bits.substr(120, 16)) / 100;
-      data.tempHistory6 = Bits.bitsToSigned(bits.substr(136, 16)) / 100;
-      data.tempHistory7 = Bits.bitsToSigned(bits.substr(152, 16)) / 100;
+      data.tempHistory1 = Bits.bitsToSigned(bits.substring(56, 72)) / 100;
+      data.tempHistory2 = Bits.bitsToSigned(bits.substring(72, 88)) / 100;
+      data.tempHistory3 = Bits.bitsToSigned(bits.substring(88, 104)) / 100;
+      data.tempHistory4 = Bits.bitsToSigned(bits.substring(104, 120)) / 100;
+      data.tempHistory5 = Bits.bitsToSigned(bits.substring(120, 136)) / 100;
+      data.tempHistory6 = Bits.bitsToSigned(bits.substring(136, 152)) / 100;
+      data.tempHistory7 = Bits.bitsToSigned(bits.substring(152, 168)) / 100;
       topic = "history";
     }
   } else if (port === 100) {
-    data.tempMeasurementRate = Bits.bitsToUnsigned(bits.substr(40, 16));
-    data.historyTrigger = Bits.bitsToUnsigned(bits.substr(56, 8));
-    data.tempThreshold = Bits.bitsToUnsigned(bits.substr(64, 8));
-    data.tempOffset = Bits.bitsToSigned(bits.substr(72, 16)) / 100;
+    data.tempMeasurementRate = Bits.bitsToUnsigned(bits.substring(40, 56));
+    data.historyTrigger = Bits.bitsToUnsigned(bits.substring(56, 64));
+    data.tempThreshold = Bits.bitsToUnsigned(bits.substring(64, 72));
+    data.tempOffset = Bits.bitsToSigned(bits.substring(72, 88)) / 100;
     topic = "config";
   } else if (port === 101) {
-    data.appMainVersion = Bits.bitsToUnsigned(bits.substr(40, 8));
-    data.appMinorVersion = Bits.bitsToUnsigned(bits.substr(48, 8));
+    data.appMainVersion = Bits.bitsToUnsigned(bits.substring(40, 48));
+    data.appMinorVersion = Bits.bitsToUnsigned(bits.substring(48, 56));
     topic = "info";
   }
 

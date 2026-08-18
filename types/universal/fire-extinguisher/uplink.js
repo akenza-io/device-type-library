@@ -4,15 +4,15 @@ function consume(event) {
   const data = {};
   const lifecycle = {};
 
-  lifecycle.payloadVersion = Bits.bitsToUnsigned(bits.substr(0, 8));
-  data.isTestMessage = !!parseInt(bits.substr(15, 1));
-  data.isRemoved = !!parseInt(bits.substr(14, 1));
-  data.isSecurityUnlocked = !!parseInt(bits.substr(13, 1));
-  lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substr(16, 8)) * 0.5;
+  lifecycle.payloadVersion = Bits.bitsToUnsigned(bits.substring(0, 8));
+  data.isTestMessage = !!parseInt(bits.substring(15, 16));
+  data.isRemoved = !!parseInt(bits.substring(14, 15));
+  data.isSecurityUnlocked = !!parseInt(bits.substring(13, 14));
+  lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substring(16, 24)) * 0.5;
 
   if (event.data.port === 101) {
-    lifecycle.swVersionMajor = Bits.bitsToUnsigned(bits.substr(24, 8));
-    lifecycle.swVersionMinor = Bits.bitsToUnsigned(bits.substr(32, 8));
+    lifecycle.swVersionMajor = Bits.bitsToUnsigned(bits.substring(24, 32));
+    lifecycle.swVersionMinor = Bits.bitsToUnsigned(bits.substring(32, 40));
   }
 
   emit("sample", { data: lifecycle, topic: "lifecycle" });

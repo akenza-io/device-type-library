@@ -26,34 +26,34 @@ function consume(event) {
   const data = {};
 
   // Reserved 16
-  const reportType = Bits.bitsToUnsigned(bits.substr(16, 8));
+  const reportType = Bits.bitsToUnsigned(bits.substring(16, 24));
   let batteryVoltage = 0;
 
   switch (reportType) {
     case 0:
-      data.softwareVersion = Bits.bitsToUnsigned(bits.substr(24, 8));
-      data.hardwareVersion = Bits.bitsToUnsigned(bits.substr(32, 8));
-      data.dataCode = payload.substr(10, 8);
+      data.softwareVersion = Bits.bitsToUnsigned(bits.substring(24, 32));
+      data.hardwareVersion = Bits.bitsToUnsigned(bits.substring(32, 40));
+      data.dataCode = payload.substring(10, 18);
       emit("sample", { data, topic: "lifecycle" });
       break;
     case 1:
-      batteryVoltage = Bits.bitsToUnsigned(bits.substr(24, 8)) / 10;
-      state.current1 = Bits.bitsToUnsigned(bits.substr(32, 16));
-      state.current2 = Bits.bitsToUnsigned(bits.substr(48, 16));
-      state.current3 = Bits.bitsToUnsigned(bits.substr(64, 16));
-      state.multiplier1 = Bits.bitsToUnsigned(bits.substr(80, 8));
+      batteryVoltage = Bits.bitsToUnsigned(bits.substring(24, 32)) / 10;
+      state.current1 = Bits.bitsToUnsigned(bits.substring(32, 48));
+      state.current2 = Bits.bitsToUnsigned(bits.substring(48, 64));
+      state.current3 = Bits.bitsToUnsigned(bits.substring(64, 80));
+      state.multiplier1 = Bits.bitsToUnsigned(bits.substring(80, 88));
       emit("state", state);
       break;
     case 2: {
-      batteryVoltage = Bits.bitsToUnsigned(bits.substr(24, 8)) / 10;
+      batteryVoltage = Bits.bitsToUnsigned(bits.substring(24, 32)) / 10;
 
       const { current1 } = state;
       const { current2 } = state;
       const { current3 } = state;
 
       const { multiplier1 } = state;
-      const multiplier2 = Bits.bitsToUnsigned(bits.substr(32, 8));
-      const multiplier3 = Bits.bitsToUnsigned(bits.substr(40, 8));
+      const multiplier2 = Bits.bitsToUnsigned(bits.substring(32, 40));
+      const multiplier3 = Bits.bitsToUnsigned(bits.substring(40, 48));
 
       data.current1 = (current1 * multiplier1) / 1000;
       data.current2 = (current2 * multiplier2) / 1000;
@@ -63,15 +63,15 @@ function consume(event) {
       break;
     }
     case 3: {
-      batteryVoltage = Bits.bitsToUnsigned(bits.substr(24, 8)) / 10;
+      batteryVoltage = Bits.bitsToUnsigned(bits.substring(24, 32)) / 10;
 
-      const current1 = Bits.bitsToUnsigned(bits.substr(32, 16));
-      const current2 = Bits.bitsToUnsigned(bits.substr(48, 16));
-      const current3 = Bits.bitsToUnsigned(bits.substr(64, 16));
+      const current1 = Bits.bitsToUnsigned(bits.substring(32, 48));
+      const current2 = Bits.bitsToUnsigned(bits.substring(48, 64));
+      const current3 = Bits.bitsToUnsigned(bits.substring(64, 80));
 
-      const multiplier1 = multipier(Bits.bitsToUnsigned(bits.substr(86, 2)));
-      const multiplier2 = multipier(Bits.bitsToUnsigned(bits.substr(84, 2)));
-      const multiplier3 = multipier(Bits.bitsToUnsigned(bits.substr(82, 2)));
+      const multiplier1 = multipier(Bits.bitsToUnsigned(bits.substring(86, 88)));
+      const multiplier2 = multipier(Bits.bitsToUnsigned(bits.substring(84, 86)));
+      const multiplier3 = multipier(Bits.bitsToUnsigned(bits.substring(82, 84)));
 
       data.current1 = (current1 * multiplier1) / 1000;
       data.current2 = (current2 * multiplier2) / 1000;

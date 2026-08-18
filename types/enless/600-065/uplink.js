@@ -2,7 +2,7 @@
 function parseHexString(str) {
   const result = [];
   for (let i = 0; i < str.length; i += 2) {
-    result.push(parseInt(str.substr(i, 2), 16));
+    result.push(parseInt(str.substring(i, i + 2), 16));
   }
   return result;
 }

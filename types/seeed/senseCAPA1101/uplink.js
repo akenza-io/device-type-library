@@ -90,9 +90,8 @@ function dataSpecialFormat(dataId, str) {
       // Using point segmentation
       for (let k = 0; k < str2.length; k += 16) {
         let tmp146 = str2.substring(k, k + 16);
-        tmp146 = `${parseInt(tmp146.substring(0, 8), 2) || 0}.${
-          parseInt(tmp146.substring(8, 16), 2) || 0
-        }`;
+        tmp146 = `${parseInt(tmp146.substring(0, 8), 2) || 0}.${parseInt(tmp146.substring(8, 16), 2) || 0
+          }`;
         dataArray.push(tmp146);
       }
       return dataArray.join(",");
@@ -110,8 +109,8 @@ function dataSpecialFormat(dataId, str) {
     case 7:
       // battery && interval
       return {
-        interval: parseInt(str2.substr(0, 16), 2),
-        power: parseInt(str2.substr(-16, 16), 2),
+        interval: parseInt(str2.substring(0, 16), 2),
+        power: parseInt(str2.substring(str2.length - 16), 2),
       };
     default:
       return {};

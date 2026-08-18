@@ -25,32 +25,32 @@ function consume(event) {
   const bits = Bits.hexToBits(payload);
   const data = {};
 
-  const appContext = Bits.bitsToUnsigned(bits.substr(0, 8));
+  const appContext = Bits.bitsToUnsigned(bits.substring(0, 8));
   let pointer = 2;
 
   if (appContext === 1) {
     while (pointer < payload.length) {
-      const header = Bits.bitsToUnsigned(bits.substr(pointer * 4, 8));
+      const header = Bits.bitsToUnsigned(bits.substring(pointer * 4, pointer * 4 + 8));
 
       pointer += 2;
       if (header === 60) {
         data.totalKWh = parseFloat(
-          (INT32LE(payload.substr(pointer, 8), false) * 0.1).toFixed(4),
+          (INT32LE(payload.substring(pointer, pointer + 8), false) * 0.1).toFixed(4),
         );
         pointer += 16;
       } else if (header === 145) {
         data.l2V = parseFloat(
-          (INT32LE(payload.substr(pointer, 8), false) * 0.1).toFixed(4),
+          (INT32LE(payload.substring(pointer, pointer + 8), false) * 0.1).toFixed(4),
         );
         pointer += 8;
       } else if (header === 146) {
         data.l2A = parseFloat(
-          (INT32LE(payload.substr(pointer, 8), false) * 0.001).toFixed(4),
+          (INT32LE(payload.substring(pointer, pointer + 8), false) * 0.001).toFixed(4),
         );
         pointer += 8;
       } else if (header === 147) {
         data.l2KW = parseFloat(
-          (INT32LE(payload.substr(pointer, 8), true) * 0.000001).toFixed(4),
+          (INT32LE(payload.substring(pointer, pointer + 8), true) * 0.000001).toFixed(4),
         );
         pointer += 8;
       } else {
