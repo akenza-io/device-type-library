@@ -4,13 +4,13 @@ function consume(event) {
   const data = {};
   const lifecycle = {};
 
-  lifecycle.dataType = Bits.bitsToUnsigned(bits.substr(8, 8));
-  data.key1 = !!Bits.bitsToUnsigned(bits.substr(16, 8));
-  data.key2 = !!Bits.bitsToUnsigned(bits.substr(24, 8));
-  data.key3 = !!Bits.bitsToSigned(bits.substr(32, 8));
-  data.key4 = !!Bits.bitsToSigned(bits.substr(40, 8));
-  lifecycle.batteryVoltage = Bits.bitsToSigned(bits.substr(48, 8));
-  lifecycle.batteryLevel = Bits.bitsToSigned(bits.substr(56, 8));
+  lifecycle.dataType = Bits.bitsToUnsigned(bits.substring(8, 16));
+  data.key1 = !!Bits.bitsToUnsigned(bits.substring(16, 24));
+  data.key2 = !!Bits.bitsToUnsigned(bits.substring(24, 32));
+  data.key3 = !!Bits.bitsToSigned(bits.substring(32, 40));
+  data.key4 = !!Bits.bitsToSigned(bits.substring(40, 48));
+  lifecycle.batteryVoltage = Bits.bitsToSigned(bits.substring(48, 56));
+  lifecycle.batteryLevel = Bits.bitsToSigned(bits.substring(56, 64));
 
   emit("sample", { data, topic: "default" });
   emit("sample", { data: lifecycle, topic: "lifecycle" });

@@ -13,7 +13,7 @@ function hexStringToByteArray(s) {
   let bytes = [];
   let c = 0;
   for (bytes = [], c = 0; c < s.length; c += 2) {
-    bytes.push(parseInt(s.substr(c, 2), 16));
+    bytes.push(parseInt(s.substring(c, c + 2), 16));
   }
   return bytes;
 }

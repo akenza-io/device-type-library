@@ -2,7 +2,7 @@ function strPad(byte) {
   const zero = "0";
   const hex = byte.toString(16);
   const tmp = 2 - hex.length;
-  return zero.substr(0, tmp) + hex;
+  return zero.substring(0, tmp) + hex;
 }
 
 function consume(event) {

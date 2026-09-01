@@ -15,7 +15,7 @@ function intToHex(number) {
 function encodeDownlink(data) {
   const bytes = [];
 
-  // eslint-disable-next-line no-restricted-syntax
+
   for (const key of Object.keys(data)) {
     switch (key) {
       case "setKeepAlive": {
@@ -293,7 +293,7 @@ function encodeDownlink(data) {
       case "sendCustomHexCommand": {
         const { sendCustomHexCommand } = data;
         for (let i = 0; i < sendCustomHexCommand.length; i += 2) {
-          const byte = parseInt(sendCustomHexCommand.substr(i, 2), 16);
+          const byte = parseInt(sendCustomHexCommand.substring(i, i + 2), 16);
           bytes.push(byte);
         }
         break;

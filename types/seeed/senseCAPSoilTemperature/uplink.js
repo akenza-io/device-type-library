@@ -31,13 +31,13 @@ function consume(event) {
   // 0-2 Channel Number
   // 2-4 Measurement ID
   const temperature =
-    Hex.hexLittleEndianToBigEndian(payload.substr(6, 8), true) / 1000;
+    Hex.hexLittleEndianToBigEndian(payload.substring(6, 14), true) / 1000;
   data.temperature = checkForIllegalValue(temperature, "temperature");
 
   // 14-16 Channel Number
   // 16-20 Measurement ID
   const soilHumidity =
-    Hex.hexLittleEndianToBigEndian(payload.substr(20, 8), true) / 1000;
+    Hex.hexLittleEndianToBigEndian(payload.substring(20, 28), true) / 1000;
   data.soilHumidity = checkForIllegalValue(soilHumidity, "soilHumidity");
 
   emit("sample", { data, topic: "default" });

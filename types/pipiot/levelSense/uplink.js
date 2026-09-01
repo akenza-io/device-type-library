@@ -79,14 +79,14 @@ function batteryVoltage(bits) {
 
 function flags(bits) {
   const fl = {};
-  fl.motionFlag = !!Number(bits.substr(0, 1));
-  fl.dayTimerFlag = !!Number(bits.substr(1, 1));
-  fl.overTempFlag = !!Number(bits.substr(2, 1));
-  fl.tiltedFlag = !!Number(bits.substr(3, 1));
-  fl.magSwitchFlag = !!Number(bits.substr(4, 1));
-  fl.ultrasoundHWErrorFlag = !!Number(bits.substr(5, 1));
-  fl.laserHWErrorFlag = !!Number(bits.substr(6, 1));
-  fl.accelerometerHWErrorFlag = !!Number(bits.substr(7, 1));
+  fl.motionFlag = !!Number(bits.substring(0, 1));
+  fl.dayTimerFlag = !!Number(bits.substring(1, 2));
+  fl.overTempFlag = !!Number(bits.substring(2, 3));
+  fl.tiltedFlag = !!Number(bits.substring(3, 4));
+  fl.magSwitchFlag = !!Number(bits.substring(4, 5));
+  fl.ultrasoundHWErrorFlag = !!Number(bits.substring(5, 6));
+  fl.laserHWErrorFlag = !!Number(bits.substring(6, 7));
+  fl.accelerometerHWErrorFlag = !!Number(bits.substring(7, 8));
 
   return fl;
 }
@@ -149,13 +149,13 @@ function consume(event) {
   const lifecycle = {};
 
   // Reserved 1 bit
-  const subType = Bits.bitsToUnsigned(bits.substr(1, 3));
+  const subType = Bits.bitsToUnsigned(bits.substring(1, 4));
   // Reserved 4 bits
 
   // Standart Meassurement
   if (subType === 0) {
     const distance = {};
-    const fl = flags(bits.substr(8, 8));
+    const fl = flags(bits.substring(8, 16));
     lifecycle.motionFlag = fl.motionFlag;
     lifecycle.dayTimerFlag = fl.dayTimerFlag;
     lifecycle.overTempFlag = fl.overTempFlag;
@@ -166,7 +166,7 @@ function consume(event) {
     lifecycle.accelerometerHWErrorFlag = fl.accelerometerHWErrorFlag;
 
     distance.ultrasonicDistance = ultrasonicDistance(
-      bits.substr(16, 8),
+      bits.substring(16, 24),
       lifecycle.tiltedFlag,
       lifecycle.overTempFlag,
     );
@@ -175,34 +175,34 @@ function consume(event) {
       distance.fillLevel = fillLevel;
     }
     distance.laserDistance = laserDistance(
-      bits.substr(24, 8),
+      bits.substring(24, 32),
       lifecycle.tiltedFlag,
       lifecycle.overTempFlag,
     );
     emit("sample", { data: distance, topic: "distance" });
 
-    data.laserReflectance = laserReflectance(bits.substr(32, 16));
-    data.temperature = temperature(bits.substr(48, 8));
-    data.tiltAngle = tiltAngle(bits.substr(56, 8), lifecycle.overTempFlag);
-    lifecycle.batteryVoltage = batteryVoltage(bits.substr(64, 8));
+    data.laserReflectance = laserReflectance(bits.substring(32, 48));
+    data.temperature = temperature(bits.substring(48, 56));
+    data.tiltAngle = tiltAngle(bits.substring(56, 64), lifecycle.overTempFlag);
+    lifecycle.batteryVoltage = batteryVoltage(bits.substring(64, 72));
 
     // GPS Fix
   } else if (subType === 1) {
-    data.gnssFixTime = gnssFixTime(bits.substr(8, 8));
+    data.gnssFixTime = gnssFixTime(bits.substring(8, 16));
     if (data.gnssFixTime !== "TIMEOUT" || data.gnssFixTime !== "FAULT") {
-      data.gnssLatitude = gnssLatitude(bits.substr(16, 32));
-      data.gnssLongitude = gnssLongitude(bits.substr(48, 32));
-      data.gnssAltitude = gnssAltitude(bits.substr(80, 8));
-      data.gnssHDOP = gnssHDOP(bits.substr(88, 8));
+      data.gnssLatitude = gnssLatitude(bits.substring(16, 48));
+      data.gnssLongitude = gnssLongitude(bits.substring(48, 80));
+      data.gnssAltitude = gnssAltitude(bits.substring(80, 88));
+      data.gnssHDOP = gnssHDOP(bits.substring(88, 96));
     }
     topic = "gnss";
     // RSSI Test
   } else if (subType === 2) {
-    data.testFrames = bits.substr(8, 8);
+    data.testFrames = bits.substring(8, 16);
     topic = "rssi_test";
   } else if (subType === 3) {
     const ext = {};
-    const fl = flags(bits.substr(8, 8));
+    const fl = flags(bits.substring(8, 16));
     lifecycle.motionFlag = fl.motionFlag;
     lifecycle.dayTimerFlag = fl.dayTimerFlag;
     lifecycle.overTempFlag = fl.overTempFlag;
@@ -214,19 +214,19 @@ function consume(event) {
 
     // Reserved 8
     ext.ultrasonicDistanceExt = ultrasonicDistanceExt(
-      bits.substr(24, 16),
+      bits.substring(24, 40),
       lifecycle.ultrasoundHWErrorFlag,
     );
     ext.laserDistanceExt = laserDistanceExt(
-      bits.substr(40, 8),
+      bits.substring(40, 48),
       lifecycle.laserHWErrorFlag,
     );
     emit("sample", { data: ext, topic: "ext" });
 
-    data.laserReflectance = laserReflectance(bits.substr(48, 16));
-    data.temperature = temperature(bits.substr(64, 8));
-    data.tiltAngle = tiltAngle(bits.substr(72, 8), lifecycle.overTempFlag);
-    lifecycle.batteryVoltage = batteryVoltage(bits.substr(80, 8));
+    data.laserReflectance = laserReflectance(bits.substring(48, 64));
+    data.temperature = temperature(bits.substring(64, 72));
+    data.tiltAngle = tiltAngle(bits.substring(72, 80), lifecycle.overTempFlag);
+    lifecycle.batteryVoltage = batteryVoltage(bits.substring(80, 88));
     // Reserved 8
   }
 

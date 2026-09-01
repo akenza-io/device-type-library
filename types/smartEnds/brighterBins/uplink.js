@@ -66,21 +66,21 @@ function consume(event) {
   const orientation = {};
   const bitsLength = bits.length;
 
-  const uplinkType = Bits.bitsToUnsigned(bits.substr(bitsLength - 2, 2));
+  const uplinkType = Bits.bitsToUnsigned(bits.substring(bitsLength - 2));
   switch (uplinkType) {
     // Filllevel
     case 0: {
       lifecycle.resetReason = resetReason(
-        Bits.bitsToUnsigned(bits.substr(0, 2)),
+        Bits.bitsToUnsigned(bits.substring(0, 2)),
       );
 
-      lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substr(2, 6)) * 2;
+      lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substring(2, 8)) * 2;
       if (lifecycle.batteryLevel === 126) {
         delete data.batteryLevel;
       }
 
-      lifecycle.temperature = Bits.bitsToUnsigned(bits.substr(8, 7)) - 40;
-      fillLevel.fillLevel = Bits.bitsToUnsigned(bits.substr(15, 7));
+      lifecycle.temperature = Bits.bitsToUnsigned(bits.substring(8, 15)) - 40;
+      fillLevel.fillLevel = Bits.bitsToUnsigned(bits.substring(15, 22));
       if (fillLevel.fillLevel === 127) {
         delete fillLevel.fillLevel;
       }
@@ -88,12 +88,12 @@ function consume(event) {
     }
     // Distance
     case 1: {
-      lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substr(0, 6)) * 2;
+      lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substring(0, 6)) * 2;
       if (lifecycle.batteryLevel === 126) {
         delete lifecycle.batteryLevel;
       }
-      lifecycle.temperature = Bits.bitsToUnsigned(bits.substr(6, 7)) - 40;
-      distance.distance = Bits.bitsToUnsigned(bits.substr(13, 9));
+      lifecycle.temperature = Bits.bitsToUnsigned(bits.substring(6, 13)) - 40;
+      distance.distance = Bits.bitsToUnsigned(bits.substring(13, 22));
       if (distance.distance === 511) {
         delete distance.distance;
         distance.distanceError = "SENSOR_MODULE_NOT_RESPONDING";
@@ -139,44 +139,44 @@ function consume(event) {
     case 2: {
       // Dev EUI 24
       // Reserved 6
-      system.hardwareVersion = Bits.bitsToUnsigned(bits.substr(30, 6));
+      system.hardwareVersion = Bits.bitsToUnsigned(bits.substring(30, 36));
       system.softwareVersion = `${Bits.bitsToUnsigned(
-        bits.substr(42, 2),
-      )}.${Bits.bitsToUnsigned(bits.substr(36, 6))}.${Bits.bitsToUnsigned(
-        bits.substr(44, 6),
+        bits.substring(42, 44),
+      )}.${Bits.bitsToUnsigned(bits.substring(36, 42))}.${Bits.bitsToUnsigned(
+        bits.substring(44, 50),
       )}`;
-      system.noOfDownlinks = Bits.bitsToUnsigned(bits.substr(50, 2));
-      system.downlinkFreq = Bits.bitsToUnsigned(bits.substr(52, 2));
-      system.totalResetCount = Bits.bitsToUnsigned(bits.substr(54, 7));
-      system.runtime = Bits.bitsToUnsigned(bits.substr(61, 12));
+      system.noOfDownlinks = Bits.bitsToUnsigned(bits.substring(50, 52));
+      system.downlinkFreq = Bits.bitsToUnsigned(bits.substring(52, 54));
+      system.totalResetCount = Bits.bitsToUnsigned(bits.substring(54, 61));
+      system.runtime = Bits.bitsToUnsigned(bits.substring(61, 73));
       // Reserved 1
-      system.communicationTest = !!Bits.bitsToUnsigned(bits.substr(74, 1));
+      system.communicationTest = !!Bits.bitsToUnsigned(bits.substring(74, 75));
       // Reserved 1
-      system.distanceTest = !!Bits.bitsToUnsigned(bits.substr(76, 1));
-      system.temperatureTest = !!Bits.bitsToUnsigned(bits.substr(77, 1));
+      system.distanceTest = !!Bits.bitsToUnsigned(bits.substring(76, 77));
+      system.temperatureTest = !!Bits.bitsToUnsigned(bits.substring(77, 78));
       // Reserved 3
-      lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substr(81, 6)) * 2;
+      lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substring(81, 87)) * 2;
       if (lifecycle.batteryLevel === 126) {
         delete lifecycle.batteryLevel;
       }
       lifecycle.batteryVoltage =
-        (Bits.bitsToUnsigned(bits.substr(87, 4)) * 100 + 2200) / 1000;
+        (Bits.bitsToUnsigned(bits.substring(87, 91)) * 100 + 2200) / 1000;
       lifecycle.resetReason = resetReason(
-        Bits.bitsToUnsigned(bits.substr(91, 2)),
+        Bits.bitsToUnsigned(bits.substring(91, 93)),
       );
       break;
     }
     case 3: {
-      const uplinkSubType = Bits.bitsToUnsigned(bits.substr(bitsLength - 5, 2));
+      const uplinkSubType = Bits.bitsToUnsigned(bits.substring(bitsLength - 5, bitsLength - 3));
       switch (uplinkSubType) {
         // Standard Uplink
         case 0: {
           // Reserved 27
-          data.zOrientation = Bits.bitsToUnsigned(bits.substr(27, 5)) * 6 - 90;
-          data.yOrientation = Bits.bitsToUnsigned(bits.substr(32, 5)) * 6 - 90;
-          data.xOrientation = Bits.bitsToUnsigned(bits.substr(37, 5)) * 6 - 90;
+          data.zOrientation = Bits.bitsToUnsigned(bits.substring(27, 32)) * 6 - 90;
+          data.yOrientation = Bits.bitsToUnsigned(bits.substring(32, 37)) * 6 - 90;
+          data.xOrientation = Bits.bitsToUnsigned(bits.substring(37, 42)) * 6 - 90;
 
-          const downlinkValidity = Bits.bitsToUnsigned(bits.substr(42, 2));
+          const downlinkValidity = Bits.bitsToUnsigned(bits.substring(42, 44));
           switch (downlinkValidity) {
             case 0:
               lifecycle.downlinkValidity = "DOWNLINK_NOT_RESEVED";
@@ -193,12 +193,12 @@ function consume(event) {
             default:
               break;
           }
-          lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substr(44, 6)) * 2;
+          lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substring(44, 50)) * 2;
           if (lifecycle.batteryLevel === 126) {
             delete lifecycle.batteryLevel;
           }
-          lifecycle.temperature = Bits.bitsToUnsigned(bits.substr(50, 7)) - 40;
-          data.distance = Bits.bitsToUnsigned(bits.substr(57, 9));
+          lifecycle.temperature = Bits.bitsToUnsigned(bits.substring(50, 57)) - 40;
+          data.distance = Bits.bitsToUnsigned(bits.substring(57, 66));
           if (data.distance === 511) {
             delete data.distance;
             data.distanceError = "SENSOR_MODULE_NOT_RESPONDING";
@@ -211,17 +211,17 @@ function consume(event) {
         // Pickup uplink
         case 1: {
           // Reserved 48
-          events.tamperEvent = !!Bits.bitsToUnsigned(bits.substr(48, 1));
+          events.tamperEvent = !!Bits.bitsToUnsigned(bits.substring(48, 49));
 
           orientation.zOrientation =
-            Bits.bitsToUnsigned(bits.substr(49, 5)) * 6 - 90;
+            Bits.bitsToUnsigned(bits.substring(49, 54)) * 6 - 90;
           orientation.yOrientation =
-            Bits.bitsToUnsigned(bits.substr(54, 5)) * 6 - 90;
+            Bits.bitsToUnsigned(bits.substring(54, 59)) * 6 - 90;
           orientation.xOrientation =
-            Bits.bitsToUnsigned(bits.substr(59, 5)) * 6 - 90;
+            Bits.bitsToUnsigned(bits.substring(59, 64)) * 6 - 90;
 
-          events.fireAlarm = !!Bits.bitsToUnsigned(bits.substr(64, 1));
-          const pickupType = Bits.bitsToUnsigned(bits.substr(65, 2));
+          events.fireAlarm = !!Bits.bitsToUnsigned(bits.substring(64, 65));
+          const pickupType = Bits.bitsToUnsigned(bits.substring(65, 67));
           switch (pickupType) {
             case 0:
               events.pickupAlert = "NONE";
@@ -239,13 +239,13 @@ function consume(event) {
               break;
           }
 
-          events.pickupEvent = !!Bits.bitsToUnsigned(bits.substr(67, 1));
-          lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substr(68, 6)) * 2;
+          events.pickupEvent = !!Bits.bitsToUnsigned(bits.substring(67, 68));
+          lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substring(68, 74)) * 2;
           if (lifecycle.batteryLevel === 126) {
             delete lifecycle.batteryLevel;
           }
-          lifecycle.temperature = Bits.bitsToUnsigned(bits.substr(74, 7)) - 40;
-          data.distance = Bits.bitsToUnsigned(bits.substr(81, 9));
+          lifecycle.temperature = Bits.bitsToUnsigned(bits.substring(74, 81)) - 40;
+          data.distance = Bits.bitsToUnsigned(bits.substring(81, 90));
           if (data.distance === 511) {
             delete data.distance;
             data.distanceError = "SENSOR_MODULE_NOT_RESPONDING";
@@ -257,41 +257,41 @@ function consume(event) {
         }
         case 3: {
           // Reserved 16
-          system.hardwareVersion = Bits.bitsToUnsigned(bits.substr(16, 8));
-          system.softwareVersion = Bits.bitsToUnsigned(bits.substr(24, 16));
+          system.hardwareVersion = Bits.bitsToUnsigned(bits.substring(16, 24));
+          system.softwareVersion = Bits.bitsToUnsigned(bits.substring(24, 40));
 
-          system.totalRuntime = Bits.bitsToUnsigned(bits.substr(40, 11));
-          system.totalResetCount = Bits.bitsToUnsigned(bits.substr(51, 6));
+          system.totalRuntime = Bits.bitsToUnsigned(bits.substring(40, 51));
+          system.totalResetCount = Bits.bitsToUnsigned(bits.substring(51, 57));
 
           // Reserved
-          system.configsTest = Bits.bitsToUnsigned(bits.substr(58, 1));
-          system.communicationTest = Bits.bitsToUnsigned(bits.substr(59, 1));
-          system.distanceTest = Bits.bitsToUnsigned(bits.substr(60, 1));
-          system.accelerationTest = Bits.bitsToUnsigned(bits.substr(61, 1));
-          system.temperatureTest = Bits.bitsToUnsigned(bits.substr(62, 1));
+          system.configsTest = Bits.bitsToUnsigned(bits.substring(58, 59));
+          system.communicationTest = Bits.bitsToUnsigned(bits.substring(59, 60));
+          system.distanceTest = Bits.bitsToUnsigned(bits.substring(60, 61));
+          system.accelerationTest = Bits.bitsToUnsigned(bits.substring(61, 62));
+          system.temperatureTest = Bits.bitsToUnsigned(bits.substring(62, 63));
 
           lifecycle.resetReason = resetReason(
-            Bits.bitsToUnsigned(bits.substr(63, 4)),
+            Bits.bitsToUnsigned(bits.substring(63, 67)),
           );
           break;
         }
         // Depth map
         case 4: {
-          depth.point8 = Bits.bitsToUnsigned(bits.substr(0, 8));
-          depth.point7 = Bits.bitsToUnsigned(bits.substr(8, 8));
-          depth.point6 = Bits.bitsToUnsigned(bits.substr(16, 8));
-          depth.point5 = Bits.bitsToUnsigned(bits.substr(24, 8));
-          depth.point4 = Bits.bitsToUnsigned(bits.substr(32, 8));
-          depth.point3 = Bits.bitsToUnsigned(bits.substr(40, 8));
-          depth.point2 = Bits.bitsToUnsigned(bits.substr(48, 8));
-          depth.point1 = Bits.bitsToUnsigned(bits.substr(56, 8));
+          depth.point8 = Bits.bitsToUnsigned(bits.substring(0, 8));
+          depth.point7 = Bits.bitsToUnsigned(bits.substring(8, 16));
+          depth.point6 = Bits.bitsToUnsigned(bits.substring(16, 24));
+          depth.point5 = Bits.bitsToUnsigned(bits.substring(24, 32));
+          depth.point4 = Bits.bitsToUnsigned(bits.substring(32, 40));
+          depth.point3 = Bits.bitsToUnsigned(bits.substring(40, 48));
+          depth.point2 = Bits.bitsToUnsigned(bits.substring(48, 56));
+          depth.point1 = Bits.bitsToUnsigned(bits.substring(56, 64));
 
           // Reserved 6
-          lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substr(64, 6)) * 2;
+          lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substring(64, 70)) * 2;
           if (lifecycle.batteryLevel === 126) {
             delete lifecycle.batteryLevel;
           }
-          lifecycle.temperature = Bits.bitsToUnsigned(bits.substr(70, 7)) - 40;
+          lifecycle.temperature = Bits.bitsToUnsigned(bits.substring(70, 77)) - 40;
 
           break;
         }
@@ -299,13 +299,13 @@ function consume(event) {
         case 5: {
           // Reserved 27
           orientation.zOrientation =
-            Bits.bitsToUnsigned(bits.substr(27, 5)) * 6 - 90;
+            Bits.bitsToUnsigned(bits.substring(27, 32)) * 6 - 90;
           orientation.yOrientation =
-            Bits.bitsToUnsigned(bits.substr(32, 5)) * 6 - 90;
+            Bits.bitsToUnsigned(bits.substring(32, 37)) * 6 - 90;
           orientation.xOrientation =
-            Bits.bitsToUnsigned(bits.substr(37, 5)) * 6 - 90;
+            Bits.bitsToUnsigned(bits.substring(37, 42)) * 6 - 90;
 
-          const downlinkValidity = Bits.bitsToUnsigned(bits.substr(42, 2));
+          const downlinkValidity = Bits.bitsToUnsigned(bits.substring(42, 44));
           switch (downlinkValidity) {
             case 0:
               lifecycle.downlinkValidity = "DOWNLINK_NOT_RESEVED";
@@ -322,13 +322,13 @@ function consume(event) {
             default:
               break;
           }
-          lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substr(44, 6)) * 2;
+          lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substring(44, 50)) * 2;
           if (lifecycle.batteryLevel === 126) {
             delete lifecycle.batteryLevel;
           }
-          lifecycle.temperature = Bits.bitsToUnsigned(bits.substr(50, 7)) - 40;
+          lifecycle.temperature = Bits.bitsToUnsigned(bits.substring(50, 57)) - 40;
           // Reserved 2
-          fillLevel.fillLevel = Bits.bitsToUnsigned(bits.substr(59, 7));
+          fillLevel.fillLevel = Bits.bitsToUnsigned(bits.substring(59, 66));
           if (fillLevel.fillLevel === 127) {
             delete fillLevel.fillLevel;
           }
@@ -336,58 +336,58 @@ function consume(event) {
         }
         // Multi Points Raw Uplink
         case 6: {
-          depth.point8 = Bits.bitsToUnsigned(bits.substr(0, 8));
-          depth.point7 = Bits.bitsToUnsigned(bits.substr(8, 8));
-          depth.point6 = Bits.bitsToUnsigned(bits.substr(16, 8));
-          depth.point5 = Bits.bitsToUnsigned(bits.substr(24, 8));
-          depth.point4 = Bits.bitsToUnsigned(bits.substr(32, 8));
-          depth.point3 = Bits.bitsToUnsigned(bits.substr(40, 8));
-          depth.point2 = Bits.bitsToUnsigned(bits.substr(48, 8));
-          depth.point1 = Bits.bitsToUnsigned(bits.substr(56, 8));
+          depth.point8 = Bits.bitsToUnsigned(bits.substring(0, 8));
+          depth.point7 = Bits.bitsToUnsigned(bits.substring(8, 16));
+          depth.point6 = Bits.bitsToUnsigned(bits.substring(16, 24));
+          depth.point5 = Bits.bitsToUnsigned(bits.substring(24, 32));
+          depth.point4 = Bits.bitsToUnsigned(bits.substring(32, 40));
+          depth.point3 = Bits.bitsToUnsigned(bits.substring(40, 48));
+          depth.point2 = Bits.bitsToUnsigned(bits.substring(48, 56));
+          depth.point1 = Bits.bitsToUnsigned(bits.substring(56, 64));
 
           // Reserved 6
-          lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substr(64, 6)) * 2;
+          lifecycle.batteryLevel = Bits.bitsToUnsigned(bits.substring(64, 70)) * 2;
           if (lifecycle.batteryLevel === 126) {
             delete lifecycle.batteryLevel;
           }
-          lifecycle.temperature = Bits.bitsToUnsigned(bits.substr(70, 7)) - 40;
+          lifecycle.temperature = Bits.bitsToUnsigned(bits.substring(70, 77)) - 40;
           break;
         }
         // Multi Points Raw Uplink
         case 7: {
           // Reversed order as its not known how many datapoints there all
           const uplinkExtension = Bits.bitsToUnsigned(
-            bits.substr(bitsLength - 8, 3),
+            bits.substring(bitsLength - 8, bitsLength - 5),
           );
 
           if (uplinkExtension === 0) {
             lifecycle.temperature =
-              Bits.bitsToUnsigned(bits.substr(bitsLength - 15, 7)) - 40;
+              Bits.bitsToUnsigned(bits.substring(bitsLength - 15, bitsLength - 8)) - 40;
             lifecycle.batteryLevel =
-              Bits.bitsToUnsigned(bits.substr(bitsLength - 21, 6)) * 2;
+              Bits.bitsToUnsigned(bits.substring(bitsLength - 21, bitsLength - 15)) * 2;
             if (lifecycle.batteryLevel === 126) {
               delete lifecycle.batteryLevel;
             }
             lifecycle.measurementInterval = Bits.bitsToUnsigned(
-              bits.substr(bitsLength - 32, 11),
+              bits.substring(bitsLength - 32, bitsLength - 22),
             );
             const numberOfPoints = Bits.bitsToUnsigned(
-              bits.substr(bitsLength - 38, 6),
+              bits.substring(bitsLength - 38, bitsLength - 32),
             );
 
             let pointer = 0;
             for (let i = 0; i < numberOfPoints; i++) {
               depth[`point${numberOfPoints + 1}`] = Bits.bitsToUnsigned(
-                bits.substr(pointer, 8),
+                bits.substring(pointer, pointer + 8),
               );
               pointer += 8;
             }
           } else if (uplinkExtension === 1) {
             events.fireAlarm = !!Bits.bitsToUnsigned(
-              bits.substr(bitsLength - 9, 1),
+              bits.substring(bitsLength - 9, bitsLength - 8),
             );
             const pickupType = Bits.bitsToUnsigned(
-              bits.substr(bitsLength - 11, 2),
+              bits.substring(bitsLength - 11, bitsLength - 9),
             );
             switch (pickupType) {
               case 0:
@@ -406,15 +406,15 @@ function consume(event) {
                 break;
             }
             lifecycle.batteryLevel =
-              Bits.bitsToUnsigned(bits.substr(bitsLength - 17, 6)) * 2;
+              Bits.bitsToUnsigned(bits.substring(bitsLength - 17, bitsLength - 11)) * 2;
             if (lifecycle.batteryLevel === 126) {
               delete lifecycle.batteryLevel;
             }
             events.tamperEvent = !!Bits.bitsToUnsigned(
-              bits.substr(bitsLength - 18, 1),
+              bits.substring(bitsLength - 18, bitsLength - 17),
             );
             const downlinkValidity = Bits.bitsToUnsigned(
-              bits.substr(bitsLength - 20, 2),
+              bits.substring(bitsLength - 20, bitsLength - 18),
             );
             switch (downlinkValidity) {
               case 0:
@@ -434,7 +434,7 @@ function consume(event) {
             }
             // Reserved 28
             const txReason = Bits.bitsToUnsigned(
-              bits.substr(bitsLength - 52, 4),
+              bits.substring(bitsLength - 52, bitsLength - 48),
             );
             switch (txReason) {
               case 0:
@@ -474,10 +474,10 @@ function consume(event) {
                 break;
             }
             const numberOfPoints = Bits.bitsToUnsigned(
-              bits.substr(bitsLength - 58, 6),
+              bits.substring(bitsLength - 58, bitsLength - 52),
             );
             const numberOfMotionEvents = Bits.bitsToUnsigned(
-              bits.substr(64, 6),
+              bits.substring(64, 70),
             );
 
             let pointer = 58;
@@ -487,29 +487,29 @@ function consume(event) {
               pointer += 9;
               const timestamp = new Date(
                 secondsNow -
-                  Bits.bitsToUnsigned(bits.substr(bitsLength - pointer, 9)) *
-                    169,
+                Bits.bitsToUnsigned(bits.substring(bitsLength - pointer, bitsLength - pointer + 9)) *
+                169,
               );
 
               pointer += 6;
               history.xOrientation =
-                Bits.bitsToUnsigned(bits.substr(bitsLength - pointer, 6)) * 6 -
+                Bits.bitsToUnsigned(bits.substring(bitsLength - pointer, bitsLength - pointer + 6)) * 6 -
                 90;
               pointer += 6;
               history.yOrientation =
-                Bits.bitsToUnsigned(bits.substr(bitsLength - pointer, 6)) * 6 -
+                Bits.bitsToUnsigned(bits.substring(bitsLength - pointer, bitsLength - pointer + 6)) * 6 -
                 90;
               pointer += 6;
               history.zOrientation =
-                Bits.bitsToUnsigned(bits.substr(bitsLength - pointer, 6)) * 6 -
+                Bits.bitsToUnsigned(bits.substring(bitsLength - pointer, bitsLength - pointer + 6)) * 6 -
                 90;
 
               pointer += 7;
               history.temperature =
-                Bits.bitsToUnsigned(bits.substr(bitsLength - pointer, 7)) - 40;
+                Bits.bitsToUnsigned(bits.substring(bitsLength - pointer, bitsLength - pointer + 7)) - 40;
 
               pointer += 9;
-              history.distance = Bits.bitsToUnsigned(bits.substr(13, 9));
+              history.distance = Bits.bitsToUnsigned(bits.substring(13, 22));
               if (history.distance === 511) {
                 delete history.distance;
                 history.distanceError = "SENSOR_MODULE_NOT_RESPONDING";
@@ -531,19 +531,19 @@ function consume(event) {
               pointer += 16;
               const timestamp = new Date(
                 secondsNow -
-                  Bits.bitsToUnsigned(bits.substr(bitsLength - pointer, 16)) *
-                    1.32,
+                Bits.bitsToUnsigned(bits.substring(bitsLength - pointer, bitsLength - pointer + 16)) *
+                1.32,
               );
 
               pointer += 6;
               history.motionOrientation =
-                Bits.bitsToUnsigned(bits.substr(bitsLength - pointer, 6)) * 3;
+                Bits.bitsToUnsigned(bits.substring(bitsLength - pointer, bitsLength - pointer + 6)) * 3;
               pointer += 6;
               history.motionDeviation =
-                Bits.bitsToUnsigned(bits.substr(bitsLength - pointer, 6)) * 3;
+                Bits.bitsToUnsigned(bits.substring(bitsLength - pointer, bitsLength - pointer + 6)) * 3;
               pointer += 6;
               history.motionDuration =
-                Bits.bitsToUnsigned(bits.substr(bitsLength - pointer, 6)) * 3;
+                Bits.bitsToUnsigned(bits.substring(bitsLength - pointer, bitsLength - pointer + 6)) * 3;
 
               emit("sample", {
                 data: history,

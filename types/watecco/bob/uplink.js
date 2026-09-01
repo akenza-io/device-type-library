@@ -10,7 +10,7 @@ function consume(event) {
   const data = {};
   let topic = "default";
 
-  const header = Bits.bitsToUnsigned(bits.substr(0, 8));
+  const header = Bits.bitsToUnsigned(bits.substring(0, 8));
 
   let frequency = 1000;
   let device = "MPU";
@@ -23,33 +23,33 @@ function consume(event) {
   if (header === 76 || header === 108) {
     topic = "learning";
     data.device = device;
-    data.learningPercentage = Bits.bitsToUnsigned(bits.substr(8, 8));
-    const vl1 = Bits.bitsToUnsigned(bits.substr(16, 8));
-    const vl2 = Bits.bitsToUnsigned(bits.substr(24, 8));
-    const vl3 = Bits.bitsToUnsigned(bits.substr(32, 8));
+    data.learningPercentage = Bits.bitsToUnsigned(bits.substring(8, 16));
+    const vl1 = Bits.bitsToUnsigned(bits.substring(16, 24));
+    const vl2 = Bits.bitsToUnsigned(bits.substring(24, 32));
+    const vl3 = Bits.bitsToUnsigned(bits.substring(32, 40));
     data.vibrationLevel = (vl1 * 128 + vl2 + vl3 / 100) / 10 / 121.45; // float
     // Frequency_index
-    data.temperature = Bits.bitsToUnsigned(bits.substr(48, 8)) - 30;
-    const learningFrom = !!Bits.bitsToUnsigned(bits.substr(56, 8));
+    data.temperature = Bits.bitsToUnsigned(bits.substring(48, 56)) - 30;
+    const learningFrom = !!Bits.bitsToUnsigned(bits.substring(56, 64));
 
     if (learningFrom) {
       data.learningFrom = "ZERO";
     } else {
       data.learningFrom = "ADDITIONAL_LEARNING";
     }
-    data.peakFrequencyIndex = Bits.bitsToUnsigned(bits.substr(40, 8)) + 1;
+    data.peakFrequencyIndex = Bits.bitsToUnsigned(bits.substring(40, 48)) + 1;
 
     if (data.peakFrequencyIndex < 128) {
       data.peakFrequency = (data.peakFrequencyIndex * frequency) / 256;
     } else if (data.peakFrequencyIndex >= 128) {
       data.peakFrequency =
-        (((Bits.bitsToUnsigned(bits.substr(40, 8)) & 0x7) + 1) * frequency) /
+        (((Bits.bitsToUnsigned(bits.substring(40, 48)) & 0x7) + 1) * frequency) /
         256;
     }
     // FFT Signal
     for (let i = 8; i <= 39; i++) {
       data[`fft${i - 7}`] =
-        (Bits.bitsToUnsigned(bits.substr(i * 8, 8)) * data.vibrationLevel) /
+        (Bits.bitsToUnsigned(bits.substring(i * 8, i * 8 + 8)) * data.vibrationLevel) /
         127;
     }
   } else if (header === 82 || header === 114) {
@@ -57,74 +57,74 @@ function consume(event) {
     topic = "report";
 
     data.anomalyLevel = round(
-      (Bits.bitsToUnsigned(bits.substr(8, 8)) * 100) / 127,
+      (Bits.bitsToUnsigned(bits.substring(8, 16)) * 100) / 127,
     );
 
-    data.nrAlarms = Bits.bitsToUnsigned(bits.substr(32, 8));
-    data.temperature = Bits.bitsToUnsigned(bits.substr(40, 8)) - 30;
+    data.nrAlarms = Bits.bitsToUnsigned(bits.substring(32, 40));
+    data.temperature = Bits.bitsToUnsigned(bits.substring(40, 48)) - 30;
 
-    let reportLength = Bits.bitsToUnsigned(bits.substr(48, 8));
+    let reportLength = Bits.bitsToUnsigned(bits.substring(48, 56));
     data.operatingTime =
-      (Bits.bitsToUnsigned(bits.substr(16, 8)) * reportLength) / 127;
+      (Bits.bitsToUnsigned(bits.substring(16, 24)) * reportLength) / 127;
 
     if (reportLength > 59) {
       reportLength = (reportLength - 59) * 60;
     }
 
-    data.reportID = Bits.bitsToUnsigned(bits.substr(56, 8));
+    data.reportID = Bits.bitsToUnsigned(bits.substring(56, 64));
 
-    const vl1 = Bits.bitsToUnsigned(bits.substr(64, 8));
-    const vl2 = Bits.bitsToUnsigned(bits.substr(72, 8));
-    const vl3 = Bits.bitsToUnsigned(bits.substr(80, 8));
+    const vl1 = Bits.bitsToUnsigned(bits.substring(64, 72));
+    const vl2 = Bits.bitsToUnsigned(bits.substring(72, 80));
+    const vl3 = Bits.bitsToUnsigned(bits.substring(80, 88));
     data.maxAmplitude = round((vl1 * 128 + vl2 + vl3 / 100) / 10 / 121.45); // float
     // Frequency_index
 
-    data.peakFrequencyIndex = Bits.bitsToUnsigned(bits.substr(88, 8)) + 1;
+    data.peakFrequencyIndex = Bits.bitsToUnsigned(bits.substring(88, 96)) + 1;
     if (data.peakFrequencyIndex < 128) {
       data.peakFrequency = (data.peakFrequencyIndex * frequency) / 256;
     } else if (data.peakFrequencyIndex >= 128) {
       data.peakFrequency =
-        (((Bits.bitsToUnsigned(bits.substr(88, 8)) & 0x7) + 1) * frequency) /
+        (((Bits.bitsToUnsigned(bits.substring(88, 96)) & 0x7) + 1) * frequency) /
         256;
     }
 
     // Anomaly level time 0 - 10%, ok frequencies
     data.goodVibration = round(
-      (Bits.bitsToUnsigned(bits.substr(24, 8)) * data.operatingTime) / 127,
+      (Bits.bitsToUnsigned(bits.substring(24, 32)) * data.operatingTime) / 127,
     );
     // Time [minutes] spent in the 10-20% anomaly level range
     data.badVibrationPercentage1020 = round(
-      (Bits.bitsToUnsigned(bits.substr(96, 8)) *
+      (Bits.bitsToUnsigned(bits.substring(96, 104)) *
         (data.operatingTime - data.goodVibration)) /
       127,
     );
     // Time [minutes] spent in the 20-40% anomaly level range
     data.badVibrationPercentage2040 = round(
-      (Bits.bitsToUnsigned(bits.substr(104, 8)) *
+      (Bits.bitsToUnsigned(bits.substring(104, 112)) *
         (data.operatingTime - data.goodVibration)) /
       127,
     );
     // Time [minutes] spent in the 40-60% anomaly level range
     data.badVibrationPercentage4060 = round(
-      (Bits.bitsToUnsigned(bits.substr(112, 8)) *
+      (Bits.bitsToUnsigned(bits.substring(112, 120)) *
         (data.operatingTime - data.goodVibration)) /
       127,
     );
     // Time [minutes] spent in the 60-80% anomaly level range
     data.badVibrationPercentage6080 = round(
-      (Bits.bitsToUnsigned(bits.substr(120, 8)) *
+      (Bits.bitsToUnsigned(bits.substring(120, 128)) *
         (data.operatingTime - data.goodVibration)) /
       127,
     );
     // Time [minutes] spent in the 80-100% anomaly level range
     data.badVibrationPercentage80100 = round(
-      (Bits.bitsToUnsigned(bits.substr(128, 8)) *
+      (Bits.bitsToUnsigned(bits.substring(128, 136)) *
         (data.operatingTime - data.goodVibration)) /
       127,
     );
 
     let lifecycle = {};
-    lifecycle.batteryLevel = round((Bits.bitsToUnsigned(bits.substr(136, 8)) * 100) / 127);
+    lifecycle.batteryLevel = round((Bits.bitsToUnsigned(bits.substring(136, 144)) * 100) / 127);
     lifecycle.machineRunning = false;
     lifecycle.sensorRunning = false;
     if (state.lastMachineStatus === "MACHINE_START") {
@@ -141,50 +141,50 @@ function consume(event) {
 
     // anomaly level: 255 = infinite time
     data.anomalyLevelTo20Last24h = round(
-      Bits.bitsToUnsigned(bits.substr(144, 8)),
+      Bits.bitsToUnsigned(bits.substring(144, 152)),
     ); // Prediction: time [hours] when anomaly level reaches 20% (24 hours base)
     data.anomalyLevelTo50Last24h = round(
-      Bits.bitsToUnsigned(bits.substr(152, 8)),
+      Bits.bitsToUnsigned(bits.substring(152, 160)),
     ); // Prediction: time [hours] when anomaly level reaches 50% (24 hours base)
     data.anomalyLevelTo80Last24h = round(
-      Bits.bitsToUnsigned(bits.substr(160, 8)),
+      Bits.bitsToUnsigned(bits.substring(160, 168)),
     ); // Prediction: time [hours] when anomaly level reaches 80% (24 hours base)
 
     data.anomalyLevelTo20Last30d = round(
-      Bits.bitsToUnsigned(bits.substr(168, 8)),
+      Bits.bitsToUnsigned(bits.substring(168, 176)),
     ); // Prediction: time [days] when anomaly level reaches 20% (30 days base)
     data.anomalyLevelTo50Last30d = round(
-      Bits.bitsToUnsigned(bits.substr(176, 8)),
+      Bits.bitsToUnsigned(bits.substring(176, 184)),
     ); // Prediction: time [days] when anomaly level reaches 50% (30 days base)
     data.anomalyLevelTo80Last30d = round(
-      Bits.bitsToUnsigned(bits.substr(184, 8)),
+      Bits.bitsToUnsigned(bits.substring(184, 192)),
     ); // Prediction: time [days] when anomaly level reaches 80% (30 days base)
 
     data.anomalyLevelTo20Last6m = round(
-      Bits.bitsToUnsigned(bits.substr(192, 8)),
+      Bits.bitsToUnsigned(bits.substring(192, 200)),
     ); // Prediction: time [months] when anomaly level reaches 20% (6 months base)
     data.anomalyLevelTo50Last6m = round(
-      Bits.bitsToUnsigned(bits.substr(200, 8)),
+      Bits.bitsToUnsigned(bits.substring(200, 208)),
     ); // Prediction: time [months] when anomaly level reaches 50% (6 months base)
     data.anomalyLevelTo80Last6m = round(
-      Bits.bitsToUnsigned(bits.substr(208, 8)),
+      Bits.bitsToUnsigned(bits.substring(208, 216)),
     ); // Prediction: time [months] when anomaly level reaches 80% (6 months base)
   } else if (header === 65 || header === 97) {
     // Alarm
     topic = "alarm";
     data.anomalyLevel = round(
-      (Bits.bitsToUnsigned(bits.substr(8, 8)) * 100) / 127,
+      (Bits.bitsToUnsigned(bits.substring(8, 16)) * 100) / 127,
     );
-    data.temperature = Bits.bitsToUnsigned(bits.substr(16, 8)) - 30;
+    data.temperature = Bits.bitsToUnsigned(bits.substring(16, 24)) - 30;
     // NA
-    const vl1 = Bits.bitsToUnsigned(bits.substr(32, 8));
-    const vl2 = Bits.bitsToUnsigned(bits.substr(40, 8));
-    const vl3 = Bits.bitsToUnsigned(bits.substr(48, 8));
+    const vl1 = Bits.bitsToUnsigned(bits.substring(32, 40));
+    const vl2 = Bits.bitsToUnsigned(bits.substring(40, 48));
+    const vl3 = Bits.bitsToUnsigned(bits.substring(48, 56));
     data.vibrationLevel = round((vl1 * 128 + vl2 + vl3 / 100) / 10 / 121.45); // float
     // fftSignal
     for (let i = 8; i <= 39; i++) {
       data[`fft${i - 7}`] =
-        (Bits.bitsToUnsigned(bits.substr(i * 8, 8)) * data.vibrationLevel) /
+        (Bits.bitsToUnsigned(bits.bits.substring(i * 8, i * 8 + 8)) * data.vibrationLevel) /
         127;
     }
   } else if (header === 83) {
@@ -206,7 +206,7 @@ function consume(event) {
     data.machineStop = false;
     data.machineStart = false;
 
-    let sensorState = Bits.bitsToUnsigned(bits.substr(8, 8));
+    let sensorState = Bits.bitsToUnsigned(bits.substring(8, 16));
     if (sensorState === 100) {
       sensorState = "SENSOR_START";
       data.sensorStart = true;
@@ -249,7 +249,7 @@ function consume(event) {
     data.sensorState = sensorState;
 
     const lifecycle = {};
-    lifecycle.batteryLevel = round((Bits.bitsToUnsigned(bits.substr(16, 8)) * 100) / 127);
+    lifecycle.batteryLevel = round((Bits.bitsToUnsigned(bits.substring(16, 24)) * 100) / 127);
     lifecycle.machineRunning = false;
     lifecycle.sensorRunning = false;
     if (state.lastMachineStatus === "MACHINE_START") {

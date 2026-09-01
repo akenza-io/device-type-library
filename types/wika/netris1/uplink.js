@@ -722,7 +722,7 @@ function convertHexStringToBytes(hexEncodedString) {
   // convert byte to byte (2 characters are 1 byte)
   for (let i = 0; i < hexEncodedString.length; i += 2) {
     // extract 2 characters
-    const hex = hexEncodedString.substr(i, 2);
+    const hex = hexEncodedString.substring(i, i + 2);
 
     // convert hex pair to integer
     const intValue = parseInt(hex, 16);

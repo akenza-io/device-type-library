@@ -26,16 +26,16 @@ function consume(event) {
       for (let i = 0; i < 4; i++) {
         // Checks if specific sensor is online
         if (type >> (3 - i) & 0x01 === 1) {
-          data[`soilHumidity${i + 1}`] = Bits.bitsToUnsigned(bits.substr(pointer, 16)) / 10; pointer += 16;
+          data[`soilHumidity${i + 1}`] = Bits.bitsToUnsigned(bits.substring(pointer, pointer + 16)) / 10; pointer += 16;
 
-          const soilTemperature = Bits.bitsToUnsigned(bits.substr(pointer, 16)) / 10; pointer += 16;;
+          const soilTemperature = Bits.bitsToUnsigned(bits.substring(pointer, pointer + 16)) / 10; pointer += 16;;
           if ((soilTemperature & 0x8000) >> 15 === 0) {
             data[`soilTemperature${i + 1}`] = soilTemperature / 100;
           } else {
             data[`soilTemperature${i + 1}`] = ((soilTemperature - 0xFFFF) / 100);
           }
 
-          data[`soilConductivity${i + 1}`] = Bits.bitsToUnsigned(bits.substr(pointer, 16)) / 10; pointer += 16;
+          data[`soilConductivity${i + 1}`] = Bits.bitsToUnsigned(bits.substring(pointer, pointer + 16)) / 10; pointer += 16;
         } else {
           pointer += 48;
         }
@@ -47,9 +47,9 @@ function consume(event) {
       for (let i = 0; i < 4; i++) {
         // Checks if specific sensor is connected
         if (type >> (3 - i) & 0x01 === 1) {
-          data[`soilDielectricConstant${i + 1}`] = Bits.bitsToUnsigned(bits.substr(pointer, 16)) / 10; pointer += 16;
-          data[`rawSoilHumidity${i + 1}`] = Bits.bitsToUnsigned(bits.substr(pointer, 16)); pointer += 16;
-          data[`rawSoilConductivity${i + 1}`] = Bits.bitsToUnsigned(bits.substr(pointer, 16)); pointer += 16;
+          data[`soilDielectricConstant${i + 1}`] = Bits.bitsToUnsigned(bits.substring(pointer, pointer + 16)) / 10; pointer += 16;
+          data[`rawSoilHumidity${i + 1}`] = Bits.bitsToUnsigned(bits.substring(pointer, pointer + 16)); pointer += 16;
+          data[`rawSoilConductivity${i + 1}`] = Bits.bitsToUnsigned(bits.substring(pointer, pointer + 16)); pointer += 16;
         } else {
           pointer += 48;
         }

@@ -108,16 +108,16 @@ function consume(event) {
             }${bytes[bytes.length - 20]}${bytes[bytes.length - 19]}${bytes[bytes.length - 18]
             }${bytes[bytes.length - 17]}`;
           lifecycle.deviceStatus = deviceStatus(
-            Bits.bitsToUnsigned(bits.substr(64, 8)),
+            Bits.bitsToUnsigned(bits.substring(64, 72)),
           );
 
           lifecycle.batteryVoltage =
-            Bits.bitsToUnsigned(bits.substr(72, 16)) / 100;
-          lifecycle.rssi = Bits.bitsToSigned(bits.substr(88, 8));
-          data.counterA = Bits.bitsToUnsigned(bits.substr(152, 16));
-          data.counterB = Bits.bitsToUnsigned(bits.substr(168, 16));
+            Bits.bitsToUnsigned(bits.substring(72, 88)) / 100;
+          lifecycle.rssi = Bits.bitsToSigned(bits.substring(88, 96));
+          data.counterA = Bits.bitsToUnsigned(bits.substring(152, 168));
+          data.counterB = Bits.bitsToUnsigned(bits.substring(168, 184));
           lifecycle.sensorStatus = sensorStatus(
-            Bits.bitsToUnsigned(bits.substr(184, 8)),
+            Bits.bitsToUnsigned(bits.substring(184, 192)),
           );
 
           emit("sample", { data, topic: "default" });

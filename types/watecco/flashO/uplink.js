@@ -992,7 +992,7 @@ function consume(event) {
       if (type === "single") {
         phase = raw.zclheader.endpoint + 1;
       } else if (type === "batch") {
-        phase = point.label.substr(-1);
+        phase = point.label.substring(point.label.length - 1);
       }
 
       data.pulse = point.value;

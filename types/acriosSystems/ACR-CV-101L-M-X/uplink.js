@@ -1142,9 +1142,9 @@ function flattenData(data) {
 function consume(event) {
   let { lastFrameIndex } = event.state || {};
   const thisFrameHex = event.data.payloadHex;
-  const thisFrameIndex = parseInt(thisFrameHex.substr(0, 2), 16);
-  const totalBatchFrames = parseInt(thisFrameHex.substr(2, 2), 16);
-  const thisFramePayload = thisFrameHex.substr(4);
+  const thisFrameIndex = parseInt(thisFrameHex.substring(0, 2), 16);
+  const totalBatchFrames = parseInt(thisFrameHex.substring(2, 4), 16);
+  const thisFramePayload = thisFrameHex.substring(4);
   let { previousPayloads } = event.state || {};
   const { port } = event.data;
   let data;

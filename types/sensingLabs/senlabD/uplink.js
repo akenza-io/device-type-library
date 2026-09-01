@@ -9,19 +9,19 @@ function consume(event) {
     topic = "startup";
 
     data.version = `${Bits.bitsToUnsigned(
-      bits.substr(80, 8),
-    )}.${Bits.bitsToUnsigned(bits.substr(88, 8))}.${Bits.bitsToUnsigned(
-      bits.substr(96, 8),
+      bits.substring(80, 88),
+    )}.${Bits.bitsToUnsigned(bits.substring(88, 96))}.${Bits.bitsToUnsigned(
+      bits.substring(96, 104),
     )}`;
 
-    data.openDuration = Bits.bitsToUnsigned(bits.substr(152, 8));
-    data.closeDuration = Bits.bitsToUnsigned(bits.substr(160, 8));
+    data.openDuration = Bits.bitsToUnsigned(bits.substring(152, 160));
+    data.closeDuration = Bits.bitsToUnsigned(bits.substring(160, 168));
   } else if (port === 3) {
     data.batteryLevel = Math.round(
-      (Bits.bitsToUnsigned(bits.substr(8, 8)) / 254) * 100,
+      (Bits.bitsToUnsigned(bits.substring(8, 16)) / 254) * 100,
     );
 
-    if (Bits.bitsToUnsigned(bits.substr(16, 8)) > 0x80) {
+    if (Bits.bitsToUnsigned(bits.substring(16, 24)) > 0x80) {
       data.open = true;
     } else {
       data.open = false;

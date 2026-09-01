@@ -3,17 +3,17 @@ function consume(event) {
   const bits = Bits.hexToBits(payload);
   const data = {};
 
-  data.deviceType = Bits.bitsToUnsigned(bits.substr(0, 8));
-  data.version = Bits.bitsToUnsigned(bits.substr(8, 16));
-  data.rssi = Bits.bitsToUnsigned(bits.substr(24, 8)) * -1;
-  data.snr = Bits.bitsToUnsigned(bits.substr(32, 8));
-  data.manually = Bits.bitsToUnsigned(bits.substr(41, 1));
-  data.do2Lora = Bits.bitsToUnsigned(bits.substr(42, 1));
-  data.do1Lora = Bits.bitsToUnsigned(bits.substr(43, 1));
-  data.do2Error = Bits.bitsToUnsigned(bits.substr(44, 1));
-  data.do1Error = Bits.bitsToUnsigned(bits.substr(45, 1));
-  data.do2 = Bits.bitsToUnsigned(bits.substr(46, 1));
-  data.do1 = Bits.bitsToUnsigned(bits.substr(47, 1));
+  data.deviceType = Bits.bitsToUnsigned(bits.substring(0, 8));
+  data.version = Bits.bitsToUnsigned(bits.substring(8, 24));
+  data.rssi = Bits.bitsToUnsigned(bits.substring(24, 32)) * -1;
+  data.snr = Bits.bitsToUnsigned(bits.substring(32, 40));
+  data.manually = Bits.bitsToUnsigned(bits.substring(41, 42));
+  data.do2Lora = Bits.bitsToUnsigned(bits.substring(42, 43));
+  data.do1Lora = Bits.bitsToUnsigned(bits.substring(43, 44));
+  data.do2Error = Bits.bitsToUnsigned(bits.substring(44, 45));
+  data.do1Error = Bits.bitsToUnsigned(bits.substring(45, 46));
+  data.do2 = Bits.bitsToUnsigned(bits.substring(46, 47));
+  data.do1 = Bits.bitsToUnsigned(bits.substring(47, 48));
 
   emit("sample", { data, topic: "default" });
 }

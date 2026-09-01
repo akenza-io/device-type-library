@@ -4,14 +4,14 @@ function consume(event) {
   const data = {};
 
   // Header
-  data.version = Bits.bitsToUnsigned(bits.substr(0, 8));
-  data.deviceType = Bits.bitsToUnsigned(bits.substr(8, 8));
-  data.batteryVoltage = Bits.bitsToUnsigned(bits.substr(24, 8)) / 10;
+  data.version = Bits.bitsToUnsigned(bits.substring(0, 8));
+  data.deviceType = Bits.bitsToUnsigned(bits.substring(8, 16));
+  data.batteryVoltage = Bits.bitsToUnsigned(bits.substring(24, 32)) / 10;
 
   emit("sample", {
     data: {
-      temperature: Bits.bitsToSigned(bits.substr(32, 16)) / 100,
-      humidity: Bits.bitsToUnsigned(bits.substr(48, 16)) / 100,
+      temperature: Bits.bitsToSigned(bits.substring(32, 48)) / 100,
+      humidity: Bits.bitsToUnsigned(bits.substring(48, 64)) / 100,
     },
     topic: "default",
   });

@@ -4,18 +4,18 @@ function consume(event) {
   const bits = Bits.hexToBits(payload);
   const data = {};
 
-  const version = Bits.bitsToUnsigned(bits.substr(0, 8));
+  const version = Bits.bitsToUnsigned(bits.substring(0, 8));
   // Devicetype 8
 
   // Report data
   if (port === 6) {
     // Report type 8
-    const batteryVoltage = Bits.bitsToUnsigned(bits.substr(24, 8)) / 10;
-    data.warning = !!Bits.bitsToUnsigned(bits.substr(32, 8));
+    const batteryVoltage = Bits.bitsToUnsigned(bits.substring(24, 32)) / 10;
+    data.warning = !!Bits.bitsToUnsigned(bits.substring(32, 40));
 
     // If there is no battery voltage the device is plugged in
     if (batteryVoltage === 0) {
-      const contactSwitchStatus = !!Bits.bitsToUnsigned(bits.substr(40, 8));
+      const contactSwitchStatus = !!Bits.bitsToUnsigned(bits.substring(40, 48));
       emit("sample", {
         data: { contactSwitchStatus, version },
         topic: "lifecycle",
@@ -25,7 +25,7 @@ function consume(event) {
     }
     emit("sample", { data, topic: "default" });
   } else if (port === 7) {
-    const configurationSuccess = !Bits.bitsToUnsigned(bits.substr(16, 8));
+    const configurationSuccess = !Bits.bitsToUnsigned(bits.substring(16, 24));
     emit("sample", {
       data: { configurationSuccess },
       topic: "downlink_response",

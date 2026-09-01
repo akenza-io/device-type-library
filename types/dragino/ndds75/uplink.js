@@ -35,22 +35,22 @@ function consume(event) {
   const data = {};
   const lifecycle = {};
 
-  lifecycle.deviceId = payload.substr(0, 16);
-  lifecycle.version = Bits.bitsToUnsigned(bits.substr(64, 16));
-  lifecycle.batteryVoltage = Bits.bitsToUnsigned(bits.substr(80, 16)) / 1000;
-  lifecycle.signalStrength = Bits.bitsToUnsigned(bits.substr(96, 8));
-  lifecycle.mod = Bits.bitsToUnsigned(bits.substr(104, 8));
-  lifecycle.interrupt = Bits.bitsToUnsigned(bits.substr(112, 8));
+  lifecycle.deviceId = payload.substring(0, 16);
+  lifecycle.version = Bits.bitsToUnsigned(bits.substring(64, 80));
+  lifecycle.batteryVoltage = Bits.bitsToUnsigned(bits.substring(80, 96)) / 1000;
+  lifecycle.signalStrength = Bits.bitsToUnsigned(bits.substring(96, 104));
+  lifecycle.mod = Bits.bitsToUnsigned(bits.substring(104, 112));
+  lifecycle.interrupt = Bits.bitsToUnsigned(bits.substring(112, 120));
 
   for (let pointer = 120; pointer < bits.length; pointer++) {
-    data.distance = Bits.bitsToUnsigned(bits.substr(pointer, 16));
+    data.distance = Bits.bitsToUnsigned(bits.substring(pointer, pointer + 16));
     const fillLevel = getFillLevel(event.device, data.distance);
     if (fillLevel !== undefined) {
       data.fillLevel = fillLevel;
     }
     pointer += 16;
     const timestamp = new Date(
-      Bits.bitsToUnsigned(bits.substr(pointer, 32)) * 1000,
+      Bits.bitsToUnsigned(bits.substring(pointer, pointer + 32)) * 1000,
     );
     emit("sample", { data, topic: "default", timestamp });
     pointer += 32;

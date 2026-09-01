@@ -99,7 +99,7 @@ describe("Pressac IAQ Uplink", () => {
     it("should decode Pressac IAQ boot payload", () => {
       const data = {
         data: {
-          payloadHex: "261100054102000f1e1d01d68226140a00=",
+          payloadHex: "261100054102000f1e1d01d68226140a00",
         },
       };
 

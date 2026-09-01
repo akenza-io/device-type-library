@@ -130,6 +130,7 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
         labels: {},
         state: {
           lastContact: "OPEN",
+          lastCount: 0,
           lastSampleEmittedAt: new Date().setMinutes(new Date().getMinutes() - 90),
           firstOpening: new Date().setMinutes(new Date().getMinutes() - 90)
         }
@@ -174,6 +175,9 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
         assert.equal(value.data.contact, "OPEN");
         assert.equal(value.data.closedSince, 0);
         assert.equal(value.data.openSince, 90);
+        assert.equal(value.data.count, 0);
+        assert.equal(value.data.hasContact, false);
+        assert.equal(value.data.relativeCount, 0);
 
         validateSchema(value.data, objectPresentSchema, {
           throwError: true,

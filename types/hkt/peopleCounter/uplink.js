@@ -9,23 +9,23 @@ function consume(event) {
   let pointer = 40;
 
   while (pointer < bits.length) {
-    const dataType = Bits.bitsToUnsigned(bits.substr(pointer, 8));
+    const dataType = Bits.bitsToUnsigned(bits.substring(pointer, pointer + 8));
 
     switch (dataType) {
       case 0x01:
-        system.hwVersion = Bits.bitsToUnsigned(bits.substr((pointer += 8), 8));
-        system.swVersion = Bits.bitsToUnsigned(bits.substr((pointer += 8), 8));
+        system.hwVersion = Bits.bitsToUnsigned(bits.substring((pointer += 8), pointer + 8));
+        system.swVersion = Bits.bitsToUnsigned(bits.substring((pointer += 8), pointer + 8));
         pointer += 8;
         break;
       case 0x03:
         lifecycle.batteryLevel = Bits.bitsToUnsigned(
-          bits.substr((pointer += 8), 8),
+          bits.substring((pointer += 8), pointer + 8),
         );
         emit("sample", { data: lifecycle, topic: "lifecycle" });
         pointer += 8;
         break;
       case 0x04: {
-        const reporting = Bits.bitsToUnsigned(bits.substr((pointer += 8), 8));
+        const reporting = Bits.bitsToUnsigned(bits.substring((pointer += 8), pointer + 8));
         switch (reporting) {
           case 0x01:
             system.reportingPattern = "TIME_INTERVAL";
@@ -53,26 +53,26 @@ function consume(event) {
         pointer += 24;
         break;
       case 0x06:
-        system.threshold = Bits.bitsToUnsigned(bits.substr((pointer += 8), 16));
+        system.threshold = Bits.bitsToUnsigned(bits.substring((pointer += 8), pointer + 16));
         pointer += 16;
         break;
       case 0x07:
-        data.counterA = Bits.bitsToUnsigned(bits.substr((pointer += 8), 16));
-        data.counterB = Bits.bitsToUnsigned(bits.substr((pointer += 16), 16));
-        data.absCountA = Bits.bitsToUnsigned(bits.substr((pointer += 16), 32));
-        data.absCountB = Bits.bitsToUnsigned(bits.substr((pointer += 32), 32));
+        data.counterA = Bits.bitsToUnsigned(bits.substring((pointer += 8), pointer + 16));
+        data.counterB = Bits.bitsToUnsigned(bits.substring((pointer += 16), pointer + 16));
+        data.absCountA = Bits.bitsToUnsigned(bits.substring((pointer += 16), pointer + 32));
+        data.absCountB = Bits.bitsToUnsigned(bits.substring((pointer += 32), pointer + 32));
         emit("sample", { data, topic: "default" });
         pointer += 32;
         break;
       case 0x83:
         system.infraredError = !!Bits.bitsToUnsigned(
-          bits.substr((pointer += 8), 8),
+          bits.substring((pointer += 8), pointer + 8),
         );
         pointer += 8;
         break;
       case 0x84: {
         system.installed = !!Bits.bitsToUnsigned(
-          bits.substr((pointer += 8), 8),
+          bits.substring((pointer += 8), pointer + 8),
         );
         pointer += 8;
         break;

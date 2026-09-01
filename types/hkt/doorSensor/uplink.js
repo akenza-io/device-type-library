@@ -10,47 +10,47 @@ function consume(event) {
   let pointer = 40;
 
   while (pointer < bits.length) {
-    const dataType = Bits.bitsToUnsigned(bits.substr(pointer, 8));
+    const dataType = Bits.bitsToUnsigned(bits.substring(pointer, pointer + 8));
 
     switch (dataType) {
       case 0x01:
-        system.hwVersion = Bits.bitsToUnsigned(bits.substr((pointer += 8), 8));
-        system.swVersion = Bits.bitsToUnsigned(bits.substr((pointer += 8), 8));
+        system.hwVersion = Bits.bitsToUnsigned(bits.substring((pointer += 8), pointer + 8));
+        system.swVersion = Bits.bitsToUnsigned(bits.substring((pointer += 8), pointer + 8));
         pointer += 8;
         break;
       case 0x03:
         lifecycle.batteryLevel = Bits.bitsToUnsigned(
-          bits.substr((pointer += 8), 8),
+          bits.substring((pointer += 8), pointer + 8),
         );
         pointer += 8;
         break;
       case 0x08:
-        data.open = !!Bits.bitsToUnsigned(bits.substr((pointer += 8), 8));
+        data.open = !!Bits.bitsToUnsigned(bits.substring((pointer += 8), pointer + 8));
         pointer += 8;
         break;
       case 0x22:
-        system.mode = Bits.bitsToUnsigned(bits.substr((pointer += 8), 8));
+        system.mode = Bits.bitsToUnsigned(bits.substring((pointer += 8), pointer + 8));
         pointer += 8;
         break;
       case 0x23:
         system.countingHours = `${Bits.bitsToUnsigned(
-          bits.substr((pointer += 8), 8),
+          bits.substring((pointer += 8), pointer + 8),
         )}:${Bits.bitsToUnsigned(
-          bits.substr((pointer += 8), 8),
+          bits.substring((pointer += 8), pointer + 8),
         )}-${Bits.bitsToUnsigned(
-          bits.substr((pointer += 8), 8),
-        )}:${Bits.bitsToUnsigned(bits.substr((pointer += 8), 8))}`;
+          bits.substring((pointer += 8), pointer + 8),
+        )}:${Bits.bitsToUnsigned(bits.substring((pointer += 8), pointer + 8))}`;
         pointer += 8;
         break;
       case 0x24:
         system.countingInterval = Bits.bitsToUnsigned(
-          bits.substr((pointer += 8), 16),
+          bits.substring((pointer += 8), pointer + 16),
         );
         pointer += 16;
         break;
       case 0x25: {
         const lifecycleInterval = Bits.bitsToUnsigned(
-          bits.substr((pointer += 8), 8),
+          bits.substring((pointer += 8), pointer + 8),
         );
         if (lifecycleInterval === 0) {
           system.lifecycleInterval = 24;
@@ -63,18 +63,18 @@ function consume(event) {
         break;
       }
       case 0x26:
-        door.nrOpenings = Bits.bitsToUnsigned(bits.substr((pointer += 8), 16));
-        door.nrClosings = Bits.bitsToUnsigned(bits.substr((pointer += 16), 16));
+        door.nrOpenings = Bits.bitsToUnsigned(bits.substring((pointer += 8), pointer + 16));
+        door.nrClosings = Bits.bitsToUnsigned(bits.substring((pointer += 16), pointer + 16));
         door.absOpenings = Bits.bitsToUnsigned(
-          bits.substr((pointer += 16), 32),
+          bits.substring((pointer += 16), pointer + 32),
         );
         door.absClosings = Bits.bitsToUnsigned(
-          bits.substr((pointer += 32), 32),
+          bits.substring((pointer += 32), pointer + 32),
         );
         pointer += 32;
         break;
       case 0x84:
-        system.installed = !!Bits.bitsToUnsigned(bits.substr(48, 8));
+        system.installed = !!Bits.bitsToUnsigned(bits.substring(48, 56));
         pointer += 8;
         break;
       default:

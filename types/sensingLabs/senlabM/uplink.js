@@ -49,14 +49,14 @@ function consume(event) {
   const lifecycle = {};
   let topic = "default";
 
-  const type = Bits.bitsToUnsigned(bits.substr(0, 8));
+  const type = Bits.bitsToUnsigned(bits.substring(0, 8));
   const bitsLength = bits.length;
 
   switch (type) {
     // Startup
     case 0: {
       // Dev Eui 64 Reserved
-      const appType = Bits.bitsToUnsigned(bits.substr(72, 8));
+      const appType = Bits.bitsToUnsigned(bits.substring(72, 80));
       switch (appType) {
         case 0x41:
           data.appType = "SENLABA";
@@ -87,50 +87,50 @@ function consume(event) {
       }
 
       data.firmwareVersion = `${Bits.bitsToUnsigned(
-        bits.substr(80, 8),
-      )}.${Bits.bitsToUnsigned(bits.substr(88, 8))}.${Bits.bitsToUnsigned(
-        bits.substr(96, 8),
+        bits.substring(80, 88),
+      )}.${Bits.bitsToUnsigned(bits.substring(88, 96))}.${Bits.bitsToUnsigned(
+        bits.substring(96, 104),
       )}`;
 
-      if (Bits.bitsToUnsigned(bits.substr(104, 8))) {
+      if (Bits.bitsToUnsigned(bits.substring(104, 112))) {
         data.functionMode = "BASIC";
       } else {
         data.functionMode = "OTHER";
       }
 
-      data.logPeriod = Bits.bitsToUnsigned(bits.substr(112, 16)) * 2;
-      data.txPeriod = Bits.bitsToUnsigned(bits.substr(128, 16)) * 2;
-      data.randWindow = Bits.bitsToUnsigned(bits.substr(144, 16));
-      data.redundancyFactor = Bits.bitsToUnsigned(bits.substr(160, 8));
+      data.logPeriod = Bits.bitsToUnsigned(bits.substring(112, 128)) * 2;
+      data.txPeriod = Bits.bitsToUnsigned(bits.substring(128, 144)) * 2;
+      data.randWindow = Bits.bitsToUnsigned(bits.substring(144, 160));
+      data.redundancyFactor = Bits.bitsToUnsigned(bits.substring(160, 168));
       topic = "system";
       break;
     }
     // Log
     case 2:
       lifecycle.batteryLevel = Math.round(
-        (Bits.bitsToUnsigned(bits.substr(8, 8)) / 254) * 100,
+        (Bits.bitsToUnsigned(bits.substring(8, 16)) / 254) * 100,
       );
       // Reserved internal data (Variable length & confidential)
-      data.pulse = Bits.bitsToUnsigned(bits.substr(bitsLength - 32, 32));
+      data.pulse = Bits.bitsToUnsigned(bits.substring(bitsLength - 32));
       break;
     // Log & Wirecut
     case 7:
       lifecycle.batteryLevel = Math.round(
-        (Bits.bitsToUnsigned(bits.substr(8, 8)) / 254) * 100,
+        (Bits.bitsToUnsigned(bits.substring(8, 16)) / 254) * 100,
       );
-      data.wireCutStatus = !!Bits.bitsToUnsigned(bits.substr(16, 8));
+      data.wireCutStatus = !!Bits.bitsToUnsigned(bits.substring(16, 24));
       // Reserved internal data (Variable length & confidential)
-      data.pulse = Bits.bitsToUnsigned(bits.substr(bitsLength - 32, 32));
+      data.pulse = Bits.bitsToUnsigned(bits.substring(bitsLength - 32));
       break;
     // Log & Wirecut & DUAL Input
     case 10:
       lifecycle.batteryLevel = Math.round(
-        (Bits.bitsToUnsigned(bits.substr(8, 8)) / 254) * 100,
+        (Bits.bitsToUnsigned(bits.substring(8, 16)) / 254) * 100,
       );
-      data.wireCutStatus = !!Bits.bitsToUnsigned(bits.substr(16, 8));
+      data.wireCutStatus = !!Bits.bitsToUnsigned(bits.substring(16, 24));
       // Reserved internal data (Variable length & confidential)
-      data.pulse1 = Bits.bitsToUnsigned(bits.substr(bitsLength - 64, 32));
-      data.pulse2 = Bits.bitsToUnsigned(bits.substr(bitsLength - 32, 32));
+      data.pulse1 = Bits.bitsToUnsigned(bits.substring(bitsLength - 64, bitsLength + 32));
+      data.pulse2 = Bits.bitsToUnsigned(bits.substring(bitsLength - 32));
 
       topic = "default";
       break;

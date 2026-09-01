@@ -21,7 +21,7 @@ function consume(event) {
   const data = {};
   const lifecycle = {};
 
-  for (let i = 0; i < bytes.length; ) {
+  for (let i = 0; i < bytes.length;) {
     const channelId = bytes[i++];
     const channelType = bytes[i++];
     // BATTERY
@@ -41,7 +41,7 @@ function consume(event) {
     }
     // DEVICE SN
     else if (channelId === 0xff && channelType === 0x16) {
-      lifecycle.serialNumber = payload.substr(i * 2, 16);
+      lifecycle.serialNumber = payload.substring(i * 2, i * 2 + 16);
       i += 8;
     }
     // HARDWARE VERSION
@@ -58,7 +58,7 @@ function consume(event) {
     else if (channelId === 0xff && channelType === 0x34) {
       data.buttonNumber = bytes[i];
       data.command = Hex.hexLittleEndianToBigEndian(
-        payload.substr(++i * 2, 4),
+        payload.substring(++i * 2, i * 2 + 4),
         false,
       );
       i += 1;

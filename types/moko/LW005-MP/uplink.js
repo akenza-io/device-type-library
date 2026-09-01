@@ -14,43 +14,43 @@ function consume(event) {
       break;
     case 6:
       topic = "energy";
-      data.voltage = Bits.bitsToUnsigned(bits.substr(40, 16)) / 10
-      data.current = Bits.bitsToUnsigned(bits.substr(56, 16)) / 1000;
-      data.frequency = Bits.bitsToUnsigned(bits.substr(72, 16)) / 1000;
+      data.voltage = Bits.bitsToUnsigned(bits.substring(40, 56)) / 10
+      data.current = Bits.bitsToUnsigned(bits.substring(56, 72)) / 1000;
+      data.frequency = Bits.bitsToUnsigned(bits.substring(72, 88)) / 1000;
       break;
     case 7:
       topic = "power";
-      data.activePower = Bits.bitsToUnsigned(bits.substr(40, 32)) / 10;
+      data.activePower = Bits.bitsToUnsigned(bits.substring(40, 72)) / 10;
       data.powerFactor = bytes[9] & 0xFF;
       break;
     case 8:
       topic = "consumption";
-      data.totalConsumption = Bits.bitsToUnsigned(bits.substr(40, 32)) / 3200;
-      data.consumptionLastHour = Bits.bitsToUnsigned(bits.substr(72, 16)) / 3200;
+      data.totalConsumption = Bits.bitsToUnsigned(bits.substring(40, 72)) / 3200;
+      data.consumptionLastHour = Bits.bitsToUnsigned(bits.substring(72, 88)) / 3200;
       break;
     case 9:
       topic = "overvoltage";
       data.overvoltage = !!bytes[5];
-      data.voltage = Bits.bitsToUnsigned(bits.substr(48, 16)) / 10;
-      data.overvoltageThreshold = Bits.bitsToUnsigned(bits.substr(64, 16)) / 10;
+      data.voltage = Bits.bitsToUnsigned(bits.substring(48, 64)) / 10;
+      data.overvoltageThreshold = Bits.bitsToUnsigned(bits.substring(64, 80)) / 10;
       break;
     case 10:
       topic = "undervoltage";
       data.undervoltage = !!bytes[5];
-      data.voltage = Bits.bitsToUnsigned(bits.substr(48, 16)) / 10;
-      data.undervoltageThreshold = Bits.bitsToUnsigned(bits.substr(64, 16)) / 10;
+      data.voltage = Bits.bitsToUnsigned(bits.substring(48, 64)) / 10;
+      data.undervoltageThreshold = Bits.bitsToUnsigned(bits.substring(64, 80)) / 10;
       break;
     case 11:
       topic = "overcurrent";
       data.overcurrent = !!bytes[5];
-      data.current = Bits.bitsToUnsigned(bits.substr(48, 16)) / 1000;
-      data.overcurrentThreshold = Bits.bitsToUnsigned(bits.substr(64, 16)) / 1000;
+      data.current = Bits.bitsToUnsigned(bits.substring(48, 64)) / 1000;
+      data.overcurrentThreshold = Bits.bitsToUnsigned(bits.substring(64, 80)) / 1000;
       break;
     case 12:
       topic = "overload";
       data.overload = !!bytes[5];
-      data.power = Bits.bitsToUnsigned(bits.substr(48, 24)) / 10;
-      data.overloadThreshold = Bits.bitsToUnsigned(bits.substr(72, 16)) / 10;
+      data.power = Bits.bitsToUnsigned(bits.substring(48, 72)) / 10;
+      data.overloadThreshold = Bits.bitsToUnsigned(bits.substring(72, 88)) / 10;
       break;
     case 13:
       topic = "load_state";
@@ -59,7 +59,7 @@ function consume(event) {
     case 14:
       topic = "countdown";
       data.acAfterCountdown = bytes[5] === 1 ? "ON" : "OFF";;
-      data.countdownTime = Bits.bitsToUnsigned(bits.substr(48, 32));
+      data.countdownTime = Bits.bitsToUnsigned(bits.substring(48, 80));
       break;
     default:
       break;

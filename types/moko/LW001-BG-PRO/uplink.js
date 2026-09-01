@@ -54,21 +54,21 @@ function consume(event) {
       lifecycle.positioningType = bytes[0] & 0x40 === 0 ? "NORMAL" : "DOWNLINK_FOR_POSITION";
     }
 
-    lifecycle.temperature = Bits.bitsToSigned(bits.substr(8, 8));
+    lifecycle.temperature = Bits.bitsToSigned(bits.substring(8, 16));
     lifecycle.acknowledgeByte = bytes[2] & 0x0f;
     lifecycle.batteryVoltage = (22 + ((bytes[2] >> 4) & 0x0f)) / 10;
   }
 
   if (port === 1) {
     const reboot = {};
-    const rebootReasonCode = Bits.bitsToUnsigned(bits.substr(24, 8));
+    const rebootReasonCode = Bits.bitsToUnsigned(bits.substring(24, 32));
     reboot.rebootReason = rebootReasonArray[rebootReasonCode];
 
     const majorVersion = (bytes[4] >> 6) & 0x03;
     const minorVersion = (bytes[4] >> 4) & 0x03;
     const patchVersion = bytes[4] & 0x0f;
     reboot.firmwareVersion = `V${majorVersion}.${minorVersion}.${patchVersion}`;
-    reboot.activityCount = Bits.bitsToUnsigned(bits.substr(40, 32));
+    reboot.activityCount = Bits.bitsToUnsigned(bits.substring(40, 72));
 
     emit("sample", { data: reboot, topic: "reboot" });
   } else if (port === 2) {
@@ -105,9 +105,9 @@ function consume(event) {
         emit("sample", { data: { macData: datas }, topic: "bluetooth" });
       }
     } else {
-      let lat = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 32));
+      let lat = Bits.bitsToUnsigned(bits.substring(parseLen * 8, parseLen * 8 + 32));
       parseLen += 4;
-      let lon = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 32));
+      let lon = Bits.bitsToUnsigned(bits.substring(parseLen * 8, parseLen * 8 + 32));
       parseLen += 4;
 
       if (lat > 0x80000000) {
@@ -126,7 +126,7 @@ function consume(event) {
     let parseLen = 3;
     const datas = [];
     const failure = {};
-    const failedTypeCode = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 8));
+    const failedTypeCode = Bits.bitsToUnsigned(bits.substring(parseLen * 8, parseLen * 8 + 8));
     failure.reasonsForPositioningFailure = posFailedReasonArray[failedTypeCode];
     const datalen = bytes[parseLen++];
     // wifi and ble reason
@@ -154,14 +154,14 @@ function consume(event) {
 
     emit("sample", { data: failure, topic: "fix_failure" });
   } else if (port === 4) {
-    emit("sample", { data: { shutdownType: shutdownTypeArray[Bits.bitsToUnsigned(bits.substr(24, 8))] }, topic: "shutdown" });
+    emit("sample", { data: { shutdownType: shutdownTypeArray[Bits.bitsToUnsigned(bits.substring(24, 32))] }, topic: "shutdown" });
   } else if (port === 5) {
-    emit("sample", { data: { numberOfShocks: Bits.bitsToUnsigned(bits.substr(24, 16)) }, topic: "vibration" });
+    emit("sample", { data: { numberOfShocks: Bits.bitsToUnsigned(bits.substring(24, 40)) }, topic: "vibration" });
   } else if (port === 6) {
-    emit("sample", { data: { totalIdleTime: Bits.bitsToUnsigned(bits.substr(24, 16)) }, topic: "mandown" });
+    emit("sample", { data: { totalIdleTime: Bits.bitsToUnsigned(bits.substring(24, 40)) }, topic: "mandown" });
   } else if (port === 7) {
     let parseLen = 3; // common head is 3 byte
-    const year = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 16));
+    const year = Bits.bitsToUnsigned(bits.substring(parseLen * 8, parseLen * 8 + 16));
     parseLen += 2;
     const mon = bytes[parseLen++];
     const days = bytes[parseLen++];
@@ -180,7 +180,7 @@ function consume(event) {
     emit("sample", { data: tamper, topic: "tamper" });
   } else if (port === 8) {
     const movement = {};
-    const eventTypeCode = Bits.bitsToUnsigned(bits.substr(24, 8));
+    const eventTypeCode = Bits.bitsToUnsigned(bits.substring(24, 32));
     movement.eventType = eventTypeArray[eventTypeCode];
     if (movement.eventType === "START_OF_MOVEMENT" || movement.eventType === "IN_MOVEMENT") {
       movement.movementDetected = true;
@@ -191,22 +191,22 @@ function consume(event) {
   } else if (port === 9) {
     const system = {};
     let parseLen = 3;
-    system.gpsWorkTime = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 32));
+    system.gpsWorkTime = Bits.bitsToUnsigned(bits.substring(parseLen * 8, parseLen * 8 + 32));
     parseLen += 4;
-    system.wifiWorkTime = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 32));
+    system.wifiWorkTime = Bits.bitsToUnsigned(bits.substring(parseLen * 8, parseLen * 8 + 32));
     parseLen += 4;
-    system.bleScanWorkTime = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 32));
+    system.bleScanWorkTime = Bits.bitsToUnsigned(bits.substring(parseLen * 8, parseLen * 8 + 32));
     parseLen += 4;
-    system.bleAdvWorkTime = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 32));
+    system.bleAdvWorkTime = Bits.bitsToUnsigned(bits.substring(parseLen * 8, parseLen * 8 + 32));
     parseLen += 4;
-    system.loraWorkTime = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 32));
+    system.loraWorkTime = Bits.bitsToUnsigned(bits.substring(parseLen * 8, parseLen * 8 + 32));
     parseLen += 4;
     emit("sample", { data: system, topic: "system" });
   } else if (port === 11) {
     const time = {};
     let tempIndex = 2;
     const currentTime = `${bytes[tempIndex++] * 256 + bytes[tempIndex++]}/${bytes[tempIndex++]}/${bytes[tempIndex++]} ${bytes[tempIndex++]}:${bytes[tempIndex++]}:${bytes[tempIndex++]}`;
-    const timezone = Bits.bitsToUnsigned(bits.substr(tempIndex * 8, 8));
+    const timezone = Bits.bitsToUnsigned(bits.substring(tempIndex * 8, tempIndex * 8 + 8));
     tempIndex += 1;
 
     time.currentTime = currentTime;
@@ -227,9 +227,9 @@ function consume(event) {
     lifecycle.batteryVoltage = (22 + ((bytes[1] >> 4) & 0x0f)) / 10;
 
     let parseLen = 2;
-    let lat = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 32));
+    let lat = Bits.bitsToUnsigned(bits.substring(parseLen * 8, parseLen * 8 + 32));
     parseLen += 4;
-    let lon = Bits.bitsToUnsigned(bits.substr(parseLen * 8, 32));
+    let lon = Bits.bitsToUnsigned(bits.substring(parseLen * 8, parseLen * 8 + 32));
     parseLen += 4;
 
     if (lat > 0x80000000) {
