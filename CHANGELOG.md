@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.99.0] - 2026-09-01
+
+### Added
+
+- Terabee - POC
+
+### Changed
+
+- Removed and replaced substr with substring
+
 # [1.98.1] - 2026-08-04
 
 ### Changed
