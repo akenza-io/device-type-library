@@ -259,5 +259,76 @@ describe("Verge Sense Uplink", () => {
 
       consume(data);
     });
+
+    it("should repeate the Verge Sense space availability payload", () => {
+      const data = {
+        state: {
+          lastHour: new Date().getHours() - 1,
+          lastOccupied: "FREE"
+        },
+        data: {
+          "building_ref_id": "EA21",
+          "floor_ref_id": "0070",
+          "space_ref_id": "EG7859.43",
+          "space_id": 602439,
+          "sensor_ids": [
+            "30Z-R9E",
+            "30Z-SNE"
+          ],
+          "person_count": 0,
+          "signs_of_life": false,
+          "motion_detected": false,
+          "event_type": "space_report",
+          "timestamp": "2024-11-21T13:31:45.000Z",
+          "people": {
+            "count": 0,
+            "distances": {
+              "values": [],
+              "units": "meters"
+            },
+            "coordinates": []
+          }
+        }
+      };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "occupancy");
+        assert.equal(value.data.occupancy, 0);
+        assert.equal(value.data.occupied, false);
+
+        validateSchema(value.data, occupancySchema, {
+          throwError: true,
+        });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+
+        assert.exists(value.lastEmittedAt);
+        assert.equal(value.lastOccupied, "FREE");
+        assert.equal(value.lastHour, new Date().getHours());
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "area_count");
+        assert.equal(value.data.peopleCount, 0);
+        assert.equal(value.data.signsOfLife, false);
+
+        validateSchema(value.data, areaCountReportSchema, {
+          throwError: true,
+        });
+      });
+
+      consume(data);
+    });
   });
 });
