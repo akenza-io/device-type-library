@@ -23,9 +23,9 @@ function consume(event) {
       // output a sample each hour to facilitate time series analysis
       if (state.lastEmittedAt === undefined || now - state.lastEmittedAt >= 3600000 || state.lastHour === undefined || state.lastHour !== hour) {
         if (state.lastOccupied === "OCCUPIED") {
-          emit('sample', { data: { "occupancy": 1, "occupied": true }, topic: "occupancy" });
+          emit('sample', { data: { "occupancy": 1, "occupied": true }, topic: "occupancy", timestamp: new Date() });
         } else {
-          emit('sample', { data: { "occupancy": 0, "occupied": false }, topic: "occupancy" });
+          emit('sample', { data: { "occupancy": 1, "occupied": true }, topic: "occupancy", timestamp: new Date() });
         }
         state.lastEmittedAt = now;
         state.lastHour = hour;
