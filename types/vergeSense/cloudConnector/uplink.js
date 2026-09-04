@@ -25,7 +25,7 @@ function consume(event) {
         if (state.lastOccupied === "OCCUPIED") {
           emit('sample', { data: { "occupancy": 1, "occupied": true }, topic: "occupancy", timestamp: new Date() });
         } else {
-          emit('sample', { data: { "occupancy": 1, "occupied": true }, topic: "occupancy", timestamp: new Date() });
+          emit('sample', { data: { "occupancy": 0, "occupied": false }, topic: "occupancy", timestamp: new Date() });
         }
         state.lastEmittedAt = now;
         state.lastHour = hour;
