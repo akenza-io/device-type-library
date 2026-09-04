@@ -7,6 +7,7 @@
   "title": "Default",
   "properties": {
     "pir": {
+      "title": "Pir",
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/motion/count"
     },
     "daylight": {
