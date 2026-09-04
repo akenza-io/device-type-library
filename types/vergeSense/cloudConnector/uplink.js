@@ -2,6 +2,7 @@ function consume(event) {
   let topic = 'default';
   const payload = {};
   const now = new Date().getTime();
+  const hour = new Date().getHours();
   const state = event.state || {};
 
   if (event.data.event_type === 'space_report') {
@@ -20,13 +21,14 @@ function consume(event) {
       }
 
       // output a sample each hour to facilitate time series analysis
-      if (state.lastEmittedAt === undefined || now - state.lastEmittedAt >= 3600000) {
+      if (state.lastEmittedAt === undefined || now - state.lastEmittedAt >= 3600000 || state.lastHour === undefined || state.lastHour !== hour) {
         if (state.lastOccupied === "OCCUPIED") {
           emit('sample', { data: { "occupancy": 1, "occupied": true }, topic: "occupancy" });
         } else {
           emit('sample', { data: { "occupancy": 0, "occupied": false }, topic: "occupancy" });
         }
         state.lastEmittedAt = now;
+        state.lastHour = hour;
       }
       // No space id suggests this is a floor sending data
     } else {
