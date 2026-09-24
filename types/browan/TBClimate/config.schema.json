@@ -1,0 +1,42 @@
+{
+  "$id": "https://akenza.io/browan/tbms100/config.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "keepaliveInterval": {
+      "title": "Keepalive interval",
+      "unit": "sec",
+      "type": "integer",
+      "description": "Keepalive interval",
+      "hideFromKpis": true
+    },
+    "monitorTimeInterval": {
+      "title": "Monitor time interval",
+      "unit": "sec",
+      "type": "integer",
+      "description": "Monitor time interval",
+      "hideFromKpis": true
+    },
+    "temperatureTrigger": {
+      "title": "Temperature trigger",
+      "description": "Temperature trigger",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "hideFromKpis": true
+    },
+    "humidityTrigger": {
+      "title": "Humidity trigger",
+      "description": "Humidity trigger",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "keepaliveInterval",
+    "monitorTimeInterval",
+    "temperatureTrigger",
+    "humidityTrigger"
+  ]
+}
