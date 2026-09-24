@@ -1,0 +1,47 @@
+{
+  "$id": "https://akenza.io/browan/tbms100/system.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "system",
+  "title": "System",
+  "properties": {
+    "commandId": {
+      "title": "Command Id",
+      "description": "Command Id",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "bootloader": {
+      "title": "Bootloader",
+      "description": "Bootloader",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "hwId": {
+      "title": "Hardware Id",
+      "description": "Hardware Id",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "crc": {
+      "title": "Checksum",
+      "description": "Checksum",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "pupKeyId": {
+      "title": "Puplic key Id",
+      "description": "Puplic key Id",
+      "type": "string",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "commandId",
+    "bootloader",
+    "hwId",
+    "crc",
+    "pupKeyId"
+  ]
+}
