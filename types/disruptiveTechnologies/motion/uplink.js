@@ -5,6 +5,7 @@ function consume(event) {
   const state = event.state || {};
 
   if (eventType === "motion") {
+    sample.repeat = false;
     const motion = event.data.motion.state;
     if (motion === "MOTION_DETECTED") {
       sample.motion = true;
@@ -37,7 +38,7 @@ function consume(event) {
 
   // output a sample each hour to facilitate time series analysis
   if (state.lastSampleEmittedAt !== undefined && now - state.lastSampleEmittedAt >= 3600000) {
-    emit("sample", { data: { motion: state.lastMotion }, topic: "motion" });
+    emit("sample", { data: { motion: state.lastMotion, repeat: true }, topic: "motion" });
     state.lastSampleEmittedAt = now;
   }
 

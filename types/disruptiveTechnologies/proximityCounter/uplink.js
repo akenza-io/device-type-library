@@ -19,6 +19,7 @@ function consume(event) {
   const state = event.state || {};
 
   if (eventType === "objectPresentCount") {
+    sample.repeat = false;
     sample.objectPresentCount = event.data.objectPresentCount.total;
     // Calculate increment
     sample.relativeCount = calculateIncrement(
@@ -55,7 +56,7 @@ function consume(event) {
 
   // output a sample each hour to facilitate time series analysis
   if (state.lastSampleEmittedAt !== undefined && now - state.lastSampleEmittedAt >= 3600000) {
-    emit("sample", { data: { "objectPresentCount": state.lastCount, "relativeCount": 0 }, topic: "object_present_count" });
+    emit("sample", { data: { "objectPresentCount": state.lastCount, "relativeCount": 0, repeat: true }, topic: "object_present_count" });
     state.lastSampleEmittedAt = now;
   }
 

@@ -29,6 +29,12 @@
       "title": "Absolute event count",
       "description": "Absolute event count",
       "type": "integer"
+    },
+    "repeat": {
+      "title": "Repeat",
+      "description": "Indicates a repeat of the previous datapoint",
+      "type": "boolean",
+      "hideFromKpis": true
     }
   },
   "required": [

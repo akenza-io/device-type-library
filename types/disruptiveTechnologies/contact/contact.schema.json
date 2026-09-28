@@ -41,6 +41,12 @@
       "description": "Minutes since door opening",
       "type": "integer",
       "unit": "min"
+    },
+    "repeat": {
+      "title": "Repeat",
+      "description": "Indicates a repeat of the previous datapoint",
+      "type": "boolean",
+      "hideFromKpis": true
     }
   },
   "required": [

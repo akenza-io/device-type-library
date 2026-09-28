@@ -51,6 +51,7 @@ describe("Digital Technologies Desk Sensor Uplink", () => {
         assert.equal(value.data.occupied, false);
         assert.equal(value.data.occupiedOrWarm, false);
         assert.equal(value.data.warm, false);
+        assert.equal(value.data.repeat, false);
 
         validateSchema(value.data, occupancySchema, { throwError: true });
       });
@@ -97,6 +98,7 @@ describe("Digital Technologies Desk Sensor Uplink", () => {
         assert.equal(value.data.occupied, true);
         assert.equal(value.data.occupiedOrWarm, true);
         assert.equal(value.data.warm, false);
+        assert.equal(value.data.repeat, false);
 
         validateSchema(value.data, occupancySchema, { throwError: true });
       });
@@ -150,6 +152,7 @@ describe("Digital Technologies Desk Sensor Uplink", () => {
         assert.equal(value.data.occupied, true);
         assert.equal(value.data.occupiedOrWarm, true);
         assert.equal(value.data.warm, false);
+        assert.equal(value.data.repeat, true);
 
         validateSchema(value.data, occupancySchema, { throwError: true });
       });

@@ -15,6 +15,12 @@
       "title": "Relative object present count",
       "description": "Count of objects detected between cycles",
       "type": "integer"
+    },
+    "repeat": {
+      "title": "Repeat",
+      "description": "Indicates a repeat of the previous datapoint",
+      "type": "boolean",
+      "hideFromKpis": true
     }
   },
   "required": [

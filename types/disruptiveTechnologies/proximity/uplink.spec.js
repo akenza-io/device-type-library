@@ -89,6 +89,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         assert.equal(value.data.proximity, false);
         assert.equal(value.data.count, 0);
         assert.equal(value.data.relativeCount, 0);
+        assert.equal(value.data.repeat, false);
 
         validateSchema(value.data, objectPresentSchema, {
           throwError: true,
@@ -155,6 +156,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         assert.equal(value.data.proximity, true);
         assert.equal(value.data.count, 1);
         assert.equal(value.data.relativeCount, 1);
+        assert.equal(value.data.repeat, false);
 
         validateSchema(value.data, objectPresentSchema, {
           throwError: true,
@@ -232,6 +234,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         assert.equal(value.data.proximity, true);
         assert.equal(value.data.count, 1);
         assert.equal(value.data.relativeCount, 0); // Should stay 0 as this is not a real sample
+        assert.equal(value.data.repeat, true);
 
         validateSchema(value.data, objectPresentSchema, {
           throwError: true,
@@ -312,6 +315,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         assert.equal(value.data.proximity, true);
         assert.equal(value.data.count, 201);
         assert.equal(value.data.relativeCount, 1);
+        assert.equal(value.data.repeat, false);
 
         validateSchema(value.data, objectPresentSchema, {
           throwError: true,
@@ -382,6 +386,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         assert.equal(value.data.proximity, false);
         assert.equal(value.data.count, 201);
         assert.equal(value.data.relativeCount, 0);
+        assert.equal(value.data.repeat, false);
 
         validateSchema(value.data, objectPresentSchema, {
           throwError: true,
@@ -467,6 +472,7 @@ describe("Digital Technologies Proximity Sensor Uplink", () => {
         assert.equal(value.data.proximity, true);
         assert.equal(value.data.count, 202);
         assert.equal(value.data.relativeCount, 1);
+        assert.equal(value.data.repeat, false);
 
         validateSchema(value.data, objectPresentSchema, {
           throwError: true,
