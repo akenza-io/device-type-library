@@ -46,6 +46,7 @@ describe("Digital Technologies Proximity Counter Sensor Uplink", () => {
         assert.equal(value.topic, "object_present_count");
         assert.equal(value.data.objectPresentCount, 4176);
         assert.equal(value.data.relativeCount, 0);
+        assert.equal(value.data.repeat, false);
 
         validateSchema(value.data, objectPresentSchema, {
           throwError: true,

@@ -69,6 +69,7 @@ function consume(event) {
   if (eventType === "touch") {
     emit("sample", { data: { touch: true }, topic: "touch" });
   } else if (eventType === "deskOccupancy") {
+    sample.repeat = false;
     const motion = event.data.deskOccupancy.state;
     if (motion === "OCCUPIED") {
       sample.occupancy = 1;
@@ -111,6 +112,7 @@ function consume(event) {
   // output a sample each hour to facilitate time series analysis
   if (state.lastSampleEmittedAt !== undefined && now - state.lastSampleEmittedAt >= 3600000) {
     sample = {};
+    sample.repeat = true;
     if (state.lastOccupiedValue) {
       sample.occupancy = 1;
       sample.occupied = true;

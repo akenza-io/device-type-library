@@ -83,6 +83,7 @@ function consume(event) {
 
   if (eventType === "contact") {
     const sample = {};
+    sample.repeat = false;
     sample.contact = event.data.contact.state;
 
     if (sample.contact === "OPEN") {
@@ -158,6 +159,7 @@ function consume(event) {
   // output a sample each hour to facilitate time series analysis
   if (state.lastSampleEmittedAt !== undefined && now - state.lastSampleEmittedAt >= 3600000) {
     const sample = {};
+    sample.repeat = true;
     sample.contact = state.lastContact;
     sample.relativeCount = 0;
     sample.count = state.lastCount;
