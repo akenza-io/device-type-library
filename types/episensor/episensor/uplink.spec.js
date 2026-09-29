@@ -124,7 +124,7 @@ describe("Episensor Uplink", () => {
 
         assert.equal(value.id, "000D6F001911015F_333");
         assert.equal(value.lastTotalActivePowerKWh, 13000);
-        assert.equal(value.lastPeriod, 1770128100000);
+        assert.equal(value.lastPeriod, new Date("2026-02-03T15:15:00").getTime());
       });
       consume(data);
     });
