@@ -20,32 +20,40 @@ function consume(event) {
   values.forEach(entry => {
     const data = {};
     let { value } = entry;
-    let { period } = entry;
+    let period = new Date(entry.period).getTime();
     let { id } = entry;
 
-    if (event.state.id == undefined) {
-      event.state.id = id;
-    } else if (event.state.id !== id) {
+    if (state.id == undefined) {
+      state.id = id;
+    } else if (state.id !== id) {
       emit("sample", {
         data: {
           "error": "Device connected to bridge changed. If it's a new counter please add it as a new device.",
           value,
-          period,
+          period: new Date(period).toISOString(),
           "newId": id,
-          "initialId": event.state.id
+          "initialId": state.id
         }, topic: "error"
       });
       return;
     }
 
-    data.totalActivePowerKWh = value;
-    data.incrementActivePowerKWh = calculateIncrement(
-      state.lastTotalActivePowerKWh,
-      data.totalActivePowerKWh,
-    );
-    state.lastTotalActivePowerKWh = data.totalActivePowerKWh;
+    if (state.lastPeriod == undefined) {
+      state.lastPeriod = 0;
+    }
 
-    emit("sample", { data: data, topic: "default", timestamp: new Date(period) });
+    // Do not backfill data otherwise the state corrupts for a few messages
+    if (state.lastPeriod < period) {
+      data.totalActivePowerKWh = value;
+      data.incrementActivePowerKWh = calculateIncrement(
+        state.lastTotalActivePowerKWh,
+        data.totalActivePowerKWh,
+      );
+      state.lastTotalActivePowerKWh = data.totalActivePowerKWh;
+      state.lastPeriod = period;
+
+      emit("sample", { data: data, topic: "default", timestamp: new Date(period) });
+    }
   });
 
   emit("state", state);
