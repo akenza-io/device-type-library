@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.99.2] - 2026-09-30
+
+### Changed
+
+- Episensor - Discarding old episens data as it interfers with the state
+
 # [1.99.1] - 2026-09-28
 
 ### Changed
