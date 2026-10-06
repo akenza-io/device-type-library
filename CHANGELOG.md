@@ -9,6 +9,8 @@ All notable changes to this project will be documented in this file.
 - MClimate PIR Mini
 - MClimate HT + PIR Lite
 - MClimate CO2 + PIR Lite
+- MClimate CO2 Display
+- MClimate CO2 Display Lite
 
 # [1.99.2] - 2026-09-30
 
