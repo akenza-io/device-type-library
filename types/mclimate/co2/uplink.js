@@ -1,396 +1,175 @@
-function decoder(hexData) {
-  const deviceData = {};
-  try {
-    const commandsReadingHelper = (deviceData, hexData, payloadLength) => {
-      const resultToPass = {};
-      let data = hexData.slice(0, -payloadLength);
-      const commands = data.match(/.{1,2}/g);
-      let commandLen = 0;
-      commands.map((command, i) => {
-        switch (command.toLowerCase()) {
-          case "15":
-            try {
-              commandLen = 2;
-              data = {
-                temperatureRangeSettings: {
-                  min: parseInt(commands[i + 1], 16),
-                  max: parseInt(commands[i + 2], 16),
-                },
-              };
-              Object.assign(resultToPass, { ...resultToPass }, { ...data });
-            } catch (e) {
-              return {};
-            }
-            break;
+// Byte layouts follow the MClimate CO2 Sensor and Notifier LoRaWAN communication protocol
+// https://docs.mclimate.eu/mclimate-lorawan-devices/devices/mclimate-co2-sensor-and-notifier-lorawan
+const KEEPALIVE_LENGTH = 7;
 
-          case "14":
-            try {
-              commandLen = 1;
-              data = {
-                childLock: !!parseInt(commands[i + 1], 16),
-              };
-              Object.assign(resultToPass, { ...resultToPass }, { ...data });
-            } catch (e) {
-              return {};
-            }
-            break;
+function round(value, decimals) {
+  const factor = Math.pow(10, decimals);
+  return Math.round(value * factor) / factor;
+}
 
-          case "12":
-            try {
-              commandLen = 1;
-              data = { keepAliveTime: parseInt(commands[i + 1], 16) };
-              Object.assign(resultToPass, { ...resultToPass }, { ...data });
-            } catch (e) {
-              return {};
-            }
+function toHex(byte) {
+  return `0${byte.toString(16)}`.slice(-2);
+}
 
-            break;
+function uint16(high, low) {
+  return (high << 8) | low;
+}
 
-          case "13":
-            try {
-              commandLen = 2;
-              const enabled = !!parseInt(commands[i + 1], 16);
-              const duration = parseInt(commands[i + 2], 16) * 5;
-              let tmp = `0${commands[i + 4].toString(16)}`;
-              tmp = tmp.substring(tmp.length, -2)
-              let motorPos2 = `0${commands[i + 3].toString(16)}`;
-              motorPos2 = motorPos2.substring(motorPos2.length, -2)
-              const motorPos1 = tmp[0];
-              const motorPosition = parseInt(`0x${motorPos1}${motorPos2}`, 16);
-              const delta = Number(tmp[1]);
+function isKeepalive(bytes, index) {
+  return bytes[index] === 0x01 && bytes.length - index >= KEEPALIVE_LENGTH;
+}
 
-              data = {
-                openWindowParams: { enabled, duration, motorPosition, delta },
-              };
-              Object.assign(resultToPass, { ...resultToPass }, { ...data });
-            } catch (e) {
-              return {};
-            }
+function decodeKeepalive(bytes) {
+  return {
+    co2: uint16(bytes[1], bytes[2]),
+    temperature: (uint16(bytes[3], bytes[4]) - 400) / 10,
+    humidity: round((bytes[5] * 100) / 256, 2),
+    batteryVoltage: round((bytes[6] * 8 + 1600) / 1000, 2),
+  };
+}
 
-            break;
+// Good, medium and bad CO2 zone values
+function zones(p) {
+  return { goodZone: p[0], mediumZone: p[1], badZone: p[2] };
+}
 
-          case "18":
-            try {
-              commandLen = 1;
-              data = { operationalMode: commands[i + 1].toString() };
-              Object.assign(resultToPass, { ...resultToPass }, { ...data });
-            } catch (e) {
-              return {};
-            }
+// Command id -> [number of parameter bytes, decoder]
+const RESPONSES = {
+  0x04: [
+    2,
+    (p) => ({
+      deviceVersions: {
+        hardware: Number(toHex(p[0])),
+        software: Number(toHex(p[1])),
+      },
+    }),
+  ],
+  0x12: [1, (p) => ({ keepAliveTime: p[0] })],
+  0x19: [1, (p) => ({ joinRetryPeriod: (p[0] * 5) / 60 })],
+  0x1b: [1, (p) => ({ uplinkType: p[0] })],
+  0x1d: [
+    2,
+    (p) => ({
+      watchDogParams: {
+        wdpC: p[0] === 0 ? false : p[0],
+        wdpUc: p[1] === 0 ? false : p[1],
+      },
+    }),
+  ],
+  0x1f: [
+    4,
+    (p) => ({
+      boundaryLevels: {
+        goodMedium: uint16(p[0], p[1]),
+        mediumBad: uint16(p[2], p[3]),
+      },
+    }),
+  ],
+  0x21: [2, (p) => ({ autoZeroValue: uint16(p[0], p[1]) })],
+  0x23: [3, (p) => ({ notifyPeriod: zones(p) })],
+  0x25: [3, (p) => ({ measurementPeriod: zones(p) })],
+  0x27: [
+    9,
+    (p) => ({
+      buzzerNotification: {
+        durationGoodBeeping: p[0],
+        durationGoodLoud: p[1] * 10,
+        durationGoodSilent: p[2] * 10,
+        durationMediumBeeping: p[3],
+        durationMediumLoud: p[4] * 10,
+        durationMediumSilent: p[5] * 10,
+        durationBadBeeping: p[6],
+        durationBadLoud: p[7] * 10,
+        durationBadSilent: p[8] * 10,
+      },
+    }),
+  ],
+  0x29: [
+    15,
+    (p) => ({
+      ledNotification: {
+        redGood: p[0],
+        greenGood: p[1],
+        blueGood: p[2],
+        durationGood: uint16(p[3], p[4]) * 10,
+        redMedium: p[5],
+        greenMedium: p[6],
+        blueMedium: p[7],
+        durationMedium: uint16(p[8], p[9]) * 10,
+        redBad: p[10],
+        greenBad: p[11],
+        blueBad: p[12],
+        durationBad: uint16(p[13], p[14]) * 10,
+      },
+    }),
+  ],
+  0x2b: [1, (p) => ({ autoZeroPeriod: p[0] })],
+  0xa4: [1, (p) => ({ region: p[0] })],
+};
 
-            break;
+// Walks the command answers in an uplink. Answers can be followed by a keepalive.
+function decodeUplink(bytes) {
+  const configuration = {};
+  let keepalive = null;
+  let i = 0;
 
-          case "16":
-            try {
-              commandLen = 2;
-              data = {
-                internalAlgoParams: {
-                  period: parseInt(commands[i + 1], 16),
-                  pFirstLast: parseInt(commands[i + 2], 16),
-                  pNext: parseInt(commands[i + 3], 16),
-                },
-              };
-              Object.assign(resultToPass, { ...resultToPass }, { ...data });
-            } catch (e) {
-              return {};
-            }
-
-            break;
-
-          case "17":
-            try {
-              commandLen = 2;
-              data = {
-                internalAlgoTdiffParams: {
-                  warm: parseInt(commands[i + 1], 16),
-                  cold: parseInt(commands[i + 2], 16),
-                },
-              };
-              Object.assign(resultToPass, { ...resultToPass }, { ...data });
-            } catch (e) {
-              return {};
-            }
-
-            break;
-
-          case "1b":
-            try {
-              commandLen = 1;
-              data = { uplinkType: commands[i + 1] };
-              Object.assign(resultToPass, { ...resultToPass }, { ...data });
-            } catch (e) {
-              return {};
-            }
-
-            break;
-
-          case "19":
-            try {
-              commandLen = 1;
-              const commandResponse = parseInt(commands[i + 1], 16);
-              const periodInMinutes = (commandResponse * 5) / 60;
-              data = { joinRetryPeriod: periodInMinutes };
-              Object.assign(resultToPass, { ...resultToPass }, { ...data });
-            } catch (e) {
-              return {};
-            }
-
-            break;
-
-          case "1d":
-            try {
-              commandLen = 2;
-              // get default keepalive if it is not available in data
-              const deviceKeepAlive = deviceData.keepAliveTime
-                ? deviceData.keepAliveTime
-                : 5;
-              const wdpC =
-                commands[i + 1] === "00"
-                  ? false
-                  : commands[i + 1] * deviceKeepAlive + 7;
-              const wdpUc =
-                commands[i + 2] === "00"
-                  ? false
-                  : parseInt(commands[i + 2], 16);
-              data = { watchDogParams: { wdpC, wdpUc } };
-              Object.assign(resultToPass, { ...resultToPass }, { ...data });
-            } catch (e) {
-              return {};
-            }
-
-            break;
-
-          case "04":
-            try {
-              commandLen = 2;
-              const hardwareVersion = commands[i + 1];
-              const softwareVersion = commands[i + 2];
-              data = {
-                deviceVersions: {
-                  hardware: Number(hardwareVersion),
-                  software: Number(softwareVersion),
-                },
-              };
-              Object.assign(resultToPass, { ...resultToPass }, { ...data });
-            } catch (e) {
-              return {};
-            }
-            break;
-          case "1f":
-            try {
-              commandLen = 4;
-              const goodMedium = parseInt(
-                `${commands[i + 1]}${commands[i + 2]}`,
-                16,
-              );
-              const mediumBad = parseInt(
-                `${commands[i + 3]}${commands[i + 4]}`,
-                16,
-              );
-
-              data = {
-                boundaryLevels: {
-                  goodMedium: Number(goodMedium),
-                  mediumBad: Number(mediumBad),
-                },
-              };
-              Object.assign(resultToPass, { ...resultToPass }, { ...data });
-            } catch (e) {
-              return {};
-            }
-            break;
-          case "21":
-            try {
-              commandLen = 2;
-              data = {
-                autoZeroValue: parseInt(
-                  `${commands[i + 1]}${commands[i + 2]}`,
-                  16,
-                ),
-              };
-              Object.assign(resultToPass, { ...resultToPass }, { ...data });
-            } catch (e) {
-              return {};
-            }
-            break;
-          case "23":
-            try {
-              commandLen = 3;
-              const goodZone = parseInt(commands[i + 1], 16);
-              const mediumZone = parseInt(commands[i + 2], 16);
-              const badZone = parseInt(commands[i + 3], 16);
-
-              data = {
-                notifyPeriod: {
-                  goodZone: Number(goodZone),
-                  mediumZone: Number(mediumZone),
-                  badZone: Number(badZone),
-                },
-              };
-              Object.assign(resultToPass, { ...resultToPass }, { ...data });
-            } catch (e) {
-              return {};
-            }
-            break;
-          case "25":
-            try {
-              commandLen = 3;
-              const goodZone = parseInt(commands[i + 1], 16);
-              const mediumZone = parseInt(commands[i + 2], 16);
-              const badZone = parseInt(commands[i + 3], 16);
-
-              data = {
-                measurementPeriod: {
-                  goodZone: Number(goodZone),
-                  mediumZone: Number(mediumZone),
-                  badZone: Number(badZone),
-                },
-              };
-              Object.assign(resultToPass, { ...resultToPass }, { ...data });
-            } catch (e) {
-              return {};
-            }
-            break;
-          case "27":
-            try {
-              commandLen = 9;
-              const durationGoodBeeping = parseInt(commands[i + 1], 16);
-              const durationGoodLoud = parseInt(commands[i + 2], 16) * 10;
-              const durationGoodSilent = parseInt(commands[i + 3], 16) * 10;
-
-              const durationMediumBeeping = parseInt(commands[i + 4], 16);
-              const durationMediumLoud = parseInt(commands[i + 5], 16) * 10;
-              const durationMediumSilent = parseInt(commands[i + 6], 16) * 10;
-
-              const durationBadBeeping = parseInt(commands[i + 7], 16);
-              const durationBadLoud = parseInt(commands[i + 8], 16) * 10;
-              const durationBadSilent = parseInt(commands[i + 9], 16) * 10;
-
-              data = {
-                buzzerNotification: {
-                  durationGoodBeeping: Number(durationGoodBeeping),
-                  durationGoodLoud: Number(durationGoodLoud),
-                  durationGoodSilent: Number(durationGoodSilent),
-                  durationMediumBeeping: Number(durationMediumBeeping),
-                  durationMediumLoud: Number(durationMediumLoud),
-                  durationMediumSilent: Number(durationMediumSilent),
-                  durationBadBeeping: Number(durationBadBeeping),
-                  durationBadLoud: Number(durationBadLoud),
-                  durationBadSilent: Number(durationBadSilent),
-                },
-              };
-
-              Object.assign(resultToPass, { ...resultToPass }, { ...data });
-            } catch (e) {
-              return {};
-            }
-            break;
-          case "29":
-            try {
-              commandLen = 15;
-              const redGood = parseInt(commands[i + 1], 16);
-              const greenGood = parseInt(commands[i + 2], 16);
-              const blueGood = parseInt(commands[i + 3], 16);
-              const durationGood =
-                parseInt(`${commands[i + 4]}${commands[i + 5]}`, 16) * 10;
-
-              const redMedium = parseInt(commands[i + 6], 16);
-              const greenMedium = parseInt(commands[i + 7], 16);
-              const blueMedium = parseInt(commands[i + 8], 16);
-              const durationMedium =
-                parseInt(`${commands[i + 9]}${commands[i + 10]}`, 16) * 10;
-
-              const redBad = parseInt(commands[i + 11], 16);
-              const greenBad = parseInt(commands[i + 12], 16);
-              const blueBad = parseInt(commands[i + 13], 16);
-              const durationBad =
-                parseInt(`${commands[i + 14]}${commands[i + 15]}`, 16) * 10;
-
-              data = {
-                ledNotification: {
-                  redGood: Number(redGood),
-                  greenGood: Number(greenGood),
-                  blueGood: Number(blueGood),
-                  durationGood: Number(durationGood),
-                  redMedium: Number(redMedium),
-                  greenMedium: Number(greenMedium),
-                  blueMedium: Number(blueMedium),
-                  durationMedium: Number(durationMedium),
-                  redBad: Number(redBad),
-                  greenBad: Number(greenBad),
-                  blueBad: Number(blueBad),
-                  durationBad: Number(durationBad),
-                },
-              };
-
-              Object.assign(resultToPass, { ...resultToPass }, { ...data });
-            } catch (e) {
-              return {};
-            }
-            break;
-          case "2b":
-            try {
-              commandLen = 1;
-              data = { autoZeroPeriod: parseInt(commands[i + 1], 16) };
-              Object.assign(resultToPass, { ...resultToPass }, { ...data });
-            } catch (e) {
-              return {};
-            }
-            break;
-
-          default:
-            break;
+  while (i < bytes.length) {
+    if (isKeepalive(bytes, i)) {
+      keepalive = decodeKeepalive(bytes.slice(i, i + KEEPALIVE_LENGTH));
+      i += KEEPALIVE_LENGTH;
+    } else {
+      const response = RESPONSES[bytes[i]];
+      if (response === undefined || i + response[0] >= bytes.length) {
+        // Unknown or truncated answer: its length is unknown, so stop here
+        // but still use a trailing keepalive if there is one
+        const tail = bytes.length - KEEPALIVE_LENGTH;
+        if (tail > i && isKeepalive(bytes, tail)) {
+          keepalive = decodeKeepalive(bytes.slice(tail));
         }
-        commands.splice(i, commandLen);
-      });
-
-      return resultToPass;
-    };
-    const handleKeepAliveData = (hexData) => {
-      const co2 = parseInt(hexData.substring(2, 6), 16);
-      const temperature = (parseInt(hexData.substring(6, 10), 16) - 400) / 10;
-      const humidity = Math.round(
-        Number(((parseInt(hexData.substring(10, 12), 16) * 100) / 256).toFixed(2)),
-      );
-      const batteryVoltage = Number(
-        ((parseInt(hexData.substring(12, 14), 16) * 8 + 1600) / 1000).toFixed(2),
-      );
-
-      const keepaliveData = {
-        co2,
-        temperature,
-        humidity,
-        batteryVoltage,
-      };
-      Object.assign(deviceData, { ...deviceData }, { ...keepaliveData });
-    };
-
-    if (hexData) {
-      const byteArray = hexData
-        .match(/.{1,2}/g)
-        .map((byte) => parseInt(byte, 16));
-      if (byteArray[0] === 1) {
-        handleKeepAliveData(hexData);
-      } else {
-        // parse command answers
-        const data = commandsReadingHelper(deviceData, hexData, 14);
-        Object.assign(deviceData, { ...deviceData }, { ...data });
-
-        // get only keepalive from device response
-        const keepaliveData = hexData.slice(-14);
-        handleKeepAliveData(keepaliveData);
+        break;
       }
-
-      return deviceData;
+      Object.assign(
+        configuration,
+        response[1](bytes.slice(i + 1, i + 1 + response[0])),
+      );
+      i += 1 + response[0];
     }
-  } catch (e) {
-    return e;
   }
+
+  return { keepalive, configuration };
 }
 
 function consume(event) {
   const payload = event.data.payloadHex;
-  const decoded = decoder(payload);
+  const metrics = event.uplinkMetrics || {};
 
-  emit("sample", { data: decoded, topic: "default" });
+  try {
+    const result = decodeUplink(Hex.hexToBytes(payload));
+    if (result.keepalive !== null) {
+      emit("sample", { data: result.keepalive, topic: "default" });
+    }
+    if (Object.keys(result.configuration).length > 0) {
+      emit("sample", { data: result.configuration, topic: "configuration" });
+    } else if (result.keepalive === null) {
+      emit("log", { error: `Unknown payload ${payload}` });
+    }
+  } catch (error) {
+    emit("log", { error: `Could not decode ${payload}: ${error.message}` });
+  }
+
+  // Raw uplink for the MClimate integration, forwarded to the MClimate broker.
+  // Emitted even when decoding fails so the broker still receives the payload.
+  emit("sample", {
+    data: {
+      deviceId: event.device.deviceId,
+      payloadHex: payload,
+      timestamp: metrics.timestamp,
+      port: metrics.port,
+      frameCountUp: metrics.frameCountUp,
+      rssi: metrics.rssi,
+      snr: metrics.snr,
+      spreadingFactor: metrics.sf,
+    },
+    topic: "raw_payload",
+  });
 }

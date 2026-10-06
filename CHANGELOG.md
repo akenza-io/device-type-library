@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.99.4] - 2026-10-06
+
+### Fixed
+
+- MClimate HT & Button - Command responses are decoded instead of being read as a keepalive, which produced wrong values (e.g. 781.3 °C)
+- MClimate CO2 - Command responses use the CO2 sensor commands instead of the Vicki ones and no longer end up in the default topic
+
+### Changed
+
+- MClimate HT, Button & CO2 - Added a configuration topic for command responses and a raw_payload topic for the MClimate integration
+- MClimate HT & CO2 - Humidity is reported with two decimals instead of being rounded to an integer
+
 # [1.99.2] - 2026-09-30
 
 ### Changed

@@ -1,0 +1,72 @@
+{
+  "$id": "https://akenza.io/mclimate/ht/configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "configuration",
+  "title": "Configuration",
+  "properties": {
+    "deviceVersions": {
+      "title": "Device versions",
+      "description": "Hardware and software version of the device",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "keepAliveTime": {
+      "title": "Keepalive interval",
+      "description": "Interval between periodic uplinks in minutes",
+      "type": "integer",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "joinRetryPeriod": {
+      "title": "Join retry period",
+      "description": "Period between join attempts in minutes",
+      "type": "number",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "uplinkType": {
+      "title": "Uplink type",
+      "description": "0 = unconfirmed uplinks, 1 = confirmed uplinks",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "watchDogParams": {
+      "title": "Watchdog parameters",
+      "description": "Number of confirmed (wdpC) and unconfirmed (wdpUc) uplinks without a downlink before rejoining, false if disabled",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "region": {
+      "title": "Region",
+      "description": "LoRaWAN region of the device",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "temperatureCompensation": {
+      "title": "Temperature compensation",
+      "description": "Compensation applied to the measured temperature: negativeCompensation and compensation in °C",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "humidityCompensation": {
+      "title": "Humidity compensation",
+      "description": "Compensation applied to the measured humidity: negativeCompensation and compensation",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "d2dCommunicationState": {
+      "title": "D2D communication",
+      "description": "Equals true if device-to-device (D2D) communication is enabled",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "d2dCommunicationPeriod": {
+      "title": "D2D communication period",
+      "description": "Device-to-device (D2D) communication period",
+      "type": "integer",
+      "hideFromKpis": true
+    }
+  }
+}

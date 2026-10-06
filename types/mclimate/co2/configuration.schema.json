@@ -1,0 +1,92 @@
+{
+  "$id": "https://akenza.io/mclimate/co2/configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "configuration",
+  "title": "Configuration",
+  "properties": {
+    "deviceVersions": {
+      "title": "Device versions",
+      "description": "Hardware and software version of the device",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "keepAliveTime": {
+      "title": "Keepalive interval",
+      "description": "Interval between periodic uplinks in minutes",
+      "type": "integer",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "joinRetryPeriod": {
+      "title": "Join retry period",
+      "description": "Period between join attempts in minutes",
+      "type": "number",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "uplinkType": {
+      "title": "Uplink type",
+      "description": "0 = unconfirmed uplinks, 1 = confirmed uplinks",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "watchDogParams": {
+      "title": "Watchdog parameters",
+      "description": "Number of confirmed (wdpC) and unconfirmed (wdpUc) uplinks without a downlink before rejoining, false if disabled",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "region": {
+      "title": "Region",
+      "description": "LoRaWAN region of the device",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "boundaryLevels": {
+      "title": "CO2 boundary levels",
+      "description": "CO2 boundaries between the good/medium and medium/bad zones in ppm",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "autoZeroValue": {
+      "title": "Auto zero value",
+      "description": "CO2 auto zero calibration value in ppm",
+      "type": "integer",
+      "unit": "ppm",
+      "hideFromKpis": true
+    },
+    "notifyPeriod": {
+      "title": "Notify period",
+      "description": "Notification period per CO2 zone",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "measurementPeriod": {
+      "title": "Measurement period",
+      "description": "CO2 measurement period per CO2 zone",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "buzzerNotification": {
+      "title": "Buzzer notification",
+      "description": "Buzzer beeping, loud and silent durations per CO2 zone",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "ledNotification": {
+      "title": "LED notification",
+      "description": "LED color and duration per CO2 zone",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "autoZeroPeriod": {
+      "title": "Auto zero period",
+      "description": "CO2 auto zero calibration period in hours",
+      "type": "integer",
+      "unit": "h",
+      "hideFromKpis": true
+    }
+  }
+}
