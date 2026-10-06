@@ -22,5 +22,9 @@
     "lifecycle"
   ],
   "encoding": "JSON",
-  "connectivity": "MQTT"
+  "connectivity": "MQTT",
+  "useCases": [
+    "Indoor Air Quality & Comfort",
+    "Occupancy & Space Utilization"
+  ]
 }

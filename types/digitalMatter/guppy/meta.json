@@ -10,5 +10,8 @@
   "availableSensors": ["Temperature", "Movement"],
   "outputTopics": ["downlink_ack", "lifecycle", "rtc_request", "status"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Asset Tracking"
+  ]
 }

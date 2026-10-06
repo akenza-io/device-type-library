@@ -15,5 +15,8 @@
     "lifecycle"
   ],
   "encoding": "JSON",
-  "connectivity": "MQTT"
+  "connectivity": "MQTT",
+  "useCases": [
+    "Energy & Utility Metering"
+  ]
 }

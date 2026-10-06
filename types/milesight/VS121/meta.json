@@ -24,5 +24,9 @@
     "lifecycle"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Occupancy & Space Utilization",
+    "People & Vehicle Counting"
+  ]
 }

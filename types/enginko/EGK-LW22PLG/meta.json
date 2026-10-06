@@ -10,5 +10,9 @@
   "availableSensors": ["Energy Metering", "IO"],
   "outputTopics": ["default", "time_sync", "io"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Energy & Utility Metering",
+    "Building Automation & Control"
+  ]
 }

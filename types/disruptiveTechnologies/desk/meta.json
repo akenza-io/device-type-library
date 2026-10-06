@@ -17,5 +17,8 @@
     "touch"
   ],
   "encoding": "JSON",
-  "connectivity": "HTTP"
+  "connectivity": "HTTP",
+  "useCases": [
+    "Occupancy & Space Utilization"
+  ]
 }

@@ -17,5 +17,9 @@
     "switch"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Building Automation & Control",
+    "Energy & Utility Metering"
+  ]
 }

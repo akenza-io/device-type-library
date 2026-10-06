@@ -21,5 +21,8 @@
     "technical_alarm"
   ],
   "encoding": "HEX",
-  "connectivity": "MIOTY"
+  "connectivity": "MIOTY",
+  "useCases": [
+    "Condition Monitoring"
+  ]
 }

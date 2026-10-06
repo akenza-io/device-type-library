@@ -10,5 +10,8 @@
   "availableSensors": ["Temperature", "Humidity"],
   "outputTopics": ["default", "lifecycle", "raw_payload"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Building Automation & Control"
+  ]
 }

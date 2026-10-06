@@ -10,5 +10,9 @@
   "availableSensors": ["Temperature", "Humidity", "CO2"],
   "outputTopics": ["default", "lifecycle", "error"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort",
+    "Smart Agriculture"
+  ]
 }

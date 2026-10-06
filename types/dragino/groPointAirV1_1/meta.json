@@ -10,5 +10,8 @@
   "availableSensors": ["Temperature", "Soil Moisture"],
   "outputTopics": ["lifecycle", "soil_moisture", "temperature"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Smart Agriculture"
+  ]
 }

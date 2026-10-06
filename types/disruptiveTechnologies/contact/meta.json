@@ -19,5 +19,9 @@
     "washroom_usage"
   ],
   "encoding": "JSON",
-  "connectivity": "HTTP"
+  "connectivity": "HTTP",
+  "useCases": [
+    "Safety & Security",
+    "Facility Services & Feedback"
+  ]
 }

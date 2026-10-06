@@ -10,5 +10,9 @@
   "availableSensors": ["Temperature", "Humidity", "Reed"],
   "outputTopics": ["default", "reed", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort",
+    "Safety & Security"
+  ]
 }

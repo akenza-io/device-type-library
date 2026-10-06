@@ -20,5 +20,8 @@
   ],
   "outputTopics": ["default", "gps", "lifecycle", "tilt"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Asset Tracking"
+  ]
 }

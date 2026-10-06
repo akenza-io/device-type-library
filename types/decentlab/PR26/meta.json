@@ -14,5 +14,9 @@
   ],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Weather & Outdoor Environment",
+    "Fill Level Monitoring"
+  ]
 }

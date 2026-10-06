@@ -15,5 +15,8 @@
     "dwelltime"
   ],
   "encoding": "JSON",
-  "connectivity": "HTTP"
+  "connectivity": "HTTP",
+  "useCases": [
+    "People & Vehicle Counting"
+  ]
 }

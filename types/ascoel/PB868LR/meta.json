@@ -10,5 +10,8 @@
   "availableSensors": ["Button"],
   "outputTopics": ["boot", "debug", "default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Facility Services & Feedback"
+  ]
 }

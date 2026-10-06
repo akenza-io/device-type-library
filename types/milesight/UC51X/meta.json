@@ -22,5 +22,8 @@
     "open_duration_valve_2"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Building Automation & Control"
+  ]
 }

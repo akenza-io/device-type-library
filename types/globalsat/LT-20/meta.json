@@ -10,5 +10,9 @@
   "availableSensors": ["GPS"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Asset Tracking",
+    "Smart Agriculture"
+  ]
 }

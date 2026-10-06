@@ -9,5 +9,9 @@
   "availableSensors": ["Voltage", "Current", "Power"],
   "outputTopics": ["energy", "power"],
   "encoding": "JSON",
-  "connectivity": "HTTP"
+  "connectivity": "HTTP",
+  "useCases": [
+    "Energy & Utility Metering",
+    "Building Automation & Control"
+  ]
 }

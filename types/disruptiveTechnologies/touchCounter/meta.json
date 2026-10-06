@@ -16,5 +16,8 @@
     "lifecycle"
   ],
   "encoding": "JSON",
-  "connectivity": "HTTP"
+  "connectivity": "HTTP",
+  "useCases": [
+    "Facility Services & Feedback"
+  ]
 }

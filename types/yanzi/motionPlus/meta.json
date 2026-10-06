@@ -9,5 +9,9 @@
   "availableSensors": ["Motion", "Temperature", "Humidity", "Light", "Sound"],
   "outputTopics": ["occupancy", "light", "temperature", "humidity", "sound"],
   "encoding": "JSON",
-  "connectivity": "HTTP"
+  "connectivity": "HTTP",
+  "useCases": [
+    "Occupancy & Space Utilization",
+    "Indoor Air Quality & Comfort"
+  ]
 }

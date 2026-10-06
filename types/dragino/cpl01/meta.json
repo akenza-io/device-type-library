@@ -10,5 +10,8 @@
   "availableSensors": ["Switch"],
   "outputTopics": ["datalog", "default", "lifecycle", "status"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Safety & Security"
+  ]
 }

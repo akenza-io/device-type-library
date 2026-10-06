@@ -17,5 +17,8 @@
     "rssi_test"
   ],
   "encoding": "HEX",
-  "connectivity": "Sigfox"
+  "connectivity": "Sigfox",
+  "useCases": [
+    "Fill Level Monitoring"
+  ]
 }

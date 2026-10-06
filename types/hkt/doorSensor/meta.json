@@ -10,5 +10,8 @@
   "availableSensors": ["Door"],
   "outputTopics": ["system", "door", "lifecycle", "default"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Safety & Security"
+  ]
 }

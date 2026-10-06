@@ -10,5 +10,8 @@
   "availableSensors": ["Temperature", "Leaf Temperature", "Leaf Moisture"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Smart Agriculture"
+  ]
 }

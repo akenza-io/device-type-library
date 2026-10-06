@@ -10,5 +10,8 @@
   "availableSensors": ["CO2", "Humidity", "Temperature", "Barometric Pressure"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort"
+  ]
 }

@@ -20,5 +20,8 @@
     "region_count"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "People & Vehicle Counting"
+  ]
 }

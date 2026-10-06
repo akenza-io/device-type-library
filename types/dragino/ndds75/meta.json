@@ -10,5 +10,8 @@
   "availableSensors": ["Distance", "Level"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "NB-IOT"
+  "connectivity": "NB-IOT",
+  "useCases": [
+    "Fill Level Monitoring"
+  ]
 }

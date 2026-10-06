@@ -15,5 +15,8 @@
     "default"
   ],
   "encoding": "HEX",
-  "connectivity": "MIOTY"
+  "connectivity": "MIOTY",
+  "useCases": [
+    "Leak Detection"
+  ]
 }

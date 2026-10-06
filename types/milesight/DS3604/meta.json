@@ -20,5 +20,6 @@
     "downlink_response"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": []
 }

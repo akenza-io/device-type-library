@@ -10,5 +10,9 @@
   "availableSensors": ["Temperature", "Humidity", "Occupancy"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Occupancy & Space Utilization",
+    "Indoor Air Quality & Comfort"
+  ]
 }

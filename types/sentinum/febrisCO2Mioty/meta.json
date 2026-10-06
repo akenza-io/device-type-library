@@ -19,5 +19,8 @@
     "lifecycle"
   ],
   "encoding": "HEX",
-  "connectivity": "MIOTY"
+  "connectivity": "MIOTY",
+  "useCases": [
+    "Indoor Air Quality & Comfort"
+  ]
 }

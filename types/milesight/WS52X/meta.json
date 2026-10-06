@@ -10,5 +10,9 @@
   "availableSensors": ["Voltage", "Current", "Power"],
   "outputTopics": ["default"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Energy & Utility Metering",
+    "Building Automation & Control"
+  ]
 }

@@ -28,5 +28,8 @@
     "environment"
   ],
   "encoding": "JSON",
-  "connectivity": "MQTT"
+  "connectivity": "MQTT",
+  "useCases": [
+    "Indoor Air Quality & Comfort"
+  ]
 }

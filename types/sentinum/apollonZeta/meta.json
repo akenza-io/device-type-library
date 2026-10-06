@@ -10,5 +10,8 @@
   "availableSensors": ["Distance"],
   "outputTopics": ["default", "lifecycle", "tof", "radar", "acc", "hall"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Fill Level Monitoring"
+  ]
 }

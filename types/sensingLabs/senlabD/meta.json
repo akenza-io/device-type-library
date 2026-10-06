@@ -10,5 +10,8 @@
   "availableSensors": ["Reed"],
   "outputTopics": ["default", "startup"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Safety & Security"
+  ]
 }

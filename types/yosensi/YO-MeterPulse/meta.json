@@ -19,5 +19,8 @@
     "persistent_pulse_cnt"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Energy & Utility Metering"
+  ]
 }

@@ -15,5 +15,8 @@
     "measurements"
   ],
   "encoding": "JSON",
-  "connectivity": "NB-IOT"
+  "connectivity": "NB-IOT",
+  "useCases": [
+    "Energy & Utility Metering"
+  ]
 }

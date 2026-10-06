@@ -9,5 +9,8 @@
   "availableSensors": ["Motion"],
   "outputTopics": ["motion", "network_status", "lifecycle"],
   "encoding": "JSON",
-  "connectivity": "HTTP"
+  "connectivity": "HTTP",
+  "useCases": [
+    "Occupancy & Space Utilization"
+  ]
 }

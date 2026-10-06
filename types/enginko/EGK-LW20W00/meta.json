@@ -10,5 +10,8 @@
   "availableSensors": ["Temperature", "Distance", "ADC"],
   "outputTopics": ["distance", "time_sync", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Fill Level Monitoring"
+  ]
 }

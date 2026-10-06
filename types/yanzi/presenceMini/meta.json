@@ -9,5 +9,8 @@
   "availableSensors": ["Motion", "Temperature"],
   "outputTopics": ["occupancy", "temperature"],
   "encoding": "JSON",
-  "connectivity": "HTTP"
+  "connectivity": "HTTP",
+  "useCases": [
+    "Occupancy & Space Utilization"
+  ]
 }

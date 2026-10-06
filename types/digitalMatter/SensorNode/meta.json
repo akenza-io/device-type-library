@@ -24,5 +24,8 @@
     "probe"
   ],
   "encoding": "JSON",
-  "connectivity": "HTTP"
+  "connectivity": "HTTP",
+  "useCases": [
+    "Asset Tracking"
+  ]
 }

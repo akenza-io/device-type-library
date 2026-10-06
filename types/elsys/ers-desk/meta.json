@@ -16,5 +16,8 @@
   ],
   "outputTopics": ["default", "occupancy", "lifecycle", "configuration"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Occupancy & Space Utilization"
+  ]
 }

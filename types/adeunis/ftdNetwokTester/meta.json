@@ -9,5 +9,6 @@
   "availableSensors": ["Temperature", "GPS", "Button"],
   "outputTopics": ["default", "gps"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": []
 }

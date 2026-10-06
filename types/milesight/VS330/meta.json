@@ -10,5 +10,9 @@
   "availableSensors": ["Occupancy"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Occupancy & Space Utilization",
+    "Facility Services & Feedback"
+  ]
 }

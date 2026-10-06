@@ -10,5 +10,8 @@
   "availableSensors": ["People Counting"],
   "outputTopics": ["system", "default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "People & Vehicle Counting"
+  ]
 }

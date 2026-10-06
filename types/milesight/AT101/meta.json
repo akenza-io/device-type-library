@@ -10,5 +10,8 @@
   "availableSensors": ["Temperature", "GPS", "Wifi"],
   "outputTopics": ["gps", "history", "temperature", "wifi", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Asset Tracking"
+  ]
 }

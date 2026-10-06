@@ -18,5 +18,9 @@
     "configuration"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Leak Detection",
+    "Indoor Air Quality & Comfort"
+  ]
 }

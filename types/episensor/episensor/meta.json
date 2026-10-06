@@ -14,5 +14,8 @@
     "error"
   ],
   "encoding": "JSON",
-  "connectivity": "HTTP"
+  "connectivity": "HTTP",
+  "useCases": [
+    "Energy & Utility Metering"
+  ]
 }

@@ -9,5 +9,8 @@
   "availableSensors": ["Touch"],
   "outputTopics": ["touch", "network_status", "lifecycle"],
   "encoding": "JSON",
-  "connectivity": "HTTP"
+  "connectivity": "HTTP",
+  "useCases": [
+    "Facility Services & Feedback"
+  ]
 }

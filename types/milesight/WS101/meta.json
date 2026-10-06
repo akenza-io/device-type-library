@@ -10,5 +10,9 @@
   "availableSensors": ["Button"],
   "outputTopics": ["button_pressed", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Facility Services & Feedback",
+    "Safety & Security"
+  ]
 }

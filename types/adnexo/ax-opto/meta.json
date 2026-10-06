@@ -16,5 +16,9 @@
     "status"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Fill Level Monitoring",
+    "Occupancy & Space Utilization"
+  ]
 }

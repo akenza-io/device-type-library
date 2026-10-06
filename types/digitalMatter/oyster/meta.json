@@ -10,5 +10,8 @@
   "availableSensors": ["GPS"],
   "outputTopics": ["downlink_ack", "lifecycle", "position"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Asset Tracking"
+  ]
 }

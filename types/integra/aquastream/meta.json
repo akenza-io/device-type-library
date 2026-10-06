@@ -10,5 +10,8 @@
   "availableSensors": ["Volume", "Flow"],
   "outputTopics": ["default", "lifecycle", "alarm"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Energy & Utility Metering"
+  ]
 }

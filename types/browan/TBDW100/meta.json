@@ -18,5 +18,9 @@
     "count"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Safety & Security",
+    "Facility Services & Feedback"
+  ]
 }

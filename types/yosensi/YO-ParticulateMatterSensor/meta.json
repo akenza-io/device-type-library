@@ -25,5 +25,8 @@
     "part_conc_pm2_5"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort"
+  ]
 }

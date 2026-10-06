@@ -17,5 +17,9 @@
     "lifecycle"
   ],
   "encoding": "JSON",
-  "connectivity": "HTTP"
+  "connectivity": "HTTP",
+  "useCases": [
+    "Cold Chain & Temperature Compliance",
+    "Indoor Air Quality & Comfort"
+  ]
 }

@@ -155,6 +155,37 @@
       "examples": [
         "LORA"
       ]
+    },
+    "useCases": {
+      "type": "array",
+      "title": "The useCases schema",
+      "description": "Use cases the device is suited for, primary use case first.",
+      "examples": [
+        [
+          "Occupancy & Space Utilization",
+          "Indoor Air Quality & Comfort"
+        ]
+      ],
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "Occupancy & Space Utilization",
+          "People & Vehicle Counting",
+          "Indoor Air Quality & Comfort",
+          "Cold Chain & Temperature Compliance",
+          "Leak Detection",
+          "Safety & Security",
+          "Energy & Utility Metering",
+          "Building Automation & Control",
+          "Fill Level Monitoring",
+          "Asset Tracking",
+          "Condition Monitoring",
+          "Smart Agriculture",
+          "Weather & Outdoor Environment",
+          "Facility Services & Feedback"
+        ]
+      }
     }
   }
 }

@@ -18,5 +18,8 @@
     "sum_right_to_left"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "People & Vehicle Counting"
+  ]
 }

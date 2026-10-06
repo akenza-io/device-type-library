@@ -29,5 +29,9 @@
     "weight"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Cold Chain & Temperature Compliance",
+    "Indoor Air Quality & Comfort"
+  ]
 }

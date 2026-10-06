@@ -23,5 +23,8 @@
     "co2"
   ],
   "encoding": "JSON",
-  "connectivity": "HTTP"
+  "connectivity": "HTTP",
+  "useCases": [
+    "Indoor Air Quality & Comfort"
+  ]
 }

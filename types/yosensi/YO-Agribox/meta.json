@@ -24,5 +24,8 @@
     "soil_moisture_3"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Smart Agriculture"
+  ]
 }

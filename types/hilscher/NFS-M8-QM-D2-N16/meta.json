@@ -12,5 +12,8 @@
     "IO"
   ],
   "encoding": "JSON",
-  "connectivity": "MQTT"
+  "connectivity": "MQTT",
+  "useCases": [
+    "Condition Monitoring"
+  ]
 }

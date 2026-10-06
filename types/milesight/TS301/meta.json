@@ -10,5 +10,8 @@
   "availableSensors": ["Temperature", "Magnet"],
   "outputTopics": ["alarm", "climate", "lifecycle", "magnet"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Cold Chain & Temperature Compliance"
+  ]
 }

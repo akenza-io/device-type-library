@@ -18,5 +18,8 @@
     "lifecycle"
   ],
   "encoding": "JSON",
-  "connectivity": "HTTP"
+  "connectivity": "HTTP",
+  "useCases": [
+    "Indoor Air Quality & Comfort"
+  ]
 }

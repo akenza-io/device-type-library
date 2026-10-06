@@ -10,5 +10,8 @@
   "availableSensors": ["Temperature", "Motion"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Occupancy & Space Utilization"
+  ]
 }
