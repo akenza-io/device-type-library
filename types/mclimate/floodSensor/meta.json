@@ -12,7 +12,9 @@
     "Temperature"
   ],
   "outputTopics": [
-    "default"
+    "default",
+    "configuration",
+    "raw_payload"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

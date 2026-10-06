@@ -14,6 +14,7 @@
   "outputTopics": [
     "default",
     "lifecycle",
+    "configuration",
     "raw_payload"
   ],
   "encoding": "HEX",

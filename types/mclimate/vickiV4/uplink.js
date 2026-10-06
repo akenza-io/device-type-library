@@ -1,438 +1,401 @@
-function toBool(value) {
-  return value === 1;
+// Byte layouts follow the MClimate Vicki LoRaWAN communication protocol
+// https://docs.mclimate.eu/mclimate-lorawan-devices/devices/mclimate-vicki-lorawan
+const KEEPALIVE_LENGTH = 9;
+const MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+const ALGORITHMS = ["proportional", "equal", "proportionalIntegral"];
+
+function round(value, decimals) {
+  const factor = Math.pow(10, decimals);
+  return Math.round(value * factor) / factor;
 }
 
-function mergeObj(obj1, obj2) {
-  const obj3 = {};
-  for (const attrname in obj1) {
-    obj3[attrname] = obj1[attrname];
-  }
-  for (const attrname2 in obj2) {
-    obj3[attrname2] = obj2[attrname2];
-  }
-  return obj3;
+function toHex(byte) {
+  return `0${byte.toString(16)}`.slice(-2);
 }
 
-function decbin(number) {
-  if (number < 0) {
-    number = 0xffffffff + number + 1;
-  }
-  number = number.toString(2);
-  return "00000000".substring(number.length) + number;
+function uint16(high, low) {
+  return (high << 8) | low;
 }
 
-function handleKeepalive(bytes, data) {
-  let tmp = `0${bytes[6].toString(16)}`;
-  tmp = tmp.substring(tmp.length - 2);
-  const motorRange1 = tmp[1];
-  let motorRange2 = `0${bytes[5].toString(16)}`;
-  motorRange2 = motorRange2.substring(motorRange2.length - 2);
-  const motorRange = parseInt(`0x${motorRange1}${motorRange2}`, 16);
-
-  let motorPos2 = `0${bytes[4].toString(16)}`;
-  motorPos2 = motorPos2.substring(motorPos2.length - 2);
-  const motorPos1 = tmp[0];
-  const motorPosition = parseInt(`0x${motorPos1}${motorPos2}`, 16);
-
-  let batteryTmp = `0${bytes[7].toString(16)}`;
-  batteryTmp = motorPos2.substring(batteryTmp.length, -2)[0];
-  const batteryVoltageCalculated = 2 + parseInt(`0x${batteryTmp}`, 16) * 0.1;
-
-  const byte7Bin = decbin(bytes[8]);
-  const openWindow = byte7Bin[4];
-  const highMotorConsumption = byte7Bin[5];
-  const lowMotorConsumption = byte7Bin[6];
-  const brokenSensor = byte7Bin[7];
-  const byte8Bin = decbin(bytes[8]);
-  const childLock = byte8Bin[0];
-  const calibrationFailed = byte8Bin[1];
-  const attachedBackplate = byte8Bin[2];
-  const perceiveAsOnline = byte8Bin[3];
-  const antiFreezeProtection = byte8Bin[4];
-
-  let sensorTemp = 0;
-  if (Number(bytes[0].toString(16)) === 1) {
-    sensorTemp = (bytes[2] * 165) / 256 - 40;
-  }
-
-  if (Number(bytes[0].toString(16)) === 81) {
-    sensorTemp = (bytes[2] - 28.33333) / 5.66666;
-  }
-  data.targetTemperature = Number(bytes[1]);
-  data.sensorTemperature = Number(sensorTemp.toFixed(2));
-  data.humidity = Number(((bytes[3] * 100) / 256).toFixed(2));
-  data.motorRange = motorRange;
-  data.motorPosition = motorPosition;
-  data.batteryVoltage = Number(batteryVoltageCalculated.toFixed(2));
-  data.openWindow = toBool(openWindow);
-  data.highMotorConsumption = toBool(highMotorConsumption);
-  data.lowMotorConsumption = toBool(lowMotorConsumption);
-  data.brokenSensor = toBool(brokenSensor);
-  data.childLock = toBool(childLock);
-
-  data.calibrationFailed = toBool(calibrationFailed);
-  data.attachedBackplate = toBool(attachedBackplate);
-  data.perceiveAsOnline = toBool(perceiveAsOnline);
-  data.antiFreezeProtection = toBool(antiFreezeProtection);
-  if (!data.hasOwnProperty("targetTemperatureFloat")) {
-    data.targetTemperatureFloat = bytes[1].toFixed(2);
-  }
-  return data;
+function uint24(high, mid, low) {
+  return (high << 16) | (mid << 8) | low;
 }
 
-function handleResponse(bytes, data) {
-  let commands = bytes.map((byte, i) => `0${byte.toString(16)}`.susbtring(`0${byte.toString(16)}`.length - 2));
-  commands = commands.slice(0, -9);
-  let commandLen = 0;
-  let resultToPass;
+function isKeepalive(bytes, index) {
+  return (
+    (bytes[index] === 0x01 || bytes[index] === 0x81) &&
+    bytes.length - index >= KEEPALIVE_LENGTH
+  );
+}
 
-  commands.map((command, i) => {
-    switch (command) {
-      case "04":
-        {
-          commandLen = 2;
-          const hardwareVersion = commands[i + 1];
-          const softwareVersion = commands[i + 2];
-          const dataK = {
-            deviceVersions: {
-              hardware: Number(hardwareVersion),
-              software: Number(softwareVersion),
-            },
-          };
-          resultToPass = mergeObj(resultToPass, dataK);
-        }
-        break;
-      case "12":
-        {
-          commandLen = 1;
-          const dataC = { keepAliveTime: parseInt(commands[i + 1], 16) };
-          resultToPass = mergeObj(resultToPass, dataC);
-        }
-        break;
-      case "13":
-        {
-          commandLen = 4;
-          const enabled = toBool(parseInt(commands[i + 1], 16));
-          const duration = parseInt(commands[i + 2], 16) * 5;
-          let tmp = `0${commands[i + 4].toString(16)}`;
-          tmp = tmp.substring(tmp.length - 2);
-          let motorPos2 = `0${commands[i + 3].toString(16)}`;
-          motorPos2 = motorPos2.substring(motorPos2.length - 2);
+function decodeKeepalive(bytes) {
+  if (bytes.length < KEEPALIVE_LENGTH) {
+    throw new Error(`Keepalive needs ${KEEPALIVE_LENGTH} bytes`);
+  }
 
-          const motorPos1 = tmp[0];
-          const motorPosition = parseInt(`0x${motorPos1}${motorPos2}`, 16);
-          const delta = Number(tmp[1]);
+  const motorRange = ((bytes[6] & 0x0f) << 8) | bytes[5];
+  const motorPosition = ((bytes[6] >> 4) << 8) | bytes[4];
 
-          const dataD = {
-            openWindowParams: { enabled, duration, motorPosition, delta },
-          };
-          resultToPass = mergeObj(resultToPass, dataD);
-        }
-        break;
-      case "14":
-        {
-          commandLen = 1;
-          const dataB = { childLock: toBool(parseInt(commands[i + 1], 16)) };
-          resultToPass = mergeObj(resultToPass, dataB);
-        }
-        break;
-      case "15":
-        {
-          commandLen = 2;
-          const dataA = {
-            temperatureRangeSettings: {
-              min: parseInt(commands[i + 1], 16),
-              max: parseInt(commands[i + 2], 16),
-            },
-          };
-          resultToPass = mergeObj(resultToPass, dataA);
-        }
-        break;
-      case "16":
-        commandLen = 2;
-        data = {
-          internalAlgoParams: {
-            period: parseInt(commands[i + 1], 16),
-            pFirstLast: parseInt(commands[i + 2], 16),
-            pNext: parseInt(commands[i + 3], 16),
-          },
-        };
-        resultToPass = mergeObj(resultToPass, data);
-        break;
-      case "17":
-        {
-          commandLen = 2;
-          const dataF = {
-            internalAlgoTdiffParams: {
-              warm: parseInt(commands[i + 1], 16),
-              cold: parseInt(commands[i + 2], 16),
-            },
-          };
-          resultToPass = mergeObj(resultToPass, dataF);
-        }
-        break;
-      case "18":
-        {
-          commandLen = 1;
-          const dataE = { operationalMode: parseInt(commands[i + 1], 16) };
-          resultToPass = mergeObj(resultToPass, dataE);
-        }
-        break;
-      case "19":
-        {
-          commandLen = 1;
-          const commandResponse = parseInt(commands[i + 1], 16);
-          const periodInMinutes = (commandResponse * 5) / 60;
-          const dataH = { joinRetryPeriod: periodInMinutes };
-          resultToPass = mergeObj(resultToPass, dataH);
-        }
-        break;
-      case "1b":
-        {
-          commandLen = 1;
-          const dataG = { uplinkType: parseInt(commands[i + 1], 16) };
-          resultToPass = mergeObj(resultToPass, dataG);
-        }
-        break;
-      case "1d":
-        {
-          // get default keepalive if it is not available in data
-          commandLen = 2;
-          const deviceKeepAlive = 5;
-          const wdpC =
-            commands[i + 1] === "00"
-              ? false
-              : commands[i + 1] * deviceKeepAlive + 7;
-          const wdpUc =
-            commands[i + 2] === "00" ? false : parseInt(commands[i + 2], 16);
-          const dataJ = { watchDogParams: { wdpC, wdpUc } };
-          resultToPass = mergeObj(resultToPass, dataJ);
-        }
-        break;
-      case "1f":
-        commandLen = 1;
-        data = { primaryOperationalMode: commands[i + 1] };
-        resultToPass = mergeObj(resultToPass, data);
-        break;
-      case "21":
-        commandLen = 6;
-        data = {
-          batteryRangesBoundaries: {
-            Boundary1: parseInt(commands[i + 1] + commands[i + 2], 16),
-            Boundary2: parseInt(commands[i + 3] + commands[i + 4], 16),
-            Boundary3: parseInt(commands[i + 5] + commands[i + 6], 16),
-          },
-        };
-        resultToPass = mergeObj(resultToPass, data);
-        break;
-      case "23":
-        commandLen = 4;
-        data = {
-          batteryRangesOverVoltage: {
-            Range1: parseInt(commands[i + 2], 16),
-            Range2: parseInt(commands[i + 3], 16),
-            Range3: parseInt(commands[i + 4], 16),
-          },
-        };
-        resultToPass = mergeObj(resultToPass, data);
-        break;
-      case "27":
-        commandLen = 1;
-        data = { OVAC: parseInt(commands[i + 1], 16) };
-        resultToPass = mergeObj(resultToPass, data);
-        break;
-      case "28":
-        commandLen = 1;
-        data = {
-          manualTargetTemperatureUpdate: parseInt(commands[i + 1], 16),
-        };
-        resultToPass = mergeObj(resultToPass, data);
-        break;
-      case "29":
-        commandLen = 2;
-        data = {
-          proportionalAlgoParams: {
-            coefficient: parseInt(commands[i + 1], 16),
-            period: parseInt(commands[i + 2], 16),
-          },
-        };
-        resultToPass = mergeObj(resultToPass, data);
-        break;
-      case "2b":
-        commandLen = 1;
-        data = { algoType: commands[i + 1] };
-        resultToPass = mergeObj(resultToPass, data);
-        break;
-      case "36": {
-        commandLen = 3;
-        const kp =
-          parseInt(
-            `${commands[i + 1]}${commands[i + 2]}${commands[i + 3]}`,
-            16,
-          ) / 131072;
-        data = { proportionalGain: Number(kp).toFixed(5) };
-        resultToPass = mergeObj(resultToPass, data);
-        break;
-      }
-      case "3d": {
-        commandLen = 3;
-        const ki =
-          parseInt(
-            `${commands[i + 1]}${commands[i + 2]}${commands[i + 3]}`,
-            16,
-          ) / 131072;
-        data = { integralGain: Number(ki).toFixed(5) };
-        resultToPass = mergeObj(resultToPass, data);
-        break;
-      }
-      case "3f":
-        commandLen = 2;
-        data = {
-          integralValue:
-            parseInt(`${commands[i + 1]}${commands[i + 2]}`, 16) / 10,
-        };
-        resultToPass = mergeObj(resultToPass, data);
-        break;
-      case "40":
-        commandLen = 1;
-        data = { piRunPeriod: parseInt(commands[i + 1], 16) };
-        resultToPass = mergeObj(resultToPass, data);
-        break;
-      case "42":
-        commandLen = 1;
-        data = { tempHysteresis: parseInt(commands[i + 1], 16) };
-        resultToPass = mergeObj(resultToPass, data);
-        break;
-      case "44":
-        commandLen = 2;
-        data = {
-          extSensorTemperature:
-            parseInt(`${commands[i + 1]}${commands[i + 2]}`, 16) / 10,
-        };
-        resultToPass = mergeObj(resultToPass, data);
-        break;
-      case "46":
-        {
-          commandLen = 3;
-          const enabled = toBool(parseInt(commands[i + 1], 16));
-          const duration = parseInt(commands[i + 2], 16) * 5;
-          const delta = parseInt(commands[i + 3], 16) / 10;
+  let sensorTemperature = (bytes[2] * 165) / 256 - 40;
+  if (bytes[0] === 0x81) {
+    sensorTemperature = (bytes[2] - 28.33333) / 5.66666;
+  }
 
-          data = { openWindowParams: { enabled, duration, delta } };
-          resultToPass = mergeObj(resultToPass, data);
-        }
-        break;
-      case "48":
-        commandLen = 1;
-        data = { forceAttach: parseInt(commands[i + 1], 16) };
-        resultToPass = mergeObj(resultToPass, data);
-        break;
-      case "4a":
-        {
-          commandLen = 3;
-          const activatedTemperature = parseInt(commands[i + 1], 16) / 10;
-          const deactivatedTemperature = parseInt(commands[i + 2], 16) / 10;
-          const targetTemperature = parseInt(commands[i + 3], 16);
+  return {
+    default: {
+      targetTemperature: bytes[1],
+      sensorTemperature: round(sensorTemperature, 2),
+      humidity: round((bytes[3] * 100) / 256, 2),
+      motorRange,
+      motorPosition,
+      valveOpenness:
+        motorRange !== 0
+          ? Math.round((1 - motorPosition / motorRange) * 100)
+          : 0,
+      openWindow: !!(bytes[7] & 0x08),
+      childLock: !!(bytes[8] & 0x80),
+    },
+    lifecycle: {
+      batteryVoltage: round(2 + (bytes[7] >> 4) * 0.1, 2),
+      highMotorConsumption: !!(bytes[7] & 0x04),
+      lowMotorConsumption: !!(bytes[7] & 0x02),
+      brokenSensor: !!(bytes[7] & 0x01),
+      calibrationFailed: !!(bytes[8] & 0x40),
+      attachedBackplate: !!(bytes[8] & 0x20),
+      perceiveAsOnline: !!(bytes[8] & 0x10),
+      antiFreezeProtection: !!(bytes[8] & 0x08),
+      d2dCommunicationReliable: !!(bytes[8] & 0x04),
+      batteryTooLow: !!(bytes[8] & 0x02),
+    },
+  };
+}
 
-          data = {
-            antiFreezeParams: {
-              activatedTemperature,
-              deactivatedTemperature,
-              targetTemperature,
-            },
-          };
-          resultToPass = mergeObj(resultToPass, data);
-        }
-        break;
-      case "4d":
-        commandLen = 2;
-        data = {
-          piMaxIntegratedError:
-            parseInt(`${commands[i + 1]}${commands[i + 2]}`, 16) / 10,
-        };
-        resultToPass = mergeObj(resultToPass, data);
-        break;
-      case "50":
-        commandLen = 2;
-        data = {
-          effectiveMotorRange: {
-            minMotorRange: parseInt(commands[i + 1], 16),
-            maxMotorRange: parseInt(commands[i + 2], 16),
-          },
-        };
-        resultToPass = mergeObj(resultToPass, data);
-        break;
-      case "52":
-        commandLen = 2;
-        data = {
-          targetTemperatureFloat:
-            parseInt(`${commands[i + 1]}${commands[i + 2]}`, 16) / 10,
-        };
-        resultToPass = mergeObj(resultToPass, data);
-        break;
-      case "54":
-        {
-          commandLen = 1;
-          const offset = (parseInt(commands[i + 1], 16) - 28) * 0.176;
-          data = { temperatureOffset: offset };
-          resultToPass = mergeObj(resultToPass, data);
-        }
-        break;
-      default:
-        break;
+function decodeHeatingEvents(p) {
+  const group = p[0];
+  const eventsInGroup = group === 2 ? 4 : 8;
+  const heatingEvents = [];
+
+  for (let n = 0; n < eventsInGroup; n += 1) {
+    const offset = 1 + n * 5;
+    const hour = p[offset];
+    const minute = p[offset + 1];
+    const temperature = uint16(p[offset + 2], p[offset + 3]);
+    const weekdays = p[offset + 4];
+
+    if (hour || minute || temperature || weekdays) {
+      heatingEvents.push({
+        index: group * 8 + n,
+        start: `${hour < 10 ? "0" : ""}${hour}:${minute < 10 ? "0" : ""}${minute}`,
+        targetTemperature: temperature / 10,
+        weekdays: {
+          monday: !!(weekdays & 0x01),
+          tuesday: !!(weekdays & 0x02),
+          wednesday: !!(weekdays & 0x04),
+          thursday: !!(weekdays & 0x08),
+          friday: !!(weekdays & 0x10),
+          saturday: !!(weekdays & 0x20),
+          sunday: !!(weekdays & 0x40),
+        },
+      });
     }
-    commands.splice(i, commandLen);
-  });
-  return resultToPass;
+  }
+
+  return {
+    heatingEventGroup: ["0-7", "8-15", "16-19"][group],
+    heatingEvents,
+  };
+}
+
+function decodeHeatingEventStates(p) {
+  const states = {};
+  const bits = uint24(p[1], p[2], p[3]);
+  for (let n = 0; n < 20; n += 1) {
+    states[n] = !!(bits & (1 << n));
+  }
+  return { heatingEventStates: states };
+}
+
+function decodeDeviceTime(p) {
+  const date = new Date((p[0] * 16777216 + uint24(p[1], p[2], p[3])) * 1000);
+  const minutes = date.getUTCMinutes();
+  return {
+    deviceTime: `${date.getUTCDate()}/${date.getUTCMonth() + 1}/${date.getUTCFullYear()} ${date.getUTCHours()}:${minutes < 10 ? "0" : ""}${minutes}`,
+  };
+}
+
+function decodeTemperatureLevels(p) {
+  const levels = {};
+  for (let n = 0; n < 6; n += 1) {
+    levels[`level${n}`] = uint16(p[n * 2], p[n * 2 + 1]) / 10;
+  }
+  return { temperatureLevels: levels };
+}
+
+// Command id -> [number of parameter bytes, decoder]
+const RESPONSES = {
+  0x04: [
+    2,
+    (p) => ({
+      deviceVersions: {
+        hardware: Number(toHex(p[0])),
+        software: Number(toHex(p[1])),
+      },
+    }),
+  ],
+  0x12: [1, (p) => ({ keepAliveTime: p[0] })],
+  0x13: [
+    4,
+    (p) => ({
+      openWindowParams: {
+        enabled: p[0] !== 0,
+        duration: p[1] * 5,
+        motorPosition: ((p[3] >> 4) << 8) | p[2],
+        delta: p[3] & 0x0f,
+      },
+    }),
+  ],
+  0x14: [1, (p) => ({ childLock: p[0] !== 0 })],
+  0x15: [2, (p) => ({ temperatureRangeSettings: { min: p[0], max: p[1] } })],
+  0x16: [
+    3,
+    (p) => ({
+      internalAlgoParams: { period: p[0], pFirstLast: p[1], pNext: p[2] },
+    }),
+  ],
+  0x17: [2, (p) => ({ internalAlgoTdiffParams: { warm: p[0], cold: p[1] } })],
+  0x18: [1, (p) => ({ operationalMode: p[0] })],
+  0x19: [1, (p) => ({ joinRetryPeriod: (p[0] * 5) / 60 })],
+  0x1b: [1, (p) => ({ uplinkType: p[0] })],
+  0x1d: [
+    2,
+    (p) => ({
+      watchDogParams: {
+        wdpC: p[0] === 0 ? false : p[0],
+        wdpUc: p[1] === 0 ? false : p[1],
+      },
+    }),
+  ],
+  0x1f: [1, (p) => ({ primaryOperationalMode: p[0] })],
+  0x21: [
+    6,
+    (p) => ({
+      batteryRangesBoundaries: {
+        Boundary1: uint16(p[0], p[1]),
+        Boundary2: uint16(p[2], p[3]),
+        Boundary3: uint16(p[4], p[5]),
+      },
+    }),
+  ],
+  0x23: [
+    4,
+    (p) => ({
+      batteryRangesOverVoltage: { Range1: p[1], Range2: p[2], Range3: p[3] },
+    }),
+  ],
+  0x25: [
+    31,
+    (p) => ({
+      debug: {
+        batterySubrange: p[0],
+        motorCurrentConsumption: p[1] * 4,
+        powerSupplyVoltageMeasured: p[2] * 16,
+        daysSinceLastDeviceReset: p[3],
+        detectedMotorOverVoltages: p[4],
+        motorHardwareDriverType: p[5] >> 4,
+        temperatureSensorModel: p[5] & 0x0f,
+        motorTotalTravelSteps: p[6] * 16777216 + uint24(p[7], p[8], p[9]),
+        packetsSentOnSF7: uint24(p[10], p[11], p[12]),
+        packetsSentOnSF8: uint24(p[13], p[14], p[15]),
+        packetsSentOnSF9: uint24(p[16], p[17], p[18]),
+        packetsSentOnSF10: uint24(p[19], p[20], p[21]),
+        packetsSentOnSF11: uint24(p[22], p[23], p[24]),
+        packetsSentOnSF12: uint24(p[25], p[26], p[27]),
+        totalSentPackets: uint24(p[28], p[29], p[30]),
+      },
+    }),
+  ],
+  0x27: [1, (p) => ({ OVAC: p[0] })],
+  0x28: [1, (p) => ({ manualTargetTemperatureUpdate: p[0] })],
+  0x29: [
+    2,
+    (p) => ({
+      proportionalAlgorithmParameters: { coefficient: p[0], period: p[1] },
+    }),
+  ],
+  0x2b: [
+    1,
+    (p) => ({ temperatureControlAlgorithm: ALGORITHMS[p[0]] || "equal" }),
+  ],
+  0x34: [1, (p) => ({ childLockBehavior: p[0] })],
+  0x36: [
+    3,
+    (p) => ({ proportionalGain: round(uint24(p[0], p[1], p[2]) / 131072, 5) }),
+  ],
+  0x3d: [
+    3,
+    (p) => ({ integralGain: round(uint24(p[0], p[1], p[2]) / 131072, 5) }),
+  ],
+  0x3f: [2, (p) => ({ integralValue: uint16(p[0], p[1]) / 10 })],
+  0x40: [1, (p) => ({ piRunPeriod: p[0] })],
+  0x42: [1, (p) => ({ tempHysteresis: p[0] / 10 })],
+  0x44: [2, (p) => ({ extSensorTemperature: uint16(p[0], p[1]) / 10 })],
+  0x46: [
+    3,
+    (p) => ({
+      openWindowPrecisely: {
+        enabled: p[0] !== 0,
+        duration: p[1] * 5,
+        delta: p[2] / 10,
+      },
+    }),
+  ],
+  0x48: [1, (p) => ({ forceAttach: p[0] !== 0 })],
+  0x4a: [
+    3,
+    (p) => ({
+      antiFreezeParams: {
+        activatedTemperature: p[0] / 10,
+        deactivatedTemperature: p[1] / 10,
+        targetTemperature: p[2],
+      },
+    }),
+  ],
+  0x4b: [1, (p) => ({ patchVersion: p[0] })],
+  0x4d: [2, (p) => ({ maxAllowedIntegralValue: uint16(p[0], p[1]) / 10 })],
+  0x50: [
+    2,
+    (p) => ({
+      valveOpennessRangeInPercentage: { max: 100 - p[0], min: 100 - p[1] },
+    }),
+  ],
+  0x52: [2, (p) => ({ targetTemperatureFloat: uint16(p[0], p[1]) / 10 })],
+  0x54: [1, (p) => ({ temperatureOffset: round((p[0] - 28) * 0.176, 3) })],
+  0x56: [1, (p) => ({ ledDisplayTempUnits: p[0] })],
+  0x58: [
+    2,
+    (p) => ({
+      notifications: {
+        temperatureRestoredAfterManualBoost: !!(p[0] & 0x01),
+        temperatureChangedByHeatingSchedule: !!(p[0] & 0x02),
+      },
+    }),
+  ],
+  0x5a: [41, decodeHeatingEvents],
+  0x5c: [
+    4,
+    (p) => ({
+      heatingSchedule: {
+        start: `${p[1]} ${MONTHS[p[0]]}`,
+        end: `${p[3]} ${MONTHS[p[2]]}`,
+      },
+    }),
+  ],
+  0x5e: [4, decodeDeviceTime],
+  0x60: [1, (p) => ({ deviceTimeZone: p[0] & 0x80 ? p[0] - 256 : p[0] })],
+  0x62: [1, (p) => ({ autoSetpointRestoreStatus: p[0] * 10 })],
+  0x64: [1, (p) => ({ ledIndicationDuration: p[0] / 2 })],
+  0x66: [2, (p) => ({ offlineTargetTemperature: uint16(p[0], p[1]) / 10 })],
+  0x68: [1, (p) => ({ internalAlgoTemporaryState: p[0] === 0 })],
+  0x6a: [12, decodeTemperatureLevels],
+  0x6c: [4, decodeHeatingEventStates],
+  0x6e: [1, (p) => ({ timeRequestByMACcommand: p[0] })],
+  0x70: [
+    16,
+    (p) => ({
+      d2dNotificationDeviceAppKey: p.map(toHex).join("").toUpperCase(),
+    }),
+  ],
+  0x72: [2, (p) => ({ htSensorTemperature: uint16(p[0], p[1]) / 10 })],
+  0xa0: [
+    4,
+    (p) => ({
+      fuota: {
+        fuotaAddress: p[0] * 16777216 + uint24(p[1], p[2], p[3]),
+        fuotaAddressRaw: p.map(toHex).join(""),
+      },
+    }),
+  ],
+  0xa4: [1, (p) => ({ region: p[0] })],
+  0xa6: [0, () => ({ crystalOscillatorError: true })],
+};
+
+// Walks the command answers in an uplink. Answers can be followed by a keepalive.
+function decodeUplink(bytes) {
+  const configuration = {};
+  let keepalive = null;
+  let i = 0;
+
+  while (i < bytes.length) {
+    if (isKeepalive(bytes, i)) {
+      keepalive = decodeKeepalive(bytes.slice(i, i + KEEPALIVE_LENGTH));
+      i += KEEPALIVE_LENGTH;
+    } else {
+      const response = RESPONSES[bytes[i]];
+      if (response === undefined || i + response[0] >= bytes.length) {
+        // Unknown or truncated answer: its length is unknown, so stop here
+        // but still use a trailing keepalive if there is one
+        const tail = bytes.length - KEEPALIVE_LENGTH;
+        if (tail > i && isKeepalive(bytes, tail)) {
+          keepalive = decodeKeepalive(bytes.slice(tail));
+        }
+        break;
+      }
+      Object.assign(
+        configuration,
+        response[1](bytes.slice(i + 1, i + 1 + response[0])),
+      );
+      i += 1 + response[0];
+    }
+  }
+
+  return { keepalive, configuration };
 }
 
 function consume(event) {
   const payload = event.data.payloadHex;
-  let bytes = Hex.hexToBytes(payload);
-  let data = {};
-  const lifecycle = {};
-  const raw = {};
+  const metrics = event.uplinkMetrics || {};
 
-  if (Number(bytes[0]) === 1 || Number(bytes[0]) === 129) {
-    data = handleKeepalive(bytes, data);
-  } else {
-    data = handleResponse(bytes, data);
-    bytes = Array.from(bytes).slice(-9);
-    data = mergeObj(data, handleKeepalive(bytes, data));
+  try {
+    const result = decodeUplink(Hex.hexToBytes(payload));
+    if (result.keepalive !== null) {
+      emit("sample", { data: result.keepalive.default, topic: "default" });
+      emit("sample", { data: result.keepalive.lifecycle, topic: "lifecycle" });
+    }
+    if (Object.keys(result.configuration).length > 0) {
+      emit("sample", { data: result.configuration, topic: "configuration" });
+    } else if (result.keepalive === null) {
+      emit("log", { error: `Unknown payload ${payload}` });
+    }
+  } catch (error) {
+    emit("log", { error: `Could not decode ${payload}: ${error.message}` });
   }
 
-  lifecycle.batteryVoltage = data.batteryVoltage;
-  lifecycle.highMotorConsumption = data.highMotorConsumption;
-  lifecycle.lowMotorConsumption = data.lowMotorConsumption;
-  lifecycle.brokenSensor = data.brokenSensor;
-
-  lifecycle.calibrationFailed = data.calibrationFailed;
-  lifecycle.attachedBackplate = data.attachedBackplate;
-  lifecycle.perceiveAsOnline = data.perceiveAsOnline;
-  lifecycle.antiFreezeProtection = data.antiFreezeProtection;
-
-  delete data.batteryVoltage;
-  delete data.highMotorConsumption;
-  delete data.lowMotorConsumption;
-  delete data.brokenSensor;
-
-  delete data.calibrationFailed;
-  delete data.attachedBackplate;
-  delete data.perceiveAsOnline;
-  delete data.antiFreezeProtection;
-  delete data.targetTemperatureFloat;
-
-  // Add raw metadata for mclimate integration. Sent to mclimate broker.
-  raw.deviceId = event.device.deviceId;
-  raw.payloadHex = event.data.payloadHex;
-  raw.timestamp = event.uplinkMetrics.timestamp;
-  raw.port = event.uplinkMetrics.port;
-  raw.frameCountUp = event.uplinkMetrics.frameCountUp;
-  raw.rssi = event.uplinkMetrics.rssi;
-  raw.snr = event.uplinkMetrics.snr;
-  raw.spreadingFactor = event.uplinkMetrics.sf;
-
-  emit("sample", { data, topic: "default" });
-  emit("sample", { data: lifecycle, topic: "lifecycle" });
-  emit("sample", { data: raw, topic: "raw_payload" });
+  // Raw uplink for the MClimate integration, forwarded to the MClimate broker.
+  // Emitted even when decoding fails so the broker still receives the payload.
+  emit("sample", {
+    data: {
+      deviceId: event.device.deviceId,
+      payloadHex: payload,
+      timestamp: metrics.timestamp,
+      port: metrics.port,
+      frameCountUp: metrics.frameCountUp,
+      rssi: metrics.rssi,
+      snr: metrics.snr,
+      spreadingFactor: metrics.sf,
+    },
+    topic: "raw_payload",
+  });
 }

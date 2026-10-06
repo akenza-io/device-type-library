@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.99.3] - 2026-10-06
+
+### Fixed
+
+- MClimate Vicki & Vicki V4 - Command responses no longer crash the decoder, status flags (open window, child lock, motor and battery flags) are decoded correctly and the raw payload is always forwarded
+- MClimate Vicki - Downlink encoder sends the period for setInternalAlgoParams, a two byte motor position for setTargetTemperatureAndMotorPosition and rounds decimal values
+- MClimate Flood Sensor - Flood and box tamper flags are decoded correctly
+
+### Changed
+
+- MClimate Vicki & Vicki V4 - Added valve openness, D2D and low battery flags and a configuration topic for command responses
+- MClimate Flood Sensor - Added a configuration topic for command responses and a raw_payload topic for the MClimate integration
+
 # [1.99.2] - 2026-09-30
 
 ### Changed
