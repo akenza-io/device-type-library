@@ -1,0 +1,21 @@
+{
+  "name": "16A Switch & Power Meter (16ASPM)",
+  "version": "1.0.0",
+  "manufacturer": "MClimate",
+  "url": "https://docs.mclimate.eu/mclimate-lorawan-devices/devices/mclimate-16a-switch-and-power-meter-lorawan-16aspm",
+  "description": "MClimate 16A Switch & Power Meter (16ASPM) is a miniature device that features a wet 16A relay and an electricity meter inside. The device has 4 terminals L, N, N, Lout, connecting and disconnecting Lout from Lin. The device operates in LoRaWAN Class C, features FUOTA (Firmware Upgrades Over The Air) and has overheating protection.",
+  "author": "MClimate",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "C",
+  "availableSensors": [
+    "Temperature",
+    "Energy Metering",
+    "Power",
+    "Voltage",
+    "Current",
+    "Switch"
+  ],
+  "outputTopics": ["default", "configuration", "raw_payload"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

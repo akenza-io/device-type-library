@@ -13,6 +13,8 @@ All notable changes to this project will be documented in this file.
 - MClimate CO2 Display Lite
 - MClimate Wireless Thermostat
 - MClimate Fan Coil Thermostat
+- MClimate 16A Switch & Power Meter (16ASPM)
+- MClimate 16A Dry Switch (16ADS)
 
 # [1.99.2] - 2026-09-30
 

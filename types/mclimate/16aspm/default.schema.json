@@ -1,0 +1,48 @@
+{
+  "$id": "https://akenza.io/mclimate/16aspm/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "internalTemperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Internal temperature",
+      "description": "Internal temperature of the device in °C"
+    },
+    "energy": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours",
+      "title": "Energy",
+      "description": "Accumulated energy in kWh"
+    },
+    "power": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activePower/watt",
+      "title": "Power",
+      "description": "Power in W"
+    },
+    "voltage": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
+      "title": "Voltage",
+      "description": "AC voltage in V"
+    },
+    "current": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/milliAmpere",
+      "title": "Current",
+      "description": "AC current in mA"
+    },
+    "relayOn": {
+      "title": "Relay on",
+      "description": "Equals true if the relay is on",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "internalTemperature",
+    "energy",
+    "power",
+    "voltage",
+    "current",
+    "relayOn"
+  ]
+}
