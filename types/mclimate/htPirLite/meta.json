@@ -1,0 +1,14 @@
+{
+  "name": "HT + PIR Lite",
+  "version": "1.0.0",
+  "manufacturer": "MClimate",
+  "url": "https://docs.mclimate.eu/mclimate-lorawan-devices/devices/mclimate-ht-+-pir-lite",
+  "description": "MClimate HT + PIR Lite is a stand-alone sensor measuring temperature, relative humidity and occupancy (PIR sensor with a 100x90° field of view). Powered by 2xAA batteries lasting up to 15 years with the default configuration, it is designed for building management systems and room occupancy monitoring.",
+  "author": "MClimate",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Humidity", "Occupancy", "PIR"],
+  "outputTopics": ["default", "lifecycle", "configuration", "raw_payload"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

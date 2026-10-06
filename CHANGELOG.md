@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.100.0] - 2026-10-06
+
+### Added
+
+- MClimate PIR Mini
+- MClimate HT + PIR Lite
+- MClimate CO2 + PIR Lite
+
 # [1.99.2] - 2026-09-30
 
 ### Changed

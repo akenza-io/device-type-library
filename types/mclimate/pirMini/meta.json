@@ -1,0 +1,20 @@
+{
+  "name": "PIR Mini",
+  "version": "1.0.0",
+  "manufacturer": "MClimate",
+  "url": "https://docs.mclimate.eu/mclimate-lorawan-devices/devices/mclimate-pir-mini",
+  "description": "MClimate PIR Mini is a compact battery-powered occupancy sensor combining PIR motion detection (8 m range, 120° field of view) with temperature, relative humidity and light sensing. It supports occupancy, triggered occupancy, trigger and count modes for building automation and workspace utilization monitoring.",
+  "author": "MClimate",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Humidity", "Light", "Occupancy", "PIR"],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "event",
+    "configuration",
+    "raw_payload"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

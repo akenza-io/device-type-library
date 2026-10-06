@@ -1,0 +1,14 @@
+{
+  "name": "CO2 + PIR Lite",
+  "version": "1.0.0",
+  "manufacturer": "MClimate",
+  "url": "https://docs.mclimate.eu/mclimate-lorawan-devices/devices/mclimate-co2-+-pir-lite",
+  "description": "MClimate CO2 + PIR Lite is a stand-alone sensor measuring CO2 (NDIR sensor, 400-5000 ppm), temperature, relative humidity and occupancy (PIR sensor with a 100x90° field of view). Powered by 2xAA batteries lasting up to 15 years with the default configuration, it is designed for building management systems and demand-based ventilation control.",
+  "author": "MClimate",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Humidity", "CO2", "Occupancy", "PIR"],
+  "outputTopics": ["default", "lifecycle", "configuration", "raw_payload"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
