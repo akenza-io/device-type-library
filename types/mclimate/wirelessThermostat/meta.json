@@ -1,0 +1,14 @@
+{
+  "name": "Wireless Thermostat",
+  "version": "1.0.0",
+  "manufacturer": "MClimate",
+  "url": "https://docs.mclimate.eu/mclimate-lorawan-devices/devices/mclimate-wireless-thermostat",
+  "description": "MClimate Wireless Thermostat is a stand-alone thermostat powered entirely by solar energy using an organic solar panel. The device features a 2.9\" e-ink screen, sensor for movement (PIR), temperature and humidity sensor, LUX sensor and 3 buttons. The user can change the target temperature and see current indoor conditions.",
+  "author": "MClimate",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Humidity", "Light", "PIR"],
+  "outputTopics": ["default", "lifecycle", "configuration", "raw_payload"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
