@@ -1,0 +1,73 @@
+{
+  "$id": "https://akenza.io/mclimate/tValve/configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "configuration",
+  "title": "Configuration",
+  "properties": {
+    "openCloseTimeExtended": {
+      "title": "Open/close time extended",
+      "description": "Extended cycle opening and closing time",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "emergencyOpenings": {
+      "title": "Emergency openings",
+      "description": "Number of remaining emergency openings",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "floodAlarmTime": {
+      "title": "Flood alarm time",
+      "description": "Flood alarm duration in steps of 10 seconds",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "workingVoltage": {
+      "title": "Working voltage",
+      "description": "Allowed working voltage in mV",
+      "type": "integer",
+      "unit": "mV",
+      "hideFromKpis": true
+    },
+    "keepAliveTime": {
+      "title": "Keepalive interval",
+      "description": "Interval between periodic uplinks in minutes",
+      "type": "integer",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "deviceFloodSensor": {
+      "title": "Flood sensor state",
+      "description": "State of the device flood sensor",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "joinRetryPeriod": {
+      "title": "Join retry period",
+      "description": "Period between join attempts in minutes",
+      "type": "number",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "uplinkType": {
+      "title": "Uplink type",
+      "description": "0 = unconfirmed uplinks, 1 = confirmed uplinks",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "watchDogParams": {
+      "title": "Watchdog parameters",
+      "description": "Number of confirmed (wdpC) and unconfirmed (wdpUc) uplinks without a downlink before rejoining, false if disabled",
+      "type": "object",
+      "hideFromKpis": true
+    },
+    "region": {
+      "title": "Region",
+      "description": "LoRaWAN region of the device",
+      "type": "integer",
+      "hideFromKpis": true
+    }
+  }
+}

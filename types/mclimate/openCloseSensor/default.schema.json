@@ -1,0 +1,30 @@
+{
+  "$id": "https://akenza.io/mclimate/openCloseSensor/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "messageType": {
+      "title": "Message type",
+      "description": "Reason of the uplink",
+      "type": "string",
+      "enum": ["KEEPALIVE", "OPEN_CLOSE", "BUTTON_PUSH"]
+    },
+    "open": {
+      "title": "Open",
+      "description": "Equals true if the sensor is open, false if it is closed",
+      "type": "boolean"
+    },
+    "eventCount": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/reedContact/count",
+      "title": "Event counter",
+      "description": "Total number of open/close events"
+    },
+    "temperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    }
+  },
+  "required": ["messageType", "open", "eventCount", "temperature"]
+}

@@ -15,6 +15,8 @@ All notable changes to this project will be documented in this file.
 - MClimate Fan Coil Thermostat
 - MClimate 16A Switch & Power Meter (16ASPM)
 - MClimate 16A Dry Switch (16ADS)
+- MClimate T-Valve
+- MClimate Open/Close Sensor
 
 # [1.99.2] - 2026-09-30
 

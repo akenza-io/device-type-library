@@ -1,0 +1,14 @@
+{
+  "name": "Open/Close Sensor",
+  "version": "1.0.0",
+  "manufacturer": "MClimate",
+  "url": "https://docs.mclimate.eu/mclimate-lorawan-devices/devices/mclimate-open-close-sensor-lorawan",
+  "description": "MClimate Open/Close Sensor LoRaWAN® is a device detecting the event of opening or closing windows, doors, cabinets and more. It features long battery life, LED, temperature sensor and a button that triggers an uplink. The device sends an uplink for every event of opening/closing and keeps an internal counter of the total number of events.",
+  "author": "MClimate",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Reed", "Temperature", "Button"],
+  "outputTopics": ["default", "lifecycle", "configuration", "raw_payload"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}
