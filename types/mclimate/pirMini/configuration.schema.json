@@ -1,0 +1,110 @@
+{
+  "$id": "https://akenza.io/mclimate/pirMini/configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "configuration",
+  "title": "Configuration",
+  "properties": {
+    "hardwareVersion": {
+      "title": "Hardware version",
+      "description": "Hardware version of the device",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "softwareVersion": {
+      "title": "Software version",
+      "description": "Software (firmware) version of the device",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "keepAliveTime": {
+      "title": "Keepalive interval",
+      "description": "Interval between periodic uplinks in minutes",
+      "type": "integer",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "joinRetryPeriod": {
+      "title": "Join retry period",
+      "description": "Period between join attempts in minutes",
+      "type": "number",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "uplinkType": {
+      "title": "Uplink type",
+      "description": "0 = unconfirmed uplinks, 1 = confirmed uplinks",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "watchDogConfirmedUplinks": {
+      "title": "Watchdog confirmed uplinks",
+      "description": "Confirmed uplinks without a downlink before the device rejoins, 0 = disabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "watchDogUnconfirmedUplinks": {
+      "title": "Watchdog unconfirmed uplinks",
+      "description": "Unconfirmed uplinks without a downlink before the device rejoins, 0 = disabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "region": {
+      "title": "Region",
+      "description": "LoRaWAN region of the device",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "lightSensorState": {
+      "title": "Light sensor state",
+      "description": "0 = disabled, 1 = enabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "ledBrightness": {
+      "title": "LED brightness",
+      "description": "LED brightness (0-100)",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "pirSensorState": {
+      "title": "PIR sensor state",
+      "description": "0 = disabled, 1 = enabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "occupancyTimeout": {
+      "title": "Occupancy timeout",
+      "description": "Occupancy timeout in minutes",
+      "type": "integer",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "pirDemoMode": {
+      "title": "PIR demo mode",
+      "description": "0 = disabled, 1 = enabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "pirOperationMode": {
+      "title": "PIR operation mode",
+      "description": "0 = occupancy, 1 = triggered occupancy, 2 = trigger, 3 = count",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "pirBlindTime": {
+      "title": "PIR blind time",
+      "description": "PIR blind time in seconds",
+      "type": "integer",
+      "unit": "s",
+      "hideFromKpis": true
+    },
+    "pirCounterResetFlag": {
+      "title": "PIR counter reset",
+      "description": "0 = disabled, 1 = enabled",
+      "type": "integer",
+      "hideFromKpis": true
+    }
+  }
+}

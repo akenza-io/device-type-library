@@ -1,0 +1,14 @@
+{
+  "name": "CO2 Display Lite",
+  "version": "1.0.0",
+  "manufacturer": "MClimate",
+  "url": "https://docs.mclimate.eu/mclimate-lorawan-devices/devices/mclimate-co2-display-lite",
+  "description": "MClimate CO2 Display Lite is a stand-alone CO2 sensor powered entirely by solar energy using an organic solar panel. The device features a 1.54\" e-ink screen, temperature and humidity sensor, LUX sensor and NDIR CO2 sensor.",
+  "author": "MClimate",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Humidity", "CO2", "Light"],
+  "outputTopics": ["default", "lifecycle", "configuration"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

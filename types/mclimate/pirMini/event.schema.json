@@ -1,0 +1,17 @@
+{
+  "$id": "https://akenza.io/mclimate/pirMini/event.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "event",
+  "title": "Event",
+  "properties": {
+    "event": {
+      "title": "Event",
+      "description": "Occupancy event sent by the PIR sensor",
+      "type": "string",
+      "enum": ["OCCUPIED", "UNOCCUPIED", "PIR_TRIGGER"]
+    }
+  },
+  "required": ["event"]
+}
