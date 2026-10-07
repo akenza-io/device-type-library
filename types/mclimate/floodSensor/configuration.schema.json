@@ -1,0 +1,78 @@
+{
+  "$id": "https://akenza.io/mclimate/floodSensor/configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "configuration",
+  "title": "Configuration",
+  "properties": {
+    "alarmDuration": {
+      "title": "Alarm duration",
+      "description": "Duration of the flood alarm",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "hardwareVersion": {
+      "title": "Hardware version",
+      "description": "Hardware version of the device",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "softwareVersion": {
+      "title": "Software version",
+      "description": "Software (firmware) version of the device",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "floodEventSendTime": {
+      "title": "Flood event send time",
+      "description": "Flood event send time setting",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "keepAliveTime": {
+      "title": "Keepalive interval",
+      "description": "Interval between periodic uplinks in minutes",
+      "type": "integer",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "floodEventUplinkType": {
+      "title": "Flood event uplink type",
+      "description": "0 = unconfirmed uplinks, 1 = confirmed uplinks for flood events",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "joinRetryPeriod": {
+      "title": "Join retry period",
+      "description": "Period between join attempts in minutes",
+      "type": "number",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "uplinkType": {
+      "title": "Uplink type",
+      "description": "0 = unconfirmed uplinks, 1 = confirmed uplinks",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "watchDogConfirmedUplinks": {
+      "title": "Watchdog confirmed uplinks",
+      "description": "Confirmed uplinks without a downlink before the device rejoins, 0 = disabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "watchDogUnconfirmedUplinks": {
+      "title": "Watchdog unconfirmed uplinks",
+      "description": "Unconfirmed uplinks without a downlink before the device rejoins, 0 = disabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "region": {
+      "title": "Region",
+      "description": "LoRaWAN region of the device",
+      "type": "integer",
+      "hideFromKpis": true
+    }
+  }
+}

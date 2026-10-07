@@ -1,0 +1,468 @@
+{
+  "$id": "https://akenza.io/mclimate/vicki/configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "configuration",
+  "title": "Configuration",
+  "properties": {
+    "hardwareVersion": {
+      "title": "Hardware version",
+      "description": "Hardware version of the device",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "softwareVersion": {
+      "title": "Software version",
+      "description": "Software (firmware) version of the device",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "keepAliveTime": {
+      "title": "Keepalive interval",
+      "description": "Interval between periodic uplinks in minutes",
+      "type": "integer",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "openWindowEnabled": {
+      "title": "Open window detection",
+      "description": "Equals true if open window detection is enabled",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "openWindowDuration": {
+      "title": "Open window duration",
+      "description": "Open window detection duration in minutes",
+      "type": "integer",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "openWindowMotorPosition": {
+      "title": "Open window motor position",
+      "description": "Motor position used by open window detection",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "openWindowDelta": {
+      "title": "Open window delta",
+      "description": "Open window detection temperature delta in °C",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "childLock": {
+      "title": "Child lock",
+      "description": "Equals true if the child lock is enabled",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "temperatureRangeMin": {
+      "title": "Minimum target temperature",
+      "description": "Minimum target temperature in °C",
+      "type": "integer",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "temperatureRangeMax": {
+      "title": "Maximum target temperature",
+      "description": "Maximum target temperature in °C",
+      "type": "integer",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "internalAlgoPeriod": {
+      "title": "Internal algorithm period",
+      "description": "Temperature check period of the equal directional control algorithm in minutes",
+      "type": "integer",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "internalAlgoPFirstLast": {
+      "title": "Internal algorithm first/last steps",
+      "description": "First/last opening and closing motor steps of the equal directional control algorithm",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "internalAlgoPNext": {
+      "title": "Internal algorithm next steps",
+      "description": "Next opening and closing motor steps of the equal directional control algorithm",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "internalAlgoTdiffWarm": {
+      "title": "Internal algorithm Tdiff warm",
+      "description": "Warm temperature difference threshold of the internal algorithm",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "internalAlgoTdiffCold": {
+      "title": "Internal algorithm Tdiff cold",
+      "description": "Cold temperature difference threshold of the internal algorithm",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "operationalMode": {
+      "title": "Operational mode",
+      "description": "0 = online manual control, 1 = online automatic control, 2 = online automatic control with external temperature reading, 3 = online automatic control with temperature from an MClimate HT sensor (D2D)",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "joinRetryPeriod": {
+      "title": "Join retry period",
+      "description": "Period between join attempts in minutes",
+      "type": "number",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "uplinkType": {
+      "title": "Uplink type",
+      "description": "0 = unconfirmed uplinks, 1 = confirmed uplinks",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "watchDogConfirmedUplinks": {
+      "title": "Watchdog confirmed uplinks",
+      "description": "Confirmed uplinks without a downlink before the device rejoins, 0 = disabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "watchDogUnconfirmedUplinks": {
+      "title": "Watchdog unconfirmed uplinks",
+      "description": "Unconfirmed uplinks without a downlink before the device rejoins, 0 = disabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "primaryOperationalMode": {
+      "title": "Primary operational mode",
+      "description": "0 = heating, 1 = cooling",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "batteryRangeBoundary1": {
+      "title": "Battery range boundary 1",
+      "description": "Battery voltage boundary 1 in mV",
+      "type": "integer",
+      "unit": "mV",
+      "hideFromKpis": true
+    },
+    "batteryRangeBoundary2": {
+      "title": "Battery range boundary 2",
+      "description": "Battery voltage boundary 2 in mV",
+      "type": "integer",
+      "unit": "mV",
+      "hideFromKpis": true
+    },
+    "batteryRangeBoundary3": {
+      "title": "Battery range boundary 3",
+      "description": "Battery voltage boundary 3 in mV",
+      "type": "integer",
+      "unit": "mV",
+      "hideFromKpis": true
+    },
+    "batteryRangeOverVoltage1": {
+      "title": "Battery range 1 over voltage",
+      "description": "Motor over voltage for battery range 1",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "batteryRangeOverVoltage2": {
+      "title": "Battery range 2 over voltage",
+      "description": "Motor over voltage for battery range 2",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "batteryRangeOverVoltage3": {
+      "title": "Battery range 3 over voltage",
+      "description": "Motor over voltage for battery range 3",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "OVAC": {
+      "title": "OVAC",
+      "description": "Over voltage after calibration value",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "manualTargetTemperatureUpdate": {
+      "title": "Manual target temperature update",
+      "description": "Target temperature set manually on the device in °C",
+      "type": "integer",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "proportionalAlgorithmCoefficient": {
+      "title": "Proportional algorithm coefficient",
+      "description": "Coefficient of the proportional algorithm",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "proportionalAlgorithmPeriod": {
+      "title": "Proportional algorithm period",
+      "description": "Period of the proportional algorithm",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "temperatureControlAlgorithm": {
+      "title": "Temperature control algorithm",
+      "description": "Active temperature control algorithm",
+      "type": "string",
+      "enum": ["proportional", "equal", "proportionalIntegral"],
+      "hideFromKpis": true
+    },
+    "childLockBehavior": {
+      "title": "Child lock behavior",
+      "description": "0 = child lock automatically disabled, 1 = child lock remains unchanged",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "proportionalGain": {
+      "title": "Proportional gain",
+      "description": "Proportional gain (Kp) of the PI algorithm",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "integralGain": {
+      "title": "Integral gain",
+      "description": "Integral gain (Ki) of the PI algorithm",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "integralValue": {
+      "title": "Integral value",
+      "description": "Current integral value of the PI algorithm",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "piRunPeriod": {
+      "title": "PI run period",
+      "description": "Run period of the PI algorithm in minutes",
+      "type": "integer",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "tempHysteresis": {
+      "title": "Temperature hysteresis",
+      "description": "Temperature hysteresis of the PI algorithm in °C",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "extSensorTemperature": {
+      "title": "External sensor temperature",
+      "description": "Temperature received from an external sensor in °C",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "forceAttach": {
+      "title": "Force attach",
+      "description": "Equals true if force attach is enabled",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "antiFreezeActivatedTemperature": {
+      "title": "Anti-freeze activation temperature",
+      "description": "Anti-freeze activation threshold in °C",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "antiFreezeDeactivatedTemperature": {
+      "title": "Anti-freeze deactivation temperature",
+      "description": "Anti-freeze deactivation threshold in °C",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "antiFreezeTargetTemperature": {
+      "title": "Anti-freeze target temperature",
+      "description": "Anti-freeze target temperature in °C",
+      "type": "integer",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "patchVersion": {
+      "title": "Patch version",
+      "description": "Firmware patch version",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "maxAllowedIntegralValue": {
+      "title": "Maximum allowed integral value",
+      "description": "Maximum integral value of the PI algorithm",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "valveOpennessRangeMax": {
+      "title": "Maximum valve openness",
+      "description": "Maximum valve openness in %",
+      "type": "integer",
+      "unit": "%",
+      "hideFromKpis": true
+    },
+    "valveOpennessRangeMin": {
+      "title": "Minimum valve openness",
+      "description": "Minimum valve openness in %",
+      "type": "integer",
+      "unit": "%",
+      "hideFromKpis": true
+    },
+    "targetTemperatureFloat": {
+      "title": "Target temperature (0.1 °C)",
+      "description": "Target temperature with 0.1 °C precision",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "temperatureOffset": {
+      "title": "Temperature offset",
+      "description": "Offset applied to the measured temperature in °C",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "ledDisplayTempUnits": {
+      "title": "Display temperature unit",
+      "description": "0 = Celsius, 1 = Fahrenheit, 2 = conventional scale (0-5)",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "temperatureRestoredAfterManualBoost": {
+      "title": "Restored after manual boost",
+      "description": "Equals true if the target temperature was restored automatically after a manual boost",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "temperatureChangedByHeatingSchedule": {
+      "title": "Changed by heating schedule",
+      "description": "Equals true if the target temperature was changed by the internal heating schedule",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "deviceTime": {
+      "title": "Device time",
+      "description": "Device time in UTC",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "deviceTimeZone": {
+      "title": "Device time zone",
+      "description": "Device time zone offset in hours",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "autoSetpointRestoreStatus": {
+      "title": "Automatic setpoint restore",
+      "description": "Time after which a manually changed target temperature is restored in minutes, 0 if disabled",
+      "type": "integer",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "ledIndicationDuration": {
+      "title": "LED indication duration",
+      "description": "Duration of the LED indication in seconds",
+      "type": "number",
+      "unit": "s",
+      "hideFromKpis": true
+    },
+    "offlineTargetTemperature": {
+      "title": "Offline target temperature",
+      "description": "Target temperature used when the device is offline in °C, 0 if disabled",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "internalAlgoTemporaryState": {
+      "title": "Internal algorithm temporary state",
+      "description": "Equals true if the internal algorithm is temporarily active",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "temperatureLevel0": {
+      "title": "Temperature level 0",
+      "description": "Target temperature of knob scale level 0 in °C",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "temperatureLevel1": {
+      "title": "Temperature level 1",
+      "description": "Target temperature of knob scale level 1 in °C",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "temperatureLevel2": {
+      "title": "Temperature level 2",
+      "description": "Target temperature of knob scale level 2 in °C",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "temperatureLevel3": {
+      "title": "Temperature level 3",
+      "description": "Target temperature of knob scale level 3 in °C",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "temperatureLevel4": {
+      "title": "Temperature level 4",
+      "description": "Target temperature of knob scale level 4 in °C",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "temperatureLevel5": {
+      "title": "Temperature level 5",
+      "description": "Target temperature of knob scale level 5 in °C",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "timeRequestByMACcommand": {
+      "title": "Time request by MAC command",
+      "description": "Equals 1 if the device requests the time with a MAC command",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "d2dNotificationDeviceAppKey": {
+      "title": "D2D notification AppKey",
+      "description": "AppKey of the device that receives device-to-device notifications",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "htSensorTemperature": {
+      "title": "HT sensor temperature",
+      "description": "Temperature received from a paired HT sensor in °C",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "fuotaAddress": {
+      "title": "FUOTA address",
+      "description": "Firmware update over the air address",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "fuotaAddressRaw": {
+      "title": "FUOTA address (hex)",
+      "description": "Firmware update over the air address as hex",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "region": {
+      "title": "Region",
+      "description": "LoRaWAN region of the device",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "crystalOscillatorError": {
+      "title": "Crystal oscillator error",
+      "description": "Equals true if the device reported a crystal oscillator error",
+      "type": "boolean",
+      "hideFromKpis": true
+    }
+  }
+}

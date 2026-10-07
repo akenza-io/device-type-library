@@ -14,7 +14,7 @@
   "outputTopics": [
     "default",
     "lifecycle",
-    "raw_payload"
+    "configuration"
   ],
   "encoding": "HEX",
   "connectivity": "LORA"

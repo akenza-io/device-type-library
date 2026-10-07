@@ -43,6 +43,16 @@
       "title": "Anti freeze protection",
       "description": "Anti freeze protection",
       "type": "boolean"
+    },
+    "d2dCommunicationReliable": {
+      "title": "D2D communication reliable",
+      "description": "Equals true if the device-to-device (D2D) communication is reliable",
+      "type": "boolean"
+    },
+    "batteryTooLow": {
+      "title": "Battery too low",
+      "description": "Equals true if the battery is too low",
+      "type": "boolean"
     }
   },
   "required": [
