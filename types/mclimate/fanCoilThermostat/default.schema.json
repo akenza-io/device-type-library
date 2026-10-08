@@ -1,0 +1,57 @@
+{
+  "$id": "https://akenza.io/mclimate/fanCoilThermostat/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "temperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    },
+    "humidity": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent"
+    },
+    "targetTemperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Target temperature",
+      "description": "Target temperature in °C"
+    },
+    "operationalMode": {
+      "title": "Operational mode",
+      "description": "Operational mode of the fan coil",
+      "type": "string",
+      "enum": ["VENTILATION", "HEATING", "COOLING", "UNKNOWN"]
+    },
+    "displayedFanSpeed": {
+      "title": "Displayed fan speed",
+      "description": "0 = auto, 1-6 = speed 1-6 for ECM fans; for 3-speed fans 2 = low, 4 = medium, 6 = high",
+      "type": "integer"
+    },
+    "actualFanSpeed": {
+      "title": "Actual fan speed",
+      "description": "1-6 = speed 1-6 for ECM fans; for 3-speed fans 2 = low, 4 = medium, 6 = high; 7 = fan off",
+      "type": "integer"
+    },
+    "valveOpen": {
+      "title": "Valve open",
+      "description": "Equals true if the valve is open",
+      "type": "boolean"
+    },
+    "deviceOn": {
+      "title": "Device on",
+      "description": "Equals true if the device is on",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "temperature",
+    "humidity",
+    "targetTemperature",
+    "operationalMode",
+    "displayedFanSpeed",
+    "actualFanSpeed",
+    "valveOpen",
+    "deviceOn"
+  ]
+}

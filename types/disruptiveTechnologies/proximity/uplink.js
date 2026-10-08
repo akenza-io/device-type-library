@@ -57,6 +57,7 @@ function consume(event) {
   let state = event.state || {};
 
   if (eventType === "objectPresent") {
+    sample.repeat = false;
     sample.objectPresent = event.data.objectPresent.state;
     if (sample.objectPresent === "PRESENT") {
       sample.proximity = true;
@@ -124,6 +125,7 @@ function consume(event) {
   // output a sample each hour to facilitate time series analysis
   if (state.lastSampleEmittedAt !== undefined && now - state.lastSampleEmittedAt >= 3600000) {
     sample = {};
+    sample.repeat = true;
     sample.objectPresent = state.lastStatus;
     sample.relativeCount = 0;
     sample.count = state.lastCount;

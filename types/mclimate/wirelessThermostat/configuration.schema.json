@@ -1,0 +1,206 @@
+{
+  "$id": "https://akenza.io/mclimate/wirelessThermostat/configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "configuration",
+  "title": "Configuration",
+  "properties": {
+    "hardwareVersion": {
+      "title": "Hardware version",
+      "description": "Hardware version of the device",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "softwareVersion": {
+      "title": "Software version",
+      "description": "Software (firmware) version of the device",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "keepAliveTime": {
+      "title": "Keepalive interval",
+      "description": "Interval between periodic uplinks in minutes",
+      "type": "integer",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "joinRetryPeriod": {
+      "title": "Join retry period",
+      "description": "Period between join attempts in minutes",
+      "type": "number",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "uplinkType": {
+      "title": "Uplink type",
+      "description": "0 = unconfirmed uplinks, 1 = confirmed uplinks",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "watchDogConfirmedUplinks": {
+      "title": "Watchdog confirmed uplinks",
+      "description": "Confirmed uplinks without a downlink before the device rejoins, 0 = disabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "watchDogUnconfirmedUplinks": {
+      "title": "Watchdog unconfirmed uplinks",
+      "description": "Unconfirmed uplinks without a downlink before the device rejoins, 0 = disabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "region": {
+      "title": "Region",
+      "description": "LoRaWAN region of the device",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "childLock": {
+      "title": "Child lock",
+      "description": "Equals true if the child lock is enabled",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "temperatureRangeMin": {
+      "title": "Minimum target temperature",
+      "description": "Minimum target temperature in °C",
+      "type": "integer",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "temperatureRangeMax": {
+      "title": "Maximum target temperature",
+      "description": "Maximum target temperature in °C",
+      "type": "integer",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "targetTemperature": {
+      "title": "Target temperature",
+      "description": "Target temperature in °C",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "manualTargetTemperatureUpdate": {
+      "title": "Manual target temperature update",
+      "description": "Target temperature set manually on the device in °C",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "heatingStatus": {
+      "title": "Heating status",
+      "description": "0 = disabled, 1 = enabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "displayRefreshPeriod": {
+      "title": "Display refresh period",
+      "description": "Display refresh period",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "sendTargetTempDelay": {
+      "title": "Target temperature send delay",
+      "description": "Delay for sending the target temperature",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "automaticHeatingStatus": {
+      "title": "Automatic heating status",
+      "description": "0 = automatic mode off, 1 = automatic mode on",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "sensorMode": {
+      "title": "Sensor mode",
+      "description": "0 = sensor mode off, 1 = sensor mode on",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "pirSensorStatus": {
+      "title": "PIR sensor status",
+      "description": "0 = disabled, 1 = enabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "pirSensorSensitivity": {
+      "title": "PIR sensor sensitivity",
+      "description": "PIR sensor sensitivity",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "currentTemperatureVisibility": {
+      "title": "Temperature visibility",
+      "description": "0 = the measured temperature is hidden on the display, 1 = shown",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "humidityVisibility": {
+      "title": "Humidity visibility",
+      "description": "0 = the humidity is hidden on the display, 1 = shown",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "lightIntensityVisibility": {
+      "title": "Light intensity visibility",
+      "description": "0 = the light intensity is hidden on the display, 1 = shown",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "pirInitPeriod": {
+      "title": "PIR init period",
+      "description": "PIR init period",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "pirMeasurementPeriod": {
+      "title": "PIR measurement period",
+      "description": "PIR measurement period",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "pirCheckPeriod": {
+      "title": "PIR check period",
+      "description": "PIR check period",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "pirBlindPeriod": {
+      "title": "PIR blind period",
+      "description": "PIR blind period",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "temperatureHysteresis": {
+      "title": "Temperature hysteresis",
+      "description": "Temperature hysteresis in °C",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "targetTemperatureStep": {
+      "title": "Target temperature step",
+      "description": "Target temperature step in °C",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "sensorCompensationTemperature": {
+      "title": "Sensor compensation",
+      "description": "Compensation added to the measured temperature in °C (negative values are subtracted)",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "temperatureMeasurementPeriod": {
+      "title": "Temperature measurement period",
+      "description": "Temperature measurement period in minutes",
+      "type": "integer",
+      "unit": "min",
+      "hideFromKpis": true
+    }
+  }
+}

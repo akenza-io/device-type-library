@@ -19,6 +19,12 @@
       "title": "Leakage detected",
       "description": "Equals true if a leakage has been detected",
       "type": "boolean"
+    },
+    "repeat": {
+      "title": "Repeat",
+      "description": "Indicates a repeat of the previous datapoint",
+      "type": "boolean",
+      "hideFromKpis": true
     }
   },
   "required": [

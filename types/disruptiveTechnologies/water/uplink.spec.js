@@ -46,6 +46,7 @@ describe("Digital Technologies Water Sensor Uplink", () => {
         assert.equal(value.topic, "water_present");
         assert.equal(value.data.waterPresent, "NOT_PRESENT");
         assert.equal(value.data.leakageDetected, false);
+        assert.equal(value.data.repeat, false);
 
         validateSchema(value.data, waterPresentSchema, {
           throwError: true,

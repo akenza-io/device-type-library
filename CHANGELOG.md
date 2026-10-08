@@ -2,6 +2,49 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.100.0] - 2026-10-07
+
+### Added
+
+- MClimate PIR Mini
+- MClimate HT + PIR Lite
+- MClimate CO2 + PIR Lite
+- MClimate CO2 Display
+- MClimate CO2 Display Lite
+- MClimate Wireless Thermostat
+- MClimate Fan Coil Thermostat
+- MClimate 16A Switch & Power Meter (16ASPM)
+- MClimate 16A Dry Switch (16ADS)
+- MClimate T-Valve
+- MClimate Open/Close Sensor
+
+### Fixed
+
+- MClimate Vicki & Vicki V4 - Command responses no longer crash the decoder and status flags (open window, child lock, motor and battery flags) are decoded correctly
+- MClimate Vicki - Downlink encoder sends the period for setInternalAlgoParams, a two byte motor position for setTargetTemperatureAndMotorPosition and rounds decimal values
+- MClimate Flood Sensor - Flood and box tamper flags are decoded correctly
+- MClimate HT & Button - Command responses are decoded instead of being read as a keepalive, which produced wrong values (e.g. 781.3 °C)
+- MClimate CO2 - Command responses use the CO2 sensor commands instead of the Vicki ones and no longer end up in the default topic
+
+### Changed
+
+- MClimate Vicki, Vicki V4, Flood Sensor, HT, Button & CO2 - Added a configuration topic for command responses (one datapoint per setting)
+- MClimate Vicki & Vicki V4 - Added valve openness, D2D and low battery flags
+- MClimate Vicki & Vicki V4 - Removed the raw_payload topic
+- MClimate HT & CO2 - Humidity is reported with two decimals instead of being rounded to an integer
+
+# [1.99.2] - 2026-09-30
+
+### Changed
+
+- Episensor - Discarding old episens data as it interfers with the state
+
+# [1.99.1] - 2026-09-28
+
+### Changed
+
+- Disruptive - Added repeat flag on repeated datapoints
+
 # [1.99.0] - 2026-09-01
 
 ### Added

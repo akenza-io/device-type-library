@@ -93,6 +93,7 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
         assert.equal(value.data.contact, "OPEN");
         assert.equal(value.data.closedSince, 0);
         assert.equal(value.data.openSince, 0);
+        assert.equal(value.data.repeat, false);
 
         validateSchema(value.data, objectPresentSchema, {
           throwError: true,
@@ -178,6 +179,7 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
         assert.equal(value.data.count, 0);
         assert.equal(value.data.hasContact, false);
         assert.equal(value.data.relativeCount, 0);
+        assert.equal(value.data.repeat, true);
 
         validateSchema(value.data, objectPresentSchema, {
           throwError: true,
@@ -259,6 +261,7 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
         assert.equal(value.data.hasContact, false);
         assert.equal(value.data.count, 13);
         assert.equal(value.data.relativeCount, 1);
+        assert.equal(value.data.repeat, false);
 
         validateSchema(value.data, objectPresentSchema, {
           throwError: true,

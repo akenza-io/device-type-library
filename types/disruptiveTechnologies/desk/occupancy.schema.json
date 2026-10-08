@@ -26,6 +26,12 @@
     },
     "occupiedOrWarm": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/spaces/schema.json#/$defs/occupiedOrWarm/boolean"
+    },
+    "repeat": {
+      "title": "Repeat",
+      "description": "Indicates a repeat of the previous datapoint",
+      "type": "boolean",
+      "hideFromKpis": true
     }
   },
   "required": [
