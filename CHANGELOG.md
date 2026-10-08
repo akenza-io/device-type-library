@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.100.1] - 2026-10-08
+
+### Changed
+
+- WS202 - Interpreting pir as occupancy and give it out as such
+- Browan devices - emiting configuration and system data which came with a newer firmware version
+
 # [1.100.0] - 2026-10-07
 
 ### Added
