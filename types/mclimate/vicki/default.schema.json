@@ -29,6 +29,12 @@
       "type": "integer",
       "description": "Motor position"
     },
+    "valveOpenness": {
+      "title": "Valve openness",
+      "description": "Valve openness calculated from the motor position and motor range",
+      "type": "integer",
+      "unit": "%"
+    },
     "openWindow": {
       "title": "Open window",
       "description": "Open window",

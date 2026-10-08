@@ -1,0 +1,440 @@
+{
+  "$id": "https://akenza.io/mclimate/fanCoilThermostat/configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "configuration",
+  "title": "Configuration",
+  "properties": {
+    "hardwareVersion": {
+      "title": "Hardware version",
+      "description": "Hardware version of the device",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "softwareVersion": {
+      "title": "Software version",
+      "description": "Software (firmware) version of the device",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "keepAliveTime": {
+      "title": "Keepalive interval",
+      "description": "Interval between periodic uplinks in minutes",
+      "type": "integer",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "joinRetryPeriod": {
+      "title": "Join retry period",
+      "description": "Period between join attempts in minutes",
+      "type": "number",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "uplinkType": {
+      "title": "Uplink type",
+      "description": "0 = unconfirmed uplinks, 1 = confirmed uplinks",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "watchDogConfirmedUplinks": {
+      "title": "Watchdog confirmed uplinks",
+      "description": "Confirmed uplinks without a downlink before the device rejoins, 0 = disabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "watchDogUnconfirmedUplinks": {
+      "title": "Watchdog unconfirmed uplinks",
+      "description": "Unconfirmed uplinks without a downlink before the device rejoins, 0 = disabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "region": {
+      "title": "Region",
+      "description": "LoRaWAN region of the device",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "targetTemperatureStep": {
+      "title": "Target temperature step",
+      "description": "Target temperature step in °C",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "keysLock": {
+      "title": "Keys lock",
+      "description": "0 = no keys locked, 1 = all keys, 2 = on/off and mode change, 3 = on/off, 4 = all keys except on/off, 5 = mode change",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "temperatureRangeMin": {
+      "title": "Minimum target temperature",
+      "description": "Minimum target temperature in °C",
+      "type": "integer",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "temperatureRangeMax": {
+      "title": "Maximum target temperature",
+      "description": "Maximum target temperature in °C",
+      "type": "integer",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "heatingTargetTemperatureMin": {
+      "title": "Heating target temperature min",
+      "description": "Minimum heating target temperature in °C",
+      "type": "integer",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "heatingTargetTemperatureMax": {
+      "title": "Heating target temperature max",
+      "description": "Maximum heating target temperature in °C",
+      "type": "integer",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "coolingTargetTemperatureMin": {
+      "title": "Cooling target temperature min",
+      "description": "Minimum cooling target temperature in °C",
+      "type": "integer",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "coolingTargetTemperatureMax": {
+      "title": "Cooling target temperature max",
+      "description": "Maximum cooling target temperature in °C",
+      "type": "integer",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "targetTemperature": {
+      "title": "Target temperature",
+      "description": "Target temperature in °C",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "manualTargetTemperatureUpdate": {
+      "title": "Manual target temperature update",
+      "description": "Target temperature set manually on the device in °C",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "valveOpenCloseTime": {
+      "title": "Valve open/close time",
+      "description": "Valve open/close time",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "displayRefreshPeriod": {
+      "title": "Display refresh period",
+      "description": "Display refresh period",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "extAutomaticTemperatureControl": {
+      "title": "External automatic temperature control",
+      "description": "0 = deactivated, 1 = activated",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "extSensorTemperature": {
+      "title": "External sensor temperature",
+      "description": "Temperature received from an external sensor in °C",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "currentTemperatureVisibility": {
+      "title": "Temperature visibility",
+      "description": "0 = the measured temperature is hidden on the display, 1 = shown",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "humidityVisibility": {
+      "title": "Humidity visibility",
+      "description": "0 = the humidity is hidden on the display, 1 = shown",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "fanSpeed": {
+      "title": "Fan speed",
+      "description": "0 = automatic, 1-2 = low, 3-4 = medium, 5-6 = high",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "fanSpeedLimit": {
+      "title": "Fan speed limit",
+      "description": "0 = low, medium and high, 1 = low and medium, 2 = low, 3 = control deactivated",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "ecmVoltageMin": {
+      "title": "ECM minimum voltage",
+      "description": "Minimum ECM fan control voltage in V",
+      "type": "number",
+      "unit": "V",
+      "hideFromKpis": true
+    },
+    "ecmVoltageMax": {
+      "title": "ECM maximum voltage",
+      "description": "Maximum ECM fan control voltage in V",
+      "type": "number",
+      "unit": "V",
+      "hideFromKpis": true
+    },
+    "ecmStartUpTime": {
+      "title": "ECM start-up time",
+      "description": "ECM fan start-up time",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "ecmRelay": {
+      "title": "ECM relay",
+      "description": "ECM relay setting",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "frostProtection": {
+      "title": "Frost protection",
+      "description": "Frost protection setting",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "frostProtectionThreshold": {
+      "title": "Frost protection threshold",
+      "description": "Frost protection threshold in °C",
+      "type": "integer",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "frostProtectionSetpoint": {
+      "title": "Frost protection setpoint",
+      "description": "Frost protection setpoint in °C",
+      "type": "integer",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "fctOperationalMode": {
+      "title": "Operational mode",
+      "description": "0 = ventilation, 1 = heating, 2 = cooling",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "allowedOperationalModes": {
+      "title": "Allowed operational modes",
+      "description": "0 = ventilation, heating and cooling, 1 = ventilation and heating, 2 = ventilation and cooling",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "coolingSetpointNotOccupied": {
+      "title": "Unoccupied cooling setpoint",
+      "description": "Cooling setpoint when unoccupied in °C",
+      "type": "integer",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "heatingSetpointNotOccupied": {
+      "title": "Unoccupied heating setpoint",
+      "description": "Heating setpoint when unoccupied in °C",
+      "type": "integer",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "tempSensorCompensation": {
+      "title": "Temperature sensor compensation",
+      "description": "Compensation added to the measured temperature in °C (negative values are subtracted)",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "fanSpeedNotOccupied": {
+      "title": "Unoccupied fan speed",
+      "description": "0 = low, 1 = automatic, 2 = don't change",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "automaticChangeover": {
+      "title": "Automatic changeover",
+      "description": "Automatic changeover setting",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "wiringDiagram": {
+      "title": "Wiring diagram",
+      "description": "Configured wiring diagram",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "occFunction": {
+      "title": "Occupancy function",
+      "description": "Occupancy input function",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "automaticChangeoverCoolingThreshold": {
+      "title": "Automatic changeover cooling threshold",
+      "description": "Cooling threshold of the automatic changeover in °C",
+      "type": "integer",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "automaticChangeoverHeatingThreshold": {
+      "title": "Automatic changeover heating threshold",
+      "description": "Heating threshold of the automatic changeover in °C",
+      "type": "integer",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "deviceStatus": {
+      "title": "Device status",
+      "description": "0 = off, 1 = on",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "returnOfPowerOperation": {
+      "title": "Return of power operation",
+      "description": "0 = last status, 1 = on, 2 = off",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "deltaTemperature1": {
+      "title": "Delta temperature 1",
+      "description": "Delta temperature 1 in °C",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "deltaTemperature2": {
+      "title": "Delta temperature 2",
+      "description": "Delta temperature 2 in °C",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "deltaTemperature3": {
+      "title": "Delta temperature 3",
+      "description": "Delta temperature 3 in °C",
+      "type": "number",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "frostProtectionStatus": {
+      "title": "Frost protection status",
+      "description": "Frost protection status",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "occupancySensorStatusSetPoint": {
+      "title": "Occupancy sensor status setpoint",
+      "description": "Occupancy sensor status setpoint",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "occupancySensorStatus": {
+      "title": "Occupancy sensor status",
+      "description": "Occupancy sensor status",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "dewPointSensorStatus": {
+      "title": "Dew point sensor status",
+      "description": "Dew point sensor status",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "filterAlarm": {
+      "title": "Filter alarm",
+      "description": "Filter alarm",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "autoChangeoverNtcTemperature": {
+      "title": "Automatic changeover NTC temperature",
+      "description": "NTC temperature from the mode-changed-by-automatic-changeover answer (0x74)",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "modeChangedByAutoChangeover": {
+      "title": "Mode changed by automatic changeover",
+      "description": "Automatic changeover value from the mode-changed-by-automatic-changeover answer (0x74)",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "powerModuleStatus": {
+      "title": "Power module status",
+      "description": "Power module communication status",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "unoccupiedHeatingTargetTemperatureMin": {
+      "title": "Unoccupied heating target temperature min",
+      "description": "Minimum heating target temperature when unoccupied in °C",
+      "type": "integer",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "unoccupiedHeatingTargetTemperatureMax": {
+      "title": "Unoccupied heating target temperature max",
+      "description": "Maximum heating target temperature when unoccupied in °C",
+      "type": "integer",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "unoccupiedCoolingTargetTemperatureMin": {
+      "title": "Unoccupied cooling target temperature min",
+      "description": "Minimum cooling target temperature when unoccupied in °C",
+      "type": "integer",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "unoccupiedCoolingTargetTemperatureMax": {
+      "title": "Unoccupied cooling target temperature max",
+      "description": "Maximum cooling target temperature when unoccupied in °C",
+      "type": "integer",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "fanOffDelayTime": {
+      "title": "Fan off delay time",
+      "description": "Fan off delay time",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "additionalFanMode": {
+      "title": "Additional fan mode",
+      "description": "0 = turn off when the target is reached, 1 = keep on when the target is reached, 2 = fan always on",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "internalTemperatureSensorError": {
+      "title": "Internal temperature sensor error",
+      "description": "Internal temperature sensor error",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "externalTemperatureSensorError": {
+      "title": "External temperature sensor error",
+      "description": "External temperature sensor error",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "displayColorMode": {
+      "title": "Display color mode",
+      "description": "0 = light, 1 = dark",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "userInterfaceLanguage": {
+      "title": "User interface language",
+      "description": "0 = English, 1 = French, 2 = German, 3 = Spanish",
+      "type": "integer",
+      "hideFromKpis": true
+    }
+  }
+}

@@ -124,6 +124,7 @@ describe("Episensor Uplink", () => {
 
         assert.equal(value.id, "000D6F001911015F_333");
         assert.equal(value.lastTotalActivePowerKWh, 13000);
+        assert.equal(value.lastPeriod, new Date("2026-02-03T15:15:00").getTime());
       });
       consume(data);
     });
@@ -159,7 +160,7 @@ describe("Episensor Uplink", () => {
         assert.equal(value.data.value, 255.3);
         assert.equal(value.data.newId, "000D6F001911015F_444");
         assert.equal(value.data.initialId, "000D6F001911015F_333");
-        assert.equal(value.data.period, "2026-02-03T09:15:00");
+        assert.deepEqual(value.data.period, new Date("2026-02-03T09:15:00").toISOString());
 
         validateSchema(value.data, errorSchema, {
           throwError: true,
@@ -174,6 +175,63 @@ describe("Episensor Uplink", () => {
         assert.equal(value.lastTotalActivePowerKWh, 13000);
       });
 
+      consume(data);
+    });
+
+    it("should decode the Episensor payload and discard all backfilled data", () => {
+      const data = {
+        state: { id: "000D6F001911015F_333", lastTotalActivePowerKWh: 13000, lastPeriod: 1770128100000 },
+        data: {
+          "ver": "1.0",
+          "method": "epi_data",
+          "data": [
+            {
+              "id": "000D6F001911015F_333",
+              "period": "2026-02-04T15:15:00",
+              "value": 14000
+            },
+            {
+              "id": "000D6F001911015F_333",
+              "period": "2026-02-01T09:15:00",
+              "value": 12970
+            },
+            {
+              "id": "000D6F001911015F_333",
+              "period": "2026-02-03T09:00:00",
+              "value": 12974
+            },
+            {
+              "id": "000D6F001911015F_333",
+              "period": "2026-02-03T09:15:00",
+              "value": 12988.3
+            }
+          ],
+          "gateway": "000D6F00190BE42F"
+        }
+      };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.totalActivePowerKWh, 14000);
+        assert.equal(value.data.incrementActivePowerKWh, 1000);
+
+        validateSchema(value.data, defaultSchema, {
+          throwError: true,
+        });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+
+        assert.equal(value.id, "000D6F001911015F_333");
+        assert.equal(value.lastTotalActivePowerKWh, 14000);
+        assert.equal(value.lastPeriod, new Date("2026-02-04T15:15:00").getTime());
+      });
       consume(data);
     });
   });

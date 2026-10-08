@@ -1,0 +1,131 @@
+{
+  "$id": "https://akenza.io/mclimate/co2PirLite/configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "configuration",
+  "title": "Configuration",
+  "properties": {
+    "hardwareVersion": {
+      "title": "Hardware version",
+      "description": "Hardware version of the device",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "softwareVersion": {
+      "title": "Software version",
+      "description": "Software (firmware) version of the device",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "keepAliveTime": {
+      "title": "Keepalive interval",
+      "description": "Interval between periodic uplinks in minutes",
+      "type": "integer",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "joinRetryPeriod": {
+      "title": "Join retry period",
+      "description": "Period between join attempts in minutes",
+      "type": "number",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "uplinkType": {
+      "title": "Uplink type",
+      "description": "0 = unconfirmed uplinks, 1 = confirmed uplinks",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "watchDogConfirmedUplinks": {
+      "title": "Watchdog confirmed uplinks",
+      "description": "Confirmed uplinks without a downlink before the device rejoins, 0 = disabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "watchDogUnconfirmedUplinks": {
+      "title": "Watchdog unconfirmed uplinks",
+      "description": "Unconfirmed uplinks without a downlink before the device rejoins, 0 = disabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "region": {
+      "title": "Region",
+      "description": "LoRaWAN region of the device",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "boundaryLevelGoodMedium": {
+      "title": "CO2 boundary good/medium",
+      "description": "CO2 boundary between the good and medium zones in ppm",
+      "type": "integer",
+      "unit": "ppm",
+      "hideFromKpis": true
+    },
+    "boundaryLevelMediumBad": {
+      "title": "CO2 boundary medium/bad",
+      "description": "CO2 boundary between the medium and bad zones in ppm",
+      "type": "integer",
+      "unit": "ppm",
+      "hideFromKpis": true
+    },
+    "autoZeroValue": {
+      "title": "Auto zero value",
+      "description": "CO2 auto zero calibration value in ppm",
+      "type": "integer",
+      "unit": "ppm",
+      "hideFromKpis": true
+    },
+    "measurementPeriodGoodZone": {
+      "title": "Measurement period (good zone)",
+      "description": "CO2 measurement period in the good CO2 zone",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "measurementPeriodMediumZone": {
+      "title": "Measurement period (medium zone)",
+      "description": "CO2 measurement period in the medium CO2 zone",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "measurementPeriodBadZone": {
+      "title": "Measurement period (bad zone)",
+      "description": "CO2 measurement period in the bad CO2 zone",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "autoZeroPeriod": {
+      "title": "Auto zero period",
+      "description": "CO2 auto zero calibration period in hours",
+      "type": "integer",
+      "unit": "h",
+      "hideFromKpis": true
+    },
+    "uplinkSendingOnButtonPress": {
+      "title": "Uplink on button press",
+      "description": "0 = disabled, 1 = enabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "pirSensorState": {
+      "title": "PIR sensor state",
+      "description": "0 = disabled, 1 = enabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "occupancyTimeout": {
+      "title": "Occupancy timeout",
+      "description": "Occupancy timeout in seconds",
+      "type": "integer",
+      "unit": "s",
+      "hideFromKpis": true
+    },
+    "pirSensorSensitivity": {
+      "title": "PIR sensor sensitivity",
+      "description": "PIR sensor sensitivity",
+      "type": "integer",
+      "hideFromKpis": true
+    }
+  }
+}

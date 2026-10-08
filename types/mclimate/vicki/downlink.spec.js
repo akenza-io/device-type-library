@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+import { init, expectEmits } from "test-utils";
 
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -59,6 +59,44 @@ describe("Vicki Downlink", () => {
         assert.equal(value.payloadHex, "0601041c23");
         assert.equal(value.confirmed, true);
         assert.equal(value.port, 1);
+      });
+
+      consume(data);
+    });
+
+    const encodings = [
+      [{ setInternalAlgoParams: { period: 20, pFirstLast: 17, pNext: 17 } }, "0c141111"],
+      [{ setTargetTemperature: 21.5 }, "5100d7"],
+      [{ setTargetTemperatureAndMotorPosition: { motorPosition: 540, targetTemperature: 21 } }, "31021c15"],
+      [{ setExternalTemperatureFloat: 21.3 }, "3c00d5"],
+      [{ setTempHysteresis: 0.3 }, "4303"],
+      [{ setOpenWindowPrecisely: { enabled: true, duration: 20, delta: 1.3 } }, "4501040d"],
+      [{ setJoinRetryPeriod: 10 }, "1078"],
+    ];
+
+    encodings.forEach(([payload, payloadHex]) => {
+      it(`should encode the Vicki ${Object.keys(payload)[0]} payload`, () => {
+        expectEmits((type, value) => {
+          assert.equal(type, "downlink");
+          assert.equal(value.payloadHex, payloadHex);
+          assert.equal(value.confirmed, true);
+          assert.equal(value.port, 1);
+        });
+
+        consume({ payload });
+      });
+    });
+
+    it("should encode an unconfirmed Vicki downlink", () => {
+      const data = {
+        payload: { getChildLock: true },
+        confirmed: false,
+      };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "downlink");
+        assert.equal(value.payloadHex, "14");
+        assert.equal(value.confirmed, false);
       });
 
       consume(data);

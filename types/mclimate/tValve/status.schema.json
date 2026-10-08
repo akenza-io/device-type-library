@@ -1,0 +1,82 @@
+{
+  "$id": "https://akenza.io/mclimate/tValve/status.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "status",
+  "title": "Status",
+  "properties": {
+    "messageType": {
+      "title": "Message type",
+      "description": "Reason of the uplink",
+      "type": "string",
+      "enum": [
+        "KEEPALIVE",
+        "TEST_BUTTON_PRESSED",
+        "FLOOD_DETECTED",
+        "CONTROL_BUTTON_PRESSED",
+        "FRAUD_DETECTED",
+        "UNKNOWN"
+      ]
+    },
+    "boxTamper": {
+      "title": "Box tamper",
+      "description": "Equals true if the top of the device has been removed",
+      "type": "boolean"
+    },
+    "floodWireBroken": {
+      "title": "Flood wire broken",
+      "description": "Equals true if the flood detection wire is not working",
+      "type": "boolean"
+    },
+    "flood": {
+      "title": "Flood",
+      "description": "Equals true if a flood is detected",
+      "type": "boolean"
+    },
+    "magnet": {
+      "title": "Magnet",
+      "description": "Equals true if a magnet is detected on top of the device",
+      "type": "boolean"
+    },
+    "alarmValidated": {
+      "title": "Alarm validated",
+      "description": "Equals true if the Verify button was pressed during a leakage alarm",
+      "type": "boolean"
+    },
+    "manualOpenEnabled": {
+      "title": "Manual open enabled",
+      "description": "Equals true if manual opening of the valve is enabled",
+      "type": "boolean"
+    },
+    "manualCloseEnabled": {
+      "title": "Manual close enabled",
+      "description": "Equals true if manual closing of the valve is enabled",
+      "type": "boolean"
+    },
+    "closeTime": {
+      "title": "Close time",
+      "description": "Valve close time in reduced access mode in minutes",
+      "type": "integer",
+      "unit": "min"
+    },
+    "openTime": {
+      "title": "Open time",
+      "description": "Valve open time in reduced access mode in minutes",
+      "type": "integer",
+      "unit": "min"
+    }
+  },
+  "required": [
+    "messageType",
+    "boxTamper",
+    "floodWireBroken",
+    "flood",
+    "magnet",
+    "alarmValidated",
+    "manualOpenEnabled",
+    "manualCloseEnabled",
+    "closeTime",
+    "openTime"
+  ]
+}

@@ -14,7 +14,8 @@
         "KEEPALIVE",
         "TEST_BUTTON_PRESSED",
         "FLOOD_DETECTED",
-        "FRAUD_DETECTED"
+        "FRAUD_DETECTED",
+        "UNKNOWN"
       ]
     },
     "boxTamper": {
@@ -34,11 +35,5 @@
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     }
   },
-  "required": [
-    "messageType",
-    "boxTamper",
-    "flood",
-    "batteryVoltage",
-    "temperature"
-  ]
+  "required": ["messageType", "boxTamper", "flood", "batteryVoltage"]
 }

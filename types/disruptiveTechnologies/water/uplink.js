@@ -5,6 +5,7 @@ function consume(event) {
   const state = event.state || {};
 
   if (eventType === "waterPresent") {
+    sample.repeat = false;
     state.lastWaterPresent = event.data.waterPresent.state;
     state.lastSampleEmittedAt = now;
     sample.waterPresent = state.lastWaterPresent;
@@ -41,6 +42,7 @@ function consume(event) {
 
   // output a sample each hour to facilitate time series analysis
   if (state.lastSampleEmittedAt !== undefined && now - state.lastSampleEmittedAt >= 3600000) {
+    sample.repeat = true;
     sample.waterPresent = state.lastWaterPresent;
 
     if (state.lastWaterPresent === "PRESENT") {
