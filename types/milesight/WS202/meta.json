@@ -7,8 +7,15 @@
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": ["PIR", "Light"],
-  "outputTopics": ["default", "lifecycle"],
+  "availableSensors": [
+    "PIR",
+    "Light"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "occupancy"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA"
 }
