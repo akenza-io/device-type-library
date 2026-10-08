@@ -1,0 +1,196 @@
+{
+  "$id": "https://akenza.io/mclimate/co2Display/configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "configuration",
+  "title": "Configuration",
+  "properties": {
+    "hardwareVersion": {
+      "title": "Hardware version",
+      "description": "Hardware version of the device",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "softwareVersion": {
+      "title": "Software version",
+      "description": "Software (firmware) version of the device",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "keepAliveTime": {
+      "title": "Keepalive interval",
+      "description": "Interval between periodic uplinks in minutes",
+      "type": "integer",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "joinRetryPeriod": {
+      "title": "Join retry period",
+      "description": "Period between join attempts in minutes",
+      "type": "number",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "uplinkType": {
+      "title": "Uplink type",
+      "description": "0 = unconfirmed uplinks, 1 = confirmed uplinks",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "watchDogConfirmedUplinks": {
+      "title": "Watchdog confirmed uplinks",
+      "description": "Confirmed uplinks without a downlink before the device rejoins, 0 = disabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "watchDogUnconfirmedUplinks": {
+      "title": "Watchdog unconfirmed uplinks",
+      "description": "Unconfirmed uplinks without a downlink before the device rejoins, 0 = disabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "region": {
+      "title": "Region",
+      "description": "LoRaWAN region of the device",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "childLock": {
+      "title": "Child lock",
+      "description": "Equals true if the child lock is enabled",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "boundaryLevelGoodMedium": {
+      "title": "CO2 boundary good/medium",
+      "description": "CO2 boundary between the good and medium zones in ppm",
+      "type": "integer",
+      "unit": "ppm",
+      "hideFromKpis": true
+    },
+    "boundaryLevelMediumBad": {
+      "title": "CO2 boundary medium/bad",
+      "description": "CO2 boundary between the medium and bad zones in ppm",
+      "type": "integer",
+      "unit": "ppm",
+      "hideFromKpis": true
+    },
+    "autoZeroValue": {
+      "title": "Auto zero value",
+      "description": "CO2 auto zero calibration value in ppm",
+      "type": "integer",
+      "unit": "ppm",
+      "hideFromKpis": true
+    },
+    "measurementPeriodGoodZone": {
+      "title": "Measurement period (good zone)",
+      "description": "CO2 measurement period in the good CO2 zone",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "measurementPeriodMediumZone": {
+      "title": "Measurement period (medium zone)",
+      "description": "CO2 measurement period in the medium CO2 zone",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "measurementPeriodBadZone": {
+      "title": "Measurement period (bad zone)",
+      "description": "CO2 measurement period in the bad CO2 zone",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "autoZeroPeriod": {
+      "title": "Auto zero period",
+      "description": "CO2 auto zero calibration period in hours",
+      "type": "integer",
+      "unit": "h",
+      "hideFromKpis": true
+    },
+    "displayRefreshPeriod": {
+      "title": "Display refresh period",
+      "description": "Display refresh period",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "pirSensorStatus": {
+      "title": "PIR sensor status",
+      "description": "0 = disabled, 1 = enabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "pirSensorSensitivity": {
+      "title": "PIR sensor sensitivity",
+      "description": "PIR sensor sensitivity",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "currentTemperatureVisibility": {
+      "title": "Temperature visibility",
+      "description": "0 = the measured temperature is hidden on the display, 1 = shown",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "humidityVisibility": {
+      "title": "Humidity visibility",
+      "description": "0 = the humidity is hidden on the display, 1 = shown",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "lightIntensityVisibility": {
+      "title": "Light intensity visibility",
+      "description": "0 = the light intensity is hidden on the display, 1 = shown",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "pirInitPeriod": {
+      "title": "PIR init period",
+      "description": "PIR init period",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "pirMeasurementPeriod": {
+      "title": "PIR measurement period",
+      "description": "PIR measurement period",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "pirCheckPeriod": {
+      "title": "PIR check period",
+      "description": "PIR check period",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "pirBlindPeriod": {
+      "title": "PIR blind period",
+      "description": "PIR blind period",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "measurementBlindTime": {
+      "title": "CO2 measurement blind time",
+      "description": "CO2 measurement blind time",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "co2ChartVisibility": {
+      "title": "CO2 chart visibility",
+      "description": "0 = the CO2 chart is hidden on the display, 1 = shown",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "co2DigitalValueVisibility": {
+      "title": "CO2 value visibility",
+      "description": "0 = the CO2 value is hidden on the display, 1 = shown",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "co2EmojiVisibility": {
+      "title": "CO2 emoji visibility",
+      "description": "0 = the CO2 emoji and level are hidden on the display, 1 = shown",
+      "type": "integer",
+      "hideFromKpis": true
+    }
+  }
+}

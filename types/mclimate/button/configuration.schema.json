@@ -1,0 +1,84 @@
+{
+  "$id": "https://akenza.io/mclimate/button/configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "configuration",
+  "title": "Configuration",
+  "properties": {
+    "hardwareVersion": {
+      "title": "Hardware version",
+      "description": "Hardware version of the device",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "softwareVersion": {
+      "title": "Software version",
+      "description": "Software (firmware) version of the device",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "keepAliveTime": {
+      "title": "Keepalive interval",
+      "description": "Interval between periodic uplinks in minutes",
+      "type": "integer",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "joinRetryPeriod": {
+      "title": "Join retry period",
+      "description": "Period between join attempts in minutes",
+      "type": "number",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "uplinkType": {
+      "title": "Uplink type",
+      "description": "0 = unconfirmed uplinks, 1 = confirmed uplinks",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "watchDogConfirmedUplinks": {
+      "title": "Watchdog confirmed uplinks",
+      "description": "Confirmed uplinks without a downlink before the device rejoins, 0 = disabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "watchDogUnconfirmedUplinks": {
+      "title": "Watchdog unconfirmed uplinks",
+      "description": "Unconfirmed uplinks without a downlink before the device rejoins, 0 = disabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "region": {
+      "title": "Region",
+      "description": "LoRaWAN region of the device",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "sendEventLater": {
+      "title": "Send event later",
+      "description": "Send event later setting",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "singlePressEventCounter": {
+      "title": "Single press counter",
+      "description": "Number of single press events",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "doublePressEventCounter": {
+      "title": "Double press counter",
+      "description": "Number of double press events",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "triplePressEventCounter": {
+      "title": "Triple press counter",
+      "description": "Number of triple press events",
+      "type": "integer",
+      "hideFromKpis": true
+    }
+  }
+}

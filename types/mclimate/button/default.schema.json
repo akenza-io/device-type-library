@@ -10,7 +10,13 @@
       "title": "Press event",
       "description": "Press event",
       "type": "string",
-      "enum": ["NO_PRESS", "SINGLE_PRESS", "DOUBLE_PRESS", "TRIPLE_PRESS"]
+      "enum": [
+        "NO_PRESS",
+        "SINGLE_PRESS",
+        "DOUBLE_PRESS",
+        "TRIPLE_PRESS",
+        "UNKNOWN"
+      ]
     },
     "batteryVoltage": {
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"

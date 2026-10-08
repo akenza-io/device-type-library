@@ -1,0 +1,155 @@
+{
+  "$id": "https://akenza.io/mclimate/16ads/configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "configuration",
+  "title": "Configuration",
+  "properties": {
+    "hardwareVersion": {
+      "title": "Hardware version",
+      "description": "Hardware version of the device",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "softwareVersion": {
+      "title": "Software version",
+      "description": "Software (firmware) version of the device",
+      "type": "number",
+      "hideFromKpis": true
+    },
+    "keepAliveTime": {
+      "title": "Keepalive interval",
+      "description": "Interval between periodic uplinks in minutes",
+      "type": "integer",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "joinRetryPeriod": {
+      "title": "Join retry period",
+      "description": "Period between join attempts in minutes",
+      "type": "number",
+      "unit": "min",
+      "hideFromKpis": true
+    },
+    "uplinkType": {
+      "title": "Uplink type",
+      "description": "0 = unconfirmed uplinks, 1 = confirmed uplinks",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "watchDogConfirmedUplinks": {
+      "title": "Watchdog confirmed uplinks",
+      "description": "Confirmed uplinks without a downlink before the device rejoins, 0 = disabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "watchDogUnconfirmedUplinks": {
+      "title": "Watchdog unconfirmed uplinks",
+      "description": "Unconfirmed uplinks without a downlink before the device rejoins, 0 = disabled",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "region": {
+      "title": "Region",
+      "description": "LoRaWAN region of the device",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "overheatingThresholdTrigger": {
+      "title": "Overheating trigger",
+      "description": "Overheating trigger temperature in °C",
+      "type": "integer",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "overheatingThresholdRecovery": {
+      "title": "Overheating recovery",
+      "description": "Overheating recovery temperature in °C",
+      "type": "integer",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "relayStateChangeReason": {
+      "title": "Relay state change reason",
+      "description": "Reason of the last relay state change",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "relayTimerMillisecondsState": {
+      "title": "Relay timer (ms) state",
+      "description": "Relay state of the millisecond timer: 0 = off, 1 = on",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "relayTimerMillisecondsTime": {
+      "title": "Relay timer (ms) time",
+      "description": "Relay timer time in milliseconds",
+      "type": "integer",
+      "unit": "ms",
+      "hideFromKpis": true
+    },
+    "relayTimerSecondsState": {
+      "title": "Relay timer (s) state",
+      "description": "Relay state of the second timer: 0 = off, 1 = on",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "relayTimerSecondsTime": {
+      "title": "Relay timer (s) time",
+      "description": "Relay timer time in seconds",
+      "type": "integer",
+      "unit": "s",
+      "hideFromKpis": true
+    },
+    "afterOverheatingProtectionRecovery": {
+      "title": "Relay state after overheating recovery",
+      "description": "0 = last state, 1 = off",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "ledIndicationMode": {
+      "title": "LED indication mode",
+      "description": "0 = off, 1 = on",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "manualChangeRelayState": {
+      "title": "Manual relay state change",
+      "description": "Relay state after it was switched on the device: 0 = off, 1 = on",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "relayRecoveryState": {
+      "title": "Relay state after power return",
+      "description": "0 = last state, 1 = on, 2 = off",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "overheatingEventCount": {
+      "title": "Overheating events",
+      "description": "Number of overheating events",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "overheatingEventTemperature": {
+      "title": "Overheating event temperature",
+      "description": "Temperature of the last overheating event in °C",
+      "type": "integer",
+      "unit": "°C",
+      "hideFromKpis": true
+    },
+    "overheatingRecoveryTime": {
+      "title": "Overheating recovery time",
+      "description": "Overheating recovery time",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "relayState": {
+      "title": "Relay state",
+      "description": "Equals true if the relay is on",
+      "type": "boolean",
+      "hideFromKpis": true
+    }
+  }
+}

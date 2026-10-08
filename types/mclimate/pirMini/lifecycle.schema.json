@@ -1,0 +1,20 @@
+{
+  "$id": "https://akenza.io/mclimate/pirMini/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "batteryVoltage": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryVoltage/volt"
+    },
+    "lightSensorStatus": {
+      "title": "Light sensor status",
+      "description": "Status of the light sensor",
+      "type": "string",
+      "enum": ["OK", "DISABLED", "SENSOR_ERROR"]
+    }
+  },
+  "required": ["batteryVoltage", "lightSensorStatus"]
+}

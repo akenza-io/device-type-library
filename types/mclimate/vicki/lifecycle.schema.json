@@ -23,6 +23,36 @@
       "title": "Broken sensor",
       "description": "Broken sensor",
       "type": "boolean"
+    },
+    "calibrationFailed": {
+      "title": "Calibration failed",
+      "description": "Calibration failed",
+      "type": "boolean"
+    },
+    "attachedBackplate": {
+      "title": "Attached backplate",
+      "description": "Attached backplate",
+      "type": "boolean"
+    },
+    "perceiveAsOnline": {
+      "title": "Perceive as online",
+      "description": "Perceive as online",
+      "type": "boolean"
+    },
+    "antiFreezeProtection": {
+      "title": "Anti freeze protection",
+      "description": "Anti freeze protection",
+      "type": "boolean"
+    },
+    "d2dCommunicationReliable": {
+      "title": "D2D communication reliable",
+      "description": "Equals true if the device-to-device (D2D) communication is reliable",
+      "type": "boolean"
+    },
+    "batteryTooLow": {
+      "title": "Battery too low",
+      "description": "Equals true if the battery is too low",
+      "type": "boolean"
     }
   },
   "required": [
