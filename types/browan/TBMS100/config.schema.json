@@ -1,0 +1,50 @@
+{
+  "$id": "https://akenza.io/browan/tbms100/config.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "reportInterval": {
+      "title": "Report interval",
+      "unit": "sec",
+      "type": "integer",
+      "description": "Report interval",
+      "hideFromKpis": true
+    },
+    "occupiedOverride": {
+      "title": "Occupied override",
+      "unit": "sec",
+      "type": "integer",
+      "description": "Occupied override",
+      "hideFromKpis": true
+    },
+    "freeDetection": {
+      "title": "Free detection",
+      "unit": "min",
+      "type": "integer",
+      "description": "Free detection",
+      "hideFromKpis": true
+    },
+    "triggerCount": {
+      "title": "Trigger count",
+      "type": "integer",
+      "description": "Trigger count",
+      "hideFromKpis": true
+    },
+    "pirParameter": {
+      "title": "PIR Parameter",
+      "type": "string",
+      "description": "PIR Parameter",
+      "hideFromKpis": true
+    }
+  },
+  "required": [
+    "reportInterval",
+    "occupiedOverride",
+    "freeDetection",
+    "triggerCount",
+    "pirParameter"
+  ]
+}
