@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Yosensi",
   "url": "https://www.yosensi.io/products/yo_pure_pro/",
-  "description": "YO Pure Pro is a device for measuring indoor environmental conditions.",
+  "description": "Indoor sensor that measures CO2, CO, TVOC, PM2.5, PM4, PM10, temperature, humidity, pressure, illuminance and sound. Used for indoor air quality and comfort monitoring in offices, schools and public buildings.",
   "author": "Maciej Sacewicz",
   "firmwareVersion": "V3.6.3",
   "availableSensors": [

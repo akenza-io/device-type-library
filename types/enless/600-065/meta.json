@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Enless Wireless",
   "url": "https://enless-wireless.com/products/lorawan-door-window-opening-closing-detection-sensor/",
-  "description": "The LoRaWAN Enless open/close sensor is specially designed for indoor commercial environments. It enables real-time monitoring of the open or closed status of doors and windows, helping to secure premises and optimize building energy consumption.",
+  "description": "Open/close sensor for doors and windows in commercial buildings that reports the state in real time. Used for securing premises and reducing heating and cooling losses through open doors and windows.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.01.18",
   "loraDeviceClass": "A",

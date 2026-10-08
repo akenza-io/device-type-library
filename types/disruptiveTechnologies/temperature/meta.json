@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Disruptive Technologies",
   "url": "https://www.disruptive-technologies.com/products/wireless-sensors/wireless-temperature-sensor",
-  "description": "Measures the temperature in any space or on any surface. The temperature sensor is versatile and can enable dozens of applications, from desk occupancy and cold storage to energy efficiency and sustainability.",
+  "description": "Small sensor that measures the temperature of a space or on a surface and also reports touch events. Used for cold storage, room climate, equipment monitoring, desk occupancy and energy efficiency applications.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [

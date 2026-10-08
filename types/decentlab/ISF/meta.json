@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/sapflow-sensor-for-lorawan",
-  "description": "ISF is a sap flow sensor. Suitable for applications such as plant physiology, plant water use, hydraulic redistribution, hydrology, and irrigation scheduling.",
+  "description": "Sap flow sensor that measures water movement in plant stems and tree trunks. Used for plant physiology research, plant water use, hydraulic redistribution studies, hydrology and irrigation scheduling.",
   "author": "Decentlab",
   "firmwareVersion": "V1.6.0",
   "loraDeviceClass": "A",

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/high-precision-pressure-/-liquid-level-temperature-and-electrical-conductivity-sensor-for-lorawan",
-  "description": "PR36CTD includes pressure, temperature, and electrical conductivity sensors. It is suitable for measuring water levels and monitoring water quality, salinity, and chloride.",
+  "description": "Submersible sensor that measures hydrostatic pressure, temperature and electrical conductivity. Used for water level measurement and water quality, salinity and chloride monitoring in groundwater, wells and open water.",
   "author": "Decentlab",
   "firmwareVersion": "V1.6.0",
   "loraDeviceClass": "A",

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "netvox",
   "url": "http://www.netvox.com.tw/product.asp?pro=R718WA",
-  "description": "The R718WA is a Wireless Water Leak Detector for Netvox ClassA type devices based on the LoRaWAN open protocol and is compatible with the LoRaWAN protocol.",
+  "description": "Water leak detector that reports when water is detected at its sensing point. Placed on floors near pipes, water heaters, appliances or in technical and server rooms to detect leaks early and limit water damage.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [

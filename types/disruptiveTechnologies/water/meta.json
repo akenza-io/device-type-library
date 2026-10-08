@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Disruptive Technologies",
   "url": "https://www.disruptive-technologies.com/products/wireless-sensors/wireless-water-sensor",
-  "description": "The Wireless Water Sensor detects if there is water in contact with the sensor or not. The moment water comes in contact with the sensor it wirelessly transmits the results to the cloud through Cloud Connectors (gateway).",
+  "description": "Water sensor that detects whether water is in contact with the sensor and reports immediately when water is detected. Placed under sinks, appliances, pipes or in technical rooms for early leak detection.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [

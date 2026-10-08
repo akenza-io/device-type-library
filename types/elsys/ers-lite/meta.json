@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/en/eco/",
-  "description": "ERS is a sensor for simple and easy environment measuring. It measures temperature and humidity.",
+  "description": "Indoor sensor that measures room temperature and relative humidity. Used for basic room climate monitoring and comfort optimization in offices, schools, residential and commercial buildings.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.3.5",
   "loraDeviceClass": "A",

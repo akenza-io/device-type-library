@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/temperature-sensor-for-lorawan",
-  "description": "DS18 is equipped with a temperature sensor for measuring temperature. Suitable for applications such as outdoor remote monitoring, cold chain, storage, building automation, smart agriculture, open water, and tank temperature, etc.",
+  "description": "Temperature sensor with an external probe for measuring air, liquid or surface temperature. Used for outdoor remote monitoring, cold chain and storage, building automation, agriculture, open water and tank temperatures.",
   "author": "Decentlab",
   "firmwareVersion": "V1.6.0",
   "loraDeviceClass": "A",

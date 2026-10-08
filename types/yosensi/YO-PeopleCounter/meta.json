@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Yosensi",
   "url": "https://www.yosensi.io/products/yo_people_counter/",
-  "description": "YO People Counter is a bi-directional device that uses a novel 24 GHz radar transceiver to detect motion from both directions simultaneously.",
+  "description": "Bidirectional people counter with a 24 GHz radar that detects motion from both directions simultaneously and reports counts per direction. Also measures temperature and humidity and is used at doors and passageways.",
   "author": "Maciej Sacewicz",
   "firmwareVersion": "V3.6.4",
   "availableSensors": ["Temperature", "Humidity", "Motion"],

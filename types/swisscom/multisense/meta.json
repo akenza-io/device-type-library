@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Swisscom",
   "url": "https://www.swisscom.ch/de/business/enterprise/angebot/iot/multisense.html",
-  "description": "Multisense functionalities as Service Button, Workplace Detection, Humidity & Temperature, Magnet and Vibration.",
+  "description": "Multisensor that combines a service button, workplace occupancy detection, temperature and humidity, a magnetic contact and vibration detection. Its operating mode can be configured for different applications.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

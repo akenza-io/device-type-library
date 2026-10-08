@@ -3,7 +3,7 @@
   "version": "0.4.5",
   "manufacturer": "nke Watteco",
   "url": "https://www.watteco.com/product/bob-assistant-lorawan/",
-  "description": "BoB Assistant for predictive maintenance and operational assistance. Permanent monitoring of vibrations and recorded temperatures for isolated systems such as pumps, air conditioning or cooling units.",
+  "description": "Vibration and temperature sensor for predictive maintenance of pumps, air conditioning and cooling units. It learns the normal behavior of the machine and reports anomalies, alarms and machine runtime.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

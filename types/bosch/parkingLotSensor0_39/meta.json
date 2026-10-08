@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Bosch",
   "url": "https://www.bosch-mobility.com/en/",
-  "description": "The Parking Lot Sensor (PLS) detects and reports parking space occupancy, thus enabling active parking lot management features, such as search, navigation and reservation.",
+  "description": "In-ground sensor that detects whether a parking space is occupied, for firmware version 0.39. It reports occupancy, start-up and usage data, enabling parking functions such as space search, navigation and reservation.",
   "author": "Akenza AG",
   "firmwareVersion": "V0.39.2",
   "loraDeviceClass": "A",

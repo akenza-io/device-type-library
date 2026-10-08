@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "HKT",
   "url": "https://www.hkttech.com/cn/LoRa-People-Counter/",
-  "description": "The LoRa People Counter is a battery powered sensor for counting people crossing a horizontal line. The counter consists of two parts, an infrared (IR) transmitter part and an infrared receiver part, which always work together.",
+  "description": "Battery-powered people counter consisting of an infrared transmitter and an infrared receiver that work together. Counts people crossing the horizontal line between the two units in passageways, corridors and doors.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

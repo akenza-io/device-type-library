@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight.com/iot/product/lorawan-sensor/ct3xx",
-  "description": "The Smart Current Transformer is a LoRaWAN®-enabled device with a quick installation. It accurately estimates energy consumption with a sampling rate up to 3.3kHz and calculates cumulative ampere-hours every second, helping identify energy usage patterns for effective savings.",
+  "description": "Three-channel current transformer that samples at up to 3.3 kHz and calculates cumulative ampere-hours every second per channel. Used for energy monitoring and to identify consumption patterns in buildings.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

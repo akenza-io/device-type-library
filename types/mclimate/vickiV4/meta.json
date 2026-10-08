@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "MClimate",
   "url": "https://mclimate.eu/products/vicki-lorawan",
-  "description": "With Vicki's multi-room home heating control, you can not only turn on and off the radiators in your house, but adjust the heating power of each of them separately.",
+  "description": "Radiator thermostat with firmware version 4 that controls the valve of a radiator and measures room temperature and humidity. Allows each radiator to be adjusted individually for room-by-room heating control.",
   "author": "Akenza AG",
   "firmwareVersion": "V4.0.0",
   "loraDeviceClass": "C",

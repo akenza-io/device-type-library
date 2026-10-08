@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Aiut",
   "url": "https://aiut.com/en/solutions/iot/iot-systems-for-lpg/remote-monitoring-system-for-lpg-tanks/alevel-1x5-for-non-cellular-iot/",
-  "description": "ALEVEL 1x5 is an IoT smart tank sensor that clicks in to standard Rochester R3D® mechanical dials commonly used on float arm level gauges. Functions include tank fill detection, dial removal, spill detection, and high & low level alerts.",
+  "description": "Tank level sensor that clips onto standard mechanical dials of float arm level gauges. It reports fill level, dial removal and spills and raises high and low level alerts for remote monitoring of liquid tanks.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

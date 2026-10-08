@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Comtac",
   "url": "https://www.comtac.ch/en/products/all-products/monitoring-ios/cluey-km.html",
-  "description": "Cluey KM / TM / AM / MB for monitoring and control tasks in power, water or other infrastructure networks. Configurable to your needs",
+  "description": "Configurable I/O device with analog, digital, counter, temperature and Modbus inputs. Used for remote monitoring and control tasks in power, water and other infrastructure networks such as substations and pump stations.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "C",

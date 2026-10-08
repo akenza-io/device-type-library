@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/infrared-thermometer-/-surface-temperature-sensor-for-lorawan",
-  "description": "ITST is equipped with an infrared pyrometer (thermometer) for measuring surface temperature. Ideal for road surface monitoring, ice warning, and smart agriculture.",
+  "description": "Infrared pyrometer that measures the surface temperature of a target without contact. Used for road surface monitoring, ice warnings, frost detection and smart agriculture, for example for crop or soil temperature.",
   "author": "Decentlab",
   "firmwareVersion": "V1.6.0",
   "loraDeviceClass": "A",

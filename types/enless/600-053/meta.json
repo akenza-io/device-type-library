@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Enless Wireless",
   "url": "https://enless-wireless.com/products/co2-temperature-humidity-ambiance-lora-sensor/",
-  "description": "The Enless LoRaWAN CO₂, temperature, and humidity sensor is specifically designed for indoor commercial environments. It enables monitoring of key parameters essential to occupant comfort, such as CO₂ levels, temperature, and humidity, thereby ensuring an optimal indoor climate. ",
+  "description": "Indoor sensor that measures CO2, temperature and humidity in commercial buildings. Used for monitoring air quality, ventilation and occupant comfort in offices, meeting rooms, schools and public spaces.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.01.18",
   "loraDeviceClass": "A",

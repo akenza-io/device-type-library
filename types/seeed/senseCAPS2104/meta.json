@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Seeed",
   "url": "https://www.seeedstudio.com/SenseCAP-S2104-LoRaWAN-Soil-Temperature-and-Moisture-Sensor-p-5357.html",
-  "description": "SenseCAP S2104 - LoRaWAN Soil Temperature and Moisture sensors satisfies industrial long-distance data acquisition with a wide range of 0 ~ 100% (m³/m³) and -40 ~ 80C respectively.",
+  "description": "Soil sensor that measures soil moisture from 0 to 100 % volumetric water content and soil temperature from -40 to 80 °C. Used for irrigation control and soil monitoring in agriculture, horticulture and research.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

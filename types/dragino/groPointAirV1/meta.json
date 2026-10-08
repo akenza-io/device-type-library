@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Dragino",
   "url": "https://www.dragino.com/products/agriculture-weather-station/item/227-gropoint-air.html",
-  "description": "GroPoint Air is plug-and-play solution to get soil moisture and send wireless data.",
+  "description": "Plug-and-play soil probe that measures soil moisture and soil temperature and transmits the values wirelessly. Used for irrigation control and soil monitoring in agriculture, horticulture and landscaping.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

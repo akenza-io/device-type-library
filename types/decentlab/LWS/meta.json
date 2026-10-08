@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/leaf-wetness-sensor-for-lorawan",
-  "description": "LWS is  equipped with leaf wetness sensor. Suitable for applications such as outdoor remote monitoring, plant disease and infection prevention, greenhouse and soil-less plantations, and smart agriculture.",
+  "description": "Leaf wetness sensor that measures moisture on plant surfaces as a leaf wetness index. Used for outdoor monitoring and plant disease and infection prevention in fields, greenhouses and soilless plantations.",
   "author": "Decentlab",
   "firmwareVersion": "V1.6.0",
   "loraDeviceClass": "A",

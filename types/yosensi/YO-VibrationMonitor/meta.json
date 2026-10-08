@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Yosensi",
   "url": "https://www.yosensi.io/products/yo_vibration_monitor/",
-  "description": "YO Vibration Monitor is a device for monitoring vibrations in electric motors.",
+  "description": "Vibration sensor for electric motors that measures RMS and peak acceleration, velocity, displacement and statistical values such as kurtosis. Also measures temperature and humidity for condition monitoring.",
   "author": "Maciej Sacewicz",
   "firmwareVersion": "V1.1.1",
   "availableSensors": [

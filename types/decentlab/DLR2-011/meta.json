@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/analog-or-digital-sensor-device-for-lorawan",
-  "description": "DLR2-011 is an Analog or Digital Sensor Device that consists of a Dual Digital Input Dry Contact sensor interface.",
+  "description": "Interface device with two dry contact digital inputs. It reports the on/off state of connected equipment such as switches, relays, door contacts or alarm outputs, used for remote status monitoring of installations.",
   "author": "Decentlab",
   "firmwareVersion": "V1.6.0",
   "loraDeviceClass": "A",

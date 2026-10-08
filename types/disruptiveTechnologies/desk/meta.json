@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Disruptive Technologies",
   "url": "https://www.disruptive-technologies.com/sensors/desk-occupancy-sensor",
-  "description": "Detects the presence of a person at a desk.",
+  "description": "Small desk sensor that detects the presence of a person at a desk and also reports touch events. Used for desk occupancy monitoring, hot desking and workspace utilization analysis in offices.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [

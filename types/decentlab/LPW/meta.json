@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/linear-position-/-way-for-lorawan",
-  "description": "LPW is a linear position sensor. Suitable for applications such as crack measurements, displacement monitoring, terrain changes, environmental changes, structural health monitoring, and bearings.",
+  "description": "Linear position sensor that measures displacement with a potentiometer. Used for crack measurement, displacement monitoring, terrain and environmental changes, structural health monitoring and bearing movement.",
   "author": "Decentlab",
   "firmwareVersion": "V1.6.0",
   "loraDeviceClass": "A",

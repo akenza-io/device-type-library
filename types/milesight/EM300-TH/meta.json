@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight-iot.com/lorawan/sensor/em300-th/",
-  "description": "EM300-TH Adopts Sensirion industrial-grade digital temperature & humidity sensor, providing ±0.3°C high accuracy of temperature and ±3% RH of humidity. With a IP67 rated enclosure.",
+  "description": "Temperature and humidity sensor with an IP67 enclosure and an accuracy of ±0.3 °C and ±3 %RH. Uses an industrial-grade digital sensor and is used for monitoring storage areas, fridges, rooms and outdoor spaces.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

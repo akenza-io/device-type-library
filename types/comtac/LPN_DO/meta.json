@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Comtac",
   "url": "https://www.comtac.ch/en/products/all-products/monitoring-ios/lpn-do.html",
-  "description": "The device allows the control on two solid state relays (24VDC/500mA).",
+  "description": "Output device with two solid state relays (24 VDC, 500 mA) that are switched remotely. Used to control equipment such as lights, valves, pumps or signal lamps and to report the current relay status.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "C",

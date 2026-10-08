@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "AstraLED",
   "url": "https://www.astra-led.ch/produkte/smartline/",
-  "description": "AstraLED Indoor LoRaWAN® device for measuring the indoor environment and signaling those through different colors",
+  "description": "Indoor luminaire with integrated sensors that measure temperature, humidity, CO2, VOC, particulate matter and light. It indicates indoor air quality to occupants by changing the color of its light.",
   "author": "Akenza AG",
   "firmwareVersion": "V0.0.3",
   "loraDeviceClass": "C",

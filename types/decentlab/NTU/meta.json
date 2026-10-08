@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/optical-turbidity-and-temperature-sensor-for-lorawan",
-  "description": "NTU is equipped with optical infrared turbidity and temperature sensors for water quality monitoring.",
+  "description": "Water quality sensor that measures turbidity with an optical infrared sensor as well as water temperature. Used for continuous monitoring of surface water, drinking water, process water and wastewater quality.",
   "author": "Decentlab",
   "firmwareVersion": "V1.6.0",
   "loraDeviceClass": "A",

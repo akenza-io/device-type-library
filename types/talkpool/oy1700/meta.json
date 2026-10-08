@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Nordic Propeye",
   "url": "https://nordicpropeye.com/iot-sensors/oy1700/",
-  "description": "OY1700 Air quality (PM) sensor is designed to measure PM10, PM2.5, PM1.0, temperature and humidity in indoor environments. The sensor is intended for indoor climate control and monitoring indoor air quality. It is optimized for reliable and secure operations.",
+  "description": "Indoor sensor that measures particulate matter (PM1, PM2.5 and PM10), temperature and humidity. Used for indoor air quality monitoring and climate control in offices, schools, homes and commercial buildings.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

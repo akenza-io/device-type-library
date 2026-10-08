@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Netvox",
   "url": "http://www.netvox.com.tw/product.asp?pro=R312A",
-  "description": "The R312A is an emergency button switch device that detects the closing or opening signal of the emergency button switch.",
+  "description": "Emergency button that detects when the button switch is pressed or released and reports each event. Used for panic and emergency calls in care homes, hospitals, offices and public buildings to alert staff quickly.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

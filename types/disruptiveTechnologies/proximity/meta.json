@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Disruptive Technologies",
   "url": "https://www.disruptive-technologies.com/products/wireless-sensors/wireless-proximity-sensor",
-  "description": "The Wireless Proximity Sensor can detect objects that are removed or placed in front of the sensor. In addition to periodic heartbeats every 15 minutes, the sensor transmits a message when an object is removed or placed in front of the sensor.",
+  "description": "Proximity sensor that detects whether an object is placed in front of it or removed. Used for door states, door counts and washroom usage, with an event on each change and a heartbeat every 15 minutes.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [

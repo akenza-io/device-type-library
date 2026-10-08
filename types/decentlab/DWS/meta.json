@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/weighing-scale-for-lorawan",
-  "description": "The DWS is a weighing scale sensor that cyclically measures weight using a vibrating wire mechanism.",
+  "description": "Weighing scale sensor that measures weight cyclically using a vibrating wire mechanism. Used for remote monitoring of loads such as containers, silos and stored goods, where the weight indicates the fill level.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.0.0",
   "loraDeviceClass": "A",

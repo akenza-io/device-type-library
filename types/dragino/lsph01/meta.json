@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Dragino",
   "url": "https://www.dragino.com/products/agriculture-weather-station/item/184-lsph01.html",
-  "description": "The Dragino LSPH01 is a LoRaWAN Soil pH Sensor for IoT of Agriculture. It is designed to measure the soil PH and soil temperature, so to send to the platform to analyze the soil acid or alkali level. The probe is IP68 waterproof.",
+  "description": "Soil probe that measures soil pH and soil temperature to determine the acidity or alkalinity of the soil. The probe is IP68 waterproof and is used in agriculture to support fertilization and crop planning.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

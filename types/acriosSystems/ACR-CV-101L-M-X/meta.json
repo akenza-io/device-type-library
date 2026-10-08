@@ -3,7 +3,7 @@
     "version": "1.1.0",
     "manufacturer": "ACRIOS Systems",
     "url": "https://www.acrios.com/converters/m-bus-lorawan",
-    "description": "Versatile IoT converter that enables readout of M-Bus devices.",
+    "description": "Converter that reads out wired M-Bus devices such as electricity, water, gas and heat meters. It transmits the meter data wirelessly at configurable intervals, enabling remote metering in existing installations.",
     "author": "ACRIOS Systems",
     "firmwareVersion": "V2.3.18",
     "loraDeviceClass": "A",

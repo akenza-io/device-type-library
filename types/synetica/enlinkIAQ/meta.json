@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Synetica",
   "url": "https://synetica.net/enlink-iaq/",
-  "description": "enLink IAQ accurately measures up to nine key indoor air quality parameters with class leading accuracy. Available with temperature, relative humidity, particulate matter, CO2, Ozone, VOC's, barometric pressure and sound level. Plus, an optional gas sensor, for example, CH2O, CO, NO2, H2S, SO2.",
+  "description": "Indoor air quality monitor that measures up to nine parameters, including CO2, VOC, particulate matter, temperature, humidity and pressure. Optional gas sensors are available for gases such as CO, NO2 or formaldehyde.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

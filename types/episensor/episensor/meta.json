@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Episensor",
   "url": "https://episensor.com/",
-  "description": "Episensor connector",
+  "description": "Cloud integration for energy monitoring devices that forwards electrical power measurements and error messages. Used for energy consumption analysis, sub-metering and load monitoring in buildings and plants.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [

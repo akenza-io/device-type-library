@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/analog-or-digital-sensor-device-for-lorawan",
-  "description": "DLR2-002 is an Analog or Digital Sensor Device that consists of a Pulse Counter Dry Contact sensor interface.",
+  "description": "Interface device with a dry contact pulse counter input. It connects to water, gas or electricity meters and other pulse outputs to count consumption or events remotely, for example in utility metering.",
   "author": "Decentlab",
   "firmwareVersion": "V1.6.0",
   "loraDeviceClass": "A",

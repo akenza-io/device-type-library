@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Pressac",
   "url": "https://www.pressac.com/environment-sensors/lorawan-room-conditions-sensors/",
-  "description": "Pressac's LoRaWAN® Room Conditions Sensor accurately measures occupancy, light, sound, temperature and humidity, providing essential data for IoT platforms for healthier, more efficient buildings.",
+  "description": "Room conditions sensor that detects occupancy with a PIR sensor and measures light, sound, temperature and humidity. Used for room climate and occupancy monitoring to support healthier and more efficient buildings.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

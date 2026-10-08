@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "manufacturer": "Tektelic",
   "url": "https://tektelic.com/products/sensors/vivid-pir-smart-room-sensor/",
-  "description": "Ideal for holistically monitoring the home and office environment, whether it is measuring and reporting temperature, humidity, open/closed doors and windows, pir/occupancy or other custom features.",
+  "description": "Indoor sensor that measures temperature and humidity, detects occupancy with PIR and detects open or closed doors and windows. Used in homes and offices for comfort monitoring and room utilization analysis.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.2.0",
   "loraDeviceClass": "A",

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Tridium",
   "url": "https://www.tridium.com/us/en/Products/niagara/jace",
-  "description": "Niagara building control system integration for water values",
+  "description": "Integration of a building management system that forwards water consumption values. It makes meter data from existing building control systems available for consumption monitoring, reporting and leak detection.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

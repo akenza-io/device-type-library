@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Yosensi",
   "url": "https://www.yosensi.io/products/yo_refrigerant_monitor/",
-  "description": "YO Refrigerant Monitor provides data on installation pressure.",
+  "description": "Sensor that measures refrigerant pressure in cooling installations as well as temperature and humidity. Used for monitoring refrigeration and air conditioning systems to detect pressure drops and leaks early.",
   "author": "Maciej Sacewicz",
   "firmwareVersion": "V3.6.2",
   "availableSensors": [

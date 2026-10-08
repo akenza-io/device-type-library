@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Yanzi",
   "url": "https://yanzi.se/products/#",
-  "description": "This device monitors occupancy as well as temperature, humidity, and ambient light. Easily mounted directly onto surfaces, no drilling required.",
+  "description": "Indoor sensor that detects occupancy and measures temperature, humidity, ambient light and sound. It is mounted directly on surfaces without drilling and used for space utilization and indoor climate monitoring.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": ["Motion", "Temperature", "Humidity", "Light", "Sound"],

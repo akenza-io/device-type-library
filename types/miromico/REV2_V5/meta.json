@@ -3,7 +3,7 @@
   "version": "6.0.0",
   "manufacturer": "Miromico",
   "url": "https://miromico.ch/portfolio/iot-button-rev2/",
-  "description": "The miro Click can be used as a service-ondemand button, remote control, emergency or notification button and much more. It contains four integrated buttons and is configured over the air either as a single-, two- or four-button button device.",
+  "description": "Button device with four integrated buttons that can be configured over the air as a single, two or four-button device. Used for service on demand, remote control, emergency calls, feedback and notifications in buildings.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.1.4",
   "loraDeviceClass": "A",

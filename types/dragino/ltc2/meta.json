@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Dragino",
   "url": "https://www.dragino.com/products/temperature-humidity-sensor/item/170-ltc2.html",
-  "description": "The Dragino LTC2 Industrial LoRaWAN Temperature Transmitter is designed to monitor temperature for different environment. It supports to read PT100 probe and convert the value to temperature and uplink to IoT server via LoRaWAN protocol",
+  "description": "Industrial temperature transmitter that reads a PT100 probe and converts the value to temperature. Used for monitoring temperatures in fridges, freezers, pipes, machines and industrial processes.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

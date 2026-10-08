@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Dragino",
   "url": "https://www.dragino.com/products/temperature-humidity-sensor/item/352-t68dl.html",
-  "description": "The Dragino T68DL Temperature sensor is a Long Range LoRaWAN Sensor with IP68 waterproof rating.",
+  "description": "Waterproof temperature sensor with an IP68 rating that reports temperature readings and device status. Supports offline datalogging and is used for monitoring fridges, freezers, liquids and outdoor temperatures.",
   "author": "Philipp Walker",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

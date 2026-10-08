@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight-iot.com/lorawan/sensor/em310-udl/",
-  "description": "Milesight EM310-UDL is a LoRa ultrasonic distance sensor mainlyfor the detection of waste bin and other container's fill level. With a compact size and wide measure range, EM310-UDL can be installed to any types of waste bins or containers to monitor solid or liquid level. Besides, EM310-UDL equips with 3-axis accelerometer to detect the status of container cover.",
+  "description": "Ultrasonic distance sensor that measures the fill level of waste bins and other containers with solid or liquid content. A 3-axis accelerometer detects whether the lid is open, and the housing fits most bin types.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "IMBuildings",
   "url": "https://imbuildings.com/products/moodbox-lorawan/",
-  "description": "The moodbox is an easy to use and integratable user feedback device.",
+  "description": "Feedback device with buttons that let users rate a service or space. Each press is reported as an event, enabling satisfaction tracking in washrooms, receptions, canteens and other shared facilities.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [

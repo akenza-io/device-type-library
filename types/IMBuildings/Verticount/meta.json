@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "IMBuildings",
   "url": "https://imbuildings.com/products/verticount-pro/",
-  "description": "The VertiCount Pro is used for accurate counting without setting up count lines or calibration. By measuring movements in passageways the utilisation of a building or room can be determined.",
+  "description": "Ceiling-mounted people counter that detects movements through passageways without count lines or calibration. It reports in and out counts and running totals to determine building and room utilization.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

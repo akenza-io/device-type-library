@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight.com/iot/product/lorawan-sensor/vs34x",
-  "description": "Based on the dual-technology of PIR and thermopile, VS341 is designed for bringing higher accuracy and quick occupancy status detecting for more specific applications.",
+  "description": "Occupancy sensor that combines PIR and thermopile detection for higher accuracy and fast occupancy status changes. Used for desk and room utilization monitoring and space planning in offices and meeting rooms.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/en/ems-lite/",
-  "description": "Inside EMS Lite, you will find internal sensors for measuring the indoor temperature and humidity. It also has a water leak detector. Typical use cases for this sensor is easy indoor environment measuring and water leak detection for facility management.",
+  "description": "Indoor sensor that measures temperature and humidity and has a built-in water leak detector. Used for room climate monitoring and leak detection in facility management, for example in kitchens or technical rooms.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.3.5",
   "loraDeviceClass": "A",

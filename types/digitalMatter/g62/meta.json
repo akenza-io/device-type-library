@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Digital Matter",
   "url": "https://www.digitalmatter.com/devices/g70/",
-  "description": "Rugged and robust vehicle, trailer, or heavy equipment tracking device with inputs/outputs.",
+  "description": "Rugged GPS tracker with inputs and outputs for vehicles, trailers and heavy equipment. It reports location, odometer and digital input states, used for fleet management and monitoring of machine usage.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

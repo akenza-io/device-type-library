@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/en/ers-co2-lite/",
-  "description": "ERS CO2 Lite gives you the opportunity to create the best possible workplace, classroom, library, or another public area. The sensor measures CO2, temperature and humidity.",
+  "description": "Indoor sensor that measures CO2, temperature and humidity in occupied rooms. Used for monitoring air quality and ventilation in workplaces, classrooms, libraries and other public areas.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.3.5",
   "loraDeviceClass": "A",

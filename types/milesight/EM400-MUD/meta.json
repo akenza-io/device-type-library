@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight-iot.com/products/lorawan-sensor/em400-mud/",
-  "description": "EM400-MUD is a versatile device among EM400 series, that are equipped with multiple application modes catering to a variety of scenarios such as smart waste management, smart parking and other distance / level measurement applications. EM400-MUD constitutes a powerful solution with its various modes, extended battery life, and robust build, providing a cost-effective and reliable option to enhance efficiency.",
+  "description": "Multipurpose distance sensor with modes for waste bin fill level, parking space occupancy and general distance or level measurement. Also measures temperature and has a robust build with extended battery life.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

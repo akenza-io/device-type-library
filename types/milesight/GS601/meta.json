@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight.com/iot/product/lorawan-sensor/gs601",
-  "description": "LoRaWAN-based vape detector designed to identify e-cigarette usage, cannabis smoke, and monitor various environmental factors indoors, including temperature, humidity, TVOC, and particulate matter.",
+  "description": "Vape detector that detects e-cigarette use and cannabis smoke indoors and sends alerts. Also measures temperature, humidity, TVOC and particulate matter and is used in schools, washrooms and other non-smoking areas.",
   "author": "Akenza AG",
   "availableSensors": [
     "Vape",

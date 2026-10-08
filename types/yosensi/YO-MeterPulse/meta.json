@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Yosensi",
   "url": "https://www.yosensi.io/products/yo_meter_pulse/",
-  "description": "YO Meter (pulse) input accepts connection to potential-free contacts.",
+  "description": "Pulse counter with an input for potential-free contacts of utility meters that reports periodic and total pulse counts. It also measures temperature and humidity and is used to read water, gas or energy meters remotely.",
   "author": "Maciej Sacewicz",
   "firmwareVersion": "V3.6.4",
   "availableSensors": [

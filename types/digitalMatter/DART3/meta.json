@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Digital Matter",
   "url": "https://www.digitalmatter.com/devices/dart3/",
-  "description": "Robust and affordable vehicle tracking device with inputs/outputs, remote immobilization for fleet management, driver ID, driver safety and behavior monitoring, theft recovery, and more",
+  "description": "GPS vehicle tracker with inputs and outputs and remote immobilization. It reports location and input states and is used for fleet management, driver identification, driver behavior monitoring and theft recovery.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [

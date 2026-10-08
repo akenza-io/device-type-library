@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Digital Matter",
   "url": "https://www.digitalmatter.com/devices/guppy-lorawan/",
-  "description": "Tiny, lightweight and ultra-rugged battery-powered geolocation tag for affordable indoor and outdoor asset monitoring on LoRaWAN® networks",
+  "description": "Small, lightweight battery-powered geolocation tag for indoor and outdoor asset monitoring. It reports location, movement and temperature and is built rugged for tracking tools, containers and returnable assets.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Plenom",
   "url": "https://www.plenom.com/products/kuando-busylight-iot-lorawan/",
-  "description": "The kuando Busylight can be installed in large variety of use cases. Through a downlink the Busylight can be programmed to show any color and used as a visual notifier, indicating a certain event, status or as a cue for specific handling.",
+  "description": "Signal light that shows any color set remotely by downlink command. Used as a visual indicator for events and status, such as room or desk availability, or as a cue for staff to take a specific action.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "C",

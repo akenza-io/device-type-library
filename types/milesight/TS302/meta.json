@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight.com/iot/product/lorawan-sensor/ts30x",
-  "description": "TS301/TS302, the LoRaWAN® temperature sensor with an LCD display. This device seamlessly connects to high-accuracy PT100 temperature probes and door magnetic sensors. Ideal for the food processing, pharmaceutical storage, and cold chain industries.",
+  "description": "Temperature sensor with an LCD display that connects to two PT100 probes and door magnetic contacts. Sends threshold alarms and is used for monitoring cold rooms in food processing, pharmaceutical storage and cold chain.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

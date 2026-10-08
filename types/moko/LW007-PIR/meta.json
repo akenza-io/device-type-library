@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "MOKOSMART",
   "url": "https://www.mokosmart.com/lorawan-pir-motion-sensor-lw007-pir/",
-  "description": "The LW007-PIR is a passive infrared-based LoRaWAN PIR sensor used to detect motion or occupancy. It can detect whether there is movement within the detection range and send this status change via LoRaWAN network.",
+  "description": "PIR sensor that detects motion and occupancy within its detection range based on passive infrared. Also measures temperature and humidity and reports status changes, used for room occupancy and presence monitoring.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

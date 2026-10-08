@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight-iot.com/lorawan/sensor/ws203/",
-  "description": "WS203 is a wireless environmental monitoring sensor detecting the motion of humans or animals, surrounding temp and humidity. It ensures the indoor environment at a preset comfort level via pairing with HVAC system if motions are being detected, which is a huge energy saver and brings much comfort.",
+  "description": "Indoor sensor that detects motion with a PIR detector and measures temperature and humidity. Used with HVAC systems to maintain comfort only when a room is occupied, which reduces energy consumption in buildings.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

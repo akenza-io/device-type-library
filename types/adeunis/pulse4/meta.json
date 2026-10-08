@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Adeunis",
   "url": "https://www.adeunis.com/en/produit/pulse-impulse-interface/",
-  "description": "Meter flow rate monitoring from water, gas and electricity meters. Up to 2 connectable meters. Detection of tampers and leaks.",
+  "description": "Pulse counter for water, gas and electricity meters with up to two connected meters. It reports consumption and flow rate and detects tampering and leaks, supporting remote utility monitoring in buildings.",
   "author": "Akenza AG",
   "firmwareVersion": "V4.0.0",
   "availableSensors": [

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Vega",
   "url": "https://www.vega.com/en-us/products/product-catalog/level/radar/vegapuls-air-23",
-  "description": "The VEGAPULS Air 23 radar sensor is ideal for non-contact level measurement of almost all liquids and bulk solids. It can measure through the closed ceiling of the vessel, making it well-suited for use in IBCs and plastic containers. The rugged sensor housing with IP69 protection ensures reliable, maintenance-free operation even in outdoor environments or during cleaning processes.",
+  "description": "Radar level sensor with IP69 housing for non-contact measurement of almost all liquids and bulk solids. Measures through closed plastic vessel tops, for example on IBCs, and operates outdoors and during cleaning.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

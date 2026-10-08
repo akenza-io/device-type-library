@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Netvox",
   "url": "http://www.netvox.com.tw/product.asp?pro=R603",
-  "description": "R603 is a wireless customized voice announcer. With 10 default alarm sounds (emergency/doorbell/burglar alarm…) and programmable RGB LED light. Its backup battery supports non-stop operation when the main power source fails.",
+  "description": "Wireless voice announcer with 10 alarm sounds such as emergency, doorbell or burglar alarm and a programmable RGB LED. A backup battery keeps it running during power failures, used for alerts in buildings.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "C",

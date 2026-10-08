@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Yosensi",
   "url": "https://www.yosensi.io/products/yo_analog/",
-  "description": "YO Analog makes it possible to monitor devices and processes in automation.",
+  "description": "Interface device with six analog input channels for current and voltage signals from external sensors. Used for monitoring devices and processes in industrial and building automation, such as pressure transmitters.",
   "author": "Maciej Sacewicz",
   "firmwareVersion": "V3.6.2",
   "availableSensors": [
@@ -21,6 +21,6 @@
   "encoding": "HEX",
   "connectivity": "LORA",
   "useCases": [
-    "Energy & Utility Meterin"
+    "Energy & Utility Metering"
   ]
 }

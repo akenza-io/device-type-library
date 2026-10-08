@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/temperature-profile-for-lorawan",
-  "description": "TP comes with temperature profiling sensors that can be used in monitoring of glaciers, lakes, ocean, permafrost, dike, dam and soils.",
+  "description": "Temperature profile sensor with multiple measuring points along a cable that record temperature at different depths. Used for monitoring glaciers, lakes, oceans, permafrost, dikes, dams and soils.",
   "author": "Decentlab",
   "firmwareVersion": "V1.6.0",
   "loraDeviceClass": "A",

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Comtac",
   "url": "https://www.comtac.ch/en/products/all-products/sensors/lpn-cm-1-sensor.html",
-  "description": "The LPN CM-1 has a built in temperature and humidity sensor.",
+  "description": "Compact sensor that measures temperature and humidity and has a push button that reports press events. Used for monitoring indoor climate in rooms, technical spaces, server rooms and storage areas.",
   "author": "Akenza AG",
   "firmwareVersion": "V0.0.7",
   "loraDeviceClass": "A",

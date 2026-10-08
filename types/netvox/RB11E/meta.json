@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "netvox",
   "url": "http://www.netvox.com.tw/product.asp?pro=RB11E",
-  "description": "The RB11E is a Wireless Occupancy & Temperature & Light Sensor for Netvox ClassA type devices based on the LoRaWAN open protocol and is compatible with the LoRaWAN protocol.",
+  "description": "Indoor sensor that detects occupancy with a PIR sensor and measures temperature and light. Used for room occupancy monitoring, space utilization analysis and indoor climate monitoring in offices and buildings.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [

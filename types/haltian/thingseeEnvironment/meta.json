@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Haltian",
   "url": "https://haltian.com/product/thingsee-environment/",
-  "description": "Thingsee ENVIRONMENT is a multipurpose, retrofittable, wireless IoT device for environment monitoring. It can be used for a variety of business verticals.",
+  "description": "Retrofittable multipurpose sensor that measures temperature, humidity, pressure, light, magnetic field and acceleration. Used for environment, door and vibration monitoring in facilities and other verticals.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [

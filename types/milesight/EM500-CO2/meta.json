@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight-iot.com/lorawan/sensor/em500-co2/",
-  "description": "EM500-CO2 is designed for measuring gaseous carbon dioxide (CO2) concentration in harsh environments. Besides, it also supports temperature, humidity and barometric pressure measurement.",
+  "description": "Sensor in a rugged enclosure that measures CO2 concentration, temperature, humidity and barometric pressure. Built for harsh environments and used in greenhouses, livestock farms, warehouses and industrial sites.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

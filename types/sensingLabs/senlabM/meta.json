@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Sensing Labs",
   "url": "https://sensing-labs.com/portfolio-item/senlab-led/",
-  "description": "The Senlab M is an intelligent LoRaWAN™ sensor with an external probe for pulse measurement (LED flashing pulse). The small form and discreet design of the Senlab M Indoor are ideal for use in offices and homes. Typical applications include consumption measurement and recording of water, gas and electricity meter readings.",
+  "description": "Pulse counter with an external optical probe that reads the LED flashes of utility meters. Its small, discreet housing suits offices and homes, where it records consumption of water, gas and electricity meters.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

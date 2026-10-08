@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight-iot.com/lorawan/sensor/wt201/",
-  "description": "Milesight WT201 smart thermostat can be used for HVAC control. Unlike traditional thermostats, it offers remote control capabilities.",
+  "description": "Thermostat for HVAC systems that measures room temperature and controls heating, cooling and fan operation. Replaces conventional wall thermostats and supports remote control, schedules and alerts.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

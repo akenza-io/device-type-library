@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Comtac",
   "url": "https://www.comtac.ch/en/products/all-products/sensors/lpn-cm-3-sensor.html",
-  "description": "The LPN CM-3 has a built in temperature and humidity Sensor and an external PT100 sensor for measuring external temperature",
+  "description": "Sensor that measures temperature and humidity with an additional external PT100 probe for external temperature. Used for monitoring temperatures in fridges, freezers, pipes and processes, with stored history data.",
   "author": "Akenza AG",
   "firmwareVersion": "V0.0.2",
   "availableSensors": ["Temperature"],

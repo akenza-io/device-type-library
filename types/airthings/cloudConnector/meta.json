@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Airthings",
   "url": "https://www.airthings.com/en/",
-  "description": "Airthings Cloud Connector",
+  "description": "Cloud integration for indoor air quality sensors that measure radon, CO2, VOC, particulate matter, temperature, humidity, pressure, light, sound and occupancy. It also reports ventilation, mold and virus risk.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [

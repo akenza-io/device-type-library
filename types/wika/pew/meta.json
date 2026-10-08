@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Wika",
   "url": "https://www.wika.com/en-en/pew_1000.WIKA",
-  "description": "The model PEW-1000 is a radio-based pressure sensor for monitoring liquids and gases.",
+  "description": "Wireless pressure sensor that measures the pressure of liquids and gases as well as temperature. Used for remote monitoring of pipelines, tanks and process equipment, with process and technical alarms.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

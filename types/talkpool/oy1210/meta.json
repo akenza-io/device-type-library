@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Nordic Propeye",
   "url": "https://talkpool.com/oy1210-lorawan-co2-meter/",
-  "description": "OY1210 CO2 meter measures temperature, humidity and carbon dioxide. Supports adaptive reporting functions to detect rapid changes in CO2 values.",
+  "description": "Indoor sensor that measures CO2, temperature and humidity for indoor air quality monitoring. Supports adaptive reporting to detect rapid changes in CO2 values, for example in meeting rooms, classrooms and offices.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Pressac",
   "url": "https://www.pressac.com/environment-sensors/lorawan-indoor-air-quality-sensors/",
-  "description": "Pressac's LoRaWAN® Indoor air quality sensor accurately measures the environmental conditions providing essential data for IoT platforms for healthier, more efficient buildings.",
+  "description": "Indoor sensor that measures CO2, TVOC, particulate matter (PM1 to PM10), temperature, humidity, light and sound and detects motion with PIR. Used for indoor air quality and occupancy monitoring in buildings.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

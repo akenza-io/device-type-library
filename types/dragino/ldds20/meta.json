@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Dragino",
   "url": "https://www.dragino.com/products/distance-level-sensor/item/164-ldds20.html",
-  "description": "The Dragino LDDS20 is a LoRaWAN Ultrasonic liquid level sensor for Internet of Things solution. It uses non contact method to measure the height of liquid in a container without opening the container, and send the value via LoRaWAN network to IoT Server.",
+  "description": "Ultrasonic liquid level sensor mounted below a container that also reports temperature. Measures the height of the liquid through the container wall without contact or opening the container, for example in tanks.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Enless Wireless",
   "url": "https://enless-wireless.com/products/lorawan-light-presence-sensor/",
-  "description": " The Enless LoRaWAN Light, Presence, Temperature, and Humidity Sensor is specifically designed for tertiary and residential indoor environments. Developed to optimize indoor comfort and the energy efficiency of buildings, this sensor allows for precise monitoring of light levels, temperature, humidity, and presence within a room. ",
+  "description": "Indoor sensor that measures light, presence, temperature and humidity in a room. Used for occupant comfort, occupancy detection and energy efficiency in commercial and residential buildings.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.01.18",
   "loraDeviceClass": "A",

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Quandify",
   "url": "https://quandify.com/cubicmeter",
-  "description": "Clamp-on water flow meter and leak sensor.",
+  "description": "Clamp-on ultrasonic water meter for plastic pipes that measures water volume and water temperature. It is mounted on the outside of the pipe without cutting it and detects leaks for water consumption monitoring.",
   "author": "Quandify AB",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

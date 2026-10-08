@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/laser-distance-level-sensor-for-lorawan",
-  "description": "LID is equipped with a distance/level sensor for measuring distance. Suitable for generic ranging and proximity monitoring, snow level monitoring, water level monitoring, and flood monitoring.",
+  "description": "Distance sensor that measures the range to a target from a fixed mounting point. Used for generic ranging and proximity measurement, snow level, water level and flood monitoring at rivers, lakes and tanks.",
   "author": "Decentlab",
   "firmwareVersion": "V1.6.0",
   "loraDeviceClass": "A",

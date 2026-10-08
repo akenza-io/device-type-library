@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Integra",
   "url": "https://ch.integra-metering.com/product/aquastream-lora/",
-  "description": "LoRa communication module for mechanical water meters",
+  "description": "Communication module for mechanical water meters that reads the meter and transmits volume and flow data. Used for remote water consumption monitoring and billing, with alarm messages for irregular states of the meter.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

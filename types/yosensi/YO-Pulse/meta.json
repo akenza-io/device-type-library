@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Yosensi",
   "url": "https://www.yosensi.io/products/yo_pulse/",
-  "description": "YO Pulse enables monitoring of logical states of devices and processes in automation and collection of pulses from measuring devices.",
+  "description": "Interface device with six channels that monitors logical states and counts pulses from measuring devices. Used for meter readings, machine status and process monitoring in industrial and building automation.",
   "author": "Maciej Sacewicz",
   "firmwareVersion": "V3.7.1",
   "availableSensors": ["Logical States"],

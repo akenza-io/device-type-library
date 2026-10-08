@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Avelon",
   "url": "https://avelon.com/en/products/wisely/#wisely-model",
-  "description": "The room climate sensor continuously records selected parameters and measures, for example, the room temperature, the humidity and also the air quality by means of CO2 measurement.",
+  "description": "Room climate sensor that measures CO2, temperature, humidity and barometric pressure. It records indoor air quality continuously for comfort and ventilation monitoring in offices, schools and other buildings.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

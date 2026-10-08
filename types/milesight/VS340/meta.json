@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight.com/iot/product/lorawan-sensor/vs34x",
-  "description": "Based on the highly sensitive PIR, VS340 is designed for high-cost performance, which meets general needs.",
+  "description": "PIR occupancy sensor that detects whether a desk or room is in use by sensing body heat movement. Used for general occupancy monitoring, desk booking and space utilization analysis in offices and meeting rooms.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

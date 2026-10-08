@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Pressac",
   "url": "https://www.pressac.com/energy-sensors/current-monitoring-sensors/",
-  "description": "Pressac's LoRaWAN® CT Clamp sensor monitors electrical current on up to three channels, providing energy usage data for IoT platforms to help reduce consumption and improve efficiency.",
+  "description": "Current clamp sensor that measures electrical current on up to three channels using clamp-on current transformers. Provides energy usage data for buildings to help reduce consumption and improve energy efficiency.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

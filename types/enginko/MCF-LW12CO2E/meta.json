@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Enginko",
   "url": "https://enginko.com/en/solutions/mcf-lw12co2/",
-  "description": "This device reads temperature, humidity, pressure, light intensity, air quality (expressed as IAQ or VOC value) and CO2. 3 traffic light LEDs for air quality display with adjustable brightness. Ideally suited for a wide range of applications such as building automation, condition monitoring, predictive maintenance, security, healthcare and many more use cases. The internal timestamp is synced with a downlink.",
+  "description": "Indoor sensor that measures CO2, VOC, temperature, humidity, pressure and light. Indicates air quality with three traffic light LEDs with adjustable brightness and is used in building automation.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Dragino",
   "url": "https://dragino.com/products/lora-lorawan-end-node/item/350-lht65n-vib.html",
-  "description": "The Dragino LHT65N-VIB LoRaWAN Vibration Sensor is designed to detect and measure vibrations and shocks of an object. It also includes built-in temperature and humidity sensors.",
+  "description": "Vibration sensor that detects and measures vibrations and shocks of an object. It also measures temperature and humidity with built-in sensors and is used for monitoring machines, pumps and equipment.",
   "author": "Akenza AG",
   "availableSensors": [
     "Vibration",

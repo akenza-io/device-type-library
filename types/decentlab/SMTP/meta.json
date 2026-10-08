@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/soil-moisture-and-temperature-profile-for-lorawan",
-  "description": "Measures the soil moisture and temperature in 100mm, 200mm, 300mm, 400mm, 500mm and 600mm depth with a very robust probe design. This enables precise statements to be made about the soil and enables intelligent agriculture and monitoring of greenhouses, parks or golf courses.",
+  "description": "Soil probe that measures soil moisture and temperature at six depths from 100 to 600 mm with a robust probe design. Used for agriculture and irrigation and for monitoring greenhouses, parks and golf courses.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.0.0",
   "loraDeviceClass": "A",

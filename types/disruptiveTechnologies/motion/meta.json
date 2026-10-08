@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Disruptive Technologies",
   "url": "https://www.disruptive-technologies.com/products/wireless-motion-sensor",
-  "description": "Detects the presence of people in a room. Up to 14 meter detection diameter.",
+  "description": "Motion sensor that detects the presence of people in a room within a detection diameter of up to 14 m. Used for room occupancy monitoring, meeting room utilization and demand-based building control.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": ["Motion"],
