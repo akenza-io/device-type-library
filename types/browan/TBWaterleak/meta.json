@@ -14,7 +14,9 @@
   ],
   "outputTopics": [
     "default",
-    "lifecycle"
+    "lifecycle",
+    "config",
+    "system"
   ],
   "encoding": "HEX",
   "connectivity": "LORA",

@@ -38,6 +38,24 @@ describe("TBDW100 uplink", () => {
       });
   });
 
+  let systemSchema = null;
+  before((done) => {
+    loadSchema(`${__dirname}/system.schema.json`)
+      .then((parsedSchema) => {
+        systemSchema = parsedSchema;
+        done();
+      });
+  });
+
+  let configSchema = null;
+  before((done) => {
+    loadSchema(`${__dirname}/config.schema.json`)
+      .then((parsedSchema) => {
+        configSchema = parsedSchema;
+        done();
+      });
+  });
+
   describe("consume()", () => {
     it("Should decode TBDW100 payload", () => {
       const data = {
@@ -148,6 +166,53 @@ describe("TBDW100 uplink", () => {
         assert.equal(value.data.count, 3153);
 
         validateSchema(value.data, defaultSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("Should decode TBDW100 config payload", () => {
+      const data = {
+        data: {
+          port: 204,
+          payloadHex: "00100E8064",
+        },
+      };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "config");
+        assert.equal(value.data.keepaliveInterval, 3600);
+
+        validateSchema(value.data, configSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("Should decode TBDW100 system payload", () => {
+      const data = {
+        data: {
+          port: 222,
+          payloadHex: "010600000001020000ccac1f59e2d4f6ee",
+        },
+      };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "system");
+        assert.equal(value.data.bootloader, "00000006");
+        assert.equal(value.data.hwId, "00000201");
+        assert.equal(value.data.crc, "591faccc");
+        assert.equal(value.data.pupKeyId, "eef6d4e2");
+
+        validateSchema(value.data, systemSchema, { throwError: true });
       });
 
       consume(data);

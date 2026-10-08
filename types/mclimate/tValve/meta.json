@@ -1,0 +1,14 @@
+{
+  "name": "T-Valve",
+  "version": "1.0.0",
+  "manufacturer": "MClimate",
+  "url": "https://docs.mclimate.eu/mclimate-lorawan-devices/devices/mclimate-t-valve-lorawan",
+  "description": "MClimate T-Valve is a LoRaWAN® water valve equipped with water temperature, ambient temperature, magnetic, flood, and box tampering sensors. It can be used in residential or commercial buildings.",
+  "author": "MClimate",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": ["Temperature", "Leak"],
+  "outputTopics": ["default", "status", "lifecycle", "configuration"],
+  "encoding": "HEX",
+  "connectivity": "LORA"
+}

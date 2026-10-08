@@ -15,7 +15,9 @@
     "default",
     "lifecycle",
     "door_count",
-    "count"
+    "count",
+    "system",
+    "config"
   ],
   "encoding": "HEX",
   "connectivity": "LORA",

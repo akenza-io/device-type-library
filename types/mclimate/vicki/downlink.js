@@ -37,11 +37,11 @@ function encodeDownlink(data) {
       }
       case "setOpenWindow": {
         const enabled = Number(data.setOpenWindow.enabled);
-        const closeTime = parseInt(data.setOpenWindow.closeTime / 5);
-        const delta = parseInt(data.setOpenWindow.delta, 8);
+        const closeTime = Math.floor(data.setOpenWindow.closeTime / 5);
+        const delta = data.setOpenWindow.delta & 0x0f;
         const { motorPosition } = data.setOpenWindow;
         const motorPositionFirstPart = motorPosition & 0xff;
-        const motorPositionSecondPart = (motorPosition >> 8) & 0xff;
+        const motorPositionSecondPart = (motorPosition >> 8) & 0x0f;
         bytes.push(0x06);
         bytes.push(enabled);
         bytes.push(closeTime);
@@ -79,6 +79,7 @@ function encodeDownlink(data) {
       }
       case "setInternalAlgoParams": {
         bytes.push(0x0c);
+        bytes.push(data.setInternalAlgoParams.period);
         bytes.push(data.setInternalAlgoParams.pFirstLast);
         bytes.push(data.setInternalAlgoParams.pNext);
         break;
@@ -107,8 +108,16 @@ function encodeDownlink(data) {
         break;
       }
       case "setTargetTemperature": {
-        bytes.push(0x0e);
-        bytes.push(data.setTargetTemperature);
+        if (Number.isInteger(data.setTargetTemperature)) {
+          bytes.push(0x0e);
+          bytes.push(data.setTargetTemperature);
+        } else {
+          // 0x51 sets the target temperature with 0.1 °C precision
+          const temp = Math.round(data.setTargetTemperature * 10);
+          bytes.push(0x51);
+          bytes.push((temp >> 8) & 0xff);
+          bytes.push(temp & 0xff);
+        }
         break;
       }
       case "setExternalTemperature": {
@@ -118,8 +127,7 @@ function encodeDownlink(data) {
       }
       case "setJoinRetryPeriod": {
         // period should be passed in minutes
-        let periodToPass = (data.setJoinRetryPeriod * 60) / 5;
-        periodToPass = Number(periodToPass);
+        const periodToPass = Math.round((data.setJoinRetryPeriod * 60) / 5);
         bytes.push(0x10);
         bytes.push(periodToPass);
         break;
@@ -138,10 +146,10 @@ function encodeDownlink(data) {
         break;
       }
       case "setTargetTemperatureAndMotorPosition": {
+        const { motorPosition } = data.setTargetTemperatureAndMotorPosition;
         bytes.push(0x31);
-        bytes.push(
-          data.setTargetTemperatureAndMotorPosition.motorPosition
-        );
+        bytes.push((motorPosition >> 8) & 0xff);
+        bytes.push(motorPosition & 0xff);
         bytes.push(
           data.setTargetTemperatureAndMotorPosition.targetTemperature
         );
@@ -223,7 +231,7 @@ function encodeDownlink(data) {
         break;
       }
       case "setExternalTemperatureFloat": {
-        const temp = data.setExternalTemperatureFloat * 10;
+        const temp = Math.round(data.setExternalTemperatureFloat * 10);
         const tempFirstPart = temp & 0xff;
         const tempSecondPart = (temp >> 8) & 0xff;
         bytes.push(0x3c);
@@ -257,7 +265,7 @@ function encodeDownlink(data) {
         break;
       }
       case "setTempHysteresis": {
-        const tempHysteresis = data.setTempHysteresis * 10;
+        const tempHysteresis = Math.round(data.setTempHysteresis * 10);
         bytes.push(0x43);
         bytes.push(tempHysteresis);
         break;
@@ -268,8 +276,8 @@ function encodeDownlink(data) {
       }
       case "setOpenWindowPrecisely": {
         const enabledValue = data.setOpenWindowPrecisely.enabled ? 1 : 0;
-        const duration = parseInt(data.setOpenWindowPrecisely.duration) / 5;
-        const delta = data.setOpenWindowPrecisely.delta * 10
+        const duration = Math.floor(data.setOpenWindowPrecisely.duration / 5);
+        const delta = Math.round(data.setOpenWindowPrecisely.delta * 10);
 
         bytes.push(0x45);
         bytes.push(enabledValue);
@@ -326,10 +334,6 @@ function consume(event) {
       payloadHex += intToHex(byte);
     });
 
-    emit("downlink", {
-      payloadHex,
-      port,
-      confirmed: true,
-    });
+    emit("downlink", { payloadHex, port, confirmed });
   }
 }
