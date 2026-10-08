@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/en/ems-desk/",
-  "description": "EMS Desk is equipped with a body heat sensor and can detect when somebody is standing or sitting by a desk, even if the person is still. You can combine the environment measuring together with occupancy detection since the EMS Desk is equipped with internal sensors for measuring the temperature and humidity as well.",
+  "description": "Desk sensor with a body heat sensor that detects whether a person is sitting or standing at a desk, even when still. It also measures temperature, humidity and acceleration for workplace and climate analytics.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.3.5",
   "loraDeviceClass": "A",
@@ -20,5 +20,22 @@
     "configuration"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Elsys",
+    "EMS Desk",
+    "desk occupancy",
+    "desk sensor",
+    "body heat",
+    "IR sensor",
+    "hot desking",
+    "workplace",
+    "temperature",
+    "humidity",
+    "accelerometer",
+    "LoRaWAN"
+  ]
 }

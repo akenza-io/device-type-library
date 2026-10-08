@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/en/lora-elt-lite/",
-  "description": "ELT Lite is the ideal device to use together with an external sensor. Use it together with an electricity meter, flow meter, analog sensor, moisture sensor, or something else that fits your needs.  ELT Lite has one generic input. You can configure ELT Lite for external temperature probe, pulse counting, analog-input 0-10V, digital-input, water leak, switch, and many more options.",
+  "description": "Device with one configurable input for external sensors such as electricity and flow meters, temperature probes, 0-10 V analog sensors and leak sensors. Supports pulse counting, digital input and switch modes.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.3.5",
   "loraDeviceClass": "A",
@@ -23,5 +23,22 @@
     "configuration"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Elsys",
+    "ELT Lite",
+    "external input",
+    "pulse counter",
+    "analog input",
+    "digital input",
+    "0-10 V",
+    "electricity meter",
+    "water meter",
+    "temperature probe",
+    "water leak",
+    "LoRaWAN"
+  ]
 }

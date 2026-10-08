@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Vega",
   "url": "https://www.vega.com/en-us/products/product-catalog/level/radar/vegapuls-air-41",
-  "description": "The VEGAPULS Air 41 radar sensor is ideal for autarkic, non-contact level measurement of bulk solids and liquids. It is particularly suited for use in mobile silos containing dry mortar, concrete, or plaster, as well as in a wide range of liquid tanks. With simple and reliable mounting and no need for an external power supply, it offers a highly economical and low-maintenance solution.",
+  "description": "Self-powered radar level sensor for non-contact measurement of bulk solids and liquids that also reports GPS position. Used for mobile silos with dry mortar, concrete or plaster and for a range of liquid tanks.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -21,5 +21,23 @@
     "temperature"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Vega",
+    "VEGAPULS",
+    "VEGAPULS Air 41",
+    "radar level",
+    "fill level",
+    "silo",
+    "mobile silo",
+    "bulk solids",
+    "tank level",
+    "non-contact",
+    "GPS",
+    "temperature",
+    "LoRaWAN"
+  ]
 }

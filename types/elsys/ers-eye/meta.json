@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/en/ers-eye/",
-  "description": "ERS Eye is a sensor for measuring room occupancy. The sensor also measures indoor temperature, humidity, light, and motion. The occupancy is detected with an IR sensor and will tell if someone is in the room, even if sitting still in a meeting.",
+  "description": "Room occupancy sensor with an infrared array that detects people even when sitting still in a meeting. It also measures temperature, humidity, light and motion and is used in meeting rooms and offices.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.3.5",
   "loraDeviceClass": "A",
@@ -21,5 +21,25 @@
     "configuration"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Occupancy & Space Utilization",
+    "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Elsys",
+    "ERS Eye",
+    "ERS",
+    "room occupancy",
+    "people detection",
+    "IR array",
+    "meeting room",
+    "presence",
+    "motion",
+    "temperature",
+    "humidity",
+    "light",
+    "office",
+    "LoRaWAN"
+  ]
 }

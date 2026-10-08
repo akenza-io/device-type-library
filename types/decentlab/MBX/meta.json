@@ -3,12 +3,30 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/ultrasonic-distance-/-level-sensor-for-lorawan",
-  "description": "Enables remote monitoring of water level, fill level of tanks and silos, fill level of waste containers, presence of objects or snow level. It measures the distance between the sensor head and the target (rangefinder). The measurement principle is based on ultrasonic waves which are transmitted by the sensor and reflected back from nearby objects.",
+  "description": "Ultrasonic rangefinder that measures the distance between the sensor head and a target from reflected sound waves. Used for water level, tank, silo and waste container fill level, object presence and snow level.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Distance"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Fill Level Monitoring",
+    "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-MBX",
+    "ultrasonic",
+    "rangefinder",
+    "distance",
+    "water level",
+    "tank level",
+    "silo",
+    "waste bin",
+    "fill level",
+    "snow depth",
+    "LoRaWAN"
+  ]
 }

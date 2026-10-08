@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Dragino",
   "url": "https://www.dragino.com/products/distance-level-sensor/item/280-dds04-lb-ls.html",
-  "description": "A LoRaWAN sensor capable of measuring distance from up to four ultrasonic sensors simultaneously.",
+  "description": "Ultrasonic distance sensor with up to four probes that measures four distances at the same time. Used for fill level measurement in tanks, bins and containers or for monitoring several points from one device.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [
@@ -15,5 +15,21 @@
     "configuration"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Dragino",
+    "DDS04-LB",
+    "ultrasonic",
+    "distance sensor",
+    "multi-probe",
+    "fill level",
+    "tank level",
+    "waste bin",
+    "container",
+    "level sensor",
+    "LoRaWAN"
+  ]
 }

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Pipiot",
   "url": "https://www.pipiot.com/peoplesense",
-  "description": "PeopleSense is a compact, ultra-rugged IoT device designed for remote counting of people or other traffic flows, such as cycles or slow- moving vehicles",
+  "description": "Compact, rugged traffic counter for remote counting of people, bicycles or slow-moving vehicles. Used for monitoring traffic flows on paths, trails, parks and entrances, and it also measures the device temperature.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.2.0",
   "loraDeviceClass": "A",
@@ -17,5 +17,21 @@
     "rssi_test"
   ],
   "encoding": "HEX",
-  "connectivity": "Sigfox"
+  "connectivity": "Sigfox",
+  "useCases": [
+    "People & Vehicle Counting"
+  ],
+  "keywords": [
+    "Pipiot",
+    "PeopleSense",
+    "people counter",
+    "traffic counter",
+    "bicycle counting",
+    "trail counter",
+    "park",
+    "footfall",
+    "vehicle counting",
+    "temperature",
+    "Sigfox"
+  ]
 }

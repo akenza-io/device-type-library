@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/black-globe-temperature-sensor-for-lorawan",
-  "description": "BLG is equipped with a black globe temperature sensor. It is suitable for use in workplace safety, heat stress measurement, WBGT calculation for heat stress and meteorology.",
+  "description": "Black globe temperature sensor that measures radiant heat from the sun and hot surfaces. Used for heat stress assessment, wet bulb globe temperature (WBGT) calculation, workplace safety and meteorology.",
   "author": "Decentlab",
   "firmwareVersion": "V1.6.0",
   "loraDeviceClass": "A",
@@ -15,5 +15,19 @@
     "lifecycle"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-BLG",
+    "black globe",
+    "globe temperature",
+    "radiant heat",
+    "heat stress",
+    "WBGT",
+    "thermal comfort",
+    "LoRaWAN"
+  ]
 }

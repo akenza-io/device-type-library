@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight.com/iot/product/lorawan-sensor/ct10x",
-  "description": "LoRaWAN® Smart Current Transformer for monitoring energy and analyzing consumption remotely, featuring RMS and accumulated current measurement, and optional cable temperature sensing.",
+  "description": "Current transformer that measures RMS and accumulated current of an electrical circuit with optional cable temperature sensing. Used for remote energy monitoring and sends alarms when thresholds are exceeded.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [
@@ -16,5 +16,20 @@
     "system"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Milesight",
+    "CT103",
+    "current transformer",
+    "RMS current",
+    "clamp",
+    "cable temperature",
+    "energy monitoring",
+    "electricity",
+    "threshold alarm",
+    "LoRaWAN"
+  ]
 }

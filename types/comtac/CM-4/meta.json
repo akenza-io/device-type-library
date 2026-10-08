@@ -3,11 +3,26 @@
   "version": "1.0.0",
   "manufacturer": "Comtac",
   "url": "https://www.comtac.ch/en/products/all-products/sensors/lpn-cm-4-sensor.html",
-  "description": "The LPN CM-4 has a built in temperature and humidity sensor.",
+  "description": "Compact sensor with a built-in sensor that measures temperature and humidity. It stores historical measurements for later transmission and is used to monitor indoor climate in rooms, technical spaces and storage.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": ["Temperature", "Humidity"],
   "outputTopics": ["config", "default", "history", "info", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "comtac",
+    "LPN CM-4",
+    "CM-4",
+    "temperature",
+    "humidity",
+    "data logger",
+    "history",
+    "room climate",
+    "indoor",
+    "LoRaWAN"
+  ]
 }

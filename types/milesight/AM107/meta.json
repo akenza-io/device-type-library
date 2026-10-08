@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight-iot.com/lorawan/sensor/am100/",
-  "description": "AM107 is a compact indoor ambience monitoring sensor for measurement of temperature, humidity, light, CO2 concentration, TVOC, barometric pressure and motion. These data will be shown on the E-ink screen in real-time, which allow to quantify the indoor environment and comfort.",
+  "description": "Compact indoor sensor that measures CO2, TVOC, temperature, humidity, pressure, light and motion. Shows current values on an e-ink display and is used for air quality, comfort and occupancy monitoring in offices.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -18,5 +18,25 @@
   ],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort",
+    "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Milesight",
+    "AM107",
+    "AM100 series",
+    "CO2",
+    "TVOC",
+    "temperature",
+    "humidity",
+    "barometric pressure",
+    "light",
+    "PIR",
+    "occupancy",
+    "e-ink display",
+    "IAQ",
+    "LoRaWAN"
+  ]
 }

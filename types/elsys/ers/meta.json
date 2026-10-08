@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/en/ers/",
-  "description": "ERS is a sensor for measuring the indoor environment. It measures temperature, humidity, light, and motion.",
+  "description": "Indoor sensor that measures temperature, humidity, light and motion. Used for room climate and occupancy monitoring in offices, schools and commercial buildings, for example to control heating and lighting.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.3.5",
   "loraDeviceClass": "A",
@@ -20,5 +20,24 @@
     "configuration"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort",
+    "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Elsys",
+    "ERS",
+    "temperature",
+    "humidity",
+    "light",
+    "motion",
+    "PIR",
+    "occupancy",
+    "room climate",
+    "office",
+    "school",
+    "heating control",
+    "LoRaWAN"
+  ]
 }

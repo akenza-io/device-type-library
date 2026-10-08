@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight-iot.com/controller/uc300/",
-  "description": "The UC300 is a IoT control and monitoring device.",
+  "description": "Controller with digital inputs and outputs, analog inputs, PT100 inputs and Modbus for connecting wired sensors and meters. Used for remote monitoring and control of industrial equipment, building systems and machinery.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -22,5 +22,22 @@
     "temperature"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Building Automation & Control"
+  ],
+  "keywords": [
+    "Milesight",
+    "UC300",
+    "IoT controller",
+    "digital input",
+    "digital output",
+    "analog input",
+    "PT100",
+    "Modbus",
+    "RS485",
+    "industrial",
+    "remote control",
+    "LoRaWAN"
+  ]
 }

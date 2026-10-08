@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/en/ers-voc/",
-  "description": "ERS VOC is a smart and professional LoRaWAN® sensor for indoor air quality applications. It will measure the levels of the volatile organic compound in the ambient air which says a lot about the general air quality.",
+  "description": "Indoor sensor that measures volatile organic compounds (VOC) in the ambient air as an indicator of air quality. It also measures temperature, humidity, light and motion for room climate and occupancy monitoring.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.3.8",
   "loraDeviceClass": "A",
@@ -21,5 +21,23 @@
     "configuration"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort",
+    "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Elsys",
+    "ERS VOC",
+    "ERS",
+    "VOC",
+    "air quality",
+    "temperature",
+    "humidity",
+    "light",
+    "motion",
+    "occupancy",
+    "room climate",
+    "LoRaWAN"
+  ]
 }

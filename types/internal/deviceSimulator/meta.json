@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Akenza",
   "url": "https://docs.akenza.io/device-simulator",
-  "description": "The Device Simulator allows you to send data to your HTTP device on akenza without the need for a physical device.",
+  "description": "Virtual device that sends simulated data such as temperature, humidity, CO2, sound, light and occupancy to the platform. Used for testing data flows, rules and dashboards over HTTP without the need for a physical device.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [
@@ -18,5 +18,21 @@
     "default"
   ],
   "encoding": "JSON",
-  "connectivity": "HTTP"
+  "connectivity": "HTTP",
+  "useCases": [],
+  "keywords": [
+    "device simulator",
+    "virtual device",
+    "simulated data",
+    "testing",
+    "demo",
+    "temperature",
+    "humidity",
+    "CO2",
+    "sound",
+    "light",
+    "occupancy",
+    "akenza",
+    "HTTP"
+  ]
 }

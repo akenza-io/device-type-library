@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Yosensi",
   "url": "https://www.yosensi.io/products/yo_power/",
-  "description": "YO Power measures AC current flowing through devices connected to the mains.",
+  "description": "Current sensor with up to six current clamps that measures the AC current of devices connected to the mains. Used for energy monitoring of machines, circuits and building installations to analyze consumption and loads.",
   "author": "Maciej Sacewicz",
   "firmwareVersion": "V4.0.3",
   "availableSensors": [
@@ -25,5 +25,21 @@
     "ct6_clamp"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Yosensi",
+    "YO Power",
+    "current clamp",
+    "CT clamp",
+    "AC current",
+    "energy monitoring",
+    "machine monitoring",
+    "load monitoring",
+    "six channels",
+    "electricity",
+    "LoRaWAN"
+  ]
 }

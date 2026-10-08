@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Landis+Gyr",
   "url": "https://www.landisgyr.de/product/funkmodul-wzu-lr/",
-  "description": "The compact radio module for the T550 meters, transmits measurements of flow, backflow and energy in a heat or cold circuit with water using the ultrasonic principle.",
+  "description": "Radio module for ultrasonic heat and cooling meters that transmits energy, volume, flow, backflow, power and temperature readings. Used for remote reading of water-based heating or cooling circuits in buildings.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -16,5 +16,24 @@
   ],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Landis+Gyr",
+    "T550",
+    "WZU-LR",
+    "heat meter",
+    "cooling meter",
+    "ultrasonic",
+    "energy",
+    "volume",
+    "flow",
+    "power",
+    "temperature",
+    "district heating",
+    "remote reading",
+    "LoRaWAN"
+  ]
 }

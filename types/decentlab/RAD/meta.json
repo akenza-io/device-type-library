@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/radar-distance-level-sensor-for-lorawan",
-  "description": "RAD is a radar distance/level sensor for measuring distance. It is suitable for monitoring generic ranging, proximity, level, water level, flood monitoring, etc.",
+  "description": "Radar sensor that measures the distance to a target and also reports temperature. Contactless radar ranging is used for level and water level measurement, proximity detection and flood monitoring at rivers and tanks.",
   "author": "Decentlab",
   "firmwareVersion": "V1.6.0",
   "loraDeviceClass": "A",
@@ -16,5 +16,21 @@
     "lifecycle"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Fill Level Monitoring",
+    "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-RAD",
+    "radar",
+    "distance",
+    "water level",
+    "river level",
+    "fill level",
+    "contactless",
+    "temperature",
+    "LoRaWAN"
+  ]
 }

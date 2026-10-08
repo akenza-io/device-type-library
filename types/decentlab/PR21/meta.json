@@ -3,12 +3,27 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/ultrasonic-distance-/-level-sensor-for-lorawan",
-  "description": "Enables remote monitoring of pressure in pipelines or tanks. It measures the pressure at the G 1/4” pipe connection relative to the pressure at the cable entry",
+  "description": "Pressure sensor for pipelines and tanks that measures pressure at a G 1/4 pipe connection relative to the pressure at the cable entry. It also measures temperature and is used for remote monitoring of water networks.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Barometric Pressure", "Temperature"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Condition Monitoring"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-PR21",
+    "pressure",
+    "pipe pressure",
+    "pipeline",
+    "tank",
+    "water pressure",
+    "temperature",
+    "leak detection",
+    "LoRaWAN"
+  ]
 }

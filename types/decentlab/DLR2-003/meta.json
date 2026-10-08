@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/analog-or-digital-sensor-device-for-lorawan",
-  "description": "DLR2-003 is an Analog or Digital Sensor Device that consists of a Digital Input Dry Contact sensor interface.",
+  "description": "Interface device with a dry contact digital input. It reports the on/off state of connected equipment such as switches, relays, door contacts or alarm outputs, used for remote status monitoring of installations.",
   "author": "Decentlab",
   "firmwareVersion": "V1.6.0",
   "loraDeviceClass": "A",
@@ -15,5 +15,20 @@
     "lifecycle"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-DLR2-003",
+    "DLR2",
+    "digital input",
+    "dry contact",
+    "on/off state",
+    "door contact",
+    "alarm output",
+    "switch",
+    "LoRaWAN"
+  ]
 }

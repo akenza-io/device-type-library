@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Yosensi",
   "url": "https://www.yosensi.io/products/yo_agri_box/",
-  "description": "YO AgriBox is a LoRaWAN device for measuring soil moisture at 3 points.",
+  "description": "Soil sensor that measures soil moisture at three points as well as temperature and humidity. Used for irrigation control in agriculture and horticulture, where moisture readings at several points show water distribution.",
   "author": "Maciej Sacewicz",
   "firmwareVersion": "V3.6.7",
   "availableSensors": [
@@ -24,5 +24,21 @@
     "soil_moisture_3"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Smart Agriculture"
+  ],
+  "keywords": [
+    "Yosensi",
+    "YO AgriBox",
+    "AgriBox",
+    "soil moisture",
+    "VWC",
+    "irrigation",
+    "agriculture",
+    "horticulture",
+    "temperature",
+    "humidity",
+    "LoRaWAN"
+  ]
 }

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/co2-temperature-humidity-and-barometric-pressure-sensor-for-lorawan",
-  "description": "Decentlab’s outdoor-ready air quality monitor continuously measures carbon dioxide (CO2) concentration, temperature, humidity and barometric pressure.",
+  "description": "Outdoor air quality sensor that measures CO2 with an infrared sensor as well as temperature, humidity and barometric pressure. Used for continuous monitoring of outdoor and urban air conditions and air quality networks.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -19,5 +19,20 @@
     "lifecycle"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-LP8P",
+    "CO2",
+    "NDIR",
+    "temperature",
+    "humidity",
+    "barometric pressure",
+    "outdoor air quality",
+    "environmental monitoring",
+    "LoRaWAN"
+  ]
 }

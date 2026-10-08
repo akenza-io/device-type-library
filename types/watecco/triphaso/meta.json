@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Watteco",
   "url": "https://support.nke-watteco.com/triphaso/#UserGuide",
-  "description": "The Triphas'O sensor is used to remotely read the electrical energy consumption of a three-phase or mono-phase installation in a non-intrusive way via the LoRaWAN™ network. It is specially designed to meet the energy management needs of industrial and tertiary buildings that operate with medium / high power, energy intensive equipment.",
+  "description": "Non-intrusive sensor that measures the electrical energy consumption, power and phase values of three-phase or single-phase installations. Used for energy management in industrial and commercial buildings.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -21,5 +21,22 @@
     "power_consumption"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Watteco",
+    "Triphas'O",
+    "energy meter",
+    "three-phase",
+    "single-phase",
+    "power",
+    "energy consumption",
+    "current",
+    "voltage",
+    "power factor",
+    "non-intrusive",
+    "LoRaWAN"
+  ]
 }

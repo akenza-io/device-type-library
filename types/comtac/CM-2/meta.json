@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Comtac",
   "url": "https://www.comtac.ch/en/products/all-products/sensors/lpn-cm-2-sensor.html",
-  "description": "The LPN CM-2 has a built in temperature and humidity sensor and is able to connect an external sensor like a PT100 or LEM Converter",
+  "description": "Sensor that measures temperature and humidity and accepts an external sensor such as a PT100 probe or a current transducer. Used for climate monitoring and for process and equipment monitoring in technical spaces.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.0.0",
   "loraDeviceClass": "A",
@@ -18,5 +18,21 @@
     "lifecycle"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "comtac",
+    "LPN CM-2",
+    "CM-2",
+    "temperature",
+    "humidity",
+    "external probe",
+    "PT100",
+    "current transducer",
+    "analog input",
+    "button",
+    "LoRaWAN"
+  ]
 }

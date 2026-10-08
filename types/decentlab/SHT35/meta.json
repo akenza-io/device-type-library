@@ -3,12 +3,28 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/air-temperature-and-humidity-sensor-with-radiation-shield-for-lorawan",
-  "description": "Air temperature and humidity sensor with radiation shield. Can be used for example for smart agriculture, urban heat islands, greenhouses, frost alarming or building automatione",
+  "description": "Air temperature and humidity sensor with a radiation shield for outdoor use. The shield protects against direct sunlight, and it is used for smart agriculture, urban heat islands, greenhouses, frost alarms and buildings.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Humidity", "Temperature"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Smart Agriculture",
+    "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-SHT35",
+    "SHT35",
+    "temperature",
+    "humidity",
+    "radiation shield",
+    "outdoor",
+    "agriculture",
+    "urban heat island",
+    "LoRaWAN"
+  ]
 }

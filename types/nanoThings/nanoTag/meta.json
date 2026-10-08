@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "nanoThings",
   "url": "https://www.nanothingsinc.com/nanotag",
-  "description": "NanoTags are manufactured with an innovative hybrid printing process. Developed and patented by NanoThings, hybrid printing is a manufacturing process that enables 10X the scalability of traditional electronics manufacturing. Key components, like the antenna and connective circuitry, are printed on a flexible substrate to reduce size and cost while enabling mechanical flexibility. Non printable components, like the silicon and an ultra thin flexible battery, are surface mounted after the printing process. The result is a device with a significantly smaller form factor, carbon footprint, and cost to produce.",
+  "description": "Thin, flexible temperature tag with a printed antenna and an ultra-thin flexible battery. Records temperature at intervals and is used for temperature monitoring of goods, packages and cold chain shipments.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -17,5 +17,20 @@
     "temperature"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Cold Chain & Temperature Compliance"
+  ],
+  "keywords": [
+    "nanoThings",
+    "nanoTag",
+    "temperature tag",
+    "temperature logger",
+    "flexible",
+    "cold chain",
+    "shipment",
+    "package",
+    "logistics",
+    "LoRaWAN"
+  ]
 }

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Asystom",
   "url": "https://www.asystom.com/solutions/asystomsentinel",
-  "description": "The Asystom Sentinel sensor allows with its integrated vibration and ultrasound sensors to accurately detect all kinds of equipment drifts. It also includes ambient temperature monitoring, surface temperature monitoring and optional external sensors.",
+  "description": "Machine monitoring sensor with vibration and ultrasound sensors that detects equipment drift. It also measures ambient and surface temperature and humidity and supports external sensors for predictive maintenance.",
   "author": "Akenza AG",
   "firmwareVersion": "V4.57.0",
   "availableSensors": [
@@ -24,5 +24,22 @@
     "error"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Condition Monitoring"
+  ],
+  "keywords": [
+    "Asystom",
+    "Sentinel",
+    "vibration",
+    "ultrasound",
+    "predictive maintenance",
+    "equipment drift",
+    "machine health",
+    "RPM",
+    "shock",
+    "surface temperature",
+    "humidity",
+    "LoRaWAN"
+  ]
 }

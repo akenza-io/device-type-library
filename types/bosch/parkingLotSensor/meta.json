@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Bosch",
   "url": "https://www.bosch-mobility.com/en/",
-  "description": "The Parking Lot Sensor (PLS) detects and reports parking space occupancy, thus enabling active parking lot management features, such as search, navigation and reservation.",
+  "description": "In-ground sensor that detects whether a parking space is occupied and reports changes in occupancy. The data enables parking management functions such as space search, navigation and reservation in parking lots.",
   "author": "Akenza AG",
   "firmwareVersion": "V0.23.0",
   "loraDeviceClass": "A",
@@ -15,5 +15,20 @@
     "occupancy"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Bosch",
+    "Parking Lot Sensor",
+    "parking",
+    "parking space",
+    "in-ground",
+    "occupancy",
+    "parking guidance",
+    "smart city",
+    "magnetometer",
+    "LoRaWAN"
+  ]
 }

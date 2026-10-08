@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/indoor-ambiance-monitor-including-co2-tvoc-and-motion-sensor-for-lorawan",
-  "description": "Measures carbon dioxide (CO2) concentration, volatile organic compounds (VOC), temperature, humidity, barometric pressure, ambient light and motion / presence.",
+  "description": "Indoor sensor that measures CO2, VOC, temperature, humidity, barometric pressure, ambient light and motion. It uses a PIR sensor for presence and is used for indoor air quality and room occupancy monitoring.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -18,5 +18,25 @@
   ],
   "outputTopics": ["default", "occupancy", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort",
+    "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-IAM",
+    "indoor air quality",
+    "CO2",
+    "VOC",
+    "temperature",
+    "humidity",
+    "barometric pressure",
+    "ambient light",
+    "PIR",
+    "motion",
+    "occupancy",
+    "NDIR",
+    "LoRaWAN"
+  ]
 }

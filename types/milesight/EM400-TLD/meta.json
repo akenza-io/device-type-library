@@ -3,12 +3,29 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight-iot.com/products/lorawan-sensor/EM400-TLD/",
-  "description": "EM400-TLD is a highly specialized product among the EM400 Series, which is designed for small & mini trash bins, boasts a range of powerful features, including the ability to detect overflowing garbage, the status of the garbage bin lid, and trash combustion. With pre-set modes that save users from configuration, EM400-TLD is the ideal solution for smart waste management, providing a long-lasting performance that customers can rely on.",
+  "description": "Distance sensor that measures the fill level of small and mini waste bins and also measures temperature. Detects overflowing bins, lid status and combustion inside the bin and uses preset modes for waste management.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Temperature", "Distance"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Milesight",
+    "EM400-TLD",
+    "ToF",
+    "distance",
+    "fill level",
+    "waste bin",
+    "smart waste",
+    "overflow",
+    "lid status",
+    "fire detection",
+    "temperature",
+    "LoRaWAN"
+  ]
 }

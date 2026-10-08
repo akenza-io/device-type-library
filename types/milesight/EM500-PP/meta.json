@@ -3,12 +3,28 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight-iot.com/lorawan/sensor/em500-pp/",
-  "description": "EM500-PP sensor is designed for measuring pressures from liquids and gases in order to realize the pressure monitoring of tank level or leakage in pipes.",
+  "description": "Pressure sensor in a rugged enclosure that measures the pressure of liquids and gases. Used for tank level monitoring, leak detection in pipes and pressure monitoring of water supply and industrial piping systems.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Pressure"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Condition Monitoring"
+  ],
+  "keywords": [
+    "Milesight",
+    "EM500-PP",
+    "pressure sensor",
+    "pipe pressure",
+    "liquid pressure",
+    "gas pressure",
+    "water supply",
+    "tank level",
+    "leak detection",
+    "industrial",
+    "LoRaWAN"
+  ]
 }

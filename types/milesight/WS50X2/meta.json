@@ -3,12 +3,30 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight-iot.com/lorawan/switch/ws50x/",
-  "description": "WS50X2 is a smart LoRaWAN® wall switch for thelocal and remote control of lights and electrical appliances. It adopts two standard sizes for most of international wall switcht ypes, which can replace the traditional wall switches directly.",
+  "description": "Wall switch for local and remote control of lights and appliances that also measures voltage, current and power. Available in two standard sizes and replaces conventional wall switches directly.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Switch", "Voltage", "Current", "Power"],
   "outputTopics": ["default"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Building Automation & Control",
+    "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Milesight",
+    "WS50X2",
+    "WS50X",
+    "wall switch",
+    "light switch",
+    "lighting control",
+    "remote switching",
+    "voltage",
+    "current",
+    "power",
+    "power metering",
+    "LoRaWAN"
+  ]
 }

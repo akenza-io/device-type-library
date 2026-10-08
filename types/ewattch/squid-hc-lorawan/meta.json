@@ -3,12 +3,28 @@
   "version": "1.0.0",
   "manufacturer": "Ewattch",
   "url": "https://ewattch.com/squid-lora/?lang=en",
-  "description": "The SQUID is a connected sensor equipped with 12 clamps of current measurement. It sends the collected current measurements via a communication LoRa® wireless and long distance.",
+  "description": "Current measurement device with 12 current clamps that measures the current of multiple electrical circuits. Used for energy monitoring, consumption analysis and sub-metering in buildings and electrical panels.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "C",
   "availableSensors": ["Energy Metering"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Ewattch",
+    "Squid",
+    "current clamp",
+    "current transformer",
+    "multi-circuit",
+    "energy monitoring",
+    "sub-metering",
+    "electricity",
+    "current",
+    "electrical panel",
+    "LoRaWAN"
+  ]
 }

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Wireless Three-Phase Current Meters",
   "url": "https://www.monnit.com/products/sensors/wireless-three-phase-current-meters/",
-  "description": "Wireless current monitoring meter. Available as 20, 150, and 500-amp industrial-grade devices.",
+  "description": "Three-phase current meter available in 20 A, 150 A and 500 A industrial versions that measures the current of each phase. Used for energy monitoring, load analysis and monitoring of electrical circuits and machines.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [
@@ -15,5 +15,20 @@
     "gateway"
   ],
   "encoding": "JSON",
-  "connectivity": "HTTP"
+  "connectivity": "HTTP",
+  "useCases": [
+    "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Monnit",
+    "three-phase",
+    "current meter",
+    "current transformer",
+    "current",
+    "energy monitoring",
+    "load analysis",
+    "industrial",
+    "machine monitoring",
+    "HTTP"
+  ]
 }

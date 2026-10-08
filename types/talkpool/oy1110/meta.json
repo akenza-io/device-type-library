@@ -3,12 +3,26 @@
   "version": "1.0.0",
   "manufacturer": "Nordic Propeye",
   "url": "https://talkpool.com/shop/oy1110/",
-  "description": "Sensor that measures temperature and humidity, with maintenance free lifetime of 10 years at a 5-minute measurement interval. Easy to use, configurable over the air and stylish in design to fit into indoor spaces.",
+  "description": "Indoor sensor that measures temperature and humidity, in a housing designed for indoor spaces. Offers a maintenance-free lifetime of 10 years at a 5-minute measurement interval and is configurable over the air.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Temperature", "Humidity"],
   "outputTopics": ["default", "startup"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Nordic Propeye",
+    "Talkpool",
+    "OY1110",
+    "temperature",
+    "humidity",
+    "room climate",
+    "indoor climate",
+    "10-year battery",
+    "LoRaWAN"
+  ]
 }

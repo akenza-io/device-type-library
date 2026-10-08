@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "IMBuildings",
   "url": "https://www.imbuildings.com/office-occupancy-counter-lorawan/",
-  "description": "The Office Occupancy Counter measures how rooms are used. By measuring traffic in the passageways, occupancy can be clarified and the information used to determine the utilisation of a building or room.",
+  "description": "People counter mounted in passageways that counts entries and exits of rooms. The in and out counts and running totals are used to derive room occupancy and the utilization of buildings and workspaces.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -17,5 +17,22 @@
     "lifecycle"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "People & Vehicle Counting",
+    "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "IMBuildings",
+    "office occupancy counter",
+    "people counter",
+    "occupancy",
+    "entry exit",
+    "in out counting",
+    "room occupancy",
+    "doorway",
+    "footfall",
+    "space utilization",
+    "LoRaWAN"
+  ]
 }

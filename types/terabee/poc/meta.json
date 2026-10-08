@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Terabee",
   "url": "https://www.terabee.com/occupancy/",
-  "description": "Terabees occupancy sensor measures occupancy with an ultra-wide thermal imager. With this it's possible to track up to 8 different occupancy zones.",
+  "description": "Occupancy sensor with an ultra-wide thermal imager that tracks occupancy in up to eight zones without capturing identifiable images. Used for room and area utilization monitoring in offices and other buildings.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -16,5 +16,21 @@
     "occupancy"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Terabee",
+    "Occupancy",
+    "occupancy sensor",
+    "thermal imaging",
+    "thermal sensor",
+    "zones",
+    "room occupancy",
+    "space utilization",
+    "anonymous",
+    "office",
+    "LoRaWAN"
+  ]
 }

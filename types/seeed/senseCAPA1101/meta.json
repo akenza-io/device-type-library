@@ -3,12 +3,29 @@
   "version": "1.0.0",
   "manufacturer": "Seeed",
   "url": "https://www.seeedstudio.com/SenseCAP-A1101-LoRaWAN-Vision-AI-Sensor-p-5367.html",
-  "description": "SenseCAP A1101 - LoRaWAN Vision AI Sensor is a TinyML Edge AI enabled smart image sensor. It supports a variety of AI models such as image recognition, people counting, target detection, meter recoignition etc. It also supports training models with TensorFlow Lite.",
+  "description": "Vision AI camera sensor that runs image recognition models directly on the device and reports the results. Supports people counting, object detection and meter reading, and custom models can be trained and deployed.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["AI Detection"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "People & Vehicle Counting"
+  ],
+  "keywords": [
+    "Seeed",
+    "SenseCAP",
+    "A1101",
+    "vision AI",
+    "camera",
+    "image recognition",
+    "people counting",
+    "object detection",
+    "meter reading",
+    "edge AI",
+    "TinyML",
+    "LoRaWAN"
+  ]
 }

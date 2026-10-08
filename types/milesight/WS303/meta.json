@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight-iot.com/lorawan/sensor/ws303/",
-  "description": "The WS303 is a mini water leak detection sensor that detects the presence of leaks and raises alarms. With a low power consumption, it can operate up to 5 years on a single battery",
+  "description": "Mini water leak sensor that detects the presence of water and raises alarms immediately. Placed on floors near pipes, water heaters or appliances, with up to five years of operation on a single battery.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -15,5 +15,19 @@
     "lifecycle"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Leak Detection"
+  ],
+  "keywords": [
+    "Milesight",
+    "WS303",
+    "water leak",
+    "flood detection",
+    "water heater",
+    "pipe",
+    "water damage",
+    "battery powered",
+    "LoRaWAN"
+  ]
 }

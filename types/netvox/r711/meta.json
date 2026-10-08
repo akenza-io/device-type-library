@@ -3,12 +3,27 @@
   "version": "1.0.0",
   "manufacturer": "Netvox",
   "url": "http://www.netvox.com.tw/product.asp?pro=R711",
-  "description": "R711 is mainly used to detect the temperature and humidity of indoor air.",
+  "description": "Indoor sensor that measures air temperature and relative humidity at regular intervals. Used for room climate monitoring in offices, homes, storage rooms and commercial buildings to support comfort and HVAC control.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Temperature", "Humidity"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Netvox",
+    "R711",
+    "temperature",
+    "humidity",
+    "room climate",
+    "indoor climate",
+    "HVAC",
+    "office",
+    "storage room",
+    "LoRaWAN"
+  ]
 }

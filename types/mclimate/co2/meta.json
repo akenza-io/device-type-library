@@ -3,12 +3,30 @@
   "version": "1.0.0",
   "manufacturer": "MClimate",
   "url": "https://mclimate.eu/products/mclimate-co2-sensor-notifier-lorawan",
-  "description": "MClimate CO2 Sensor and Notifier is a device that uses NDIR technology to measure the actual CO2 and has built in temperature and humidity sensors. The device also has acoustic and visual notification abilities to indicate occupants whether a room should be ventilated.",
+  "description": "Indoor sensor that measures CO2 with an NDIR sensor as well as temperature and humidity. Notifies occupants acoustically and visually when a room should be ventilated and is used in offices, classrooms and meeting rooms.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Temperature", "Humidity", "CO2"],
   "outputTopics": ["default", "configuration"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "MClimate",
+    "CO2 sensor",
+    "CO2",
+    "NDIR",
+    "temperature",
+    "humidity",
+    "ventilation",
+    "air quality",
+    "classroom",
+    "meeting room",
+    "LED indicator",
+    "buzzer",
+    "LoRaWAN"
+  ]
 }

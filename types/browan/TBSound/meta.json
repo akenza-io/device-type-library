@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Browan",
   "url": "https://www.browan.com/product/sound-level-sensor/detail",
-  "description": "The Tabs sound level sensor for easy measurement of sound level in decibels (dBA) in a variety of building environments.",
+  "description": "Indoor sensor that measures the sound level in dBA as well as temperature. Used to monitor noise exposure and acoustic comfort in offices, classrooms, open-plan areas and other building environments.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -18,5 +18,21 @@
     "config"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Browan",
+    "Tabs",
+    "TBSL100",
+    "sound level",
+    "noise",
+    "dBA",
+    "acoustic comfort",
+    "office",
+    "classroom",
+    "temperature",
+    "LoRaWAN"
+  ]
 }

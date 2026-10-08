@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Digital Matter",
   "url": "https://www.digitalmatter.com/devices/bolt2/",
-  "description": "Plug-and-play OBDII GPS tracking device with backup battery for real-time vehicle and fleet management",
+  "description": "Plug-and-play GPS tracker for the OBDII port of vehicles, with a backup battery. It reports location and analog and digital vehicle inputs in real time for vehicle and fleet management without extra wiring.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [
@@ -15,5 +15,22 @@
     "gps"
   ],
   "encoding": "JSON",
-  "connectivity": "HTTP"
+  "connectivity": "HTTP",
+  "useCases": [
+    "Asset Tracking"
+  ],
+  "keywords": [
+    "Digital Matter",
+    "Bolt 2",
+    "BOLT2-4G",
+    "GPS tracker",
+    "vehicle tracker",
+    "OBDII",
+    "fleet management",
+    "4G",
+    "LTE-M",
+    "digital input",
+    "analog input",
+    "HTTP"
+  ]
 }

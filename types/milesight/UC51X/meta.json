@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight.com/iot/product/iot-controller/uc51x",
-  "description": "The UC51X is an IoT control and monitoring device.",
+  "description": "Solenoid valve controller with pulse input and an optional pressure sensor that controls up to two valves. Opens and closes valves by schedule, rule or remote command, for example for irrigation and water supply.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -22,5 +22,22 @@
     "open_duration_valve_2"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Building Automation & Control"
+  ],
+  "keywords": [
+    "Milesight",
+    "UC511",
+    "UC512",
+    "UC51X",
+    "solenoid valve",
+    "valve controller",
+    "irrigation",
+    "pulse input",
+    "pressure",
+    "water supply",
+    "schedule",
+    "LoRaWAN"
+  ]
 }

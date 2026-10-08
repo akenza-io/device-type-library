@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Digital Matter",
   "url": "https://www.digitalmatter.com/devices/oyster-lorawan/",
-  "description": "Ultra-rugged GPS tracking device for long-term asset tracking. High-precision GPS/GLONASS tracking device tracks assets when they’re on the move and enters sleep mode when stationary to save power",
+  "description": "Rugged battery-powered GPS and GLONASS tracker for long-term asset tracking, third generation. It reports positions while assets move and sleeps when stationary to save power, used for trailers and containers.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -17,5 +17,21 @@
     "watchdog"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Asset Tracking"
+  ],
+  "keywords": [
+    "Digital Matter",
+    "Oyster 3",
+    "Oyster3",
+    "GPS tracker",
+    "GLONASS",
+    "asset tracker",
+    "rugged",
+    "long battery life",
+    "trailer",
+    "container",
+    "LoRaWAN"
+  ]
 }

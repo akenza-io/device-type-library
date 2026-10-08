@@ -3,12 +3,29 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight.com/iot/product/lorawan-sensor/ws201",
-  "description": "WS201 is a wireless sensor that utilizes ToF technology to monitor the fill level of containers with high accuracy. Working with Milesight LoRaWAN® gateway and Milesight IoT Cloud, WS201 allows users to remotely monitor and manage container fill levels and status in real-time.",
+  "description": "Time-of-flight sensor that measures the fill level of containers with high accuracy. Used for remote real-time monitoring of fill levels and status of dispensers, paper towel holders, small bins and other containers.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Distance"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Milesight",
+    "WS201",
+    "ToF",
+    "fill level",
+    "distance",
+    "dispenser",
+    "paper towel",
+    "soap dispenser",
+    "small bin",
+    "washroom",
+    "cleaning on demand",
+    "LoRaWAN"
+  ]
 }

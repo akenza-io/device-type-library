@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Yanzi",
   "url": "https://yanzi.se/products/#",
-  "description": "This device monitors indoor air quality, temperature, humidity, barometric pressure, and ambient noise. It also measures the level of carbon dioxide (CO2) and volatile organic compounds.",
+  "description": "Indoor sensor that measures CO2, VOC, temperature, humidity, barometric pressure and ambient noise. Used for indoor air quality and comfort monitoring in offices, meeting rooms and other workplace environments.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [
@@ -23,5 +23,22 @@
     "co2"
   ],
   "encoding": "JSON",
-  "connectivity": "HTTP"
+  "connectivity": "HTTP",
+  "useCases": [
+    "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Yanzi",
+    "Comfort",
+    "air quality",
+    "CO2",
+    "VOC",
+    "temperature",
+    "humidity",
+    "barometric pressure",
+    "noise",
+    "meeting room",
+    "office",
+    "HTTP"
+  ]
 }

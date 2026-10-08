@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/en/ers-desk/",
-  "description": "ERS Desk is designed to mount under the desk and senses when somebody is using the desk (standing/sitting). It can be used for dynamic workplace management, facility management and workplace statistics. The sensor also measures temperature, humidity, motion and light.",
+  "description": "Desk sensor mounted under the desk that detects whether someone is sitting or standing at it. It also measures temperature, humidity, light and motion for dynamic workplace management and statistics.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.3.5",
   "loraDeviceClass": "A",
@@ -16,5 +16,23 @@
   ],
   "outputTopics": ["default", "occupancy", "lifecycle", "configuration"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Elsys",
+    "ERS Desk",
+    "desk occupancy",
+    "desk sensor",
+    "under-desk",
+    "hot desking",
+    "workplace",
+    "presence",
+    "temperature",
+    "humidity",
+    "light",
+    "motion",
+    "LoRaWAN"
+  ]
 }

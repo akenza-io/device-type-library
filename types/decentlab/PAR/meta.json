@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/photosynthetically-active-radiation-sensor-for-lorawan",
-  "description": "PAR consists of a Photosynthetically Active Radiation (PAR) sensor for measuring the amount of light available for photosynthesis. It is suitable for use in outdoor environments, greenhouses, and growth chambers.",
+  "description": "Light sensor that measures photosynthetically active radiation, the amount of light available to plants for photosynthesis. Used outdoors, in greenhouses and in growth chambers to monitor plant lighting conditions.",
   "author": "Decentlab",
   "firmwareVersion": "V1.6.0",
   "loraDeviceClass": "A",
@@ -15,5 +15,20 @@
     "lifecycle"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Smart Agriculture"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-PAR",
+    "PAR",
+    "photosynthetically active radiation",
+    "light",
+    "quantum sensor",
+    "greenhouse",
+    "plant growth",
+    "agriculture",
+    "LoRaWAN"
+  ]
 }

@@ -3,12 +3,28 @@
   "version": "1.0.0",
   "manufacturer": "Dragino",
   "url": "https://www.dragino.com/products/distance-level-sensor/item/191-ldds45.html",
-  "description": "The Dragino LDDS45 is a LoRaWAN Distance Detection Sensor for Internet of Things solution. It is used to measure the distance between the sensor and a flat object. The distance detection sensor is a module that uses ultrasonic sensing technology for distance measurement, and temperature compensation is performed internally to improve the reliability of data.",
+  "description": "Ultrasonic distance sensor that measures the distance between the sensor and a flat object. Internal temperature compensation improves data reliability, and it is used for fill level measurement in tanks and bins.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Distance"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Dragino",
+    "LDDS45",
+    "ultrasonic",
+    "distance sensor",
+    "fill level",
+    "tank level",
+    "waste bin",
+    "water level",
+    "level sensor",
+    "temperature compensation",
+    "LoRaWAN"
+  ]
 }

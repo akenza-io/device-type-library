@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Yosensi",
   "url": "https://www.yosensi.io/products/yo_thermostat/",
-  "description": "YO Thermostat is a compact, wireless, battery-operated device designed for comprehensive indoor ambience monitoring.",
+  "description": "Battery-powered thermostat that measures temperature, humidity, CO2 and illuminance and counts presence events. Controls heating with comfort, standby, economy and frost protection setpoints and several operation modes.",
   "author": "Maciej Sacewicz",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [
@@ -28,5 +28,24 @@
     "output"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Building Automation & Control",
+    "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Yosensi",
+    "YO Thermostat",
+    "thermostat",
+    "heating control",
+    "setpoint",
+    "frost protection",
+    "temperature",
+    "humidity",
+    "CO2",
+    "illuminance",
+    "presence",
+    "HVAC",
+    "LoRaWAN"
+  ]
 }

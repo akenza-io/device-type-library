@@ -3,12 +3,27 @@
   "version": "1.0.0",
   "manufacturer": "Netvox",
   "url": "http://www.netvox.com.tw/product.asp?pro=R311A",
-  "description": "R311A is equipped with a reed sensor, which can be used to detect the status of the door and window. ",
+  "description": "Door and window sensor with a reed switch and a separate magnet that detects whether a door or window is open or closed. Used for access monitoring, security and tracking how often doors and windows are opened.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Reed"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Safety & Security"
+  ],
+  "keywords": [
+    "Netvox",
+    "R311A",
+    "door sensor",
+    "window sensor",
+    "reed switch",
+    "magnetic contact",
+    "open close",
+    "access monitoring",
+    "security",
+    "LoRaWAN"
+  ]
 }

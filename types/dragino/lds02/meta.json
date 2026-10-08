@@ -3,12 +3,28 @@
   "version": "1.0.0",
   "manufacturer": "Dragino",
   "url": "https://www.dragino.com/products/lorawan-nb-iot-door-sensor-water-leak/item/181-lds02.html",
-  "description": "The Dragino LDS02 is a LoRaWAN Door Sensor. It detects door open/close, open time and open counts.",
+  "description": "Door sensor with a reed switch and magnet that detects whether a door or window is open or closed. Reports status changes, open duration and the number of openings for access and usage monitoring in buildings.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Reed"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Safety & Security"
+  ],
+  "keywords": [
+    "Dragino",
+    "LDS02",
+    "door sensor",
+    "window sensor",
+    "reed switch",
+    "magnet",
+    "open close",
+    "door counter",
+    "open duration",
+    "access monitoring",
+    "LoRaWAN"
+  ]
 }

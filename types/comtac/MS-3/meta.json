@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Comtac",
   "url": "https://www.comtac.ch/en/products/all-products/sensors/lpn-multi-sensor-3.html",
-  "description": "Compact and versatile useable sensorpackage with temperature, humidity, GPS, acceleration sensors and more.",
+  "description": "Compact multi-sensor that measures temperature, humidity, light, acceleration, rotation and magnetic field and includes GPS and a button. Used for asset tracking, transport monitoring and environmental monitoring.",
   "author": "Akenza AG",
   "firmwareVersion": "V5.0.0",
   "loraDeviceClass": "C",
@@ -24,5 +24,24 @@
     "gps"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Asset Tracking"
+  ],
+  "keywords": [
+    "comtac",
+    "LPN MS-3",
+    "MS-3",
+    "multi-sensor",
+    "tracker",
+    "GPS",
+    "accelerometer",
+    "gyroscope",
+    "magnetometer",
+    "temperature",
+    "humidity",
+    "light",
+    "button",
+    "LoRaWAN"
+  ]
 }

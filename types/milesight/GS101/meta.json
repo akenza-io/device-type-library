@@ -3,12 +3,28 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight-iot.com/lorawan/sensor/gs101/",
-  "description": "Milesight GS101 is a LoRaWAN® residential gas detector that allows you to detect methane (CH4) leakage in houses, apartments, hotels, etc., and avoids potential damage before danger occurs.",
+  "description": "Residential gas detector that detects methane (CH4) leaks and raises an alarm. Used in houses, apartments, hotels and kitchens to warn occupants and operators before gas concentrations reach dangerous levels.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Gas"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Safety & Security"
+  ],
+  "keywords": [
+    "Milesight",
+    "GS101",
+    "gas detector",
+    "methane",
+    "CH4",
+    "natural gas",
+    "gas leak",
+    "alarm",
+    "kitchen",
+    "residential",
+    "LoRaWAN"
+  ]
 }
