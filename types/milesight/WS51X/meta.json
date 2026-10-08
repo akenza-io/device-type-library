@@ -14,5 +14,18 @@
   "useCases": [
     "Building Automation & Control",
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Milesight",
+    "WS51X",
+    "wall switch",
+    "light switch",
+    "wall socket",
+    "lighting control",
+    "remote switching",
+    "energy metering",
+    "power",
+    "electricity",
+    "LoRaWAN"
   ]
 }

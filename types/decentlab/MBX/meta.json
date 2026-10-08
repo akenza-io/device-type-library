@@ -14,5 +14,19 @@
   "useCases": [
     "Fill Level Monitoring",
     "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-MBX",
+    "ultrasonic",
+    "rangefinder",
+    "distance",
+    "water level",
+    "tank level",
+    "silo",
+    "waste bin",
+    "fill level",
+    "snow depth",
+    "LoRaWAN"
   ]
 }

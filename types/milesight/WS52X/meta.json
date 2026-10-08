@@ -14,5 +14,19 @@
   "useCases": [
     "Energy & Utility Metering",
     "Building Automation & Control"
+  ],
+  "keywords": [
+    "Milesight",
+    "WS52X",
+    "WS523",
+    "smart plug",
+    "socket",
+    "remote switching",
+    "voltage",
+    "current",
+    "power",
+    "energy consumption",
+    "overcurrent",
+    "LoRaWAN"
   ]
 }

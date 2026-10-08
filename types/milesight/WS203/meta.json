@@ -14,5 +14,19 @@
   "useCases": [
     "Occupancy & Space Utilization",
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Milesight",
+    "WS203",
+    "PIR",
+    "motion sensor",
+    "occupancy",
+    "temperature",
+    "humidity",
+    "HVAC",
+    "energy saving",
+    "meeting room",
+    "office",
+    "LoRaWAN"
   ]
 }

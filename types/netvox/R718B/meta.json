@@ -18,5 +18,20 @@
   "connectivity": "LORA",
   "useCases": [
     "Cold Chain & Temperature Compliance"
+  ],
+  "keywords": [
+    "Netvox",
+    "R718B",
+    "temperature probe",
+    "PT1000",
+    "external probe",
+    "temperature",
+    "fridge",
+    "freezer",
+    "cold chain",
+    "pipe temperature",
+    "industrial process",
+    "RTD",
+    "LoRaWAN"
   ]
 }

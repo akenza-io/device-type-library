@@ -17,5 +17,18 @@
   "connectivity": "NB-IOT",
   "useCases": [
     "Smart Agriculture"
+  ],
+  "keywords": [
+    "Dragino",
+    "NSE01",
+    "soil sensor",
+    "soil moisture",
+    "soil temperature",
+    "soil conductivity",
+    "EC",
+    "irrigation",
+    "fertilization",
+    "agriculture",
+    "NB-IoT"
   ]
 }

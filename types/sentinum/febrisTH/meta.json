@@ -13,5 +13,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Sentinum",
+    "Febris TH",
+    "Febris",
+    "temperature",
+    "humidity",
+    "room climate",
+    "alarm",
+    "buzzer",
+    "indoor climate",
+    "LoRaWAN"
   ]
 }

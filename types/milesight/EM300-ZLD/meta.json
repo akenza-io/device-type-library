@@ -20,5 +20,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Leak Detection"
+  ],
+  "keywords": [
+    "Milesight",
+    "EM300-ZLD",
+    "water leak",
+    "leak cable",
+    "zone detection",
+    "flood detection",
+    "temperature",
+    "humidity",
+    "pipe",
+    "water damage",
+    "LoRaWAN"
   ]
 }

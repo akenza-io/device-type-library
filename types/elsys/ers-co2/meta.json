@@ -25,5 +25,22 @@
   "useCases": [
     "Indoor Air Quality & Comfort",
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Elsys",
+    "ERS CO2",
+    "ERS",
+    "CO2",
+    "NDIR",
+    "temperature",
+    "humidity",
+    "light",
+    "motion",
+    "PIR",
+    "air quality",
+    "ventilation",
+    "occupancy",
+    "classroom",
+    "LoRaWAN"
   ]
 }

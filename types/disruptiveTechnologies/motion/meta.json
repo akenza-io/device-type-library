@@ -12,5 +12,18 @@
   "connectivity": "HTTP",
   "useCases": [
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Disruptive Technologies",
+    "DT",
+    "motion sensor",
+    "PIR",
+    "room occupancy",
+    "presence detection",
+    "meeting room",
+    "occupancy",
+    "demand-based control",
+    "HTTP",
+    "cloud connector"
   ]
 }

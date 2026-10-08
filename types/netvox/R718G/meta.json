@@ -18,5 +18,16 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Netvox",
+    "R718G",
+    "light sensor",
+    "illuminance",
+    "lux",
+    "daylight",
+    "lighting control",
+    "outdoor light",
+    "LoRaWAN"
   ]
 }

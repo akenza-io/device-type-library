@@ -20,5 +20,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Elsys",
+    "ERS Lite",
+    "ERS",
+    "temperature",
+    "humidity",
+    "room climate",
+    "comfort",
+    "office",
+    "school",
+    "LoRaWAN"
   ]
 }

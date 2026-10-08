@@ -20,5 +20,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-PHEHT",
+    "pH",
+    "redox",
+    "ORP",
+    "water quality",
+    "wastewater",
+    "sewage",
+    "temperature",
+    "LoRaWAN"
   ]
 }

@@ -19,5 +19,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Facility Services & Feedback"
+  ],
+  "keywords": [
+    "Plenom",
+    "Kuando Busylight",
+    "Busylight",
+    "signal light",
+    "status light",
+    "LED indicator",
+    "room availability",
+    "desk availability",
+    "downlink",
+    "LoRaWAN"
   ]
 }

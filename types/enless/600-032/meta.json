@@ -19,5 +19,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Cold Chain & Temperature Compliance"
+  ],
+  "keywords": [
+    "Enless",
+    "TX TEMP CONT1",
+    "600-032",
+    "PT1000",
+    "contact probe",
+    "surface temperature",
+    "cold room",
+    "data center",
+    "hot water",
+    "pipe temperature",
+    "LoRaWAN"
   ]
 }

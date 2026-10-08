@@ -19,5 +19,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Netvox",
+    "R712",
+    "temperature",
+    "humidity",
+    "outdoor",
+    "weather",
+    "splash-proof",
+    "facade",
+    "garden",
+    "LoRaWAN"
   ]
 }

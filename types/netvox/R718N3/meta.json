@@ -19,5 +19,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Netvox",
+    "R718N3",
+    "current meter",
+    "three-phase",
+    "current transformer",
+    "CT clamp",
+    "AC current",
+    "energy monitoring",
+    "load monitoring",
+    "LoRaWAN"
   ]
 }

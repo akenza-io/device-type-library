@@ -19,5 +19,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Cold Chain & Temperature Compliance"
+  ],
+  "keywords": [
+    "Enless",
+    "TX TEMP INS",
+    "600-031",
+    "temperature sensor",
+    "industrial",
+    "rugged",
+    "IP65",
+    "warehouse",
+    "factory",
+    "greenhouse",
+    "heating plant",
+    "LoRaWAN"
   ]
 }

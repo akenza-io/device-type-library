@@ -13,5 +13,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "comtac",
+    "LPN CM-1",
+    "CM-1",
+    "temperature",
+    "humidity",
+    "push button",
+    "room climate",
+    "indoor",
+    "technical room",
+    "LoRaWAN"
   ]
 }

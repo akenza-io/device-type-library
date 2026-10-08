@@ -25,5 +25,20 @@
   "connectivity": "LORA",
   "useCases": [
     "Asset Tracking"
+  ],
+  "keywords": [
+    "Abeeway",
+    "Micro Tracker",
+    "tracker",
+    "GPS",
+    "asset location",
+    "BLE",
+    "Wi-Fi sniffing",
+    "TDoA",
+    "shock detection",
+    "motion",
+    "temperature",
+    "geolocation",
+    "LoRaWAN"
   ]
 }

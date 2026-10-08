@@ -21,5 +21,20 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Elsys",
+    "ERS Display CO2",
+    "EIAQD10",
+    "CO2",
+    "e-paper display",
+    "temperature",
+    "humidity",
+    "NDIR",
+    "air quality",
+    "ventilation",
+    "classroom",
+    "office",
+    "LoRaWAN"
   ]
 }

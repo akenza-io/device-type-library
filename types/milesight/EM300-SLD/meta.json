@@ -20,5 +20,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Leak Detection"
+  ],
+  "keywords": [
+    "Milesight",
+    "EM300-SLD",
+    "water leak",
+    "spot probe",
+    "flood detection",
+    "temperature",
+    "humidity",
+    "pipe",
+    "water damage",
+    "LoRaWAN"
   ]
 }

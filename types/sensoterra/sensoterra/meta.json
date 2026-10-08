@@ -25,5 +25,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Smart Agriculture"
+  ],
+  "keywords": [
+    "Sensoterra",
+    "Single Depth Sensor",
+    "soil moisture",
+    "soil probe",
+    "VWC",
+    "irrigation",
+    "agriculture",
+    "sports field",
+    "landscaping",
+    "parks",
+    "LoRaWAN"
   ]
 }

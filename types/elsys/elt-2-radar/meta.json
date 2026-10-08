@@ -22,5 +22,20 @@
   "connectivity": "LORA",
   "useCases": [
     "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Elsys",
+    "ELT Distance radar",
+    "ELT-2",
+    "radar",
+    "distance sensor",
+    "fill level",
+    "water level",
+    "tank level",
+    "temperature",
+    "humidity",
+    "pressure",
+    "outdoor",
+    "LoRaWAN"
   ]
 }

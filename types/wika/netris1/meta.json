@@ -23,5 +23,18 @@
   "connectivity": "MIOTY",
   "useCases": [
     "Condition Monitoring"
+  ],
+  "keywords": [
+    "WIKA",
+    "Netris 1",
+    "Netris",
+    "radio unit",
+    "industrial sensor",
+    "pressure",
+    "temperature",
+    "process monitoring",
+    "process alarm",
+    "remote monitoring",
+    "mioty"
   ]
 }

@@ -18,5 +18,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Safety & Security"
+  ],
+  "keywords": [
+    "Netvox",
+    "R718LB",
+    "door sensor",
+    "window sensor",
+    "hall effect",
+    "magnetic contact",
+    "open close",
+    "hatch",
+    "access monitoring",
+    "security",
+    "LoRaWAN"
   ]
 }

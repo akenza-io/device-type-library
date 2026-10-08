@@ -13,5 +13,16 @@
   "connectivity": "LORA",
   "useCases": [
     "Facility Services & Feedback"
+  ],
+  "keywords": [
+    "MClimate",
+    "Multipurpose Button",
+    "button",
+    "click",
+    "service request",
+    "feedback",
+    "alarm trigger",
+    "temperature",
+    "LoRaWAN"
   ]
 }

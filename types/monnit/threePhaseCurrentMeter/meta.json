@@ -18,5 +18,17 @@
   "connectivity": "HTTP",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Monnit",
+    "three-phase",
+    "current meter",
+    "current transformer",
+    "current",
+    "energy monitoring",
+    "load analysis",
+    "industrial",
+    "machine monitoring",
+    "HTTP"
   ]
 }

@@ -20,5 +20,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Enless",
+    "TX T&H AMB",
+    "600-021",
+    "temperature",
+    "humidity",
+    "room climate",
+    "comfort",
+    "heating optimization",
+    "office",
+    "school",
+    "LoRaWAN"
   ]
 }

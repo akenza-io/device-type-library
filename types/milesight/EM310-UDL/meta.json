@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Milesight",
+    "EM310-UDL",
+    "ultrasonic",
+    "distance",
+    "fill level",
+    "waste bin",
+    "smart waste",
+    "lid open",
+    "tilt",
+    "accelerometer",
+    "LoRaWAN"
   ]
 }

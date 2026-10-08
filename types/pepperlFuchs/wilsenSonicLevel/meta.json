@@ -13,5 +13,20 @@
   "connectivity": "LORA",
   "useCases": [
     "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Pepperl+Fuchs",
+    "WILSEN.sonic.level",
+    "WILSEN",
+    "fill level",
+    "ultrasonic",
+    "tank level",
+    "container",
+    "GPS",
+    "temperature",
+    "distance",
+    "remote tank monitoring",
+    "Bluetooth",
+    "LoRaWAN"
   ]
 }

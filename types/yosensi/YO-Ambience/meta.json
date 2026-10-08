@@ -26,5 +26,19 @@
   "useCases": [
     "Indoor Air Quality & Comfort",
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Yosensi",
+    "YO Ambience",
+    "CO2",
+    "air quality",
+    "temperature",
+    "humidity",
+    "illuminance",
+    "presence",
+    "occupancy",
+    "meeting room",
+    "classroom",
+    "LoRaWAN"
   ]
 }

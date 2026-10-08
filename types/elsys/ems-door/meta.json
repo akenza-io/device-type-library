@@ -22,5 +22,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Safety & Security"
+  ],
+  "keywords": [
+    "Elsys",
+    "EMS Door",
+    "door sensor",
+    "reed switch",
+    "magnet",
+    "accelerometer",
+    "open close",
+    "door counter",
+    "window sensor",
+    "LoRaWAN"
   ]
 }

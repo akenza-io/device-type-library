@@ -20,5 +20,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Enless",
+    "TX PULSE",
+    "600-036",
+    "pulse counter",
+    "meter reading",
+    "water meter",
+    "gas meter",
+    "electricity meter",
+    "dry contact",
+    "open collector",
+    "overconsumption",
+    "LoRaWAN"
   ]
 }

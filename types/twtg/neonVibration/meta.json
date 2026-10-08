@@ -35,5 +35,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Condition Monitoring"
+  ],
+  "keywords": [
+    "TWTG",
+    "NEON",
+    "NEON Vibration Sensor",
+    "vibration",
+    "predictive maintenance",
+    "vibration spectrum",
+    "accelerometer",
+    "pump",
+    "motor",
+    "conveyor belt",
+    "machine fault",
+    "LoRaWAN"
   ]
 }

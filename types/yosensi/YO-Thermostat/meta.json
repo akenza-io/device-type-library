@@ -32,5 +32,20 @@
   "useCases": [
     "Building Automation & Control",
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Yosensi",
+    "YO Thermostat",
+    "thermostat",
+    "heating control",
+    "setpoint",
+    "frost protection",
+    "temperature",
+    "humidity",
+    "CO2",
+    "illuminance",
+    "presence",
+    "HVAC",
+    "LoRaWAN"
   ]
 }

@@ -13,5 +13,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Building Automation & Control"
+  ],
+  "keywords": [
+    "Milesight",
+    "WS156",
+    "scene panel",
+    "button",
+    "e-ink display",
+    "scene control",
+    "lighting control",
+    "remote control",
+    "battery powered",
+    "LoRaWAN"
   ]
 }

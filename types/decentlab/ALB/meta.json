@@ -20,5 +20,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-ALB",
+    "albedometer",
+    "albedo",
+    "solar radiation",
+    "reflected radiation",
+    "pyranometer",
+    "solar panel",
+    "photovoltaic",
+    "LoRaWAN"
   ]
 }

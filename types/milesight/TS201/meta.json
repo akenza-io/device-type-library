@@ -19,5 +19,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Cold Chain & Temperature Compliance"
+  ],
+  "keywords": [
+    "Milesight",
+    "TS201",
+    "temperature",
+    "EN12830",
+    "HACCP",
+    "cold chain",
+    "pharmaceutical",
+    "food processing",
+    "IP67",
+    "alarm",
+    "LoRaWAN"
   ]
 }

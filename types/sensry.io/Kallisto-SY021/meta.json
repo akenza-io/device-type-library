@@ -26,5 +26,21 @@
   "useCases": [
     "Indoor Air Quality & Comfort",
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "sensry.io",
+    "Kallisto",
+    "SY021",
+    "multisensor",
+    "CO2",
+    "VOC",
+    "temperature",
+    "humidity",
+    "barometric pressure",
+    "light",
+    "noise",
+    "motion",
+    "BLE",
+    "MQTT"
   ]
 }

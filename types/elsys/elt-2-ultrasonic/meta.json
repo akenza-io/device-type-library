@@ -22,5 +22,20 @@
   "connectivity": "LORA",
   "useCases": [
     "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Elsys",
+    "ELT Ultrasonic 5m",
+    "ELT-2",
+    "ultrasonic",
+    "distance sensor",
+    "water level",
+    "river level",
+    "fill level",
+    "container",
+    "temperature",
+    "humidity",
+    "IP67",
+    "LoRaWAN"
   ]
 }

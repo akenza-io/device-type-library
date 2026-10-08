@@ -13,5 +13,20 @@
   "connectivity": "LORA",
   "useCases": [
     "Cold Chain & Temperature Compliance"
+  ],
+  "keywords": [
+    "Milesight",
+    "TS302",
+    "temperature",
+    "dual probe",
+    "PT100",
+    "LCD display",
+    "door contact",
+    "cold room",
+    "freezer",
+    "HACCP",
+    "pharmaceutical",
+    "threshold alarm",
+    "LoRaWAN"
   ]
 }

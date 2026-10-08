@@ -21,5 +21,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Condition Monitoring"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-KL66",
+    "vibrating wire",
+    "strain",
+    "weight",
+    "elongation",
+    "frequency",
+    "silo level",
+    "structural health",
+    "LoRaWAN"
   ]
 }

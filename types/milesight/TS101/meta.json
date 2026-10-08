@@ -13,5 +13,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Cold Chain & Temperature Compliance"
+  ],
+  "keywords": [
+    "Milesight",
+    "TS101",
+    "insertion probe",
+    "temperature",
+    "liquid temperature",
+    "pipe temperature",
+    "food",
+    "storage",
+    "cold chain",
+    "LoRaWAN"
   ]
 }

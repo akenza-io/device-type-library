@@ -25,5 +25,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "smartEnds",
+    "Brighter Bins",
+    "fill level",
+    "waste bin",
+    "ultrasonic",
+    "waste collection",
+    "container",
+    "distance",
+    "orientation",
+    "motion",
+    "LoRaWAN"
   ]
 }

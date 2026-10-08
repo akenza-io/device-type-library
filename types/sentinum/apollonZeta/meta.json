@@ -13,5 +13,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Sentinum",
+    "Apollon Zeta",
+    "Apollon",
+    "fill level",
+    "waste bin",
+    "3D ToF",
+    "radar",
+    "distance",
+    "tilt",
+    "waste management",
+    "container",
+    "LoRaWAN"
   ]
 }

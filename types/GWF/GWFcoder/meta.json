@@ -12,5 +12,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "GWF",
+    "RCM-LRW10",
+    "GWFcoder",
+    "water meter",
+    "gas meter",
+    "meter reading",
+    "encoder register",
+    "radio module",
+    "remote readout",
+    "volume",
+    "consumption",
+    "LoRaWAN"
   ]
 }

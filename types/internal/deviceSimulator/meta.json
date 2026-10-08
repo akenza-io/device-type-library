@@ -19,5 +19,20 @@
   ],
   "encoding": "JSON",
   "connectivity": "HTTP",
-  "useCases": []
+  "useCases": [],
+  "keywords": [
+    "device simulator",
+    "virtual device",
+    "simulated data",
+    "testing",
+    "demo",
+    "temperature",
+    "humidity",
+    "CO2",
+    "sound",
+    "light",
+    "occupancy",
+    "akenza",
+    "HTTP"
+  ]
 }

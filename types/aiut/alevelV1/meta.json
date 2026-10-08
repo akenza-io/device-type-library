@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "AIUT",
+    "ALEVEL",
+    "ALEVEL 1x5 V1",
+    "tank level",
+    "float gauge",
+    "dial reader",
+    "fill level",
+    "LPG tank",
+    "spill detection",
+    "level alarm",
+    "LoRaWAN"
   ]
 }

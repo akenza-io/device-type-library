@@ -13,5 +13,16 @@
   "connectivity": "LORA",
   "useCases": [
     "Safety & Security"
+  ],
+  "keywords": [
+    "fire extinguisher",
+    "safety pin",
+    "tamper detection",
+    "reed switch",
+    "magnetic contact",
+    "fire safety",
+    "inspection",
+    "alarm",
+    "LoRaWAN"
   ]
 }

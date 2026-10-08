@@ -13,5 +13,20 @@
   "connectivity": "LORA",
   "useCases": [
     "Asset Tracking"
+  ],
+  "keywords": [
+    "Milesight",
+    "AT101",
+    "tracker",
+    "GNSS",
+    "GPS",
+    "Wi-Fi positioning",
+    "outdoor",
+    "temperature",
+    "tilt",
+    "vehicle tracking",
+    "equipment tracking",
+    "location history",
+    "LoRaWAN"
   ]
 }

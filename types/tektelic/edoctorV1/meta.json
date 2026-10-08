@@ -20,5 +20,19 @@
   ],
   "encoding": "HEX",
   "connectivity": "LORA",
-  "useCases": []
+  "useCases": [],
+  "keywords": [
+    "Tektelic",
+    "EDOCTOR",
+    "EDOCTOR V1",
+    "health monitor",
+    "wearable",
+    "body temperature",
+    "heart rate",
+    "breathing rate",
+    "respiratory",
+    "cough detection",
+    "patient monitoring",
+    "LoRaWAN"
+  ]
 }

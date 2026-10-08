@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Dragino",
+    "LLDS12",
+    "LiDAR",
+    "ToF",
+    "laser",
+    "distance sensor",
+    "fill level",
+    "level sensor",
+    "12 m range",
+    "temperature",
+    "LoRaWAN"
   ]
 }

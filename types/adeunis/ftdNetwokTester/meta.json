@@ -10,5 +10,20 @@
   "outputTopics": ["default", "gps"],
   "encoding": "HEX",
   "connectivity": "LORA",
-  "useCases": []
+  "useCases": [],
+  "keywords": [
+    "Adeunis",
+    "FTD",
+    "network tester",
+    "field test device",
+    "coverage",
+    "signal strength",
+    "RSSI",
+    "SNR",
+    "GPS",
+    "site survey",
+    "temperature",
+    "button",
+    "LoRaWAN"
+  ]
 }

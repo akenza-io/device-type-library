@@ -19,5 +19,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Milesight",
+    "AM102",
+    "AM100 series",
+    "temperature",
+    "humidity",
+    "e-ink display",
+    "room climate",
+    "indoor comfort",
+    "meeting room",
+    "classroom",
+    "hotel",
+    "LoRaWAN"
   ]
 }

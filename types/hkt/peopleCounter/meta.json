@@ -13,5 +13,17 @@
   "connectivity": "LORA",
   "useCases": [
     "People & Vehicle Counting"
+  ],
+  "keywords": [
+    "HKT",
+    "people counter",
+    "infrared beam",
+    "foot traffic",
+    "visitor counting",
+    "passageway",
+    "corridor",
+    "entrance",
+    "battery powered",
+    "LoRaWAN"
   ]
 }

@@ -186,6 +186,25 @@
           "Facility Services & Feedback"
         ]
       }
+    },
+    "keywords": {
+      "type": "array",
+      "title": "The keywords schema",
+      "description": "Search terms related to the device, most relevant first.",
+      "examples": [
+        [
+          "Elsys",
+          "ERS Desk",
+          "desk occupancy",
+          "temperature"
+        ]
+      ],
+      "uniqueItems": true,
+      "maxItems": 20,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
     }
   }
 }

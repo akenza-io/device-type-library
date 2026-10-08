@@ -21,5 +21,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Safety & Security"
+  ],
+  "keywords": [
+    "Sensative",
+    "Strips",
+    "Strips Guard",
+    "Multi-sensor",
+    "door sensor",
+    "window sensor",
+    "magnetic contact",
+    "tamper detection",
+    "temperature",
+    "security",
+    "LoRaWAN"
   ]
 }

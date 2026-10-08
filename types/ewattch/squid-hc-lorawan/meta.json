@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Ewattch",
+    "Squid",
+    "current clamp",
+    "current transformer",
+    "multi-circuit",
+    "energy monitoring",
+    "sub-metering",
+    "electricity",
+    "current",
+    "electrical panel",
+    "LoRaWAN"
   ]
 }

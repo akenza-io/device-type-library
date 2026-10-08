@@ -21,5 +21,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Alpha-Omega Technology",
+    "Klax 2.0",
+    "Klax",
+    "electricity meter",
+    "optical reader",
+    "infrared interface",
+    "SML",
+    "meter register",
+    "energy consumption",
+    "smart meter",
+    "LoRaWAN"
   ]
 }

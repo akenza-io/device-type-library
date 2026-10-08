@@ -20,5 +20,18 @@
   "connectivity": "Sigfox",
   "useCases": [
     "People & Vehicle Counting"
+  ],
+  "keywords": [
+    "Pipiot",
+    "PeopleSense",
+    "people counter",
+    "traffic counter",
+    "bicycle counting",
+    "trail counter",
+    "park",
+    "footfall",
+    "vehicle counting",
+    "temperature",
+    "Sigfox"
   ]
 }

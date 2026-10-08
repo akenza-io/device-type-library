@@ -24,5 +24,19 @@
   "connectivity": "MIOTY",
   "useCases": [
     "Condition Monitoring"
+  ],
+  "keywords": [
+    "WIKA",
+    "PEW-1000",
+    "PEW",
+    "pressure sensor",
+    "pressure",
+    "temperature",
+    "pipeline",
+    "tank",
+    "gas pressure",
+    "liquid pressure",
+    "process alarm",
+    "mioty"
   ]
 }

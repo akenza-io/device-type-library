@@ -31,5 +31,20 @@
   "connectivity": "MQTT",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Haltian",
+    "Thingsee Environment",
+    "Thingsee",
+    "temperature",
+    "humidity",
+    "pressure",
+    "light",
+    "magnetic field",
+    "door sensor",
+    "vibration",
+    "accelerometer",
+    "retrofit",
+    "MQTT"
   ]
 }

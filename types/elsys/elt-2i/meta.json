@@ -26,5 +26,21 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Elsys",
+    "ELT-2i",
+    "ELT",
+    "internal antenna",
+    "external input",
+    "analog input",
+    "pulse counter",
+    "0-10 V",
+    "temperature",
+    "humidity",
+    "pressure",
+    "water leak",
+    "IP67",
+    "LoRaWAN"
   ]
 }

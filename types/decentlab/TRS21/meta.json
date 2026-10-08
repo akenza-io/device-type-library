@@ -19,5 +19,16 @@
   "connectivity": "LORA",
   "useCases": [
     "Smart Agriculture"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-TRS21",
+    "water potential",
+    "soil suction",
+    "soil temperature",
+    "tensiometer",
+    "irrigation",
+    "agriculture",
+    "LoRaWAN"
   ]
 }

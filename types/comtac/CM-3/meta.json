@@ -13,5 +13,20 @@
   "useCases": [
     "Cold Chain & Temperature Compliance",
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "comtac",
+    "LPN CM-3",
+    "CM-3",
+    "temperature",
+    "humidity",
+    "PT100",
+    "external probe",
+    "fridge",
+    "freezer",
+    "cold chain",
+    "HACCP",
+    "data logger",
+    "LoRaWAN"
   ]
 }

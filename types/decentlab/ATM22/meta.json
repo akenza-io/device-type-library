@@ -20,5 +20,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-ATM22",
+    "anemometer",
+    "wind speed",
+    "wind direction",
+    "wind gust",
+    "weather station",
+    "tilt",
+    "temperature",
+    "ultrasonic",
+    "LoRaWAN"
   ]
 }

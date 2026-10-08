@@ -13,5 +13,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Safety & Security"
+  ],
+  "keywords": [
+    "Dragino",
+    "CPL01",
+    "dry contact",
+    "contact sensor",
+    "open close",
+    "door",
+    "gate",
+    "open count",
+    "open duration",
+    "equipment status",
+    "datalog",
+    "LoRaWAN"
   ]
 }

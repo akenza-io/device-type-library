@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Avelon",
+    "Wisely CarbonSense",
+    "Wisely",
+    "CO2",
+    "temperature",
+    "humidity",
+    "barometric pressure",
+    "air quality",
+    "room climate",
+    "ventilation",
+    "LoRaWAN"
   ]
 }

@@ -27,5 +27,20 @@
   "useCases": [
     "Energy & Utility Metering",
     "Building Automation & Control"
+  ],
+  "keywords": [
+    "MOKO",
+    "MOKOSmart",
+    "LW005-MP",
+    "smart plug",
+    "socket",
+    "remote switching",
+    "power",
+    "energy",
+    "overload protection",
+    "overvoltage",
+    "overcurrent",
+    "countdown",
+    "LoRaWAN"
   ]
 }

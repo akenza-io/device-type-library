@@ -19,5 +19,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Condition Monitoring"
+  ],
+  "keywords": [
+    "Dragino",
+    "LHT65N-VIB",
+    "LHT65N",
+    "vibration sensor",
+    "shock",
+    "machine monitoring",
+    "pump",
+    "predictive maintenance",
+    "temperature",
+    "humidity",
+    "datalog",
+    "LoRaWAN"
   ]
 }

@@ -23,5 +23,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Yosensi",
+    "YO Distance",
+    "ultrasonic",
+    "distance",
+    "fill level",
+    "tank level",
+    "waste bin",
+    "container",
+    "temperature",
+    "humidity",
+    "accelerometer",
+    "LoRaWAN"
   ]
 }

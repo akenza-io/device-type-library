@@ -13,5 +13,16 @@
   "connectivity": "LORA",
   "useCases": [
     "Smart Agriculture"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-SMTP",
+    "soil moisture",
+    "soil temperature",
+    "soil probe",
+    "multi-depth",
+    "irrigation",
+    "agriculture",
+    "LoRaWAN"
   ]
 }

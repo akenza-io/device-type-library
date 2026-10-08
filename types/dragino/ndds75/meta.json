@@ -13,5 +13,17 @@
   "connectivity": "NB-IOT",
   "useCases": [
     "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Dragino",
+    "NDDS75",
+    "ultrasonic",
+    "distance sensor",
+    "fill level",
+    "tank level",
+    "waste bin",
+    "water level",
+    "level sensor",
+    "NB-IoT"
   ]
 }

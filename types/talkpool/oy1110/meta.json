@@ -13,5 +13,16 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Nordic Propeye",
+    "Talkpool",
+    "OY1110",
+    "temperature",
+    "humidity",
+    "room climate",
+    "indoor climate",
+    "10-year battery",
+    "LoRaWAN"
   ]
 }

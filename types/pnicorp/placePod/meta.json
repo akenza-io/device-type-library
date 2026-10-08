@@ -21,5 +21,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "PNI",
+    "PlacePod",
+    "parking sensor",
+    "parking",
+    "in-ground",
+    "magnetometer",
+    "vehicle detection",
+    "parking occupancy",
+    "vehicle count",
+    "smart city",
+    "temperature",
+    "LoRaWAN"
   ]
 }

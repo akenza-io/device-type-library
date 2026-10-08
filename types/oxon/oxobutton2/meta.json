@@ -21,5 +21,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Facility Services & Feedback"
+  ],
+  "keywords": [
+    "Oxon",
+    "Oxobutton 2",
+    "Oxobutton",
+    "button",
+    "e-ink display",
+    "feedback",
+    "service request",
+    "tilt",
+    "temperature",
+    "humidity",
+    "BLE",
+    "LoRaWAN"
   ]
 }

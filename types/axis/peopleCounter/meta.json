@@ -16,5 +16,18 @@
   "connectivity": "HTTP",
   "useCases": [
     "People & Vehicle Counting"
+  ],
+  "keywords": [
+    "Axis",
+    "People Counter",
+    "camera",
+    "video analytics",
+    "ceiling camera",
+    "line counting",
+    "in out counting",
+    "footfall",
+    "retail",
+    "visitor counting",
+    "HTTP"
   ]
 }

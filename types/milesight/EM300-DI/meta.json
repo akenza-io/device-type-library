@@ -22,5 +22,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Milesight",
+    "EM300-DI",
+    "pulse counter",
+    "pulse input",
+    "water meter",
+    "meter reading",
+    "digital input",
+    "temperature",
+    "humidity",
+    "water consumption",
+    "LoRaWAN"
   ]
 }

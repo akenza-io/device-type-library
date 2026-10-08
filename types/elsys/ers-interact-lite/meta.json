@@ -21,5 +21,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Elsys",
+    "ERS Interact Lite",
+    "ERS Interact",
+    "thermostat",
+    "setpoint",
+    "target temperature",
+    "touch buttons",
+    "temperature",
+    "humidity",
+    "room climate",
+    "comfort",
+    "LoRaWAN"
   ]
 }

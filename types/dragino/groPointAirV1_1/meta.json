@@ -13,5 +13,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Smart Agriculture"
+  ],
+  "keywords": [
+    "Dragino",
+    "GroPoint Air V1.1",
+    "GroPoint",
+    "soil probe",
+    "soil moisture",
+    "soil temperature",
+    "irrigation",
+    "agriculture",
+    "horticulture",
+    "LoRaWAN"
   ]
 }

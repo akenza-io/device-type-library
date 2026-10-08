@@ -14,5 +14,20 @@
   "useCases": [
     "Indoor Air Quality & Comfort",
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Tektelic",
+    "VIVID",
+    "Smart Room Sensor",
+    "VIVID V3.1",
+    "PIR",
+    "occupancy",
+    "motion",
+    "temperature",
+    "humidity",
+    "reed switch",
+    "door sensor",
+    "room utilization",
+    "LoRaWAN"
   ]
 }

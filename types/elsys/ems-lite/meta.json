@@ -22,5 +22,18 @@
   "useCases": [
     "Leak Detection",
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Elsys",
+    "EMS Lite",
+    "water leak",
+    "leak sensor",
+    "temperature",
+    "humidity",
+    "room climate",
+    "kitchen",
+    "technical room",
+    "facility management",
+    "LoRaWAN"
   ]
 }

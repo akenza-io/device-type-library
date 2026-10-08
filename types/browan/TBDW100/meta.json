@@ -22,5 +22,19 @@
   "useCases": [
     "Safety & Security",
     "Facility Services & Feedback"
+  ],
+  "keywords": [
+    "Browan",
+    "Tabs",
+    "TBDW100",
+    "door sensor",
+    "window sensor",
+    "reed switch",
+    "magnetic contact",
+    "open close",
+    "door counter",
+    "temperature",
+    "security",
+    "LoRaWAN"
   ]
 }

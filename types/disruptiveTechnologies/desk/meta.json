@@ -20,5 +20,19 @@
   "connectivity": "HTTP",
   "useCases": [
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Disruptive Technologies",
+    "DT",
+    "desk occupancy",
+    "desk sensor",
+    "presence",
+    "hot desking",
+    "workspace utilization",
+    "office",
+    "occupancy",
+    "touch",
+    "HTTP",
+    "cloud connector"
   ]
 }

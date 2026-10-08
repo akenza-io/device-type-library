@@ -25,5 +25,25 @@
   "useCases": [
     "Indoor Air Quality & Comfort",
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Milesight",
+    "AM319",
+    "AM300 series",
+    "CO2",
+    "TVOC",
+    "PM2.5",
+    "PM10",
+    "formaldehyde",
+    "ozone",
+    "temperature",
+    "humidity",
+    "barometric pressure",
+    "light",
+    "PIR",
+    "occupancy",
+    "e-ink display",
+    "IAQ",
+    "LoRaWAN"
   ]
 }

@@ -21,5 +21,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Enless",
+    "TX T&H MINI",
+    "600-050",
+    "temperature",
+    "humidity",
+    "compact",
+    "room climate",
+    "comfort",
+    "energy performance",
+    "office",
+    "housing",
+    "LoRaWAN"
   ]
 }

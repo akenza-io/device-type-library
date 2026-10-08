@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Smart Agriculture"
+  ],
+  "keywords": [
+    "Dragino",
+    "LSPH01",
+    "soil pH",
+    "pH sensor",
+    "soil temperature",
+    "acidity",
+    "alkalinity",
+    "fertilization",
+    "agriculture",
+    "IP68",
+    "LoRaWAN"
   ]
 }

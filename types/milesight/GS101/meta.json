@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Safety & Security"
+  ],
+  "keywords": [
+    "Milesight",
+    "GS101",
+    "gas detector",
+    "methane",
+    "CH4",
+    "natural gas",
+    "gas leak",
+    "alarm",
+    "kitchen",
+    "residential",
+    "LoRaWAN"
   ]
 }

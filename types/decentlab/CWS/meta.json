@@ -22,5 +22,18 @@
   "useCases": [
     "Weather & Outdoor Environment",
     "Smart Agriculture"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-CWS",
+    "surface temperature",
+    "infrared pyrometer",
+    "dew point",
+    "air temperature",
+    "humidity",
+    "road weather",
+    "frost",
+    "ice warning",
+    "LoRaWAN"
   ]
 }

@@ -18,5 +18,16 @@
   "connectivity": "LORA",
   "useCases": [
     "Leak Detection"
+  ],
+  "keywords": [
+    "MClimate",
+    "Flood Sensor",
+    "water leak",
+    "flood detection",
+    "temperature",
+    "water heater",
+    "washing machine",
+    "water damage",
+    "LoRaWAN"
   ]
 }

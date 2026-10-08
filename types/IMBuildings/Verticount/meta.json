@@ -20,5 +20,18 @@
   "connectivity": "LORA",
   "useCases": [
     "People & Vehicle Counting"
+  ],
+  "keywords": [
+    "IMBuildings",
+    "VertiCount Pro",
+    "Verticount",
+    "people counter",
+    "ceiling mounted",
+    "in out counting",
+    "doorway",
+    "footfall",
+    "visitor counting",
+    "occupancy",
+    "LoRaWAN"
   ]
 }

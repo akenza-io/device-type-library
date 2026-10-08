@@ -18,5 +18,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-DLR2-006",
+    "DLR2",
+    "potentiometer",
+    "position",
+    "displacement",
+    "crack monitoring",
+    "valve position",
+    "analog input",
+    "LoRaWAN"
   ]
 }

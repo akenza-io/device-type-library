@@ -12,5 +12,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Yosensi",
+    "YO Pulse",
+    "pulse counter",
+    "digital input",
+    "logical states",
+    "meter reading",
+    "machine status",
+    "process monitoring",
+    "industrial automation",
+    "six channels",
+    "LoRaWAN"
   ]
 }

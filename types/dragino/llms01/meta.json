@@ -13,5 +13,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Smart Agriculture"
+  ],
+  "keywords": [
+    "Dragino",
+    "LLMS01",
+    "leaf moisture",
+    "leaf temperature",
+    "leaf wetness",
+    "dew",
+    "frost",
+    "crop monitoring",
+    "agriculture",
+    "horticulture",
+    "IP67",
+    "LoRaWAN"
   ]
 }

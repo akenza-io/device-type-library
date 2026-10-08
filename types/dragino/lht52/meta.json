@@ -14,5 +14,19 @@
   "useCases": [
     "Indoor Air Quality & Comfort",
     "Cold Chain & Temperature Compliance"
+  ],
+  "keywords": [
+    "Dragino",
+    "LHT52",
+    "temperature",
+    "humidity",
+    "external probe",
+    "USB-C",
+    "fridge",
+    "freezer",
+    "cold room",
+    "storage",
+    "room climate",
+    "LoRaWAN"
   ]
 }

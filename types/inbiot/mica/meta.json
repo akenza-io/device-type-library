@@ -26,5 +26,25 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "inBiot",
+    "MICA",
+    "air quality monitor",
+    "IAQ",
+    "CO2",
+    "TVOC",
+    "PM2.5",
+    "PM10",
+    "temperature",
+    "humidity",
+    "noise",
+    "ventilation",
+    "mold risk",
+    "virus risk",
+    "Modbus",
+    "BACnet",
+    "BMS",
+    "LoRaWAN"
   ]
 }

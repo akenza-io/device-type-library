@@ -35,5 +35,21 @@
     "Occupancy & Space Utilization",
     "Facility Services & Feedback",
     "Safety & Security"
+  ],
+  "keywords": [
+    "Swisscom",
+    "Multisense",
+    "multisensor",
+    "button",
+    "desk occupancy",
+    "occupancy",
+    "temperature",
+    "humidity",
+    "magnetic contact",
+    "door counter",
+    "vibration",
+    "accelerometer",
+    "motion",
+    "LoRaWAN"
   ]
 }

@@ -20,5 +20,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Cold Chain & Temperature Compliance"
+  ],
+  "keywords": [
+    "Dragino",
+    "T68DL",
+    "temperature sensor",
+    "waterproof",
+    "IP68",
+    "fridge",
+    "freezer",
+    "liquid temperature",
+    "outdoor temperature",
+    "datalog",
+    "HACCP",
+    "LoRaWAN"
   ]
 }

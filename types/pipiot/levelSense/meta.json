@@ -20,5 +20,20 @@
   "connectivity": "Sigfox",
   "useCases": [
     "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Pipiot",
+    "LevelSense",
+    "fill level",
+    "ultrasonic",
+    "laser",
+    "tank level",
+    "waste bin",
+    "silo",
+    "distance",
+    "GNSS",
+    "tilt",
+    "temperature",
+    "Sigfox"
   ]
 }

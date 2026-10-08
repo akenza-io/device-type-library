@@ -21,5 +21,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Enless",
+    "TX T&H AMB",
+    "600-051",
+    "temperature",
+    "humidity",
+    "high accuracy",
+    "long battery life",
+    "room climate",
+    "comfort",
+    "office",
+    "LoRaWAN"
   ]
 }

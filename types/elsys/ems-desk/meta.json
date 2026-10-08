@@ -23,5 +23,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Elsys",
+    "EMS Desk",
+    "desk occupancy",
+    "desk sensor",
+    "body heat",
+    "IR sensor",
+    "hot desking",
+    "workplace",
+    "temperature",
+    "humidity",
+    "accelerometer",
+    "LoRaWAN"
   ]
 }

@@ -17,5 +17,17 @@
   ],
   "encoding": "HEX",
   "connectivity": "LORA",
-  "useCases": []
+  "useCases": [],
+  "keywords": [
+    "Decentlab",
+    "DL-DWS",
+    "weighing scale",
+    "weight",
+    "load cell",
+    "vibrating wire",
+    "silo",
+    "container",
+    "stock level",
+    "LoRaWAN"
+  ]
 }

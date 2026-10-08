@@ -18,5 +18,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-DLR2-004",
+    "DLR2",
+    "4-20 mA",
+    "analog input",
+    "current loop",
+    "pressure transmitter",
+    "level transmitter",
+    "flow transmitter",
+    "industrial",
+    "LoRaWAN"
   ]
 }

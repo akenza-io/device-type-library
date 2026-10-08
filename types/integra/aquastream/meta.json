@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Integra",
+    "Aquastream",
+    "water meter",
+    "meter reading",
+    "water consumption",
+    "volume",
+    "flow",
+    "billing",
+    "remote reading",
+    "alarm",
+    "LoRaWAN"
   ]
 }

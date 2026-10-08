@@ -13,5 +13,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Smart Agriculture"
+  ],
+  "keywords": [
+    "Milesight",
+    "EM500-SMTC",
+    "soil moisture",
+    "soil temperature",
+    "electrical conductivity",
+    "irrigation",
+    "agriculture",
+    "crop monitoring",
+    "probe",
+    "LoRaWAN"
   ]
 }

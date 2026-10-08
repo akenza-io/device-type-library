@@ -13,5 +13,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Safety & Security"
+  ],
+  "keywords": [
+    "Netvox",
+    "R311A",
+    "door sensor",
+    "window sensor",
+    "reed switch",
+    "magnetic contact",
+    "open close",
+    "access monitoring",
+    "security",
+    "LoRaWAN"
   ]
 }

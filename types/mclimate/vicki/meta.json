@@ -13,5 +13,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Building Automation & Control"
+  ],
+  "keywords": [
+    "MClimate",
+    "Vicki",
+    "radiator thermostat",
+    "TRV",
+    "valve",
+    "heating control",
+    "temperature",
+    "humidity",
+    "energy saving",
+    "LoRaWAN"
   ]
 }

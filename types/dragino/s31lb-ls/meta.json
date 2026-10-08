@@ -21,5 +21,19 @@
   "useCases": [
     "Cold Chain & Temperature Compliance",
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Dragino",
+    "S31LB-LS",
+    "S31-LB",
+    "SHT31",
+    "temperature",
+    "humidity",
+    "waterproof",
+    "threshold alarm",
+    "datalog",
+    "fridge",
+    "cold room",
+    "LoRaWAN"
   ]
 }

@@ -32,5 +32,25 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "inBiot",
+    "MICA WELL",
+    "air quality monitor",
+    "WELL certification",
+    "RESET",
+    "CO2",
+    "TVOC",
+    "PM2.5",
+    "PM10",
+    "formaldehyde",
+    "ozone",
+    "NO2",
+    "CO",
+    "temperature",
+    "humidity",
+    "noise",
+    "IAQ",
+    "LoRaWAN"
   ]
 }

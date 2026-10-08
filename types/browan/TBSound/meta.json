@@ -19,5 +19,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Browan",
+    "Tabs",
+    "TBSL100",
+    "sound level",
+    "noise",
+    "dBA",
+    "acoustic comfort",
+    "office",
+    "classroom",
+    "temperature",
+    "LoRaWAN"
   ]
 }

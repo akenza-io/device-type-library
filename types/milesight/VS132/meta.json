@@ -13,5 +13,17 @@
   "connectivity": "LORA",
   "useCases": [
     "People & Vehicle Counting"
+  ],
+  "keywords": [
+    "Milesight",
+    "VS132",
+    "people counter",
+    "3D ToF",
+    "bidirectional",
+    "entrance",
+    "foot traffic",
+    "line crossing",
+    "anonymous",
+    "LoRaWAN"
   ]
 }

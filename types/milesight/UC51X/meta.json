@@ -25,5 +25,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Building Automation & Control"
+  ],
+  "keywords": [
+    "Milesight",
+    "UC511",
+    "UC512",
+    "UC51X",
+    "solenoid valve",
+    "valve controller",
+    "irrigation",
+    "pulse input",
+    "pressure",
+    "water supply",
+    "schedule",
+    "LoRaWAN"
   ]
 }

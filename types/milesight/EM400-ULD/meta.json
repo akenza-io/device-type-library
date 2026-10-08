@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Milesight",
+    "EM400-UDL",
+    "ultrasonic",
+    "distance",
+    "fill level",
+    "water level",
+    "snow depth",
+    "tank level",
+    "IP67",
+    "temperature",
+    "LoRaWAN"
   ]
 }

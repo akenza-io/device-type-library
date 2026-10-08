@@ -28,5 +28,19 @@
   "useCases": [
     "Occupancy & Space Utilization",
     "People & Vehicle Counting"
+  ],
+  "keywords": [
+    "Milesight",
+    "VS121",
+    "people counter",
+    "AI camera",
+    "workplace occupancy",
+    "region counting",
+    "line crossing",
+    "dwell time",
+    "heat map",
+    "retail",
+    "office",
+    "LoRaWAN"
   ]
 }

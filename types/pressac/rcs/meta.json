@@ -25,5 +25,18 @@
   "useCases": [
     "Indoor Air Quality & Comfort",
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Pressac",
+    "Room Conditions Sensor",
+    "RCS",
+    "occupancy",
+    "PIR",
+    "temperature",
+    "humidity",
+    "light",
+    "noise",
+    "room climate",
+    "LoRaWAN"
   ]
 }

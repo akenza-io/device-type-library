@@ -27,5 +27,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Smart Agriculture"
+  ],
+  "keywords": [
+    "Yosensi",
+    "YO AgriBox",
+    "AgriBox",
+    "soil moisture",
+    "VWC",
+    "irrigation",
+    "agriculture",
+    "horticulture",
+    "temperature",
+    "humidity",
+    "LoRaWAN"
   ]
 }

@@ -18,5 +18,16 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-DLR2-005",
+    "DLR2",
+    "0-3 V",
+    "analog input",
+    "voltage",
+    "sensor interface",
+    "retrofit",
+    "LoRaWAN"
   ]
 }

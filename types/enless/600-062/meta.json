@@ -23,5 +23,19 @@
   "useCases": [
     "Indoor Air Quality & Comfort",
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Enless",
+    "TX LIGHT PIR",
+    "600-062",
+    "PIR",
+    "presence detection",
+    "light",
+    "luminosity",
+    "temperature",
+    "humidity",
+    "occupancy",
+    "energy efficiency",
+    "LoRaWAN"
   ]
 }

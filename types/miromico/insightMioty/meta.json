@@ -22,5 +22,18 @@
   "connectivity": "MIOTY",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Miromico",
+    "miro Insight",
+    "mioty",
+    "CO2",
+    "temperature",
+    "humidity",
+    "air quality",
+    "IAQ",
+    "ventilation",
+    "office",
+    "classroom"
   ]
 }

@@ -14,5 +14,19 @@
   "useCases": [
     "Cold Chain & Temperature Compliance",
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Milesight",
+    "EM300-TH",
+    "temperature",
+    "humidity",
+    "IP67",
+    "cold room",
+    "fridge",
+    "warehouse",
+    "storage",
+    "outdoor",
+    "HACCP",
+    "LoRaWAN"
   ]
 }

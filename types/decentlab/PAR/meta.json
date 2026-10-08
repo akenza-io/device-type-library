@@ -18,5 +18,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Smart Agriculture"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-PAR",
+    "PAR",
+    "photosynthetically active radiation",
+    "light",
+    "quantum sensor",
+    "greenhouse",
+    "plant growth",
+    "agriculture",
+    "LoRaWAN"
   ]
 }

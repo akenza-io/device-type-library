@@ -18,5 +18,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Facility Services & Feedback"
+  ],
+  "keywords": [
+    "IMBuildings",
+    "Moodbox",
+    "feedback button",
+    "satisfaction",
+    "rating",
+    "push button",
+    "washroom",
+    "customer feedback",
+    "happy or not",
+    "reception",
+    "LoRaWAN"
   ]
 }

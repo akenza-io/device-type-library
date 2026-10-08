@@ -20,5 +20,20 @@
   "connectivity": "LORA",
   "useCases": [
     "Facility Services & Feedback"
+  ],
+  "keywords": [
+    "Oxon",
+    "Buttonboard",
+    "button",
+    "touch buttons",
+    "capacitive",
+    "RGB LED",
+    "feedback",
+    "service request",
+    "facility management",
+    "cleaning request",
+    "temperature",
+    "accelerometer",
+    "LoRaWAN"
   ]
 }

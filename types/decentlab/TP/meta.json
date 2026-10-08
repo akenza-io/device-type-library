@@ -18,5 +18,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-TP",
+    "temperature profile",
+    "temperature chain",
+    "multi-depth",
+    "glacier",
+    "lake",
+    "permafrost",
+    "soil temperature",
+    "LoRaWAN"
   ]
 }

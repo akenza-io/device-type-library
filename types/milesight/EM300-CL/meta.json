@@ -18,5 +18,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Milesight",
+    "EM300-CL",
+    "capacitive",
+    "liquid level",
+    "fill level",
+    "non-contact",
+    "soap dispenser",
+    "hand sanitizer",
+    "container",
+    "LoRaWAN"
   ]
 }

@@ -20,5 +20,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Building Automation & Control"
+  ],
+  "keywords": [
+    "Yosensi",
+    "YO Relay Switch",
+    "relay",
+    "remote switching",
+    "two channels",
+    "pump control",
+    "valve control",
+    "lighting control",
+    "actuator",
+    "LoRaWAN"
   ]
 }

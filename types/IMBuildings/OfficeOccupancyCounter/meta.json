@@ -21,5 +21,18 @@
   "useCases": [
     "People & Vehicle Counting",
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "IMBuildings",
+    "office occupancy counter",
+    "people counter",
+    "occupancy",
+    "entry exit",
+    "in out counting",
+    "room occupancy",
+    "doorway",
+    "footfall",
+    "space utilization",
+    "LoRaWAN"
   ]
 }

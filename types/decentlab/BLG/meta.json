@@ -18,5 +18,16 @@
   "connectivity": "LORA",
   "useCases": [
     "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-BLG",
+    "black globe",
+    "globe temperature",
+    "radiant heat",
+    "heat stress",
+    "WBGT",
+    "thermal comfort",
+    "LoRaWAN"
   ]
 }

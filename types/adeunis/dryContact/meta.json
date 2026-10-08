@@ -13,5 +13,18 @@
   "useCases": [
     "Safety & Security",
     "Building Automation & Control"
+  ],
+  "keywords": [
+    "Adeunis",
+    "Dry Contacts",
+    "dry contact",
+    "digital input",
+    "relay output",
+    "on/off monitoring",
+    "door contact",
+    "alarm",
+    "machine status",
+    "remote control",
+    "LoRaWAN"
   ]
 }

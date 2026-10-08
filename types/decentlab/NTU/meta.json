@@ -19,5 +19,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-NTU",
+    "turbidity",
+    "water quality",
+    "optical",
+    "infrared",
+    "water temperature",
+    "drinking water",
+    "surface water",
+    "LoRaWAN"
   ]
 }

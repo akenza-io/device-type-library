@@ -18,5 +18,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Dragino",
+    "DDS20-LB",
+    "ultrasonic",
+    "liquid level",
+    "tank level",
+    "non-contact",
+    "through-wall",
+    "water tank",
+    "oil tank",
+    "level sensor",
+    "distance",
+    "LoRaWAN"
   ]
 }

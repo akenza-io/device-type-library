@@ -12,5 +12,19 @@
   "connectivity": "HTTP",
   "useCases": [
     "Facility Services & Feedback"
+  ],
+  "keywords": [
+    "Disruptive Technologies",
+    "DT",
+    "touch sensor",
+    "push button",
+    "service request",
+    "feedback button",
+    "cleaning confirmation",
+    "alert button",
+    "facility management",
+    "heartbeat",
+    "HTTP",
+    "cloud connector"
   ]
 }

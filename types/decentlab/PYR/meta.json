@@ -18,5 +18,16 @@
   "connectivity": "LORA",
   "useCases": [
     "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-PYR",
+    "pyranometer",
+    "solar radiation",
+    "irradiance",
+    "solar panel",
+    "photovoltaic",
+    "weather",
+    "LoRaWAN"
   ]
 }

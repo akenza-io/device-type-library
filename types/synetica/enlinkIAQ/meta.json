@@ -26,5 +26,23 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Synetica",
+    "enLink IAQ",
+    "enLink",
+    "IAQ",
+    "air quality",
+    "CO2",
+    "VOC",
+    "PM2.5",
+    "PM10",
+    "particulate matter",
+    "temperature",
+    "humidity",
+    "pressure",
+    "NO2",
+    "formaldehyde",
+    "LoRaWAN"
   ]
 }

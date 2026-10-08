@@ -13,5 +13,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Cold Chain & Temperature Compliance"
+  ],
+  "keywords": [
+    "Synetica",
+    "enLink Status-T",
+    "enLink",
+    "temperature probe",
+    "temperature",
+    "legionella",
+    "HVAC duct",
+    "pipe temperature",
+    "food storage",
+    "cold chain",
+    "multi probe",
+    "LoRaWAN"
   ]
 }

@@ -13,5 +13,19 @@
   "connectivity": "HTTP",
   "useCases": [
     "People & Vehicle Counting"
+  ],
+  "keywords": [
+    "Terabee",
+    "People Counting M",
+    "people counter",
+    "ToF",
+    "door counter",
+    "entry exit",
+    "footfall",
+    "anonymous",
+    "GDPR",
+    "PoE",
+    "Wi-Fi",
+    "HTTP"
   ]
 }

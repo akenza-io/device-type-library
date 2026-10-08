@@ -19,5 +19,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Enless",
+    "TX 4/20 mA",
+    "600-035",
+    "4-20 mA",
+    "analog input",
+    "sensor interface",
+    "pressure transmitter",
+    "level transmitter",
+    "industrial sensor",
+    "LoRaWAN"
   ]
 }

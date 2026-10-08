@@ -20,5 +20,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Cold Chain & Temperature Compliance"
+  ],
+  "keywords": [
+    "Adeunis",
+    "TEMP 4",
+    "temperature",
+    "external probe",
+    "contact probe",
+    "threshold alarm",
+    "fridge",
+    "cold room",
+    "HACCP",
+    "cold chain",
+    "LoRaWAN"
   ]
 }

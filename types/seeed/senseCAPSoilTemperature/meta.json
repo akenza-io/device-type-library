@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Smart Agriculture"
+  ],
+  "keywords": [
+    "Seeed",
+    "SenseCAP",
+    "soil moisture",
+    "soil temperature",
+    "VWC",
+    "soil probe",
+    "irrigation",
+    "agriculture",
+    "outdoor",
+    "IP66",
+    "LoRaWAN"
   ]
 }

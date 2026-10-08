@@ -32,5 +32,21 @@
   "connectivity": "MQTT",
   "useCases": [
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Haltian",
+    "Thingsee Presence",
+    "presence sensor",
+    "occupancy",
+    "movement counter",
+    "temperature",
+    "humidity",
+    "air pressure",
+    "light",
+    "space utilization",
+    "facility management",
+    "office",
+    "hospital",
+    "MQTT"
   ]
 }

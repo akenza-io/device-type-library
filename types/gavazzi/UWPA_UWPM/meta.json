@@ -17,5 +17,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Carlo Gavazzi",
+    "UWP-A",
+    "UWP-M",
+    "energy gateway",
+    "energy meter",
+    "sub-metering",
+    "cost allocation",
+    "energy efficiency",
+    "electricity",
+    "LoRaWAN"
   ]
 }

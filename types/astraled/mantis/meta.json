@@ -25,5 +25,21 @@
   "useCases": [
     "Indoor Air Quality & Comfort",
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Astraled",
+    "Mantis",
+    "floor lamp",
+    "luminaire",
+    "CO2",
+    "VOC",
+    "temperature",
+    "humidity",
+    "noise",
+    "light",
+    "occupancy",
+    "air quality",
+    "office",
+    "LoRaWAN"
   ]
 }

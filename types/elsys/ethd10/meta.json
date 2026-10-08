@@ -20,5 +20,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Elsys",
+    "ERS Display Lite",
+    "ETHD10",
+    "e-paper display",
+    "temperature",
+    "humidity",
+    "room climate",
+    "comfort",
+    "office",
+    "LoRaWAN"
   ]
 }

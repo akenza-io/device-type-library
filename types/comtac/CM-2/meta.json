@@ -21,5 +21,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "comtac",
+    "LPN CM-2",
+    "CM-2",
+    "temperature",
+    "humidity",
+    "external probe",
+    "PT100",
+    "current transducer",
+    "analog input",
+    "button",
+    "LoRaWAN"
   ]
 }

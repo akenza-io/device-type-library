@@ -18,5 +18,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-ITST",
+    "infrared pyrometer",
+    "surface temperature",
+    "contactless",
+    "road surface",
+    "ice warning",
+    "frost",
+    "infrared thermometer",
+    "LoRaWAN"
   ]
 }

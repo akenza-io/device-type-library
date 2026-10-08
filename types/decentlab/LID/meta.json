@@ -18,5 +18,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-LID",
+    "distance",
+    "LiDAR",
+    "laser rangefinder",
+    "proximity",
+    "snow level",
+    "water level",
+    "fill level",
+    "LoRaWAN"
   ]
 }

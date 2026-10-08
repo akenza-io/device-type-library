@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "enginko",
+    "MCF-LW12MET",
+    "energy meter",
+    "single-phase",
+    "power",
+    "voltage",
+    "current",
+    "energy consumption",
+    "electricity",
+    "digital I/O",
+    "LoRaWAN"
   ]
 }

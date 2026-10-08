@@ -20,5 +20,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "MOKO",
+    "MOKOSmart",
+    "LW007-PIR",
+    "PIR",
+    "motion",
+    "occupancy",
+    "presence",
+    "temperature",
+    "humidity",
+    "room monitoring",
+    "LoRaWAN"
   ]
 }

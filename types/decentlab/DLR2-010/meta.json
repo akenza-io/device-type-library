@@ -18,5 +18,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-DLR2-010",
+    "DLR2",
+    "pulse counter",
+    "two channel",
+    "dry contact",
+    "water meter",
+    "gas meter",
+    "electricity meter",
+    "consumption",
+    "LoRaWAN"
   ]
 }

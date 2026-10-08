@@ -18,5 +18,16 @@
   "connectivity": "LORA",
   "useCases": [
     "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-TBRG",
+    "rain gauge",
+    "tipping bucket",
+    "precipitation",
+    "rainfall",
+    "weather",
+    "flood warning",
+    "LoRaWAN"
   ]
 }

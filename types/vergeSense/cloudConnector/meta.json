@@ -20,5 +20,18 @@
   "connectivity": "HTTP",
   "useCases": [
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "VergeSense",
+    "Cloud Connector",
+    "desk occupancy",
+    "occupancy",
+    "people count",
+    "space availability",
+    "workplace analytics",
+    "meeting room",
+    "motion",
+    "cloud integration",
+    "HTTP"
   ]
 }

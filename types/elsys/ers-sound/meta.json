@@ -27,5 +27,21 @@
   "useCases": [
     "Indoor Air Quality & Comfort",
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Elsys",
+    "ERS Sound",
+    "ERS",
+    "sound level",
+    "noise",
+    "dBA",
+    "noise monitoring",
+    "temperature",
+    "humidity",
+    "light",
+    "motion",
+    "occupancy",
+    "office",
+    "LoRaWAN"
   ]
 }

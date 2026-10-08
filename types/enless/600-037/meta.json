@@ -20,5 +20,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Enless",
+    "TX PULSE ATEX",
+    "600-037",
+    "ATEX",
+    "pulse counter",
+    "gas meter",
+    "meter reading",
+    "explosive atmosphere",
+    "dry contact",
+    "open collector",
+    "LoRaWAN"
   ]
 }

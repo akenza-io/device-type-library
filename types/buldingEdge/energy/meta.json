@@ -18,5 +18,16 @@
   "connectivity": "MQTT",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "akenza",
+    "Building Edge",
+    "BMS integration",
+    "building management",
+    "energy consumption",
+    "meter data",
+    "electricity",
+    "energy monitoring",
+    "MQTT"
   ]
 }

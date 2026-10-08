@@ -14,5 +14,18 @@
   "useCases": [
     "Indoor Air Quality & Comfort",
     "Safety & Security"
+  ],
+  "keywords": [
+    "Tektelic",
+    "COMFORT",
+    "Smart Room Sensor",
+    "temperature",
+    "humidity",
+    "reed switch",
+    "door sensor",
+    "window sensor",
+    "room climate",
+    "ventilation",
+    "LoRaWAN"
   ]
 }

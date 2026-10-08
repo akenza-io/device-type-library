@@ -14,5 +14,19 @@
   "useCases": [
     "Cold Chain & Temperature Compliance",
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Dragino",
+    "LHT65N",
+    "temperature",
+    "humidity",
+    "external probe",
+    "fridge",
+    "freezer",
+    "cold room",
+    "HACCP",
+    "storage",
+    "datalog",
+    "LoRaWAN"
   ]
 }

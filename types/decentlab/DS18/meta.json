@@ -19,5 +19,18 @@
   "useCases": [
     "Cold Chain & Temperature Compliance",
     "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-DS18",
+    "DS18B20",
+    "temperature",
+    "external probe",
+    "liquid temperature",
+    "surface temperature",
+    "cold chain",
+    "storage",
+    "outdoor",
+    "LoRaWAN"
   ]
 }

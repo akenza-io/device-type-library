@@ -25,5 +25,19 @@
   "useCases": [
     "Indoor Air Quality & Comfort",
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Elsys",
+    "ERS VOC",
+    "ERS",
+    "VOC",
+    "air quality",
+    "temperature",
+    "humidity",
+    "light",
+    "motion",
+    "occupancy",
+    "room climate",
+    "LoRaWAN"
   ]
 }

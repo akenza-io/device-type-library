@@ -25,5 +25,21 @@
   "useCases": [
     "Occupancy & Space Utilization",
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Elsys",
+    "ERS Eye",
+    "ERS",
+    "room occupancy",
+    "people detection",
+    "IR array",
+    "meeting room",
+    "presence",
+    "motion",
+    "temperature",
+    "humidity",
+    "light",
+    "office",
+    "LoRaWAN"
   ]
 }

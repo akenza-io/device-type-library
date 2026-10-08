@@ -17,5 +17,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Condition Monitoring"
+  ],
+  "keywords": [
+    "Yosensi",
+    "YO 360",
+    "tilt sensor",
+    "orientation",
+    "accelerometer",
+    "position change",
+    "movement",
+    "temperature",
+    "humidity",
+    "asset monitoring",
+    "LoRaWAN"
   ]
 }

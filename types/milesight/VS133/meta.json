@@ -23,5 +23,18 @@
   "connectivity": "LORA",
   "useCases": [
     "People & Vehicle Counting"
+  ],
+  "keywords": [
+    "Milesight",
+    "VS133",
+    "people counter",
+    "ToF",
+    "AI",
+    "line crossing",
+    "region counting",
+    "dwell time",
+    "foot traffic",
+    "privacy",
+    "LoRaWAN"
   ]
 }

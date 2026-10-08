@@ -13,5 +13,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Browan",
+    "Tabs",
+    "TBMS100",
+    "motion sensor",
+    "PIR",
+    "occupancy",
+    "presence",
+    "room occupancy",
+    "temperature",
+    "LoRaWAN"
   ]
 }

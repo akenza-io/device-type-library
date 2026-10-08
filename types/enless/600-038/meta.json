@@ -18,5 +18,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Enless",
+    "TX PULSE LED",
+    "600-038",
+    "optical reader",
+    "LED pulse",
+    "electricity meter",
+    "pulse counter",
+    "meter reading",
+    "energy consumption",
+    "non-intrusive",
+    "LoRaWAN"
   ]
 }

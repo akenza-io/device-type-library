@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Smart Agriculture"
+  ],
+  "keywords": [
+    "Milesight",
+    "EM500-LGT",
+    "light sensor",
+    "illuminance",
+    "lux",
+    "lighting control",
+    "greenhouse",
+    "horticulture",
+    "rugged",
+    "agriculture",
+    "LoRaWAN"
   ]
 }

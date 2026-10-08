@@ -22,5 +22,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Cold Chain & Temperature Compliance"
+  ],
+  "keywords": [
+    "Yosensi",
+    "YO Temp",
+    "temperature probe",
+    "external probe",
+    "temperature",
+    "fridge",
+    "freezer",
+    "cold chain",
+    "pipe temperature",
+    "humidity",
+    "multi probe",
+    "LoRaWAN"
   ]
 }

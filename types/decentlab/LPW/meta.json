@@ -18,5 +18,16 @@
   "connectivity": "LORA",
   "useCases": [
     "Condition Monitoring"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-LPW",
+    "linear position",
+    "displacement",
+    "potentiometer",
+    "crack monitoring",
+    "landslide",
+    "structural health",
+    "LoRaWAN"
   ]
 }

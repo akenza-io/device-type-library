@@ -13,5 +13,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Facility Services & Feedback"
+  ],
+  "keywords": [
+    "Milesight",
+    "GS301",
+    "odor sensor",
+    "ammonia",
+    "NH3",
+    "hydrogen sulfide",
+    "H2S",
+    "washroom",
+    "toilet",
+    "cleaning on demand",
+    "hygiene",
+    "LoRaWAN"
   ]
 }

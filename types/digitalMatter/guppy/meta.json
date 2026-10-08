@@ -13,5 +13,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Asset Tracking"
+  ],
+  "keywords": [
+    "Digital Matter",
+    "Guppy",
+    "asset tag",
+    "geolocation",
+    "tracker",
+    "indoor positioning",
+    "movement",
+    "temperature",
+    "Wi-Fi",
+    "LoRaWAN"
   ]
 }

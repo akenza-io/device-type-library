@@ -57,5 +57,20 @@
   "useCases": [
     "Energy & Utility Metering",
     "Building Automation & Control"
+  ],
+  "keywords": [
+    "comtac",
+    "Cluey",
+    "I/O module",
+    "analog input",
+    "digital input",
+    "pulse counter",
+    "Modbus",
+    "temperature input",
+    "remote monitoring",
+    "telecontrol",
+    "utility",
+    "GPS",
+    "LoRaWAN"
   ]
 }

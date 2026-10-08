@@ -20,5 +20,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Safety & Security"
+  ],
+  "keywords": [
+    "Enless",
+    "TX CONTACT",
+    "600-039",
+    "contact sensor",
+    "dry contact",
+    "digital input",
+    "open collector",
+    "door sensor",
+    "equipment failure",
+    "on off status",
+    "LoRaWAN"
   ]
 }

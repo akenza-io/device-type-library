@@ -14,5 +14,17 @@
   "useCases": [
     "Facility Services & Feedback",
     "Safety & Security"
+  ],
+  "keywords": [
+    "Milesight",
+    "WS101",
+    "smart button",
+    "panic button",
+    "emergency call",
+    "service request",
+    "feedback",
+    "alert",
+    "press action",
+    "LoRaWAN"
   ]
 }

@@ -26,5 +26,21 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Astraled",
+    "CO2 VOC luminaire",
+    "luminaire",
+    "lamp",
+    "CO2",
+    "VOC",
+    "eCO2",
+    "particulate matter",
+    "temperature",
+    "humidity",
+    "light",
+    "air quality",
+    "ventilation",
+    "LoRaWAN"
   ]
 }

@@ -18,5 +18,16 @@
   "connectivity": "LORA",
   "useCases": [
     "Leak Detection"
+  ],
+  "keywords": [
+    "Milesight",
+    "WS303",
+    "water leak",
+    "flood detection",
+    "water heater",
+    "pipe",
+    "water damage",
+    "battery powered",
+    "LoRaWAN"
   ]
 }

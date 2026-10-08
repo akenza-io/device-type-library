@@ -18,5 +18,16 @@
   "connectivity": "LORA",
   "useCases": [
     "Leak Detection"
+  ],
+  "keywords": [
+    "Milesight",
+    "EM300-MLD",
+    "water leak",
+    "leak membrane",
+    "flood detection",
+    "floor",
+    "basement",
+    "water damage",
+    "LoRaWAN"
   ]
 }

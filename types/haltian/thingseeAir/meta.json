@@ -32,5 +32,19 @@
   "connectivity": "MQTT",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Haltian",
+    "Thingsee Air",
+    "Thingsee",
+    "CO2",
+    "TVOC",
+    "temperature",
+    "humidity",
+    "barometric pressure",
+    "light",
+    "air quality",
+    "ventilation",
+    "MQTT"
   ]
 }

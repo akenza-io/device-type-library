@@ -21,5 +21,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Enless",
+    "TX CO2",
+    "600-053",
+    "CO2",
+    "temperature",
+    "humidity",
+    "air quality",
+    "ventilation",
+    "meeting room",
+    "office",
+    "school",
+    "LoRaWAN"
   ]
 }

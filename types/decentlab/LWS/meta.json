@@ -18,5 +18,16 @@
   "connectivity": "LORA",
   "useCases": [
     "Smart Agriculture"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-LWS",
+    "leaf wetness",
+    "plant disease",
+    "vineyard",
+    "crop protection",
+    "agriculture",
+    "outdoor",
+    "LoRaWAN"
   ]
 }

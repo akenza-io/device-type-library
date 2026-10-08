@@ -22,5 +22,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Building Automation & Control"
+  ],
+  "keywords": [
+    "Thermokon",
+    "SAB07",
+    "radiator valve",
+    "valve actuator",
+    "thermostat",
+    "heating control",
+    "room temperature",
+    "humidity",
+    "setpoint",
+    "HVAC",
+    "LoRaWAN"
   ]
 }

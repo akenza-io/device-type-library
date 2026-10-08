@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Building Automation & Control"
+  ],
+  "keywords": [
+    "Milesight",
+    "WS501",
+    "WS502",
+    "WS503",
+    "WS50X",
+    "wall switch",
+    "light switch",
+    "lighting control",
+    "remote switching",
+    "relay",
+    "LoRaWAN"
   ]
 }

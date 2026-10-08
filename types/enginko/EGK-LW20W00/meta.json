@@ -13,5 +13,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "enginko",
+    "EGK-LW20W00",
+    "waste bin",
+    "fill level",
+    "distance sensor",
+    "waste management",
+    "container",
+    "temperature",
+    "time sync",
+    "LoRaWAN"
   ]
 }

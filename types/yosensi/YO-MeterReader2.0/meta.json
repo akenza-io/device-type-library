@@ -24,5 +24,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Yosensi",
+    "Meter Reader 2.0",
+    "meter reader",
+    "optical reader",
+    "LED pulse",
+    "pulse counter",
+    "electricity meter",
+    "energy consumption",
+    "temperature",
+    "humidity",
+    "LoRaWAN"
   ]
 }

@@ -13,5 +13,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Milesight",
+    "VS340",
+    "occupancy sensor",
+    "PIR",
+    "desk occupancy",
+    "room occupancy",
+    "desk booking",
+    "meeting room",
+    "space utilization",
+    "LoRaWAN"
   ]
 }

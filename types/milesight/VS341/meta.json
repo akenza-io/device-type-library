@@ -13,5 +13,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Milesight",
+    "VS341",
+    "occupancy sensor",
+    "PIR",
+    "thermopile",
+    "desk occupancy",
+    "room occupancy",
+    "meeting room",
+    "space planning",
+    "LoRaWAN"
   ]
 }

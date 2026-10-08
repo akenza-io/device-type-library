@@ -20,5 +20,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-OPTOD",
+    "dissolved oxygen",
+    "oxygen saturation",
+    "water quality",
+    "optical",
+    "wastewater",
+    "aquaculture",
+    "water temperature",
+    "LoRaWAN"
   ]
 }

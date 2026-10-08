@@ -21,5 +21,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Milesight",
+    "CT305",
+    "current transformer",
+    "three-channel",
+    "current",
+    "ampere-hours",
+    "energy monitoring",
+    "electricity",
+    "consumption patterns",
+    "LoRaWAN"
   ]
 }

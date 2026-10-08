@@ -24,5 +24,20 @@
   "connectivity": "LORA",
   "useCases": [
     "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-PM",
+    "particulate matter",
+    "PM2.5",
+    "PM10",
+    "PM1",
+    "PM4",
+    "air quality",
+    "temperature",
+    "humidity",
+    "barometric pressure",
+    "air pollution",
+    "LoRaWAN"
   ]
 }

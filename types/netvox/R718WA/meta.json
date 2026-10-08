@@ -18,5 +18,16 @@
   "connectivity": "LORA",
   "useCases": [
     "Leak Detection"
+  ],
+  "keywords": [
+    "Netvox",
+    "R718WA",
+    "water leak",
+    "leak detector",
+    "flood",
+    "water damage",
+    "server room",
+    "pipe leak",
+    "LoRaWAN"
   ]
 }

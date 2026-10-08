@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Building Automation & Control"
+  ],
+  "keywords": [
+    "Milesight",
+    "WT101",
+    "radiator thermostat",
+    "TRV",
+    "valve",
+    "heating control",
+    "temperature",
+    "setpoint",
+    "schedule",
+    "energy saving",
+    "LoRaWAN"
   ]
 }

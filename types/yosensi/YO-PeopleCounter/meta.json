@@ -21,5 +21,19 @@
   "connectivity": "LORA",
   "useCases": [
     "People & Vehicle Counting"
+  ],
+  "keywords": [
+    "Yosensi",
+    "YO People Counter",
+    "people counter",
+    "radar",
+    "24 GHz",
+    "bidirectional",
+    "entry exit",
+    "door counter",
+    "footfall",
+    "temperature",
+    "humidity",
+    "LoRaWAN"
   ]
 }

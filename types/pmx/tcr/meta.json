@@ -23,5 +23,18 @@
   "connectivity": "LORA",
   "useCases": [
     "People & Vehicle Counting"
+  ],
+  "keywords": [
+    "PMX Systems",
+    "PMX TCR",
+    "TCR",
+    "traffic counter",
+    "radar",
+    "vehicle counting",
+    "pedestrian counting",
+    "vehicle classification",
+    "road traffic",
+    "urban planning",
+    "LoRaWAN"
   ]
 }

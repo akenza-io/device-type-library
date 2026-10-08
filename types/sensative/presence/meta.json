@@ -22,5 +22,18 @@
   "useCases": [
     "Occupancy & Space Utilization",
     "Safety & Security"
+  ],
+  "keywords": [
+    "Sensative",
+    "Strips",
+    "Strips Presence",
+    "presence",
+    "occupancy",
+    "active infrared",
+    "door sensor",
+    "window sensor",
+    "magnetic contact",
+    "button",
+    "LoRaWAN"
   ]
 }

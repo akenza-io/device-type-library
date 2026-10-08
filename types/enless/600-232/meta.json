@@ -19,5 +19,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Cold Chain & Temperature Compliance"
+  ],
+  "keywords": [
+    "Enless",
+    "TX TEMP CONT2",
+    "600-232",
+    "PT1000",
+    "dual probe",
+    "legionella",
+    "hot water",
+    "flow temperature",
+    "return temperature",
+    "pipe temperature",
+    "surface temperature",
+    "LoRaWAN"
   ]
 }

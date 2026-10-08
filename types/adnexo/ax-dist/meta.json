@@ -20,5 +20,17 @@
   "useCases": [
     "Fill Level Monitoring",
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "adnexo",
+    "ax-dist",
+    "distance",
+    "parking",
+    "fill level",
+    "seat occupancy",
+    "range",
+    "waste bin",
+    "outdoor",
+    "LoRaWAN"
   ]
 }

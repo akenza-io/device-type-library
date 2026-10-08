@@ -20,5 +20,18 @@
   "useCases": [
     "Weather & Outdoor Environment",
     "Smart Agriculture"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-RHC",
+    "temperature",
+    "humidity",
+    "high precision",
+    "outdoor",
+    "urban heat island",
+    "greenhouse",
+    "frost",
+    "agriculture",
+    "LoRaWAN"
   ]
 }

@@ -13,5 +13,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Asset Tracking"
+  ],
+  "keywords": [
+    "Digital Matter",
+    "Oyster",
+    "GPS tracker",
+    "GLONASS",
+    "asset tracker",
+    "rugged",
+    "long battery life",
+    "trailer",
+    "container",
+    "LoRaWAN"
   ]
 }

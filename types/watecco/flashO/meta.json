@@ -20,5 +20,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Watteco",
+    "Flash'O",
+    "pulse counter",
+    "optical reader",
+    "LED pulse",
+    "electricity meter",
+    "gas meter",
+    "water meter",
+    "meter reading",
+    "LoRaWAN"
   ]
 }

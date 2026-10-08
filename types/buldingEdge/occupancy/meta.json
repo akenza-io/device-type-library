@@ -18,5 +18,15 @@
   "connectivity": "MQTT",
   "useCases": [
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "akenza",
+    "Building Edge",
+    "BMS integration",
+    "building management",
+    "occupancy",
+    "presence",
+    "space utilization",
+    "MQTT"
   ]
 }

@@ -20,5 +20,20 @@
   "connectivity": "LORA",
   "useCases": [
     "Cold Chain & Temperature Compliance"
+  ],
+  "keywords": [
+    "Enless",
+    "TX T&H EXT",
+    "600-034",
+    "temperature",
+    "humidity",
+    "remote probe",
+    "ventilation duct",
+    "air handling unit",
+    "cold room",
+    "swimming pool",
+    "greenhouse",
+    "HVAC",
+    "LoRaWAN"
   ]
 }

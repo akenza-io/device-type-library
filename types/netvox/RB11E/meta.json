@@ -22,5 +22,18 @@
   "useCases": [
     "Occupancy & Space Utilization",
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Netvox",
+    "RB11E",
+    "occupancy sensor",
+    "PIR",
+    "motion",
+    "temperature",
+    "light",
+    "room occupancy",
+    "space utilization",
+    "office",
+    "LoRaWAN"
   ]
 }

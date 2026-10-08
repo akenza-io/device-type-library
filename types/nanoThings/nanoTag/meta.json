@@ -20,5 +20,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Cold Chain & Temperature Compliance"
+  ],
+  "keywords": [
+    "nanoThings",
+    "nanoTag",
+    "temperature tag",
+    "temperature logger",
+    "flexible",
+    "cold chain",
+    "shipment",
+    "package",
+    "logistics",
+    "LoRaWAN"
   ]
 }

@@ -27,5 +27,20 @@
   "connectivity": "HTTP",
   "useCases": [
     "Asset Tracking"
+  ],
+  "keywords": [
+    "Digital Matter",
+    "SensorNode",
+    "datalogger",
+    "GPS",
+    "analog input",
+    "digital input",
+    "I2C",
+    "temperature",
+    "humidity",
+    "rugged",
+    "4G",
+    "LTE-M",
+    "HTTP"
   ]
 }

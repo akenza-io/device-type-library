@@ -13,5 +13,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Seeed",
+    "SenseCAP",
+    "S2101",
+    "temperature",
+    "humidity",
+    "outdoor",
+    "weather station",
+    "agriculture",
+    "IP66",
+    "LoRaWAN"
   ]
 }

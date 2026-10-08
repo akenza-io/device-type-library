@@ -22,5 +22,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Yosensi",
+    "YO Meter Pulse",
+    "pulse counter",
+    "dry contact",
+    "meter reading",
+    "water meter",
+    "gas meter",
+    "energy meter",
+    "temperature",
+    "humidity",
+    "LoRaWAN"
   ]
 }

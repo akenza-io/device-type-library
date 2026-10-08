@@ -13,5 +13,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Condition Monitoring"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-PR21",
+    "pressure",
+    "pipe pressure",
+    "pipeline",
+    "tank",
+    "water pressure",
+    "temperature",
+    "leak detection",
+    "LoRaWAN"
   ]
 }

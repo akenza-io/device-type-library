@@ -20,5 +20,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Dragino",
+    "SW3L",
+    "SW3L-LB",
+    "flow sensor",
+    "water flow",
+    "flow rate",
+    "water consumption",
+    "water meter",
+    "pipe",
+    "irrigation",
+    "water leak",
+    "LoRaWAN"
   ]
 }

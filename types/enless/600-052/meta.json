@@ -20,5 +20,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Enless",
+    "TX T&H E-INK",
+    "600-052",
+    "e-ink display",
+    "temperature",
+    "humidity",
+    "room climate",
+    "comfort",
+    "office",
+    "school",
+    "LoRaWAN"
   ]
 }

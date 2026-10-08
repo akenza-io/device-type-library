@@ -23,5 +23,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Leak Detection"
+  ],
+  "keywords": [
+    "Yosensi",
+    "YO H2O",
+    "flood detector",
+    "water leak",
+    "leak sensor",
+    "flooding",
+    "basement",
+    "technical room",
+    "temperature",
+    "humidity",
+    "LoRaWAN"
   ]
 }

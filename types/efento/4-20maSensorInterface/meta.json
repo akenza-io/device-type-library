@@ -18,5 +18,16 @@
   "connectivity": "NB-IOT",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Efento",
+    "4-20 mA",
+    "analog input",
+    "sensor interface",
+    "industrial sensor",
+    "current loop",
+    "pressure transmitter",
+    "level transmitter",
+    "NB-IoT"
   ]
 }

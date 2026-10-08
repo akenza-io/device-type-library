@@ -19,5 +19,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Sensing Labs",
+    "Senlab M",
+    "pulse counter",
+    "optical pulse",
+    "meter reading",
+    "electricity meter",
+    "gas meter",
+    "water meter",
+    "LED pulse",
+    "energy consumption",
+    "LoRaWAN"
   ]
 }

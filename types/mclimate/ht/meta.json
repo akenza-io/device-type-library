@@ -13,5 +13,16 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "MClimate",
+    "HT",
+    "temperature",
+    "humidity",
+    "room climate",
+    "indoor comfort",
+    "office",
+    "long battery life",
+    "LoRaWAN"
   ]
 }

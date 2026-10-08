@@ -19,5 +19,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Terabee",
+    "Occupancy",
+    "occupancy sensor",
+    "thermal imaging",
+    "thermal sensor",
+    "zones",
+    "room occupancy",
+    "space utilization",
+    "anonymous",
+    "office",
+    "LoRaWAN"
   ]
 }

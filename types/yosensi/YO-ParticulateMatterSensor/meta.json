@@ -28,5 +28,20 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Yosensi",
+    "YO PM sensor",
+    "particulate matter",
+    "PM1",
+    "PM2.5",
+    "PM4",
+    "PM10",
+    "fine dust",
+    "air quality",
+    "outdoor air",
+    "temperature",
+    "humidity",
+    "LoRaWAN"
   ]
 }

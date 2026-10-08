@@ -20,5 +20,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-PR36CTD",
+    "CTD",
+    "conductivity",
+    "salinity",
+    "hydrostatic pressure",
+    "water level",
+    "water temperature",
+    "water quality",
+    "submersible",
+    "LoRaWAN"
   ]
 }

@@ -27,5 +27,21 @@
   "connectivity": "LORA",
   "useCases": [
     "Asset Tracking"
+  ],
+  "keywords": [
+    "comtac",
+    "LPN MS-3",
+    "MS-3",
+    "multi-sensor",
+    "tracker",
+    "GPS",
+    "accelerometer",
+    "gyroscope",
+    "magnetometer",
+    "temperature",
+    "humidity",
+    "light",
+    "button",
+    "LoRaWAN"
   ]
 }

@@ -22,5 +22,21 @@
   "useCases": [
     "Indoor Air Quality & Comfort",
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Milesight",
+    "AM107",
+    "AM100 series",
+    "CO2",
+    "TVOC",
+    "temperature",
+    "humidity",
+    "barometric pressure",
+    "light",
+    "PIR",
+    "occupancy",
+    "e-ink display",
+    "IAQ",
+    "LoRaWAN"
   ]
 }

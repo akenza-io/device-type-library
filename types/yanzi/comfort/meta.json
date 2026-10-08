@@ -26,5 +26,19 @@
   "connectivity": "HTTP",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Yanzi",
+    "Comfort",
+    "air quality",
+    "CO2",
+    "VOC",
+    "temperature",
+    "humidity",
+    "barometric pressure",
+    "noise",
+    "meeting room",
+    "office",
+    "HTTP"
   ]
 }

@@ -20,5 +20,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Milesight",
+    "CT101",
+    "current transformer",
+    "current",
+    "clamp",
+    "energy monitoring",
+    "electricity",
+    "threshold alarm",
+    "non-invasive",
+    "LoRaWAN"
   ]
 }

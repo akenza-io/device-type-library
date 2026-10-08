@@ -20,5 +20,18 @@
   "connectivity": "HTTP",
   "useCases": [
     "Facility Services & Feedback"
+  ],
+  "keywords": [
+    "Disruptive Technologies",
+    "DT",
+    "proximity counter",
+    "proximity sensor",
+    "door counter",
+    "event counting",
+    "object presence",
+    "touch",
+    "facility management",
+    "HTTP",
+    "cloud connector"
   ]
 }

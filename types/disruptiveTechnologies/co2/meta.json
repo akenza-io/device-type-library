@@ -23,5 +23,21 @@
   "connectivity": "HTTP",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Disruptive Technologies",
+    "DT",
+    "CO2",
+    "CO2 sensor",
+    "temperature",
+    "humidity",
+    "barometric pressure",
+    "air quality",
+    "ventilation",
+    "meeting room",
+    "classroom",
+    "office",
+    "HTTP",
+    "cloud connector"
   ]
 }

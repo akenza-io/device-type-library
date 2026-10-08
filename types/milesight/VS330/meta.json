@@ -14,5 +14,18 @@
   "useCases": [
     "Occupancy & Space Utilization",
     "Facility Services & Feedback"
+  ],
+  "keywords": [
+    "Milesight",
+    "VS330",
+    "toilet occupancy",
+    "cubicle",
+    "washroom",
+    "ToF",
+    "PIR",
+    "availability",
+    "public toilet",
+    "occupancy",
+    "LoRaWAN"
   ]
 }

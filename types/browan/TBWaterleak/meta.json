@@ -20,5 +20,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Leak Detection"
+  ],
+  "keywords": [
+    "Browan",
+    "Tabs",
+    "TBWL100",
+    "water leak",
+    "leak alarm",
+    "flood",
+    "temperature",
+    "humidity",
+    "boiler",
+    "water damage",
+    "LoRaWAN"
   ]
 }

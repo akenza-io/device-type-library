@@ -18,5 +18,16 @@
   "connectivity": "LORA",
   "useCases": [
     "Leak Detection"
+  ],
+  "keywords": [
+    "Dragino",
+    "LWL02",
+    "water leak",
+    "leak sensor",
+    "flood",
+    "basement",
+    "technical room",
+    "pipe",
+    "LoRaWAN"
   ]
 }

@@ -22,5 +22,19 @@
   "connectivity": "MIOTY",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Sentinum",
+    "Febris CO2 Mioty",
+    "Febris",
+    "CO2 traffic light",
+    "CO2",
+    "air quality",
+    "temperature",
+    "humidity",
+    "pressure",
+    "dew point",
+    "ventilation",
+    "mioty"
   ]
 }

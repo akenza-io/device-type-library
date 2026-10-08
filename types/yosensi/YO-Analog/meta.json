@@ -22,5 +22,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Yosensi",
+    "YO Analog",
+    "analog input",
+    "4-20 mA",
+    "0-10 V",
+    "current",
+    "voltage",
+    "pressure transmitter",
+    "industrial automation",
+    "building automation",
+    "LoRaWAN"
   ]
 }

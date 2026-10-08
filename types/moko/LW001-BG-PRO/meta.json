@@ -30,5 +30,21 @@
   "connectivity": "LORA",
   "useCases": [
     "Asset Tracking"
+  ],
+  "keywords": [
+    "MOKO",
+    "MOKOSmart",
+    "LW001-BG PRO",
+    "tracker",
+    "GPS",
+    "BLE",
+    "indoor positioning",
+    "accelerometer",
+    "man down",
+    "tamper",
+    "vibration",
+    "temperature",
+    "lone worker",
+    "LoRaWAN"
   ]
 }

@@ -21,5 +21,20 @@
   "connectivity": "LORA",
   "useCases": [
     "Smart Agriculture"
+  ],
+  "keywords": [
+    "Dragino",
+    "SE0X-LB",
+    "SE01-LB",
+    "soil sensor",
+    "soil moisture",
+    "soil temperature",
+    "soil conductivity",
+    "EC",
+    "FDR",
+    "multi-probe",
+    "irrigation",
+    "agriculture",
+    "LoRaWAN"
   ]
 }

@@ -21,5 +21,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Bosch",
+    "Parking Lot Sensor",
+    "V0.39",
+    "parking",
+    "parking space",
+    "in-ground",
+    "occupancy",
+    "parking guidance",
+    "smart city",
+    "magnetometer",
+    "LoRaWAN"
   ]
 }

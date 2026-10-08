@@ -14,5 +14,17 @@
   "useCases": [
     "Facility Services & Feedback",
     "Safety & Security"
+  ],
+  "keywords": [
+    "Miromico",
+    "miro Click",
+    "button",
+    "four buttons",
+    "service on demand",
+    "emergency call",
+    "feedback",
+    "remote control",
+    "notification",
+    "LoRaWAN"
   ]
 }

@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Condition Monitoring"
+  ],
+  "keywords": [
+    "Milesight",
+    "EM320-TILT",
+    "tilt sensor",
+    "accelerometer",
+    "angle",
+    "inclination",
+    "pole monitoring",
+    "structural monitoring",
+    "asset monitoring",
+    "threshold alarm",
+    "LoRaWAN"
   ]
 }

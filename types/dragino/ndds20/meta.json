@@ -13,5 +13,18 @@
   "connectivity": "NB-IOT",
   "useCases": [
     "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Dragino",
+    "NDDS20",
+    "ultrasonic",
+    "liquid level",
+    "tank level",
+    "non-contact",
+    "through-wall",
+    "water tank",
+    "oil tank",
+    "level sensor",
+    "NB-IoT"
   ]
 }

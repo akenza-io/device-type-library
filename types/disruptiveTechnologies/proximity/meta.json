@@ -23,5 +23,18 @@
   "useCases": [
     "Facility Services & Feedback",
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Disruptive Technologies",
+    "DT",
+    "proximity sensor",
+    "object presence",
+    "door sensor",
+    "door counter",
+    "washroom usage",
+    "open close",
+    "touch",
+    "HTTP",
+    "cloud connector"
   ]
 }

@@ -18,5 +18,17 @@
   "useCases": [
     "Weather & Outdoor Environment",
     "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-PR26",
+    "submersible",
+    "hydrostatic pressure",
+    "water level",
+    "water temperature",
+    "groundwater",
+    "river",
+    "tank level",
+    "LoRaWAN"
   ]
 }

@@ -24,5 +24,20 @@
   "connectivity": "LORA",
   "useCases": [
     "Smart Agriculture"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-GMM",
+    "greenhouse",
+    "PAR",
+    "photosynthetically active radiation",
+    "CO2",
+    "temperature",
+    "humidity",
+    "barometric pressure",
+    "dew point",
+    "vapor pressure",
+    "horticulture",
+    "LoRaWAN"
   ]
 }

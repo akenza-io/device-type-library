@@ -21,5 +21,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Nordic Propeye",
+    "Talkpool",
+    "OY1700",
+    "particulate matter",
+    "PM1",
+    "PM2.5",
+    "PM10",
+    "particle meter",
+    "air quality",
+    "temperature",
+    "humidity",
+    "LoRaWAN"
   ]
 }

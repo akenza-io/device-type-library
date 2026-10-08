@@ -18,5 +18,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-DLR2-003",
+    "DLR2",
+    "digital input",
+    "dry contact",
+    "on/off state",
+    "door contact",
+    "alarm output",
+    "switch",
+    "LoRaWAN"
   ]
 }

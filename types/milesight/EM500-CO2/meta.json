@@ -14,5 +14,19 @@
   "useCases": [
     "Indoor Air Quality & Comfort",
     "Smart Agriculture"
+  ],
+  "keywords": [
+    "Milesight",
+    "EM500-CO2",
+    "CO2",
+    "temperature",
+    "humidity",
+    "barometric pressure",
+    "greenhouse",
+    "livestock",
+    "warehouse",
+    "rugged",
+    "agriculture",
+    "LoRaWAN"
   ]
 }

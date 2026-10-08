@@ -14,5 +14,18 @@
   "useCases": [
     "Fill Level Monitoring",
     "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Milesight",
+    "EM500-SWL",
+    "submersible",
+    "water level",
+    "hydrostatic",
+    "tank level",
+    "well",
+    "reservoir",
+    "river",
+    "flood monitoring",
+    "LoRaWAN"
   ]
 }

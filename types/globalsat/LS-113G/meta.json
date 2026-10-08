@@ -13,5 +13,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "GlobalSat",
+    "LS-113G",
+    "PM2.5",
+    "particulate matter",
+    "dust sensor",
+    "air quality",
+    "temperature",
+    "humidity",
+    "indoor",
+    "LoRaWAN"
   ]
 }

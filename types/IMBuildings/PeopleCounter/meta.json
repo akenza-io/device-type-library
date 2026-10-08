@@ -20,5 +20,17 @@
   "connectivity": "LORA",
   "useCases": [
     "People & Vehicle Counting"
+  ],
+  "keywords": [
+    "IMBuildings",
+    "people counter",
+    "in out counting",
+    "doorway",
+    "passageway",
+    "footfall",
+    "visitor counting",
+    "occupancy",
+    "entry exit",
+    "LoRaWAN"
   ]
 }

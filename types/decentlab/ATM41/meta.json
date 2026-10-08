@@ -23,5 +23,22 @@
   "connectivity": "LORA",
   "useCases": [
     "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-ATM41",
+    "weather station",
+    "solar radiation",
+    "precipitation",
+    "rain",
+    "lightning",
+    "wind speed",
+    "wind direction",
+    "temperature",
+    "humidity",
+    "vapor pressure",
+    "barometric pressure",
+    "meteo",
+    "LoRaWAN"
   ]
 }

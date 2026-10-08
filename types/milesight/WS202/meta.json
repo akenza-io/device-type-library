@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Milesight",
+    "WS202",
+    "PIR",
+    "motion sensor",
+    "occupancy",
+    "light",
+    "lighting control",
+    "corridor",
+    "meeting room",
+    "office",
+    "LoRaWAN"
   ]
 }

@@ -17,5 +17,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Smart Agriculture"
+  ],
+  "keywords": [
+    "Seeed",
+    "SenseCAP",
+    "S2105",
+    "soil moisture",
+    "soil temperature",
+    "soil EC",
+    "electrical conductivity",
+    "VWC",
+    "irrigation",
+    "fertilization",
+    "agriculture",
+    "LoRaWAN"
   ]
 }

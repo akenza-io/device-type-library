@@ -22,5 +22,20 @@
   "connectivity": "LORA",
   "useCases": [
     "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Elsys",
+    "ELT Ultrasonic snow",
+    "ELT-2",
+    "snow depth",
+    "snow height",
+    "ultrasonic",
+    "distance",
+    "temperature",
+    "humidity",
+    "pressure",
+    "outdoor",
+    "IP67",
+    "LoRaWAN"
   ]
 }

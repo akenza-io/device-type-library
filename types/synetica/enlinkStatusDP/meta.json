@@ -18,5 +18,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Condition Monitoring"
+  ],
+  "keywords": [
+    "Synetica",
+    "enLink Status-DP",
+    "enLink",
+    "differential pressure",
+    "air filter",
+    "HVAC",
+    "duct",
+    "airflow",
+    "temperature",
+    "humidity",
+    "LoRaWAN"
   ]
 }

@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Smart Agriculture"
+  ],
+  "keywords": [
+    "Tinovi",
+    "PM-IO-5-SM",
+    "soil moisture",
+    "soil temperature",
+    "soil EC",
+    "electrical conductivity",
+    "irrigation",
+    "agriculture",
+    "garden",
+    "soil probe",
+    "LoRaWAN"
   ]
 }

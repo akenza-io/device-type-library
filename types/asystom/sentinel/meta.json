@@ -27,5 +27,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Condition Monitoring"
+  ],
+  "keywords": [
+    "Asystom",
+    "Sentinel",
+    "vibration",
+    "ultrasound",
+    "predictive maintenance",
+    "equipment drift",
+    "machine health",
+    "RPM",
+    "shock",
+    "surface temperature",
+    "humidity",
+    "LoRaWAN"
   ]
 }

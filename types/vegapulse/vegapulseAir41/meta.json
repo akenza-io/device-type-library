@@ -24,5 +24,20 @@
   "connectivity": "LORA",
   "useCases": [
     "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Vega",
+    "VEGAPULS",
+    "VEGAPULS Air 41",
+    "radar level",
+    "fill level",
+    "silo",
+    "mobile silo",
+    "bulk solids",
+    "tank level",
+    "non-contact",
+    "GPS",
+    "temperature",
+    "LoRaWAN"
   ]
 }

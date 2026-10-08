@@ -36,5 +36,23 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Yosensi",
+    "YO Pure Pro",
+    "air quality",
+    "CO2",
+    "CO",
+    "TVOC",
+    "PM2.5",
+    "PM10",
+    "particulate matter",
+    "temperature",
+    "humidity",
+    "pressure",
+    "illuminance",
+    "noise",
+    "school",
+    "LoRaWAN"
   ]
 }

@@ -18,5 +18,19 @@
   "connectivity": "HTTP",
   "useCases": [
     "Asset Tracking"
+  ],
+  "keywords": [
+    "Digital Matter",
+    "Bolt 2",
+    "BOLT2-4G",
+    "GPS tracker",
+    "vehicle tracker",
+    "OBDII",
+    "fleet management",
+    "4G",
+    "LTE-M",
+    "digital input",
+    "analog input",
+    "HTTP"
   ]
 }

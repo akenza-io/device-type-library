@@ -21,5 +21,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Milesight",
+    "EM410-RDL",
+    "radar",
+    "distance",
+    "fill level",
+    "tank level",
+    "silo",
+    "long range",
+    "temperature",
+    "level measurement",
+    "LoRaWAN"
   ]
 }

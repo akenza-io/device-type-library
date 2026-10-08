@@ -18,5 +18,16 @@
   "connectivity": "LORA",
   "useCases": [
     "Leak Detection"
+  ],
+  "keywords": [
+    "Laiier",
+    "Severn WLD",
+    "water leak detector",
+    "leak tape",
+    "flood detection",
+    "pipe",
+    "floor",
+    "water damage",
+    "LoRaWAN"
   ]
 }

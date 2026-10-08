@@ -20,5 +20,17 @@
   "useCases": [
     "Fill Level Monitoring",
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "adnexo",
+    "ax-opto",
+    "optical distance",
+    "distance",
+    "accelerometer",
+    "parking",
+    "tank level",
+    "fill level",
+    "ToF",
+    "LoRaWAN"
   ]
 }

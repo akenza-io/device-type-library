@@ -28,5 +28,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Yosensi",
+    "YO Power",
+    "current clamp",
+    "CT clamp",
+    "AC current",
+    "energy monitoring",
+    "machine monitoring",
+    "load monitoring",
+    "six channels",
+    "electricity",
+    "LoRaWAN"
   ]
 }

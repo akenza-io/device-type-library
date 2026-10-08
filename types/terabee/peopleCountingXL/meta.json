@@ -13,5 +13,17 @@
   "connectivity": "LORA",
   "useCases": [
     "People & Vehicle Counting"
+  ],
+  "keywords": [
+    "Terabee",
+    "People Counting L-XL",
+    "people counter",
+    "ToF",
+    "wide entrance",
+    "entry exit",
+    "footfall",
+    "retail",
+    "anonymous",
+    "LoRaWAN"
   ]
 }

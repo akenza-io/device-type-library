@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Building Automation & Control"
+  ],
+  "keywords": [
+    "comtac",
+    "LPN DO",
+    "relay output",
+    "solid state relay",
+    "digital output",
+    "remote switching",
+    "actuator",
+    "lighting control",
+    "valve",
+    "pump",
+    "LoRaWAN"
   ]
 }

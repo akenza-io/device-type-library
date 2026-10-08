@@ -13,5 +13,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Milesight",
+    "WS201",
+    "ToF",
+    "fill level",
+    "distance",
+    "dispenser",
+    "paper towel",
+    "soap dispenser",
+    "small bin",
+    "washroom",
+    "cleaning on demand",
+    "LoRaWAN"
   ]
 }

@@ -13,5 +13,22 @@
   "connectivity": "LORA",
   "useCases": [
     "Asset Tracking"
+  ],
+  "keywords": [
+    "Seeed",
+    "SenseCAP",
+    "T1000",
+    "T1000-A",
+    "tracker",
+    "GPS",
+    "GNSS",
+    "Wi-Fi positioning",
+    "BLE",
+    "indoor positioning",
+    "asset tracker",
+    "temperature",
+    "light",
+    "motion",
+    "LoRaWAN"
   ]
 }

@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Dragino",
+    "LDDS75",
+    "ultrasonic",
+    "distance sensor",
+    "fill level",
+    "tank level",
+    "waste bin",
+    "water level",
+    "level sensor",
+    "temperature",
+    "LoRaWAN"
   ]
 }

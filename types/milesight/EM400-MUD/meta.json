@@ -14,5 +14,18 @@
   "useCases": [
     "Fill Level Monitoring",
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Milesight",
+    "EM400-MUD",
+    "distance",
+    "multipurpose",
+    "fill level",
+    "waste bin",
+    "parking",
+    "parking occupancy",
+    "level measurement",
+    "temperature",
+    "LoRaWAN"
   ]
 }

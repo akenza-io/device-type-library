@@ -23,5 +23,19 @@
   "useCases": [
     "Cold Chain & Temperature Compliance",
     "Condition Monitoring"
+  ],
+  "keywords": [
+    "Yosensi",
+    "YO Refrigerant Monitor",
+    "refrigerant pressure",
+    "refrigeration",
+    "air conditioning",
+    "cooling system",
+    "pressure drop",
+    "refrigerant leak",
+    "temperature",
+    "humidity",
+    "HVAC",
+    "LoRaWAN"
   ]
 }

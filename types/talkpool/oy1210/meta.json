@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Nordic Propeye",
+    "Talkpool",
+    "OY1210",
+    "CO2 meter",
+    "CO2",
+    "temperature",
+    "humidity",
+    "air quality",
+    "meeting room",
+    "classroom",
+    "LoRaWAN"
   ]
 }

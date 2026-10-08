@@ -22,5 +22,20 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Elsys",
+    "ERS Eco CO2",
+    "ERS Eco",
+    "CO2",
+    "solar-powered",
+    "battery-free",
+    "energy harvesting",
+    "biodegradable",
+    "temperature",
+    "humidity",
+    "light",
+    "air quality",
+    "LoRaWAN"
   ]
 }

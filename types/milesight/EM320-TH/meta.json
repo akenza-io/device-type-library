@@ -14,5 +14,18 @@
   "useCases": [
     "Indoor Air Quality & Comfort",
     "Cold Chain & Temperature Compliance"
+  ],
+  "keywords": [
+    "Milesight",
+    "EM320-TH",
+    "temperature",
+    "humidity",
+    "cold room",
+    "fridge",
+    "greenhouse",
+    "storage",
+    "indoor",
+    "outdoor",
+    "LoRaWAN"
   ]
 }

@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Safety & Security"
+  ],
+  "keywords": [
+    "Milesight",
+    "WS301",
+    "door sensor",
+    "window sensor",
+    "magnetic contact",
+    "reed switch",
+    "open/close",
+    "intrusion",
+    "access monitoring",
+    "cabinet",
+    "LoRaWAN"
   ]
 }

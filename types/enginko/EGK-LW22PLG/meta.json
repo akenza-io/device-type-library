@@ -14,5 +14,17 @@
   "useCases": [
     "Energy & Utility Metering",
     "Building Automation & Control"
+  ],
+  "keywords": [
+    "enginko",
+    "EGK-LW22PLG",
+    "smart plug",
+    "energy meter",
+    "power consumption",
+    "remote switching",
+    "on off",
+    "mains outage",
+    "plug-in",
+    "LoRaWAN"
   ]
 }

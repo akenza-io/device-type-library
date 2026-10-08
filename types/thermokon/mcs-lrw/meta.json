@@ -30,5 +30,22 @@
     "Indoor Air Quality & Comfort",
     "Occupancy & Space Utilization",
     "Safety & Security"
+  ],
+  "keywords": [
+    "Thermokon",
+    "MCS-LRW",
+    "MCS",
+    "multisensor",
+    "window contact",
+    "door sensor",
+    "temperature",
+    "humidity",
+    "motion",
+    "PIR",
+    "brightness",
+    "CO2",
+    "VOC",
+    "occupancy",
+    "LoRaWAN"
   ]
 }

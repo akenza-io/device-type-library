@@ -25,5 +25,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Condition Monitoring"
+  ],
+  "keywords": [
+    "Yosensi",
+    "YO Airflow Pro",
+    "differential pressure",
+    "air velocity",
+    "airflow",
+    "air filter",
+    "ventilation",
+    "HVAC",
+    "duct",
+    "gas temperature",
+    "humidity",
+    "LoRaWAN"
   ]
 }

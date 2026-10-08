@@ -22,5 +22,21 @@
   "useCases": [
     "Indoor Air Quality & Comfort",
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-IAM",
+    "indoor air quality",
+    "CO2",
+    "VOC",
+    "temperature",
+    "humidity",
+    "barometric pressure",
+    "ambient light",
+    "PIR",
+    "motion",
+    "occupancy",
+    "NDIR",
+    "LoRaWAN"
   ]
 }

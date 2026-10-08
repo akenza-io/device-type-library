@@ -13,5 +13,20 @@
   "connectivity": "LORA",
   "useCases": [
     "Asset Tracking"
+  ],
+  "keywords": [
+    "Digital Matter",
+    "Yabby",
+    "GPS tracker",
+    "asset tracker",
+    "GPS",
+    "location",
+    "equipment tracking",
+    "container tracking",
+    "tool tracking",
+    "rugged",
+    "battery-powered",
+    "indoor outdoor",
+    "LoRaWAN"
   ]
 }

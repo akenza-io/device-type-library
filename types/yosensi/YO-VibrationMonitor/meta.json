@@ -29,5 +29,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Condition Monitoring"
+  ],
+  "keywords": [
+    "Yosensi",
+    "YO Vibration Monitor",
+    "vibration",
+    "predictive maintenance",
+    "electric motor",
+    "RMS acceleration",
+    "velocity",
+    "displacement",
+    "kurtosis",
+    "accelerometer",
+    "temperature",
+    "LoRaWAN"
   ]
 }

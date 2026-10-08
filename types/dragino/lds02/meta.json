@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Safety & Security"
+  ],
+  "keywords": [
+    "Dragino",
+    "LDS02",
+    "door sensor",
+    "window sensor",
+    "reed switch",
+    "magnet",
+    "open close",
+    "door counter",
+    "open duration",
+    "access monitoring",
+    "LoRaWAN"
   ]
 }

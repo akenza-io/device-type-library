@@ -16,5 +16,18 @@
   ],
   "encoding": "HEX",
   "connectivity": "LORA",
-  "useCases": []
+  "useCases": [],
+  "keywords": [
+    "Milesight",
+    "FT101",
+    "field tester",
+    "network tester",
+    "signal strength",
+    "RSSI",
+    "SNR",
+    "coverage",
+    "gateway coverage",
+    "site survey",
+    "LoRaWAN"
+  ]
 }

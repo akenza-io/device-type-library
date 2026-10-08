@@ -1,5 +1,5 @@
 {
-  "name": "CubicMeter 1.1 Plastic",
+  "name": "CubicMeter 1.1 Copper",
   "version": "1.0.0",
   "manufacturer": "Quandify",
   "url": "https://quandify.com/cubicmeter",
@@ -25,5 +25,19 @@
   "useCases": [
     "Energy & Utility Metering",
     "Leak Detection"
+  ],
+  "keywords": [
+    "Quandify",
+    "CubicMeter",
+    "CubicMeter 1.1",
+    "water meter",
+    "ultrasonic",
+    "clamp-on",
+    "copper pipe",
+    "water consumption",
+    "leak",
+    "water temperature",
+    "non-invasive",
+    "LoRaWAN"
   ]
 }

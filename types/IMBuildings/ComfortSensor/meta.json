@@ -22,5 +22,19 @@
   "useCases": [
     "Indoor Air Quality & Comfort",
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "IMBuildings",
+    "comfort sensor",
+    "CO2",
+    "temperature",
+    "humidity",
+    "presence",
+    "occupancy",
+    "air quality",
+    "room climate",
+    "ventilation",
+    "office",
+    "LoRaWAN"
   ]
 }

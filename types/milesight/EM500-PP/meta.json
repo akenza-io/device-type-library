@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Condition Monitoring"
+  ],
+  "keywords": [
+    "Milesight",
+    "EM500-PP",
+    "pressure sensor",
+    "pipe pressure",
+    "liquid pressure",
+    "gas pressure",
+    "water supply",
+    "tank level",
+    "leak detection",
+    "industrial",
+    "LoRaWAN"
   ]
 }

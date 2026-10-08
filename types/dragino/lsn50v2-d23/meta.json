@@ -33,5 +33,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Cold Chain & Temperature Compliance"
+  ],
+  "keywords": [
+    "Dragino",
+    "LSN50v2-D23",
+    "LSN50v2",
+    "DS18B20",
+    "three probes",
+    "temperature probe",
+    "fridge",
+    "freezer",
+    "pipe temperature",
+    "liquid temperature",
+    "HACCP",
+    "LoRaWAN"
   ]
 }

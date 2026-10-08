@@ -24,5 +24,20 @@
   "connectivity": "LORA",
   "useCases": [
     "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Vega",
+    "VEGAPULS",
+    "VEGAPULS Air 23",
+    "radar level",
+    "fill level",
+    "non-contact",
+    "IBC",
+    "tank level",
+    "liquids",
+    "bulk solids",
+    "GPS",
+    "temperature",
+    "LoRaWAN"
   ]
 }

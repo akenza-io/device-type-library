@@ -18,5 +18,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Cold Chain & Temperature Compliance"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-DLR2-008",
+    "DLR2",
+    "PT100",
+    "temperature",
+    "RTD",
+    "probe",
+    "fridge",
+    "pipe",
+    "liquid",
+    "cold chain",
+    "LoRaWAN"
   ]
 }

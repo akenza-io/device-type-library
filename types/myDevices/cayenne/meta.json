@@ -33,5 +33,21 @@
   ],
   "encoding": "HEX",
   "connectivity": "LORA",
-  "useCases": []
+  "useCases": [],
+  "keywords": [
+    "myDevices",
+    "Cayenne",
+    "Cayenne LPP",
+    "Low Power Payload",
+    "generic decoder",
+    "temperature",
+    "humidity",
+    "GPS",
+    "accelerometer",
+    "gyroscope",
+    "digital input",
+    "analog input",
+    "barometer",
+    "LoRaWAN"
+  ]
 }

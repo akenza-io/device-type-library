@@ -18,5 +18,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Milesight",
+    "WS302",
+    "sound level",
+    "noise",
+    "decibel",
+    "dB(A)",
+    "acoustic comfort",
+    "office",
+    "school",
+    "library",
+    "LoRaWAN"
   ]
 }

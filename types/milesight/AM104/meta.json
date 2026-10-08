@@ -14,5 +14,20 @@
   "useCases": [
     "Indoor Air Quality & Comfort",
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Milesight",
+    "AM104",
+    "AM100 series",
+    "temperature",
+    "humidity",
+    "light",
+    "PIR",
+    "motion",
+    "occupancy",
+    "e-ink display",
+    "room utilization",
+    "office",
+    "LoRaWAN"
   ]
 }

@@ -14,5 +14,17 @@
   "useCases": [
     "Smart Agriculture",
     "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-SHT35",
+    "SHT35",
+    "temperature",
+    "humidity",
+    "radiation shield",
+    "outdoor",
+    "agriculture",
+    "urban heat island",
+    "LoRaWAN"
   ]
 }

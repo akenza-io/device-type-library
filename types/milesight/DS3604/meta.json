@@ -21,5 +21,18 @@
   ],
   "encoding": "HEX",
   "connectivity": "LORA",
-  "useCases": []
+  "useCases": [],
+  "keywords": [
+    "Milesight",
+    "DS3604",
+    "e-paper display",
+    "e-ink display",
+    "room sign",
+    "digital signage",
+    "door sign",
+    "QR code",
+    "button",
+    "meeting room",
+    "LoRaWAN"
+  ]
 }

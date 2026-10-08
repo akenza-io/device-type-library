@@ -21,5 +21,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Condition Monitoring"
+  ],
+  "keywords": [
+    "WIKA",
+    "Netris 2",
+    "Netris",
+    "4-20 mA",
+    "analog input",
+    "radio unit",
+    "process monitoring",
+    "process alarm",
+    "remote monitoring",
+    "IP55",
+    "LoRaWAN"
   ]
 }

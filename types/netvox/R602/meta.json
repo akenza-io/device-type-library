@@ -18,5 +18,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Safety & Security"
+  ],
+  "keywords": [
+    "Netvox",
+    "R602A",
+    "R602",
+    "siren",
+    "alarm",
+    "strobe light",
+    "LED",
+    "intrusion",
+    "emergency notification",
+    "security",
+    "LoRaWAN"
   ]
 }

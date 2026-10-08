@@ -20,5 +20,19 @@
   "connectivity": "HTTP",
   "useCases": [
     "Leak Detection"
+  ],
+  "keywords": [
+    "Disruptive Technologies",
+    "DT",
+    "water sensor",
+    "water leak",
+    "leak detector",
+    "flood",
+    "sink",
+    "pipe",
+    "technical room",
+    "touch",
+    "HTTP",
+    "cloud connector"
   ]
 }

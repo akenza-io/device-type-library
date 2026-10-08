@@ -19,5 +19,21 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Landis+Gyr",
+    "T550",
+    "WZU-LR",
+    "heat meter",
+    "cooling meter",
+    "ultrasonic",
+    "energy",
+    "volume",
+    "flow",
+    "power",
+    "temperature",
+    "district heating",
+    "remote reading",
+    "LoRaWAN"
   ]
 }

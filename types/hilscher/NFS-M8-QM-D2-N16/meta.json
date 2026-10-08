@@ -15,5 +15,19 @@
   "connectivity": "MQTT",
   "useCases": [
     "Condition Monitoring"
+  ],
+  "keywords": [
+    "Hilscher",
+    "NFS-M8-QM-D2-N16",
+    "netFIELD",
+    "IO-Link master",
+    "edge gateway",
+    "industrial monitoring",
+    "machine monitoring",
+    "process monitoring",
+    "system monitoring",
+    "containerized apps",
+    "Industry 4.0",
+    "MQTT"
   ]
 }

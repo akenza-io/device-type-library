@@ -12,5 +12,17 @@
   "connectivity": "HTTP",
   "useCases": [
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Yanzi",
+    "Presence Mini",
+    "desk occupancy",
+    "occupancy",
+    "motion",
+    "PIR",
+    "small room",
+    "temperature",
+    "workplace utilization",
+    "HTTP"
   ]
 }

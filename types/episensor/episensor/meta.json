@@ -17,5 +17,16 @@
   "connectivity": "HTTP",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "EpiSensor",
+    "energy monitoring",
+    "power",
+    "electricity",
+    "sub-metering",
+    "load monitoring",
+    "energy consumption",
+    "cloud integration",
+    "HTTP"
   ]
 }

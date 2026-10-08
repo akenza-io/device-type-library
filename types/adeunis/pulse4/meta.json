@@ -18,5 +18,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Adeunis",
+    "Pulse",
+    "pulse counter",
+    "water meter",
+    "gas meter",
+    "electricity meter",
+    "flow rate",
+    "consumption",
+    "leak detection",
+    "tamper",
+    "LoRaWAN"
   ]
 }

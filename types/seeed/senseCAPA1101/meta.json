@@ -13,5 +13,19 @@
   "connectivity": "LORA",
   "useCases": [
     "People & Vehicle Counting"
+  ],
+  "keywords": [
+    "Seeed",
+    "SenseCAP",
+    "A1101",
+    "vision AI",
+    "camera",
+    "image recognition",
+    "people counting",
+    "object detection",
+    "meter reading",
+    "edge AI",
+    "TinyML",
+    "LoRaWAN"
   ]
 }

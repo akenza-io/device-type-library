@@ -21,5 +21,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Asset Tracking"
+  ],
+  "keywords": [
+    "Digital Matter",
+    "G62",
+    "GPS tracker",
+    "vehicle tracker",
+    "trailer",
+    "heavy equipment",
+    "fleet management",
+    "odometer",
+    "digital input",
+    "rugged",
+    "LoRaWAN"
   ]
 }

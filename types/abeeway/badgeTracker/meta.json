@@ -25,5 +25,22 @@
   "connectivity": "LORA",
   "useCases": [
     "Asset Tracking"
+  ],
+  "keywords": [
+    "Abeeway",
+    "Badge Tracker",
+    "tracker",
+    "GPS",
+    "indoor positioning",
+    "BLE",
+    "Wi-Fi sniffing",
+    "TDoA",
+    "shock detection",
+    "motion",
+    "temperature",
+    "worker safety",
+    "lone worker",
+    "geolocation",
+    "LoRaWAN"
   ]
 }

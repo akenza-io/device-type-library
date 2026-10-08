@@ -20,5 +20,17 @@
   "useCases": [
     "Fill Level Monitoring",
     "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-RAD",
+    "radar",
+    "distance",
+    "water level",
+    "river level",
+    "fill level",
+    "contactless",
+    "temperature",
+    "LoRaWAN"
   ]
 }

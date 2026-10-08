@@ -13,5 +13,20 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "MClimate",
+    "CO2 sensor",
+    "CO2",
+    "NDIR",
+    "temperature",
+    "humidity",
+    "ventilation",
+    "air quality",
+    "classroom",
+    "meeting room",
+    "LED indicator",
+    "buzzer",
+    "LoRaWAN"
   ]
 }

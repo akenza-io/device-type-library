@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Safety & Security"
+  ],
+  "keywords": [
+    "Sensing Labs",
+    "Senlab D",
+    "digital input",
+    "dry contact",
+    "door sensor",
+    "manhole",
+    "hatch",
+    "open close",
+    "IP68",
+    "rugged",
+    "LoRaWAN"
   ]
 }

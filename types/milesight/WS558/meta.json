@@ -21,5 +21,18 @@
   "useCases": [
     "Building Automation & Control",
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Milesight",
+    "WS558",
+    "light controller",
+    "lighting control",
+    "8 circuits",
+    "relay",
+    "power",
+    "current",
+    "schedule",
+    "energy saving",
+    "LoRaWAN"
   ]
 }

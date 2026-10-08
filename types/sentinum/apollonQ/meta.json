@@ -13,5 +13,20 @@
   "connectivity": "LORA",
   "useCases": [
     "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Sentinum",
+    "Apollon Q",
+    "Apollon",
+    "fill level",
+    "ToF",
+    "radar",
+    "distance",
+    "waste bin",
+    "container",
+    "shaft",
+    "channel",
+    "IP67",
+    "LoRaWAN"
   ]
 }

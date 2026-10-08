@@ -17,5 +17,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Pressac",
+    "CT Clamp",
+    "current clamp",
+    "current transformer",
+    "current",
+    "energy monitoring",
+    "three channel",
+    "energy efficiency",
+    "electricity",
+    "LoRaWAN"
   ]
 }

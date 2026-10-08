@@ -19,5 +19,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Safety & Security"
+  ],
+  "keywords": [
+    "Netvox",
+    "R603",
+    "voice announcer",
+    "alarm sound",
+    "siren",
+    "doorbell",
+    "RGB LED",
+    "backup battery",
+    "emergency notification",
+    "security",
+    "LoRaWAN"
   ]
 }

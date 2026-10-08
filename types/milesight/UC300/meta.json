@@ -25,5 +25,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Building Automation & Control"
+  ],
+  "keywords": [
+    "Milesight",
+    "UC300",
+    "IoT controller",
+    "digital input",
+    "digital output",
+    "analog input",
+    "PT100",
+    "Modbus",
+    "RS485",
+    "industrial",
+    "remote control",
+    "LoRaWAN"
   ]
 }

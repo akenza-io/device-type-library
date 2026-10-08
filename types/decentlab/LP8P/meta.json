@@ -22,5 +22,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-LP8P",
+    "CO2",
+    "NDIR",
+    "temperature",
+    "humidity",
+    "barometric pressure",
+    "outdoor air quality",
+    "environmental monitoring",
+    "LoRaWAN"
   ]
 }

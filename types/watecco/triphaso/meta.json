@@ -24,5 +24,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Watteco",
+    "Triphas'O",
+    "energy meter",
+    "three-phase",
+    "single-phase",
+    "power",
+    "energy consumption",
+    "current",
+    "voltage",
+    "power factor",
+    "non-intrusive",
+    "LoRaWAN"
   ]
 }

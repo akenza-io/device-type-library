@@ -13,5 +13,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Sentinum",
+    "Febris SCW",
+    "Febris",
+    "mold prevention",
+    "wall temperature",
+    "surface temperature",
+    "temperature",
+    "humidity",
+    "dew point",
+    "ventilation",
+    "residential",
+    "LoRaWAN"
   ]
 }

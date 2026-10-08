@@ -31,5 +31,23 @@
   "useCases": [
     "Indoor Air Quality & Comfort",
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Pressac",
+    "IAQ Sensor",
+    "IAQ",
+    "air quality",
+    "CO2",
+    "TVOC",
+    "PM2.5",
+    "PM10",
+    "particulate matter",
+    "PIR",
+    "occupancy",
+    "temperature",
+    "humidity",
+    "noise",
+    "light",
+    "LoRaWAN"
   ]
 }

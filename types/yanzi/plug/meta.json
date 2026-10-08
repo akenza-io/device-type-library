@@ -13,5 +13,18 @@
   "useCases": [
     "Energy & Utility Metering",
     "Building Automation & Control"
+  ],
+  "keywords": [
+    "Yanzi",
+    "Plug",
+    "smart plug",
+    "relay",
+    "on off switch",
+    "energy",
+    "power",
+    "voltage",
+    "current",
+    "energy monitoring",
+    "HTTP"
   ]
 }

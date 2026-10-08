@@ -16,5 +16,18 @@
   ],
   "encoding": "HEX",
   "connectivity": "LORA",
-  "useCases": []
+  "useCases": [],
+  "keywords": [
+    "Decentlab",
+    "DL-DLR2-011",
+    "DLR2",
+    "digital input",
+    "two channel",
+    "dry contact",
+    "on/off state",
+    "door contact",
+    "alarm output",
+    "switch",
+    "LoRaWAN"
+  ]
 }

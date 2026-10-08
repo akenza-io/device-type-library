@@ -19,5 +19,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Safety & Security"
+  ],
+  "keywords": [
+    "Enless",
+    "TX WINDOW",
+    "600-065",
+    "window sensor",
+    "door sensor",
+    "open close",
+    "heat loss",
+    "security",
+    "commercial building",
+    "LoRaWAN"
   ]
 }

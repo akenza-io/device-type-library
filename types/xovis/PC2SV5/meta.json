@@ -29,5 +29,21 @@
   "connectivity": "HTTP",
   "useCases": [
     "People & Vehicle Counting"
+  ],
+  "keywords": [
+    "Xovis",
+    "PC2S V5",
+    "PC2S",
+    "people counter",
+    "stereo camera",
+    "3D sensor",
+    "counting line",
+    "queue",
+    "waiting time",
+    "dwell time",
+    "zone",
+    "footfall",
+    "demographics",
+    "HTTP"
   ]
 }

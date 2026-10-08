@@ -22,5 +22,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Miromico",
+    "miro Insight",
+    "CO2",
+    "temperature",
+    "humidity",
+    "air quality",
+    "IAQ",
+    "ventilation",
+    "office",
+    "classroom",
+    "LoRaWAN"
   ]
 }

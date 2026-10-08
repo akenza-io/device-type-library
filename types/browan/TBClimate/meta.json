@@ -13,5 +13,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Browan",
+    "Tabs",
+    "TBHH100",
+    "temperature",
+    "humidity",
+    "room climate",
+    "indoor",
+    "home",
+    "facility management",
+    "LoRaWAN"
   ]
 }

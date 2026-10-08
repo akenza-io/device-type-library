@@ -23,5 +23,23 @@
   "connectivity": "LORA",
   "useCases": [
     "Asset Tracking"
+  ],
+  "keywords": [
+    "ioTracker",
+    "ioTracker 3",
+    "tracker",
+    "GPS",
+    "Wi-Fi positioning",
+    "BLE",
+    "indoor positioning",
+    "temperature",
+    "humidity",
+    "air pressure",
+    "light",
+    "tilt",
+    "shock",
+    "button",
+    "accelerometer",
+    "LoRaWAN"
   ]
 }

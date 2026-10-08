@@ -13,5 +13,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Safety & Security"
+  ],
+  "keywords": [
+    "Netvox",
+    "R312A",
+    "emergency button",
+    "panic button",
+    "push button",
+    "alarm",
+    "care home",
+    "hospital",
+    "staff alert",
+    "LoRaWAN"
   ]
 }

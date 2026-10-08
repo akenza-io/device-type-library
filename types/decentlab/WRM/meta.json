@@ -20,5 +20,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-WRM",
+    "road weather",
+    "road surface temperature",
+    "infrared pyrometer",
+    "air temperature",
+    "humidity",
+    "winter maintenance",
+    "ice warning",
+    "frost",
+    "LoRaWAN"
   ]
 }

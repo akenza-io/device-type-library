@@ -13,5 +13,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Milesight",
+    "EM400-TLD",
+    "ToF",
+    "distance",
+    "fill level",
+    "waste bin",
+    "smart waste",
+    "overflow",
+    "lid status",
+    "fire detection",
+    "temperature",
+    "LoRaWAN"
   ]
 }

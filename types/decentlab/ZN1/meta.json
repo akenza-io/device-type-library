@@ -18,5 +18,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Smart Agriculture"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-ZN1",
+    "dendrometer",
+    "stem diameter",
+    "tree growth",
+    "plant growth",
+    "irrigation",
+    "forestry",
+    "agriculture",
+    "LoRaWAN"
   ]
 }

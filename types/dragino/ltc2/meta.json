@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Cold Chain & Temperature Compliance"
+  ],
+  "keywords": [
+    "Dragino",
+    "LTC2",
+    "PT100",
+    "temperature transmitter",
+    "temperature probe",
+    "industrial temperature",
+    "fridge",
+    "freezer",
+    "pipe temperature",
+    "process monitoring",
+    "LoRaWAN"
   ]
 }

@@ -13,5 +13,20 @@
   "connectivity": "LORA",
   "useCases": [
     "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "DSS",
+    "Ranos dB 2",
+    "Ranos dB 1",
+    "sound level meter",
+    "noise",
+    "noise monitoring",
+    "dBA",
+    "class 1",
+    "GPS",
+    "solar-powered",
+    "outdoor",
+    "construction site",
+    "LoRaWAN"
   ]
 }

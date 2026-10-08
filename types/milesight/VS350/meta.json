@@ -21,5 +21,19 @@
   "connectivity": "LORA",
   "useCases": [
     "People & Vehicle Counting"
+  ],
+  "keywords": [
+    "Milesight",
+    "VS350",
+    "people counter",
+    "PIR",
+    "bidirectional",
+    "passage counter",
+    "foot traffic",
+    "in/out counting",
+    "temperature",
+    "door",
+    "corridor",
+    "LoRaWAN"
   ]
 }

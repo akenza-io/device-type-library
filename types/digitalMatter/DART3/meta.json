@@ -18,5 +18,20 @@
   "connectivity": "HTTP",
   "useCases": [
     "Asset Tracking"
+  ],
+  "keywords": [
+    "Digital Matter",
+    "Dart 3",
+    "DART3",
+    "GPS tracker",
+    "vehicle tracker",
+    "fleet management",
+    "immobilizer",
+    "driver ID",
+    "4G",
+    "LTE-M",
+    "digital input",
+    "analog input",
+    "HTTP"
   ]
 }

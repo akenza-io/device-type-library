@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Safety & Security"
+  ],
+  "keywords": [
+    "Milesight",
+    "EM300-MCS",
+    "magnetic contact",
+    "door sensor",
+    "window sensor",
+    "reed switch",
+    "open/close",
+    "temperature",
+    "humidity",
+    "intrusion",
+    "LoRaWAN"
   ]
 }

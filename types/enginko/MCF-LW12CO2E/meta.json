@@ -20,5 +20,20 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "enginko",
+    "MCF-LW12CO2E",
+    "MCF-LW12CO2",
+    "CO2",
+    "VOC",
+    "temperature",
+    "humidity",
+    "pressure",
+    "light",
+    "traffic light",
+    "LED indicator",
+    "air quality",
+    "LoRaWAN"
   ]
 }

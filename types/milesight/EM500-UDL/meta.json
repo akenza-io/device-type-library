@@ -13,5 +13,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Milesight",
+    "EM500-UDL",
+    "ultrasonic",
+    "distance",
+    "fill level",
+    "tank level",
+    "flood monitoring",
+    "wastewater",
+    "silo",
+    "rugged",
+    "LoRaWAN"
   ]
 }

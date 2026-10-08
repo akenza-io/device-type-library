@@ -21,5 +21,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Smart Agriculture"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-TRS12",
+    "soil moisture",
+    "volumetric water content",
+    "soil temperature",
+    "electrical conductivity",
+    "dielectric permittivity",
+    "irrigation",
+    "agriculture",
+    "greenhouse",
+    "LoRaWAN"
   ]
 }

@@ -14,5 +14,19 @@
   "useCases": [
     "Weather & Outdoor Environment",
     "Smart Agriculture"
+  ],
+  "keywords": [
+    "Seeed",
+    "SenseCAP",
+    "S2102",
+    "light intensity",
+    "illuminance",
+    "lux",
+    "greenhouse",
+    "crop growth",
+    "outdoor",
+    "agriculture",
+    "IP66",
+    "LoRaWAN"
   ]
 }

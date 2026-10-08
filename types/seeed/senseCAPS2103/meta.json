@@ -14,5 +14,19 @@
   "useCases": [
     "Indoor Air Quality & Comfort",
     "Smart Agriculture"
+  ],
+  "keywords": [
+    "Seeed",
+    "SenseCAP",
+    "S2103",
+    "CO2",
+    "temperature",
+    "humidity",
+    "NDIR",
+    "greenhouse",
+    "air quality",
+    "farm",
+    "indoor climate",
+    "LoRaWAN"
   ]
 }

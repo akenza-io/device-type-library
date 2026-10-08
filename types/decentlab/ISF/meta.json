@@ -18,5 +18,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Smart Agriculture"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-ISF",
+    "sap flow",
+    "plant water use",
+    "tree",
+    "plant physiology",
+    "irrigation",
+    "forestry",
+    "research",
+    "LoRaWAN"
   ]
 }

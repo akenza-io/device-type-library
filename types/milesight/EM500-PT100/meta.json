@@ -13,5 +13,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Cold Chain & Temperature Compliance"
+  ],
+  "keywords": [
+    "Milesight",
+    "EM500-PT100",
+    "PT100",
+    "temperature probe",
+    "RTD",
+    "cold storage",
+    "industrial",
+    "wide range",
+    "HACCP",
+    "LoRaWAN"
   ]
 }

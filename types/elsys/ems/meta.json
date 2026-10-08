@@ -25,5 +25,19 @@
     "Indoor Air Quality & Comfort",
     "Leak Detection",
     "Safety & Security"
+  ],
+  "keywords": [
+    "Elsys",
+    "EMS",
+    "temperature",
+    "humidity",
+    "water leak",
+    "reed switch",
+    "door sensor",
+    "window sensor",
+    "accelerometer",
+    "room climate",
+    "multisensor",
+    "LoRaWAN"
   ]
 }

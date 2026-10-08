@@ -13,5 +13,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Safety & Security"
+  ],
+  "keywords": [
+    "HKT",
+    "DS20",
+    "door sensor",
+    "open/close",
+    "contact sensor",
+    "cabinet door",
+    "drawer",
+    "access monitoring",
+    "intrusion",
+    "LoRaWAN"
   ]
 }

@@ -12,5 +12,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "comtac",
+    "LPN CM-4",
+    "CM-4",
+    "temperature",
+    "humidity",
+    "data logger",
+    "history",
+    "room climate",
+    "indoor",
+    "LoRaWAN"
   ]
 }

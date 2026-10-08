@@ -21,5 +21,19 @@
   "connectivity": "LORA",
   "useCases": [
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Astraled",
+    "Smartline CO2",
+    "luminaire",
+    "lamp",
+    "CO2",
+    "VOC",
+    "temperature",
+    "humidity",
+    "air quality",
+    "traffic light",
+    "ventilation",
+    "LoRaWAN"
   ]
 }

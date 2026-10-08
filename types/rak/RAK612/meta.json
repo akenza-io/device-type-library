@@ -13,5 +13,17 @@
   "connectivity": "LORA",
   "useCases": [
     "Facility Services & Feedback"
+  ],
+  "keywords": [
+    "RAK",
+    "RAKwireless",
+    "RAK612",
+    "WisNode Button",
+    "button",
+    "push button",
+    "multi-key",
+    "service request",
+    "trigger",
+    "LoRaWAN"
   ]
 }

@@ -24,5 +24,19 @@
   "useCases": [
     "Indoor Air Quality & Comfort",
     "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Elsys",
+    "ERS Display",
+    "ERSD",
+    "e-paper display",
+    "temperature",
+    "humidity",
+    "light",
+    "motion",
+    "occupancy",
+    "room climate",
+    "office",
+    "LoRaWAN"
   ]
 }

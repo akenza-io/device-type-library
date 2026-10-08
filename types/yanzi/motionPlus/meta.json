@@ -13,5 +13,19 @@
   "useCases": [
     "Occupancy & Space Utilization",
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Yanzi",
+    "Motion+",
+    "occupancy",
+    "motion",
+    "PIR",
+    "temperature",
+    "humidity",
+    "light",
+    "sound",
+    "space utilization",
+    "office",
+    "HTTP"
   ]
 }

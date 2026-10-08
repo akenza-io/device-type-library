@@ -33,5 +33,19 @@
   "useCases": [
     "Cold Chain & Temperature Compliance",
     "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Dragino",
+    "LSN50v2-S31B",
+    "LSN50v2",
+    "SHT31",
+    "temperature",
+    "humidity",
+    "greenhouse",
+    "fridge",
+    "freezer",
+    "storage",
+    "room climate",
+    "LoRaWAN"
   ]
 }

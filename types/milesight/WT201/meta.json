@@ -23,5 +23,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Building Automation & Control"
+  ],
+  "keywords": [
+    "Milesight",
+    "WT201",
+    "thermostat",
+    "HVAC",
+    "heating",
+    "cooling",
+    "fan control",
+    "temperature",
+    "setpoint",
+    "schedule",
+    "LoRaWAN"
   ]
 }

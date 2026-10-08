@@ -21,5 +21,18 @@
   "connectivity": "LORA",
   "useCases": [
     "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-CTD10",
+    "water depth",
+    "water level",
+    "conductivity",
+    "water temperature",
+    "groundwater",
+    "well",
+    "submersible",
+    "water quality",
+    "LoRaWAN"
   ]
 }

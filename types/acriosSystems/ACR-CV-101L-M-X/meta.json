@@ -17,5 +17,18 @@
     "connectivity": "LORA",
     "useCases": [
         "Energy & Utility Metering"
+    ],
+    "keywords": [
+        "Acrios Systems",
+        "ACR-CV-101L-M-X",
+        "M-Bus converter",
+        "meter readout",
+        "electricity meter",
+        "water meter",
+        "gas meter",
+        "heat meter",
+        "wired M-Bus",
+        "consumption",
+        "LoRaWAN"
     ]
 }
