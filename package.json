@@ -13,7 +13,7 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "ajv": "^8.18.0",
-    "axios": "^1.15.2",
+    "axios": "^1.20.0",
     "bits": "file:lib/bits",
     "chai": "^6.2.2",
     "dotenv": "^17.4.2",
