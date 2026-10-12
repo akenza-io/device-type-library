@@ -26,6 +26,10 @@
     "prettier": "3.9.10",
     "rewire": "^9.0.1",
     "sync-request": "^6.1.0",
-    "test-utils": "file:lib/test"
+    "test-utils": "file:lib/test",
+    "fast-uri": ">=3.1.7",
+    "brace-expansion": ">=5.0.12",
+    "js-yaml": ">=4.3.2",
+    "serialize-javascript": ">=7.0.5"
   }
 }
