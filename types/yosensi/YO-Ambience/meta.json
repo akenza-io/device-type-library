@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Yosensi",
   "url": "https://www.yosensi.io/products/yo_ambience/",
-  "description": "YO Ambience is a compact indoor ambience monitoring device designed to measure temperature, humidity, illuminance, and CO2 levels.",
+  "description": "Compact indoor sensor that measures CO2, temperature, humidity and illuminance and counts presence events. Used for indoor air quality, comfort and occupancy monitoring in offices, classrooms and meeting rooms.",
   "author": "Maciej Sacewicz",
   "firmwareVersion": "V3.6.8",
   "availableSensors": [
@@ -22,5 +22,23 @@
     "presence_counter"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort",
+    "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Yosensi",
+    "YO Ambience",
+    "CO2",
+    "air quality",
+    "temperature",
+    "humidity",
+    "illuminance",
+    "presence",
+    "occupancy",
+    "meeting room",
+    "classroom",
+    "LoRaWAN"
+  ]
 }

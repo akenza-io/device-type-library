@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Wika",
   "url": "https://www.wika.com/en-en/netris_1.WIKA",
-  "description": "The model NETRIS®1 is a WIKA radio unit to which standard sensors can be connected in order to bring the measured data wirelessly to a cloud for data analysis.",
+  "description": "Radio unit that connects standard industrial sensors and transmits their measurements to the cloud for data analysis. Used for remote monitoring of process values such as pressure and temperature, with process alarms.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -20,5 +20,21 @@
     "technical_alarm"
   ],
   "encoding": "HEX",
-  "connectivity": "MIOTY"
+  "connectivity": "MIOTY",
+  "useCases": [
+    "Condition Monitoring"
+  ],
+  "keywords": [
+    "WIKA",
+    "Netris 1",
+    "Netris",
+    "radio unit",
+    "industrial sensor",
+    "pressure",
+    "temperature",
+    "process monitoring",
+    "process alarm",
+    "remote monitoring",
+    "mioty"
+  ]
 }

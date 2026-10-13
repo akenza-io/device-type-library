@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/en/elt-ultrasonic/",
-  "description": "ELT Ultrasonic snow is enclosed in an IP67 box which makes it ideal for mounting outside or in extreme conditions. Use the distance sensor to measure water level under a bridge, trash level in a container, and much more. With this device, you can also measure the ambient temperature, humidity, atmospheric pressure, and acceleration.",
+  "description": "Ultrasonic distance sensor in an IP67 enclosure configured for snow depth measurement. It also measures ambient temperature, humidity, atmospheric pressure and acceleration and suits outdoor mounting.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.3.5",
   "loraDeviceClass": "A",
@@ -19,5 +19,23 @@
     "configuration"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Elsys",
+    "ELT Ultrasonic snow",
+    "ELT-2",
+    "snow depth",
+    "snow height",
+    "ultrasonic",
+    "distance",
+    "temperature",
+    "humidity",
+    "pressure",
+    "outdoor",
+    "IP67",
+    "LoRaWAN"
+  ]
 }

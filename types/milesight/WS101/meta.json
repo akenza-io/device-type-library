@@ -3,12 +3,28 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight-iot.com/lorawan/button/ws101/",
-  "description": "Smart button with multiple press actions for generating alerts. Collaborative interaction with Milesight IoT sensors to trigger actions intelligently.",
+  "description": "Wireless button with multiple press actions that generates alerts and events. Used for service requests, emergency calls, feedback and triggering actions on other connected devices in buildings and facilities.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.1.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Button"],
   "outputTopics": ["button_pressed", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Facility Services & Feedback",
+    "Safety & Security"
+  ],
+  "keywords": [
+    "Milesight",
+    "WS101",
+    "smart button",
+    "panic button",
+    "emergency call",
+    "service request",
+    "feedback",
+    "alert",
+    "press action",
+    "LoRaWAN"
+  ]
 }

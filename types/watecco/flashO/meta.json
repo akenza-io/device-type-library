@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "nke Watteco",
   "url": "https://www.watteco.com/product/flasho-sensor-lorawan/",
-  "description": "FLASH'O is a LoRaWAN® meter interface that transmits the accumulated number of LED flashes from any pulse meter: water, gas, electricity, energy.",
+  "description": "Optical meter interface that counts the LED flashes of water, gas, electricity or energy meters with a pulse output. Transmits the accumulated number of pulses, which allows remote reading of existing meters.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -17,5 +17,20 @@
     "lifecycle"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Watteco",
+    "Flash'O",
+    "pulse counter",
+    "optical reader",
+    "LED pulse",
+    "electricity meter",
+    "gas meter",
+    "water meter",
+    "meter reading",
+    "LoRaWAN"
+  ]
 }

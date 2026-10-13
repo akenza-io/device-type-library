@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/soil-water-potential-and-temperature-sensor-for-lorawan",
-  "description": "TRS21 is a soil water potential and temperature sensor. Suitable for applications such as irrigation control, smart agriculture, parks, and golf courses.",
+  "description": "Soil sensor that measures soil water potential and temperature, indicating how strongly water is held in the soil and available to plants. Used for irrigation control, smart agriculture, parks and golf courses.",
   "author": "Decentlab",
   "firmwareVersion": "V1.6.0",
   "loraDeviceClass": "A",
@@ -16,5 +16,19 @@
     "lifecycle"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Smart Agriculture"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-TRS21",
+    "water potential",
+    "soil suction",
+    "soil temperature",
+    "tensiometer",
+    "irrigation",
+    "agriculture",
+    "LoRaWAN"
+  ]
 }

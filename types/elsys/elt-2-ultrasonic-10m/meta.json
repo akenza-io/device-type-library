@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/en/elt-ultrasonic/",
-  "description": "ELT  Ultrasonic is enclosed in an IP67 box which makes it ideal for mounting outside or in extreme conditions. Use the distance sensor to measure water level under a bridge, trash level in a container, and much more. With this device, you can also measure the ambient temperature, humidity, atmospheric pressure, and acceleration.",
+  "description": "Ultrasonic distance sensor in an IP67 enclosure that measures up to 10 m. Used outdoors for water level under bridges and container fill levels, and it also measures temperature, humidity and pressure.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.3.5",
   "loraDeviceClass": "A",
@@ -19,5 +19,23 @@
     "configuration"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Elsys",
+    "ELT Ultrasonic 10m",
+    "ELT-2",
+    "ultrasonic",
+    "distance sensor",
+    "water level",
+    "river level",
+    "fill level",
+    "container",
+    "temperature",
+    "humidity",
+    "IP67",
+    "LoRaWAN"
+  ]
 }

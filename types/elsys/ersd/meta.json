@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/en/ers-display-lora/",
-  "description": "A wireless LoRaWAN® sensor for indoor environments that measures temperature, humidity, light and motion. The sensor is equipped with a display, which enables effortless access to real-time information at a glance. The 2.13″ e-paper display has configurable features via downlink, NFC, or custom order. Add your company logo, change to an inverted color scheme, or from Celsius to Fahrenheit.",
+  "description": "Indoor sensor that measures temperature, humidity, light and motion with a 2.13 inch e-paper display. Shows current values to occupants and supports custom layouts, inverted colors and Celsius or Fahrenheit.",
   "author": "Akenza AG",
   "firmwareVersion": "V3.3.4",
   "loraDeviceClass": "A",
@@ -20,5 +20,23 @@
     "occupancy"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort",
+    "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Elsys",
+    "ERS Display",
+    "ERSD",
+    "e-paper display",
+    "temperature",
+    "humidity",
+    "light",
+    "motion",
+    "occupancy",
+    "room climate",
+    "office",
+    "LoRaWAN"
+  ]
 }

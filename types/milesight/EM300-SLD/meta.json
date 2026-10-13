@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight.com/iot/product/lorawan-sensor/em300-sld-zld",
-  "description": "The EM300-SLD will help prevent potential water damage to properties or assets through instant water leak detection.",
+  "description": "Water leak sensor with a spot detection probe that reports leaks immediately and also measures temperature and humidity. Placed near pipes, tanks or appliances to protect properties and assets from water damage.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -17,5 +17,20 @@
     "lifecycle"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Leak Detection"
+  ],
+  "keywords": [
+    "Milesight",
+    "EM300-SLD",
+    "water leak",
+    "spot probe",
+    "flood detection",
+    "temperature",
+    "humidity",
+    "pipe",
+    "water damage",
+    "LoRaWAN"
+  ]
 }

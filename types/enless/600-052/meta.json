@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Enless Wireless",
   "url": "https://enless-wireless.com/products/copy/",
-  "description": "The LoRaWAN temperature and humidity sensor with display is specifically designed for indoor tertiary environments. It enables monitoring of key parameters essential to occupant comfort, such as temperature and humidity, thus ensuring an optimal indoor climate. The data measured by the sensor is displayed on its 2.13-inch e-ink screen.",
+  "description": "Indoor sensor that measures temperature and humidity with a 2.13 inch e-ink display. Shows current values to occupants and is used for comfort monitoring in offices, schools and other commercial buildings.",
   "author": "Akenza AG",
   "firmwareVersion": "V3.03.18",
   "loraDeviceClass": "A",
@@ -17,5 +17,21 @@
     "alarm"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Enless",
+    "TX T&H E-INK",
+    "600-052",
+    "e-ink display",
+    "temperature",
+    "humidity",
+    "room climate",
+    "comfort",
+    "office",
+    "school",
+    "LoRaWAN"
+  ]
 }

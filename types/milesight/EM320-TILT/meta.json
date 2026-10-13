@@ -3,12 +3,28 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://github.com/Milesight-IoT/SensorDecoders/tree/main/EM320_Series/EM320-TILT",
-  "description": "EM320-TILT is a LoRaWAN® tilt sensor mainly for angle measurement and asset movement detection. With a compact size and 3-axis accelerometer, EM310-TILT can be installed to the objects easily to measure its X, Y, Z tilt angles. It can also detect the movement based on angle changes and send threshold alarms",
+  "description": "Tilt sensor with a 3-axis accelerometer that measures X, Y and Z tilt angles in a compact housing. Detects movement based on angle changes and sends threshold alarms for monitoring assets, poles and structures.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Tilt"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Condition Monitoring"
+  ],
+  "keywords": [
+    "Milesight",
+    "EM320-TILT",
+    "tilt sensor",
+    "accelerometer",
+    "angle",
+    "inclination",
+    "pole monitoring",
+    "structural monitoring",
+    "asset monitoring",
+    "threshold alarm",
+    "LoRaWAN"
+  ]
 }

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "netvox",
   "url": "http://www.netvox.com.tw/product.asp?pro=R712",
-  "description": "R712 is a long-range wireless temperature and humidity device based on the LoRaWAN™ open protocol. R712 carries a splash-proof housing, and it is mainly used to detect the outdoor air temperature and humidity. It collects data over LoRa® network and sends it to devices to be shown. ",
+  "description": "Temperature and humidity sensor with a splash-proof housing for outdoor installation. Used mainly to measure outdoor air temperature and humidity, for example on building facades, in gardens and in yards.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [
@@ -16,5 +16,20 @@
     "system"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Netvox",
+    "R712",
+    "temperature",
+    "humidity",
+    "outdoor",
+    "weather",
+    "splash-proof",
+    "facade",
+    "garden",
+    "LoRaWAN"
+  ]
 }

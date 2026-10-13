@@ -3,12 +3,28 @@
   "version": "1.0.0",
   "manufacturer": "Enginko",
   "url": "https://enginko.com/en/solutions/lorawan-energy-meter-egk-lw22plg/",
-  "description": "This compact energy meter can be used for monitoring the power consumption of the load, which can remotely be switched on/off. Equipped with a rechargeable battery for mains outage detection. The internal timestamp is synced with a downlink.",
+  "description": "Compact plug-in energy meter that measures the power consumption of a connected load and switches it on or off remotely. A rechargeable battery allows detection of mains outages, and its clock is synced by downlink.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Energy Metering", "IO"],
   "outputTopics": ["default", "time_sync", "io"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Energy & Utility Metering",
+    "Building Automation & Control"
+  ],
+  "keywords": [
+    "enginko",
+    "EGK-LW22PLG",
+    "smart plug",
+    "energy meter",
+    "power consumption",
+    "remote switching",
+    "on off",
+    "mains outage",
+    "plug-in",
+    "LoRaWAN"
+  ]
 }

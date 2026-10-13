@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Browan",
   "url": "https://www.browan.com/product/motion-sensor-pir/detail",
-  "description": "The Tabs PIR & Occupancy sensor detects occupancy or motion.",
+  "description": "Passive infrared sensor that detects motion and occupancy in rooms and also measures temperature. It reports occupancy changes and the time since the last motion, used for workspace utilization and building automation.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -18,5 +18,20 @@
     "system"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Browan",
+    "Tabs",
+    "TBMS100",
+    "motion sensor",
+    "PIR",
+    "occupancy",
+    "presence",
+    "room occupancy",
+    "temperature",
+    "LoRaWAN"
+  ]
 }

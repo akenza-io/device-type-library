@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/en/ers-display-co2-lora/",
-  "description": "A wireless LoRaWAN® sensor for indoor environments that measures CO2 levels, temperature, humidity, light and motion (PIR). The sensor is equipped with a display, which enables effortless access to real-time information at a glance. The 2.13″ e-paper display has configurable features via downlink, NFC, or custom order. Add your company logo, change to an inverted color scheme, or from Celsius to Fahrenheit.",
+  "description": "Indoor sensor that measures CO2, temperature, humidity, light and motion with a 2.13 inch e-paper display. Shows current values to occupants and is used for air quality and occupancy monitoring in rooms.",
   "author": "Akenza AG",
   "firmwareVersion": "V3.3.4",
   "loraDeviceClass": "A",
@@ -21,5 +21,24 @@
     "occupancy"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort",
+    "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Elsys",
+    "ERS Display CO2",
+    "ERSD CO2",
+    "CO2",
+    "e-paper display",
+    "NDIR",
+    "temperature",
+    "humidity",
+    "light",
+    "motion",
+    "air quality",
+    "occupancy",
+    "LoRaWAN"
+  ]
 }

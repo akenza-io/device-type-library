@@ -3,12 +3,31 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight-iot.com/lorawan/sensor/am100/",
-  "description": "AM104 is a compact indoor ambience monitoring sensor for measurement of temperature, humidity, motion & light. These data will be shown on the E-ink screen in real-time, which allow to quantify the indoor environment and comfort.",
+  "description": "Compact indoor sensor that measures temperature, humidity, light and motion and shows the values on an e-ink display. A PIR sensor detects occupancy, and it is used for room climate and utilization monitoring in offices.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Temperature", "Humidity", "PIR", "Light"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort",
+    "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Milesight",
+    "AM104",
+    "AM100 series",
+    "temperature",
+    "humidity",
+    "light",
+    "PIR",
+    "motion",
+    "occupancy",
+    "e-ink display",
+    "room utilization",
+    "office",
+    "LoRaWAN"
+  ]
 }

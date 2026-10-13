@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "AstraLED",
   "url": "https://www.astra-led.ch/produkte/smartline/",
-  "description": "AstraLED Smartline lamp for measuring the indoor environment and signaling those through different colors",
+  "description": "Lamp with integrated sensors that measure temperature, humidity, CO2 and VOC. It indicates indoor air quality to occupants by changing the color of its light, for example to prompt ventilation in offices and classrooms.",
   "author": "Akenza AG",
   "firmwareVersion": "V0.0.2",
   "loraDeviceClass": "C",
@@ -18,5 +18,22 @@
     "lifecycle"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Astraled",
+    "Smartline CO2",
+    "luminaire",
+    "lamp",
+    "CO2",
+    "VOC",
+    "temperature",
+    "humidity",
+    "air quality",
+    "traffic light",
+    "ventilation",
+    "LoRaWAN"
+  ]
 }

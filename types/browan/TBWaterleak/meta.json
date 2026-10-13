@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Browan",
   "url": "https://www.browan.com/product/water-leak-sensor/detail",
-  "description": "Browan's Tabs Water Leak Sensor is an invaluable device to avoid water damage from floods and leaks. The sensor sends an uplink when it detects water, giving you advanced warning of your kitchen appliance, boiler or tank springing a leak.",
+  "description": "Water leak sensor that reports as soon as water is detected and also measures temperature and humidity. Placed near kitchen appliances, boilers or tanks to give early warning of leaks and flooding and avoid damage.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -19,5 +19,21 @@
     "system"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Leak Detection"
+  ],
+  "keywords": [
+    "Browan",
+    "Tabs",
+    "TBWL100",
+    "water leak",
+    "leak alarm",
+    "flood",
+    "temperature",
+    "humidity",
+    "boiler",
+    "water damage",
+    "LoRaWAN"
+  ]
 }

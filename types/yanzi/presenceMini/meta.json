@@ -3,11 +3,26 @@
   "version": "1.0.0",
   "manufacturer": "Yanzi",
   "url": "https://yanzi.se/products/#",
-  "description": "This device monitors desk-, small room occupancy and temperature. Easily mounted directly onto surfaces, no drilling required.",
+  "description": "Small sensor that detects desk and small room occupancy with a motion sensor and measures temperature. It is mounted directly on surfaces without drilling and used for workplace utilization monitoring.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": ["Motion", "Temperature"],
   "outputTopics": ["occupancy", "temperature"],
   "encoding": "JSON",
-  "connectivity": "HTTP"
+  "connectivity": "HTTP",
+  "useCases": [
+    "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Yanzi",
+    "Presence Mini",
+    "desk occupancy",
+    "occupancy",
+    "motion",
+    "PIR",
+    "small room",
+    "temperature",
+    "workplace utilization",
+    "HTTP"
+  ]
 }

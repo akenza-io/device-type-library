@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight.com/iot/product/lorawan-sensor/ts201",
-  "description": "Milesight TS201 Temperature Sensor is rugged with IP67 rating offering real-time alerts, while complying with EN12830 Standard and HACCP Requirements. It is specially designed for various application scenarios like cold chain, pharmaceutical, food processing and more.",
+  "description": "Rugged IP67 temperature sensor compliant with EN12830 and HACCP requirements that sends real-time alerts. Used for temperature monitoring in cold chain logistics, pharmaceutical storage and food processing.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -16,5 +16,21 @@
     "lifecycle"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Cold Chain & Temperature Compliance"
+  ],
+  "keywords": [
+    "Milesight",
+    "TS201",
+    "temperature",
+    "EN12830",
+    "HACCP",
+    "cold chain",
+    "pharmaceutical",
+    "food processing",
+    "IP67",
+    "alarm",
+    "LoRaWAN"
+  ]
 }

@@ -3,12 +3,28 @@
   "version": "1.0.0",
   "manufacturer": "Dragino",
   "url": "https://www.dragino.com/products/distance-level-sensor/item/194-ldds04.html",
-  "description": "The Dragino LDDS04 is a LoRaWAN 4-Channels Distance Sensor for Internet of Things solution. It is capable to add up to four Ultrasonic Sensors to measure four distances at the same time.",
+  "description": "Ultrasonic distance sensor with up to four probes that measures four distances at the same time. Used for fill level measurement in tanks, bins and containers or for monitoring several points from one device.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Distance"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Dragino",
+    "LDDS04",
+    "ultrasonic",
+    "distance sensor",
+    "multi-probe",
+    "fill level",
+    "tank level",
+    "waste bin",
+    "container",
+    "level sensor",
+    "LoRaWAN"
+  ]
 }

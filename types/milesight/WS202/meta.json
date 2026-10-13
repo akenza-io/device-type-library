@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight-iot.com/lorawan/sensor/ws202/",
-  "description": "Compact indoor device for motion and brightness detection. Collaborative interaction with Milesight IoT devices to realize automatic lighting control.",
+  "description": "Compact indoor sensor with a PIR detector that detects motion and measures brightness. Used for occupancy detection and automatic lighting control in offices, corridors, meeting rooms and other indoor spaces.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -17,5 +17,21 @@
     "occupancy"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Milesight",
+    "WS202",
+    "PIR",
+    "motion sensor",
+    "occupancy",
+    "light",
+    "lighting control",
+    "corridor",
+    "meeting room",
+    "office",
+    "LoRaWAN"
+  ]
 }

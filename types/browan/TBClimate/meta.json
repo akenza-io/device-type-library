@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Browan",
   "url": "https://www.browan.com/product/temperature-humidity-sensor/detail",
-  "description": "The Tabs Temperature & Humidity Sensor is designed for in-home and in-building usage for consumer or facility management applications. ",
+  "description": "Indoor sensor that measures temperature and humidity. Designed for use in homes and buildings, it monitors room climate in residential and facility management applications and helps detect conditions that cause mold.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -18,5 +18,20 @@
     "config"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Browan",
+    "Tabs",
+    "TBHH100",
+    "temperature",
+    "humidity",
+    "room climate",
+    "indoor",
+    "home",
+    "facility management",
+    "LoRaWAN"
+  ]
 }

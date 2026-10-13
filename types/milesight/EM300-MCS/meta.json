@@ -3,12 +3,28 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight-iot.com/lorawan/sensor/em300-mcs/",
-  "description": "EM300-MCS is a compact magnet switch sensor for detecting open/close status of objects (such as doors or windows) and transmitting alarm using LoRaWAN® technology. With this low power consumption technology, EM300-MCS can work up to 5 years with 4000 mAh battery",
+  "description": "Magnetic contact sensor that detects the open or closed state of doors and windows and also measures temperature and humidity. Uses a reed switch and offers up to five years of battery life with a 4000 mAh battery.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Reed", "Temperature", "Humidity"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Safety & Security"
+  ],
+  "keywords": [
+    "Milesight",
+    "EM300-MCS",
+    "magnetic contact",
+    "door sensor",
+    "window sensor",
+    "reed switch",
+    "open/close",
+    "temperature",
+    "humidity",
+    "intrusion",
+    "LoRaWAN"
+  ]
 }

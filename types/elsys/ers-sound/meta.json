@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/en/ers-sound/",
-  "description": "ERS Sound measures the average and peak sound pressure level with dBA filtering. It wakes and samples both signals every 10s, and does the final calculation before sending the data at the desired send interval. The sensor also measures temperature, humidity, motion and light.",
+  "description": "Indoor sensor that measures average and peak sound levels in dBA, sampled every 10 seconds. It also measures temperature, humidity, light and motion and is used for noise monitoring in offices and schools.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.3.5",
   "loraDeviceClass": "A",
@@ -23,5 +23,25 @@
     "noise"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort",
+    "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Elsys",
+    "ERS Sound",
+    "ERS",
+    "sound level",
+    "noise",
+    "dBA",
+    "noise monitoring",
+    "temperature",
+    "humidity",
+    "light",
+    "motion",
+    "occupancy",
+    "office",
+    "LoRaWAN"
+  ]
 }
