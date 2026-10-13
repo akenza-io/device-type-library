@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/analog-or-digital-sensor-device-for-lorawan",
-  "description": "DLR2-012 is an Analog or Digital Sensor Device that consists of an Analog Strain Gauge Sensor.",
+  "description": "Interface device with an analog strain gauge input. It measures strain on structures and components with a connected strain gauge, used for structural health monitoring, load monitoring and weighing applications.",
   "author": "Decentlab",
   "firmwareVersion": "V1.6.0",
   "loraDeviceClass": "A",
@@ -15,5 +15,20 @@
     "lifecycle"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Condition Monitoring"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-DLR2-012",
+    "DLR2",
+    "strain gauge",
+    "strain",
+    "structural health",
+    "load",
+    "bridge",
+    "analog input",
+    "LoRaWAN"
+  ]
 }

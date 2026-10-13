@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Yosensi",
   "url": "https://www.yosensi.io/products/yo_h2o/",
-  "description": "YO H2O is used for instant flood detection.",
+  "description": "Flood detector that reports immediately when water is detected and also measures temperature, humidity and acceleration. Placed on floors in basements, technical rooms or near pipes to detect leaks and flooding early.",
   "author": "Maciej Sacewicz",
   "firmwareVersion": "V3.6.6",
   "availableSensors": [
@@ -20,5 +20,21 @@
     "internal_temperature"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Leak Detection"
+  ],
+  "keywords": [
+    "Yosensi",
+    "YO H2O",
+    "flood detector",
+    "water leak",
+    "leak sensor",
+    "flooding",
+    "basement",
+    "technical room",
+    "temperature",
+    "humidity",
+    "LoRaWAN"
+  ]
 }

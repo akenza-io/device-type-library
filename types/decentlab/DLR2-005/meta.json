@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/analog-or-digital-sensor-device-for-lorawan",
-  "description": "DLR2-005 is an Analog or Digital Sensor Device that consists of an Analog 0 \u2026 3 V  Sensor.",
+  "description": "Interface device with an analog 0-3 V input. It reads the voltage output of a connected sensor and reports it for remote monitoring, allowing existing analog sensors to be integrated without additional cabling.",
   "author": "Decentlab",
   "firmwareVersion": "V1.6.0",
   "loraDeviceClass": "A",
@@ -15,5 +15,19 @@
     "lifecycle"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-DLR2-005",
+    "DLR2",
+    "0-3 V",
+    "analog input",
+    "voltage",
+    "sensor interface",
+    "retrofit",
+    "LoRaWAN"
+  ]
 }

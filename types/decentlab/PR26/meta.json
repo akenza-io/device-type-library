@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "decentlab.com/products/pressure-/-liquid-level-and-temperature-sensor-for-lorawan",
-  "description": "Enables remote monitoring of water level in open water, fill level of tanks, groundwater level and various other applications. It measures the pressure at the sensor head relative to the pressure at the cable end. When the sensor head is placed under water (or any other liquid), the relative pressure is proportional to the depth of the sensor head.",
+  "description": "Submersible pressure sensor that measures water level and water temperature. The pressure at the sensor head relative to the cable end is proportional to depth, used for open water, groundwater and tank level monitoring.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.0.0",
   "loraDeviceClass": "A",
@@ -14,5 +14,21 @@
   ],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Weather & Outdoor Environment",
+    "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-PR26",
+    "submersible",
+    "hydrostatic pressure",
+    "water level",
+    "water temperature",
+    "groundwater",
+    "river",
+    "tank level",
+    "LoRaWAN"
+  ]
 }

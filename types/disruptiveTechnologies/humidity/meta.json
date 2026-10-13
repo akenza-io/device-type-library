@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Disruptive Technologies",
   "url": "https://www.disruptive-technologies.com/products/wireless-sensors/wireless-humidity-sensor",
-  "description": "Measures the relative humidity (%) and temperature. Relative humidity is useful in managing building and asset lifetime, HVAC (Heating Ventilation Air Conditioning) and comfort optimization.",
+  "description": "Small sensor that measures relative humidity in % and temperature, and also reports touch events. Used for comfort optimization, HVAC control and protecting buildings and assets from moisture damage.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [
@@ -18,5 +18,21 @@
     "lifecycle"
   ],
   "encoding": "JSON",
-  "connectivity": "HTTP"
+  "connectivity": "HTTP",
+  "useCases": [
+    "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Disruptive Technologies",
+    "DT",
+    "humidity sensor",
+    "relative humidity",
+    "temperature",
+    "moisture damage",
+    "comfort",
+    "HVAC",
+    "touch",
+    "HTTP",
+    "cloud connector"
+  ]
 }

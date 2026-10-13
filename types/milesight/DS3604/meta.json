@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight-iot.com/products/iot-display/ds3604/",
-  "description": "The Milesight DS3604 is a reflective electrophoretic display that offers readability and flexibility. The 4.2-inch active area contains 400x300 pixels and features 1-bit black/white/red full display capabilities. The DS3604 supports the display of up to 150 languages and other modules such as images or QR codes.",
+  "description": "E-paper display with a 4.2 inch black, white and red screen at 400x300 pixels and a button. Shows remotely updated templates with text, images or QR codes in up to 150 languages, for example as room signs.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -20,5 +20,19 @@
     "downlink_response"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [],
+  "keywords": [
+    "Milesight",
+    "DS3604",
+    "e-paper display",
+    "e-ink display",
+    "room sign",
+    "digital signage",
+    "door sign",
+    "QR code",
+    "button",
+    "meeting room",
+    "LoRaWAN"
+  ]
 }

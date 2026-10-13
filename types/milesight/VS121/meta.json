@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight-iot.com/lorawan/sensor/vs121/",
-  "description": "AI powered sensor for anonymous people counting and measuring workspace utilization.",
+  "description": "AI-based optical sensor for anonymous people counting and workspace utilization. Reports people counts per region, line crossings, flows and dwell time and is used for occupancy analysis in offices and retail.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "C",
@@ -24,5 +24,23 @@
     "lifecycle"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Occupancy & Space Utilization",
+    "People & Vehicle Counting"
+  ],
+  "keywords": [
+    "Milesight",
+    "VS121",
+    "people counter",
+    "AI camera",
+    "workplace occupancy",
+    "region counting",
+    "line crossing",
+    "dwell time",
+    "heat map",
+    "retail",
+    "office",
+    "LoRaWAN"
+  ]
 }

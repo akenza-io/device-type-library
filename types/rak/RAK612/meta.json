@@ -3,12 +3,27 @@
   "version": "1.0.0",
   "manufacturer": "RAK",
   "url": "https://docs.rakwireless.com/Product-Categories/WisNode/RAK612/Overview/#product-description",
-  "description": "WisNode Button (RAK612 model) is a remote wireless trigger and supports user-defined functions for each key.",
+  "description": "Wireless button with several keys that can each be assigned a user-defined function. Each press is reported as an event, for example to request a service, report an issue or trigger an action in a remote system.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Button"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Facility Services & Feedback"
+  ],
+  "keywords": [
+    "RAK",
+    "RAKwireless",
+    "RAK612",
+    "WisNode Button",
+    "button",
+    "push button",
+    "multi-key",
+    "service request",
+    "trigger",
+    "LoRaWAN"
+  ]
 }

@@ -3,12 +3,28 @@
   "version": "1.0.0",
   "manufacturer": "Tinovi",
   "url": "https://tinovi.com/shop/lorawan-soil-moisture-temperature-air-temperature-humidity-12v-output-from-battery/",
-  "description": "Single or Double Tinovi Soil Moisture/Temperature/(Expermetal EC) sensor.",
+  "description": "Soil sensor with one or two probes that measures soil moisture, soil temperature and experimental electrical conductivity. Used for irrigation control and soil monitoring in agriculture, gardens and landscaping.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Temperature", "Soil Moisture", "Soil Conductivity"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Smart Agriculture"
+  ],
+  "keywords": [
+    "Tinovi",
+    "PM-IO-5-SM",
+    "soil moisture",
+    "soil temperature",
+    "soil EC",
+    "electrical conductivity",
+    "irrigation",
+    "agriculture",
+    "garden",
+    "soil probe",
+    "LoRaWAN"
+  ]
 }

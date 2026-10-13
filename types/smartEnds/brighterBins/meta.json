@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "smartEnds",
   "url": "https://www.brighterbins.com/",
-  "description": "BrighterBins is an IoT product from SmartEnds to monitor your waste collection. The moveable transducer tunnel allows the device to be mounted in different orientations.",
+  "description": "Ultrasonic fill level sensor for waste bins and containers that supports waste collection planning. A movable transducer allows mounting in different orientations, and it also reports bin orientation and motion events.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -22,5 +22,21 @@
     "system"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "smartEnds",
+    "Brighter Bins",
+    "fill level",
+    "waste bin",
+    "ultrasonic",
+    "waste collection",
+    "container",
+    "distance",
+    "orientation",
+    "motion",
+    "LoRaWAN"
+  ]
 }

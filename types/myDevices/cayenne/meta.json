@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "myDevices",
   "url": "https://docs.mydevices.com/docs/lorawan/cayenne-lpp",
-  "description": "myDevices created the Cayenne Low Power Payload (LPP) which provides a convenient and easy way to send data over LPWAN Networks such as LoRaWAN. The Cayenne LPP is compliant with the payload size restriction, which can be lowered down to 11 bytes, and allows the device to send multiple sensor data at one time.",
+  "description": "Generic decoder for the Low Power Payload (LPP) format with payloads as small as 11 bytes. Supports devices that send several sensor values such as temperature, humidity, GPS, acceleration and inputs in one message.",
   "author": "Akenza AG",
   "firmwareVersion": "V0.0.7",
   "loraDeviceClass": "A",
@@ -32,5 +32,22 @@
     "temperature"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [],
+  "keywords": [
+    "myDevices",
+    "Cayenne",
+    "Cayenne LPP",
+    "Low Power Payload",
+    "generic decoder",
+    "temperature",
+    "humidity",
+    "GPS",
+    "accelerometer",
+    "gyroscope",
+    "digital input",
+    "analog input",
+    "barometer",
+    "LoRaWAN"
+  ]
 }

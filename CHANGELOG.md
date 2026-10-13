@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.100.2] - 2026-10-13
+
+### Changed
+
+- meta.jsons got reworked. New properties useCases & keywords got introduced and populated.
+- Device description also got standardised.
+
 # [1.100.1] - 2026-10-08
 
 ### Changed

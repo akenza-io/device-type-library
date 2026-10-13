@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Dragino",
   "url": "https://www.dragino.com/products/lora-lorawan-end-node/item/159-lse01.html",
-  "description": "Soil Moisture & EC Sensor for smart agriculture use cases. It detects Soil Moisture, Soil Temperature and Soil Conductivity.",
+  "description": "Soil sensor that measures soil moisture, soil temperature and electrical conductivity with a probe inserted into the ground. Used for irrigation control, fertilization planning and soil monitoring in agriculture.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -14,5 +14,21 @@
   ],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Smart Agriculture"
+  ],
+  "keywords": [
+    "Dragino",
+    "LSE01",
+    "soil sensor",
+    "soil moisture",
+    "soil temperature",
+    "soil conductivity",
+    "EC",
+    "irrigation",
+    "fertilization",
+    "agriculture",
+    "LoRaWAN"
+  ]
 }

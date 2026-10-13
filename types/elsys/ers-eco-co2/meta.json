@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Elsys",
   "url": "https://www.elsys.se/en/eco-co2/",
-  "description": "ERS Eco CO2 is a LoRaWAN® temperature, humidity, and CO2 sensor for the indoor environment. This sensor is your environmentally friendly option, with an organic solar cell as the only power source and an enclosure made from biodegradable material. Removing batteries from a wireless IoT device significantly reduces the environmental impact and maintenance costs.",
+  "description": "Indoor sensor that measures CO2, temperature, humidity and light. Powered only by an organic solar cell without batteries and housed in a biodegradable enclosure, which reduces maintenance and waste.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.3.5",
   "loraDeviceClass": "A",
@@ -19,5 +19,23 @@
     "configuration"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Elsys",
+    "ERS Eco CO2",
+    "ERS Eco",
+    "CO2",
+    "solar-powered",
+    "battery-free",
+    "energy harvesting",
+    "biodegradable",
+    "temperature",
+    "humidity",
+    "light",
+    "air quality",
+    "LoRaWAN"
+  ]
 }

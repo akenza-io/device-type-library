@@ -3,12 +3,29 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight-iot.com/products/lorawan-sensor/vs330/",
-  "description": "VS330 LoRaWAN® Bathroom Occupancy Sensor, combining ToF and PIR detection, solves the ultimate difficulty in public toilets and bathrooms at ease.",
+  "description": "Occupancy sensor for toilet cubicles and bathrooms that combines time-of-flight and PIR detection. Detects whether a cubicle is in use and is used for washroom availability display and usage monitoring in public toilets.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["Occupancy"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Occupancy & Space Utilization",
+    "Facility Services & Feedback"
+  ],
+  "keywords": [
+    "Milesight",
+    "VS330",
+    "toilet occupancy",
+    "cubicle",
+    "washroom",
+    "ToF",
+    "PIR",
+    "availability",
+    "public toilet",
+    "occupancy",
+    "LoRaWAN"
+  ]
 }

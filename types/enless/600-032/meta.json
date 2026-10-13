@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Enless Wireless",
   "url": "https://enless-wireless.com/products/temperature-sensor-external-probe-pt1000-lora/",
-  "description": "The temperature sensor with external PT1000 contact probe allows to measure temperature at the contact of surfaces. The PT1000 probe for temperature measurement can withstand extreme temperatures ranging from -180°C to +250°C, making this LoRa sensor suitable for various applications, such as: cold room temperature monitoring, operating equipment temperature monitoring, temperature monitoring of sensitive points (e.g., data centers), temperature measurement on each sanitary water circuit (see dual PT1000 probe sensor)..etc  ",
+  "description": "Temperature sensor with an external PT1000 contact probe that measures surface temperatures from -180 to +250 °C. Used for cold rooms, operating equipment, data centers and sanitary water circuits.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.01.18",
   "loraDeviceClass": "A",
@@ -16,5 +16,21 @@
     "alarm"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Cold Chain & Temperature Compliance"
+  ],
+  "keywords": [
+    "Enless",
+    "TX TEMP CONT1",
+    "600-032",
+    "PT1000",
+    "contact probe",
+    "surface temperature",
+    "cold room",
+    "data center",
+    "hot water",
+    "pipe temperature",
+    "LoRaWAN"
+  ]
 }

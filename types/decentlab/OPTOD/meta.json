@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/optical-dissolved-oxygen-and-temperature-sensor-for-lorawan",
-  "description": "OPTOD consists of dissolved oxygen and temperature sensors. It is suitable for use in wastewater treatment, industrial effluent treatment, open water monitoring, fish farming, aquarium, and drinking water monitoring.",
+  "description": "Water quality sensor that measures dissolved oxygen concentration and saturation as well as temperature. Used in wastewater treatment, industrial effluents, open water, fish farming, aquariums and drinking water.",
   "author": "Decentlab",
   "firmwareVersion": "V1.6.0",
   "loraDeviceClass": "A",
@@ -17,5 +17,20 @@
     "lifecycle"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-OPTOD",
+    "dissolved oxygen",
+    "oxygen saturation",
+    "water quality",
+    "optical",
+    "wastewater",
+    "aquaculture",
+    "water temperature",
+    "LoRaWAN"
+  ]
 }

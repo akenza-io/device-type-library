@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Decentlab",
   "url": "https://www.decentlab.com/products/analog-or-digital-sensor-device-for-lorawan",
-  "description": "DLR2-006 is an Analog or Digital Sensor Device that consists of an Analog Potentiometer Sensor.",
+  "description": "Interface device with an analog potentiometer input. It reports the position of a connected potentiometer, for example for displacement, crack opening or valve position monitoring on structures and installations.",
   "author": "Decentlab",
   "firmwareVersion": "V1.6.0",
   "loraDeviceClass": "A",
@@ -15,5 +15,20 @@
     "lifecycle"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Decentlab",
+    "DL-DLR2-006",
+    "DLR2",
+    "potentiometer",
+    "position",
+    "displacement",
+    "crack monitoring",
+    "valve position",
+    "analog input",
+    "LoRaWAN"
+  ]
 }

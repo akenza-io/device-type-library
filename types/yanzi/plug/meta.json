@@ -3,11 +3,28 @@
   "version": "1.0.0",
   "manufacturer": "Yanzi",
   "url": "https://yanzi.se/products/#",
-  "description": "This device monitors energy usage and the health condition of the power line. It controls connected appliances via an internal 16A relay. Simply plug into the power socket.",
+  "description": "Plug-in device with an internal 16 A relay that switches connected appliances on and off. Measures voltage, current, power and energy consumption to monitor energy usage and the condition of the power line.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": ["Voltage", "Current", "Power"],
   "outputTopics": ["energy", "power"],
   "encoding": "JSON",
-  "connectivity": "HTTP"
+  "connectivity": "HTTP",
+  "useCases": [
+    "Energy & Utility Metering",
+    "Building Automation & Control"
+  ],
+  "keywords": [
+    "Yanzi",
+    "Plug",
+    "smart plug",
+    "relay",
+    "on off switch",
+    "energy",
+    "power",
+    "voltage",
+    "current",
+    "energy monitoring",
+    "HTTP"
+  ]
 }

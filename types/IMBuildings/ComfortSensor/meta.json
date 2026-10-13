@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "IMBuildings",
   "url": "https://imbuildings.com/products/co2-sensor-lorawan/",
-  "description": "Measure indoor comfort by monitoring CO2, temperature, humidity, presence.",
+  "description": "Indoor sensor that measures CO2, temperature, humidity and presence to assess room comfort. Used to monitor room climate, ventilation needs and occupancy in offices, meeting rooms and other workspaces.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [
@@ -18,5 +18,23 @@
     "error"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort",
+    "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "IMBuildings",
+    "comfort sensor",
+    "CO2",
+    "temperature",
+    "humidity",
+    "presence",
+    "occupancy",
+    "air quality",
+    "room climate",
+    "ventilation",
+    "office",
+    "LoRaWAN"
+  ]
 }

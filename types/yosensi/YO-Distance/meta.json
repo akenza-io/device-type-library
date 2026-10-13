@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Yosensi",
   "url": "https://www.yosensi.io/products/yo_distance/",
-  "description": "YO Distance is a LoRaWAN device for ultrasonic distance measurement.",
+  "description": "Ultrasonic distance sensor that also measures temperature, humidity and acceleration. Used for fill level measurement in tanks, bins and containers, where the distance to the surface indicates the current level.",
   "author": "Maciej Sacewicz",
   "firmwareVersion": "V3.6.5",
   "availableSensors": [
@@ -20,5 +20,22 @@
     "distance"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Fill Level Monitoring"
+  ],
+  "keywords": [
+    "Yosensi",
+    "YO Distance",
+    "ultrasonic",
+    "distance",
+    "fill level",
+    "tank level",
+    "waste bin",
+    "container",
+    "temperature",
+    "humidity",
+    "accelerometer",
+    "LoRaWAN"
+  ]
 }

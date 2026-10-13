@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Synetica",
   "url": "https://synetica.net/enlink-status-dp-lora-wireless-differential-pressure-sensor/",
-  "description": "enLink Status-DP measures differential pressure in the range of 25Pa to 5000Pa with industry leading accuracy of 0.1% of selected range. Unique Multi-Range digital sensor allows multiple pressure ranges to be selected automatically or remotely.",
+  "description": "Differential pressure sensor that measures from 25 to 5000 Pa with 0.1 % accuracy of the selected range, which is chosen automatically or remotely. Used for monitoring air filters, ducts and airflow in HVAC systems.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -15,5 +15,21 @@
   ],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Condition Monitoring"
+  ],
+  "keywords": [
+    "Synetica",
+    "enLink Status-DP",
+    "enLink",
+    "differential pressure",
+    "air filter",
+    "HVAC",
+    "duct",
+    "airflow",
+    "temperature",
+    "humidity",
+    "LoRaWAN"
+  ]
 }

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Yosensi",
   "url": "https://www.yosensi.io/products/yo_temp/",
-  "description": "YO Temp measures the temperature at up to three external locations.",
+  "description": "Temperature sensor with up to three external probes that measure temperature at separate locations. Also measures internal temperature and humidity and is used for fridges, freezers, pipes and process monitoring.",
   "author": "Maciej Sacewicz",
   "firmwareVersion": "V3.6.5",
   "availableSensors": [
@@ -19,5 +19,22 @@
     "internal_temperature"
   ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Cold Chain & Temperature Compliance"
+  ],
+  "keywords": [
+    "Yosensi",
+    "YO Temp",
+    "temperature probe",
+    "external probe",
+    "temperature",
+    "fridge",
+    "freezer",
+    "cold chain",
+    "pipe temperature",
+    "humidity",
+    "multi probe",
+    "LoRaWAN"
+  ]
 }

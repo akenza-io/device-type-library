@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Digital Matter",
   "url": "https://www.digitalmatter.com/devices/sensornode-lorawan/",
-  "description": "Robust and rugged datalogger with inputs/outputs and I²C sensor interface for asset and sensor monitoring on LoRaWAN® networks",
+  "description": "Rugged datalogger with GPS, analog and digital inputs, outputs and an I2C sensor interface. Used for asset and sensor monitoring, including temperature and humidity probes and remote equipment status.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "availableSensors": [
@@ -24,5 +24,23 @@
     "probe"
   ],
   "encoding": "JSON",
-  "connectivity": "HTTP"
+  "connectivity": "HTTP",
+  "useCases": [
+    "Asset Tracking"
+  ],
+  "keywords": [
+    "Digital Matter",
+    "SensorNode",
+    "datalogger",
+    "GPS",
+    "analog input",
+    "digital input",
+    "I2C",
+    "temperature",
+    "humidity",
+    "rugged",
+    "4G",
+    "LTE-M",
+    "HTTP"
+  ]
 }

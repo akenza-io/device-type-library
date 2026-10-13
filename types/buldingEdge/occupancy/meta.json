@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manufacturer": "Tridium",
   "url": "https://www.tridium.com/us/en/Products/niagara/jace",
-  "description": "Niagara building control system integration for occupancy values",
+  "description": "Integration of a building management system that forwards occupancy values. It makes presence data from existing building control systems available for space utilization analysis and demand-based building control.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
@@ -15,5 +15,18 @@
     "lifecycle"
   ],
   "encoding": "JSON",
-  "connectivity": "MQTT"
+  "connectivity": "MQTT",
+  "useCases": [
+    "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "akenza",
+    "Building Edge",
+    "BMS integration",
+    "building management",
+    "occupancy",
+    "presence",
+    "space utilization",
+    "MQTT"
+  ]
 }

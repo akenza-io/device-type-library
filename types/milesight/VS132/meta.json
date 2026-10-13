@@ -3,12 +3,27 @@
   "version": "1.0.0",
   "manufacturer": "Milesight",
   "url": "https://www.milesight-iot.com/lorawan/sensor/vs132/",
-  "description": "This sensor applies state-of-the-art 3D ToF technology that is deployed wirelessly via LoRaWAN®. The VS132 3D ToF people counting sensor has the advantages of ultra-high accuracy of 99.5% and 100% anonymous detection. This is well suited for bi-directional cross-line people counting applications to obtain accurate and valuable statistics for further decision-making.",
+  "description": "3D time-of-flight sensor for anonymous bidirectional people counting with an accuracy of up to 99.5 %. Mounted above entrances and passages to count people crossing a line and provides statistics for space planning.",
   "author": "Akenza AG",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
   "availableSensors": ["People Counting"],
   "outputTopics": ["default", "lifecycle"],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "People & Vehicle Counting"
+  ],
+  "keywords": [
+    "Milesight",
+    "VS132",
+    "people counter",
+    "3D ToF",
+    "bidirectional",
+    "entrance",
+    "foot traffic",
+    "line crossing",
+    "anonymous",
+    "LoRaWAN"
+  ]
 }
