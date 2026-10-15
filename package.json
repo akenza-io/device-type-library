@@ -27,9 +27,7 @@
     "prettier": "3.8.3",
     "rewire": "^9.0.1",
     "sync-request": "^6.1.0",
-    "test-utils": "file:lib/test"
-  },
-  "dependencies": {
+    "test-utils": "file:lib/test",
     "framer-api": "^5.1.0"
   }
 }

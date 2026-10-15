@@ -3,25 +3,35 @@
 name: Framer sync
 
 on:
-  pull_request:
-    types:
-      - closed
+  push:
     branches: [main]
+    paths:
+      - "types/**/meta.json"
+      - "types/**/*.png"
+      - "types/**/*.jp*g"
+      - "lib/framerSync/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: framer-sync
+  cancel-in-progress: false
 
 jobs:
-  if_merged:
-    if: github.event.pull_request.merged
+  sync:
     runs-on: ubuntu-latest
-    env:
-      PROJECT_ID: ${{ secrets.PROJECT_ID }}
-      COLLECTION_ID: ${{ secrets.COLLECTION_ID }}
-      FRAMER_API_KEY: ${{ secrets.FRAMER_API_KEY }}
-      BASE_URL: ${{ vars.BASE_URL }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
-      - run: npm ci
+      - run: npm ci --ignore-scripts
       - run: npm run push-to-framer
+        env:
+          PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          COLLECTION_ID: ${{ secrets.COLLECTION_ID }}
+          FRAMER_API_KEY: ${{ secrets.FRAMER_API_KEY }}
+          BASE_URL: ${{ vars.BASE_URL }}
