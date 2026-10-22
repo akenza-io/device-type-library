@@ -20,7 +20,9 @@
   ],
   "encoding": "HEX",
   "connectivity": "LORA",
-  "useCases": [],
+  "useCases": [
+    "Safety & Security"
+  ],
   "keywords": [
     "Tektelic",
     "EDOCTOR",

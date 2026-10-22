@@ -31,10 +31,15 @@
     "name",
     "version",
     "manufacturer",
+    "url",
+    "description",
     "author",
+    "availableSensors",
     "outputTopics",
     "encoding",
-    "connectivity"
+    "connectivity",
+    "useCases",
+    "keywords"
   ],
   "properties": {
     "name": {
@@ -183,7 +188,8 @@
           "Condition Monitoring",
           "Smart Agriculture",
           "Weather & Outdoor Environment",
-          "Facility Services & Feedback"
+          "Facility Services & Feedback",
+          "Testing & Debugging"
         ]
       }
     },
