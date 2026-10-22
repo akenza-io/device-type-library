@@ -60,5 +60,9 @@ function consume(event) {
       }
   });
 
+  if (emits >= 80) {
+    emit("sample", { data: { "message": "Too many datapoints (" + values.length + ") have been sent in one message. Cutting of after the first 80 entries." }, topic: "warning" });
+  }
+
   emit("state", state);
 }
