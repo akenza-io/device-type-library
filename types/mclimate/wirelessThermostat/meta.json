@@ -7,8 +7,34 @@
   "author": "MClimate",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": ["Temperature", "Humidity", "Light", "PIR"],
-  "outputTopics": ["default", "lifecycle", "configuration"],
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "Light",
+    "PIR"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration"
+  ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Building Automation & Control"
+  ],
+  "keywords": [
+    "MClimate",
+    "Wireless Thermostat",
+    "thermostat",
+    "setpoint",
+    "heating control",
+    "e-ink display",
+    "solar powered",
+    "temperature",
+    "humidity",
+    "light",
+    "PIR",
+    "LoRaWAN"
+  ]
 }

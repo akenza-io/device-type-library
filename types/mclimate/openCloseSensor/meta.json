@@ -7,8 +7,31 @@
   "author": "MClimate",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": ["Reed", "Temperature", "Button"],
-  "outputTopics": ["default", "lifecycle", "configuration"],
+  "availableSensors": [
+    "Reed",
+    "Temperature",
+    "Button"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration"
+  ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Building Automation & Control"
+  ],
+  "keywords": [
+    "MClimate",
+    "Open/Close Sensor",
+    "door sensor",
+    "window sensor",
+    "reed switch",
+    "open/close detection",
+    "event counter",
+    "temperature",
+    "button",
+    "LoRaWAN"
+  ]
 }

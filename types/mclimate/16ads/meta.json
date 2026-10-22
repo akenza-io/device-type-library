@@ -7,8 +7,30 @@
   "author": "MClimate",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "C",
-  "availableSensors": ["Temperature", "Switch"],
-  "outputTopics": ["default", "configuration"],
+  "availableSensors": [
+    "Temperature",
+    "Switch"
+  ],
+  "outputTopics": [
+    "default",
+    "configuration"
+  ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Building Automation & Control"
+  ],
+  "keywords": [
+    "MClimate",
+    "16ADS",
+    "dry switch",
+    "relay",
+    "dry contact",
+    "on/off control",
+    "in-wall",
+    "switching",
+    "overheating protection",
+    "FUOTA",
+    "LoRaWAN"
+  ]
 }

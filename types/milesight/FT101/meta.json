@@ -16,7 +16,9 @@
   ],
   "encoding": "HEX",
   "connectivity": "LORA",
-  "useCases": [],
+  "useCases": [
+    "Testing & Debugging"
+  ],
   "keywords": [
     "Milesight",
     "FT101",
