@@ -6,11 +6,20 @@
   "description": "Handheld field test device that shows network coverage data such as radio power and received signal strength. It includes GPS and a button to record test points, used for mapping the coverage of a site.",
   "author": "Akenza AG",
   "firmwareVersion": "V2.0.0",
-  "availableSensors": ["Temperature", "GPS", "Button"],
-  "outputTopics": ["default", "gps"],
+  "availableSensors": [
+    "Temperature",
+    "GPS",
+    "Button"
+  ],
+  "outputTopics": [
+    "default",
+    "gps"
+  ],
   "encoding": "HEX",
   "connectivity": "LORA",
-  "useCases": [],
+  "useCases": [
+    "Testing & Debugging"
+  ],
   "keywords": [
     "Adeunis",
     "FTD",
