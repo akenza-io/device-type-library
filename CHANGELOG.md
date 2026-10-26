@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.101.0] - 2026-10-26
+
+### Added
+
+- Miromico - Alarm
+
+### Changed
+
+- Framer push now also controlls sub collections
+- Episensor added backfilling cap
+
+# [1.100.3] - 2026-10-19
+
+### Changed
+
+- Added new workflow to push synced requests to framer
+
 # [1.100.2] - 2026-10-13
 
 ### Changed

@@ -19,7 +19,9 @@
   ],
   "encoding": "JSON",
   "connectivity": "HTTP",
-  "useCases": [],
+  "useCases": [
+    "Testing & Debugging"
+  ],
   "keywords": [
     "device simulator",
     "virtual device",

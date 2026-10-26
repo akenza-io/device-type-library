@@ -15,6 +15,7 @@ function calculateIncrement(lastValue, currentValue) {
 function consume(event) {
   let values = event.data.data;
   const state = event.state || {};
+  let emits = 0;
 
   values.sort((a, b) => a.period.localeCompare(b.period));
   values.forEach(entry => {
@@ -42,19 +43,26 @@ function consume(event) {
       state.lastPeriod = 0;
     }
 
-    // Do not backfill data otherwise the state corrupts for a few messages
-    if (state.lastPeriod < period) {
-      data.totalActivePowerKWh = value;
-      data.incrementActivePowerKWh = calculateIncrement(
-        state.lastTotalActivePowerKWh,
-        data.totalActivePowerKWh,
-      );
-      state.lastTotalActivePowerKWh = data.totalActivePowerKWh;
-      state.lastPeriod = period;
+    // Hardcap for devices which have been offline for a long time and are backfilling too much
+    if (emits <= 80)
+      // Do not backfill data otherwise the state corrupts for a few messages
+      if (state.lastPeriod < period) {
+        data.totalActivePowerKWh = value;
+        data.incrementActivePowerKWh = calculateIncrement(
+          state.lastTotalActivePowerKWh,
+          data.totalActivePowerKWh,
+        );
+        state.lastTotalActivePowerKWh = data.totalActivePowerKWh;
+        state.lastPeriod = period;
 
-      emit("sample", { data: data, topic: "default", timestamp: new Date(period) });
-    }
+        emit("sample", { data: data, topic: "default", timestamp: new Date(period) });
+        emits++;
+      }
   });
+
+  if (emits >= 80) {
+    emit("sample", { data: { "message": "Too many datapoints (" + values.length + ") have been sent in one message. Cutting of after the first 80 entries." }, topic: "warning" });
+  }
 
   emit("state", state);
 }

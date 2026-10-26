@@ -7,8 +7,34 @@
   "author": "MClimate",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": ["Temperature", "Humidity", "CO2", "Occupancy", "PIR"],
-  "outputTopics": ["default", "lifecycle", "configuration"],
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "CO2",
+    "Occupancy",
+    "PIR"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration"
+  ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "MClimate",
+    "CO2 + PIR Lite",
+    "CO2",
+    "NDIR",
+    "temperature",
+    "humidity",
+    "occupancy",
+    "PIR",
+    "air quality",
+    "demand-controlled ventilation",
+    "LoRaWAN"
+  ]
 }
