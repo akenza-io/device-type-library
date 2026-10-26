@@ -7,8 +7,35 @@
   "author": "MClimate",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": ["Temperature", "Humidity", "Light", "Occupancy", "PIR"],
-  "outputTopics": ["default", "lifecycle", "event", "configuration"],
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "Light",
+    "Occupancy",
+    "PIR"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "event",
+    "configuration"
+  ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Building Automation & Control"
+  ],
+  "keywords": [
+    "MClimate",
+    "PIR Mini",
+    "occupancy",
+    "PIR",
+    "motion",
+    "people counting",
+    "workspace utilization",
+    "temperature",
+    "humidity",
+    "light",
+    "LoRaWAN"
+  ]
 }

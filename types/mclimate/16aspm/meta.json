@@ -15,7 +15,27 @@
     "Current",
     "Switch"
   ],
-  "outputTopics": ["default", "configuration"],
+  "outputTopics": [
+    "default",
+    "configuration"
+  ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "MClimate",
+    "16ASPM",
+    "smart switch",
+    "power meter",
+    "relay",
+    "energy metering",
+    "power",
+    "voltage",
+    "current",
+    "on/off control",
+    "in-wall",
+    "LoRaWAN"
+  ]
 }
