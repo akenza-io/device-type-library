@@ -1,0 +1,62 @@
+{
+  "$id": "https://akenza.io/miromico/alarm/scene.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "scene",
+  "title": "Scene",
+  "properties": {
+    "currentScene": {
+      "title": "Current scene",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255,
+      "description": "Currently active scene."
+    },
+    "red": {
+      "title": "Red",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255,
+      "description": "Red component of the scene color.",
+      "hideFromKpis": true
+    },
+    "green": {
+      "title": "Green",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255,
+      "description": "Green component of the scene color.",
+      "hideFromKpis": true
+    },
+    "blue": {
+      "title": "Blue",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255,
+      "description": "Blue component of the scene color.",
+      "hideFromKpis": true
+    },
+    "timeoutMin": {
+      "title": "Timeout",
+      "unit": "min",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535,
+      "description": "Scene timeout in minutes. 0 means no timeout.",
+      "hideFromKpis": true
+    },
+    "melody": {
+      "title": "Melody",
+      "type": "string",
+      "description": "Melody played for the scene. Unknown values are reported as Unknown(<value>).",
+      "hideFromKpis": true
+    },
+    "melodyRepeat": {
+      "title": "Melody repeat",
+      "type": "boolean",
+      "description": "Whether the melody is repeated.",
+      "hideFromKpis": true
+    }
+  }
+}
