@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.101.1] - 2026-10-26
+
+### Fixed
+
+- SmartEnds BrighterBins: `distanceError` is now typed as string to match its enum values
+
 # [1.101.0] - 2026-10-26
 
 ### Added

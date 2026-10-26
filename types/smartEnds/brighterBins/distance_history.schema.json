@@ -15,8 +15,7 @@
     },
     "distanceError": {
       "title": "Distance error",
-      "unit": "string",
-      "type": "number",
+      "type": "string",
       "description": "Distance error",
       "enum": [
         "SENSOR_MODULE_NOT_RESPONDING",
