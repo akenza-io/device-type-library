@@ -21,7 +21,9 @@
   ],
   "encoding": "HEX",
   "connectivity": "LORA",
-  "useCases": [],
+  "useCases": [
+    "Facility Services & Feedback"
+  ],
   "keywords": [
     "Milesight",
     "DS3604",

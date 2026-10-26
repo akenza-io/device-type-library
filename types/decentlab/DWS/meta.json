@@ -17,7 +17,9 @@
   ],
   "encoding": "HEX",
   "connectivity": "LORA",
-  "useCases": [],
+  "useCases": [
+    "Building Automation & Control"
+  ],
   "keywords": [
     "Decentlab",
     "DL-DWS",

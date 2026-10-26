@@ -7,8 +7,32 @@
   "author": "MClimate",
   "firmwareVersion": "V1.0.0",
   "loraDeviceClass": "A",
-  "availableSensors": ["Temperature", "Humidity", "Occupancy", "PIR"],
-  "outputTopics": ["default", "lifecycle", "configuration"],
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "Occupancy",
+    "PIR"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration"
+  ],
   "encoding": "HEX",
-  "connectivity": "LORA"
+  "connectivity": "LORA",
+  "useCases": [
+    "Building Automation & Control"
+  ],
+  "keywords": [
+    "MClimate",
+    "HT + PIR Lite",
+    "temperature",
+    "humidity",
+    "occupancy",
+    "PIR",
+    "motion",
+    "room occupancy",
+    "building management",
+    "LoRaWAN"
+  ]
 }
