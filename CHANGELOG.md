@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.101.2] - 2026-10-27
+
+### Fixed
+
+- Enless TX PULSE 600-036, 600-037, 600-038 and TX CONTACT 600-039: pulse counters now reference `pulseInput/count` and the OPEN/CLOSED state fields no longer reference the boolean `digitalInput`
+- Miromico Alarm: removed the out-of-range `maximum` of `batteryUsage`
+
 # [1.101.1] - 2026-10-26
 
 ### Fixed
