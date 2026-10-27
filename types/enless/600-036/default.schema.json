@@ -10,19 +10,19 @@
       "type": "integer",
       "title": "Pulse Channel 1",
       "description": "Total number of pulses counted on channel 1",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput/count"
     },
     "pulseCh2": {
       "type": "integer",
       "title": "Pulse Channel 2",
       "description": "Total number of pulses counted on channel 2",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput/count"
     },
     "pulseOc": {
       "type": "integer",
       "title": "Pulse Open Collector",
       "description": "Total number of pulses counted on the open collector input",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/pulseInput/count"
     },
     "pulseCh1State": {
       "type": "string",
@@ -31,8 +31,7 @@
         "CLOSED"
       ],
       "title": "Pulse Channel 1 State",
-      "description": "Digital state of input channel 1",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/digitalInput"
+      "description": "Digital state of input channel 1"
     },
     "pulseCh2State": {
       "type": "string",
@@ -41,8 +40,7 @@
         "CLOSED"
       ],
       "title": "Pulse Channel 2 State",
-      "description": "Digital state of input channel 2",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/digitalInput"
+      "description": "Digital state of input channel 2"
     },
     "pulseOcState": {
       "type": "string",
@@ -51,8 +49,7 @@
         "CLOSED"
       ],
       "title": "Pulse Open Collector State",
-      "description": "Digital state of the open collector input",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/digitalInput"
+      "description": "Digital state of the open collector input"
     },
     "debounce1": {
       "type": "boolean",
