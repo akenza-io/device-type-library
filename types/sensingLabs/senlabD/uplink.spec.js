@@ -1,32 +1,16 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Senlab SenlabD uplink", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let startupSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/startup.schema.json`)
-      .then((parsedSchema) => {
-        startupSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    startupSchema = loadSchema(`${import.meta.dirname}/startup.schema.json`);
   });
 
   describe("consume()", () => {
@@ -38,17 +22,10 @@ describe("Senlab SenlabD uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "startup");
-        assert.equal(value.data.version, "2.0.2");
-        assert.equal(value.data.openDuration, 0);
-        assert.equal(value.data.closeDuration, 1);
-
-        validateSchema(value.data, startupSchema, { throwError: true });
+      expectSample("startup", startupSchema, (data) => {
+        assert.equal(data.version, "2.0.2");
+        assert.equal(data.openDuration, 0);
+        assert.equal(data.closeDuration, 1);
       });
 
       consume(data);
@@ -62,16 +39,9 @@ describe("Senlab SenlabD uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.open, false);
-        assert.equal(value.data.batteryLevel, 96);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.open, false);
+        assert.equal(data.batteryLevel, 96);
       });
 
       consume(data);

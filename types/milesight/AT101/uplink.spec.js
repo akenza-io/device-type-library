@@ -2,47 +2,19 @@ import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
 describe("AT101 Uplink", () => {
   let gpsSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
-      gpsSchema = parsedSchema;
-      done();
-    });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   let temperatureSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/temperature.schema.json`)
-      .then((parsedSchema) => {
-        temperatureSchema = parsedSchema;
-        done();
-      });
-  });
-
   let wifiSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/wifi.schema.json`).then((parsedSchema) => {
-      wifiSchema = parsedSchema;
-      done();
-    });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    gpsSchema = loadSchema(`${import.meta.dirname}/gps.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    temperatureSchema = loadSchema(`${import.meta.dirname}/temperature.schema.json`);
+    wifiSchema = loadSchema(`${import.meta.dirname}/wifi.schema.json`);
   });
 
   describe("consume()", () => {

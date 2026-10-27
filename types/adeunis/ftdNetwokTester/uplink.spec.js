@@ -1,31 +1,16 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("FTD Network tester", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let gpsSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
-      gpsSchema = parsedSchema;
-      done();
-    });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    gpsSchema = loadSchema(`${import.meta.dirname}/gps.schema.json`);
   });
 
   describe("consume()", () => {
@@ -37,33 +22,19 @@ describe("FTD Network tester", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "gps");
-        assert.equal(value.data.latitude, 47.41413333333333);
-        assert.equal(value.data.longitude, 8.534333333333333);
-        assert.equal(value.data.satellites, 5);
-
-        validateSchema(value.data, gpsSchema, { throwError: true });
+      expectSample("gps", gpsSchema, (data) => {
+        assert.equal(data.latitude, 47.41413333333333);
+        assert.equal(data.longitude, 8.534333333333333);
+        assert.equal(data.satellites, 5);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.temperature, 26);
-        assert.equal(value.data.trigger, "PUSHBUTTON");
-        assert.equal(value.data.uplink, 18);
-        assert.equal(value.data.downlink, 16);
-        assert.equal(value.data.batteryVoltage, 3.489);
-        assert.equal(value.data.batteryLevel, 29);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.temperature, 26);
+        assert.equal(data.trigger, "PUSHBUTTON");
+        assert.equal(data.uplink, 18);
+        assert.equal(data.downlink, 16);
+        assert.equal(data.batteryVoltage, 3.489);
+        assert.equal(data.batteryLevel, 29);
       });
 
       consume(data);

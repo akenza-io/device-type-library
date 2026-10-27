@@ -1,50 +1,20 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("Digital Technologies Contact Sensor Uplink", () => {
   let objectPresentSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/contact.schema.json`)
-      .then((parsedSchema) => {
-        objectPresentSchema = parsedSchema;
-        done();
-      });
-  });
-
   let networkStatusSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/network_status.schema.json`)
-      .then((parsedSchema) => {
-        networkStatusSchema = parsedSchema;
-        done();
-      });
-  });
-
   let doorCountSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/door_count.schema.json`)
-      .then((parsedSchema) => {
-        doorCountSchema = parsedSchema;
-        done();
-      });
-  });
-
   let washroomUsageSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/washroom_usage.schema.json`)
-      .then((parsedSchema) => {
-        washroomUsageSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    objectPresentSchema = loadSchema(`${import.meta.dirname}/contact.schema.json`);
+    networkStatusSchema = loadSchema(`${import.meta.dirname}/network_status.schema.json`);
+    doorCountSchema = loadSchema(`${import.meta.dirname}/door_count.schema.json`);
+    washroomUsageSchema = loadSchema(`${import.meta.dirname}/washroom_usage.schema.json`);
   });
 
 
@@ -70,34 +40,16 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
         labels: {},
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "door_count");
-        assert.equal(value.data.doorClosings, 0);
-        assert.equal(value.data.usageCount, 0);
-
-        validateSchema(value.data, doorCountSchema, {
-          throwError: true,
-        });
+      expectSample("door_count", doorCountSchema, (data) => {
+        assert.equal(data.doorClosings, 0);
+        assert.equal(data.usageCount, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "contact");
-        assert.equal(value.data.contact, "OPEN");
-        assert.equal(value.data.closedSince, 0);
-        assert.equal(value.data.openSince, 0);
-        assert.equal(value.data.repeat, false);
-
-        validateSchema(value.data, objectPresentSchema, {
-          throwError: true,
-        });
+      expectSample("contact", objectPresentSchema, (data) => {
+        assert.equal(data.contact, "OPEN");
+        assert.equal(data.closedSince, 0);
+        assert.equal(data.openSince, 0);
+        assert.equal(data.repeat, false);
       });
 
       expectEmits((type, value) => {
@@ -137,53 +89,26 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
         }
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "network_status");
-        assert.equal(value.data.signalStrength, 10);
-        assert.equal(value.data.rssi, 10);
-        assert.equal(value.data.transmissionMode, "HIGH_POWER_BOOST_MODE");
-        assert.equal(value.data.sqi, 3);
-
-        validateSchema(value.data, networkStatusSchema, {
-          throwError: true,
-        });
+      expectSample("network_status", networkStatusSchema, (data) => {
+        assert.equal(data.signalStrength, 10);
+        assert.equal(data.rssi, 10);
+        assert.equal(data.transmissionMode, "HIGH_POWER_BOOST_MODE");
+        assert.equal(data.sqi, 3);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "door_count");
-        assert.equal(value.data.doorClosings, 0);
-        assert.equal(value.data.usageCount, 0);
-
-        validateSchema(value.data, doorCountSchema, {
-          throwError: true,
-        });
+      expectSample("door_count", doorCountSchema, (data) => {
+        assert.equal(data.doorClosings, 0);
+        assert.equal(data.usageCount, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "contact");
-        assert.equal(value.data.contact, "OPEN");
-        assert.equal(value.data.closedSince, 0);
-        assert.equal(value.data.openSince, 90);
-        assert.equal(value.data.count, 0);
-        assert.equal(value.data.hasContact, false);
-        assert.equal(value.data.relativeCount, 0);
-        assert.equal(value.data.repeat, true);
-
-        validateSchema(value.data, objectPresentSchema, {
-          throwError: true,
-        });
+      expectSample("contact", objectPresentSchema, (data) => {
+        assert.equal(data.contact, "OPEN");
+        assert.equal(data.closedSince, 0);
+        assert.equal(data.openSince, 90);
+        assert.equal(data.count, 0);
+        assert.equal(data.hasContact, false);
+        assert.equal(data.relativeCount, 0);
+        assert.equal(data.repeat, true);
       });
 
       expectEmits((type, value) => {
@@ -223,49 +148,22 @@ describe("Digital Technologies Contact Sensor Uplink", () => {
         }
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "washroom_usage");
-        assert.equal(value.data.absoluteUsageCount, 6);
-        assert.equal(value.data.relativeUsageCount, 1);
-
-        validateSchema(value.data, washroomUsageSchema, {
-          throwError: true,
-        });
+      expectSample("washroom_usage", washroomUsageSchema, (data) => {
+        assert.equal(data.absoluteUsageCount, 6);
+        assert.equal(data.relativeUsageCount, 1);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "door_count");
-        assert.equal(value.data.doorClosings, 2);
-        assert.equal(value.data.usageCount, 1);
-
-        validateSchema(value.data, doorCountSchema, {
-          throwError: true,
-        });
+      expectSample("door_count", doorCountSchema, (data) => {
+        assert.equal(data.doorClosings, 2);
+        assert.equal(data.usageCount, 1);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "contact");
-        assert.equal(value.data.contact, "OPEN");
-        assert.equal(value.data.hasContact, false);
-        assert.equal(value.data.count, 13);
-        assert.equal(value.data.relativeCount, 1);
-        assert.equal(value.data.repeat, false);
-
-        validateSchema(value.data, objectPresentSchema, {
-          throwError: true,
-        });
+      expectSample("contact", objectPresentSchema, (data) => {
+        assert.equal(data.contact, "OPEN");
+        assert.equal(data.hasContact, false);
+        assert.equal(data.count, 13);
+        assert.equal(data.relativeCount, 1);
+        assert.equal(data.repeat, false);
       });
 
       expectEmits((type, value) => {

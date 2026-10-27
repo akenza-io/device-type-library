@@ -1,32 +1,16 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+import { init, loadSchema, expectSample } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-describe("Synetica Status T Uplink", () => {
+describe("Synetica enLink IAQ Uplink", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
   });
 
   describe("consume()", () => {
@@ -37,44 +21,29 @@ describe("Synetica Status T Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.temperature, 23.1);
+        assert.equal(data.pressure, 961);
+        assert.equal(data.humidity, 51);
+        assert.equal(data.co2, 625);
+        assert.equal(data.co2e, 721.67);
+        assert.equal(data.bVoc, 0.827);
+        assert.equal(data.tvoc, 72);
 
-        assert.equal(value.topic, "default");
-
-        assert.equal(value.data.temperature, 23.1);
-        assert.equal(value.data.pressure, 961);
-        assert.equal(value.data.humidity, 51);
-        assert.equal(value.data.co2, 625);
-        assert.equal(value.data.co2e, 721.67);
-        assert.equal(value.data.bVoc, 0.827);
-        assert.equal(value.data.tvoc, 72);
-
-        assert.equal(value.data.pm1, 0.63);
-        assert.equal(value.data.pm2_5, 0.81);
-        assert.equal(value.data.pm4, 0.93);
-        assert.equal(value.data.pm10, 0.99);
-        assert.equal(value.data.ncPm0_5, 4);
-        assert.equal(value.data.ncPm1, 4.88);
-        assert.equal(value.data.ncPm2_5, 5.03);
-        assert.equal(value.data.ncPm4, 5.05);
-        assert.equal(value.data.ncPm10, 5.06);
-        assert.equal(value.data.pmTps, 0.62);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+        assert.equal(data.pm1, 0.63);
+        assert.equal(data.pm2_5, 0.81);
+        assert.equal(data.pm4, 0.93);
+        assert.equal(data.pm10, 0.99);
+        assert.equal(data.ncPm0_5, 4);
+        assert.equal(data.ncPm1, 4.88);
+        assert.equal(data.ncPm2_5, 5.03);
+        assert.equal(data.ncPm4, 5.05);
+        assert.equal(data.ncPm10, 5.06);
+        assert.equal(data.pmTps, 0.62);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 3.33);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 3.33);
       });
 
       consume(data);

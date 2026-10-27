@@ -1,12 +1,7 @@
 
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Milesight AM102 Uplink", () => {
     let defaultSchema = null;
@@ -14,14 +9,11 @@ describe("Milesight AM102 Uplink", () => {
     let systemSchema = null;
     let consume = null;
 
-    before(async () => {
-        const script = rewire(`${__dirname}/uplink.js`);
-        consume = init(script);
-        [defaultSchema, lifecycleSchema, systemSchema] = await Promise.all([
-            loadSchema(`${__dirname}/default.schema.json`),
-            loadSchema(`${__dirname}/lifecycle.schema.json`),
-            loadSchema(`${__dirname}/system.schema.json`),
-        ]);
+    before(() => {
+      consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+      defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+      lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+      systemSchema = loadSchema(`${import.meta.dirname}/system.schema.json`);
     });
 
     describe("consume()", () => {
@@ -33,10 +25,8 @@ describe("Milesight AM102 Uplink", () => {
                 },
             };
 
-            expectEmits((type, value) => {
-                assert.equal(type, "sample");
-                assert.equal(value.topic, "system");
-                assert.deepEqual(value.data, {
+            expectSample("system", systemSchema, (data) => {
+                assert.deepEqual(data, {
                     deviceStatus: "ON",
                     sn: "6710b32620711912",
                     hardwareVersion: "v1.0",
@@ -44,7 +34,6 @@ describe("Milesight AM102 Uplink", () => {
                     temperatureEnabled: true,
                     humidityEnabled: true,
                 });
-                validateSchema(value.data, systemSchema, { throwError: true });
             });
 
             consume(data);
@@ -58,24 +47,16 @@ describe("Milesight AM102 Uplink", () => {
                 },
             };
 
-            expectEmits((type, value) => {
-                assert.equal(type, "sample");
-                assert.equal(value.topic, "default");
-                assert.deepEqual(value.data, {
+            expectSample("default", defaultSchema, (data) => {
+                assert.deepEqual(data, {
                     temperature: 25.5,
                     humidity: 39.5,
                 });
-                validateSchema(value.data, defaultSchema, { throwError: true });
             });
 
-            expectEmits((type, value) => {
-                assert.equal(type, "sample");
-                assert.equal(value.topic, "lifecycle");
-                assert.deepEqual(value.data, {
+            expectSample("lifecycle", lifecycleSchema, (data) => {
+                assert.deepEqual(data, {
                     batteryLevel: 100,
-                });
-                validateSchema(value.data, lifecycleSchema, {
-                    throwError: true,
                 });
             });
 
@@ -91,14 +72,11 @@ describe("Milesight AM102 Uplink", () => {
             };
 
             // Historical data is emitted on the 'default' topic with a specific timestamp
-            expectEmits((type, value) => {
-                assert.equal(type, "sample");
-                assert.equal(value.topic, "default");
-                assert.deepEqual(value.data, {
+            expectSample("default", defaultSchema, (data) => {
+                assert.deepEqual(data, {
                     temperature: 21.1,
                     humidity: 44.5,
                 });
-                validateSchema(value.data, defaultSchema, { throwError: true });
             });
 
             consume(data);

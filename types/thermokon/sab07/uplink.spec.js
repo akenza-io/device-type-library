@@ -1,12 +1,7 @@
 
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Thermokon SAB07 Uplink", () => {
     let defaultSchema = null;
@@ -14,14 +9,11 @@ describe("Thermokon SAB07 Uplink", () => {
     let actuatorSchema = null;
     let consume = null;
 
-    before(async () => {
-        const script = rewire(`${__dirname}/uplink.js`);
-        consume = init(script);
-        [defaultSchema, lifecycleSchema, actuatorSchema] = await Promise.all([
-            loadSchema(`${__dirname}/default.schema.json`),
-            loadSchema(`${__dirname}/lifecycle.schema.json`),
-            loadSchema(`${__dirname}/actuator.schema.json`),
-        ]);
+    before(() => {
+      consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+      defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+      lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+      actuatorSchema = loadSchema(`${import.meta.dirname}/actuator.schema.json`);
     });
 
 
@@ -35,50 +27,30 @@ describe("Thermokon SAB07 Uplink", () => {
                 },
             };
 
-            expectEmits((type, value) => {
-                assert.equal(type, "sample");
-                assert.isNotNull(value);
-                assert.typeOf(value.data, "object");
-
-                assert.equal(value.topic, "default");
-                assert.equal(value.data.sensorTemperature, 24.65);
-                assert.equal(value.data.relativeHumidity, 46.88);
-                assert.equal(value.data.targetTemperature, 29);
-
-                validateSchema(value.data, defaultSchema, { throwError: true });
+            expectSample("default", defaultSchema, (data) => {
+                assert.equal(data.sensorTemperature, 24.65);
+                assert.equal(data.relativeHumidity, 46.88);
+                assert.equal(data.targetTemperature, 29);
             });
 
 
             // actuator test
-            expectEmits((type, value) => {
-                assert.equal(type, "sample");
-                assert.isNotNull(value);
-                assert.typeOf(value.data, "object");
-
-                assert.equal(value.topic, "actuator");
-                assert.equal(value.data.motorPosition, 250);
-                assert.equal(value.data.motorRange, 300);
-                validateSchema(value.data, actuatorSchema, { throwError: true });
+            expectSample("actuator", actuatorSchema, (data) => {
+                assert.equal(data.motorPosition, 250);
+                assert.equal(data.motorRange, 300);
             });
 
             // lifecycle test
-            expectEmits((type, value) => {
-                assert.equal(type, "sample");
-                assert.isNotNull(value);
-                assert.typeOf(value.data, "object");
-
-
-                assert.equal(value.topic, "lifecycle");
-                assert.equal(value.data.batteryVoltage, 3.5);
-                assert.equal(value.data.openWindow, false);
-                assert.equal(value.data.highMotorConsumption, false);
-                assert.equal(value.data.lowMotorConsumption, false);
-                assert.equal(value.data.brokenSensor, false);
-                assert.equal(value.data.childLock, true);
-                assert.equal(value.data.calibrationFailed, false);
-                assert.equal(value.data.attachedBackplate, false);
-                assert.equal(value.data.perceiveAsOnline, false);
-                validateSchema(value.data, lifecycleSchema, { throwError: true });
+            expectSample("lifecycle", lifecycleSchema, (data) => {
+                assert.equal(data.batteryVoltage, 3.5);
+                assert.equal(data.openWindow, false);
+                assert.equal(data.highMotorConsumption, false);
+                assert.equal(data.lowMotorConsumption, false);
+                assert.equal(data.brokenSensor, false);
+                assert.equal(data.childLock, true);
+                assert.equal(data.calibrationFailed, false);
+                assert.equal(data.attachedBackplate, false);
+                assert.equal(data.perceiveAsOnline, false);
             });
 
 

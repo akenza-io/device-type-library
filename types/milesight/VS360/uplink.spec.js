@@ -1,42 +1,18 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Milesight VS360 Uplink", () => {
   let peopleFlowSchema = null;
   let consume = null;
-
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/people_flow.schema.json`)
-      .then((parsedSchema) => {
-        peopleFlowSchema = parsedSchema;
-        done();
-      });
-  });
-
   let eventSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/event.schema.json`)
-      .then((parsedSchema) => {
-        eventSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    peopleFlowSchema = loadSchema(`${import.meta.dirname}/people_flow.schema.json`);
+    eventSchema = loadSchema(`${import.meta.dirname}/event.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
   });
 
   describe("consume()", () => {
@@ -48,22 +24,13 @@ describe("Milesight VS360 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "people_flow");
-        assert.equal(value.data.periodicCountAlarm, "THRESHOLD_ALARM");
-        assert.equal(value.data.periodicCountIn, 1000);
-        assert.equal(value.data.periodicCountOut, 1001);
-        assert.equal(value.data.totalCountAlarm, "THRESHOLD_ALARM");
-        assert.equal(value.data.totalCountIn, 4353);
-        assert.equal(value.data.totalCountOut, 4360);
-
-        validateSchema(value.data, peopleFlowSchema, {
-          throwError: true,
-        });
+      expectSample("people_flow", peopleFlowSchema, (data) => {
+        assert.equal(data.periodicCountAlarm, "THRESHOLD_ALARM");
+        assert.equal(data.periodicCountIn, 1000);
+        assert.equal(data.periodicCountOut, 1001);
+        assert.equal(data.totalCountAlarm, "THRESHOLD_ALARM");
+        assert.equal(data.totalCountIn, 4353);
+        assert.equal(data.totalCountOut, 4360);
       });
 
       consume(data);
@@ -77,52 +44,24 @@ describe("Milesight VS360 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "event");
-        assert.equal(value.data.status, "ALARM");
-        assert.equal(value.data.type, 'COUNTING_ANOMALY');
-
-        validateSchema(value.data, eventSchema, { throwError: true });
+      expectSample("event", eventSchema, (data) => {
+        assert.equal(data.status, "ALARM");
+        assert.equal(data.type, 'COUNTING_ANOMALY');
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "event");
-        assert.equal(value.data.status, "ALARM_RELEASE");
-        assert.equal(value.data.type, 'COUNTING_ANOMALY');
-
-        validateSchema(value.data, eventSchema, { throwError: true });
+      expectSample("event", eventSchema, (data) => {
+        assert.equal(data.status, "ALARM_RELEASE");
+        assert.equal(data.type, 'COUNTING_ANOMALY');
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "event");
-        assert.equal(value.data.status, "ALARM");
-        assert.equal(value.data.type, 'NODE_DEVICE_WITHOUT_RESPONSE');
-
-        validateSchema(value.data, eventSchema, { throwError: true });
+      expectSample("event", eventSchema, (data) => {
+        assert.equal(data.status, "ALARM");
+        assert.equal(data.type, 'NODE_DEVICE_WITHOUT_RESPONSE');
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "event");
-        assert.equal(value.data.status, "ALARM");
-        assert.equal(value.data.type, 'DEVICES_MISALIGNED');
-
-        validateSchema(value.data, eventSchema, { throwError: true });
+      expectSample("event", eventSchema, (data) => {
+        assert.equal(data.status, "ALARM");
+        assert.equal(data.type, 'DEVICES_MISALIGNED');
       });
 
       consume(data);

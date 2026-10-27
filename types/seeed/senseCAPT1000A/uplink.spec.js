@@ -1,65 +1,24 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Seeed SenseCAP T1000A Sensor Uplink", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   let eventSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/event.schema.json`).then((parsedSchema) => {
-      eventSchema = parsedSchema;
-      done();
-    });
-  });
-
   let settingsSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/settings.schema.json`)
-      .then((parsedSchema) => {
-        settingsSchema = parsedSchema;
-        done();
-      });
-  });
-
   let gpsSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
-      gpsSchema = parsedSchema;
-      done();
-    });
-  });
-
   let errorSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/error.schema.json`).then((parsedSchema) => {
-      errorSchema = parsedSchema;
-      done();
-    });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    eventSchema = loadSchema(`${import.meta.dirname}/event.schema.json`);
+    settingsSchema = loadSchema(`${import.meta.dirname}/settings.schema.json`);
+    gpsSchema = loadSchema(`${import.meta.dirname}/gps.schema.json`);
+    errorSchema = loadSchema(`${import.meta.dirname}/error.schema.json`);
   });
 
   describe("consume()", () => {
@@ -71,47 +30,26 @@ describe("Seeed SenseCAP T1000A Sensor Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 96);
-        assert.equal(value.data.collectTime, 1689848072000);
-        assert.equal(value.data.motionId, 0);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 96);
+        assert.equal(data.collectTime, 1689848072000);
+        assert.equal(data.motionId, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "event");
-        assert.equal(value.data.endMovementEvent, false);
-        assert.equal(value.data.lightEvent, false);
-        assert.equal(value.data.motionlessEvent, false);
-        assert.equal(value.data.pressOnceEvent, true);
-        assert.equal(value.data.shockEvent, false);
-        assert.equal(value.data.sosEvent, false);
-        assert.equal(value.data.startMovementEvent, false);
-        assert.equal(value.data.temperatureEvent, false);
-
-        validateSchema(value.data, eventSchema, { throwError: true });
+      expectSample("event", eventSchema, (data) => {
+        assert.equal(data.endMovementEvent, false);
+        assert.equal(data.lightEvent, false);
+        assert.equal(data.motionlessEvent, false);
+        assert.equal(data.pressOnceEvent, true);
+        assert.equal(data.shockEvent, false);
+        assert.equal(data.sosEvent, false);
+        assert.equal(data.startMovementEvent, false);
+        assert.equal(data.temperatureEvent, false);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "gps");
-        assert.equal(value.data.latitude, 47.413732);
-        assert.equal(value.data.longitude, 8.533339);
-
-        validateSchema(value.data, gpsSchema, { throwError: true });
+      expectSample("gps", gpsSchema, (data) => {
+        assert.equal(data.latitude, 47.413732);
+        assert.equal(data.longitude, 8.533339);
       });
 
       consume(data);
@@ -125,24 +63,17 @@ describe("Seeed SenseCAP T1000A Sensor Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 96);
-        assert.equal(value.data.eventInterval, 60);
-        assert.equal(value.data.firmwareVersion, "1.10");
-        assert.equal(value.data.hardwareVersion, "1.5");
-        assert.equal(value.data.heartbeatInterval, 720);
-        assert.equal(value.data.periodicInterval, 60);
-        assert.equal(value.data.sosMode, 1);
-        assert.equal(value.data.workMode, 1);
-        assert.equal(value.data.sensorEnabled, 0);
-        assert.equal(value.data.positioningStrategy, 0);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 96);
+        assert.equal(data.eventInterval, 60);
+        assert.equal(data.firmwareVersion, "1.10");
+        assert.equal(data.hardwareVersion, "1.5");
+        assert.equal(data.heartbeatInterval, 720);
+        assert.equal(data.periodicInterval, 60);
+        assert.equal(data.sosMode, 1);
+        assert.equal(data.workMode, 1);
+        assert.equal(data.sensorEnabled, 0);
+        assert.equal(data.positioningStrategy, 0);
       });
 
       consume(data);
@@ -156,16 +87,9 @@ describe("Seeed SenseCAP T1000A Sensor Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "error");
-        assert.equal(value.data.error, "");
-        assert.equal(value.data.errorCode, 0);
-
-        validateSchema(value.data, errorSchema, { throwError: true });
+      expectSample("error", errorSchema, (data) => {
+        assert.equal(data.error, "");
+        assert.equal(data.errorCode, 0);
       });
 
       consume(data);
@@ -179,59 +103,31 @@ describe("Seeed SenseCAP T1000A Sensor Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 31);
-        assert.equal(value.data.collectTime, 1694682901000);
-        assert.equal(value.data.motionId, 0);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 31);
+        assert.equal(data.collectTime, 1694682901000);
+        assert.equal(data.motionId, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "event");
-        assert.equal(value.data.endMovementEvent, false);
-        assert.equal(value.data.lightEvent, false);
-        assert.equal(value.data.motionlessEvent, false);
-        assert.equal(value.data.pressOnceEvent, false);
-        assert.equal(value.data.shockEvent, false);
-        assert.equal(value.data.sosEvent, true);
-        assert.equal(value.data.startMovementEvent, false);
-        assert.equal(value.data.temperatureEvent, false);
-
-        validateSchema(value.data, eventSchema, { throwError: true });
+      expectSample("event", eventSchema, (data) => {
+        assert.equal(data.endMovementEvent, false);
+        assert.equal(data.lightEvent, false);
+        assert.equal(data.motionlessEvent, false);
+        assert.equal(data.pressOnceEvent, false);
+        assert.equal(data.shockEvent, false);
+        assert.equal(data.sosEvent, true);
+        assert.equal(data.startMovementEvent, false);
+        assert.equal(data.temperatureEvent, false);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "gps");
-        assert.equal(value.data.latitude, 47.414228);
-        assert.equal(value.data.longitude, 8.534286);
-
-        validateSchema(value.data, gpsSchema, { throwError: true });
+      expectSample("gps", gpsSchema, (data) => {
+        assert.equal(data.latitude, 47.414228);
+        assert.equal(data.longitude, 8.534286);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.light, 100);
-        assert.equal(value.data.temperature, 24.2);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.light, 100);
+        assert.equal(data.temperature, 24.2);
       });
 
       consume(data);

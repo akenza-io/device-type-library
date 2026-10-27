@@ -1,32 +1,16 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Talkpool OY1110 Uplink", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let startupSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/startup.schema.json`)
-      .then((parsedSchema) => {
-        startupSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    startupSchema = loadSchema(`${import.meta.dirname}/startup.schema.json`);
   });
 
   describe("consume()", () => {
@@ -38,40 +22,19 @@ describe("Talkpool OY1110 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.temperature, -5.2);
-        assert.equal(value.data.humidity, 72.3);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.temperature, -5.2);
+        assert.equal(data.humidity, 72.3);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.temperature, 2.9);
-        assert.equal(value.data.humidity, 64.8);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.temperature, 2.9);
+        assert.equal(data.humidity, 64.8);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.temperature, 12.7);
-        assert.equal(value.data.humidity, 53.9);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.temperature, 12.7);
+        assert.equal(data.humidity, 53.9);
       });
 
       consume(data);
@@ -86,16 +49,9 @@ describe("Talkpool OY1110 Uplink", () => {
           },
         };
 
-        expectEmits((type, value) => {
-          assert.equal(type, "sample");
-          assert.isNotNull(value);
-          assert.typeOf(value.data, "object");
-
-          assert.equal(value.topic, "default");
-          assert.equal(value.data.temperature, 30.2);
-          assert.equal(value.data.humidity, 34);
-
-          validateSchema(value.data, defaultSchema, { throwError: true });
+        expectSample("default", defaultSchema, (data) => {
+          assert.equal(data.temperature, 30.2);
+          assert.equal(data.humidity, 34);
         });
 
         consume(data);
@@ -111,15 +67,8 @@ describe("Talkpool OY1110 Uplink", () => {
           },
         };
 
-        expectEmits((type, value) => {
-          assert.equal(type, "sample");
-          assert.isNotNull(value);
-          assert.typeOf(value.data, "object");
-
-          assert.equal(value.topic, "startup");
-          assert.equal(value.data.message, "STARTUP_OK");
-
-          validateSchema(value.data, startupSchema, { throwError: true });
+        expectSample("startup", startupSchema, (data) => {
+          assert.equal(data.message, "STARTUP_OK");
         });
 
         consume(data);

@@ -1,86 +1,28 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Yosensi YO People Counter uplink", () => {
   let batteryVoltageSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/battery_voltage.schema.json`)
-      .then((parsedSchema) => {
-        batteryVoltageSchema = parsedSchema;
-        done();
-      });
-  });
-
   let temperatureSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/temperature.schema.json`)
-      .then((parsedSchema) => {
-        temperatureSchema = parsedSchema;
-        done();
-      });
-  });
-
   let humiditySchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/humidity.schema.json`)
-      .then((parsedSchema) => {
-        humiditySchema = parsedSchema;
-        done();
-      });
-  });
-
   let leftToRightSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/left_to_right.schema.json`)
-      .then((parsedSchema) => {
-        leftToRightSchema = parsedSchema;
-        done();
-      });
-  });
-
   let rightToLeftSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/right_to_left.schema.json`)
-      .then((parsedSchema) => {
-        rightToLeftSchema = parsedSchema;
-        done();
-      });
-  });
-
   let sumLeftToRightSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/sum_left_to_right.schema.json`)
-      .then((parsedSchema) => {
-        sumLeftToRightSchema = parsedSchema;
-        done();
-      });
-  });
-
   let sumRightToLeftSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/sum_right_to_left.schema.json`)
-      .then((parsedSchema) => {
-        sumRightToLeftSchema = parsedSchema;
-        done();
-      });
-  });
-
   let differenceCountSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/difference_count.schema.json`)
-      .then((parsedSchema) => {
-        differenceCountSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    batteryVoltageSchema = loadSchema(`${import.meta.dirname}/battery_voltage.schema.json`);
+    temperatureSchema = loadSchema(`${import.meta.dirname}/temperature.schema.json`);
+    humiditySchema = loadSchema(`${import.meta.dirname}/humidity.schema.json`);
+    leftToRightSchema = loadSchema(`${import.meta.dirname}/left_to_right.schema.json`);
+    rightToLeftSchema = loadSchema(`${import.meta.dirname}/right_to_left.schema.json`);
+    sumLeftToRightSchema = loadSchema(`${import.meta.dirname}/sum_left_to_right.schema.json`);
+    sumRightToLeftSchema = loadSchema(`${import.meta.dirname}/sum_right_to_left.schema.json`);
+    differenceCountSchema = loadSchema(`${import.meta.dirname}/difference_count.schema.json`);
   });
 
   describe("consume()", () => {
@@ -92,41 +34,16 @@ describe("Yosensi YO People Counter uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "battery_voltage");
-        assert.equal(value.data.batteryVoltage, 5274);
-
-        validateSchema(value.data, batteryVoltageSchema, {
-          throwError: true,
-        });
+      expectSample("battery_voltage", batteryVoltageSchema, (data) => {
+        assert.equal(data.batteryVoltage, 5274);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "temperature");
-        assert.equal(value.data.temperature, 24.8);
-
-        validateSchema(value.data, temperatureSchema, {
-          throwError: true,
-        });
+      expectSample("temperature", temperatureSchema, (data) => {
+        assert.equal(data.temperature, 24.8);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "humidity");
-        assert.equal(value.data.humidity, 22);
-
-        validateSchema(value.data, humiditySchema, { throwError: true });
+      expectSample("humidity", humiditySchema, (data) => {
+        assert.equal(data.humidity, 22);
       });
 
       consume(data);
@@ -141,69 +58,24 @@ describe("Yosensi YO People Counter uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "left_to_right");
-        assert.equal(value.data.leftToRight, 8);
-
-        validateSchema(value.data, leftToRightSchema, {
-          throwError: true,
-        });
+      expectSample("left_to_right", leftToRightSchema, (data) => {
+        assert.equal(data.leftToRight, 8);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "right_to_left");
-        assert.equal(value.data.rightToLeft, 10);
-
-        validateSchema(value.data, rightToLeftSchema, {
-          throwError: true,
-        });
+      expectSample("right_to_left", rightToLeftSchema, (data) => {
+        assert.equal(data.rightToLeft, 10);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "sum_left_to_right");
-        assert.equal(value.data.sumLeftToRight, 38);
-
-        validateSchema(value.data, sumLeftToRightSchema, {
-          throwError: true,
-        });
+      expectSample("sum_left_to_right", sumLeftToRightSchema, (data) => {
+        assert.equal(data.sumLeftToRight, 38);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "sum_right_to_left");
-        assert.equal(value.data.sumRightToLeft, 77);
-
-        validateSchema(value.data, sumRightToLeftSchema, {
-          throwError: true,
-        });
+      expectSample("sum_right_to_left", sumRightToLeftSchema, (data) => {
+        assert.equal(data.sumRightToLeft, 77);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "difference_count");
-        assert.equal(value.data.differenceCount, -39);
-
-        validateSchema(value.data, differenceCountSchema, {
-          throwError: true,
-        });
+      expectSample("difference_count", differenceCountSchema, (data) => {
+        assert.equal(data.differenceCount, -39);
       });
 
       consume(data);

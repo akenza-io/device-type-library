@@ -1,12 +1,12 @@
 
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+import { init, loadSchema, expectSample } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+
+
+
+
 
 describe("Transmitter 600-021", () => {
   let defaultSchema = null;
@@ -14,30 +14,11 @@ describe("Transmitter 600-021", () => {
   let alarmSchema = null;
   let consume = null;
 
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
-  before((done) => {
-    loadSchema(`${__dirname}/alarm.schema.json`)
-      .then((parsedSchema) => {
-        alarmSchema = parsedSchema;
-        done();
-      });
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    alarmSchema = loadSchema(`${import.meta.dirname}/alarm.schema.json`);
   });
 
   describe("consume()", () => {
@@ -50,48 +31,27 @@ describe("Transmitter 600-021", () => {
       };
 
       // --- Lifecycle
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.id, 109);
-        assert.equal(value.data.type, 4);
-        assert.equal(value.data.seqCounter, 19);
-        assert.equal(value.data.fwVersion, 18);
-        assert.equal(value.data.batteryLevel, 100);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.id, 109);
+        assert.equal(data.type, 4);
+        assert.equal(data.seqCounter, 19);
+        assert.equal(data.fwVersion, 18);
+        assert.equal(data.batteryLevel, 100);
       });
 
       // --- Default (environmental values)
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.closeTo(value.data.temperature, 22.9, 0.1);
-        assert.closeTo(value.data.humidity, 28.8, 0.1);
-        assert.equal(value.data.msgType, "NORMAL");
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.closeTo(data.temperature, 22.9, 0.1);
+        assert.closeTo(data.humidity, 28.8, 0.1);
+        assert.equal(data.msgType, "NORMAL");
       });
 
       // --- Alarm
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "alarm");
-        assert.equal(value.data.humidityLow, false);
-        assert.equal(value.data.humidityHigh, false);
-        assert.equal(value.data.temperatureLow, false);
-        assert.equal(value.data.temperatureHigh, false);
-
-        validateSchema(value.data, alarmSchema, { throwError: true });
+      expectSample("alarm", alarmSchema, (data) => {
+        assert.equal(data.humidityLow, false);
+        assert.equal(data.humidityHigh, false);
+        assert.equal(data.temperatureLow, false);
+        assert.equal(data.temperatureHigh, false);
       });
 
       consume(data);

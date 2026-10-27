@@ -1,45 +1,19 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+import { init, loadSchema, expectSample } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 describe("MCF-LW12CO2E Uplink", () => {
   describe("consume()", () => {
     let climateSchema = null;
     let consume = null;
-    before((done) => {
-      const script = rewire(`${__dirname}/uplink.js`);
-      consume = init(script);
-      loadSchema(`${__dirname}/climate.schema.json`)
-        .then((parsedSchema) => {
-          climateSchema = parsedSchema;
-          done();
-        });
-    });
-
     let lifecycleSchema = null;
-    before((done) => {
-      const script = rewire(`${__dirname}/uplink.js`);
-      consume = init(script);
-      loadSchema(`${__dirname}/lifecycle.schema.json`)
-        .then((parsedSchema) => {
-          lifecycleSchema = parsedSchema;
-          done();
-        });
-    });
-
     let timesyncSchema = null;
-    before((done) => {
-      const script = rewire(`${__dirname}/uplink.js`);
-      consume = init(script);
-      loadSchema(`${__dirname}/time_sync.schema.json`)
-        .then((parsedSchema) => {
-          timesyncSchema = parsedSchema;
-          done();
-        });
+
+    before(() => {
+      consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+      climateSchema = loadSchema(`${import.meta.dirname}/climate.schema.json`);
+      lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+      timesyncSchema = loadSchema(`${import.meta.dirname}/time_sync.schema.json`);
     });
 
     it("should decode MCF-LW12CO2E climate payload", () => {
@@ -51,47 +25,26 @@ describe("MCF-LW12CO2E Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "climate");
-        assert.equal(value.data.temperature, 30.12);
-        assert.equal(value.data.humidity, 38);
-        assert.equal(value.data.pressure, 1009.74);
-        assert.equal(value.data.lux, 365);
-        assert.equal(value.data.voc, 25);
-        assert.equal(value.data.co2, 655);
-
-        validateSchema(value.data, climateSchema, { throwError: true });
+      expectSample("climate", climateSchema, (data) => {
+        assert.equal(data.temperature, 30.12);
+        assert.equal(data.humidity, 38);
+        assert.equal(data.pressure, 1009.74);
+        assert.equal(data.lux, 365);
+        assert.equal(data.voc, 25);
+        assert.equal(data.co2, 655);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 98);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 98);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "climate");
-        assert.equal(value.data.temperature, 30.12);
-        assert.equal(value.data.humidity, 38);
-        assert.equal(value.data.pressure, 1009.74);
-        assert.equal(value.data.lux, 370);
-        assert.equal(value.data.voc, 25);
-        assert.equal(value.data.co2, 655);
-
-        validateSchema(value.data, climateSchema, { throwError: true });
+      expectSample("climate", climateSchema, (data) => {
+        assert.equal(data.temperature, 30.12);
+        assert.equal(data.humidity, 38);
+        assert.equal(data.pressure, 1009.74);
+        assert.equal(data.lux, 370);
+        assert.equal(data.voc, 25);
+        assert.equal(data.co2, 655);
       });
 
       consume(data);
@@ -105,18 +58,11 @@ describe("MCF-LW12CO2E Uplink", () => {
           payloadHex: "01cbe38b28000223040701",
         },
       };
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "time_sync");
-        assert.equal(value.data.syncID, "cbe38b28");
-        assert.equal(value.data.syncVersion, "00.02.23");
-        assert.equal(value.data.applicationType, 407);
-        assert.equal(value.data.rfu, 1);
-
-        validateSchema(value.data, timesyncSchema, { throwError: true });
+      expectSample("time_sync", timesyncSchema, (data) => {
+        assert.equal(data.syncID, "cbe38b28");
+        assert.equal(data.syncVersion, "00.02.23");
+        assert.equal(data.applicationType, 407);
+        assert.equal(data.rfu, 1);
       });
       consume(data);
     });

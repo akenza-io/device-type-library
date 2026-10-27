@@ -1,85 +1,28 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("Comtac Cluey Uplink", () => {
   let digitalInputsSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/digital_inputs.schema.json`)
-      .then((parsedSchema) => {
-        digitalInputsSchema = parsedSchema;
-        done();
-      });
-  });
-
   let eventSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/event.schema.json`).then((parsedSchema) => {
-      eventSchema = parsedSchema;
-      done();
-    });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   let pointInfoSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/point_info.schema.json`)
-      .then((parsedSchema) => {
-        pointInfoSchema = parsedSchema;
-        done();
-      });
-  });
-
   let analogInput5Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/analog_input_5.schema.json`)
-      .then((parsedSchema) => {
-        analogInput5Schema = parsedSchema;
-        done();
-      });
-  });
-
   let analogInput6Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/analog_input_6.schema.json`)
-      .then((parsedSchema) => {
-        analogInput6Schema = parsedSchema;
-        done();
-      });
-  });
-
   let analogInput7Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/analog_input_7.schema.json`)
-      .then((parsedSchema) => {
-        analogInput7Schema = parsedSchema;
-        done();
-      });
-  });
-
   let analogInput8Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/analog_input_8.schema.json`)
-      .then((parsedSchema) => {
-        analogInput8Schema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    digitalInputsSchema = loadSchema(`${import.meta.dirname}/digital_inputs.schema.json`);
+    eventSchema = loadSchema(`${import.meta.dirname}/event.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    pointInfoSchema = loadSchema(`${import.meta.dirname}/point_info.schema.json`);
+    analogInput5Schema = loadSchema(`${import.meta.dirname}/analog_input_5.schema.json`);
+    analogInput6Schema = loadSchema(`${import.meta.dirname}/analog_input_6.schema.json`);
+    analogInput7Schema = loadSchema(`${import.meta.dirname}/analog_input_7.schema.json`);
+    analogInput8Schema = loadSchema(`${import.meta.dirname}/analog_input_8.schema.json`);
   });
 
   describe("consume()", () => {
@@ -95,83 +38,47 @@ describe("Comtac Cluey Uplink", () => {
         assert.equal(type, "log");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "analog_input_5");
-        assert.equal(value.data.cyclic, true);
-        assert.equal(value.data.event, false);
-        assert.equal(value.data.interrogation, false);
-        assert.equal(value.data.invalid, false);
-        assert.equal(value.data.limit, false);
-        assert.equal(value.data.limit1, false);
-        assert.equal(value.data.limit2, false);
-        assert.equal(value.data.overflow, false);
-        assert.equal(value.data.value, 7907);
-
-        validateSchema(value.data, analogInput5Schema, {
-          throwError: true,
-        });
+      expectSample("analog_input_5", analogInput5Schema, (data) => {
+        assert.equal(data.cyclic, true);
+        assert.equal(data.event, false);
+        assert.equal(data.interrogation, false);
+        assert.equal(data.invalid, false);
+        assert.equal(data.limit, false);
+        assert.equal(data.limit1, false);
+        assert.equal(data.limit2, false);
+        assert.equal(data.overflow, false);
+        assert.equal(data.value, 7907);
       });
 
       expectEmits((type, value) => {
         assert.equal(type, "log");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "analog_input_6");
-        assert.equal(value.data.cyclic, true);
-        assert.equal(value.data.event, false);
-        assert.equal(value.data.interrogation, false);
-        assert.equal(value.data.invalid, true);
-        assert.equal(value.data.limit, false);
-        assert.equal(value.data.limit1, true);
-        assert.equal(value.data.limit2, false);
-        assert.equal(value.data.overflow, false);
-        assert.equal(value.data.value, 0);
-
-        validateSchema(value.data, analogInput6Schema, {
-          throwError: true,
-        });
+      expectSample("analog_input_6", analogInput6Schema, (data) => {
+        assert.equal(data.cyclic, true);
+        assert.equal(data.event, false);
+        assert.equal(data.interrogation, false);
+        assert.equal(data.invalid, true);
+        assert.equal(data.limit, false);
+        assert.equal(data.limit1, true);
+        assert.equal(data.limit2, false);
+        assert.equal(data.overflow, false);
+        assert.equal(data.value, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "event");
-        assert.equal(value.data.eventType, "AI_DATA");
-
-        validateSchema(value.data, eventSchema, {
-          throwError: true,
-        });
+      expectSample("event", eventSchema, (data) => {
+        assert.equal(data.eventType, "AI_DATA");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryPowered, false);
-        assert.equal(value.data.bufferOverflow, false);
-        assert.equal(value.data.configurationError, false);
-        assert.equal(value.data.confirmationTimeout, false);
-        assert.equal(value.data.deviceRestarted, false);
-        assert.equal(value.data.lowSupplyVoltage, false);
-        assert.equal(value.data.timeSynced, true);
-        assert.equal(value.data.txCreditsConsumed, false);
-
-        validateSchema(value.data, lifecycleSchema, {
-          throwError: true,
-        });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryPowered, false);
+        assert.equal(data.bufferOverflow, false);
+        assert.equal(data.configurationError, false);
+        assert.equal(data.confirmationTimeout, false);
+        assert.equal(data.deviceRestarted, false);
+        assert.equal(data.lowSupplyVoltage, false);
+        assert.equal(data.timeSynced, true);
+        assert.equal(data.txCreditsConsumed, false);
       });
 
       consume(data);
@@ -185,207 +92,135 @@ describe("Comtac Cluey Uplink", () => {
             "100128df5fee66011141000012410000134100001441000015410000164100001741000018410000",
         },
       };
-      const script = rewire(`${__dirname}/uplink.js`);
+      const script = rewire(`${import.meta.dirname}/uplink.js`);
       consume = init(script);
 
       expectEmits((type, value) => {
         assert.equal(type, "log");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "point_info");
-        assert.equal(value.data.blocked, false);
-        assert.equal(value.data.cyclic, false);
-        assert.equal(value.data.event, false);
-        assert.equal(value.data.id, 1);
-        assert.equal(value.data.interrogation, true);
-        assert.equal(value.data.limit, false);
-        assert.equal(value.data.type, "SINGLE_POINT_INFO");
-
-        validateSchema(value.data, pointInfoSchema, { throwError: true });
+      expectSample("point_info", pointInfoSchema, (data) => {
+        assert.equal(data.blocked, false);
+        assert.equal(data.cyclic, false);
+        assert.equal(data.event, false);
+        assert.equal(data.id, 1);
+        assert.equal(data.interrogation, true);
+        assert.equal(data.limit, false);
+        assert.equal(data.type, "SINGLE_POINT_INFO");
       });
 
       expectEmits((type, value) => {
         assert.equal(type, "log");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "point_info");
-        assert.equal(value.data.blocked, false);
-        assert.equal(value.data.cyclic, false);
-        assert.equal(value.data.event, false);
-        assert.equal(value.data.id, 2);
-        assert.equal(value.data.interrogation, true);
-        assert.equal(value.data.limit, false);
-        assert.equal(value.data.type, "SINGLE_POINT_INFO");
-
-        validateSchema(value.data, pointInfoSchema, { throwError: true });
+      expectSample("point_info", pointInfoSchema, (data) => {
+        assert.equal(data.blocked, false);
+        assert.equal(data.cyclic, false);
+        assert.equal(data.event, false);
+        assert.equal(data.id, 2);
+        assert.equal(data.interrogation, true);
+        assert.equal(data.limit, false);
+        assert.equal(data.type, "SINGLE_POINT_INFO");
       });
 
       expectEmits((type, value) => {
         assert.equal(type, "log");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "point_info");
-        assert.equal(value.data.blocked, false);
-        assert.equal(value.data.cyclic, false);
-        assert.equal(value.data.event, false);
-        assert.equal(value.data.id, 3);
-        assert.equal(value.data.interrogation, true);
-        assert.equal(value.data.limit, false);
-        assert.equal(value.data.type, "SINGLE_POINT_INFO");
-
-        validateSchema(value.data, pointInfoSchema, { throwError: true });
+      expectSample("point_info", pointInfoSchema, (data) => {
+        assert.equal(data.blocked, false);
+        assert.equal(data.cyclic, false);
+        assert.equal(data.event, false);
+        assert.equal(data.id, 3);
+        assert.equal(data.interrogation, true);
+        assert.equal(data.limit, false);
+        assert.equal(data.type, "SINGLE_POINT_INFO");
       });
 
       expectEmits((type, value) => {
         assert.equal(type, "log");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "point_info");
-        assert.equal(value.data.blocked, false);
-        assert.equal(value.data.cyclic, false);
-        assert.equal(value.data.event, false);
-        assert.equal(value.data.id, 4);
-        assert.equal(value.data.interrogation, true);
-        assert.equal(value.data.limit, false);
-        assert.equal(value.data.type, "SINGLE_POINT_INFO");
-
-        validateSchema(value.data, pointInfoSchema, { throwError: true });
+      expectSample("point_info", pointInfoSchema, (data) => {
+        assert.equal(data.blocked, false);
+        assert.equal(data.cyclic, false);
+        assert.equal(data.event, false);
+        assert.equal(data.id, 4);
+        assert.equal(data.interrogation, true);
+        assert.equal(data.limit, false);
+        assert.equal(data.type, "SINGLE_POINT_INFO");
       });
 
       expectEmits((type, value) => {
         assert.equal(type, "log");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "point_info");
-        assert.equal(value.data.blocked, false);
-        assert.equal(value.data.cyclic, false);
-        assert.equal(value.data.event, false);
-        assert.equal(value.data.id, 5);
-        assert.equal(value.data.interrogation, true);
-        assert.equal(value.data.limit, false);
-        assert.equal(value.data.type, "SINGLE_POINT_INFO");
-
-        validateSchema(value.data, pointInfoSchema, { throwError: true });
+      expectSample("point_info", pointInfoSchema, (data) => {
+        assert.equal(data.blocked, false);
+        assert.equal(data.cyclic, false);
+        assert.equal(data.event, false);
+        assert.equal(data.id, 5);
+        assert.equal(data.interrogation, true);
+        assert.equal(data.limit, false);
+        assert.equal(data.type, "SINGLE_POINT_INFO");
       });
 
       expectEmits((type, value) => {
         assert.equal(type, "log");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "point_info");
-        assert.equal(value.data.blocked, false);
-        assert.equal(value.data.cyclic, false);
-        assert.equal(value.data.event, false);
-        assert.equal(value.data.id, 6);
-        assert.equal(value.data.interrogation, true);
-        assert.equal(value.data.limit, false);
-        assert.equal(value.data.type, "SINGLE_POINT_INFO");
-
-        validateSchema(value.data, pointInfoSchema, { throwError: true });
+      expectSample("point_info", pointInfoSchema, (data) => {
+        assert.equal(data.blocked, false);
+        assert.equal(data.cyclic, false);
+        assert.equal(data.event, false);
+        assert.equal(data.id, 6);
+        assert.equal(data.interrogation, true);
+        assert.equal(data.limit, false);
+        assert.equal(data.type, "SINGLE_POINT_INFO");
       });
 
       expectEmits((type, value) => {
         assert.equal(type, "log");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "point_info");
-        assert.equal(value.data.blocked, false);
-        assert.equal(value.data.cyclic, false);
-        assert.equal(value.data.event, false);
-        assert.equal(value.data.id, 7);
-        assert.equal(value.data.interrogation, true);
-        assert.equal(value.data.limit, false);
-        assert.equal(value.data.type, "SINGLE_POINT_INFO");
-
-        validateSchema(value.data, pointInfoSchema, { throwError: true });
+      expectSample("point_info", pointInfoSchema, (data) => {
+        assert.equal(data.blocked, false);
+        assert.equal(data.cyclic, false);
+        assert.equal(data.event, false);
+        assert.equal(data.id, 7);
+        assert.equal(data.interrogation, true);
+        assert.equal(data.limit, false);
+        assert.equal(data.type, "SINGLE_POINT_INFO");
       });
 
       expectEmits((type, value) => {
         assert.equal(type, "log");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "point_info");
-        assert.equal(value.data.blocked, false);
-        assert.equal(value.data.cyclic, false);
-        assert.equal(value.data.event, false);
-        assert.equal(value.data.id, 8);
-        assert.equal(value.data.interrogation, true);
-        assert.equal(value.data.limit, false);
-        assert.equal(value.data.type, "SINGLE_POINT_INFO");
-
-        validateSchema(value.data, pointInfoSchema, { throwError: true });
+      expectSample("point_info", pointInfoSchema, (data) => {
+        assert.equal(data.blocked, false);
+        assert.equal(data.cyclic, false);
+        assert.equal(data.event, false);
+        assert.equal(data.id, 8);
+        assert.equal(data.interrogation, true);
+        assert.equal(data.limit, false);
+        assert.equal(data.type, "SINGLE_POINT_INFO");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "event");
-        assert.equal(value.data.eventType, "DI_DATA");
-
-        validateSchema(value.data, eventSchema, {
-          throwError: true,
-        });
+      expectSample("event", eventSchema, (data) => {
+        assert.equal(data.eventType, "DI_DATA");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 88);
-        assert.equal(value.data.batteryPowered, true);
-        assert.equal(value.data.bufferOverflow, false);
-        assert.equal(value.data.configurationError, false);
-        assert.equal(value.data.confirmationTimeout, false);
-        assert.equal(value.data.deviceRestarted, true);
-        assert.equal(value.data.lowSupplyVoltage, false);
-        assert.equal(value.data.timeSynced, false);
-        assert.equal(value.data.txCreditsConsumed, false);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 88);
+        assert.equal(data.batteryPowered, true);
+        assert.equal(data.bufferOverflow, false);
+        assert.equal(data.configurationError, false);
+        assert.equal(data.confirmationTimeout, false);
+        assert.equal(data.deviceRestarted, true);
+        assert.equal(data.lowSupplyVoltage, false);
+        assert.equal(data.timeSynced, false);
+        assert.equal(data.txCreditsConsumed, false);
       });
 
       consume(data);
@@ -399,157 +234,94 @@ describe("Comtac Cluey Uplink", () => {
             "110304bc64c2376680000300000000000000000000000000000000000000005588000000568800000057880000005888000000",
         },
       };
-      const script = rewire(`${__dirname}/uplink.js`);
+      const script = rewire(`${import.meta.dirname}/uplink.js`);
       consume = init(script);
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "digital_inputs");
-        assert.equal(value.data.cyclic, true);
-        assert.equal(value.data.event, false);
-        assert.equal(value.data.interrogation, false);
-        assert.equal(value.data.limit, false);
-        assert.equal(value.data.digitalInput1, true);
-        assert.equal(value.data.digitalInput2, true);
-        assert.equal(value.data.digitalInput3, false);
-        assert.equal(value.data.digitalInput4, false);
-        assert.equal(value.data.digitalInput5, false);
-        assert.equal(value.data.digitalInput6, false);
-        assert.equal(value.data.digitalInput7, false);
-        assert.equal(value.data.digitalInput8, false);
-        assert.equal(value.data.digitalInput9, false);
-        assert.equal(value.data.digitalInput10, false);
-        assert.equal(value.data.digitalInput11, false);
-        assert.equal(value.data.digitalInput12, false);
-        assert.equal(value.data.digitalInput13, false);
-        assert.equal(value.data.digitalInput14, false);
-        assert.equal(value.data.digitalInput15, false);
-        assert.equal(value.data.digitalInput16, false);
-
-        validateSchema(value.data, digitalInputsSchema, {
-          throwError: true,
-        });
+      expectSample("digital_inputs", digitalInputsSchema, (data) => {
+        assert.equal(data.cyclic, true);
+        assert.equal(data.event, false);
+        assert.equal(data.interrogation, false);
+        assert.equal(data.limit, false);
+        assert.equal(data.digitalInput1, true);
+        assert.equal(data.digitalInput2, true);
+        assert.equal(data.digitalInput3, false);
+        assert.equal(data.digitalInput4, false);
+        assert.equal(data.digitalInput5, false);
+        assert.equal(data.digitalInput6, false);
+        assert.equal(data.digitalInput7, false);
+        assert.equal(data.digitalInput8, false);
+        assert.equal(data.digitalInput9, false);
+        assert.equal(data.digitalInput10, false);
+        assert.equal(data.digitalInput11, false);
+        assert.equal(data.digitalInput12, false);
+        assert.equal(data.digitalInput13, false);
+        assert.equal(data.digitalInput14, false);
+        assert.equal(data.digitalInput15, false);
+        assert.equal(data.digitalInput16, false);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "analog_input_5");
-        assert.equal(value.data.cyclic, true);
-        assert.equal(value.data.event, false);
-        assert.equal(value.data.interrogation, false);
-        assert.equal(value.data.invalid, true);
-        assert.equal(value.data.limit, false);
-        assert.equal(value.data.limit1, false);
-        assert.equal(value.data.limit2, false);
-        assert.equal(value.data.overflow, false);
-        assert.equal(value.data.value, 0);
-
-        validateSchema(value.data, analogInput5Schema, {
-          throwError: true,
-        });
+      expectSample("analog_input_5", analogInput5Schema, (data) => {
+        assert.equal(data.cyclic, true);
+        assert.equal(data.event, false);
+        assert.equal(data.interrogation, false);
+        assert.equal(data.invalid, true);
+        assert.equal(data.limit, false);
+        assert.equal(data.limit1, false);
+        assert.equal(data.limit2, false);
+        assert.equal(data.overflow, false);
+        assert.equal(data.value, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "analog_input_6");
-        assert.equal(value.data.cyclic, true);
-        assert.equal(value.data.event, false);
-        assert.equal(value.data.interrogation, false);
-        assert.equal(value.data.invalid, true);
-        assert.equal(value.data.limit, false);
-        assert.equal(value.data.limit1, false);
-        assert.equal(value.data.limit2, false);
-        assert.equal(value.data.overflow, false);
-        assert.equal(value.data.value, 0);
-
-        validateSchema(value.data, analogInput6Schema, {
-          throwError: true,
-        });
+      expectSample("analog_input_6", analogInput6Schema, (data) => {
+        assert.equal(data.cyclic, true);
+        assert.equal(data.event, false);
+        assert.equal(data.interrogation, false);
+        assert.equal(data.invalid, true);
+        assert.equal(data.limit, false);
+        assert.equal(data.limit1, false);
+        assert.equal(data.limit2, false);
+        assert.equal(data.overflow, false);
+        assert.equal(data.value, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "analog_input_7");
-        assert.equal(value.data.cyclic, true);
-        assert.equal(value.data.event, false);
-        assert.equal(value.data.interrogation, false);
-        assert.equal(value.data.invalid, true);
-        assert.equal(value.data.limit, false);
-        assert.equal(value.data.limit1, false);
-        assert.equal(value.data.limit2, false);
-        assert.equal(value.data.overflow, false);
-        assert.equal(value.data.value, 0);
-
-        validateSchema(value.data, analogInput7Schema, {
-          throwError: true,
-        });
+      expectSample("analog_input_7", analogInput7Schema, (data) => {
+        assert.equal(data.cyclic, true);
+        assert.equal(data.event, false);
+        assert.equal(data.interrogation, false);
+        assert.equal(data.invalid, true);
+        assert.equal(data.limit, false);
+        assert.equal(data.limit1, false);
+        assert.equal(data.limit2, false);
+        assert.equal(data.overflow, false);
+        assert.equal(data.value, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "analog_input_8");
-        assert.equal(value.data.cyclic, true);
-        assert.equal(value.data.event, false);
-        assert.equal(value.data.interrogation, false);
-        assert.equal(value.data.invalid, true);
-        assert.equal(value.data.limit, false);
-        assert.equal(value.data.limit1, false);
-        assert.equal(value.data.limit2, false);
-        assert.equal(value.data.overflow, false);
-        assert.equal(value.data.value, 0);
-
-        validateSchema(value.data, analogInput8Schema, {
-          throwError: true,
-        });
+      expectSample("analog_input_8", analogInput8Schema, (data) => {
+        assert.equal(data.cyclic, true);
+        assert.equal(data.event, false);
+        assert.equal(data.interrogation, false);
+        assert.equal(data.invalid, true);
+        assert.equal(data.limit, false);
+        assert.equal(data.limit1, false);
+        assert.equal(data.limit2, false);
+        assert.equal(data.overflow, false);
+        assert.equal(data.value, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "event");
-        assert.equal(value.data.eventType, "FIXED_DATA");
-
-        validateSchema(value.data, eventSchema, {
-          throwError: true,
-        });
+      expectSample("event", eventSchema, (data) => {
+        assert.equal(data.eventType, "FIXED_DATA");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 74);
-        assert.equal(value.data.batteryPowered, false);
-        assert.equal(value.data.bufferOverflow, false);
-        assert.equal(value.data.configurationError, false);
-        assert.equal(value.data.confirmationTimeout, false);
-        assert.equal(value.data.deviceRestarted, false);
-        assert.equal(value.data.lowSupplyVoltage, false);
-        assert.equal(value.data.timeSynced, true);
-        assert.equal(value.data.txCreditsConsumed, false);
-
-        validateSchema(value.data, lifecycleSchema, {
-          throwError: true,
-        });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 74);
+        assert.equal(data.batteryPowered, false);
+        assert.equal(data.bufferOverflow, false);
+        assert.equal(data.configurationError, false);
+        assert.equal(data.confirmationTimeout, false);
+        assert.equal(data.deviceRestarted, false);
+        assert.equal(data.lowSupplyVoltage, false);
+        assert.equal(data.timeSynced, true);
+        assert.equal(data.txCreditsConsumed, false);
       });
 
       consume(data);

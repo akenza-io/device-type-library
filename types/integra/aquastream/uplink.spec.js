@@ -1,40 +1,18 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Integra aquastream uplink", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let alarmSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/alarm.schema.json`).then((parsedSchema) => {
-      alarmSchema = parsedSchema;
-      done();
-    });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    alarmSchema = loadSchema(`${import.meta.dirname}/alarm.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
   });
 
   describe("consume()", () => {
@@ -46,57 +24,34 @@ describe("Integra aquastream uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.backflow, 0);
-        assert.equal(value.data.volume, 12000);
-        assert.equal(value.data.volumeM3, 12);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.backflow, 0);
+        assert.equal(data.volume, 12000);
+        assert.equal(data.volumeM3, 12);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "alarm");
-
-        assert.equal(value.data.batteryLow, false);
-        assert.equal(value.data.burstAlarm, false);
-        assert.equal(value.data.leak, false);
-        assert.equal(value.data.noConsumption, false);
-        assert.equal(value.data.overflow, false);
-        assert.equal(value.data.reverseFlow, false);
-        assert.equal(value.data.tamperAlarm, false);
-
-        validateSchema(value.data, alarmSchema, { throwError: true });
+      expectSample("alarm", alarmSchema, (data) => {
+        assert.equal(data.batteryLow, false);
+        assert.equal(data.burstAlarm, false);
+        assert.equal(data.leak, false);
+        assert.equal(data.noConsumption, false);
+        assert.equal(data.overflow, false);
+        assert.equal(data.reverseFlow, false);
+        assert.equal(data.tamperAlarm, false);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-
-        assert.equal(value.data.batteryLifetime, 5835);
-        assert.equal(value.data.configuration, 32);
-        assert.equal(value.data.manufacturerCode, "25B4");
-        assert.equal(value.data.meterAddress, "04515321");
-        assert.equal(value.data.meterVersion, 1);
-        assert.equal(value.data.moduleNumber, "10039309");
-        assert.equal(value.data.statusField, 0);
-        assert.equal(value.data.systemComponent, 14);
-        assert.equal(value.data.transmitionCounter, 1);
-        assert.equal(value.data.versionNumber, 5);
-        assert.equal(value.data.waterType, 7);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLifetime, 5835);
+        assert.equal(data.configuration, 32);
+        assert.equal(data.manufacturerCode, "25B4");
+        assert.equal(data.meterAddress, "04515321");
+        assert.equal(data.meterVersion, 1);
+        assert.equal(data.moduleNumber, "10039309");
+        assert.equal(data.statusField, 0);
+        assert.equal(data.systemComponent, 14);
+        assert.equal(data.transmitionCounter, 1);
+        assert.equal(data.versionNumber, 5);
+        assert.equal(data.waterType, 7);
       });
 
       consume(data);

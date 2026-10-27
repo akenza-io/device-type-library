@@ -1,54 +1,20 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("CT101 Uplink", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let systemSchema = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/system.schema.json`).then((parsedSchema) => {
-      systemSchema = parsedSchema;
-      done();
-    });
-  });
-
   let alarmSchema = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/alarm.schema.json`).then((parsedSchema) => {
-      alarmSchema = parsedSchema;
-      done();
-    });
-  });
-
   let totalCurrentSchema = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/total_current.schema.json`)
-      .then((parsedSchema) => {
-        totalCurrentSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    systemSchema = loadSchema(`${import.meta.dirname}/system.schema.json`);
+    alarmSchema = loadSchema(`${import.meta.dirname}/alarm.schema.json`);
+    totalCurrentSchema = loadSchema(`${import.meta.dirname}/total_current.schema.json`);
   });
 
   describe("consume()", () => {
@@ -60,19 +26,12 @@ describe("CT101 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "system");
-        assert.equal(value.data.firmwareVersion, "1.1");
-        assert.equal(value.data.hardwareVersion, "1.0");
-        assert.equal(value.data.ipsoVersion, "0.1");
-        assert.equal(value.data.powerOn, true);
-        assert.equal(value.data.sn, "6746d38802580000");
-
-        validateSchema(value.data, systemSchema, { throwError: true });
+      expectSample("system", systemSchema, (data) => {
+        assert.equal(data.firmwareVersion, "1.1");
+        assert.equal(data.hardwareVersion, "1.0");
+        assert.equal(data.ipsoVersion, "0.1");
+        assert.equal(data.powerOn, true);
+        assert.equal(data.sn, "6746d38802580000");
       });
 
       consume(data);
@@ -86,17 +45,8 @@ describe("CT101 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "total_current");
-        assert.equal(value.data.totalCurrent, 100);
-
-        validateSchema(value.data, totalCurrentSchema, {
-          throwError: true,
-        });
+      expectSample("total_current", totalCurrentSchema, (data) => {
+        assert.equal(data.totalCurrent, 100);
       });
 
       consume(data);
@@ -110,35 +60,17 @@ describe("CT101 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.current, 25);
-        assert.equal(value.data.currentMin, 20);
-        assert.equal(value.data.currentMax, 30);
-
-        validateSchema(value.data, defaultSchema, {
-          throwError: true,
-        });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.current, 25);
+        assert.equal(data.currentMin, 20);
+        assert.equal(data.currentMax, 30);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "alarm");
-        assert.equal(value.data.overRangeAlarm, true);
-        assert.equal(value.data.overRangeAlarmRelease, false);
-        assert.equal(value.data.thresholdAlarm, true);
-        assert.equal(value.data.thresholdAlarmRelease, false);
-
-        validateSchema(value.data, alarmSchema, {
-          throwError: true,
-        });
+      expectSample("alarm", alarmSchema, (data) => {
+        assert.equal(data.overRangeAlarm, true);
+        assert.equal(data.overRangeAlarmRelease, false);
+        assert.equal(data.thresholdAlarm, true);
+        assert.equal(data.thresholdAlarmRelease, false);
       });
 
       consume(data);

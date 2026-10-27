@@ -1,24 +1,19 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+import { init, loadSchema, expectSample } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+
+
+
+
 
 describe("inBiot WELL Uplink", () => {
   let defaultSchema = null;
   let consume = null;
 
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
   });
 
   describe("consume()", () => {
@@ -30,34 +25,27 @@ describe("inBiot WELL Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.type, "WELL");
-        assert.equal(value.data.temperature, 21.6);
-        assert.equal(value.data.humidity, 51.9);
-        assert.equal(value.data.co2, 815);
-        assert.equal(value.data.tvoc, 0);
-        assert.equal(value.data.pm2_5, 1);
-        assert.equal(value.data.pm10, 1);
-        assert.equal(value.data.ch2o, 2);
-        assert.equal(value.data.pm1, 1);
-        assert.equal(value.data.pm4, 1);
-        assert.equal(value.data.o3Status, "Preheating");
-        assert.equal(value.data.no2Status, "Preheating");
-        assert.equal(value.data.coStatus, "Preheating");
-        assert.equal(value.data.vIndex, 52);
-        assert.equal(value.data.tIndex, 64);
-        assert.equal(value.data.virusIndex, 49);
-        assert.equal(value.data.iaqIndex, 79);
-        assert.equal(value.data.moldIndexStatus, "Calculating");
-        assert.equal(value.data.noiseStatus, "Preheating");
-        assert.equal(value.data.counter, 2);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.type, "WELL");
+        assert.equal(data.temperature, 21.6);
+        assert.equal(data.humidity, 51.9);
+        assert.equal(data.co2, 815);
+        assert.equal(data.tvoc, 0);
+        assert.equal(data.pm2_5, 1);
+        assert.equal(data.pm10, 1);
+        assert.equal(data.ch2o, 2);
+        assert.equal(data.pm1, 1);
+        assert.equal(data.pm4, 1);
+        assert.equal(data.o3Status, "Preheating");
+        assert.equal(data.no2Status, "Preheating");
+        assert.equal(data.coStatus, "Preheating");
+        assert.equal(data.vIndex, 52);
+        assert.equal(data.tIndex, 64);
+        assert.equal(data.virusIndex, 49);
+        assert.equal(data.iaqIndex, 79);
+        assert.equal(data.moldIndexStatus, "Calculating");
+        assert.equal(data.noiseStatus, "Preheating");
+        assert.equal(data.counter, 2);
       });
 
       consume(data);

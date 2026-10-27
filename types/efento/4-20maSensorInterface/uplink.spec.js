@@ -1,41 +1,18 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Efento Uplink", () => {
   let consume = null;
   let configurationSchema = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/configuration.schema.json`)
-      .then((parsedSchema) => {
-        configurationSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   let measurementsSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/measurements.schema.json`)
-      .then((parsedSchema) => {
-        measurementsSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    configurationSchema = loadSchema(`${import.meta.dirname}/configuration.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    measurementsSchema = loadSchema(`${import.meta.dirname}/measurements.schema.json`);
   });
 
   describe("consume()", () => {
@@ -230,29 +207,24 @@ describe("Efento Uplink", () => {
         "timestamp": "2026-05-20T08:29:02.839048301Z"
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "configuration");
-        assert.equal(value.data.configurationErrorTimestamp, 1779265742);
-        assert.deepEqual(value.data.configurationErrors, [
+      expectSample("configuration", configurationSchema, (data) => {
+        assert.equal(data.configurationErrorTimestamp, 1779265742);
+        assert.deepEqual(data.configurationErrors, [
           47887,
           47887,
         ]);
-        assert.equal(value.data.modemBandsMask, 2084);
-        assert.equal(value.data.measurementPeriodFactor, 1);
-        assert.equal(value.data.dataServerPort, 5683);
-        assert.equal(value.data.configurationEndpoint, "efento/c");
-        assert.equal(value.data.rules.length, 12);
-        assert.equal(value.data.measurementPeriodBase, 30);
-        assert.equal(value.data.dnsTtlConfig, 864002);
-        assert.equal(value.data.configurationHashTimestamp, 1778563312);
-        assert.equal(value.data.payloadSplitInfo, 1);
-        assert.equal(value.data.transferLimitTimer, 65535);
-        assert.equal(value.data.bleTxPowerLevel, 1);
-        assert.deepEqual(value.data.cellularConfigParams, [
+        assert.equal(data.modemBandsMask, 2084);
+        assert.equal(data.measurementPeriodFactor, 1);
+        assert.equal(data.dataServerPort, 5683);
+        assert.equal(data.configurationEndpoint, "efento/c");
+        assert.equal(data.rules.length, 12);
+        assert.equal(data.measurementPeriodBase, 30);
+        assert.equal(data.dnsTtlConfig, 864002);
+        assert.equal(data.configurationHashTimestamp, 1778563312);
+        assert.equal(data.payloadSplitInfo, 1);
+        assert.equal(data.transferLimitTimer, 65535);
+        assert.equal(data.bleTxPowerLevel, 1);
+        assert.deepEqual(data.cellularConfigParams, [
           13,
           2,
           61,
@@ -270,19 +242,19 @@ describe("Efento Uplink", () => {
           0,
           0,
         ]);
-        assert.equal(value.data.dataServerIp, "coap.akenza.io");
-        assert.equal(value.data.updateServerPortCoap, 5680);
-        assert.equal(value.data.payloadSignatureCoapOption, 65000);
-        assert.equal(value.data.updateServerIp, "18.184.24.239");
-        assert.equal(value.data.configurationHash, 27);
-        assert.equal(value.data.serialNumber, "KCwCQyHT");
-        assert.deepEqual(value.data.dnsServerIp, [
+        assert.equal(data.dataServerIp, "coap.akenza.io");
+        assert.equal(data.updateServerPortCoap, 5680);
+        assert.equal(data.payloadSignatureCoapOption, 65000);
+        assert.equal(data.updateServerIp, "18.184.24.239");
+        assert.equal(data.configurationHash, 27);
+        assert.equal(data.serialNumber, "KCwCQyHT");
+        assert.deepEqual(data.dnsServerIp, [
           255,
           255,
           255,
           255,
         ]);
-        assert.deepEqual(value.data.ledConfig, [
+        assert.deepEqual(data.ledConfig, [
           3,
           18,
           255,
@@ -293,8 +265,8 @@ describe("Efento Uplink", () => {
           20,
           8,
         ]);
-        assert.equal(value.data.bleTurnoffTime, 4294967295);
-        assert.deepEqual(value.data.channelTypes, [
+        assert.equal(data.bleTurnoffTime, 4294967295);
+        assert.deepEqual(data.channelTypes, [
           "MEASUREMENT_TYPE_CURRENT_PRECISE",
           "MEASUREMENT_TYPE_CURRENT_PRECISE",
           "MEASUREMENT_TYPE_NO_SENSOR",
@@ -302,15 +274,15 @@ describe("Efento Uplink", () => {
           "MEASUREMENT_TYPE_NO_SENSOR",
           "MEASUREMENT_TYPE_NO_SENSOR",
         ]);
-        assert.equal(value.data.networkTroubleshooting, 1);
-        assert.equal(value.data.cloudTokenCoapOption, 65000);
-        assert.equal(value.data.updateServerPortUdp, 50000);
-        assert.equal(value.data.supervisionPeriod, 172800);
-        assert.equal(value.data.ackInterval, 4294967295);
-        assert.equal(value.data.timeEndpoint, "efento/t");
-        assert.equal(value.data.plmnSelection, 4294967295);
-        assert.equal(value.data.transferLimit, 65535);
-        assert.deepEqual(value.data.calendars, [
+        assert.equal(data.networkTroubleshooting, 1);
+        assert.equal(data.cloudTokenCoapOption, 65000);
+        assert.equal(data.updateServerPortUdp, 50000);
+        assert.equal(data.supervisionPeriod, 172800);
+        assert.equal(data.ackInterval, 4294967295);
+        assert.equal(data.timeEndpoint, "efento/t");
+        assert.equal(data.plmnSelection, 4294967295);
+        assert.equal(data.transferLimit, 65535);
+        assert.deepEqual(data.calendars, [
           {
             type: "CALENDAR_TYPE_DISABLED",
           },
@@ -330,12 +302,12 @@ describe("Efento Uplink", () => {
             type: "CALENDAR_TYPE_DISABLED",
           },
         ]);
-        assert.equal(value.data.cloudTokenConfig, 1);
-        assert.equal(value.data.deviceInfoEndpoint, "efento/i");
-        assert.equal(value.data.transmissionInterval, 60);
-        assert.equal(value.data.dataEndpoint, "efento/m");
-        assert.equal(value.data.networkSearchDisablePeriodBase, 90);
-        assert.deepEqual(value.data.networkSearchTimeSchemaLastRegistrationNotOk, [
+        assert.equal(data.cloudTokenConfig, 1);
+        assert.equal(data.deviceInfoEndpoint, "efento/i");
+        assert.equal(data.transmissionInterval, 60);
+        assert.equal(data.dataEndpoint, "efento/m");
+        assert.equal(data.networkSearchDisablePeriodBase, 90);
+        assert.deepEqual(data.networkSearchTimeSchemaLastRegistrationNotOk, [
           21,
           2,
           2,
@@ -343,8 +315,8 @@ describe("Efento Uplink", () => {
           2,
           2,
         ]);
-        assert.equal(value.data.networkSearchCounterMax, 8);
-        assert.deepEqual(value.data.networkSearchTimeSchemaLastRegistrationOk, [
+        assert.equal(data.networkSearchCounterMax, 8);
+        assert.deepEqual(data.networkSearchTimeSchemaLastRegistrationOk, [
           2,
           2,
           4,
@@ -352,13 +324,9 @@ describe("Efento Uplink", () => {
           2,
           21,
         ]);
-        assert.equal(value.data.bleAdvertisingPeriodMode, "BLE_ADVERTISING_PERIOD_MODE_DEFAULT");
-        assert.equal(value.data.bleAdvertisingPeriodNormal, 1636);
-        assert.equal(value.data.bleAdvertisingPeriodFast, 818);
-
-        validateSchema(value.data, configurationSchema, {
-          throwError: true,
-        });
+        assert.equal(data.bleAdvertisingPeriodMode, "BLE_ADVERTISING_PERIOD_MODE_DEFAULT");
+        assert.equal(data.bleAdvertisingPeriodNormal, 1636);
+        assert.equal(data.bleAdvertisingPeriodFast, 818);
       });
 
       consume(data);
@@ -395,19 +363,10 @@ describe("Efento Uplink", () => {
         "timestamp": "2026-05-20T08:29:01.486719220Z"
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryStatus, "OK");
-        assert.equal(value.data.signalStrength, -110);
-        assert.equal(value.data.nextTransmissionAt, '2026-05-20T08:35:56Z');
-
-        validateSchema(value.data, lifecycleSchema, {
-          throwError: true,
-        });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryStatus, "OK");
+        assert.equal(data.signalStrength, -110);
+        assert.equal(data.nextTransmissionAt, '2026-05-20T08:35:56Z');
       });
 
       consume(data);
@@ -444,19 +403,10 @@ describe("Efento Uplink", () => {
         "timestamp": "2026-05-20T08:28:30Z"
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "measurements");
-        assert.equal(value.data.currentPrecise1, 11.796);
-        assert.equal(value.data.currentPrecise2, -0.001);
-        assert.equal(value.data.measurementInterval, 50);
-
-        validateSchema(value.data, measurementsSchema, {
-          throwError: true,
-        });
+      expectSample("measurements", measurementsSchema, (data) => {
+        assert.equal(data.currentPrecise1, 11.796);
+        assert.equal(data.currentPrecise2, -0.001);
+        assert.equal(data.measurementInterval, 50);
       });
 
       consume(data);

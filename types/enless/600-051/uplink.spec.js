@@ -1,12 +1,12 @@
 
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+import { init, loadSchema, expectEmits, expectSample, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+
+
+
+
 
 describe("Transmitter 600-051", () => {
   let defaultSchema = null;
@@ -15,40 +15,12 @@ describe("Transmitter 600-051", () => {
   let datalogSchema = null;
   let consume = null;
 
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/datalog.schema.json`)
-      .then((parsedSchema) => {
-        datalogSchema = parsedSchema;
-        done();
-      });
-  });
-
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
-  before((done) => {
-    loadSchema(`${__dirname}/alarm.schema.json`)
-      .then((parsedSchema) => {
-        alarmSchema = parsedSchema;
-        done();
-      });
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    datalogSchema = loadSchema(`${import.meta.dirname}/datalog.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    alarmSchema = loadSchema(`${import.meta.dirname}/alarm.schema.json`);
   });
 
   describe("consume()", () => {
@@ -75,28 +47,20 @@ describe("Transmitter 600-051", () => {
       });
 
       // --- Default ---
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.temperature, 25.4);
-        assert.equal(value.data.humidity, 52);
-        assert.equal(value.data.msgType, "NORMAL");
-        assert.equal(value.data.rbe, false);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.temperature, 25.4);
+        assert.equal(data.humidity, 52);
+        assert.equal(data.msgType, "NORMAL");
+        assert.equal(data.rbe, false);
       });
 
       // --- Alarm ---
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "alarm");
-        assert.equal(value.data.temperatureHigh, false);
-        assert.equal(value.data.temperatureLow, false);
-        assert.equal(value.data.humidityHigh, false);
-        assert.equal(value.data.humidityLow, false);
-        assert.equal(value.data.motionGuard, false);
-
-        validateSchema(value.data, alarmSchema, { throwError: true });
+      expectSample("alarm", alarmSchema, (data) => {
+        assert.equal(data.temperatureHigh, false);
+        assert.equal(data.temperatureLow, false);
+        assert.equal(data.humidityHigh, false);
+        assert.equal(data.humidityLow, false);
+        assert.equal(data.motionGuard, false);
       });
 
       consume(data);
@@ -164,27 +128,18 @@ describe("Transmitter 600-051", () => {
       });
 
       // --- Default (datalogging values) ---
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-
-        assert.equal(value.data.msgType, "NORMAL");
-        assert.equal(value.data.rbe, false);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.msgType, "NORMAL");
+        assert.equal(data.rbe, false);
       });
 
       // --- Alarm (tous à false) ---
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "alarm");
-        assert.equal(value.data.temperatureHigh, false);
-        assert.equal(value.data.temperatureLow, false);
-        assert.equal(value.data.humidityHigh, false);
-        assert.equal(value.data.humidityLow, false);
-        assert.equal(value.data.motionGuard, false);
-
-        validateSchema(value.data, alarmSchema, { throwError: true });
+      expectSample("alarm", alarmSchema, (data) => {
+        assert.equal(data.temperatureHigh, false);
+        assert.equal(data.temperatureLow, false);
+        assert.equal(data.humidityHigh, false);
+        assert.equal(data.humidityLow, false);
+        assert.equal(data.motionGuard, false);
       });
 
       consume(data);

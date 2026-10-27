@@ -1,39 +1,19 @@
 
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+import { init, loadSchema, expectSample } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 describe("Ascoel Push button Uplink", () => {
   let debugSchema = null;
   let defaultSchema = null;
   let lifecycleSchema = null;
   let consume = null;
 
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/debug.schema.json`).then((parsedSchema) => {
-      debugSchema = parsedSchema;
-      done();
-    });
-  });
-  before((done) => {
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    debugSchema = loadSchema(`${import.meta.dirname}/debug.schema.json`);
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
   });
   describe("consume()", () => {
     it("should decode the Ascoel Push button firmware payload", () => {
@@ -44,17 +24,10 @@ describe("Ascoel Push button Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "debug");
-        assert.equal(value.data.firmwareVersion, "1.11.2639");
-        assert.equal(value.data.hardwareRevision, "B");
-        assert.equal(value.data.loraVersion, "4.3.15");
-
-        validateSchema(value.data, debugSchema, { throwError: true });
+      expectSample("debug", debugSchema, (data) => {
+        assert.equal(data.firmwareVersion, "1.11.2639");
+        assert.equal(data.hardwareRevision, "B");
+        assert.equal(data.loraVersion, "4.3.15");
       });
 
       consume(data);
@@ -68,15 +41,8 @@ describe("Ascoel Push button Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 94);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 94);
       });
 
       consume(data);
@@ -90,17 +56,10 @@ describe("Ascoel Push button Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.buttonPushed, true);
-        assert.equal(value.data.buttonPushedNumeric, 1);
-        assert.equal(value.data.count, 1);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.buttonPushed, true);
+        assert.equal(data.buttonPushedNumeric, 1);
+        assert.equal(data.count, 1);
       });
 
       consume(data);

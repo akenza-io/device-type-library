@@ -2,12 +2,7 @@
 import bits from "bits";
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Dragino SE0X-LB Uplink", () => {
     let defaultSchema = null;
@@ -15,14 +10,11 @@ describe("Dragino SE0X-LB Uplink", () => {
     let lifecycleSchema = null;
     let consume = null;
 
-    before(async () => {
-        const script = rewire(`${__dirname}/uplink.js`);
-        consume = init(script);
-        [rawSchema, defaultSchema, lifecycleSchema] = await Promise.all([
-            loadSchema(`${__dirname}/raw.schema.json`),
-            loadSchema(`${__dirname}/default.schema.json`),
-            loadSchema(`${__dirname}/lifecycle.schema.json`),
-        ]);
+    before(() => {
+      consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+      rawSchema = loadSchema(`${import.meta.dirname}/raw.schema.json`);
+      defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+      lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
     });
 
 
@@ -35,39 +27,26 @@ describe("Dragino SE0X-LB Uplink", () => {
                 },
             };
 
-            expectEmits((type, value) => {
-                assert.equal(type, "sample");
-                assert.isNotNull(value);
-                assert.typeOf(value.data, "object");
+            expectSample("raw", rawSchema, (data) => {
+                assert.equal(data.rawSoilConductivity1, 1119);
+                assert.equal(data.rawSoilConductivity2, 0);
+                assert.equal(data.rawSoilConductivity3, 0);
+                assert.equal(data.rawSoilConductivity4, 0);
 
-                assert.equal(value.topic, "raw");
-                assert.equal(value.data.rawSoilConductivity1, 1119);
-                assert.equal(value.data.rawSoilConductivity2, 0);
-                assert.equal(value.data.rawSoilConductivity3, 0);
-                assert.equal(value.data.rawSoilConductivity4, 0);
+                assert.equal(data.soilDielectricConstant1, 0);
+                assert.equal(data.soilDielectricConstant2, 0);
+                assert.equal(data.soilDielectricConstant3, 0);
+                assert.equal(data.soilDielectricConstant4, 0.8);
 
-                assert.equal(value.data.soilDielectricConstant1, 0);
-                assert.equal(value.data.soilDielectricConstant2, 0);
-                assert.equal(value.data.soilDielectricConstant3, 0);
-                assert.equal(value.data.soilDielectricConstant4, 0.8);
-
-                assert.equal(value.data.rawSoilHumidity1, 6206);
-                assert.equal(value.data.rawSoilHumidity2, 2540);
-                assert.equal(value.data.rawSoilHumidity3, 2796);
-                assert.equal(value.data.rawSoilHumidity4, 59392);
-
-                validateSchema(value.data, rawSchema, { throwError: true });
+                assert.equal(data.rawSoilHumidity1, 6206);
+                assert.equal(data.rawSoilHumidity2, 2540);
+                assert.equal(data.rawSoilHumidity3, 2796);
+                assert.equal(data.rawSoilHumidity4, 59392);
             });
 
-            expectEmits((type, value) => {
-                assert.equal(type, "sample");
-                assert.isNotNull(value);
-                assert.typeOf(value.data, "object");
-
-                assert.equal(value.topic, "lifecycle");
-                assert.equal(value.data.batteryVoltage, 3.246);
-                assert.equal(value.data.batteryLevel, 70);
-                validateSchema(value.data, lifecycleSchema, { throwError: true });
+            expectSample("lifecycle", lifecycleSchema, (data) => {
+                assert.equal(data.batteryVoltage, 3.246);
+                assert.equal(data.batteryLevel, 70);
             });
 
             consume(data);

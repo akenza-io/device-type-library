@@ -1,22 +1,14 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Digital Technologies Touch Count Sensor Uplink", () => {
   let touchSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/touch_count.schema.json`).then((parsedSchema) => {
-      touchSchema = parsedSchema;
-      done();
-    });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    touchSchema = loadSchema(`${import.meta.dirname}/touch_count.schema.json`);
   });
 
   describe("consume()", () => {
@@ -36,15 +28,8 @@ describe("Digital Technologies Touch Count Sensor Uplink", () => {
         timestamp: "2021-09-14T08:16:27.517331Z",
         labels: { name: "Temperature Simulator" },
       };
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "touch_count");
-        assert.equal(value.data.touchCount, 469);
-
-        validateSchema(value.data, touchSchema, { throwError: true });
+      expectSample("touch_count", touchSchema, (data) => {
+        assert.equal(data.touchCount, 469);
       });
 
       consume(data);

@@ -1,77 +1,26 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("Asystom Sentinel Uplink", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let environmentSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/environment.schema.json`)
-      .then((parsedSchema) => {
-        environmentSchema = parsedSchema;
-        done();
-      });
-  });
-
   let advancedSettingsSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/advanced_settings.schema.json`)
-      .then((parsedSchema) => {
-        advancedSettingsSchema = parsedSchema;
-        done();
-      });
-  });
-
   let firmwareStatusSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/firmware_status.schema.json`)
-      .then((parsedSchema) => {
-        firmwareStatusSchema = parsedSchema;
-        done();
-      });
-  });
-
   let firmwareVersionSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/firmware_version.schema.json`)
-      .then((parsedSchema) => {
-        firmwareVersionSchema = parsedSchema;
-        done();
-      });
-  });
-
   let schedulingSettingsSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/scheduling_settings.schema.json`)
-      .then((parsedSchema) => {
-        schedulingSettingsSchema = parsedSchema;
-        done();
-      });
-  });
-
   let errorSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/error.schema.json`)
-      .then((parsedSchema) => {
-        errorSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    environmentSchema = loadSchema(`${import.meta.dirname}/environment.schema.json`);
+    advancedSettingsSchema = loadSchema(`${import.meta.dirname}/advanced_settings.schema.json`);
+    firmwareStatusSchema = loadSchema(`${import.meta.dirname}/firmware_status.schema.json`);
+    firmwareVersionSchema = loadSchema(`${import.meta.dirname}/firmware_version.schema.json`);
+    schedulingSettingsSchema = loadSchema(`${import.meta.dirname}/scheduling_settings.schema.json`);
+    errorSchema = loadSchema(`${import.meta.dirname}/error.schema.json`);
   });
 
   describe("consume()", () => {
@@ -84,79 +33,65 @@ describe("Asystom Sentinel Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "environment");
-        assert.equal(value.data.batteryVoltage, 3.308155947203784);
-        assert.equal(value.data.humidity, 7.779049362935836);
-        assert.equal(value.data.temperature, 20.779550621805186);
-
-        validateSchema(value.data, environmentSchema, { throwError: true });
+      expectSample("environment", environmentSchema, (data) => {
+        assert.equal(data.batteryVoltage, 3.308155947203784);
+        assert.equal(data.humidity, 7.779049362935836);
+        assert.equal(data.temperature, 20.779550621805186);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.kurtosisUltrasound, 0.029785610742351417);
+        assert.equal(data.soundSonicRmslog, -76.69031815060654);
+        assert.equal(data.temperatureMachineSurface, 22.826027313649206);
 
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.kurtosisUltrasound, 0.029785610742351417);
-        assert.equal(value.data.soundSonicRmslog, -76.69031815060654);
-        assert.equal(value.data.temperatureMachineSurface, 22.826027313649206);
+        assert.equal(data.vibrationFrequencyBandS0, -76.4591439688716);
+        assert.equal(data.vibrationFrequencyBandS1, -76.152437628748);
+        assert.equal(data.vibrationFrequencyBandS2, -76.54383154039826);
+        assert.equal(data.vibrationFrequencyBandS3, -77.04509040970474);
+        assert.equal(data.vibrationFrequencyBandS4, -77.56466010528725);
+        assert.equal(data.vibrationFrequencyBandS5, -79.21721217669948);
+        assert.equal(data.vibrationFrequencyBandS6, -79.76424811169603);
+        assert.equal(data.vibrationFrequencyBandS7, -80.64774547951477);
+        assert.equal(data.vibrationFrequencyBandS8, -81.91805905241473);
+        assert.equal(data.vibrationFrequencyBandS9, -82.89539940489814);
 
-        assert.equal(value.data.vibrationFrequencyBandS0, -76.4591439688716);
-        assert.equal(value.data.vibrationFrequencyBandS1, -76.152437628748);
-        assert.equal(value.data.vibrationFrequencyBandS2, -76.54383154039826);
-        assert.equal(value.data.vibrationFrequencyBandS3, -77.04509040970474);
-        assert.equal(value.data.vibrationFrequencyBandS4, -77.56466010528725);
-        assert.equal(value.data.vibrationFrequencyBandS5, -79.21721217669948);
-        assert.equal(value.data.vibrationFrequencyBandS6, -79.76424811169603);
-        assert.equal(value.data.vibrationFrequencyBandS7, -80.64774547951477);
-        assert.equal(value.data.vibrationFrequencyBandS8, -81.91805905241473);
-        assert.equal(value.data.vibrationFrequencyBandS9, -82.89539940489814);
+        assert.equal(data.soundFrequencyBandS10, -73.87502861066605);
+        assert.equal(data.soundFrequencyBandS11, -95.46349279011216);
+        assert.equal(data.soundFrequencyBandS12, -90.24490730144197);
+        assert.equal(data.soundFrequencyBandS13, -92.58182650492103);
+        assert.equal(data.soundFrequencyBandS14, -94.67841611352712);
+        assert.equal(data.soundFrequencyBandS15, -87.97894254978256);
+        assert.equal(data.soundFrequencyBandS16, -85.34905012588693);
+        assert.equal(data.soundFrequencyBandS17, -82.63218127718014);
+        assert.equal(data.soundFrequencyBandS18, -81.5403982604715);
+        assert.equal(data.soundFrequencyBandS19, -84.47699702449073);
 
-        assert.equal(value.data.soundFrequencyBandS10, -73.87502861066605);
-        assert.equal(value.data.soundFrequencyBandS11, -95.46349279011216);
-        assert.equal(value.data.soundFrequencyBandS12, -90.24490730144197);
-        assert.equal(value.data.soundFrequencyBandS13, -92.58182650492103);
-        assert.equal(value.data.soundFrequencyBandS14, -94.67841611352712);
-        assert.equal(value.data.soundFrequencyBandS15, -87.97894254978256);
-        assert.equal(value.data.soundFrequencyBandS16, -85.34905012588693);
-        assert.equal(value.data.soundFrequencyBandS17, -82.63218127718014);
-        assert.equal(value.data.soundFrequencyBandS18, -81.5403982604715);
-        assert.equal(value.data.soundFrequencyBandS19, -84.47699702449073);
+        assert.equal(data.xAcceleration, 0.006836041809719997);
+        assert.equal(data.xAccelerationPeak, 0.025879301136797133);
+        assert.equal(data.xKurtosis, 3.0411230640115967);
+        assert.equal(data.xVibrationRoot, 0);
+        assert.equal(data.xVelocity, 0.08392462043183031);
+        assert.equal(data.xVelocityF1, 0);
+        assert.equal(data.xVelocityF2, 0);
+        assert.equal(data.xVelocityF3, 0);
 
-        assert.equal(value.data.xAcceleration, 0.006836041809719997);
-        assert.equal(value.data.xAccelerationPeak, 0.025879301136797133);
-        assert.equal(value.data.xKurtosis, 3.0411230640115967);
-        assert.equal(value.data.xVibrationRoot, 0);
-        assert.equal(value.data.xVelocity, 0.08392462043183031);
-        assert.equal(value.data.xVelocityF1, 0);
-        assert.equal(value.data.xVelocityF2, 0);
-        assert.equal(value.data.xVelocityF3, 0);
+        assert.equal(data.zAcceleration, 0.005615320057984283);
+        assert.equal(data.zAccelerationPeak, 0.02124055848020142);
+        assert.equal(data.zKurtosis, 3.141832608529793);
+        assert.equal(data.zVibrationRoot, 0);
+        assert.equal(data.zVelocity, 0.07019150072480354);
+        assert.equal(data.zVelocityF1, 0);
+        assert.equal(data.zVelocityF2, 0);
+        assert.equal(data.zVelocityF3, 0);
 
-        assert.equal(value.data.zAcceleration, 0.005615320057984283);
-        assert.equal(value.data.zAccelerationPeak, 0.02124055848020142);
-        assert.equal(value.data.zKurtosis, 3.141832608529793);
-        assert.equal(value.data.zVibrationRoot, 0);
-        assert.equal(value.data.zVelocity, 0.07019150072480354);
-        assert.equal(value.data.zVelocityF1, 0);
-        assert.equal(value.data.zVelocityF2, 0);
-        assert.equal(value.data.zVelocityF3, 0);
-
-        assert.equal(value.data.yAcceleration, 0.0063477531090257115);
-        assert.equal(value.data.yAccelerationPeak, 0.023437857633325704);
-        assert.equal(value.data.yKurtosis, 3.109788662546731);
-        assert.equal(value.data.yVibrationRoot, 0);
-        assert.equal(value.data.yVelocity, 0.08392462043183031);
-        assert.equal(value.data.yVelocityF1, 0);
-        assert.equal(value.data.yVelocityF2, 0);
-        assert.equal(value.data.yVelocityF3, 0);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+        assert.equal(data.yAcceleration, 0.0063477531090257115);
+        assert.equal(data.yAccelerationPeak, 0.023437857633325704);
+        assert.equal(data.yKurtosis, 3.109788662546731);
+        assert.equal(data.yVibrationRoot, 0);
+        assert.equal(data.yVelocity, 0.08392462043183031);
+        assert.equal(data.yVelocityF1, 0);
+        assert.equal(data.yVelocityF2, 0);
+        assert.equal(data.yVelocityF3, 0);
       });
 
       expectEmits((type, value) => {
@@ -176,90 +111,62 @@ describe("Asystom Sentinel Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
+      expectSample("advanced_settings", advancedSettingsSchema, (data) => {
+        assert.equal(data.sensorInformationBitmask, "0c000000");
+        assert.equal(data.sensorInformation.enumeration, "ANY_MICROPHONE");
+        assert.equal(data.sensorInformation.orientation, "NO_ORIENTATION");
 
-        assert.equal(value.topic, "advanced_settings");
-        assert.equal(value.data.sensorInformationBitmask, "0c000000");
-        assert.equal(value.data.sensorInformation.enumeration, "ANY_MICROPHONE");
-        assert.equal(value.data.sensorInformation.orientation, "NO_ORIENTATION");
+        assert.equal(data.frequencies.sonicFrequencyHigh, 80000);
+        assert.equal(data.frequencies.sonicFrequencyLow, 0);
+        assert.equal(data.frequencies.vibrationFrequencyHigh, 2000);
+        assert.equal(data.frequencies.vibrationFrequencyLow, 0);
 
-        assert.equal(value.data.frequencies.sonicFrequencyHigh, 80000);
-        assert.equal(value.data.frequencies.sonicFrequencyLow, 0);
-        assert.equal(value.data.frequencies.vibrationFrequencyHigh, 2000);
-        assert.equal(value.data.frequencies.vibrationFrequencyLow, 0);
+        assert.equal(data.rotationSpeedBoundaries.rpmUpperBoundary, 1680);
+        assert.equal(data.rotationSpeedBoundaries.rpmLowerBoundary, 1320);
 
-        assert.equal(value.data.rotationSpeedBoundaries.rpmUpperBoundary, 1680);
-        assert.equal(value.data.rotationSpeedBoundaries.rpmLowerBoundary, 1320);
+        assert.equal(data.mileageThreshold, 5);
+        assert.equal(data.referenceCustomParam, 50);
+        assert.equal(data.customSpectrumType, 1);
+        assert.equal(data.customSpectrumParam, 200);
+        assert.equal(data.woeBitmask, "");
 
-        assert.equal(value.data.mileageThreshold, 5);
-        assert.equal(value.data.referenceCustomParam, 50);
-        assert.equal(value.data.customSpectrumType, 1);
-        assert.equal(value.data.customSpectrumParam, 200);
-        assert.equal(value.data.woeBitmask, "");
+        assert.equal(data.wakeOnEventInformation.woeMode, 3);
+        assert.equal(data.wakeOnEventInformation.woeFlag, true);
+        assert.equal(data.wakeOnEventInformation.woeParam, 5);
+        assert.equal(data.wakeOnEventInformation.woeProfile, 1);
+        assert.equal(data.wakeOnEventInformation.woeThreshold, 100);
+        assert.equal(data.wakeOnEventInformation.woePretrigThreshold, 0);
+        assert.equal(data.wakeOnEventInformation.woePostrigThreshold, 0);
+        assert.equal(data.wakeOnEventInformation.woeModeString, "WoeSchedulerTrig");
 
-        assert.equal(value.data.wakeOnEventInformation.woeMode, 3);
-        assert.equal(value.data.wakeOnEventInformation.woeFlag, true);
-        assert.equal(value.data.wakeOnEventInformation.woeParam, 5);
-        assert.equal(value.data.wakeOnEventInformation.woeProfile, 1);
-        assert.equal(value.data.wakeOnEventInformation.woeThreshold, 100);
-        assert.equal(value.data.wakeOnEventInformation.woePretrigThreshold, 0);
-        assert.equal(value.data.wakeOnEventInformation.woePostrigThreshold, 0);
-        assert.equal(value.data.wakeOnEventInformation.woeModeString, "WoeSchedulerTrig");
-
-        assert.equal(value.data.lorawanConfig.adrIsEnabled, true);
-        assert.equal(value.data.lorawanConfig.transmissionIsAcked, false);
-        assert.equal(value.data.lorawanConfig.networkIsPrivate, false);
-        assert.equal(value.data.lorawanConfig.lorawanCodingRateIsBase, true);
-        assert.equal(value.data.lorawanConfig.dwellTimeIsOn, false);
-        assert.equal(value.data.lorawanConfig.retransmitAckTwice, true);
-        assert.equal(value.data.lorawanConfig.packetSplitIsEnabled, true);
-        assert.equal(value.data.lorawanConfig.specialFrequencySettings, 0);
-        assert.equal(value.data.lorawanConfig.linkCheckPeriod, 3600);
-
-        validateSchema(value.data, advancedSettingsSchema, { throwError: true });
+        assert.equal(data.lorawanConfig.adrIsEnabled, true);
+        assert.equal(data.lorawanConfig.transmissionIsAcked, false);
+        assert.equal(data.lorawanConfig.networkIsPrivate, false);
+        assert.equal(data.lorawanConfig.lorawanCodingRateIsBase, true);
+        assert.equal(data.lorawanConfig.dwellTimeIsOn, false);
+        assert.equal(data.lorawanConfig.retransmitAckTwice, true);
+        assert.equal(data.lorawanConfig.packetSplitIsEnabled, true);
+        assert.equal(data.lorawanConfig.specialFrequencySettings, 0);
+        assert.equal(data.lorawanConfig.linkCheckPeriod, 3600);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "firmware_status");
-        assert.deepEqual(value.data.lastBootCauses, [
+      expectSample("firmware_status", firmwareStatusSchema, (data) => {
+        assert.deepEqual(data.lastBootCauses, [
           "LOW_VOLTAGE_RISE_DETECTED",
           "POWER_ON_RESET",
         ]);
-        assert.equal(value.data.softwareStatus, "LORAWAN_OK");
-
-        validateSchema(value.data, firmwareStatusSchema, { throwError: true });
+        assert.equal(data.softwareStatus, "LORAWAN_OK");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "firmware_version");
-        assert.deepEqual(value.data.firmwareVersion, "v4.57");
-
-        validateSchema(value.data, firmwareVersionSchema, { throwError: true });
+      expectSample("firmware_version", firmwareVersionSchema, (data) => {
+        assert.deepEqual(data.firmwareVersion, "v4.57");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "scheduling_settings");
-        assert.deepEqual(value.data.activationBitmask, "05411400");
-        assert.deepEqual(value.data.ambientPeriodicity, 300);
-        assert.deepEqual(value.data.introspectionPeriodicity, 3600);
-        assert.deepEqual(value.data.predictionPeriodicity, 300);
-
-        validateSchema(value.data, schedulingSettingsSchema, { throwError: true });
+      expectSample("scheduling_settings", schedulingSettingsSchema, (data) => {
+        assert.deepEqual(data.activationBitmask, "05411400");
+        assert.deepEqual(data.ambientPeriodicity, 300);
+        assert.deepEqual(data.introspectionPeriodicity, 3600);
+        assert.deepEqual(data.predictionPeriodicity, 300);
       });
 
       expectEmits((type, value) => {
@@ -386,79 +293,65 @@ describe("Asystom Sentinel Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "environment");
-        assert.equal(value.data.batteryVoltage, 3.338673990997177);
-        assert.equal(value.data.humidity, 19.685664148928055);
-        assert.equal(value.data.temperature, 33.821503776607926);
-
-        validateSchema(value.data, environmentSchema, { throwError: true });
+      expectSample("environment", environmentSchema, (data) => {
+        assert.equal(data.batteryVoltage, 3.338673990997177);
+        assert.equal(data.humidity, 19.685664148928055);
+        assert.equal(data.temperature, 33.821503776607926);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.kurtosisUltrasound, 0.034531166552224005);
+        assert.equal(data.soundSonicRmslog, -58.02929732204166);
+        assert.equal(data.temperatureMachineSurface, 45.30258487830935);
 
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.kurtosisUltrasound, 0.034531166552224005);
-        assert.equal(value.data.soundSonicRmslog, -58.02929732204166);
-        assert.equal(value.data.temperatureMachineSurface, 45.30258487830935);
+        assert.equal(data.vibrationFrequencyBandS0, -47.832455939574274);
+        assert.equal(data.vibrationFrequencyBandS1, -55.85488670176241);
+        assert.equal(data.vibrationFrequencyBandS2, -42.558937972075995);
+        assert.equal(data.vibrationFrequencyBandS3, -56.70634012359808);
+        assert.equal(data.vibrationFrequencyBandS4, -66.65369649805447);
+        assert.equal(data.vibrationFrequencyBandS5, -67.45937285420004);
+        assert.equal(data.vibrationFrequencyBandS6, -60.512703135729);
+        assert.equal(data.vibrationFrequencyBandS7, -64.50446326390478);
+        assert.equal(data.vibrationFrequencyBandS8, -69.54222934309911);
+        assert.equal(data.vibrationFrequencyBandS9, -66.67658503089952);
 
-        assert.equal(value.data.vibrationFrequencyBandS0, -47.832455939574274);
-        assert.equal(value.data.vibrationFrequencyBandS1, -55.85488670176241);
-        assert.equal(value.data.vibrationFrequencyBandS2, -42.558937972075995);
-        assert.equal(value.data.vibrationFrequencyBandS3, -56.70634012359808);
-        assert.equal(value.data.vibrationFrequencyBandS4, -66.65369649805447);
-        assert.equal(value.data.vibrationFrequencyBandS5, -67.45937285420004);
-        assert.equal(value.data.vibrationFrequencyBandS6, -60.512703135729);
-        assert.equal(value.data.vibrationFrequencyBandS7, -64.50446326390478);
-        assert.equal(value.data.vibrationFrequencyBandS8, -69.54222934309911);
-        assert.equal(value.data.vibrationFrequencyBandS9, -66.67658503089952);
+        assert.equal(data.soundFrequencyBandS10, -28.164339665827427);
+        assert.equal(data.soundFrequencyBandS11, -36.1043717097734);
+        assert.equal(data.soundFrequencyBandS12, -50.661478599221795);
+        assert.equal(data.soundFrequencyBandS13, -60.070954451819645);
+        assert.equal(data.soundFrequencyBandS14, -71.2314030670634);
+        assert.equal(data.soundFrequencyBandS15, -68.0453192950332);
+        assert.equal(data.soundFrequencyBandS16, -64.2069123369192);
+        assert.equal(data.soundFrequencyBandS17, -75.06294346532387);
+        assert.equal(data.soundFrequencyBandS18, -77.34264133669032);
+        assert.equal(data.soundFrequencyBandS19, -82.70771343556878);
 
-        assert.equal(value.data.soundFrequencyBandS10, -28.164339665827427);
-        assert.equal(value.data.soundFrequencyBandS11, -36.1043717097734);
-        assert.equal(value.data.soundFrequencyBandS12, -50.661478599221795);
-        assert.equal(value.data.soundFrequencyBandS13, -60.070954451819645);
-        assert.equal(value.data.soundFrequencyBandS14, -71.2314030670634);
-        assert.equal(value.data.soundFrequencyBandS15, -68.0453192950332);
-        assert.equal(value.data.soundFrequencyBandS16, -64.2069123369192);
-        assert.equal(value.data.soundFrequencyBandS17, -75.06294346532387);
-        assert.equal(value.data.soundFrequencyBandS18, -77.34264133669032);
-        assert.equal(value.data.soundFrequencyBandS19, -82.70771343556878);
+        assert.equal(data.xAcceleration, 0.16601815823605706);
+        assert.equal(data.xAccelerationPeak, 0.48682383459220263);
+        assert.equal(data.xKurtosis, 2.2919050888838024);
+        assert.equal(data.xVibrationRoot, 1372.8542000457771);
+        assert.equal(data.xVelocity, 0.30975814450293737);
+        assert.equal(data.xVelocityF1, 3.5965514610513467);
+        assert.equal(data.xVelocityF2, 0.039673456931410694);
+        assert.equal(data.xVelocityF3, 0.17090104524299993);
 
-        assert.equal(value.data.xAcceleration, 0.16601815823605706);
-        assert.equal(value.data.xAccelerationPeak, 0.48682383459220263);
-        assert.equal(value.data.xKurtosis, 2.2919050888838024);
-        assert.equal(value.data.xVibrationRoot, 1372.8542000457771);
-        assert.equal(value.data.xVelocity, 0.30975814450293737);
-        assert.equal(value.data.xVelocityF1, 3.5965514610513467);
-        assert.equal(value.data.xVelocityF2, 0.039673456931410694);
-        assert.equal(value.data.xVelocityF3, 0.17090104524299993);
+        assert.equal(data.zAcceleration, 0.1467307545586328);
+        assert.equal(data.zAccelerationPeak, 0.40357061112382697);
+        assert.equal(data.zKurtosis, 2.038605325398642);
+        assert.equal(data.zVibrationRoot, 1370.1075761043717);
+        assert.equal(data.zVelocity, 2.140840772106508);
+        assert.equal(data.zVelocityF1, 0.7141222247653926);
+        assert.equal(data.zVelocityF2, 0);
+        assert.equal(data.zVelocityF3, 0.42572671091783015);
 
-        assert.equal(value.data.zAcceleration, 0.1467307545586328);
-        assert.equal(value.data.zAccelerationPeak, 0.40357061112382697);
-        assert.equal(value.data.zKurtosis, 2.038605325398642);
-        assert.equal(value.data.zVibrationRoot, 1370.1075761043717);
-        assert.equal(value.data.zVelocity, 2.140840772106508);
-        assert.equal(value.data.zVelocityF1, 0.7141222247653926);
-        assert.equal(value.data.zVelocityF2, 0);
-        assert.equal(value.data.zVelocityF3, 0.42572671091783015);
-
-        assert.equal(value.data.yAcceleration, 0.11596856641489281);
-        assert.equal(value.data.yAccelerationPeak, 0.32935072861829556);
-        assert.equal(value.data.yKurtosis, 2.456702525368124);
-        assert.equal(value.data.yVibrationRoot, 79.19432364385443);
-        assert.equal(value.data.yVelocity, 0.3814755474174105);
-        assert.equal(value.data.yVelocityF1, 3.079270618753338);
-        assert.equal(value.data.yVelocityF2, 0.047302967879758906);
-        assert.equal(value.data.yVelocityF3, 0.6805523765926604);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+        assert.equal(data.yAcceleration, 0.11596856641489281);
+        assert.equal(data.yAccelerationPeak, 0.32935072861829556);
+        assert.equal(data.yKurtosis, 2.456702525368124);
+        assert.equal(data.yVibrationRoot, 79.19432364385443);
+        assert.equal(data.yVelocity, 0.3814755474174105);
+        assert.equal(data.yVelocityF1, 3.079270618753338);
+        assert.equal(data.yVelocityF2, 0.047302967879758906);
+        assert.equal(data.yVelocityF3, 0.6805523765926604);
       });
 
       expectEmits((type, value) => {
@@ -486,15 +379,8 @@ describe("Asystom Sentinel Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "error");
-        assert.equal(value.data.errorMessage, "Segments got saved incorrectly");
-
-        validateSchema(value.data, errorSchema, { throwError: true });
+      expectSample("error", errorSchema, (data) => {
+        assert.equal(data.errorMessage, "Segments got saved incorrectly");
       });
 
       expectEmits((type, value) => {

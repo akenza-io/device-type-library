@@ -1,11 +1,6 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample, validateSchema } from "test-utils";
 
 describe("TWTG Neon Vibration", () => {
   let alertSchema = null;
@@ -29,38 +24,27 @@ describe("TWTG Neon Vibration", () => {
   let statusSchema = null;
   let consume = null;
 
-  before(async () => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-
-    [
-      alertSchema, axisXSchema, axisYSchema, axisZSchema,
-      axisXspectrumSchema, axisYspectrumSchema, axisZspectrumSchema,
-      bootSchema, configurationSchema, deactivationSchema,
-      errorSchema, factoryResetSchema, fragmentSchema,
-      fragmentStartSchema, lifecycleSchema, lifecycleResponseSchema,
-      machineFaultSchema, statisticsSchema, statusSchema
-    ] = await Promise.all([
-      loadSchema(`${__dirname}/alert.schema.json`),
-      loadSchema(`${__dirname}/axis_x.schema.json`),
-      loadSchema(`${__dirname}/axis_y.schema.json`),
-      loadSchema(`${__dirname}/axis_z.schema.json`),
-      loadSchema(`${__dirname}/axis_x_spectrum.schema.json`),
-      loadSchema(`${__dirname}/axis_y_spectrum.schema.json`),
-      loadSchema(`${__dirname}/axis_z_spectrum.schema.json`),
-      loadSchema(`${__dirname}/boot.schema.json`),
-      loadSchema(`${__dirname}/configuration.schema.json`),
-      loadSchema(`${__dirname}/deactivation.schema.json`),
-      loadSchema(`${__dirname}/error.schema.json`),
-      loadSchema(`${__dirname}/factory_reset.schema.json`),
-      loadSchema(`${__dirname}/fragment.schema.json`),
-      loadSchema(`${__dirname}/fragment_start.schema.json`),
-      loadSchema(`${__dirname}/lifecycle.schema.json`),
-      loadSchema(`${__dirname}/lifecycle_response.schema.json`),
-      loadSchema(`${__dirname}/machine_fault.schema.json`),
-      loadSchema(`${__dirname}/statistics.schema.json`),
-      loadSchema(`${__dirname}/status.schema.json`)
-    ]);
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    alertSchema = loadSchema(`${import.meta.dirname}/alert.schema.json`);
+    axisXSchema = loadSchema(`${import.meta.dirname}/axis_x.schema.json`);
+    axisYSchema = loadSchema(`${import.meta.dirname}/axis_y.schema.json`);
+    axisZSchema = loadSchema(`${import.meta.dirname}/axis_z.schema.json`);
+    axisXspectrumSchema = loadSchema(`${import.meta.dirname}/axis_x_spectrum.schema.json`);
+    axisYspectrumSchema = loadSchema(`${import.meta.dirname}/axis_y_spectrum.schema.json`);
+    axisZspectrumSchema = loadSchema(`${import.meta.dirname}/axis_z_spectrum.schema.json`);
+    bootSchema = loadSchema(`${import.meta.dirname}/boot.schema.json`);
+    configurationSchema = loadSchema(`${import.meta.dirname}/configuration.schema.json`);
+    deactivationSchema = loadSchema(`${import.meta.dirname}/deactivation.schema.json`);
+    errorSchema = loadSchema(`${import.meta.dirname}/error.schema.json`);
+    factoryResetSchema = loadSchema(`${import.meta.dirname}/factory_reset.schema.json`);
+    fragmentSchema = loadSchema(`${import.meta.dirname}/fragment.schema.json`);
+    fragmentStartSchema = loadSchema(`${import.meta.dirname}/fragment_start.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    lifecycleResponseSchema = loadSchema(`${import.meta.dirname}/lifecycle_response.schema.json`);
+    machineFaultSchema = loadSchema(`${import.meta.dirname}/machine_fault.schema.json`);
+    statisticsSchema = loadSchema(`${import.meta.dirname}/statistics.schema.json`);
+    statusSchema = loadSchema(`${import.meta.dirname}/status.schema.json`);
   });
 
   describe("consume()", () => {
@@ -72,18 +56,11 @@ describe("TWTG Neon Vibration", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.transmitterChargeUsed, 1038);
-        assert.equal(value.data.sensorChargeUsed, 3506);
-        assert.equal(value.data.averageTemperature, 19.515625);
-        assert.equal(value.data.batteryLevel, 94);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.transmitterChargeUsed, 1038);
+        assert.equal(data.sensorChargeUsed, 3506);
+        assert.equal(data.averageTemperature, 19.515625);
+        assert.equal(data.batteryLevel, 94);
       });
 
       expectEmits((type, value) => {
@@ -103,17 +80,10 @@ describe("TWTG Neon Vibration", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "configuration");
-        assert.equal(value.data.tag, "aabbccdd");
-        assert.equal(value.data.deviceConfiguration, "TRANSMITTER");
-        assert.equal(value.data.updateStatus, "SUCCESS");
-
-        validateSchema(value.data, configurationSchema, { throwError: true });
+      expectSample("configuration", configurationSchema, (data) => {
+        assert.equal(data.tag, "aabbccdd");
+        assert.equal(data.deviceConfiguration, "TRANSMITTER");
+        assert.equal(data.updateStatus, "SUCCESS");
       });
 
       expectEmits((type, value) => {
@@ -133,18 +103,11 @@ describe("TWTG Neon Vibration", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "fragment_start");
-        assert.equal(value.data.port, 17);
-        assert.equal(value.data.uplinkSize, 8192);
-        assert.equal(value.data.fragmentSize, 32);
-        assert.equal(value.data.crc, 123456789);
-
-        validateSchema(value.data, fragmentStartSchema, { throwError: true });
+      expectSample("fragment_start", fragmentStartSchema, (data) => {
+        assert.equal(data.port, 17);
+        assert.equal(data.uplinkSize, 8192);
+        assert.equal(data.fragmentSize, 32);
+        assert.equal(data.crc, 123456789);
       });
 
       expectEmits((type, value) => {
@@ -179,16 +142,9 @@ describe("TWTG Neon Vibration", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "fragment");
-        assert.equal(value.data.index, 1);
-        assert.equal(value.data.fragmentType, "PLAIN");
-
-        validateSchema(value.data, fragmentSchema, { throwError: true });
+      expectSample("fragment", fragmentSchema, (data) => {
+        assert.equal(data.index, 1);
+        assert.equal(data.fragmentType, "PLAIN");
       });
 
       expectEmits((type, value) => {
@@ -282,15 +238,8 @@ describe("TWTG Neon Vibration", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "boot");
-        assert.equal(value.data.rebootReason, "CONFIGURATION_UPDATE");
-
-        validateSchema(value.data, bootSchema, { throwError: true });
+      expectSample("boot", bootSchema, (data) => {
+        assert.equal(data.rebootReason, "CONFIGURATION_UPDATE");
       });
 
       expectEmits((type, value) => {
@@ -310,24 +259,17 @@ describe("TWTG Neon Vibration", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "status");
-        assert.equal(value.data.temperature, 0);
-        assert.equal(value.data.rssi, -88);
-        assert.equal(value.data.loraTxCounter, 7);
-        assert.equal(value.data.powerSupply, true);
-        assert.equal(value.data.configuration, true);
-        assert.equal(value.data.sensorConnection, true);
-        assert.equal(value.data.sensorPaired, true);
-        assert.equal(value.data.flashMemory, true);
-        assert.equal(value.data.internalTemperatureSensor, true);
-        assert.equal(value.data.timeSynchronized, true);
-
-        validateSchema(value.data, statusSchema, { throwError: true });
+      expectSample("status", statusSchema, (data) => {
+        assert.equal(data.temperature, 0);
+        assert.equal(data.rssi, -88);
+        assert.equal(data.loraTxCounter, 7);
+        assert.equal(data.powerSupply, true);
+        assert.equal(data.configuration, true);
+        assert.equal(data.sensorConnection, true);
+        assert.equal(data.sensorPaired, true);
+        assert.equal(data.flashMemory, true);
+        assert.equal(data.internalTemperatureSensor, true);
+        assert.equal(data.timeSynchronized, true);
       });
 
       expectEmits((type, value) => {
@@ -347,15 +289,8 @@ describe("TWTG Neon Vibration", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "deactivation");
-        assert.equal(value.data.deactivationReason, "USER_TRIGGERED");
-
-        validateSchema(value.data, deactivationSchema, { throwError: true });
+      expectSample("deactivation", deactivationSchema, (data) => {
+        assert.equal(data.deactivationReason, "USER_TRIGGERED");
       });
 
       expectEmits((type, value) => {
@@ -375,15 +310,8 @@ describe("TWTG Neon Vibration", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "boot");
-        assert.equal(value.data.rebootReason, "POWER_BROWN_OUT");
-
-        validateSchema(value.data, bootSchema, { throwError: true });
+      expectSample("boot", bootSchema, (data) => {
+        assert.equal(data.rebootReason, "POWER_BROWN_OUT");
       });
 
       expectEmits((type, value) => {
@@ -403,18 +331,11 @@ describe("TWTG Neon Vibration", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "axis_x");
-        assert.equal(value.data.temperature, -12);
-        assert.equal(value.data.peakAcceleration, 0.035675048828125);
-        assert.equal(value.data.rmsAcceleration, 0.01322174072265625);
-        assert.equal(value.data.rmsVelocity, 0.33447265625);
-
-        validateSchema(value.data, axisXSchema, { throwError: true });
+      expectSample("axis_x", axisXSchema, (data) => {
+        assert.equal(data.temperature, -12);
+        assert.equal(data.peakAcceleration, 0.035675048828125);
+        assert.equal(data.rmsAcceleration, 0.01322174072265625);
+        assert.equal(data.rmsVelocity, 0.33447265625);
       });
 
       expectEmits((type, value) => {
@@ -434,28 +355,21 @@ describe("TWTG Neon Vibration", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
+      expectSample("alert", alertSchema, (data) => {
+        assert.equal(data.sensorAlert0, false);
+        assert.equal(data.sensorAlert1, false);
+        assert.equal(data.sensorAlert2, false);
+        assert.equal(data.sensorAlert3, false);
+        assert.equal(data.sensorAlert4, false);
+        assert.equal(data.sensorAlert5, false);
+        assert.equal(data.sensorAlert6, false);
+        assert.equal(data.sensorAlert7, false);
 
-        assert.equal(value.topic, "alert");
-        assert.equal(value.data.sensorAlert0, false);
-        assert.equal(value.data.sensorAlert1, false);
-        assert.equal(value.data.sensorAlert2, false);
-        assert.equal(value.data.sensorAlert3, false);
-        assert.equal(value.data.sensorAlert4, false);
-        assert.equal(value.data.sensorAlert5, false);
-        assert.equal(value.data.sensorAlert6, false);
-        assert.equal(value.data.sensorAlert7, false);
-
-        assert.equal(value.data.spectrumAlert0, false);
-        assert.equal(value.data.spectrumAlert1, false);
-        assert.equal(value.data.spectrumAlert2, false);
-        assert.equal(value.data.spectrumAlert3, false);
-        assert.equal(value.data.spectrumAlert4, false);
-
-        validateSchema(value.data, alertSchema, { throwError: true });
+        assert.equal(data.spectrumAlert0, false);
+        assert.equal(data.spectrumAlert1, false);
+        assert.equal(data.spectrumAlert2, false);
+        assert.equal(data.spectrumAlert3, false);
+        assert.equal(data.spectrumAlert4, false);
       });
 
       expectEmits((type, value) => {
@@ -475,16 +389,11 @@ describe("TWTG Neon Vibration", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "machine_fault");
-        assert.equal(value.data.axis, "X");
-        assert.equal(value.data.faultType, "COMMON_FAULT");
-        assert.equal(value.data.faultCategory, "NONE");
-        assert.deepEqual(value.data.harmonicFrequencies, [
+      expectSample("machine_fault", machineFaultSchema, (data) => {
+        assert.equal(data.axis, "X");
+        assert.equal(data.faultType, "COMMON_FAULT");
+        assert.equal(data.faultCategory, "NONE");
+        assert.deepEqual(data.harmonicFrequencies, [
           49.28125,
           98.5625,
           147.84375,
@@ -496,7 +405,7 @@ describe("TWTG Neon Vibration", () => {
           443.53125,
           492.8125
         ]);
-        assert.deepEqual(value.data.harmonicAmplitudes, [
+        assert.deepEqual(data.harmonicAmplitudes, [
           0.40380859375,
           0.06334252450980392,
           0.00791781556372549,
@@ -508,8 +417,6 @@ describe("TWTG Neon Vibration", () => {
           0,
           0.003958907781862745
         ]);
-
-        validateSchema(value.data, machineFaultSchema, { throwError: true });
       });
 
       expectEmits((type, value) => {
@@ -529,18 +436,11 @@ describe("TWTG Neon Vibration", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "statistics");
-        assert.equal(value.data.selection, "X_RMS_VELOCITY");
-        assert.equal(value.data.min, 0);
-        assert.equal(value.data.max, 0);
-        assert.equal(value.data.avg, 0);
-
-        validateSchema(value.data, statisticsSchema, { throwError: true });
+      expectSample("statistics", statisticsSchema, (data) => {
+        assert.equal(data.selection, "X_RMS_VELOCITY");
+        assert.equal(data.min, 0);
+        assert.equal(data.max, 0);
+        assert.equal(data.avg, 0);
       });
 
       expectEmits((type, value) => {
@@ -560,20 +460,15 @@ describe("TWTG Neon Vibration", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
+      expectSample("axis_x_spectrum", axisXspectrumSchema, (data) => {
+        assert.equal(data.spectrumType, "ACCELERATION");
+        assert.equal(data.temperature, 25);
+        assert.equal(data.rmsVelocity, 0);
+        assert.equal(data.rmsAcceleration, 0);
+        assert.equal(data.peakAcceleration, 0);
+        assert.equal(data.rpm, 0);
 
-        assert.equal(value.topic, "axis_x_spectrum");
-        assert.equal(value.data.spectrumType, "ACCELERATION");
-        assert.equal(value.data.temperature, 25);
-        assert.equal(value.data.rmsVelocity, 0);
-        assert.equal(value.data.rmsAcceleration, 0);
-        assert.equal(value.data.peakAcceleration, 0);
-        assert.equal(value.data.rpm, 0);
-
-        assert.deepEqual(value.data.frequencies, [
+        assert.deepEqual(data.frequencies, [
           0,
           1,
           2,
@@ -608,7 +503,7 @@ describe("TWTG Neon Vibration", () => {
           31
         ]);
 
-        assert.deepEqual(value.data.magnitudes, [
+        assert.deepEqual(data.magnitudes, [
           58183.125,
           58183.125,
           58183.125,
@@ -642,8 +537,6 @@ describe("TWTG Neon Vibration", () => {
           58183.125,
           58183.125
         ]);
-
-        validateSchema(value.data, axisXspectrumSchema, { throwError: true });
       });
 
       expectEmits((type, value) => {

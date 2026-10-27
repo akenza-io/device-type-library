@@ -1,23 +1,14 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("Digital Technologies Proximity Counter Sensor Uplink", () => {
   let objectPresentSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/object_present_count.schema.json`)
-      .then((parsedSchema) => {
-        objectPresentSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    objectPresentSchema = loadSchema(`${import.meta.dirname}/object_present_count.schema.json`);
   });
 
   describe("consume()", () => {
@@ -38,19 +29,10 @@ describe("Digital Technologies Proximity Counter Sensor Uplink", () => {
         labels: {},
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "object_present_count");
-        assert.equal(value.data.objectPresentCount, 4176);
-        assert.equal(value.data.relativeCount, 0);
-        assert.equal(value.data.repeat, false);
-
-        validateSchema(value.data, objectPresentSchema, {
-          throwError: true,
-        });
+      expectSample("object_present_count", objectPresentSchema, (data) => {
+        assert.equal(data.objectPresentCount, 4176);
+        assert.equal(data.relativeCount, 0);
+        assert.equal(data.repeat, false);
       });
 
       expectEmits((type, value) => {

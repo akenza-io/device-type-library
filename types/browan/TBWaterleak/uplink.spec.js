@@ -1,50 +1,20 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("TBWater leak uplink", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   let systemSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/system.schema.json`)
-      .then((parsedSchema) => {
-        systemSchema = parsedSchema;
-        done();
-      });
-  });
-
   let configSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/config.schema.json`)
-      .then((parsedSchema) => {
-        configSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    systemSchema = loadSchema(`${import.meta.dirname}/system.schema.json`);
+    configSchema = loadSchema(`${import.meta.dirname}/config.schema.json`);
   });
 
   describe("consume()", () => {
@@ -56,29 +26,15 @@ describe("TBWater leak uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 3.6);
-        assert.equal(value.data.batteryLevel, 100);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 3.6);
+        assert.equal(data.batteryLevel, 100);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.waterleak, false);
-        assert.equal(value.data.temperature, 22);
-        assert.equal(value.data.humidity, 40);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.waterleak, false);
+        assert.equal(data.temperature, 22);
+        assert.equal(data.humidity, 40);
       });
 
       consume(data);
@@ -92,18 +48,11 @@ describe("TBWater leak uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "config");
-        assert.equal(value.data.keepaliveInterval, 3600);
-        assert.equal(value.data.temperatureDelta, 32);
-        assert.equal(value.data.humidityDelta, 48);
-        assert.equal(value.data.sensorDetectionInterval, 30);
-
-        validateSchema(value.data, configSchema, { throwError: true });
+      expectSample("config", configSchema, (data) => {
+        assert.equal(data.keepaliveInterval, 3600);
+        assert.equal(data.temperatureDelta, 32);
+        assert.equal(data.humidityDelta, 48);
+        assert.equal(data.sensorDetectionInterval, 30);
       });
 
       consume(data);
@@ -117,18 +66,11 @@ describe("TBWater leak uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "system");
-        assert.equal(value.data.bootloader, "00000006");
-        assert.equal(value.data.hwId, "00001400");
-        assert.equal(value.data.crc, "02f1f17f");
-        assert.equal(value.data.pupKeyId, "eef6d4e2");
-
-        validateSchema(value.data, systemSchema, { throwError: true });
+      expectSample("system", systemSchema, (data) => {
+        assert.equal(data.bootloader, "00000006");
+        assert.equal(data.hwId, "00001400");
+        assert.equal(data.crc, "02f1f17f");
+        assert.equal(data.pupKeyId, "eef6d4e2");
       });
 
       consume(data);

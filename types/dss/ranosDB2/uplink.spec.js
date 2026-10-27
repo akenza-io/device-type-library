@@ -1,11 +1,6 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("DSS Ranos dB 2 Uplink", () => {
   let defaultSchema = null;
@@ -14,37 +9,12 @@ describe("DSS Ranos dB 2 Uplink", () => {
   let settingsSchema = null;
   let consume = null;
 
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
-  before((done) => {
-    loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
-      gpsSchema = parsedSchema;
-      done();
-    });
-  });
-
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
-  before((done) => {
-    loadSchema(`${__dirname}/settings.schema.json`)
-      .then((parsedSchema) => {
-        settingsSchema = parsedSchema;
-        done();
-      });
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    gpsSchema = loadSchema(`${import.meta.dirname}/gps.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    settingsSchema = loadSchema(`${import.meta.dirname}/settings.schema.json`);
   });
 
   describe("consume()", () => {
@@ -55,48 +25,27 @@ describe("DSS Ranos dB 2 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.dBAfast, 32.2);
-        assert.equal(value.data.dBAslow, 30.4);
-        assert.equal(value.data.dBCfast, 33.5);
-        assert.equal(value.data.dBCslow, 32);
-        assert.equal(value.data.leqA, 30.1);
-        assert.equal(value.data.leqC, 32);
-        assert.equal(value.data.positivePeakHoldA, 32.6);
-        assert.equal(value.data.positivePeakHoldC, 36.5);
-        assert.equal(value.data.negativePeakHoldA, 31.8);
-        assert.equal(value.data.negativePeakHoldC, 31.8);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.dBAfast, 32.2);
+        assert.equal(data.dBAslow, 30.4);
+        assert.equal(data.dBCfast, 33.5);
+        assert.equal(data.dBCslow, 32);
+        assert.equal(data.leqA, 30.1);
+        assert.equal(data.leqC, 32);
+        assert.equal(data.positivePeakHoldA, 32.6);
+        assert.equal(data.positivePeakHoldC, 36.5);
+        assert.equal(data.negativePeakHoldA, 31.8);
+        assert.equal(data.negativePeakHoldC, 31.8);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 6);
-        assert.equal(value.data.batteryLevel, 70);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 6);
+        assert.equal(data.batteryLevel, 70);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "gps");
-        assert.equal(value.data.latitude, 47.4141534);
-        assert.equal(value.data.longitude, 8.5350206);
-
-        validateSchema(value.data, gpsSchema, { throwError: true });
+      expectSample("gps", gpsSchema, (data) => {
+        assert.equal(data.latitude, 47.4141534);
+        assert.equal(data.longitude, 8.5350206);
       });
 
       consume(data);
@@ -109,38 +58,31 @@ describe("DSS Ranos dB 2 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "settings");
-        assert.equal(value.data.adr, false);
-        assert.equal(value.data.correction, -0.9);
-        assert.equal(value.data.enableHeadphone, false);
-        assert.equal(value.data.enableLed, true);
-        assert.equal(value.data.enableTransmissionSync, true);
-        assert.equal(value.data.gpsInterval, 43200000);
-        assert.equal(value.data.gpsMode, "ONCE");
-        assert.equal(value.data.sampleCount, 2);
-        assert.equal(value.data.spreadingFactor, 9);
-        assert.equal(value.data.transmitInterval, 60000);
-        assert.equal(value.data.useBat, true);
-        assert.equal(value.data.useFirstTimestamp, true);
-        assert.equal(value.data.useLAeq, true);
-        assert.equal(value.data.useLAf, true);
-        assert.equal(value.data.useLAmax, true);
-        assert.equal(value.data.useLAmin, true);
-        assert.equal(value.data.useLAs, true);
-        assert.equal(value.data.useLastTimestamp, true);
-        assert.equal(value.data.useLCeq, true);
-        assert.equal(value.data.useLCf, true);
-        assert.equal(value.data.useLCmax, true);
-        assert.equal(value.data.useLCmin, true);
-        assert.equal(value.data.useLCs, true);
-        assert.equal(value.data.useMsgInfo, true);
-
-        validateSchema(value.data, settingsSchema, { throwError: true });
+      expectSample("settings", settingsSchema, (data) => {
+        assert.equal(data.adr, false);
+        assert.equal(data.correction, -0.9);
+        assert.equal(data.enableHeadphone, false);
+        assert.equal(data.enableLed, true);
+        assert.equal(data.enableTransmissionSync, true);
+        assert.equal(data.gpsInterval, 43200000);
+        assert.equal(data.gpsMode, "ONCE");
+        assert.equal(data.sampleCount, 2);
+        assert.equal(data.spreadingFactor, 9);
+        assert.equal(data.transmitInterval, 60000);
+        assert.equal(data.useBat, true);
+        assert.equal(data.useFirstTimestamp, true);
+        assert.equal(data.useLAeq, true);
+        assert.equal(data.useLAf, true);
+        assert.equal(data.useLAmax, true);
+        assert.equal(data.useLAmin, true);
+        assert.equal(data.useLAs, true);
+        assert.equal(data.useLastTimestamp, true);
+        assert.equal(data.useLCeq, true);
+        assert.equal(data.useLCf, true);
+        assert.equal(data.useLCmax, true);
+        assert.equal(data.useLCmin, true);
+        assert.equal(data.useLCs, true);
+        assert.equal(data.useMsgInfo, true);
       });
       consume(data);
     });

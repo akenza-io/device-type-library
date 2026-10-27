@@ -1,23 +1,14 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Xovis Uplink", () => {
   let lineCountSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/line_count.schema.json`)
-      .then((parsedSchema) => {
-        lineCountSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    lineCountSchema = loadSchema(`${import.meta.dirname}/line_count.schema.json`);
   });
 
   describe("consume()", () => {
@@ -110,16 +101,9 @@ describe("Xovis Uplink", () => {
           ],
         },
       };
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "line_count");
-        assert.equal(value.data.fw, 1);
-        assert.equal(value.data.bw, 0);
-
-        validateSchema(value.data, lineCountSchema, { throwError: true });
+      expectSample("line_count", lineCountSchema, (data) => {
+        assert.equal(data.fw, 1);
+        assert.equal(data.bw, 0);
       });
 
       consume(data);
@@ -173,16 +157,9 @@ describe("Xovis Uplink", () => {
           },
         },
       };
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "line_count");
-        assert.equal(value.data.fw, 1);
-        assert.equal(value.data.bw, 0);
-
-        validateSchema(value.data, lineCountSchema, { throwError: true });
+      expectSample("line_count", lineCountSchema, (data) => {
+        assert.equal(data.fw, 1);
+        assert.equal(data.bw, 0);
       });
 
       consume(data);

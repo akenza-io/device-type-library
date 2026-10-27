@@ -1,49 +1,20 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Elsys Sound uplink", () => {
   let soundSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/sound.schema.json`).then((parsedSchema) => {
-      soundSchema = parsedSchema;
-      done();
-    });
-  });
-
   let noiseSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/noise.schema.json`)
-      .then((parsedSchema) => {
-        noiseSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   let defaultSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    soundSchema = loadSchema(`${import.meta.dirname}/sound.schema.json`);
+    noiseSchema = loadSchema(`${import.meta.dirname}/noise.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
   });
 
   describe("consume()", () => {
@@ -55,53 +26,25 @@ describe("Elsys Sound uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.light, 189);
-        assert.equal(value.data.humidity, 35);
-        assert.equal(value.data.temperature, 23.8);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.light, 189);
+        assert.equal(data.humidity, 35);
+        assert.equal(data.temperature, 23.8);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 3.574);
-        assert.equal(value.data.batteryLevel, 100);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 3.574);
+        assert.equal(data.batteryLevel, 100);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "sound");
-        assert.equal(value.data.soundPeak, 64);
-        assert.equal(value.data.soundAvg, 44);
-
-        validateSchema(value.data, soundSchema, { throwError: true });
+      expectSample("sound", soundSchema, (data) => {
+        assert.equal(data.soundPeak, 64);
+        assert.equal(data.soundAvg, 44);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "noise");
-        assert.equal(value.data.soundPeak, 64);
-        assert.equal(value.data.soundAvg, 44);
-
-        validateSchema(value.data, noiseSchema, { throwError: true });
+      expectSample("noise", noiseSchema, (data) => {
+        assert.equal(data.soundPeak, 64);
+        assert.equal(data.soundAvg, 44);
       });
 
       consume(data);

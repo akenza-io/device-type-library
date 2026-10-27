@@ -1,11 +1,6 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Netvox RB11E uplink", () => {
   let defaultSchema = null;
@@ -13,15 +8,11 @@ describe("Netvox RB11E uplink", () => {
   let occupancySchema = null;
   let consume = null;
 
-  before(async () => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-
-    [defaultSchema, lifecycleSchema, occupancySchema] = await Promise.all([
-      loadSchema(`${__dirname}/default.schema.json`),
-      loadSchema(`${__dirname}/lifecycle.schema.json`),
-      loadSchema(`${__dirname}/occupancy.schema.json`),
-    ]);
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    occupancySchema = loadSchema(`${import.meta.dirname}/occupancy.schema.json`);
   });
 
   describe("consume()", () => {
@@ -33,31 +24,19 @@ describe("Netvox RB11E uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "lifecycle");
-        assert.isObject(value.data);
-        assert.equal(value.data.batteryVoltage, 3.4);
-        assert.equal(value.data.batteryLevel, 67);
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 3.4);
+        assert.equal(data.batteryLevel, 67);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.isObject(value.data);
-        assert.equal(value.data.temperature, 26);
-        assert.equal(value.data.light, 180);
-        assert.equal(value.data.alarm, false);
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.temperature, 26);
+        assert.equal(data.light, 180);
+        assert.equal(data.alarm, false);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "occupancy");
-        assert.isObject(value.data);
-        assert.equal(value.data.occupied, true);
-        validateSchema(value.data, occupancySchema, { throwError: true });
+      expectSample("occupancy", occupancySchema, (data) => {
+        assert.equal(data.occupied, true);
       });
 
       consume(data);

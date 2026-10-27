@@ -1,32 +1,16 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("Decentlab DWS Uplink", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
   });
 
   describe("consume()", () => {
@@ -45,32 +29,18 @@ describe("Decentlab DWS Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.frequency, 15350.47);
-        assert.equal(value.data.weight, 11.26);
-        assert.equal(value.data.weightKg, 0.0113);
-        assert.equal(value.data.relativeWeightGram, 0);
-        assert.equal(value.data.relativeWeightKilogramm, 0);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.frequency, 15350.47);
+        assert.equal(data.weight, 11.26);
+        assert.equal(data.weightKg, 0.0113);
+        assert.equal(data.relativeWeightGram, 0);
+        assert.equal(data.relativeWeightKilogramm, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 3.168);
-        assert.equal(value.data.protocolVersion, 2);
-        assert.equal(value.data.deviceId, 980);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 3.168);
+        assert.equal(data.protocolVersion, 2);
+        assert.equal(data.deviceId, 980);
       });
 
       expectEmits((type, value) => {
@@ -98,32 +68,18 @@ describe("Decentlab DWS Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.frequency, 15350.47);
-        assert.equal(value.data.weight, 11.26);
-        assert.equal(value.data.weightKg, 0.0113);
-        assert.equal(value.data.relativeWeightGram, 6.26);
-        assert.equal(value.data.relativeWeightKilogramm, 0.0063);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.frequency, 15350.47);
+        assert.equal(data.weight, 11.26);
+        assert.equal(data.weightKg, 0.0113);
+        assert.equal(data.relativeWeightGram, 6.26);
+        assert.equal(data.relativeWeightKilogramm, 0.0063);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 3.168);
-        assert.equal(value.data.protocolVersion, 2);
-        assert.equal(value.data.deviceId, 980);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 3.168);
+        assert.equal(data.protocolVersion, 2);
+        assert.equal(data.deviceId, 980);
       });
 
       expectEmits((type, value) => {

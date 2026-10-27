@@ -1,41 +1,18 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("IMBuilding People counter", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let totalCounterSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/total_counter.schema.json`)
-      .then((parsedSchema) => {
-        totalCounterSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    totalCounterSchema = loadSchema(`${import.meta.dirname}/total_counter.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
   });
 
   describe("consume()", () => {
@@ -47,45 +24,22 @@ describe("IMBuilding People counter", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.counterA, 3);
-        assert.equal(value.data.counterB, 2);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.counterA, 3);
+        assert.equal(data.counterB, 2);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "total_counter");
-        assert.equal(value.data.totalCounterA, 1539);
-        assert.equal(value.data.totalCounterB, 1510);
-
-        validateSchema(value.data, totalCounterSchema, {
-          throwError: true,
-        });
+      expectSample("total_counter", totalCounterSchema, (data) => {
+        assert.equal(data.totalCounterA, 1539);
+        assert.equal(data.totalCounterB, 1510);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.deviceStatus, "BATTERY_NOT_FULL");
-        assert.equal(value.data.payloadCounter, 97);
-        assert.equal(value.data.sensorStatus, "RECEIVER_LOW_BATTERY");
-        assert.equal(value.data.batteryVoltage, 2.48);
-        assert.equal(value.data.batteryLevel, 42);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.deviceStatus, "BATTERY_NOT_FULL");
+        assert.equal(data.payloadCounter, 97);
+        assert.equal(data.sensorStatus, "RECEIVER_LOW_BATTERY");
+        assert.equal(data.batteryVoltage, 2.48);
+        assert.equal(data.batteryLevel, 42);
       });
 
       consume(data);
@@ -114,32 +68,18 @@ describe("IMBuilding People counter", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.counterA, 0);
-        assert.equal(value.data.counterB, 0);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.counterA, 0);
+        assert.equal(data.counterB, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.deviceID, "23223527791929");
-        assert.equal(value.data.deviceStatus, "NO_STATUS");
-        assert.equal(value.data.rssi, -113);
-        assert.equal(value.data.sensorStatus, "RESERVED");
-        assert.equal(value.data.batteryVoltage, 2.67);
-        assert.equal(value.data.batteryLevel, 63);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.deviceID, "23223527791929");
+        assert.equal(data.deviceStatus, "NO_STATUS");
+        assert.equal(data.rssi, -113);
+        assert.equal(data.sensorStatus, "RESERVED");
+        assert.equal(data.batteryVoltage, 2.67);
+        assert.equal(data.batteryLevel, 63);
       });
 
       consume(data);

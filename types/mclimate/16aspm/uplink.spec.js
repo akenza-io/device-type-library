@@ -1,23 +1,16 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("MClimate 16ASPM uplink", () => {
   let defaultSchema = null;
   let configurationSchema = null;
   let consume = null;
-  before(async () => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    defaultSchema = await loadSchema(`${__dirname}/default.schema.json`);
-    configurationSchema = await loadSchema(
-      `${__dirname}/configuration.schema.json`,
-    );
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    configurationSchema = loadSchema(`${import.meta.dirname}/configuration.schema.json`);
   });
 
   function uplink(payloadHex) {
@@ -43,10 +36,8 @@ describe("MClimate 16ASPM uplink", () => {
     it("should decode a MClimate 16ASPM keepalive", () => {
       const data = uplink("011C034A241805D9E7195201");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.deepEqual(value.data, {
+      expectSample("default", defaultSchema, (data) => {
+        assert.deepEqual(data, {
           internalTemperature: 28,
           energy: 55190.552,
           power: 1497,
@@ -54,8 +45,6 @@ describe("MClimate 16ASPM uplink", () => {
           current: 6482,
           relayOn: true,
         });
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
@@ -64,10 +53,8 @@ describe("MClimate 16ASPM uplink", () => {
     it("should decode a MClimate 16ASPM keepalive with a negative temperature", () => {
       const data = uplink("0185034A241805D9E7195200");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.deepEqual(value.data, {
+      expectSample("default", defaultSchema, (data) => {
+        assert.deepEqual(data, {
           internalTemperature: -5,
           energy: 55190.552,
           power: 1497,
@@ -75,8 +62,6 @@ describe("MClimate 16ASPM uplink", () => {
           current: 6482,
           relayOn: false,
         });
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
@@ -85,10 +70,8 @@ describe("MClimate 16ASPM uplink", () => {
     it("should decode MClimate 16ASPM command responses followed by a keepalive", () => {
       const data = uplink("54015C015A01011C034A241805D9E7195201");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.deepEqual(value.data, {
+      expectSample("default", defaultSchema, (data) => {
+        assert.deepEqual(data, {
           internalTemperature: 28,
           energy: 55190.552,
           power: 1497,
@@ -96,20 +79,14 @@ describe("MClimate 16ASPM uplink", () => {
           current: 6482,
           relayOn: true,
         });
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "configuration");
-        assert.deepEqual(value.data, {
+      expectSample("configuration", configurationSchema, (data) => {
+        assert.deepEqual(data, {
           relayStateChangeReason: 1,
           ledIndicationMode: 1,
           afterOverheatingProtectionRecovery: 1,
         });
-
-        validateSchema(value.data, configurationSchema, { throwError: true });
       });
 
       consume(data);
@@ -118,10 +95,8 @@ describe("MClimate 16ASPM uplink", () => {
     it("should decode a manual relay state change", () => {
       const data = uplink("5D01011C034A241805D9E7195201");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.deepEqual(value.data, {
+      expectSample("default", defaultSchema, (data) => {
+        assert.deepEqual(data, {
           internalTemperature: 28,
           energy: 55190.552,
           power: 1497,
@@ -129,18 +104,12 @@ describe("MClimate 16ASPM uplink", () => {
           current: 6482,
           relayOn: true,
         });
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "configuration");
-        assert.deepEqual(value.data, {
+      expectSample("configuration", configurationSchema, (data) => {
+        assert.deepEqual(data, {
           manualChangeRelayState: 1,
         });
-
-        validateSchema(value.data, configurationSchema, { throwError: true });
       });
 
       consume(data);
@@ -149,15 +118,11 @@ describe("MClimate 16ASPM uplink", () => {
     it("should decode a MClimate 16ASPM command response without keepalive", () => {
       const data = uplink("6202000C");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "configuration");
-        assert.deepEqual(value.data, {
+      expectSample("configuration", configurationSchema, (data) => {
+        assert.deepEqual(data, {
           overcurrentEventCount: 2,
           overcurrentEventCurrent: 12,
         });
-
-        validateSchema(value.data, configurationSchema, { throwError: true });
       });
 
       consume(data);

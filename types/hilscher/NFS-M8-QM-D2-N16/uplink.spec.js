@@ -1,24 +1,14 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 describe("NFS-M8-QM-D2-N16 Uplink", () => {
   let system_monitoring_schema = null;
-
   let consume = null;
 
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/system_monitoring.schema.json`)
-      .then((parsedSchema) => {
-        system_monitoring_schema = parsedSchema;
-        done();
-      });
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    system_monitoring_schema = loadSchema(`${import.meta.dirname}/system_monitoring.schema.json`);
   });
 
   describe("consume()", () => {
@@ -36,15 +26,9 @@ describe("NFS-M8-QM-D2-N16 Uplink", () => {
         }
       };
 
-      expectEmits((type, value) => {
-        assert.typeOf(value.data, "object");
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "system_monitoring");
-
-        assert.equal(value.data.cpuLoadPercent, 38);
-        assert.equal(value.data.memoryFreeMegaByte, 463);
-
-        validateSchema(value.data, system_monitoring_schema, { throwError: true });
+      expectSample("system_monitoring", system_monitoring_schema, (data) => {
+        assert.equal(data.cpuLoadPercent, 38);
+        assert.equal(data.memoryFreeMegaByte, 463);
       });
 
       consume(data);

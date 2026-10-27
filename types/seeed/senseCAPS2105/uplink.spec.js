@@ -1,31 +1,16 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("Seeed SenseCAP 2105 Soil Moisture, Temperature and EC Sensor Uplink", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let errorSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/error.schema.json`).then((parsedSchema) => {
-      errorSchema = parsedSchema;
-      done();
-    });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    errorSchema = loadSchema(`${import.meta.dirname}/error.schema.json`);
   });
 
   describe("consume()", () => {
@@ -37,17 +22,10 @@ describe("Seeed SenseCAP 2105 Soil Moisture, Temperature and EC Sensor Uplink", 
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.soilConductivity, 0.18);
-        assert.equal(value.data.soilHumidity, 41.8);
-        assert.equal(value.data.soilTemperature, 23.9);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.soilConductivity, 0.18);
+        assert.equal(data.soilHumidity, 41.8);
+        assert.equal(data.soilTemperature, 23.9);
       });
 
       consume(data);
@@ -61,16 +39,9 @@ describe("Seeed SenseCAP 2105 Soil Moisture, Temperature and EC Sensor Uplink", 
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "error");
-        assert.equal(value.data.errorCode, "NO_SENSOR_RESPONSE");
-        assert.equal(value.data.fieldName, "soilTemperature");
-
-        validateSchema(value.data, errorSchema, { throwError: true });
+      expectSample("error", errorSchema, (data) => {
+        assert.equal(data.errorCode, "NO_SENSOR_RESPONSE");
+        assert.equal(data.fieldName, "soilTemperature");
       });
 
       expectEmits((type, value) => {

@@ -1,42 +1,18 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("pepperlFuchs wilsenSonicLevel uplink", () => {
   let consume = null;
-
   let defaultSchema = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let locationSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/location.schema.json`)
-      .then((parsedSchema) => {
-        locationSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    locationSchema = loadSchema(`${import.meta.dirname}/location.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
   });
 
   // This is the test for default, copy this three times with different data hex to test it all
@@ -48,28 +24,14 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.proximity, 65);
-        assert.equal(value.data.fillinglvlPercent, 89);
-        assert.equal(value.data.temperature, 8);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.proximity, 65);
+        assert.equal(data.fillinglvlPercent, 89);
+        assert.equal(data.temperature, 8);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 3.5);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 3.5);
       });
 
       consume(data);
@@ -85,40 +47,19 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.proximity, 65);
-        assert.equal(value.data.fillinglvlPercent, 89);
-        assert.equal(value.data.temperature, 8);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.proximity, 65);
+        assert.equal(data.fillinglvlPercent, 89);
+        assert.equal(data.temperature, 8);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 3.4);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 3.4);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "location");
-        assert.equal(value.data.latitude, 49.398751);
-        assert.equal(value.data.longitude, 8.200568);
-
-        validateSchema(value.data, locationSchema, { throwError: true });
+      expectSample("location", locationSchema, (data) => {
+        assert.equal(data.latitude, 49.398751);
+        assert.equal(data.longitude, 8.200568);
       });
 
       consume(data);
@@ -134,18 +75,12 @@ describe("pepperlFuchs wilsenSonicLevel uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.serialNumber, 1.0591369900271589e33);
-        assert.equal(value.data.loraCount, 1793);
-        assert.equal(value.data.gpsCount, 802);
-        assert.equal(value.data.usSensorCount, 3868);
-        assert.equal(value.data.batteryVoltage, 3.5);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.serialNumber, 1.0591369900271589e33);
+        assert.equal(data.loraCount, 1793);
+        assert.equal(data.gpsCount, 802);
+        assert.equal(data.usSensorCount, 3868);
+        assert.equal(data.batteryVoltage, 3.5);
       });
 
       consume(data);

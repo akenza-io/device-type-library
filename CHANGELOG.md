@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.101.3] - 2026-10-27
+
+### Changed
+
+- Test specs use the new `expectSample(topic, schema, callback)` helper, a single synchronous `before()` hook and `import.meta.dirname`, removing around 18k lines of boilerplate
+- `loadSchema` is now synchronous and `validateSchema` caches a validator per schema and no longer logs every result
+- Schema validation runs in parallel with one cached read or download per data-model file instead of sleeping 25 ms per schema (full test run ~10 s instead of ~76 s)
+
+### Fixed
+
+- Unconsumed expectations no longer leak into the next test after a failure; `consume()` without expectations now asserts that nothing is emitted
+- Dragino DDS04-LB spec mocks `Date` only inside the decoder instead of replacing the global `Date` for all following specs
+- Remote schema loading errors now report the failing URL instead of a `TypeError`
+- Corrected copy-pasted `describe` titles of 19 specs
+
 # [1.101.2] - 2026-10-27
 
 ### Fixed

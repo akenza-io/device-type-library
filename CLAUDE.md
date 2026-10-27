@@ -16,7 +16,7 @@ To run tests for a single device type, use mocha directly:
 npx mocha types/manufacturer/MODEL/uplink.spec.js
 ```
 
-CI runs tests on Node.js 20, 22, and 24. The `TEST_MODE` environment variable controls test behavior: `LOCAL` (default) runs purely in-process; `INTEGRATION` calls the live script runner API.
+CI runs tests on Node.js 20, 22, and 24. The `TEST_MODE` environment variable (read from `.env`, see `.env.template`) controls test behavior: `LOCAL` resolves data-model `$ref`s from the local `data-models/` folder; when unset (as in CI) they are fetched from `main` on GitHub; `INTEGRATION` additionally runs decoders on the live script runner API.
 
 ## Architecture
 
@@ -70,29 +70,24 @@ function consume(event) {
 ### Test Pattern (`uplink.spec.js`)
 
 ```javascript
-const {
-  init,
-  loadSchema,
-  expectEmits,
-  validateSchema,
-} = require("../../lib/test/utils.js");
-const rewire = require("rewire");
-
-const script = rewire("./uplink.js");
-let consume;
+import { assert } from "chai";
+import rewire from "rewire";
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Device Uplink", () => {
+  let defaultSchema = null;
+  let consume = null;
+
   before(() => {
-    loadSchema(`${__dirname}/default.schema.json`);
-    consume = init(script);
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
   });
 
   it("should decode the payload", () => {
     const event = { data: { payloadHex: "..." } };
 
-    expectEmits((type, value) => {
-      assert.equal(value.topic, "default");
-      validateSchema(value.data, schema, { throwError: true });
+    expectSample("default", defaultSchema, (data) => {
+      assert.equal(data.temperature, 21.5);
     });
 
     consume(event);
@@ -100,7 +95,7 @@ describe("Device Uplink", () => {
 });
 ```
 
-`expectEmits()` queues one callback per expected `emit()` call in order. `validateSchema()` checks both JSON Schema conformance and warns on missing keys.
+`expectSample(topic, schema, callback)` queues one expected `sample` emit: it checks the type and topic, passes `value.data` (and `value`) to the callback, then validates the data against the schema. Use `expectEmits((type, value) => ...)` for other emits (`state`, `downlink`, ...). Expectations are consumed in order and reset after every `consume()` call; calling `consume()` without expectations asserts that nothing is emitted. `validateSchema()` checks both JSON Schema conformance and fails on keys missing from the schema. `loadSchema()` is synchronous.
 
 ### Schema Files
 

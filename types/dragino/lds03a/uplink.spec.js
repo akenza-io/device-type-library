@@ -1,59 +1,22 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("Dragino LDS03A Uplink", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let infoSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/info.schema.json`).then((parsedSchema) => {
-      infoSchema = parsedSchema;
-      done();
-    });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   let datalogSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/datalog.schema.json`)
-      .then((parsedSchema) => {
-        datalogSchema = parsedSchema;
-        done();
-      });
-  });
-
-
   let doorCountSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/door_count.schema.json`)
-      .then((parsedSchema) => {
-        doorCountSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    infoSchema = loadSchema(`${import.meta.dirname}/info.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    datalogSchema = loadSchema(`${import.meta.dirname}/datalog.schema.json`);
+    doorCountSchema = loadSchema(`${import.meta.dirname}/door_count.schema.json`);
   });
 
   describe("consume()", () => {
@@ -72,30 +35,16 @@ describe("Dragino LDS03A Uplink", () => {
         assert.isNotNull(value.partialUsage, 5);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.alarm, false);
-        assert.equal(value.data.open, true);
-        assert.equal(value.data.openDuration, 0);
-        assert.equal(value.data.openCounts, 5);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.alarm, false);
+        assert.equal(data.open, true);
+        assert.equal(data.openDuration, 0);
+        assert.equal(data.openCounts, 5);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "door_count");
-        assert.equal(value.data.doorClosings, 0);
-        assert.equal(value.data.usageCount, 0);
-
-        validateSchema(value.data, doorCountSchema, { throwError: true });
+      expectSample("door_count", doorCountSchema, (data) => {
+        assert.equal(data.doorClosings, 0);
+        assert.equal(data.usageCount, 0);
       });
 
       consume(data);
@@ -109,17 +58,10 @@ describe("Dragino LDS03A Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 3.685);
-        assert.equal(value.data.batteryLevel, 100);
-        assert.equal(value.data.firmwareVersion, "1.1.0");
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 3.685);
+        assert.equal(data.batteryLevel, 100);
+        assert.equal(data.firmwareVersion, "1.1.0");
       });
 
       consume(data);

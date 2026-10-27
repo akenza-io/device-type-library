@@ -2,23 +2,18 @@ import { assert } from "chai";
 import rewire from "rewire";
 import { init, loadSchema, expectEmits } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+
+
+
+
 
 describe("inBiot WELL Downlink", () => {
   let downlinkSchema = null;
   let consume = null;
 
-  before((done) => {
-    const script = rewire(`${__dirname}/downlink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/downlink.schema.json`)
-      .then((parsedSchema) => {
-        downlinkSchema = parsedSchema;
-        done();
-      });
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/downlink.js`));
+    downlinkSchema = loadSchema(`${import.meta.dirname}/downlink.schema.json`);
   });
 
   describe("consume()", () => {

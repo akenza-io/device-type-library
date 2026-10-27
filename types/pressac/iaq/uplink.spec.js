@@ -1,50 +1,20 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Pressac IAQ Uplink", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   let configurationSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/configuration.schema.json`)
-      .then((parsedSchema) => {
-        configurationSchema = parsedSchema;
-        done();
-      });
-  });
-
   let occupancySchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/occupancy.schema.json`)
-      .then((parsedSchema) => {
-        occupancySchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    configurationSchema = loadSchema(`${import.meta.dirname}/configuration.schema.json`);
+    occupancySchema = loadSchema(`${import.meta.dirname}/occupancy.schema.json`);
   });
 
   describe("consume()", () => {
@@ -55,42 +25,28 @@ describe("Pressac IAQ Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.temperature, 22.5);
-        assert.equal(value.data.co2, 1065);
-        assert.equal(value.data.humidity, 45);
-        assert.equal(value.data.pm1, 1);
-        assert.equal(value.data.pm2_5, 1);
-        assert.equal(value.data.pm4, 2);
-        assert.equal(value.data.pm10, 2);
-        assert.equal(value.data.tvoc, 213);
-        assert.equal(value.data.vocUnit, "TVOC μg/m3");
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.temperature, 22.5);
+        assert.equal(data.co2, 1065);
+        assert.equal(data.humidity, 45);
+        assert.equal(data.pm1, 1);
+        assert.equal(data.pm2_5, 1);
+        assert.equal(data.pm4, 2);
+        assert.equal(data.pm10, 2);
+        assert.equal(data.tvoc, 213);
+        assert.equal(data.vocUnit, "TVOC μg/m3");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.co2Active, true);
-        assert.equal(value.data.dataAge, 0);
-        assert.equal(value.data.luxActive, false);
-        assert.equal(value.data.pirActive, false);
-        assert.equal(value.data.pmActive, true);
-        assert.equal(value.data.revision, 1);
-        assert.equal(value.data.soundLevelActive, false);
-        assert.equal(value.data.tempHumActive, true);
-        assert.equal(value.data.tvocActive, true);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.co2Active, true);
+        assert.equal(data.dataAge, 0);
+        assert.equal(data.luxActive, false);
+        assert.equal(data.pirActive, false);
+        assert.equal(data.pmActive, true);
+        assert.equal(data.revision, 1);
+        assert.equal(data.soundLevelActive, false);
+        assert.equal(data.tempHumActive, true);
+        assert.equal(data.tvocActive, true);
       });
 
       consume(data);
@@ -103,49 +59,35 @@ describe("Pressac IAQ Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "configuration");
-        assert.equal(value.data.co2FreshAirBackgroundLevel, 470);
-        assert.equal(value.data.co2HasManualCalibrationPerformed, false);
-        assert.equal(value.data.co2IndoorAirBackgroundLevel, 550);
-        assert.equal(value.data.co2IsAutoCalibrationEnabled, true);
-        assert.equal(value.data.firmwareVersion, '0.5.4.1');
-        assert.equal(value.data.hardwareRegionSelection, "EU868");
-        assert.equal(value.data.humidityOffset, 10);
-        assert.equal(value.data.humidityOffsetScaled, 0);
-        assert.equal(value.data.pmAutoCleanInterval, 7);
-        assert.equal(value.data.pmIsAutoCleanIntervalSet, true);
-        assert.equal(value.data.readConfiguration, "DIP_SWITCH");
-        assert.equal(value.data.readInterval, 15);
-        assert.equal(value.data.resetReason, "HARD_RESET");
-        assert.equal(value.data.temperatureOffset, 20);
-        assert.equal(value.data.temperatureOffsetScaled, 0);
-        assert.equal(value.data.vocEquivalent, "Isobutylene");
-        assert.equal(value.data.vocUnit, "TVOC μg/m3");
-
-        validateSchema(value.data, configurationSchema, { throwError: true });
+      expectSample("configuration", configurationSchema, (data) => {
+        assert.equal(data.co2FreshAirBackgroundLevel, 470);
+        assert.equal(data.co2HasManualCalibrationPerformed, false);
+        assert.equal(data.co2IndoorAirBackgroundLevel, 550);
+        assert.equal(data.co2IsAutoCalibrationEnabled, true);
+        assert.equal(data.firmwareVersion, '0.5.4.1');
+        assert.equal(data.hardwareRegionSelection, "EU868");
+        assert.equal(data.humidityOffset, 10);
+        assert.equal(data.humidityOffsetScaled, 0);
+        assert.equal(data.pmAutoCleanInterval, 7);
+        assert.equal(data.pmIsAutoCleanIntervalSet, true);
+        assert.equal(data.readConfiguration, "DIP_SWITCH");
+        assert.equal(data.readInterval, 15);
+        assert.equal(data.resetReason, "HARD_RESET");
+        assert.equal(data.temperatureOffset, 20);
+        assert.equal(data.temperatureOffsetScaled, 0);
+        assert.equal(data.vocEquivalent, "Isobutylene");
+        assert.equal(data.vocUnit, "TVOC μg/m3");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.co2Active, true);
-        assert.equal(value.data.luxActive, false);
-        assert.equal(value.data.pirActive, false);
-        assert.equal(value.data.pmActive, true);
-        assert.equal(value.data.revision, 1);
-        assert.equal(value.data.soundLevelActive, false);
-        assert.equal(value.data.tempHumActive, true);
-        assert.equal(value.data.tvocActive, true);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.co2Active, true);
+        assert.equal(data.luxActive, false);
+        assert.equal(data.pirActive, false);
+        assert.equal(data.pmActive, true);
+        assert.equal(data.revision, 1);
+        assert.equal(data.soundLevelActive, false);
+        assert.equal(data.tempHumActive, true);
+        assert.equal(data.tvocActive, true);
       });
 
       consume(data);

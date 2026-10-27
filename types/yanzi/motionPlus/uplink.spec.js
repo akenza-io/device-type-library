@@ -1,49 +1,20 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Yanzi Motion Plus Sensor Uplink", () => {
   let temperatureSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/temperature.schema.json`)
-      .then((parsedSchema) => {
-        temperatureSchema = parsedSchema;
-        done();
-      });
-  });
-
   let humiditySchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/humidity.schema.json`)
-      .then((parsedSchema) => {
-        humiditySchema = parsedSchema;
-        done();
-      });
-  });
-
   let lightSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/light.schema.json`).then((parsedSchema) => {
-      lightSchema = parsedSchema;
-      done();
-    });
-  });
-
   let occupancySchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/occupancy.schema.json`)
-      .then((parsedSchema) => {
-        occupancySchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    temperatureSchema = loadSchema(`${import.meta.dirname}/temperature.schema.json`);
+    humiditySchema = loadSchema(`${import.meta.dirname}/humidity.schema.json`);
+    lightSchema = loadSchema(`${import.meta.dirname}/light.schema.json`);
+    occupancySchema = loadSchema(`${import.meta.dirname}/occupancy.schema.json`);
   });
 
   describe("consume()", () => {
@@ -60,17 +31,8 @@ describe("Yanzi Motion Plus Sensor Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "temperature");
-        assert.equal(value.data.temperature, 29.21);
-
-        validateSchema(value.data, temperatureSchema, {
-          throwError: true,
-        });
+      expectSample("temperature", temperatureSchema, (data) => {
+        assert.equal(data.temperature, 29.21);
       });
 
       consume(data);
@@ -89,15 +51,8 @@ describe("Yanzi Motion Plus Sensor Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "humidity");
-        assert.equal(value.data.humidity, 38.3);
-
-        validateSchema(value.data, humiditySchema, { throwError: true });
+      expectSample("humidity", humiditySchema, (data) => {
+        assert.equal(data.humidity, 38.3);
       });
 
       consume(data);
@@ -117,15 +72,8 @@ describe("Yanzi Motion Plus Sensor Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "occupancy");
-        assert.equal(value.data.motion, 7875);
-
-        validateSchema(value.data, occupancySchema, { throwError: true });
+      expectSample("occupancy", occupancySchema, (data) => {
+        assert.equal(data.motion, 7875);
       });
 
       consume(data);
@@ -145,16 +93,9 @@ describe("Yanzi Motion Plus Sensor Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "light");
-        assert.equal(value.data.light, 88.3);
-        assert.equal(value.data.colorTemperature, 7518);
-
-        validateSchema(value.data, lightSchema, { throwError: true });
+      expectSample("light", lightSchema, (data) => {
+        assert.equal(data.light, 88.3);
+        assert.equal(data.colorTemperature, 7518);
       });
 
       consume(data);

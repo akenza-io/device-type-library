@@ -1,32 +1,16 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Ewattch squid hc lorawan", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
   });
 
   describe("consume()", () => {
@@ -39,26 +23,19 @@ describe("Ewattch squid hc lorawan", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.channel1, 4.34);
-        assert.equal(value.data.channel2, 8.68);
-        assert.equal(value.data.channel3, 17.36);
-        assert.equal(value.data.channel4, 0.27125);
-        assert.equal(value.data.channel5, 0.5425);
-        assert.equal(value.data.channel6, 1.085);
-        assert.equal(value.data.channel7, 4.34);
-        assert.equal(value.data.channel8, 8.68);
-        assert.equal(value.data.channel9, 17.36);
-        assert.equal(value.data.channel10, 0.27125);
-        assert.equal(value.data.channel11, 0.5425);
-        assert.equal(value.data.channel12, 1.085);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.channel1, 4.34);
+        assert.equal(data.channel2, 8.68);
+        assert.equal(data.channel3, 17.36);
+        assert.equal(data.channel4, 0.27125);
+        assert.equal(data.channel5, 0.5425);
+        assert.equal(data.channel6, 1.085);
+        assert.equal(data.channel7, 4.34);
+        assert.equal(data.channel8, 8.68);
+        assert.equal(data.channel9, 17.36);
+        assert.equal(data.channel10, 0.27125);
+        assert.equal(data.channel11, 0.5425);
+        assert.equal(data.channel12, 1.085);
       });
 
       consume(data);
@@ -72,17 +49,10 @@ describe("Ewattch squid hc lorawan", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "status");
-        assert.equal(value.data.batteryStatus, "NORMAL");
-        assert.equal(value.data.firmware, "1.4");
-        assert.equal(value.data.periodicity, 60);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("status", lifecycleSchema, (data) => {
+        assert.equal(data.batteryStatus, "NORMAL");
+        assert.equal(data.firmware, "1.4");
+        assert.equal(data.periodicity, 60);
       });
 
       consume(data);

@@ -1,94 +1,30 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("Swisscom Multisense Uplinks", () => {
   let temperatureSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/temperature.schema.json`)
-      .then((parsedSchema) => {
-        temperatureSchema = parsedSchema;
-        done();
-      });
-  });
-
   let humiditySchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/humidity.schema.json`)
-      .then((parsedSchema) => {
-        humiditySchema = parsedSchema;
-        done();
-      });
-  });
-
   let buttonEventSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/button_event.schema.json`)
-      .then((parsedSchema) => {
-        buttonEventSchema = parsedSchema;
-        done();
-      });
-  });
-
   let reedCounterSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/reed_counter.schema.json`)
-      .then((parsedSchema) => {
-        reedCounterSchema = parsedSchema;
-        done();
-      });
-  });
-
   let motionCounterSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/motion_counter.schema.json`)
-      .then((parsedSchema) => {
-        motionCounterSchema = parsedSchema;
-        done();
-      });
-  });
-
   let accelerationSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/acceleration.schema.json`)
-      .then((parsedSchema) => {
-        accelerationSchema = parsedSchema;
-        done();
-      });
-  });
-
   let eventSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/event.schema.json`).then((parsedSchema) => {
-      eventSchema = parsedSchema;
-      done();
-    });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   let doorCountSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/door_count.schema.json`)
-      .then((parsedSchema) => {
-        doorCountSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    temperatureSchema = loadSchema(`${import.meta.dirname}/temperature.schema.json`);
+    humiditySchema = loadSchema(`${import.meta.dirname}/humidity.schema.json`);
+    buttonEventSchema = loadSchema(`${import.meta.dirname}/button_event.schema.json`);
+    reedCounterSchema = loadSchema(`${import.meta.dirname}/reed_counter.schema.json`);
+    motionCounterSchema = loadSchema(`${import.meta.dirname}/motion_counter.schema.json`);
+    accelerationSchema = loadSchema(`${import.meta.dirname}/acceleration.schema.json`);
+    eventSchema = loadSchema(`${import.meta.dirname}/event.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    doorCountSchema = loadSchema(`${import.meta.dirname}/door_count.schema.json`);
   });
 
   describe("consume()", () => {
@@ -101,28 +37,12 @@ describe("Swisscom Multisense Uplinks", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "temperature");
-        assert.equal(value.data.temperature, 23.73);
-
-        validateSchema(value.data, temperatureSchema, {
-          throwError: true,
-        });
+      expectSample("temperature", temperatureSchema, (data) => {
+        assert.equal(data.temperature, 23.73);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "humidity");
-        assert.equal(value.data.humidity, 55);
-
-        validateSchema(value.data, humiditySchema, { throwError: true });
+      expectSample("humidity", humiditySchema, (data) => {
+        assert.equal(data.humidity, 55);
       });
 
       expectEmits((type, value) => {
@@ -133,81 +53,35 @@ describe("Swisscom Multisense Uplinks", () => {
         assert.equal(value.partialUsage, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "door_count");
-        assert.equal(value.data.doorClosings, 0);
-        assert.equal(value.data.usageCount, 0);
-
-        validateSchema(value.data, doorCountSchema, { throwError: true });
+      expectSample("door_count", doorCountSchema, (data) => {
+        assert.equal(data.doorClosings, 0);
+        assert.equal(data.usageCount, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "reed_counter");
-        assert.equal(value.data.reedCounter, 23);
-        assert.equal(value.data.relativeReedCounter, 0);
-
-        validateSchema(value.data, reedCounterSchema, {
-          throwError: true,
-        });
+      expectSample("reed_counter", reedCounterSchema, (data) => {
+        assert.equal(data.reedCounter, 23);
+        assert.equal(data.relativeReedCounter, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "motion_counter");
-        assert.equal(value.data.motionCounter, 4738);
-
-        validateSchema(value.data, motionCounterSchema, {
-          throwError: true,
-        });
+      expectSample("motion_counter", motionCounterSchema, (data) => {
+        assert.equal(data.motionCounter, 4738);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "acceleration");
-        assert.equal(value.data.accX, 1016);
-        assert.equal(value.data.accY, 124);
-        assert.equal(value.data.accZ, -4);
-
-        validateSchema(value.data, accelerationSchema, {
-          throwError: true,
-        });
+      expectSample("acceleration", accelerationSchema, (data) => {
+        assert.equal(data.accX, 1016);
+        assert.equal(data.accY, 124);
+        assert.equal(data.accZ, -4);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "event");
-        assert.equal(value.data.event, "TIMED_EVENT");
-        validateSchema(value.data, eventSchema, { throwError: true });
+      expectSample("event", eventSchema, (data) => {
+        assert.equal(data.event, "TIMED_EVENT");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.payloadVersion, 1);
-        assert.equal(value.data.mode, 0);
-        assert.equal(value.data.batteryVoltage, 3);
-        assert.equal(value.data.batteryLevel, 87);
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.payloadVersion, 1);
+        assert.equal(data.mode, 0);
+        assert.equal(data.batteryVoltage, 3);
+        assert.equal(data.batteryLevel, 87);
       });
 
       consume(data);
@@ -222,39 +96,19 @@ describe("Swisscom Multisense Uplinks", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "button_event");
-        assert.equal(value.data.buttonEvent, 1);
-        validateSchema(value.data, buttonEventSchema, {
-          throwError: true,
-        });
+      expectSample("button_event", buttonEventSchema, (data) => {
+        assert.equal(data.buttonEvent, 1);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "event");
-        assert.equal(value.data.event, "BUTTON_EVENT");
-        validateSchema(value.data, eventSchema, { throwError: true });
+      expectSample("event", eventSchema, (data) => {
+        assert.equal(data.event, "BUTTON_EVENT");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.payloadVersion, 2);
-        assert.equal(value.data.mode, 0);
-        assert.equal(value.data.batteryVoltage, 3.1);
-        assert.equal(value.data.batteryLevel, 100);
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.payloadVersion, 2);
+        assert.equal(data.mode, 0);
+        assert.equal(data.batteryVoltage, 3.1);
+        assert.equal(data.batteryLevel, 100);
       });
 
       consume(data);
@@ -280,53 +134,25 @@ describe("Swisscom Multisense Uplinks", () => {
         assert.equal(value.partialUsage, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "door_count");
-        assert.equal(value.data.doorClosings, 200);
-        assert.equal(value.data.usageCount, 100);
-
-        validateSchema(value.data, doorCountSchema, { throwError: true });
+      expectSample("door_count", doorCountSchema, (data) => {
+        assert.equal(data.doorClosings, 200);
+        assert.equal(data.usageCount, 100);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "reed_counter");
-        assert.equal(value.data.reedCounter, 2694);
-        assert.equal(value.data.relativeReedCounter, 200);
-
-        validateSchema(value.data, reedCounterSchema, {
-          throwError: true,
-        });
+      expectSample("reed_counter", reedCounterSchema, (data) => {
+        assert.equal(data.reedCounter, 2694);
+        assert.equal(data.relativeReedCounter, 200);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "event");
-        assert.equal(value.data.event, "REED_EVENT");
-        validateSchema(value.data, eventSchema, { throwError: true });
+      expectSample("event", eventSchema, (data) => {
+        assert.equal(data.event, "REED_EVENT");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.payloadVersion, 2);
-        assert.equal(value.data.mode, 0);
-        assert.equal(value.data.batteryVoltage, 3);
-        assert.equal(value.data.batteryLevel, 100);
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.payloadVersion, 2);
+        assert.equal(data.mode, 0);
+        assert.equal(data.batteryVoltage, 3);
+        assert.equal(data.batteryLevel, 100);
       });
 
       consume(data);

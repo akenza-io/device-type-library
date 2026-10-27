@@ -1,101 +1,32 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Cayenne uplink", () => {
   let accelerometerSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/accelerometer.schema.json`)
-      .then((parsedSchema) => {
-        accelerometerSchema = parsedSchema;
-        done();
-      });
-  });
-
   let analogSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/analog.schema.json`).then((parsedSchema) => {
-      analogSchema = parsedSchema;
-      done();
-    });
-  });
-
   let barometerSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/barometer.schema.json`)
-      .then((parsedSchema) => {
-        barometerSchema = parsedSchema;
-        done();
-      });
-  });
-
   let digitalSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/digital.schema.json`)
-      .then((parsedSchema) => {
-        digitalSchema = parsedSchema;
-        done();
-      });
-  });
-
   let gpsSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
-      gpsSchema = parsedSchema;
-      done();
-    });
-  });
-
   let gyrometerSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/gyrometer.schema.json`)
-      .then((parsedSchema) => {
-        gyrometerSchema = parsedSchema;
-        done();
-      });
-  });
-
   let humiditySchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/humidity.schema.json`)
-      .then((parsedSchema) => {
-        humiditySchema = parsedSchema;
-        done();
-      });
-  });
-
   let lightSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/light.schema.json`).then((parsedSchema) => {
-      lightSchema = parsedSchema;
-      done();
-    });
-  });
-
   let temperatureSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/temperature.schema.json`)
-      .then((parsedSchema) => {
-        temperatureSchema = parsedSchema;
-        done();
-      });
-  });
-
   let presenceSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/presence.schema.json`)
-      .then((parsedSchema) => {
-        presenceSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    accelerometerSchema = loadSchema(`${import.meta.dirname}/accelerometer.schema.json`);
+    analogSchema = loadSchema(`${import.meta.dirname}/analog.schema.json`);
+    barometerSchema = loadSchema(`${import.meta.dirname}/barometer.schema.json`);
+    digitalSchema = loadSchema(`${import.meta.dirname}/digital.schema.json`);
+    gpsSchema = loadSchema(`${import.meta.dirname}/gps.schema.json`);
+    gyrometerSchema = loadSchema(`${import.meta.dirname}/gyrometer.schema.json`);
+    humiditySchema = loadSchema(`${import.meta.dirname}/humidity.schema.json`);
+    lightSchema = loadSchema(`${import.meta.dirname}/light.schema.json`);
+    temperatureSchema = loadSchema(`${import.meta.dirname}/temperature.schema.json`);
+    presenceSchema = loadSchema(`${import.meta.dirname}/presence.schema.json`);
   });
 
   describe("consume()", () => {
@@ -107,32 +38,14 @@ describe("Cayenne uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "temperature");
-        assert.equal(value.data.channel, 3);
-        assert.equal(value.data.temperature, 27.2);
-
-        validateSchema(value.data, temperatureSchema, {
-          throwError: true,
-        });
+      expectSample("temperature", temperatureSchema, (data) => {
+        assert.equal(data.channel, 3);
+        assert.equal(data.temperature, 27.2);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "temperature");
-        assert.equal(value.data.channel, 5);
-        assert.equal(value.data.temperature, 25.5);
-
-        validateSchema(value.data, temperatureSchema, {
-          throwError: true,
-        });
+      expectSample("temperature", temperatureSchema, (data) => {
+        assert.equal(data.channel, 5);
+        assert.equal(data.temperature, 25.5);
       });
 
       consume(data);
@@ -146,20 +59,11 @@ describe("Cayenne uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "accelerometer");
-        assert.equal(value.data.channel, 6);
-        assert.equal(value.data.accX, 1.234);
-        assert.equal(value.data.accY, -1.234);
-        assert.equal(value.data.accZ, 0);
-
-        validateSchema(value.data, accelerometerSchema, {
-          throwError: true,
-        });
+      expectSample("accelerometer", accelerometerSchema, (data) => {
+        assert.equal(data.channel, 6);
+        assert.equal(data.accX, 1.234);
+        assert.equal(data.accY, -1.234);
+        assert.equal(data.accZ, 0);
       });
 
       consume(data);
@@ -173,20 +77,11 @@ describe("Cayenne uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "gps");
-        assert.equal(value.data.channel, 1);
-        assert.equal(value.data.latitude, 42.3519);
-        assert.equal(value.data.longitude, -87.9094);
-        assert.equal(value.data.altitude, 10);
-
-        validateSchema(value.data, gpsSchema, {
-          throwError: true,
-        });
+      expectSample("gps", gpsSchema, (data) => {
+        assert.equal(data.channel, 1);
+        assert.equal(data.latitude, 42.3519);
+        assert.equal(data.longitude, -87.9094);
+        assert.equal(data.altitude, 10);
       });
 
       consume(data);

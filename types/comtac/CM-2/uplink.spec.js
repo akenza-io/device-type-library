@@ -1,49 +1,20 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Comtac LPN CM-2 Uplink", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   let buttonPressedSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/button_pressed.schema.json`)
-      .then((parsedSchema) => {
-        buttonPressedSchema = parsedSchema;
-        done();
-      });
-  });
-
   let systemSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/system.schema.json`).then((parsedSchema) => {
-      systemSchema = parsedSchema;
-      done();
-    });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    buttonPressedSchema = loadSchema(`${import.meta.dirname}/button_pressed.schema.json`);
+    systemSchema = loadSchema(`${import.meta.dirname}/system.schema.json`);
   });
 
   describe("consume()", () => {
@@ -55,61 +26,39 @@ describe("Comtac LPN CM-2 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.version, 1);
-        assert.equal(value.data.booster, false);
-        assert.equal(value.data.txOnTimer, false);
-        assert.equal(value.data.txOnEvent, false);
-        assert.equal(value.data.buttonEvent, true);
-        assert.equal(value.data.digitalInputEvent, false);
-        assert.equal(value.data.deepSleepEvent, false);
-        assert.equal(value.data.digitalInputState, false);
-        assert.equal(value.data.minTempOn, false);
-        assert.equal(value.data.maxTempOn, false);
-        assert.equal(value.data.minHumOn, false);
-        assert.equal(value.data.maxHumOn, false);
-        assert.equal(value.data.minPt100On, false);
-        assert.equal(value.data.maxPt100On, false);
-        assert.equal(value.data.minLemOn, false);
-        assert.equal(value.data.maxLemOn, false);
-        assert.equal(value.data.batteryVoltage, 2.654);
-        assert.equal(value.data.batteryLevel, 60);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.version, 1);
+        assert.equal(data.booster, false);
+        assert.equal(data.txOnTimer, false);
+        assert.equal(data.txOnEvent, false);
+        assert.equal(data.buttonEvent, true);
+        assert.equal(data.digitalInputEvent, false);
+        assert.equal(data.deepSleepEvent, false);
+        assert.equal(data.digitalInputState, false);
+        assert.equal(data.minTempOn, false);
+        assert.equal(data.maxTempOn, false);
+        assert.equal(data.minHumOn, false);
+        assert.equal(data.maxHumOn, false);
+        assert.equal(data.minPt100On, false);
+        assert.equal(data.maxPt100On, false);
+        assert.equal(data.minLemOn, false);
+        assert.equal(data.maxLemOn, false);
+        assert.equal(data.batteryVoltage, 2.654);
+        assert.equal(data.batteryLevel, 60);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "button_pressed");
-        assert.equal(value.data.buttonPressed, true);
-
-        validateSchema(value.data, buttonPressedSchema, {
-          throwError: true,
-        });
+      expectSample("button_pressed", buttonPressedSchema, (data) => {
+        assert.equal(data.buttonPressed, true);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.temperature, -3);
-        assert.equal(value.data.humidity, 66.36);
-        assert.equal(value.data.temperaturePT100, 20);
-        assert.equal(value.data.adc1, 500);
-        assert.equal(value.data.adc2, 1096);
-        assert.equal(value.data.lem, 2.506);
-        assert.equal(value.data.brightness, 21);
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.temperature, -3);
+        assert.equal(data.humidity, 66.36);
+        assert.equal(data.temperaturePT100, 20);
+        assert.equal(data.adc1, 500);
+        assert.equal(data.adc2, 1096);
+        assert.equal(data.lem, 2.506);
+        assert.equal(data.brightness, 21);
       });
 
       consume(data);
@@ -123,25 +72,17 @@ describe("Comtac LPN CM-2 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "system");
-
-        assert.equal(value.data.sendInterval, 10);
-        assert.equal(value.data.minTempThreshold, -15);
-        assert.equal(value.data.maxTempThreshold, -15);
-        assert.equal(value.data.minHumThreshold, 0);
-        assert.equal(value.data.maxHumThreshold, 0);
-        assert.equal(value.data.minPtThreshold, -15);
-        assert.equal(value.data.maxPtThreshold, -15);
-        assert.equal(value.data.minLemThreshold, 0);
-        assert.equal(value.data.maxLemThreshold, 0);
-        assert.equal(value.data.dinSettings, 1);
-
-        validateSchema(value.data, systemSchema, { throwError: true });
+      expectSample("system", systemSchema, (data) => {
+        assert.equal(data.sendInterval, 10);
+        assert.equal(data.minTempThreshold, -15);
+        assert.equal(data.maxTempThreshold, -15);
+        assert.equal(data.minHumThreshold, 0);
+        assert.equal(data.maxHumThreshold, 0);
+        assert.equal(data.minPtThreshold, -15);
+        assert.equal(data.maxPtThreshold, -15);
+        assert.equal(data.minLemThreshold, 0);
+        assert.equal(data.maxLemThreshold, 0);
+        assert.equal(data.dinSettings, 1);
       });
 
       consume(data);

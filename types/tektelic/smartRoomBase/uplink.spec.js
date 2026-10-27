@@ -1,44 +1,18 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Tektelic Smart Room Base Sensor Uplink", () => {
   let lifecycleSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   let defaultSchema = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let reedSchema = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/reed.schema.json`).then((parsedSchema) => {
-      reedSchema = parsedSchema;
-      done();
-    });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    reedSchema = loadSchema(`${import.meta.dirname}/reed.schema.json`);
   });
 
   describe("consume()", () => {
@@ -50,27 +24,13 @@ describe("Tektelic Smart Room Base Sensor Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 3.19);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 3.19);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.temperature, 25.1);
-        assert.equal(value.data.humidity, 27);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.temperature, 25.1);
+        assert.equal(data.humidity, 27);
       });
 
       consume(data);
@@ -84,16 +44,9 @@ describe("Tektelic Smart Room Base Sensor Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "reed");
-        assert.equal(value.data.reedCount, 1);
-        assert.equal(value.data.open, false);
-
-        validateSchema(value.data, reedSchema, { throwError: true });
+      expectSample("reed", reedSchema, (data) => {
+        assert.equal(data.reedCount, 1);
+        assert.equal(data.open, false);
       });
 
       consume(data);
@@ -107,16 +60,9 @@ describe("Tektelic Smart Room Base Sensor Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "reed");
-        assert.equal(value.data.reedCount, 1);
-        assert.equal(value.data.open, true);
-
-        validateSchema(value.data, reedSchema, { throwError: true });
+      expectSample("reed", reedSchema, (data) => {
+        assert.equal(data.reedCount, 1);
+        assert.equal(data.open, true);
       });
 
       consume(data);

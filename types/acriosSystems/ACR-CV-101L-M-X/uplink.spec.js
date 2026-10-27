@@ -2,17 +2,11 @@ import { assert } from "chai";
 import rewire from "rewire";
 import { init, expectEmits } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
 describe("ACRIOS Systems ACR-CV-101L-M-X Uplink", () => {
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    done();
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
   });
 
   describe("consume()", () => {

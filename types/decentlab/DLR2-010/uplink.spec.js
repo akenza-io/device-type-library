@@ -1,36 +1,16 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Decentlab DLR2-010 Uplink", () => {
   let defaultSchema = null;
   let lifecycleSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    done();
-  });
 
-  before((done) => {
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
   });
 
   describe("consume()", () => {
@@ -42,33 +22,19 @@ describe("Decentlab DLR2-010 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.cumulativePulseCount0, 68592);
-        assert.equal(value.data.pulseInput0, 4);
-        assert.equal(value.data.pulseInterval0, 600);
-        assert.equal(value.data.cumulativePulseCount1, 57038);
-        assert.equal(value.data.pulseInput1, 0);
-        assert.equal(value.data.pulseInterval1, 600);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.cumulativePulseCount0, 68592);
+        assert.equal(data.pulseInput0, 4);
+        assert.equal(data.pulseInterval0, 600);
+        assert.equal(data.cumulativePulseCount1, 57038);
+        assert.equal(data.pulseInput1, 0);
+        assert.equal(data.pulseInterval1, 600);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 3.123);
-        assert.equal(value.data.deviceId, 6543);
-        assert.equal(value.data.protocolVersion, 2);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 3.123);
+        assert.equal(data.deviceId, 6543);
+        assert.equal(data.protocolVersion, 2);
       });
 
       consume(data);

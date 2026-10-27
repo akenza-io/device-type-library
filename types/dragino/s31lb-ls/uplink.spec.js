@@ -1,24 +1,17 @@
 // test script for uplink.js decoderimport { assert } from "chai";
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Dragino S31LB-LS Uplink", () => {
     let defaultSchema = null;
     let lifecycleSchema = null;
     let consume = null;
 
-    before(async () => {
-        const script = rewire(`${__dirname}/uplink.js`);
-        consume = init(script);
-        [defaultSchema, lifecycleSchema] = await Promise.all([
-            loadSchema(`${__dirname}/default.schema.json`),
-            loadSchema(`${__dirname}/lifecycle.schema.json`),
-        ]);
+    before(() => {
+      consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+      defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+      lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
     });
 
 
@@ -33,31 +26,18 @@ describe("Dragino S31LB-LS Uplink", () => {
                 },
             };
 
-            expectEmits((type, value) => {
-                assert.equal(type, "sample");
-                assert.isNotNull(value);
-                assert.typeOf(value.data, "object");
-
-                assert.equal(value.topic, "default");
-                assert.equal(value.data.alarmFlag, false);
-                assert.equal(value.data.pa8, "High");
-                assert.equal(value.data.temperature, 27.5);
-                assert.equal(value.data.humidity, 40.1);
-                assert.equal(value.data.modStatus, 1);
-
-                validateSchema(value.data, defaultSchema, { throwError: true });
+            expectSample("default", defaultSchema, (data) => {
+                assert.equal(data.alarmFlag, false);
+                assert.equal(data.pa8, "High");
+                assert.equal(data.temperature, 27.5);
+                assert.equal(data.humidity, 40.1);
+                assert.equal(data.modStatus, 1);
             });
 
             // lifecycle test
-            expectEmits((type, value) => {
-                assert.equal(type, "sample");
-                assert.isNotNull(value);
-                assert.typeOf(value.data, "object");
-
-                assert.equal(value.topic, "lifecycle");
-                assert.equal(value.data.batteryVoltage, 3.612);
-                assert.equal(value.data.batteryLevel, 75);
-                validateSchema(value.data, lifecycleSchema, { throwError: true });
+            expectSample("lifecycle", lifecycleSchema, (data) => {
+                assert.equal(data.batteryVoltage, 3.612);
+                assert.equal(data.batteryLevel, 75);
             });
 
             consume(data);

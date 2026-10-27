@@ -1,25 +1,16 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Netvox R718G uplink", () => {
   let defaultSchema = null;
   let lifecycleSchema = null;
   let consume = null;
 
-  before(async () => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-
-    [defaultSchema, lifecycleSchema] = await Promise.all([
-      loadSchema(`${__dirname}/default.schema.json`),
-      loadSchema(`${__dirname}/lifecycle.schema.json`),
-    ]);
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
   });
 
   describe("consume()", () => {
@@ -31,23 +22,15 @@ describe("Netvox R718G uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "lifecycle");
-        assert.isObject(value.data);
-        assert.equal(value.data.batteryLevel, 100);
-        assert.equal(value.data.batteryVoltage, 3.6);
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 100);
+        assert.equal(data.batteryVoltage, 3.6);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.isObject(value.data);
-        assert.equal(value.data.illuminance, 386);
-        assert.equal(value.data.lowIlluminanceAlarm, false);
-        assert.equal(value.data.highIlluminanceAlarm, false);
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.illuminance, 386);
+        assert.equal(data.lowIlluminanceAlarm, false);
+        assert.equal(data.highIlluminanceAlarm, false);
       });
 
       consume(data);
@@ -61,23 +44,15 @@ describe("Netvox R718G uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "lifecycle");
-        assert.isObject(value.data);
-        assert.equal(value.data.batteryVoltage, 3.1);
-        assert.equal(value.data.batteryLevel, 17);
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 3.1);
+        assert.equal(data.batteryLevel, 17);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.isObject(value.data);
-        assert.equal(value.data.illuminance, 12340);
-        assert.equal(value.data.lowIlluminanceAlarm, false);
-        assert.equal(value.data.highIlluminanceAlarm, false);
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.illuminance, 12340);
+        assert.equal(data.lowIlluminanceAlarm, false);
+        assert.equal(data.highIlluminanceAlarm, false);
       });
 
       consume(data);

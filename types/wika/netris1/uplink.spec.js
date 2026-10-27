@@ -1,77 +1,26 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Wika Netris1 Uplink", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let deviceAlarmSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/device_alarm.schema.json`)
-      .then((parsedSchema) => {
-        deviceAlarmSchema = parsedSchema;
-        done();
-      });
-  });
-
   let deviceInformationSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/device_information.schema.json`)
-      .then((parsedSchema) => {
-        deviceInformationSchema = parsedSchema;
-        done();
-      });
-  });
-
   let errorSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/error.schema.json`)
-      .then((parsedSchema) => {
-        errorSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   let processAlarmSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/process_alarm.schema.json`)
-      .then((parsedSchema) => {
-        processAlarmSchema = parsedSchema;
-        done();
-      });
-  });
-
   let technicalAlarmSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/technical_alarm.schema.json`)
-      .then((parsedSchema) => {
-        technicalAlarmSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    deviceAlarmSchema = loadSchema(`${import.meta.dirname}/device_alarm.schema.json`);
+    deviceInformationSchema = loadSchema(`${import.meta.dirname}/device_information.schema.json`);
+    errorSchema = loadSchema(`${import.meta.dirname}/error.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    processAlarmSchema = loadSchema(`${import.meta.dirname}/process_alarm.schema.json`);
+    technicalAlarmSchema = loadSchema(`${import.meta.dirname}/technical_alarm.schema.json`);
   });
 
   describe("consume()", () => {
@@ -84,15 +33,8 @@ describe("Wika Netris1 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "error");
-        assert.equal(value.data.errorMessage, "Please define the customfields: rangeStart, rangeEnd, channelMeasurand");
-
-        validateSchema(value.data, errorSchema, { throwError: true });
+      expectSample("error", errorSchema, (data) => {
+        assert.equal(data.errorMessage, "Please define the customfields: rangeStart, rangeEnd, channelMeasurand");
       });
 
       consume(data);
@@ -114,15 +56,8 @@ describe("Wika Netris1 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.voltage, 0.751);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.voltage, 0.751);
       });
 
       consume(data);
@@ -144,18 +79,11 @@ describe("Wika Netris1 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "process_alarm");
-        assert.equal(value.data.alarmChannel, "voltage");
-        assert.equal(value.data.alarmStatus, "TRIGGERED");
-        assert.equal(value.data.alarmType, "LOW_THRESHOLD");
-        assert.equal(value.data.value, 0.943);
-
-        validateSchema(value.data, processAlarmSchema, { throwError: true });
+      expectSample("process_alarm", processAlarmSchema, (data) => {
+        assert.equal(data.alarmChannel, "voltage");
+        assert.equal(data.alarmStatus, "TRIGGERED");
+        assert.equal(data.alarmType, "LOW_THRESHOLD");
+        assert.equal(data.value, 0.943);
       });
 
       consume(data);
@@ -177,16 +105,9 @@ describe("Wika Netris1 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "technical_alarm");
-        assert.equal(value.data.alarmStatus, 129);
-        assert.deepEqual(value.data.alarmType, ["SSM_COMMUNICATION_ERROR", "SSM_IDENTITY_ERROR"]);
-
-        validateSchema(value.data, technicalAlarmSchema, { throwError: true });
+      expectSample("technical_alarm", technicalAlarmSchema, (data) => {
+        assert.equal(data.alarmStatus, 129);
+        assert.deepEqual(data.alarmType, ["SSM_COMMUNICATION_ERROR", "SSM_IDENTITY_ERROR"]);
       });
 
       consume(data);
@@ -208,16 +129,9 @@ describe("Wika Netris1 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "device_alarm");
-        assert.equal(value.data.alarmType, 1);
-        assert.deepEqual(value.data.alarmTypeNames, ["LOW_BATTERY_ERROR"]);
-
-        validateSchema(value.data, deviceAlarmSchema, { throwError: true });
+      expectSample("device_alarm", deviceAlarmSchema, (data) => {
+        assert.equal(data.alarmType, 1);
+        assert.deepEqual(data.alarmTypeNames, ["LOW_BATTERY_ERROR"]);
       });
 
       consume(data);

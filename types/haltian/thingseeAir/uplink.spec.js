@@ -1,48 +1,20 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Haltian Thingsee air Sensor Uplink", () => {
   let environmentSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/environment.schema.json`)
-      .then((parsedSchema) => {
-        environmentSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   let co2Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/co2.schema.json`).then((parsedSchema) => {
-      co2Schema = parsedSchema;
-      done();
-    });
-  });
-
   let tvocSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/tvoc.schema.json`).then((parsedSchema) => {
-      tvocSchema = parsedSchema;
-      done();
-    });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    environmentSchema = loadSchema(`${import.meta.dirname}/environment.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    co2Schema = loadSchema(`${import.meta.dirname}/co2.schema.json`);
+    tvocSchema = loadSchema(`${import.meta.dirname}/tvoc.schema.json`);
   });
 
   describe("consume()", () => {
@@ -60,30 +32,14 @@ describe("Haltian Thingsee air Sensor Uplink", () => {
           airp: 97017.737,
         },
       };
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "environment");
-        assert.equal(value.data.pressure, 97017.737);
-        assert.equal(value.data.temperature, 26.4);
-        assert.equal(value.data.humidity, 35.2);
-
-        validateSchema(value.data, environmentSchema, {
-          throwError: true,
-        });
+      expectSample("environment", environmentSchema, (data) => {
+        assert.equal(data.pressure, 97017.737);
+        assert.equal(data.temperature, 26.4);
+        assert.equal(data.humidity, 35.2);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.reason, "TIME");
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.reason, "TIME");
       });
 
       consume(data);
@@ -101,28 +57,12 @@ describe("Haltian Thingsee air Sensor Uplink", () => {
           airp: 97021.277,
         },
       };
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "environment");
-        assert.equal(value.data.pressure, 97021.277);
-
-        validateSchema(value.data, environmentSchema, {
-          throwError: true,
-        });
+      expectSample("environment", environmentSchema, (data) => {
+        assert.equal(data.pressure, 97021.277);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.reason, "CHANGE");
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.reason, "CHANGE");
       });
 
       consume(data);
@@ -141,27 +81,13 @@ describe("Haltian Thingsee air Sensor Uplink", () => {
           status: 0,
         },
       };
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "co2");
-        assert.equal(value.data.co2, 460);
-        assert.equal(value.data.co2Status, "OK");
-
-        validateSchema(value.data, co2Schema, { throwError: true });
+      expectSample("co2", co2Schema, (data) => {
+        assert.equal(data.co2, 460);
+        assert.equal(data.co2Status, "OK");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.reason, "TIME");
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.reason, "TIME");
       });
 
       consume(data);
@@ -179,26 +105,12 @@ describe("Haltian Thingsee air Sensor Uplink", () => {
           deploymentGroupId: "prch00switzerland",
         },
       };
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "tvoc");
-        assert.equal(value.data.tvoc, 10);
-
-        validateSchema(value.data, tvocSchema, { throwError: true });
+      expectSample("tvoc", tvocSchema, (data) => {
+        assert.equal(data.tvoc, 10);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.reason, "TIME");
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.reason, "TIME");
       });
 
       consume(data);

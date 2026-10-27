@@ -1,11 +1,6 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Dragino dds20-lb Uplink", () => {
   let defaultSchema = null;
@@ -13,14 +8,11 @@ describe("Dragino dds20-lb Uplink", () => {
   let configurationSchema = null;
   let consume = null;
 
-  beforeEach(async () => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    [defaultSchema, lifecycleSchema, configurationSchema] = await Promise.all([
-      loadSchema(`${__dirname}/default.schema.json`),
-      loadSchema(`${__dirname}/lifecycle.schema.json`),
-      loadSchema(`${__dirname}/configuration.schema.json`),
-    ]);
+  beforeEach(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    configurationSchema = loadSchema(`${import.meta.dirname}/configuration.schema.json`);
   });
 
   describe("consume()", () => {
@@ -32,31 +24,15 @@ describe("Dragino dds20-lb Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.distance, 24);
-        assert.equal(value.data.interruptFlag, false);
-        assert.equal(value.data.temperature, 327.6);
-        assert.equal(value.data.sensorFlag, true);
-
-        validateSchema(value.data, defaultSchema, {
-          throwError: true,
-        });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.distance, 24);
+        assert.equal(data.interruptFlag, false);
+        assert.equal(data.temperature, 327.6);
+        assert.equal(data.sensorFlag, true);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 3.33);
-
-        validateSchema(value.data, lifecycleSchema, {
-          throwError: true,
-        });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 3.33);
       });
 
       consume(data);
@@ -71,31 +47,15 @@ describe("Dragino dds20-lb Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-        assert.equal(value.topic, "configuration");
-        assert.equal(value.data.sensorModel, "DDS20-LB");
-        assert.equal(value.data.frequencyBand, "EU868");
-        assert.equal(value.data.subBand, "UNKNOWN");
-        assert.equal(value.data.firmwareVersion, "1.1.0");
-
-        validateSchema(value.data, configurationSchema, {
-          throwError: true,
-        });
+      expectSample("configuration", configurationSchema, (data) => {
+        assert.equal(data.sensorModel, "DDS20-LB");
+        assert.equal(data.frequencyBand, "EU868");
+        assert.equal(data.subBand, "UNKNOWN");
+        assert.equal(data.firmwareVersion, "1.1.0");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 3.346);
-
-        validateSchema(value.data, lifecycleSchema, {
-          throwError: true,
-        });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 3.346);
       });
 
       consume(data);

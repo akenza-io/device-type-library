@@ -1,39 +1,18 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+import { init, loadSchema, expectSample } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 describe("Comtac LPN CM-1 Uplink", () => {
   let defaultSchema = null;
   let lifecycleSchema = null;
   let buttonPressedSchema = null;
   let consume = null;
 
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-  before((done) => {
-    loadSchema(`${__dirname}/button_pressed.schema.json`)
-      .then((parsedSchema) => {
-        buttonPressedSchema = parsedSchema;
-        done();
-      });
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    buttonPressedSchema = loadSchema(`${import.meta.dirname}/button_pressed.schema.json`);
   });
   describe("consume()", () => {
     it("should decode the Comtac LPN CM-1 payload", () => {
@@ -44,50 +23,29 @@ describe("Comtac LPN CM-1 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.booster, false);
-        assert.equal(value.data.minHumOn, false);
-        assert.equal(value.data.maxHumOn, false);
-        assert.equal(value.data.txOnEvent, true);
-        assert.equal(value.data.minTempOn, false);
-        assert.equal(value.data.maxTempOn, false);
-        assert.equal(value.data.minTempThreshold, -15);
-        assert.equal(value.data.maxTempThreshold, -15);
-        assert.equal(value.data.minHumThreshold, 0);
-        assert.equal(value.data.maxHumThreshold, 0);
-        assert.equal(value.data.sendInterval, 15);
-        assert.equal(value.data.batteryVoltage, 2.74);
-        assert.equal(value.data.batteryLevel, 70);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.booster, false);
+        assert.equal(data.minHumOn, false);
+        assert.equal(data.maxHumOn, false);
+        assert.equal(data.txOnEvent, true);
+        assert.equal(data.minTempOn, false);
+        assert.equal(data.maxTempOn, false);
+        assert.equal(data.minTempThreshold, -15);
+        assert.equal(data.maxTempThreshold, -15);
+        assert.equal(data.minHumThreshold, 0);
+        assert.equal(data.maxHumThreshold, 0);
+        assert.equal(data.sendInterval, 15);
+        assert.equal(data.batteryVoltage, 2.74);
+        assert.equal(data.batteryLevel, 70);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.temperature, 25.7);
-        assert.equal(value.data.humidity, 50);
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.temperature, 25.7);
+        assert.equal(data.humidity, 50);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "button_pressed");
-        assert.equal(value.data.buttonPressed, true);
-        validateSchema(value.data, buttonPressedSchema, {
-          throwError: true,
-        });
+      expectSample("button_pressed", buttonPressedSchema, (data) => {
+        assert.equal(data.buttonPressed, true);
       });
       consume(data);
     });

@@ -1,23 +1,16 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("MClimate Flood Sensor uplink", () => {
   let defaultSchema = null;
   let configurationSchema = null;
   let consume = null;
-  before(async () => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    defaultSchema = await loadSchema(`${__dirname}/default.schema.json`);
-    configurationSchema = await loadSchema(
-      `${__dirname}/configuration.schema.json`,
-    );
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    configurationSchema = loadSchema(`${import.meta.dirname}/configuration.schema.json`);
   });
 
   function uplink(payloadHex) {
@@ -43,19 +36,12 @@ describe("MClimate Flood Sensor uplink", () => {
     it("should decode a MClimate Flood Sensor keepalive", () => {
       const data = uplink("08be10");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.messageType, "KEEPALIVE");
-        assert.equal(value.data.boxTamper, true);
-        assert.equal(value.data.flood, false);
-        assert.equal(value.data.batteryVoltage, 3.04);
-        assert.equal(value.data.temperature, 16);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.messageType, "KEEPALIVE");
+        assert.equal(data.boxTamper, true);
+        assert.equal(data.flood, false);
+        assert.equal(data.batteryVoltage, 3.04);
+        assert.equal(data.temperature, 16);
       });
 
       consume(data);
@@ -64,16 +50,12 @@ describe("MClimate Flood Sensor uplink", () => {
     it("should decode a MClimate Flood Sensor flood alarm", () => {
       const data = uplink("4abe0f");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.messageType, "FLOOD_DETECTED");
-        assert.equal(value.data.boxTamper, true);
-        assert.equal(value.data.flood, true);
-        assert.equal(value.data.batteryVoltage, 3.04);
-        assert.equal(value.data.temperature, 15);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.messageType, "FLOOD_DETECTED");
+        assert.equal(data.boxTamper, true);
+        assert.equal(data.flood, true);
+        assert.equal(data.batteryVoltage, 3.04);
+        assert.equal(data.temperature, 15);
       });
 
       consume(data);
@@ -82,16 +64,12 @@ describe("MClimate Flood Sensor uplink", () => {
     it("should decode a short MClimate Flood Sensor keepalive without temperature", () => {
       const data = uplink("22be");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.messageType, "TEST_BUTTON_PRESSED");
-        assert.equal(value.data.boxTamper, false);
-        assert.equal(value.data.flood, true);
-        assert.equal(value.data.batteryVoltage, 3.04);
-        assert.notProperty(value.data, "temperature");
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.messageType, "TEST_BUTTON_PRESSED");
+        assert.equal(data.boxTamper, false);
+        assert.equal(data.flood, true);
+        assert.equal(data.batteryVoltage, 3.04);
+        assert.notProperty(data, "temperature");
       });
 
       consume(data);
@@ -100,26 +78,18 @@ describe("MClimate Flood Sensor uplink", () => {
     it("should decode MClimate Flood Sensor command responses", () => {
       const data = uplink("060307021509011200f014014abe0f");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.messageType, "FLOOD_DETECTED");
-        assert.equal(value.data.flood, true);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.messageType, "FLOOD_DETECTED");
+        assert.equal(data.flood, true);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "configuration");
-        assert.equal(value.data.alarmDuration, 3);
-        assert.equal(value.data.hardwareVersion, 2);
-        assert.equal(value.data.softwareVersion, 15);
-        assert.equal(value.data.floodEventSendTime, 1);
-        assert.equal(value.data.keepAliveTime, 240);
-        assert.equal(value.data.floodEventUplinkType, 1);
-
-        validateSchema(value.data, configurationSchema, { throwError: true });
+      expectSample("configuration", configurationSchema, (data) => {
+        assert.equal(data.alarmDuration, 3);
+        assert.equal(data.hardwareVersion, 2);
+        assert.equal(data.softwareVersion, 15);
+        assert.equal(data.floodEventSendTime, 1);
+        assert.equal(data.keepAliveTime, 240);
+        assert.equal(data.floodEventUplinkType, 1);
       });
 
       consume(data);

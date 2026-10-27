@@ -1,23 +1,16 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("MClimate Fan Coil Thermostat uplink", () => {
   let defaultSchema = null;
   let configurationSchema = null;
   let consume = null;
-  before(async () => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    defaultSchema = await loadSchema(`${__dirname}/default.schema.json`);
-    configurationSchema = await loadSchema(
-      `${__dirname}/configuration.schema.json`,
-    );
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    configurationSchema = loadSchema(`${import.meta.dirname}/configuration.schema.json`);
   });
 
   function uplink(payloadHex) {
@@ -43,10 +36,8 @@ describe("MClimate Fan Coil Thermostat uplink", () => {
     it("should decode a MClimate Fan Coil Thermostat keepalive", () => {
       const data = uplink("0102888001090102020101");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.deepEqual(value.data, {
+      expectSample("default", defaultSchema, (data) => {
+        assert.deepEqual(data, {
           temperature: 24.8,
           humidity: 50,
           targetTemperature: 26.5,
@@ -56,8 +47,6 @@ describe("MClimate Fan Coil Thermostat uplink", () => {
           valveOpen: true,
           deviceOn: true,
         });
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
@@ -68,10 +57,8 @@ describe("MClimate Fan Coil Thermostat uplink", () => {
         "120A041212771018141D171018141D01026A4C00DC0100070001",
       );
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.deepEqual(value.data, {
+      expectSample("default", defaultSchema, (data) => {
+        assert.deepEqual(data, {
           temperature: 21.8,
           humidity: 29.69,
           targetTemperature: 22,
@@ -81,14 +68,10 @@ describe("MClimate Fan Coil Thermostat uplink", () => {
           valveOpen: false,
           deviceOn: true,
         });
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "configuration");
-        assert.deepEqual(value.data, {
+      expectSample("configuration", configurationSchema, (data) => {
+        assert.deepEqual(data, {
           keepAliveTime: 10,
           hardwareVersion: 12,
           softwareVersion: 12,
@@ -101,8 +84,6 @@ describe("MClimate Fan Coil Thermostat uplink", () => {
           coolingTargetTemperatureMin: 20,
           coolingTargetTemperatureMax: 29,
         });
-
-        validateSchema(value.data, configurationSchema, { throwError: true });
       });
 
       consume(data);
@@ -111,17 +92,13 @@ describe("MClimate Fan Coil Thermostat uplink", () => {
     it("should decode MClimate Fan Coil Thermostat command responses without keepalive", () => {
       const data = uplink("2F01027F0167015302");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "configuration");
-        assert.deepEqual(value.data, {
+      expectSample("configuration", configurationSchema, (data) => {
+        assert.deepEqual(data, {
           targetTemperature: 25.8,
           displayColorMode: 1,
           deviceStatus: 1,
           fctOperationalMode: 2,
         });
-
-        validateSchema(value.data, configurationSchema, { throwError: true });
       });
 
       consume(data);
@@ -130,14 +107,10 @@ describe("MClimate Fan Coil Thermostat uplink", () => {
     it("should decode a manual target temperature change", () => {
       const data = uplink("3000e1");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "configuration");
-        assert.deepEqual(value.data, {
+      expectSample("configuration", configurationSchema, (data) => {
+        assert.deepEqual(data, {
           manualTargetTemperatureUpdate: 22.5,
         });
-
-        validateSchema(value.data, configurationSchema, { throwError: true });
       });
 
       consume(data);

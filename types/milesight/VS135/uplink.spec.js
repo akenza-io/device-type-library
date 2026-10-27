@@ -1,47 +1,20 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Milesight VS135 Uplink", () => {
   let line1Schema = null;
   let consume = null;
-
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/line_1.schema.json`).then((parsedSchema) => {
-      line1Schema = parsedSchema;
-      done();
-    });
-  });
-
   let line2Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/line_2.schema.json`).then((parsedSchema) => {
-      line2Schema = parsedSchema;
-      done();
-    });
-  });
-
   let line3Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/line_3.schema.json`).then((parsedSchema) => {
-      line3Schema = parsedSchema;
-      done();
-    });
-  });
-
   let line4Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/line_4.schema.json`).then((parsedSchema) => {
-      line4Schema = parsedSchema;
-      done();
-    });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    line1Schema = loadSchema(`${import.meta.dirname}/line_1.schema.json`);
+    line2Schema = loadSchema(`${import.meta.dirname}/line_2.schema.json`);
+    line3Schema = loadSchema(`${import.meta.dirname}/line_3.schema.json`);
+    line4Schema = loadSchema(`${import.meta.dirname}/line_4.schema.json`);
   });
 
   describe("consume()", () => {
@@ -54,52 +27,24 @@ describe("Milesight VS135 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "line_1");
-        assert.equal(value.data.totalCounterIn, 72);
-        assert.equal(value.data.totalCounterOut, 200);
-
-        validateSchema(value.data, line1Schema, { throwError: true });
+      expectSample("line_1", line1Schema, (data) => {
+        assert.equal(data.totalCounterIn, 72);
+        assert.equal(data.totalCounterOut, 200);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "line_2");
-        assert.equal(value.data.totalCounterIn, 0);
-        assert.equal(value.data.totalCounterOut, 0);
-
-        validateSchema(value.data, line2Schema, { throwError: true });
+      expectSample("line_2", line2Schema, (data) => {
+        assert.equal(data.totalCounterIn, 0);
+        assert.equal(data.totalCounterOut, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "line_3");
-        assert.equal(value.data.totalCounterIn, 0);
-        assert.equal(value.data.totalCounterOut, 0);
-
-        validateSchema(value.data, line3Schema, { throwError: true });
+      expectSample("line_3", line3Schema, (data) => {
+        assert.equal(data.totalCounterIn, 0);
+        assert.equal(data.totalCounterOut, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "line_4");
-        assert.equal(value.data.totalCounterIn, 5300);
-        assert.equal(value.data.totalCounterOut, 6797);
-
-        validateSchema(value.data, line4Schema, { throwError: true });
+      expectSample("line_4", line4Schema, (data) => {
+        assert.equal(data.totalCounterIn, 5300);
+        assert.equal(data.totalCounterOut, 6797);
       });
 
       consume(data);
@@ -113,52 +58,24 @@ describe("Milesight VS135 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "line_1");
-        assert.equal(value.data.periodicCounterIn, 0);
-        assert.equal(value.data.periodicCounterOut, 0);
-
-        validateSchema(value.data, line1Schema, { throwError: true });
+      expectSample("line_1", line1Schema, (data) => {
+        assert.equal(data.periodicCounterIn, 0);
+        assert.equal(data.periodicCounterOut, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "line_2");
-        assert.equal(value.data.periodicCounterIn, 0);
-        assert.equal(value.data.periodicCounterOut, 0);
-
-        validateSchema(value.data, line2Schema, { throwError: true });
+      expectSample("line_2", line2Schema, (data) => {
+        assert.equal(data.periodicCounterIn, 0);
+        assert.equal(data.periodicCounterOut, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "line_3");
-        assert.equal(value.data.periodicCounterIn, 0);
-        assert.equal(value.data.periodicCounterOut, 0);
-
-        validateSchema(value.data, line3Schema, { throwError: true });
+      expectSample("line_3", line3Schema, (data) => {
+        assert.equal(data.periodicCounterIn, 0);
+        assert.equal(data.periodicCounterOut, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "line_4");
-        assert.equal(value.data.periodicCounterIn, 5);
-        assert.equal(value.data.periodicCounterOut, 7);
-
-        validateSchema(value.data, line4Schema, { throwError: true });
+      expectSample("line_4", line4Schema, (data) => {
+        assert.equal(data.periodicCounterIn, 5);
+        assert.equal(data.periodicCounterOut, 7);
       });
 
       consume(data);

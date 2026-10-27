@@ -1,34 +1,16 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("WS558 Uplink", () => {
   let defaultSchema = null;
   let switchSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
 
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/switch.schema.json`)
-      .then((parsedSchema) => {
-        switchSchema = parsedSchema;
-        done();
-      });
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    switchSchema = loadSchema(`${import.meta.dirname}/switch.schema.json`);
   });
 
   describe("consume()", () => {
@@ -40,37 +22,23 @@ describe("WS558 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "switch");
-        assert.equal(value.data.switch1, true);
-        assert.equal(value.data.switch2, false);
-        assert.equal(value.data.switch3, false);
-        assert.equal(value.data.switch4, false);
-        assert.equal(value.data.switch5, false);
-        assert.equal(value.data.switch6, false);
-        assert.equal(value.data.switch7, false);
-        assert.equal(value.data.switch8, false);
-
-        validateSchema(value.data, switchSchema, { throwError: true });
+      expectSample("switch", switchSchema, (data) => {
+        assert.equal(data.switch1, true);
+        assert.equal(data.switch2, false);
+        assert.equal(data.switch3, false);
+        assert.equal(data.switch4, false);
+        assert.equal(data.switch5, false);
+        assert.equal(data.switch6, false);
+        assert.equal(data.switch7, false);
+        assert.equal(data.switch8, false);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.voltage, 222.6);
-        assert.equal(value.data.activePower, 1);
-        assert.equal(value.data.powerFactor, 100);
-        assert.equal(value.data.powerConsumption, 1);
-        assert.equal(value.data.totalCurrent, 2);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.voltage, 222.6);
+        assert.equal(data.activePower, 1);
+        assert.equal(data.powerFactor, 100);
+        assert.equal(data.powerConsumption, 1);
+        assert.equal(data.totalCurrent, 2);
       });
 
       consume(data);

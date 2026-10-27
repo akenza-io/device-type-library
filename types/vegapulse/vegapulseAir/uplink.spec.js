@@ -1,41 +1,18 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Vegapulse Air", () => {
   let distanceSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/distance.schema.json`)
-      .then((parsedSchema) => {
-        distanceSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   let temperatureSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/temperature.schema.json`)
-      .then((parsedSchema) => {
-        temperatureSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    distanceSchema = loadSchema(`${import.meta.dirname}/distance.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    temperatureSchema = loadSchema(`${import.meta.dirname}/temperature.schema.json`);
   });
 
   describe("consume()", () => {
@@ -47,45 +24,24 @@ describe("Vegapulse Air", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
+      expectSample("distance", distanceSchema, (data) => {
+        assert.equal(data.distanceMm, 1274.3860483169556);
+        assert.equal(data.distanceCm, 127.43860483169556);
+        assert.equal(data.distanceM, 1.2743860483169556);
+        assert.equal(data.distanceInch, 50.172679067596675);
+        assert.equal(data.distanceFt, 4.181056588966389);
 
-        assert.equal(value.topic, "distance");
-        assert.equal(value.data.distanceMm, 1274.3860483169556);
-        assert.equal(value.data.distanceCm, 127.43860483169556);
-        assert.equal(value.data.distanceM, 1.2743860483169556);
-        assert.equal(value.data.distanceInch, 50.172679067596675);
-        assert.equal(value.data.distanceFt, 4.181056588966389);
-
-        assert.equal(value.data.sensorMeasurementUnit, "METERS");
-        assert.equal(value.data.inclinationDegree, 9);
-
-        validateSchema(value.data, distanceSchema, { throwError: true });
+        assert.equal(data.sensorMeasurementUnit, "METERS");
+        assert.equal(data.inclinationDegree, 9);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "temperature");
-        assert.equal(value.data.temperature, 26);
-
-        validateSchema(value.data, temperatureSchema, { throwError: true });
+      expectSample("temperature", temperatureSchema, (data) => {
+        assert.equal(data.temperature, 26);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 36);
-        assert.equal(value.data.namurState, 'GOOD');
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 36);
+        assert.equal(data.namurState, 'GOOD');
       });
 
       consume(data);

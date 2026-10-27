@@ -1,39 +1,18 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("DigitalMatter Bolt 2 Uplink", () => {
   let digitalSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/digital.schema.json`)
-      .then((parsedSchema) => {
-        digitalSchema = parsedSchema;
-        done();
-      });
-  });
-
   let gpsSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
-      gpsSchema = parsedSchema;
-      done();
-    });
-  });
-
   let analogSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/analog.schema.json`).then((parsedSchema) => {
-      analogSchema = parsedSchema;
-      done();
-    });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    digitalSchema = loadSchema(`${import.meta.dirname}/digital.schema.json`);
+    gpsSchema = loadSchema(`${import.meta.dirname}/gps.schema.json`);
+    analogSchema = loadSchema(`${import.meta.dirname}/analog.schema.json`);
   });
 
   describe("consume()", () => {
@@ -122,50 +101,29 @@ describe("DigitalMatter Bolt 2 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "gps");
-        assert.equal(value.data.latitude, 47.4141228);
-        assert.equal(value.data.longitude, 8.5340896);
-        assert.equal(value.data.altitude, 493);
-        assert.equal(value.data.gpsAccuracy, 25);
-        assert.equal(value.data.heading, 0);
-        assert.equal(value.data.speed, 0);
-        assert.equal(value.data.speedAccuracy, 5);
-        assert.equal(value.data.pdop, 19);
-
-        validateSchema(value.data, gpsSchema, { throwError: true });
+      expectSample("gps", gpsSchema, (data) => {
+        assert.equal(data.latitude, 47.4141228);
+        assert.equal(data.longitude, 8.5340896);
+        assert.equal(data.altitude, 493);
+        assert.equal(data.gpsAccuracy, 25);
+        assert.equal(data.heading, 0);
+        assert.equal(data.speed, 0);
+        assert.equal(data.speedAccuracy, 5);
+        assert.equal(data.pdop, 19);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "digital");
-        assert.equal(value.data.devStat, 2);
-        assert.equal(value.data.digitalIn, 0);
-        assert.equal(value.data.digitalOut, 0);
-
-        validateSchema(value.data, digitalSchema, { throwError: true });
+      expectSample("digital", digitalSchema, (data) => {
+        assert.equal(data.devStat, 2);
+        assert.equal(data.digitalIn, 0);
+        assert.equal(data.digitalOut, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "analog");
-        assert.equal(value.data.analog["1"], 3788);
-        assert.equal(value.data.analog["2"], 0);
-        assert.equal(value.data.analog["3"], 2900);
-        assert.equal(value.data.analog["4"], 21);
-        assert.equal(value.data.analog["5"], 0);
-
-        validateSchema(value.data, analogSchema, { throwError: true });
+      expectSample("analog", analogSchema, (data) => {
+        assert.equal(data.analog["1"], 3788);
+        assert.equal(data.analog["2"], 0);
+        assert.equal(data.analog["3"], 2900);
+        assert.equal(data.analog["4"], 21);
+        assert.equal(data.analog["5"], 0);
       });
 
       consume(data);

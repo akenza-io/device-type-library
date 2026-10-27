@@ -1,86 +1,28 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample, validateSchema } from "test-utils";
 
 describe("Airthings Cloud Connector Uplink", () => {
   let airlySchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/airly.schema.json`)
-      .then((parsedSchema) => {
-        airlySchema = parsedSchema;
-        done();
-      });
-  });
-
   let environmentSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/environment.schema.json`)
-      .then((parsedSchema) => {
-        environmentSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   let moldSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/mold.schema.json`)
-      .then((parsedSchema) => {
-        moldSchema = parsedSchema;
-        done();
-      });
-  });
-
   let occupancySchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/occupancy.schema.json`)
-      .then((parsedSchema) => {
-        occupancySchema = parsedSchema;
-        done();
-      });
-  });
-
   let radonSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/radon.schema.json`)
-      .then((parsedSchema) => {
-        radonSchema = parsedSchema;
-        done();
-      });
-  });
-
   let ventilationSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/ventilation.schema.json`)
-      .then((parsedSchema) => {
-        ventilationSchema = parsedSchema;
-        done();
-      });
-  });
-
   let virusSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/virus.schema.json`)
-      .then((parsedSchema) => {
-        virusSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    airlySchema = loadSchema(`${import.meta.dirname}/airly.schema.json`);
+    environmentSchema = loadSchema(`${import.meta.dirname}/environment.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    moldSchema = loadSchema(`${import.meta.dirname}/mold.schema.json`);
+    occupancySchema = loadSchema(`${import.meta.dirname}/occupancy.schema.json`);
+    radonSchema = loadSchema(`${import.meta.dirname}/radon.schema.json`);
+    ventilationSchema = loadSchema(`${import.meta.dirname}/ventilation.schema.json`);
+    virusSchema = loadSchema(`${import.meta.dirname}/virus.schema.json`);
   });
 
   describe("consume()", () => {
@@ -142,19 +84,10 @@ describe("Airthings Cloud Connector Uplink", () => {
         });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 99);
-        assert.equal(value.data.rssi, -52);
-        assert.equal(value.data.serialNumber, "3110000280");
-
-        validateSchema(value.data, lifecycleSchema, {
-          throwError: true,
-        });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 99);
+        assert.equal(data.rssi, -52);
+        assert.equal(data.serialNumber, "3110000280");
       });
 
       expectEmits((type, value) => {
@@ -274,18 +207,9 @@ describe("Airthings Cloud Connector Uplink", () => {
         }
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "mold");
-        assert.equal(value.data.moldRisk, 1);
-        assert.equal(value.data.moldRiskRating, "GOOD");
-
-        validateSchema(value.data, moldSchema, {
-          throwError: true,
-        });
+      expectSample("mold", moldSchema, (data) => {
+        assert.equal(data.moldRisk, 1);
+        assert.equal(data.moldRiskRating, "GOOD");
       });
 
       expectEmits((type, value) => {
@@ -315,18 +239,9 @@ describe("Airthings Cloud Connector Uplink", () => {
         }
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "virus");
-        assert.equal(value.data.virusRisk, 1);
-        assert.equal(value.data.virusRiskRating, "GOOD");
-
-        validateSchema(value.data, virusSchema, {
-          throwError: true,
-        });
+      expectSample("virus", virusSchema, (data) => {
+        assert.equal(data.virusRisk, 1);
+        assert.equal(data.virusRiskRating, "GOOD");
       });
 
       expectEmits((type, value) => {
@@ -355,18 +270,9 @@ describe("Airthings Cloud Connector Uplink", () => {
         }
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "radon");
-        assert.equal(value.data.hourlyRadon, 0.5);
-        assert.equal(value.data.hourlyRadonRating, "GOOD");
-
-        validateSchema(value.data, radonSchema, {
-          throwError: true,
-        });
+      expectSample("radon", radonSchema, (data) => {
+        assert.equal(data.hourlyRadon, 0.5);
+        assert.equal(data.hourlyRadonRating, "GOOD");
       });
 
       expectEmits((type, value) => {
@@ -394,19 +300,10 @@ describe("Airthings Cloud Connector Uplink", () => {
         }
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "occupancy");
-        assert.equal(value.data.occupancy, 1);
-        assert.equal(value.data.occupied, true);
-        assert.equal(value.data.occupants, 2);
-
-        validateSchema(value.data, occupancySchema, {
-          throwError: true,
-        });
+      expectSample("occupancy", occupancySchema, (data) => {
+        assert.equal(data.occupancy, 1);
+        assert.equal(data.occupied, true);
+        assert.equal(data.occupants, 2);
       });
 
       expectEmits((type, value) => {
@@ -431,18 +328,9 @@ describe("Airthings Cloud Connector Uplink", () => {
         }
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "ventilation");
-        assert.equal(value.data.airflow, 98.93);
-        assert.equal(value.data.airExchangeRate, 4.46);
-
-        validateSchema(value.data, ventilationSchema, {
-          throwError: true,
-        });
+      expectSample("ventilation", ventilationSchema, (data) => {
+        assert.equal(data.airflow, 98.93);
+        assert.equal(data.airExchangeRate, 4.46);
       });
 
       expectEmits((type, value) => {
@@ -484,28 +372,19 @@ describe("Airthings Cloud Connector Uplink", () => {
         }
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
+      expectSample("airly", airlySchema, (data) => {
+        assert.equal(data.humidity, 73);
+        assert.equal(data.temperature, -2.5);
+        assert.equal(data.temperatureF, 27.5);
+        assert.equal(data.pressure, 1002.8);
 
-        assert.equal(value.topic, "airly");
-        assert.equal(value.data.humidity, 73);
-        assert.equal(value.data.temperature, -2.5);
-        assert.equal(value.data.temperatureF, 27.5);
-        assert.equal(value.data.pressure, 1002.8);
+        assert.equal(data.pm1, 13);
+        assert.equal(data.pm2_5, 22);
+        assert.equal(data.pm10, 28);
 
-        assert.equal(value.data.pm1, 13);
-        assert.equal(value.data.pm2_5, 22);
-        assert.equal(value.data.pm10, 28);
-
-        assert.equal(value.data.pm1Rating, "FAIR");
-        assert.equal(value.data.pm2_5Rating, "FAIR");
-        assert.equal(value.data.pm10Rating, "FAIR");
-
-        validateSchema(value.data, airlySchema, {
-          throwError: true,
-        });
+        assert.equal(data.pm1Rating, "FAIR");
+        assert.equal(data.pm2_5Rating, "FAIR");
+        assert.equal(data.pm10Rating, "FAIR");
       });
 
       expectEmits((type, value) => {
@@ -564,44 +443,26 @@ describe("Airthings Cloud Connector Uplink", () => {
         }
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
+      expectSample("environment", environmentSchema, (data) => {
+        assert.equal(data.tvoc, 82);
+        assert.equal(data.soundLevelA, 52);
+        assert.equal(data.pressure, 1011.2);
+        assert.equal(data.temperature, 23.5);
+        assert.equal(data.temperatureF, 74.3);
+        assert.equal(data.pm1, 5);
+        assert.equal(data.pm2_5, 5);
+        assert.equal(data.pm10, 5);
 
-        assert.equal(value.topic, "environment");
-        assert.equal(value.data.tvoc, 82);
-        assert.equal(value.data.soundLevelA, 52);
-        assert.equal(value.data.pressure, 1011.2);
-        assert.equal(value.data.temperature, 23.5);
-        assert.equal(value.data.temperatureF, 74.3);
-        assert.equal(value.data.pm1, 5);
-        assert.equal(value.data.pm2_5, 5);
-        assert.equal(value.data.pm10, 5);
-
-        assert.equal(value.data.pm1Rating, "GOOD");
-        assert.equal(value.data.pm2_5Rating, "GOOD");
-        assert.equal(value.data.pm10Rating, "GOOD");
-        assert.equal(value.data.tvocRating, "GOOD");
-
-        validateSchema(value.data, environmentSchema, {
-          throwError: true,
-        });
+        assert.equal(data.pm1Rating, "GOOD");
+        assert.equal(data.pm2_5Rating, "GOOD");
+        assert.equal(data.pm10Rating, "GOOD");
+        assert.equal(data.tvocRating, "GOOD");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 94);
-        assert.equal(value.data.rssi, -79);
-        assert.equal(value.data.serialNumber, "2969002870");
-
-        validateSchema(value.data, lifecycleSchema, {
-          throwError: true,
-        });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 94);
+        assert.equal(data.rssi, -79);
+        assert.equal(data.serialNumber, "2969002870");
       });
 
       expectEmits((type, value) => {

@@ -1,24 +1,15 @@
 
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("Niagara Water Uplink", () => {
   let consumptionSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/consumption.schema.json`)
-      .then((parsedSchema) => {
-        consumptionSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    consumptionSchema = loadSchema(`${import.meta.dirname}/consumption.schema.json`);
   });
 
   describe("consume()", () => {
@@ -36,16 +27,9 @@ describe("Niagara Water Uplink", () => {
         assert.equal(value.lastConsumptionCumulative, 9453146);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "consumption");
-        assert.equal(value.data.consumption, 0);
-        assert.equal(value.data.consumptionCumulative, 9453146);
-
-        validateSchema(value.data, consumptionSchema, { throwError: true });
+      expectSample("consumption", consumptionSchema, (data) => {
+        assert.equal(data.consumption, 0);
+        assert.equal(data.consumptionCumulative, 9453146);
       });
 
       consume(data);
@@ -74,16 +58,9 @@ describe("Niagara Water Uplink", () => {
           assert.equal(value.lastConsumptionCumulative, 9453146);
         });
 
-        expectEmits((type, value) => {
-          assert.equal(type, "sample");
-          assert.isNotNull(value);
-          assert.typeOf(value.data, "object");
-
-          assert.equal(value.topic, "consumption");
-          assert.equal(value.data.consumption, 3.146);
-          assert.equal(value.data.consumptionCumulative, 9453.146);
-
-          validateSchema(value.data, consumptionSchema, { throwError: true });
+        expectSample("consumption", consumptionSchema, (data) => {
+          assert.equal(data.consumption, 3.146);
+          assert.equal(data.consumptionCumulative, 9453.146);
         });
 
         consume(data);
