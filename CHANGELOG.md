@@ -26,6 +26,23 @@ All notable changes to this project will be documented in this file.
 - Dragino DDS04-LB - Test no longer leaks its Date mock into other tests
 - Sensative MS guard alert
 
+# [1.101.2] - 2026-10-27
+
+### Fixed
+
+- Enless TX PULSE 600-036, 600-037, 600-038 and TX CONTACT 600-039: pulse counters now reference `pulseInput/count` and the OPEN/CLOSED state fields no longer reference the boolean `digitalInput`
+- Miromico Alarm: removed the out-of-range `maximum` of `batteryUsage`
+
+### Changed
+
+- Schema validation now applies the platform's `$ref` merge (type, unit and measurementType from the reference) and fails on `$ref`s not pointing to a measurement type, type mismatches with the `$ref`, enum values not matching the property type and integer bounds outside the 32-bit range
+
+# [1.101.1] - 2026-10-26
+
+### Fixed
+
+- SmartEnds BrighterBins: `distanceError` is now typed as string to match its enum values
+
 # [1.101.0] - 2026-10-26
 
 ### Added
