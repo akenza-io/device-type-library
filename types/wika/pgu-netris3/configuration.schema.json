@@ -1,0 +1,316 @@
+{
+  "$id": "https://akenza.io/wika/pgu-netris3/configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "configuration",
+  "title": "Configuration",
+  "properties": {
+    "answeredDownlinkSubType": {
+      "title": "Answered downlink sub type",
+      "type": "number",
+      "description": "Answered downlink sub type",
+      "hideFromKpis": true
+    },
+    "answeredDownlinkType": {
+      "title": "Answered downlink type",
+      "type": "number",
+      "description": "Answered downlink type",
+      "hideFromKpis": true
+    },
+    "deviceErrorCode": {
+      "title": "Device error code",
+      "type": "string",
+      "description": "Device error code",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureFallingSlopeAlarmValue": {
+      "title": "Device temperature falling slope alarm value",
+      "type": "number",
+      "description": "Device temperature falling slope alarm value",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureHighThresholdAlarmValue": {
+      "title": "Device temperature high threshold alarm value",
+      "type": "number",
+      "description": "Device temperature high threshold alarm value",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureHighThresholdWithDelayAlarmDelay": {
+      "title": "Device temperature high threshold with delay alarm delay",
+      "type": "number",
+      "description": "Device temperature high threshold with delay alarm delay",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureHighThresholdWithDelayAlarmValue": {
+      "title": "Device temperature high threshold with delay alarm value",
+      "type": "number",
+      "description": "Device temperature high threshold with delay alarm value",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureLowThresholdAlarmValue": {
+      "title": "Device temperature low threshold alarm value",
+      "type": "number",
+      "description": "Device temperature low threshold alarm value",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureLowThresholdWithDelayAlarmDelay": {
+      "title": "Device temperature low threshold with delay alarm delay",
+      "type": "number",
+      "description": "Device temperature low threshold with delay alarm delay",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureLowThresholdWithDelayAlarmValue": {
+      "title": "Device temperature low threshold with delay alarm value",
+      "type": "number",
+      "description": "Device temperature low threshold with delay alarm value",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureProcessAlarmDeadBand": {
+      "title": "Device temperature process alarm dead band",
+      "type": "number",
+      "description": "Device temperature process alarm dead band",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureProcessAlarmEnabledFallingSlope": {
+      "title": "Device temperature process alarm enabled falling slope",
+      "type": "boolean",
+      "description": "Device temperature process alarm enabled falling slope",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureProcessAlarmEnabledHighThreshold": {
+      "title": "Device temperature process alarm enabled high threshold",
+      "type": "boolean",
+      "description": "Device temperature process alarm enabled high threshold",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureProcessAlarmEnabledHighThresholdWithDelay": {
+      "title": "Device temperature process alarm enabled high threshold with delay",
+      "type": "boolean",
+      "description": "Device temperature process alarm enabled high threshold with delay",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureProcessAlarmEnabledLowThreshold": {
+      "title": "Device temperature process alarm enabled low threshold",
+      "type": "boolean",
+      "description": "Device temperature process alarm enabled low threshold",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureProcessAlarmEnabledLowThresholdWithDelay": {
+      "title": "Device temperature process alarm enabled low threshold with delay",
+      "type": "boolean",
+      "description": "Device temperature process alarm enabled low threshold with delay",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureProcessAlarmEnabledRisingSlope": {
+      "title": "Device temperature process alarm enabled rising slope",
+      "type": "boolean",
+      "description": "Device temperature process alarm enabled rising slope",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureRisingSlopeAlarmValue": {
+      "title": "Device temperature rising slope alarm value",
+      "type": "number",
+      "description": "Device temperature rising slope alarm value",
+      "hideFromKpis": true
+    },
+    "downlinkAnswerStatus": {
+      "title": "Downlink answer status",
+      "type": "string",
+      "description": "Downlink answer status",
+      "hideFromKpis": true
+    },
+    "fetchAdditionalDownlink": {
+      "title": "Fetch additional downlink",
+      "type": "boolean",
+      "description": "Fetch additional downlink",
+      "hideFromKpis": true
+    },
+    "frames": {
+      "title": "Frames",
+      "type": "array",
+      "description": "Frames",
+      "hideFromKpis": true
+    },
+    "measuringPeriodAlarmOff": {
+      "title": "Measuring period alarm off",
+      "type": "number",
+      "description": "Measuring period alarm off",
+      "hideFromKpis": true
+    },
+    "measuringPeriodAlarmOn": {
+      "title": "Measuring period alarm on",
+      "type": "number",
+      "description": "Measuring period alarm on",
+      "hideFromKpis": true
+    },
+    "pressureFallingSlopeAlarmValue": {
+      "title": "Pressure falling slope alarm value",
+      "type": "number",
+      "description": "Pressure falling slope alarm value",
+      "hideFromKpis": true
+    },
+    "pressureHighThresholdAlarmValue": {
+      "title": "Pressure high threshold alarm value",
+      "type": "number",
+      "description": "Pressure high threshold alarm value",
+      "hideFromKpis": true
+    },
+    "pressureHighThresholdWithDelayAlarmDelay": {
+      "title": "Pressure high threshold with delay alarm delay",
+      "type": "number",
+      "description": "Pressure high threshold with delay alarm delay",
+      "hideFromKpis": true
+    },
+    "pressureHighThresholdWithDelayAlarmValue": {
+      "title": "Pressure high threshold with delay alarm value",
+      "type": "number",
+      "description": "Pressure high threshold with delay alarm value",
+      "hideFromKpis": true
+    },
+    "pressureLowThresholdAlarmValue": {
+      "title": "Pressure low threshold alarm value",
+      "type": "number",
+      "description": "Pressure low threshold alarm value",
+      "hideFromKpis": true
+    },
+    "pressureLowThresholdWithDelayAlarmDelay": {
+      "title": "Pressure low threshold with delay alarm delay",
+      "type": "number",
+      "description": "Pressure low threshold with delay alarm delay",
+      "hideFromKpis": true
+    },
+    "pressureLowThresholdWithDelayAlarmValue": {
+      "title": "Pressure low threshold with delay alarm value",
+      "type": "number",
+      "description": "Pressure low threshold with delay alarm value",
+      "hideFromKpis": true
+    },
+    "pressureProcessAlarmDeadBand": {
+      "title": "Pressure process alarm dead band",
+      "type": "number",
+      "description": "Pressure process alarm dead band",
+      "hideFromKpis": true
+    },
+    "pressureProcessAlarmEnabledFallingSlope": {
+      "title": "Pressure process alarm enabled falling slope",
+      "type": "boolean",
+      "description": "Pressure process alarm enabled falling slope",
+      "hideFromKpis": true
+    },
+    "pressureProcessAlarmEnabledHighThreshold": {
+      "title": "Pressure process alarm enabled high threshold",
+      "type": "boolean",
+      "description": "Pressure process alarm enabled high threshold",
+      "hideFromKpis": true
+    },
+    "pressureProcessAlarmEnabledHighThresholdWithDelay": {
+      "title": "Pressure process alarm enabled high threshold with delay",
+      "type": "boolean",
+      "description": "Pressure process alarm enabled high threshold with delay",
+      "hideFromKpis": true
+    },
+    "pressureProcessAlarmEnabledLowThreshold": {
+      "title": "Pressure process alarm enabled low threshold",
+      "type": "boolean",
+      "description": "Pressure process alarm enabled low threshold",
+      "hideFromKpis": true
+    },
+    "pressureProcessAlarmEnabledLowThresholdWithDelay": {
+      "title": "Pressure process alarm enabled low threshold with delay",
+      "type": "boolean",
+      "description": "Pressure process alarm enabled low threshold with delay",
+      "hideFromKpis": true
+    },
+    "pressureProcessAlarmEnabledRisingSlope": {
+      "title": "Pressure process alarm enabled rising slope",
+      "type": "boolean",
+      "description": "Pressure process alarm enabled rising slope",
+      "hideFromKpis": true
+    },
+    "pressureRisingSlopeAlarmValue": {
+      "title": "Pressure rising slope alarm value",
+      "type": "number",
+      "description": "Pressure rising slope alarm value",
+      "hideFromKpis": true
+    },
+    "revisionCounter": {
+      "title": "Revision counter",
+      "type": "number",
+      "description": "Revision counter",
+      "hideFromKpis": true
+    },
+    "sensorSamplingChannelsChannel1": {
+      "title": "Sensor sampling channels channel 1",
+      "type": "boolean",
+      "description": "Sensor sampling channels channel 1",
+      "hideFromKpis": true
+    },
+    "sensorSamplingChannelsChannel2": {
+      "title": "Sensor sampling channels channel 2",
+      "type": "boolean",
+      "description": "Sensor sampling channels channel 2",
+      "hideFromKpis": true
+    },
+    "sensorSamplingChannelsChannel3": {
+      "title": "Sensor sampling channels channel 3",
+      "type": "boolean",
+      "description": "Sensor sampling channels channel 3",
+      "hideFromKpis": true
+    },
+    "sensorSamplingChannelsChannel4": {
+      "title": "Sensor sampling channels channel 4",
+      "type": "boolean",
+      "description": "Sensor sampling channels channel 4",
+      "hideFromKpis": true
+    },
+    "sensorSamplingChannelsChannel5": {
+      "title": "Sensor sampling channels channel 5",
+      "type": "boolean",
+      "description": "Sensor sampling channels channel 5",
+      "hideFromKpis": true
+    },
+    "sensorSamplingChannelsChannel6": {
+      "title": "Sensor sampling channels channel 6",
+      "type": "boolean",
+      "description": "Sensor sampling channels channel 6",
+      "hideFromKpis": true
+    },
+    "sensorSamplingChannelsChannel7": {
+      "title": "Sensor sampling channels channel 7",
+      "type": "boolean",
+      "description": "Sensor sampling channels channel 7",
+      "hideFromKpis": true
+    },
+    "sensorSamplingChannelsChannel8": {
+      "title": "Sensor sampling channels channel 8",
+      "type": "boolean",
+      "description": "Sensor sampling channels channel 8",
+      "hideFromKpis": true
+    },
+    "totalWrongFrames": {
+      "title": "Total wrong frames",
+      "type": "number",
+      "description": "Total wrong frames",
+      "hideFromKpis": true
+    },
+    "transmissionRateAlarmOff": {
+      "title": "Transmission rate alarm off",
+      "type": "number",
+      "description": "Transmission rate alarm off",
+      "hideFromKpis": true
+    },
+    "transmissionRateAlarmOn": {
+      "title": "Transmission rate alarm on",
+      "type": "number",
+      "description": "Transmission rate alarm on",
+      "hideFromKpis": true
+    },
+    "underVoltageThreshold": {
+      "title": "Under voltage threshold",
+      "type": "number",
+      "description": "Under voltage threshold",
+      "hideFromKpis": true
+    }
+  }
+}

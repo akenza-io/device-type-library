@@ -1,0 +1,34 @@
+{
+  "$id": "https://akenza.io/wika/pgw23-100-11/configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "configuration",
+  "title": "Configuration",
+  "properties": {
+    "configurationId": {
+      "title": "Configuration ID",
+      "type": "number",
+      "description": "Configuration ID",
+      "hideFromKpis": true
+    },
+    "lastPacketIndexReceived": {
+      "title": "Last packet index received",
+      "type": "number",
+      "description": "Last packet index received",
+      "hideFromKpis": true
+    },
+    "status": {
+      "title": "Status",
+      "type": "number",
+      "description": "Status",
+      "hideFromKpis": true
+    },
+    "statusDescription": {
+      "title": "Status description",
+      "type": "string",
+      "description": "Status description",
+      "hideFromKpis": true
+    }
+  }
+}

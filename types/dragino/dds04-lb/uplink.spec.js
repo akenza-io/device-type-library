@@ -11,25 +11,30 @@ describe("Dragino dds04-lb Uplink", () => {
     let defaultSchema = null;
     let lifecycleSchema = null;
     let consume = null;
+    const OriginalDate = Date;
+
+    afterEach(() => {
+        // Restore Date so the mock does not leak into other specs
+        global.Date = OriginalDate;
+    });
 
     beforeEach(async () => {
+        // Mock Date to a fixed point in time, before rewire captures the globals
+        global.Date = class extends OriginalDate {
+            constructor(...args) {
+                if (args.length === 0) {
+                    return new OriginalDate("2023-08-04T10:00:00.000Z");
+                }
+                return new OriginalDate(...args);
+            }
+        };
+
         const script = rewire(`${__dirname}/uplink.js`);
         consume = init(script);
         [defaultSchema, lifecycleSchema] = await Promise.all([
             loadSchema(`${__dirname}/default.schema.json`),
             loadSchema(`${__dirname}/lifecycle.schema.json`),
         ]);
-
-        // Mock Date to a fixed point in time
-        const DateMock = Date;
-        global.Date = class extends DateMock {
-            constructor(...args) {
-                if (args.length === 0) {
-                    return new DateMock("2023-08-04T10:00:00.000Z");
-                }
-                return new DateMock(...args);
-            }
-        };
     });
 
     describe("consume()", () => {

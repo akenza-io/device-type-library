@@ -1,0 +1,41 @@
+{
+  "name": "PGW23.100.11",
+  "version": "1.0.0",
+  "manufacturer": "Wika",
+  "url": "https://www.wika.com/en-en/pgw23_100_pgw26_100.WIKA",
+  "description": "Bourdon tube pressure gauge with integrated radio module that measures the process pressure, the device temperature and the battery voltage. Used for remote monitoring of process pressure in addition to on-site indication, with process and technical alarms.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Pressure",
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "process_alarm",
+    "technical_alarm",
+    "device_alarm",
+    "device_information",
+    "configuration",
+    "lifecycle",
+    "error"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Condition Monitoring"
+  ],
+  "keywords": [
+    "WIKA",
+    "PGW23.100.11",
+    "PGW",
+    "pressure gauge",
+    "bourdon tube",
+    "pressure",
+    "temperature",
+    "process alarm",
+    "remote monitoring",
+    "lorawan"
+  ]
+}

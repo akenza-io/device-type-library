@@ -1,0 +1,68 @@
+{
+  "$id": "https://akenza.io/wika/pgw23-100-11/process_alarm.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "process_alarm",
+  "title": "Process alarm",
+  "properties": {
+    "alarmStatus": {
+      "title": "Alarm status",
+      "type": "string",
+      "description": "Alarm status",
+      "enum": [
+        "triggered",
+        "disappeared"
+      ],
+      "hideFromKpis": true
+    },
+    "channel": {
+      "title": "Channel",
+      "type": "string",
+      "description": "Channel",
+      "hideFromKpis": true
+    },
+    "fallingSlope": {
+      "title": "Falling slope",
+      "type": "boolean",
+      "description": "Falling slope",
+      "hideFromKpis": true
+    },
+    "highThreshold": {
+      "title": "High threshold",
+      "type": "boolean",
+      "description": "High threshold",
+      "hideFromKpis": true
+    },
+    "highThresholdWithDelay": {
+      "title": "High threshold with delay",
+      "type": "boolean",
+      "description": "High threshold with delay",
+      "hideFromKpis": true
+    },
+    "lowThreshold": {
+      "title": "Low threshold",
+      "type": "boolean",
+      "description": "Low threshold",
+      "hideFromKpis": true
+    },
+    "lowThresholdWithDelay": {
+      "title": "Low threshold with delay",
+      "type": "boolean",
+      "description": "Low threshold with delay",
+      "hideFromKpis": true
+    },
+    "risingSlope": {
+      "title": "Rising slope",
+      "type": "boolean",
+      "description": "Rising slope",
+      "hideFromKpis": true
+    },
+    "value": {
+      "title": "Value",
+      "type": "number",
+      "description": "Value",
+      "hideFromKpis": true
+    }
+  }
+}
