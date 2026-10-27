@@ -14,7 +14,7 @@
     },
     "productSubId": {
       "title": "Product Sub ID",
-      "type": "number",
+      "type": "string",
       "description": "Product Sub ID",
       "hideFromKpis": true
     },

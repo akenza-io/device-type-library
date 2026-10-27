@@ -1,0 +1,56 @@
+{
+  "$id": "https://akenza.io/wika/netrisf/device_alarm.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "device_alarm",
+  "title": "Device alarm",
+  "properties": {
+    "airTimeLimitation": {
+      "title": "Air time limitation",
+      "type": "boolean",
+      "description": "Air time limitation",
+      "hideFromKpis": true
+    },
+    "alarmStatus": {
+      "title": "Alarm status",
+      "type": "string",
+      "description": "Alarm status",
+      "enum": [
+        "triggered",
+        "disappeared"
+      ],
+      "hideFromKpis": true
+    },
+    "alarmType": {
+      "title": "Alarm type",
+      "type": "string",
+      "description": "Alarm type",
+      "hideFromKpis": true
+    },
+    "batteryValue": {
+      "title": "Battery value",
+      "type": "number",
+      "description": "Battery value",
+      "hideFromKpis": true
+    },
+    "causeOfFailure": {
+      "title": "Cause of failure",
+      "type": "string",
+      "description": "Cause of failure",
+      "hideFromKpis": true
+    },
+    "lowVoltage": {
+      "title": "Low voltage",
+      "type": "boolean",
+      "description": "Low voltage",
+      "hideFromKpis": true
+    },
+    "memoryError": {
+      "title": "Memory error",
+      "type": "boolean",
+      "description": "Memory error",
+      "hideFromKpis": true
+    }
+  }
+}

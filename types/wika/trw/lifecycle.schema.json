@@ -1,0 +1,40 @@
+{
+  "$id": "https://akenza.io/wika/trw/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "ableToComputeBatteryLevel": {
+      "title": "Able to compute battery level",
+      "type": "boolean",
+      "description": "Able to compute battery level",
+      "hideFromKpis": true
+    },
+    "batteryLevel": {
+      "title": "Battery level",
+      "type": "number",
+      "description": "Battery level",
+      "hideFromKpis": true
+    },
+    "hasCommunicationModuleRestarted": {
+      "title": "Has communication module restarted",
+      "type": "boolean",
+      "description": "Has communication module restarted",
+      "hideFromKpis": true
+    },
+    "mainPowered": {
+      "title": "Main powered",
+      "type": "boolean",
+      "description": "Main powered",
+      "hideFromKpis": true
+    },
+    "revisionCounter": {
+      "title": "Revision counter",
+      "type": "number",
+      "description": "Revision counter",
+      "hideFromKpis": true
+    }
+  }
+}

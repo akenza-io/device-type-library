@@ -1,0 +1,436 @@
+{
+  "$id": "https://akenza.io/wika/netrisf/configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "configuration",
+  "title": "Configuration",
+  "properties": {
+    "bleAdvertisingEnabled": {
+      "title": "Ble advertising enabled",
+      "type": "boolean",
+      "description": "Ble advertising enabled",
+      "hideFromKpis": true
+    },
+    "channel": {
+      "title": "Channel",
+      "type": "string",
+      "description": "Channel",
+      "hideFromKpis": true
+    },
+    "commandStatus": {
+      "title": "Command status",
+      "type": "number",
+      "description": "Command status",
+      "hideFromKpis": true
+    },
+    "commandType": {
+      "title": "Command type",
+      "type": "number",
+      "description": "Command type",
+      "hideFromKpis": true
+    },
+    "commandTypeName": {
+      "title": "Command type name",
+      "type": "string",
+      "description": "Command type name",
+      "hideFromKpis": true
+    },
+    "configurationId": {
+      "title": "Configuration ID",
+      "type": "number",
+      "description": "Configuration ID",
+      "hideFromKpis": true
+    },
+    "deadBand": {
+      "title": "Dead band",
+      "type": "number",
+      "description": "Dead band",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureFallingSlopeAlarmValue": {
+      "title": "Device temperature falling slope alarm value",
+      "type": "number",
+      "description": "Device temperature falling slope alarm value",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureHighThresholdAlarmValue": {
+      "title": "Device temperature high threshold alarm value",
+      "type": "number",
+      "description": "Device temperature high threshold alarm value",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureHighThresholdWithDelayAlarmDelay": {
+      "title": "Device temperature high threshold with delay alarm delay",
+      "type": "number",
+      "description": "Device temperature high threshold with delay alarm delay",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureHighThresholdWithDelayAlarmValue": {
+      "title": "Device temperature high threshold with delay alarm value",
+      "type": "number",
+      "description": "Device temperature high threshold with delay alarm value",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureLowThresholdAlarmValue": {
+      "title": "Device temperature low threshold alarm value",
+      "type": "number",
+      "description": "Device temperature low threshold alarm value",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureLowThresholdWithDelayAlarmDelay": {
+      "title": "Device temperature low threshold with delay alarm delay",
+      "type": "number",
+      "description": "Device temperature low threshold with delay alarm delay",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureLowThresholdWithDelayAlarmValue": {
+      "title": "Device temperature low threshold with delay alarm value",
+      "type": "number",
+      "description": "Device temperature low threshold with delay alarm value",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureProcessAlarmDeadBand": {
+      "title": "Device temperature process alarm dead band",
+      "type": "number",
+      "description": "Device temperature process alarm dead band",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureProcessAlarmEnabledFallingSlope": {
+      "title": "Device temperature process alarm enabled falling slope",
+      "type": "boolean",
+      "description": "Device temperature process alarm enabled falling slope",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureProcessAlarmEnabledHighThreshold": {
+      "title": "Device temperature process alarm enabled high threshold",
+      "type": "boolean",
+      "description": "Device temperature process alarm enabled high threshold",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureProcessAlarmEnabledHighThresholdWithDelay": {
+      "title": "Device temperature process alarm enabled high threshold with delay",
+      "type": "boolean",
+      "description": "Device temperature process alarm enabled high threshold with delay",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureProcessAlarmEnabledLowThreshold": {
+      "title": "Device temperature process alarm enabled low threshold",
+      "type": "boolean",
+      "description": "Device temperature process alarm enabled low threshold",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureProcessAlarmEnabledLowThresholdWithDelay": {
+      "title": "Device temperature process alarm enabled low threshold with delay",
+      "type": "boolean",
+      "description": "Device temperature process alarm enabled low threshold with delay",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureProcessAlarmEnabledRisingSlope": {
+      "title": "Device temperature process alarm enabled rising slope",
+      "type": "boolean",
+      "description": "Device temperature process alarm enabled rising slope",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureRisingSlopeAlarmValue": {
+      "title": "Device temperature rising slope alarm value",
+      "type": "number",
+      "description": "Device temperature rising slope alarm value",
+      "hideFromKpis": true
+    },
+    "enableBleAdvertising": {
+      "title": "Enable BLE advertising",
+      "type": "boolean",
+      "description": "Enable BLE advertising",
+      "hideFromKpis": true
+    },
+    "fallingSlope": {
+      "title": "Falling slope",
+      "type": "boolean",
+      "description": "Falling slope",
+      "hideFromKpis": true
+    },
+    "fallingSlopeValue": {
+      "title": "Falling slope value",
+      "type": "number",
+      "description": "Falling slope value",
+      "hideFromKpis": true
+    },
+    "frames": {
+      "title": "Frames",
+      "type": "array",
+      "description": "Frames",
+      "hideFromKpis": true
+    },
+    "highThreshold": {
+      "title": "High threshold",
+      "type": "boolean",
+      "description": "High threshold",
+      "hideFromKpis": true
+    },
+    "highThresholdWithDelay": {
+      "title": "High threshold with delay",
+      "type": "boolean",
+      "description": "High threshold with delay",
+      "hideFromKpis": true
+    },
+    "lowThreshold": {
+      "title": "Low threshold",
+      "type": "boolean",
+      "description": "Low threshold",
+      "hideFromKpis": true
+    },
+    "lowThresholdValue": {
+      "title": "Low threshold value",
+      "type": "number",
+      "description": "Low threshold value",
+      "hideFromKpis": true
+    },
+    "lowThresholdWithDelay": {
+      "title": "Low threshold with delay",
+      "type": "boolean",
+      "description": "Low threshold with delay",
+      "hideFromKpis": true
+    },
+    "measurementFallingSlopeAlarmValue": {
+      "title": "Measurement falling slope alarm value",
+      "type": "number",
+      "description": "Measurement falling slope alarm value",
+      "hideFromKpis": true
+    },
+    "measurementHighThresholdAlarmValue": {
+      "title": "Measurement high threshold alarm value",
+      "type": "number",
+      "description": "Measurement high threshold alarm value",
+      "hideFromKpis": true
+    },
+    "measurementHighThresholdWithDelayAlarmDelay": {
+      "title": "Measurement high threshold with delay alarm delay",
+      "type": "number",
+      "description": "Measurement high threshold with delay alarm delay",
+      "hideFromKpis": true
+    },
+    "measurementHighThresholdWithDelayAlarmValue": {
+      "title": "Measurement high threshold with delay alarm value",
+      "type": "number",
+      "description": "Measurement high threshold with delay alarm value",
+      "hideFromKpis": true
+    },
+    "measurementLowThresholdAlarmValue": {
+      "title": "Measurement low threshold alarm value",
+      "type": "number",
+      "description": "Measurement low threshold alarm value",
+      "hideFromKpis": true
+    },
+    "measurementLowThresholdWithDelayAlarmDelay": {
+      "title": "Measurement low threshold with delay alarm delay",
+      "type": "number",
+      "description": "Measurement low threshold with delay alarm delay",
+      "hideFromKpis": true
+    },
+    "measurementLowThresholdWithDelayAlarmValue": {
+      "title": "Measurement low threshold with delay alarm value",
+      "type": "number",
+      "description": "Measurement low threshold with delay alarm value",
+      "hideFromKpis": true
+    },
+    "measurementOffset": {
+      "title": "Measurement offset",
+      "type": "number",
+      "description": "Measurement offset",
+      "hideFromKpis": true
+    },
+    "measurementPeriodNoAlarm": {
+      "title": "Measurement period no alarm",
+      "type": "number",
+      "description": "Measurement period no alarm",
+      "hideFromKpis": true
+    },
+    "measurementPeriodWithAlarm": {
+      "title": "Measurement period with alarm",
+      "type": "number",
+      "description": "Measurement period with alarm",
+      "hideFromKpis": true
+    },
+    "measurementProcessAlarmDeadBand": {
+      "title": "Measurement process alarm dead band",
+      "type": "number",
+      "description": "Measurement process alarm dead band",
+      "hideFromKpis": true
+    },
+    "measurementProcessAlarmEnabledFallingSlope": {
+      "title": "Measurement process alarm enabled falling slope",
+      "type": "boolean",
+      "description": "Measurement process alarm enabled falling slope",
+      "hideFromKpis": true
+    },
+    "measurementProcessAlarmEnabledHighThreshold": {
+      "title": "Measurement process alarm enabled high threshold",
+      "type": "boolean",
+      "description": "Measurement process alarm enabled high threshold",
+      "hideFromKpis": true
+    },
+    "measurementProcessAlarmEnabledHighThresholdWithDelay": {
+      "title": "Measurement process alarm enabled high threshold with delay",
+      "type": "boolean",
+      "description": "Measurement process alarm enabled high threshold with delay",
+      "hideFromKpis": true
+    },
+    "measurementProcessAlarmEnabledLowThreshold": {
+      "title": "Measurement process alarm enabled low threshold",
+      "type": "boolean",
+      "description": "Measurement process alarm enabled low threshold",
+      "hideFromKpis": true
+    },
+    "measurementProcessAlarmEnabledLowThresholdWithDelay": {
+      "title": "Measurement process alarm enabled low threshold with delay",
+      "type": "boolean",
+      "description": "Measurement process alarm enabled low threshold with delay",
+      "hideFromKpis": true
+    },
+    "measurementProcessAlarmEnabledRisingSlope": {
+      "title": "Measurement process alarm enabled rising slope",
+      "type": "boolean",
+      "description": "Measurement process alarm enabled rising slope",
+      "hideFromKpis": true
+    },
+    "measurementRisingSlopeAlarmValue": {
+      "title": "Measurement rising slope alarm value",
+      "type": "number",
+      "description": "Measurement rising slope alarm value",
+      "hideFromKpis": true
+    },
+    "measuringPeriodAlarmOff": {
+      "title": "Measuring period alarm off",
+      "type": "number",
+      "description": "Measuring period alarm off",
+      "hideFromKpis": true
+    },
+    "measuringPeriodAlarmOn": {
+      "title": "Measuring period alarm on",
+      "type": "number",
+      "description": "Measuring period alarm on",
+      "hideFromKpis": true
+    },
+    "resetSuccess": {
+      "title": "Reset success",
+      "type": "boolean",
+      "description": "Reset success",
+      "hideFromKpis": true
+    },
+    "revisionCounter": {
+      "title": "Revision counter",
+      "type": "number",
+      "description": "Revision counter",
+      "hideFromKpis": true
+    },
+    "risingSlope": {
+      "title": "Rising slope",
+      "type": "boolean",
+      "description": "Rising slope",
+      "hideFromKpis": true
+    },
+    "risingSlopeValue": {
+      "title": "Rising slope value",
+      "type": "number",
+      "description": "Rising slope value",
+      "hideFromKpis": true
+    },
+    "sensorSamplingChannelsChannel1": {
+      "title": "Sensor sampling channels channel 1",
+      "type": "boolean",
+      "description": "Sensor sampling channels channel 1",
+      "hideFromKpis": true
+    },
+    "sensorSamplingChannelsChannel2": {
+      "title": "Sensor sampling channels channel 2",
+      "type": "boolean",
+      "description": "Sensor sampling channels channel 2",
+      "hideFromKpis": true
+    },
+    "sensorSamplingChannelsChannel3": {
+      "title": "Sensor sampling channels channel 3",
+      "type": "boolean",
+      "description": "Sensor sampling channels channel 3",
+      "hideFromKpis": true
+    },
+    "sensorSamplingChannelsChannel4": {
+      "title": "Sensor sampling channels channel 4",
+      "type": "boolean",
+      "description": "Sensor sampling channels channel 4",
+      "hideFromKpis": true
+    },
+    "sensorSamplingChannelsChannel5": {
+      "title": "Sensor sampling channels channel 5",
+      "type": "boolean",
+      "description": "Sensor sampling channels channel 5",
+      "hideFromKpis": true
+    },
+    "sensorSamplingChannelsChannel6": {
+      "title": "Sensor sampling channels channel 6",
+      "type": "boolean",
+      "description": "Sensor sampling channels channel 6",
+      "hideFromKpis": true
+    },
+    "sensorSamplingChannelsChannel7": {
+      "title": "Sensor sampling channels channel 7",
+      "type": "boolean",
+      "description": "Sensor sampling channels channel 7",
+      "hideFromKpis": true
+    },
+    "sensorSamplingChannelsChannel8": {
+      "title": "Sensor sampling channels channel 8",
+      "type": "boolean",
+      "description": "Sensor sampling channels channel 8",
+      "hideFromKpis": true
+    },
+    "status": {
+      "title": "Status",
+      "type": "number",
+      "description": "Status",
+      "hideFromKpis": true
+    },
+    "statusDescription": {
+      "title": "Status description",
+      "type": "string",
+      "description": "Status description",
+      "hideFromKpis": true
+    },
+    "totalWrongFrames": {
+      "title": "Total wrong frames",
+      "type": "number",
+      "description": "Total wrong frames",
+      "hideFromKpis": true
+    },
+    "transmissionMultiplierNoAlarm": {
+      "title": "Transmission multiplier no alarm",
+      "type": "number",
+      "description": "Transmission multiplier no alarm",
+      "hideFromKpis": true
+    },
+    "transmissionMultiplierWithAlarm": {
+      "title": "Transmission multiplier with alarm",
+      "type": "number",
+      "description": "Transmission multiplier with alarm",
+      "hideFromKpis": true
+    },
+    "transmissionRateAlarmOff": {
+      "title": "Transmission rate alarm off",
+      "type": "number",
+      "description": "Transmission rate alarm off",
+      "hideFromKpis": true
+    },
+    "transmissionRateAlarmOn": {
+      "title": "Transmission rate alarm on",
+      "type": "number",
+      "description": "Transmission rate alarm on",
+      "hideFromKpis": true
+    },
+    "underVoltageThreshold": {
+      "title": "Under voltage threshold",
+      "type": "number",
+      "description": "Under voltage threshold",
+      "hideFromKpis": true
+    }
+  }
+}

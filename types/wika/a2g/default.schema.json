@@ -1,0 +1,48 @@
+{
+  "$id": "https://akenza.io/wika/a2g/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "pressure": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/bar"
+    },
+    "flow": {
+      "title": "Flow",
+      "type": "number",
+      "description": "Flow"
+    },
+    "input1": {
+      "title": "Input 1",
+      "type": "number",
+      "description": "Input 1"
+    },
+    "input2": {
+      "title": "Input 2",
+      "type": "number",
+      "description": "Input 2"
+    },
+    "input3": {
+      "title": "Input 3",
+      "type": "number",
+      "description": "Input 3"
+    },
+    "input4": {
+      "title": "Input 4",
+      "type": "number",
+      "description": "Input 4"
+    },
+    "relayStatus1": {
+      "title": "Relay status 1",
+      "type": "number",
+      "description": "Relay status 1"
+    },
+    "relayStatus2": {
+      "title": "Relay status 2",
+      "type": "number",
+      "description": "Relay status 2"
+    }
+  }
+}

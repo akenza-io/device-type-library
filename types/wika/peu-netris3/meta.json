@@ -1,0 +1,41 @@
+{
+  "name": "PEU + NETRIS3",
+  "version": "1.0.0",
+  "manufacturer": "Wika",
+  "url": "https://www.wika.com/en-en/peu_20_peu_21.WIKA",
+  "description": "Pressure transmitter combined with the NETRIS3 radio unit that measures the process pressure of liquids and gases and the device temperature. Used for remote monitoring of plants and remote measuring points, with process and technical alarms.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Pressure",
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "process_alarm",
+    "technical_alarm",
+    "device_alarm",
+    "device_information",
+    "configuration",
+    "lifecycle",
+    "error"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Condition Monitoring"
+  ],
+  "keywords": [
+    "WIKA",
+    "PEU",
+    "NETRIS3",
+    "pressure transmitter",
+    "pressure",
+    "temperature",
+    "process pressure",
+    "process alarm",
+    "remote monitoring",
+    "lorawan"
+  ]
+}

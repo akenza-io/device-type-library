@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.102.0] - 2026-10-26
+
+### Added
+
+- WIKA A2G-520
+- WIKA FLRU + NETRIS3
+- WIKA GD-20-W
+- WIKA NETRIS F
+- WIKA PEU + NETRIS3
+- WIKA PGU + NETRIS3
+- WIKA PGW23.100.11
+- WIKA TGU + NETRIS3
+- WIKA TRU + NETRIS3
+- WIKA TRW
+
+- Sensative - Comfort
+- Sensative - Drip
+- Sensative - Drip-Oil
+
+### Fixed
+
+- Dragino DDS04-LB - Test no longer leaks its Date mock into other tests
+- Sensative MS guard alert
+
 # [1.101.0] - 2026-10-26
 
 ### Added

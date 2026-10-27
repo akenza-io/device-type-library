@@ -6,11 +6,29 @@ const RAW_MAX = 12500;
 let VALUE_RANGE_START = 0;
 let VALUE_RANGE_END = 25;
 
-const PROCESS_ALARM_TYPE = ['LOW_THRESHOLD', 'HIGH_THRESHOLD', 'FALLING_SLOPE', 'RISING_SLOPE', 'LOW_THRESHOLD_WITH_DELAY', 'HIGH_THRESHOLD_WITH_DELAY'];
-const TECHNICAL_ALARM_TYPE = ['NO_ALARM', 'OPEN_CONDITION', 'SHORT_CONDITION', 'SATURATED_LOW', 'SATURATED_HIGH', 'ADC_COMMUNICATION_ERROR'];
+const PROCESS_ALARM_TYPE = [
+  "LOW_THRESHOLD",
+  "HIGH_THRESHOLD",
+  "FALLING_SLOPE",
+  "RISING_SLOPE",
+  "LOW_THRESHOLD_WITH_DELAY",
+  "HIGH_THRESHOLD_WITH_DELAY",
+];
+const TECHNICAL_ALARM_TYPE = [
+  "NO_ALARM",
+  "OPEN_CONDITION",
+  "SHORT_CONDITION",
+  "SATURATED_LOW",
+  "SATURATED_HIGH",
+  "ADC_COMMUNICATION_ERROR",
+];
 
 function getValue(rawNumber) {
-  return (rawNumber - RAW_MIN) * ((VALUE_RANGE_END - VALUE_RANGE_START) / (RAW_MAX - RAW_MIN)) + VALUE_RANGE_START;
+  return (
+    (rawNumber - RAW_MIN) *
+      ((VALUE_RANGE_END - VALUE_RANGE_START) / (RAW_MAX - RAW_MIN)) +
+    VALUE_RANGE_START
+  );
 }
 
 function getTechnicalAlert(rawAlert, channel) {
@@ -22,12 +40,17 @@ function getTechnicalAlert(rawAlert, channel) {
     data.alarmStatus = "STARTED";
   }
   // Reserved 4
-  data.alarmType = TECHNICAL_ALARM_TYPE[Bits.bitsToUnsigned(rawAlert.substring(5, 8))];
+  data.alarmType =
+    TECHNICAL_ALARM_TYPE[Bits.bitsToUnsigned(rawAlert.substring(5, 8))];
   return data;
 }
 
 function checkForCustomFields(device, target, fallbackValue) {
-  if (device !== undefined && device.customFields !== undefined && device.customFields[target] !== undefined) {
+  if (
+    device !== undefined &&
+    device.customFields !== undefined &&
+    device.customFields[target] !== undefined
+  ) {
     return device.customFields[target];
   }
   return fallbackValue;
@@ -39,7 +62,7 @@ function consume(event) {
   let data = {};
 
   VALUE_RANGE_START = checkForCustomFields(event.device, "rangeStart", 0);
-  VALUE_RANGE_END = checkForCustomFields(event.device, "rangeEnd", 25)
+  VALUE_RANGE_END = checkForCustomFields(event.device, "rangeEnd", 25);
 
   let messageType = Bits.bitsToUnsigned(bits.substring(0, 8));
   // Reserved 8
@@ -64,24 +87,36 @@ function consume(event) {
       }
       emit("sample", { data: data, topic: "default" });
       break;
-    } case 3: {
+    }
+    case 3: {
       // Reserved 8
       let pointer = 24;
       while (pointer < bits.length) {
         data = {};
-        let status = Bits.bitsToUnsigned(bits.substring(pointer, pointer + 1)); pointer += 1;
+        let status = Bits.bitsToUnsigned(bits.substring(pointer, pointer + 1));
+        pointer += 1;
         data.alarmStatus = "STOPPED";
         if (!status) {
           data.alarmStatus = "STARTED";
         }
-        data.channelId = Bits.bitsToUnsigned(bits.substring(pointer, pointer + 4)) + 1; pointer += 4;
-        data.alarmType = PROCESS_ALARM_TYPE[Bits.bitsToUnsigned(bits.substring(pointer, pointer + 3))]; pointer += 3;
-        data.value = getValue(Bits.bitsToUnsigned(bits.substring(pointer, pointer + 16))); pointer += 16;
+        data.channelId =
+          Bits.bitsToUnsigned(bits.substring(pointer, pointer + 4)) + 1;
+        pointer += 4;
+        data.alarmType =
+          PROCESS_ALARM_TYPE[
+            Bits.bitsToUnsigned(bits.substring(pointer, pointer + 3))
+          ];
+        pointer += 3;
+        data.value = getValue(
+          Bits.bitsToUnsigned(bits.substring(pointer, pointer + 16)),
+        );
+        pointer += 16;
 
         emit("sample", { data: data, topic: "process_alarm" });
       }
       break;
-    } case 4: {
+    }
+    case 4: {
       let channels = Bits.bitsToUnsigned(bits.substring(16, 24));
       if (channels === 1) {
         let alert = getTechnicalAlert(bits.substring(24, 32), 1);
@@ -96,7 +131,8 @@ function consume(event) {
         emit("sample", { data: alert, topic: "technical_alarm" });
       }
       break;
-    } case 6: {
+    }
+    case 6: {
       data.status = "UNKNNOWN";
       switch (Bits.bitsToUnsigned(bits.substring(16, 24))) {
         case 0x20:
