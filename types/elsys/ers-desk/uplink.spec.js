@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, expectSample, validateSchema } from "test-utils";
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("Elsys desk uplink", () => {
   let defaultSchema = null;
@@ -51,16 +51,10 @@ describe("Elsys desk uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.temperature, 24.1);
-        assert.equal(value.data.humidity, 37);
-        assert.equal(value.data.light, 6);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.temperature, 24.1);
+        assert.equal(data.humidity, 37);
+        assert.equal(data.light, 6);
       });
 
       expectSample("lifecycle", lifecycleSchema, (data) => {

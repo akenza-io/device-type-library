@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("EM500-CO2 Uplink", () => {
   let defaultSchema = null;
@@ -22,26 +22,15 @@ describe("EM500-CO2 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.batteryLevel, 100);
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 100);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.temperature, 27.2);
-        assert.equal(value.data.humidity, 56.5);
-        assert.equal(value.data.co2, 1127);
-        assert.equal(value.data.pressure, 1008.8);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.temperature, 27.2);
+        assert.equal(data.humidity, 56.5);
+        assert.equal(data.co2, 1127);
+        assert.equal(data.pressure, 1008.8);
       });
 
       consume(data);

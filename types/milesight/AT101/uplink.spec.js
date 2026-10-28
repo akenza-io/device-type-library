@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("AT101 Uplink", () => {
   let gpsSchema = null;
@@ -26,40 +26,20 @@ describe("AT101 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.temperature, 28.3);
-
-        validateSchema(value.data, temperatureSchema, {
-          throwError: true,
-        });
+      expectSample("temperature", temperatureSchema, (data) => {
+        assert.equal(data.temperature, 28.3);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.geofenceStatus, "UNSET");
-        assert.equal(value.data.latitude, 24.62495);
-        assert.equal(value.data.longitude, 118.030576);
-        assert.equal(value.data.motionStatus, "MOVING");
-
-        validateSchema(value.data, gpsSchema, { throwError: true });
+      expectSample("gps", gpsSchema, (data) => {
+        assert.equal(data.geofenceStatus, "UNSET");
+        assert.equal(data.latitude, 24.62495);
+        assert.equal(data.longitude, 118.030576);
+        assert.equal(data.motionStatus, "MOVING");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.batteryLevel, 100);
-        assert.equal(value.data.position, "NORMAL");
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 100);
+        assert.equal(data.position, "NORMAL");
       });
 
       consume(data);
@@ -74,39 +54,17 @@ describe("AT101 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.temperature, 28.3);
-
-        validateSchema(value.data, temperatureSchema, {
-          throwError: true,
-        });
+      expectSample("temperature", temperatureSchema, (data) => {
+        assert.equal(data.temperature, 28.3);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.batteryLevel, 100);
-        assert.equal(value.data.position, "TILT");
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 100);
+        assert.equal(data.position, "TILT");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.typeOf(value.data.wifi, "array");
-
-        validateSchema(value.data, wifiSchema, {
-          throwError: true,
-        });
+      expectSample("wifi", wifiSchema, (data) => {
+        assert.typeOf(data.wifi, "array");
       });
 
       consume(data);

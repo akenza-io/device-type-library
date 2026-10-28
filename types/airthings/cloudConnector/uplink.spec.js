@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, expectSample, validateSchema } from "test-utils";
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("Airthings Cloud Connector Uplink", () => {
   let airlySchema = null;
@@ -57,31 +57,22 @@ describe("Airthings Cloud Connector Uplink", () => {
         }
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
+      expectSample("environment", environmentSchema, (data) => {
+        assert.equal(data.temperature, 20.8);
+        assert.equal(data.temperatureF, 69.44);
+        assert.equal(data.pressure, 990.1);
+        assert.equal(data.humidity, 20);
+        assert.equal(data.co2, 612);
+        assert.equal(data.soundLevelA, 26);
+        assert.equal(data.light, 13);
 
-        assert.equal(value.topic, "environment");
-        assert.equal(value.data.temperature, 20.8);
-        assert.equal(value.data.temperatureF, 69.44);
-        assert.equal(value.data.pressure, 990.1);
-        assert.equal(value.data.humidity, 20);
-        assert.equal(value.data.co2, 612);
-        assert.equal(value.data.soundLevelA, 26);
-        assert.equal(value.data.light, 13);
-
-        assert.equal(value.data.co2Rating, 'GOOD');
-        assert.equal(value.data.humidityRating, 'POOR');
-        assert.equal(value.data.pressureRating, 'GOOD');
-        assert.equal(value.data.temperatureRating, 'GOOD');
-        assert.equal(value.data.lightRating, 'GOOD');
+        assert.equal(data.co2Rating, 'GOOD');
+        assert.equal(data.humidityRating, 'POOR');
+        assert.equal(data.pressureRating, 'GOOD');
+        assert.equal(data.temperatureRating, 'GOOD');
+        assert.equal(data.lightRating, 'GOOD');
 
         // assert.equal(value.timestamp, new Date("2024-01-03T08:09:05Z"))
-
-        validateSchema(value.data, environmentSchema, {
-          throwError: true,
-        });
       });
 
       expectSample("lifecycle", lifecycleSchema, (data) => {
@@ -140,32 +131,23 @@ describe("Airthings Cloud Connector Uplink", () => {
         }
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
+      expectSample("environment", environmentSchema, (data) => {
+        assert.equal(data.temperature, 10); // Testing if the new datapoint gets prioritised
+        assert.equal(data.temperatureF, 50);
+        assert.equal(data.pressure, 990.1);
+        assert.equal(data.humidity, 20);
+        assert.equal(data.co2, 612);
+        assert.equal(data.soundLevelA, 26);
+        assert.equal(data.tvoc, 16);
+        assert.equal(data.light, 14);
 
-        assert.equal(value.topic, "environment");
-        assert.equal(value.data.temperature, 10); // Testing if the new datapoint gets prioritised
-        assert.equal(value.data.temperatureF, 50);
-        assert.equal(value.data.pressure, 990.1);
-        assert.equal(value.data.humidity, 20);
-        assert.equal(value.data.co2, 612);
-        assert.equal(value.data.soundLevelA, 26);
-        assert.equal(value.data.tvoc, 16);
-        assert.equal(value.data.light, 14);
-
-        assert.equal(value.data.co2Rating, 'GOOD');
-        assert.equal(value.data.humidityRating, 'POOR');
-        assert.equal(value.data.pressureRating, 'GOOD');
-        assert.equal(value.data.temperatureRating, 'GOOD');
-        assert.equal(value.data.lightRating, 'GOOD');
+        assert.equal(data.co2Rating, 'GOOD');
+        assert.equal(data.humidityRating, 'POOR');
+        assert.equal(data.pressureRating, 'GOOD');
+        assert.equal(data.temperatureRating, 'GOOD');
+        assert.equal(data.lightRating, 'GOOD');
 
         // assert.equal(value.timestamp, new Date("2024-01-03T08:09:05Z"))
-
-        validateSchema(value.data, environmentSchema, {
-          throwError: true,
-        });
       });
 
       expectEmits((type, value) => {

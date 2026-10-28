@@ -15,6 +15,16 @@
       "title": "Absolute pulse",
       "type": "integer",
       "description": "Raw absolute pulse of the phase"
+    },
+    "consumption": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHoursDelta",
+      "title": "Consumption",
+      "description": "Consumption"
+    },
+    "consumptionCumulative": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours",
+      "title": "Cumulative consumption",
+      "description": "Cumulative consumption"
     }
   },
   "required": [

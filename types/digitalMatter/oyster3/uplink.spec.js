@@ -107,7 +107,7 @@ describe("Digital matter Oyster 3 Uplink", () => {
       expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
+
 
         assert.equal(value.topic, "position");
         assert.equal(value.data.latitude, 202.4493824);

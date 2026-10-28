@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, expectSample, validateSchema } from "test-utils";
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Dragino T68DL Uplink", () => {
   let defaultSchema = null;
@@ -22,18 +22,12 @@ describe("Dragino T68DL Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.temperature, 28.14);
+        assert.equal(data.tempHFlag, false);
+        assert.equal(data.tempLFlag, true);
 
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.temperature, 28.14);
-        assert.equal(value.data.tempHFlag, false);
-        assert.equal(value.data.tempLFlag, true);
         // assert.equal(value.data.time, "2024-10-28 04:17:30"); // Testing with times gets a bit wonky ussualy
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       expectSample("lifecycle", lifecycleSchema, (data) => {

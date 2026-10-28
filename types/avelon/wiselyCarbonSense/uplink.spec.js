@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, expectSample, validateSchema } from "test-utils";
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Avelon Carbonsense uplink", () => {
   let defaultSchema = null;
@@ -27,82 +27,46 @@ describe("Avelon Carbonsense uplink", () => {
         assert.equal(data.batteryLevel, 100);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.pressure, 981.1);
-        assert.equal(value.data.temperature, 22.9);
-        assert.equal(value.data.humidity, 33);
-        assert.equal(value.data.co2, 736);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.pressure, 981.1);
+        assert.equal(data.temperature, 22.9);
+        assert.equal(data.humidity, 33);
+        assert.equal(data.co2, 736);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.pressure, 981);
-        assert.equal(value.data.temperature, 22.9);
-        assert.equal(value.data.humidity, 33);
-        assert.equal(value.data.co2, 743);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.pressure, 981);
+        assert.equal(data.temperature, 22.9);
+        assert.equal(data.humidity, 33);
+        assert.equal(data.co2, 743);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.pressure, 980.9);
-        assert.equal(value.data.temperature, 23);
-        assert.equal(value.data.humidity, 33);
-        assert.equal(value.data.co2, 753);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.pressure, 980.9);
+        assert.equal(data.temperature, 23);
+        assert.equal(data.humidity, 33);
+        assert.equal(data.co2, 753);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.pressure, 980.8);
-        assert.equal(value.data.temperature, 23);
-        assert.equal(value.data.humidity, 33);
-        assert.equal(value.data.co2, 755);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.pressure, 980.8);
+        assert.equal(data.temperature, 23);
+        assert.equal(data.humidity, 33);
+        assert.equal(data.co2, 755);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.pressure, 980.8);
-        assert.equal(value.data.temperature, 23);
-        assert.equal(value.data.humidity, 33);
-        assert.equal(value.data.co2, 759);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.pressure, 980.8);
+        assert.equal(data.temperature, 23);
+        assert.equal(data.humidity, 33);
+        assert.equal(data.co2, 759);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.pressure, 980.8);
-        assert.equal(value.data.temperature, 23);
-        assert.equal(value.data.humidity, 33);
-        assert.equal(value.data.co2, 761);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.pressure, 980.8);
+        assert.equal(data.temperature, 23);
+        assert.equal(data.humidity, 33);
+        assert.equal(data.co2, 761);
       });
 
       consume(data);

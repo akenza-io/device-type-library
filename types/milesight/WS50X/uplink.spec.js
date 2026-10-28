@@ -1,7 +1,7 @@
 
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("WS50X Uplink", () => {
   let defaultSchema = null;
@@ -21,19 +21,13 @@ describe("WS50X Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.switch1, "OPEN");
-        assert.equal(value.data.switch2, "CLOSE");
-        assert.equal(value.data.switch3, "CLOSE");
-        assert.equal(value.data.switch1change, true);
-        assert.equal(value.data.switch2change, true);
-        assert.equal(value.data.switch3change, false);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.switch1, "OPEN");
+        assert.equal(data.switch2, "CLOSE");
+        assert.equal(data.switch3, "CLOSE");
+        assert.equal(data.switch1change, true);
+        assert.equal(data.switch2change, true);
+        assert.equal(data.switch3change, false);
       });
 
       consume(data);

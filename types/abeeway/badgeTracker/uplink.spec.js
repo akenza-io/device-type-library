@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, expectSample, validateSchema } from "test-utils";
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("Abeeway badge tracker uplink", () => {
   let lifecycleSchema = null;
@@ -32,21 +32,14 @@ describe("Abeeway badge tracker uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.demandMessage, false);
-        assert.equal(value.data.positionMessage, true);
-        assert.equal(value.data.hasMoved, false);
-        assert.equal(value.data.sos, false);
-        assert.equal(value.data.operatingMode, "STANDBY");
-
-        assert.equal(value.data.batteryLevel, 92);
-        assert.equal(value.data.temperature, 21.8);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.demandMessage, false);
+        assert.equal(data.positionMessage, true);
+        assert.equal(data.hasMoved, false);
+        assert.equal(data.sos, false);
+        assert.equal(data.operatingMode, "STANDBY");
+        assert.equal(data.batteryLevel, 92);
+        assert.equal(data.temperature, 21.8);
       });
 
       expectSample("gps", gpsFixSchema, (data) => {
@@ -68,21 +61,15 @@ describe("Abeeway badge tracker uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.demandMessage, false);
+        assert.equal(data.positionMessage, false);
+        assert.equal(data.hasMoved, false);
+        assert.equal(data.sos, false);
+        assert.equal(data.operatingMode, "STANDBY");
 
-        assert.equal(value.data.demandMessage, false);
-        assert.equal(value.data.positionMessage, false);
-        assert.equal(value.data.hasMoved, false);
-        assert.equal(value.data.sos, false);
-        assert.equal(value.data.operatingMode, "STANDBY");
-
-        assert.equal(value.data.batteryLevel, 92);
-        assert.equal(value.data.temperature, 21.8);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+        assert.equal(data.batteryLevel, 92);
+        assert.equal(data.temperature, 21.8);
       });
 
       expectSample("operation_status", heartbeatSchema, (data) => {
@@ -103,21 +90,15 @@ describe("Abeeway badge tracker uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.demandMessage, false);
+        assert.equal(data.positionMessage, false);
+        assert.equal(data.hasMoved, true);
+        assert.equal(data.sos, false);
+        assert.equal(data.operatingMode, "STANDBY");
 
-        assert.equal(value.data.demandMessage, false);
-        assert.equal(value.data.positionMessage, false);
-        assert.equal(value.data.hasMoved, true);
-        assert.equal(value.data.sos, false);
-        assert.equal(value.data.operatingMode, "STANDBY");
-
-        assert.equal(value.data.batteryLevel, 92);
-        assert.equal(value.data.temperature, 21.8);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+        assert.equal(data.batteryLevel, 92);
+        assert.equal(data.temperature, 21.8);
       });
 
       expectSample("angle_detection", angleDetectionSchema, (data) => {
@@ -151,21 +132,15 @@ describe("Abeeway badge tracker uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.demandMessage, false);
+        assert.equal(data.positionMessage, false);
+        assert.equal(data.hasMoved, true);
+        assert.equal(data.sos, false);
+        assert.equal(data.operatingMode, "MOTION_TRACKING");
 
-        assert.equal(value.data.demandMessage, false);
-        assert.equal(value.data.positionMessage, false);
-        assert.equal(value.data.hasMoved, true);
-        assert.equal(value.data.sos, false);
-        assert.equal(value.data.operatingMode, "MOTION_TRACKING");
-
-        assert.equal(value.data.batteryLevel, 54);
-        assert.equal(value.data.temperature, 22.8);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+        assert.equal(data.batteryLevel, 54);
+        assert.equal(data.temperature, 22.8);
       });
 
       expectSample("wifi", wifiBssidSchema, (data) => {
@@ -193,21 +168,15 @@ describe("Abeeway badge tracker uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.demandMessage, false);
+        assert.equal(data.positionMessage, false);
+        assert.equal(data.hasMoved, false);
+        assert.equal(data.sos, false);
+        assert.equal(data.operatingMode, "STANDBY");
 
-        assert.equal(value.data.demandMessage, false);
-        assert.equal(value.data.positionMessage, false);
-        assert.equal(value.data.hasMoved, false);
-        assert.equal(value.data.sos, false);
-        assert.equal(value.data.operatingMode, "STANDBY");
-
-        assert.equal(value.data.batteryLevel, 69);
-        assert.equal(value.data.temperature, 23.8);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+        assert.equal(data.batteryLevel, 69);
+        assert.equal(data.temperature, 23.8);
       });
 
       expectSample("activity_status", activityStatusSchema, (data) => {
@@ -226,21 +195,15 @@ describe("Abeeway badge tracker uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.demandMessage, false);
+        assert.equal(data.positionMessage, false);
+        assert.equal(data.hasMoved, true);
+        assert.equal(data.sos, false);
+        assert.equal(data.operatingMode, "STANDBY");
 
-        assert.equal(value.data.demandMessage, false);
-        assert.equal(value.data.positionMessage, false);
-        assert.equal(value.data.hasMoved, true);
-        assert.equal(value.data.sos, false);
-        assert.equal(value.data.operatingMode, "STANDBY");
-
-        assert.equal(value.data.batteryLevel, 83);
-        assert.equal(value.data.temperature, 25.8);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+        assert.equal(data.batteryLevel, 83);
+        assert.equal(data.temperature, 25.8);
       });
 
       expectSample("ble", bleGeozoningSchema, (data) => {
@@ -261,21 +224,15 @@ describe("Abeeway badge tracker uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.demandMessage, false);
+        assert.equal(data.positionMessage, false);
+        assert.equal(data.hasMoved, true);
+        assert.equal(data.sos, false);
+        assert.equal(data.operatingMode, "ACTIVITY_TRACKING");
 
-        assert.equal(value.data.demandMessage, false);
-        assert.equal(value.data.positionMessage, false);
-        assert.equal(value.data.hasMoved, true);
-        assert.equal(value.data.sos, false);
-        assert.equal(value.data.operatingMode, "ACTIVITY_TRACKING");
-
-        assert.equal(value.data.batteryLevel, 50);
-        assert.equal(value.data.temperature, 19.2);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+        assert.equal(data.batteryLevel, 50);
+        assert.equal(data.temperature, 19.2);
       });
 
       expectEmits((type, value) => {

@@ -39,10 +39,10 @@ function consume(event) {
     data.co2 = e | f;
 
     if (i === 0) {
-      emit("sample", { data });
+      emit("sample", { data, topic: "default" });
     } else {
       const outTime = new Date(date.setMinutes(date.getMinutes() - 10));
-      emit("sample", { data, timestamp: outTime });
+      emit("sample", { data, topic: "default", timestamp: outTime });
     }
     data = {};
   }

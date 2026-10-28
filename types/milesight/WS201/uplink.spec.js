@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("WS201 Uplink", () => {
   let defaultSchema = null;
@@ -22,27 +22,14 @@ describe("WS201 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.distance, 62);
-        assert.equal(value.data.remaining, 69);
-
-        validateSchema(value.data, defaultSchema, {
-          throwError: true,
-        });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.distance, 62);
+        assert.equal(data.remaining, 69);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 100);
 
-        assert.equal(value.data.batteryLevel, 100);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);

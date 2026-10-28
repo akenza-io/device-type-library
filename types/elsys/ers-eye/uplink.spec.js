@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, expectSample, validateSchema } from "test-utils";
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("Elsys eye uplink", () => {
   let defaultSchema = null;
@@ -52,16 +52,10 @@ describe("Elsys eye uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.temperature, 22.5);
-        assert.equal(value.data.humidity, 40);
-        assert.equal(value.data.light, 416);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.temperature, 22.5);
+        assert.equal(data.humidity, 40);
+        assert.equal(data.light, 416);
       });
 
       expectSample("lifecycle", lifecycleSchema, (data) => {

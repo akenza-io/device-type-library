@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, expectSample, validateSchema } from "test-utils";
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Oxon Buttonboard Uplink", () => {
   let defaultSchema = null;
@@ -21,17 +21,11 @@ describe("Oxon Buttonboard Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.hbIRQ, false);
-        assert.equal(value.data.accIRQ, false);
-        assert.equal(value.data.batteryLevel, 100);
-        assert.equal(value.data.appMode, 1);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.hbIRQ, false);
+        assert.equal(data.accIRQ, false);
+        assert.equal(data.batteryLevel, 100);
+        assert.equal(data.appMode, 1);
       });
 
       expectSample("default", defaultSchema, (data) => {

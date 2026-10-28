@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("WS203 Uplink", () => {
   let defaultSchema = null;
@@ -29,32 +29,20 @@ describe("WS203 Uplink", () => {
         assert.exists(value.occupiedMinutes);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.humidity, 50.5);
-        assert.equal(value.data.temperature, 30.8);
-        assert.equal(value.data.occupiedMinutes, 0);
-        assert.equal(value.data.minutesSinceLastOccupied, 0);
-        assert.equal(value.data.occupancy, 0);
-        assert.equal(value.data.occupancyStatus, "FREE");
-        assert.equal(value.data.occupied, false);
-        assert.equal(value.data.occupiedOrWarm, false);
-        assert.equal(value.data.warm, false);
-
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.humidity, 50.5);
+        assert.equal(data.temperature, 30.8);
+        assert.equal(data.occupiedMinutes, 0);
+        assert.equal(data.minutesSinceLastOccupied, 0);
+        assert.equal(data.occupancy, 0);
+        assert.equal(data.occupancyStatus, "FREE");
+        assert.equal(data.occupied, false);
+        assert.equal(data.occupiedOrWarm, false);
+        assert.equal(data.warm, false);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.batteryLevel, 100);
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 100);
       });
 
       consume(data);
@@ -68,30 +56,18 @@ describe("WS203 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.humidity, 50.5);
-        assert.equal(value.data.occupied, false);
-        assert.equal(value.data.occupancy, 0);
-        assert.equal(value.data.temperature, 29.2);
-        assert.equal(value.data.reportType, "PERIOD");
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.humidity, 50.5);
+        assert.equal(data.occupied, false);
+        assert.equal(data.occupancy, 0);
+        assert.equal(data.temperature, 29.2);
+        assert.equal(data.reportType, "PERIOD");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.humidity, 50.5);
-        assert.equal(value.data.temperature, 30.8);
-        assert.equal(value.data.reportType, "PIR_OCCUPANCY");
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.humidity, 50.5);
+        assert.equal(data.temperature, 30.8);
+        assert.equal(data.reportType, "PIR_OCCUPANCY");
       });
 
       consume(data);

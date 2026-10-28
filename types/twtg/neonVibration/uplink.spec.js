@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, expectSample, validateSchema } from "test-utils";
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("TWTG Neon Vibration", () => {
   let alertSchema = null;
@@ -179,20 +179,13 @@ describe("TWTG Neon Vibration", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "axis_z_spectrum");
-        assert.equal(value.data.peakAcceleration, 0.0195465087890625);
-        assert.equal(value.data.rmsAcceleration, 0.005573272705078125);
-        assert.equal(value.data.rmsVelocity, 0.048492431640625);
-        assert.equal(value.data.rpm, 1336.8822021484375);
-        assert.exists(value.data.frequencies); // Theres a lot
-        assert.exists(value.data.magnitudes); // Theres a lot
-
-        validateSchema(value.data, axisZspectrumSchema, { throwError: true });
+      expectSample("axis_z_spectrum", axisZspectrumSchema, (data) => {
+        assert.equal(data.peakAcceleration, 0.0195465087890625);
+        assert.equal(data.rmsAcceleration, 0.005573272705078125);
+        assert.equal(data.rmsVelocity, 0.048492431640625);
+        assert.equal(data.rpm, 1336.8822021484375);
+        assert.exists(data.frequencies); // Theres a lot
+        assert.exists(data.magnitudes); // Theres a lot
       });
 
       expectEmits((type, value) => {

@@ -1,7 +1,7 @@
 
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("WS51X Uplink", () => {
   let defaultSchema = null;
@@ -21,18 +21,12 @@ describe("WS51X Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.current, 168);
-        assert.equal(value.data.factor, 97);
-        assert.equal(value.data.powerConsumption, 29);
-        assert.equal(value.data.powerOn, true);
-        assert.equal(value.data.voltage, 217.9);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.current, 168);
+        assert.equal(data.factor, 97);
+        assert.equal(data.powerConsumption, 29);
+        assert.equal(data.powerOn, true);
+        assert.equal(data.voltage, 217.9);
       });
 
       consume(data);

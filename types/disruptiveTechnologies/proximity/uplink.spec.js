@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, expectSample, validateSchema } from "test-utils";
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("Disruptive Technologies Proximity Sensor Uplink", () => {
   let objectPresentSchema = null;
@@ -140,21 +140,12 @@ describe("Disruptive Technologies Proximity Sensor Uplink", () => {
         assert.equal(data.usageCount, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "object_present");
-        assert.equal(value.data.objectPresent, "PRESENT");
-        assert.equal(value.data.proximity, true);
-        assert.equal(value.data.count, 1);
-        assert.equal(value.data.relativeCount, 0); // Should stay 0 as this is not a real sample
-        assert.equal(value.data.repeat, true);
-
-        validateSchema(value.data, objectPresentSchema, {
-          throwError: true,
-        });
+      expectSample("object_present", objectPresentSchema, (data) => {
+        assert.equal(data.objectPresent, "PRESENT");
+        assert.equal(data.proximity, true);
+        assert.equal(data.count, 1);
+        assert.equal(data.relativeCount, 0); // Should stay 0 as this is not a real sample
+        assert.equal(data.repeat, true);
       });
 
       expectEmits((type, value) => {

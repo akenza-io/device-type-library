@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, expectSample, validateSchema } from "test-utils";
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Decentlab PR36 Uplink", () => {
   let defaultSchema = null;
@@ -26,16 +26,10 @@ describe("Decentlab PR36 Uplink", () => {
         assert.equal(data.temperature, 23.50390625);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.batteryVoltage, 3.115);
-        assert.equal(value.data.protocolVersion, 2);
-        assert.equal(value.data.deviceId, 811);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 3.115);
+        assert.equal(data.protocolVersion, 2);
+        assert.equal(data.deviceId, 811);
       });
 
       consume(data);

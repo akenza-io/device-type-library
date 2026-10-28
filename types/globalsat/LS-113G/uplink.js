@@ -15,5 +15,5 @@ function consume(event) {
   data.temperature = Bits.bitsToUnsigned(bits.substring(8, 24)) / 100;
   data.humidity = Bits.bitsToUnsigned(bits.substring(24, 40)) / 100;
 
-  emit("sample", { data });
+  emit("sample", { data, "topic": "default" });
 }
