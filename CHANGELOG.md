@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.101.3] - 2026-10-28
+
+### Fixed
+
+- Fixed deprecated references in github actions
+
 # [1.101.2] - 2026-10-27
 
 ### Fixed
