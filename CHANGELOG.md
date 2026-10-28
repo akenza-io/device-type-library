@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.101.4] - 2026-10-28
+
+### Fixed
+
+- Decentlab TRS11: `dielectricPermittivity` now decodes identically in Node.js and GraalJS by writing out `Math.pow` as multiplications
+
+### Changed
+
+- Option to test in integration mode is now extended
+- Dates manipulated while testing are now forced onto UTC
+
 # [1.101.3] - 2026-10-28
 
 ### Fixed
