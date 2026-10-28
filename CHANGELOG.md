@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.101.4] - 2026-10-28
+
+### Fixed
+
+- Episensor: `period` values without a timezone offset are now parsed as UTC instead of the runtime's local timezone
+- Decentlab TRS11: test compares floating point values with a tolerance so it passes against the script runner
+- `npm run integration-test` now reads `API_KEY` and `SCRIPT_RUN_URL` from `.env` instead of overriding them with empty values
+
+### Changed
+
+- CONTRIBUTING.md documents the development setup, local and integration tests, code style and the pull request checklist
+
 # [1.101.3] - 2026-10-28
 
 ### Fixed

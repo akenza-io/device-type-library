@@ -124,7 +124,7 @@ describe("Episensor Uplink", () => {
 
         assert.equal(value.id, "000D6F001911015F_333");
         assert.equal(value.lastTotalActivePowerKWh, 13000);
-        assert.equal(value.lastPeriod, new Date("2026-02-03T15:15:00").getTime());
+        assert.equal(value.lastPeriod, new Date("2026-02-03T15:15:00Z").getTime());
       });
       consume(data);
     });
@@ -160,7 +160,7 @@ describe("Episensor Uplink", () => {
         assert.equal(value.data.value, 255.3);
         assert.equal(value.data.newId, "000D6F001911015F_444");
         assert.equal(value.data.initialId, "000D6F001911015F_333");
-        assert.deepEqual(value.data.period, new Date("2026-02-03T09:15:00").toISOString());
+        assert.deepEqual(value.data.period, new Date("2026-02-03T09:15:00Z").toISOString());
 
         validateSchema(value.data, errorSchema, {
           throwError: true,
@@ -230,7 +230,7 @@ describe("Episensor Uplink", () => {
 
         assert.equal(value.id, "000D6F001911015F_333");
         assert.equal(value.lastTotalActivePowerKWh, 14000);
-        assert.equal(value.lastPeriod, new Date("2026-02-04T15:15:00").getTime());
+        assert.equal(value.lastPeriod, new Date("2026-02-04T15:15:00Z").getTime());
       });
       consume(data);
     });

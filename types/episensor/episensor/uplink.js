@@ -12,6 +12,14 @@ function calculateIncrement(lastValue, currentValue) {
   return Math.round((currentValue - lastValue) * 10) / 10;
 }
 
+// Periods without a timezone offset are treated as UTC, independent of the runtime timezone
+function parsePeriod(period) {
+  if (!/(Z|[+-]\d{2}:?\d{2})$/i.test(period)) {
+    period += "Z";
+  }
+  return new Date(period).getTime();
+}
+
 function consume(event) {
   let values = event.data.data;
   const state = event.state || {};
@@ -21,7 +29,7 @@ function consume(event) {
   values.forEach(entry => {
     const data = {};
     let { value } = entry;
-    let period = new Date(entry.period).getTime();
+    let period = parsePeriod(entry.period);
     let { id } = entry;
 
     if (state.id == undefined) {
