@@ -1,104 +1,32 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Yosensi YO Particulate Matter Sensor uplink", () => {
   let batteryVoltageSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/battery_voltage.schema.json`)
-      .then((parsedSchema) => {
-        batteryVoltageSchema = parsedSchema;
-        done();
-      });
-  });
-
   let internalTemperatureSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/internal_temperature.schema.json`)
-      .then((parsedSchema) => {
-        internalTemperatureSchema = parsedSchema;
-        done();
-      });
-  });
-
   let humiditySchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/humidity.schema.json`)
-      .then((parsedSchema) => {
-        humiditySchema = parsedSchema;
-        done();
-      });
-  });
-
   let accelerometerSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/accelerometer.schema.json`)
-      .then((parsedSchema) => {
-        accelerometerSchema = parsedSchema;
-        done();
-      });
-  });
-
   let massConcPm1Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/mass_conc_pm1.schema.json`)
-      .then((parsedSchema) => {
-        massConcPm1Schema = parsedSchema;
-        done();
-      });
-  });
-
   let massConcPm25Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/mass_conc_pm2_5.schema.json`)
-      .then((parsedSchema) => {
-        massConcPm25Schema = parsedSchema;
-        done();
-      });
-  });
-
   let massConcPm4Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/mass_conc_pm4.schema.json`)
-      .then((parsedSchema) => {
-        massConcPm4Schema = parsedSchema;
-        done();
-      });
-  });
-
   let massConcPm10Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/mass_conc_pm10.schema.json`)
-      .then((parsedSchema) => {
-        massConcPm10Schema = parsedSchema;
-        done();
-      });
-  });
-
   let partConcPm1Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/part_conc_pm1.schema.json`)
-      .then((parsedSchema) => {
-        partConcPm1Schema = parsedSchema;
-        done();
-      });
-  });
-
   let partConcPm25Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/part_conc_pm2_5.schema.json`)
-      .then((parsedSchema) => {
-        partConcPm25Schema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    batteryVoltageSchema = loadSchema(`${import.meta.dirname}/battery_voltage.schema.json`);
+    internalTemperatureSchema = loadSchema(`${import.meta.dirname}/internal_temperature.schema.json`);
+    humiditySchema = loadSchema(`${import.meta.dirname}/humidity.schema.json`);
+    accelerometerSchema = loadSchema(`${import.meta.dirname}/accelerometer.schema.json`);
+    massConcPm1Schema = loadSchema(`${import.meta.dirname}/mass_conc_pm1.schema.json`);
+    massConcPm25Schema = loadSchema(`${import.meta.dirname}/mass_conc_pm2_5.schema.json`);
+    massConcPm4Schema = loadSchema(`${import.meta.dirname}/mass_conc_pm4.schema.json`);
+    massConcPm10Schema = loadSchema(`${import.meta.dirname}/mass_conc_pm10.schema.json`);
+    partConcPm1Schema = loadSchema(`${import.meta.dirname}/part_conc_pm1.schema.json`);
+    partConcPm25Schema = loadSchema(`${import.meta.dirname}/part_conc_pm2_5.schema.json`);
   });
 
   describe("consume()", () => {
@@ -110,56 +38,22 @@ describe("Yosensi YO Particulate Matter Sensor uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "battery_voltage");
-        assert.equal(value.data.batteryVoltage, 7097);
-
-        validateSchema(value.data, batteryVoltageSchema, {
-          throwError: true,
-        });
+      expectSample("battery_voltage", batteryVoltageSchema, (data) => {
+        assert.equal(data.batteryVoltage, 7097);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "internal_temperature");
-        assert.equal(value.data.internalTemperature, 20.3);
-
-        validateSchema(value.data, internalTemperatureSchema, {
-          throwError: true,
-        });
+      expectSample("internal_temperature", internalTemperatureSchema, (data) => {
+        assert.equal(data.internalTemperature, 20.3);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "humidity");
-        assert.equal(value.data.humidity, 24);
-
-        validateSchema(value.data, humiditySchema, { throwError: true });
+      expectSample("humidity", humiditySchema, (data) => {
+        assert.equal(data.humidity, 24);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "accelerometer");
-        assert.equal(value.data.accelerometerX, -0.5);
-        assert.equal(value.data.accelerometerY, 1.8);
-        assert.equal(value.data.accelerometerZ, 8.8);
-
-        validateSchema(value.data, accelerometerSchema, {
-          throwError: true,
-        });
+      expectSample("accelerometer", accelerometerSchema, (data) => {
+        assert.equal(data.accelerometerX, -0.5);
+        assert.equal(data.accelerometerY, 1.8);
+        assert.equal(data.accelerometerZ, 8.8);
       });
 
       consume(data);
@@ -174,82 +68,28 @@ describe("Yosensi YO Particulate Matter Sensor uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "mass_conc_pm1");
-        assert.equal(value.data.massConcPm1, 8.2);
-
-        validateSchema(value.data, massConcPm1Schema, {
-          throwError: true,
-        });
+      expectSample("mass_conc_pm1", massConcPm1Schema, (data) => {
+        assert.equal(data.massConcPm1, 8.2);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "mass_conc_pm2_5");
-        assert.equal(value.data.massConcPm2_5, 8.6);
-
-        validateSchema(value.data, massConcPm25Schema, {
-          throwError: true,
-        });
+      expectSample("mass_conc_pm2_5", massConcPm25Schema, (data) => {
+        assert.equal(data.massConcPm2_5, 8.6);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "mass_conc_pm4");
-        assert.equal(value.data.massConcPm4, 8.6);
-
-        validateSchema(value.data, massConcPm4Schema, {
-          throwError: true,
-        });
+      expectSample("mass_conc_pm4", massConcPm4Schema, (data) => {
+        assert.equal(data.massConcPm4, 8.6);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "mass_conc_pm10");
-        assert.equal(value.data.massConcPm10, 8.6);
-
-        validateSchema(value.data, massConcPm10Schema, {
-          throwError: true,
-        });
+      expectSample("mass_conc_pm10", massConcPm10Schema, (data) => {
+        assert.equal(data.massConcPm10, 8.6);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "part_conc_pm1");
-        assert.equal(value.data.partConcPm1, 65);
-
-        validateSchema(value.data, partConcPm1Schema, {
-          throwError: true,
-        });
+      expectSample("part_conc_pm1", partConcPm1Schema, (data) => {
+        assert.equal(data.partConcPm1, 65);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "part_conc_pm2_5");
-        assert.equal(value.data.partConcPm2_5, 65);
-
-        validateSchema(value.data, partConcPm25Schema, {
-          throwError: true,
-        });
+      expectSample("part_conc_pm2_5", partConcPm25Schema, (data) => {
+        assert.equal(data.partConcPm2_5, 65);
       });
 
       consume(data);

@@ -1,67 +1,24 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("Digital matter Oyster 3 Uplink", () => {
   let positionSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/position.schema.json`)
-      .then((parsedSchema) => {
-        positionSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   let downlinkAckSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/downlink_ack.schema.json`)
-      .then((parsedSchema) => {
-        downlinkAckSchema = parsedSchema;
-        done();
-      });
-  });
-
   let statsSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/stats.schema.json`).then((parsedSchema) => {
-      statsSchema = parsedSchema;
-      done();
-    });
-  });
-
   let watchdogSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/watchdog.schema.json`)
-      .then((parsedSchema) => {
-        watchdogSchema = parsedSchema;
-        done();
-      });
-  });
-
   let statsV3Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/stats_v3.schema.json`)
-      .then((parsedSchema) => {
-        statsV3Schema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    positionSchema = loadSchema(`${import.meta.dirname}/position.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    downlinkAckSchema = loadSchema(`${import.meta.dirname}/downlink_ack.schema.json`);
+    statsSchema = loadSchema(`${import.meta.dirname}/stats.schema.json`);
+    watchdogSchema = loadSchema(`${import.meta.dirname}/watchdog.schema.json`);
+    statsV3Schema = loadSchema(`${import.meta.dirname}/stats_v3.schema.json`);
   });
 
   describe("consume()", () => {
@@ -73,32 +30,18 @@ describe("Digital matter Oyster 3 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 5.55);
-        assert.equal(value.data.batteryLevel, 100);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 5.55);
+        assert.equal(data.batteryLevel, 100);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "position");
-        assert.equal(value.data.latitude, -32);
-        assert.equal(value.data.longitude, 116);
-        assert.equal(value.data.inTrip, false);
-        assert.equal(value.data.fixFailed, false);
-        assert.equal(value.data.headingDeg, 0);
-        assert.equal(value.data.speedKmph, 0);
-
-        validateSchema(value.data, positionSchema, { throwError: true });
+      expectSample("position", positionSchema, (data) => {
+        assert.equal(data.latitude, -32);
+        assert.equal(data.longitude, 116);
+        assert.equal(data.inTrip, false);
+        assert.equal(data.fixFailed, false);
+        assert.equal(data.headingDeg, 0);
+        assert.equal(data.speedKmph, 0);
       });
 
       consume(data);
@@ -112,22 +55,13 @@ describe("Digital matter Oyster 3 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "downlink_ack");
-        assert.equal(value.data.accepted, true);
-        assert.equal(value.data.firmware, "1.2");
-        assert.equal(value.data.hwRev, 1);
-        assert.equal(value.data.port, 10);
-        assert.equal(value.data.productId, 98);
-        assert.equal(value.data.sequence, 83);
-
-        validateSchema(value.data, downlinkAckSchema, {
-          throwError: true,
-        });
+      expectSample("downlink_ack", downlinkAckSchema, (data) => {
+        assert.equal(data.accepted, true);
+        assert.equal(data.firmware, "1.2");
+        assert.equal(data.hwRev, 1);
+        assert.equal(data.port, 10);
+        assert.equal(data.productId, 98);
+        assert.equal(data.sequence, 83);
       });
 
       consume(data);
@@ -141,24 +75,17 @@ describe("Digital matter Oyster 3 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "stats");
-        assert.equal(value.data.aveGnssFailS, 133);
-        assert.equal(value.data.aveGnssFixS, 96);
-        assert.equal(value.data.aveGnssFreshenS, 120);
-        assert.equal(value.data.gnssFails, 7232);
-        assert.equal(value.data.gnssSuccesses, 10464);
-        assert.equal(value.data.initialvoltage, 5.1);
-        assert.equal(value.data.tripCount, 194336);
-        assert.equal(value.data.txCount, 59136);
-        assert.equal(value.data.uptimeWeeks, 189);
-        assert.equal(value.data.wakeupsPerTrip, 56);
-
-        validateSchema(value.data, statsSchema, { throwError: true });
+      expectSample("stats", statsSchema, (data) => {
+        assert.equal(data.aveGnssFailS, 133);
+        assert.equal(data.aveGnssFixS, 96);
+        assert.equal(data.aveGnssFreshenS, 120);
+        assert.equal(data.gnssFails, 7232);
+        assert.equal(data.gnssSuccesses, 10464);
+        assert.equal(data.initialvoltage, 5.1);
+        assert.equal(data.tripCount, 194336);
+        assert.equal(data.txCount, 59136);
+        assert.equal(data.uptimeWeeks, 189);
+        assert.equal(data.wakeupsPerTrip, 56);
       });
 
       consume(data);
@@ -172,22 +99,15 @@ describe("Digital matter Oyster 3 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 3.55);
-        assert.equal(value.data.batteryLevel, 0);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 3.55);
+        assert.equal(data.batteryLevel, 0);
       });
 
       expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
+
 
         assert.equal(value.topic, "position");
         assert.equal(value.data.latitude, 202.4493824);
@@ -211,19 +131,12 @@ describe("Digital matter Oyster 3 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "watchdog");
-        assert.equal(value.data.resetExternal, false);
-        assert.equal(value.data.resetPowerOn, false);
-        assert.equal(value.data.resetSoftware, false);
-        assert.equal(value.data.resetWatchdog, true);
-        assert.equal(value.data.watchdogReason, 259);
-
-        validateSchema(value.data, watchdogSchema, { throwError: true });
+      expectSample("watchdog", watchdogSchema, (data) => {
+        assert.equal(data.resetExternal, false);
+        assert.equal(data.resetPowerOn, false);
+        assert.equal(data.resetSoftware, false);
+        assert.equal(data.resetWatchdog, true);
+        assert.equal(data.watchdogReason, 259);
       });
 
       consume(data);
@@ -237,38 +150,24 @@ describe("Digital matter Oyster 3 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "stats");
-        assert.equal(value.data.initialvoltage, 10.54);
-        assert.equal(value.data.tripCount, 115872);
-        assert.equal(value.data.uptimeWeeks, 664);
-        assert.equal(value.data.wakeupsPerTrip, 243);
-
-        validateSchema(value.data, statsSchema, { throwError: true });
+      expectSample("stats", statsSchema, (data) => {
+        assert.equal(data.initialvoltage, 10.54);
+        assert.equal(data.tripCount, 115872);
+        assert.equal(data.uptimeWeeks, 664);
+        assert.equal(data.wakeupsPerTrip, 243);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "stats_v3");
-        assert.equal(value.data.batCritical, false);
-        assert.equal(value.data.batLow, false);
-        assert.equal(value.data.currentvoltage, 7.436);
-        assert.equal(value.data.mWhUsed, 5280);
-        assert.equal(value.data.percentGnssFail, 37.5);
-        assert.equal(value.data.percentGnssSucc, 12.5);
-        assert.equal(value.data.percentLora, 21.875);
-        assert.equal(value.data.percentOther, 3.125);
-        assert.equal(value.data.percentSleepDis, 25);
-        assert.equal(value.data.ttff, 139);
-
-        validateSchema(value.data, statsV3Schema, { throwError: true });
+      expectSample("stats_v3", statsV3Schema, (data) => {
+        assert.equal(data.batCritical, false);
+        assert.equal(data.batLow, false);
+        assert.equal(data.currentvoltage, 7.436);
+        assert.equal(data.mWhUsed, 5280);
+        assert.equal(data.percentGnssFail, 37.5);
+        assert.equal(data.percentGnssSucc, 12.5);
+        assert.equal(data.percentLora, 21.875);
+        assert.equal(data.percentOther, 3.125);
+        assert.equal(data.percentSleepDis, 25);
+        assert.equal(data.ttff, 139);
       });
 
       consume(data);
@@ -282,34 +181,20 @@ describe("Digital matter Oyster 3 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 5.932);
-        assert.equal(value.data.batteryLevel, 100);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 5.932);
+        assert.equal(data.batteryLevel, 100);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "position");
-        assert.equal(value.data.latitude, -8.3333874);
-        assert.equal(value.data.longitude, -169.2850041);
-        assert.equal(value.data.fixFailed, false);
-        assert.equal(value.data.headingDeg, 225);
-        assert.equal(value.data.inactiveDuration, "16d2h18m");
-        assert.equal(value.data.inactivityAlarm, false);
-        assert.equal(value.data.inTrip, true);
-        assert.equal(value.data.speedKmph, 90);
-
-        validateSchema(value.data, positionSchema, { throwError: true });
+      expectSample("position", positionSchema, (data) => {
+        assert.equal(data.latitude, -8.3333874);
+        assert.equal(data.longitude, -169.2850041);
+        assert.equal(data.fixFailed, false);
+        assert.equal(data.headingDeg, 225);
+        assert.equal(data.inactiveDuration, "16d2h18m");
+        assert.equal(data.inactivityAlarm, false);
+        assert.equal(data.inTrip, true);
+        assert.equal(data.speedKmph, 90);
       });
 
       consume(data);

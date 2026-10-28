@@ -1,106 +1,34 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Yosensi YO Pure Pro uplink", () => {
   let temperatureSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/temperature.schema.json`)
-      .then((parsedSchema) => {
-        temperatureSchema = parsedSchema;
-        done();
-      });
-  });
-
   let humiditySchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/humidity.schema.json`)
-      .then((parsedSchema) => {
-        humiditySchema = parsedSchema;
-        done();
-      });
-  });
-
   let pressureSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/pressure.schema.json`)
-      .then((parsedSchema) => {
-        pressureSchema = parsedSchema;
-        done();
-      });
-  });
-
   let illuminanceSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/illuminance.schema.json`)
-      .then((parsedSchema) => {
-        illuminanceSchema = parsedSchema;
-        done();
-      });
-  });
-
   let tvocSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/tvoc.schema.json`).then((parsedSchema) => {
-      tvocSchema = parsedSchema;
-      done();
-    });
-  });
-
   let coSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/co.schema.json`).then((parsedSchema) => {
-      coSchema = parsedSchema;
-      done();
-    });
-  });
-
   let co2Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/co2.schema.json`).then((parsedSchema) => {
-      co2Schema = parsedSchema;
-      done();
-    });
-  });
-
   let soundSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/sound.schema.json`).then((parsedSchema) => {
-      soundSchema = parsedSchema;
-      done();
-    });
-  });
-
   let pm2_5Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/pm2_5.schema.json`).then((parsedSchema) => {
-      pm2_5Schema = parsedSchema;
-      done();
-    });
-  });
-
   let pm4Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/pm4.schema.json`).then((parsedSchema) => {
-      pm4Schema = parsedSchema;
-      done();
-    });
-  });
-
   let pm10Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/pm10.schema.json`).then((parsedSchema) => {
-      pm10Schema = parsedSchema;
-      done();
-    });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    temperatureSchema = loadSchema(`${import.meta.dirname}/temperature.schema.json`);
+    humiditySchema = loadSchema(`${import.meta.dirname}/humidity.schema.json`);
+    pressureSchema = loadSchema(`${import.meta.dirname}/pressure.schema.json`);
+    illuminanceSchema = loadSchema(`${import.meta.dirname}/illuminance.schema.json`);
+    tvocSchema = loadSchema(`${import.meta.dirname}/tvoc.schema.json`);
+    coSchema = loadSchema(`${import.meta.dirname}/co.schema.json`);
+    co2Schema = loadSchema(`${import.meta.dirname}/co2.schema.json`);
+    soundSchema = loadSchema(`${import.meta.dirname}/sound.schema.json`);
+    pm2_5Schema = loadSchema(`${import.meta.dirname}/pm2_5.schema.json`);
+    pm4Schema = loadSchema(`${import.meta.dirname}/pm4.schema.json`);
+    pm10Schema = loadSchema(`${import.meta.dirname}/pm10.schema.json`);
   });
 
   describe("consume()", () => {
@@ -113,96 +41,36 @@ describe("Yosensi YO Pure Pro uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "temperature");
-        assert.equal(value.data.temperature, 26.4);
-
-        validateSchema(value.data, temperatureSchema, {
-          throwError: true,
-        });
+      expectSample("temperature", temperatureSchema, (data) => {
+        assert.equal(data.temperature, 26.4);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "humidity");
-        assert.equal(value.data.humidity, 26);
-
-        validateSchema(value.data, humiditySchema, { throwError: true });
+      expectSample("humidity", humiditySchema, (data) => {
+        assert.equal(data.humidity, 26);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "pressure");
-        assert.equal(value.data.pressure, 1001.8);
-
-        validateSchema(value.data, pressureSchema, { throwError: true });
+      expectSample("pressure", pressureSchema, (data) => {
+        assert.equal(data.pressure, 1001.8);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "illuminance");
-        assert.equal(value.data.illuminance, 0.01);
-
-        validateSchema(value.data, illuminanceSchema, {
-          throwError: true,
-        });
+      expectSample("illuminance", illuminanceSchema, (data) => {
+        assert.equal(data.illuminance, 0.01);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "tvoc");
-        assert.equal(value.data.tvoc, 1.25);
-
-        validateSchema(value.data, tvocSchema, { throwError: true });
+      expectSample("tvoc", tvocSchema, (data) => {
+        assert.equal(data.tvoc, 1.25);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "co");
-        assert.equal(value.data.co, 1.7);
-
-        validateSchema(value.data, coSchema, { throwError: true });
+      expectSample("co", coSchema, (data) => {
+        assert.equal(data.co, 1.7);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "co2");
-        assert.equal(value.data.co2, 633);
-
-        validateSchema(value.data, co2Schema, { throwError: true });
+      expectSample("co2", co2Schema, (data) => {
+        assert.equal(data.co2, 633);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "sound");
-        assert.equal(value.data.sound, 50);
-
-        validateSchema(value.data, soundSchema, { throwError: true });
+      expectSample("sound", soundSchema, (data) => {
+        assert.equal(data.sound, 50);
       });
 
       consume(data);
@@ -216,37 +84,16 @@ describe("Yosensi YO Pure Pro uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "pm2_5");
-        assert.equal(value.data.pm2_5, 2.9);
-
-        validateSchema(value.data, pm2_5Schema, { throwError: true });
+      expectSample("pm2_5", pm2_5Schema, (data) => {
+        assert.equal(data.pm2_5, 2.9);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "pm4");
-        assert.equal(value.data.pm4, 2.9);
-
-        validateSchema(value.data, pm4Schema, { throwError: true });
+      expectSample("pm4", pm4Schema, (data) => {
+        assert.equal(data.pm4, 2.9);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "pm10");
-        assert.equal(value.data.pm10, 2.9);
-
-        validateSchema(value.data, pm10Schema, { throwError: true });
+      expectSample("pm10", pm10Schema, (data) => {
+        assert.equal(data.pm10, 2.9);
       });
 
       consume(data);
@@ -260,15 +107,8 @@ describe("Yosensi YO Pure Pro uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "pm10");
-        assert.equal(value.data.pm10, 2.7);
-
-        validateSchema(value.data, pm10Schema, { throwError: true });
+      expectSample("pm10", pm10Schema, (data) => {
+        assert.equal(data.pm10, 2.7);
       });
 
       consume(data);
@@ -282,28 +122,12 @@ describe("Yosensi YO Pure Pro uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "illuminance");
-        assert.equal(value.data.illuminance, 0.11);
-
-        validateSchema(value.data, illuminanceSchema, {
-          throwError: true,
-        });
+      expectSample("illuminance", illuminanceSchema, (data) => {
+        assert.equal(data.illuminance, 0.11);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "co");
-        assert.equal(value.data.co, 9);
-
-        validateSchema(value.data, coSchema, { throwError: true });
+      expectSample("co", coSchema, (data) => {
+        assert.equal(data.co, 9);
       });
 
       consume(data);

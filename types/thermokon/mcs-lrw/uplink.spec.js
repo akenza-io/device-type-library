@@ -1,12 +1,7 @@
 
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Thermokon MCS-LRW Uplink", () => {
   let defaultSchema = null;
@@ -14,14 +9,11 @@ describe("Thermokon MCS-LRW Uplink", () => {
   let statusSchema = null;
   let consume = null;
 
-  before(async () => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    [defaultSchema, lifecycleSchema, statusSchema] = await Promise.all([
-      loadSchema(`${__dirname}/default.schema.json`),
-      loadSchema(`${__dirname}/lifecycle.schema.json`),
-      loadSchema(`${__dirname}/status.schema.json`),
-    ]);
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    statusSchema = loadSchema(`${import.meta.dirname}/status.schema.json`);
   });
 
   describe("consume()", () => {
@@ -33,13 +25,10 @@ describe("Thermokon MCS-LRW Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.deepEqual(value.data, {
+      expectSample("default", defaultSchema, (data) => {
+        assert.deepEqual(data, {
           temperature: 26.6,
         });
-        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
@@ -54,14 +43,11 @@ describe("Thermokon MCS-LRW Uplink", () => {
       };
 
       // Expect the 'default' topic first
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.deepEqual(value.data, {
+      expectSample("default", defaultSchema, (data) => {
+        assert.deepEqual(data, {
           occupied: false,
           motionCount: 9,
         });
-        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
@@ -76,26 +62,18 @@ describe("Thermokon MCS-LRW Uplink", () => {
       };
 
       // 1. Default
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.deepEqual(value.data, {
+      expectSample("default", defaultSchema, (data) => {
+        assert.deepEqual(data, {
           temperature: 25.2,
           humidity: 45,
           light: 0,
         });
-        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       // 2. Lifecycle
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "lifecycle");
-        assert.deepEqual(value.data, {
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.deepEqual(data, {
           batteryVoltage: 1.44,
-        });
-        validateSchema(value.data, lifecycleSchema, {
-          throwError: true,
         });
       });
 
@@ -110,24 +88,16 @@ describe("Thermokon MCS-LRW Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.deepEqual(value.data, {
+      expectSample("default", defaultSchema, (data) => {
+        assert.deepEqual(data, {
           occupied: false,
           motionCount: 0,
         });
-        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "status");
-        assert.deepEqual(value.data, {
+      expectSample("status", statusSchema, (data) => {
+        assert.deepEqual(data, {
           deviceKey: 16385,
-        });
-        validateSchema(value.data, statusSchema, {
-          throwError: true,
         });
       });
 

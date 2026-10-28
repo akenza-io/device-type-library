@@ -1,23 +1,14 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Pipiot peopleSense uplink", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
   });
 
   describe("consume()", () => {
@@ -28,20 +19,14 @@ describe("Pipiot peopleSense uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.peopleCount, 9);
-        assert.equal(value.data.peopleCountBin1, 0);
-        assert.equal(value.data.peopleCountBin2, 4);
-        assert.equal(value.data.peopleCountBin3, 2);
-        assert.equal(value.data.peopleCountBin4, 1);
-        assert.equal(value.data.peopleCountBin5, 2);
-        assert.equal(value.data.peopleCountBin6, 0);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.peopleCount, 9);
+        assert.equal(data.peopleCountBin1, 0);
+        assert.equal(data.peopleCountBin2, 4);
+        assert.equal(data.peopleCountBin3, 2);
+        assert.equal(data.peopleCountBin4, 1);
+        assert.equal(data.peopleCountBin5, 2);
+        assert.equal(data.peopleCountBin6, 0);
       });
 
       consume(data);

@@ -1,32 +1,16 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("Terabee people counting XL Uplink", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
   });
 
   describe("consume()", () => {
@@ -42,18 +26,11 @@ describe("Terabee people counting XL Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.fw, 0);
-        assert.equal(value.data.bw, 0);
-        assert.equal(value.data.absoluteFw, 23);
-        assert.equal(value.data.absoluteBw, 12);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.fw, 0);
+        assert.equal(data.bw, 0);
+        assert.equal(data.absoluteFw, 23);
+        assert.equal(data.absoluteBw, 12);
       });
 
       expectEmits((type, value) => {
@@ -76,32 +53,18 @@ describe("Terabee people counting XL Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.wifiApEnabled, true);
-        assert.equal(value.data.multiDevIssue, true);
-        assert.equal(value.data.tpcStuck, true);
-        assert.equal(value.data.tpcStopped, true);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.wifiApEnabled, true);
+        assert.equal(data.multiDevIssue, true);
+        assert.equal(data.tpcStuck, true);
+        assert.equal(data.tpcStopped, true);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.fw, 0);
-        assert.equal(value.data.bw, 0);
-        assert.equal(value.data.absoluteFw, 2);
-        assert.equal(value.data.absoluteBw, 3);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.fw, 0);
+        assert.equal(data.bw, 0);
+        assert.equal(data.absoluteFw, 2);
+        assert.equal(data.absoluteBw, 3);
       });
 
       expectEmits((type, value) => {
@@ -124,32 +87,18 @@ describe("Terabee people counting XL Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.wifiApEnabled, true);
-        assert.equal(value.data.multiDevIssue, true);
-        assert.equal(value.data.tpcStuck, true);
-        assert.equal(value.data.tpcStopped, true);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.wifiApEnabled, true);
+        assert.equal(data.multiDevIssue, true);
+        assert.equal(data.tpcStuck, true);
+        assert.equal(data.tpcStopped, true);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.fw, 0);
-        assert.equal(value.data.bw, 0);
-        assert.equal(value.data.absoluteFw, 2);
-        assert.equal(value.data.absoluteBw, 3);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.fw, 0);
+        assert.equal(data.bw, 0);
+        assert.equal(data.absoluteFw, 2);
+        assert.equal(data.absoluteBw, 3);
       });
 
       expectEmits((type, value) => {
@@ -176,32 +125,18 @@ describe("Terabee people counting XL Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.wifiApEnabled, true);
-        assert.equal(value.data.multiDevIssue, true);
-        assert.equal(value.data.tpcStuck, true);
-        assert.equal(value.data.tpcStopped, true);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.wifiApEnabled, true);
+        assert.equal(data.multiDevIssue, true);
+        assert.equal(data.tpcStuck, true);
+        assert.equal(data.tpcStopped, true);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.fw, 1);
-        assert.equal(value.data.bw, 3);
-        assert.equal(value.data.absoluteFw, 2);
-        assert.equal(value.data.absoluteBw, 3);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.fw, 1);
+        assert.equal(data.bw, 3);
+        assert.equal(data.absoluteFw, 2);
+        assert.equal(data.absoluteBw, 3);
       });
 
       expectEmits((type, value) => {

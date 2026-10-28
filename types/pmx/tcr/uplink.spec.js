@@ -1,79 +1,26 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("PMX TCR Uplinks", () => {
   let consume = null;
-
   let idSchema = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/id.schema.json`)
-      .then((parsedSchema) => {
-        idSchema = parsedSchema;
-        done();
-      });
-  });
-
   let udcSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/udc.schema.json`)
-      .then((parsedSchema) => {
-        udcSchema = parsedSchema;
-        done();
-      });
-  });
-
   let cat1Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/cat1.schema.json`)
-      .then((parsedSchema) => {
-        cat1Schema = parsedSchema;
-        done();
-      });
-  });
-
   let cat2Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/cat2.schema.json`)
-      .then((parsedSchema) => {
-        cat2Schema = parsedSchema;
-        done();
-      });
-  });
-
   let cat3Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/cat3.schema.json`)
-      .then((parsedSchema) => {
-        cat3Schema = parsedSchema;
-        done();
-      });
-  });
-
   let cat4Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/cat4.schema.json`)
-      .then((parsedSchema) => {
-        cat4Schema = parsedSchema;
-        done();
-      });
-  });
-
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    idSchema = loadSchema(`${import.meta.dirname}/id.schema.json`);
+    udcSchema = loadSchema(`${import.meta.dirname}/udc.schema.json`);
+    cat1Schema = loadSchema(`${import.meta.dirname}/cat1.schema.json`);
+    cat2Schema = loadSchema(`${import.meta.dirname}/cat2.schema.json`);
+    cat3Schema = loadSchema(`${import.meta.dirname}/cat3.schema.json`);
+    cat4Schema = loadSchema(`${import.meta.dirname}/cat4.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
   });
 
 
@@ -86,18 +33,12 @@ describe("PMX TCR Uplinks", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-        assert.equal(value.topic, "id");
-        assert.equal(value.data.type, "TCR-DLI");
-        assert.equal(value.data.licence, "PRO");
-        assert.equal(value.data.speedClass, "HS");
-        assert.equal(value.data.firmware, "1.1.0");
-        assert.equal(value.data.sbx, "4.2.0");
-
-        validateSchema(value.data, idSchema, { throwError: true });
+      expectSample("id", idSchema, (data) => {
+        assert.equal(data.type, "TCR-DLI");
+        assert.equal(data.licence, "PRO");
+        assert.equal(data.speedClass, "HS");
+        assert.equal(data.firmware, "1.1.0");
+        assert.equal(data.sbx, "4.2.0");
       });
 
       consume(data);
@@ -114,29 +55,15 @@ describe("PMX TCR Uplinks", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "udc");
-        assert.equal(value.data.ltrCounter, 1000);
-        assert.equal(value.data.ltrSpeed, 50);
-        assert.equal(value.data.rtlCounter, 1100);
-        assert.equal(value.data.rtlSpeed, 52);
-
-        validateSchema(value.data, udcSchema, { throwError: true });
+      expectSample("udc", udcSchema, (data) => {
+        assert.equal(data.ltrCounter, 1000);
+        assert.equal(data.ltrSpeed, 50);
+        assert.equal(data.rtlCounter, 1100);
+        assert.equal(data.rtlSpeed, 52);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 5.1);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 5.1);
       });
 
       consume(data);
@@ -153,29 +80,15 @@ describe("PMX TCR Uplinks", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "cat1");
-        assert.equal(value.data.ltrCounter, 1000);
-        assert.equal(value.data.ltrSpeed, 50);
-        assert.equal(value.data.rtlCounter, 1100);
-        assert.equal(value.data.rtlSpeed, 52);
-
-        validateSchema(value.data, cat1Schema, { throwError: true });
+      expectSample("cat1", cat1Schema, (data) => {
+        assert.equal(data.ltrCounter, 1000);
+        assert.equal(data.ltrSpeed, 50);
+        assert.equal(data.rtlCounter, 1100);
+        assert.equal(data.rtlSpeed, 52);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 5.1);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 5.1);
       });
 
       consume(data);
@@ -192,29 +105,15 @@ describe("PMX TCR Uplinks", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "cat2");
-        assert.equal(value.data.ltrCounter, 1000);
-        assert.equal(value.data.ltrSpeed, 50);
-        assert.equal(value.data.rtlCounter, 1100);
-        assert.equal(value.data.rtlSpeed, 52);
-
-        validateSchema(value.data, cat2Schema, { throwError: true });
+      expectSample("cat2", cat2Schema, (data) => {
+        assert.equal(data.ltrCounter, 1000);
+        assert.equal(data.ltrSpeed, 50);
+        assert.equal(data.rtlCounter, 1100);
+        assert.equal(data.rtlSpeed, 52);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 5.1);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 5.1);
       });
 
       consume(data);
@@ -231,29 +130,15 @@ describe("PMX TCR Uplinks", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "cat3");
-        assert.equal(value.data.ltrCounter, 1000);
-        assert.equal(value.data.ltrSpeed, 50);
-        assert.equal(value.data.rtlCounter, 1100);
-        assert.equal(value.data.rtlSpeed, 52);
-
-        validateSchema(value.data, cat3Schema, { throwError: true });
+      expectSample("cat3", cat3Schema, (data) => {
+        assert.equal(data.ltrCounter, 1000);
+        assert.equal(data.ltrSpeed, 50);
+        assert.equal(data.rtlCounter, 1100);
+        assert.equal(data.rtlSpeed, 52);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 5.1);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 5.1);
       });
 
       consume(data);
@@ -270,29 +155,15 @@ describe("PMX TCR Uplinks", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "cat4");
-        assert.equal(value.data.ltrCounter, 1000);
-        assert.equal(value.data.ltrSpeed, 50);
-        assert.equal(value.data.rtlCounter, 1100);
-        assert.equal(value.data.rtlSpeed, 52);
-
-        validateSchema(value.data, cat4Schema, { throwError: true });
+      expectSample("cat4", cat4Schema, (data) => {
+        assert.equal(data.ltrCounter, 1000);
+        assert.equal(data.ltrSpeed, 50);
+        assert.equal(data.rtlCounter, 1100);
+        assert.equal(data.rtlSpeed, 52);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 5.1);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 5.1);
       });
 
       consume(data);

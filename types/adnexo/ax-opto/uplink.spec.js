@@ -1,57 +1,22 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Adnexo ax-opto Uplink", () => {
   let measurementSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/measurement.schema.json`)
-      .then((parsedSchema) => {
-        measurementSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   let statusSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/status.schema.json`).then((parsedSchema) => {
-      statusSchema = parsedSchema;
-      done();
-    });
-  });
-
   let accelerationSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/acceleration.schema.json`)
-      .then((parsedSchema) => {
-        accelerationSchema = parsedSchema;
-        done();
-      });
-  });
-
   let errorSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/error.schema.json`).then((parsedSchema) => {
-      errorSchema = parsedSchema;
-      done();
-    });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    measurementSchema = loadSchema(`${import.meta.dirname}/measurement.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    statusSchema = loadSchema(`${import.meta.dirname}/status.schema.json`);
+    accelerationSchema = loadSchema(`${import.meta.dirname}/acceleration.schema.json`);
+    errorSchema = loadSchema(`${import.meta.dirname}/error.schema.json`);
   });
 
   describe("consume()", () => {
@@ -63,44 +28,24 @@ describe("Adnexo ax-opto Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-
-        assert.equal(value.data.batteryVoltage, 2.763);
-        assert.equal(value.data.batteryLevel, 70);
-
-        validateSchema(value.data, lifecycleSchema, {
-          throwError: true,
-        });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 2.763);
+        assert.equal(data.batteryLevel, 70);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "measurement");
-
-        assert.equal(value.data.bottomCenter, 54.2);
-        assert.equal(value.data.bottomLeft, 26.9);
-        assert.equal(value.data.bottomRight, 54.2);
-        assert.equal(value.data.distance, 20.1);
-        assert.equal(value.data.measurementType, "REGULAR_MEASUREMENT");
-        assert.equal(value.data.middleCenter, 17.9);
-        assert.equal(value.data.middleLeft, 17.9);
-        assert.equal(value.data.middleRight, 26.9);
-        assert.equal(value.data.temperature, 3);
-        assert.equal(value.data.topCenter, 20);
-        assert.equal(value.data.topLeft, 20);
-        assert.equal(value.data.topRight, 20);
-
-        validateSchema(value.data, measurementSchema, {
-          throwError: true,
-        });
+      expectSample("measurement", measurementSchema, (data) => {
+        assert.equal(data.bottomCenter, 54.2);
+        assert.equal(data.bottomLeft, 26.9);
+        assert.equal(data.bottomRight, 54.2);
+        assert.equal(data.distance, 20.1);
+        assert.equal(data.measurementType, "REGULAR_MEASUREMENT");
+        assert.equal(data.middleCenter, 17.9);
+        assert.equal(data.middleLeft, 17.9);
+        assert.equal(data.middleRight, 26.9);
+        assert.equal(data.temperature, 3);
+        assert.equal(data.topCenter, 20);
+        assert.equal(data.topLeft, 20);
+        assert.equal(data.topRight, 20);
       });
 
       consume(data);
@@ -114,19 +59,10 @@ describe("Adnexo ax-opto Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "acceleration");
-        assert.equal(value.data.accX, 3);
-        assert.equal(value.data.accY, -942);
-        assert.equal(value.data.accZ, 277);
-
-        validateSchema(value.data, accelerationSchema, {
-          throwError: true,
-        });
+      expectSample("acceleration", accelerationSchema, (data) => {
+        assert.equal(data.accX, 3);
+        assert.equal(data.accY, -942);
+        assert.equal(data.accZ, 277);
       });
 
       consume(data);
@@ -140,16 +76,9 @@ describe("Adnexo ax-opto Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "error");
-        assert.equal(value.data.errorOn, "PARAM_READ");
-        assert.equal(value.data.errorCode, "PARAM_NOT_READABLE");
-
-        validateSchema(value.data, errorSchema, { throwError: true });
+      expectSample("error", errorSchema, (data) => {
+        assert.equal(data.errorOn, "PARAM_READ");
+        assert.equal(data.errorCode, "PARAM_NOT_READABLE");
       });
 
       consume(data);
@@ -163,18 +92,11 @@ describe("Adnexo ax-opto Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.joinInterval, 172800);
-        assert.equal(value.data.measurementInterval, 600);
-        assert.equal(value.data.payloadType, "REPORT_CONFIGURATION");
-        assert.equal(value.data.sendInterval, 6);
-
-        validateSchema(value.data, statusSchema, { throwError: true });
+      expectSample("lifecycle", statusSchema, (data) => {
+        assert.equal(data.joinInterval, 172800);
+        assert.equal(data.measurementInterval, 600);
+        assert.equal(data.payloadType, "REPORT_CONFIGURATION");
+        assert.equal(data.sendInterval, 6);
       });
 
       consume(data);

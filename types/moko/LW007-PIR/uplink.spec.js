@@ -1,31 +1,16 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Moko LW007-PIR Uplink", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
-      defaultSchema = parsedSchema;
-      done();
-    });
-  });
-
   let shutdownSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/shutdown.schema.json`)
-      .then((parsedSchema) => {
-        shutdownSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    shutdownSchema = loadSchema(`${import.meta.dirname}/shutdown.schema.json`);
   });
 
   describe("consume()", () => {
@@ -38,25 +23,18 @@ describe("Moko LW007-PIR Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.count, 0);
-        assert.equal(value.data.humidity, 59.7);
-        assert.equal(value.data.humidityState, "ENABLED");
-        assert.equal(value.data.lowBattery, false);
-        assert.equal(value.data.pir, 0);
-        assert.equal(value.data.pirState, "NO_MOTION");
-        assert.equal(value.data.reed, false);
-        assert.equal(value.data.reedState, "OPEN");
-        assert.equal(value.data.reedStatus, "ENABLED");
-        assert.equal(value.data.temperature, 26.7);
-        assert.equal(value.data.temperatureState, "ENABLED");
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.count, 0);
+        assert.equal(data.humidity, 59.7);
+        assert.equal(data.humidityState, "ENABLED");
+        assert.equal(data.lowBattery, false);
+        assert.equal(data.pir, 0);
+        assert.equal(data.pirState, "NO_MOTION");
+        assert.equal(data.reed, false);
+        assert.equal(data.reedState, "OPEN");
+        assert.equal(data.reedStatus, "ENABLED");
+        assert.equal(data.temperature, 26.7);
+        assert.equal(data.temperatureState, "ENABLED");
       });
 
       consume(data);
@@ -71,15 +49,8 @@ describe("Moko LW007-PIR Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "shutdown");
-        assert.equal(value.data.lowBattery, false);
-
-        validateSchema(value.data, shutdownSchema, { throwError: true });
+      expectSample("shutdown", shutdownSchema, (data) => {
+        assert.equal(data.lowBattery, false);
       });
 
       consume(data);

@@ -1,32 +1,16 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("Elsys EMS Desk uplink", () => {
   let occupancySchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/occupancy.schema.json`)
-      .then((parsedSchema) => {
-        occupancySchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    occupancySchema = loadSchema(`${import.meta.dirname}/occupancy.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
   });
 
   describe("consume()", () => {
@@ -38,16 +22,9 @@ describe("Elsys EMS Desk uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 3.62);
-        assert.equal(value.data.batteryLevel, 100);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 3.62);
+        assert.equal(data.batteryLevel, 100);
       });
 
 
@@ -57,21 +34,14 @@ describe("Elsys EMS Desk uplink", () => {
         assert.exists(value.firstOccupancyTimestamp);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "occupancy");
-        assert.equal(value.data.occupiedMinutes, 0);
-        assert.equal(value.data.minutesSinceLastOccupied, 0);
-        assert.equal(value.data.occupancy, 2);
-        assert.equal(value.data.occupancyStatus, "OCCUPIED");
-        assert.equal(value.data.occupied, true);
-        assert.equal(value.data.occupiedOrWarm, true);
-        assert.equal(value.data.warm, false);
-
-        validateSchema(value.data, occupancySchema, { throwError: true });
+      expectSample("occupancy", occupancySchema, (data) => {
+        assert.equal(data.occupiedMinutes, 0);
+        assert.equal(data.minutesSinceLastOccupied, 0);
+        assert.equal(data.occupancy, 2);
+        assert.equal(data.occupancyStatus, "OCCUPIED");
+        assert.equal(data.occupied, true);
+        assert.equal(data.occupiedOrWarm, true);
+        assert.equal(data.warm, false);
       });
 
       consume(data);

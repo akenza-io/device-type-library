@@ -1,62 +1,24 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Yosensi YO Analog uplink", () => {
   let ch1Schema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/ch1.schema.json`).then((parsedSchema) => {
-      ch1Schema = parsedSchema;
-      done();
-    });
-  });
-
   let ch2Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/ch2.schema.json`).then((parsedSchema) => {
-      ch2Schema = parsedSchema;
-      done();
-    });
-  });
-
   let ch3Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/ch3.schema.json`).then((parsedSchema) => {
-      ch3Schema = parsedSchema;
-      done();
-    });
-  });
-
   let ch4Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/ch4.schema.json`).then((parsedSchema) => {
-      ch4Schema = parsedSchema;
-      done();
-    });
-  });
-
   let ch5Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/ch5.schema.json`).then((parsedSchema) => {
-      ch5Schema = parsedSchema;
-      done();
-    });
-  });
-
   let ch6Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/ch6.schema.json`).then((parsedSchema) => {
-      ch6Schema = parsedSchema;
-      done();
-    });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    ch1Schema = loadSchema(`${import.meta.dirname}/ch1.schema.json`);
+    ch2Schema = loadSchema(`${import.meta.dirname}/ch2.schema.json`);
+    ch3Schema = loadSchema(`${import.meta.dirname}/ch3.schema.json`);
+    ch4Schema = loadSchema(`${import.meta.dirname}/ch4.schema.json`);
+    ch5Schema = loadSchema(`${import.meta.dirname}/ch5.schema.json`);
+    ch6Schema = loadSchema(`${import.meta.dirname}/ch6.schema.json`);
   });
 
   describe("consume()", () => {
@@ -69,70 +31,28 @@ describe("Yosensi YO Analog uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "ch1");
-        assert.equal(value.data.ch1, 6.05);
-
-        validateSchema(value.data, ch1Schema, { throwError: true });
+      expectSample("ch1", ch1Schema, (data) => {
+        assert.equal(data.ch1, 6.05);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "ch2");
-        assert.equal(value.data.ch2, 6.03);
-
-        validateSchema(value.data, ch2Schema, { throwError: true });
+      expectSample("ch2", ch2Schema, (data) => {
+        assert.equal(data.ch2, 6.03);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "ch3");
-        assert.equal(value.data.ch3, 6.0);
-
-        validateSchema(value.data, ch3Schema, { throwError: true });
+      expectSample("ch3", ch3Schema, (data) => {
+        assert.equal(data.ch3, 6.0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "ch4");
-        assert.equal(value.data.ch4, 4.81);
-
-        validateSchema(value.data, ch4Schema, { throwError: true });
+      expectSample("ch4", ch4Schema, (data) => {
+        assert.equal(data.ch4, 4.81);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "ch5");
-        assert.equal(value.data.ch5, 4.83);
-
-        validateSchema(value.data, ch5Schema, { throwError: true });
+      expectSample("ch5", ch5Schema, (data) => {
+        assert.equal(data.ch5, 4.83);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "ch6");
-        assert.equal(value.data.ch6, 4.82);
-
-        validateSchema(value.data, ch6Schema, { throwError: true });
+      expectSample("ch6", ch6Schema, (data) => {
+        assert.equal(data.ch6, 4.82);
       });
 
       consume(data);

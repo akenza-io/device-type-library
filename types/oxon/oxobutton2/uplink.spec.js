@@ -1,32 +1,16 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Oxon Oxobutton 2 Uplink", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
   });
 
   describe("consume()", () => {
@@ -37,52 +21,38 @@ describe("Oxon Oxobutton 2 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.acceptsDownlinks, false);
-        assert.equal(value.data.appMode, "GENERIC_BELL_IMAGE");
-        assert.equal(value.data.batteryLevel, 100);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.acceptsDownlinks, false);
+        assert.equal(data.appMode, "GENERIC_BELL_IMAGE");
+        assert.equal(data.batteryLevel, 100);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.button1Count, 0);
+        assert.equal(data.button2Count, 0);
+        assert.equal(data.button3Count, 0);
+        assert.equal(data.button4Count, 0);
 
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.button1Count, 0);
-        assert.equal(value.data.button2Count, 0);
-        assert.equal(value.data.button3Count, 0);
-        assert.equal(value.data.button4Count, 0);
+        assert.equal(data.button1, false);
+        assert.equal(data.button2, false);
+        assert.equal(data.button3, false);
+        assert.equal(data.button4, false);
 
-        assert.equal(value.data.button1, false);
-        assert.equal(value.data.button2, false);
-        assert.equal(value.data.button3, false);
-        assert.equal(value.data.button4, false);
+        assert.equal(data.periodicUplink, 0);
+        assert.equal(data.temperatureEvent, 1);
+        assert.equal(data.ambientLightEvent, 0);
+        assert.equal(data.heartbeatEvent, 0);
+        assert.equal(data.humidityEvent, 0);
 
-        assert.equal(value.data.periodicUplink, 0);
-        assert.equal(value.data.temperatureEvent, 1);
-        assert.equal(value.data.ambientLightEvent, 0);
-        assert.equal(value.data.heartbeatEvent, 0);
-        assert.equal(value.data.humidityEvent, 0);
+        assert.equal(data.periodicUplink, false);
+        assert.equal(data.temperatureEvent, true);
+        assert.equal(data.ambientLightEvent, false);
+        assert.equal(data.heartbeatEvent, false);
+        assert.equal(data.humidityEvent, false);
 
-        assert.equal(value.data.periodicUplink, false);
-        assert.equal(value.data.temperatureEvent, true);
-        assert.equal(value.data.ambientLightEvent, false);
-        assert.equal(value.data.heartbeatEvent, false);
-        assert.equal(value.data.humidityEvent, false);
-
-        assert.equal(value.data.light, 0);
-        assert.equal(value.data.humidity, 42.72);
-        assert.equal(value.data.temperature, 22.42);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+        assert.equal(data.light, 0);
+        assert.equal(data.humidity, 42.72);
+        assert.equal(data.temperature, 22.42);
       });
 
       consume(data);

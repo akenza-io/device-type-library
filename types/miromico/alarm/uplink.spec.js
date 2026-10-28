@@ -1,31 +1,16 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Miromico alarm Uplink", () => {
   let lifecycleSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
-      lifecycleSchema = parsedSchema;
-      done();
-    });
-  });
-
   let sceneSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/scene.schema.json`)
-      .then((parsedSchema) => {
-        sceneSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    sceneSchema = loadSchema(`${import.meta.dirname}/scene.schema.json`);
   });
 
   describe("consume()", () => {
@@ -37,15 +22,8 @@ describe("Miromico alarm Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryUsage, 85);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryUsage, 85);
       });
 
       consume(data);
@@ -59,16 +37,9 @@ describe("Miromico alarm Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 12);
-        assert.equal(value.data.batteryTemperature, 228);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 12);
+        assert.equal(data.batteryTemperature, 228);
       });
 
       consume(data);
@@ -82,15 +53,8 @@ describe("Miromico alarm Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "scene");
-        assert.equal(value.data.currentScene, 7);
-
-        validateSchema(value.data, sceneSchema, { throwError: true });
+      expectSample("scene", sceneSchema, (data) => {
+        assert.equal(data.currentScene, 7);
       });
 
       consume(data);
@@ -104,18 +68,11 @@ describe("Miromico alarm Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "scene");
-        assert.equal(value.data.currentScene, 2);
-        assert.equal(value.data.red, 255);
-        assert.equal(value.data.green, 154);
-        assert.equal(value.data.blue, 0);
-
-        validateSchema(value.data, sceneSchema, { throwError: true });
+      expectSample("scene", sceneSchema, (data) => {
+        assert.equal(data.currentScene, 2);
+        assert.equal(data.red, 255);
+        assert.equal(data.green, 154);
+        assert.equal(data.blue, 0);
       });
 
       consume(data);
@@ -129,16 +86,9 @@ describe("Miromico alarm Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "scene");
-        assert.equal(value.data.currentScene, 2);
-        assert.equal(value.data.timeoutMin, 10);
-
-        validateSchema(value.data, sceneSchema, { throwError: true });
+      expectSample("scene", sceneSchema, (data) => {
+        assert.equal(data.currentScene, 2);
+        assert.equal(data.timeoutMin, 10);
       });
 
       consume(data);
@@ -152,17 +102,10 @@ describe("Miromico alarm Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "scene");
-        assert.equal(value.data.currentScene, 2);
-        assert.equal(value.data.melody, "SLOW");
-        assert.equal(value.data.melodyRepeat, true);
-
-        validateSchema(value.data, sceneSchema, { throwError: true });
+      expectSample("scene", sceneSchema, (data) => {
+        assert.equal(data.currentScene, 2);
+        assert.equal(data.melody, "SLOW");
+        assert.equal(data.melodyRepeat, true);
       });
 
       consume(data);
@@ -176,21 +119,13 @@ describe("Miromico alarm Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 12);
-        assert.equal(value.data.batteryTemperature, 228);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 12);
+        assert.equal(data.batteryTemperature, 228);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "scene");
-        assert.equal(value.data.currentScene, 7);
-
-        validateSchema(value.data, sceneSchema, { throwError: true });
+      expectSample("scene", sceneSchema, (data) => {
+        assert.equal(data.currentScene, 7);
       });
 
       consume(data);

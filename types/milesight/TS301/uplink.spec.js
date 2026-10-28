@@ -1,49 +1,20 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("Milesight TS301 Uplink", () => {
   let consume = null;
-
   let alarmSchema = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/alarm.schema.json`).then((parsedSchema) => {
-      alarmSchema = parsedSchema;
-      done();
-    });
-  });
-
   let climateSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/climate.schema.json`)
-      .then((parsedSchema) => {
-        climateSchema = parsedSchema;
-        done();
-      });
-  });
-
   let magnetSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/magnet.schema.json`).then((parsedSchema) => {
-      magnetSchema = parsedSchema;
-      done();
-    });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    alarmSchema = loadSchema(`${import.meta.dirname}/alarm.schema.json`);
+    climateSchema = loadSchema(`${import.meta.dirname}/climate.schema.json`);
+    magnetSchema = loadSchema(`${import.meta.dirname}/magnet.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
   });
 
   describe("consume()", () => {
@@ -79,15 +50,8 @@ describe("Milesight TS301 Uplink", () => {
         // utils.validateSchema(value.data, magnetSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 100);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 100);
       });
 
       consume(data);
@@ -101,27 +65,13 @@ describe("Milesight TS301 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "climate");
-        assert.equal(value.data.temperatureChannel1, 25.1);
-        assert.equal(value.data.temperatureChannel2, 25.7);
-
-        validateSchema(value.data, climateSchema, { throwError: true });
+      expectSample("climate", climateSchema, (data) => {
+        assert.equal(data.temperatureChannel1, 25.1);
+        assert.equal(data.temperatureChannel2, 25.7);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 100);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 100);
       });
 
       consume(data);
@@ -135,16 +85,9 @@ describe("Milesight TS301 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "climate");
-        assert.equal(value.data.temperatureChannel1, 29.5);
-        assert.equal(value.data.temperatureChannel2, 26.4);
-
-        validateSchema(value.data, climateSchema, { throwError: true });
+      expectSample("climate", climateSchema, (data) => {
+        assert.equal(data.temperatureChannel1, 29.5);
+        assert.equal(data.temperatureChannel2, 26.4);
       });
 
       expectEmits((type, value) => {
@@ -159,15 +102,8 @@ describe("Milesight TS301 Uplink", () => {
         // utils.validateSchema(value.data, alarmSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 100);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 100);
       });
 
       consume(data);
@@ -181,16 +117,9 @@ describe("Milesight TS301 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "climate");
-        assert.equal(value.data.temperatureChannel1, -6.7);
-        assert.equal(value.data.temperatureChannel2, 24.6);
-
-        validateSchema(value.data, climateSchema, { throwError: true });
+      expectSample("climate", climateSchema, (data) => {
+        assert.equal(data.temperatureChannel1, -6.7);
+        assert.equal(data.temperatureChannel2, 24.6);
       });
 
       consume(data);

@@ -1,32 +1,16 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Adeunis dry contact", () => {
   let channelSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/channel.schema.json`)
-      .then((parsedSchema) => {
-        channelSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    channelSchema = loadSchema(`${import.meta.dirname}/channel.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
   });
 
   describe("consume()", () => {
@@ -38,74 +22,39 @@ describe("Adeunis dry contact", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.frameCounter, 2);
-        assert.equal(value.data.hardwareError, false);
-        assert.equal(value.data.lowBattery, false);
-        assert.equal(value.data.configurationDone, false);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.frameCounter, 2);
+        assert.equal(data.hardwareError, false);
+        assert.equal(data.lowBattery, false);
+        assert.equal(data.configurationDone, false);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "channel");
-        assert.equal(value.data.channel, "channelA");
-        assert.equal(value.data.previousState, false);
-        assert.equal(value.data.state, true);
-        assert.equal(value.data.value, 1);
-
-        validateSchema(value.data, channelSchema, { throwError: true });
+      expectSample("channel", channelSchema, (data) => {
+        assert.equal(data.channel, "channelA");
+        assert.equal(data.previousState, false);
+        assert.equal(data.state, true);
+        assert.equal(data.value, 1);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "channel");
-        assert.equal(value.data.channel, "channelB");
-        assert.equal(value.data.previousState, false);
-        assert.equal(value.data.state, false);
-        assert.equal(value.data.value, 0);
-
-        validateSchema(value.data, channelSchema, { throwError: true });
+      expectSample("channel", channelSchema, (data) => {
+        assert.equal(data.channel, "channelB");
+        assert.equal(data.previousState, false);
+        assert.equal(data.state, false);
+        assert.equal(data.value, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "channel");
-        assert.equal(value.data.channel, "channelC");
-        assert.equal(value.data.previousState, false);
-        assert.equal(value.data.state, false);
-        assert.equal(value.data.value, 5);
-
-        validateSchema(value.data, channelSchema, { throwError: true });
+      expectSample("channel", channelSchema, (data) => {
+        assert.equal(data.channel, "channelC");
+        assert.equal(data.previousState, false);
+        assert.equal(data.state, false);
+        assert.equal(data.value, 5);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "channel");
-        assert.equal(value.data.channel, "channelD");
-        assert.equal(value.data.previousState, false);
-        assert.equal(value.data.state, false);
-        assert.equal(value.data.value, 2);
-
-        validateSchema(value.data, channelSchema, { throwError: true });
+      expectSample("channel", channelSchema, (data) => {
+        assert.equal(data.channel, "channelD");
+        assert.equal(data.previousState, false);
+        assert.equal(data.state, false);
+        assert.equal(data.value, 2);
       });
       consume(data);
     });

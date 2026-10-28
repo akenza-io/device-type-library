@@ -1,23 +1,14 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("Digital Technologies Water Sensor Uplink", () => {
   let waterPresentSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/water_present.schema.json`)
-      .then((parsedSchema) => {
-        waterPresentSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    waterPresentSchema = loadSchema(`${import.meta.dirname}/water_present.schema.json`);
   });
 
   describe("consume()", () => {
@@ -38,19 +29,10 @@ describe("Digital Technologies Water Sensor Uplink", () => {
         labels: { name: "Temperature Simulator" },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "water_present");
-        assert.equal(value.data.waterPresent, "NOT_PRESENT");
-        assert.equal(value.data.leakageDetected, false);
-        assert.equal(value.data.repeat, false);
-
-        validateSchema(value.data, waterPresentSchema, {
-          throwError: true,
-        });
+      expectSample("water_present", waterPresentSchema, (data) => {
+        assert.equal(data.waterPresent, "NOT_PRESENT");
+        assert.equal(data.leakageDetected, false);
+        assert.equal(data.repeat, false);
       });
 
       expectEmits((type, value) => {

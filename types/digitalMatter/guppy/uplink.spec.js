@@ -1,22 +1,14 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Digital matter Guppy Uplink", () => {
   let statusSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/status.schema.json`).then((parsedSchema) => {
-      statusSchema = parsedSchema;
-      done();
-    });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    statusSchema = loadSchema(`${import.meta.dirname}/status.schema.json`);
   });
 
   describe("consume()", () => {
@@ -28,17 +20,10 @@ describe("Digital matter Guppy Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "status");
-        assert.equal(value.data.inTrip, true);
-        assert.equal(value.data.temperature, 25);
-        assert.equal(value.data.batteryVoltage, 3.358);
-
-        validateSchema(value.data, statusSchema, { throwError: true });
+      expectSample("status", statusSchema, (data) => {
+        assert.equal(data.inTrip, true);
+        assert.equal(data.temperature, 25);
+        assert.equal(data.batteryVoltage, 3.358);
       });
 
       consume(data);
@@ -52,32 +37,25 @@ describe("Digital matter Guppy Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
+      expectSample("status", statusSchema, (data) => {
+        assert.equal(data.inTrip, true);
+        assert.equal(data.temperature, 25);
+        assert.equal(data.batteryVoltage, 3.36);
 
-        assert.equal(value.topic, "status");
-        assert.equal(value.data.inTrip, true);
-        assert.equal(value.data.temperature, 25);
-        assert.equal(value.data.batteryVoltage, 3.36);
+        assert.equal(data.inclinationDeg, 51);
+        assert.equal(data.azimuthDeg, 265.5);
+        assert.equal(data.downUnit[0], -0.7748);
+        assert.equal(data.downUnit[1], 0.6293);
+        assert.equal(data.downUnit[2], -0.06097);
 
-        assert.equal(value.data.inclinationDeg, 51);
-        assert.equal(value.data.azimuthDeg, 265.5);
-        assert.equal(value.data.downUnit[0], -0.7748);
-        assert.equal(value.data.downUnit[1], 0.6293);
-        assert.equal(value.data.downUnit[2], -0.06097);
+        assert.equal(data.manDown, true);
+        assert.equal(data.xyzAzimuthDeg[0], 354.5);
+        assert.equal(data.xyzAzimuthDeg[1], 265.5);
+        assert.equal(data.xyzAzimuthDeg[2], 140.9);
 
-        assert.equal(value.data.manDown, true);
-        assert.equal(value.data.xyzAzimuthDeg[0], 354.5);
-        assert.equal(value.data.xyzAzimuthDeg[1], 265.5);
-        assert.equal(value.data.xyzAzimuthDeg[2], 140.9);
-
-        assert.equal(value.data.xyzInclinationDeg[0], 140.8);
-        assert.equal(value.data.xyzInclinationDeg[1], 51);
-        assert.equal(value.data.xyzInclinationDeg[2], 93.5);
-
-        validateSchema(value.data, statusSchema, { throwError: true });
+        assert.equal(data.xyzInclinationDeg[0], 140.8);
+        assert.equal(data.xyzInclinationDeg[1], 51);
+        assert.equal(data.xyzInclinationDeg[2], 93.5);
       });
 
       consume(data);

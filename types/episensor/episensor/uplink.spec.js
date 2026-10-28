@@ -1,32 +1,16 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("Episensor Uplink", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let errorSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/error.schema.json`)
-      .then((parsedSchema) => {
-        errorSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    errorSchema = loadSchema(`${import.meta.dirname}/error.schema.json`);
   });
 
   describe("consume()", () => {
@@ -62,60 +46,24 @@ describe("Episensor Uplink", () => {
         }
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.totalActivePowerKWh, 12970);
-        assert.equal(value.data.incrementActivePowerKWh, 0);
-
-        validateSchema(value.data, defaultSchema, {
-          throwError: true,
-        });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.totalActivePowerKWh, 12970);
+        assert.equal(data.incrementActivePowerKWh, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.totalActivePowerKWh, 12974);
-        assert.equal(value.data.incrementActivePowerKWh, 4);
-
-        validateSchema(value.data, defaultSchema, {
-          throwError: true,
-        });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.totalActivePowerKWh, 12974);
+        assert.equal(data.incrementActivePowerKWh, 4);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.totalActivePowerKWh, 12988.3);
-        assert.equal(value.data.incrementActivePowerKWh, 14.3);
-
-        validateSchema(value.data, defaultSchema, {
-          throwError: true,
-        });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.totalActivePowerKWh, 12988.3);
+        assert.equal(data.incrementActivePowerKWh, 14.3);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.totalActivePowerKWh, 13000);
-        assert.equal(value.data.incrementActivePowerKWh, 11.7);
-
-        validateSchema(value.data, defaultSchema, {
-          throwError: true,
-        });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.totalActivePowerKWh, 13000);
+        assert.equal(data.incrementActivePowerKWh, 11.7);
       });
 
       expectEmits((type, value) => {
@@ -150,21 +98,12 @@ describe("Episensor Uplink", () => {
         }
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "error");
-        assert.equal(value.data.error, "Device connected to bridge changed. If it's a new counter please add it as a new device.");
-        assert.equal(value.data.value, 255.3);
-        assert.equal(value.data.newId, "000D6F001911015F_444");
-        assert.equal(value.data.initialId, "000D6F001911015F_333");
-        assert.deepEqual(value.data.period, new Date("2026-02-03T09:15:00").toISOString());
-
-        validateSchema(value.data, errorSchema, {
-          throwError: true,
-        });
+      expectSample("error", errorSchema, (data) => {
+        assert.equal(data.error, "Device connected to bridge changed. If it's a new counter please add it as a new device.");
+        assert.equal(data.value, 255.3);
+        assert.equal(data.newId, "000D6F001911015F_444");
+        assert.equal(data.initialId, "000D6F001911015F_333");
+        assert.deepEqual(data.period, new Date("2026-02-03T09:15:00").toISOString());
       });
 
       expectEmits((type, value) => {
@@ -210,18 +149,9 @@ describe("Episensor Uplink", () => {
         }
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.totalActivePowerKWh, 14000);
-        assert.equal(value.data.incrementActivePowerKWh, 1000);
-
-        validateSchema(value.data, defaultSchema, {
-          throwError: true,
-        });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.totalActivePowerKWh, 14000);
+        assert.equal(data.incrementActivePowerKWh, 1000);
       });
 
       expectEmits((type, value) => {

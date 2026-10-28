@@ -1,12 +1,7 @@
 
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Milesight CT103 Uplink", () => {
     let defaultSchema = null;
@@ -14,14 +9,11 @@ describe("Milesight CT103 Uplink", () => {
     let systemSchema = null;
     let consume = null;
 
-    before(async () => {
-        const script = rewire(`${__dirname}/uplink.js`);
-        consume = init(script);
-        [defaultSchema, alarmSchema, systemSchema] = await Promise.all([
-            loadSchema(`${__dirname}/default.schema.json`),
-            loadSchema(`${__dirname}/alarm.schema.json`),
-            loadSchema(`${__dirname}/system.schema.json`),
-        ]);
+    before(() => {
+      consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+      defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+      alarmSchema = loadSchema(`${import.meta.dirname}/alarm.schema.json`);
+      systemSchema = loadSchema(`${import.meta.dirname}/system.schema.json`);
     });
 
     describe("consume()", () => {
@@ -34,17 +26,14 @@ describe("Milesight CT103 Uplink", () => {
                 },
             };
 
-            expectEmits((type, value) => {
-                assert.equal(type, "sample");
-                assert.equal(value.topic, "system");
-                assert.equal(value.data.protocolVersion, "V1");
-                assert.equal(value.data.hardwareVersion, "v1.1");
-                assert.equal(value.data.softwareVersion, "v1.1");
-                assert.equal(value.data.tslVersion, "v1.1");
-                assert.equal(value.data.sn, "6746d48016300014");
-                assert.equal(value.data.lorawanClass, "CLASS_A");
-                assert.equal(value.data.deviceStatus, "on");
-                validateSchema(value.data, systemSchema, { throwError: true });
+            expectSample("system", systemSchema, (data) => {
+                assert.equal(data.protocolVersion, "V1");
+                assert.equal(data.hardwareVersion, "v1.1");
+                assert.equal(data.softwareVersion, "v1.1");
+                assert.equal(data.tslVersion, "v1.1");
+                assert.equal(data.sn, "6746d48016300014");
+                assert.equal(data.lorawanClass, "CLASS_A");
+                assert.equal(data.deviceStatus, "on");
             });
 
             consume(data);
@@ -58,13 +47,10 @@ describe("Milesight CT103 Uplink", () => {
                 },
             };
 
-            expectEmits((type, value) => {
-                assert.equal(type, "sample");
-                assert.equal(value.topic, "default");
-                assert.equal(value.data.totalCurrent, 6.27);
-                assert.equal(value.data.current, 64);
-                assert.equal(value.data.temperature, 30.8);
-                validateSchema(value.data, defaultSchema, { throwError: true });
+            expectSample("default", defaultSchema, (data) => {
+                assert.equal(data.totalCurrent, 6.27);
+                assert.equal(data.current, 64);
+                assert.equal(data.temperature, 30.8);
             });
 
             consume(data);
@@ -78,13 +64,10 @@ describe("Milesight CT103 Uplink", () => {
                 },
             };
 
-            expectEmits((type, value) => {
-                assert.equal(type, "sample");
-                assert.equal(value.topic, "alarm");
-                assert.equal(value.data.currentMax, 30);
-                assert.equal(value.data.currentMin, 20);
-                assert.equal(value.data.currentAlarmStatus, "CURRENT_THRESHOLD_ALARM");
-                validateSchema(value.data, alarmSchema, { throwError: true });
+            expectSample("alarm", alarmSchema, (data) => {
+                assert.equal(data.currentMax, 30);
+                assert.equal(data.currentMin, 20);
+                assert.equal(data.currentAlarmStatus, "CURRENT_THRESHOLD_ALARM");
             });
 
             consume(data);

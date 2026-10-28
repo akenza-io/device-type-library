@@ -1,32 +1,16 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("GWF RCM®-LRW10", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
   });
 
   describe("consume()", () => {
@@ -39,45 +23,31 @@ describe("GWF RCM®-LRW10", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.meterMedium, "WATER");
-        assert.equal(value.data.actualityDuration, 456);
-        assert.equal(value.data.volume, 1.016);
-        assert.equal(value.data.relativeVolume, 0);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.meterMedium, "WATER");
+        assert.equal(data.actualityDuration, 456);
+        assert.equal(data.volume, 1.016);
+        assert.equal(data.relativeVolume, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.protocolType, 2);
-        assert.equal(value.data.manufacturerID, 7910);
-        assert.equal(value.data.meterID, 12345678);
-        assert.equal(value.data.appError, "NO_ERROR");
-        assert.equal(value.data.batteryPowerLow, false);
-        assert.equal(value.data.permantError, false);
-        assert.equal(value.data.temporaryError, false);
-        assert.equal(value.data.commandError1, false);
-        assert.equal(value.data.commandError2, false);
-        assert.equal(value.data.commandError3, false);
-        assert.equal(value.data.continuousFlow, false);
-        assert.equal(value.data.brokenPipe, false);
-        assert.equal(value.data.batteryLow, false);
-        assert.equal(value.data.backflow, false);
-        assert.equal(value.data.noUsage, false);
-        assert.equal(value.data.loraLinkError, false);
-        assert.equal(value.data.batteryLifetime, 138);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.protocolType, 2);
+        assert.equal(data.manufacturerID, 7910);
+        assert.equal(data.meterID, 12345678);
+        assert.equal(data.appError, "NO_ERROR");
+        assert.equal(data.batteryPowerLow, false);
+        assert.equal(data.permantError, false);
+        assert.equal(data.temporaryError, false);
+        assert.equal(data.commandError1, false);
+        assert.equal(data.commandError2, false);
+        assert.equal(data.commandError3, false);
+        assert.equal(data.continuousFlow, false);
+        assert.equal(data.brokenPipe, false);
+        assert.equal(data.batteryLow, false);
+        assert.equal(data.backflow, false);
+        assert.equal(data.noUsage, false);
+        assert.equal(data.loraLinkError, false);
+        assert.equal(data.batteryLifetime, 138);
       });
 
       expectEmits((type, value) => {
@@ -99,45 +69,31 @@ describe("GWF RCM®-LRW10", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.meterMedium, "WATER");
-        assert.equal(value.data.actualityDuration, 456);
-        assert.equal(value.data.volume, 1.016);
-        assert.equal(value.data.relativeVolume, 0.516);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.meterMedium, "WATER");
+        assert.equal(data.actualityDuration, 456);
+        assert.equal(data.volume, 1.016);
+        assert.equal(data.relativeVolume, 0.516);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.protocolType, 2);
-        assert.equal(value.data.manufacturerID, 7910);
-        assert.equal(value.data.meterID, 12345678);
-        assert.equal(value.data.appError, "NO_ERROR");
-        assert.equal(value.data.batteryPowerLow, false);
-        assert.equal(value.data.permantError, false);
-        assert.equal(value.data.temporaryError, false);
-        assert.equal(value.data.commandError1, false);
-        assert.equal(value.data.commandError2, false);
-        assert.equal(value.data.commandError3, false);
-        assert.equal(value.data.continuousFlow, false);
-        assert.equal(value.data.brokenPipe, false);
-        assert.equal(value.data.batteryLow, false);
-        assert.equal(value.data.backflow, false);
-        assert.equal(value.data.noUsage, false);
-        assert.equal(value.data.loraLinkError, false);
-        assert.equal(value.data.batteryLifetime, 138);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.protocolType, 2);
+        assert.equal(data.manufacturerID, 7910);
+        assert.equal(data.meterID, 12345678);
+        assert.equal(data.appError, "NO_ERROR");
+        assert.equal(data.batteryPowerLow, false);
+        assert.equal(data.permantError, false);
+        assert.equal(data.temporaryError, false);
+        assert.equal(data.commandError1, false);
+        assert.equal(data.commandError2, false);
+        assert.equal(data.commandError3, false);
+        assert.equal(data.continuousFlow, false);
+        assert.equal(data.brokenPipe, false);
+        assert.equal(data.batteryLow, false);
+        assert.equal(data.backflow, false);
+        assert.equal(data.noUsage, false);
+        assert.equal(data.loraLinkError, false);
+        assert.equal(data.batteryLifetime, 138);
       });
 
       expectEmits((type, value) => {

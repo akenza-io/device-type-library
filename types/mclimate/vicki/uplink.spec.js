@@ -1,25 +1,18 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("MClimate Vicky uplink", () => {
   let defaultSchema = null;
   let lifecycleSchema = null;
   let configurationSchema = null;
   let consume = null;
-  before(async () => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    defaultSchema = await loadSchema(`${__dirname}/default.schema.json`);
-    lifecycleSchema = await loadSchema(`${__dirname}/lifecycle.schema.json`);
-    configurationSchema = await loadSchema(
-      `${__dirname}/configuration.schema.json`,
-    );
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    configurationSchema = loadSchema(`${import.meta.dirname}/configuration.schema.json`);
   });
 
   function uplink(payloadHex) {
@@ -45,42 +38,28 @@ describe("MClimate Vicky uplink", () => {
     it("should decode MClimate Vicky payload", () => {
       const data = uplink("011D5A78FA2C01F080");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.targetTemperature, 29);
-        assert.equal(value.data.sensorTemperature, 18.01);
-        assert.equal(value.data.relativeHumidity, 46.88);
-        assert.equal(value.data.motorRange, 300);
-        assert.equal(value.data.motorPosition, 250);
-        assert.equal(value.data.valveOpenness, 17);
-        assert.equal(value.data.openWindow, false);
-        assert.equal(value.data.childLock, true);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.targetTemperature, 29);
+        assert.equal(data.sensorTemperature, 18.01);
+        assert.equal(data.relativeHumidity, 46.88);
+        assert.equal(data.motorRange, 300);
+        assert.equal(data.motorPosition, 250);
+        assert.equal(data.valveOpenness, 17);
+        assert.equal(data.openWindow, false);
+        assert.equal(data.childLock, true);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 3.5);
-        assert.equal(value.data.highMotorConsumption, false);
-        assert.equal(value.data.lowMotorConsumption, false);
-        assert.equal(value.data.brokenSensor, false);
-        assert.equal(value.data.calibrationFailed, false);
-        assert.equal(value.data.attachedBackplate, false);
-        assert.equal(value.data.perceiveAsOnline, false);
-        assert.equal(value.data.antiFreezeProtection, false);
-        assert.equal(value.data.d2dCommunicationReliable, false);
-        assert.equal(value.data.batteryTooLow, false);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 3.5);
+        assert.equal(data.highMotorConsumption, false);
+        assert.equal(data.lowMotorConsumption, false);
+        assert.equal(data.brokenSensor, false);
+        assert.equal(data.calibrationFailed, false);
+        assert.equal(data.attachedBackplate, false);
+        assert.equal(data.perceiveAsOnline, false);
+        assert.equal(data.antiFreezeProtection, false);
+        assert.equal(data.d2dCommunicationReliable, false);
+        assert.equal(data.batteryTooLow, false);
       });
 
       consume(data);
@@ -89,30 +68,22 @@ describe("MClimate Vicky uplink", () => {
     it("should decode the status flags of a MClimate Vicky keepalive", () => {
       const data = uplink("811BAF4BAB2A1298B0");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.targetTemperature, 27);
-        assert.equal(value.data.sensorTemperature, 25.88);
-        assert.equal(value.data.relativeHumidity, 29.3);
-        assert.equal(value.data.motorRange, 554);
-        assert.equal(value.data.motorPosition, 427);
-        assert.equal(value.data.valveOpenness, 23);
-        assert.equal(value.data.openWindow, true);
-        assert.equal(value.data.childLock, true);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.targetTemperature, 27);
+        assert.equal(data.sensorTemperature, 25.88);
+        assert.equal(data.relativeHumidity, 29.3);
+        assert.equal(data.motorRange, 554);
+        assert.equal(data.motorPosition, 427);
+        assert.equal(data.valveOpenness, 23);
+        assert.equal(data.openWindow, true);
+        assert.equal(data.childLock, true);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 2.9);
-        assert.equal(value.data.attachedBackplate, true);
-        assert.equal(value.data.perceiveAsOnline, true);
-        assert.equal(value.data.calibrationFailed, false);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 2.9);
+        assert.equal(data.attachedBackplate, true);
+        assert.equal(data.perceiveAsOnline, true);
+        assert.equal(data.calibrationFailed, false);
       });
 
       consume(data);
@@ -121,33 +92,21 @@ describe("MClimate Vicky uplink", () => {
     it("should decode MClimate Vicky command responses followed by a keepalive", () => {
       const data = uplink("56011203042643811BAF4BAB2A129030");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.targetTemperature, 27);
-        assert.equal(value.data.openWindow, false);
-        assert.equal(value.data.childLock, false);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.targetTemperature, 27);
+        assert.equal(data.openWindow, false);
+        assert.equal(data.childLock, false);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 2.9);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 2.9);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "configuration");
-        assert.equal(value.data.ledDisplayTempUnits, 1);
-        assert.equal(value.data.keepAliveTime, 3);
-        assert.equal(value.data.hardwareVersion, 26);
-        assert.equal(value.data.softwareVersion, 43);
-
-        validateSchema(value.data, configurationSchema, { throwError: true });
+      expectSample("configuration", configurationSchema, (data) => {
+        assert.equal(data.ledDisplayTempUnits, 1);
+        assert.equal(data.keepAliveTime, 3);
+        assert.equal(data.hardwareVersion, 26);
+        assert.equal(data.softwareVersion, 43);
       });
 
       consume(data);
@@ -156,12 +115,8 @@ describe("MClimate Vicky uplink", () => {
     it("should decode a MClimate Vicky command response without keepalive", () => {
       const data = uplink("7200F1");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "configuration");
-        assert.equal(value.data.htSensorTemperature, 24.1);
-
-        validateSchema(value.data, configurationSchema, { throwError: true });
+      expectSample("configuration", configurationSchema, (data) => {
+        assert.equal(data.htSensorTemperature, 24.1);
       });
 
       consume(data);
@@ -170,22 +125,12 @@ describe("MClimate Vicky uplink", () => {
     it("should decode settings as flat datapoints", () => {
       const data = uplink("1301041C231D0204811BAF4BAB2A129030");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        validateSchema(value.data, defaultSchema, { throwError: true });
-      });
+      expectSample("default", defaultSchema);
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "lifecycle");
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
-      });
+      expectSample("lifecycle", lifecycleSchema);
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "configuration");
-        assert.deepEqual(value.data, {
+      expectSample("configuration", configurationSchema, (data) => {
+        assert.deepEqual(data, {
           openWindowEnabled: true,
           openWindowDuration: 20,
           openWindowMotorPosition: 540,
@@ -193,8 +138,6 @@ describe("MClimate Vicky uplink", () => {
           watchDogConfirmedUplinks: 2,
           watchDogUnconfirmedUplinks: 4,
         });
-
-        validateSchema(value.data, configurationSchema, { throwError: true });
       });
 
       consume(data);
@@ -205,18 +148,11 @@ describe("MClimate Vicky uplink", () => {
         "5A000600009B7F0000000000000000000000000000000000000000000000000000000000000000000000811BAF4BAB2A129030",
       );
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.targetTemperature, 27);
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.targetTemperature, 27);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "lifecycle");
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
-      });
+      expectSample("lifecycle", lifecycleSchema);
 
       consume(data);
     });

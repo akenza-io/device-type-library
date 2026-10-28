@@ -1,41 +1,18 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Elsys ELT-2 uplink", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   let configurationSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/configuration.schema.json`)
-      .then((parsedSchema) => {
-        configurationSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    configurationSchema = loadSchema(`${import.meta.dirname}/configuration.schema.json`);
   });
 
   describe("consume()", () => {
@@ -47,30 +24,16 @@ describe("Elsys ELT-2 uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.temperature, 22.6);
-        assert.equal(value.data.humidity, 24);
-        assert.equal(value.data.pressure, 974.112);
-        assert.equal(value.data.externalTemperature1, -17);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.temperature, 22.6);
+        assert.equal(data.humidity, 24);
+        assert.equal(data.pressure, 974.112);
+        assert.equal(data.externalTemperature1, -17);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 3.649);
-        assert.equal(value.data.batteryLevel, 100);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 3.649);
+        assert.equal(data.batteryLevel, 100);
       });
 
       consume(data);
@@ -85,45 +48,36 @@ describe("Elsys ELT-2 uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "configuration");
-        assert.equal(value.data.ota, true);
-        assert.equal(value.data.port, 5);
-        assert.equal(value.data.mode, 1);
-        assert.equal(value.data.ack, false);
-        assert.equal(value.data.drDef, 5);
-        assert.equal(value.data.drMax, 5);
-        assert.equal(value.data.drMin, 0);
-        assert.equal(value.data.class, 0);
-        assert.equal(value.data.pirCfg, 2);
-        assert.equal(value.data.splPer, 600);
-        assert.equal(value.data.tempPer, 1);
-        assert.equal(value.data.lightPer, 1);
-        assert.equal(value.data.pirPer, 1);
-        assert.equal(value.data.extPer, 300000);
-        assert.equal(value.data.vddPer, 1);
-        assert.equal(value.data.sendPer, 1);
-        assert.equal(value.data.lock, 0);
-        assert.equal(value.data.link, "00040064");
-        assert.equal(value.data.plan, 3);
-        assert.equal(value.data.subBand, 0);
-        assert.equal(value.data.lbt, false);
-        assert.equal(value.data.ledConfig, 0);
-        assert.equal(value.data.qSize, 1);
-        assert.equal(value.data.qOffset, false);
-        assert.equal(value.data.qPurge, true);
-        assert.equal(value.data.pirSensivity, 0);
-        assert.equal(value.data.asr, false);
-        assert.equal(value.data.sensor, "ERS2_EYE");
-        assert.equal(value.data.version, 3414);
-
-        validateSchema(value.data, configurationSchema, {
-          throwError: true,
-        });
+      expectSample("configuration", configurationSchema, (data) => {
+        assert.equal(data.ota, true);
+        assert.equal(data.port, 5);
+        assert.equal(data.mode, 1);
+        assert.equal(data.ack, false);
+        assert.equal(data.drDef, 5);
+        assert.equal(data.drMax, 5);
+        assert.equal(data.drMin, 0);
+        assert.equal(data.class, 0);
+        assert.equal(data.pirCfg, 2);
+        assert.equal(data.splPer, 600);
+        assert.equal(data.tempPer, 1);
+        assert.equal(data.lightPer, 1);
+        assert.equal(data.pirPer, 1);
+        assert.equal(data.extPer, 300000);
+        assert.equal(data.vddPer, 1);
+        assert.equal(data.sendPer, 1);
+        assert.equal(data.lock, 0);
+        assert.equal(data.link, "00040064");
+        assert.equal(data.plan, 3);
+        assert.equal(data.subBand, 0);
+        assert.equal(data.lbt, false);
+        assert.equal(data.ledConfig, 0);
+        assert.equal(data.qSize, 1);
+        assert.equal(data.qOffset, false);
+        assert.equal(data.qPurge, true);
+        assert.equal(data.pirSensivity, 0);
+        assert.equal(data.asr, false);
+        assert.equal(data.sensor, "ERS2_EYE");
+        assert.equal(data.version, 3414);
       });
 
       consume(data);

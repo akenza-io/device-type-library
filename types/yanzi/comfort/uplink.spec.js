@@ -1,32 +1,16 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Yanzi Comfort Sensor Uplink", () => {
   let temperatureSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/temperature.schema.json`)
-      .then((parsedSchema) => {
-        temperatureSchema = parsedSchema;
-        done();
-      });
-  });
-
   let humiditySchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/humidity.schema.json`)
-      .then((parsedSchema) => {
-        humiditySchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    temperatureSchema = loadSchema(`${import.meta.dirname}/temperature.schema.json`);
+    humiditySchema = loadSchema(`${import.meta.dirname}/humidity.schema.json`);
   });
 
   describe("consume()", () => {
@@ -43,17 +27,8 @@ describe("Yanzi Comfort Sensor Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "temperature");
-        assert.equal(value.data.temperature, 29.24);
-
-        validateSchema(value.data, temperatureSchema, {
-          throwError: true,
-        });
+      expectSample("temperature", temperatureSchema, (data) => {
+        assert.equal(data.temperature, 29.24);
       });
 
       consume(data);
@@ -72,15 +47,8 @@ describe("Yanzi Comfort Sensor Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "humidity");
-        assert.equal(value.data.humidity, 38.3);
-
-        validateSchema(value.data, humiditySchema, { throwError: true });
+      expectSample("humidity", humiditySchema, (data) => {
+        assert.equal(data.humidity, 38.3);
       });
 
       consume(data);

@@ -1,12 +1,6 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Kallisto SY021 Uplink", () => {
   let motionSchema = null;
@@ -15,23 +9,12 @@ describe("Kallisto SY021 Uplink", () => {
   let consume = null;
   let script = null;
 
-  before((done) => {
-    script = rewire(`${__dirname}/uplink.js`);
+  before(() => {
+    script = rewire(`${import.meta.dirname}/uplink.js`);
     consume = init(script);
-
-    loadSchema(`${__dirname}/motion.schema.json`)
-      .then((parsedSchema) => {
-        motionSchema = parsedSchema;
-        return loadSchema(`${__dirname}/environment.schema.json`);
-      })
-      .then((parsedSchema) => {
-        environmentSchema = parsedSchema;
-        return loadSchema(`${__dirname}/lifecycle.schema.json`);
-      })
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+    motionSchema = loadSchema(`${import.meta.dirname}/motion.schema.json`);
+    environmentSchema = loadSchema(`${import.meta.dirname}/environment.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
   });
 
   describe("consume()", () => {
@@ -53,20 +36,16 @@ describe("Kallisto SY021 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "motion");
-        assert.equal(value.data.accelX, 0.12);
-        assert.equal(value.data.accelY, 0.34);
-        assert.equal(value.data.accelZ, 9.81);
-        assert.equal(value.data.gyroX, 1.2);
-        assert.equal(value.data.gyroY, 2.3);
-        assert.equal(value.data.gyroZ, 3.4);
-        assert.equal(value.data.magX, 0.01);
-        assert.equal(value.data.magY, 0.02);
-        assert.equal(value.data.magZ, 0.03);
-
-        validateSchema(value.data, motionSchema, { throwError: true });
+      expectSample("motion", motionSchema, (data) => {
+        assert.equal(data.accelX, 0.12);
+        assert.equal(data.accelY, 0.34);
+        assert.equal(data.accelZ, 9.81);
+        assert.equal(data.gyroX, 1.2);
+        assert.equal(data.gyroY, 2.3);
+        assert.equal(data.gyroZ, 3.4);
+        assert.equal(data.magX, 0.01);
+        assert.equal(data.magY, 0.02);
+        assert.equal(data.magZ, 0.03);
       });
 
       consume(data);
@@ -88,18 +67,14 @@ describe("Kallisto SY021 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "environment");
-        assert.equal(value.data.temperature, 23.1);
-        assert.equal(value.data.humidity, 56);
-        assert.equal(value.data.co2, 700);
-        assert.equal(value.data.voc, 120);
-        assert.equal(value.data.pressure, 1013.2);
-        assert.equal(value.data.light, 400);
-        assert.equal(value.data.noise, 47);
-
-        validateSchema(value.data, environmentSchema, { throwError: true });
+      expectSample("environment", environmentSchema, (data) => {
+        assert.equal(data.temperature, 23.1);
+        assert.equal(data.humidity, 56);
+        assert.equal(data.co2, 700);
+        assert.equal(data.voc, 120);
+        assert.equal(data.pressure, 1013.2);
+        assert.equal(data.light, 400);
+        assert.equal(data.noise, 47);
       });
 
       consume(data);
@@ -115,12 +90,8 @@ describe("Kallisto SY021 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 89);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 89);
       });
 
       consume(data);

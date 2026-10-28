@@ -1,68 +1,24 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("NanoThings uplink", () => {
   let configurationAckSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/configuration_ack.schema.json`)
-      .then((parsedSchema) => {
-        configurationAckSchema = parsedSchema;
-        done();
-      });
-  });
-
   let deviceStatusSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/device_status.schema.json`)
-      .then((parsedSchema) => {
-        deviceStatusSchema = parsedSchema;
-        done();
-      });
-  });
-
   let firstTimestampSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/first_timestamp.schema.json`)
-      .then((parsedSchema) => {
-        firstTimestampSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   let reportFrameSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/report_frame.schema.json`)
-      .then((parsedSchema) => {
-        reportFrameSchema = parsedSchema;
-        done();
-      });
-  });
-
   let temperatureSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/temperature.schema.json`)
-      .then((parsedSchema) => {
-        temperatureSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    configurationAckSchema = loadSchema(`${import.meta.dirname}/configuration_ack.schema.json`);
+    deviceStatusSchema = loadSchema(`${import.meta.dirname}/device_status.schema.json`);
+    firstTimestampSchema = loadSchema(`${import.meta.dirname}/first_timestamp.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    reportFrameSchema = loadSchema(`${import.meta.dirname}/report_frame.schema.json`);
+    temperatureSchema = loadSchema(`${import.meta.dirname}/temperature.schema.json`);
   });
 
   describe("consume()", () => {
@@ -74,32 +30,14 @@ describe("NanoThings uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 100);
-        assert.equal(value.data.batteryVoltage, 3.25);
-        assert.equal(value.data.internalTemperature, 25);
-
-        validateSchema(value.data, lifecycleSchema, {
-          throwError: true,
-        });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 100);
+        assert.equal(data.batteryVoltage, 3.25);
+        assert.equal(data.internalTemperature, 25);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "temperature");
-        assert.equal(value.data.temperature, 21);
-
-        validateSchema(value.data, temperatureSchema, {
-          throwError: true,
-        });
+      expectSample("temperature", temperatureSchema, (data) => {
+        assert.equal(data.temperature, 21);
       });
 
       consume(data);
@@ -113,20 +51,11 @@ describe("NanoThings uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "configuration_ack");
-        assert.equal(value.data.ackId, 1);
-        assert.equal(value.data.recordPeriod, 15);
-        assert.equal(value.data.reportPeriod, 60);
-        assert.equal(value.data.unit, "MINUTES");
-
-        validateSchema(value.data, configurationAckSchema, {
-          throwError: true,
-        });
+      expectSample("configuration_ack", configurationAckSchema, (data) => {
+        assert.equal(data.ackId, 1);
+        assert.equal(data.recordPeriod, 15);
+        assert.equal(data.reportPeriod, 60);
+        assert.equal(data.unit, "MINUTES");
       });
 
       consume(data);
@@ -140,21 +69,12 @@ describe("NanoThings uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "report_frame");
-        assert.equal(value.data.fid, 1);
-        assert.equal(value.data.temperature1, 22.8);
-        assert.equal(value.data.temperature2, 22.6);
-        assert.equal(value.data.temperature3, 22.5);
-        assert.equal(value.data.temperature4, 22.4);
-
-        validateSchema(value.data, reportFrameSchema, {
-          throwError: true,
-        });
+      expectSample("report_frame", reportFrameSchema, (data) => {
+        assert.equal(data.fid, 1);
+        assert.equal(data.temperature1, 22.8);
+        assert.equal(data.temperature2, 22.6);
+        assert.equal(data.temperature3, 22.5);
+        assert.equal(data.temperature4, 22.4);
       });
 
       consume(data);
@@ -168,37 +88,13 @@ describe("NanoThings uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 100);
-        assert.equal(value.data.batteryVoltage, 3.264);
-
-        validateSchema(value.data, lifecycleSchema, {
-          throwError: true,
-        });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 100);
+        assert.equal(data.batteryVoltage, 3.264);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "device_status");
-        assert.equal(value.data.lastSampleNumber, 168);
-        /*
-        console.log(
-          `Whats the type of lastSampleTimestamp: ${typeof value.data
-            .lastSampleTimestamp}`,
-        );
-        assert.typeOf(value.data.lastSampleTimestamp, "object");
-        */
-        validateSchema(value.data, deviceStatusSchema, {
-          throwError: true,
-        });
+      expectSample("device_status", deviceStatusSchema, (data) => {
+        assert.equal(data.lastSampleNumber, 168);
       });
 
       consume(data);

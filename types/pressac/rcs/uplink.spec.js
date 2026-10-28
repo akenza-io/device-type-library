@@ -1,50 +1,20 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Pressac RCS Uplink", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   let configurationSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/configuration.schema.json`)
-      .then((parsedSchema) => {
-        configurationSchema = parsedSchema;
-        done();
-      });
-  });
-
   let occupancySchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/occupancy.schema.json`)
-      .then((parsedSchema) => {
-        occupancySchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    configurationSchema = loadSchema(`${import.meta.dirname}/configuration.schema.json`);
+    occupancySchema = loadSchema(`${import.meta.dirname}/occupancy.schema.json`);
   });
 
   describe("consume()", () => {
@@ -55,35 +25,21 @@ describe("Pressac RCS Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.temperature, 22.5);
-        assert.equal(value.data.humidity, 45);
-        assert.equal(value.data.soundLevel, 42.5);
-        assert.equal(value.data.illumination, 350);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.temperature, 22.5);
+        assert.equal(data.humidity, 45);
+        assert.equal(data.soundLevel, 42.5);
+        assert.equal(data.illumination, 350);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.revision, 0);
-        assert.equal(value.data.batteryVoltage, 3.6);
-        assert.equal(value.data.tempHumActive, true);
-        assert.equal(value.data.soundLevelActive, true);
-        assert.equal(value.data.luxActive, true);
-        assert.equal(value.data.pirActive, false);
-        assert.equal(value.data.dataAge, 0);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.revision, 0);
+        assert.equal(data.batteryVoltage, 3.6);
+        assert.equal(data.tempHumActive, true);
+        assert.equal(data.soundLevelActive, true);
+        assert.equal(data.luxActive, true);
+        assert.equal(data.pirActive, false);
+        assert.equal(data.dataAge, 0);
       });
 
       consume(data);
@@ -96,41 +52,27 @@ describe("Pressac RCS Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "configuration");
-        assert.equal(value.data.firmwareVersion, "0.5.4.1");
-        assert.equal(value.data.resetReason, "HARD_RESET");
-        assert.equal(value.data.hardwareRegionSelection, "EU868");
-        assert.equal(value.data.readConfiguration, "DIP_SWITCH");
-        assert.equal(value.data.readInterval, 15);
-        assert.equal(value.data.pirAbsenceTimeout, 20);
-        assert.equal(value.data.pirRepeatedTimeOut, 10);
-        assert.equal(value.data.temperatureOffset, 20);
-        assert.equal(value.data.temperatureOffsetScaled, 0);
-        assert.equal(value.data.humidityOffset, 10);
-        assert.equal(value.data.humidityOffsetScaled, 0);
-
-        validateSchema(value.data, configurationSchema, { throwError: true });
+      expectSample("configuration", configurationSchema, (data) => {
+        assert.equal(data.firmwareVersion, "0.5.4.1");
+        assert.equal(data.resetReason, "HARD_RESET");
+        assert.equal(data.hardwareRegionSelection, "EU868");
+        assert.equal(data.readConfiguration, "DIP_SWITCH");
+        assert.equal(data.readInterval, 15);
+        assert.equal(data.pirAbsenceTimeout, 20);
+        assert.equal(data.pirRepeatedTimeOut, 10);
+        assert.equal(data.temperatureOffset, 20);
+        assert.equal(data.temperatureOffsetScaled, 0);
+        assert.equal(data.humidityOffset, 10);
+        assert.equal(data.humidityOffsetScaled, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.revision, 0);
-        assert.equal(value.data.batteryVoltage, 3.6);
-        assert.equal(value.data.tempHumActive, true);
-        assert.equal(value.data.luxActive, true);
-        assert.equal(value.data.soundLevelActive, true);
-        assert.equal(value.data.pirActive, true);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.revision, 0);
+        assert.equal(data.batteryVoltage, 3.6);
+        assert.equal(data.tempHumActive, true);
+        assert.equal(data.luxActive, true);
+        assert.equal(data.soundLevelActive, true);
+        assert.equal(data.pirActive, true);
       });
 
       consume(data);
@@ -143,29 +85,15 @@ describe("Pressac RCS Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "occupancy");
-        assert.equal(value.data.occupied, true);
-        assert.equal(value.data.occupancy, 1);
-
-        validateSchema(value.data, occupancySchema, { throwError: true });
+      expectSample("occupancy", occupancySchema, (data) => {
+        assert.equal(data.occupied, true);
+        assert.equal(data.occupancy, 1);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.revision, 0);
-        assert.equal(value.data.batteryVoltage, 3.6);
-        assert.equal(value.data.dataAge, 0);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.revision, 0);
+        assert.equal(data.batteryVoltage, 3.6);
+        assert.equal(data.dataAge, 0);
       });
 
       consume(data);

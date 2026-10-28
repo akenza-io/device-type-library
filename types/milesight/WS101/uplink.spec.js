@@ -1,34 +1,16 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("WS101 Uplink", () => {
   let buttonPressedSchema = null;
   let lifecycleSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/button_pressed.schema.json`)
-      .then((parsedSchema) => {
-        buttonPressedSchema = parsedSchema;
-        done();
-      });
-  });
 
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    buttonPressedSchema = loadSchema(`${import.meta.dirname}/button_pressed.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
   });
 
   describe("consume()", () => {
@@ -40,25 +22,12 @@ describe("WS101 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.batteryLevel, 16);
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 16);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.data.press, "SHORT");
-
-        validateSchema(value.data, buttonPressedSchema, {
-          throwError: true,
-        });
+      expectSample("button_pressed", buttonPressedSchema, (data) => {
+        assert.equal(data.press, "SHORT");
       });
 
       consume(data);

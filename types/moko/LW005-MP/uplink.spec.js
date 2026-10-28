@@ -1,104 +1,32 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Moko LW005-MP Uplink", () => {
   let countdownSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/countdown.schema.json`).then((parsedSchema) => {
-      countdownSchema = parsedSchema;
-      done();
-    });
-  });
-
-
   let energySchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/energy.schema.json`)
-      .then((parsedSchema) => {
-        energySchema = parsedSchema;
-        done();
-      });
-  });
-
   let consumptionSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/consumption.schema.json`)
-      .then((parsedSchema) => {
-        consumptionSchema = parsedSchema;
-        done();
-      });
-  });
-
   let loadStateSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/load_state.schema.json`)
-      .then((parsedSchema) => {
-        loadStateSchema = parsedSchema;
-        done();
-      });
-  });
-
   let overcurrentSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/overcurrent.schema.json`)
-      .then((parsedSchema) => {
-        overcurrentSchema = parsedSchema;
-        done();
-      });
-  });
-
   let overloadSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/overload.schema.json`)
-      .then((parsedSchema) => {
-        overloadSchema = parsedSchema;
-        done();
-      });
-  });
-
   let overvoltageSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/overvoltage.schema.json`)
-      .then((parsedSchema) => {
-        overvoltageSchema = parsedSchema;
-        done();
-      });
-  });
-
   let powerSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/power.schema.json`)
-      .then((parsedSchema) => {
-        powerSchema = parsedSchema;
-        done();
-      });
-  });
-
   let switchSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/switch.schema.json`)
-      .then((parsedSchema) => {
-        switchSchema = parsedSchema;
-        done();
-      });
-  });
-
   let undervoltageSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/undervoltage.schema.json`)
-      .then((parsedSchema) => {
-        undervoltageSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    countdownSchema = loadSchema(`${import.meta.dirname}/countdown.schema.json`);
+    energySchema = loadSchema(`${import.meta.dirname}/energy.schema.json`);
+    consumptionSchema = loadSchema(`${import.meta.dirname}/consumption.schema.json`);
+    loadStateSchema = loadSchema(`${import.meta.dirname}/load_state.schema.json`);
+    overcurrentSchema = loadSchema(`${import.meta.dirname}/overcurrent.schema.json`);
+    overloadSchema = loadSchema(`${import.meta.dirname}/overload.schema.json`);
+    overvoltageSchema = loadSchema(`${import.meta.dirname}/overvoltage.schema.json`);
+    powerSchema = loadSchema(`${import.meta.dirname}/power.schema.json`);
+    switchSchema = loadSchema(`${import.meta.dirname}/switch.schema.json`);
+    undervoltageSchema = loadSchema(`${import.meta.dirname}/undervoltage.schema.json`);
   });
 
   describe("consume()", () => {
@@ -111,16 +39,9 @@ describe("Moko LW005-MP Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "switch");
-        assert.equal(value.data.acOutputState, "OFF");
-        assert.equal(value.data.plugLoadStatus, "NO_LOAD");
-
-        validateSchema(value.data, switchSchema, { throwError: true });
+      expectSample("switch", switchSchema, (data) => {
+        assert.equal(data.acOutputState, "OFF");
+        assert.equal(data.plugLoadStatus, "NO_LOAD");
       });
 
       consume(data);
@@ -135,17 +56,10 @@ describe("Moko LW005-MP Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "energy");
-        assert.equal(value.data.current, 0);
-        assert.equal(value.data.voltage, 223.1);
-        assert.equal(value.data.frequency, 49.965);
-
-        validateSchema(value.data, energySchema, { throwError: true });
+      expectSample("energy", energySchema, (data) => {
+        assert.equal(data.current, 0);
+        assert.equal(data.voltage, 223.1);
+        assert.equal(data.frequency, 49.965);
       });
 
       consume(data);
@@ -160,16 +74,9 @@ describe("Moko LW005-MP Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "power");
-        assert.equal(value.data.activePower, 0);
-        assert.equal(value.data.powerFactor, 100);
-
-        validateSchema(value.data, powerSchema, { throwError: true });
+      expectSample("power", powerSchema, (data) => {
+        assert.equal(data.activePower, 0);
+        assert.equal(data.powerFactor, 100);
       });
 
       consume(data);
@@ -184,16 +91,9 @@ describe("Moko LW005-MP Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "consumption");
-        assert.equal(value.data.consumptionLastHour, 0);
-        assert.equal(value.data.totalConsumption, 0.163125);
-
-        validateSchema(value.data, consumptionSchema, { throwError: true });
+      expectSample("consumption", consumptionSchema, (data) => {
+        assert.equal(data.consumptionLastHour, 0);
+        assert.equal(data.totalConsumption, 0.163125);
       });
 
       consume(data);
@@ -208,17 +108,10 @@ describe("Moko LW005-MP Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "overvoltage");
-        assert.equal(value.data.overvoltage, true);
-        assert.equal(value.data.overvoltageThreshold, 220);
-        assert.equal(value.data.voltage, 330);
-
-        validateSchema(value.data, overvoltageSchema, { throwError: true });
+      expectSample("overvoltage", overvoltageSchema, (data) => {
+        assert.equal(data.overvoltage, true);
+        assert.equal(data.overvoltageThreshold, 220);
+        assert.equal(data.voltage, 330);
       });
 
       consume(data);
@@ -233,17 +126,10 @@ describe("Moko LW005-MP Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "undervoltage");
-        assert.equal(value.data.undervoltage, true);
-        assert.equal(value.data.undervoltageThreshold, 220);
-        assert.equal(value.data.voltage, 210);
-
-        validateSchema(value.data, undervoltageSchema, { throwError: true });
+      expectSample("undervoltage", undervoltageSchema, (data) => {
+        assert.equal(data.undervoltage, true);
+        assert.equal(data.undervoltageThreshold, 220);
+        assert.equal(data.voltage, 210);
       });
 
       consume(data);
@@ -258,17 +144,10 @@ describe("Moko LW005-MP Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "overcurrent");
-        assert.equal(value.data.overcurrent, true);
-        assert.equal(value.data.overcurrentThreshold, 0.998);
-        assert.equal(value.data.current, 1);
-
-        validateSchema(value.data, overcurrentSchema, { throwError: true });
+      expectSample("overcurrent", overcurrentSchema, (data) => {
+        assert.equal(data.overcurrent, true);
+        assert.equal(data.overcurrentThreshold, 0.998);
+        assert.equal(data.current, 1);
       });
 
       consume(data);
@@ -283,17 +162,10 @@ describe("Moko LW005-MP Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "overload");
-        assert.equal(value.data.overload, true);
-        assert.equal(value.data.overloadThreshold, 9.6);
-        assert.equal(value.data.power, 2560);
-
-        validateSchema(value.data, overloadSchema, { throwError: true });
+      expectSample("overload", overloadSchema, (data) => {
+        assert.equal(data.overload, true);
+        assert.equal(data.overloadThreshold, 9.6);
+        assert.equal(data.power, 2560);
       });
 
       consume(data);
@@ -308,15 +180,8 @@ describe("Moko LW005-MP Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "load_state");
-        assert.equal(value.data.loadState, "LOAD_STOP");
-
-        validateSchema(value.data, loadStateSchema, { throwError: true });
+      expectSample("load_state", loadStateSchema, (data) => {
+        assert.equal(data.loadState, "LOAD_STOP");
       });
 
       consume(data);
@@ -331,16 +196,9 @@ describe("Moko LW005-MP Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "countdown");
-        assert.equal(value.data.acAfterCountdown, "ON");
-        assert.equal(value.data.countdownTime, 9);
-
-        validateSchema(value.data, countdownSchema, { throwError: true });
+      expectSample("countdown", countdownSchema, (data) => {
+        assert.equal(data.acAfterCountdown, "ON");
+        assert.equal(data.countdownTime, 9);
       });
 
       consume(data);

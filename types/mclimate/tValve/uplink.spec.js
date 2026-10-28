@@ -1,11 +1,6 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("MClimate T-Valve uplink", () => {
   let defaultSchema = null;
@@ -13,15 +8,13 @@ describe("MClimate T-Valve uplink", () => {
   let lifecycleSchema = null;
   let configurationSchema = null;
   let consume = null;
-  before(async () => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    defaultSchema = await loadSchema(`${__dirname}/default.schema.json`);
-    statusSchema = await loadSchema(`${__dirname}/status.schema.json`);
-    lifecycleSchema = await loadSchema(`${__dirname}/lifecycle.schema.json`);
-    configurationSchema = await loadSchema(
-      `${__dirname}/configuration.schema.json`,
-    );
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    statusSchema = loadSchema(`${import.meta.dirname}/status.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    configurationSchema = loadSchema(`${import.meta.dirname}/configuration.schema.json`);
   });
 
   function uplink(payloadHex) {
@@ -47,16 +40,12 @@ describe("MClimate T-Valve uplink", () => {
     it("should decode a MClimate T-Valve short keepalive", () => {
       const data = uplink("2cc0");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.deepEqual(value.data, {
+      expectSample("default", defaultSchema, (data) => {
+        assert.deepEqual(data, {
           waterTemperature: 22,
           ambientTemperature: 22,
           valveOpen: true,
         });
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
       consume(data);
@@ -65,10 +54,8 @@ describe("MClimate T-Valve uplink", () => {
     it("should decode a MClimate T-Valve long packet", () => {
       const data = uplink("646304089f");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "status");
-        assert.deepEqual(value.data, {
+      expectSample("status", statusSchema, (data) => {
+        assert.deepEqual(data, {
           messageType: "CONTROL_BUTTON_PRESSED",
           boxTamper: false,
           floodWireBroken: true,
@@ -80,20 +67,14 @@ describe("MClimate T-Valve uplink", () => {
           closeTime: 4,
           openTime: 8,
         });
-
-        validateSchema(value.data, statusSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "lifecycle");
-        assert.deepEqual(value.data, {
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.deepEqual(data, {
           batteryVoltage: 2.872,
           batteryTooLow: false,
           softwareVersion: 3,
         });
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -102,10 +83,8 @@ describe("MClimate T-Valve uplink", () => {
     it("should decode a MClimate T-Valve flood alarm with a low battery", () => {
       const data = uplink("5a63040890");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "status");
-        assert.deepEqual(value.data, {
+      expectSample("status", statusSchema, (data) => {
+        assert.deepEqual(data, {
           messageType: "FLOOD_DETECTED",
           boxTamper: true,
           floodWireBroken: false,
@@ -117,20 +96,14 @@ describe("MClimate T-Valve uplink", () => {
           closeTime: 4,
           openTime: 8,
         });
-
-        validateSchema(value.data, statusSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "lifecycle");
-        assert.deepEqual(value.data, {
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.deepEqual(data, {
           batteryVoltage: 2.752,
           batteryTooLow: true,
           softwareVersion: 3,
         });
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -139,10 +112,8 @@ describe("MClimate T-Valve uplink", () => {
     it("should decode MClimate T-Valve command responses after the long packet", () => {
       const data = uplink("646304089f0f05100c16c6");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "status");
-        assert.deepEqual(value.data, {
+      expectSample("status", statusSchema, (data) => {
+        assert.deepEqual(data, {
           messageType: "CONTROL_BUTTON_PRESSED",
           boxTamper: false,
           floodWireBroken: true,
@@ -154,32 +125,22 @@ describe("MClimate T-Valve uplink", () => {
           closeTime: 4,
           openTime: 8,
         });
-
-        validateSchema(value.data, statusSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "lifecycle");
-        assert.deepEqual(value.data, {
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.deepEqual(data, {
           batteryVoltage: 2.872,
           batteryTooLow: false,
           softwareVersion: 3,
         });
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "configuration");
-        assert.deepEqual(value.data, {
+      expectSample("configuration", configurationSchema, (data) => {
+        assert.deepEqual(data, {
           emergencyOpenings: 5,
           floodAlarmTime: 12,
           joinRetryPeriod: 16.5,
         });
-
-        validateSchema(value.data, configurationSchema, { throwError: true });
       });
 
       consume(data);

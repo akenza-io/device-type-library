@@ -1,11 +1,6 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("MClimate PIR Mini uplink", () => {
   let defaultSchema = null;
@@ -13,15 +8,13 @@ describe("MClimate PIR Mini uplink", () => {
   let eventSchema = null;
   let configurationSchema = null;
   let consume = null;
-  before(async () => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    defaultSchema = await loadSchema(`${__dirname}/default.schema.json`);
-    lifecycleSchema = await loadSchema(`${__dirname}/lifecycle.schema.json`);
-    eventSchema = await loadSchema(`${__dirname}/event.schema.json`);
-    configurationSchema = await loadSchema(
-      `${__dirname}/configuration.schema.json`,
-    );
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    eventSchema = loadSchema(`${import.meta.dirname}/event.schema.json`);
+    configurationSchema = loadSchema(`${import.meta.dirname}/configuration.schema.json`);
   });
 
   function uplink(payloadHex) {
@@ -47,29 +40,21 @@ describe("MClimate PIR Mini uplink", () => {
     it("should decode a MClimate PIR Mini keepalive", () => {
       const data = uplink("0102888002F1C80101AF");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.deepEqual(value.data, {
+      expectSample("default", defaultSchema, (data) => {
+        assert.deepEqual(data, {
           temperature: 24.8,
           humidity: 50,
           occupied: true,
           motion: 431,
           light: 753,
         });
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "lifecycle");
-        assert.deepEqual(value.data, {
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.deepEqual(data, {
           batteryVoltage: 3.33,
           lightSensorStatus: "OK",
         });
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -78,28 +63,20 @@ describe("MClimate PIR Mini uplink", () => {
     it("should decode a MClimate PIR Mini keepalive with a disabled light sensor", () => {
       const data = uplink("01028880FFFFC80101AF");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.deepEqual(value.data, {
+      expectSample("default", defaultSchema, (data) => {
+        assert.deepEqual(data, {
           temperature: 24.8,
           humidity: 50,
           occupied: true,
           motion: 431,
         });
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "lifecycle");
-        assert.deepEqual(value.data, {
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.deepEqual(data, {
           batteryVoltage: 3.33,
           lightSensorStatus: "DISABLED",
         });
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -108,39 +85,27 @@ describe("MClimate PIR Mini uplink", () => {
     it("should decode a MClimate PIR Mini occupancy event", () => {
       const data = uplink("3A0102809903E1CC010012");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "event");
-        assert.deepEqual(value.data, {
+      expectSample("event", eventSchema, (data) => {
+        assert.deepEqual(data, {
           event: "OCCUPIED",
         });
-
-        validateSchema(value.data, eventSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.deepEqual(value.data, {
+      expectSample("default", defaultSchema, (data) => {
+        assert.deepEqual(data, {
           temperature: 24,
           humidity: 59.77,
           occupied: true,
           motion: 18,
           light: 993,
         });
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "lifecycle");
-        assert.deepEqual(value.data, {
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.deepEqual(data, {
           batteryVoltage: 3.36,
           lightSensorStatus: "OK",
         });
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -149,40 +114,28 @@ describe("MClimate PIR Mini uplink", () => {
     it("should decode MClimate PIR Mini command responses followed by a keepalive", () => {
       const data = uplink("3F034200B40102809903E1CC010012");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.deepEqual(value.data, {
+      expectSample("default", defaultSchema, (data) => {
+        assert.deepEqual(data, {
           temperature: 24,
           humidity: 59.77,
           occupied: true,
           motion: 18,
           light: 993,
         });
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "lifecycle");
-        assert.deepEqual(value.data, {
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.deepEqual(data, {
           batteryVoltage: 3.36,
           lightSensorStatus: "OK",
         });
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "configuration");
-        assert.deepEqual(value.data, {
+      expectSample("configuration", configurationSchema, (data) => {
+        assert.deepEqual(data, {
           pirOperationMode: 3,
           pirBlindTime: 180,
         });
-
-        validateSchema(value.data, configurationSchema, { throwError: true });
       });
 
       consume(data);
@@ -191,14 +144,10 @@ describe("MClimate PIR Mini uplink", () => {
     it("should decode a MClimate PIR Mini command response without keepalive", () => {
       const data = uplink("39000F");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "configuration");
-        assert.deepEqual(value.data, {
+      expectSample("configuration", configurationSchema, (data) => {
+        assert.deepEqual(data, {
           occupancyTimeout: 15,
         });
-
-        validateSchema(value.data, configurationSchema, { throwError: true });
       });
 
       consume(data);

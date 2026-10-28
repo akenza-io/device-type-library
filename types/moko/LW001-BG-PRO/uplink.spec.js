@@ -1,130 +1,38 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Moko LW001-BG-PRO Uplink", () => {
   let bluetoothSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/bluetooth.schema.json`).then((parsedSchema) => {
-      bluetoothSchema = parsedSchema;
-      done();
-    });
-  });
-
   let fixFailureSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/fix_failure.schema.json`)
-      .then((parsedSchema) => {
-        fixFailureSchema = parsedSchema;
-        done();
-      });
-  });
-
   let gpsSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/gps.schema.json`)
-      .then((parsedSchema) => {
-        gpsSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   let mandownSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/mandown.schema.json`)
-      .then((parsedSchema) => {
-        mandownSchema = parsedSchema;
-        done();
-      });
-  });
-
   let movementSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/movement.schema.json`)
-      .then((parsedSchema) => {
-        movementSchema = parsedSchema;
-        done();
-      });
-  });
-
   let rebootSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/reboot.schema.json`)
-      .then((parsedSchema) => {
-        rebootSchema = parsedSchema;
-        done();
-      });
-  });
-
   let shutdownSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/shutdown.schema.json`)
-      .then((parsedSchema) => {
-        shutdownSchema = parsedSchema;
-        done();
-      });
-  });
-
   let systemSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/system.schema.json`)
-      .then((parsedSchema) => {
-        systemSchema = parsedSchema;
-        done();
-      });
-  });
-
   let tamperSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/tamper.schema.json`)
-      .then((parsedSchema) => {
-        tamperSchema = parsedSchema;
-        done();
-      });
-  });
-
   let timeSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/time.schema.json`)
-      .then((parsedSchema) => {
-        timeSchema = parsedSchema;
-        done();
-      });
-  });
-
   let vibrationSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/vibration.schema.json`)
-      .then((parsedSchema) => {
-        vibrationSchema = parsedSchema;
-        done();
-      });
-  });
-
   let wifiSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/wifi.schema.json`)
-      .then((parsedSchema) => {
-        wifiSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    bluetoothSchema = loadSchema(`${import.meta.dirname}/bluetooth.schema.json`);
+    fixFailureSchema = loadSchema(`${import.meta.dirname}/fix_failure.schema.json`);
+    gpsSchema = loadSchema(`${import.meta.dirname}/gps.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    mandownSchema = loadSchema(`${import.meta.dirname}/mandown.schema.json`);
+    movementSchema = loadSchema(`${import.meta.dirname}/movement.schema.json`);
+    rebootSchema = loadSchema(`${import.meta.dirname}/reboot.schema.json`);
+    shutdownSchema = loadSchema(`${import.meta.dirname}/shutdown.schema.json`);
+    systemSchema = loadSchema(`${import.meta.dirname}/system.schema.json`);
+    tamperSchema = loadSchema(`${import.meta.dirname}/tamper.schema.json`);
+    timeSchema = loadSchema(`${import.meta.dirname}/time.schema.json`);
+    vibrationSchema = loadSchema(`${import.meta.dirname}/vibration.schema.json`);
+    wifiSchema = loadSchema(`${import.meta.dirname}/wifi.schema.json`);
   });
 
   describe("consume()", () => {
@@ -137,35 +45,21 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "reboot");
-        assert.equal(value.data.activityCount, 0);
-        assert.equal(value.data.firmwareVersion, 'V1.0.7');
-        assert.equal(value.data.rebootReason, "BLUETOOTH_COMMAND");
-
-        validateSchema(value.data, rebootSchema, { throwError: true });
+      expectSample("reboot", rebootSchema, (data) => {
+        assert.equal(data.activityCount, 0);
+        assert.equal(data.firmwareVersion, 'V1.0.7');
+        assert.equal(data.rebootReason, "BLUETOOTH_COMMAND");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.acknowledgeByte, 0);
-        assert.equal(value.data.batteryVoltage, 3.6);
-        assert.equal(value.data.lowBattery, false);
-        assert.equal(value.data.mandown, false);
-        assert.equal(value.data.motionSinceLastPaylaod, true);
-        assert.equal(value.data.operationMode, "PERIODIC");
-        assert.equal(value.data.tamperAlarm, false);
-        assert.equal(value.data.temperature, 27);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.acknowledgeByte, 0);
+        assert.equal(data.batteryVoltage, 3.6);
+        assert.equal(data.lowBattery, false);
+        assert.equal(data.mandown, false);
+        assert.equal(data.motionSinceLastPaylaod, true);
+        assert.equal(data.operationMode, "PERIODIC");
+        assert.equal(data.tamperAlarm, false);
+        assert.equal(data.temperature, 27);
       });
 
       consume(data);
@@ -180,36 +74,22 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.acknowledgeByte, 0);
-        assert.equal(value.data.batteryVoltage, 3.6);
-        assert.equal(value.data.lowBattery, false);
-        assert.equal(value.data.mandown, false);
-        assert.equal(value.data.motionSinceLastPaylaod, true);
-        assert.equal(value.data.operationMode, "PERIODIC");
-        assert.equal(value.data.positioningType, "DOWNLINK_FOR_POSITION");
-        assert.equal(value.data.tamperAlarm, false);
-        assert.equal(value.data.temperature, 27);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.acknowledgeByte, 0);
+        assert.equal(data.batteryVoltage, 3.6);
+        assert.equal(data.lowBattery, false);
+        assert.equal(data.mandown, false);
+        assert.equal(data.motionSinceLastPaylaod, true);
+        assert.equal(data.operationMode, "PERIODIC");
+        assert.equal(data.positioningType, "DOWNLINK_FOR_POSITION");
+        assert.equal(data.tamperAlarm, false);
+        assert.equal(data.temperature, 27);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "gps");
-        assert.equal(value.data.latitude, 30.4581016);
-        assert.equal(value.data.longitude, 114.4693033);
-        assert.equal(value.data.pdop, 1.8);
-
-        validateSchema(value.data, gpsSchema, { throwError: true });
+      expectSample("gps", gpsSchema, (data) => {
+        assert.equal(data.latitude, 30.4581016);
+        assert.equal(data.longitude, 114.4693033);
+        assert.equal(data.pdop, 1.8);
       });
 
       consume(data);
@@ -224,35 +104,21 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "fix_failure");
-        assert.equal(value.data.reasonsForPositioningFailure, 'Bluetooth broadcasting in progress (Please reduce the Bluetooth broadcast timeout or avoid Bluetooth positioning when Bluetooth broadcasting in process via MKLoRa app)');
-        assert.deepEqual(value.data.macData, []);
-
-        validateSchema(value.data, fixFailureSchema, { throwError: true });
+      expectSample("fix_failure", fixFailureSchema, (data) => {
+        assert.equal(data.reasonsForPositioningFailure, 'Bluetooth broadcasting in progress (Please reduce the Bluetooth broadcast timeout or avoid Bluetooth positioning when Bluetooth broadcasting in process via MKLoRa app)');
+        assert.deepEqual(data.macData, []);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.acknowledgeByte, 0);
-        assert.equal(value.data.batteryVoltage, 3.7);
-        assert.equal(value.data.lowBattery, false);
-        assert.equal(value.data.mandown, false);
-        assert.equal(value.data.motionSinceLastPaylaod, true);
-        assert.equal(value.data.operationMode, "PERIODIC");
-        assert.equal(value.data.positioningType, "DOWNLINK_FOR_POSITION");
-        assert.equal(value.data.tamperAlarm, false);
-        assert.equal(value.data.temperature, 26);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.acknowledgeByte, 0);
+        assert.equal(data.batteryVoltage, 3.7);
+        assert.equal(data.lowBattery, false);
+        assert.equal(data.mandown, false);
+        assert.equal(data.motionSinceLastPaylaod, true);
+        assert.equal(data.operationMode, "PERIODIC");
+        assert.equal(data.positioningType, "DOWNLINK_FOR_POSITION");
+        assert.equal(data.tamperAlarm, false);
+        assert.equal(data.temperature, 26);
       });
 
       consume(data);
@@ -267,33 +133,19 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "shutdown");
-        assert.equal(value.data.shutdownType, 'MAGNETIC');
-
-        validateSchema(value.data, shutdownSchema, { throwError: true });
+      expectSample("shutdown", shutdownSchema, (data) => {
+        assert.equal(data.shutdownType, 'MAGNETIC');
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.acknowledgeByte, 0);
-        assert.equal(value.data.batteryVoltage, 3.7);
-        assert.equal(value.data.lowBattery, false);
-        assert.equal(value.data.mandown, false);
-        assert.equal(value.data.motionSinceLastPaylaod, true);
-        assert.equal(value.data.operationMode, "PERIODIC");
-        assert.equal(value.data.tamperAlarm, false);
-        assert.equal(value.data.temperature, 26);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.acknowledgeByte, 0);
+        assert.equal(data.batteryVoltage, 3.7);
+        assert.equal(data.lowBattery, false);
+        assert.equal(data.mandown, false);
+        assert.equal(data.motionSinceLastPaylaod, true);
+        assert.equal(data.operationMode, "PERIODIC");
+        assert.equal(data.tamperAlarm, false);
+        assert.equal(data.temperature, 26);
       });
 
       consume(data);
@@ -308,33 +160,19 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "vibration");
-        assert.equal(value.data.numberOfShocks, 1);
-
-        validateSchema(value.data, vibrationSchema, { throwError: true });
+      expectSample("vibration", vibrationSchema, (data) => {
+        assert.equal(data.numberOfShocks, 1);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.acknowledgeByte, 0);
-        assert.equal(value.data.batteryVoltage, 3.6);
-        assert.equal(value.data.lowBattery, false);
-        assert.equal(value.data.mandown, false);
-        assert.equal(value.data.motionSinceLastPaylaod, true);
-        assert.equal(value.data.operationMode, "PERIODIC");
-        assert.equal(value.data.tamperAlarm, false);
-        assert.equal(value.data.temperature, 27);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.acknowledgeByte, 0);
+        assert.equal(data.batteryVoltage, 3.6);
+        assert.equal(data.lowBattery, false);
+        assert.equal(data.mandown, false);
+        assert.equal(data.motionSinceLastPaylaod, true);
+        assert.equal(data.operationMode, "PERIODIC");
+        assert.equal(data.tamperAlarm, false);
+        assert.equal(data.temperature, 27);
       });
 
       consume(data);
@@ -349,33 +187,19 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "mandown");
-        assert.equal(value.data.totalIdleTime, 64);
-
-        validateSchema(value.data, mandownSchema, { throwError: true });
+      expectSample("mandown", mandownSchema, (data) => {
+        assert.equal(data.totalIdleTime, 64);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.acknowledgeByte, 1);
-        assert.equal(value.data.batteryVoltage, 3.6);
-        assert.equal(value.data.lowBattery, false);
-        assert.equal(value.data.mandown, true);
-        assert.equal(value.data.motionSinceLastPaylaod, true);
-        assert.equal(value.data.operationMode, "PERIODIC");
-        assert.equal(value.data.tamperAlarm, false);
-        assert.equal(value.data.temperature, 23);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.acknowledgeByte, 1);
+        assert.equal(data.batteryVoltage, 3.6);
+        assert.equal(data.lowBattery, false);
+        assert.equal(data.mandown, true);
+        assert.equal(data.motionSinceLastPaylaod, true);
+        assert.equal(data.operationMode, "PERIODIC");
+        assert.equal(data.tamperAlarm, false);
+        assert.equal(data.temperature, 23);
       });
 
       consume(data);
@@ -390,33 +214,19 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "tamper");
-        assert.equal(value.data.tamperAlarm, true);
-
-        validateSchema(value.data, tamperSchema, { throwError: true });
+      expectSample("tamper", tamperSchema, (data) => {
+        assert.equal(data.tamperAlarm, true);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.acknowledgeByte, 0);
-        assert.equal(value.data.batteryVoltage, 3.6);
-        assert.equal(value.data.lowBattery, false);
-        assert.equal(value.data.mandown, false);
-        assert.equal(value.data.motionSinceLastPaylaod, true);
-        assert.equal(value.data.operationMode, "MOTION");
-        assert.equal(value.data.tamperAlarm, true);
-        assert.equal(value.data.temperature, 27);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.acknowledgeByte, 0);
+        assert.equal(data.batteryVoltage, 3.6);
+        assert.equal(data.lowBattery, false);
+        assert.equal(data.mandown, false);
+        assert.equal(data.motionSinceLastPaylaod, true);
+        assert.equal(data.operationMode, "MOTION");
+        assert.equal(data.tamperAlarm, true);
+        assert.equal(data.temperature, 27);
       });
 
       consume(data);
@@ -431,34 +241,20 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "movement");
-        assert.equal(value.data.eventType, "START_OF_MOVEMENT");
-        assert.equal(value.data.movementDetected, true);
-
-        validateSchema(value.data, movementSchema, { throwError: true });
+      expectSample("movement", movementSchema, (data) => {
+        assert.equal(data.eventType, "START_OF_MOVEMENT");
+        assert.equal(data.movementDetected, true);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.acknowledgeByte, 0);
-        assert.equal(value.data.batteryVoltage, 3.6);
-        assert.equal(value.data.lowBattery, false);
-        assert.equal(value.data.mandown, false);
-        assert.equal(value.data.motionSinceLastPaylaod, true);
-        assert.equal(value.data.operationMode, "MOTION");
-        assert.equal(value.data.tamperAlarm, false);
-        assert.equal(value.data.temperature, 27);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.acknowledgeByte, 0);
+        assert.equal(data.batteryVoltage, 3.6);
+        assert.equal(data.lowBattery, false);
+        assert.equal(data.mandown, false);
+        assert.equal(data.motionSinceLastPaylaod, true);
+        assert.equal(data.operationMode, "MOTION");
+        assert.equal(data.tamperAlarm, false);
+        assert.equal(data.temperature, 27);
       });
 
       consume(data);
@@ -473,37 +269,23 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "system");
-        assert.equal(value.data.bleAdvWorkTime, 720613);
-        assert.equal(value.data.bleScanWorkTime, 0);
-        assert.equal(value.data.gpsWorkTime, 139430);
-        assert.equal(value.data.loraWorkTime, 328);
-        assert.equal(value.data.wifiWorkTime, 0);
-
-        validateSchema(value.data, systemSchema, { throwError: true });
+      expectSample("system", systemSchema, (data) => {
+        assert.equal(data.bleAdvWorkTime, 720613);
+        assert.equal(data.bleScanWorkTime, 0);
+        assert.equal(data.gpsWorkTime, 139430);
+        assert.equal(data.loraWorkTime, 328);
+        assert.equal(data.wifiWorkTime, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.acknowledgeByte, 1);
-        assert.equal(value.data.batteryVoltage, 3.6);
-        assert.equal(value.data.lowBattery, false);
-        assert.equal(value.data.mandown, false);
-        assert.equal(value.data.motionSinceLastPaylaod, true);
-        assert.equal(value.data.operationMode, "PERIODIC");
-        assert.equal(value.data.tamperAlarm, false);
-        assert.equal(value.data.temperature, 26);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.acknowledgeByte, 1);
+        assert.equal(data.batteryVoltage, 3.6);
+        assert.equal(data.lowBattery, false);
+        assert.equal(data.mandown, false);
+        assert.equal(data.motionSinceLastPaylaod, true);
+        assert.equal(data.operationMode, "PERIODIC");
+        assert.equal(data.tamperAlarm, false);
+        assert.equal(data.temperature, 26);
       });
 
       consume(data);
@@ -518,34 +300,20 @@ describe("Moko LW001-BG-PRO Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 3.6);
-        assert.equal(value.data.lorawanDownlinkCount, 1);
-        assert.equal(value.data.lowBattery, false);
-        assert.equal(value.data.mandown, false);
-        assert.equal(value.data.motionSinceLastPaylaod, false);
-        assert.equal(value.data.operationMode, "PERIODIC");
-        assert.equal(value.data.tamperAlarm, false);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 3.6);
+        assert.equal(data.lorawanDownlinkCount, 1);
+        assert.equal(data.lowBattery, false);
+        assert.equal(data.mandown, false);
+        assert.equal(data.motionSinceLastPaylaod, false);
+        assert.equal(data.operationMode, "PERIODIC");
+        assert.equal(data.tamperAlarm, false);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "gps");
-        assert.equal(value.data.latitude, 30.4581783);
-        assert.equal(value.data.longitude, 114.4693716);
-        assert.equal(value.data.pdop, 1.7);
-
-        validateSchema(value.data, gpsSchema, { throwError: true });
+      expectSample("gps", gpsSchema, (data) => {
+        assert.equal(data.latitude, 30.4581783);
+        assert.equal(data.longitude, 114.4693716);
+        assert.equal(data.pdop, 1.7);
       });
 
       consume(data);

@@ -1,65 +1,22 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("CT305 Uplink", () => {
   let temperatureSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/temperature.schema.json`)
-      .then((parsedSchema) => {
-        temperatureSchema = parsedSchema;
-        done();
-      });
-  });
-
   let systemSchema = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/system.schema.json`).then((parsedSchema) => {
-      systemSchema = parsedSchema;
-      done();
-    });
-  });
-
   let channel1Schema = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/channel1.schema.json`).then((parsedSchema) => {
-      channel1Schema = parsedSchema;
-      done();
-    });
-  });
-
   let channel2Schema = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/channel2.schema.json`)
-      .then((parsedSchema) => {
-        channel2Schema = parsedSchema;
-        done();
-      });
-  });
-
   let channel3Schema = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/channel3.schema.json`)
-      .then((parsedSchema) => {
-        channel3Schema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    temperatureSchema = loadSchema(`${import.meta.dirname}/temperature.schema.json`);
+    systemSchema = loadSchema(`${import.meta.dirname}/system.schema.json`);
+    channel1Schema = loadSchema(`${import.meta.dirname}/channel1.schema.json`);
+    channel2Schema = loadSchema(`${import.meta.dirname}/channel2.schema.json`);
+    channel3Schema = loadSchema(`${import.meta.dirname}/channel3.schema.json`);
   });
 
   describe("consume()", () => {
@@ -71,20 +28,13 @@ describe("CT305 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "system");
-        assert.equal(value.data.firmwareVersion, "1.1");
-        assert.equal(value.data.hardwareVersion, "1.0");
-        assert.equal(value.data.ipsoVersion, "0.1");
-        assert.equal(value.data.powerOn, true);
-        assert.equal(value.data.sn, "6746d38802580000");
-        assert.equal(value.data.tslVersion, "1.1");
-
-        validateSchema(value.data, systemSchema, { throwError: true });
+      expectSample("system", systemSchema, (data) => {
+        assert.equal(data.firmwareVersion, "1.1");
+        assert.equal(data.hardwareVersion, "1.0");
+        assert.equal(data.ipsoVersion, "0.1");
+        assert.equal(data.powerOn, true);
+        assert.equal(data.sn, "6746d38802580000");
+        assert.equal(data.tslVersion, "1.1");
       });
 
       consume(data);
@@ -98,17 +48,8 @@ describe("CT305 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "channel1");
-        assert.equal(value.data.totalCurrent, 100);
-
-        validateSchema(value.data, channel1Schema, {
-          throwError: true,
-        });
+      expectSample("channel1", channel1Schema, (data) => {
+        assert.equal(data.totalCurrent, 100);
       });
 
       consume(data);
@@ -122,20 +63,11 @@ describe("CT305 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "channel1");
-        assert.deepEqual(value.data.alarm, ["THRESHOLD_ALARM", "OVER_RANGE_ALARM"]);
-        assert.equal(value.data.current, 250);
-        assert.equal(value.data.currentMax, 300);
-        assert.equal(value.data.currentMin, 200);
-
-        validateSchema(value.data, channel1Schema, {
-          throwError: true,
-        });
+      expectSample("channel1", channel1Schema, (data) => {
+        assert.deepEqual(data.alarm, ["THRESHOLD_ALARM", "OVER_RANGE_ALARM"]);
+        assert.equal(data.current, 250);
+        assert.equal(data.currentMax, 300);
+        assert.equal(data.currentMin, 200);
       });
 
       consume(data);

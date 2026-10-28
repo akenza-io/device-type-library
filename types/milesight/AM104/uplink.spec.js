@@ -1,34 +1,16 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("AM104 Uplink", () => {
   let defaultSchema = null;
   let lifecycleSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
 
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
   });
 
   describe("consume()", () => {
@@ -40,34 +22,17 @@ describe("AM104 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        if (value.topic === "lifecycle") {
-          assert.equal(value.data.batteryLevel, 100);
-          validateSchema(value.data, lifecycleSchema, {
-            throwError: true,
-          });
-        }
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 100);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        if (value.topic === "default") {
-          assert.equal(value.data.temperature, 27.2);
-          assert.equal(value.data.humidity, 56.5);
-          assert.equal(value.data.pir, 73);
-          assert.equal(value.data.light, 28);
-          assert.equal(value.data.visibleInfrared, 121);
-          assert.equal(value.data.infrared, 20);
-
-          validateSchema(value.data, defaultSchema, { throwError: true });
-        }
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.temperature, 27.2);
+        assert.equal(data.humidity, 56.5);
+        assert.equal(data.pir, 73);
+        assert.equal(data.light, 28);
+        assert.equal(data.visibleInfrared, 121);
+        assert.equal(data.infrared, 20);
       });
 
       consume(data);

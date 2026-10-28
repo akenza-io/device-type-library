@@ -1,40 +1,18 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("ioTracker 3 uplink", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   let gpsSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/gps.schema.json`).then((parsedSchema) => {
-      gpsSchema = parsedSchema;
-      done();
-    });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    gpsSchema = loadSchema(`${import.meta.dirname}/gps.schema.json`);
   });
 
   describe("consume()", () => {
@@ -46,31 +24,17 @@ describe("ioTracker 3 uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-        assert.equal(value.topic, "lifecycle");
-
-        assert.equal(value.data.uplinkReason, "BUTTON");
-        assert.equal(value.data.crc, 0);
-        assert.equal(value.data.batteryLevel, 98);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.uplinkReason, "BUTTON");
+        assert.equal(data.crc, 0);
+        assert.equal(data.batteryLevel, 98);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-        assert.equal(value.topic, "default");
-
-        assert.equal(value.data.temperature, 26.9);
-        assert.equal(value.data.light, 172.16);
-        assert.equal(value.data.maxAccelerationNew, 16.384);
-        assert.equal(value.data.maxAccelerationHistory, 16.384);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.temperature, 26.9);
+        assert.equal(data.light, 172.16);
+        assert.equal(data.maxAccelerationNew, 16.384);
+        assert.equal(data.maxAccelerationHistory, 16.384);
       });
 
       consume(data);
@@ -86,51 +50,30 @@ describe("ioTracker 3 uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-        assert.equal(value.topic, "gps");
-
-        assert.equal(value.data.altitude, 518.2);
-        assert.equal(value.data.cog, 0.9);
-        assert.equal(value.data.hAcc, 18);
-        assert.equal(value.data.hdop, 2.6);
-        assert.equal(value.data.latitude, 47.4141138);
-        assert.equal(value.data.longitude, 8.5338371);
-        assert.equal(value.data.navStat, 3);
-        assert.equal(value.data.numSvs, 7);
-        assert.equal(value.data.sog, 1.9);
-        assert.equal(value.data.vAcc, 16);
-
-        validateSchema(value.data, gpsSchema, { throwError: true });
+      expectSample("gps", gpsSchema, (data) => {
+        assert.equal(data.altitude, 518.2);
+        assert.equal(data.cog, 0.9);
+        assert.equal(data.hAcc, 18);
+        assert.equal(data.hdop, 2.6);
+        assert.equal(data.latitude, 47.4141138);
+        assert.equal(data.longitude, 8.5338371);
+        assert.equal(data.navStat, 3);
+        assert.equal(data.numSvs, 7);
+        assert.equal(data.sog, 1.9);
+        assert.equal(data.vAcc, 16);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-        assert.equal(value.topic, "lifecycle");
-
-        assert.equal(value.data.uplinkReason, "STATUS");
-        assert.equal(value.data.crc, 3);
-        assert.equal(value.data.batteryLevel, 98);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.uplinkReason, "STATUS");
+        assert.equal(data.crc, 3);
+        assert.equal(data.batteryLevel, 98);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-        assert.equal(value.topic, "default");
-
-        assert.equal(value.data.light, 2598.4);
-        assert.equal(value.data.maxAccelerationHistory, 16.384);
-        assert.equal(value.data.maxAccelerationNew, 0);
-        assert.equal(value.data.temperature, 28.24);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.light, 2598.4);
+        assert.equal(data.maxAccelerationHistory, 16.384);
+        assert.equal(data.maxAccelerationNew, 0);
+        assert.equal(data.temperature, 28.24);
       });
 
       consume(data);

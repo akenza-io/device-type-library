@@ -1,34 +1,22 @@
 
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+import { init, loadSchema, expectEmits, expectSample, validateSchema } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+
+
+
+
 
 describe("Transmitter 600-065", () => {
   let defaultSchema = null;
   let lifecycleSchema = null;
   let consume = null;
 
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
   });
 
   describe("consume()", () => {
@@ -55,16 +43,11 @@ describe("Transmitter 600-065", () => {
       });
 
       // --- Default ---
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-
-        assert.equal(value.data.windowCount, 7);
-        assert.equal(value.data.windowOpened, false);
-        assert.equal(value.data.rbe, false);
-        assert.equal(value.data.msgType, "NORMAL");
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.windowCount, 7);
+        assert.equal(data.windowOpened, false);
+        assert.equal(data.rbe, false);
+        assert.equal(data.msgType, "NORMAL");
       });
 
       consume(data);

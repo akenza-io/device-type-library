@@ -1,50 +1,20 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("Verge Sense Uplink", () => {
   let spaceAvailabilitySchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/space_availability.schema.json`)
-      .then((parsedSchema) => {
-        spaceAvailabilitySchema = parsedSchema;
-        done();
-      });
-  });
-
   let occupancySchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/occupancy.schema.json`)
-      .then((parsedSchema) => {
-        occupancySchema = parsedSchema;
-        done();
-      });
-  });
-
   let areaCountReportSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/area_count.schema.json`)
-      .then((parsedSchema) => {
-        areaCountReportSchema = parsedSchema;
-        done();
-      });
-  });
-
   let sensorReportSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/sensor_report.schema.json`)
-      .then((parsedSchema) => {
-        sensorReportSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    spaceAvailabilitySchema = loadSchema(`${import.meta.dirname}/space_availability.schema.json`);
+    occupancySchema = loadSchema(`${import.meta.dirname}/occupancy.schema.json`);
+    areaCountReportSchema = loadSchema(`${import.meta.dirname}/area_count.schema.json`);
+    sensorReportSchema = loadSchema(`${import.meta.dirname}/sensor_report.schema.json`);
   });
 
   describe("consume()", () => {
@@ -75,18 +45,9 @@ describe("Verge Sense Uplink", () => {
         }
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "occupancy");
-        assert.equal(value.data.occupancy, false);
-        assert.equal(value.data.occupied, 0);
-
-        validateSchema(value.data, occupancySchema, {
-          throwError: true,
-        });
+      expectSample("occupancy", occupancySchema, (data) => {
+        assert.equal(data.occupancy, false);
+        assert.equal(data.occupied, 0);
       });
 
       expectEmits((type, value) => {
@@ -97,18 +58,9 @@ describe("Verge Sense Uplink", () => {
         assert.equal(value.lastOccupied, "FREE");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "area_count");
-        assert.equal(value.data.peopleCount, 0);
-        assert.equal(value.data.signsOfLife, false);
-
-        validateSchema(value.data, areaCountReportSchema, {
-          throwError: true,
-        });
+      expectSample("area_count", areaCountReportSchema, (data) => {
+        assert.equal(data.peopleCount, 0);
+        assert.equal(data.signsOfLife, false);
       });
 
       consume(data);
@@ -140,18 +92,9 @@ describe("Verge Sense Uplink", () => {
         }
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "occupancy");
-        assert.equal(value.data.occupancy, 1);
-        assert.equal(value.data.occupied, true);
-
-        validateSchema(value.data, occupancySchema, {
-          throwError: true,
-        });
+      expectSample("occupancy", occupancySchema, (data) => {
+        assert.equal(data.occupancy, 1);
+        assert.equal(data.occupied, true);
       });
 
       expectEmits((type, value) => {
@@ -162,17 +105,8 @@ describe("Verge Sense Uplink", () => {
         assert.equal(value.lastOccupied, "OCCUPIED");
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "space_availability");
-        assert.equal(value.data.state, "OCCUPIED");
-
-        validateSchema(value.data, spaceAvailabilitySchema, {
-          throwError: true,
-        });
+      expectSample("space_availability", spaceAvailabilitySchema, (data) => {
+        assert.equal(data.state, "OCCUPIED");
       });
 
       consume(data);
@@ -208,17 +142,8 @@ describe("Verge Sense Uplink", () => {
       });
 
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "area_count");
-        assert.equal(value.data.peopleCount, 150);
-
-        validateSchema(value.data, areaCountReportSchema, {
-          throwError: true,
-        });
+      expectSample("area_count", areaCountReportSchema, (data) => {
+        assert.equal(data.peopleCount, 150);
       });
 
       consume(data);
@@ -244,17 +169,8 @@ describe("Verge Sense Uplink", () => {
       });
 
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "sensor_report");
-        assert.equal(value.data.signsOfLife, false);
-
-        validateSchema(value.data, sensorReportSchema, {
-          throwError: true,
-        });
+      expectSample("sensor_report", sensorReportSchema, (data) => {
+        assert.equal(data.signsOfLife, false);
       });
 
       consume(data);
@@ -291,18 +207,9 @@ describe("Verge Sense Uplink", () => {
         }
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "occupancy");
-        assert.equal(value.data.occupancy, 0);
-        assert.equal(value.data.occupied, false);
-
-        validateSchema(value.data, occupancySchema, {
-          throwError: true,
-        });
+      expectSample("occupancy", occupancySchema, (data) => {
+        assert.equal(data.occupancy, 0);
+        assert.equal(data.occupied, false);
       });
 
       expectEmits((type, value) => {
@@ -314,18 +221,9 @@ describe("Verge Sense Uplink", () => {
         assert.equal(value.lastHour, new Date().getHours());
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "area_count");
-        assert.equal(value.data.peopleCount, 0);
-        assert.equal(value.data.signsOfLife, false);
-
-        validateSchema(value.data, areaCountReportSchema, {
-          throwError: true,
-        });
+      expectSample("area_count", areaCountReportSchema, (data) => {
+        assert.equal(data.peopleCount, 0);
+        assert.equal(data.signsOfLife, false);
       });
 
       consume(data);

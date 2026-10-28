@@ -1,36 +1,16 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Decentlab CWS Uplink", () => {
   let defaultSchema = null;
   let lifecycleSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    done();
-  });
 
-  before((done) => {
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
   });
 
   describe("consume()", () => {
@@ -42,33 +22,19 @@ describe("Decentlab CWS Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.humidity, 60.1);
-        assert.equal(value.data.temperature, 27.09);
-        assert.equal(value.data.angle, 71);
-        assert.equal(value.data.dewPoint, 18.68);
-        assert.equal(value.data.sensorTemperature, 26.54);
-        assert.equal(value.data.surfaceTemperature, 26.79);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.humidity, 60.1);
+        assert.equal(data.temperature, 27.09);
+        assert.equal(data.angle, 71);
+        assert.equal(data.dewPoint, 18.68);
+        assert.equal(data.sensorTemperature, 26.54);
+        assert.equal(data.surfaceTemperature, 26.79);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryVoltage, 2.932);
-        assert.equal(value.data.deviceId, 17977);
-        assert.equal(value.data.protocolVersion, 2);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryVoltage, 2.932);
+        assert.equal(data.deviceId, 17977);
+        assert.equal(data.protocolVersion, 2);
       });
 
       consume(data);

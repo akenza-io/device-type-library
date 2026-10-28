@@ -1,68 +1,24 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Yosensi YO Meter Reader 2.0 uplink", () => {
   let batteryVoltageSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/battery_voltage.schema.json`)
-      .then((parsedSchema) => {
-        batteryVoltageSchema = parsedSchema;
-        done();
-      });
-  });
-
   let internalTemperatureSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/internal_temperature.schema.json`)
-      .then((parsedSchema) => {
-        internalTemperatureSchema = parsedSchema;
-        done();
-      });
-  });
-
   let humiditySchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/humidity.schema.json`)
-      .then((parsedSchema) => {
-        humiditySchema = parsedSchema;
-        done();
-      });
-  });
-
   let periodicPulseCntSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/periodic_pulse_cnt.schema.json`)
-      .then((parsedSchema) => {
-        periodicPulseCntSchema = parsedSchema;
-        done();
-      });
-  });
-
   let persistentPulseCntSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/persistent_pulse_cnt.schema.json`)
-      .then((parsedSchema) => {
-        persistentPulseCntSchema = parsedSchema;
-        done();
-      });
-  });
-
   let totalUnitsSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/total_units.schema.json`)
-      .then((parsedSchema) => {
-        totalUnitsSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    batteryVoltageSchema = loadSchema(`${import.meta.dirname}/battery_voltage.schema.json`);
+    internalTemperatureSchema = loadSchema(`${import.meta.dirname}/internal_temperature.schema.json`);
+    humiditySchema = loadSchema(`${import.meta.dirname}/humidity.schema.json`);
+    periodicPulseCntSchema = loadSchema(`${import.meta.dirname}/periodic_pulse_cnt.schema.json`);
+    persistentPulseCntSchema = loadSchema(`${import.meta.dirname}/persistent_pulse_cnt.schema.json`);
+    totalUnitsSchema = loadSchema(`${import.meta.dirname}/total_units.schema.json`);
   });
 
   describe("consume()", () => {
@@ -75,80 +31,28 @@ describe("Yosensi YO Meter Reader 2.0 uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "battery_voltage");
-        assert.equal(value.data.batteryVoltage, 4504);
-
-        validateSchema(value.data, batteryVoltageSchema, {
-          throwError: true,
-        });
+      expectSample("battery_voltage", batteryVoltageSchema, (data) => {
+        assert.equal(data.batteryVoltage, 4504);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "internal_temperature");
-        assert.equal(value.data.internalTemperature, 24.3);
-
-        validateSchema(value.data, internalTemperatureSchema, {
-          throwError: true,
-        });
+      expectSample("internal_temperature", internalTemperatureSchema, (data) => {
+        assert.equal(data.internalTemperature, 24.3);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "humidity");
-        assert.equal(value.data.humidity, 32);
-
-        validateSchema(value.data, humiditySchema, { throwError: true });
+      expectSample("humidity", humiditySchema, (data) => {
+        assert.equal(data.humidity, 32);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "periodic_pulse_cnt");
-        assert.equal(value.data.periodicPulseCnt, 577);
-
-        validateSchema(value.data, periodicPulseCntSchema, {
-          throwError: true,
-        });
+      expectSample("periodic_pulse_cnt", periodicPulseCntSchema, (data) => {
+        assert.equal(data.periodicPulseCnt, 577);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "persistent_pulse_cnt");
-        assert.equal(value.data.persistentPulseCnt, 40557);
-
-        validateSchema(value.data, persistentPulseCntSchema, {
-          throwError: true,
-        });
+      expectSample("persistent_pulse_cnt", persistentPulseCntSchema, (data) => {
+        assert.equal(data.persistentPulseCnt, 40557);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "total_units");
-        assert.equal(value.data.totalUnits, 4.1);
-
-        validateSchema(value.data, totalUnitsSchema, {
-          throwError: true,
-        });
+      expectSample("total_units", totalUnitsSchema, (data) => {
+        assert.equal(data.totalUnits, 4.1);
       });
 
       consume(data);

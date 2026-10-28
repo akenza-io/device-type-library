@@ -1,32 +1,16 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("Adeunis Pulse", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
   });
 
   describe("consume()", () => {
@@ -38,34 +22,20 @@ describe("Adeunis Pulse", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.frameCounter, 3);
-        assert.equal(value.data.hardwareError, false);
-        assert.equal(value.data.lowBattery, true);
-        assert.equal(value.data.configurationDone, true);
-        assert.equal(value.data.timestamp, true);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.frameCounter, 3);
+        assert.equal(data.hardwareError, false);
+        assert.equal(data.lowBattery, true);
+        assert.equal(data.configurationDone, true);
+        assert.equal(data.timestamp, true);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.counterValue, 295);
-        assert.equal(value.data.counterValueT1, 294);
-        assert.equal(value.data.counterValueT2, 292);
-        assert.equal(value.data.counterValueT3, 289);
-        assert.equal(value.data.counterValueT4, 285);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.counterValue, 295);
+        assert.equal(data.counterValueT1, 294);
+        assert.equal(data.counterValueT2, 292);
+        assert.equal(data.counterValueT3, 289);
+        assert.equal(data.counterValueT4, 285);
       });
 
       expectEmits((type, value) => {
@@ -90,19 +60,12 @@ describe("Adeunis Pulse", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.frameCounter, 0);
-        assert.equal(value.data.hardwareError, false);
-        assert.equal(value.data.lowBattery, false);
-        assert.equal(value.data.configurationDone, false);
-        assert.equal(value.data.timestamp, false);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.frameCounter, 0);
+        assert.equal(data.hardwareError, false);
+        assert.equal(data.lowBattery, false);
+        assert.equal(data.configurationDone, false);
+        assert.equal(data.timestamp, false);
       });
 
       expectEmits((type, value) => {

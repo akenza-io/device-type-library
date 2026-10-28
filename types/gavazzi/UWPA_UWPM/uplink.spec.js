@@ -1,23 +1,14 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Gavazzi UWPA/UWPM", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
   });
 
   describe("consume()", () => {
@@ -30,17 +21,11 @@ describe("Gavazzi UWPA/UWPM", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.l2V, 232.4);
-        assert.equal(value.data.l2A, 0.24);
-        assert.equal(value.data.l2KW, 0.0299);
-        assert.equal(value.data.totalKWh, 1833.8);
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.l2V, 232.4);
+        assert.equal(data.l2A, 0.24);
+        assert.equal(data.l2KW, 0.0299);
+        assert.equal(data.totalKWh, 1833.8);
       });
 
       consume(data);

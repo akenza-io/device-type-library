@@ -1,57 +1,22 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("UC510 Uplink", () => {
   let lifecycleSchema = null;
   let consume = null;
-
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   let pressureSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/pressure.schema.json`)
-      .then((parsedSchema) => {
-        pressureSchema = parsedSchema;
-        done();
-      });
-  });
-
   let pulseSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/pulse.schema.json`).then((parsedSchema) => {
-      pulseSchema = parsedSchema;
-      done();
-    });
-  });
-
   let statusSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/status.schema.json`).then((parsedSchema) => {
-      statusSchema = parsedSchema;
-      done();
-    });
-  });
-
   let ruleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/rule.schema.json`).then((parsedSchema) => {
-      ruleSchema = parsedSchema;
-      done();
-    });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    pressureSchema = loadSchema(`${import.meta.dirname}/pressure.schema.json`);
+    pulseSchema = loadSchema(`${import.meta.dirname}/pulse.schema.json`);
+    statusSchema = loadSchema(`${import.meta.dirname}/status.schema.json`);
+    ruleSchema = loadSchema(`${import.meta.dirname}/rule.schema.json`);
   });
 
   describe("consume()", () => {
@@ -64,36 +29,18 @@ describe("UC510 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "pulse");
-        assert.equal(value.data.pulse1, 5);
-        assert.equal(value.data.relativePulse1, 4);
-        validateSchema(value.data, pulseSchema, { throwError: true });
+      expectSample("pulse", pulseSchema, (data) => {
+        assert.equal(data.pulse1, 5);
+        assert.equal(data.relativePulse1, 4);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "status");
-        assert.equal(value.data.valve1, "CLOSED");
-        assert.equal(value.data.valve1Open, false);
-        validateSchema(value.data, statusSchema, { throwError: true });
+      expectSample("status", statusSchema, (data) => {
+        assert.equal(data.valve1, "CLOSED");
+        assert.equal(data.valve1Open, false);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 92);
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 92);
       });
 
       expectEmits((type, value) => {
@@ -131,25 +78,13 @@ describe("UC510 Uplink", () => {
         assert.equal(value.data.watt, 6);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "status");
-        assert.equal(value.data.valve1, "CLOSED");
-        assert.equal(value.data.valve1Open, false);
-        validateSchema(value.data, statusSchema, { throwError: true });
+      expectSample("status", statusSchema, (data) => {
+        assert.equal(data.valve1, "CLOSED");
+        assert.equal(data.valve1Open, false);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 92);
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 92);
       });
 
       expectEmits((type, value) => {
@@ -170,15 +105,9 @@ describe("UC510 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "status");
-        assert.equal(value.data.gpio2, "ON");
-        assert.equal(value.data.valve2, "OPEN");
-        validateSchema(value.data, statusSchema, { throwError: true });
+      expectSample("status", statusSchema, (data) => {
+        assert.equal(data.gpio2, "ON");
+        assert.equal(data.valve2, "OPEN");
       });
 
       expectEmits((type, value) => {

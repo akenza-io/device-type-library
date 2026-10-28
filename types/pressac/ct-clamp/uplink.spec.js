@@ -1,23 +1,14 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Pressac CT Clamp Uplink", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
   });
 
   describe("consume()", () => {
@@ -28,18 +19,11 @@ describe("Pressac CT Clamp Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.ch1Current, 0);
-        assert.equal(value.data.ch2Current, 10.46);
-        assert.equal(value.data.ch3Current, 0);
-        assert.equal(value.data.counter, 1);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.ch1Current, 0);
+        assert.equal(data.ch2Current, 10.46);
+        assert.equal(data.ch3Current, 0);
+        assert.equal(data.counter, 1);
       });
 
       consume(data);
@@ -52,18 +36,11 @@ describe("Pressac CT Clamp Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.ch1Current, 4.56);
-        assert.equal(value.data.ch2Current, 7.89);
-        assert.equal(value.data.ch3Current, 1.23);
-        assert.equal(value.data.counter, 5);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.ch1Current, 4.56);
+        assert.equal(data.ch2Current, 7.89);
+        assert.equal(data.ch3Current, 1.23);
+        assert.equal(data.counter, 5);
       });
 
       consume(data);

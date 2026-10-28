@@ -1,11 +1,6 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("WT201 Uplink", () => {
   let defaultSchema = null;
@@ -13,44 +8,13 @@ describe("WT201 Uplink", () => {
   let wiresSchema = null;
   let planSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
 
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/wires.schema.json`)
-      .then((parsedSchema) => {
-        wiresSchema = parsedSchema;
-        done();
-      });
-  });
-
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/system.schema.json`)
-      .then((parsedSchema) => {
-        systemSchema = parsedSchema;
-        done();
-      });
-  });
-
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/plan.schema.json`)
-      .then((parsedSchema) => {
-        planSchema = parsedSchema;
-        done();
-      });
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    wiresSchema = loadSchema(`${import.meta.dirname}/wires.schema.json`);
+    systemSchema = loadSchema(`${import.meta.dirname}/system.schema.json`);
+    planSchema = loadSchema(`${import.meta.dirname}/plan.schema.json`);
   });
 
   describe("consume()", () => {
@@ -62,21 +26,14 @@ describe("WT201 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.fanMode, "AUTO");
-        assert.equal(value.data.fanStatus, "STANDBY");
-        assert.equal(value.data.planEvent, "NOT_EXCECUTED");
-        assert.equal(value.data.temperature, 25.8);
-        assert.equal(value.data.temperatureTarget, 16.6);
-        assert.equal(value.data.temperatureControlMode, "HEAT");
-        assert.equal(value.data.temperatureControlStatus, "STANDBY");
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.fanMode, "AUTO");
+        assert.equal(data.fanStatus, "STANDBY");
+        assert.equal(data.planEvent, "NOT_EXCECUTED");
+        assert.equal(data.temperature, 25.8);
+        assert.equal(data.temperatureTarget, 16.6);
+        assert.equal(data.temperatureControlMode, "HEAT");
+        assert.equal(data.temperatureControlStatus, "STANDBY");
       });
 
       consume(data);
@@ -90,36 +47,22 @@ describe("WT201 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "system");
-        assert.deepEqual(value.data.temperatureControlModeEnabled, [
+      expectSample("system", systemSchema, (data) => {
+        assert.deepEqual(data.temperatureControlModeEnabled, [
           "HEAT",
           "COOL",
           "AUTO",
         ]);
-        assert.deepEqual(value.data.temperatureControlStatusEnabled, [
+        assert.deepEqual(data.temperatureControlStatusEnabled, [
           "STAGE_1_HEAT",
           "AUX_HEAT",
           "STAGE_1_COOL",
         ]);
-
-        validateSchema(value.data, systemSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "wires");
-        assert.equal(value.data.obMode, "HEAT");
-        assert.deepEqual(value.data.wires, ['Y1', 'GH', 'OB', 'AUX']);
-
-        validateSchema(value.data, wiresSchema, { throwError: true });
+      expectSample("wires", wiresSchema, (data) => {
+        assert.equal(data.obMode, "HEAT");
+        assert.deepEqual(data.wires, ['Y1', 'GH', 'OB', 'AUX']);
       });
 
       consume(data);
@@ -133,36 +76,20 @@ describe("WT201 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "plan");
-
-        assert.equal(value.data.index, 1);
-        assert.equal(value.data.planEnabled, "DISABLED");
-        assert.equal(value.data.time, "11:31");
-        assert.equal(value.data.type, "WAKE");
-        assert.deepEqual(value.data.weekRecycle, []);
-
-        validateSchema(value.data, planSchema, { throwError: true });
+      expectSample("plan", planSchema, (data) => {
+        assert.equal(data.index, 1);
+        assert.equal(data.planEnabled, "DISABLED");
+        assert.equal(data.time, "11:31");
+        assert.equal(data.type, "WAKE");
+        assert.deepEqual(data.weekRecycle, []);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "plan");
-
-        assert.equal(value.data.index, 2);
-        assert.equal(value.data.planEnabled, "ENABLED");
-        assert.equal(value.data.time, "0:00");
-        assert.equal(value.data.type, "HOME");
-        assert.deepEqual(value.data.weekRecycle, ["WED", "FRI"]);
-
-        validateSchema(value.data, planSchema, { throwError: true });
+      expectSample("plan", planSchema, (data) => {
+        assert.equal(data.index, 2);
+        assert.equal(data.planEnabled, "ENABLED");
+        assert.equal(data.time, "0:00");
+        assert.equal(data.type, "HOME");
+        assert.deepEqual(data.weekRecycle, ["WED", "FRI"]);
       });
 
       consume(data);

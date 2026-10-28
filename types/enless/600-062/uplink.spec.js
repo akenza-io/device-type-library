@@ -1,45 +1,23 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+import { init, loadSchema, expectSample } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+
+
+
+
 describe("Enless 600-062 Uplink Uplink", () => {
   describe("consume()", () => {
     let defaultSchema = null;
     let consume = null;
-    before((done) => {
-      const script = rewire(`${__dirname}/uplink.js`);
-      consume = init(script);
-      loadSchema(`${__dirname}/default.schema.json`)
-        .then((parsedSchema) => {
-          defaultSchema = parsedSchema;
-          done();
-        });
-    });
-
     let lifecycleSchema = null;
-    before((done) => {
-      const script = rewire(`${__dirname}/uplink.js`);
-      consume = init(script);
-      loadSchema(`${__dirname}/lifecycle.schema.json`)
-        .then((parsedSchema) => {
-          lifecycleSchema = parsedSchema;
-          done();
-        });
-    });
-
     let alarmSchema = null;
-    before((done) => {
-      const script = rewire(`${__dirname}/uplink.js`);
-      consume = init(script);
-      loadSchema(`${__dirname}/alarm.schema.json`)
-        .then((parsedSchema) => {
-          alarmSchema = parsedSchema;
-          done();
-        });
+
+    before(() => {
+      consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+      defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+      lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+      alarmSchema = loadSchema(`${import.meta.dirname}/alarm.schema.json`);
     });
 
     it("should decode MCF-LW12CO2E climate payload", () => {
@@ -51,51 +29,30 @@ describe("Enless 600-062 Uplink Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 100);
-        assert.equal(value.data.fwVersion, 12);
-        assert.equal(value.data.id, 83135);
-        assert.equal(value.data.seqCounter, 135);
-        assert.equal(value.data.type, 34);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 100);
+        assert.equal(data.fwVersion, 12);
+        assert.equal(data.id, 83135);
+        assert.equal(data.seqCounter, 135);
+        assert.equal(data.type, 34);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.temperature, 21.5);
-        assert.equal(value.data.humidity, 47.7);
-        assert.equal(value.data.luminosity, 0);
-        assert.equal(value.data.movementDetected, false);
-        assert.equal(value.data.msgType, "NORMAL");
-        assert.equal(value.data.pirCount, 1);
-        assert.equal(value.data.rbe, false);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.temperature, 21.5);
+        assert.equal(data.humidity, 47.7);
+        assert.equal(data.luminosity, 0);
+        assert.equal(data.movementDetected, false);
+        assert.equal(data.msgType, "NORMAL");
+        assert.equal(data.pirCount, 1);
+        assert.equal(data.rbe, false);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "alarm");
-        assert.equal(value.data.humidityHigh, false);
-        assert.equal(value.data.humidityLow, false);
-        assert.equal(value.data.motionGuard, false);
-        assert.equal(value.data.temperatureHigh, false);
-        assert.equal(value.data.temperatureLow, false);
-
-        validateSchema(value.data, alarmSchema, { throwError: true });
+      expectSample("alarm", alarmSchema, (data) => {
+        assert.equal(data.humidityHigh, false);
+        assert.equal(data.humidityLow, false);
+        assert.equal(data.motionGuard, false);
+        assert.equal(data.temperatureHigh, false);
+        assert.equal(data.temperatureLow, false);
       });
 
       consume(data);

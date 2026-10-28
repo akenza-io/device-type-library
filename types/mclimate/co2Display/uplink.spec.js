@@ -1,25 +1,18 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("MClimate CO2 Display uplink", () => {
   let defaultSchema = null;
   let lifecycleSchema = null;
   let configurationSchema = null;
   let consume = null;
-  before(async () => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    defaultSchema = await loadSchema(`${__dirname}/default.schema.json`);
-    lifecycleSchema = await loadSchema(`${__dirname}/lifecycle.schema.json`);
-    configurationSchema = await loadSchema(
-      `${__dirname}/configuration.schema.json`,
-    );
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    configurationSchema = loadSchema(`${import.meta.dirname}/configuration.schema.json`);
   });
 
   function uplink(payloadHex) {
@@ -45,29 +38,21 @@ describe("MClimate CO2 Display uplink", () => {
     it("should decode a MClimate CO2 Display keepalive", () => {
       const data = uplink("010288800A456B18027A00");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.deepEqual(value.data, {
+      expectSample("default", defaultSchema, (data) => {
+        assert.deepEqual(data, {
           temperature: 24.8,
           humidity: 50,
           co2: 875,
           light: 634,
           motionDetected: false,
         });
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "lifecycle");
-        assert.deepEqual(value.data, {
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.deepEqual(data, {
           batteryVoltage: 2.63,
           powerSource: "PHOTOVOLTAIC",
         });
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -76,29 +61,21 @@ describe("MClimate CO2 Display uplink", () => {
     it("should decode a MClimate CO2 Display keepalive with motion on battery power", () => {
       const data = uplink("0102784f0c04a519004d01");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.deepEqual(value.data, {
+      expectSample("default", defaultSchema, (data) => {
+        assert.deepEqual(data, {
           temperature: 23.2,
           humidity: 30.86,
           co2: 933,
           light: 77,
           motionDetected: true,
         });
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "lifecycle");
-        assert.deepEqual(value.data, {
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.deepEqual(data, {
           batteryVoltage: 3.08,
           powerSource: "BATTERY",
         });
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -107,41 +84,29 @@ describe("MClimate CO2 Display uplink", () => {
     it("should decode MClimate CO2 Display command responses followed by a keepalive", () => {
       const data = uplink("120A0426100102784f0c04a510004d00");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.deepEqual(value.data, {
+      expectSample("default", defaultSchema, (data) => {
+        assert.deepEqual(data, {
           temperature: 23.2,
           humidity: 30.86,
           co2: 677,
           light: 77,
           motionDetected: false,
         });
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "lifecycle");
-        assert.deepEqual(value.data, {
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.deepEqual(data, {
           batteryVoltage: 3.08,
           powerSource: "PHOTOVOLTAIC",
         });
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "configuration");
-        assert.deepEqual(value.data, {
+      expectSample("configuration", configurationSchema, (data) => {
+        assert.deepEqual(data, {
           keepAliveTime: 10,
           hardwareVersion: 26,
           softwareVersion: 10,
         });
-
-        validateSchema(value.data, configurationSchema, { throwError: true });
       });
 
       consume(data);
@@ -150,16 +115,12 @@ describe("MClimate CO2 Display uplink", () => {
     it("should decode a MClimate CO2 Display command response without keepalive", () => {
       const data = uplink("8305");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "configuration");
-        assert.deepEqual(value.data, {
+      expectSample("configuration", configurationSchema, (data) => {
+        assert.deepEqual(data, {
           co2ChartVisibility: 1,
           co2DigitalValueVisibility: 0,
           co2EmojiVisibility: 1,
         });
-
-        validateSchema(value.data, configurationSchema, { throwError: true });
       });
 
       consume(data);

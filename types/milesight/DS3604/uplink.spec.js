@@ -1,47 +1,18 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("DS3604 Uplink", () => {
   let templateSchema = null;
   let lifecycleSchema = null;
   let buttonSchema = null;
-
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/template.schema.json`)
-      .then((parsedSchema) => {
-        templateSchema = parsedSchema;
-        done();
-      });
-  });
 
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
-
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/button.schema.json`)
-      .then((parsedSchema) => {
-        buttonSchema = parsedSchema;
-        done();
-      });
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    templateSchema = loadSchema(`${import.meta.dirname}/template.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    buttonSchema = loadSchema(`${import.meta.dirname}/button.schema.json`);
   });
 
   describe("consume()", () => {
@@ -53,28 +24,14 @@ describe("DS3604 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 100);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 100);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "template");
-        assert.equal(value.data.qrCode, "hello");
-        assert.equal(value.data.templateId, 1);
-        assert.equal(value.data.text1, "Miles");
-
-        validateSchema(value.data, templateSchema, { throwError: true });
+      expectSample("template", templateSchema, (data) => {
+        assert.equal(data.qrCode, "hello");
+        assert.equal(data.templateId, 1);
+        assert.equal(data.text1, "Miles");
       });
 
       consume(data);
@@ -88,27 +45,13 @@ describe("DS3604 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "template");
-        assert.equal(value.data.templateId, 2);
-
-        validateSchema(value.data, templateSchema, { throwError: true });
+      expectSample("template", templateSchema, (data) => {
+        assert.equal(data.templateId, 2);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "button");
-        assert.equal(value.data.button, "SINGLE_CLICK");
-        assert.equal(value.data.numericButton, 1);
-
-        validateSchema(value.data, buttonSchema, { throwError: true });
+      expectSample("button", buttonSchema, (data) => {
+        assert.equal(data.button, "SINGLE_CLICK");
+        assert.equal(data.numericButton, 1);
       });
 
       consume(data);

@@ -1,12 +1,12 @@
 
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
+import { init, loadSchema, expectSample } from "test-utils";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+
+
+
+
 
 describe("Transmitter 600-039", () => {
   let defaultSchema = null;
@@ -14,30 +14,11 @@ describe("Transmitter 600-039", () => {
   let alarmSchema = null;
   let consume = null;
 
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
-  before((done) => {
-    loadSchema(`${__dirname}/alarm.schema.json`)
-      .then((parsedSchema) => {
-        alarmSchema = parsedSchema;
-        done();
-      });
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    alarmSchema = loadSchema(`${import.meta.dirname}/alarm.schema.json`);
   });
 
   describe("consume()", () => {
@@ -50,51 +31,30 @@ describe("Transmitter 600-039", () => {
       };
 
       // --- Lifecycle ---
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.id, 180);
-        assert.equal(value.data.type, 11);
-        assert.equal(value.data.seqCounter, 14);
-        assert.equal(value.data.fwVersion, 18);
-        assert.equal(value.data.batteryLevel, 100);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.id, 180);
+        assert.equal(data.type, 11);
+        assert.equal(data.seqCounter, 14);
+        assert.equal(data.fwVersion, 18);
+        assert.equal(data.batteryLevel, 100);
       });
 
       // --- Default (state counters & input states) ---
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.pulseCh1Counter, 24);
-        assert.equal(value.data.pulseCh2Counter, 40);
-        assert.equal(value.data.pulseOcCounter, 86);
-        assert.equal(value.data.pulseCh1State, "OPEN");
-        assert.equal(value.data.pulseCh2State, "OPEN");
-        assert.equal(value.data.pulseOcState, "OPEN");
-        assert.equal(value.data.msgType, "NORMAL");
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.pulseCh1Counter, 24);
+        assert.equal(data.pulseCh2Counter, 40);
+        assert.equal(data.pulseOcCounter, 86);
+        assert.equal(data.pulseCh1State, "OPEN");
+        assert.equal(data.pulseCh2State, "OPEN");
+        assert.equal(data.pulseOcState, "OPEN");
+        assert.equal(data.msgType, "NORMAL");
       });
 
       // --- Alarm ---
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "alarm");
-        assert.equal(value.data.ch1Alarm, false);
-        assert.equal(value.data.ch2Alarm, false);
-        assert.equal(value.data.ocAlarm, false);
-
-        validateSchema(value.data, alarmSchema, { throwError: true });
+      expectSample("alarm", alarmSchema, (data) => {
+        assert.equal(data.ch1Alarm, false);
+        assert.equal(data.ch2Alarm, false);
+        assert.equal(data.ocAlarm, false);
       });
 
       consume(data);

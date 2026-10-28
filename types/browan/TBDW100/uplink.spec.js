@@ -1,59 +1,22 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("TBDW100 uplink", () => {
   let defaultSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`)
-      .then((parsedSchema) => {
-        defaultSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   let doorCountSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/door_count.schema.json`)
-      .then((parsedSchema) => {
-        doorCountSchema = parsedSchema;
-        done();
-      });
-  });
-
   let systemSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/system.schema.json`)
-      .then((parsedSchema) => {
-        systemSchema = parsedSchema;
-        done();
-      });
-  });
-
   let configSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/config.schema.json`)
-      .then((parsedSchema) => {
-        configSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    doorCountSchema = loadSchema(`${import.meta.dirname}/door_count.schema.json`);
+    systemSchema = loadSchema(`${import.meta.dirname}/system.schema.json`);
+    configSchema = loadSchema(`${import.meta.dirname}/config.schema.json`);
   });
 
   describe("consume()", () => {
@@ -72,43 +35,22 @@ describe("TBDW100 uplink", () => {
         assert.isNotNull(value.partialUsage, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "door_count");
-        assert.equal(value.data.doorClosings, 0);
-        assert.equal(value.data.usageCount, 0);
-
-        validateSchema(value.data, doorCountSchema, { throwError: true });
+      expectSample("door_count", doorCountSchema, (data) => {
+        assert.equal(data.doorClosings, 0);
+        assert.equal(data.usageCount, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 100);
-        assert.equal(value.data.batteryVoltage, 3.6);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 100);
+        assert.equal(data.batteryVoltage, 3.6);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.open, true);
-        assert.equal(value.data.temperature, 20);
-        assert.equal(value.data.time, 45404);
-        assert.equal(value.data.relativeCount, 0);
-        assert.equal(value.data.count, 3153);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.open, true);
+        assert.equal(data.temperature, 20);
+        assert.equal(data.time, 45404);
+        assert.equal(data.relativeCount, 0);
+        assert.equal(data.count, 3153);
       });
 
       consume(data);
@@ -129,43 +71,22 @@ describe("TBDW100 uplink", () => {
         assert.equal(value.partialUsage, 0);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "door_count");
-        assert.equal(value.data.doorClosings, 50);
-        assert.equal(value.data.usageCount, 25);
-
-        validateSchema(value.data, doorCountSchema, { throwError: true });
+      expectSample("door_count", doorCountSchema, (data) => {
+        assert.equal(data.doorClosings, 50);
+        assert.equal(data.usageCount, 25);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 100);
-        assert.equal(value.data.batteryVoltage, 3.6);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 100);
+        assert.equal(data.batteryVoltage, 3.6);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.equal(value.data.open, true);
-        assert.equal(value.data.temperature, 20);
-        assert.equal(value.data.time, 45404);
-        assert.equal(value.data.relativeCount, 100);
-        assert.equal(value.data.count, 3153);
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
+      expectSample("default", defaultSchema, (data) => {
+        assert.equal(data.open, true);
+        assert.equal(data.temperature, 20);
+        assert.equal(data.time, 45404);
+        assert.equal(data.relativeCount, 100);
+        assert.equal(data.count, 3153);
       });
 
       consume(data);
@@ -179,15 +100,8 @@ describe("TBDW100 uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "config");
-        assert.equal(value.data.keepaliveInterval, 3600);
-
-        validateSchema(value.data, configSchema, { throwError: true });
+      expectSample("config", configSchema, (data) => {
+        assert.equal(data.keepaliveInterval, 3600);
       });
 
       consume(data);
@@ -201,18 +115,11 @@ describe("TBDW100 uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "system");
-        assert.equal(value.data.bootloader, "00000006");
-        assert.equal(value.data.hwId, "00000201");
-        assert.equal(value.data.crc, "591faccc");
-        assert.equal(value.data.pupKeyId, "eef6d4e2");
-
-        validateSchema(value.data, systemSchema, { throwError: true });
+      expectSample("system", systemSchema, (data) => {
+        assert.equal(data.bootloader, "00000006");
+        assert.equal(data.hwId, "00000201");
+        assert.equal(data.crc, "591faccc");
+        assert.equal(data.pupKeyId, "eef6d4e2");
       });
 
       consume(data);

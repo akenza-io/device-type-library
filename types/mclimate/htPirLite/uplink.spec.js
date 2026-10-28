@@ -1,25 +1,18 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("MClimate HT + PIR Lite uplink", () => {
   let defaultSchema = null;
   let lifecycleSchema = null;
   let configurationSchema = null;
   let consume = null;
-  before(async () => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    defaultSchema = await loadSchema(`${__dirname}/default.schema.json`);
-    lifecycleSchema = await loadSchema(`${__dirname}/lifecycle.schema.json`);
-    configurationSchema = await loadSchema(
-      `${__dirname}/configuration.schema.json`,
-    );
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    configurationSchema = loadSchema(`${import.meta.dirname}/configuration.schema.json`);
   });
 
   function uplink(payloadHex) {
@@ -45,27 +38,19 @@ describe("MClimate HT + PIR Lite uplink", () => {
     it("should decode a MClimate HT + PIR Lite keepalive", () => {
       const data = uplink("8106797DE20F");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.deepEqual(value.data, {
+      expectSample("default", defaultSchema, (data) => {
+        assert.deepEqual(data, {
           temperature: 23.3,
           humidity: 48.83,
           occupied: true,
           motion: 15,
         });
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "lifecycle");
-        assert.deepEqual(value.data, {
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.deepEqual(data, {
           batteryVoltage: 3.55,
         });
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -74,38 +59,26 @@ describe("MClimate HT + PIR Lite uplink", () => {
     it("should decode MClimate HT + PIR Lite command responses followed by a keepalive", () => {
       const data = uplink("39003C120A8102797DE201");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "default");
-        assert.deepEqual(value.data, {
+      expectSample("default", defaultSchema, (data) => {
+        assert.deepEqual(data, {
           temperature: 23.3,
           humidity: 48.83,
           occupied: false,
           motion: 1,
         });
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "lifecycle");
-        assert.deepEqual(value.data, {
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.deepEqual(data, {
           batteryVoltage: 3.55,
         });
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "configuration");
-        assert.deepEqual(value.data, {
+      expectSample("configuration", configurationSchema, (data) => {
+        assert.deepEqual(data, {
           occupancyTimeout: 60,
           keepAliveTime: 10,
         });
-
-        validateSchema(value.data, configurationSchema, { throwError: true });
       });
 
       consume(data);
@@ -114,14 +87,10 @@ describe("MClimate HT + PIR Lite uplink", () => {
     it("should decode a MClimate HT + PIR Lite command response without keepalive", () => {
       const data = uplink("3F80");
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.equal(value.topic, "configuration");
-        assert.deepEqual(value.data, {
+      expectSample("configuration", configurationSchema, (data) => {
+        assert.deepEqual(data, {
           pirSensorSensitivity: 128,
         });
-
-        validateSchema(value.data, configurationSchema, { throwError: true });
       });
 
       consume(data);

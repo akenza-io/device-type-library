@@ -1,51 +1,20 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Milesight VS350 Uplink", () => {
   let peopleFlowSchema = null;
   let consume = null;
-
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/people_flow.schema.json`)
-      .then((parsedSchema) => {
-        peopleFlowSchema = parsedSchema;
-        done();
-      });
-  });
-
   let climateSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/climate.schema.json`)
-      .then((parsedSchema) => {
-        climateSchema = parsedSchema;
-        done();
-      });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`)
-      .then((parsedSchema) => {
-        lifecycleSchema = parsedSchema;
-        done();
-      });
-  });
-
   let systemSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/system.schema.json`)
-      .then((parsedSchema) => {
-        systemSchema = parsedSchema;
-        done();
-      });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    peopleFlowSchema = loadSchema(`${import.meta.dirname}/people_flow.schema.json`);
+    climateSchema = loadSchema(`${import.meta.dirname}/climate.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    systemSchema = loadSchema(`${import.meta.dirname}/system.schema.json`);
   });
 
   describe("consume()", () => {
@@ -57,22 +26,13 @@ describe("Milesight VS350 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "people_flow");
-        assert.equal(value.data.periodicCountAlarm, "THRESHOLD_ALARM");
-        assert.equal(value.data.periodicCountIn, 1000);
-        assert.equal(value.data.periodicCountOut, 1001);
-        assert.equal(value.data.totalCountAlarm, "THRESHOLD_ALARM");
-        assert.equal(value.data.totalCountIn, 4353);
-        assert.equal(value.data.totalCountOut, 4360);
-
-        validateSchema(value.data, peopleFlowSchema, {
-          throwError: true,
-        });
+      expectSample("people_flow", peopleFlowSchema, (data) => {
+        assert.equal(data.periodicCountAlarm, "THRESHOLD_ALARM");
+        assert.equal(data.periodicCountIn, 1000);
+        assert.equal(data.periodicCountOut, 1001);
+        assert.equal(data.totalCountAlarm, "THRESHOLD_ALARM");
+        assert.equal(data.totalCountIn, 4353);
+        assert.equal(data.totalCountOut, 4360);
       });
 
       consume(data);
@@ -86,16 +46,9 @@ describe("Milesight VS350 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "climate");
-        assert.equal(value.data.temperatureAlarm, "THRESHOLD_ALARM");
-        assert.equal(value.data.temperature, 31);
-
-        validateSchema(value.data, climateSchema, { throwError: true });
+      expectSample("climate", climateSchema, (data) => {
+        assert.equal(data.temperatureAlarm, "THRESHOLD_ALARM");
+        assert.equal(data.temperature, 31);
       });
 
       consume(data);
@@ -109,39 +62,18 @@ describe("Milesight VS350 Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "people_flow");
-        assert.equal(value.data.periodicCountIn, 1);
-        assert.equal(value.data.periodicCountOut, 1);
+      expectSample("people_flow", peopleFlowSchema, (data, value) => {
+        assert.equal(data.periodicCountIn, 1);
+        assert.equal(data.periodicCountOut, 1);
         assert.exists(value.timestamp)
-
-        validateSchema(value.data, peopleFlowSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.equal(value.data.batteryLevel, 100);
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.equal(data.batteryLevel, 100);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "system");
-        assert.equal(value.data.currentSensitivity, 67);
-
-        validateSchema(value.data, systemSchema, { throwError: true });
+      expectSample("system", systemSchema, (data) => {
+        assert.equal(data.currentSensitivity, 67);
       });
 
       consume(data);

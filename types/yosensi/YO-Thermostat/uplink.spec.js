@@ -1,129 +1,38 @@
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectSample } from "test-utils";
 
 describe("Yosensi YO Thermostat uplink", () => {
   let batteryVoltageSchema = null;
   let consume = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/battery_voltage.schema.json`)
-      .then((parsedSchema) => {
-        batteryVoltageSchema = parsedSchema;
-        done();
-      });
-  });
-
   let internalTemperatureSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/internal_temperature.schema.json`)
-      .then((parsedSchema) => {
-        internalTemperatureSchema = parsedSchema;
-        done();
-      });
-  });
-
   let humiditySchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/humidity.schema.json`)
-      .then((parsedSchema) => {
-        humiditySchema = parsedSchema;
-        done();
-      });
-  });
-
   let illuminanceSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/illuminance.schema.json`)
-      .then((parsedSchema) => {
-        illuminanceSchema = parsedSchema;
-        done();
-      });
-  });
-
   let co2Schema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/co2.schema.json`).then((parsedSchema) => {
-      co2Schema = parsedSchema;
-      done();
-    });
-  });
-
   let presenceCounterSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/presence_counter.schema.json`)
-      .then((parsedSchema) => {
-        presenceCounterSchema = parsedSchema;
-        done();
-      });
-  });
-
   let comfortSetpointSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/comfort_setpoint.schema.json`)
-      .then((parsedSchema) => {
-        comfortSetpointSchema = parsedSchema;
-        done();
-      });
-  });
-
   let standbyOffsetSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/standby_offset.schema.json`)
-      .then((parsedSchema) => {
-        standbyOffsetSchema = parsedSchema;
-        done();
-      });
-  });
-
   let economyOffsetSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/economy_offset.schema.json`)
-      .then((parsedSchema) => {
-        economyOffsetSchema = parsedSchema;
-        done();
-      });
-  });
-
   let frostProtSetpointSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/frost_prot_setpoint.schema.json`)
-      .then((parsedSchema) => {
-        frostProtSetpointSchema = parsedSchema;
-        done();
-      });
-  });
-
   let operationModeSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/operation_mode.schema.json`)
-      .then((parsedSchema) => {
-        operationModeSchema = parsedSchema;
-        done();
-      });
-  });
-
   let getParametersSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/get_parameters.schema.json`)
-      .then((parsedSchema) => {
-        getParametersSchema = parsedSchema;
-        done();
-      });
-  });
-
   let outputSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/output.schema.json`).then((parsedSchema) => {
-      outputSchema = parsedSchema;
-      done();
-    });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    batteryVoltageSchema = loadSchema(`${import.meta.dirname}/battery_voltage.schema.json`);
+    internalTemperatureSchema = loadSchema(`${import.meta.dirname}/internal_temperature.schema.json`);
+    humiditySchema = loadSchema(`${import.meta.dirname}/humidity.schema.json`);
+    illuminanceSchema = loadSchema(`${import.meta.dirname}/illuminance.schema.json`);
+    co2Schema = loadSchema(`${import.meta.dirname}/co2.schema.json`);
+    presenceCounterSchema = loadSchema(`${import.meta.dirname}/presence_counter.schema.json`);
+    comfortSetpointSchema = loadSchema(`${import.meta.dirname}/comfort_setpoint.schema.json`);
+    standbyOffsetSchema = loadSchema(`${import.meta.dirname}/standby_offset.schema.json`);
+    economyOffsetSchema = loadSchema(`${import.meta.dirname}/economy_offset.schema.json`);
+    frostProtSetpointSchema = loadSchema(`${import.meta.dirname}/frost_prot_setpoint.schema.json`);
+    operationModeSchema = loadSchema(`${import.meta.dirname}/operation_mode.schema.json`);
+    getParametersSchema = loadSchema(`${import.meta.dirname}/get_parameters.schema.json`);
+    outputSchema = loadSchema(`${import.meta.dirname}/output.schema.json`);
   });
 
   describe("consume()", () => {
@@ -136,95 +45,32 @@ describe("Yosensi YO Thermostat uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "comfort_setpoint");
-        assert.equal(value.data.comfortSetpoint, 21);
-
-        validateSchema(value.data, comfortSetpointSchema, {
-          throwError: true,
-        });
+      expectSample("comfort_setpoint", comfortSetpointSchema, (data) => {
+        assert.equal(data.comfortSetpoint, 21);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "standby_offset");
-        assert.equal(value.data.standbyOffset, -2);
-
-        validateSchema(value.data, standbyOffsetSchema, {
-          throwError: true,
-        });
+      expectSample("standby_offset", standbyOffsetSchema, (data) => {
+        assert.equal(data.standbyOffset, -2);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "economy_offset");
-        assert.equal(value.data.economyOffset, -4);
-
-        validateSchema(value.data, economyOffsetSchema, {
-          throwError: true,
-        });
+      expectSample("economy_offset", economyOffsetSchema, (data) => {
+        assert.equal(data.economyOffset, -4);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "frost_prot_setpoint");
-        assert.equal(value.data.frostProtSetpoint, 7);
-
-        validateSchema(value.data, frostProtSetpointSchema, {
-          throwError: true,
-        });
+      expectSample("frost_prot_setpoint", frostProtSetpointSchema, (data) => {
+        assert.equal(data.frostProtSetpoint, 7);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "operation_mode");
-        assert.equal(value.data.operationMode, 3);
-
-        validateSchema(value.data, operationModeSchema, {
-          throwError: true,
-        });
+      expectSample("operation_mode", operationModeSchema, (data) => {
+        assert.equal(data.operationMode, 3);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "get_parameters");
-        assert.equal(value.data.getParameters, 17);
-
-        validateSchema(value.data, getParametersSchema, {
-          throwError: true,
-        });
+      expectSample("get_parameters", getParametersSchema, (data) => {
+        assert.equal(data.getParameters, 17);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "output");
-        assert.equal(value.data.output, 1);
-
-        validateSchema(value.data, outputSchema, {
-          throwError: true,
-        });
+      expectSample("output", outputSchema, (data) => {
+        assert.equal(data.output, 1);
       });
 
       consume(data);
@@ -239,67 +85,24 @@ describe("Yosensi YO Thermostat uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "battery_voltage");
-        assert.equal(value.data.batteryVoltage, 4433);
-
-        validateSchema(value.data, batteryVoltageSchema, {
-          throwError: true,
-        });
+      expectSample("battery_voltage", batteryVoltageSchema, (data) => {
+        assert.equal(data.batteryVoltage, 4433);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "internal_temperature");
-        assert.equal(value.data.internalTemperature, 16.7);
-
-        validateSchema(value.data, internalTemperatureSchema, {
-          throwError: true,
-        });
+      expectSample("internal_temperature", internalTemperatureSchema, (data) => {
+        assert.equal(data.internalTemperature, 16.7);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "humidity");
-        assert.equal(value.data.humidity, 28);
-
-        validateSchema(value.data, humiditySchema, { throwError: true });
+      expectSample("humidity", humiditySchema, (data) => {
+        assert.equal(data.humidity, 28);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "illuminance");
-        assert.equal(value.data.illuminance, 0.08);
-
-        validateSchema(value.data, illuminanceSchema, {
-          throwError: true,
-        });
+      expectSample("illuminance", illuminanceSchema, (data) => {
+        assert.equal(data.illuminance, 0.08);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "presence_counter");
-        assert.equal(value.data.presenceCounter, 50);
-
-        validateSchema(value.data, presenceCounterSchema, {
-          throwError: true,
-        });
+      expectSample("presence_counter", presenceCounterSchema, (data) => {
+        assert.equal(data.presenceCounter, 50);
       });
 
       consume(data);
@@ -313,80 +116,28 @@ describe("Yosensi YO Thermostat uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "battery_voltage");
-        assert.equal(value.data.batteryVoltage, 4224);
-
-        validateSchema(value.data, batteryVoltageSchema, {
-          throwError: true,
-        });
+      expectSample("battery_voltage", batteryVoltageSchema, (data) => {
+        assert.equal(data.batteryVoltage, 4224);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "internal_temperature");
-        assert.equal(value.data.internalTemperature, 26.2);
-
-        validateSchema(value.data, internalTemperatureSchema, {
-          throwError: true,
-        });
+      expectSample("internal_temperature", internalTemperatureSchema, (data) => {
+        assert.equal(data.internalTemperature, 26.2);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "humidity");
-        assert.equal(value.data.humidity, 59);
-
-        validateSchema(value.data, humiditySchema, { throwError: true });
+      expectSample("humidity", humiditySchema, (data) => {
+        assert.equal(data.humidity, 59);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "co2");
-        assert.equal(value.data.co2, 755);
-
-        validateSchema(value.data, co2Schema, {
-          throwError: true,
-        });
+      expectSample("co2", co2Schema, (data) => {
+        assert.equal(data.co2, 755);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "illuminance");
-        assert.equal(value.data.illuminance, 3.13);
-
-        validateSchema(value.data, illuminanceSchema, {
-          throwError: true,
-        });
+      expectSample("illuminance", illuminanceSchema, (data) => {
+        assert.equal(data.illuminance, 3.13);
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "presence_counter");
-        assert.equal(value.data.presenceCounter, 18);
-
-        validateSchema(value.data, presenceCounterSchema, {
-          throwError: true,
-        });
+      expectSample("presence_counter", presenceCounterSchema, (data) => {
+        assert.equal(data.presenceCounter, 18);
       });
       consume(data);
     });

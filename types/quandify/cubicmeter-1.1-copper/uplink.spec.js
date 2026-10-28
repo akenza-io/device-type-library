@@ -1,64 +1,25 @@
 
 import { assert } from "chai";
 import rewire from "rewire";
-import { init, loadSchema, expectEmits, validateSchema } from "test-utils";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { init, loadSchema, expectEmits, expectSample } from "test-utils";
 
 describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
   let consume = null;
-
   let defaultSchema = null;
-  before((done) => {
-    const script = rewire(`${__dirname}/uplink.js`);
-    consume = init(script);
-    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
-      defaultSchema = parsedSchema;
-      done();
-    });
-  });
-
   let lifecycleSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
-      lifecycleSchema = parsedSchema;
-      done();
-    });
-  });
-
   let responseSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/response.schema.json`).then((parsedSchema) => {
-      responseSchema = parsedSchema;
-      done();
-    });
-  });
-
   let systemSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/system.schema.json`).then((parsedSchema) => {
-      systemSchema = parsedSchema;
-      done();
-    });
-  });
-
   let settingsSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/settings.schema.json`).then((parsedSchema) => {
-      settingsSchema = parsedSchema;
-      done();
-    });
-  });
-
   let errorSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/error.schema.json`).then((parsedSchema) => {
-      errorSchema = parsedSchema;
-      done();
-    });
+
+  before(() => {
+    consume = init(rewire(`${import.meta.dirname}/uplink.js`));
+    defaultSchema = loadSchema(`${import.meta.dirname}/default.schema.json`);
+    lifecycleSchema = loadSchema(`${import.meta.dirname}/lifecycle.schema.json`);
+    responseSchema = loadSchema(`${import.meta.dirname}/response.schema.json`);
+    systemSchema = loadSchema(`${import.meta.dirname}/system.schema.json`);
+    settingsSchema = loadSchema(`${import.meta.dirname}/settings.schema.json`);
+    errorSchema = loadSchema(`${import.meta.dirname}/error.schema.json`);
   });
 
   describe("consume()", () => {
@@ -70,13 +31,8 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
         },
       };
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "default");
-        assert.deepStrictEqual(value.data, {
+      expectSample("default", defaultSchema, (data) => {
+        assert.deepStrictEqual(data, {
           totalVolume: 5342,
           leakIsOngoing: false,
           leakState: 2,
@@ -85,23 +41,14 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
           waterTemperatureMax: 22,
           ambientTemperature: 22.5,
         });
-
-        validateSchema(value.data, defaultSchema, { throwError: true });
       });
 
-      expectEmits((type, value) => {
-        assert.equal(type, "sample");
-        assert.isNotNull(value);
-        assert.typeOf(value.data, "object");
-
-        assert.equal(value.topic, "lifecycle");
-        assert.deepStrictEqual(value.data, {
+      expectSample("lifecycle", lifecycleSchema, (data) => {
+        assert.deepStrictEqual(data, {
           isSensing: true,
           batteryVoltage: 3.640,
           batteryStatus: "OK",
         });
-
-        validateSchema(value.data, lifecycleSchema, { throwError: true });
       });
 
       consume(data);
@@ -199,18 +146,11 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
       });
     });
 
-    expectEmits((type, value) => {
-      assert.equal(type, "sample");
-      assert.isNotNull(value);
-      assert.typeOf(value.data, "object");
-
-      assert.equal(value.topic, "error");
-      assert.deepStrictEqual(value.data, {
+    expectSample("error", errorSchema, (data) => {
+      assert.deepStrictEqual(data, {
         level: "WARNING",
         message: "Contact Quandify support, error 999",
       });
-
-      validateSchema(value.data, errorSchema, { throwError: true });
     });
 
     consume(data);
@@ -225,28 +165,16 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
       },
     };
 
-    expectEmits((type, value) => {
-      assert.equal(type, "sample");
-      assert.isNotNull(value);
-      assert.typeOf(value.data, "object");
-
-      assert.equal(value.topic, "response");
-      assert.deepStrictEqual(value.data, {
+    expectSample("response", responseSchema, (data) => {
+      assert.deepStrictEqual(data, {
         fPort: 55,
         status: "OK",
         type: "STATUS_REPORT"
       });
-
-      validateSchema(value.data, responseSchema, { throwError: true });
     });
 
-    expectEmits((type, value) => {
-      assert.equal(type, "sample");
-      assert.isNotNull(value);
-      assert.typeOf(value.data, "object");
-
-      assert.equal(value.topic, "default");
-      assert.deepStrictEqual(value.data, {
+    expectSample("default", defaultSchema, (data) => {
+      assert.deepStrictEqual(data, {
         totalVolume: 33655,
         leakIsOngoing: false,
         leakState: 0,
@@ -255,23 +183,14 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
         waterTemperatureMax: 11,
         ambientTemperature: 9,
       });
-
-      validateSchema(value.data, defaultSchema, { throwError: true });
     });
 
-    expectEmits((type, value) => {
-      assert.equal(type, "sample");
-      assert.isNotNull(value);
-      assert.typeOf(value.data, "object");
-
-      assert.equal(value.topic, "lifecycle");
-      assert.deepStrictEqual(value.data, {
+    expectSample("lifecycle", lifecycleSchema, (data) => {
+      assert.deepStrictEqual(data, {
         isSensing: true,
         batteryVoltage: 3.624,
         batteryStatus: "OK",
       });
-
-      validateSchema(value.data, lifecycleSchema, { throwError: true });
     });
 
     consume(data);
@@ -285,36 +204,22 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
       },
     };
 
-    expectEmits((type, value) => {
-      assert.equal(type, "sample");
-      assert.isNotNull(value);
-      assert.typeOf(value.data, "object");
-
-      assert.equal(value.topic, "response");
-      assert.deepStrictEqual(value.data, {
+    expectSample("response", responseSchema, (data) => {
+      assert.deepStrictEqual(data, {
         fPort: 50,
         status: "OK",
         type: "HARDWARE_REPORT"
       });
-
-      validateSchema(value.data, responseSchema, { throwError: true });
     });
 
-    expectEmits((type, value) => {
-      assert.equal(type, "sample");
-      assert.isNotNull(value);
-      assert.typeOf(value.data, "object");
-
-      assert.equal(value.topic, "system");
-      assert.deepStrictEqual(value.data, {
+    expectSample("system", systemSchema, (data) => {
+      assert.deepStrictEqual(data, {
         firmwareVersion: "22.0.19",
         hardwareVersion: 2,
         appState: "METERING",
         pipeId: 1,
         pipeType: "Copper 15 mm",
       });
-
-      validateSchema(value.data, systemSchema, { throwError: true });
     });
 
     consume(data);
@@ -328,36 +233,22 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
       },
     };
 
-    expectEmits((type, value) => {
-      assert.equal(type, "sample");
-      assert.isNotNull(value);
-      assert.typeOf(value.data, "object");
-
-      assert.equal(value.topic, "response");
-      assert.deepStrictEqual(value.data, {
+    expectSample("response", responseSchema, (data) => {
+      assert.deepStrictEqual(data, {
         fPort: 4,
         status: "OK",
         type: "HARDWARE_REPORT"
       });
-
-      validateSchema(value.data, responseSchema, { throwError: true });
     });
 
-    expectEmits((type, value) => {
-      assert.equal(type, "sample");
-      assert.isNotNull(value);
-      assert.typeOf(value.data, "object");
-
-      assert.equal(value.topic, "system");
-      assert.deepStrictEqual(value.data, {
+    expectSample("system", systemSchema, (data) => {
+      assert.deepStrictEqual(data, {
         firmwareVersion: "22.0.16",
         hardwareVersion: 2,
         appState: "METERING",
         pipeId: 0,
         pipeType: "Custom",
       });
-
-      validateSchema(value.data, systemSchema, { throwError: true });
     });
 
     consume(data);
@@ -371,32 +262,18 @@ describe("Quandify CubicMeter 1.1 Copper Uplink", () => {
       },
     };
 
-    expectEmits((type, value) => {
-      assert.equal(type, "sample");
-      assert.isNotNull(value);
-      assert.typeOf(value.data, "object");
-
-      assert.equal(value.topic, "response");
-      assert.deepStrictEqual(value.data, {
+    expectSample("response", responseSchema, (data) => {
+      assert.deepStrictEqual(data, {
         fPort: 19,
         status: "OK",
         type: "SETTINGS_REPORT"
       });
-
-      validateSchema(value.data, responseSchema, { throwError: true });
     });
 
-    expectEmits((type, value) => {
-      assert.equal(type, "sample");
-      assert.isNotNull(value);
-      assert.typeOf(value.data, "object");
-
-      assert.equal(value.topic, "settings");
-      assert.deepStrictEqual(value.data, {
+    expectSample("settings", settingsSchema, (data) => {
+      assert.deepStrictEqual(data, {
         lorawanReportInterval: 600,
       });
-
-      validateSchema(value.data, settingsSchema, { throwError: true });
     });
 
     consume(data);
