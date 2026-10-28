@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-# [1.101.3] - 2026-10-27
+# [1.101.3] - 2026-10-28
 
 ### Changed
 
@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
+- Fixed deprecated references in github actions
 - Unconsumed expectations no longer leak into the next test after a failure; `consume()` without expectations now asserts that nothing is emitted
 - Dragino DDS04-LB spec mocks `Date` only inside the decoder instead of replacing the global `Date` for all following specs
 - Remote schema loading errors now report the failing URL instead of a `TypeError`
