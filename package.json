@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "push-to-framer": "node lib/framerSync/framerSync.js",
-    "test": "mocha \"types/**/*.spec.js\" \"lib/**/*.spec.js\"",
-    "integration-test": "TEST_MODE=INTEGRATION API_KEY=$API_KEY SCRIPT_RUN_URL=$SCRIPT_RUN_URL npm run test"
+    "test": "TZ=UTC mocha \"types/**/*.spec.js\" \"lib/**/*.spec.js\"",
+    "integration-test": "TEST_MODE=INTEGRATION npm run test"
   },
   "type": "module",
   "author": "",
