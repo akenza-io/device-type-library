@@ -1,0 +1,46 @@
+{
+  "name": "Multical",
+  "version": "1.0.0",
+  "manufacturer": "Kamstrup",
+  "url": "https://www.kamstrup.com/de-de/news-and-events/news/lorawan-kommunikationsmodul",
+  "description": "Heat and cooling meters (MULTICAL® 403, 603 and 803) with a factory-integrated LoRaWAN communication module that transmits timestamped energy, volume, flow, power and temperature readings. Used for billing and energy management of heating and cooling applications in residential buildings, industrial sites and smart cities.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Energy Metering",
+    "Volume",
+    "Power",
+    "Flow",
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "warning",
+    "error"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Kamstrup",
+    "MULTICAL",
+    "MULTICAL 403",
+    "MULTICAL 603",
+    "MULTICAL 803",
+    "heat meter",
+    "cooling meter",
+    "energy",
+    "volume",
+    "flow",
+    "power",
+    "temperature",
+    "district heating",
+    "billing",
+    "remote reading",
+    "M-Bus",
+    "LoRaWAN"
+  ]
+}

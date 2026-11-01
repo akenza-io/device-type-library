@@ -1,0 +1,26 @@
+{
+  "name": "EMU",
+  "version": "1.0.0",
+  "manufacturer": "Professional II",
+  "url": "https://www.emu-metering.de/emu-professional-ii-3-5-lora/p21a000lo",
+  "description": "",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Energy Metering",
+    "Volume",
+    "Power",
+    "Flow",
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Energy & Utility Metering"
+  ],
+  "keywords": []
+}

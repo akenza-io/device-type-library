@@ -1,0 +1,25 @@
+{
+  "$id": "https://akenza.io/kamstrup/multical/error.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "error",
+  "title": "Error",
+  "properties": {
+    "numberOfErrors": {
+      "title": "Number of errors",
+      "type": "number",
+      "description": "Number of errors raised while decoding the payload"
+    },
+    "errorMessages": {
+      "title": "Error messages",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Error messages raised while decoding the payload",
+      "hideFromKpis": true
+    }
+  },
+  "required": ["numberOfErrors", "errorMessages"]
+}
