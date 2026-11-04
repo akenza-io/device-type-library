@@ -1,0 +1,89 @@
+{
+  "$id": "https://akenza.io/watecco/altO/reporting_configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "reporting_configuration",
+  "title": "Reporting configuration",
+  "properties": {
+    "clusterId": {
+      "title": "Cluster ID",
+      "description": "Cluster of the configured attribute",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "attributeId": {
+      "title": "Attribute ID",
+      "description": "Configured attribute",
+      "type": "string",
+      "hideFromKpis": true
+    },
+    "status": {
+      "title": "Status",
+      "description": "Response status, 0 means success",
+      "type": "integer",
+      "hideFromKpis": true
+    },
+    "newModeConfiguration": {
+      "title": "New mode configuration",
+      "description": "New mode configuration flag",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "causeRequest": {
+      "title": "Cause request",
+      "description": "Requested report cause",
+      "type": "string",
+      "hideFromKpis": true,
+      "enum": [
+        "NONE",
+        "SHORT",
+        "LONG",
+        "RESERVED"
+      ]
+    },
+    "securedIfAlarm": {
+      "title": "Secured if alarm",
+      "description": "Secured if alarm flag",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "secured": {
+      "title": "Secured",
+      "description": "Secured flag",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "noHeaderPort": {
+      "title": "No header port",
+      "description": "No header port flag",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "batch": {
+      "title": "Batch",
+      "description": "Batch report flag",
+      "type": "boolean",
+      "hideFromKpis": true
+    },
+    "minReportInterval": {
+      "title": "Minimum report interval",
+      "description": "Minimum report interval in seconds",
+      "type": "integer",
+      "hideFromKpis": true,
+      "unit": "s"
+    },
+    "maxReportInterval": {
+      "title": "Maximum report interval",
+      "description": "Maximum report interval in seconds",
+      "type": "integer",
+      "hideFromKpis": true,
+      "unit": "s"
+    }
+  },
+  "required": [
+    "clusterId",
+    "attributeId",
+    "status"
+  ]
+}

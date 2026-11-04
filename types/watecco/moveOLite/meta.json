@@ -1,0 +1,41 @@
+{
+  "name": "Move'O Lite",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/product/moveo-lite-lorawan/",
+  "description": "Indoor sensor detecting occupancy with a motion sensor and measuring temperature, humidity and illuminance.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Occupancy",
+    "Temperature",
+    "Humidity",
+    "Light"
+  ],
+  "outputTopics": [
+    "default",
+    "occupancy",
+    "tamper",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Occupancy & Space Utilization",
+    "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Watteco",
+    "Move'O Lite",
+    "occupancy",
+    "motion",
+    "PIR",
+    "temperature",
+    "humidity",
+    "light",
+    "LoRaWAN"
+  ]
+}

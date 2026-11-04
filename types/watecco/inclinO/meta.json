@@ -1,0 +1,34 @@
+{
+  "name": "Inclin'O",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/product/inclino/",
+  "description": "Inclinometer measuring the tilt and acceleration of equipment, with movement detection.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Tilt",
+    "Accelerometer"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Condition Monitoring"
+  ],
+  "keywords": [
+    "Watteco",
+    "Inclin'O",
+    "tilt",
+    "inclination",
+    "accelerometer",
+    "movement",
+    "LoRaWAN"
+  ]
+}

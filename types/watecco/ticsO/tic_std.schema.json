@@ -1,0 +1,601 @@
+{
+  "$id": "https://akenza.io/watecco/ticsO/tic_std.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "tic_std",
+  "title": "TIC standard (Linky)",
+  "properties": {
+    "ADSC": {
+      "title": "ADSC",
+      "description": "TIC field ADSC",
+      "type": "string"
+    },
+    "VTIC": {
+      "title": "VTIC",
+      "description": "TIC field VTIC",
+      "type": "integer"
+    },
+    "DATE": {
+      "title": "DATE",
+      "description": "TIC field DATE",
+      "type": "string"
+    },
+    "DATESeason": {
+      "title": "DATESeason",
+      "description": "Season of the TIC field DATE (E summer, H winter)",
+      "type": "string"
+    },
+    "NGTF": {
+      "title": "NGTF",
+      "description": "TIC field NGTF",
+      "type": "string"
+    },
+    "LTARF": {
+      "title": "LTARF",
+      "description": "TIC field LTARF",
+      "type": "string"
+    },
+    "EAST": {
+      "title": "EAST",
+      "description": "TIC field EAST",
+      "type": "integer"
+    },
+    "EASF01": {
+      "title": "EASF01",
+      "description": "TIC field EASF01",
+      "type": "integer"
+    },
+    "EASF02": {
+      "title": "EASF02",
+      "description": "TIC field EASF02",
+      "type": "integer"
+    },
+    "EASF03": {
+      "title": "EASF03",
+      "description": "TIC field EASF03",
+      "type": "integer"
+    },
+    "EASF04": {
+      "title": "EASF04",
+      "description": "TIC field EASF04",
+      "type": "integer"
+    },
+    "EASF05": {
+      "title": "EASF05",
+      "description": "TIC field EASF05",
+      "type": "integer"
+    },
+    "EASF06": {
+      "title": "EASF06",
+      "description": "TIC field EASF06",
+      "type": "integer"
+    },
+    "EASF07": {
+      "title": "EASF07",
+      "description": "TIC field EASF07",
+      "type": "integer"
+    },
+    "EASF08": {
+      "title": "EASF08",
+      "description": "TIC field EASF08",
+      "type": "integer"
+    },
+    "EASF09": {
+      "title": "EASF09",
+      "description": "TIC field EASF09",
+      "type": "integer"
+    },
+    "EASF10": {
+      "title": "EASF10",
+      "description": "TIC field EASF10",
+      "type": "integer"
+    },
+    "EASD01": {
+      "title": "EASD01",
+      "description": "TIC field EASD01",
+      "type": "integer"
+    },
+    "EASD02": {
+      "title": "EASD02",
+      "description": "TIC field EASD02",
+      "type": "integer"
+    },
+    "EASD03": {
+      "title": "EASD03",
+      "description": "TIC field EASD03",
+      "type": "integer"
+    },
+    "EASD04": {
+      "title": "EASD04",
+      "description": "TIC field EASD04",
+      "type": "integer"
+    },
+    "EAIT": {
+      "title": "EAIT",
+      "description": "TIC field EAIT",
+      "type": "integer"
+    },
+    "ERQ1": {
+      "title": "ERQ1",
+      "description": "TIC field ERQ1",
+      "type": "integer"
+    },
+    "ERQ2": {
+      "title": "ERQ2",
+      "description": "TIC field ERQ2",
+      "type": "integer"
+    },
+    "ERQ3": {
+      "title": "ERQ3",
+      "description": "TIC field ERQ3",
+      "type": "integer"
+    },
+    "ERQ4": {
+      "title": "ERQ4",
+      "description": "TIC field ERQ4",
+      "type": "integer"
+    },
+    "IRMS1": {
+      "title": "IRMS1",
+      "description": "TIC field IRMS1",
+      "type": "integer"
+    },
+    "IRMS2": {
+      "title": "IRMS2",
+      "description": "TIC field IRMS2",
+      "type": "integer"
+    },
+    "IRMS3": {
+      "title": "IRMS3",
+      "description": "TIC field IRMS3",
+      "type": "integer"
+    },
+    "URMS1": {
+      "title": "URMS1",
+      "description": "TIC field URMS1",
+      "type": "integer"
+    },
+    "URMS2": {
+      "title": "URMS2",
+      "description": "TIC field URMS2",
+      "type": "integer"
+    },
+    "URMS3": {
+      "title": "URMS3",
+      "description": "TIC field URMS3",
+      "type": "integer"
+    },
+    "PREF": {
+      "title": "PREF",
+      "description": "TIC field PREF",
+      "type": "integer"
+    },
+    "PCOUP": {
+      "title": "PCOUP",
+      "description": "TIC field PCOUP",
+      "type": "integer"
+    },
+    "SINSTS": {
+      "title": "SINSTS",
+      "description": "TIC field SINSTS",
+      "type": "integer"
+    },
+    "SINSTS1": {
+      "title": "SINSTS1",
+      "description": "TIC field SINSTS1",
+      "type": "integer"
+    },
+    "SINSTS2": {
+      "title": "SINSTS2",
+      "description": "TIC field SINSTS2",
+      "type": "integer"
+    },
+    "SINSTS3": {
+      "title": "SINSTS3",
+      "description": "TIC field SINSTS3",
+      "type": "integer"
+    },
+    "SMAXSN": {
+      "title": "SMAXSN",
+      "description": "TIC field SMAXSN",
+      "type": "integer"
+    },
+    "SMAXSNDate": {
+      "title": "SMAXSNDate",
+      "description": "Date of the TIC field SMAXSN",
+      "type": "string"
+    },
+    "SMAXSNSeason": {
+      "title": "SMAXSNSeason",
+      "description": "Season of the TIC field SMAXSN (E summer, H winter)",
+      "type": "string"
+    },
+    "SMAXSN1": {
+      "title": "SMAXSN1",
+      "description": "TIC field SMAXSN1",
+      "type": "integer"
+    },
+    "SMAXSN1Date": {
+      "title": "SMAXSN1Date",
+      "description": "Date of the TIC field SMAXSN1",
+      "type": "string"
+    },
+    "SMAXSN1Season": {
+      "title": "SMAXSN1Season",
+      "description": "Season of the TIC field SMAXSN1 (E summer, H winter)",
+      "type": "string"
+    },
+    "SMAXSN2": {
+      "title": "SMAXSN2",
+      "description": "TIC field SMAXSN2",
+      "type": "integer"
+    },
+    "SMAXSN2Date": {
+      "title": "SMAXSN2Date",
+      "description": "Date of the TIC field SMAXSN2",
+      "type": "string"
+    },
+    "SMAXSN2Season": {
+      "title": "SMAXSN2Season",
+      "description": "Season of the TIC field SMAXSN2 (E summer, H winter)",
+      "type": "string"
+    },
+    "SMAXSN3": {
+      "title": "SMAXSN3",
+      "description": "TIC field SMAXSN3",
+      "type": "integer"
+    },
+    "SMAXSN3Date": {
+      "title": "SMAXSN3Date",
+      "description": "Date of the TIC field SMAXSN3",
+      "type": "string"
+    },
+    "SMAXSN3Season": {
+      "title": "SMAXSN3Season",
+      "description": "Season of the TIC field SMAXSN3 (E summer, H winter)",
+      "type": "string"
+    },
+    "SMAXSNMinus1": {
+      "title": "SMAXSNMinus1",
+      "description": "TIC field SMAXSNMinus1",
+      "type": "integer"
+    },
+    "SMAXSNMinus1Date": {
+      "title": "SMAXSNMinus1Date",
+      "description": "Date of the TIC field SMAXSNMinus1",
+      "type": "string"
+    },
+    "SMAXSNMinus1Season": {
+      "title": "SMAXSNMinus1Season",
+      "description": "Season of the TIC field SMAXSNMinus1 (E summer, H winter)",
+      "type": "string"
+    },
+    "SMAXSN1Minus1": {
+      "title": "SMAXSN1Minus1",
+      "description": "TIC field SMAXSN1Minus1",
+      "type": "integer"
+    },
+    "SMAXSN1Minus1Date": {
+      "title": "SMAXSN1Minus1Date",
+      "description": "Date of the TIC field SMAXSN1Minus1",
+      "type": "string"
+    },
+    "SMAXSN1Minus1Season": {
+      "title": "SMAXSN1Minus1Season",
+      "description": "Season of the TIC field SMAXSN1Minus1 (E summer, H winter)",
+      "type": "string"
+    },
+    "SMAXSN2Minus1": {
+      "title": "SMAXSN2Minus1",
+      "description": "TIC field SMAXSN2Minus1",
+      "type": "integer"
+    },
+    "SMAXSN2Minus1Date": {
+      "title": "SMAXSN2Minus1Date",
+      "description": "Date of the TIC field SMAXSN2Minus1",
+      "type": "string"
+    },
+    "SMAXSN2Minus1Season": {
+      "title": "SMAXSN2Minus1Season",
+      "description": "Season of the TIC field SMAXSN2Minus1 (E summer, H winter)",
+      "type": "string"
+    },
+    "SMAXSN3Minus1": {
+      "title": "SMAXSN3Minus1",
+      "description": "TIC field SMAXSN3Minus1",
+      "type": "integer"
+    },
+    "SMAXSN3Minus1Date": {
+      "title": "SMAXSN3Minus1Date",
+      "description": "Date of the TIC field SMAXSN3Minus1",
+      "type": "string"
+    },
+    "SMAXSN3Minus1Season": {
+      "title": "SMAXSN3Minus1Season",
+      "description": "Season of the TIC field SMAXSN3Minus1 (E summer, H winter)",
+      "type": "string"
+    },
+    "SINSTI": {
+      "title": "SINSTI",
+      "description": "TIC field SINSTI",
+      "type": "integer"
+    },
+    "SMAXIN": {
+      "title": "SMAXIN",
+      "description": "TIC field SMAXIN",
+      "type": "integer"
+    },
+    "SMAXINDate": {
+      "title": "SMAXINDate",
+      "description": "Date of the TIC field SMAXIN",
+      "type": "string"
+    },
+    "SMAXINSeason": {
+      "title": "SMAXINSeason",
+      "description": "Season of the TIC field SMAXIN (E summer, H winter)",
+      "type": "string"
+    },
+    "SMAXINMinus1": {
+      "title": "SMAXINMinus1",
+      "description": "TIC field SMAXINMinus1",
+      "type": "integer"
+    },
+    "SMAXINMinus1Date": {
+      "title": "SMAXINMinus1Date",
+      "description": "Date of the TIC field SMAXINMinus1",
+      "type": "string"
+    },
+    "SMAXINMinus1Season": {
+      "title": "SMAXINMinus1Season",
+      "description": "Season of the TIC field SMAXINMinus1 (E summer, H winter)",
+      "type": "string"
+    },
+    "CCASN": {
+      "title": "CCASN",
+      "description": "TIC field CCASN",
+      "type": "integer"
+    },
+    "CCASNDate": {
+      "title": "CCASNDate",
+      "description": "Date of the TIC field CCASN",
+      "type": "string"
+    },
+    "CCASNSeason": {
+      "title": "CCASNSeason",
+      "description": "Season of the TIC field CCASN (E summer, H winter)",
+      "type": "string"
+    },
+    "CCASNMinus1": {
+      "title": "CCASNMinus1",
+      "description": "TIC field CCASNMinus1",
+      "type": "integer"
+    },
+    "CCASNMinus1Date": {
+      "title": "CCASNMinus1Date",
+      "description": "Date of the TIC field CCASNMinus1",
+      "type": "string"
+    },
+    "CCASNMinus1Season": {
+      "title": "CCASNMinus1Season",
+      "description": "Season of the TIC field CCASNMinus1 (E summer, H winter)",
+      "type": "string"
+    },
+    "CCAIN": {
+      "title": "CCAIN",
+      "description": "TIC field CCAIN",
+      "type": "integer"
+    },
+    "CCAINDate": {
+      "title": "CCAINDate",
+      "description": "Date of the TIC field CCAIN",
+      "type": "string"
+    },
+    "CCAINSeason": {
+      "title": "CCAINSeason",
+      "description": "Season of the TIC field CCAIN (E summer, H winter)",
+      "type": "string"
+    },
+    "CCAINMinus1": {
+      "title": "CCAINMinus1",
+      "description": "TIC field CCAINMinus1",
+      "type": "integer"
+    },
+    "CCAINMinus1Date": {
+      "title": "CCAINMinus1Date",
+      "description": "Date of the TIC field CCAINMinus1",
+      "type": "string"
+    },
+    "CCAINMinus1Season": {
+      "title": "CCAINMinus1Season",
+      "description": "Season of the TIC field CCAINMinus1 (E summer, H winter)",
+      "type": "string"
+    },
+    "UMOY1": {
+      "title": "UMOY1",
+      "description": "TIC field UMOY1",
+      "type": "integer"
+    },
+    "UMOY1Date": {
+      "title": "UMOY1Date",
+      "description": "Date of the TIC field UMOY1",
+      "type": "string"
+    },
+    "UMOY1Season": {
+      "title": "UMOY1Season",
+      "description": "Season of the TIC field UMOY1 (E summer, H winter)",
+      "type": "string"
+    },
+    "UMOY2": {
+      "title": "UMOY2",
+      "description": "TIC field UMOY2",
+      "type": "integer"
+    },
+    "UMOY2Date": {
+      "title": "UMOY2Date",
+      "description": "Date of the TIC field UMOY2",
+      "type": "string"
+    },
+    "UMOY2Season": {
+      "title": "UMOY2Season",
+      "description": "Season of the TIC field UMOY2 (E summer, H winter)",
+      "type": "string"
+    },
+    "UMOY3": {
+      "title": "UMOY3",
+      "description": "TIC field UMOY3",
+      "type": "integer"
+    },
+    "UMOY3Date": {
+      "title": "UMOY3Date",
+      "description": "Date of the TIC field UMOY3",
+      "type": "string"
+    },
+    "UMOY3Season": {
+      "title": "UMOY3Season",
+      "description": "Season of the TIC field UMOY3 (E summer, H winter)",
+      "type": "string"
+    },
+    "STGE": {
+      "title": "STGE",
+      "description": "TIC field STGE",
+      "type": "string"
+    },
+    "DPM1": {
+      "title": "DPM1",
+      "description": "TIC field DPM1",
+      "type": "integer"
+    },
+    "DPM1Date": {
+      "title": "DPM1Date",
+      "description": "Date of the TIC field DPM1",
+      "type": "string"
+    },
+    "DPM1Season": {
+      "title": "DPM1Season",
+      "description": "Season of the TIC field DPM1 (E summer, H winter)",
+      "type": "string"
+    },
+    "FPM1": {
+      "title": "FPM1",
+      "description": "TIC field FPM1",
+      "type": "integer"
+    },
+    "FPM1Date": {
+      "title": "FPM1Date",
+      "description": "Date of the TIC field FPM1",
+      "type": "string"
+    },
+    "FPM1Season": {
+      "title": "FPM1Season",
+      "description": "Season of the TIC field FPM1 (E summer, H winter)",
+      "type": "string"
+    },
+    "DPM2": {
+      "title": "DPM2",
+      "description": "TIC field DPM2",
+      "type": "integer"
+    },
+    "DPM2Date": {
+      "title": "DPM2Date",
+      "description": "Date of the TIC field DPM2",
+      "type": "string"
+    },
+    "DPM2Season": {
+      "title": "DPM2Season",
+      "description": "Season of the TIC field DPM2 (E summer, H winter)",
+      "type": "string"
+    },
+    "FPM2": {
+      "title": "FPM2",
+      "description": "TIC field FPM2",
+      "type": "integer"
+    },
+    "FPM2Date": {
+      "title": "FPM2Date",
+      "description": "Date of the TIC field FPM2",
+      "type": "string"
+    },
+    "FPM2Season": {
+      "title": "FPM2Season",
+      "description": "Season of the TIC field FPM2 (E summer, H winter)",
+      "type": "string"
+    },
+    "DPM3": {
+      "title": "DPM3",
+      "description": "TIC field DPM3",
+      "type": "integer"
+    },
+    "DPM3Date": {
+      "title": "DPM3Date",
+      "description": "Date of the TIC field DPM3",
+      "type": "string"
+    },
+    "DPM3Season": {
+      "title": "DPM3Season",
+      "description": "Season of the TIC field DPM3 (E summer, H winter)",
+      "type": "string"
+    },
+    "FPM3": {
+      "title": "FPM3",
+      "description": "TIC field FPM3",
+      "type": "integer"
+    },
+    "FPM3Date": {
+      "title": "FPM3Date",
+      "description": "Date of the TIC field FPM3",
+      "type": "string"
+    },
+    "FPM3Season": {
+      "title": "FPM3Season",
+      "description": "Season of the TIC field FPM3 (E summer, H winter)",
+      "type": "string"
+    },
+    "MSG1": {
+      "title": "MSG1",
+      "description": "TIC field MSG1",
+      "type": "string"
+    },
+    "MSG2": {
+      "title": "MSG2",
+      "description": "TIC field MSG2",
+      "type": "string"
+    },
+    "PRM": {
+      "title": "PRM",
+      "description": "TIC field PRM",
+      "type": "string"
+    },
+    "RELAIS": {
+      "title": "RELAIS",
+      "description": "TIC field RELAIS",
+      "type": "integer"
+    },
+    "NTARF": {
+      "title": "NTARF",
+      "description": "TIC field NTARF",
+      "type": "integer"
+    },
+    "NJOURF": {
+      "title": "NJOURF",
+      "description": "TIC field NJOURF",
+      "type": "integer"
+    },
+    "NJOURFPlus1": {
+      "title": "NJOURFPlus1",
+      "description": "TIC field NJOURFPlus1",
+      "type": "integer"
+    },
+    "PJOURFPlus1": {
+      "title": "PJOURFPlus1",
+      "description": "TIC field PJOURFPlus1",
+      "type": "string"
+    },
+    "PPOINTE": {
+      "title": "PPOINTE",
+      "description": "TIC field PPOINTE",
+      "type": "string"
+    }
+  },
+  "required": []
+}

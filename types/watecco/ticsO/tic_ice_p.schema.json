@@ -1,0 +1,251 @@
+{
+  "$id": "https://akenza.io/watecco/ticsO/tic_ice_p.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "tic_ice_p",
+  "title": "TIC ICE period P",
+  "properties": {
+    "DEBUTp": {
+      "title": "DEBUTp",
+      "description": "TIC field DEBUTp",
+      "type": "string"
+    },
+    "FINp": {
+      "title": "FINp",
+      "description": "TIC field FINp",
+      "type": "string"
+    },
+    "CAFp": {
+      "title": "CAFp",
+      "description": "TIC field CAFp",
+      "type": "integer"
+    },
+    "DATEEAp": {
+      "title": "DATEEAp",
+      "description": "TIC field DATEEAp",
+      "type": "string"
+    },
+    "EApP": {
+      "title": "EApP",
+      "description": "TIC field EApP",
+      "type": "integer"
+    },
+    "EApPM": {
+      "title": "EApPM",
+      "description": "TIC field EApPM",
+      "type": "integer"
+    },
+    "EApHCE": {
+      "title": "EApHCE",
+      "description": "TIC field EApHCE",
+      "type": "integer"
+    },
+    "EApHCH": {
+      "title": "EApHCH",
+      "description": "TIC field EApHCH",
+      "type": "integer"
+    },
+    "EApHH": {
+      "title": "EApHH",
+      "description": "TIC field EApHH",
+      "type": "integer"
+    },
+    "EApHCD": {
+      "title": "EApHCD",
+      "description": "TIC field EApHCD",
+      "type": "integer"
+    },
+    "EApHD": {
+      "title": "EApHD",
+      "description": "TIC field EApHD",
+      "type": "integer"
+    },
+    "EApJA": {
+      "title": "EApJA",
+      "description": "TIC field EApJA",
+      "type": "integer"
+    },
+    "EApHPE": {
+      "title": "EApHPE",
+      "description": "TIC field EApHPE",
+      "type": "integer"
+    },
+    "EApHPH": {
+      "title": "EApHPH",
+      "description": "TIC field EApHPH",
+      "type": "integer"
+    },
+    "EApHPD": {
+      "title": "EApHPD",
+      "description": "TIC field EApHPD",
+      "type": "integer"
+    },
+    "EApSCM": {
+      "title": "EApSCM",
+      "description": "TIC field EApSCM",
+      "type": "integer"
+    },
+    "EApHM": {
+      "title": "EApHM",
+      "description": "TIC field EApHM",
+      "type": "integer"
+    },
+    "EApDSM": {
+      "title": "EApDSM",
+      "description": "TIC field EApDSM",
+      "type": "integer"
+    },
+    "DATEERPp": {
+      "title": "DATEERPp",
+      "description": "TIC field DATEERPp",
+      "type": "string"
+    },
+    "ERPpP": {
+      "title": "ERPpP",
+      "description": "TIC field ERPpP",
+      "type": "integer"
+    },
+    "ERPpPM": {
+      "title": "ERPpPM",
+      "description": "TIC field ERPpPM",
+      "type": "integer"
+    },
+    "ERPpHCE": {
+      "title": "ERPpHCE",
+      "description": "TIC field ERPpHCE",
+      "type": "integer"
+    },
+    "ERPpHCH": {
+      "title": "ERPpHCH",
+      "description": "TIC field ERPpHCH",
+      "type": "integer"
+    },
+    "ERPpHH": {
+      "title": "ERPpHH",
+      "description": "TIC field ERPpHH",
+      "type": "integer"
+    },
+    "ERPpHCD": {
+      "title": "ERPpHCD",
+      "description": "TIC field ERPpHCD",
+      "type": "integer"
+    },
+    "ERPpHD": {
+      "title": "ERPpHD",
+      "description": "TIC field ERPpHD",
+      "type": "integer"
+    },
+    "ERPpJA": {
+      "title": "ERPpJA",
+      "description": "TIC field ERPpJA",
+      "type": "integer"
+    },
+    "ERPpHPE": {
+      "title": "ERPpHPE",
+      "description": "TIC field ERPpHPE",
+      "type": "integer"
+    },
+    "ERPpHPH": {
+      "title": "ERPpHPH",
+      "description": "TIC field ERPpHPH",
+      "type": "integer"
+    },
+    "ERPpHPD": {
+      "title": "ERPpHPD",
+      "description": "TIC field ERPpHPD",
+      "type": "integer"
+    },
+    "ERPpSCM": {
+      "title": "ERPpSCM",
+      "description": "TIC field ERPpSCM",
+      "type": "integer"
+    },
+    "ERPpHM": {
+      "title": "ERPpHM",
+      "description": "TIC field ERPpHM",
+      "type": "integer"
+    },
+    "ERPpDSM": {
+      "title": "ERPpDSM",
+      "description": "TIC field ERPpDSM",
+      "type": "integer"
+    },
+    "DATEERNp": {
+      "title": "DATEERNp",
+      "description": "TIC field DATEERNp",
+      "type": "string"
+    },
+    "ERNpP": {
+      "title": "ERNpP",
+      "description": "TIC field ERNpP",
+      "type": "integer"
+    },
+    "ERNpPM": {
+      "title": "ERNpPM",
+      "description": "TIC field ERNpPM",
+      "type": "integer"
+    },
+    "ERNpHCE": {
+      "title": "ERNpHCE",
+      "description": "TIC field ERNpHCE",
+      "type": "integer"
+    },
+    "ERNpHCH": {
+      "title": "ERNpHCH",
+      "description": "TIC field ERNpHCH",
+      "type": "integer"
+    },
+    "ERNpHH": {
+      "title": "ERNpHH",
+      "description": "TIC field ERNpHH",
+      "type": "integer"
+    },
+    "ERNpHCD": {
+      "title": "ERNpHCD",
+      "description": "TIC field ERNpHCD",
+      "type": "integer"
+    },
+    "ERNpHD": {
+      "title": "ERNpHD",
+      "description": "TIC field ERNpHD",
+      "type": "integer"
+    },
+    "ERNpJA": {
+      "title": "ERNpJA",
+      "description": "TIC field ERNpJA",
+      "type": "integer"
+    },
+    "ERNpHPE": {
+      "title": "ERNpHPE",
+      "description": "TIC field ERNpHPE",
+      "type": "integer"
+    },
+    "ERNpHPH": {
+      "title": "ERNpHPH",
+      "description": "TIC field ERNpHPH",
+      "type": "integer"
+    },
+    "ERNpHPD": {
+      "title": "ERNpHPD",
+      "description": "TIC field ERNpHPD",
+      "type": "integer"
+    },
+    "ERNpSCM": {
+      "title": "ERNpSCM",
+      "description": "TIC field ERNpSCM",
+      "type": "integer"
+    },
+    "ERNpHM": {
+      "title": "ERNpHM",
+      "description": "TIC field ERNpHM",
+      "type": "integer"
+    },
+    "ERNpDSM": {
+      "title": "ERNpDSM",
+      "description": "TIC field ERNpDSM",
+      "type": "integer"
+    }
+  },
+  "required": []
+}

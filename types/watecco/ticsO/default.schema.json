@@ -1,0 +1,28 @@
+{
+  "$id": "https://akenza.io/watecco/ticsO/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "activeEnergy": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/wattHours"
+    },
+    "reactiveEnergy": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/reactiveEnergy/voltAmpereReactiveHours"
+    },
+    "sampleCount": {
+      "title": "Sample count",
+      "description": "Number of samples of the measurement",
+      "type": "integer"
+    },
+    "activePower": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activePower/watt"
+    },
+    "reactivePower": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/reactivePower/voltAmpereReactive"
+    }
+  },
+  "required": []
+}

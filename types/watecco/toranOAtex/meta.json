@@ -1,0 +1,41 @@
+{
+  "name": "Toran'O ATEX",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/product/torano-sensor-lorawan/",
+  "description": "ATEX certified sensor for explosive atmospheres with three inputs for pulse counting or dry contacts and analog inputs (4-20 mA, 0-5 V and ratiometric 0-5 V).",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Pulse Input",
+    "Digital Input",
+    "Analog Input"
+  ],
+  "outputTopics": [
+    "default",
+    "input1",
+    "input2",
+    "input3",
+    "pin_state",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Energy & Utility Metering",
+    "Condition Monitoring"
+  ],
+  "keywords": [
+    "Watteco",
+    "Toran'O ATEX",
+    "ATEX",
+    "pulse counter",
+    "4-20 mA",
+    "0-5 V",
+    "analog input",
+    "LoRaWAN"
+  ]
+}

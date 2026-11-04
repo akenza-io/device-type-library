@@ -1,0 +1,35 @@
+{
+  "name": "Clim'O",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/product/climo/",
+  "description": "Indoor sensor measuring temperature and humidity, with tamper detection.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Humidity"
+  ],
+  "outputTopics": [
+    "default",
+    "input1",
+    "tamper",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Watteco",
+    "Clim'O",
+    "temperature",
+    "humidity",
+    "tamper",
+    "LoRaWAN"
+  ]
+}

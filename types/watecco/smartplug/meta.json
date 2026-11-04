@@ -1,0 +1,39 @@
+{
+  "name": "Smartplug",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/product/smart-plug-sensor-lorawan/",
+  "description": "Smart plug measuring the energy and power consumption of the connected appliance, with remote on/off switching.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Energy",
+    "Power",
+    "Voltage",
+    "Digital Output"
+  ],
+  "outputTopics": [
+    "default",
+    "voltage_quality",
+    "output",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Energy & Utility Metering",
+    "Building Automation & Control"
+  ],
+  "keywords": [
+    "Watteco",
+    "Smartplug",
+    "smart plug",
+    "energy",
+    "power",
+    "relay",
+    "LoRaWAN"
+  ]
+}

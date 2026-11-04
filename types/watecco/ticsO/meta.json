@@ -1,0 +1,42 @@
+{
+  "name": "Tics'O",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://github.com/actility/device-catalog/tree/main/vendors/watteco",
+  "description": "Reads the teleinformation (TIC) output of french electricity meters (Linky, CBE, CJE, ICE, PME-PMI) and transmits the meter indexes and power values.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Energy",
+    "Power"
+  ],
+  "outputTopics": [
+    "default",
+    "tic_cbe",
+    "tic_cje",
+    "tic_ice",
+    "tic_ice_p",
+    "tic_ice_p1",
+    "tic_pmepmi",
+    "tic_std",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Watteco",
+    "Tics'O",
+    "TIC",
+    "teleinformation",
+    "Linky",
+    "electricity meter",
+    "energy",
+    "LoRaWAN"
+  ]
+}

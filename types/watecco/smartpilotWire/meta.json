@@ -1,0 +1,33 @@
+{
+  "name": "Smartpilot Wire",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/product/smartpilot-wire/",
+  "description": "Controls electric heaters through their pilot wire and reports the current pilot wire order.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Digital Output"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Building Automation & Control",
+    "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Watteco",
+    "Smartpilot Wire",
+    "pilot wire",
+    "heating",
+    "heater control",
+    "LoRaWAN"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "Monit'O",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/product/monito/",
+  "description": "Voltage monitoring sensor with a 0-100 mV and a 0-70 V input.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Analog Input"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Condition Monitoring"
+  ],
+  "keywords": [
+    "Watteco",
+    "Monit'O",
+    "voltage",
+    "analog input",
+    "monitoring",
+    "LoRaWAN"
+  ]
+}

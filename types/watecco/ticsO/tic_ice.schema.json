@@ -1,0 +1,221 @@
+{
+  "$id": "https://akenza.io/watecco/ticsO/tic_ice.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "tic_ice",
+  "title": "TIC ICE",
+  "properties": {
+    "CONTRAT": {
+      "title": "CONTRAT",
+      "description": "TIC field CONTRAT",
+      "type": "string"
+    },
+    "DATECOUR": {
+      "title": "DATECOUR",
+      "description": "TIC field DATECOUR",
+      "type": "string"
+    },
+    "DATE": {
+      "title": "DATE",
+      "description": "TIC field DATE",
+      "type": "string"
+    },
+    "EA": {
+      "title": "EA",
+      "description": "TIC field EA",
+      "type": "integer"
+    },
+    "ERP": {
+      "title": "ERP",
+      "description": "TIC field ERP",
+      "type": "integer"
+    },
+    "PTCOUR": {
+      "title": "PTCOUR",
+      "description": "TIC field PTCOUR",
+      "type": "string"
+    },
+    "PREAVIS": {
+      "title": "PREAVIS",
+      "description": "TIC field PREAVIS",
+      "type": "string"
+    },
+    "DATEPA1": {
+      "title": "DATEPA1",
+      "description": "TIC field DATEPA1",
+      "type": "string"
+    },
+    "PA1": {
+      "title": "PA1",
+      "description": "TIC field PA1",
+      "type": "integer"
+    },
+    "DATEPA2": {
+      "title": "DATEPA2",
+      "description": "TIC field DATEPA2",
+      "type": "string"
+    },
+    "PA2": {
+      "title": "PA2",
+      "description": "TIC field PA2",
+      "type": "integer"
+    },
+    "DATEPA3": {
+      "title": "DATEPA3",
+      "description": "TIC field DATEPA3",
+      "type": "string"
+    },
+    "PA3": {
+      "title": "PA3",
+      "description": "TIC field PA3",
+      "type": "integer"
+    },
+    "DATEPA4": {
+      "title": "DATEPA4",
+      "description": "TIC field DATEPA4",
+      "type": "string"
+    },
+    "PA4": {
+      "title": "PA4",
+      "description": "TIC field PA4",
+      "type": "integer"
+    },
+    "DATEPA5": {
+      "title": "DATEPA5",
+      "description": "TIC field DATEPA5",
+      "type": "string"
+    },
+    "PA5": {
+      "title": "PA5",
+      "description": "TIC field PA5",
+      "type": "integer"
+    },
+    "DATEPA6": {
+      "title": "DATEPA6",
+      "description": "TIC field DATEPA6",
+      "type": "string"
+    },
+    "PA6": {
+      "title": "PA6",
+      "description": "TIC field PA6",
+      "type": "integer"
+    },
+    "pValue": {
+      "title": "pValue",
+      "description": "TIC field pValue",
+      "type": "integer"
+    },
+    "KDC": {
+      "title": "KDC",
+      "description": "TIC field KDC",
+      "type": "integer"
+    },
+    "KDCD": {
+      "title": "KDCD",
+      "description": "TIC field KDCD",
+      "type": "integer"
+    },
+    "TGPHI": {
+      "title": "TGPHI",
+      "description": "TIC field TGPHI",
+      "type": "number"
+    },
+    "PSP": {
+      "title": "PSP",
+      "description": "TIC field PSP",
+      "type": "integer"
+    },
+    "PSPM": {
+      "title": "PSPM",
+      "description": "TIC field PSPM",
+      "type": "integer"
+    },
+    "PSHPH": {
+      "title": "PSHPH",
+      "description": "TIC field PSHPH",
+      "type": "integer"
+    },
+    "PSHPD": {
+      "title": "PSHPD",
+      "description": "TIC field PSHPD",
+      "type": "integer"
+    },
+    "PSHCH": {
+      "title": "PSHCH",
+      "description": "TIC field PSHCH",
+      "type": "integer"
+    },
+    "PSHCD": {
+      "title": "PSHCD",
+      "description": "TIC field PSHCD",
+      "type": "integer"
+    },
+    "PSHPE": {
+      "title": "PSHPE",
+      "description": "TIC field PSHPE",
+      "type": "integer"
+    },
+    "PSHCE": {
+      "title": "PSHCE",
+      "description": "TIC field PSHCE",
+      "type": "integer"
+    },
+    "PSJA": {
+      "title": "PSJA",
+      "description": "TIC field PSJA",
+      "type": "integer"
+    },
+    "PSHH": {
+      "title": "PSHH",
+      "description": "TIC field PSHH",
+      "type": "integer"
+    },
+    "PSHD": {
+      "title": "PSHD",
+      "description": "TIC field PSHD",
+      "type": "integer"
+    },
+    "PSHM": {
+      "title": "PSHM",
+      "description": "TIC field PSHM",
+      "type": "integer"
+    },
+    "PSDSM": {
+      "title": "PSDSM",
+      "description": "TIC field PSDSM",
+      "type": "integer"
+    },
+    "PSSCM": {
+      "title": "PSSCM",
+      "description": "TIC field PSSCM",
+      "type": "integer"
+    },
+    "PA1MN": {
+      "title": "PA1MN",
+      "description": "TIC field PA1MN",
+      "type": "integer"
+    },
+    "PA10MN": {
+      "title": "PA10MN",
+      "description": "TIC field PA10MN",
+      "type": "integer"
+    },
+    "PREA1MN": {
+      "title": "PREA1MN",
+      "description": "TIC field PREA1MN",
+      "type": "integer"
+    },
+    "PREA10MN": {
+      "title": "PREA10MN",
+      "description": "TIC field PREA10MN",
+      "type": "integer"
+    },
+    "U10MN": {
+      "title": "U10MN",
+      "description": "TIC field U10MN",
+      "type": "integer"
+    }
+  },
+  "required": []
+}

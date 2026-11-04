@@ -1,0 +1,35 @@
+{
+  "name": "HygroTemp'O Remote",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/product/hygrotempo/",
+  "description": "Sensor measuring temperature and humidity with a remote probe, with tamper detection.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Humidity"
+  ],
+  "outputTopics": [
+    "default",
+    "input1",
+    "tamper",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Watteco",
+    "HygroTemp'O Remote",
+    "temperature",
+    "humidity",
+    "tamper",
+    "LoRaWAN"
+  ]
+}

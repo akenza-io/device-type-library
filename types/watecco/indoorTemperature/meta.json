@@ -1,0 +1,30 @@
+{
+  "name": "Indoor Temperature",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/products/indoor-temperature/",
+  "description": "Indoor sensor measuring the ambient temperature.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Watteco",
+    "Indoor Temperature",
+    "temperature",
+    "LoRaWAN"
+  ]
+}

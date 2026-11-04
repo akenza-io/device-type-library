@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.102.0] - 2026-11-03
+
+### Added
+
+- Watteco Alt'O, Atm'O, Clim'O, Clos'O, Fissur'O, HygroTemp'O, HygroTemp'O Remote, In'O, Inclin'O, Indoor Temperature, Intens'O, Lev'O, Monit'O, Move'O Lite, Press'O, PT1000, PT1000 400°C, Smartpilot Wire, Smartplug, Temp'O, Temp'O Outdoor, Temp'O Remote 1 Probe, Temp'O Remote 2 Probes, TH, Tics'O, Toran'O ATEX, Triphas'O kWh, Vaqa'O Lite, Ventil'O and Pulse Sens'O
+
 # [1.101.4] - 2026-10-28
 
 ### Fixed

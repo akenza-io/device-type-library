@@ -1,0 +1,446 @@
+{
+  "$id": "https://akenza.io/watecco/ticsO/tic_pmepmi.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "tic_pmepmi",
+  "title": "TIC PME-PMI",
+  "properties": {
+    "TRAME": {
+      "title": "TRAME",
+      "description": "TIC field TRAME",
+      "type": "string"
+    },
+    "ADS": {
+      "title": "ADS",
+      "description": "TIC field ADS",
+      "type": "string"
+    },
+    "MESURES1": {
+      "title": "MESURES1",
+      "description": "TIC field MESURES1",
+      "type": "string"
+    },
+    "DATE": {
+      "title": "DATE",
+      "description": "TIC field DATE",
+      "type": "string"
+    },
+    "EAs": {
+      "title": "EAs",
+      "description": "TIC field EAs",
+      "type": "integer"
+    },
+    "ERPluss": {
+      "title": "ERPluss",
+      "description": "TIC field ERPluss",
+      "type": "integer"
+    },
+    "ERMinuss": {
+      "title": "ERMinuss",
+      "description": "TIC field ERMinuss",
+      "type": "integer"
+    },
+    "EAPPs": {
+      "title": "EAPPs",
+      "description": "TIC field EAPPs",
+      "type": "integer"
+    },
+    "EAi": {
+      "title": "EAi",
+      "description": "TIC field EAi",
+      "type": "integer"
+    },
+    "ERPlusi": {
+      "title": "ERPlusi",
+      "description": "TIC field ERPlusi",
+      "type": "integer"
+    },
+    "ERMinusi": {
+      "title": "ERMinusi",
+      "description": "TIC field ERMinusi",
+      "type": "integer"
+    },
+    "EAPPi": {
+      "title": "EAPPi",
+      "description": "TIC field EAPPi",
+      "type": "integer"
+    },
+    "PTCOUR1": {
+      "title": "PTCOUR1",
+      "description": "TIC field PTCOUR1",
+      "type": "string"
+    },
+    "TARIFDYN": {
+      "title": "TARIFDYN",
+      "description": "TIC field TARIFDYN",
+      "type": "string"
+    },
+    "ETATDYN1": {
+      "title": "ETATDYN1",
+      "description": "TIC field ETATDYN1",
+      "type": "string"
+    },
+    "PREAVIS1": {
+      "title": "PREAVIS1",
+      "description": "TIC field PREAVIS1",
+      "type": "string"
+    },
+    "TDYN1CD": {
+      "title": "TDYN1CD",
+      "description": "TIC field TDYN1CD",
+      "type": "string"
+    },
+    "TDYN1CDPeriod": {
+      "title": "TDYN1CDPeriod",
+      "description": "Tariff period of the TIC field TDYN1CD",
+      "type": "string"
+    },
+    "TDYN1CF": {
+      "title": "TDYN1CF",
+      "description": "TIC field TDYN1CF",
+      "type": "string"
+    },
+    "TDYN1CFPeriod": {
+      "title": "TDYN1CFPeriod",
+      "description": "Tariff period of the TIC field TDYN1CF",
+      "type": "string"
+    },
+    "TDYN1FD": {
+      "title": "TDYN1FD",
+      "description": "TIC field TDYN1FD",
+      "type": "string"
+    },
+    "TDYN1FDPeriod": {
+      "title": "TDYN1FDPeriod",
+      "description": "Tariff period of the TIC field TDYN1FD",
+      "type": "string"
+    },
+    "TDYN1FF": {
+      "title": "TDYN1FF",
+      "description": "TIC field TDYN1FF",
+      "type": "string"
+    },
+    "TDYN1FFPeriod": {
+      "title": "TDYN1FFPeriod",
+      "description": "Tariff period of the TIC field TDYN1FF",
+      "type": "string"
+    },
+    "MODE": {
+      "title": "MODE",
+      "description": "TIC field MODE",
+      "type": "string"
+    },
+    "CONFIG": {
+      "title": "CONFIG",
+      "description": "TIC field CONFIG",
+      "type": "string"
+    },
+    "DATEPA1": {
+      "title": "DATEPA1",
+      "description": "TIC field DATEPA1",
+      "type": "string"
+    },
+    "PA1s": {
+      "title": "PA1s",
+      "description": "TIC field PA1s",
+      "type": "integer"
+    },
+    "PA1i": {
+      "title": "PA1i",
+      "description": "TIC field PA1i",
+      "type": "integer"
+    },
+    "DATEPA2": {
+      "title": "DATEPA2",
+      "description": "TIC field DATEPA2",
+      "type": "string"
+    },
+    "PA2s": {
+      "title": "PA2s",
+      "description": "TIC field PA2s",
+      "type": "integer"
+    },
+    "PA2i": {
+      "title": "PA2i",
+      "description": "TIC field PA2i",
+      "type": "integer"
+    },
+    "DATEPA3": {
+      "title": "DATEPA3",
+      "description": "TIC field DATEPA3",
+      "type": "string"
+    },
+    "PA3s": {
+      "title": "PA3s",
+      "description": "TIC field PA3s",
+      "type": "integer"
+    },
+    "PA3i": {
+      "title": "PA3i",
+      "description": "TIC field PA3i",
+      "type": "integer"
+    },
+    "DATEPA4": {
+      "title": "DATEPA4",
+      "description": "TIC field DATEPA4",
+      "type": "string"
+    },
+    "PA4s": {
+      "title": "PA4s",
+      "description": "TIC field PA4s",
+      "type": "integer"
+    },
+    "PA4i": {
+      "title": "PA4i",
+      "description": "TIC field PA4i",
+      "type": "integer"
+    },
+    "DATEPA5": {
+      "title": "DATEPA5",
+      "description": "TIC field DATEPA5",
+      "type": "string"
+    },
+    "PA5s": {
+      "title": "PA5s",
+      "description": "TIC field PA5s",
+      "type": "integer"
+    },
+    "PA5i": {
+      "title": "PA5i",
+      "description": "TIC field PA5i",
+      "type": "integer"
+    },
+    "DATEPA6": {
+      "title": "DATEPA6",
+      "description": "TIC field DATEPA6",
+      "type": "string"
+    },
+    "PA6s": {
+      "title": "PA6s",
+      "description": "TIC field PA6s",
+      "type": "integer"
+    },
+    "PA6i": {
+      "title": "PA6i",
+      "description": "TIC field PA6i",
+      "type": "integer"
+    },
+    "DebP": {
+      "title": "DebP",
+      "description": "TIC field DebP",
+      "type": "string"
+    },
+    "EAPs": {
+      "title": "EAPs",
+      "description": "TIC field EAPs",
+      "type": "integer"
+    },
+    "EAPi": {
+      "title": "EAPi",
+      "description": "TIC field EAPi",
+      "type": "integer"
+    },
+    "ERPlusPs": {
+      "title": "ERPlusPs",
+      "description": "TIC field ERPlusPs",
+      "type": "integer"
+    },
+    "ERMinusPs": {
+      "title": "ERMinusPs",
+      "description": "TIC field ERMinusPs",
+      "type": "integer"
+    },
+    "ERPlusPi": {
+      "title": "ERPlusPi",
+      "description": "TIC field ERPlusPi",
+      "type": "integer"
+    },
+    "ERMinusPi": {
+      "title": "ERMinusPi",
+      "description": "TIC field ERMinusPi",
+      "type": "integer"
+    },
+    "DebPMinus1": {
+      "title": "DebPMinus1",
+      "description": "TIC field DebPMinus1",
+      "type": "string"
+    },
+    "FinPMinus1": {
+      "title": "FinPMinus1",
+      "description": "TIC field FinPMinus1",
+      "type": "string"
+    },
+    "EaPMinus1s": {
+      "title": "EaPMinus1s",
+      "description": "TIC field EaPMinus1s",
+      "type": "integer"
+    },
+    "EaPMinus1i": {
+      "title": "EaPMinus1i",
+      "description": "TIC field EaPMinus1i",
+      "type": "integer"
+    },
+    "ERPlusPMinus1s": {
+      "title": "ERPlusPMinus1s",
+      "description": "TIC field ERPlusPMinus1s",
+      "type": "integer"
+    },
+    "ERMinusPMinus1s": {
+      "title": "ERMinusPMinus1s",
+      "description": "TIC field ERMinusPMinus1s",
+      "type": "integer"
+    },
+    "ERPlusPMinus1i": {
+      "title": "ERPlusPMinus1i",
+      "description": "TIC field ERPlusPMinus1i",
+      "type": "integer"
+    },
+    "ERMinusPMinus1i": {
+      "title": "ERMinusPMinus1i",
+      "description": "TIC field ERMinusPMinus1i",
+      "type": "integer"
+    },
+    "PS": {
+      "title": "PS",
+      "description": "TIC field PS",
+      "type": "integer"
+    },
+    "PSUnit": {
+      "title": "PSUnit",
+      "description": "Unit of the TIC field PS",
+      "type": "string"
+    },
+    "PREAVIS": {
+      "title": "PREAVIS",
+      "description": "TIC field PREAVIS",
+      "type": "string"
+    },
+    "PA1MN": {
+      "title": "PA1MN",
+      "description": "TIC field PA1MN",
+      "type": "integer"
+    },
+    "PMAXs": {
+      "title": "PMAXs",
+      "description": "TIC field PMAXs",
+      "type": "integer"
+    },
+    "PMAXsUnit": {
+      "title": "PMAXsUnit",
+      "description": "Unit of the TIC field PMAXs",
+      "type": "string"
+    },
+    "PMAXi": {
+      "title": "PMAXi",
+      "description": "TIC field PMAXi",
+      "type": "integer"
+    },
+    "PMAXiUnit": {
+      "title": "PMAXiUnit",
+      "description": "Unit of the TIC field PMAXi",
+      "type": "string"
+    },
+    "TGPHIs": {
+      "title": "TGPHIs",
+      "description": "TIC field TGPHIs",
+      "type": "number"
+    },
+    "TGPHIi": {
+      "title": "TGPHIi",
+      "description": "TIC field TGPHIi",
+      "type": "number"
+    },
+    "MESURES2": {
+      "title": "MESURES2",
+      "description": "TIC field MESURES2",
+      "type": "string"
+    },
+    "PTCOUR2": {
+      "title": "PTCOUR2",
+      "description": "TIC field PTCOUR2",
+      "type": "string"
+    },
+    "ETATDYN2": {
+      "title": "ETATDYN2",
+      "description": "TIC field ETATDYN2",
+      "type": "string"
+    },
+    "PREAVIS2": {
+      "title": "PREAVIS2",
+      "description": "TIC field PREAVIS2",
+      "type": "string"
+    },
+    "TDYN2CD": {
+      "title": "TDYN2CD",
+      "description": "TIC field TDYN2CD",
+      "type": "string"
+    },
+    "TDYN2CDPeriod": {
+      "title": "TDYN2CDPeriod",
+      "description": "Tariff period of the TIC field TDYN2CD",
+      "type": "string"
+    },
+    "TDYN2CF": {
+      "title": "TDYN2CF",
+      "description": "TIC field TDYN2CF",
+      "type": "string"
+    },
+    "TDYN2CFPeriod": {
+      "title": "TDYN2CFPeriod",
+      "description": "Tariff period of the TIC field TDYN2CF",
+      "type": "string"
+    },
+    "TDYN2FD": {
+      "title": "TDYN2FD",
+      "description": "TIC field TDYN2FD",
+      "type": "string"
+    },
+    "TDYN2FDPeriod": {
+      "title": "TDYN2FDPeriod",
+      "description": "Tariff period of the TIC field TDYN2FD",
+      "type": "string"
+    },
+    "TDYN2FF": {
+      "title": "TDYN2FF",
+      "description": "TIC field TDYN2FF",
+      "type": "string"
+    },
+    "TDYN2FFPeriod": {
+      "title": "TDYN2FFPeriod",
+      "description": "Tariff period of the TIC field TDYN2FF",
+      "type": "string"
+    },
+    "DebP2": {
+      "title": "DebP2",
+      "description": "TIC field DebP2",
+      "type": "string"
+    },
+    "EaPs2": {
+      "title": "EaPs2",
+      "description": "TIC field EaPs2",
+      "type": "integer"
+    },
+    "DebPMinus12": {
+      "title": "DebPMinus12",
+      "description": "TIC field DebPMinus12",
+      "type": "string"
+    },
+    "FinPMinus12": {
+      "title": "FinPMinus12",
+      "description": "TIC field FinPMinus12",
+      "type": "string"
+    },
+    "EaPMinus1s2": {
+      "title": "EaPMinus1s2",
+      "description": "TIC field EaPMinus1s2",
+      "type": "integer"
+    },
+    "DDMES1": {
+      "title": "DDMES1",
+      "description": "TIC field DDMES1",
+      "type": "integer"
+    }
+  },
+  "required": []
+}

@@ -1,0 +1,251 @@
+{
+  "$id": "https://akenza.io/watecco/ticsO/tic_ice_p1.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "tic_ice_p1",
+  "title": "TIC ICE period P-1",
+  "properties": {
+    "DEBUTp1": {
+      "title": "DEBUTp1",
+      "description": "TIC field DEBUTp1",
+      "type": "string"
+    },
+    "FINp1": {
+      "title": "FINp1",
+      "description": "TIC field FINp1",
+      "type": "string"
+    },
+    "CAFp1": {
+      "title": "CAFp1",
+      "description": "TIC field CAFp1",
+      "type": "integer"
+    },
+    "DATEEAp1": {
+      "title": "DATEEAp1",
+      "description": "TIC field DATEEAp1",
+      "type": "string"
+    },
+    "EAp1P": {
+      "title": "EAp1P",
+      "description": "TIC field EAp1P",
+      "type": "integer"
+    },
+    "EAp1PM": {
+      "title": "EAp1PM",
+      "description": "TIC field EAp1PM",
+      "type": "integer"
+    },
+    "EAp1HCE": {
+      "title": "EAp1HCE",
+      "description": "TIC field EAp1HCE",
+      "type": "integer"
+    },
+    "EAp1HCH": {
+      "title": "EAp1HCH",
+      "description": "TIC field EAp1HCH",
+      "type": "integer"
+    },
+    "EAp1HH": {
+      "title": "EAp1HH",
+      "description": "TIC field EAp1HH",
+      "type": "integer"
+    },
+    "EAp1HCD": {
+      "title": "EAp1HCD",
+      "description": "TIC field EAp1HCD",
+      "type": "integer"
+    },
+    "EAp1HD": {
+      "title": "EAp1HD",
+      "description": "TIC field EAp1HD",
+      "type": "integer"
+    },
+    "EAp1JA": {
+      "title": "EAp1JA",
+      "description": "TIC field EAp1JA",
+      "type": "integer"
+    },
+    "EAp1HPE": {
+      "title": "EAp1HPE",
+      "description": "TIC field EAp1HPE",
+      "type": "integer"
+    },
+    "EAp1HPH": {
+      "title": "EAp1HPH",
+      "description": "TIC field EAp1HPH",
+      "type": "integer"
+    },
+    "EAp1HPD": {
+      "title": "EAp1HPD",
+      "description": "TIC field EAp1HPD",
+      "type": "integer"
+    },
+    "EAp1SCM": {
+      "title": "EAp1SCM",
+      "description": "TIC field EAp1SCM",
+      "type": "integer"
+    },
+    "EAp1HM": {
+      "title": "EAp1HM",
+      "description": "TIC field EAp1HM",
+      "type": "integer"
+    },
+    "EAp1DSM": {
+      "title": "EAp1DSM",
+      "description": "TIC field EAp1DSM",
+      "type": "integer"
+    },
+    "DATEERPp1": {
+      "title": "DATEERPp1",
+      "description": "TIC field DATEERPp1",
+      "type": "string"
+    },
+    "ERPp1P": {
+      "title": "ERPp1P",
+      "description": "TIC field ERPp1P",
+      "type": "integer"
+    },
+    "ERPp1PM": {
+      "title": "ERPp1PM",
+      "description": "TIC field ERPp1PM",
+      "type": "integer"
+    },
+    "ERPp1HCE": {
+      "title": "ERPp1HCE",
+      "description": "TIC field ERPp1HCE",
+      "type": "integer"
+    },
+    "ERPp1HCH": {
+      "title": "ERPp1HCH",
+      "description": "TIC field ERPp1HCH",
+      "type": "integer"
+    },
+    "ERPp1HH": {
+      "title": "ERPp1HH",
+      "description": "TIC field ERPp1HH",
+      "type": "integer"
+    },
+    "ERPp1HCD": {
+      "title": "ERPp1HCD",
+      "description": "TIC field ERPp1HCD",
+      "type": "integer"
+    },
+    "ERPp1HD": {
+      "title": "ERPp1HD",
+      "description": "TIC field ERPp1HD",
+      "type": "integer"
+    },
+    "ERPp1JA": {
+      "title": "ERPp1JA",
+      "description": "TIC field ERPp1JA",
+      "type": "integer"
+    },
+    "ERPp1HPE": {
+      "title": "ERPp1HPE",
+      "description": "TIC field ERPp1HPE",
+      "type": "integer"
+    },
+    "ERPp1HPH": {
+      "title": "ERPp1HPH",
+      "description": "TIC field ERPp1HPH",
+      "type": "integer"
+    },
+    "ERPp1HPD": {
+      "title": "ERPp1HPD",
+      "description": "TIC field ERPp1HPD",
+      "type": "integer"
+    },
+    "ERPp1SCM": {
+      "title": "ERPp1SCM",
+      "description": "TIC field ERPp1SCM",
+      "type": "integer"
+    },
+    "ERPp1HM": {
+      "title": "ERPp1HM",
+      "description": "TIC field ERPp1HM",
+      "type": "integer"
+    },
+    "ERPp1DSM": {
+      "title": "ERPp1DSM",
+      "description": "TIC field ERPp1DSM",
+      "type": "integer"
+    },
+    "DATEERNp1": {
+      "title": "DATEERNp1",
+      "description": "TIC field DATEERNp1",
+      "type": "string"
+    },
+    "ERNp1P": {
+      "title": "ERNp1P",
+      "description": "TIC field ERNp1P",
+      "type": "integer"
+    },
+    "ERNp1PM": {
+      "title": "ERNp1PM",
+      "description": "TIC field ERNp1PM",
+      "type": "integer"
+    },
+    "ERNp1HCE": {
+      "title": "ERNp1HCE",
+      "description": "TIC field ERNp1HCE",
+      "type": "integer"
+    },
+    "ERNp1HCH": {
+      "title": "ERNp1HCH",
+      "description": "TIC field ERNp1HCH",
+      "type": "integer"
+    },
+    "ERNp1HH": {
+      "title": "ERNp1HH",
+      "description": "TIC field ERNp1HH",
+      "type": "integer"
+    },
+    "ERNp1HCD": {
+      "title": "ERNp1HCD",
+      "description": "TIC field ERNp1HCD",
+      "type": "integer"
+    },
+    "ERNp1HD": {
+      "title": "ERNp1HD",
+      "description": "TIC field ERNp1HD",
+      "type": "integer"
+    },
+    "ERNp1JA": {
+      "title": "ERNp1JA",
+      "description": "TIC field ERNp1JA",
+      "type": "integer"
+    },
+    "ERNp1HPE": {
+      "title": "ERNp1HPE",
+      "description": "TIC field ERNp1HPE",
+      "type": "integer"
+    },
+    "ERNp1HPH": {
+      "title": "ERNp1HPH",
+      "description": "TIC field ERNp1HPH",
+      "type": "integer"
+    },
+    "ERNp1HPD": {
+      "title": "ERNp1HPD",
+      "description": "TIC field ERNp1HPD",
+      "type": "integer"
+    },
+    "ERNp1SCM": {
+      "title": "ERNp1SCM",
+      "description": "TIC field ERNp1SCM",
+      "type": "integer"
+    },
+    "ERNp1HM": {
+      "title": "ERNp1HM",
+      "description": "TIC field ERNp1HM",
+      "type": "integer"
+    },
+    "ERNp1DSM": {
+      "title": "ERNp1DSM",
+      "description": "TIC field ERNp1DSM",
+      "type": "integer"
+    }
+  },
+  "required": []
+}

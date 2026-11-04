@@ -1,0 +1,31 @@
+{
+  "name": "Temp'O Outdoor",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/product/tempo-lorawan/",
+  "description": "Outdoor sensor measuring the ambient temperature.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Weather & Outdoor Environment"
+  ],
+  "keywords": [
+    "Watteco",
+    "Temp'O Outdoor",
+    "temperature",
+    "outdoor",
+    "LoRaWAN"
+  ]
+}

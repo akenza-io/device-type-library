@@ -1,0 +1,61 @@
+{
+  "$id": "https://akenza.io/watecco/smartplug/voltage_quality.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "voltage_quality",
+  "title": "Voltage quality",
+  "properties": {
+    "frequency": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/frequency/hertz"
+    },
+    "frequencyMin": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/frequency/hertz",
+      "title": "Frequency min"
+    },
+    "frequencyMax": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/frequency/hertz",
+      "title": "Frequency max"
+    },
+    "vrms": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
+      "title": "Voltage RMS"
+    },
+    "vrmsMin": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
+      "title": "Voltage RMS min"
+    },
+    "vrmsMax": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
+      "title": "Voltage RMS max"
+    },
+    "vpeak": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
+      "title": "Voltage peak"
+    },
+    "vpeakMin": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
+      "title": "Voltage peak min"
+    },
+    "vpeakMax": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
+      "title": "Voltage peak max"
+    },
+    "overVoltage": {
+      "title": "Over voltages",
+      "description": "Number of over voltages",
+      "type": "integer"
+    },
+    "sagVoltage": {
+      "title": "Sag voltages",
+      "description": "Number of voltage sags",
+      "type": "integer"
+    },
+    "brownoutNumber": {
+      "title": "Brownouts",
+      "description": "Number of brownouts",
+      "type": "integer"
+    }
+  },
+  "required": []
+}

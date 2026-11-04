@@ -1,0 +1,39 @@
+{
+  "name": "Pulse Sens'O",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/product/pulse-senso-atex-zone-1/",
+  "description": "Pulse counter with three inputs for water, gas, electricity or energy meters with a pulse or dry contact output. Transmits the accumulated number of pulses and the state of each input, which allows remote reading of existing meters.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Pulse Input",
+    "Digital Input"
+  ],
+  "outputTopics": [
+    "input1",
+    "input2",
+    "input3",
+    "pin_state",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Watteco",
+    "Pulse Sens'O",
+    "pulse counter",
+    "dry contact",
+    "electricity meter",
+    "gas meter",
+    "water meter",
+    "meter reading",
+    "LoRaWAN"
+  ]
+}

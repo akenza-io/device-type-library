@@ -1,0 +1,39 @@
+{
+  "name": "Clos'O",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/product/closo/",
+  "description": "Opening sensor detecting the state of doors and windows, counting the openings, with tamper detection.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Door/Window",
+    "Digital Input"
+  ],
+  "outputTopics": [
+    "default",
+    "input1",
+    "input2",
+    "tamper",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Safety & Security",
+    "Building Automation & Control"
+  ],
+  "keywords": [
+    "Watteco",
+    "Clos'O",
+    "door",
+    "window",
+    "opening",
+    "contact",
+    "tamper",
+    "LoRaWAN"
+  ]
+}

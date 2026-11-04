@@ -1,0 +1,32 @@
+{
+  "name": "Temp'O",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/product/tempo-lorawan/",
+  "description": "Indoor sensor measuring the ambient temperature, with tamper detection.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "tamper",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort"
+  ],
+  "keywords": [
+    "Watteco",
+    "Temp'O",
+    "temperature",
+    "tamper",
+    "LoRaWAN"
+  ]
+}

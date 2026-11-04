@@ -1,0 +1,33 @@
+{
+  "name": "PT1000 400°C",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/product/pt1000/",
+  "description": "Temperature sensor with a PT1000 probe for high temperatures up to 400 °C.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Condition Monitoring"
+  ],
+  "keywords": [
+    "Watteco",
+    "PT1000 400°C",
+    "temperature",
+    "PT1000",
+    "probe",
+    "high temperature",
+    "LoRaWAN"
+  ]
+}

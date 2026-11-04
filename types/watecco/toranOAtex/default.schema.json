@@ -1,0 +1,31 @@
+{
+  "$id": "https://akenza.io/watecco/toranOAtex/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "current": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/milliAmpere",
+      "title": "Current (4-20 mA)"
+    },
+    "voltage1": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
+      "title": "Voltage 1 (0-5 V)"
+    },
+    "voltage2": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
+      "title": "Voltage 2 (0-5 V)"
+    },
+    "ratiometricVoltage1": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
+      "title": "Ratiometric voltage 1 (0-5 V)"
+    },
+    "ratiometricVoltage2": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
+      "title": "Ratiometric voltage 2 (0-5 V)"
+    }
+  },
+  "required": []
+}
