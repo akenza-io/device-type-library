@@ -1,0 +1,36 @@
+{
+  "name": "Lev'O",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/product/levo/",
+  "description": "Level sensor interface reading the 4-20 mA or 0-10 V output of level and pressure probes.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Analog Input"
+  ],
+  "outputTopics": [
+    "default",
+    "input1",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Condition Monitoring",
+    "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Watteco",
+    "Lev'O",
+    "level",
+    "4-20 mA",
+    "0-10 V",
+    "analog input",
+    "probe",
+    "LoRaWAN"
+  ]
+}

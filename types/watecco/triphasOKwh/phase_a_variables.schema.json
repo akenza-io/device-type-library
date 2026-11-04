@@ -1,0 +1,25 @@
+{
+  "$id": "https://akenza.io/watecco/triphasOKwh/phase_a_variables.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "phase_a_variables",
+  "title": "Phase A variables",
+  "properties": {
+    "vrms": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt",
+      "title": "Voltage RMS"
+    },
+    "irms": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/ampere",
+      "title": "Current RMS"
+    },
+    "angle": {
+      "title": "Phase angle",
+      "description": "Phase angle between voltage and current in degrees",
+      "type": "integer",
+      "unit": "°"
+    }
+  },
+  "required": []
+}

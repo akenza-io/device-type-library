@@ -1,0 +1,16 @@
+{
+  "$id": "https://akenza.io/watecco/climO/tamper.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "tamper",
+  "title": "Tamper",
+  "properties": {
+    "tamper": {
+      "title": "Tamper",
+      "description": "True if the device has been tampered with (case opened)",
+      "type": "boolean"
+    }
+  },
+  "required": []
+}

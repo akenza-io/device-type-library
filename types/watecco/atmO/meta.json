@@ -1,0 +1,41 @@
+{
+  "name": "Atm'O",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/product/atmo/",
+  "description": "Indoor sensor measuring temperature, humidity and atmospheric pressure, with two inputs for pulse counting or dry contacts.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature",
+    "Humidity",
+    "Pressure",
+    "Pulse Input",
+    "Digital Input"
+  ],
+  "outputTopics": [
+    "default",
+    "input1",
+    "input2",
+    "pin_state",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort",
+    "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Watteco",
+    "Atm'O",
+    "temperature",
+    "humidity",
+    "pressure",
+    "pulse counter",
+    "LoRaWAN"
+  ]
+}

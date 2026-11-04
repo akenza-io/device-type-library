@@ -1,0 +1,39 @@
+{
+  "name": "Press'O",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/product/presso/",
+  "description": "Sensor interface reading the 4-20 mA or 0-10 V output of pressure probes, with an input for pulse counting or dry contacts.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Analog Input",
+    "Pulse Input",
+    "Digital Input"
+  ],
+  "outputTopics": [
+    "default",
+    "input1",
+    "pin_state",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Condition Monitoring",
+    "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Watteco",
+    "Press'O",
+    "pressure",
+    "4-20 mA",
+    "0-10 V",
+    "analog input",
+    "pulse counter",
+    "LoRaWAN"
+  ]
+}

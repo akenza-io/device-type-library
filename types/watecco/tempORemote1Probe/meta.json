@@ -1,0 +1,32 @@
+{
+  "name": "Temp'O Remote 1 Probe",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/product/hygrotempo-lorawan/",
+  "description": "Temperature sensor with one remote probe, for example for fridges, freezers or pipes.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Cold Chain & Temperature Compliance"
+  ],
+  "keywords": [
+    "Watteco",
+    "Temp'O Remote 1 Probe",
+    "temperature",
+    "probe",
+    "cold chain",
+    "LoRaWAN"
+  ]
+}

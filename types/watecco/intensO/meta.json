@@ -1,0 +1,33 @@
+{
+  "name": "Intens'O",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/product/intenso/",
+  "description": "Current sensor measuring the RMS current of a cable with a current clamp, for example to monitor the operation of machines.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "AC Current"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Energy & Utility Metering",
+    "Condition Monitoring"
+  ],
+  "keywords": [
+    "Watteco",
+    "Intens'O",
+    "current",
+    "current clamp",
+    "machine monitoring",
+    "LoRaWAN"
+  ]
+}

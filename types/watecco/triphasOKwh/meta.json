@@ -1,0 +1,48 @@
+{
+  "name": "Triphas'O kWh",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/product/triphaso/",
+  "description": "Non-intrusive sensor that measures the electrical energy (in kWh), power and phase values of three-phase or single-phase installations. Used for energy management in industrial and commercial buildings.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "AC Current",
+    "Energy",
+    "Power",
+    "Voltage"
+  ],
+  "outputTopics": [
+    "input1",
+    "pin_state",
+    "phase_a",
+    "phase_a_variables",
+    "phase_abc",
+    "phase_b",
+    "phase_b_variables",
+    "phase_c",
+    "phase_c_variables",
+    "energy",
+    "power",
+    "output",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Watteco",
+    "Triphas'O kWh",
+    "three-phase",
+    "energy",
+    "power",
+    "current clamp",
+    "kWh",
+    "LoRaWAN"
+  ]
+}

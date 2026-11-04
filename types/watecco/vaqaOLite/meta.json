@@ -1,0 +1,43 @@
+{
+  "name": "Vaqa'O Lite",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/product/vaqao-plus-lite-lorawan/",
+  "description": "Indoor air quality sensor measuring CO2, temperature, humidity, pressure and illuminance, with an air quality index and occupancy detection.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "CO2",
+    "Temperature",
+    "Humidity",
+    "Pressure",
+    "Light",
+    "Occupancy"
+  ],
+  "outputTopics": [
+    "default",
+    "occupancy",
+    "tamper",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort",
+    "Occupancy & Space Utilization"
+  ],
+  "keywords": [
+    "Watteco",
+    "Vaqa'O Lite",
+    "CO2",
+    "air quality",
+    "IAQ",
+    "temperature",
+    "humidity",
+    "occupancy",
+    "LoRaWAN"
+  ]
+}

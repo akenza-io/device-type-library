@@ -1,0 +1,36 @@
+{
+  "name": "Fissur'O",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/product/fissuro/",
+  "description": "Crack monitoring sensor measuring the opening of a crack and its tilt, together with the temperature, for structural health monitoring.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Distance",
+    "Tilt",
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Condition Monitoring"
+  ],
+  "keywords": [
+    "Watteco",
+    "Fissur'O",
+    "crack",
+    "fissure",
+    "structural health",
+    "tilt",
+    "distance",
+    "LoRaWAN"
+  ]
+}

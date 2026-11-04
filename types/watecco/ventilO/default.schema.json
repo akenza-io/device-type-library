@@ -1,0 +1,38 @@
+{
+  "$id": "https://akenza.io/watecco/ventilO/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "temperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    },
+    "differentialPressure": {
+      "title": "Differential pressure",
+      "description": "Differential pressure in Pa",
+      "type": "integer",
+      "unit": "Pa"
+    },
+    "meanDifferentialPressure": {
+      "title": "Mean differential pressure",
+      "description": "Mean differential pressure since the last report in Pa",
+      "type": "number",
+      "unit": "Pa"
+    },
+    "minDifferentialPressure": {
+      "title": "Minimal differential pressure",
+      "description": "Minimal differential pressure since the last report in Pa",
+      "type": "number",
+      "unit": "Pa"
+    },
+    "maxDifferentialPressure": {
+      "title": "Maximal differential pressure",
+      "description": "Maximal differential pressure since the last report in Pa",
+      "type": "number",
+      "unit": "Pa"
+    }
+  },
+  "required": []
+}

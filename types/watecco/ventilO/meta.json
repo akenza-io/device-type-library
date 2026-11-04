@@ -1,0 +1,39 @@
+{
+  "name": "Ventil'O",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/product/ventilo-sensor-lorawan/",
+  "description": "Differential pressure sensor for ventilation systems, for example to monitor the clogging of air filters, also measuring the temperature.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Differential Pressure",
+    "Temperature",
+    "Pulse Input",
+    "Digital Input"
+  ],
+  "outputTopics": [
+    "default",
+    "input1",
+    "pin_state",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Condition Monitoring",
+    "Building Automation & Control"
+  ],
+  "keywords": [
+    "Watteco",
+    "Ventil'O",
+    "differential pressure",
+    "ventilation",
+    "air filter",
+    "HVAC",
+    "LoRaWAN"
+  ]
+}

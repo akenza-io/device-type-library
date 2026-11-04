@@ -1,0 +1,43 @@
+{
+  "$id": "https://akenza.io/watecco/triphasOKwh/phase_c.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "phase_c",
+  "title": "Phase C",
+  "properties": {
+    "positiveActiveEnergy": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours",
+      "title": "Positive active energy"
+    },
+    "negativeActiveEnergy": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours",
+      "title": "Negative active energy"
+    },
+    "positiveReactiveEnergy": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/reactiveEnergy/kiloVoltAmpereReactiveHours",
+      "title": "Positive reactive energy"
+    },
+    "negativeReactiveEnergy": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/reactiveEnergy/kiloVoltAmpereReactiveHours",
+      "title": "Negative reactive energy"
+    },
+    "positiveActivePower": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activePower/watt",
+      "title": "Positive active power"
+    },
+    "negativeActivePower": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activePower/watt",
+      "title": "Negative active power"
+    },
+    "positiveReactivePower": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/reactivePower/voltAmpereReactive",
+      "title": "Positive reactive power"
+    },
+    "negativeReactivePower": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/reactivePower/voltAmpereReactive",
+      "title": "Negative reactive power"
+    }
+  },
+  "required": []
+}

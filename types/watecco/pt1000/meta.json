@@ -1,0 +1,31 @@
+{
+  "name": "PT1000",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/product/pt1000/",
+  "description": "Temperature sensor with a PT1000 probe, for example for heating, cooling and process monitoring.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Condition Monitoring"
+  ],
+  "keywords": [
+    "Watteco",
+    "PT1000",
+    "temperature",
+    "probe",
+    "LoRaWAN"
+  ]
+}

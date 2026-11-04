@@ -1,0 +1,36 @@
+{
+  "name": "Alt'O",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/product/alto/",
+  "description": "Accelerometer based sensor measuring tilt, distance and acceleration, for example to monitor the position of hatches, valves or structures.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Accelerometer",
+    "Tilt",
+    "Distance",
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Condition Monitoring"
+  ],
+  "keywords": [
+    "Watteco",
+    "Alt'O",
+    "tilt",
+    "inclination",
+    "distance",
+    "accelerometer",
+    "LoRaWAN"
+  ]
+}

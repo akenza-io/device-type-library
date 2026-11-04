@@ -1,0 +1,48 @@
+{
+  "name": "In'O",
+  "version": "1.0.0",
+  "manufacturer": "nke Watteco",
+  "url": "https://www.watteco.com/product/ino/",
+  "description": "Input/output module with ten inputs for pulse counting or dry contacts and four relay outputs.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Pulse Input",
+    "Digital Input",
+    "Digital Output"
+  ],
+  "outputTopics": [
+    "input1",
+    "input2",
+    "input3",
+    "input4",
+    "input5",
+    "input6",
+    "input7",
+    "input8",
+    "input9",
+    "input10",
+    "pin_state",
+    "output",
+    "lifecycle",
+    "configuration",
+    "reporting_configuration"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Building Automation & Control",
+    "Energy & Utility Metering"
+  ],
+  "keywords": [
+    "Watteco",
+    "In'O",
+    "input",
+    "output",
+    "relay",
+    "pulse counter",
+    "dry contact",
+    "LoRaWAN"
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "$id": "https://akenza.io/watecco/ticsO/tic_cbe.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "tic_cbe",
+  "title": "TIC CBE (historic)",
+  "properties": {
+    "ADIR1": {
+      "title": "ADIR1",
+      "description": "TIC field ADIR1",
+      "type": "integer"
+    },
+    "ADIR2": {
+      "title": "ADIR2",
+      "description": "TIC field ADIR2",
+      "type": "integer"
+    },
+    "ADIR3": {
+      "title": "ADIR3",
+      "description": "TIC field ADIR3",
+      "type": "integer"
+    },
+    "ADCO": {
+      "title": "ADCO",
+      "description": "TIC field ADCO",
+      "type": "string"
+    },
+    "OPTARIF": {
+      "title": "OPTARIF",
+      "description": "TIC field OPTARIF",
+      "type": "string"
+    },
+    "ISOUSC": {
+      "title": "ISOUSC",
+      "description": "TIC field ISOUSC",
+      "type": "integer"
+    },
+    "BASE": {
+      "title": "BASE",
+      "description": "TIC field BASE",
+      "type": "integer"
+    },
+    "HCHC": {
+      "title": "HCHC",
+      "description": "TIC field HCHC",
+      "type": "integer"
+    },
+    "HCHP": {
+      "title": "HCHP",
+      "description": "TIC field HCHP",
+      "type": "integer"
+    },
+    "EJPHN": {
+      "title": "EJPHN",
+      "description": "TIC field EJPHN",
+      "type": "integer"
+    },
+    "EJPHPM": {
+      "title": "EJPHPM",
+      "description": "TIC field EJPHPM",
+      "type": "integer"
+    },
+    "BBRHCJB": {
+      "title": "BBRHCJB",
+      "description": "TIC field BBRHCJB",
+      "type": "integer"
+    },
+    "BBRHPJB": {
+      "title": "BBRHPJB",
+      "description": "TIC field BBRHPJB",
+      "type": "integer"
+    },
+    "BBRHCJW": {
+      "title": "BBRHCJW",
+      "description": "TIC field BBRHCJW",
+      "type": "integer"
+    },
+    "BBRHPJW": {
+      "title": "BBRHPJW",
+      "description": "TIC field BBRHPJW",
+      "type": "integer"
+    },
+    "BBRHCJR": {
+      "title": "BBRHCJR",
+      "description": "TIC field BBRHCJR",
+      "type": "integer"
+    },
+    "BBRHPJR": {
+      "title": "BBRHPJR",
+      "description": "TIC field BBRHPJR",
+      "type": "integer"
+    },
+    "PEJP": {
+      "title": "PEJP",
+      "description": "TIC field PEJP",
+      "type": "integer"
+    },
+    "GAZ": {
+      "title": "GAZ",
+      "description": "TIC field GAZ",
+      "type": "integer"
+    },
+    "AUTRE": {
+      "title": "AUTRE",
+      "description": "TIC field AUTRE",
+      "type": "integer"
+    },
+    "PTEC": {
+      "title": "PTEC",
+      "description": "TIC field PTEC",
+      "type": "string"
+    },
+    "DEMAIN": {
+      "title": "DEMAIN",
+      "description": "TIC field DEMAIN",
+      "type": "string"
+    },
+    "IINST": {
+      "title": "IINST",
+      "description": "TIC field IINST",
+      "type": "integer"
+    },
+    "IINST1": {
+      "title": "IINST1",
+      "description": "TIC field IINST1",
+      "type": "integer"
+    },
+    "IINST2": {
+      "title": "IINST2",
+      "description": "TIC field IINST2",
+      "type": "integer"
+    },
+    "IINST3": {
+      "title": "IINST3",
+      "description": "TIC field IINST3",
+      "type": "integer"
+    },
+    "ADPS": {
+      "title": "ADPS",
+      "description": "TIC field ADPS",
+      "type": "integer"
+    },
+    "IMAX": {
+      "title": "IMAX",
+      "description": "TIC field IMAX",
+      "type": "integer"
+    },
+    "IMAX1": {
+      "title": "IMAX1",
+      "description": "TIC field IMAX1",
+      "type": "integer"
+    },
+    "IMAX2": {
+      "title": "IMAX2",
+      "description": "TIC field IMAX2",
+      "type": "integer"
+    },
+    "IMAX3": {
+      "title": "IMAX3",
+      "description": "TIC field IMAX3",
+      "type": "integer"
+    },
+    "PMAX": {
+      "title": "PMAX",
+      "description": "TIC field PMAX",
+      "type": "integer"
+    },
+    "PAPP": {
+      "title": "PAPP",
+      "description": "TIC field PAPP",
+      "type": "integer"
+    },
+    "HHPHC": {
+      "title": "HHPHC",
+      "description": "TIC field HHPHC",
+      "type": "string"
+    },
+    "MOTDETAT": {
+      "title": "MOTDETAT",
+      "description": "TIC field MOTDETAT",
+      "type": "string"
+    },
+    "PPOT": {
+      "title": "PPOT",
+      "description": "TIC field PPOT",
+      "type": "integer"
+    }
+  },
+  "required": []
+}

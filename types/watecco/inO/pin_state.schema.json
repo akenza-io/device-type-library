@@ -1,0 +1,51 @@
+{
+  "$id": "https://akenza.io/watecco/inO/pin_state.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "pin_state",
+  "title": "Pin state",
+  "properties": {
+    "pinState1": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/digitalInput/boolean",
+      "title": "Pin state 1"
+    },
+    "pinState2": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/digitalInput/boolean",
+      "title": "Pin state 2"
+    },
+    "pinState3": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/digitalInput/boolean",
+      "title": "Pin state 3"
+    },
+    "pinState4": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/digitalInput/boolean",
+      "title": "Pin state 4"
+    },
+    "pinState5": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/digitalInput/boolean",
+      "title": "Pin state 5"
+    },
+    "pinState6": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/digitalInput/boolean",
+      "title": "Pin state 6"
+    },
+    "pinState7": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/digitalInput/boolean",
+      "title": "Pin state 7"
+    },
+    "pinState8": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/digitalInput/boolean",
+      "title": "Pin state 8"
+    },
+    "pinState9": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/digitalInput/boolean",
+      "title": "Pin state 9"
+    },
+    "pinState10": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/digitalInput/boolean",
+      "title": "Pin state 10"
+    }
+  },
+  "required": []
+}

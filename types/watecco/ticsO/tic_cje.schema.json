@@ -1,0 +1,196 @@
+{
+  "$id": "https://akenza.io/watecco/ticsO/tic_cje.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "tic_cje",
+  "title": "TIC CJE",
+  "properties": {
+    "JAUNE": {
+      "title": "JAUNE",
+      "description": "TIC field JAUNE",
+      "type": "string"
+    },
+    "JAUNEPt": {
+      "title": "JAUNEPt",
+      "description": "TIC field JAUNEPt",
+      "type": "string"
+    },
+    "JAUNEDp": {
+      "title": "JAUNEDp",
+      "description": "TIC field JAUNEDp",
+      "type": "string"
+    },
+    "JAUNEAbcde": {
+      "title": "JAUNEAbcde",
+      "description": "TIC field JAUNEAbcde",
+      "type": "integer"
+    },
+    "JAUNEKp": {
+      "title": "JAUNEKp",
+      "description": "TIC field JAUNEKp",
+      "type": "integer"
+    },
+    "ENERG1": {
+      "title": "ENERG1",
+      "description": "TIC field ENERG value 1",
+      "type": "integer"
+    },
+    "ENERG2": {
+      "title": "ENERG2",
+      "description": "TIC field ENERG2",
+      "type": "integer"
+    },
+    "ENERG3": {
+      "title": "ENERG3",
+      "description": "TIC field ENERG3",
+      "type": "integer"
+    },
+    "ENERG4": {
+      "title": "ENERG4",
+      "description": "TIC field ENERG4",
+      "type": "integer"
+    },
+    "ENERG5": {
+      "title": "ENERG5",
+      "description": "TIC field ENERG5",
+      "type": "integer"
+    },
+    "ENERG6": {
+      "title": "ENERG6",
+      "description": "TIC field ENERG6",
+      "type": "integer"
+    },
+    "PERCC": {
+      "title": "PERCC",
+      "description": "TIC field PERCC",
+      "type": "string"
+    },
+    "PERCCCg": {
+      "title": "PERCCCg",
+      "description": "TIC field PERCCCg",
+      "type": "integer"
+    },
+    "PMAXC1": {
+      "title": "PMAXC1",
+      "description": "TIC field PMAXC value 1",
+      "type": "integer"
+    },
+    "PMAXC2": {
+      "title": "PMAXC2",
+      "description": "TIC field PMAXC2",
+      "type": "integer"
+    },
+    "PMAXC3": {
+      "title": "PMAXC3",
+      "description": "TIC field PMAXC3",
+      "type": "integer"
+    },
+    "PMAXC4": {
+      "title": "PMAXC4",
+      "description": "TIC field PMAXC4",
+      "type": "integer"
+    },
+    "TDEPA1": {
+      "title": "TDEPA1",
+      "description": "TIC field TDEPA value 1",
+      "type": "integer"
+    },
+    "TDEPA2": {
+      "title": "TDEPA2",
+      "description": "TIC field TDEPA2",
+      "type": "integer"
+    },
+    "TDEPA3": {
+      "title": "TDEPA3",
+      "description": "TIC field TDEPA3",
+      "type": "integer"
+    },
+    "TDEPA4": {
+      "title": "TDEPA4",
+      "description": "TIC field TDEPA4",
+      "type": "integer"
+    },
+    "PERCP": {
+      "title": "PERCP",
+      "description": "TIC field PERCP",
+      "type": "string"
+    },
+    "PERCPCg": {
+      "title": "PERCPCg",
+      "description": "TIC field PERCPCg",
+      "type": "integer"
+    },
+    "PMAXP1": {
+      "title": "PMAXP1",
+      "description": "TIC field PMAXP value 1",
+      "type": "integer"
+    },
+    "PMAXP2": {
+      "title": "PMAXP2",
+      "description": "TIC field PMAXP2",
+      "type": "integer"
+    },
+    "PMAXP3": {
+      "title": "PMAXP3",
+      "description": "TIC field PMAXP3",
+      "type": "integer"
+    },
+    "PMAXP4": {
+      "title": "PMAXP4",
+      "description": "TIC field PMAXP4",
+      "type": "integer"
+    },
+    "PSOUSC1": {
+      "title": "PSOUSC1",
+      "description": "TIC field PSOUSC value 1",
+      "type": "integer"
+    },
+    "PSOUSC2": {
+      "title": "PSOUSC2",
+      "description": "TIC field PSOUSC2",
+      "type": "integer"
+    },
+    "PSOUSC3": {
+      "title": "PSOUSC3",
+      "description": "TIC field PSOUSC3",
+      "type": "integer"
+    },
+    "PSOUSC4": {
+      "title": "PSOUSC4",
+      "description": "TIC field PSOUSC4",
+      "type": "integer"
+    },
+    "PSOUSP1": {
+      "title": "PSOUSP1",
+      "description": "TIC field PSOUSP value 1",
+      "type": "integer"
+    },
+    "PSOUSP2": {
+      "title": "PSOUSP2",
+      "description": "TIC field PSOUSP2",
+      "type": "integer"
+    },
+    "PSOUSP3": {
+      "title": "PSOUSP3",
+      "description": "TIC field PSOUSP3",
+      "type": "integer"
+    },
+    "PSOUSP4": {
+      "title": "PSOUSP4",
+      "description": "TIC field PSOUSP4",
+      "type": "integer"
+    },
+    "FCOU": {
+      "title": "FCOU",
+      "description": "TIC field FCOU",
+      "type": "string"
+    },
+    "FCOUDd": {
+      "title": "FCOUDd",
+      "description": "TIC field FCOUDd",
+      "type": "integer"
+    }
+  },
+  "required": []
+}
