@@ -9,7 +9,12 @@ const decentlab_decoder = {
       values: [{
         name: 'dielectric_permittivity',
         displayName: 'Dielectric permittivity',
-        convert: function (x) { return Math.pow(((0.000000002887 * Math.pow(x[0] / 10, 3)) - (0.0000208 * Math.pow(x[0] / 10, 2)) + (0.05276 * (x[0] / 10)) - 43.39), 2); }
+        convert: function (x) {
+          // Powers written out as multiplications, GraalJS computes Math.pow(t, 3) as t * t * t while V8 does not
+          var t = x[0] / 10;
+          var p = (0.000000002887 * (t * t * t)) - (0.0000208 * (t * t)) + (0.05276 * t) - 43.39;
+          return p * p;
+        }
       },
       {
         name: 'volumetric_water_content',

@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-# [1.102.0] - 2026-10-26
+# [1.101.5] - 2026-11-05
 
 ### Added
 
@@ -21,12 +21,28 @@ All notable changes to this project will be documented in this file.
 - Sensative - Drip
 - Sensative - Drip-Oil
 
+### Changed
+
+- Made tests faster
+- Testing errors are now none cascading
+- Fixed test for dds04-lb
+
+# [1.101.4] - 2026-10-28
+
 ### Fixed
 
-- Dragino DDS04-LB - Test no longer leaks its Date mock into other tests
-- Sensative MS guard alert
-- Sensative MS guard - Frames are now decoded at their actual position, so payloads with several frames no longer emit wrong values. The battery level is optional in the lifecycle topic
-- Sensative Presence - The foil alarm frame now reads one byte, so the frames following it are no longer misaligned
+- Decentlab TRS11: `dielectricPermittivity` now decodes identically in Node.js and GraalJS by writing out `Math.pow` as multiplications
+
+### Changed
+
+- Option to test in integration mode is now extended
+- Dates manipulated while testing are now forced onto UTC
+
+# [1.101.3] - 2026-10-28
+
+### Fixed
+
+- Fixed deprecated references in github actions
 
 # [1.101.2] - 2026-10-27
 
