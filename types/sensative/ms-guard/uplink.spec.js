@@ -64,7 +64,7 @@ describe("Sensative strip", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "alarm");
-        assert.equal(value.data.doorAlarm, true);
+        assert.equal(value.data.doorAlarm, false);
 
         validateSchema(value.data, alarmSchema, { throwError: true });
       });

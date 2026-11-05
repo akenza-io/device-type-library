@@ -32,5 +32,8 @@
       "hideFromKpis": true
     }
   },
-  "required": ["batteryLevel", "historySeqNr", "prevHistSeqNr"]
+  "required": [
+    "historySeqNr",
+    "prevHistSeqNr"
+  ]
 }

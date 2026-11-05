@@ -1,0 +1,118 @@
+{
+  "$id": "https://akenza.io/wika/trw/technical_alarm.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "technical_alarm",
+  "title": "Technical alarm",
+  "properties": {
+    "channel": {
+      "title": "Channel",
+      "type": "string",
+      "description": "Channel",
+      "hideFromKpis": true
+    },
+    "mvStatError": {
+      "title": "Mv stat error",
+      "type": "boolean",
+      "description": "Mv stat error",
+      "hideFromKpis": true
+    },
+    "mvStatLimHi": {
+      "title": "Mv stat lim hi",
+      "type": "boolean",
+      "description": "Mv stat lim hi",
+      "hideFromKpis": true
+    },
+    "mvStatLimLo": {
+      "title": "Mv stat lim lo",
+      "type": "boolean",
+      "description": "Mv stat lim lo",
+      "hideFromKpis": true
+    },
+    "mvStatWarning": {
+      "title": "Mv stat warning",
+      "type": "boolean",
+      "description": "Mv stat warning",
+      "hideFromKpis": true
+    },
+    "mvStatWarning2": {
+      "title": "Mv stat warning 2",
+      "type": "boolean",
+      "description": "Mv stat warning 2",
+      "hideFromKpis": true
+    },
+    "openCondition": {
+      "title": "Open condition",
+      "type": "boolean",
+      "description": "Open condition",
+      "hideFromKpis": true
+    },
+    "outOfMaxMeasurementRange": {
+      "title": "Out of max measurement range",
+      "type": "boolean",
+      "description": "Out of max measurement range",
+      "hideFromKpis": true
+    },
+    "outOfMaxPhysicalSensorLimit": {
+      "title": "Out of max physical sensor limit",
+      "type": "boolean",
+      "description": "Out of max physical sensor limit",
+      "hideFromKpis": true
+    },
+    "outOfMinMeasurementRange": {
+      "title": "Out of min measurement range",
+      "type": "boolean",
+      "description": "Out of min measurement range",
+      "hideFromKpis": true
+    },
+    "outOfMinPhysicalSensorLimit": {
+      "title": "Out of min physical sensor limit",
+      "type": "boolean",
+      "description": "Out of min physical sensor limit",
+      "hideFromKpis": true
+    },
+    "sensor": {
+      "title": "Sensor",
+      "type": "string",
+      "description": "Sensor",
+      "hideFromKpis": true
+    },
+    "sensorCommunicationError": {
+      "title": "Sensor communication error",
+      "type": "boolean",
+      "description": "Sensor communication error",
+      "hideFromKpis": true
+    },
+    "sensorIdentificationError": {
+      "title": "Sensor identification error",
+      "type": "boolean",
+      "description": "Sensor identification error",
+      "hideFromKpis": true
+    },
+    "sensorInternalError": {
+      "title": "Sensor internal error",
+      "type": "boolean",
+      "description": "Sensor internal error",
+      "hideFromKpis": true
+    },
+    "shortCondition": {
+      "title": "Short condition",
+      "type": "boolean",
+      "description": "Short condition",
+      "hideFromKpis": true
+    },
+    "ssmCommunicationError": {
+      "title": "Ssm communication error",
+      "type": "boolean",
+      "description": "Ssm communication error",
+      "hideFromKpis": true
+    },
+    "ssmIdentityError": {
+      "title": "Ssm identity error",
+      "type": "boolean",
+      "description": "Ssm identity error",
+      "hideFromKpis": true
+    }
+  }
+}

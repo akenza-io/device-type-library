@@ -1,0 +1,38 @@
+{
+  "name": "Strips Multi-sensor +Drip Oil",
+  "version": "1.0.0",
+  "manufacturer": "Sensative",
+  "url": "https://sensative.com/sensors/strips-sensors-for-lorawan/strips-multi-sensor-oil-for-lorawan/",
+  "description": "Thin sensor that detects leaks and distinguishes between water and oil, and also measures temperature. Its flat design allows mounting in small spaces or on pipes of machinery and hydraulic systems.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Leak",
+    "Temperature"
+  ],
+  "outputTopics": [
+    "alarm",
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Leak Detection",
+    "Condition Monitoring"
+  ],
+  "keywords": [
+    "Sensative",
+    "Strips",
+    "Strips Drip Oil",
+    "Multi-sensor",
+    "oil leak",
+    "water leak",
+    "leak detection",
+    "machinery",
+    "hydraulics",
+    "temperature",
+    "LoRaWAN"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$id": "https://akenza.io/wika/gd20w/device_alarm.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "device_alarm",
+  "title": "Device alarm",
+  "properties": {
+    "alarmType": {
+      "title": "Alarm type",
+      "type": "string",
+      "description": "Alarm type",
+      "hideFromKpis": true
+    }
+  }
+}

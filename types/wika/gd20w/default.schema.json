@@ -1,0 +1,40 @@
+{
+  "$id": "https://akenza.io/wika/gd20w/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "channel0": {
+      "title": "Channel 0",
+      "type": "number",
+      "description": "Channel 0"
+    },
+    "channel1": {
+      "title": "Channel 1",
+      "type": "number",
+      "description": "Channel 1"
+    },
+    "channel4": {
+      "title": "Channel 4",
+      "type": "number",
+      "description": "Channel 4"
+    },
+    "channel5": {
+      "title": "Channel 5",
+      "type": "number",
+      "description": "Channel 5"
+    },
+    "channel3": {
+      "title": "Channel 3",
+      "type": "number",
+      "description": "Channel 3"
+    },
+    "channel2": {
+      "title": "Channel 2",
+      "type": "number",
+      "description": "Channel 2"
+    }
+  }
+}

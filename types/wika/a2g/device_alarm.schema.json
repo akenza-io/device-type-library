@@ -1,0 +1,106 @@
+{
+  "$id": "https://akenza.io/wika/a2g/device_alarm.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "device_alarm",
+  "title": "Device alarm",
+  "properties": {
+    "adcConverterError": {
+      "title": "Adc converter error",
+      "type": "boolean",
+      "description": "Adc converter error",
+      "hideFromKpis": true
+    },
+    "analogOutput1LoadFaultError": {
+      "title": "Analog output 1 load fault error",
+      "type": "boolean",
+      "description": "Analog output 1 load fault error",
+      "hideFromKpis": true
+    },
+    "analogOutput1OverRangeError": {
+      "title": "Analog output 1 over range error",
+      "type": "boolean",
+      "description": "Analog output 1 over range error",
+      "hideFromKpis": true
+    },
+    "analogOutput1OverTemperatureError": {
+      "title": "Analog output 1 over temperature error",
+      "type": "boolean",
+      "description": "Analog output 1 over temperature error",
+      "hideFromKpis": true
+    },
+    "analogOutput2LoadFaultError": {
+      "title": "Analog output 2 load fault error",
+      "type": "boolean",
+      "description": "Analog output 2 load fault error",
+      "hideFromKpis": true
+    },
+    "analogOutput2OverRangeError": {
+      "title": "Analog output 2 over range error",
+      "type": "boolean",
+      "description": "Analog output 2 over range error",
+      "hideFromKpis": true
+    },
+    "analogOutput2OverTemperatureError": {
+      "title": "Analog output 2 over temperature error",
+      "type": "boolean",
+      "description": "Analog output 2 over temperature error",
+      "hideFromKpis": true
+    },
+    "factoryOptionsDeleteError": {
+      "title": "Factory options delete error",
+      "type": "boolean",
+      "description": "Factory options delete error",
+      "hideFromKpis": true
+    },
+    "factoryOptionsWriteError": {
+      "title": "Factory options write error",
+      "type": "boolean",
+      "description": "Factory options write error",
+      "hideFromKpis": true
+    },
+    "invalidFactoryOptionsError": {
+      "title": "Invalid factory options error",
+      "type": "boolean",
+      "description": "Invalid factory options error",
+      "hideFromKpis": true
+    },
+    "invalidSignalSourceSpecifiedError": {
+      "title": "Invalid signal source specified error",
+      "type": "boolean",
+      "description": "Invalid signal source specified error",
+      "hideFromKpis": true
+    },
+    "pressureSensorNoResponseError": {
+      "title": "Pressure sensor no response error",
+      "type": "boolean",
+      "description": "Pressure sensor no response error",
+      "hideFromKpis": true
+    },
+    "pressureSensorTimeoutError": {
+      "title": "Pressure sensor timeout error",
+      "type": "boolean",
+      "description": "Pressure sensor timeout error",
+      "hideFromKpis": true
+    },
+    "userSettingsInvalidError": {
+      "title": "User settings invalid error",
+      "type": "boolean",
+      "description": "User settings invalid error",
+      "hideFromKpis": true
+    },
+    "userSettingsReadWriteError": {
+      "title": "User settings read write error",
+      "type": "boolean",
+      "description": "User settings read write error",
+      "hideFromKpis": true
+    },
+    "zeroOffsetOverRangeError": {
+      "title": "Zero offset over range error",
+      "type": "boolean",
+      "description": "Zero offset over range error",
+      "hideFromKpis": true
+    }
+  }
+}

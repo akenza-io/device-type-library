@@ -1,0 +1,52 @@
+{
+  "$id": "https://akenza.io/wika/flru-netris3/device_alarm.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "device_alarm",
+  "title": "Device alarm",
+  "properties": {
+    "airTimeLimitation": {
+      "title": "Air time limitation",
+      "type": "boolean",
+      "description": "Air time limitation",
+      "hideFromKpis": true
+    },
+    "dutyCycleAlarm": {
+      "title": "Duty cycle alarm",
+      "type": "boolean",
+      "description": "Duty cycle alarm",
+      "hideFromKpis": true
+    },
+    "lowBattery": {
+      "title": "Low battery",
+      "type": "boolean",
+      "description": "Low battery",
+      "hideFromKpis": true
+    },
+    "lowVoltage": {
+      "title": "Low voltage",
+      "type": "boolean",
+      "description": "Low voltage",
+      "hideFromKpis": true
+    },
+    "memoryError": {
+      "title": "Memory error",
+      "type": "boolean",
+      "description": "Memory error",
+      "hideFromKpis": true
+    },
+    "temperatureAlarm": {
+      "title": "Temperature alarm",
+      "type": "boolean",
+      "description": "Temperature alarm",
+      "hideFromKpis": true
+    },
+    "uartAlarm": {
+      "title": "Uart alarm",
+      "type": "boolean",
+      "description": "Uart alarm",
+      "hideFromKpis": true
+    }
+  }
+}

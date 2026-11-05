@@ -1,0 +1,50 @@
+{
+  "$id": "https://akenza.io/wika/flru-netris3/lifecycle.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "lifecycle",
+  "title": "Lifecycle",
+  "properties": {
+    "ableToComputeBatteryLevel": {
+      "title": "Able to compute battery level",
+      "type": "boolean",
+      "description": "Able to compute battery level",
+      "hideFromKpis": true
+    },
+    "batteryLevel": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/device/schema.json#/$defs/batteryLevel/percent",
+      "hideFromKpis": true
+    },
+    "hasCommunicationModuleRestarted": {
+      "title": "Has communication module restarted",
+      "type": "boolean",
+      "description": "Has communication module restarted",
+      "hideFromKpis": true
+    },
+    "mainPowered": {
+      "title": "Main powered",
+      "type": "boolean",
+      "description": "Main powered",
+      "hideFromKpis": true
+    },
+    "numberOfMeasurements": {
+      "title": "Number of measurements",
+      "type": "number",
+      "description": "Number of measurements",
+      "hideFromKpis": true
+    },
+    "numberOfTransmissions": {
+      "title": "Number of transmissions",
+      "type": "number",
+      "description": "Number of transmissions",
+      "hideFromKpis": true
+    },
+    "revisionCounter": {
+      "title": "Revision counter",
+      "type": "number",
+      "description": "Revision counter",
+      "hideFromKpis": true
+    }
+  }
+}

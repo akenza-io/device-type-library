@@ -1,0 +1,35 @@
+{
+  "name": "Strips Multi-sensor +Drip",
+  "version": "1.0.0",
+  "manufacturer": "Sensative",
+  "url": "https://sensative.com/sensors/strips-sensors-for-lorawan/strips-lorawan-ms-drip/",
+  "description": "Thin sensor that detects water leaks and also measures temperature. Its flat design allows concealed mounting in small spaces such as under sinks or appliances.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Leak",
+    "Temperature"
+  ],
+  "outputTopics": [
+    "alarm",
+    "default",
+    "lifecycle"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Leak Detection"
+  ],
+  "keywords": [
+    "Sensative",
+    "Strips",
+    "Strips Drip",
+    "Multi-sensor",
+    "water leak",
+    "leak detection",
+    "flood",
+    "temperature",
+    "LoRaWAN"
+  ]
+}

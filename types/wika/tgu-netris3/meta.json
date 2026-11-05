@@ -1,0 +1,40 @@
+{
+  "name": "TGU + NETRIS3",
+  "version": "1.0.0",
+  "manufacturer": "Wika",
+  "url": "https://www.wika.com/en-en/tgu73_100.WIKA",
+  "description": "Bimetal thermometer with electronic output combined with the NETRIS3 radio unit that measures the process temperature and the device temperature. Used for remote monitoring of process temperature in addition to on-site indication, with process and technical alarms.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "process_alarm",
+    "technical_alarm",
+    "device_alarm",
+    "device_information",
+    "configuration",
+    "lifecycle",
+    "error"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Condition Monitoring"
+  ],
+  "keywords": [
+    "WIKA",
+    "TGU",
+    "NETRIS3",
+    "thermometer",
+    "temperature",
+    "process temperature",
+    "thermowell",
+    "process alarm",
+    "remote monitoring",
+    "lorawan"
+  ]
+}

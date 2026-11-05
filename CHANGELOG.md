@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 
 # [1.101.5] - 2026-11-05
 
+### Added
+
+- WIKA A2G-520
+- WIKA FLRU + NETRIS3
+- WIKA GD-20-W
+- WIKA NETRIS F
+- WIKA PEU + NETRIS3
+- WIKA PGU + NETRIS3
+- WIKA PGW23.100.11
+- WIKA TGU + NETRIS3
+- WIKA TRU + NETRIS3
+- WIKA TRW
+
+- Sensative - Comfort
+- Sensative - Drip
+- Sensative - Drip-Oil
+
 ### Changed
 
 - Made tests faster

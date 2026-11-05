@@ -1,0 +1,74 @@
+{
+  "$id": "https://akenza.io/wika/netrisf/technical_alarm.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "technical_alarm",
+  "title": "Technical alarm",
+  "properties": {
+    "alarmStatus": {
+      "title": "Alarm status",
+      "type": "string",
+      "description": "Alarm status",
+      "enum": [
+        "triggered",
+        "disappeared"
+      ],
+      "hideFromKpis": true
+    },
+    "alarmType": {
+      "title": "Alarm type",
+      "type": "string",
+      "description": "Alarm type",
+      "hideFromKpis": true
+    },
+    "channel": {
+      "title": "Channel",
+      "type": "string",
+      "description": "Channel",
+      "hideFromKpis": true
+    },
+    "outOfMaxPhysicalSensorLimit": {
+      "title": "Out of max physical sensor limit",
+      "type": "boolean",
+      "description": "Out of max physical sensor limit",
+      "hideFromKpis": true
+    },
+    "outOfMinPhysicalSensorLimit": {
+      "title": "Out of min physical sensor limit",
+      "type": "boolean",
+      "description": "Out of min physical sensor limit",
+      "hideFromKpis": true
+    },
+    "sensor": {
+      "title": "Sensor",
+      "type": "string",
+      "description": "Sensor",
+      "hideFromKpis": true
+    },
+    "sensorALUSaturation": {
+      "title": "Sensor ALU saturation",
+      "type": "boolean",
+      "description": "Sensor ALU saturation",
+      "hideFromKpis": true
+    },
+    "sensorBusy": {
+      "title": "Sensor busy",
+      "type": "boolean",
+      "description": "Sensor busy",
+      "hideFromKpis": true
+    },
+    "sensorCommunicationError": {
+      "title": "Sensor communication error",
+      "type": "boolean",
+      "description": "Sensor communication error",
+      "hideFromKpis": true
+    },
+    "sensorMemoryIntegrity": {
+      "title": "Sensor memory integrity",
+      "type": "boolean",
+      "description": "Sensor memory integrity",
+      "hideFromKpis": true
+    }
+  }
+}

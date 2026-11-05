@@ -1,0 +1,40 @@
+{
+  "name": "A2G-520",
+  "version": "1.0.0",
+  "manufacturer": "Wika",
+  "url": "https://www.wika.com/en-en/a2g_520.WIKA",
+  "description": "Differential pressure and air flow transmitter for ventilation systems with additional inputs and relay outputs. Used for remote monitoring of fans, filters and air flow in HVAC installations.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Pressure",
+    "Flow"
+  ],
+  "outputTopics": [
+    "default",
+    "technical_alarm",
+    "device_alarm",
+    "device_information",
+    "lifecycle",
+    "error"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Building Automation & Control",
+    "Condition Monitoring"
+  ],
+  "keywords": [
+    "WIKA",
+    "A2G-520",
+    "A2G",
+    "differential pressure",
+    "air flow",
+    "HVAC",
+    "ventilation",
+    "fan monitoring",
+    "filter monitoring",
+    "lorawan"
+  ]
+}

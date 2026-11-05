@@ -1,0 +1,41 @@
+{
+  "name": "PGU + NETRIS3",
+  "version": "1.0.0",
+  "manufacturer": "Wika",
+  "url": "https://www.wika.com/en-en/pgu23_100_pgu26_100.WIKA",
+  "description": "Pressure gauge with electronic output combined with the NETRIS3 radio unit that measures the process pressure and the device temperature. Used for remote monitoring of process pressure in addition to on-site indication, with process and technical alarms.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Pressure",
+    "Temperature"
+  ],
+  "outputTopics": [
+    "default",
+    "process_alarm",
+    "technical_alarm",
+    "device_alarm",
+    "device_information",
+    "configuration",
+    "lifecycle",
+    "error"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Condition Monitoring"
+  ],
+  "keywords": [
+    "WIKA",
+    "PGU",
+    "NETRIS3",
+    "pressure gauge",
+    "pressure",
+    "temperature",
+    "process pressure",
+    "process alarm",
+    "remote monitoring",
+    "lorawan"
+  ]
+}

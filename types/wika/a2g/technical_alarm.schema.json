@@ -1,0 +1,58 @@
+{
+  "$id": "https://akenza.io/wika/a2g/technical_alarm.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "technical_alarm",
+  "title": "Technical alarm",
+  "properties": {
+    "analogOutput1SignalOverload": {
+      "title": "Analog output 1 signal overload",
+      "type": "boolean",
+      "description": "Analog output 1 signal overload",
+      "hideFromKpis": true
+    },
+    "analogOutput2SignalOverload": {
+      "title": "Analog output 2 signal overload",
+      "type": "boolean",
+      "description": "Analog output 2 signal overload",
+      "hideFromKpis": true
+    },
+    "modbusCommunicationError": {
+      "title": "Modbus communication error",
+      "type": "boolean",
+      "description": "Modbus communication error",
+      "hideFromKpis": true
+    },
+    "pressureSignalOverload": {
+      "title": "Pressure signal overload",
+      "type": "boolean",
+      "description": "Pressure signal overload",
+      "hideFromKpis": true
+    },
+    "temperatureInput3SignalOverload": {
+      "title": "Temperature input 3 signal overload",
+      "type": "boolean",
+      "description": "Temperature input 3 signal overload",
+      "hideFromKpis": true
+    },
+    "temperatureInput4SignalOverload": {
+      "title": "Temperature input 4 signal overload",
+      "type": "boolean",
+      "description": "Temperature input 4 signal overload",
+      "hideFromKpis": true
+    },
+    "voltageInput1SignalOverload": {
+      "title": "Voltage input 1 signal overload",
+      "type": "boolean",
+      "description": "Voltage input 1 signal overload",
+      "hideFromKpis": true
+    },
+    "voltageInput2SignalOverload": {
+      "title": "Voltage input 2 signal overload",
+      "type": "boolean",
+      "description": "Voltage input 2 signal overload",
+      "hideFromKpis": true
+    }
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "$id": "https://akenza.io/wika/a2g/device_information.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "device_information",
+  "title": "Device information",
+  "properties": {
+    "channel0Measurand": {
+      "title": "Channel 0 measurand",
+      "type": "number",
+      "description": "Channel 0 measurand",
+      "hideFromKpis": true
+    },
+    "channel0MeasurandName": {
+      "title": "Channel 0 measurand name",
+      "type": "string",
+      "description": "Channel 0 measurand name",
+      "hideFromKpis": true
+    },
+    "channel0MeasurementRangeEnd": {
+      "title": "Channel 0 measurement range end",
+      "type": "number",
+      "description": "Channel 0 measurement range end",
+      "hideFromKpis": true
+    },
+    "channel0MeasurementRangeStart": {
+      "title": "Channel 0 measurement range start",
+      "type": "number",
+      "description": "Channel 0 measurement range start",
+      "hideFromKpis": true
+    },
+    "channel0Unit": {
+      "title": "Channel 0 unit",
+      "type": "number",
+      "description": "Channel 0 unit",
+      "hideFromKpis": true
+    },
+    "channel0UnitName": {
+      "title": "Channel 0 unit name",
+      "type": "string",
+      "description": "Channel 0 unit name",
+      "hideFromKpis": true
+    },
+    "channel1Measurand": {
+      "title": "Channel 1 measurand",
+      "type": "number",
+      "description": "Channel 1 measurand",
+      "hideFromKpis": true
+    },
+    "channel1MeasurandName": {
+      "title": "Channel 1 measurand name",
+      "type": "string",
+      "description": "Channel 1 measurand name",
+      "hideFromKpis": true
+    },
+    "channel1Unit": {
+      "title": "Channel 1 unit",
+      "type": "number",
+      "description": "Channel 1 unit",
+      "hideFromKpis": true
+    },
+    "channel1UnitName": {
+      "title": "Channel 1 unit name",
+      "type": "string",
+      "description": "Channel 1 unit name",
+      "hideFromKpis": true
+    },
+    "channel2Measurand": {
+      "title": "Channel 2 measurand",
+      "type": "number",
+      "description": "Channel 2 measurand",
+      "hideFromKpis": true
+    },
+    "channel2MeasurandName": {
+      "title": "Channel 2 measurand name",
+      "type": "string",
+      "description": "Channel 2 measurand name",
+      "hideFromKpis": true
+    },
+    "channel2Unit": {
+      "title": "Channel 2 unit",
+      "type": "number",
+      "description": "Channel 2 unit",
+      "hideFromKpis": true
+    },
+    "channel2UnitName": {
+      "title": "Channel 2 unit name",
+      "type": "string",
+      "description": "Channel 2 unit name",
+      "hideFromKpis": true
+    },
+    "channel3Measurand": {
+      "title": "Channel 3 measurand",
+      "type": "number",
+      "description": "Channel 3 measurand",
+      "hideFromKpis": true
+    },
+    "channel3MeasurandName": {
+      "title": "Channel 3 measurand name",
+      "type": "string",
+      "description": "Channel 3 measurand name",
+      "hideFromKpis": true
+    },
+    "channel3Unit": {
+      "title": "Channel 3 unit",
+      "type": "number",
+      "description": "Channel 3 unit",
+      "hideFromKpis": true
+    },
+    "channel3UnitName": {
+      "title": "Channel 3 unit name",
+      "type": "string",
+      "description": "Channel 3 unit name",
+      "hideFromKpis": true
+    },
+    "channel4Measurand": {
+      "title": "Channel 4 measurand",
+      "type": "number",
+      "description": "Channel 4 measurand",
+      "hideFromKpis": true
+    },
+    "channel4MeasurandName": {
+      "title": "Channel 4 measurand name",
+      "type": "string",
+      "description": "Channel 4 measurand name",
+      "hideFromKpis": true
+    },
+    "channel4Unit": {
+      "title": "Channel 4 unit",
+      "type": "number",
+      "description": "Channel 4 unit",
+      "hideFromKpis": true
+    },
+    "channel4UnitName": {
+      "title": "Channel 4 unit name",
+      "type": "string",
+      "description": "Channel 4 unit name",
+      "hideFromKpis": true
+    },
+    "channel5Measurand": {
+      "title": "Channel 5 measurand",
+      "type": "number",
+      "description": "Channel 5 measurand",
+      "hideFromKpis": true
+    },
+    "channel5MeasurandName": {
+      "title": "Channel 5 measurand name",
+      "type": "string",
+      "description": "Channel 5 measurand name",
+      "hideFromKpis": true
+    },
+    "channel5Unit": {
+      "title": "Channel 5 unit",
+      "type": "number",
+      "description": "Channel 5 unit",
+      "hideFromKpis": true
+    },
+    "channel5UnitName": {
+      "title": "Channel 5 unit name",
+      "type": "string",
+      "description": "Channel 5 unit name",
+      "hideFromKpis": true
+    },
+    "hardwareAssemblyTypeId": {
+      "title": "Hardware assembly type ID",
+      "type": "number",
+      "description": "Hardware assembly type ID",
+      "hideFromKpis": true
+    },
+    "hardwareAssemblyTypeName": {
+      "title": "Hardware assembly type name",
+      "type": "string",
+      "description": "Hardware assembly type name",
+      "hideFromKpis": true
+    },
+    "productId": {
+      "title": "Product ID",
+      "type": "number",
+      "description": "Product ID",
+      "hideFromKpis": true
+    },
+    "productIdName": {
+      "title": "Product ID name",
+      "type": "string",
+      "description": "Product ID name",
+      "hideFromKpis": true
+    },
+    "productSubId": {
+      "title": "Product sub ID",
+      "type": "string",
+      "description": "Product sub ID",
+      "hideFromKpis": true
+    },
+    "productSubIdName": {
+      "title": "Product sub ID name",
+      "type": "string",
+      "description": "Product sub ID name",
+      "hideFromKpis": true
+    },
+    "sensorFirmwareVersion": {
+      "title": "Sensor firmware version",
+      "type": "string",
+      "description": "Sensor firmware version",
+      "hideFromKpis": true
+    },
+    "sensorHardwareVersion": {
+      "title": "Sensor hardware version",
+      "type": "string",
+      "description": "Sensor hardware version",
+      "hideFromKpis": true
+    },
+    "serialNumber": {
+      "title": "Serial number",
+      "type": "string",
+      "description": "Serial number",
+      "hideFromKpis": true
+    }
+  }
+}
