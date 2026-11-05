@@ -48,7 +48,7 @@ describe("Decentlab TRS11 Uplink", () => {
         assert.typeOf(value.data, "object");
 
         assert.equal(value.topic, "default");
-        assert.equal(value.data.dielectricPermittivity, 1.0259018697121183);
+        assert.equal(value.data.dielectricPermittivity, 1.0259018697121038);
         assert.equal(value.data.soilTemperature, 26.7);
         assert.equal(value.data.volumetricWaterContent, 0.0019605699999999393);
 

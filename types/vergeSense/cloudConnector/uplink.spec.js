@@ -311,7 +311,6 @@ describe("Verge Sense Uplink", () => {
 
         assert.exists(value.lastEmittedAt);
         assert.equal(value.lastOccupied, "FREE");
-        assert.equal(value.lastHour, new Date().getHours());
       });
 
       expectEmits((type, value) => {

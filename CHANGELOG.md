@@ -2,29 +2,30 @@
 
 All notable changes to this project will be documented in this file.
 
-# [1.102.0] - 2026-10-26
+# [1.101.5] - 2026-11-05
 
-### Added
+### Changed
 
-- WIKA A2G-520
-- WIKA FLRU + NETRIS3
-- WIKA GD-20-W
-- WIKA NETRIS F
-- WIKA PEU + NETRIS3
-- WIKA PGU + NETRIS3
-- WIKA PGW23.100.11
-- WIKA TGU + NETRIS3
-- WIKA TRU + NETRIS3
-- WIKA TRW
+- Made tests faster
+- Testing errors are now none cascading
+- Fixed test for dds04-lb
 
-- Sensative - Comfort
-- Sensative - Drip
-- Sensative - Drip-Oil
+# [1.101.4] - 2026-10-28
 
 ### Fixed
 
-- Dragino DDS04-LB - Test no longer leaks its Date mock into other tests
-- Sensative MS guard alert
+- Decentlab TRS11: `dielectricPermittivity` now decodes identically in Node.js and GraalJS by writing out `Math.pow` as multiplications
+
+### Changed
+
+- Option to test in integration mode is now extended
+- Dates manipulated while testing are now forced onto UTC
+
+# [1.101.3] - 2026-10-28
+
+### Fixed
+
+- Fixed deprecated references in github actions
 
 # [1.101.2] - 2026-10-27
 
