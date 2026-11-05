@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.101.5] - 2026-11-05
+
+### Changed
+
+- Made tests faster
+- Testing errors are now none cascading
+- Fixed test for dds04-lb
+
 # [1.101.4] - 2026-10-28
 
 ### Fixed
