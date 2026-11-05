@@ -10,12 +10,6 @@ const __dirname = dirname(__filename);
 describe("Dragino dds04-lb Uplink", () => {
     let defaultSchema = null;
     let consume = null;
-    const OriginalDate = Date;
-
-    afterEach(() => {
-        // Restore Date so the mock does not leak into other specs
-        global.Date = OriginalDate;
-    });
 
     before((done) => {
         const script = rewire(`${__dirname}/uplink.js`);
