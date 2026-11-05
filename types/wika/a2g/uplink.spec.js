@@ -233,5 +233,19 @@ describe("WIKA A2G-520 Uplink", () => {
 
       consume(data);
     });
+
+    it("should reject a keep alive with a failed battery calculation and the new event bit", () => {
+      const data = { data: { port: 1, payloadHex: "0800ff" } };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.equal(value.topic, "error");
+        assert.include(value.data.errorMessage, "battery capacity");
+
+        validateSchema(value.data, errorSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
   });
 });

@@ -236,8 +236,14 @@
     },
     "temperatureMeasurand": {
       "title": "Temperature measurand",
-      "type": "string",
+      "type": "number",
       "description": "Temperature measurand",
+      "hideFromKpis": true
+    },
+    "temperatureMeasurandName": {
+      "title": "Temperature measurand name",
+      "type": "string",
+      "description": "Temperature measurand name",
       "hideFromKpis": true
     },
     "temperatureMinMeasureRange": {
@@ -260,8 +266,14 @@
     },
     "temperatureUnit": {
       "title": "Temperature unit",
-      "type": "string",
+      "type": "number",
       "description": "Temperature unit",
+      "hideFromKpis": true
+    },
+    "temperatureUnitName": {
+      "title": "Temperature unit name",
+      "type": "string",
+      "description": "Temperature unit name",
       "hideFromKpis": true
     },
     "unit": {

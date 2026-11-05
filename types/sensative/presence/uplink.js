@@ -64,8 +64,7 @@ function decode(bytes, port) {
         target.floodAlarm = {};
         target.floodAlarm = !!bytes[pos++]; // boolean, after >x<
         break;
-      case 15: // oilAlarm 1bytes analog
-        target.oilAlarm = bytes[pos++];
+      case 15: // FoilAlarm 1byte binary
         target.foilAlarm = !!bytes[pos++];
         break;
       case 16: // UserSwitch1Alarm, 1 byte digital

@@ -297,8 +297,22 @@ function hex(value) {
 // Samples are collected and only emitted once the whole message could be decoded
 let samples = [];
 
+// Keys without a value (null, undefined or not a finite number) are left out
 function addSample(topic, data) {
-  samples.push({ topic, data });
+  const cleaned = {};
+  Object.keys(data).forEach((key) => {
+    const value = data[key];
+    if (
+      value !== null &&
+      value !== undefined &&
+      !(typeof value === "number" && !Number.isFinite(value))
+    ) {
+      cleaned[key] = value;
+    }
+  });
+  if (Object.keys(cleaned).length > 0) {
+    samples.push({ topic, data: cleaned });
+  }
 }
 
 // ***********************************************************************************
@@ -441,7 +455,7 @@ function decodeTulip2IdentificationMessage(bytes) {
 
   addSample("device_information", {
     productId,
-    productIdName: productId === 15 ? "NETRIS3" : productId,
+    productIdName: productId === 15 ? "NETRIS3" : null,
     productSubIdName: PRODUCT_SUB_ID_NAMES[productSubId],
     productSubId: String(productSubId),
     sensorDeviceTypeId: uint16(bytes, 4),
@@ -488,17 +502,7 @@ function decodeTulip2ExtendedIdentificationMessage(bytes) {
     );
   }
 
-  const data = {
-    optionalFieldsMask,
-    wikaSensorSerialNumber: null,
-    sensorLUID: null,
-    sensorHardwareVersion: null,
-    deviceHardwareVersion: null,
-    sensorFirmwareVersion: null,
-    deviceSerialNumber: null,
-    deviceProductCode: null,
-    deviceFirmwareVersion: null,
-  };
+  const data = { optionalFieldsMask };
   let position = 3;
 
   if (optionalFieldsMask & 0x01) {
@@ -507,7 +511,9 @@ function decodeTulip2ExtendedIdentificationMessage(bytes) {
     for (let i = position; i < position + 12 && bytes[i] !== 0; i++) {
       serial += String.fromCharCode(bytes[i]);
     }
-    data.wikaSensorSerialNumber = serial.length > 0 ? serial : null;
+    if (serial.length > 0) {
+      data.wikaSensorSerialNumber = serial;
+    }
     position += 12;
   }
   if (optionalFieldsMask & 0x02) {
@@ -765,6 +771,12 @@ function lookup(table, name) {
   };
 }
 
+// Returns the raw id as the register value and the looked up name as <register>Name
+function lookupWithName(table, name) {
+  const parseName = lookup(table, name);
+  return (bytes) => ({ "": bytes[0], name: parseName(bytes) });
+}
+
 function bitList(prefix, count) {
   return (bytes) => {
     const result = {};
@@ -828,9 +840,13 @@ const TULIP3_IDENTIFICATION_REGISTERS = {
     measurand: {
       offset: 0x00,
       size: 1,
-      parse: lookup(TULIP3_MEASURANDS, "measurand"),
+      parse: lookupWithName(TULIP3_MEASURANDS, "measurand"),
     },
-    unit: { offset: 0x01, size: 1, parse: lookup(TULIP3_UNITS, "unit") },
+    unit: {
+      offset: 0x01,
+      size: 1,
+      parse: lookupWithName(TULIP3_UNITS, "unit"),
+    },
     minMeasureRange: { offset: 0x02, size: 4, parse: parseFloat32 },
     maxMeasureRange: { offset: 0x06, size: 4, parse: parseFloat32 },
     minPhysicalLimit: { offset: 0x0a, size: 4, parse: parseFloat32 },
@@ -1037,6 +1053,7 @@ function decodeTulip3Registers(bytes, registerLookup) {
 
       const parsed = register.parse(value.slice(0, register.size));
       if (parsed !== null && typeof parsed === "object") {
+        // An empty key stores the value under the register name itself
         Object.keys(parsed).forEach((key) => {
           data[register.key + capitalize(key)] = parsed[key];
         });
@@ -1069,7 +1086,7 @@ function decodeTulip3DataMessage(bytes, ranges) {
     const channelId = (bytes[position] & 0x38) >> 3;
     const dataType = TULIP3_DATA_TYPES[(bytes[position] & 0x06) >> 1];
 
-    if (position + dataType.length > bytes.length) {
+    if (position + 1 + dataType.length > bytes.length) {
       throw new Error(
         `Not enough data left to finish reading measurement data block for ${dataType.name}`,
       );
@@ -1359,7 +1376,6 @@ function decodeTulip3KeepAliveMessage(bytes, subType) {
     ableToComputeBatteryLevel: (status & 0x40) !== 0,
     hasCommunicationModuleRestarted: (status & 0x20) !== 0,
     revisionCounter: uint16(bytes, 3),
-    batteryLevel: null,
   };
 
   if (data.ableToComputeBatteryLevel) {

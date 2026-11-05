@@ -40,10 +40,10 @@ function decode(bytes, port) {
         target.humidity = bytes[pos++] / 2; // relativeHumidity percent 0,5
         break;
       case 7: // Lux 2bytes 0-65535lux
-        target.lux = (bytes[pos++] << 8) | bytes[pos++]; // you can  the lux range between two sets (lux1 and 2)
+        target.light = (bytes[pos++] << 8) | bytes[pos++]; // you can  the lux range between two sets (lux1 and 2)
         break;
       case 8: // Lux 2bytes 0-65535lux
-        target.lux2 = (bytes[pos++] << 8) | bytes[pos++];
+        target.light2 = (bytes[pos++] << 8) | bytes[pos++];
         break;
       case 9: // DoorSwitch 1bytes binary
         target.open = !!bytes[pos++]; // true = door open, false = door closed
@@ -61,15 +61,14 @@ function decode(bytes, port) {
         target.flood = bytes[pos++]; // percentage, relative wetness
         break;
       case 14: // FloodAlarm 1bytes binary
-        target.floodAlarm = {};
         target.floodAlarm = !!bytes[pos++]; // boolean, after >x<
         break;
-      case 15: // oilAlarm 1bytes analog
-        target.oilAlarm = bytes[pos++];
+      case 15: // FoilAlarm 1byte, the MS Drip Oil reports its oil alarm in the same byte
+        target.oilAlarm = bytes[pos];
         target.foilAlarm = !!bytes[pos++];
         break;
       case 16: // UserSwitch1Alarm, 1 byte digital
-        target.userSwitch1Alarm = !!bytes[pos++];
+        target.userSwitchAlarm = !!bytes[pos++];
         break;
       case 17: // DoorCountReport, 2 byte analog
         target.doorCount = (bytes[pos++] << 8) | bytes[pos++];
@@ -78,28 +77,18 @@ function decode(bytes, port) {
         target.presence = !!bytes[pos++];
         break;
       case 19: // IRProximityReport
-        target.IRproximity = (bytes[pos++] << 8) | bytes[pos++];
+        target.irProximity = (bytes[pos++] << 8) | bytes[pos++];
         break;
       case 20: // IRCloseProximityReport, low power
-        target.IRcloseproximity = (bytes[pos++] << 8) | bytes[pos++];
+        target.irCloseProximity = (bytes[pos++] << 8) | bytes[pos++];
         break;
       case 21: // CloseProximityAlarm, something very close to presence sensor
         target.closeProximityAlarm = !!bytes[pos++];
         break;
       case 22: // DisinfectAlarm
-        target.disinfectAlarm = bytes[pos++];
-        if (target.disinfectAlarm === 0) {
-          target.disinfectAlarm.state = "DIRTY";
-        }
-        if (target.disinfectAlarm === 1) {
-          target.disinfectAlarm.state = "OCCUPIED";
-        }
-        if (target.disinfectAlarm === 2) {
-          target.disinfectAlarm.state = "CLEANING";
-        }
-        if (target.disinfectAlarm === 3) {
-          target.disinfectAlarm.state = "CLEAN";
-        }
+        target.disinfectAlarm = ["DIRTY", "OCCUPIED", "CLEANING", "CLEAN"][
+          bytes[pos++]
+        ];
         break;
       case 80:
         target.humidity = bytes[pos++] / 2;
@@ -131,7 +120,7 @@ function decode(bytes, port) {
       case 113: // Capacitance Raw Sensor Value 2bytes 0-65535
         target.capacitancePad = (bytes[pos++] << 8) | bytes[pos++]; // should never trigger anymore
         break;
-      case 110:
+      case 110: {
         const number =
           ((bytes[pos++] << 24) |
             (bytes[pos++] << 16) |
@@ -144,6 +133,7 @@ function decode(bytes, port) {
         target.stackTxFailRebootCount = bytes[pos++];
         target.badConditionsCounter = bytes[pos++];
         break;
+      }
       case 114: // Capacitance Raw Sensor Value 2bytes 0-65535
         target.capacitanceEnd = (bytes[pos++] << 8) | bytes[pos++]; // should never trigger anymore
         break;
@@ -221,68 +211,6 @@ function parseHexString(str) {
   return result;
 }
 
-function checkForCustomFields(device, target, fallbackValue) {
-  if (device !== undefined && device.customFields !== undefined && device.customFields[target] !== undefined) {
-    return device.customFields[target];
-  }
-  return fallbackValue;
-}
-
-function calculateRecentOccupancy(device, state, occupancy) {
-  const minOccupancyThreshold = checkForCustomFields(device, "minOccupancyThreshold", 3);
-  const occupancyWarmThreshold = checkForCustomFields(device, "occupancyWarmThreshold", 90);
-  state = state || {};
-
-  // Occupancy status
-  if (occupancy.occupied) {
-    occupancy.occupancyStatus = "OCCUPIED";
-    occupancy.occupiedOrWarm = true;
-  } else {
-    occupancy.occupancyStatus = "FREE";
-    occupancy.occupiedOrWarm = false;
-  }
-
-  const time = new Date().getTime();
-  occupancy.minutesSinceLastOccupied = 0;
-  occupancy.occupiedMinutes = 0;
-
-  if (occupancy.occupied) {
-    // Set state to first occupancy occurence so occupied time can be calulcated
-    if (state.firstOccupancyTimestamp == undefined) {
-      state.firstOccupancyTimestamp = time;
-    }
-    // Give out how long there has been occupancy
-    occupancy.occupiedMinutes = Math.round((time - state.firstOccupancyTimestamp) / 1000 / 60);
-
-    // Only reset if a real occupancy has been tracked
-    if (occupancy.occupiedMinutes >= minOccupancyThreshold) {
-      delete state.lastOccupancyTimestamp; // Reset cycle
-    }
-    delete state.occupiedMinutes;
-  } else {
-    // Give out how long there has been no occupancy
-    if (state.lastOccupancyTimestamp !== undefined) {
-      occupancy.minutesSinceLastOccupied = Math.round((time - state.lastOccupancyTimestamp) / 1000 / 60);
-    } else {
-      state.lastOccupancyTimestamp = time;
-
-      // Only save the timestamp on first leave and save how long the occupancy has gone on for
-      state.occupiedMinutes = Math.round((time - state.firstOccupancyTimestamp) / 1000 / 60);
-      delete state.firstOccupancyTimestamp; // Reset cycle
-    }
-  }
-
-  if (occupancy.minutesSinceLastOccupied < occupancyWarmThreshold && !occupancy.occupied && state.occupiedMinutes >= minOccupancyThreshold) {
-    occupancy.warm = true;
-    occupancy.occupiedOrWarm = true;
-    occupancy.occupancyStatus = "WARM";
-  } else {
-    occupancy.warm = false;
-    occupancy.occupiedOrWarm = occupancy.occupied;
-  }
-  return { state, occupancy }
-}
-
 function consume(event) {
   const payload = event.data.payloadHex;
   const { port } = event.data;
@@ -297,6 +225,7 @@ function consume(event) {
   def.light2 = decoded.light2;
   def.open = decoded.open;
   def.tamperReport = decoded.tamperReport;
+  def.flood = decoded.flood;
   def.doorCount = decoded.doorCount;
   def.presence = decoded.presence;
   def.irProximity = decoded.irProximity;
@@ -331,22 +260,5 @@ function consume(event) {
 
   if (deleteUnusedKeys(def)) {
     emit("sample", { data: def, topic: "default" });
-  }
-
-  if (decoded.presence !== undefined) {
-    let occupancy = {};
-    if (decoded.presence === true) {
-      occupancy.occupancy = 1;
-      occupancy.occupied = true;
-    } else {
-      occupancy.occupancy = 0;
-      occupancy.occupied = false;
-    }
-
-    let recentOccupancyResult = calculateRecentOccupancy(event.device, event.state, occupancy);
-    occupancy = recentOccupancyResult.occupancy;
-
-    emit("state", recentOccupancyResult.state);
-    emit("sample", { data: occupancy, topic: "occupancy" });
   }
 }

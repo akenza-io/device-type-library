@@ -186,6 +186,12 @@
       "description": "Low threshold value",
       "hideFromKpis": true
     },
+    "highThresholdValue": {
+      "title": "High threshold value",
+      "type": "number",
+      "description": "High threshold value",
+      "hideFromKpis": true
+    },
     "lowThresholdWithDelay": {
       "title": "Low threshold with delay",
       "type": "boolean",
@@ -430,6 +436,12 @@
       "title": "Under voltage threshold",
       "type": "number",
       "description": "Under voltage threshold",
+      "hideFromKpis": true
+    },
+    "deviceErrorCode": {
+      "title": "Device error code",
+      "type": "number",
+      "description": "Device error code",
       "hideFromKpis": true
     }
   }

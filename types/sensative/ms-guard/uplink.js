@@ -9,6 +9,7 @@ function parseHexString(str) {
   return result;
 }
 
+// Decodes one frame starting at pos and returns the position after it
 function decodeFrame(bytes, type, target, pos) {
   switch (type & 0x7f) {
     case 0:
@@ -140,6 +141,7 @@ function decodeFrame(bytes, type, target, pos) {
     default:
       break;
   }
+  return pos;
 }
 
 function deleteUnusedKeys(data) {
@@ -236,7 +238,7 @@ function consume(event) {
       while (pos < bytes.length) {
         type = bytes[pos++];
         if (type & 0x80) decoded.prevHistSeqNr--;
-        decodeFrame(bytes, type, decoded, pos);
+        pos = decodeFrame(bytes, type, decoded, pos);
       }
       break;
 
@@ -260,7 +262,7 @@ function consume(event) {
           now.getTime() - secondsAgo * 1000,
         ).toUTCString();
         type = bytes[pos++];
-        decodeFrame(bytes, type, decoded.history[seqNr], pos);
+        pos = decodeFrame(bytes, type, decoded.history[seqNr], pos);
         seqNr++;
       }
       break;

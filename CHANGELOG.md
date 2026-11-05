@@ -25,6 +25,8 @@ All notable changes to this project will be documented in this file.
 
 - Dragino DDS04-LB - Test no longer leaks its Date mock into other tests
 - Sensative MS guard alert
+- Sensative MS guard - Frames are now decoded at their actual position, so payloads with several frames no longer emit wrong values. The battery level is optional in the lifecycle topic
+- Sensative Presence - The foil alarm frame now reads one byte, so the frames following it are no longer misaligned
 
 # [1.101.2] - 2026-10-27
 

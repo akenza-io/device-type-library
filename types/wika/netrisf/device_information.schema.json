@@ -68,8 +68,14 @@
     },
     "deviceTemperatureMeasurand": {
       "title": "Device temperature measurand",
-      "type": "string",
+      "type": "number",
       "description": "Device temperature measurand",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureMeasurandName": {
+      "title": "Device temperature measurand name",
+      "type": "string",
+      "description": "Device temperature measurand name",
       "hideFromKpis": true
     },
     "deviceTemperatureMinMeasureRange": {
@@ -92,7 +98,7 @@
     },
     "deviceTemperatureUnit": {
       "title": "Device temperature unit",
-      "type": "string",
+      "type": "number",
       "description": "Device temperature unit",
       "hideFromKpis": true
     },
@@ -146,8 +152,14 @@
     },
     "measurementMeasurand": {
       "title": "Measurement measurand",
-      "type": "string",
+      "type": "number",
       "description": "Measurement measurand",
+      "hideFromKpis": true
+    },
+    "measurementMeasurandName": {
+      "title": "Measurement measurand name",
+      "type": "string",
+      "description": "Measurement measurand name",
       "hideFromKpis": true
     },
     "measurementMinMeasureRange": {
@@ -200,8 +212,14 @@
     },
     "measurementUnit": {
       "title": "Measurement unit",
-      "type": "string",
+      "type": "number",
       "description": "Measurement unit",
+      "hideFromKpis": true
+    },
+    "measurementUnitName": {
+      "title": "Measurement unit name",
+      "type": "string",
+      "description": "Measurement unit name",
       "hideFromKpis": true
     },
     "productId": {
@@ -334,12 +352,6 @@
       "title": "Serial number part 2",
       "type": "string",
       "description": "Serial number part 2",
-      "hideFromKpis": true
-    },
-    "unitName": {
-      "title": "Unit name",
-      "type": "string",
-      "description": "Unit name",
       "hideFromKpis": true
     },
     "wirelessModuleFirmwareVersion": {

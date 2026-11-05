@@ -252,7 +252,7 @@ describe("WIKA NETRIS F Uplink", () => {
         assert.equal(value.data.measurementRangeStartDeviceTemperature, -45);
         assert.equal(value.data.measurementRangeEndDeviceTemperature, 110);
         assert.equal(value.data.measurementUnit, 185);
-        assert.equal(value.data.unitName, "µeps");
+        assert.equal(value.data.measurementUnitName, "µeps");
         assert.equal(value.data.deviceTemperatureUnit, 32);
         assert.equal(value.data.deviceTemperatureUnitName, "°C");
 
@@ -397,10 +397,14 @@ describe("WIKA NETRIS F Uplink", () => {
         assert.equal(value.data.sensorExistingChannelsChannel6, false);
         assert.equal(value.data.sensorExistingChannelsChannel7, false);
         assert.equal(value.data.sensorExistingChannelsChannel8, false);
-        assert.equal(value.data.measurementMeasurand, "Strain");
-        assert.equal(value.data.measurementUnit, "µeps");
-        assert.equal(value.data.deviceTemperatureMeasurand, "Temperature");
-        assert.equal(value.data.deviceTemperatureUnit, "°C");
+        assert.equal(value.data.measurementMeasurand, 29);
+        assert.equal(value.data.measurementMeasurandName, "Strain");
+        assert.equal(value.data.measurementUnit, 185);
+        assert.equal(value.data.measurementUnitName, "µeps");
+        assert.equal(value.data.deviceTemperatureMeasurand, 1);
+        assert.equal(value.data.deviceTemperatureMeasurandName, "Temperature");
+        assert.equal(value.data.deviceTemperatureUnit, 1);
+        assert.equal(value.data.deviceTemperatureUnitName, "°C");
 
         validateSchema(value.data, deviceInformationSchema, {
           throwError: true,
@@ -416,8 +420,10 @@ describe("WIKA NETRIS F Uplink", () => {
       expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "device_information");
-        assert.equal(value.data.measurementMeasurand, "Strain");
-        assert.equal(value.data.measurementUnit, "µeps");
+        assert.equal(value.data.measurementMeasurand, 29);
+        assert.equal(value.data.measurementMeasurandName, "Strain");
+        assert.equal(value.data.measurementUnit, 185);
+        assert.equal(value.data.measurementUnitName, "µeps");
 
         validateSchema(value.data, deviceInformationSchema, {
           throwError: true,
@@ -578,6 +584,35 @@ describe("WIKA NETRIS F Uplink", () => {
         assert.equal(value.data.batteryLevel, 100);
 
         validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("should leave out a measurement with the error value 0xffff", () => {
+      const data = { data: { port: 1, payloadHex: "010000ffff1253" } };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.equal(value.topic, "default");
+        assert.notProperty(value.data, "measurement");
+        assert.property(value.data, "deviceTemperature");
+
+        validateSchema(value.data, defaultSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("should reject a TULIP3 data message with a truncated measurement", () => {
+      const data = { data: { port: 1, payloadHex: "1001062e970e15" } };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.equal(value.topic, "error");
+        assert.include(value.data.errorMessage, "Not enough data left");
+
+        validateSchema(value.data, errorSchema, { throwError: true });
       });
 
       consume(data);

@@ -36,6 +36,13 @@
       "description": "Equals to true if a foil is detected",
       "type": "boolean"
     },
+    "oilAlarm": {
+      "title": "Oil alarm",
+      "description": "Oil alarm value reported by the sensor. 0 means no oil is detected",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    },
     "userSwitchAlarm": {
       "title": "User switch alarm",
       "description": "Equals to true if a user switch is detected",

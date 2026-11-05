@@ -220,6 +220,7 @@ describe("WIKA PGU + NETRIS3 Uplink", () => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "technical_alarm");
         assert.equal(value.data.alarmType, "STAT_DEV");
+        assert.notProperty(value.data, "channel");
         assert.equal(value.data.causeOfFailure, "STAT_DEV_ERROR");
 
         validateSchema(value.data, technicalAlarmSchema, { throwError: true });
@@ -645,6 +646,20 @@ describe("WIKA PGU + NETRIS3 Uplink", () => {
         validateSchema(value.data, deviceInformationSchema, {
           throwError: true,
         });
+      });
+
+      consume(data);
+    });
+
+    it("should reject a TULIP3 data message with a truncated measurement", () => {
+      const data = { data: { port: 1, payloadHex: "1001062e970e15" } };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.equal(value.topic, "error");
+        assert.include(value.data.errorMessage, "Not enough data left");
+
+        validateSchema(value.data, errorSchema, { throwError: true });
       });
 
       consume(data);

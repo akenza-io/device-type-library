@@ -329,6 +329,36 @@
       "type": "number",
       "description": "Under voltage threshold",
       "hideFromKpis": true
+    },
+    "deviceErrorCode": {
+      "title": "Device error code",
+      "type": "number",
+      "description": "Device error code",
+      "hideFromKpis": true
+    },
+    "measurementPeriodNoAlarm": {
+      "title": "Measurement period no alarm",
+      "type": "number",
+      "description": "Measurement period no alarm",
+      "hideFromKpis": true
+    },
+    "transmissionMultiplierNoAlarm": {
+      "title": "Transmission multiplier no alarm",
+      "type": "number",
+      "description": "Transmission multiplier no alarm",
+      "hideFromKpis": true
+    },
+    "measurementPeriodWithAlarm": {
+      "title": "Measurement period with alarm",
+      "type": "number",
+      "description": "Measurement period with alarm",
+      "hideFromKpis": true
+    },
+    "transmissionMultiplierWithAlarm": {
+      "title": "Transmission multiplier with alarm",
+      "type": "number",
+      "description": "Transmission multiplier with alarm",
+      "hideFromKpis": true
     }
   }
 }

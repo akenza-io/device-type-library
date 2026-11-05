@@ -418,8 +418,10 @@ describe("WIKA TRW Uplink", () => {
         assert.equal(value.data.sensorExistingChannelsChannel6, false);
         assert.equal(value.data.sensorExistingChannelsChannel7, false);
         assert.equal(value.data.sensorExistingChannelsChannel8, false);
-        assert.equal(value.data.temperatureMeasurand, "Temperature");
-        assert.equal(value.data.temperatureUnit, "°C");
+        assert.equal(value.data.temperatureMeasurand, 1);
+        assert.equal(value.data.temperatureMeasurandName, "Temperature");
+        assert.equal(value.data.temperatureUnit, 1);
+        assert.equal(value.data.temperatureUnitName, "°C");
 
         validateSchema(value.data, deviceInformationSchema, {
           throwError: true,
@@ -435,7 +437,8 @@ describe("WIKA TRW Uplink", () => {
       expectEmits((type, value) => {
         assert.equal(type, "sample");
         assert.equal(value.topic, "device_information");
-        assert.equal(value.data.temperatureUnit, "°F");
+        assert.equal(value.data.temperatureUnit, 2);
+        assert.equal(value.data.temperatureUnitName, "°F");
 
         validateSchema(value.data, deviceInformationSchema, {
           throwError: true,
@@ -639,6 +642,35 @@ describe("WIKA TRW Uplink", () => {
           value.data.errorMessage,
           "Message type 0x00 is not supported",
         );
+
+        validateSchema(value.data, errorSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("should leave out the value of a process alarm with the error value 0xffff", () => {
+      const data = { data: { port: 1, payloadHex: "03000001ffff" } };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.equal(value.topic, "process_alarm");
+        assert.equal(value.data.lowThreshold, true);
+        assert.notProperty(value.data, "value");
+
+        validateSchema(value.data, processAlarmSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
+
+    it("should reject a TULIP3 data message with a truncated measurement", () => {
+      const data = { data: { port: 1, payloadHex: "1001062e970e15" } };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.equal(value.topic, "error");
+        assert.include(value.data.errorMessage, "Not enough data left");
 
         validateSchema(value.data, errorSchema, { throwError: true });
       });

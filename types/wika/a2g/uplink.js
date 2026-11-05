@@ -195,8 +195,22 @@ function hex(value) {
 // Samples are collected and only emitted once the whole message could be decoded
 let samples = [];
 
+// Keys without a value (null, undefined or not a finite number) are left out
 function addSample(topic, data) {
-  samples.push({ topic, data });
+  const cleaned = {};
+  Object.keys(data).forEach((key) => {
+    const value = data[key];
+    if (
+      value !== null &&
+      value !== undefined &&
+      !(typeof value === "number" && !Number.isFinite(value))
+    ) {
+      cleaned[key] = value;
+    }
+  });
+  if (Object.keys(cleaned).length > 0) {
+    samples.push({ topic, data: cleaned });
+  }
 }
 
 // ***********************************************************************************
@@ -337,7 +351,8 @@ function decodeTulip2KeepAliveMessage(bytes) {
       `Keep alive message (0x08) requires 3 bytes, but received ${bytes.length} bytes`,
     );
   }
-  if (bytes[2] === 0x7f) {
+  // 0x7f marks a failed battery calculation, independent of the new event bit
+  if ((bytes[2] & 0x7f) === 0x7f) {
     throw new Error(
       "Keep Alive message 08: The device reports an error during the calculation of the battery capacity.",
     );
@@ -345,7 +360,8 @@ function decodeTulip2KeepAliveMessage(bytes) {
 
   addSample("lifecycle", {
     batteryLevelNewEvent: (bytes[2] & 0x80) !== 0,
-    batteryLevel: bytes[2] & 0x7f,
+    // Values above 100 are invalid
+    batteryLevel: (bytes[2] & 0x7f) > 100 ? null : bytes[2] & 0x7f,
   });
 }
 

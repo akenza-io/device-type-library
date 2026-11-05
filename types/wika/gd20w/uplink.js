@@ -207,8 +207,22 @@ function hex(value) {
 // Samples are collected and only emitted once the whole message could be decoded
 let samples = [];
 
+// Keys without a value (null, undefined or not a finite number) are left out
 function addSample(topic, data) {
-  samples.push({ topic, data });
+  const cleaned = {};
+  Object.keys(data).forEach((key) => {
+    const value = data[key];
+    if (
+      value !== null &&
+      value !== undefined &&
+      !(typeof value === "number" && !Number.isFinite(value))
+    ) {
+      cleaned[key] = value;
+    }
+  });
+  if (Object.keys(cleaned).length > 0) {
+    samples.push({ topic, data: cleaned });
+  }
 }
 
 // ***********************************************************************************
@@ -318,14 +332,14 @@ function decodeTulip2DeviceAlarmMessage(bytes) {
 }
 
 function decodeTulip2MainConfiguration(bytes) {
-  // A value of 0 is not allowed
-  const valueOrUnauthorized = (value) => (value === 0 ? "unauthorized" : value);
+  // A value of 0 is not allowed and is left out
+  const valueOrNull = (value) => (value === 0 ? null : value);
 
   return {
-    acquisitionTimeAlarmsOff: valueOrUnauthorized(uint32(bytes, 4)),
-    publicationTimeFactorAlarmsOff: valueOrUnauthorized(uint16(bytes, 8)),
-    acquisitionTimeAlarmsOn: valueOrUnauthorized(uint32(bytes, 10)),
-    publicationTimeFactorAlarmsOn: valueOrUnauthorized(uint16(bytes, 14)),
+    acquisitionTimeAlarmsOff: valueOrNull(uint32(bytes, 4)),
+    publicationTimeFactorAlarmsOff: valueOrNull(uint16(bytes, 8)),
+    acquisitionTimeAlarmsOn: valueOrNull(uint32(bytes, 10)),
+    publicationTimeFactorAlarmsOn: valueOrNull(uint16(bytes, 14)),
   };
 }
 
@@ -470,11 +484,13 @@ function decodeTulip2KeepAliveMessage(bytes) {
     );
   }
 
+  // A battery level of 0x7f means it could not be calculated, values above 100 are invalid
   const indicator = bytes[2];
+  const batteryLevel = indicator & 0x7f;
   addSample("lifecycle", {
     restartedSinceLastKeepAlive: (indicator & 0x80) !== 0,
-    batteryLevel: indicator & 0x7f,
-    batteryLevelCalculationError: (indicator & 0x7f) === 0x7f,
+    batteryLevel: batteryLevel > 100 ? null : batteryLevel,
+    batteryLevelCalculationError: batteryLevel === 0x7f,
     batteryPresent: indicator !== 0,
   });
 }

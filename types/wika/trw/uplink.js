@@ -271,8 +271,22 @@ function hex(value) {
 // Samples are collected and only emitted once the whole message could be decoded
 let samples = [];
 
+// Keys without a value (null, undefined or not a finite number) are left out
 function addSample(topic, data) {
-  samples.push({ topic, data });
+  const cleaned = {};
+  Object.keys(data).forEach((key) => {
+    const value = data[key];
+    if (
+      value !== null &&
+      value !== undefined &&
+      !(typeof value === "number" && !Number.isFinite(value))
+    ) {
+      cleaned[key] = value;
+    }
+  });
+  if (Object.keys(cleaned).length > 0) {
+    samples.push({ topic, data: cleaned });
+  }
 }
 
 // ***********************************************************************************
@@ -306,10 +320,17 @@ function decodeTulip2ProcessAlarmMessage(bytes, ranges) {
   for (let i = 3; i < bytes.length; i += 3) {
     const alarmType = bytes[i] & 0x3f;
     const isSlope = (alarmType & 0x0c) !== 0;
+
+    // 0xffff marks an invalid value
     const raw = uint16(bytes, i + 1);
-    const value = isSlope
-      ? slopeToValue(raw, ranges.temperature)
-      : tulipToValue(raw, ranges.temperature);
+    let value = null;
+    if (raw !== 0xffff) {
+      value = round(
+        isSlope
+          ? slopeToValue(raw, ranges.temperature)
+          : tulipToValue(raw, ranges.temperature),
+      );
+    }
 
     addSample("process_alarm", {
       channel: "temperature",
@@ -320,7 +341,7 @@ function decodeTulip2ProcessAlarmMessage(bytes, ranges) {
       risingSlope: (alarmType & 0x08) !== 0,
       lowThresholdWithDelay: (alarmType & 0x10) !== 0,
       highThresholdWithDelay: (alarmType & 0x20) !== 0,
-      value: round(value),
+      value,
     });
   }
 }
@@ -770,6 +791,12 @@ function lookup(table, name) {
   };
 }
 
+// Returns the raw id as the register value and the looked up name as <register>Name
+function lookupWithName(table, name) {
+  const parseName = lookup(table, name);
+  return (bytes) => ({ "": bytes[0], name: parseName(bytes) });
+}
+
 function bitList(prefix, count) {
   return (bytes) => {
     const result = {};
@@ -833,9 +860,13 @@ const TULIP3_IDENTIFICATION_REGISTERS = {
     measurand: {
       offset: 0x00,
       size: 1,
-      parse: lookup(TULIP3_MEASURANDS, "measurand"),
+      parse: lookupWithName(TULIP3_MEASURANDS, "measurand"),
     },
-    unit: { offset: 0x01, size: 1, parse: lookup(TULIP3_UNITS, "unit") },
+    unit: {
+      offset: 0x01,
+      size: 1,
+      parse: lookupWithName(TULIP3_UNITS, "unit"),
+    },
     minMeasureRange: { offset: 0x02, size: 4, parse: parseFloat32 },
     maxMeasureRange: { offset: 0x06, size: 4, parse: parseFloat32 },
     minPhysicalLimit: { offset: 0x0a, size: 4, parse: parseFloat32 },
@@ -1042,6 +1073,7 @@ function decodeTulip3Registers(bytes, registerLookup) {
 
       const parsed = register.parse(value.slice(0, register.size));
       if (parsed !== null && typeof parsed === "object") {
+        // An empty key stores the value under the register name itself
         Object.keys(parsed).forEach((key) => {
           data[register.key + capitalize(key)] = parsed[key];
         });
@@ -1074,7 +1106,7 @@ function decodeTulip3DataMessage(bytes, ranges) {
     const channelId = (bytes[position] & 0x38) >> 3;
     const dataType = TULIP3_DATA_TYPES[(bytes[position] & 0x06) >> 1];
 
-    if (position + dataType.length > bytes.length) {
+    if (position + 1 + dataType.length > bytes.length) {
       throw new Error(
         `Not enough data left to finish reading measurement data block for ${dataType.name}`,
       );
@@ -1330,7 +1362,7 @@ function decodeTulip3ConfigurationMessage(bytes, subType) {
           if (
             sampled === true &&
             TULIP3_PROFILE.sensors[sensorKey].channels[
-            `channel${channelNumber}`
+              `channel${channelNumber}`
             ] === undefined
           ) {
             throw new Error(

@@ -325,5 +325,20 @@ describe("WIKA GD-20-W Uplink", () => {
 
       consume(data);
     });
+
+    it("should leave out the battery level if it could not be calculated", () => {
+      const data = { data: { port: 1, payloadHex: "0800ff" } };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batteryLevelCalculationError, true);
+        assert.notProperty(value.data, "batteryLevel");
+
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
   });
 });

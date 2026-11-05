@@ -197,8 +197,22 @@ function hex(value) {
 // Samples are collected and only emitted once the whole message could be decoded
 let samples = [];
 
+// Keys without a value (null, undefined or not a finite number) are left out
 function addSample(topic, data) {
-  samples.push({ topic, data });
+  const cleaned = {};
+  Object.keys(data).forEach((key) => {
+    const value = data[key];
+    if (
+      value !== null &&
+      value !== undefined &&
+      !(typeof value === "number" && !Number.isFinite(value))
+    ) {
+      cleaned[key] = value;
+    }
+  });
+  if (Object.keys(cleaned).length > 0) {
+    samples.push({ topic, data: cleaned });
+  }
 }
 
 // ***********************************************************************************
@@ -394,9 +408,11 @@ function decodeTulip2KeepAliveMessage(bytes) {
     );
   }
 
+  // A battery level of 0x7f means it could not be calculated, values above 100 are invalid
+  const batteryLevel = bytes[2] & 0x7f;
   addSample("lifecycle", {
     batteryLevelNewEvent: (bytes[2] & 0x80) !== 0,
-    batteryLevel: bytes[2] & 0x7f,
+    batteryLevel: batteryLevel > 100 ? null : batteryLevel,
   });
 }
 

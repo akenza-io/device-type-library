@@ -525,5 +525,19 @@ describe("WIKA FLRU + NETRIS3 Uplink", () => {
 
       consume(data);
     });
+
+    it("should reject a TULIP3 data message with a truncated measurement", () => {
+      const data = { data: { port: 1, payloadHex: "1001062e970e15" } };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.equal(value.topic, "error");
+        assert.include(value.data.errorMessage, "Not enough data left");
+
+        validateSchema(value.data, errorSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
   });
 });

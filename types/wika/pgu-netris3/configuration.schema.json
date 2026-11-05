@@ -20,7 +20,7 @@
     },
     "deviceErrorCode": {
       "title": "Device error code",
-      "type": "string",
+      "type": "number",
       "description": "Device error code",
       "hideFromKpis": true
     },
