@@ -1,0 +1,34 @@
+{
+  "name": "DL-CWS2",
+  "version": "1.0.0",
+  "manufacturer": "Decentlab",
+  "url": "https://www.decentlab.com/products/high-precision-winter-road-maintenance-sensor-with-radiation-shield-for-lorawan",
+  "description": "Sensor with an infrared pyrometer that measures surface temperature, plus air temperature, humidity and dew point, and a second air temperature and humidity sensor inside a radiation shield. Used for road weather information systems, winter road maintenance, frost and ice alerts and agriculture.",
+  "author": "Decentlab",
+  "firmwareVersion": "V1.6.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Dew Point",
+    "Humidity",
+    "Surface Temperature",
+    "Temperature"
+  ],
+  "outputTopics": ["default", "lifecycle", "error"],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": ["Weather & Outdoor Environment", "Smart Agriculture"],
+  "keywords": [
+    "Decentlab",
+    "DL-CWS2",
+    "surface temperature",
+    "infrared pyrometer",
+    "radiation shield",
+    "dew point",
+    "air temperature",
+    "humidity",
+    "road weather",
+    "frost",
+    "ice warning",
+    "LoRaWAN"
+  ]
+}

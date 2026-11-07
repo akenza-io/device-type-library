@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.102.0] - 2026-11-07
+
+### Added
+
+- Decentlab - DL-CWS2 (winter road maintenance sensor with radiation shield). Decoder based on Decentlab's published decoder; battery-only uplinks emit only `lifecycle`, unsupported protocol versions emit an `error` sample
+
 # [1.101.5] - 2026-11-05
 
 ### Changed

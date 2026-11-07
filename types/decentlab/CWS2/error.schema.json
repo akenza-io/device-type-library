@@ -1,0 +1,24 @@
+{
+  "$id": "https://akenza.io/decentlab/cws2/error.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "error",
+  "title": "Error",
+  "properties": {
+    "reason": {
+      "title": "Reason",
+      "description": "Reason the payload could not be decoded",
+      "type": "string",
+      "enum": ["UNSUPPORTED_PROTOCOL_VERSION"],
+      "hideFromKpis": true
+    },
+    "payload": {
+      "title": "Payload",
+      "description": "Payload that could not be decoded",
+      "type": "string",
+      "hideFromKpis": true
+    }
+  },
+  "required": ["reason", "payload"]
+}
