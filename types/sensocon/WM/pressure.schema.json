@@ -1,0 +1,17 @@
+{
+  "$id": "https://akenza.io/sensocon/WM/pressure.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "pressure",
+  "title": "Differential pressure",
+  "properties": {
+    "pressure": {
+      "title": "Differential pressure",
+      "unit": "inWC",
+      "description": "Differential pressure in inches of water column (in. WC). Type byte 0x00 in SD-0178. Unit from the SD-0178 offset command table.",
+      "type": "number"
+    }
+  },
+  "required": ["pressure"]
+}

@@ -1,0 +1,21 @@
+{
+  "$id": "https://akenza.io/sensocon/WS/humidity.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "humidity",
+  "title": "Humidity and temperature",
+  "properties": {
+    "humidity": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
+      "title": "Humidity",
+      "description": "Relative humidity in %. Type byte 0x02 in SD-0178."
+    },
+    "humidityTemp": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit",
+      "title": "Temperature (humidity sensor)",
+      "description": "Temperature from the humidity and temperature sensor in °F. Type byte 0x01 in SD-0178."
+    }
+  },
+  "required": ["humidity", "humidityTemp"]
+}

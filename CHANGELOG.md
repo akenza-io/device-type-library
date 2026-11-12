@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.102.0] - 2026-11-13
+
+### Added
+
+- Sensocon - DataSling Series WS
+- Sensocon - DataSling Series WM
+
 # [1.101.5] - 2026-11-05
 
 ### Changed

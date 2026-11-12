@@ -1,0 +1,17 @@
+{
+  "$id": "https://akenza.io/sensocon/WM/gauge_diff_pressure.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "gauge_diff_pressure",
+  "title": "Gauge or wet/wet differential pressure",
+  "properties": {
+    "gaugeDiffPressure": {
+      "title": "Gauge or differential pressure",
+      "unit": "PSI",
+      "description": "Gauge or wet/wet differential pressure in PSI. Type byte 0x13 in SD-0178. Unit from the SD-0178 offset command table.",
+      "type": "number"
+    }
+  },
+  "required": ["gaugeDiffPressure"]
+}

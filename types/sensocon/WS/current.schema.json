@@ -1,0 +1,17 @@
+{
+  "$id": "https://akenza.io/sensocon/WS/current.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "current",
+  "title": "Analog current input",
+  "properties": {
+    "current": {
+      "title": "Analog current input",
+      "unit": "mA",
+      "description": "Analog input current of the 4-20 mA input, in mA. Type byte 0x07 in SD-0178.",
+      "type": "number"
+    }
+  },
+  "required": ["current"]
+}
