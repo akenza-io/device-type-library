@@ -1,0 +1,16 @@
+{
+  "$id": "https://akenza.io/sensocon/WS/temperature.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "temperature",
+  "title": "Probe temperature",
+  "properties": {
+    "temperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit",
+      "title": "Temperature (probe)",
+      "description": "Temperature from the thermistor probe input in °F. Type byte 0x08 in SD-0178."
+    }
+  },
+  "required": ["temperature"]
+}

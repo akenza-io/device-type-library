@@ -1,0 +1,17 @@
+{
+  "$id": "https://akenza.io/sensocon/WM/contact.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "contact",
+  "title": "Contact input",
+  "properties": {
+    "contact": {
+      "title": "Contact state",
+      "description": "State of the dry contact input. Type byte 0x04 in SD-0178. 0 is open and 1 is closed. A closed contact triggers a transmission.",
+      "type": "string",
+      "enum": ["OPEN", "CLOSED"]
+    }
+  },
+  "required": ["contact"]
+}

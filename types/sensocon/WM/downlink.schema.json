@@ -1,0 +1,74 @@
+{
+  "$id": "https://akenza.io/sensocon/WM/downlink.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "downlink_encoder",
+  "topic": "downlink",
+  "title": "Downlink",
+  "properties": {
+    "setInterval": {
+      "title": "Reporting interval",
+      "unit": "s",
+      "type": "integer",
+      "minimum": 600,
+      "maximum": 65535,
+      "description": "Command 0x00. Reporting interval in seconds. Minimum 600 s (10 minutes)."
+    },
+    "pressureOffset": {
+      "title": "Pressure offset",
+      "unit": "inWC",
+      "type": "number",
+      "minimum": -32.768,
+      "maximum": 32.767,
+      "description": "Command 0x02. Offset in inWC. The encoder sends the value in thousandths of inWC."
+    },
+    "temperatureOffset": {
+      "title": "Probe temperature offset",
+      "unit": "°F",
+      "type": "number",
+      "minimum": -32.768,
+      "maximum": 32.767,
+      "description": "Command 0x04. Offset in °F. The encoder sends the value in thousandths of °F."
+    },
+    "humidityOffset": {
+      "title": "Humidity offset",
+      "unit": "%",
+      "type": "number",
+      "minimum": -32.768,
+      "maximum": 32.767,
+      "description": "Command 0x06. Offset in %. The encoder sends the value in thousandths of %."
+    },
+    "voltageOffset": {
+      "title": "Voltage offset",
+      "unit": "V",
+      "type": "number",
+      "minimum": -32.768,
+      "maximum": 32.767,
+      "description": "Command 0x08. Offset in V. The encoder sends the value in thousandths of V."
+    },
+    "currentOffset": {
+      "title": "Current offset",
+      "unit": "A",
+      "type": "number",
+      "minimum": -32.768,
+      "maximum": 32.767,
+      "description": "Command 0x0A. Offset in A. The encoder sends the value in thousandths of A."
+    },
+    "humidityTempOffset": {
+      "title": "Humidity sensor temperature offset",
+      "unit": "°F",
+      "type": "number",
+      "minimum": -32.768,
+      "maximum": 32.767,
+      "description": "Command 0x0C. Offset in °F. The encoder sends the value in thousandths of °F."
+    },
+    "gaugeDiffPressureOffset": {
+      "title": "Gauge or differential pressure offset",
+      "unit": "PSI",
+      "type": "number",
+      "minimum": -32.768,
+      "maximum": 32.767,
+      "description": "Command 0x10. Offset in PSI. The encoder sends the value in thousandths of PSI."
+    }
+  }
+}

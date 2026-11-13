@@ -1,0 +1,51 @@
+{
+  "name": "DataSling Series WM",
+  "version": "1.0.0",
+  "manufacturer": "Sensocon",
+  "url": "https://sensocon.com/series-wm-wireless-multi-variable-sensor.html",
+  "description": "Battery-powered multivariable LoRaWAN sensor (Series WM). One unit combines up to three inputs: differential pressure in in. WC (DP), humidity and temperature (HT) or gauge or wet/wet differential pressure in PSI (G, W), and thermistor probe temperature (TI), 4-20 mA input (AI) or 0-10 VDC input (VI). For HVAC, cleanrooms, pharmaceutical and industrial monitoring.",
+  "author": "Sensocon, Inc.",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Differential Pressure",
+    "Gauge Pressure",
+    "Humidity",
+    "Temperature",
+    "Voltage",
+    "Current"
+  ],
+  "outputTopics": [
+    "pressure",
+    "gauge_diff_pressure",
+    "humidity",
+    "temperature",
+    "voltage",
+    "current",
+    "contact",
+    "lifecycle",
+    "downlink"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Building Automation & Control",
+    "Indoor Air Quality & Comfort",
+    "Cold Chain & Temperature Compliance",
+    "Condition Monitoring"
+  ],
+  "keywords": [
+    "Sensocon",
+    "DataSling",
+    "Series WM",
+    "multivariable",
+    "differential pressure",
+    "gauge pressure",
+    "humidity",
+    "temperature",
+    "4-20 mA",
+    "0-10 VDC",
+    "cleanroom",
+    "HVAC",
+    "LoRaWAN"
+  ]
+}
