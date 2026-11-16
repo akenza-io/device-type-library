@@ -14,24 +14,13 @@
     "Voltage",
     "Current"
   ],
-  "outputTopics": [
-    "pressure",
-    "gauge_diff_pressure",
-    "humidity",
-    "temperature",
-    "voltage",
-    "current",
-    "contact",
-    "lifecycle",
-    "downlink"
-  ],
+  "outputTopics": ["default", "lifecycle", "downlink"],
   "encoding": "HEX",
   "connectivity": "LORA",
   "useCases": [
-    "Building Automation & Control",
     "Indoor Air Quality & Comfort",
-    "Cold Chain & Temperature Compliance",
-    "Condition Monitoring"
+    "Condition Monitoring",
+    "Cold Chain & Temperature Compliance"
   ],
   "keywords": [
     "Sensocon",
@@ -44,8 +33,11 @@
     "temperature",
     "4-20 mA",
     "0-10 VDC",
-    "cleanroom",
     "HVAC",
+    "BACnet",
+    "BMS",
+    "cleanroom",
+    "filter monitoring",
     "LoRaWAN"
   ]
 }

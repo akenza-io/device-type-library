@@ -8,63 +8,52 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const TOPICS = [
-  "pressure",
-  "gauge_diff_pressure",
-  "humidity",
-  "temperature",
-  "voltage",
-  "current",
-  "contact",
-  "lifecycle",
-];
-
 describe("Sensocon DataSling Series WM Uplink", () => {
-  const schemas = {};
+  let defaultSchema = null;
+  let lifecycleSchema = null;
   let consume = null;
 
-  before(async () => {
+  before((done) => {
     const script = rewire(`${__dirname}/uplink.js`);
     consume = init(script);
-    await Promise.all(
-      TOPICS.map(async (topic) => {
-        schemas[topic] = await loadSchema(`${__dirname}/${topic}.schema.json`);
-      }),
-    );
+    loadSchema(`${__dirname}/default.schema.json`).then((parsedSchema) => {
+      defaultSchema = parsedSchema;
+      done();
+    });
   });
 
-  // Queues one expected emit: checks the topic, the values and the schema
-  function expectSample(topic, expected) {
-    expectEmits((type, value) => {
-      assert.equal(type, "sample");
-      assert.isNotNull(value);
-      assert.typeOf(value.data, "object");
-      assert.equal(value.topic, topic);
-      assert.deepEqual(
-        Object.keys(value.data).sort(),
-        Object.keys(expected).sort(),
-      );
-      Object.keys(expected).forEach((key) => {
-        if (expected[key] === null) {
-          assert.isNull(value.data[key]);
-        } else if (typeof expected[key] === "string") {
-          assert.equal(value.data[key], expected[key]);
-        } else {
-          assert.closeTo(value.data[key], expected[key], 0.0005);
-        }
-      });
-      if (!Object.values(value.data).includes(null)) {
-        validateSchema(value.data, schemas[topic], { throwError: true });
-      }
+  before((done) => {
+    loadSchema(`${__dirname}/lifecycle.schema.json`).then((parsedSchema) => {
+      lifecycleSchema = parsedSchema;
+      done();
     });
-  }
+  });
 
   describe("consume()", () => {
     it("should decode a WM-DP02-HT02-TI01 uplink (field data)", () => {
-      // Real uplink of a WM-DP02-HT02-TI01 (FCnt 0, FPort 1, US915)
-      expectSample("humidity", { humidity: 90.608, humidityTemp: 80.73 });
-      expectSample("temperature", { temperature: 41.9 });
-      expectSample("lifecycle", { batteryVoltage: 3.025, payloadVersion: 170 });
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.humidity, 90.61);
+        assert.equal(value.data.temperature, 27.07);
+        assert.equal(value.data.temperatureF, 80.73);
+        assert.equal(value.data.probeTemperature, 5.5);
+        assert.equal(value.data.probeTemperatureF, 41.9);
+        validateSchema(value.data, defaultSchema, { throwError: true });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batteryVoltage, 3.03);
+        assert.equal(value.data.payloadVersion, 170);
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
       consume({
         data: {
           port: 1,
@@ -74,10 +63,19 @@ describe("Sensocon DataSling Series WM Uplink", () => {
     });
 
     it("should decode the SD-0178 example payload", () => {
-      // Example payload printed in Sensocon document SD-0178 (no battery block)
-      expectSample("pressure", { pressure: 2.95 });
-      expectSample("humidity", { humidity: 59.439, humidityTemp: 79.632 });
-      expectSample("current", { current: 4 }); // 4 mA, 4-20 mA input
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.pressure, 2.95);
+        assert.equal(value.data.humidity, 59.44);
+        assert.equal(value.data.temperature, 26.46);
+        assert.equal(value.data.temperatureF, 79.63);
+        assert.equal(value.data.current, 4);
+        validateSchema(value.data, defaultSchema, { throwError: true });
+      });
+
       consume({
         data: {
           port: 1,
@@ -87,11 +85,28 @@ describe("Sensocon DataSling Series WM Uplink", () => {
     });
 
     it("should decode a WM with pressure, gauge pressure and probe temperature", () => {
-      // Constructed test vector in the SD-0178 format
-      expectSample("pressure", { pressure: 0.5 });
-      expectSample("gauge_diff_pressure", { gaugeDiffPressure: 12.5 });
-      expectSample("temperature", { temperature: 72.5 });
-      expectSample("lifecycle", { batteryVoltage: 3.05, payloadVersion: 170 });
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.pressure, 0.5);
+        assert.equal(value.data.gaugeDiffPressure, 12.5);
+        assert.equal(value.data.probeTemperature, 22.5);
+        assert.equal(value.data.probeTemperatureF, 72.5);
+        validateSchema(value.data, defaultSchema, { throwError: true });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batteryVoltage, 3.05);
+        assert.equal(value.data.payloadVersion, 170);
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
       consume({
         data: {
           port: 1,
@@ -101,24 +116,49 @@ describe("Sensocon DataSling Series WM Uplink", () => {
     });
 
     it("should decode a closed contact payload", () => {
-      // 1 = closed. A closed contact triggers a transmission.
-      expectSample("contact", { contact: "CLOSED" });
-      expectSample("lifecycle", { batteryVoltage: 3.1, payloadVersion: 170 });
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.contact, "CLOSED");
+        validateSchema(value.data, defaultSchema, { throwError: true });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batteryVoltage, 3.1);
+        assert.equal(value.data.payloadVersion, 170);
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
       consume({ data: { port: 1, payloadHex: "aa0366664640040000803f" } });
     });
 
     it("should decode an open contact payload", () => {
-      // 0 = open
-      expectSample("contact", { contact: "OPEN" });
-      expectSample("lifecycle", { batteryVoltage: 3.1, payloadVersion: 170 });
-      consume({ data: { port: 1, payloadHex: "aa03666646400400000000" } });
-    });
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+        assert.equal(value.topic, "default");
+        assert.equal(value.data.contact, "OPEN");
+        validateSchema(value.data, defaultSchema, { throwError: true });
+      });
 
-    it("should decode the field uplink from a ChirpStack v4 event (Base64)", () => {
-      expectSample("humidity", { humidity: 90.608, humidityTemp: 80.73 });
-      expectSample("temperature", { temperature: 41.9 });
-      expectSample("lifecycle", { batteryVoltage: 3.025, payloadVersion: 170 });
-      consume({ data: { fPort: 1, data: "qgOamUFAAdR1oUICODe1QgiamSdC" } });
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+        assert.equal(value.topic, "lifecycle");
+        assert.equal(value.data.batteryVoltage, 3.1);
+        assert.equal(value.data.payloadVersion, 170);
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      consume({ data: { port: 1, payloadHex: "aa03666646400400000000" } });
     });
 
     it("should emit nothing for an empty payload", () => {

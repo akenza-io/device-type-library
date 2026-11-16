@@ -1,0 +1,64 @@
+{
+  "$id": "https://akenza.io/sensocon/WS/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "pressure": {
+      "title": "Differential pressure",
+      "unit": "inWC",
+      "description": "Differential pressure in inches of water column (in. WC). Type byte 0x00 in SD-0178. Unit from the SD-0178 offset command table.",
+      "type": "number"
+    },
+    "gaugeDiffPressure": {
+      "title": "Gauge or differential pressure",
+      "unit": "PSI",
+      "description": "Gauge or wet/wet differential pressure in PSI. Type byte 0x13 in SD-0178. Unit from the SD-0178 offset command table.",
+      "type": "number"
+    },
+    "humidity": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/humidity/percent",
+      "title": "Humidity",
+      "description": "Relative humidity in %. Type byte 0x02 in SD-0178."
+    },
+    "temperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Temperature \u00b0C",
+      "description": "Temperature from the humidity and temperature sensor, converted to \u00b0C. The sensor sends this value in \u00b0F (type byte 0x01 in SD-0178)."
+    },
+    "temperatureF": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit",
+      "title": "Temperature \u00b0F",
+      "description": "Temperature from the humidity and temperature sensor in \u00b0F, as sent by the sensor. Type byte 0x01 in SD-0178."
+    },
+    "probeTemperature": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
+      "title": "Probe temperature \u00b0C",
+      "description": "Temperature from the thermistor probe input, converted to \u00b0C. The sensor sends this value in \u00b0F (type byte 0x08 in SD-0178)."
+    },
+    "probeTemperatureF": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/fahrenheit",
+      "title": "Probe temperature \u00b0F",
+      "description": "Temperature from the thermistor probe input in \u00b0F, as sent by the sensor. Type byte 0x08 in SD-0178."
+    },
+    "voltage": {
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/ios/schema.json#/$defs/analogInput/volt",
+      "title": "Analog voltage input",
+      "description": "Analog input voltage in V DC. Type byte 0x06 in SD-0178."
+    },
+    "current": {
+      "title": "Analog current input",
+      "unit": "mA",
+      "description": "Analog input current of the 4-20 mA input, in mA. Type byte 0x07 in SD-0178.",
+      "type": "number"
+    },
+    "contact": {
+      "title": "Contact state",
+      "description": "State of the dry contact input. Type byte 0x04 in SD-0178. 0 is open and 1 is closed. A closed contact triggers a transmission.",
+      "type": "string",
+      "enum": ["OPEN", "CLOSED"]
+    }
+  }
+}

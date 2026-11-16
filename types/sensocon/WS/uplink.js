@@ -2,67 +2,43 @@
 // Source: Sensocon document SD-0178 "LoRaWAN Payload Decoder for Series WS/WM Wireless Sensors".
 // Payload: 1 header byte (version), then up to 10 blocks of 5 bytes:
 // 1 type byte + 1 IEEE 754 float32 value (little-endian).
-// Each measurement group is emitted to its own topic. A topic is only emitted
-// if the uplink contains at least one of its values.
+// The sensor always sends the full data set for the model. All measurements
+// are emitted on the "default" topic. Battery voltage is emitted on "lifecycle".
+// Temperatures are sent natively in °F. The decoder converts them to °C as
+// the primary field and also keeps the original °F value.
 
-// SD-0178 type byte -> data key and topic.
+// SD-0178 type byte -> data key.
 // Types 5 and 9 to 18 are in the SD-0178 type map, but no unit is specified
 // and no current WS/WM model reports them. They are ignored, as SD-0178 does
 // for unknown types.
 const TYPES = {
-  0: { key: "pressure", topic: "pressure" },
-  1: { key: "humidityTemp", topic: "humidity" },
-  2: { key: "humidity", topic: "humidity" },
-  3: { key: "batteryVoltage", topic: "lifecycle" },
-  4: { key: "contact", topic: "contact" },
-  6: { key: "voltage", topic: "voltage" },
-  7: { key: "current", topic: "current" },
-  8: { key: "temperature", topic: "temperature" },
-  19: { key: "gaugeDiffPressure", topic: "gauge_diff_pressure" },
+  0: "pressure",
+  1: "humidityTemperature",
+  2: "humidity",
+  3: "batteryVoltage",
+  4: "contact",
+  6: "voltage",
+  7: "current",
+  8: "probeTemperature",
+  19: "gaugeDiffPressure",
 };
 
-// Emit order and the full key list of every topic
-const TOPICS = [
-  { topic: "pressure", keys: ["pressure"] },
-  { topic: "gauge_diff_pressure", keys: ["gaugeDiffPressure"] },
-  { topic: "humidity", keys: ["humidity", "humidityTemp"] },
-  { topic: "temperature", keys: ["temperature"] },
-  { topic: "voltage", keys: ["voltage"] },
-  { topic: "current", keys: ["current"] },
-  { topic: "contact", keys: ["contact"] },
+const DEFAULT_KEYS = [
+  "pressure",
+  "gaugeDiffPressure",
+  "humidity",
+  "temperature",
+  "temperatureF",
+  "probeTemperature",
+  "probeTemperatureF",
+  "voltage",
+  "current",
+  "contact",
 ];
 
-const BASE64 =
-  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-
-function base64ToHex(base64) {
-  const clean = String(base64).replace(/[^A-Za-z0-9+/]/g, "");
-  let bitBuffer = 0;
-  let bitCount = 0;
-  let hex = "";
-  for (let i = 0; i < clean.length; i++) {
-    bitBuffer = (bitBuffer << 6) | BASE64.indexOf(clean.charAt(i));
-    bitCount += 6;
-    if (bitCount >= 8) {
-      bitCount -= 8;
-      const byte = (bitBuffer >> bitCount) & 0xff;
-      hex += (byte < 16 ? "0" : "") + byte.toString(16);
-    }
-  }
-  return hex;
-}
-
-// The akenza LoRaWAN connectors give payloadHex. A raw ChirpStack v4 HTTP/MQTT
-// event gives the payload as Base64 in the field "data".
 function getPayloadHex(event) {
   const data = event.data || {};
-  if (typeof data.payloadHex === "string") {
-    return data.payloadHex;
-  }
-  if (typeof data.data === "string") {
-    return base64ToHex(data.data);
-  }
-  return "";
+  return typeof data.payloadHex === "string" ? data.payloadHex : "";
 }
 
 function hexToBytes(hex) {
@@ -83,7 +59,11 @@ function float32LE(bytes, offset) {
 }
 
 function round(value) {
-  return Math.round(value * 1000) / 1000;
+  return Math.round(value * 100) / 100;
+}
+
+function toCelsius(fahrenheit) {
+  return round(((fahrenheit - 32) * 5) / 9);
 }
 
 function consume(event) {
@@ -94,28 +74,38 @@ function consume(event) {
 
   const values = {};
   let index = 1;
-  for (let n = 0; n < 10 && index + 5 <= bytes.length; n++) {
+  const end = Math.min(bytes.length, 1 + 10 * 5);
+  while (index + 5 <= end) {
     const type = TYPES[bytes[index]];
     const value = float32LE(bytes, index + 1);
     index += 5;
-    if (type !== undefined && Number.isFinite(value)) {
-      const rounded = round(value);
+    if (type === undefined || !Number.isFinite(value)) {
+      continue;
+    }
+
+    if (type === "contact") {
       // 0 = open, 1 = closed. A closed contact triggers a transmission.
-      values[type.key] =
-        type.key === "contact" ? (rounded === 0 ? "OPEN" : "CLOSED") : rounded;
+      values.contact = round(value) === 0 ? "OPEN" : "CLOSED";
+    } else if (type === "humidityTemperature") {
+      values.temperatureF = round(value);
+      values.temperature = toCelsius(values.temperatureF);
+    } else if (type === "probeTemperature") {
+      values.probeTemperatureF = round(value);
+      values.probeTemperature = toCelsius(values.probeTemperatureF);
+    } else {
+      values[type] = round(value);
     }
   }
 
-  TOPICS.forEach((group) => {
-    const present = group.keys.filter((key) => values[key] !== undefined);
-    if (present.length > 0) {
-      const data = {};
-      group.keys.forEach((key) => {
-        data[key] = values[key] !== undefined ? values[key] : null;
-      });
-      emit("sample", { data, topic: group.topic });
+  const data = {};
+  DEFAULT_KEYS.forEach((key) => {
+    if (values[key] !== undefined) {
+      data[key] = values[key];
     }
   });
+  if (Object.keys(data).length > 0) {
+    emit("sample", { data, topic: "default" });
+  }
 
   if (values.batteryVoltage !== undefined) {
     emit("sample", {
