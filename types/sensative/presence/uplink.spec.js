@@ -120,5 +120,32 @@ describe("Sensative presence Uplink", () => {
 
       consume(data);
     });
+
+    it("should decode the frame after a foil alarm", () => {
+      const data = {
+        data: {
+          port: 1,
+          payloadHex: "ffff0f01015b",
+        },
+      };
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.equal(value.topic, "lifecycle");
+        assert.deepEqual(value.data, { batteryLevel: 91 });
+
+        validateSchema(value.data, lifecycleSchema, { throwError: true });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.equal(value.topic, "alarm");
+        assert.deepEqual(value.data, { foilAlarm: true });
+
+        validateSchema(value.data, alarmSchema, { throwError: true });
+      });
+
+      consume(data);
+    });
   });
 });

@@ -1,0 +1,38 @@
+{
+  "$id": "https://akenza.io/wika/pgw23-100-11/technical_alarm.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "technical_alarm",
+  "title": "Technical alarm",
+  "properties": {
+    "alarmStatus": {
+      "title": "Alarm status",
+      "type": "string",
+      "description": "Alarm status",
+      "enum": [
+        "triggered",
+        "disappeared"
+      ],
+      "hideFromKpis": true
+    },
+    "causeOfFailure": {
+      "title": "Cause of failure",
+      "type": "string",
+      "description": "Cause of failure",
+      "hideFromKpis": true
+    },
+    "channel": {
+      "title": "Channel",
+      "type": "string",
+      "description": "Channel",
+      "hideFromKpis": true
+    },
+    "value": {
+      "title": "Value",
+      "type": "number",
+      "description": "Value",
+      "hideFromKpis": true
+    }
+  }
+}

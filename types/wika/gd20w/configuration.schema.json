@@ -1,0 +1,118 @@
+{
+  "$id": "https://akenza.io/wika/gd20w/configuration.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "configuration",
+  "title": "Configuration",
+  "properties": {
+    "acquisitionTimeAlarmsOff": {
+      "title": "Acquisition time alarms off",
+      "type": "number",
+      "description": "Acquisition time alarms off",
+      "hideFromKpis": true
+    },
+    "acquisitionTimeAlarmsOn": {
+      "title": "Acquisition time alarms on",
+      "type": "number",
+      "description": "Acquisition time alarms on",
+      "hideFromKpis": true
+    },
+    "alarm1Threshold": {
+      "title": "Alarm 1 threshold",
+      "type": "number",
+      "description": "Alarm 1 threshold",
+      "hideFromKpis": true
+    },
+    "alarm2Threshold": {
+      "title": "Alarm 2 threshold",
+      "type": "number",
+      "description": "Alarm 2 threshold",
+      "hideFromKpis": true
+    },
+    "alarm3Slope": {
+      "title": "Alarm 3 slope",
+      "type": "number",
+      "description": "Alarm 3 slope",
+      "hideFromKpis": true
+    },
+    "alarm4Slope": {
+      "title": "Alarm 4 slope",
+      "type": "number",
+      "description": "Alarm 4 slope",
+      "hideFromKpis": true
+    },
+    "alarm5Period": {
+      "title": "Alarm 5 period",
+      "type": "number",
+      "description": "Alarm 5 period",
+      "hideFromKpis": true
+    },
+    "alarm5Threshold": {
+      "title": "Alarm 5 threshold",
+      "type": "number",
+      "description": "Alarm 5 threshold",
+      "hideFromKpis": true
+    },
+    "alarm6Period": {
+      "title": "Alarm 6 period",
+      "type": "number",
+      "description": "Alarm 6 period",
+      "hideFromKpis": true
+    },
+    "alarm6Threshold": {
+      "title": "Alarm 6 threshold",
+      "type": "number",
+      "description": "Alarm 6 threshold",
+      "hideFromKpis": true
+    },
+    "commandType": {
+      "title": "Command type",
+      "type": "number",
+      "description": "Command type",
+      "hideFromKpis": true
+    },
+    "configurationId": {
+      "title": "Configuration ID",
+      "type": "number",
+      "description": "Configuration ID",
+      "hideFromKpis": true
+    },
+    "deadBand": {
+      "title": "Dead band",
+      "type": "number",
+      "description": "Dead band",
+      "hideFromKpis": true
+    },
+    "publicationTimeFactorAlarmsOff": {
+      "title": "Publication time factor alarms off",
+      "type": "number",
+      "description": "Publication time factor alarms off",
+      "hideFromKpis": true
+    },
+    "publicationTimeFactorAlarmsOn": {
+      "title": "Publication time factor alarms on",
+      "type": "number",
+      "description": "Publication time factor alarms on",
+      "hideFromKpis": true
+    },
+    "sensorOrChannelId": {
+      "title": "Sensor or channel ID",
+      "type": "number",
+      "description": "Sensor or channel ID",
+      "hideFromKpis": true
+    },
+    "status": {
+      "title": "Status",
+      "type": "number",
+      "description": "Status",
+      "hideFromKpis": true
+    },
+    "statusDescription": {
+      "title": "Status description",
+      "type": "string",
+      "description": "Status description",
+      "hideFromKpis": true
+    }
+  }
+}

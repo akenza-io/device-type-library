@@ -1,0 +1,394 @@
+{
+  "$id": "https://akenza.io/wika/tgu-netris3/device_information.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "device_information",
+  "title": "Device information",
+  "properties": {
+    "channelPlan": {
+      "title": "Channel plan",
+      "type": "number",
+      "description": "Channel plan",
+      "hideFromKpis": true
+    },
+    "connectedSensorsSensor1": {
+      "title": "Connected sensors sensor 1",
+      "type": "boolean",
+      "description": "Connected sensors sensor 1",
+      "hideFromKpis": true
+    },
+    "connectedSensorsSensor2": {
+      "title": "Connected sensors sensor 2",
+      "type": "boolean",
+      "description": "Connected sensors sensor 2",
+      "hideFromKpis": true
+    },
+    "connectedSensorsSensor3": {
+      "title": "Connected sensors sensor 3",
+      "type": "boolean",
+      "description": "Connected sensors sensor 3",
+      "hideFromKpis": true
+    },
+    "connectedSensorsSensor4": {
+      "title": "Connected sensors sensor 4",
+      "type": "boolean",
+      "description": "Connected sensors sensor 4",
+      "hideFromKpis": true
+    },
+    "deviceFirmwareVersion": {
+      "title": "Device firmware version",
+      "type": "string",
+      "description": "Device firmware version",
+      "hideFromKpis": true
+    },
+    "deviceHardwareVersion": {
+      "title": "Device hardware version",
+      "type": "string",
+      "description": "Device hardware version",
+      "hideFromKpis": true
+    },
+    "deviceProductCode": {
+      "title": "Device product code",
+      "type": "string",
+      "description": "Device product code",
+      "hideFromKpis": true
+    },
+    "deviceSerialNumber": {
+      "title": "Device serial number",
+      "type": "string",
+      "description": "Device serial number",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureAccuracy": {
+      "title": "Device temperature accuracy",
+      "type": "number",
+      "description": "Device temperature accuracy",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureCalibrationDate": {
+      "title": "Device temperature calibration date",
+      "type": "string",
+      "description": "Device temperature calibration date",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureGain": {
+      "title": "Device temperature gain",
+      "type": "number",
+      "description": "Device temperature gain",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureMaxMeasureRange": {
+      "title": "Device temperature max measure range",
+      "type": "number",
+      "description": "Device temperature max measure range",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureMaxPhysicalLimit": {
+      "title": "Device temperature max physical limit",
+      "type": "number",
+      "description": "Device temperature max physical limit",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureMeasurand": {
+      "title": "Device temperature measurand",
+      "type": "number",
+      "description": "Device temperature measurand",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureMeasurandName": {
+      "title": "Device temperature measurand name",
+      "type": "string",
+      "description": "Device temperature measurand name",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureMeasurementRangeEnd": {
+      "title": "Device temperature measurement range end",
+      "type": "number",
+      "description": "Device temperature measurement range end",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureMeasurementRangeStart": {
+      "title": "Device temperature measurement range start",
+      "type": "number",
+      "description": "Device temperature measurement range start",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureMinMeasureRange": {
+      "title": "Device temperature min measure range",
+      "type": "number",
+      "description": "Device temperature min measure range",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureMinPhysicalLimit": {
+      "title": "Device temperature min physical limit",
+      "type": "number",
+      "description": "Device temperature min physical limit",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureOffset": {
+      "title": "Device temperature offset",
+      "type": "number",
+      "description": "Device temperature offset",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureUnit": {
+      "title": "Device temperature unit",
+      "type": "number",
+      "description": "Device temperature unit",
+      "hideFromKpis": true
+    },
+    "deviceTemperatureUnitName": {
+      "title": "Device temperature unit name",
+      "type": "string",
+      "description": "Device temperature unit name",
+      "hideFromKpis": true
+    },
+    "firmwareVersion": {
+      "title": "Firmware version",
+      "type": "string",
+      "description": "Firmware version",
+      "hideFromKpis": true
+    },
+    "hardwareVersion": {
+      "title": "Hardware version",
+      "type": "string",
+      "description": "Hardware version",
+      "hideFromKpis": true
+    },
+    "optionalFieldsMask": {
+      "title": "Optional fields mask",
+      "type": "number",
+      "description": "Optional fields mask",
+      "hideFromKpis": true
+    },
+    "productId": {
+      "title": "Product ID",
+      "type": "number",
+      "description": "Product ID",
+      "hideFromKpis": true
+    },
+    "productIdName": {
+      "title": "Product ID name",
+      "type": "string",
+      "description": "Product ID name",
+      "hideFromKpis": true
+    },
+    "productionDate": {
+      "title": "Production date",
+      "type": "string",
+      "description": "Production date",
+      "hideFromKpis": true
+    },
+    "productSubId": {
+      "title": "Product sub ID",
+      "type": "string",
+      "description": "Product sub ID",
+      "hideFromKpis": true
+    },
+    "productSubIdName": {
+      "title": "Product sub ID name",
+      "type": "string",
+      "description": "Product sub ID name",
+      "hideFromKpis": true
+    },
+    "sensorDeviceTypeId": {
+      "title": "Sensor device type ID",
+      "type": "number",
+      "description": "Sensor device type ID",
+      "hideFromKpis": true
+    },
+    "sensorExistingChannelsChannel1": {
+      "title": "Sensor existing channels channel 1",
+      "type": "boolean",
+      "description": "Sensor existing channels channel 1",
+      "hideFromKpis": true
+    },
+    "sensorExistingChannelsChannel2": {
+      "title": "Sensor existing channels channel 2",
+      "type": "boolean",
+      "description": "Sensor existing channels channel 2",
+      "hideFromKpis": true
+    },
+    "sensorExistingChannelsChannel3": {
+      "title": "Sensor existing channels channel 3",
+      "type": "boolean",
+      "description": "Sensor existing channels channel 3",
+      "hideFromKpis": true
+    },
+    "sensorExistingChannelsChannel4": {
+      "title": "Sensor existing channels channel 4",
+      "type": "boolean",
+      "description": "Sensor existing channels channel 4",
+      "hideFromKpis": true
+    },
+    "sensorExistingChannelsChannel5": {
+      "title": "Sensor existing channels channel 5",
+      "type": "boolean",
+      "description": "Sensor existing channels channel 5",
+      "hideFromKpis": true
+    },
+    "sensorExistingChannelsChannel6": {
+      "title": "Sensor existing channels channel 6",
+      "type": "boolean",
+      "description": "Sensor existing channels channel 6",
+      "hideFromKpis": true
+    },
+    "sensorExistingChannelsChannel7": {
+      "title": "Sensor existing channels channel 7",
+      "type": "boolean",
+      "description": "Sensor existing channels channel 7",
+      "hideFromKpis": true
+    },
+    "sensorExistingChannelsChannel8": {
+      "title": "Sensor existing channels channel 8",
+      "type": "boolean",
+      "description": "Sensor existing channels channel 8",
+      "hideFromKpis": true
+    },
+    "sensorFirmwareVersion": {
+      "title": "Sensor firmware version",
+      "type": "string",
+      "description": "Sensor firmware version",
+      "hideFromKpis": true
+    },
+    "sensorHardwareVersion": {
+      "title": "Sensor hardware version",
+      "type": "string",
+      "description": "Sensor hardware version",
+      "hideFromKpis": true
+    },
+    "sensorLUID": {
+      "title": "Sensor LUID",
+      "type": "number",
+      "description": "Sensor LUID",
+      "hideFromKpis": true
+    },
+    "sensorProductionDate": {
+      "title": "Sensor production date",
+      "type": "string",
+      "description": "Sensor production date",
+      "hideFromKpis": true
+    },
+    "sensorSensorType": {
+      "title": "Sensor sensor type",
+      "type": "number",
+      "description": "Sensor sensor type",
+      "hideFromKpis": true
+    },
+    "sensorSerialNumberPart1": {
+      "title": "Sensor serial number part 1",
+      "type": "string",
+      "description": "Sensor serial number part 1",
+      "hideFromKpis": true
+    },
+    "sensorSerialNumberPart2": {
+      "title": "Sensor serial number part 2",
+      "type": "string",
+      "description": "Sensor serial number part 2",
+      "hideFromKpis": true
+    },
+    "serialNumberPart1": {
+      "title": "Serial number part 1",
+      "type": "string",
+      "description": "Serial number part 1",
+      "hideFromKpis": true
+    },
+    "serialNumberPart2": {
+      "title": "Serial number part 2",
+      "type": "string",
+      "description": "Serial number part 2",
+      "hideFromKpis": true
+    },
+    "temperatureAccuracy": {
+      "title": "Temperature accuracy",
+      "type": "number",
+      "description": "Temperature accuracy",
+      "hideFromKpis": true
+    },
+    "temperatureCalibrationDate": {
+      "title": "Temperature calibration date",
+      "type": "string",
+      "description": "Temperature calibration date",
+      "hideFromKpis": true
+    },
+    "temperatureGain": {
+      "title": "Temperature gain",
+      "type": "number",
+      "description": "Temperature gain",
+      "hideFromKpis": true
+    },
+    "temperatureMaxMeasureRange": {
+      "title": "Temperature max measure range",
+      "type": "number",
+      "description": "Temperature max measure range",
+      "hideFromKpis": true
+    },
+    "temperatureMaxPhysicalLimit": {
+      "title": "Temperature max physical limit",
+      "type": "number",
+      "description": "Temperature max physical limit",
+      "hideFromKpis": true
+    },
+    "temperatureMeasurand": {
+      "title": "Temperature measurand",
+      "type": "number",
+      "description": "Temperature measurand",
+      "hideFromKpis": true
+    },
+    "temperatureMeasurandName": {
+      "title": "Temperature measurand name",
+      "type": "string",
+      "description": "Temperature measurand name",
+      "hideFromKpis": true
+    },
+    "temperatureMeasurementRangeEnd": {
+      "title": "Temperature measurement range end",
+      "type": "number",
+      "description": "Temperature measurement range end",
+      "hideFromKpis": true
+    },
+    "temperatureMeasurementRangeStart": {
+      "title": "Temperature measurement range start",
+      "type": "number",
+      "description": "Temperature measurement range start",
+      "hideFromKpis": true
+    },
+    "temperatureMinMeasureRange": {
+      "title": "Temperature min measure range",
+      "type": "number",
+      "description": "Temperature min measure range",
+      "hideFromKpis": true
+    },
+    "temperatureMinPhysicalLimit": {
+      "title": "Temperature min physical limit",
+      "type": "number",
+      "description": "Temperature min physical limit",
+      "hideFromKpis": true
+    },
+    "temperatureOffset": {
+      "title": "Temperature offset",
+      "type": "number",
+      "description": "Temperature offset",
+      "hideFromKpis": true
+    },
+    "temperatureUnit": {
+      "title": "Temperature unit",
+      "type": "number",
+      "description": "Temperature unit",
+      "hideFromKpis": true
+    },
+    "temperatureUnitName": {
+      "title": "Temperature unit name",
+      "type": "string",
+      "description": "Temperature unit name",
+      "hideFromKpis": true
+    },
+    "wikaSensorSerialNumber": {
+      "title": "Wika sensor serial number",
+      "type": "string",
+      "description": "Wika sensor serial number",
+      "hideFromKpis": true
+    }
+  }
+}

@@ -50,7 +50,12 @@
       "title": "Disinfect alarm",
       "description": "Status of the disinfection",
       "type": "string",
-      "enum": ["DIRTY", "OCCUPIED", "CLEANING", "CLEAN"]
+      "enum": [
+        "DIRTY",
+        "OCCUPIED",
+        "CLEANING",
+        "CLEAN"
+      ]
     }
   }
 }

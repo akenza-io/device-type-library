@@ -9,6 +9,7 @@ function parseHexString(str) {
   return result;
 }
 
+// Decodes one frame starting at pos and returns the position after it
 function decodeFrame(bytes, type, target, pos) {
   switch (type & 0x7f) {
     case 0:
@@ -59,7 +60,7 @@ function decodeFrame(bytes, type, target, pos) {
       target.closed = !bytes[pos++]; // true = door closed, false = door open
       break;
     case 10: // DoorAlarm 1bytes binary
-      target.doorAlarm = !bytes[pos++]; // boolean true = alarm
+      target.doorAlarm = !!bytes[pos++]; // boolean true = alarm
       break;
     case 11: // TamperReport 1bytes binary (was previously TamperSwitch)
       target.tamperReport = !!bytes[pos++];
@@ -140,6 +141,7 @@ function decodeFrame(bytes, type, target, pos) {
     default:
       break;
   }
+  return pos;
 }
 
 function deleteUnusedKeys(data) {
@@ -236,12 +238,12 @@ function consume(event) {
       while (pos < bytes.length) {
         type = bytes[pos++];
         if (type & 0x80) decoded.prevHistSeqNr--;
-        decodeFrame(bytes, type, decoded, pos);
+        pos = decodeFrame(bytes, type, decoded, pos);
       }
       break;
 
-    case 2:
-      var now = new Date();
+    case 2: {
+      let now = new Date();
       decoded.history = {};
       if (bytes.length < 2) {
         decoded.history.error = "Wrong length of RX package";
@@ -251,7 +253,7 @@ function consume(event) {
       while (pos < bytes.length) {
         decoded.history[seqNr] = {};
         decoded.history.now = now.toUTCString();
-        secondsAgo =
+        let secondsAgo =
           (bytes[pos++] << 24) |
           (bytes[pos++] << 16) |
           (bytes[pos++] << 8) |
@@ -260,12 +262,12 @@ function consume(event) {
           now.getTime() - secondsAgo * 1000,
         ).toUTCString();
         type = bytes[pos++];
-        decodeFrame(bytes, type, decoded.history[seqNr], pos);
+        pos = decodeFrame(bytes, type, decoded.history[seqNr], pos);
         seqNr++;
       }
       break;
 
-    default:
+    } default:
       break;
   }
 

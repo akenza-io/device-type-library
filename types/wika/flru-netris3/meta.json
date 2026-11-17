@@ -1,0 +1,41 @@
+{
+  "name": "FLRU + NETRIS3",
+  "version": "1.0.0",
+  "manufacturer": "Wika",
+  "url": "https://www.wika.com/en-en/flru_sfi.WIKA",
+  "description": "Reed-chain level transmitter combined with the NETRIS3 radio unit that measures the fill level of liquids. Used for remote monitoring of tank levels, with process and technical alarms.",
+  "author": "Akenza AG",
+  "firmwareVersion": "V1.0.0",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Level"
+  ],
+  "outputTopics": [
+    "default",
+    "process_alarm",
+    "technical_alarm",
+    "device_alarm",
+    "device_information",
+    "configuration",
+    "lifecycle",
+    "error"
+  ],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Fill Level Monitoring",
+    "Condition Monitoring"
+  ],
+  "keywords": [
+    "WIKA",
+    "FLRU",
+    "NETRIS3",
+    "level transmitter",
+    "fill level",
+    "tank",
+    "liquid level",
+    "reed chain",
+    "process alarm",
+    "lorawan"
+  ]
+}
