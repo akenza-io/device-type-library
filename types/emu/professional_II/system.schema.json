@@ -1,0 +1,62 @@
+{
+  "$id": "https://akenza.io/emu/professional_II/system.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "system",
+  "title": "System",
+  "properties": {
+    "value": {
+      "title": "Error code",
+      "description": "Raw error code bitmask reported by the meter",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "timeChanged": {
+      "title": "Time changed",
+      "description": "The meter time was changed",
+      "type": "boolean"
+    },
+    "ctRatioChange": {
+      "title": "CT ratio change",
+      "description": "The current transformer ratio was changed",
+      "type": "boolean"
+    },
+    "vtRatioChange": {
+      "title": "VT ratio change",
+      "description": "The voltage transformer ratio was changed",
+      "type": "boolean"
+    },
+    "impulseWidthChange": {
+      "title": "Impulse width change",
+      "description": "The impulse width was changed",
+      "type": "boolean"
+    },
+    "impulseRatioChange": {
+      "title": "Impulse ratio change",
+      "description": "The impulse ratio was changed",
+      "type": "boolean"
+    },
+    "powerFail": {
+      "title": "Power fail",
+      "description": "A power failure occurred",
+      "type": "boolean"
+    },
+    "logbookFull": {
+      "title": "Logbook full",
+      "description": "The meter logbook is full",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "value",
+    "timeChanged",
+    "ctRatioChange",
+    "vtRatioChange",
+    "impulseWidthChange",
+    "impulseRatioChange",
+    "powerFail",
+    "logbookFull"
+  ]
+}

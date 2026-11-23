@@ -14,9 +14,6 @@
     "warningMessages": {
       "title": "Warning messages",
       "type": "array",
-      "items": {
-        "type": "string"
-      },
       "description": "Messages raised while decoding the payload",
       "hideFromKpis": true
     }

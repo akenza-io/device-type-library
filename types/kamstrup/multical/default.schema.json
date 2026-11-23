@@ -9,730 +9,199 @@
     "energy": {
       "title": "Energy",
       "type": "number",
-      "description": "Heat energy (E1). Unit is Wh or J depending on the meter configuration"
+      "description": "Heat energy (E1). Normalised to kWh when the meter reports Wh. The unit depends on the meter configuration and is reported in packet_info"
+    },
+    "energyConsumption": {
+      "title": "Energy consumption",
+      "type": "number",
+      "description": "Energy consumed since the previous uplink, in the same unit as energy"
+    },
+    "accumulatedEnergy": {
+      "title": "Accumulated energy",
+      "type": "number",
+      "description": "Energy stored at the scheduled due date (storage 1). The unit depends on the meter configuration and is reported in packet_info"
+    },
+    "coolingEnergy": {
+      "title": "Cooling energy",
+      "type": "number",
+      "description": "Cooling energy (E3). The unit depends on the meter configuration and is reported in packet_info"
+    },
+    "errorcoolingEnergy": {
+      "title": "Incorrect mount energy",
+      "type": "number",
+      "description": "Cooling energy registered while the meter was mounted the wrong way round. The unit depends on the meter configuration and is reported in packet_info"
+    },
+    "energyE8": {
+      "title": "Energy E8",
+      "type": "number",
+      "description": "Energy register E8 in m³*°C"
+    },
+    "energyE9": {
+      "title": "Energy E9",
+      "type": "number",
+      "description": "Energy register E9 in m³*°C"
+    },
+    "energyAtDueDate": {
+      "title": "Energy at due date",
+      "type": "number",
+      "description": "Energy at the last due date. The unit depends on the meter configuration and is reported in packet_info"
+    },
+    "tariff1energy": {
+      "title": "Tariff 1 energy",
+      "type": "number",
+      "description": "Energy registered on tariff 1. The unit depends on the meter configuration and is reported in packet_info"
+    },
+    "tariff2energy": {
+      "title": "Tariff 2 energy",
+      "type": "number",
+      "description": "Energy registered on tariff 2. The unit depends on the meter configuration and is reported in packet_info"
+    },
+    "tarif2energy": {
+      "title": "Tariff 2 energy (Wh)",
+      "type": "number",
+      "description": "Energy registered on tariff 2 in Wh"
+    },
+    "tarif3energy": {
+      "title": "Tariff 3 energy (Wh)",
+      "type": "number",
+      "description": "Energy registered on tariff 3 in Wh"
+    },
+    "tariff1energyAtDueDate": {
+      "title": "Tariff 1 energy at due date",
+      "type": "number",
+      "description": "Tariff 1 energy at the last due date. The unit depends on the meter configuration and is reported in packet_info"
+    },
+    "tariff2energyAtDueDate": {
+      "title": "Tariff 2 energy at due date",
+      "type": "number",
+      "description": "Tariff 2 energy at the last due date. The unit depends on the meter configuration and is reported in packet_info"
+    },
+    "at24tariff1energy": {
+      "title": "Tariff 1 energy at 24:00",
+      "type": "number",
+      "description": "Tariff 1 energy at midnight. The unit depends on the meter configuration and is reported in packet_info"
+    },
+    "at24tariff2energy": {
+      "title": "Tariff 2 energy at 24:00",
+      "type": "number",
+      "description": "Tariff 2 energy at midnight. The unit depends on the meter configuration and is reported in packet_info"
+    },
+    "previousMonthEnergy": {
+      "title": "Previous month energy",
+      "type": "number",
+      "description": "Energy at the end of the previous month. The unit depends on the meter configuration and is reported in packet_info"
     },
     "volume": {
       "title": "Volume",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/flow/schema.json#/$defs/volume/m3",
-      "description": "Volume (V1) in m3"
+      "description": "Volume (V1) in m³",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/flow/schema.json#/$defs/volume/m3"
     },
-    "mass": {
-      "title": "Mass",
-      "unit": "kg",
+    "accumulatedVolume": {
+      "title": "Accumulated volume",
       "type": "number",
-      "description": "Mass (M1) in kg"
+      "description": "Volume stored at the scheduled due date (storage 1) in m³",
+      "unit": "m3"
     },
-    "onTime": {
-      "title": "On time",
+    "volumeAtDueDate": {
+      "title": "Volume at due date",
       "type": "number",
-      "description": "On time. Unit is seconds, minutes, hours or days depending on the meter configuration"
+      "description": "Volume at the last due date in m³",
+      "unit": "m3"
     },
-    "operatingTime": {
-      "title": "Operating time",
+    "pulse1volume": {
+      "title": "Pulse input 1 volume",
       "type": "number",
-      "description": "Operating time (hour counter). Unit is seconds, minutes, hours or days depending on the meter configuration"
+      "description": "Volume counted on pulse input 1 in m³",
+      "unit": "m3"
+    },
+    "pulse1energy": {
+      "title": "Pulse input 1 energy",
+      "type": "number",
+      "description": "Energy counted on pulse input 1 in MWh",
+      "unit": "MWh"
+    },
+    "pulse2volume": {
+      "title": "Pulse input 2 volume",
+      "type": "number",
+      "description": "Volume counted on pulse input 2 in m³",
+      "unit": "m3"
+    },
+    "pulse2energy": {
+      "title": "Pulse input 2 energy",
+      "type": "number",
+      "description": "Energy counted on pulse input 2 in MWh",
+      "unit": "MWh"
+    },
+    "pulse3volume": {
+      "title": "Pulse input 3 volume",
+      "type": "number",
+      "description": "Volume counted on pulse input 3 in m³",
+      "unit": "m3"
+    },
+    "pulse3energy": {
+      "title": "Pulse input 3 energy",
+      "type": "number",
+      "description": "Energy counted on pulse input 3 in MWh",
+      "unit": "MWh"
     },
     "power": {
       "title": "Power",
       "type": "number",
-      "description": "Power. Unit is W or J/h depending on the meter configuration"
+      "description": "Thermal power. The unit depends on the meter configuration and is reported in packet_info"
     },
-    "volumeFlow": {
-      "title": "Volume flow",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/flow/schema.json#/$defs/flow/m3h",
-      "description": "Volume flow in m3/h"
-    },
-    "volumeFlowExt": {
-      "title": "Volume flow (ext.)",
+    "powerAtDueDate": {
+      "title": "Power at due date",
       "type": "number",
-      "description": "Extended volume flow. Unit is m3/min or m3/s depending on the meter configuration"
+      "description": "Thermal power at the last due date. The unit depends on the meter configuration and is reported in packet_info"
     },
-    "massFlow": {
-      "title": "Mass flow",
-      "unit": "kg/h",
+    "flow": {
+      "title": "Flow",
+      "description": "Volume flow in m³/h",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/flow/schema.json#/$defs/flow/m3h"
+    },
+    "maxFlow": {
+      "title": "Maximum flow",
       "type": "number",
-      "description": "Mass flow in kg/h"
+      "description": "Maximum volume flow in m³/h",
+      "unit": "m3/h"
     },
-    "flowTemperature": {
-      "title": "Flow temperature",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "description": "Flow temperature (T1) in °C"
+    "forwardTemperature": {
+      "title": "Forward temperature",
+      "description": "Forward (supply) temperature in °C",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
     "returnTemperature": {
       "title": "Return temperature",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "description": "Return temperature (T2) in °C"
-    },
-    "temperatureDifference": {
-      "title": "Temperature difference",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/kelvin",
-      "description": "Temperature difference between flow and return in K"
-    },
-    "externalTemperature": {
-      "title": "External temperature",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "description": "External temperature in °C"
-    },
-    "pressure": {
-      "title": "Pressure",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/pressure/bar",
-      "description": "Pressure in bar"
-    },
-    "unitsForHca": {
-      "title": "Units for HCA",
-      "type": "number",
-      "description": "Heat cost allocator units"
-    },
-    "averagingDuration": {
-      "title": "Averaging duration",
-      "type": "number",
-      "description": "Averaging duration. Unit is seconds, minutes, hours or days depending on the meter configuration"
-    },
-    "actualityDuration": {
-      "title": "Actuality duration",
-      "type": "number",
-      "description": "Actuality duration. Unit is seconds, minutes, hours or days depending on the meter configuration"
-    },
-    "fabricationNo": {
-      "title": "Fabrication number",
-      "type": "number",
-      "description": "Fabrication number",
-      "hideFromKpis": true
-    },
-    "enhancedIdentification": {
-      "title": "Enhanced identification",
-      "type": "number",
-      "description": "Enhanced identification",
-      "hideFromKpis": true
-    },
-    "address": {
-      "title": "Address",
-      "type": "number",
-      "description": "M-Bus address",
-      "hideFromKpis": true
-    },
-    "deviceType": {
-      "title": "Device type",
-      "type": "number",
-      "description": "Device type",
-      "hideFromKpis": true
-    },
-    "manufacturer": {
-      "title": "Manufacturer",
-      "type": "number",
-      "description": "Manufacturer",
-      "hideFromKpis": true
-    },
-    "parameterSetIdentification": {
-      "title": "Parameter set identification",
-      "type": "number",
-      "description": "Parameter set identification",
-      "hideFromKpis": true
-    },
-    "modelVersion": {
-      "title": "Model version",
-      "type": "number",
-      "description": "Model version",
-      "hideFromKpis": true
-    },
-    "hardwareVersionNumber": {
-      "title": "Hardware version number",
-      "type": "number",
-      "description": "Hardware version number",
-      "hideFromKpis": true
-    },
-    "metrodologyFirmwareVersionNumber": {
-      "title": "Metrology firmware version number",
-      "type": "number",
-      "description": "Metrology (firmware) version number",
-      "hideFromKpis": true
-    },
-    "otherSoftwareVersionNumber": {
-      "title": "Other software version number",
-      "type": "number",
-      "description": "Other software version number",
-      "hideFromKpis": true
-    },
-    "customerLocation": {
-      "title": "Customer location",
-      "type": "number",
-      "description": "Customer location",
-      "hideFromKpis": true
-    },
-    "customer": {
-      "title": "Customer",
-      "type": "number",
-      "description": "Customer",
-      "hideFromKpis": true
-    },
-    "storageIntervalSecondS": {
-      "title": "Storage interval seconds",
-      "unit": "s",
-      "type": "number",
-      "description": "Storage interval in seconds",
-      "hideFromKpis": true
-    },
-    "storageIntervalMinuteS": {
-      "title": "Storage interval minutes",
-      "unit": "min",
-      "type": "number",
-      "description": "Storage interval in minutes",
-      "hideFromKpis": true
-    },
-    "storageIntervalHourS": {
-      "title": "Storage interval hours",
-      "unit": "h",
-      "type": "number",
-      "description": "Storage interval in hours",
-      "hideFromKpis": true
-    },
-    "storageIntervalDayS": {
-      "title": "Storage interval days",
-      "unit": "d",
-      "type": "number",
-      "description": "Storage interval in days",
-      "hideFromKpis": true
-    },
-    "storageIntervalMonthS": {
-      "title": "Storage interval months",
-      "type": "number",
-      "description": "Storage interval in months",
-      "hideFromKpis": true
-    },
-    "storageIntervalYearS": {
-      "title": "Storage interval years",
-      "type": "number",
-      "description": "Storage interval in years",
-      "hideFromKpis": true
-    },
-    "remainingBatteryLifeTimeDays": {
-      "title": "Remaining battery lifetime",
-      "unit": "d",
-      "type": "number",
-      "description": "Remaining battery lifetime in days"
-    },
-    "coefficientOfPower": {
-      "title": "Coefficient of power",
-      "type": "number",
-      "description": "Coefficient of power"
-    },
-    "e10V1xt3": {
-      "title": "E10 (V1xT3)",
-      "unit": "m3x°C",
-      "type": "number",
-      "description": "Volume V1 multiplied by temperature T3 in m3x°C"
-    },
-    "e11V2xt3": {
-      "title": "E11 (V2xT3)",
-      "unit": "m3x°C",
-      "type": "number",
-      "description": "Volume V2 multiplied by temperature T3 in m3x°C"
-    },
-    "e8V1xtf": {
-      "title": "E8 (V1xTF)",
-      "unit": "m3x°C",
-      "type": "number",
-      "description": "Volume V1 multiplied by flow temperature in m3x°C"
-    },
-    "e9V1xtr": {
-      "title": "E9 (V1xTR)",
-      "unit": "m3x°C",
-      "type": "number",
-      "description": "Volume V1 multiplied by return temperature in m3x°C"
-    },
-    "meterNo1Low8DigitMeterNo2High8Digit": {
-      "title": "Meter number",
-      "type": "number",
-      "description": "Meter number 1 (low 8 digits) and meter number 2 (high 8 digits)",
-      "hideFromKpis": true
-    },
-    "programNoAbccccccAbcccProgNo": {
-      "title": "Program number",
-      "type": "number",
-      "description": "Program number (ABCCCCCC / ABCCC)",
-      "hideFromKpis": true
-    },
-    "configNo1": {
-      "title": "Config number 1",
-      "type": "number",
-      "description": "Configuration number 1",
-      "hideFromKpis": true
-    },
-    "configNo2": {
-      "title": "Config number 2",
-      "type": "number",
-      "description": "Configuration number 2",
-      "hideFromKpis": true
-    },
-    "moduleType": {
-      "title": "Module type",
-      "type": "number",
-      "description": "Module type",
-      "hideFromKpis": true
-    },
-    "moduleTypeConfigNumber": {
-      "title": "Module type config number",
-      "type": "number",
-      "description": "Module type and configuration number",
-      "hideFromKpis": true
-    },
-    "moduleFirmwareNumberAndVersion": {
-      "title": "Module firmware number and version",
-      "type": "number",
-      "description": "Module firmware number and version",
-      "hideFromKpis": true
-    },
-    "meterType": {
-      "title": "Meter type",
-      "type": "number",
-      "description": "Meter type",
-      "hideFromKpis": true
-    },
-    "ald": {
-      "title": "ALD",
-      "type": "number",
-      "description": "Average leakage detection (ALD)"
-    },
-    "aldLastDay": {
-      "title": "ALD last day",
-      "type": "number",
-      "description": "Average leakage detection (ALD) of the last day"
-    },
-    "controlE2Energy": {
-      "title": "Control energy (E2)",
-      "type": "number",
-      "description": "Control energy (E2). Unit is Wh or J depending on the meter configuration"
-    },
-    "coolingEnergyE3Energy": {
-      "title": "Cooling energy (E3)",
-      "type": "number",
-      "description": "Cooling energy (E3). Unit is Wh or J depending on the meter configuration"
-    },
-    "inletEnergyE4Energy": {
-      "title": "Inlet energy (E4)",
-      "type": "number",
-      "description": "Inlet energy (E4). Unit is Wh or J depending on the meter configuration"
-    },
-    "outletEnergyE5Energy": {
-      "title": "Outlet energy (E5)",
-      "type": "number",
-      "description": "Outlet energy (E5). Unit is Wh or J depending on the meter configuration"
-    },
-    "tappedEnergyE6Energy": {
-      "title": "Tapped energy (E6)",
-      "type": "number",
-      "description": "Tapped energy (E6). Unit is Wh or J depending on the meter configuration"
-    },
-    "heatEnergy2E7Energy": {
-      "title": "Heat energy 2 (E7)",
-      "type": "number",
-      "description": "Heat energy 2 (E7). Unit is Wh or J depending on the meter configuration"
-    },
-    "energyE12Energy": {
-      "title": "Energy E12",
-      "type": "number",
-      "description": "Energy E12. Unit is Wh or J depending on the meter configuration"
-    },
-    "energyE13Energy": {
-      "title": "Energy E13",
-      "type": "number",
-      "description": "Energy E13. Unit is Wh or J depending on the meter configuration"
-    },
-    "energyE14Energy": {
-      "title": "Energy E14",
-      "type": "number",
-      "description": "Energy E14. Unit is Wh or J depending on the meter configuration"
-    },
-    "energyE15Energy": {
-      "title": "Energy E15",
-      "type": "number",
-      "description": "Energy E15. Unit is Wh or J depending on the meter configuration"
-    },
-    "energyE16Energy": {
-      "title": "Energy E16",
-      "type": "number",
-      "description": "Energy E16. Unit is Wh or J depending on the meter configuration"
-    },
-    "extraDigitEnergy": {
-      "title": "Energy extra digit",
-      "type": "number",
-      "description": "Energy extra digit. Unit is Wh or J depending on the meter configuration"
-    },
-    "highResEnergy": {
-      "title": "Energy high resolution",
-      "type": "number",
-      "description": "Energy high resolution. Unit is Wh or J depending on the meter configuration"
-    },
-    "volume2V2Volume": {
-      "title": "Volume 2 (V2)",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/flow/schema.json#/$defs/volume/m3",
-      "description": "Volume 2 (V2) in m3"
-    },
-    "extraDigitVolume": {
-      "title": "Volume extra digit",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/flow/schema.json#/$defs/volume/m3",
-      "description": "Volume (V1) with extra digit in m3"
-    },
-    "highResVolume": {
-      "title": "Volume high resolution",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/flow/schema.json#/$defs/volume/m3",
-      "description": "Volume (V1) in high resolution in m3"
-    },
-    "reverseVolume": {
-      "title": "Reverse volume",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/flow/schema.json#/$defs/volume/m3",
-      "description": "Reverse volume in m3"
-    },
-    "pulseInputA1Volume": {
-      "title": "Pulse input A1 volume",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/flow/schema.json#/$defs/volume/m3",
-      "description": "Volume counted on pulse input A1 in m3"
-    },
-    "pulseInputB1Volume": {
-      "title": "Pulse input B1 volume",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/flow/schema.json#/$defs/volume/m3",
-      "description": "Volume counted on pulse input B1 in m3"
-    },
-    "pulseInputA2Volume": {
-      "title": "Pulse input A2 volume",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/flow/schema.json#/$defs/volume/m3",
-      "description": "Volume counted on pulse input A2 in m3"
-    },
-    "pulseInputB2Volume": {
-      "title": "Pulse input B2 volume",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/flow/schema.json#/$defs/volume/m3",
-      "description": "Volume counted on pulse input B2 in m3"
-    },
-    "mass2M2Mass": {
-      "title": "Mass 2 (M2)",
-      "unit": "kg",
-      "type": "number",
-      "description": "Mass 2 (M2) in kg"
-    },
-    "massM3Mass": {
-      "title": "Mass 3 (M3)",
-      "unit": "kg",
-      "type": "number",
-      "description": "Mass 3 (M3) in kg"
-    },
-    "massM4Mass": {
-      "title": "Mass 4 (M4)",
-      "unit": "kg",
-      "type": "number",
-      "description": "Mass 4 (M4) in kg"
-    },
-    "temperature3T3FlowTemperature": {
-      "title": "Temperature 3 (T3)",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "description": "Temperature 3 (T3) in °C"
-    },
-    "temperature4T4FlowTemperature": {
-      "title": "Temperature 4 (T4)",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "description": "Temperature 4 (T4) in °C"
-    },
-    "averageFlowTemperature": {
-      "title": "Average flow temperature",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "description": "Average flow temperature in °C"
-    },
-    "averageReturnTemperature": {
-      "title": "Average return temperature",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "description": "Average return temperature in °C"
-    },
-    "flow2VolumeFlow": {
-      "title": "Volume flow 2",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/flow/schema.json#/$defs/flow/m3h",
-      "description": "Volume flow 2 in m3/h"
-    },
-    "power2Power": {
-      "title": "Power 2",
-      "type": "number",
-      "description": "Power 2. Unit is W or J/h depending on the meter configuration"
-    },
-    "maxPower": {
-      "title": "Max power",
-      "type": "number",
-      "description": "Max power. Unit is W or J/h depending on the meter configuration"
-    },
-    "maxVolumeFlow": {
-      "title": "Max volume flow",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/flow/schema.json#/$defs/flow/m3h",
-      "description": "Max volume flow in m3/h"
-    },
-    "maxFlowTemperature": {
-      "title": "Max flow temperature",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "description": "Max flow temperature in °C"
+      "description": "Return temperature in °C",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    },
+    "maxForwardTemperature": {
+      "title": "Maximum forward temperature",
+      "description": "Maximum forward temperature in °C",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
     "maxReturnTemperature": {
-      "title": "Max return temperature",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "description": "Max return temperature in °C"
+      "title": "Maximum return temperature",
+      "description": "Maximum return temperature in °C",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
     },
-    "maxPowerTimepointDateTime": {
-      "title": "Max power timepoint",
+    "timeStamp": {
+      "title": "Timestamp",
       "type": "string",
-      "description": "Time at which the max power occurred (ISO 8601)",
+      "description": "Meter timestamp (YYYY-MM-DDTHH:MMZ)",
       "hideFromKpis": true
     },
-    "maxVolumeFlowTimepointDateTime": {
-      "title": "Max volume flow timepoint",
+    "dueDate": {
+      "title": "Due date",
       "type": "string",
-      "description": "Time at which the max volume flow occurred (ISO 8601)",
+      "description": "Last due date (YYYY-MM-DD)",
       "hideFromKpis": true
     },
-    "maxFlowTemperatureTimepointDateTime": {
-      "title": "Max flow temperature timepoint",
+    "maxFlowDate": {
+      "title": "Maximum flow date",
       "type": "string",
-      "description": "Time at which the max flow temperature occurred (ISO 8601)",
+      "description": "Date the maximum flow was registered (YYYY-MM-DD)",
       "hideFromKpis": true
-    },
-    "maxReturnTemperatureTimepointDateTime": {
-      "title": "Max return temperature timepoint",
-      "type": "string",
-      "description": "Time at which the max return temperature occurred (ISO 8601)",
-      "hideFromKpis": true
-    },
-    "minPower": {
-      "title": "Min power",
-      "type": "number",
-      "description": "Min power. Unit is W or J/h depending on the meter configuration"
-    },
-    "minVolumeFlow": {
-      "title": "Min volume flow",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/flow/schema.json#/$defs/flow/m3h",
-      "description": "Min volume flow in m3/h"
-    },
-    "minFlowTemperature": {
-      "title": "Min flow temperature",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "description": "Min flow temperature in °C"
-    },
-    "minReturnTemperature": {
-      "title": "Min return temperature",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius",
-      "description": "Min return temperature in °C"
-    },
-    "minPowerTimepointDateTime": {
-      "title": "Min power timepoint",
-      "type": "string",
-      "description": "Time at which the min power occurred (ISO 8601)",
-      "hideFromKpis": true
-    },
-    "minVolumeFlowTimepointDateTime": {
-      "title": "Min volume flow timepoint",
-      "type": "string",
-      "description": "Time at which the min volume flow occurred (ISO 8601)",
-      "hideFromKpis": true
-    },
-    "minFlowTemperatureTimepointDateTime": {
-      "title": "Min flow temperature timepoint",
-      "type": "string",
-      "description": "Time at which the min flow temperature occurred (ISO 8601)",
-      "hideFromKpis": true
-    },
-    "minReturnTemperatureTimepointDateTime": {
-      "title": "Min return temperature timepoint",
-      "type": "string",
-      "description": "Time at which the min return temperature occurred (ISO 8601)",
-      "hideFromKpis": true
-    },
-    "dry": {
-      "title": "Infocode dry",
-      "type": "boolean",
-      "description": "Infocode flag: dry"
-    },
-    "reverse": {
-      "title": "Infocode reverse",
-      "type": "boolean",
-      "description": "Infocode flag: reverse"
-    },
-    "leak": {
-      "title": "Infocode leak",
-      "type": "boolean",
-      "description": "Infocode flag: leak"
-    },
-    "burst": {
-      "title": "Infocode burst",
-      "type": "boolean",
-      "description": "Infocode flag: burst"
-    },
-    "tamper": {
-      "title": "Infocode tamper",
-      "type": "boolean",
-      "description": "Infocode flag: tamper"
-    },
-    "lowBattery": {
-      "title": "Infocode low battery",
-      "type": "boolean",
-      "description": "Infocode flag: low battery"
-    },
-    "lowAmbientTemperature": {
-      "title": "Infocode low ambient temperature",
-      "type": "boolean",
-      "description": "Infocode flag: low ambient temperature"
-    },
-    "highAmbientTemperature": {
-      "title": "Infocode high ambient temperature",
-      "type": "boolean",
-      "description": "Infocode flag: high ambient temperature"
-    },
-    "powerOff": {
-      "title": "Infocode Power off",
-      "type": "boolean",
-      "description": "Infocode flag: Power off"
-    },
-    "externalAlarm": {
-      "title": "Infocode External alarm",
-      "type": "boolean",
-      "description": "Infocode flag: External alarm"
-    },
-    "t1AboveRangeOrDisconnected": {
-      "title": "Infocode t1 above range or disconnected",
-      "type": "boolean",
-      "description": "Infocode flag: t1 above range or disconnected"
-    },
-    "t2AboveRangeOrDisconnected": {
-      "title": "Infocode t2 above range or disconnected",
-      "type": "boolean",
-      "description": "Infocode flag: t2 above range or disconnected"
-    },
-    "t1BelowRangeOrShortCircuited": {
-      "title": "Infocode t1 below range or short circuited",
-      "type": "boolean",
-      "description": "Infocode flag: t1 below range or short circuited"
-    },
-    "t2BelowRangeOrShortCircuited": {
-      "title": "Infocode t2 below range or short circuited",
-      "type": "boolean",
-      "description": "Infocode flag: t2 below range or short circuited"
-    },
-    "wrongDtT1T2": {
-      "title": "Infocode Wrong dt (t1-t2)",
-      "type": "boolean",
-      "description": "Infocode flag: Wrong dt (t1-t2)"
-    },
-    "v1Air": {
-      "title": "Infocode V1 air",
-      "type": "boolean",
-      "description": "Infocode flag: V1 air"
-    },
-    "v1Reverse": {
-      "title": "Infocode V1 reverse",
-      "type": "boolean",
-      "description": "Infocode flag: V1 reverse"
-    },
-    "v1LowSignal": {
-      "title": "Infocode V1 low signal",
-      "type": "boolean",
-      "description": "Infocode flag: V1 low signal"
-    },
-    "v1QsForMoreThan1Hour": {
-      "title": "Infocode V1 > qs for more than 1 hour",
-      "type": "boolean",
-      "description": "Infocode flag: V1 > qs for more than 1 hour"
-    },
-    "ina1WaterSystemLeak": {
-      "title": "Infocode InA1 water system leak",
-      "type": "boolean",
-      "description": "Infocode flag: InA1 water system leak"
-    },
-    "inb1WaterSystemLeak": {
-      "title": "Infocode InB1 water system leak",
-      "type": "boolean",
-      "description": "Infocode flag: InB1 water system leak"
-    },
-    "inaExternalAlarm": {
-      "title": "Infocode InA external alarm",
-      "type": "boolean",
-      "description": "Infocode flag: InA external alarm"
-    },
-    "inbExternalAlarm": {
-      "title": "Infocode InB external alarm",
-      "type": "boolean",
-      "description": "Infocode flag: InB external alarm"
-    },
-    "v1ComError": {
-      "title": "Infocode V1 com. error",
-      "type": "boolean",
-      "description": "Infocode flag: V1 com. error"
-    },
-    "v1PulseError": {
-      "title": "Infocode V1 pulse error",
-      "type": "boolean",
-      "description": "Infocode flag: V1 pulse error"
-    },
-    "ina2WaterSystemLeak": {
-      "title": "Infocode InA2 water system leak",
-      "type": "boolean",
-      "description": "Infocode flag: InA2 water system leak"
-    },
-    "inb2WaterSystemLeak": {
-      "title": "Infocode InB2 water system leak",
-      "type": "boolean",
-      "description": "Infocode flag: InB2 water system leak"
-    },
-    "t3AboveRangeOrDisconnected": {
-      "title": "Infocode t3 above range or disconnected",
-      "type": "boolean",
-      "description": "Infocode flag: t3 above range or disconnected"
-    },
-    "t3BelowRangeOrShortCircuit": {
-      "title": "Infocode t3 below range or short circuit",
-      "type": "boolean",
-      "description": "Infocode flag: t3 below range or short circuit"
-    },
-    "v2ComError": {
-      "title": "Infocode V2 com. error",
-      "type": "boolean",
-      "description": "Infocode flag: V2 com. error"
-    },
-    "v2PulseError": {
-      "title": "Infocode V2 pulse error",
-      "type": "boolean",
-      "description": "Infocode flag: V2 pulse error"
-    },
-    "v2Air": {
-      "title": "Infocode V2 air",
-      "type": "boolean",
-      "description": "Infocode flag: V2 air"
-    },
-    "v2Reverse": {
-      "title": "Infocode V2 reverse",
-      "type": "boolean",
-      "description": "Infocode flag: V2 reverse"
-    },
-    "v2LowSignal": {
-      "title": "Infocode V2 low signal",
-      "type": "boolean",
-      "description": "Infocode flag: V2 low signal"
-    },
-    "v2QsForMoreThan1Hour": {
-      "title": "Infocode V2 > qs for more than 1 hour",
-      "type": "boolean",
-      "description": "Infocode flag: V2 > qs for more than 1 hour"
-    },
-    "v1v2BurstOut": {
-      "title": "Infocode V1V2 Burst Out",
-      "type": "boolean",
-      "description": "Infocode flag: V1V2 Burst Out"
-    },
-    "v1v2BurstIn": {
-      "title": "Infocode V1V2 Burst In",
-      "type": "boolean",
-      "description": "Infocode flag: V1V2 Burst In"
-    },
-    "v1v2LeakOut": {
-      "title": "Infocode V1V2 Leak Out",
-      "type": "boolean",
-      "description": "Infocode flag: V1V2 Leak Out"
-    },
-    "v1v2LeakIn": {
-      "title": "Infocode V1V2 Leak In",
-      "type": "boolean",
-      "description": "Infocode flag: V1V2 Leak In"
     }
   }
 }

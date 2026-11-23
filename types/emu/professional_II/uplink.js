@@ -170,10 +170,10 @@ function parsePayload(data) {
   dataTypes[0x19] = { 'len': 1, 'description': 'Powerfactor L3', 'dataType': 'Int8', 'unit': 'Cos', 'factor': 0.01, 'fixed': 2, 'cfgdescription': 32, "cfgunit": 31, 'cfgphase': 3 };
   dataTypes[0x1A] = { 'len': 2, 'description': 'Frequency', 'dataType': 'Int16', 'unit': 'Hz', 'factor': 0.1, 'fixed': 1, 'cfgdescription': 33, "cfgunit": 32 };
   dataTypes[0x1B] = { 'len': 4, 'description': 'Active Power average', 'dataType': 'Int32', 'unit': 'W', "cfgunit": 13, };
-  dataTypes[0x1C] = { 'len': 4, 'description': 'Active Energy Import T1 kWh', 'dataType': 'Uint32', 'unit': 'kWh', 'cfgdescription': 3, "cfgunit": 2, 'cfgtariff': 1 };
-  dataTypes[0x1D] = { 'len': 4, 'description': 'Active Energy Import T2 kWh', 'dataType': 'Uint32', 'unit': 'kWh', 'cfgdescription': 3, "cfgunit": 2, 'cfgtariff': 2 };
-  dataTypes[0x1E] = { 'len': 4, 'description': 'Active Energy Export T1 kWh', 'dataType': 'Uint32', 'unit': 'kWh', 'cfgdescription': 5, "cfgunit": 2, 'cfgtariff': 1 };
-  dataTypes[0x1F] = { 'len': 4, 'description': 'Active Energy Export T2 kWh', 'dataType': 'Uint32', 'unit': 'kWh', 'cfgdescription': 5, "cfgunit": 2, 'cfgtariff': 2 };
+  dataTypes[0x1C] = { 'len': 4, 'description': 'Active Energy Import T1', 'dataType': 'Uint32', 'unit': 'kWh', 'cfgdescription': 3, "cfgunit": 2, 'cfgtariff': 1 };
+  dataTypes[0x1D] = { 'len': 4, 'description': 'Active Energy Import T2', 'dataType': 'Uint32', 'unit': 'kWh', 'cfgdescription': 3, "cfgunit": 2, 'cfgtariff': 2 };
+  dataTypes[0x1E] = { 'len': 4, 'description': 'Active Energy Export T1', 'dataType': 'Uint32', 'unit': 'kWh', 'cfgdescription': 5, "cfgunit": 2, 'cfgtariff': 1 };
+  dataTypes[0x1F] = { 'len': 4, 'description': 'Active Energy Export T2', 'dataType': 'Uint32', 'unit': 'kWh', 'cfgdescription': 5, "cfgunit": 2, 'cfgtariff': 2 };
   dataTypes[0x20] = { 'len': 4, 'description': 'Reactive Energy Import T1 kvarh', 'dataType': 'Uint32', 'unit': 'kvarh', 'cfgdescription': 10, "cfgunit": 6, 'cfgtariff': 1 };
   dataTypes[0x21] = { 'len': 4, 'description': 'Reactive Energy Import T2 kvarh', 'dataType': 'Uint32', 'unit': 'kvarh', 'cfgdescription': 10, "cfgunit": 6, 'cfgtariff': 2 };
   dataTypes[0x22] = { 'len': 4, 'description': 'Reactive Energy Export T1 kvarh', 'dataType': 'Uint32', 'unit': 'kvarh', 'cfgdescription': 13, "cfgunit": 6, 'cfgtariff': 1 };
@@ -251,13 +251,13 @@ function parsePayload(data) {
       case 'ErrorCode':
         dataType.value = Number(getUint8([data[i++]]));
         //also encode the error
-        dataType.TimeChanged = dataType.value & 0x01 ? true : false;
-        dataType.CTRatioChange = dataType.value & 0x02 ? true : false;
-        dataType.VTRatioChange = dataType.value & 0x04 ? true : false;
-        dataType.ImpulseWidthChange = dataType.value & 0x08 ? true : false;
-        dataType.ImpulseRatioChange = dataType.value & 0x10 ? true : false;
-        dataType.PowerFail = dataType.value & 0x20 ? true : false;
-        dataType.LogbookFull = dataType.value & 0x80 ? true : false;
+        dataType.timeChanged = dataType.value & 0x01 ? true : false;
+        dataType.ctRatioChange = dataType.value & 0x02 ? true : false;
+        dataType.vtRatioChange = dataType.value & 0x04 ? true : false;
+        dataType.impulseWidthChange = dataType.value & 0x08 ? true : false;
+        dataType.impulseRatioChange = dataType.value & 0x10 ? true : false;
+        dataType.powerFail = dataType.value & 0x20 ? true : false;
+        dataType.logbookFull = dataType.value & 0x80 ? true : false;
         break;
       default:
         break;
@@ -330,32 +330,75 @@ function toCamelCase(str) {
     .join("");
 }
 
+function isEmpty(obj) {
+  if (obj === undefined) {
+    return true;
+  }
+  return Object.keys(obj).length === 0;
+}
+
+function calculateIncrement(lastValue, currentValue) {
+  // Check if current value exists
+  if (currentValue === undefined || Number.isNaN(currentValue)) {
+    return 0;
+  }
+
+  // Init state && Check for the case the counter reseted
+  if (lastValue === undefined || lastValue > currentValue) {
+    lastValue = currentValue;
+  }
+  // Calculate increment
+  return currentValue - lastValue;
+}
+
 function consume(event) {
   const payload = event.data.payloadHex;
-  const { port } = event.data;
+  const state = event.state || {};
   const bytes = Hex.hexToBytes(payload);
   const decoded = decodeUplink(bytes);
   const data = {};
   const warnings = [];
   let topic = "default";
 
+  const system = decoded.data.errorcode;
+  delete decoded.data.errorcode;
+
   let timestamp = decoded.data.timeStamp;
   delete decoded.data.timeStamp;
+
   Object.keys(decoded.data).forEach((key) => {
     if (decoded.data[key].value !== undefined && decoded.data[key].value !== null) {
-      data[toCamelCase(key)] = decoded.data[key].value;
+      let cleanKey = toCamelCase(key);
+      data[cleanKey] = decoded.data[key].value;
+
+      if (cleanKey.search("activeEnergyImport") !== -1 || cleanKey.search("activeEnergyExport") !== -1) {
+        // Active Energy Import always kWh
+        if (decoded.data[key].unit == "Wh") {
+          decoded.data[key].unit = "kWh";
+          data[cleanKey] /= 1000;
+        }
+
+        // Give out consumption
+        data[cleanKey + "Consumption"] = calculateIncrement(
+          state[cleanKey],
+          data[cleanKey],
+        );
+        state[cleanKey] = data[cleanKey];
+      }
+
     } else {
       warnings.push(key);
     }
   });
 
-  if (port === 100) {
-    topic = "startup"
+  if (!isEmpty(system)) {
+    emit("sample", { data: system, topic: "system" });
   }
 
   if (warnings.length > 1) {
     emit("sample", { data: { "badTransformation": warnings }, topic: "warning" });
   }
 
-  emit("sample", { data, topic, timestamp });
+  emit("sample", { data, topic, timestamp: new Date(timestamp).toISOString() });
+  emit("state", state);
 }

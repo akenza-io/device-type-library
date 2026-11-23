@@ -14,12 +14,66 @@
     "errorMessages": {
       "title": "Error messages",
       "type": "array",
-      "items": {
-        "type": "string"
-      },
       "description": "Error messages raised while decoding the payload",
+      "hideFromKpis": true
+    },
+    "energyError": {
+      "title": "energy error",
+      "type": "boolean",
+      "description": "True if energy was recorded while the meter was in an error state",
+      "hideFromKpis": true
+    },
+    "coolingEnergyError": {
+      "title": "coolingEnergy error",
+      "type": "boolean",
+      "description": "True if coolingEnergy was recorded while the meter was in an error state",
+      "hideFromKpis": true
+    },
+    "volumeError": {
+      "title": "volume error",
+      "type": "boolean",
+      "description": "True if volume was recorded while the meter was in an error state",
+      "hideFromKpis": true
+    },
+    "powerError": {
+      "title": "power error",
+      "type": "boolean",
+      "description": "True if power was recorded while the meter was in an error state",
+      "hideFromKpis": true
+    },
+    "flowError": {
+      "title": "flow error",
+      "type": "boolean",
+      "description": "True if flow was recorded while the meter was in an error state",
+      "hideFromKpis": true
+    },
+    "forwardTemperatureError": {
+      "title": "forwardTemperature error",
+      "type": "boolean",
+      "description": "True if forwardTemperature was recorded while the meter was in an error state",
+      "hideFromKpis": true
+    },
+    "returnTemperatureError": {
+      "title": "returnTemperature error",
+      "type": "boolean",
+      "description": "True if returnTemperature was recorded while the meter was in an error state",
+      "hideFromKpis": true
+    },
+    "meterIdError": {
+      "title": "meterId error",
+      "type": "boolean",
+      "description": "True if meterId was recorded while the meter was in an error state",
+      "hideFromKpis": true
+    },
+    "errorFlagsError": {
+      "title": "errorFlags error",
+      "type": "boolean",
+      "description": "True if errorFlags was recorded while the meter was in an error state",
       "hideFromKpis": true
     }
   },
-  "required": ["numberOfErrors", "errorMessages"]
+  "required": [
+    "numberOfErrors",
+    "errorMessages"
+  ]
 }

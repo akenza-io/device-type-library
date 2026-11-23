@@ -15,7 +15,8 @@
     "Temperature"
   ],
   "outputTopics": [
-    "default"
+    "default",
+    "system"
   ],
   "encoding": "HEX",
   "connectivity": "LORA",

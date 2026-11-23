@@ -9,6 +9,7 @@ const __dirname = dirname(__filename);
 
 describe("EMU Professional Uplink", () => {
   let defaultSchema = null;
+  let systemSchema = null;
   let consume = null;
 
   before((done) => {
@@ -17,6 +18,10 @@ describe("EMU Professional Uplink", () => {
     loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
         defaultSchema = parsedSchema;
+        return loadSchema(`${__dirname}/system.schema.json`);
+      })
+      .then((parsedSchema) => {
+        systemSchema = parsedSchema;
         done();
       });
   });
@@ -26,8 +31,8 @@ describe("EMU Professional Uplink", () => {
       const data = {
         state: {},
         data: {
-          "port": 100,
-          "payloadHex": "689ba862f105041522f702f30500f40500f56400f66400f80200020265"
+          "port": 1,
+          "payloadHex": "0c2bf46a038f270200040000000005000000000600000000f00055"
         }
       };
 
@@ -36,13 +41,47 @@ describe("EMU Professional Uplink", () => {
         assert.isNotNull(value);
         assert.typeOf(value.data, "object");
 
+        assert.equal(value.topic, "system");
+        assert.equal(value.data.ctRatioChange, false);
+        assert.equal(value.data.impulseRatioChange, false);
+        assert.equal(value.data.impulseWidthChange, false);
+        assert.equal(value.data.logbookFull, false);
+        assert.equal(value.data.powerFail, false);
+        assert.equal(value.data.timeChanged, false);
+        assert.equal(value.data.vtRatioChange, false);
+        assert.equal(value.data.value, 0);
+
+        validateSchema(value.data, systemSchema, {
+          throwError: true,
+        });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
         assert.equal(value.topic, "default");
-        assert.equal(value.data.totalActivePowerKWh, 12970);
-        assert.equal(value.data.incrementActivePowerKWh, 0);
+        assert.equal(value.data.activeEnergyExportT1, 0);
+        assert.equal(value.data.activeEnergyExportT2, 0);
+        assert.equal(value.data.activeEnergyExportT1Consumption, 0);
+        assert.equal(value.data.activeEnergyExportT2Consumption, 0);
+        assert.equal(value.data.activeEnergyImportT1, 141.199);
+        assert.equal(value.data.activeEnergyImportT2, 0);
+        assert.equal(value.data.activeEnergyImportT1Consumption, 0);
+        assert.equal(value.data.activeEnergyImportT2Consumption, 0);
 
         validateSchema(value.data, defaultSchema, {
           throwError: true,
         });
+      });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "state");
+        assert.isNotNull(value);
+
+        assert.equal(value.activeEnergyImportT1, 141.199);
+        assert.equal(value.activeEnergyImportT2, 0);
       });
       consume(data);
     });
