@@ -330,11 +330,16 @@ function toCamelCase(str) {
     .join("");
 }
 
-function isEmpty(obj) {
-  if (obj === undefined) {
-    return true;
-  }
-  return Object.keys(obj).length === 0;
+function deleteUnusedKeys(data) {
+  let keysRetained = false;
+  Object.keys(data).forEach((key) => {
+    if (data[key] === undefined) {
+      delete data[key];
+    } else {
+      keysRetained = true;
+    }
+  });
+  return keysRetained;
 }
 
 function calculateIncrement(lastValue, currentValue) {
@@ -365,6 +370,7 @@ function consume(event) {
 
   let timestamp = decoded.data.timeStamp;
   delete decoded.data.timeStamp;
+  delete decoded.data.timestampPrevious;
 
   Object.keys(decoded.data).forEach((key) => {
     if (decoded.data[key].value !== undefined && decoded.data[key].value !== null) {
@@ -391,7 +397,37 @@ function consume(event) {
     }
   });
 
-  if (!isEmpty(system)) {
+  system.serialNumber = data.serialNumber;
+  system.factorNumber = data.factorNumber;
+  system.currentTransformerPrimary = data.currentTransformerPrimary;
+  system.currentTransformerSecondary = data.currentTransformerSecondary;
+  system.voltageTransformerPrimary = data.voltageTransformerPrimary;
+  system.voltageTransformerSecondary = data.voltageTransformerSecondary;
+  system.meterTyp = data.meterTyp;
+  system.midYear = data.midYear;
+  system.factoryYear = data.factoryYear;
+  system.firmwareVersion = data.firmwareVersion;
+  system.midVersion = data.midVersion;
+  system.manufacturer = data.manufacturer;
+  system.hwIndex = data.hwIndex;
+  system.systemtime = data.systemtime;
+
+  delete data.serialNumber;
+  delete data.factorNumber;
+  delete data.currentTransformerPrimary;
+  delete data.currentTransformerSecondary;
+  delete data.voltageTransformerPrimary;
+  delete data.voltageTransformerSecondary;
+  delete data.meterTyp;
+  delete data.midYear;
+  delete data.factoryYear;
+  delete data.firmwareVersion;
+  delete data.midVersion;
+  delete data.manufacturer;
+  delete data.hwIndex;
+  delete data.systemtime;
+
+  if (deleteUnusedKeys(system)) {
     emit("sample", { data: system, topic: "system" });
   }
 

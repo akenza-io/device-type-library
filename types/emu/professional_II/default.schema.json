@@ -12,18 +12,6 @@
       "type": "number",
       "description": "Index of the data logger entry"
     },
-    "timestamp": {
-      "title": "Timestamp",
-      "unit": "s",
-      "type": "number",
-      "description": "Unix timestamp of the reading"
-    },
-    "timestampPrevious": {
-      "title": "Timestamp previous",
-      "unit": "s",
-      "type": "number",
-      "description": "Unix timestamp of the previous reading"
-    },
     "activeEnergyImportT1": {
       "title": "Active energy import T1 kWh",
       "description": "Active energy import counter tariff T1 in kWh",
@@ -247,82 +235,6 @@
       "title": "Frequency",
       "description": "Grid frequency in Hz",
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/frequency/hertz"
-    },
-    "serialNumber": {
-      "title": "Serial number",
-      "type": "string",
-      "description": "Meter serial number (hex)"
-    },
-    "factorNumber": {
-      "title": "Factor number",
-      "type": "string",
-      "description": "Meter factor number (hex)"
-    },
-    "currentTransformerPrimary": {
-      "title": "Current transformer primary",
-      "unit": "",
-      "type": "number",
-      "description": "Current transformer ratio, primary side"
-    },
-    "currentTransformerSecondary": {
-      "title": "Current transformer secondary",
-      "unit": "",
-      "type": "number",
-      "description": "Current transformer ratio, secondary side"
-    },
-    "voltageTransformerPrimary": {
-      "title": "Voltage transformer primary",
-      "unit": "",
-      "type": "number",
-      "description": "Voltage transformer ratio, primary side"
-    },
-    "voltageTransformerSecondary": {
-      "title": "Voltage transformer secondary",
-      "unit": "",
-      "type": "number",
-      "description": "Voltage transformer ratio, secondary side"
-    },
-    "meterTyp": {
-      "title": "Meter type",
-      "unit": "",
-      "type": "number",
-      "description": "Meter type identifier"
-    },
-    "midYear": {
-      "title": "MID year",
-      "type": "string",
-      "description": "Year of MID certification"
-    },
-    "factoryYear": {
-      "title": "Factory year",
-      "type": "string",
-      "description": "Year of manufacture"
-    },
-    "firmwareVersion": {
-      "title": "Firmware version",
-      "type": "string",
-      "description": "Firmware version of the meter"
-    },
-    "midVersion": {
-      "title": "MID version",
-      "type": "string",
-      "description": "MID version of the meter"
-    },
-    "manufacturer": {
-      "title": "Manufacturer",
-      "type": "string",
-      "description": "Manufacturer identifier"
-    },
-    "hwIndex": {
-      "title": "Hardware index",
-      "type": "string",
-      "description": "Hardware index of the meter"
-    },
-    "systemtime": {
-      "title": "System time",
-      "unit": "s",
-      "type": "number",
-      "description": "Meter system time"
     }
   }
 }
