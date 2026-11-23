@@ -639,11 +639,11 @@ function calculateRecentOccupancy(device, state, occupancy) {
     // Give out how long there has been occupancy
     occupancy.occupiedMinutes = Math.round((time - state.firstOccupancyTimestamp) / 1000 / 60);
 
-    // Only reset if a real occupancy has been tracked
+    // Only reset if a real occupancy has been tracked or its out of cycle
     if (occupancy.occupiedMinutes >= minOccupancyThreshold) {
       delete state.lastOccupancyTimestamp; // Reset cycle
+      delete state.occupiedMinutes;
     }
-    delete state.occupiedMinutes;
   } else {
     // Give out how long there has been no occupancy
     if (state.lastOccupancyTimestamp !== undefined) {

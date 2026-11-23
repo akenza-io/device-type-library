@@ -9,27 +9,25 @@ const __dirname = dirname(__filename);
 
 describe("Dragino dds04-lb Uplink", () => {
     let defaultSchema = null;
-    let lifecycleSchema = null;
     let consume = null;
 
-    beforeEach(async () => {
+    before((done) => {
         const script = rewire(`${__dirname}/uplink.js`);
         consume = init(script);
-        [defaultSchema, lifecycleSchema] = await Promise.all([
-            loadSchema(`${__dirname}/default.schema.json`),
-            loadSchema(`${__dirname}/lifecycle.schema.json`),
-        ]);
+        loadSchema(`${__dirname}/default.schema.json`)
+            .then((parsedSchema) => {
+                defaultSchema = parsedSchema;
+                done();
+            });
+    });
 
-        // Mock Date to a fixed point in time
-        const DateMock = Date;
-        global.Date = class extends DateMock {
-            constructor(...args) {
-                if (args.length === 0) {
-                    return new DateMock("2023-08-04T10:00:00.000Z");
-                }
-                return new DateMock(...args);
-            }
-        };
+    let lifecycleSchema = null;
+    before((done) => {
+        loadSchema(`${__dirname}/lifecycle.schema.json`)
+            .then((parsedSchema) => {
+                lifecycleSchema = parsedSchema;
+                done();
+            });
     });
 
     describe("consume()", () => {
@@ -73,10 +71,10 @@ describe("Dragino dds04-lb Uplink", () => {
 
             consume(data);
         });
-    });
-    describe("consume()", () => {
+
         it("should decode the Dragino dds04-lb uplink datalog", () => {
             const data = {
+                timestamp: new Date("2023-08-04T12:00:00.000Z").toISOString(),
                 data: {
                     payloadHex: "4301BB0BED0BFE64CCC6A44001BE0B5B0D3164CCC6C04001BE0B550C0264CCC6FC4101BE0B4E0BFD64CCC7174001BE0BF40BF764CCC761",
                     port: 3,
@@ -88,7 +86,7 @@ describe("Dragino dds04-lb Uplink", () => {
                 assert.isNotNull(value);
                 assert.typeOf(value.data, "object");
                 assert.equal(value.topic, "default");
-                assert.equal(value.timestamp.toISOString(), "2023-08-04T09:36:36.000Z");
+                assert.equal(value.timestamp, "2023-08-04T09:36:36.000Z");
                 assert.equal(value.data.interruptFlag, true);
                 assert.equal(value.data.interruptLevel, "HIGH");
                 assert.equal(value.data.pnackMode, false);
@@ -106,7 +104,7 @@ describe("Dragino dds04-lb Uplink", () => {
                 assert.isNotNull(value);
                 assert.typeOf(value.data, "object");
                 assert.equal(value.topic, "default");
-                assert.equal(value.timestamp.toISOString(), "2023-08-04T09:37:04.000Z");
+                assert.equal(value.timestamp, "2023-08-04T09:37:04.000Z");
                 assert.equal(value.data.interruptFlag, false);
                 assert.equal(value.data.interruptLevel, "LOW");
                 assert.equal(value.data.pnackMode, false);
@@ -124,7 +122,7 @@ describe("Dragino dds04-lb Uplink", () => {
                 assert.isNotNull(value);
                 assert.typeOf(value.data, "object");
                 assert.equal(value.topic, "default");
-                assert.equal(value.timestamp.toISOString(), "2023-08-04T09:38:04.000Z");
+                assert.equal(value.timestamp, "2023-08-04T09:38:04.000Z");
                 assert.equal(value.data.interruptFlag, false);
                 assert.equal(value.data.interruptLevel, "LOW");
                 assert.equal(value.data.pnackMode, false);
@@ -142,7 +140,7 @@ describe("Dragino dds04-lb Uplink", () => {
                 assert.isNotNull(value);
                 assert.typeOf(value.data, "object");
                 assert.equal(value.topic, "default");
-                assert.equal(value.timestamp.toISOString(), "2023-08-04T09:38:31.000Z");
+                assert.equal(value.timestamp, "2023-08-04T09:38:31.000Z");
                 assert.equal(value.data.interruptFlag, true);
                 assert.equal(value.data.interruptLevel, "LOW");
                 assert.equal(value.data.pnackMode, false);
@@ -160,7 +158,7 @@ describe("Dragino dds04-lb Uplink", () => {
                 assert.isNotNull(value);
                 assert.typeOf(value.data, "object");
                 assert.equal(value.topic, "default");
-                assert.equal(value.timestamp.toISOString(), "2023-08-04T09:39:45.000Z");
+                assert.equal(value.timestamp, "2023-08-04T09:39:45.000Z");
                 assert.equal(value.data.interruptFlag, false);
                 assert.equal(value.data.interruptLevel, "LOW");
                 assert.equal(value.data.pnackMode, false);

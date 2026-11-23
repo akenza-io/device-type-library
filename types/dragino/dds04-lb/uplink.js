@@ -128,7 +128,7 @@ function consume(event) {
       // Convert unix seconds to Date object (ms)
       const timestamp = new Date(((ts >>> 0) * 1000));
 
-      const now = new Date();
+      const now = new Date(event.timestamp); // Fix for tests works live as well
       const oneDayAgo = new Date(now.getTime() - 86400000); // 1 day in ms
 
       if (timestamp < oneDayAgo || timestamp > now) {
@@ -138,7 +138,7 @@ function consume(event) {
       emit("sample", {
         data: data,
         topic: "default",
-        timestamp: timestamp
+        timestamp: new Date(timestamp).toISOString()
       });
     }
   }

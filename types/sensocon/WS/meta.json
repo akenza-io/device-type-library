@@ -1,0 +1,48 @@
+{
+  "name": "DataSling Series WS",
+  "version": "1.0.0",
+  "manufacturer": "Sensocon",
+  "url": "https://sensocon.com/wireless-sensors.html",
+  "description": "Battery-powered single-variable LoRaWAN sensors (Series WS). Each model measures one variable: differential pressure in in. WC (WS-DP), gauge pressure (WS-G) or wet/wet differential pressure (WS-W) in PSI, humidity and temperature (WS-HT), thermistor probe temperature (WS-TI), 4-20 mA input (WS-AI), 0-10 VDC input (WS-VI) or a dry contact (WS-CI). For HVAC, cleanrooms, pharmaceutical and industrial monitoring.",
+  "author": "Sensocon, Inc.",
+  "loraDeviceClass": "A",
+  "availableSensors": [
+    "Differential Pressure",
+    "Gauge Pressure",
+    "Humidity",
+    "Temperature",
+    "Voltage",
+    "Current",
+    "Contact"
+  ],
+  "outputTopics": ["default", "lifecycle", "downlink"],
+  "encoding": "HEX",
+  "connectivity": "LORA",
+  "useCases": [
+    "Indoor Air Quality & Comfort",
+    "Condition Monitoring",
+    "Cold Chain & Temperature Compliance"
+  ],
+  "keywords": [
+    "Sensocon",
+    "DataSling",
+    "Series WS",
+    "WS-DP",
+    "WS-HT",
+    "WS-TI",
+    "WS-AI",
+    "WS-CI",
+    "differential pressure",
+    "gauge pressure",
+    "humidity",
+    "temperature",
+    "4-20 mA",
+    "contact",
+    "HVAC",
+    "BACnet",
+    "BMS",
+    "cleanroom",
+    "filter monitoring",
+    "LoRaWAN"
+  ]
+}
