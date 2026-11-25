@@ -10,6 +10,7 @@ const __dirname = dirname(__filename);
 describe("EMU Professional Uplink", () => {
   let defaultSchema = null;
   let systemSchema = null;
+  let packetInfoSchema = null;
   let consume = null;
 
   before((done) => {
@@ -18,10 +19,22 @@ describe("EMU Professional Uplink", () => {
     loadSchema(`${__dirname}/default.schema.json`)
       .then((parsedSchema) => {
         defaultSchema = parsedSchema;
-        return loadSchema(`${__dirname}/system.schema.json`);
-      })
+        done();
+      });
+  });
+
+  before((done) => {
+    loadSchema(`${__dirname}/system.schema.json`)
       .then((parsedSchema) => {
         systemSchema = parsedSchema;
+        done();
+      });
+  });
+
+  before((done) => {
+    loadSchema(`${__dirname}/packet_info.schema.json`)
+      .then((parsedSchema) => {
+        packetInfoSchema = parsedSchema;
         done();
       });
   });
@@ -55,6 +68,23 @@ describe("EMU Professional Uplink", () => {
           throwError: true,
         });
       });
+
+      expectEmits((type, value) => {
+        assert.equal(type, "sample");
+        assert.isNotNull(value);
+        assert.typeOf(value.data, "object");
+
+        assert.equal(value.topic, "packet_info");
+        assert.equal(value.data.activeEnergyExportT1Unit, "kWh");
+        assert.equal(value.data.activeEnergyExportT2Unit, "kWh");
+        assert.equal(value.data.activeEnergyImportT1Unit, "kWh");
+        assert.equal(value.data.activeEnergyImportT2Unit, "kWh");
+
+        validateSchema(value.data, packetInfoSchema, {
+          throwError: true,
+        });
+      });
+
 
       expectEmits((type, value) => {
         assert.equal(type, "sample");

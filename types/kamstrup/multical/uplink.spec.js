@@ -28,15 +28,6 @@ describe("Kamstrup Multical Uplink", () => {
       });
   });
 
-  let warningSchema = null;
-  before((done) => {
-    loadSchema(`${__dirname}/warning.schema.json`)
-      .then((parsedSchema) => {
-        warningSchema = parsedSchema;
-        done();
-      });
-  });
-
   let errorSchema = null;
   before((done) => {
     loadSchema(`${__dirname}/error.schema.json`)

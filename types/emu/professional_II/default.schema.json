@@ -8,7 +8,6 @@
   "properties": {
     "dataLoggerIndex": {
       "title": "Data logger index",
-      "unit": "",
       "type": "number",
       "description": "Index of the data logger entry"
     },
@@ -45,12 +44,12 @@
     "activeEnergyExportT1Consumption": {
       "title": "Active energy export T1 consumption",
       "description": "Active energy export counter tariff T1 since the last uplink in kWh",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHoursDelta"
     },
     "activeEnergyExportT2Consumption": {
       "title": "Active energy export T2 consumption",
       "description": "Active energy export counter tariff T2 since the last uplink in kWh",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours"
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHoursDelta"
     },
     "activeEnergyImportT164bit": {
       "title": "Active energy import T1 (64 bit) kWh",
@@ -73,14 +72,24 @@
       "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHoursDelta"
     },
     "activeEnergyExportT164bit": {
-      "title": "Active energy export T1 (64 bit) Wh",
-      "description": "Active energy export counter tariff T1 in Wh",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/wattHours"
+      "title": "Active energy export T1 (64 bit) kWh",
+      "description": "Active energy export counter tariff T1 in kWh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours"
+    },
+    "activeEnergyExportT164bitConsumption": {
+      "title": "Active energy export T1 (64 bit) consumption kWh",
+      "description": "Active energy exported on tariff T1 since the last uplink in kWh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHoursDelta"
     },
     "activeEnergyExportT264bit": {
-      "title": "Active energy export T2 (64 bit) Wh",
-      "description": "Active energy export counter tariff T2 in Wh",
-      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/wattHours"
+      "title": "Active energy export T2 (64 bit) kWh",
+      "description": "Active energy export counter tariff T2 in kWh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours"
+    },
+    "activeEnergyExportT264bitConsumption": {
+      "title": "Active energy export T2 (64 bit) consumption kWh",
+      "description": "Active energy exported on tariff T2 since the last uplink in kWh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHoursDelta"
     },
     "reactiveEnergyImportT1": {
       "title": "Reactive energy import T1 varh",
@@ -210,7 +219,6 @@
     "powerfactorL1": {
       "title": "Power factor L1",
       "description": "Power factor (cos phi) of phase L1",
-      "unit": "",
       "type": "number",
       "minimum": -1,
       "maximum": 1
@@ -218,7 +226,6 @@
     "powerfactorL2": {
       "title": "Power factor L2",
       "description": "Power factor (cos phi) of phase L2",
-      "unit": "",
       "type": "number",
       "minimum": -1,
       "maximum": 1
@@ -226,7 +233,6 @@
     "powerfactorL3": {
       "title": "Power factor L3",
       "description": "Power factor (cos phi) of phase L3",
-      "unit": "",
       "type": "number",
       "minimum": -1,
       "maximum": 1

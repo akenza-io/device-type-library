@@ -99,26 +99,26 @@ function getUint32(data) {
   return value;
 }
 
+// JS bitwise operators only work on 32 bits, so the 64-bit values are combined
+// arithmetically from two 32-bit halves. Exact up to 2^53, which is far beyond
+// any realistic meter reading.
 function getInt64(data) {
-  //JS can't handle bitwise operation with more than 32bit !
-  //so this won't work 
-  //if Chirpstack will use another javascript engine we could use typearray's
-  var value = Number((data[7] << 56 | data[6] << 48 | data[5] << 40 | data[4] << 32 | data[3] << 24 | data[2] << 16 | data[1] << 8 | data[0]));
-  return value;
+  const low = getUint32(data.slice(0, 4));
+  const high = getInt32(data.slice(4, 8));
+  return high * 0x100000000 + low;
 }
 
 function getUint64(data) {
-  //JS can't handle bitwise operation with more than 32bit !
-  //so this won't work 
-  //if Chirpstack will use another javascript engine we could use typearray's
-  let value = Number((data[7] << 56 | data[6] << 48 | data[5] << 40 | data[4] << 32 | data[3] << 24 | data[2] << 16 | data[1] << 8 | data[0]) >>> 0);
-  return value;
+  const low = getUint32(data.slice(0, 4));
+  const high = getUint32(data.slice(4, 8));
+  return high * 0x100000000 + low;
 }
 
 function getBCD(data) {
   var bcd = "";
   for (var i = 0; i < data.length; i++) {
-    bcd = bcd + "" + data[i];
+    // each nibble is one decimal digit, so print the byte as two hex digits
+    bcd = bcd + ("0" + data[i].toString(16)).slice(-2);
   }
   return bcd;
 }
@@ -260,6 +260,8 @@ function parsePayload(data) {
         dataType.logbookFull = dataType.value & 0x80 ? true : false;
         break;
       default:
+        // Skip after unknown header
+        i = data.length
         break;
     }
     //if we have a factor apply it but keep the old value
@@ -288,7 +290,7 @@ function decodeUplink(data) {
   //uplink with only 2 bytes is only status update, ignore it 
   if (data.length <= 2) {
     return {
-      data: 'not enough data to process'
+      data: { errorcode: 'not enough data to process' }
     };
   }
   var obj = {};
@@ -362,15 +364,17 @@ function consume(event) {
   const bytes = Hex.hexToBytes(payload);
   const decoded = decodeUplink(bytes);
   const data = {};
+  const packetInfo = {};
   const warnings = [];
   let topic = "default";
 
-  const system = decoded.data.errorcode;
+  const system = decoded.data.errorcode || {};
   delete decoded.data.errorcode;
 
-  let timestamp = decoded.data.timeStamp;
+  let timestamp = decoded.data.timeStamp || new Date().getTime();
   delete decoded.data.timeStamp;
-  delete decoded.data.timestampPrevious;
+  delete decoded.data.timestamp;
+  delete decoded.data["timestamp-previous"];
 
   Object.keys(decoded.data).forEach((key) => {
     if (decoded.data[key].value !== undefined && decoded.data[key].value !== null) {
@@ -391,6 +395,7 @@ function consume(event) {
         );
         state[cleanKey] = data[cleanKey];
       }
+      packetInfo[cleanKey + "Unit"] = decoded.data[key].unit_calculated || decoded.data[key].unit;
 
     } else {
       warnings.push(key);
@@ -431,7 +436,11 @@ function consume(event) {
     emit("sample", { data: system, topic: "system" });
   }
 
-  if (warnings.length > 1) {
+  if (deleteUnusedKeys(packetInfo)) {
+    emit("sample", { data: packetInfo, topic: "packet_info" });
+  }
+
+  if (warnings.length > 0) {
     emit("sample", { data: { "badTransformation": warnings }, topic: "warning" });
   }
 

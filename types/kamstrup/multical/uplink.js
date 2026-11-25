@@ -536,10 +536,35 @@ function readUInt8(bytes) {
   return bytes & 0xff;
 }
 
-function readUInt128LE(bytes) {
-  const value =
-    (bytes[5] << 40) + (bytes[4] << 32) + (bytes[3] << 24) + (bytes[2] << 16) + (bytes[1] << 8) + bytes[0];
-  return (value & 0xffffffffffff) >>> 0;
+// 48-bit unsigned LE. JS bitwise operators only work on 32 bits, so the
+// upper two bytes are added arithmetically.
+function readUInt48LE(bytes) {
+  return readUInt16LE(bytes.slice(4, 6)) * 0x100000000 + readUInt32LE(bytes.slice(0, 4));
+}
+
+function readInt24LE(bytes) {
+  const ref = readUIntDCB(bytes);
+  return ref > 0x7fffff ? ref - 0x1000000 : ref;
+}
+
+// IEEE 754 single precision, little endian
+function readFloat32LE(bytes) {
+  const raw = readUInt32LE(bytes);
+  const sign = raw >>> 31 ? -1 : 1;
+  const exponent = (raw >>> 23) & 0xff;
+  const mantissa = raw & 0x7fffff;
+  if (exponent === 0xff) return mantissa ? NaN : sign * Infinity;
+  if (exponent === 0) return sign * mantissa * Math.pow(2, -149);
+  return sign * (1 + mantissa / 0x800000) * Math.pow(2, exponent - 127);
+}
+
+// BCD, least significant byte first. A leading 0xf nibble marks a negative value.
+function readBCD(bytes) {
+  let digits = "";
+  for (let i = bytes.length - 1; i >= 0; i--) {
+    digits += ("0" + bytes[i].toString(16)).slice(-2);
+  }
+  return digits[0] === "f" ? -parseInt(digits.slice(1), 10) : parseInt(digits, 10);
 }
 
 function readUIntDCB(bytes) {
@@ -617,7 +642,6 @@ function decodeUplink(input) {
         data: { ...data, ...unified },
         payload: r.join(""),
         traces: traces,
-        warnings: [],
         errors: []
       };
     }
@@ -658,7 +682,6 @@ function decodeUplink(input) {
         data: data,
         payload: r.join(""),
         traces: traces,
-        warnings: [],
         errors: []
       };
     }
@@ -732,7 +755,13 @@ function decodeUplink(input) {
 
       const errorState = functionField === 3;
       const name16 = (dif & 0x0fff).toString(16);
-      let map = valueMap[errorState ? dif & 0xfff : dif];
+      // An explicit entry wins (e.g. 0xb401). Otherwise an error-state record
+      // is looked up as its instantaneous form: only the function field bits
+      // (0x3000) are cleared, the extension and storage bits must stay.
+      let map = valueMap[dif];
+      if (typeof (map) === "undefined" && errorState) {
+        map = valueMap[dif & ~0x3000];
+      }
       if (typeof (map) === "undefined") {
         throw new Error(`Unknown measurement ${name16}`);
       }
@@ -786,7 +815,7 @@ function decodeUplink(input) {
         ];
         for (let i = 0; i < parts.length; i++) {
           const partName = parts[i][0];
-          const partValue = readInt16LE(r.slice(pos, pos + i * 2)) * parts[i][2];
+          const partValue = readInt16LE(r.slice(pos + i * 2, pos + i * 2 + 2)) * parts[i][2];
           data[partName + "Unit"] = parts[i][1];
           data[partName] = Number.isInteger(partValue) ? partValue : parseFloat(partValue.toPrecision(8), 10);
           if (errorState) {
@@ -805,7 +834,7 @@ function decodeUplink(input) {
       // MIEF: 8 bytes holding the error flags and the packed meter ID
       if (map[3] === "MIEF") {
         data.errorFlags = readInt32LE(r.slice(pos, pos + 4));
-        const packed = readInt32LE(r.slice(pos, pos + 4)); pos += 8;
+        const packed = readUInt32LE(r.slice(pos + 4, pos + 8)); pos += 8;
         data.meterId = packed & 0x0fffffff;
         if (((packed >>> 28) & 0x3) === 3) data.meterIdError = true;
         if (((packed >>> 30) & 0x3) === 3) data.errorFlagsError = true;
@@ -836,13 +865,20 @@ function decodeUplink(input) {
       switch (size) {
         case 0x1: value = readUInt8(r[pos]); break;
         case 0x2: value = readInt16LE(r.slice(pos, pos + 2)); break;
+        case 0x3: value = readInt24LE(r.slice(pos, pos + 3)); break;
         case 0x4: value = readInt32LE(r.slice(pos, pos + 4)); break;
+        case 0x5: {
+          value = readFloat32LE(r.slice(pos, pos + 4)); size = 4;
+        } break;
         case 0x6: {
-          value = readUInt128LE(r.slice(pos, pos + 6)); size = 6;
+          value = readUInt48LE(r.slice(pos, pos + 6)); size = 6;
         } break;
         case 0x7: {
           // opaque 8-byte composites (powerFlows): keep the raw bytes
           value = r.subarray(pos, pos + 8).toString("hex"); size = 8;
+        } break;
+        case 0x9: {
+          value = readBCD(r.slice(pos, pos + 1)); size = 1;
         } break;
         case 0xa: {
           const bcd = r.readUInt16LE(pos).toString(16);
@@ -858,6 +894,34 @@ function decodeUplink(input) {
           const bcd = readUInt32LE(r.slice(pos, pos + 4)).toString(16);
           value = parseInt(bcd, 10); size = 4;
         } break;
+        case 0xd: {
+          // variable length, the first data byte (LVAR) gives type and length
+          const lvar = readUInt8(r[pos]);
+          let len;
+          if (lvar <= 0xbf) {
+            // ASCII, transmitted last character first
+            len = lvar;
+            value = String.fromCharCode.apply(null, r.slice(pos + 1, pos + 1 + len).reverse());
+          } else if (lvar >= 0xc0 && lvar <= 0xdf) {
+            // BCD, 0xc0-0xcf positive and 0xd0-0xdf negative
+            len = lvar & 0x0f;
+            value = readBCD(r.slice(pos + 1, pos + 1 + len));
+            if (lvar >= 0xd0) value = -value;
+          } else if (lvar >= 0xe0 && lvar <= 0xef) {
+            // binary, unsigned LE
+            len = lvar & 0x0f;
+            value = 0;
+            for (let i = len - 1; i >= 0; i--) value = value * 256 + r[pos + 1 + i];
+          } else {
+            throw new Error(`Unsupported variable length type ${lvar.toString(16)} in ${name16}`);
+          }
+          size = 1 + len;
+        } break;
+        case 0xe: {
+          value = readBCD(r.slice(pos, pos + 6)); size = 6;
+        } break;
+        default:
+          throw new Error(`Unsupported data field ${size.toString(16)} in ${name16}`);
       }
       pos += size;
 
@@ -905,7 +969,6 @@ function decodeUplink(input) {
     data: data,
     payload: r.join(""),
     traces: traces,
-    warnings: [],
     errors: []
   };
 }
@@ -943,7 +1006,6 @@ function consume(event) {
 
   const decodedData = decoded.data;
   const decodedErrors = decoded.errors;
-  const decodedWarnings = decoded.warnings;
 
   if (decodedData.energy !== undefined) {
     if (decodedData.energyUnit == "Wh") {
@@ -999,10 +1061,12 @@ function consume(event) {
   errors.numberOfErrors = decodedErrors.length;
   errors.errorMessages = decodedErrors;
 
+  let hasErrorFlags = false;
   Object.keys(decodedData).forEach((key) => {
-    if (key.search("error") !== -1) {
+    if (/error/i.test(key)) {
       errors[key] = decodedData[key];
       delete decodedData[key];
+      hasErrorFlags = true;
     }
   })
 
@@ -1014,13 +1078,9 @@ function consume(event) {
     emit("sample", { data: packetInfo, topic: "packet_info" });
   }
 
-  if (deleteUnusedKeys(decodedData)) {
-    if (errors.numberOfErrors > 0) {
+  if (deleteUnusedKeys(errors)) {
+    if (errors.numberOfErrors > 0 || hasErrorFlags) {
       emit("sample", { data: errors, topic: "error" });
     }
-  }
-
-  if (decodedWarnings.length > 0) {
-    emit("sample", { data: { numberOfWarnings: decodedWarnings.length, warningMessages: decodedWarnings }, topic: "warning" });
   }
 }

@@ -17,7 +17,6 @@
   "outputTopics": [
     "default",
     "packet_info",
-    "warning",
     "error"
   ],
   "encoding": "HEX",
