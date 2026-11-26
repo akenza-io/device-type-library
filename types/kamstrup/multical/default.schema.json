@@ -1,0 +1,207 @@
+{
+  "$id": "https://akenza.io/kamstrup/multical/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "energy": {
+      "title": "Energy",
+      "type": "number",
+      "description": "Heat energy (E1). Normalised to kWh when the meter reports Wh. The unit depends on the meter configuration and is reported in packet_info"
+    },
+    "energyConsumption": {
+      "title": "Energy consumption",
+      "type": "number",
+      "description": "Energy consumed since the previous uplink, in the same unit as energy"
+    },
+    "accumulatedEnergy": {
+      "title": "Accumulated energy",
+      "type": "number",
+      "description": "Energy stored at the scheduled due date (storage 1). The unit depends on the meter configuration and is reported in packet_info"
+    },
+    "coolingEnergy": {
+      "title": "Cooling energy",
+      "type": "number",
+      "description": "Cooling energy (E3). The unit depends on the meter configuration and is reported in packet_info"
+    },
+    "errorcoolingEnergy": {
+      "title": "Incorrect mount energy",
+      "type": "number",
+      "description": "Cooling energy registered while the meter was mounted the wrong way round. The unit depends on the meter configuration and is reported in packet_info"
+    },
+    "energyE8": {
+      "title": "Energy E8",
+      "type": "number",
+      "description": "Energy register E8 in m³*°C"
+    },
+    "energyE9": {
+      "title": "Energy E9",
+      "type": "number",
+      "description": "Energy register E9 in m³*°C"
+    },
+    "energyAtDueDate": {
+      "title": "Energy at due date",
+      "type": "number",
+      "description": "Energy at the last due date. The unit depends on the meter configuration and is reported in packet_info"
+    },
+    "tariff1energy": {
+      "title": "Tariff 1 energy",
+      "type": "number",
+      "description": "Energy registered on tariff 1. The unit depends on the meter configuration and is reported in packet_info"
+    },
+    "tariff2energy": {
+      "title": "Tariff 2 energy",
+      "type": "number",
+      "description": "Energy registered on tariff 2. The unit depends on the meter configuration and is reported in packet_info"
+    },
+    "tarif2energy": {
+      "title": "Tariff 2 energy (Wh)",
+      "type": "number",
+      "description": "Energy registered on tariff 2 in Wh"
+    },
+    "tarif3energy": {
+      "title": "Tariff 3 energy (Wh)",
+      "type": "number",
+      "description": "Energy registered on tariff 3 in Wh"
+    },
+    "tariff1energyAtDueDate": {
+      "title": "Tariff 1 energy at due date",
+      "type": "number",
+      "description": "Tariff 1 energy at the last due date. The unit depends on the meter configuration and is reported in packet_info"
+    },
+    "tariff2energyAtDueDate": {
+      "title": "Tariff 2 energy at due date",
+      "type": "number",
+      "description": "Tariff 2 energy at the last due date. The unit depends on the meter configuration and is reported in packet_info"
+    },
+    "at24tariff1energy": {
+      "title": "Tariff 1 energy at 24:00",
+      "type": "number",
+      "description": "Tariff 1 energy at midnight. The unit depends on the meter configuration and is reported in packet_info"
+    },
+    "at24tariff2energy": {
+      "title": "Tariff 2 energy at 24:00",
+      "type": "number",
+      "description": "Tariff 2 energy at midnight. The unit depends on the meter configuration and is reported in packet_info"
+    },
+    "previousMonthEnergy": {
+      "title": "Previous month energy",
+      "type": "number",
+      "description": "Energy at the end of the previous month. The unit depends on the meter configuration and is reported in packet_info"
+    },
+    "volume": {
+      "title": "Volume",
+      "description": "Volume (V1) in m³",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/flow/schema.json#/$defs/volume/m3"
+    },
+    "accumulatedVolume": {
+      "title": "Accumulated volume",
+      "type": "number",
+      "description": "Volume stored at the scheduled due date (storage 1) in m³",
+      "unit": "m3"
+    },
+    "volumeAtDueDate": {
+      "title": "Volume at due date",
+      "type": "number",
+      "description": "Volume at the last due date in m³",
+      "unit": "m3"
+    },
+    "pulse1volume": {
+      "title": "Pulse input 1 volume",
+      "type": "number",
+      "description": "Volume counted on pulse input 1 in m³",
+      "unit": "m3"
+    },
+    "pulse1energy": {
+      "title": "Pulse input 1 energy",
+      "type": "number",
+      "description": "Energy counted on pulse input 1 in MWh",
+      "unit": "MWh"
+    },
+    "pulse2volume": {
+      "title": "Pulse input 2 volume",
+      "type": "number",
+      "description": "Volume counted on pulse input 2 in m³",
+      "unit": "m3"
+    },
+    "pulse2energy": {
+      "title": "Pulse input 2 energy",
+      "type": "number",
+      "description": "Energy counted on pulse input 2 in MWh",
+      "unit": "MWh"
+    },
+    "pulse3volume": {
+      "title": "Pulse input 3 volume",
+      "type": "number",
+      "description": "Volume counted on pulse input 3 in m³",
+      "unit": "m3"
+    },
+    "pulse3energy": {
+      "title": "Pulse input 3 energy",
+      "type": "number",
+      "description": "Energy counted on pulse input 3 in MWh",
+      "unit": "MWh"
+    },
+    "power": {
+      "title": "Power",
+      "type": "number",
+      "description": "Thermal power. The unit depends on the meter configuration and is reported in packet_info"
+    },
+    "powerAtDueDate": {
+      "title": "Power at due date",
+      "type": "number",
+      "description": "Thermal power at the last due date. The unit depends on the meter configuration and is reported in packet_info"
+    },
+    "flow": {
+      "title": "Flow",
+      "description": "Volume flow in m³/h",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/flow/schema.json#/$defs/flow/m3h"
+    },
+    "maxFlow": {
+      "title": "Maximum flow",
+      "type": "number",
+      "description": "Maximum volume flow in m³/h",
+      "unit": "m3/h"
+    },
+    "forwardTemperature": {
+      "title": "Forward temperature",
+      "description": "Forward (supply) temperature in °C",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    },
+    "returnTemperature": {
+      "title": "Return temperature",
+      "description": "Return temperature in °C",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    },
+    "maxForwardTemperature": {
+      "title": "Maximum forward temperature",
+      "description": "Maximum forward temperature in °C",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    },
+    "maxReturnTemperature": {
+      "title": "Maximum return temperature",
+      "description": "Maximum return temperature in °C",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/environment/schema.json#/$defs/temperature/celsius"
+    },
+    "timeStamp": {
+      "title": "Timestamp",
+      "type": "string",
+      "description": "Meter timestamp (YYYY-MM-DDTHH:MMZ)",
+      "hideFromKpis": true
+    },
+    "dueDate": {
+      "title": "Due date",
+      "type": "string",
+      "description": "Last due date (YYYY-MM-DD)",
+      "hideFromKpis": true
+    },
+    "maxFlowDate": {
+      "title": "Maximum flow date",
+      "type": "string",
+      "description": "Date the maximum flow was registered (YYYY-MM-DD)",
+      "hideFromKpis": true
+    }
+  }
+}

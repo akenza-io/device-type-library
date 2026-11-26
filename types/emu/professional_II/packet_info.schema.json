@@ -1,0 +1,201 @@
+{
+  "$id": "https://akenza.io/emu/professional_II/packet_info.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "packet_info",
+  "title": "Packet info",
+  "properties": {
+    "timestampUnit": {
+      "title": "Timestamp unit",
+      "description": "Unit of the device timestamp",
+      "type": "string"
+    },
+    "activeEnergyImportT1Unit": {
+      "title": "Active energy import T1 unit",
+      "description": "Unit of activeEnergyImportT1",
+      "type": "string"
+    },
+    "activeEnergyImportT2Unit": {
+      "title": "Active energy import T2 unit",
+      "description": "Unit of activeEnergyImportT2",
+      "type": "string"
+    },
+    "activeEnergyExportT1Unit": {
+      "title": "Active energy export T1 unit",
+      "description": "Unit of activeEnergyExportT1",
+      "type": "string"
+    },
+    "activeEnergyExportT2Unit": {
+      "title": "Active energy export T2 unit",
+      "description": "Unit of activeEnergyExportT2",
+      "type": "string"
+    },
+    "activeEnergyImportT164bitUnit": {
+      "title": "Active energy import T1 (64 bit) unit",
+      "description": "Unit of activeEnergyImportT164bit",
+      "type": "string"
+    },
+    "activeEnergyImportT264bitUnit": {
+      "title": "Active energy import T2 (64 bit) unit",
+      "description": "Unit of activeEnergyImportT264bit",
+      "type": "string"
+    },
+    "activeEnergyExportT164bitUnit": {
+      "title": "Active energy export T1 (64 bit) unit",
+      "description": "Unit of activeEnergyExportT164bit",
+      "type": "string"
+    },
+    "activeEnergyExportT264bitUnit": {
+      "title": "Active energy export T2 (64 bit) unit",
+      "description": "Unit of activeEnergyExportT264bit",
+      "type": "string"
+    },
+    "reactiveEnergyImportT1Unit": {
+      "title": "Reactive energy import T1 unit",
+      "description": "Unit of reactiveEnergyImportT1",
+      "type": "string"
+    },
+    "reactiveEnergyImportT2Unit": {
+      "title": "Reactive energy import T2 unit",
+      "description": "Unit of reactiveEnergyImportT2",
+      "type": "string"
+    },
+    "reactiveEnergyExportT1Unit": {
+      "title": "Reactive energy export T1 unit",
+      "description": "Unit of reactiveEnergyExportT1",
+      "type": "string"
+    },
+    "reactiveEnergyExportT2Unit": {
+      "title": "Reactive energy export T2 unit",
+      "description": "Unit of reactiveEnergyExportT2",
+      "type": "string"
+    },
+    "reactiveEnergyImportT1KvarhUnit": {
+      "title": "Reactive energy import T1 (kvarh counter) unit",
+      "description": "Unit of reactiveEnergyImportT1Kvarh",
+      "type": "string"
+    },
+    "reactiveEnergyImportT2KvarhUnit": {
+      "title": "Reactive energy import T2 (kvarh counter) unit",
+      "description": "Unit of reactiveEnergyImportT2Kvarh",
+      "type": "string"
+    },
+    "reactiveEnergyExportT1KvarhUnit": {
+      "title": "Reactive energy export T1 (kvarh counter) unit",
+      "description": "Unit of reactiveEnergyExportT1Kvarh",
+      "type": "string"
+    },
+    "reactiveEnergyExportT2KvarhUnit": {
+      "title": "Reactive energy export T2 (kvarh counter) unit",
+      "description": "Unit of reactiveEnergyExportT2Kvarh",
+      "type": "string"
+    },
+    "reactiveEnergyImportT164bitUnit": {
+      "title": "Reactive energy import T1 (64 bit) unit",
+      "description": "Unit of reactiveEnergyImportT164bit",
+      "type": "string"
+    },
+    "reactiveEnergyImportT264bitUnit": {
+      "title": "Reactive energy import T2 (64 bit) unit",
+      "description": "Unit of reactiveEnergyImportT264bit",
+      "type": "string"
+    },
+    "reactiveEnergyExportT164bitUnit": {
+      "title": "Reactive energy export T1 (64 bit) unit",
+      "description": "Unit of reactiveEnergyExportT164bit",
+      "type": "string"
+    },
+    "reactiveEnergyExportT264bitUnit": {
+      "title": "Reactive energy export T2 (64 bit) unit",
+      "description": "Unit of reactiveEnergyExportT264bit",
+      "type": "string"
+    },
+    "activePowerL123Unit": {
+      "title": "Active power L123 unit",
+      "description": "Unit of activePowerL123",
+      "type": "string"
+    },
+    "activePowerL1Unit": {
+      "title": "Active power L1 unit",
+      "description": "Unit of activePowerL1",
+      "type": "string"
+    },
+    "activePowerL2Unit": {
+      "title": "Active power L2 unit",
+      "description": "Unit of activePowerL2",
+      "type": "string"
+    },
+    "activePowerL3Unit": {
+      "title": "Active power L3 unit",
+      "description": "Unit of activePowerL3",
+      "type": "string"
+    },
+    "activePowerAverageUnit": {
+      "title": "Active power average unit",
+      "description": "Unit of activePowerAverage",
+      "type": "string"
+    },
+    "currentL123Unit": {
+      "title": "Current L123 unit",
+      "description": "Unit of currentL123",
+      "type": "string"
+    },
+    "currentL1Unit": {
+      "title": "Current L1 unit",
+      "description": "Unit of currentL1",
+      "type": "string"
+    },
+    "currentL2Unit": {
+      "title": "Current L2 unit",
+      "description": "Unit of currentL2",
+      "type": "string"
+    },
+    "currentL3Unit": {
+      "title": "Current L3 unit",
+      "description": "Unit of currentL3",
+      "type": "string"
+    },
+    "currentNUnit": {
+      "title": "Current N unit",
+      "description": "Unit of currentN",
+      "type": "string"
+    },
+    "voltageL1NUnit": {
+      "title": "Voltage L1-N unit",
+      "description": "Unit of voltageL1N",
+      "type": "string"
+    },
+    "voltageL2NUnit": {
+      "title": "Voltage L2-N unit",
+      "description": "Unit of voltageL2N",
+      "type": "string"
+    },
+    "voltageL3NUnit": {
+      "title": "Voltage L3-N unit",
+      "description": "Unit of voltageL3N",
+      "type": "string"
+    },
+    "powerfactorL1Unit": {
+      "title": "Power factor L1 unit",
+      "description": "Unit of powerfactorL1",
+      "type": "string"
+    },
+    "powerfactorL2Unit": {
+      "title": "Power factor L2 unit",
+      "description": "Unit of powerfactorL2",
+      "type": "string"
+    },
+    "powerfactorL3Unit": {
+      "title": "Power factor L3 unit",
+      "description": "Unit of powerfactorL3",
+      "type": "string"
+    },
+    "frequencyUnit": {
+      "title": "Frequency unit",
+      "description": "Unit of frequency",
+      "type": "string"
+    }
+  },
+  "required": []
+}

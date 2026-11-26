@@ -1,0 +1,278 @@
+{
+  "$id": "https://akenza.io/kamstrup/multical/packet_info.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "packet_info",
+  "title": "Packet info",
+  "properties": {
+    "messageFormat": {
+      "title": "Message format",
+      "type": "string",
+      "description": "Message format identifier as hex (e.g. 15)",
+      "hideFromKpis": true
+    },
+    "messageFormatInfo": {
+      "title": "Message format info",
+      "type": "array",
+      "description": "Module type, packet type and meter manufacturer of the message format",
+      "hideFromKpis": true
+    },
+    "errorFlags": {
+      "title": "Error flags",
+      "type": "number",
+      "description": "Meter information / error flags bitfield",
+      "hideFromKpis": true
+    },
+    "meterId": {
+      "title": "Meter ID",
+      "type": "number",
+      "description": "Meter serial number",
+      "hideFromKpis": true
+    },
+    "customerMeterId": {
+      "title": "Customer meter ID",
+      "type": "number",
+      "description": "Customer-assigned meter number",
+      "hideFromKpis": true
+    },
+    "enhancedMeterId": {
+      "title": "Enhanced meter ID",
+      "type": "string",
+      "description": "Enhanced meter identification as raw hex",
+      "hideFromKpis": true
+    },
+    "operatingTime": {
+      "title": "Operating time",
+      "type": "number",
+      "description": "Operating time (hour counter), unit in operatingTimeUnit"
+    },
+    "missingTime": {
+      "title": "Missing time",
+      "type": "number",
+      "description": "Time the meter could not measure (error hour counter), unit in missingTimeUnit"
+    },
+    "energyUnit": {
+      "title": "Energy unit",
+      "type": "string",
+      "description": "Unit of energy",
+      "hideFromKpis": true
+    },
+    "coolingEnergyUnit": {
+      "title": "Cooling energy unit",
+      "type": "string",
+      "description": "Unit of coolingEnergy",
+      "hideFromKpis": true
+    },
+    "accumulatedEnergyUnit": {
+      "title": "Accumulated energy unit",
+      "type": "string",
+      "description": "Unit of accumulatedEnergy",
+      "hideFromKpis": true
+    },
+    "energyE8Unit": {
+      "title": "Energy E8 unit",
+      "type": "string",
+      "description": "Unit of energyE8",
+      "hideFromKpis": true
+    },
+    "energyE9Unit": {
+      "title": "Energy E9 unit",
+      "type": "string",
+      "description": "Unit of energyE9",
+      "hideFromKpis": true
+    },
+    "volumeUnit": {
+      "title": "Volume unit",
+      "type": "string",
+      "description": "Unit of volume",
+      "hideFromKpis": true
+    },
+    "powerUnit": {
+      "title": "Power unit",
+      "type": "string",
+      "description": "Unit of power",
+      "hideFromKpis": true
+    },
+    "flowUnit": {
+      "title": "Flow unit",
+      "type": "string",
+      "description": "Unit of flow",
+      "hideFromKpis": true
+    },
+    "maxForwardTemperatureUnit": {
+      "title": "Maximum forward temperature unit",
+      "type": "string",
+      "description": "Unit of maxForwardTemperature",
+      "hideFromKpis": true
+    },
+    "forwardTemperatureUnit": {
+      "title": "Forward temperature unit",
+      "type": "string",
+      "description": "Unit of forwardTemperature",
+      "hideFromKpis": true
+    },
+    "maxReturnTemperatureUnit": {
+      "title": "Maximum return temperature unit",
+      "type": "string",
+      "description": "Unit of maxReturnTemperature",
+      "hideFromKpis": true
+    },
+    "returnTemperatureUnit": {
+      "title": "Return temperature unit",
+      "type": "string",
+      "description": "Unit of returnTemperature",
+      "hideFromKpis": true
+    },
+    "accumulatedVolumeUnit": {
+      "title": "Accumulated volume unit",
+      "type": "string",
+      "description": "Unit of accumulatedVolume",
+      "hideFromKpis": true
+    },
+    "maxFlowUnit": {
+      "title": "Maximum flow unit",
+      "type": "string",
+      "description": "Unit of maxFlow",
+      "hideFromKpis": true
+    },
+    "energyAtDueDateUnit": {
+      "title": "Energy at due date unit",
+      "type": "string",
+      "description": "Unit of energyAtDueDate",
+      "hideFromKpis": true
+    },
+    "tariff1energyAtDueDateUnit": {
+      "title": "Tariff 1 energy at due date unit",
+      "type": "string",
+      "description": "Unit of tariff1energyAtDueDate",
+      "hideFromKpis": true
+    },
+    "tariff2energyAtDueDateUnit": {
+      "title": "Tariff 2 energy at due date unit",
+      "type": "string",
+      "description": "Unit of tariff2energyAtDueDate",
+      "hideFromKpis": true
+    },
+    "powerAtDueDateUnit": {
+      "title": "Power at due date unit",
+      "type": "string",
+      "description": "Unit of powerAtDueDate",
+      "hideFromKpis": true
+    },
+    "tarif2energyUnit": {
+      "title": "Tariff 2 energy (Wh) unit",
+      "type": "string",
+      "description": "Unit of tarif2energy",
+      "hideFromKpis": true
+    },
+    "tarif3energyUnit": {
+      "title": "Tariff 3 energy (Wh) unit",
+      "type": "string",
+      "description": "Unit of tarif3energy",
+      "hideFromKpis": true
+    },
+    "pulse1volumeUnit": {
+      "title": "Pulse input 1 volume unit",
+      "type": "string",
+      "description": "Unit of pulse1volume",
+      "hideFromKpis": true
+    },
+    "pulse1energyUnit": {
+      "title": "Pulse input 1 energy unit",
+      "type": "string",
+      "description": "Unit of pulse1energy",
+      "hideFromKpis": true
+    },
+    "pulse2volumeUnit": {
+      "title": "Pulse input 2 volume unit",
+      "type": "string",
+      "description": "Unit of pulse2volume",
+      "hideFromKpis": true
+    },
+    "pulse2energyUnit": {
+      "title": "Pulse input 2 energy unit",
+      "type": "string",
+      "description": "Unit of pulse2energy",
+      "hideFromKpis": true
+    },
+    "pulse3volumeUnit": {
+      "title": "Pulse input 3 volume unit",
+      "type": "string",
+      "description": "Unit of pulse3volume",
+      "hideFromKpis": true
+    },
+    "pulse3energyUnit": {
+      "title": "Pulse input 3 energy unit",
+      "type": "string",
+      "description": "Unit of pulse3energy",
+      "hideFromKpis": true
+    },
+    "volumeAtDueDateUnit": {
+      "title": "Volume at due date unit",
+      "type": "string",
+      "description": "Unit of volumeAtDueDate",
+      "hideFromKpis": true
+    },
+    "previousMonthEnergyUnit": {
+      "title": "Previous month energy unit",
+      "type": "string",
+      "description": "Unit of previousMonthEnergy",
+      "hideFromKpis": true
+    },
+    "SUnit": {
+      "title": "On time (s) unit",
+      "type": "string",
+      "description": "Unit of S",
+      "hideFromKpis": true
+    },
+    "MinUnit": {
+      "title": "On time (min) unit",
+      "type": "string",
+      "description": "Unit of Min",
+      "hideFromKpis": true
+    },
+    "HUnit": {
+      "title": "On time (h) unit",
+      "type": "string",
+      "description": "Unit of H",
+      "hideFromKpis": true
+    },
+    "DaysUnit": {
+      "title": "On time (days) unit",
+      "type": "string",
+      "description": "Unit of Days",
+      "hideFromKpis": true
+    },
+    "at24tariff1energyUnit": {
+      "title": "Tariff 1 energy at 24:00 unit",
+      "type": "string",
+      "description": "Unit of at24tariff1energy",
+      "hideFromKpis": true
+    },
+    "at24tariff2energyUnit": {
+      "title": "Tariff 2 energy at 24:00 unit",
+      "type": "string",
+      "description": "Unit of at24tariff2energy",
+      "hideFromKpis": true
+    },
+    "errorcoolingEnergyUnit": {
+      "title": "Incorrect mount energy unit",
+      "type": "string",
+      "description": "Unit of errorcoolingEnergy",
+      "hideFromKpis": true
+    },
+    "operatingTimeUnit": {
+      "title": "Operating time unit",
+      "type": "string",
+      "description": "Unit of operatingTime",
+      "hideFromKpis": true
+    },
+    "missingTimeUnit": {
+      "title": "Missing time unit",
+      "type": "string",
+      "description": "Unit of missingTime",
+      "hideFromKpis": true
+    }
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "$id": "https://akenza.io/emu/professional_II/system.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "system",
+  "title": "System",
+  "properties": {
+    "value": {
+      "title": "Error code",
+      "description": "Raw error code bitmask reported by the meter",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "timeChanged": {
+      "title": "Time changed",
+      "description": "The meter time was changed",
+      "type": "boolean"
+    },
+    "ctRatioChange": {
+      "title": "CT ratio change",
+      "description": "The current transformer ratio was changed",
+      "type": "boolean"
+    },
+    "vtRatioChange": {
+      "title": "VT ratio change",
+      "description": "The voltage transformer ratio was changed",
+      "type": "boolean"
+    },
+    "impulseWidthChange": {
+      "title": "Impulse width change",
+      "description": "The impulse width was changed",
+      "type": "boolean"
+    },
+    "impulseRatioChange": {
+      "title": "Impulse ratio change",
+      "description": "The impulse ratio was changed",
+      "type": "boolean"
+    },
+    "powerFail": {
+      "title": "Power fail",
+      "description": "A power failure occurred",
+      "type": "boolean"
+    },
+    "logbookFull": {
+      "title": "Logbook full",
+      "description": "The meter logbook is full",
+      "type": "boolean"
+    },
+    "serialNumber": {
+      "title": "Serial number",
+      "type": "string",
+      "description": "Meter serial number (hex)"
+    },
+    "factorNumber": {
+      "title": "Factor number",
+      "type": "string",
+      "description": "Meter factor number (hex)"
+    },
+    "currentTransformerPrimary": {
+      "title": "Current transformer primary",
+      "type": "number",
+      "description": "Current transformer ratio, primary side"
+    },
+    "currentTransformerSecondary": {
+      "title": "Current transformer secondary",
+      "type": "number",
+      "description": "Current transformer ratio, secondary side"
+    },
+    "voltageTransformerPrimary": {
+      "title": "Voltage transformer primary",
+      "type": "number",
+      "description": "Voltage transformer ratio, primary side"
+    },
+    "voltageTransformerSecondary": {
+      "title": "Voltage transformer secondary",
+      "type": "number",
+      "description": "Voltage transformer ratio, secondary side"
+    },
+    "meterTyp": {
+      "title": "Meter type",
+      "type": "number",
+      "description": "Meter type identifier"
+    },
+    "midYear": {
+      "title": "MID year",
+      "type": "string",
+      "description": "Year of MID certification"
+    },
+    "factoryYear": {
+      "title": "Factory year",
+      "type": "string",
+      "description": "Year of manufacture"
+    },
+    "firmwareVersion": {
+      "title": "Firmware version",
+      "type": "string",
+      "description": "Firmware version of the meter"
+    },
+    "midVersion": {
+      "title": "MID version",
+      "type": "string",
+      "description": "MID version of the meter"
+    },
+    "manufacturer": {
+      "title": "Manufacturer",
+      "type": "string",
+      "description": "Manufacturer identifier"
+    },
+    "hwIndex": {
+      "title": "Hardware index",
+      "type": "string",
+      "description": "Hardware index of the meter"
+    },
+    "systemtime": {
+      "title": "System time",
+      "unit": "s",
+      "type": "number",
+      "description": "Meter system time"
+    }
+  },
+  "required": [
+    "value",
+    "timeChanged",
+    "ctRatioChange",
+    "vtRatioChange",
+    "impulseWidthChange",
+    "impulseRatioChange",
+    "powerFail",
+    "logbookFull"
+  ]
+}

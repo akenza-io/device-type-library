@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.103.0] - 2026-11-26
+
+### Added
+
+- EMU - Professional II
+- Kamstrup - Multical
+
 # [1.102.0] - 2026-11-16
 
 ### Added

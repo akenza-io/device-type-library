@@ -1,0 +1,246 @@
+{
+  "$id": "https://akenza.io/emu/professional_II/default.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "default",
+  "title": "Default",
+  "properties": {
+    "dataLoggerIndex": {
+      "title": "Data logger index",
+      "type": "number",
+      "description": "Index of the data logger entry"
+    },
+    "activeEnergyImportT1": {
+      "title": "Active energy import T1 kWh",
+      "description": "Active energy import counter tariff T1 in kWh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours"
+    },
+    "activeEnergyImportT1Consumption": {
+      "title": "Active energy import T1 consumption kWh",
+      "description": "Active energy imported on tariff T1 since the last uplink in kWh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHoursDelta"
+    },
+    "activeEnergyImportT2": {
+      "title": "Active energy import T2 kWh",
+      "description": "Active energy import counter tariff T2 in kWh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours"
+    },
+    "activeEnergyImportT2Consumption": {
+      "title": "Active energy import T2 consumption kWh",
+      "description": "Active energy imported on tariff T2 since the last uplink in kWh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHoursDelta"
+    },
+    "activeEnergyExportT1": {
+      "title": "Active energy export T1",
+      "description": "Active energy export counter tariff T1 in kWh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours"
+    },
+    "activeEnergyExportT2": {
+      "title": "Active energy export T2",
+      "description": "Active energy export counter tariff T2 in kWh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours"
+    },
+    "activeEnergyExportT1Consumption": {
+      "title": "Active energy export T1 consumption",
+      "description": "Active energy export counter tariff T1 since the last uplink in kWh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHoursDelta"
+    },
+    "activeEnergyExportT2Consumption": {
+      "title": "Active energy export T2 consumption",
+      "description": "Active energy export counter tariff T2 since the last uplink in kWh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHoursDelta"
+    },
+    "activeEnergyImportT164bit": {
+      "title": "Active energy import T1 (64 bit) kWh",
+      "description": "Active energy import counter tariff T1 in kWh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours"
+    },
+    "activeEnergyImportT164bitConsumption": {
+      "title": "Active energy import T1 (64 bit) consumption kWh",
+      "description": "Active energy imported on tariff T1 since the last uplink in kWh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHoursDelta"
+    },
+    "activeEnergyImportT264bit": {
+      "title": "Active energy import T2 (64 bit) kWh",
+      "description": "Active energy import counter tariff T2 in kWh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours"
+    },
+    "activeEnergyImportT264bitConsumption": {
+      "title": "Active energy import T2 (64 bit) consumption kWh",
+      "description": "Active energy imported on tariff T2 since the last uplink in kWh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHoursDelta"
+    },
+    "activeEnergyExportT164bit": {
+      "title": "Active energy export T1 (64 bit) kWh",
+      "description": "Active energy export counter tariff T1 in kWh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours"
+    },
+    "activeEnergyExportT164bitConsumption": {
+      "title": "Active energy export T1 (64 bit) consumption kWh",
+      "description": "Active energy exported on tariff T1 since the last uplink in kWh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHoursDelta"
+    },
+    "activeEnergyExportT264bit": {
+      "title": "Active energy export T2 (64 bit) kWh",
+      "description": "Active energy export counter tariff T2 in kWh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHours"
+    },
+    "activeEnergyExportT264bitConsumption": {
+      "title": "Active energy export T2 (64 bit) consumption kWh",
+      "description": "Active energy exported on tariff T2 since the last uplink in kWh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activeEnergy/kiloWattHoursDelta"
+    },
+    "reactiveEnergyImportT1": {
+      "title": "Reactive energy import T1 varh",
+      "description": "Reactive energy import counter tariff T1 in varh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/reactiveEnergy/voltAmpereReactiveHours"
+    },
+    "reactiveEnergyImportT2": {
+      "title": "Reactive energy import T2 varh",
+      "description": "Reactive energy import counter tariff T2 in varh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/reactiveEnergy/voltAmpereReactiveHours"
+    },
+    "reactiveEnergyExportT1": {
+      "title": "Reactive energy export T1 varh",
+      "description": "Reactive energy export counter tariff T1 in varh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/reactiveEnergy/voltAmpereReactiveHours"
+    },
+    "reactiveEnergyExportT2": {
+      "title": "Reactive energy export T2 varh",
+      "description": "Reactive energy export counter tariff T2 in varh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/reactiveEnergy/voltAmpereReactiveHours"
+    },
+    "reactiveEnergyImportT1Kvarh": {
+      "title": "Reactive energy import T1 (kvarh counter)",
+      "description": "Reactive energy import counter tariff T1 in kvarh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/reactiveEnergy/kiloVoltAmpereReactiveHours"
+    },
+    "reactiveEnergyImportT2Kvarh": {
+      "title": "Reactive energy import T2 (kvarh counter)",
+      "description": "Reactive energy import counter tariff T2 in kvarh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/reactiveEnergy/kiloVoltAmpereReactiveHours"
+    },
+    "reactiveEnergyExportT1Kvarh": {
+      "title": "Reactive energy export T1 (kvarh counter)",
+      "description": "Reactive energy export counter tariff T1 in kvarh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/reactiveEnergy/kiloVoltAmpereReactiveHours"
+    },
+    "reactiveEnergyExportT2Kvarh": {
+      "title": "Reactive energy export T2 (kvarh counter)",
+      "description": "Reactive energy export counter tariff T2 in kvarh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/reactiveEnergy/kiloVoltAmpereReactiveHours"
+    },
+    "reactiveEnergyImportT164bit": {
+      "title": "Reactive energy import T1 (64 bit) varh",
+      "description": "Reactive energy import counter tariff T1 in varh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/reactiveEnergy/voltAmpereReactiveHours"
+    },
+    "reactiveEnergyImportT264bit": {
+      "title": "Reactive energy import T2 (64 bit) varh",
+      "description": "Reactive energy import counter tariff T2 in varh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/reactiveEnergy/voltAmpereReactiveHours"
+    },
+    "reactiveEnergyExportT164bit": {
+      "title": "Reactive energy export T1 (64 bit) varh",
+      "description": "Reactive energy export counter tariff T1 in varh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/reactiveEnergy/voltAmpereReactiveHours"
+    },
+    "reactiveEnergyExportT264bit": {
+      "title": "Reactive energy export T2 (64 bit) varh",
+      "description": "Reactive energy export counter tariff T2 in varh",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/reactiveEnergy/voltAmpereReactiveHours"
+    },
+    "activePowerL123": {
+      "title": "Active power L123",
+      "description": "Total active power of all phases in W",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activePower/watt"
+    },
+    "activePowerL1": {
+      "title": "Active power L1",
+      "description": "Active power of phase L1 in W",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activePower/watt"
+    },
+    "activePowerL2": {
+      "title": "Active power L2",
+      "description": "Active power of phase L2 in W",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activePower/watt"
+    },
+    "activePowerL3": {
+      "title": "Active power L3",
+      "description": "Active power of phase L3 in W",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activePower/watt"
+    },
+    "activePowerAverage": {
+      "title": "Active power average",
+      "description": "Average active power in W",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/activePower/watt"
+    },
+    "currentL123": {
+      "title": "Current L123",
+      "description": "Total current of all phases in mA",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/milliAmpere"
+    },
+    "currentL1": {
+      "title": "Current L1",
+      "description": "Current of phase L1 in mA",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/milliAmpere"
+    },
+    "currentL2": {
+      "title": "Current L2",
+      "description": "Current of phase L2 in mA",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/milliAmpere"
+    },
+    "currentL3": {
+      "title": "Current L3",
+      "description": "Current of phase L3 in mA",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/milliAmpere"
+    },
+    "currentN": {
+      "title": "Current N",
+      "description": "Neutral conductor current in mA",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/current/milliAmpere"
+    },
+    "voltageL1N": {
+      "title": "Voltage L1-N",
+      "description": "Voltage between phase L1 and neutral in V",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt"
+    },
+    "voltageL2N": {
+      "title": "Voltage L2-N",
+      "description": "Voltage between phase L2 and neutral in V",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt"
+    },
+    "voltageL3N": {
+      "title": "Voltage L3-N",
+      "description": "Voltage between phase L3 and neutral in V",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/voltage/volt"
+    },
+    "powerfactorL1": {
+      "title": "Power factor L1",
+      "description": "Power factor (cos phi) of phase L1",
+      "type": "number",
+      "minimum": -1,
+      "maximum": 1
+    },
+    "powerfactorL2": {
+      "title": "Power factor L2",
+      "description": "Power factor (cos phi) of phase L2",
+      "type": "number",
+      "minimum": -1,
+      "maximum": 1
+    },
+    "powerfactorL3": {
+      "title": "Power factor L3",
+      "description": "Power factor (cos phi) of phase L3",
+      "type": "number",
+      "minimum": -1,
+      "maximum": 1
+    },
+    "frequency": {
+      "title": "Frequency",
+      "description": "Grid frequency in Hz",
+      "$ref": "https://raw.githubusercontent.com/akenza-io/device-type-library/main/data-models/electricity/schema.json#/$defs/frequency/hertz"
+    }
+  }
+}
